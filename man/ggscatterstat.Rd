@@ -27,7 +27,7 @@ ggscatterstat(df, x, y, xlab = NULL, ylab = NULL, marginal = NULL,
 
 \item{yfill}{color fill for y axis distribution}
 
-\item{intercept}{decides whether mean intercept lines are to be plotted}
+\item{intercept}{decides whether mean or median or no intercept lines are to be plotted}
 
 \item{test}{statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")}
 
