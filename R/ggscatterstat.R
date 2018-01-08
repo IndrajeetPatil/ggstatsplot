@@ -17,13 +17,6 @@
 #' @param caption caption for the plot
 #' @export
 
-library(ggplot2)
-library(grid)
-library(ggExtra)
-library(stats)
-library(MASS)
-library(sfsmisc)
-
 ggscatterstat <- function(df, x, y, xlab = NULL, ylab = NULL, marginal = NULL,
                           marginaltype = NULL, xfill = NULL, yfill = NULL, intercept = NULL,
                           test = NULL, title = NULL, caption = NULL) {
