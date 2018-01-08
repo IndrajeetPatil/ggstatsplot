@@ -93,9 +93,11 @@ ggscatterstat <- function(df, x, y, xlab = NULL, ylab = NULL, marginal = NULL,
   }   else if (test == "spearman") {
 
     # running the correlation test and preparing the subtitle text
+    # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
     c <- stats::cor.test(x, y, method = "spearman", exact = FALSE)
-    corr_label <- base::substitute(paste("Spearman's ", italic(rho), "(", df, ")", " = ", estimate, ", ", italic("p")," = ", pvalue),
-                                   list(df = specify_decimal(c$parameter, 0),
+    corr_label <- base::substitute(paste("Spearman's ", italic(rho), "(", df, ")", " = ",
+                                         estimate, ", ", italic("p")," = ", pvalue),
+                                   list(df = specify_decimal((length(x) - 2), 0),
                                         estimate = specify_decimal(c$estimate, 3),
                                         pvalue = specify_decimal_p(c$p.value, 3)))
 
