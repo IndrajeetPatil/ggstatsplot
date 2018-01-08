@@ -3,16 +3,21 @@
 \name{ggscatterstat}
 \alias{ggscatterstat}
 \title{scatterplot with ggMarginals}
+\usage{
+ggscatterstat(df, x, y, xlab = NULL, ylab = NULL, marginal = NULL,
+  marginaltype = NULL, xfill = NULL, yfill = NULL, intercept = NULL,
+  test = NULL, title = NULL, caption = NULL)
+}
 \arguments{
 \item{df}{data frame from which variables specified are preferentially to be taken}
 
 \item{x}{a vector containing the explanatory variable}
 
+\item{y}{the response - a vector of length the number of rows of `x`}
+
 \item{xlab}{label for x axis variable}
 
 \item{ylab}{label for y axis variable}
-
-\item{y}{the response - a vector of length the number of rows of `x`}
 
 \item{marginal}{decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`}
 
@@ -22,9 +27,9 @@
 
 \item{yfill}{color fill for y axis distribution}
 
-\item{test}{statistical test to be run and displayed as subtitle ("parametric", "nonparametric", "robust")}
-
 \item{intercept}{decides whether mean intercept lines are to be plotted}
+
+\item{test}{statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")}
 
 \item{title}{title for the plot}
 

@@ -11,7 +11,7 @@
 #' @param marginaltype type of marginal distribution to be plotted on the axes (NULL, "histogram", "boxplot", "density")
 #' @param xfill color fill for x axis distibution
 #' @param yfill color fill for y axis distribution
-#' @param test statistical test to be run and displayed as subtitle ("parametric", "nonparametric", "robust")
+#' @param test statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")
 #' @param intercept decides whether mean intercept lines are to be plotted
 #' @param title title for the plot
 #' @param caption caption for the plot
@@ -81,19 +81,19 @@ ggscatterstat <- function(df, x, y, xlab = NULL, ylab = NULL, marginal = NULL,
   # if test to be run is not satisfied, then use default, which is robust regression from MASS package
   if (is.null(test)) test <- "robust"
 
-  if (test == "parametric") {
+  if (test == "pearson") {
 
     # running the correlation test and preparing the subtitle text
-    c <- stats::cor.test(x, y, method = "parametric", exact = FALSE)
+    c <- stats::cor.test(x, y, method = "pearson", exact = FALSE)
     corr_label <- base::substitute(paste("Pearson's ", italic("r"), "(", df, ")", " = ", estimate, ", ", italic("p")," = ", pvalue),
                                    list(df = specify_decimal(c$parameter, 0),
                                         estimate = specify_decimal(c$estimate, 3),
                                         pvalue = specify_decimal_p(c$p.value, 3)))
 
-  }   else if (test == "nonparametric") {
+  }   else if (test == "spearman") {
 
     # running the correlation test and preparing the subtitle text
-    c <- stats::cor.test(x, y, method = "nonparametric", exact = FALSE)
+    c <- stats::cor.test(x, y, method = "spearman", exact = FALSE)
     corr_label <- base::substitute(paste("Spearman's ", italic(rho), "(", df, ")", " = ", estimate, ", ", italic("p")," = ", pvalue),
                                    list(df = specify_decimal(c$parameter, 0),
                                         estimate = specify_decimal(c$estimate, 3),
