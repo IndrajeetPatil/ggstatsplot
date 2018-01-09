@@ -8,8 +8,10 @@
 #' @param y the response - a vector of length the number of rows of `x`
 #' @param xlab label for x axis variable
 #' @param ylab label for y axis variable
-#' @param test statistical test to be run and displayed as subtitle ("t-test", "anova")
+#' @param test statistical test to be run and displayed as subtitle ("t-test" or "anova")
 #' @param type type of statistics expected ("parametric" or "robust")
+#' @param effsizetype type of effect size needed for parametric tests ("biased" (Cohen's d, partial eta-squared) or
+#' "unbiased" (Hedge's g, omega-squared))
 #' @param title title for the plot
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
@@ -23,6 +25,7 @@ ggbetweenstats <- function(data = NULL,
                            y,
                            test = NULL,
                            type = NULL,
+                           effsizetype = NULL,
                            xlab = NULL,
                            ylab = NULL,
                            caption = NULL,
@@ -82,6 +85,8 @@ ggbetweenstats <- function(data = NULL,
     if (is.null(type))
       type <- "parametric"
 
+    ##################################### parametric ANOVA ############################################################
+
     if (type == "parametric") {
       # aov_stat input represents the anova object summary derived from car library
       results_subtitle <- function(aov_stat, aov_effsize) {
@@ -123,15 +128,32 @@ ggbetweenstats <- function(data = NULL,
       # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
       # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
       y_aov <- stats::aov(formula = y ~ x, data = data)
-      y_aov_stat <- car::Anova(mod = y_aov, type = "III", white.adjust = FALSE)
-      y_aov_effsize <- sjstats::eta_sq(model = y_aov, partial = TRUE)
+      y_aov_stat <-
+        car::Anova(mod = y_aov,
+                   type = "III",
+                   white.adjust = FALSE)
 
+      # if type of effect size is not specified, use the unbiased estimate as the default
+      if (is.null(effsizetype))
+        effsizetype <- "unbiased"
+
+      if (effsizetype == "unbiased") {
+        # partial omega-squared is the biased estimate of effect size for parametric ANOVA
+        y_aov_effsize <-
+          sjstats::omega_sq(model = y_aov)
+      } else if (effsizetype == "biased") {
+        # partial eta-squared is the biased estimate of effect size for parametric ANOVA
+        y_aov_effsize <-
+          sjstats::eta_sq(model = y_aov, partial = TRUE)
+      }
       plot <-
         plot + labs(subtitle = results_subtitle(y_aov_stat, y_aov_effsize))
 
       return(plot)
 
     } else if (type == "robust") {
+      ######################################### robust ANOVA ############################################################
+
       # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
       results_subtitle <- function(robust_aov_stat) {
         # extracting the elements of the statistical object
@@ -166,7 +188,13 @@ ggbetweenstats <- function(data = NULL,
       }
 
       # setting up the robust anova model
-      robust_y_aov <- WRS2::t1way(formula = y ~ x, data = data, tr = 0.2, nboot = 100)
+      robust_y_aov <-
+        WRS2::t1way(
+          formula = y ~ x,
+          data = data,
+          tr = 0.2,
+          nboot = 100
+        )
 
       plot <- plot + labs(subtitle = results_subtitle(robust_y_aov))
 
@@ -178,6 +206,8 @@ ggbetweenstats <- function(data = NULL,
     # if type of test is not specified, then use the default, which is parametric test
     if (is.null(type))
       type <- "parametric"
+
+    ##################################### parametric t-test ############################################################
 
     if (type == "parametric") {
       # t_stat input represents the t-test object summary derived from stats library
@@ -211,10 +241,34 @@ ggbetweenstats <- function(data = NULL,
       }
 
       # setting up the anova model and getting its summary and effect size
-      y_t_stat <- stats::t.test(formula = y ~ x, data = data, na.action = na.omit)
-      # Hedge's g is an unbiased estimate of the effect size
-      y_t_effsize <-
-        effsize::cohen.d(formula = y ~ x, data = data, hedges.correction = TRUE, na.rm = TRUE)
+      y_t_stat <-
+        stats::t.test(formula = y ~ x,
+                      data = data,
+                      na.action = na.omit)
+
+      # if type of effect size is not specified, use the unbiased estimate as the default
+      if (is.null(effsizetype))
+        effsizetype <- "unbiased"
+
+      if (effsizetype == "unbiased") {
+        # Hedge's g is an unbiased estimate of the effect size
+        y_t_effsize <-
+          effsize::cohen.d(
+            formula = y ~ x,
+            data = data,
+            hedges.correction = TRUE,
+            na.rm = TRUE
+          )
+      } else if (effsizetype == "biased") {
+        # Cohen's d is a biased estimate of the effect size
+        y_t_effsize <-
+          effsize::cohen.d(
+            formula = y ~ x,
+            data = data,
+            hedges.correction = FALSE,
+            na.rm = TRUE
+          )
+      }
 
       plot <-
         plot + labs(subtitle = results_subtitle(y_t_stat, y_t_effsize))
@@ -222,6 +276,8 @@ ggbetweenstats <- function(data = NULL,
       return(plot)
 
     } else if (type == "robust") {
+      ######################################### robust t-test ############################################################
+
       # t_robust_stat input represents the t-test object summary derived from WRS2 library
       results_subtitle <-
         function(t_robust_stat, t_robust_effsize) {
