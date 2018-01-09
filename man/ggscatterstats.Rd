@@ -4,7 +4,7 @@
 \alias{ggscatterstats}
 \title{scatterplot with ggMarginals}
 \arguments{
-\item{df}{data frame from which variables specified are preferentially to be taken}
+\item{data}{data frame from which variables specified are preferentially to be taken}
 
 \item{x}{a vector containing the explanatory variable}
 
