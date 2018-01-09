@@ -1,16 +1,3 @@
-### fuction to make violin plot for group comparison with results of the statistical tests added as subtitle
-
-# NOTE: as the title for this function clarifies, this is for plots comparing value of dependent variable across different
-# levels of the independent or the grouping variable and is not meant to be used for paired data
-
-# x represents the grouping variable
-# y represents the dependent variable
-# xlab, ylab, caption, title repesent text labels for x and y axes and caption and title texts, resp.
-# subtitle text will always be the results of the test
-# if there are only two groups being compared, set test == "t-test"; in case this is not specified, the test will be determined
-# based on the number of factors
-# type argument determines whether parametric tests will be run or their robust variants will be run; default is parametric
-
 #'
 #' @title violin plot for group or condition comparisons
 #' @name ggbetweenstats
@@ -119,11 +106,11 @@ ggbetweenstats <- function(data,
             effsize
           ),
           list(
-            estimate = ggstatplot::specify_decimal(aov_stat$`F value`[2], 3),
+            estimate = ggstatplot::specify_decimal(aov_stat$`F value`[2], k),
             df1 = aov_stat$`Df`[2],
             df2 = aov_stat$`Df`[3],
-            pvalue = ggstatplot::ggstatplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], 3),
-            effsize = ggstatplot::specify_decimal(aov_effsize[[1]], 3)
+            pvalue = ggstatplot::ggstatplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k),
+            effsize = ggstatplot::specify_decimal(aov_effsize[[1]], k)
           )
         )
       }
@@ -165,11 +152,11 @@ ggbetweenstats <- function(data,
             effsize
           ),
           list(
-            estimate = ggstatplot::specify_decimal(robust_aov_stat$test, 3),
-            df1 = ggstatplot::specify_decimal(robust_aov_stat$df1, 0),
-            df2 = ggstatplot::specify_decimal(robust_aov_stat$df2, 2),
-            pvalue = ggstatplot::ggstatplot::specify_decimal_p(robust_aov_stat$p.value, 3),
-            effsize = ggstatplot::specify_decimal(robust_aov_stat$effsize, 3)
+            estimate = ggstatplot::specify_decimal(robust_aov_stat$test, k),
+            df1 = robust_aov_stat$df1,
+            df2 = ggstatplot::specify_decimal(robust_aov_stat$df2, k),
+            pvalue = ggstatplot::ggstatplot::specify_decimal_p(robust_aov_stat$p.value, k),
+            effsize = ggstatplot::specify_decimal(robust_aov_stat$effsize, k)
           )
         )
       }
@@ -210,10 +197,10 @@ ggbetweenstats <- function(data,
             effsize
           ),
           list(
-            estimate = ggstatplot::specify_decimal(t_stat[[1]], 3),
-            df = ggstatplot::specify_decimal(t_stat[[2]], 2),
-            pvalue = ggstatplot::ggstatplot::specify_decimal_p(t_stat[[3]], 3),
-            effsize = ggstatplot::specify_decimal(t_effsize[[3]], 3)
+            estimate = ggstatplot::specify_decimal(t_stat[[1]], k),
+            df = ggstatplot::specify_decimal(t_stat[[2]], k),
+            pvalue = ggstatplot::ggstatplot::specify_decimal_p(t_stat[[3]], k),
+            effsize = ggstatplot::specify_decimal(t_effsize[[3]], k)
           )
         )
 
@@ -253,10 +240,10 @@ ggbetweenstats <- function(data,
               effsize
             ),
             list(
-              estimate = ggstatplot::specify_decimal(t_robust_stat$test, 3),
-              df = ggstatplot::specify_decimal(t_robust_stat$df, 2),
-              pvalue = ggstatplot::ggstatplot::specify_decimal_p(t_robust_stat$p.value, 3),
-              effsize = ggstatplot::specify_decimal(t_robust_effsize$effsize, 3)
+              estimate = ggstatplot::specify_decimal(t_robust_stat$test, k),
+              df = ggstatplot::specify_decimal(t_robust_stat$df, k),
+              pvalue = ggstatplot::ggstatplot::specify_decimal_p(t_robust_stat$p.value, k),
+              effsize = ggstatplot::specify_decimal(t_robust_effsize$effsize, k)
             )
           )
 
