@@ -42,7 +42,7 @@ ggscatterstat <-
 
     # if test to be run is not satisfied, then use default, which is robust regression from MASS package
     if (is.null(test))
-      test <- "robust"
+      test <- "pearson"
 
     if (test == "pearson") {
       # running the correlation test and preparing the subtitle text
@@ -144,7 +144,7 @@ ggscatterstat <-
           dodge.width = 0.75
         )
       ) +
-      geom_smooth(method = "rlm",
+      geom_smooth(method = "lm",
                   se = TRUE,
                   size = 1.5) + # default is robust linear model
       ggstatplot::theme_mprl() +
@@ -158,7 +158,10 @@ ggscatterstat <-
 
     # by default, if the input is NULL, then no intercept lines will be plotted
 
-    if (intercept == "mean") {
+    if (is.null(intercept)) {
+      plot <- plot
+
+    } else if (intercept == "mean") {
       plot <- plot +
         geom_vline(
           xintercept = mean(x),
@@ -187,9 +190,6 @@ ggscatterstat <-
           color = yfill,
           size = 1.2
         )
-
-    } else if (is.null(intercept)) {
-      plot <- plot
 
     }
 
