@@ -111,7 +111,7 @@ ggbetweenstats <- function(data,
             # degrees of freedom are always integer
             df2 = aov_stat$`Df`[3],
             # degrees of freedom are always integer
-            pvalue = ggstatplot::ggstatplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k),
+            pvalue = ggstatplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k),
             effsize = ggstatplot::specify_decimal(aov_effsize[[1]], k)
           )
         )
@@ -158,7 +158,7 @@ ggbetweenstats <- function(data,
             df1 = robust_aov_stat$df1,
             # degrees of freedom are always integer
             df2 = ggstatplot::specify_decimal(robust_aov_stat$df2, k),
-            pvalue = ggstatplot::ggstatplot::specify_decimal_p(robust_aov_stat$p.value, k),
+            pvalue = ggstatplot::specify_decimal_p(robust_aov_stat$p.value, k),
             effsize = ggstatplot::specify_decimal(robust_aov_stat$effsize, k)
           )
         )
@@ -202,7 +202,7 @@ ggbetweenstats <- function(data,
           list(
             estimate = ggstatplot::specify_decimal(t_stat[[1]], k),
             df = ggstatplot::specify_decimal(t_stat[[2]], k),
-            pvalue = ggstatplot::ggstatplot::specify_decimal_p(t_stat[[3]], k),
+            pvalue = ggstatplot::specify_decimal_p(t_stat[[3]], k),
             effsize = ggstatplot::specify_decimal(t_effsize[[3]], k)
           )
         )
@@ -245,7 +245,7 @@ ggbetweenstats <- function(data,
             list(
               estimate = ggstatplot::specify_decimal(t_robust_stat$test, k),
               df = ggstatplot::specify_decimal(t_robust_stat$df, k),
-              pvalue = ggstatplot::ggstatplot::specify_decimal_p(t_robust_stat$p.value, k),
+              pvalue = ggstatplot::specify_decimal_p(t_robust_stat$p.value, k),
               effsize = ggstatplot::specify_decimal(t_robust_effsize$effsize, k)
             )
           )
