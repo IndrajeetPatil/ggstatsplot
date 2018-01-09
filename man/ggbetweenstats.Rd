@@ -4,7 +4,7 @@
 \alias{ggbetweenstats}
 \title{violin plots for group or condition comparisons}
 \arguments{
-\item{df}{data frame from which variables specified are preferentially to be taken}
+\item{data}{data frame from which variables specified are preferentially to be taken}
 
 \item{x}{the grouping variable}
 
