@@ -1,4 +1,4 @@
-#' @title default theme to use for ggplot figures
+#' @title default theme to use for `ggstatplot` package figures
 #' @name theme_mprl
 #' @return
 

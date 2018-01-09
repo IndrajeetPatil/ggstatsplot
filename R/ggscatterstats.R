@@ -17,6 +17,7 @@
 #' @param title title for the plot
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
+#'
 #' @export
 
 library(ggplot2)

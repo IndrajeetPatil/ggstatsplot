@@ -1,5 +1,5 @@
 #'
-#' @title violin plot for group or condition comparisons
+#' @title violin plots for group or condition comparisons
 #' @name ggbetweenstats
 #' @author Indrajeet Patil
 #'
@@ -13,6 +13,7 @@
 #' @param title title for the plot
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
+#'
 #' @export
 
 library(ggplot2)
@@ -122,7 +123,7 @@ ggbetweenstats <- function(data,
       # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
       # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
       y_aov <- stats::aov(y ~ x, data)
-      y_aov_stat <- car::Anova(y_aov, type = "III")
+      y_aov_stat <- car::Anova(y_aov, type = "III", white.adjust = FALSE)
       y_aov_effsize <- sjstats::eta_sq(y_aov, partial = TRUE)
 
       plot <-

@@ -2,4 +2,4 @@
 % Please edit documentation in R/theme_mprl.R
 \name{theme_mprl}
 \alias{theme_mprl}
-\title{default theme to use for ggplot figures}
+\title{default theme to use for `ggstatplot` package figures}
