@@ -14,9 +14,12 @@
 
 \item{ylab}{label for y axis variable}
 
-\item{test}{statistical test to be run and displayed as subtitle ("t-test", "anova")}
+\item{test}{statistical test to be run and displayed as subtitle ("t-test" or "anova")}
 
 \item{type}{type of statistics expected ("parametric" or "robust")}
+
+\item{effsizetype}{type of effect size needed for parametric tests ("biased" (Cohen's d, partial eta-squared) or
+"unbiased" (Hedge's g, omega-squared))}
 
 \item{title}{title for the plot}
 
