@@ -3,7 +3,7 @@
 #' @name ggbetweenstats
 #' @author Indrajeet Patil
 #'
-#' @param df data frame from which variables specified are preferentially to be taken
+#' @param data data frame from which variables specified are preferentially to be taken
 #' @param x the grouping variable
 #' @param y the response - a vector of length the number of rows of `x`
 #' @param xlab label for x axis variable
@@ -18,7 +18,7 @@
 
 library(ggplot2)
 
-ggbetweenstats <- function(data,
+ggbetweenstats <- function(data = NULL,
                            x,
                            y,
                            test = NULL,
@@ -30,7 +30,7 @@ ggbetweenstats <- function(data,
                            k = 3) {
   ## creating the plot
 
-  plot <- ggplot2::ggplot(data, aes(x, y)) +
+  plot <- ggplot2::ggplot(data = data, mapping = aes(x, y)) +
     geom_point(
       position = position_jitterdodge(
         jitter.width = NULL,
@@ -122,9 +122,9 @@ ggbetweenstats <- function(data,
       # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
       # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
       # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
-      y_aov <- stats::aov(y ~ x, data)
-      y_aov_stat <- car::Anova(y_aov, type = "III", white.adjust = FALSE)
-      y_aov_effsize <- sjstats::eta_sq(y_aov, partial = TRUE)
+      y_aov <- stats::aov(formula = y ~ x, data = data)
+      y_aov_stat <- car::Anova(mod = y_aov, type = "III", white.adjust = FALSE)
+      y_aov_effsize <- sjstats::eta_sq(model = y_aov, partial = TRUE)
 
       plot <-
         plot + labs(subtitle = results_subtitle(y_aov_stat, y_aov_effsize))
@@ -166,7 +166,7 @@ ggbetweenstats <- function(data,
       }
 
       # setting up the robust anova model
-      robust_y_aov <- WRS2::t1way(y ~ x, data)
+      robust_y_aov <- WRS2::t1way(formula = y ~ x, data = data, tr = 0.2, nboot = 100)
 
       plot <- plot + labs(subtitle = results_subtitle(robust_y_aov))
 
@@ -211,10 +211,10 @@ ggbetweenstats <- function(data,
       }
 
       # setting up the anova model and getting its summary and effect size
-      y_t_stat <- stats::t.test(y ~ x, data)
+      y_t_stat <- stats::t.test(formula = y ~ x, data = data, na.action = na.omit)
       # Hedge's g is an unbiased estimate of the effect size
       y_t_effsize <-
-        effsize::cohen.d(y ~ x, hedges.correction = TRUE, data)
+        effsize::cohen.d(formula = y ~ x, data = data, hedges.correction = TRUE, na.rm = TRUE)
 
       plot <-
         plot + labs(subtitle = results_subtitle(y_t_stat, y_t_effsize))
