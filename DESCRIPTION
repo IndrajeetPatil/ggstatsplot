@@ -12,9 +12,12 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Imports: 
-  ggplot2,
   grid,
   ggExtra,
   stats,
   MASS,
-  sfsmisc
+  sfsmisc,
+  ggplot2,
+  jmv,
+  WRS2,
+  robust
