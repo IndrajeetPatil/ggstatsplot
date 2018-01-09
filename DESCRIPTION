@@ -13,8 +13,10 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports: 
   ggplot2,
+  car,
   grid,
   ggExtra,
+  sjstats,
   stats,
   MASS,
   sfsmisc,
