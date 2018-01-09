@@ -68,8 +68,8 @@ ggscatterstats <-
           list(
             df = c$parameter,
             # degrees of freedom are always integer
-            estimate = ggstatplot::specify_decimal(c$estimate, k),
-            pvalue = ggstatplot::specify_decimal_p(c$p.value, k)
+            estimate = ggstatsplot::specify_decimal(c$estimate, k),
+            pvalue = ggstatsplot::specify_decimal_p(c$p.value, k)
           )
         )
 
@@ -95,8 +95,8 @@ ggscatterstats <-
           list(
             df = (length(x) - 2),
             # degrees of freedom are always integer
-            estimate = ggstatplot::specify_decimal(c$estimate, k),
-            pvalue = ggstatplot::specify_decimal_p(c$p.value, k)
+            estimate = ggstatsplot::specify_decimal(c$estimate, k),
+            pvalue = ggstatsplot::specify_decimal_p(c$p.value, k)
           )
         )
 
@@ -128,11 +128,11 @@ ggscatterstats <-
             pvalue
           ),
           list(
-            estimate = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[2]], k),
-            t = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[6]], k),
+            estimate = ggstatsplot::specify_decimal(summary(MASS_res)$coefficients[[2]], k),
+            t = ggstatsplot::specify_decimal(summary(MASS_res)$coefficients[[6]], k),
             df = summary(MASS_res)$df[2],
             # degrees of freedom are always integer
-            pvalue = ggstatplot::specify_decimal_p((sfsmisc::f.robftest(MASS_res))$p.value),
+            pvalue = ggstatsplot::specify_decimal_p((sfsmisc::f.robftest(MASS_res))$p.value),
             k
           )
         )
@@ -159,7 +159,7 @@ ggscatterstats <-
       geom_smooth(method = "lm",
                   se = TRUE,
                   size = 1.5) + # default is robust linear model
-      ggstatplot::theme_mprl() +
+      ggstatsplot::theme_mprl() +
       labs(
         x = xlab,
         y = ylab,

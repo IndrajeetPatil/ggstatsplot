@@ -1,6 +1,6 @@
 Package: ggstatsplot
 Type: Package
-Title: 'ggplot2' based plots with statistical details
+Title: `ggplot2` based plots with statistical details
 Version: 0.1.0
 Author: Indrajeet Patil
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
