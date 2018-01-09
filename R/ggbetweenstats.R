@@ -88,41 +88,6 @@ ggbetweenstats <- function(data = NULL,
     ##################################### parametric ANOVA ############################################################
 
     if (type == "parametric") {
-      # aov_stat input represents the anova object summary derived from car library
-      results_subtitle <- function(aov_stat, aov_effsize) {
-        # extracting the elements of the statistical object
-        base::substitute(
-          paste(
-            "ANOVA: ",
-            italic("F"),
-            "(",
-            df1,
-            ",",
-            df2,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic("p"),
-            italic(eta) ^ 2,
-            " = ",
-            effsize
-          ),
-          list(
-            estimate = ggstatsplot::specify_decimal(aov_stat$`F value`[2], k),
-            df1 = aov_stat$`Df`[2],
-            # degrees of freedom are always integer
-            df2 = aov_stat$`Df`[3],
-            # degrees of freedom are always integer
-            pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k),
-            effsize = ggstatsplot::specify_decimal(aov_effsize[[1]], k)
-          )
-        )
-      }
-
       # setting up the anova model and getting its summary
       # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
       # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
@@ -141,10 +106,78 @@ ggbetweenstats <- function(data = NULL,
         # partial omega-squared is the biased estimate of effect size for parametric ANOVA
         y_aov_effsize <-
           sjstats::omega_sq(model = y_aov)
+        # aov_stat input represents the anova object summary derived from car library
+        results_subtitle <- function(aov_stat, aov_effsize) {
+          # extracting the elements of the statistical object
+          base::substitute(
+            paste(
+              "ANOVA: ",
+              italic("F"),
+              "(",
+              df1,
+              ",",
+              df2,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue,
+              ", ",
+              italic(Omega) ^ 2,
+              " = ",
+              effsize
+            ),
+            list(
+              estimate = ggstatsplot::specify_decimal(aov_stat$`F value`[2], k),
+              df1 = aov_stat$`Df`[2],
+              # degrees of freedom are always integer
+              df2 = aov_stat$`Df`[3],
+              # degrees of freedom are always integer
+              pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k),
+              effsize = ggstatsplot::specify_decimal(aov_effsize[[1]], k)
+            )
+          )
+        }
+
       } else if (effsizetype == "biased") {
         # partial eta-squared is the biased estimate of effect size for parametric ANOVA
         y_aov_effsize <-
           sjstats::eta_sq(model = y_aov, partial = TRUE)
+        # aov_stat input represents the anova object summary derived from car library
+        results_subtitle <- function(aov_stat, aov_effsize) {
+          # extracting the elements of the statistical object
+          base::substitute(
+            paste(
+              "ANOVA: ",
+              italic("F"),
+              "(",
+              df1,
+              ",",
+              df2,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue,
+              ", p",
+              italic(eta) ^ 2,
+              " = ",
+              effsize
+            ),
+            list(
+              estimate = ggstatsplot::specify_decimal(aov_stat$`F value`[2], k),
+              df1 = aov_stat$`Df`[2],
+              # degrees of freedom are always integer
+              df2 = aov_stat$`Df`[3],
+              # degrees of freedom are always integer
+              pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k),
+              effsize = ggstatsplot::specify_decimal(aov_effsize[[1]], k)
+            )
+          )
+        }
+
       }
       plot <-
         plot + labs(subtitle = results_subtitle(y_aov_stat, y_aov_effsize))
@@ -210,36 +243,6 @@ ggbetweenstats <- function(data = NULL,
     ##################################### parametric t-test ############################################################
 
     if (type == "parametric") {
-      # t_stat input represents the t-test object summary derived from stats library
-      results_subtitle <- function(t_stat, t_effsize) {
-        # extracting the elements of the statistical object
-        base::substitute(
-          paste(
-            "t-test: ",
-            italic("t"),
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic("g"),
-            " = ",
-            effsize
-          ),
-          list(
-            estimate = ggstatsplot::specify_decimal(t_stat[[1]], k),
-            df = ggstatsplot::specify_decimal(t_stat[[2]], k),
-            pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k),
-            effsize = ggstatsplot::specify_decimal(t_effsize[[3]], k)
-          )
-        )
-
-      }
-
       # setting up the anova model and getting its summary and effect size
       y_t_stat <-
         stats::t.test(formula = y ~ x,
@@ -251,6 +254,35 @@ ggbetweenstats <- function(data = NULL,
         effsizetype <- "unbiased"
 
       if (effsizetype == "unbiased") {
+        # t_stat input represents the t-test object summary derived from stats library
+        results_subtitle <- function(t_stat, t_effsize) {
+          # extracting the elements of the statistical object
+          base::substitute(
+            paste(
+              "t-test: ",
+              italic("t"),
+              "(",
+              df,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue,
+              ", ",
+              italic("g"),
+              " = ",
+              effsize
+            ),
+            list(
+              estimate = ggstatsplot::specify_decimal(t_stat[[1]], k),
+              df = ggstatsplot::specify_decimal(t_stat[[2]], k),
+              pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k),
+              effsize = ggstatsplot::specify_decimal(t_effsize[[3]], k)
+            )
+          )
+
+        }
         # Hedge's g is an unbiased estimate of the effect size
         y_t_effsize <-
           effsize::cohen.d(
@@ -260,6 +292,35 @@ ggbetweenstats <- function(data = NULL,
             na.rm = TRUE
           )
       } else if (effsizetype == "biased") {
+        # t_stat input represents the t-test object summary derived from stats library
+        results_subtitle <- function(t_stat, t_effsize) {
+          # extracting the elements of the statistical object
+          base::substitute(
+            paste(
+              "t-test: ",
+              italic("t"),
+              "(",
+              df,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue,
+              ", ",
+              italic("d"),
+              " = ",
+              effsize
+            ),
+            list(
+              estimate = ggstatsplot::specify_decimal(t_stat[[1]], k),
+              df = ggstatsplot::specify_decimal(t_stat[[2]], k),
+              pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k),
+              effsize = ggstatsplot::specify_decimal(t_effsize[[3]], k)
+            )
+          )
+
+        }
         # Cohen's d is a biased estimate of the effect size
         y_t_effsize <-
           effsize::cohen.d(
