@@ -18,6 +18,8 @@
 #' @param caption caption for the plot
 #' @export
 
+library(ggplot2)
+
 ggscatterstat <-
   function(df,
            x,
@@ -40,7 +42,7 @@ ggscatterstat <-
 
     # if test to be run is not satisfied, then use default, which is robust regression from MASS package
     if (is.null(test))
-      test <- "robust"
+      test <- "pearson"
 
     if (test == "pearson") {
       # running the correlation test and preparing the subtitle text
@@ -61,9 +63,9 @@ ggscatterstat <-
             pvalue
           ),
           list(
-            df = specify_decimal(c$parameter, 0),
-            estimate = specify_decimal(c$estimate, 3),
-            pvalue = specify_decimal_p(c$p.value, 3)
+            df = ggstatplot::specify_decimal(c$parameter, 0),
+            estimate = ggstatplot::specify_decimal(c$estimate, 3),
+            pvalue = ggstatplot::specify_decimal_p(c$p.value, 3)
           )
         )
 
@@ -87,9 +89,9 @@ ggscatterstat <-
             pvalue
           ),
           list(
-            df = specify_decimal((length(x) - 2), 0),
-            estimate = specify_decimal(c$estimate, 3),
-            pvalue = specify_decimal_p(c$p.value, 3)
+            df = ggstatplot::specify_decimal((length(x) - 2), 0),
+            estimate = ggstatplot::specify_decimal(c$estimate, 3),
+            pvalue = ggstatplot::specify_decimal_p(c$p.value, 3)
           )
         )
 
@@ -120,10 +122,10 @@ ggscatterstat <-
             pvalue
           ),
           list(
-            estimate = specify_decimal(summary(MASS_res)$coefficients[[2]], 3),
-            t = specify_decimal(summary(MASS_res)$coefficients[[6]], 3),
+            estimate = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[2]], 3),
+            t = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[6]], 3),
             df = summary(MASS_res)$df[2],
-            pvalue = specify_decimal_p((sfsmisc::f.robftest(MASS_res))$p.value),
+            pvalue = ggstatplot::specify_decimal_p((sfsmisc::f.robftest(MASS_res))$p.value),
             3
           )
         )
@@ -142,10 +144,10 @@ ggscatterstat <-
           dodge.width = 0.75
         )
       ) +
-      geom_smooth(method = "rlm",
+      geom_smooth(method = "lm",
                   se = TRUE,
                   size = 1.5) + # default is robust linear model
-      theme_mprl() + # theme_mprl() is already defined below
+      ggstatplot::theme_mprl() +
       labs(
         x = xlab,
         y = ylab,
@@ -156,7 +158,10 @@ ggscatterstat <-
 
     # by default, if the input is NULL, then no intercept lines will be plotted
 
-    if (intercept == "mean") {
+    if (is.null(intercept)) {
+      plot <- plot
+
+    } else if (intercept == "mean") {
       plot <- plot +
         geom_vline(
           xintercept = mean(x),
@@ -186,9 +191,6 @@ ggscatterstat <-
           size = 1.2
         )
 
-    } else if (is.null(intercept)) {
-      plot <- plot
-
     }
 
     # if marginal should be plotted or not is not specified, it will be plotted by default
@@ -213,76 +215,3 @@ ggscatterstat <-
     return(plot)
 
   }
-
-
-#### other custom functions used inside this function
-
-
-## default theme to use for ggplot figures
-
-library(ggplot2)
-theme_mprl <- function() {
-  ggplot2::theme_grey() +
-    ggplot2::theme(
-      axis.title.x = element_text(size = 14, face = "bold"),
-      strip.text.x = element_text(size = 14, face = "bold"),
-      strip.text.y = element_text(size = 14, face = "bold"),
-      strip.text = element_text(size = 14, face = "bold"),
-      axis.title.y = element_text(size = 14, face = "bold"),
-      axis.text.x = element_text(size = 14, face = "bold"),
-      axis.text.y = element_text(size = 14, face = "bold"),
-      axis.line = element_line(),
-      legend.text = element_text(size = 14),
-      legend.title = element_text(size = 14, face = "bold"),
-      legend.title.align = 0.5,
-      legend.text.align = 0.5,
-      legend.key.height = unit(1, "line"),
-      legend.key.width = unit(1, "line"),
-      plot.margin = unit(c(1, 1, 1, 1), "lines"),
-      # requires library(grid))
-      panel.border = element_rect(
-        colour = "black",
-        fill = NA,
-        size = 1
-      ),
-      plot.title = element_text(
-        color = "black",
-        size = 16,
-        face = "bold",
-        hjust = 0.5
-      ),
-      plot.subtitle = element_text(
-        color = "black",
-        size = 12,
-        face = "bold",
-        hjust = 0.5
-      )
-    )
-
-}
-
-## custom function for getting specified number of decimal places in results
-# x is a numeric value, while k is the number of digits after decimal point (should be an integer)
-
-specify_decimal <- function(x, k = NULL) {
-  # if the number of decimal places hasn't been specified, use the default of 3
-  if (is.null(k))
-    k <- 3
-  output <- trimws(format(round(x, k), nsmall = k))
-  return(output)
-
-}
-
-### custom function for getting specified number of decimal places in results for p-value
-# x is a numeric value, while k is the number of digits after decimal point (should be an integer)
-
-specify_decimal_p <- function(x, k = NULL) {
-  # if the number of decimal places hasn't been specified, use the default of 3
-  if (is.null(k))
-    k <- 3
-  output <- trimws(format(round(x, k), nsmall = k))
-  if (output < 0.001)
-    output <- "< 0.001"
-  return(output)
-
-}
