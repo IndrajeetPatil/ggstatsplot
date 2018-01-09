@@ -3,7 +3,7 @@
 #' @name ggscatterstats
 #' @author Indrajeet Patil
 #'
-#' @param df data frame from which variables specified are preferentially to be taken
+#' @param data data frame from which variables specified are preferentially to be taken
 #' @param x a vector containing the explanatory variable
 #' @param y the response - a vector of length the number of rows of `x`
 #' @param xlab label for x axis variable
@@ -22,8 +22,8 @@
 
 library(ggplot2)
 
-ggscatterstat <-
-  function(df,
+ggscatterstats <-
+  function(data = NULL,
            x,
            y,
            xlab = NULL,
@@ -108,7 +108,7 @@ ggscatterstat <-
           maxit = 1000,
           # number of iterations
           na.action = na.omit,
-          data = df
+          data = data
         )
       stat_label <-
         base::substitute(
@@ -144,7 +144,7 @@ ggscatterstat <-
     }
 
     # preparing the scatterplotplot
-    plot <- ggplot2::ggplot(df, aes(x = x, y = y)) +
+    plot <- ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
       geom_count(
         show.legend = FALSE,
         color = "black",
