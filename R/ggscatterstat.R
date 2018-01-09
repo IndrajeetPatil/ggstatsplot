@@ -135,7 +135,7 @@ ggscatterstat <-
             k
           )
         )
-      warning(
+      base::warning(
         "For robust regression: no. of iterations = 1000; estimate is standardized",
         noBreaks. = TRUE,
         call. = TRUE
