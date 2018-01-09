@@ -5,9 +5,9 @@
 #'
 #' @param df data frame from which variables specified are preferentially to be taken
 #' @param x a vector containing the explanatory variable
+#' @param y the response - a vector of length the number of rows of `x`
 #' @param xlab label for x axis variable
 #' @param ylab label for y axis variable
-#' @param y the response - a vector of length the number of rows of `x`
 #' @param marginal decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`
 #' @param marginaltype type of marginal distribution to be plotted on the axes (NULL, "histogram", "boxplot", "density")
 #' @param xfill color fill for x axis distibution
