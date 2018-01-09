@@ -65,7 +65,8 @@ ggscatterstat <-
             pvalue
           ),
           list(
-            df = c$parameter, # degrees of freedom are always integer
+            df = c$parameter,
+            # degrees of freedom are always integer
             estimate = ggstatplot::specify_decimal(c$estimate, k),
             pvalue = ggstatplot::specify_decimal_p(c$p.value, k)
           )
@@ -91,7 +92,8 @@ ggscatterstat <-
             pvalue
           ),
           list(
-            df = (length(x) - 2), # degrees of freedom are always integer
+            df = (length(x) - 2),
+            # degrees of freedom are always integer
             estimate = ggstatplot::specify_decimal(c$estimate, k),
             pvalue = ggstatplot::specify_decimal_p(c$p.value, k)
           )
@@ -102,7 +104,8 @@ ggscatterstat <-
       MASS_res <-
         MASS::rlm(
           scale(y) ~ scale(x),
-          maxit = 1000, # number of iterations
+          maxit = 1000,
+          # number of iterations
           na.action = na.omit,
           data = df
         )
@@ -126,11 +129,17 @@ ggscatterstat <-
           list(
             estimate = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[2]], k),
             t = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[6]], k),
-            df = summary(MASS_res)$df[2], # degrees of freedom are always integer
+            df = summary(MASS_res)$df[2],
+            # degrees of freedom are always integer
             pvalue = ggstatplot::specify_decimal_p((sfsmisc::f.robftest(MASS_res))$p.value),
             k
           )
         )
+      warning(
+        "For robust regression: no. of iterations = 1000; estimate is standardized",
+        noBreaks. = TRUE,
+        call. = TRUE
+      )
     }
 
     # preparing the scatterplotplot

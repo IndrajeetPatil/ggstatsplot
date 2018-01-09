@@ -29,6 +29,8 @@
 \item{title}{title for the plot}
 
 \item{caption}{caption for the plot}
+
+\item{k}{number of decimal places expected for results}
 }
 \author{
 Indrajeet Patil
