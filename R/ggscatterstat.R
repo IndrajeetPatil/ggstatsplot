@@ -16,6 +16,7 @@
 #' @param intercept decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted
 #' @param title title for the plot
 #' @param caption caption for the plot
+#' @param k number of decimal places expected for results
 #' @export
 
 library(ggplot2)
@@ -33,7 +34,8 @@ ggscatterstat <-
            intercept = NULL,
            test = NULL,
            title = NULL,
-           caption = NULL) {
+           caption = NULL,
+           k = 3) {
     # if fill colors for x and y axes are not specified, use the defaults
     if (is.null(xfill))
       xfill <- "orange"
@@ -63,9 +65,9 @@ ggscatterstat <-
             pvalue
           ),
           list(
-            df = ggstatplot::specify_decimal(c$parameter, 0),
-            estimate = ggstatplot::specify_decimal(c$estimate, 3),
-            pvalue = ggstatplot::specify_decimal_p(c$p.value, 3)
+            df = c$parameter, # degrees of freedom are always integer
+            estimate = ggstatplot::specify_decimal(c$estimate, k),
+            pvalue = ggstatplot::specify_decimal_p(c$p.value, k)
           )
         )
 
@@ -89,9 +91,9 @@ ggscatterstat <-
             pvalue
           ),
           list(
-            df = ggstatplot::specify_decimal((length(x) - 2), 0),
-            estimate = ggstatplot::specify_decimal(c$estimate, 3),
-            pvalue = ggstatplot::specify_decimal_p(c$p.value, 3)
+            df = (length(x) - 2), # degrees of freedom are always integer
+            estimate = ggstatplot::specify_decimal(c$estimate, k),
+            pvalue = ggstatplot::specify_decimal_p(c$p.value, k)
           )
         )
 
@@ -100,7 +102,7 @@ ggscatterstat <-
       MASS_res <-
         MASS::rlm(
           scale(y) ~ scale(x),
-          maxit = 1000,
+          maxit = 1000, # number of iterations
           na.action = na.omit,
           data = df
         )
@@ -122,11 +124,11 @@ ggscatterstat <-
             pvalue
           ),
           list(
-            estimate = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[2]], 3),
-            t = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[6]], 3),
-            df = summary(MASS_res)$df[2],
+            estimate = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[2]], k),
+            t = ggstatplot::specify_decimal(summary(MASS_res)$coefficients[[6]], k),
+            df = summary(MASS_res)$df[2], # degrees of freedom are always integer
             pvalue = ggstatplot::specify_decimal_p((sfsmisc::f.robftest(MASS_res))$p.value),
-            3
+            k
           )
         )
     }
