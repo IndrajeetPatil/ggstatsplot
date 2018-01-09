@@ -5,6 +5,7 @@
 library(ggplot2)
 
 theme_mprl <- function() {
+  library(ggplot2)
   theme_grey() +
     theme(
       axis.title.x = element_text(size = 14, face = "bold"),

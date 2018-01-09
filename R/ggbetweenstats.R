@@ -29,7 +29,7 @@ ggbetweenstats <- function(data = NULL,
                            title = NULL,
                            k = 3) {
   ## creating the plot
-
+  library(ggplot2)
   plot <- ggplot2::ggplot(data = data, mapping = aes(x, y)) +
     geom_point(
       position = position_jitterdodge(
