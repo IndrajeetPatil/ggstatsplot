@@ -1,1 +1,1 @@
-# ggstatplot
+# ggstatsplot
