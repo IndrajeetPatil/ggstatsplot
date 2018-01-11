@@ -36,7 +36,8 @@ ggbetweenstats <- function(data = NULL,
   # x needs to be a factor for group or condition comparison
   # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
   # if that's the case, convert it to factor
-  if (!is.factor(x)) x <- as.factor(x)
+  if (!is.factor(x))
+    x <- as.factor(x)
   ## creating the plot
   library(ggplot2)
   plot <- ggplot2::ggplot(data = data, mapping = aes(x, y)) +
@@ -130,7 +131,7 @@ ggbetweenstats <- function(data = NULL,
               " = ",
               pvalue,
               ", ",
-              italic(Omega) ^ 2,
+              italic(omega) ^ 2,
               " = ",
               effsize
             ),
@@ -187,7 +188,16 @@ ggbetweenstats <- function(data = NULL,
       }
       plot <-
         plot + labs(subtitle = results_subtitle(y_aov_stat, y_aov_effsize))
-
+      # display homogeneity of variances test result as a warning
+      bartlett <- stats::bartlett.test(formula = y ~ x, data = data)
+      base::warning(
+        paste(
+          "Bartlett's test for homogeneity of variances: p-value = ",
+          bartlett$p.value
+        ),
+        noBreaks. = TRUE,
+        call. = TRUE
+      )
       return(plot)
 
     } else if (type == "robust") {
@@ -251,9 +261,12 @@ ggbetweenstats <- function(data = NULL,
     if (type == "parametric") {
       # setting up the anova model and getting its summary and effect size
       y_t_stat <-
-        stats::t.test(formula = y ~ x,
-                      data = data, var.equal = var.equal,
-                      na.action = na.omit)
+        stats::t.test(
+          formula = y ~ x,
+          data = data,
+          var.equal = var.equal,
+          na.action = na.omit
+        )
 
       # if type of effect size is not specified, use the unbiased estimate as the default
       if (is.null(effsizetype))
@@ -339,6 +352,17 @@ ggbetweenstats <- function(data = NULL,
 
       plot <-
         plot + labs(subtitle = results_subtitle(y_t_stat, y_t_effsize))
+      # display equality of variance result as a warning
+      vartest <- stats::var.test(x = as.numeric(x), y = y)
+      base::warning(
+        paste(
+          "F test to compare two variances: p-value = ",
+          vartest$p.value
+        ),
+        noBreaks. = TRUE,
+        call. = TRUE
+      )
+
 
       return(plot)
 
