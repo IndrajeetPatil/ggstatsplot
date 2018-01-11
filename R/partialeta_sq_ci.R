@@ -3,7 +3,6 @@
 #' @name partialeta_sq_ci
 #' @author Indrajeet Patil
 #'
-#' #'
 #' @param lm_object stats::lm linear model object
 #' @param conf.level Level of confidence for the confidence interval
 #' @export

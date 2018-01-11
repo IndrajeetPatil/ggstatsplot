@@ -3,6 +3,9 @@
 #' @param x a numeric value
 #' @param k the number of digits after decimal point (should be an integer)
 #' @return formatted values for results from statistical tests
+#'
+#' @export
+#'
 
 specify_decimal <- function(x, k = NULL) {
   # if the number of decimal places hasn't been specified, use the default of 3

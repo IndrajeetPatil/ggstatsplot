@@ -1,8 +1,8 @@
 #' @title default theme to use for `ggstatplot` package figures
 #' @name theme_mprl
 #' @return
-
-library(ggplot2)
+#'
+#' @export
 
 theme_mprl <- function() {
   library(ggplot2)
