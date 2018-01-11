@@ -15,6 +15,7 @@
 #' @param title title for the plot
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
+#' @param var.equal a logical variable indicating whether to treat the two variances as being equal
 #'
 #' @export
 
@@ -30,7 +31,12 @@ ggbetweenstats <- function(data = NULL,
                            ylab = NULL,
                            caption = NULL,
                            title = NULL,
-                           k = 3) {
+                           k = 3,
+                           var.equal = FALSE) {
+  # x needs to be a factor for group or condition comparison
+  # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
+  # if that's the case, convert it to factor
+  if (!is.factor(x)) x <- as.factor(x)
   ## creating the plot
   library(ggplot2)
   plot <- ggplot2::ggplot(data = data, mapping = aes(x, y)) +
@@ -246,7 +252,7 @@ ggbetweenstats <- function(data = NULL,
       # setting up the anova model and getting its summary and effect size
       y_t_stat <-
         stats::t.test(formula = y ~ x,
-                      data = data,
+                      data = data, var.equal = var.equal,
                       na.action = na.omit)
 
       # if type of effect size is not specified, use the unbiased estimate as the default
