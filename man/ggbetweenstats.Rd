@@ -26,6 +26,8 @@
 \item{caption}{caption for the plot}
 
 \item{k}{number of decimal places expected for results}
+
+\item{var.equal}{a logical variable indicating whether to treat the two variances as being equal}
 }
 \author{
 Indrajeet Patil
