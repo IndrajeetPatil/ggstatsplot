@@ -16,6 +16,7 @@
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
 #' @param var.equal a logical variable indicating whether to treat the two variances as being equal
+#' @param nboot number of bootstrap samples
 #'
 #' @export
 
@@ -32,7 +33,8 @@ ggbetweenstats <- function(data = NULL,
                            caption = NULL,
                            title = NULL,
                            k = 3,
-                           var.equal = FALSE) {
+                           var.equal = FALSE,
+                           nboot = 1000) {
   # x needs to be a factor for group or condition comparison
   # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
   # if that's the case, convert it to factor
@@ -188,15 +190,13 @@ ggbetweenstats <- function(data = NULL,
       }
       plot <-
         plot + labs(subtitle = results_subtitle(y_aov_stat, y_aov_effsize))
-      # display homogeneity of variances test result as a warning
+      # display homogeneity of variances test result as a message
       bartlett <- stats::bartlett.test(formula = y ~ x, data = data)
-      base::warning(
+      base::message(
         paste(
-          "Bartlett's test for homogeneity of variances: p-value = ",
-          bartlett$p.value
-        ),
-        noBreaks. = TRUE,
-        call. = TRUE
+          "Note: Bartlett's test for homogeneity of variances: p-value = ",
+          ggstatsplot::specify_decimal_p(vartest$p.value)
+        )
       )
       return(plot)
 
@@ -236,13 +236,13 @@ ggbetweenstats <- function(data = NULL,
         )
       }
 
-      # setting up the robust anova model
+      # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
       robust_y_aov <-
-        WRS2::t1way(
+        WRS2::t1waybt(
           formula = y ~ x,
           data = data,
           tr = 0.2,
-          nboot = 100
+          nboot = nboot
         )
 
       plot <- plot + labs(subtitle = results_subtitle(robust_y_aov))
@@ -352,17 +352,14 @@ ggbetweenstats <- function(data = NULL,
 
       plot <-
         plot + labs(subtitle = results_subtitle(y_t_stat, y_t_effsize))
-      # display equality of variance result as a warning
+      # display equality of variance result as a message
       vartest <- stats::var.test(x = as.numeric(x), y = y)
-      base::warning(
+      base::message(
         paste(
-          "F test to compare two variances: p-value = ",
-          vartest$p.value
-        ),
-        noBreaks. = TRUE,
-        call. = TRUE
+          "Note: F test to compare two variances: p-value = ",
+          ggstatsplot::specify_decimal_p(vartest$p.value)
+        )
       )
-
 
       return(plot)
 
@@ -400,10 +397,10 @@ ggbetweenstats <- function(data = NULL,
 
         }
 
-      # setting up the robust anova model and getting its summary and effect size
-      y_robust_t_stat <- WRS2::yuen(formula = y ~ x, data = data)
+      # setting up the independent samples t-tests on robust location measures including effect sizes
+      y_robust_t_stat <- WRS2::yuenbt(formula = y ~ x, data = data, nboot = nboot)
       y_robust_t_effsize <-
-        WRS2::yuen.effect.ci(formula = y ~ x, data = data)
+        WRS2::yuen.effect.ci(formula = y ~ x, data = data, nboot = nboot)
 
       plot <-
         plot + labs(subtitle = results_subtitle(y_robust_t_stat, y_robust_t_effsize))
