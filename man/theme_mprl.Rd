@@ -3,3 +3,9 @@
 \name{theme_mprl}
 \alias{theme_mprl}
 \title{default theme to use for `ggstatplot` package figures}
+\usage{
+theme_mprl()
+}
+\value{
+
+}
