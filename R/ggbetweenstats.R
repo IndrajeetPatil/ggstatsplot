@@ -18,7 +18,8 @@
 #' @param var.equal a logical variable indicating whether to treat the two variances as being equal
 #' @param nboot number of bootstrap samples
 #' @param outlier.tagging whether outliers should be tagged
-#' @param outlier.label label to put on the outliers that have been tagged
+#' @param outlier.label label to put on the outliers that have been tagged; if data argument is missing,
+#' this will show y variable values for outliers
 #'
 #' @export
 
@@ -38,12 +39,15 @@ ggbetweenstats <- function(data = NULL,
                            var.equal = FALSE,
                            nboot = 1000,
                            outlier.tagging = NULL,
+                           outlier.label = NULL,
                            outlier.colour = "black") {
   # x needs to be a factor for group or condition comparison
   # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
   # if that's the case, convert it to factor
-  if (!is.factor(x))
+  if (!is.factor(x)) {
     x <- as.factor(x)
+    base::warning("aesthetic `x` was not a factor; converting it to factor")
+  }
   ## creating the plot
   library(ggplot2)
   ################################################### plot ##############################################################
@@ -428,11 +432,13 @@ ggbetweenstats <- function(data = NULL,
 
   if (isTRUE(outlier.tagging)) {
     ## getting the data in dataframe format
-    if (is.null(data)) {
-      data_df <- as.data.frame(cbind(x, y)) # if data is missing, then make a dataframe out of x and y vectors
-      outlier.label <- y # in this case, outlier labels will just be values of the y vector
+    if (is.null(outlier.label)) {
+      data_df <-
+        as.data.frame(cbind(x, y)) # if data is missing, then make a dataframe out of x and y vectors
+      outlier.label <-
+        y # in this case, outlier labels will just be values of the y vector
     } else {
-      data_df <- data
+      data_df <- as.data.frame(cbind(x, y, outlier.label))
     }
     ## finding the outliers in the dataframe
     # function to detect outliers
