@@ -34,7 +34,8 @@ ggbetweenstats <- function(data = NULL,
                            title = NULL,
                            k = 3,
                            var.equal = FALSE,
-                           nboot = 1000) {
+                           nboot = 1000,
+                           outlier.colour = "black") {
   # x needs to be a factor for group or condition comparison
   # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
   # if that's the case, convert it to factor
@@ -61,7 +62,7 @@ ggbetweenstats <- function(data = NULL,
       width = 0.3,
       alpha = 0.2,
       fill = "white",
-      outlier.colour = "black",
+      outlier.colour = outlier.colour,
       outlier.shape = 16,
       outlier.size = 3,
       outlier.alpha = 0.7,
