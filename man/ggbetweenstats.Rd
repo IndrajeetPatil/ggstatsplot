@@ -33,7 +33,8 @@
 
 \item{outlier.tagging}{whether outliers should be tagged}
 
-\item{outlier.label}{label to put on the outliers that have been tagged}
+\item{outlier.label}{label to put on the outliers that have been tagged; if data argument is missing,
+this will show y variable values for outliers}
 }
 \author{
 Indrajeet Patil
