@@ -16,6 +16,7 @@ Imports:
   car,
   dplyr,
   ggExtra,
+  ggrepel,
   ggplot2,
   grid,
   jmv,
