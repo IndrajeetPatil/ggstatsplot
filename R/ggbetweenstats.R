@@ -200,7 +200,7 @@ ggbetweenstats <- function(data = NULL,
       base::message(
         paste(
           "Note: Bartlett's test for homogeneity of variances: p-value = ",
-          ggstatsplot::specify_decimal_p(vartest$p.value)
+          ggstatsplot::specify_decimal_p(bartlett$p.value)
         )
       )
       #return(plot)
@@ -454,7 +454,7 @@ ggbetweenstats <- function(data = NULL,
     # applying the labels to tagged outliers with ggrepel
     plot <-
       plot + ggrepel::geom_label_repel(
-        aes(label = outlier.label),
+        aes(label = data_df$outlier),
         fontface = 'bold',
         color = 'black',
         max.iter = 3e2,
