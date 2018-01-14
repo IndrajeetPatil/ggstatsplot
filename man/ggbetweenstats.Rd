@@ -28,6 +28,8 @@
 \item{k}{number of decimal places expected for results}
 
 \item{var.equal}{a logical variable indicating whether to treat the two variances as being equal}
+
+\item{nboot}{number of bootstrap samples}
 }
 \author{
 Indrajeet Patil
