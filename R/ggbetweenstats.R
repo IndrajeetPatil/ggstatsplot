@@ -17,6 +17,8 @@
 #' @param k number of decimal places expected for results
 #' @param var.equal a logical variable indicating whether to treat the two variances as being equal
 #' @param nboot number of bootstrap samples
+#' @param outlier.tagging whether outliers should be tagged
+#' @param outlier.label label to put on the outliers that have been tagged
 #'
 #' @export
 
@@ -35,6 +37,7 @@ ggbetweenstats <- function(data = NULL,
                            k = 3,
                            var.equal = FALSE,
                            nboot = 1000,
+                           outlier.tagging = NULL,
                            outlier.colour = "black") {
   # x needs to be a factor for group or condition comparison
   # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
@@ -43,6 +46,7 @@ ggbetweenstats <- function(data = NULL,
     x <- as.factor(x)
   ## creating the plot
   library(ggplot2)
+  ################################################### plot ##############################################################
   plot <- ggplot2::ggplot(data = data, mapping = aes(x, y)) +
     geom_point(
       position = position_jitterdodge(
@@ -199,7 +203,7 @@ ggbetweenstats <- function(data = NULL,
           ggstatsplot::specify_decimal_p(vartest$p.value)
         )
       )
-      return(plot)
+      #return(plot)
 
     } else if (type == "robust") {
       ######################################### robust ANOVA ############################################################
@@ -248,7 +252,7 @@ ggbetweenstats <- function(data = NULL,
 
       plot <- plot + labs(subtitle = results_subtitle(robust_y_aov))
 
-      return(plot)
+      #return(plot)
 
     }
 
@@ -362,7 +366,7 @@ ggbetweenstats <- function(data = NULL,
         )
       )
 
-      return(plot)
+      #return(plot)
 
     } else if (type == "robust") {
       ######################################### robust t-test ############################################################
@@ -399,18 +403,68 @@ ggbetweenstats <- function(data = NULL,
         }
 
       # setting up the independent samples t-tests on robust location measures including effect sizes
-      y_robust_t_stat <- WRS2::yuenbt(formula = y ~ x, data = data, nboot = nboot)
+      y_robust_t_stat <-
+        WRS2::yuenbt(formula = y ~ x,
+                     data = data,
+                     nboot = nboot)
       y_robust_t_effsize <-
-        WRS2::yuen.effect.ci(formula = y ~ x, data = data, nboot = nboot)
+        WRS2::yuen.effect.ci(formula = y ~ x,
+                             data = data,
+                             nboot = nboot)
 
       plot <-
         plot + labs(subtitle = results_subtitle(y_robust_t_stat, y_robust_t_effsize))
 
-      return(plot)
+      #return(plot)
 
 
     }
 
   }
+
+  ## outlier tagging (default is don't show any tags)
+  if (is.null(outlier.tagging))
+    outlier.tagging <- FALSE
+
+  if (isTRUE(outlier.tagging)) {
+    ## getting the data in dataframe format
+    if (is.null(data)) {
+      data_df <- as.data.frame(cbind(x, y)) # if data is missing, then make a dataframe out of x and y vectors
+      outlier.label <- y # in this case, outlier labels will just be values of the y vector
+    } else {
+      data_df <- data
+    }
+    ## finding the outliers in the dataframe
+    # function to detect outliers
+    check_outlier <- function(v, coef = 1.5) {
+      quantiles <- quantile(v, probs = c(0.25, 0.75))
+      IQR <- quantiles[2] - quantiles[1]
+      res <-
+        ((v < (quantiles[1] - coef * IQR)) |
+           (v > (quantiles[2] + coef * IQR)))
+      return(res)
+
+    }
+    # finding and tagging the outliers
+    data_df <- data_df %>%
+      dplyr::group_by(x) %>%
+      dplyr::mutate(outlier = ifelse(check_outlier(y), outlier.label, NA))
+    data_df$outlier[which(is.na(data_df$outlier))] <- as.numeric(NA)
+    data_df <- base::as.data.frame(data_df)
+    # applying the labels to tagged outliers with ggrepel
+    plot <-
+      plot + ggrepel::geom_label_repel(
+        aes(label = outlier.label),
+        fontface = 'bold',
+        color = 'black',
+        max.iter = 3e2,
+        box.padding = 0.35,
+        point.padding = 0.5,
+        segment.color = 'grey50',
+        force = 2
+      )
+  }
+
+  return(plot)
 
 }

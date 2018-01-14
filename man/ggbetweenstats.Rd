@@ -30,6 +30,10 @@
 \item{var.equal}{a logical variable indicating whether to treat the two variances as being equal}
 
 \item{nboot}{number of bootstrap samples}
+
+\item{outlier.tagging}{whether outliers should be tagged}
+
+\item{outlier.label}{label to put on the outliers that have been tagged}
 }
 \author{
 Indrajeet Patil
