@@ -37,7 +37,7 @@ ggpiestats <-
            k = 3) {
     library(ggplot2)
     # convert the data into percentages; group by conditional variable if needed
-    df <- dplyr::group_by_(data, .dots = c(condition, main)) %>%
+    df <- dplyr::group_by(data, .dots = c(condition, main)) %>%
       dplyr::summarize(counts = n()) %>%
       dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
       dplyr::arrange(desc(perc))
@@ -49,22 +49,35 @@ ggpiestats <-
     if (is.null(labels))
       labels <- as.character(df[[main]])
 
-    ## preparing the plot
+    ################################################## plot ##############################################
 
-    p <- ggplot2::ggplot(df, aes('', counts, fill = choice)) +
-      facet_wrap(condition, labeller = "label_both") +
-      geom_col(position = 'fill') +
-      geom_label(
-        aes(label = paste0(round(perc), "%")),
-        position = position_fill(vjust = 0.5),
-        color = 'black',
-        size = 5,
-        show.legend = FALSE
-      ) +
-      # convert to polar coordinates
-      coord_polar(theta = "y") +
+    if (!is.null(condition)) {
+      p <- ggplot2::ggplot(df, aes('', counts)) +
+        geom_col(position = 'fill', aes(fill = factor(get(main)))) +
+        facet_wrap(condition, labeller = "label_both") +
+        geom_label(
+          aes(label = paste0(round(perc), "%"), fill = factor(get(main))),
+          position = position_fill(vjust = 0.5),
+          color = 'black',
+          size = 5,
+          show.legend = FALSE
+        ) +
+        coord_polar(theta = "y") # convert to polar coordinates
+    } else {
+      p <- ggplot2::ggplot(df, aes('', counts)) +
+        geom_col(position = 'fill', aes(fill = factor(get(main)))) +
+        geom_label(
+          aes(label = paste0(round(perc), "%"), fill = factor(get(main))),
+          position = position_fill(vjust = 0.5),
+          color = 'black',
+          size = 5,
+          show.legend = FALSE
+        ) +
+        coord_polar(theta = "y") # convert to polar coordinates
+    }
 
-      # formatting
+    # formatting
+    p <- p +
       scale_y_continuous(breaks = NULL) +
       scale_fill_discrete(name = "", labels = unique(labels)) +
       theme_grey() +
@@ -103,9 +116,10 @@ ggpiestats <-
           face = "bold",
           hjust = 0.5
         )
-      ) +
+       ) +
       guides(fill = guide_legend(override.aes = list(colour = NA))) + # remove black diagonal line from legend
-      scale_fill_brewer(palette = "Dark2") + scale_colour_brewer(palette = "Dark2")
+      scale_fill_brewer(palette = "Dark2") +
+      scale_colour_brewer(palette = "Dark2")
 
     ###################################### chi-square test ###############################################
 
@@ -140,11 +154,11 @@ ggpiestats <-
         ),
         list(
           y = effect,
-          estimate = ggstatsplot::specify_decimal(as.data.frame(x$chiSq)[2], k),
-          df = as.data.frame(x$chiSq)[3],
+          estimate = ggstatsplot::specify_decimal(as.data.frame(x$chiSq)[[2]], k),
+          df = as.data.frame(x$chiSq)[[3]],
           # df always an integer
-          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[4], k),
-          phicoeff = ggstatsplot::specify_decimal(as.data.frame(x$nom)[4], k)
+          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[[4]], k),
+          phicoeff = ggstatsplot::specify_decimal(as.data.frame(x$nom)[[4]], k)
         )
       )
 
@@ -170,16 +184,16 @@ ggpiestats <-
           pvalue
         ),
         list(
-          estimate = ggstatsplot::specify_decimal(as.data.frame(x$tests)[1], k),
-          df = as.data.frame(x$tests)[2],
+          estimate = ggstatsplot::specify_decimal(as.data.frame(x$tests)[[1]], k),
+          df = as.data.frame(x$tests)[[2]],
           # df is always an integer
-          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[3], k)
+          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[[3]], k)
         )
       )
 
     }
 
-    #################################### facet wrapping ##############################################
+    #################################### statistical test results #######################################
 
     # if whether statistical tests are to be run is not specified, then show the results by default
     if (is.null(test))
@@ -187,8 +201,6 @@ ggpiestats <-
 
     if (!is.null(condition)) {
       # create a dataframe on which chi-square tests will be carried out in case there is "condition" variable present
-      p <- p + facet_wrap(condition, labeller = "label_both")
-
       # prepare the statistical test subtitle
       if (test == TRUE) {
         df2 <- data %>% dplyr::select(condition, main)
