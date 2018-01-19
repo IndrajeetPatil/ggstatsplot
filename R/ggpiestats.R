@@ -36,20 +36,11 @@ ggpiestats <-
            legend_title = NULL,
            k = 3) {
     library(ggplot2)
-
     # convert the data into percentages; group by conditional variable if needed
     df <- dplyr::group_by_(data, .dots = c(condition, main)) %>%
       dplyr::summarize(counts = n()) %>%
-      dplyr::mutate(perc = counts / sum(counts)) %>%
-      dplyr::arrange(desc(perc)) %>%
-      dplyr::mutate(
-        label_pos = sum(perc) - cumsum(perc) + perc / 2,
-        #label_pos = cumsum(perc) - 0.65*perc,
-        perc_text = paste0(round(perc * 100), "%")
-      )
-    # label_pos is a tricky variable to define...the one here will work fine in most, but not all, cases
-    # if it doesn't work, try toying with the formula for the label_pos to get the desired result
-    # df$perc[df$perc < 0.59 & df$perc > 0.41] <- 1 - df$perc[df$perc < 0.59 & df$perc > 0.41]
+      dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
+      dplyr::arrange(desc(perc))
 
     # reorder the category factor levels to order the legend
     df[[main]] <- factor(df[[main]], levels = unique(df[[main]]))
@@ -58,95 +49,18 @@ ggpiestats <-
     if (is.null(labels))
       labels <- as.character(df[[main]])
 
-    ## custom function to write results from chi-square test into subtitle for the plot
-
-    # x stands for the chi-square object
-    # effect is the text label that needs to be entered to denote which interaction effect is being investigated in
-    # the chi-square test presented...if not entered, the default will be "Chi-square test"
-
-    chi_subtitle <- function(x, effect = NULL) {
-      # if effect label hasn't been specified, use this default
-      if (is.null(effect))
-        effect <- "Chi-square test"
-
-      base::substitute(
-        paste(
-          y,
-          " : ",
-          italic(chi) ^ 2,
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", Cramer's ",
-          italic(V),
-          " = ",
-          phicoeff
-        ),
-        list(
-          y = effect,
-          estimate = ggstatsplot::specify_decimal(as.data.frame(x$chiSq)[2], k),
-          df = as.data.frame(x$chiSq)[3], # df always an integer
-          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[4], k),
-          phicoeff = ggstatsplot::specify_decimal(as.data.frame(x$nom)[4], k)
-        )
-      )
-
-    }
-
-
-    ## custom function to write results from chi-square test into subtitle for the plot
-
-    # x stands for the proportion test object from jmv::propTestN()
-
-    proptest_subtitle <- function(x) {
-      base::substitute(
-        paste(
-          "Proportion test : ",
-          italic(chi) ^ 2,
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue
-        ),
-        list(
-          estimate = ggstatsplot::specify_decimal(as.data.frame(x$tests)[1], k),
-          df = as.data.frame(x$tests)[2], # df is always an integer
-          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[3], k)
-        )
-      )
-
-    }
-
     ## preparing the plot
 
-    p <-
-      ggplot2::ggplot(data = df, aes_string(x = factor(1), y = "perc", fill = main)) +
-
-      # make stacked bar chart with black border
-      geom_bar(stat = "identity",
-               color = "black",
-               width = 2) +
-
-      # add the percents to the interior of the chart
-      #geom_text(aes(x = 1.10, y = label_pos, label = perc_text), size = 5) +
+    p <- ggplot2::ggplot(df, aes('', counts, fill = choice)) +
+      facet_wrap(condition, labeller = "label_both") +
+      geom_col(position = 'fill') +
       geom_label(
-        aes(x = 1.10, y = label_pos, label = perc_text),
-        fontface = 'bold',
+        aes(label = paste0(round(perc), "%")),
+        position = position_fill(vjust = 0.5),
         color = 'black',
         size = 5,
-        show.legend = FALSE,
-        inherit.aes = FALSE
+        show.legend = FALSE
       ) +
-
       # convert to polar coordinates
       coord_polar(theta = "y") +
 
@@ -193,7 +107,79 @@ ggpiestats <-
       guides(fill = guide_legend(override.aes = list(colour = NA))) + # remove black diagonal line from legend
       scale_fill_brewer(palette = "Dark2") + scale_colour_brewer(palette = "Dark2")
 
-    ### facet wrap if that's happening
+    ###################################### chi-square test ###############################################
+
+    # custom function to write results from chi-square test into subtitle for the plot
+    # x stands for the chi-square object
+    # effect is the text label that needs to be entered to denote which interaction effect
+    # is being investigated in
+    # the chi-square test presented...if not entered, the default will be "Chi-square test"
+
+    chi_subtitle <- function(x, effect = NULL) {
+      # if effect label hasn't been specified, use this default
+      if (is.null(effect))
+        effect <- "Chi-square test"
+
+      base::substitute(
+        paste(
+          y,
+          " : ",
+          italic(chi) ^ 2,
+          "(",
+          df,
+          ") = ",
+          estimate,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue,
+          ", Cramer's ",
+          italic(V),
+          " = ",
+          phicoeff
+        ),
+        list(
+          y = effect,
+          estimate = ggstatsplot::specify_decimal(as.data.frame(x$chiSq)[2], k),
+          df = as.data.frame(x$chiSq)[3],
+          # df always an integer
+          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[4], k),
+          phicoeff = ggstatsplot::specify_decimal(as.data.frame(x$nom)[4], k)
+        )
+      )
+
+    }
+
+    ###################################### proportion test ###############################################
+
+    # custom function to write results from chi-square test into subtitle for the plot
+    # x stands for the proportion test object from jmv::propTestN()
+
+    proptest_subtitle <- function(x) {
+      base::substitute(
+        paste(
+          "Proportion test : ",
+          italic(chi) ^ 2,
+          "(",
+          df,
+          ") = ",
+          estimate,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue
+        ),
+        list(
+          estimate = ggstatsplot::specify_decimal(as.data.frame(x$tests)[1], k),
+          df = as.data.frame(x$tests)[2],
+          # df is always an integer
+          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[3], k)
+        )
+      )
+
+    }
+
+    #################################### facet wrapping ##############################################
 
     # if whether statistical tests are to be run is not specified, then show the results by default
     if (is.null(test))
