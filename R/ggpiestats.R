@@ -53,7 +53,8 @@ ggpiestats <-
 
     if (!is.null(condition)) {
       p <- ggplot2::ggplot(df, aes('', counts)) +
-        geom_col(position = 'fill', width = 1, aes(fill = factor(get(main)))) +
+        geom_col(position = 'fill', color = 'black',
+                 width = 1, aes(fill = factor(get(main)))) +
         facet_wrap(condition, labeller = "label_both") +
         geom_label(
           aes(label = paste0(round(perc), "%"), group = factor(get(main))),
@@ -65,7 +66,8 @@ ggpiestats <-
         coord_polar(theta = "y") # convert to polar coordinates
     } else {
       p <- ggplot2::ggplot(df, aes('', counts)) +
-        geom_col(position = 'fill', width = 1, aes(fill = factor(get(main)))) +
+        geom_col(position = 'fill', color = 'black',
+                 width = 1, aes(fill = factor(get(main)))) +
         geom_label(
           aes(label = paste0(round(perc), "%"), group = factor(get(main))),
           position = position_fill(vjust = 0.5),
