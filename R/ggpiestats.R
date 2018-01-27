@@ -15,7 +15,6 @@
 #' @param condition a string naming the variable to use as the columns in the contingency table
 #' @param labels a character vector of same length as (data, main) or (data, condition, main) if facet wrapping
 #' @param stat_title title for the effect being investigated with the chi-square test
-#' @param type type of statistics expected ("parametric" or "robust")
 #' @param title title for the plot
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
