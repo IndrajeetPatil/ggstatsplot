@@ -14,7 +14,6 @@
 #' @param main a string naming the variable to use as the rows in the contingency table
 #' @param condition a string naming the variable to use as the columns in the contingency table
 #' @param labels a character vector of same length as (data, main) or (data, condition, main) if facet wrapping
-#' @param test if statistical test is to be run and displayed as subtitle
 #' @param stat_title title for the effect being investigated with the chi-square test
 #' @param type type of statistics expected ("parametric" or "robust")
 #' @param title title for the plot
@@ -29,13 +28,13 @@ ggpiestats <-
            main,
            condition = NULL,
            labels = NULL,
-           test = NULL,
            stat_title = NULL,
            title = NULL,
            caption = NULL,
            legend_title = NULL,
            k = 3) {
     library(ggplot2)
+    library(dplyr)
     # convert the data into percentages; group by conditional variable if needed
     df <- dplyr::group_by(data, .dots = c(condition, main)) %>%
       dplyr::summarize(counts = n()) %>%
@@ -53,8 +52,12 @@ ggpiestats <-
 
     if (!is.null(condition)) {
       p <- ggplot2::ggplot(df, aes('', counts)) +
-        geom_col(position = 'fill', color = 'black',
-                 width = 1, aes(fill = factor(get(main)))) +
+        geom_col(
+          position = 'fill',
+          color = 'black',
+          width = 1,
+          aes(fill = factor(get(main)))
+        ) +
         facet_wrap(condition, labeller = "label_both") +
         geom_label(
           aes(label = paste0(round(perc), "%"), group = factor(get(main))),
@@ -66,8 +69,12 @@ ggpiestats <-
         coord_polar(theta = "y") # convert to polar coordinates
     } else {
       p <- ggplot2::ggplot(df, aes('', counts)) +
-        geom_col(position = 'fill', color = 'black',
-                 width = 1, aes(fill = factor(get(main)))) +
+        geom_col(
+          position = 'fill',
+          color = 'black',
+          width = 1,
+          aes(fill = factor(get(main)))
+        ) +
         geom_label(
           aes(label = paste0(round(perc), "%"), group = factor(get(main))),
           position = position_fill(vjust = 0.5),
@@ -118,7 +125,7 @@ ggpiestats <-
           face = "bold",
           hjust = 0.5
         )
-       ) +
+      ) +
       guides(fill = guide_legend(override.aes = list(colour = NA))) + # remove black diagonal line from legend
       scale_fill_brewer(palette = "Dark2") +
       scale_colour_brewer(palette = "Dark2")
@@ -197,38 +204,30 @@ ggpiestats <-
 
     #################################### statistical test results #######################################
 
-    # if whether statistical tests are to be run is not specified, then show the results by default
-    if (is.null(test))
-      test <- TRUE
-
     if (!is.null(condition)) {
       # create a dataframe on which chi-square tests will be carried out in case there is "condition" variable present
       # prepare the statistical test subtitle
-      if (test == TRUE) {
-        df2 <- data %>% dplyr::select(condition, main)
-        colnames(df2) <- c("col1", "col2")
-        p <-
-          p + labs(subtitle = chi_subtitle(
-            jmv::contTables(
-              df2,
-              rows = 'col1',
-              cols = 'col2',
-              phiCra = TRUE
-            ),
-            effect = stat_title
-          ))
-      }
+
+      df2 <- data %>% dplyr::select(condition, main)
+      colnames(df2) <- c("col1", "col2")
+      p <-
+        p + labs(subtitle = chi_subtitle(
+          jmv::contTables(
+            df2,
+            rows = 'col1',
+            cols = 'col2',
+            phiCra = TRUE
+          ),
+          effect = stat_title
+        ))
 
     } else {
-      # prepare the statistical test subtitle
-      if (test == TRUE) {
-        # create a dataframe on which proportion test will be carried out when there is no condition variable present
-        df2 <- data %>% dplyr::select(main)
-        colnames(df2) <- c("col1")
-        p <-
-          p + labs(subtitle = proptest_subtitle(jmv::propTestN(data = df2, var = "col1")))
-
-      }
+      # create a dataframe on which proportion test will be carried out when there is no condition variable present
+      df2 <- data %>% dplyr::select(main)
+      colnames(df2) <- c("col1")
+      # adding subtitle to the plot
+      p <-
+        p + labs(subtitle = proptest_subtitle(jmv::propTestN(data = df2, var = "col1")))
 
     }
 
