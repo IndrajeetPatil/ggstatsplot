@@ -4,9 +4,8 @@
 \alias{ggpiestats}
 \title{pie charts with statistical tests}
 \usage{
-ggpiestats(data, main, condition = NULL, labels = NULL, test = NULL,
-  stat_title = NULL, title = NULL, caption = NULL, legend_title = NULL,
-  k = 3)
+ggpiestats(data, main, condition = NULL, labels = NULL, stat_title = NULL,
+  title = NULL, caption = NULL, legend_title = NULL, k = 3)
 }
 \arguments{
 \item{data}{the data as a data frame}
@@ -16,8 +15,6 @@ ggpiestats(data, main, condition = NULL, labels = NULL, test = NULL,
 \item{condition}{a string naming the variable to use as the columns in the contingency table}
 
 \item{labels}{a character vector of same length as (data, main) or (data, condition, main) if facet wrapping}
-
-\item{test}{if statistical test is to be run and displayed as subtitle}
 
 \item{stat_title}{title for the effect being investigated with the chi-square test}
 
