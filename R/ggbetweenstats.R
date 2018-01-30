@@ -147,13 +147,13 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal(aov_stat$`F value`[2], k),
+              estimate = ggstatsplot::specify_decimal_p(aov_stat$`F value`[2], k),
               df1 = aov_stat$`Df`[2],
               # degrees of freedom are always integer
               df2 = aov_stat$`Df`[3],
               # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k),
-              effsize = ggstatsplot::specify_decimal(abs(aov_effsize[[1]]), k)
+              pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(abs(aov_effsize[[1]]), k)
             )
           )
         }
@@ -185,13 +185,13 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal(aov_stat$`F value`[2], k),
+              estimate = ggstatsplot::specify_decimal_p(aov_stat$`F value`[2], k),
               df1 = aov_stat$`Df`[2],
               # degrees of freedom are always integer
               df2 = aov_stat$`Df`[3],
               # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k),
-              effsize = ggstatsplot::specify_decimal(abs(aov_effsize[[1]]), k)
+              pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(abs(aov_effsize[[1]]), k)
             )
           )
         }
@@ -204,7 +204,7 @@ ggbetweenstats <- function(data = NULL,
       base::message(
         paste(
           "Note: Bartlett's test for homogeneity of variances: p-value = ",
-          ggstatsplot::specify_decimal_p(bartlett$p.value)
+          ggstatsplot::specify_decimal_p(bartlett$p.value, p.value = TRUE)
         )
       )
       #return(plot)
@@ -235,12 +235,12 @@ ggbetweenstats <- function(data = NULL,
             effsize
           ),
           list(
-            estimate = ggstatsplot::specify_decimal(robust_aov_stat$test, k),
+            estimate = ggstatsplot::specify_decimal_p(robust_aov_stat$test, k),
             df1 = robust_aov_stat$df1,
             # degrees of freedom are always integer
-            df2 = ggstatsplot::specify_decimal(robust_aov_stat$df2, k),
-            pvalue = ggstatsplot::specify_decimal_p(robust_aov_stat$p.value, k),
-            effsize = ggstatsplot::specify_decimal(abs(robust_aov_stat$effsize), k)
+            df2 = ggstatsplot::specify_decimal_p(robust_aov_stat$df2, k),
+            pvalue = ggstatsplot::specify_decimal_p(robust_aov_stat$p.value, k, p.value = TRUE),
+            effsize = ggstatsplot::specify_decimal_p(abs(robust_aov_stat$effsize), k)
           )
         )
       }
@@ -303,10 +303,10 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal(t_stat[[1]], k),
-              df = ggstatsplot::specify_decimal(t_stat[[2]], k),
-              pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k),
-              effsize = ggstatsplot::specify_decimal(abs(t_effsize[[3]]), k)
+              estimate = ggstatsplot::specify_decimal_p(t_stat[[1]], k),
+              df = ggstatsplot::specify_decimal_p(t_stat[[2]], k),
+              pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(abs(t_effsize[[3]]), k)
             )
           )
 
@@ -341,10 +341,10 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal(t_stat[[1]], k),
-              df = ggstatsplot::specify_decimal(t_stat[[2]], k),
-              pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k),
-              effsize = ggstatsplot::specify_decimal(abs(t_effsize[[3]]), k)
+              estimate = ggstatsplot::specify_decimal_p(t_stat[[1]], k),
+              df = ggstatsplot::specify_decimal_p(t_stat[[2]], k),
+              pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(abs(t_effsize[[3]]), k)
             )
           )
 
@@ -366,7 +366,7 @@ ggbetweenstats <- function(data = NULL,
       base::message(
         paste(
           "Note: F test to compare two variances: p-value = ",
-          ggstatsplot::specify_decimal_p(vartest$p.value)
+          ggstatsplot::specify_decimal_p(vartest$p.value, p.value = TRUE)
         )
       )
 
@@ -397,10 +397,10 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal(t_robust_stat$test, k),
-              df = ggstatsplot::specify_decimal(t_robust_stat$df, k),
-              pvalue = ggstatsplot::specify_decimal_p(t_robust_stat$p.value, k),
-              effsize = ggstatsplot::specify_decimal(abs(t_robust_effsize$effsize), k)
+              estimate = ggstatsplot::specify_decimal_p(t_robust_stat$test, k),
+              df = ggstatsplot::specify_decimal_p(t_robust_stat$df, k),
+              pvalue = ggstatsplot::specify_decimal_p(t_robust_stat$p.value, k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(abs(t_robust_effsize$effsize), k)
             )
           )
 

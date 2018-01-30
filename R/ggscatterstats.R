@@ -68,8 +68,8 @@ ggscatterstats <-
           list(
             df = c$parameter,
             # degrees of freedom are always integer
-            estimate = ggstatsplot::specify_decimal(c$estimate, k),
-            pvalue = ggstatsplot::specify_decimal_p(c$p.value, k)
+            estimate = ggstatsplot::specify_decimal_p(c$estimate, k),
+            pvalue = ggstatsplot::specify_decimal_p(c$p.value, k, p.value = TRUE)
           )
         )
 
@@ -95,8 +95,8 @@ ggscatterstats <-
           list(
             df = (length(x) - 2),
             # degrees of freedom are always integer
-            estimate = ggstatsplot::specify_decimal(c$estimate, k),
-            pvalue = ggstatsplot::specify_decimal_p(c$p.value, k)
+            estimate = ggstatsplot::specify_decimal_p(c$estimate, k),
+            pvalue = ggstatsplot::specify_decimal_p(c$p.value, k, p.value = TRUE)
           )
         )
 
@@ -128,12 +128,12 @@ ggscatterstats <-
             pvalue
           ),
           list(
-            estimate = ggstatsplot::specify_decimal(summary(MASS_res)$coefficients[[2]], k),
-            t = ggstatsplot::specify_decimal(summary(MASS_res)$coefficients[[6]], k),
+            estimate = ggstatsplot::specify_decimal_p(summary(MASS_res)$coefficients[[2]], k),
+            t = ggstatsplot::specify_decimal_p(summary(MASS_res)$coefficients[[6]], k),
             df = summary(MASS_res)$df[2],
             # degrees of freedom are always integer
             pvalue = ggstatsplot::specify_decimal_p((sfsmisc::f.robftest(MASS_res))$p.value),
-            k
+            k, p.value = TRUE
           )
         )
       base::warning(

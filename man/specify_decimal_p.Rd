@@ -4,12 +4,14 @@
 \alias{specify_decimal_p}
 \title{custom function for getting specified number of decimal places in results for p-value}
 \usage{
-specify_decimal_p(x, k = NULL)
+specify_decimal_p(x, k = NULL, p.value = FALSE)
 }
 \arguments{
 \item{x}{a numeric value}
 
 \item{k}{the number of digits after decimal point (should be an integer)}
+
+\item{p.value}{whether the number is a p-value ("TRUE" or "FALSE")}
 }
 \value{
 formatted p-values from statistical tests
