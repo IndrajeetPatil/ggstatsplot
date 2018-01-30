@@ -162,11 +162,11 @@ ggpiestats <-
         ),
         list(
           y = effect,
-          estimate = ggstatsplot::specify_decimal(as.data.frame(x$chiSq)[[2]], k),
+          estimate = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[[2]], k),
           df = as.data.frame(x$chiSq)[[3]],
           # df always an integer
-          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[[4]], k),
-          phicoeff = ggstatsplot::specify_decimal(as.data.frame(x$nom)[[4]], k)
+          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[[4]], k, p.value = TRUE),
+          phicoeff = ggstatsplot::specify_decimal_p(as.data.frame(x$nom)[[4]], k)
         )
       )
 
@@ -192,10 +192,10 @@ ggpiestats <-
           pvalue
         ),
         list(
-          estimate = ggstatsplot::specify_decimal(as.data.frame(x$tests)[[1]], k),
+          estimate = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[[1]], k),
           df = as.data.frame(x$tests)[[2]],
           # df is always an integer
-          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[[3]], k)
+          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[[3]], k, p.value = TRUE)
         )
       )
 
