@@ -23,8 +23,6 @@ ggpiestats(data, main, condition = NULL, labels = NULL, stat_title = NULL,
 \item{caption}{caption for the plot}
 
 \item{k}{number of decimal places expected for results}
-
-\item{type}{type of statistics expected ("parametric" or "robust")}
 }
 \author{
 Indrajeet Patil
