@@ -477,7 +477,12 @@ ggbetweenstats <- function(data = NULL,
   if (isTRUE(mean.plotting)) {
     # custom function to get the mean
     fun_mean <- function(x) {
-      return(data.frame(y = mean(x), label = mean(x, na.rm = TRUE)))
+      return(
+        data.frame(
+          y = as.numeric(as.character(ggstatsplot::specify_decimal_p(mean(x)))),
+          label = as.numeric(as.character(ggstatsplot::specify_decimal_p(mean(x, na.rm = TRUE))))
+        )
+      )
     }
     plot <- plot +
       stat_summary(
@@ -488,7 +493,8 @@ ggbetweenstats <- function(data = NULL,
       ) +
       stat_summary(fun.data = fun_mean,
                    geom = "text",
-                   vjust = -1.0)
+                   vjust = -1.0,
+                   size = 5)
   }
 
   return(plot)
