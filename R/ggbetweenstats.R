@@ -18,7 +18,8 @@
 #' @param var.equal a logical variable indicating whether to treat the two variances as being equal
 #' @param nboot number of bootstrap samples
 #' @param outlier.tagging whether outliers should be tagged
-#' @param outlier.label label to put on the outliers that have been tagged; if data argument is missing,
+#' @param outlier.label label to put on the outliers that have been tagged; if data argument is missing
+#' @param mean.plotting whether mean is to be highlighted and its value to be displayed
 #' this will show y variable values for outliers
 #'
 #' @export
@@ -40,7 +41,8 @@ ggbetweenstats <- function(data = NULL,
                            nboot = 1000,
                            outlier.tagging = NULL,
                            outlier.label = NULL,
-                           outlier.colour = "black") {
+                           outlier.colour = "black",
+                           mean.plotting = FALSE) {
   # x needs to be a factor for group or condition comparison
   # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
   # if that's the case, convert it to factor
@@ -469,6 +471,24 @@ ggbetweenstats <- function(data = NULL,
         segment.color = 'grey50',
         force = 2
       )
+  }
+
+  ####################################################### mean plotting ################################################
+  if (isTRUE(mean.plotting)) {
+    # custom function to get the mean
+    fun_mean <- function(x) {
+      return(data.frame(y = mean(x), label = mean(x, na.rm = TRUE)))
+    }
+    plot <- plot +
+      stat_summary(
+        fun.y = mean,
+        geom = "point",
+        colour = "darkred",
+        size = 5
+      ) +
+      stat_summary(fun.data = fun_mean,
+                   geom = "text",
+                   vjust = -1.0)
   }
 
   return(plot)

@@ -33,7 +33,9 @@
 
 \item{outlier.tagging}{whether outliers should be tagged}
 
-\item{outlier.label}{label to put on the outliers that have been tagged; if data argument is missing,
+\item{outlier.label}{label to put on the outliers that have been tagged; if data argument is missing}
+
+\item{mean.plotting}{whether mean is to be highlighted and its value to be displayed
 this will show y variable values for outliers}
 }
 \author{
