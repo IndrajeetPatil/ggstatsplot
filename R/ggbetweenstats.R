@@ -43,15 +43,51 @@ ggbetweenstats <- function(data = NULL,
                            outlier.label = NULL,
                            outlier.colour = "black",
                            mean.plotting = FALSE) {
+  library(ggplot2)
+  ####################################### creating a dataframe #######################################################
+
+  # if dataframe is provided
+  if (!is.null(data)) {
+    # if outlier label is provided then include it in the dataframe
+    if (!is.null(outlier.label)) {
+      data <-
+        dplyr::select(
+          .data = data,
+          x = !!rlang::enquo(x),
+          y = !!rlang::enquo(y),
+          outlier.label = !!rlang::enquo(outlier.label)
+        )
+    } else {
+      # if outlier label is not provided then only include the two arguments provided
+      data <-
+        dplyr::select(
+          .data = data,
+          x = !!rlang::enquo(x),
+          y = !!rlang::enquo(y)
+        )
+    }
+  } else {
+    if (!is.null(outlier.label)) {
+      # if vectors are provided
+      data <-
+        base::cbind.data.frame(x = x,
+                               y = y,
+                               outlier.label = outlier.label)
+    } else {
+      data <-
+        base::cbind.data.frame(x = x,
+                               y = y)
+    }
+  }
   # x needs to be a factor for group or condition comparison
   # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
   # if that's the case, convert it to factor
-  if (!is.factor(x)) {
-    x <- as.factor(x)
+  # (this will be the case only when data has been set to NULL)
+  if (!is.factor(data$x)) {
+    data$x <- as.factor(data$x)
     base::warning("aesthetic `x` was not a factor; converting it to factor")
   }
-  ## creating the plot
-  library(ggplot2)
+
   ################################################### plot ##############################################################
   plot <- ggplot2::ggplot(data = data, mapping = aes(x, y)) +
     geom_point(
@@ -94,7 +130,7 @@ ggbetweenstats <- function(data = NULL,
 
   # if test is not specified, then figure out which test to run based on the number of levels of the independent variables
   if (is.null(test)) {
-    if (length(levels(as.factor(x))) < 3)
+    if (length(levels(as.factor(data$x))) < 3)
       test <- "t-test"
     else
       test <- "anova"
@@ -155,7 +191,7 @@ ggbetweenstats <- function(data = NULL,
               df2 = aov_stat$`Df`[3],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(abs(aov_effsize[[1]]), k)
+              effsize = ggstatsplot::specify_decimal_p(aov_effsize[[1]], k)
             )
           )
         }
@@ -193,7 +229,7 @@ ggbetweenstats <- function(data = NULL,
               df2 = aov_stat$`Df`[3],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(abs(aov_effsize[[1]]), k)
+              effsize = ggstatsplot::specify_decimal_p(aov_effsize[[1]], k)
             )
           )
         }
@@ -240,9 +276,9 @@ ggbetweenstats <- function(data = NULL,
             estimate = ggstatsplot::specify_decimal_p(robust_aov_stat$test, k),
             df1 = robust_aov_stat$df1,
             # degrees of freedom are always integer
-            df2 = ggstatsplot::specify_decimal_p(robust_aov_stat$df2, k),
+            df2 = ggstatsplot::specify_decimal_p(robust_aov_stat$df2, 0),
             pvalue = ggstatsplot::specify_decimal_p(robust_aov_stat$p.value, k, p.value = TRUE),
-            effsize = ggstatsplot::specify_decimal_p(abs(robust_aov_stat$effsize), k)
+            effsize = ggstatsplot::specify_decimal_p(robust_aov_stat$effsize, k)
           )
         )
       }
@@ -308,7 +344,7 @@ ggbetweenstats <- function(data = NULL,
               estimate = ggstatsplot::specify_decimal_p(t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(abs(t_effsize[[3]]), k)
+              effsize = ggstatsplot::specify_decimal_p(t_effsize[[3]], k)
             )
           )
 
@@ -346,7 +382,7 @@ ggbetweenstats <- function(data = NULL,
               estimate = ggstatsplot::specify_decimal_p(t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(abs(t_effsize[[3]]), k)
+              effsize = ggstatsplot::specify_decimal_p(t_effsize[[3]], k)
             )
           )
 
@@ -364,7 +400,7 @@ ggbetweenstats <- function(data = NULL,
       plot <-
         plot + labs(subtitle = results_subtitle(y_t_stat, y_t_effsize))
       # display equality of variance result as a message
-      vartest <- stats::var.test(x = as.numeric(x), y = y)
+      vartest <- stats::var.test(x = as.numeric(data$x), y = data$y)
       base::message(
         paste(
           "Note: F test to compare two variances: p-value = ",
@@ -402,7 +438,7 @@ ggbetweenstats <- function(data = NULL,
               estimate = ggstatsplot::specify_decimal_p(t_robust_stat$test, k),
               df = ggstatsplot::specify_decimal_p(t_robust_stat$df, k),
               pvalue = ggstatsplot::specify_decimal_p(t_robust_stat$p.value, k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(abs(t_robust_effsize$effsize), k)
+              effsize = ggstatsplot::specify_decimal_p(t_robust_effsize$effsize, k)
             )
           )
 
@@ -428,24 +464,29 @@ ggbetweenstats <- function(data = NULL,
 
   }
 
-  ## outlier tagging (default is don't show any tags)
+  ########################################### outlier tagging #########################################################
+  # the default is not to tag the outliers
   if (is.null(outlier.tagging))
     outlier.tagging <- FALSE
 
+  # if outlier.tagging is set to TRUE, first figure out what labels need to be attached to the outlier
   if (isTRUE(outlier.tagging)) {
     ## getting the data in dataframe format
     if (is.null(outlier.label)) {
+      # if data is missing, then make a dataframe out of x and y vectors
+      # if outlier label is not provided, outlier labels will just be values of the y vector
       data_df <-
-        as.data.frame(cbind(x, y)) # if data is missing, then make a dataframe out of x and y vectors
-      outlier.label <-
-        y # in this case, outlier labels will just be values of the y vector
+        base::cbind.data.frame(x = data$x,
+                               y = data$y,
+                               outlier.label = data$y)
     } else {
-      data_df <- as.data.frame(cbind(x, y, outlier.label))
+      # if the outlier tag has been provided, just use the dataframe already created
+      data_df <- data
     }
     ## finding the outliers in the dataframe
     # function to detect outliers
     check_outlier <- function(v, coef = 1.5) {
-      quantiles <- quantile(v, probs = c(0.25, 0.75))
+      quantiles <- stats::quantile(x = v, probs = c(0.25, 0.75))
       IQR <- quantiles[2] - quantiles[1]
       res <-
         ((v < (quantiles[1] - coef * IQR)) |
@@ -454,6 +495,7 @@ ggbetweenstats <- function(data = NULL,
 
     }
     # finding and tagging the outliers
+    library(dplyr)
     data_df <- data_df %>%
       dplyr::group_by(x) %>%
       dplyr::mutate(outlier = ifelse(check_outlier(y), outlier.label, NA))
@@ -477,12 +519,14 @@ ggbetweenstats <- function(data = NULL,
   if (isTRUE(mean.plotting)) {
     # custom function to get the mean
     fun_mean <- function(x) {
-      return(
-        data.frame(
-          y = as.numeric(as.character(ggstatsplot::specify_decimal_p(mean(x)))),
-          label = as.numeric(as.character(ggstatsplot::specify_decimal_p(mean(x, na.rm = TRUE))))
-        )
-      )
+      return(data.frame(
+        y = as.numeric(as.character(
+          ggstatsplot::specify_decimal_p(mean(x))
+        )),
+        label = as.numeric(as.character(
+          ggstatsplot::specify_decimal_p(mean(x, na.rm = TRUE))
+        ))
+      ))
     }
     plot <- plot +
       stat_summary(
@@ -491,10 +535,12 @@ ggbetweenstats <- function(data = NULL,
         colour = "darkred",
         size = 5
       ) +
-      stat_summary(fun.data = fun_mean,
-                   geom = "text",
-                   vjust = -1.0,
-                   size = 5)
+      stat_summary(
+        fun.data = fun_mean,
+        geom = "text",
+        vjust = -1.0,
+        size = 5
+      )
   }
 
   return(plot)
