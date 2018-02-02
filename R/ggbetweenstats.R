@@ -49,7 +49,7 @@ ggbetweenstats <- function(data = NULL,
   # if dataframe is provided
   if (!is.null(data)) {
     # if outlier label is provided then include it in the dataframe
-    if (!is.null(outlier.label)) {
+    if (!is.null(rlang::quo(outlier.label))) {
       data <-
         dplyr::select(
           .data = data,
