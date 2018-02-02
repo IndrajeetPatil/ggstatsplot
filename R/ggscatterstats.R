@@ -37,19 +37,38 @@ ggscatterstats <-
            title = NULL,
            caption = NULL,
            k = 3) {
-    # if fill colors for x and y axes are not specified, use the defaults
-    if (is.null(xfill))
-      xfill <- "orange"
-    if (is.null(yfill))
-      yfill <- "green"
+    ################################################### dataframe ####################################################
+    # preparing a dataframe out of provided inputs
+    if (!is.null(data)) {
+      # if dataframe is provided
+      data <-
+        dplyr::select(
+          .data = data,
+          x = !!rlang::enquo(x),
+          y = !!rlang::enquo(y)
+        )
+    } else {
+      # if vectors are provided
+      data <-
+        base::cbind.data.frame(x = x,
+                               y = y)
+    }
+    ################################################### Pearson's r ##################################################
 
-    # if test to be run is not satisfied, then use default, which is robust regression from MASS package
     if (is.null(test))
       test <- "pearson"
 
     if (test == "pearson") {
       # running the correlation test and preparing the subtitle text
-      c <- stats::cor.test(x, y, method = "pearson", exact = FALSE)
+      c <-
+        stats::cor.test(
+          x = data$x,
+          y = data$y,
+          method = "pearson",
+          alternative = "two.sided",
+          exact = FALSE
+        )
+      # preparing the label
       stat_label <-
         base::substitute(
           paste(
@@ -72,11 +91,19 @@ ggscatterstats <-
             pvalue = ggstatsplot::specify_decimal_p(c$p.value, k, p.value = TRUE)
           )
         )
-
+      ################################################### Spearnman's rho ##################################################
     }   else if (test == "spearman") {
       # running the correlation test and preparing the subtitle text
       # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
-      c <- stats::cor.test(x, y, method = "spearman", exact = FALSE)
+      c <-
+        stats::cor.test(
+          x = data$x,
+          y = data$y,
+          method = "spearman",
+          alternative = "two.sided",
+          exact = FALSE
+        )
+      # preparing the label
       stat_label <-
         base::substitute(
           paste(
@@ -99,7 +126,7 @@ ggscatterstats <-
             pvalue = ggstatsplot::specify_decimal_p(c$p.value, k, p.value = TRUE)
           )
         )
-
+      ################################################### robust ##################################################
     } else if (test == "robust") {
       # running robust regression test and preparing the subtitle text
       MASS_res <-
@@ -143,9 +170,12 @@ ggscatterstats <-
       )
     }
 
+    ################################################### plot ################################################################
+
     # preparing the scatterplotplot
     library(ggplot2)
-    plot <- ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
+    plot <-
+      ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
       geom_count(
         show.legend = FALSE,
         color = "black",
@@ -169,6 +199,14 @@ ggscatterstats <-
         caption = caption
       )
 
+    ################################################ intercept ##################################################
+
+    # if fill colors for x and y axes are not specified, use the defaults
+    if (is.null(xfill))
+      xfill <- "orange"
+    if (is.null(yfill))
+      yfill <- "green"
+
     # by default, if the input is NULL, then no intercept lines will be plotted
 
     if (is.null(intercept)) {
@@ -177,13 +215,13 @@ ggscatterstats <-
     } else if (intercept == "mean") {
       plot <- plot +
         geom_vline(
-          xintercept = mean(x),
+          xintercept = mean(data$x),
           linetype = "dashed",
           color = xfill,
           size = 1.2
         ) +
         geom_hline(
-          yintercept = mean(y),
+          yintercept = mean(data$y),
           linetype = "dashed",
           color = yfill,
           size = 1.2
@@ -192,19 +230,21 @@ ggscatterstats <-
     } else if (intercept == "median") {
       plot <- plot +
         geom_vline(
-          xintercept = mean(x),
+          xintercept = mean(data$x),
           linetype = "dashed",
           color = xfill,
           size = 1.2
         ) +
         geom_hline(
-          yintercept = mean(y),
+          yintercept = mean(data$y),
           linetype = "dashed",
           color = yfill,
           size = 1.2
         )
 
     }
+
+    #################################################### ggMarginal ######################################################
 
     # if marginal should be plotted or not is not specified, it will be plotted by default
     if (is.null(marginal))
