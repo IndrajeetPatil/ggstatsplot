@@ -4,8 +4,9 @@
 \alias{ggpiestats}
 \title{pie charts with statistical tests}
 \usage{
-ggpiestats(data, main, condition = NULL, labels = NULL, stat_title = NULL,
-  title = NULL, caption = NULL, legend_title = NULL, k = 3)
+ggpiestats(data = NULL, main, condition = NULL, labels = NULL,
+  stat_title = NULL, title = NULL, caption = NULL, legend_title = NULL,
+  k = 3)
 }
 \arguments{
 \item{data}{the data as a data frame}
