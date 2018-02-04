@@ -23,7 +23,7 @@
 #'
 
 ggpiestats <-
-  function(data,
+  function(data = NULL,
            main,
            condition = NULL,
            labels = NULL,
@@ -64,7 +64,7 @@ ggpiestats <-
           base::cbind.data.frame(main = main)
       }
     }
-    print(data)
+
     # convert the data into percentages; group by conditional variable if needed
     if (base::missing(condition)) {
       df <-
@@ -81,14 +81,14 @@ ggpiestats <-
         dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
         dplyr::arrange(desc(perc))
     }
-    print(df)
+
     # reorder the category factor levels to order the legend
     df$main <- factor(df$main, levels = unique(df$main))
 
     # if labels haven't been specified, use what's already there
     if (is.null(labels))
       labels <- as.character(df$main)
-    print(df)
+
     ################################################## plot ##############################################
 
     if (base::missing(condition)) {
@@ -125,7 +125,7 @@ ggpiestats <-
         ) +
         coord_polar(theta = "y") # convert to polar coordinates
     }
-    print(p)
+
     # formatting
     p <- p +
       scale_y_continuous(breaks = NULL) +
