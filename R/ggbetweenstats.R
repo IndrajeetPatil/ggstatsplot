@@ -49,7 +49,7 @@ ggbetweenstats <- function(data = NULL,
   # if dataframe is provided
   if (!is.null(data)) {
     # if outlier label is provided then include it in the dataframe
-    if (missing(outlier.label)) {
+    if (base::missing(outlier.label)) {
       # if outlier label is not provided then only include the two arguments provided
       data <-
         dplyr::select(
@@ -69,12 +69,13 @@ ggbetweenstats <- function(data = NULL,
     }
   } else {
     if (!is.null(outlier.label)) {
-      # if vectors are provided
+      # if vectors are provided and outlier label vector is present
       data <-
         base::cbind.data.frame(x = x,
                                y = y,
                                outlier.label = outlier.label)
     } else {
+      # if outlier label vector is absent
       data <-
         base::cbind.data.frame(x = x,
                                y = y)
@@ -104,7 +105,6 @@ ggbetweenstats <- function(data = NULL,
     geom_violin(width = 0.5,
                 alpha = 0.2,
                 fill = "white") +
-    # geom_violin(aes(fill = factor(x))) + # uncomment if you also want to superimpose violin plot fill over the boxplot
     geom_boxplot(
       width = 0.3,
       alpha = 0.2,
@@ -113,10 +113,8 @@ ggbetweenstats <- function(data = NULL,
       outlier.shape = 16,
       outlier.size = 3,
       outlier.alpha = 0.7,
-      # aes(color = factor(x)),
       position = position_dodge(width = NULL)
     ) +
-    # coord_flip() + # uncomment this line in case you want to flip the coordinate axes
     theme_mprl() + theme(legend.position = "none") +
     labs(
       x = xlab,
@@ -137,6 +135,7 @@ ggbetweenstats <- function(data = NULL,
       test <- "anova"
   }
 
+  # running anova
   if (test == "anova") {
     # if type of test is not specified, then use the default, which is parametric test
     if (is.null(type))
@@ -144,12 +143,16 @@ ggbetweenstats <- function(data = NULL,
 
     ##################################### parametric ANOVA ############################################################
 
+    # running parametric ANOVA
     if (type == "parametric") {
       # setting up the anova model and getting its summary
       # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
       # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
       # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
-      y_aov <- stats::aov(formula = y ~ x, data = data)
+      # setting up the model
+      y_aov <- stats::aov(formula = y ~ x,
+                          data = data)
+      # getting model summary
       y_aov_stat <-
         car::Anova(mod = y_aov,
                    type = "III",
@@ -159,6 +162,7 @@ ggbetweenstats <- function(data = NULL,
       if (is.null(effsizetype))
         effsizetype <- "unbiased"
 
+      # preparing the subtitles with appropriate effect sizes
       if (effsizetype == "unbiased") {
         # partial omega-squared is the biased estimate of effect size for parametric ANOVA
         y_aov_effsize <-
@@ -186,13 +190,13 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal_p(aov_stat$`F value`[2], k),
+              estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
               df1 = aov_stat$`Df`[2],
               # degrees of freedom are always integer
               df2 = aov_stat$`Df`[3],
               # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(aov_effsize[[1]], k)
+              pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(x = aov_effsize[[1]], k)
             )
           )
         }
@@ -224,29 +228,31 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal_p(aov_stat$`F value`[2], k),
+              estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
               df1 = aov_stat$`Df`[2],
               # degrees of freedom are always integer
               df2 = aov_stat$`Df`[3],
               # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(aov_effsize[[1]], k)
+              pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(x = aov_effsize[[1]], k)
             )
           )
         }
 
       }
+      # adding the subtitle to the plot
       plot <-
-        plot + labs(subtitle = results_subtitle(y_aov_stat, y_aov_effsize))
+        plot + labs(subtitle = results_subtitle(aov_stat = y_aov_stat,
+                                                aov_effsize = y_aov_effsize))
       # display homogeneity of variances test result as a message
-      bartlett <- stats::bartlett.test(formula = y ~ x, data = data)
+      bartlett <- stats::bartlett.test(formula = y ~ x,
+                                       data = data)
       base::message(
         paste(
           "Note: Bartlett's test for homogeneity of variances: p-value = ",
-          ggstatsplot::specify_decimal_p(bartlett$p.value, p.value = TRUE)
+          ggstatsplot::specify_decimal_p(x = bartlett$p.value, p.value = TRUE)
         )
       )
-      #return(plot)
 
     } else if (type == "robust") {
       ######################################### robust ANOVA ############################################################
@@ -274,28 +280,28 @@ ggbetweenstats <- function(data = NULL,
             effsize
           ),
           list(
-            estimate = ggstatsplot::specify_decimal_p(robust_aov_stat$test, k),
+            estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$test, k),
             df1 = robust_aov_stat$df1,
             # degrees of freedom are always integer
-            df2 = ggstatsplot::specify_decimal_p(robust_aov_stat$df2, 0),
-            pvalue = ggstatsplot::specify_decimal_p(robust_aov_stat$p.value, k, p.value = TRUE),
-            effsize = ggstatsplot::specify_decimal_p(robust_aov_stat$effsize, k)
+            df2 = ggstatsplot::specify_decimal_p(x = robust_aov_stat$df2, k),
+            pvalue = ggstatsplot::specify_decimal_p(x = robust_aov_stat$p.value, k, p.value = TRUE),
+            effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$effsize, k)
           )
         )
       }
 
       # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
       robust_y_aov <-
-        WRS2::t1waybt(
+        WRS2::t1way(
           formula = y ~ x,
           data = data,
           tr = 0.2,
           nboot = nboot
         )
 
-      plot <- plot + labs(subtitle = results_subtitle(robust_y_aov))
-
-      #return(plot)
+      # adding the label to the plot
+      plot <-
+        plot + labs(subtitle = results_subtitle(robust_aov_stat = robust_y_aov))
 
     }
 
@@ -342,10 +348,10 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal_p(t_stat[[1]], k),
-              df = ggstatsplot::specify_decimal_p(t_stat[[2]], k),
-              pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(t_effsize[[3]], k)
+              estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
+              df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
+              pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k)
             )
           )
 
@@ -380,10 +386,10 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal_p(t_stat[[1]], k),
-              df = ggstatsplot::specify_decimal_p(t_stat[[2]], k),
-              pvalue = ggstatsplot::specify_decimal_p(t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(t_effsize[[3]], k)
+              estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
+              df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
+              pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k)
             )
           )
 
@@ -399,13 +405,13 @@ ggbetweenstats <- function(data = NULL,
       }
 
       plot <-
-        plot + labs(subtitle = results_subtitle(y_t_stat, y_t_effsize))
+        plot + labs(subtitle = results_subtitle(t_stat = y_t_stat, t_effsize = y_t_effsize))
       # display equality of variance result as a message
       vartest <- stats::var.test(x = as.numeric(data$x), y = data$y)
       base::message(
         paste(
           "Note: F test to compare two variances: p-value = ",
-          ggstatsplot::specify_decimal_p(vartest$p.value, p.value = TRUE)
+          ggstatsplot::specify_decimal_p(x = vartest$p.value, p.value = TRUE)
         )
       )
 
@@ -436,30 +442,30 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
             list(
-              estimate = ggstatsplot::specify_decimal_p(t_robust_stat$test, k),
-              df = ggstatsplot::specify_decimal_p(t_robust_stat$df, k),
-              pvalue = ggstatsplot::specify_decimal_p(t_robust_stat$p.value, k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(t_robust_effsize$effsize, k)
+              estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test, k),
+              df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df, k),
+              pvalue = ggstatsplot::specify_decimal_p(x = t_robust_stat$p.value, k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize, k)
             )
           )
 
         }
 
-      # setting up the independent samples t-tests on robust location measures including effect sizes
+      # setting up the independent samples t-tests on robust location measures (without bootstraps)
       y_robust_t_stat <-
-        WRS2::yuenbt(formula = y ~ x,
-                     data = data,
-                     nboot = nboot)
+        WRS2::yuen(formula = y ~ x,
+                   data = data)
+      # computing effect sizes
       y_robust_t_effsize <-
         WRS2::yuen.effect.ci(formula = y ~ x,
-                             data = data,
-                             nboot = nboot)
+                             data = data)
 
+      # adding the label to the plot
       plot <-
-        plot + labs(subtitle = results_subtitle(y_robust_t_stat, y_robust_t_effsize))
-
-      #return(plot)
-
+        plot + labs(
+          subtitle = results_subtitle(t_robust_stat = y_robust_t_stat,
+                                      t_robust_effsize = y_robust_t_effsize)
+        )
 
     }
 
@@ -522,10 +528,10 @@ ggbetweenstats <- function(data = NULL,
     fun_mean <- function(x) {
       return(data.frame(
         y = as.numeric(as.character(
-          ggstatsplot::specify_decimal_p(mean(x))
+          ggstatsplot::specify_decimal_p(x = mean(x))
         )),
         label = as.numeric(as.character(
-          ggstatsplot::specify_decimal_p(mean(x, na.rm = TRUE))
+          ggstatsplot::specify_decimal_p(x = mean(x, na.rm = TRUE))
         ))
       ))
     }
