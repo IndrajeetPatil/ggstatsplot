@@ -32,34 +32,75 @@ ggpiestats <-
            caption = NULL,
            legend_title = NULL,
            k = 3) {
-    library(ggplot2)
     library(dplyr)
+    library(ggplot2)
+    ################################################## dataframe ####################################################
+    # if dataframe is provided
+    if (!is.null(data)) {
+      # if condition variables is provided then include it in the dataframe
+      if (base::missing(condition)) {
+        # if outlier label is not provided then only include the two arguments provided
+        data <-
+          dplyr::select(.data = data,
+                        main = !!rlang::enquo(main))
+      } else {
+        # if outlier label is provided then include it to make a dataframe
+        data <-
+          dplyr::select(
+            .data = data,
+            main = !!rlang::enquo(main),
+            condition = !!rlang::quo_name(enquo(condition))
+          )
+      }
+    } else {
+      if (!is.null(condition)) {
+        # if vectors are provided and condition vector is present
+        data <-
+          base::cbind.data.frame(main = main,
+                                 condition = condition)
+      } else {
+        # if condition vector is absent
+        data <-
+          base::cbind.data.frame(main = main)
+      }
+    }
+    print(data)
     # convert the data into percentages; group by conditional variable if needed
-    df <- dplyr::group_by(data, .dots = c(condition, main)) %>%
-      dplyr::summarize(counts = n()) %>%
-      dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
-      dplyr::arrange(desc(perc))
-
+    if (base::missing(condition)) {
+      df <-
+        data %>%
+        dplyr::group_by_(.dots = c('main')) %>%
+        dplyr::summarize(counts = n()) %>%
+        dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
+        dplyr::arrange(desc(perc))
+    } else {
+      df <-
+        data %>%
+        dplyr::group_by_(.dots = c('condition', 'main')) %>%
+        dplyr::summarize(counts = n()) %>%
+        dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
+        dplyr::arrange(desc(perc))
+    }
+    print(df)
     # reorder the category factor levels to order the legend
-    df[[main]] <- factor(df[[main]], levels = unique(df[[main]]))
+    df$main <- factor(df$main, levels = unique(df$main))
 
     # if labels haven't been specified, use what's already there
     if (is.null(labels))
-      labels <- as.character(df[[main]])
-
+      labels <- as.character(df$main)
+    print(df)
     ################################################## plot ##############################################
 
-    if (!is.null(condition)) {
-      p <- ggplot2::ggplot(df, aes('', counts)) +
+    if (base::missing(condition)) {
+      p <- ggplot2::ggplot(data = df, mapping = aes(x = '', y = counts)) +
         geom_col(
           position = 'fill',
           color = 'black',
           width = 1,
-          aes(fill = factor(get(main)))
+          aes(fill = factor(get('main')))
         ) +
-        facet_wrap(condition, labeller = "label_both") +
         geom_label(
-          aes(label = paste0(round(perc), "%"), group = factor(get(main))),
+          aes(label = paste0(round(perc), "%"), group = factor(get('main'))),
           position = position_fill(vjust = 0.5),
           color = 'black',
           size = 5,
@@ -67,15 +108,16 @@ ggpiestats <-
         ) +
         coord_polar(theta = "y") # convert to polar coordinates
     } else {
-      p <- ggplot2::ggplot(df, aes('', counts)) +
+      p <- ggplot2::ggplot(data = df, mapping = aes(x = '', y = counts)) +
         geom_col(
           position = 'fill',
           color = 'black',
           width = 1,
-          aes(fill = factor(get(main)))
+          aes(fill = factor(get('main')))
         ) +
+        facet_wrap(facets = ~ condition, labeller = "label_both") +
         geom_label(
-          aes(label = paste0(round(perc), "%"), group = factor(get(main))),
+          aes(label = paste0(round(perc), "%"), group = factor(get('main'))),
           position = position_fill(vjust = 0.5),
           color = 'black',
           size = 5,
@@ -83,7 +125,7 @@ ggpiestats <-
         ) +
         coord_polar(theta = "y") # convert to polar coordinates
     }
-
+    print(p)
     # formatting
     p <- p +
       scale_y_continuous(breaks = NULL) +
@@ -203,30 +245,23 @@ ggpiestats <-
 
     #################################### statistical test results #######################################
 
-    if (!is.null(condition)) {
-      # create a dataframe on which chi-square tests will be carried out in case there is "condition" variable present
+    if (!base::missing(condition)) {
       # prepare the statistical test subtitle
-
-      df2 <- data %>% dplyr::select(condition, main)
-      colnames(df2) <- c("col1", "col2")
       p <-
         p + labs(subtitle = chi_subtitle(
-          jmv::contTables(
-            df2,
-            rows = 'col1',
-            cols = 'col2',
+          x = jmv::contTables(
+            data = data,
+            rows = 'condition',
+            cols = 'main',
             phiCra = TRUE
           ),
           effect = stat_title
         ))
 
     } else {
-      # create a dataframe on which proportion test will be carried out when there is no condition variable present
-      df2 <- data %>% dplyr::select(main)
-      colnames(df2) <- c("col1")
       # adding subtitle to the plot
       p <-
-        p + labs(subtitle = proptest_subtitle(x = jmv::propTestN(data = df2, var = 'col1')))
+        p + labs(subtitle = proptest_subtitle(x = jmv::propTestN(data = data, var = 'main')))
 
     }
 
@@ -234,7 +269,7 @@ ggpiestats <-
 
     # if legend title has not been provided, use the name of the variable corresponding to main
     if (is.null(legend_title)) {
-      legend_title <- as.character(main)
+      legend_title <- as.character(df$main)
     }
     # preparing the plot
     p <-
