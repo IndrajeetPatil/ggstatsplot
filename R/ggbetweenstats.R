@@ -49,21 +49,22 @@ ggbetweenstats <- function(data = NULL,
   # if dataframe is provided
   if (!is.null(data)) {
     # if outlier label is provided then include it in the dataframe
-    if (!is.null(rlang::quo(outlier.label))) {
-      data <-
-        dplyr::select(
-          .data = data,
-          x = !!rlang::enquo(x),
-          y = !!rlang::enquo(y),
-          outlier.label = !!rlang::enquo(outlier.label)
-        )
-    } else {
+    if (missing(outlier.label)) {
       # if outlier label is not provided then only include the two arguments provided
       data <-
         dplyr::select(
           .data = data,
           x = !!rlang::enquo(x),
           y = !!rlang::enquo(y)
+        )
+    } else {
+      # if outlier label is provided then include it to make a dataframe
+      data <-
+        dplyr::select(
+          .data = data,
+          x = !!rlang::enquo(x),
+          y = !!rlang::enquo(y),
+          outlier.label = !!rlang::quo_name(enquo(outlier.label))
         )
     }
   } else {
@@ -528,6 +529,7 @@ ggbetweenstats <- function(data = NULL,
         ))
       ))
     }
+    # add the mean label to the plot
     plot <- plot +
       stat_summary(
         fun.y = mean,
