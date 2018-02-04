@@ -162,11 +162,11 @@ ggpiestats <-
         ),
         list(
           y = effect,
-          estimate = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[[2]], k),
+          estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(x$chiSq)[[2]], k),
           df = as.data.frame(x$chiSq)[[3]],
           # df always an integer
-          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$chiSq)[[4]], k, p.value = TRUE),
-          phicoeff = ggstatsplot::specify_decimal_p(as.data.frame(x$nom)[[4]], k)
+          pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(x$chiSq)[[4]], k, p.value = TRUE),
+          phicoeff = ggstatsplot::specify_decimal_p(x = as.data.frame(x$nom)[[4]], k)
         )
       )
 
@@ -192,10 +192,10 @@ ggpiestats <-
           pvalue
         ),
         list(
-          estimate = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[[1]], k),
+          estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(x$tests)[[1]], k),
           df = as.data.frame(x$tests)[[2]],
           # df is always an integer
-          pvalue = ggstatsplot::specify_decimal_p(as.data.frame(x$tests)[[3]], k, p.value = TRUE)
+          pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(x$tests)[[3]], k, p.value = TRUE)
         )
       )
 
@@ -226,14 +226,17 @@ ggpiestats <-
       colnames(df2) <- c("col1")
       # adding subtitle to the plot
       p <-
-        p + labs(subtitle = proptest_subtitle(jmv::propTestN(data = df2, var = "col1")))
+        p + labs(subtitle = proptest_subtitle(x = jmv::propTestN(data = df2, var = 'col1')))
 
     }
 
     ### adding the title for the entire plot and the legend title
 
-    if (is.null(legend_title))
+    # if legend title has not been provided, use the name of the variable corresponding to main
+    if (is.null(legend_title)) {
       legend_title <- as.character(main)
+    }
+    # preparing the plot
     p <-
       p + labs(title = title, caption = caption) + guides(fill = guide_legend(title = legend_title))
 
