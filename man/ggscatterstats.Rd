@@ -31,6 +31,8 @@
 \item{caption}{caption for the plot}
 
 \item{k}{number of decimal places expected for results}
+
+\item{maxit}{maximum number of iterations for robust linear regression}
 }
 \author{
 Indrajeet Patil

@@ -17,6 +17,7 @@
 #' @param title title for the plot
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
+#' @param maxit maximum number of iterations for robust linear regression
 #'
 #' @export
 
@@ -36,6 +37,7 @@ ggscatterstats <-
            test = NULL,
            title = NULL,
            caption = NULL,
+           maxit = 1000,
            k = 3) {
     ################################################### dataframe ####################################################
     # preparing a dataframe out of provided inputs
@@ -87,8 +89,8 @@ ggscatterstats <-
           list(
             df = c$parameter,
             # degrees of freedom are always integer
-            estimate = ggstatsplot::specify_decimal_p(c$estimate, k),
-            pvalue = ggstatsplot::specify_decimal_p(c$p.value, k, p.value = TRUE)
+            estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
+            pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
           )
         )
       ################################################### Spearnman's rho ##################################################
@@ -120,10 +122,10 @@ ggscatterstats <-
             pvalue
           ),
           list(
-            df = (length(x) - 2),
+            df = (length(data$x) - 2),
             # degrees of freedom are always integer
-            estimate = ggstatsplot::specify_decimal_p(c$estimate, k),
-            pvalue = ggstatsplot::specify_decimal_p(c$p.value, k, p.value = TRUE)
+            estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
+            pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
           )
         )
       ################################################### robust ##################################################
@@ -132,11 +134,12 @@ ggscatterstats <-
       MASS_res <-
         MASS::rlm(
           scale(y) ~ scale(x),
-          maxit = 1000,
+          maxit = maxit,
           # number of iterations
           na.action = na.omit,
           data = data
         )
+      # preparing the label
       stat_label <-
         base::substitute(
           paste(
@@ -155,18 +158,20 @@ ggscatterstats <-
             pvalue
           ),
           list(
-            estimate = ggstatsplot::specify_decimal_p(summary(MASS_res)$coefficients[[2]], k),
-            t = ggstatsplot::specify_decimal_p(summary(MASS_res)$coefficients[[6]], k),
+            estimate = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[2]], k),
+            t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
             df = summary(MASS_res)$df[2],
             # degrees of freedom are always integer
-            pvalue = ggstatsplot::specify_decimal_p((sfsmisc::f.robftest(MASS_res))$p.value),
-            k, p.value = TRUE
+            pvalue = ggstatsplot::specify_decimal_p(x = (
+              sfsmisc::f.robftest(object = MASS_res)
+            )$p.value),
+            k,
+            p.value = TRUE
           )
         )
-      base::warning(
-        "For robust regression: no. of iterations = 1000; estimate is standardized",
-        noBreaks. = TRUE,
-        call. = TRUE
+      # preparing the message
+      base::message(
+        paste("For robust regression: no. of iterations = ", maxit, "; estimate is standardized", sep = "")
       )
     }
 
@@ -189,7 +194,7 @@ ggscatterstats <-
       ) +
       geom_smooth(method = "lm",
                   se = TRUE,
-                  size = 1.5) + # default is robust linear model
+                  size = 1.5) +
       ggstatsplot::theme_mprl() +
       labs(
         x = xlab,
