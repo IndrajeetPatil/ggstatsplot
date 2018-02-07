@@ -22,9 +22,27 @@
 #' @param mean.plotting whether mean is to be highlighted and its value to be displayed
 #' this will show y variable values for outliers
 #'
+#' @import ggplot2
+#' @import dplyr
+#' @import rlang
+#'
+#' @importFrom WRS2 t1way
+#' @importFrom WRS2 yuen
+#' @importFrom WRS2 yuen.effect.ci
+#' @importFrom effsize cohen.d
+#' @importFrom sjstats omega_sq
+#' @importFrom sjstats eta_sq
+#' @importFrom stats t.test
+#' @importFrom stats var.test
+#' @importFrom stats bartlett.test
+#' @importFrom stats aov
+#' @importFrom stats quantile
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
+#' @importFrom car Anova
+#' @importFrom ggrepel geom_label_repel
+#'
 #' @export
-
-library(ggplot2)
 
 ggbetweenstats <- function(data = NULL,
                            x,
@@ -43,7 +61,7 @@ ggbetweenstats <- function(data = NULL,
                            outlier.label = NULL,
                            outlier.colour = "black",
                            mean.plotting = FALSE) {
-  library(ggplot2)
+
   ####################################### creating a dataframe #######################################################
 
   # if dataframe is provided
@@ -64,7 +82,7 @@ ggbetweenstats <- function(data = NULL,
           .data = data,
           x = !!rlang::enquo(x),
           y = !!rlang::enquo(y),
-          outlier.label = !!rlang::quo_name(enquo(outlier.label))
+          outlier.label = !!rlang::quo_name(rlang::enquo(outlier.label))
         )
     }
   } else {
@@ -115,7 +133,8 @@ ggbetweenstats <- function(data = NULL,
       outlier.alpha = 0.7,
       position = position_dodge(width = NULL)
     ) +
-    theme_mprl() + theme(legend.position = "none") +
+    ggstatsplot::theme_mprl() +
+    theme(legend.position = "none") +
     labs(
       x = xlab,
       y = ylab,
@@ -405,7 +424,9 @@ ggbetweenstats <- function(data = NULL,
       }
 
       plot <-
-        plot + labs(subtitle = results_subtitle(t_stat = y_t_stat, t_effsize = y_t_effsize))
+        plot +
+        labs(subtitle = results_subtitle(t_stat = y_t_stat,
+                                         t_effsize = y_t_effsize))
       # display equality of variance result as a message
       vartest <- stats::var.test(x = as.numeric(data$x), y = data$y)
       base::message(
@@ -462,7 +483,8 @@ ggbetweenstats <- function(data = NULL,
 
       # adding the label to the plot
       plot <-
-        plot + labs(
+        plot +
+        labs(
           subtitle = results_subtitle(t_robust_stat = y_robust_t_stat,
                                       t_robust_effsize = y_robust_t_effsize)
         )
@@ -502,7 +524,6 @@ ggbetweenstats <- function(data = NULL,
 
     }
     # finding and tagging the outliers
-    library(dplyr)
     data_df <- data_df %>%
       dplyr::group_by(x) %>%
       dplyr::mutate(outlier = ifelse(check_outlier(y), outlier.label, NA))

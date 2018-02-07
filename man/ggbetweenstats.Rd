@@ -3,16 +3,19 @@
 \name{ggbetweenstats}
 \alias{ggbetweenstats}
 \title{violin plots for group or condition comparisons}
+\usage{
+ggbetweenstats(data = NULL, x, y, test = NULL, type = NULL,
+  effsizetype = NULL, xlab = NULL, ylab = NULL, caption = NULL,
+  title = NULL, k = 3, var.equal = FALSE, nboot = 1000,
+  outlier.tagging = NULL, outlier.label = NULL, outlier.colour = "black",
+  mean.plotting = FALSE)
+}
 \arguments{
 \item{data}{data frame from which variables specified are preferentially to be taken}
 
 \item{x}{the grouping variable}
 
 \item{y}{the response - a vector of length the number of rows of `x`}
-
-\item{xlab}{label for x axis variable}
-
-\item{ylab}{label for y axis variable}
 
 \item{test}{statistical test to be run and displayed as subtitle ("t-test" or "anova")}
 
@@ -21,9 +24,13 @@
 \item{effsizetype}{type of effect size needed for parametric tests ("biased" (Cohen's d, partial eta-squared) or
 "unbiased" (Hedge's g, omega-squared))}
 
-\item{title}{title for the plot}
+\item{xlab}{label for x axis variable}
+
+\item{ylab}{label for y axis variable}
 
 \item{caption}{caption for the plot}
+
+\item{title}{title for the plot}
 
 \item{k}{number of decimal places expected for results}
 
