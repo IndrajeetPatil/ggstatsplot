@@ -1,6 +1,7 @@
 #'
 #' @title violin plots for group or condition comparisons
 #' @name ggbetweenstats
+#' @aliases ggbetweenstats
 #' @description Violin plots for between-subjects designs with statistical details included in the plot as a subtitle
 #' @author Indrajeet Patil
 #'
@@ -211,7 +212,7 @@ ggbetweenstats <- function(data = NULL,
                 " = ",
                 effsize
               ),
-            list(
+            env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
               df1 = aov_stat$`Df`[2],
               # degrees of freedom are always integer
@@ -250,7 +251,7 @@ ggbetweenstats <- function(data = NULL,
                 " = ",
                 effsize
               ),
-            list(
+            env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
               df1 = aov_stat$`Df`[2],
               # degrees of freedom are always integer
@@ -303,7 +304,7 @@ ggbetweenstats <- function(data = NULL,
               " = ",
               effsize
             ),
-          list(
+          env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$test, k),
             df1 = robust_aov_stat$df1,
             # degrees of freedom are always integer
@@ -372,7 +373,7 @@ ggbetweenstats <- function(data = NULL,
                 " = ",
                 effsize
               ),
-            list(
+            env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
@@ -411,7 +412,7 @@ ggbetweenstats <- function(data = NULL,
                 " = ",
                 effsize
               ),
-            list(
+            env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
@@ -470,7 +471,7 @@ ggbetweenstats <- function(data = NULL,
                 " = ",
                 effsize
               ),
-            list(
+            env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test, k),
               df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df, k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_robust_stat$p.value, k, p.value = TRUE),

@@ -1,5 +1,6 @@
 #' @title custom function for getting specified number of decimal places in results for p-value
 #' @name specify_decimal_p
+#' @aliases specify_decimal_p
 #' @description Function to format an R object for pretty printing with a specified number of decimal places. The
 #' function also allows highly significant p-values to be denoted as "p < 0.001" rather than "p = 0.000"
 #' @author Indrajeet Patil

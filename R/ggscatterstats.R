@@ -1,6 +1,7 @@
 #'
 #' @title scatterplot with ggMarginals
 #' @name ggscatterstats
+#' @aliases ggscatterstats
 #' @author Indrajeet Patil
 #' @description Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
 #' statistical details added as a subtitle
@@ -96,7 +97,7 @@ ggscatterstats <-
               " = ",
               pvalue
             ),
-          list(
+          env = base::list(
             df = c$parameter,
             # degrees of freedom are always integer
             estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
@@ -132,7 +133,7 @@ ggscatterstats <-
               " = ",
               pvalue
             ),
-          list(
+          env = base::list(
             df = (length(data$x) - 2),
             # degrees of freedom are always integer
             estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
@@ -169,7 +170,7 @@ ggscatterstats <-
               " = ",
               pvalue
             ),
-          list(
+          env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[2]], k),
             t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
             df = summary(MASS_res)$df[2],
@@ -281,10 +282,13 @@ ggscatterstats <-
       # creating the ggMarginal plot of a given marginaltype
       plot <-
         ggExtra::ggMarginal(
-          plot,
+          p = plot,
           type = marginaltype,
-          xparams = list(fill = xfill, col = "black"),
-          yparams = list(fill = yfill, col = "black")
+          size = 5,
+          xparams = base::list(fill = xfill,
+                               col = "black"),
+          yparams = base::list(fill = yfill,
+                               col = "black")
         )
     }
 

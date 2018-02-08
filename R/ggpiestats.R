@@ -1,6 +1,7 @@
 #'
 #' @title pie charts with statistical tests
 #' @name ggpiestats
+#' @aliases ggpiestats
 #' @description Pie charts for categorical data with statistical details included in the plot as a subtitle
 #' @author Indrajeet Patil
 #'
@@ -166,7 +167,7 @@ ggpiestats <-
           hjust = 0.5
         )
       ) +
-      guides(fill = guide_legend(override.aes = list(colour = NA))) + # remove black diagonal line from legend
+      guides(fill = guide_legend(override.aes = base::list(colour = NA))) + # remove black diagonal line from legend
       scale_fill_brewer(palette = "Dark2") +
       scale_colour_brewer(palette = "Dark2")
 
@@ -202,7 +203,7 @@ ggpiestats <-
             " = ",
             phicoeff
           ),
-        list(
+        env = base::list(
           y = effect,
           estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(x$chiSq)[[2]], k),
           df = as.data.frame(x$chiSq)[[3]],
@@ -234,7 +235,7 @@ ggpiestats <-
             " = ",
             pvalue
           ),
-        list(
+        env = base::list(
           estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(x$tests)[[1]], k),
           df = as.data.frame(x$tests)[[2]],
           # df is always an integer
