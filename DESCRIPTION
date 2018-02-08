@@ -5,7 +5,7 @@ Version: 0.0.0.9000
 Authors@R: person("Indrajeet", "Patil", email = "patilindrajeet.science@gmail.com", role = c("aut", "cre"))
 Description: ggstatsplot produces various types of common publication ready information-rich plots that contain 
     details from the statistical tests that will be relevant to plots. 
-License: GPL-2.0
+License: GPL-2
 Depends: R (>= 3.1.0)
 Encoding: UTF-8
 LazyData: true

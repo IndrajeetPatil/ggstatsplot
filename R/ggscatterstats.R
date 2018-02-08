@@ -185,7 +185,6 @@ ggscatterstats <-
     ################################################### plot ################################################################
 
     # preparing the scatterplotplot
-    library(ggplot2)
     plot <-
       ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
       geom_count(

@@ -23,6 +23,8 @@ ggpiestats(data = NULL, main, condition = NULL, labels = NULL,
 
 \item{caption}{caption for the plot}
 
+\item{legend_title}{title for the legend}
+
 \item{k}{number of decimal places expected for results}
 }
 \author{
