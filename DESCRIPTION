@@ -23,7 +23,6 @@ Imports:
   MASS (>= 7.3-47),
   plyr (>= 1.8.4),
   rlang (0.1.6),
-  robust (>= 0.4-18),
   sfsmisc (>= 1.1-1),
   sjstats (>= 0.14.0),
   stats (>= 3.4.1),
