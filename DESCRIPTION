@@ -15,6 +15,7 @@ RoxygenNote: 6.0.1
 Imports: 
   car (>= 2.1-6),
   dplyr (>= 0.7.4),
+  effsize (>= 0.7.1),
   ggExtra (>= 0.7),
   ggrepel (>= 0.7.0),
   ggplot2 (>= 2.2.1),
