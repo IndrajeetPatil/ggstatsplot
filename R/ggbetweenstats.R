@@ -65,7 +65,18 @@ ggbetweenstats <- function(data = NULL,
                            outlier.label = NULL,
                            outlier.colour = "black",
                            mean.plotting = FALSE) {
-  ####################################### creating a dataframe #######################################################
+
+  ####################################### argument checks #################################################
+  # if any of the arguments have been misspecified
+  # effsizetype
+  allowed.effsizetype <- c("biased", "unbiased", "NULL")
+  if (!(effsizetype %in% allowed.effsizetype)) {
+    stop("The effet size type you entered (", effsizetype, ") is not supported.",
+         " Here are the supported options: ",
+         paste(allowed.effsizetype, collapse = ", "))
+  }
+
+  ####################################### creating a dataframe #################################################
 
   # if dataframe is provided
   if (!is.null(data)) {
