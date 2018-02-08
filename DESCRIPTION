@@ -22,7 +22,7 @@ Imports:
   jmv (>= 0.8.0),
   MASS (>= 7.3-47),
   plyr (>= 1.8.4),
-  rlang (0.1.6),
+  rlang (>= 0.1.6),
   sfsmisc (>= 1.1-1),
   sjstats (>= 0.14.0),
   stats (>= 3.4.1),
