@@ -50,6 +50,17 @@ this will show y variable values for outliers}
 \description{
 Violin plots for between-subjects designs with statistical details included in the plot as a subtitle
 }
+\examples{
+# the most basic and minimalistic way of entering arguments
+library(datasets)
+ggbetweenstats(data = iris, x = Species, y = Sepal.Length)
+# or
+ggbetweenstats(x = data$Species, y = data$Sepal.Length)
+
+# more detailed function call
+ggbetweenstats(data = mtcars, x = cyl, y = mpg, outlier.tagging = TRUE, outlier.label = disp, mean.plotting = TRUE)
+
+}
 \author{
 Indrajeet Patil
 }
