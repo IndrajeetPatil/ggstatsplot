@@ -80,19 +80,20 @@ ggscatterstats <-
       # preparing the label
       stat_label <-
         base::substitute(
-          paste(
-            "Pearson's ",
-            italic("r"),
-            "(",
-            df,
-            ")",
-            " = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue
-          ),
+          expr =
+            paste(
+              "Pearson's ",
+              italic("r"),
+              "(",
+              df,
+              ")",
+              " = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue
+            ),
           list(
             df = c$parameter,
             # degrees of freedom are always integer
@@ -115,19 +116,20 @@ ggscatterstats <-
       # preparing the label
       stat_label <-
         base::substitute(
-          paste(
-            "Spearman's ",
-            italic(rho),
-            "(",
-            df,
-            ")",
-            " = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue
-          ),
+          expr =
+            paste(
+              "Spearman's ",
+              italic(rho),
+              "(",
+              df,
+              ")",
+              " = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue
+            ),
           list(
             df = (length(data$x) - 2),
             # degrees of freedom are always integer
@@ -149,21 +151,22 @@ ggscatterstats <-
       # preparing the label
       stat_label <-
         base::substitute(
-          paste(
-            "robust regression: estimate = ",
-            estimate,
-            ", ",
-            italic("t"),
-            "(",
-            df,
-            ")",
-            " = ",
-            t,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue
-          ),
+          expr =
+            paste(
+              "robust regression: estimate = ",
+              estimate,
+              ", ",
+              italic("t"),
+              "(",
+              df,
+              ")",
+              " = ",
+              t,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue
+            ),
           list(
             estimate = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[2]], k),
             t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
@@ -178,7 +181,12 @@ ggscatterstats <-
         )
       # preparing the message
       base::message(
-        paste("For robust regression: no. of iterations = ", maxit, "; estimate is standardized", sep = "")
+        paste(
+          "For robust regression: no. of iterations = ",
+          maxit,
+          "; estimate is standardized",
+          sep = ""
+        )
       )
     }
 
@@ -186,7 +194,9 @@ ggscatterstats <-
 
     # preparing the scatterplotplot
     plot <-
-      ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
+      ggplot2::ggplot(data = data,
+                      mapping = aes(x = x,
+                                    y = y)) +
       geom_count(
         show.legend = FALSE,
         color = "black",

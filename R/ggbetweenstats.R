@@ -63,7 +63,6 @@ ggbetweenstats <- function(data = NULL,
                            outlier.label = NULL,
                            outlier.colour = "black",
                            mean.plotting = FALSE) {
-
   ####################################### creating a dataframe #######################################################
 
   # if dataframe is provided
@@ -192,24 +191,25 @@ ggbetweenstats <- function(data = NULL,
         results_subtitle <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
-            paste(
-              "ANOVA: ",
-              italic("F"),
-              "(",
-              df1,
-              ",",
-              df2,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic(omega) ^ 2,
-              " = ",
-              effsize
-            ),
+            expr =
+              paste(
+                "ANOVA: ",
+                italic("F"),
+                "(",
+                df1,
+                ",",
+                df2,
+                ") = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue,
+                ", ",
+                italic(omega) ^ 2,
+                " = ",
+                effsize
+              ),
             list(
               estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
               df1 = aov_stat$`Df`[2],
@@ -230,24 +230,25 @@ ggbetweenstats <- function(data = NULL,
         results_subtitle <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
-            paste(
-              "ANOVA: ",
-              italic("F"),
-              "(",
-              df1,
-              ",",
-              df2,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", p",
-              italic(eta) ^ 2,
-              " = ",
-              effsize
-            ),
+            expr =
+              paste(
+                "ANOVA: ",
+                italic("F"),
+                "(",
+                df1,
+                ",",
+                df2,
+                ") = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue,
+                ", p",
+                italic(eta) ^ 2,
+                " = ",
+                effsize
+              ),
             list(
               estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
               df1 = aov_stat$`Df`[2],
@@ -282,24 +283,25 @@ ggbetweenstats <- function(data = NULL,
       results_subtitle <- function(robust_aov_stat) {
         # extracting the elements of the statistical object
         base::substitute(
-          paste(
-            "robust ANOVA: ",
-            italic("F"),
-            "(",
-            df1,
-            ",",
-            df2,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic(xi),
-            " = ",
-            effsize
-          ),
+          expr =
+            paste(
+              "robust ANOVA: ",
+              italic("F"),
+              "(",
+              df1,
+              ",",
+              df2,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue,
+              ", ",
+              italic(xi),
+              " = ",
+              effsize
+            ),
           list(
             estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$test, k),
             df1 = robust_aov_stat$df1,
@@ -352,22 +354,23 @@ ggbetweenstats <- function(data = NULL,
         results_subtitle <- function(t_stat, t_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
-            paste(
-              "t-test: ",
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("g"),
-              " = ",
-              effsize
-            ),
+            expr =
+              paste(
+                "t-test: ",
+                italic("t"),
+                "(",
+                df,
+                ") = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue,
+                ", ",
+                italic("g"),
+                " = ",
+                effsize
+              ),
             list(
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
@@ -390,22 +393,23 @@ ggbetweenstats <- function(data = NULL,
         results_subtitle <- function(t_stat, t_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
-            paste(
-              "t-test: ",
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("d"),
-              " = ",
-              effsize
-            ),
+            expr =
+              paste(
+                "t-test: ",
+                italic("t"),
+                "(",
+                df,
+                ") = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue,
+                ", ",
+                italic("d"),
+                " = ",
+                effsize
+              ),
             list(
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
@@ -448,22 +452,23 @@ ggbetweenstats <- function(data = NULL,
         function(t_robust_stat, t_robust_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
-            paste(
-              "robust t-test: ",
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic(xi),
-              " = ",
-              effsize
-            ),
+            expr =
+              paste(
+                "robust t-test: ",
+                italic("t"),
+                "(",
+                df,
+                ") = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue,
+                ", ",
+                italic(xi),
+                " = ",
+                effsize
+              ),
             list(
               estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test, k),
               df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df, k),

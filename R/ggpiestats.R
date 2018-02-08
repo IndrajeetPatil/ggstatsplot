@@ -39,7 +39,6 @@ ggpiestats <-
            caption = NULL,
            legend_title = NULL,
            k = 3) {
-
     ################################################## dataframe ####################################################
     # if dataframe is provided
     if (!is.null(data)) {
@@ -191,23 +190,24 @@ ggpiestats <-
         effect <- "Chi-square test"
 
       base::substitute(
-        paste(
-          y,
-          " : ",
-          italic(chi) ^ 2,
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", Cramer's ",
-          italic(V),
-          " = ",
-          phicoeff
-        ),
+        expr =
+          paste(
+            y,
+            " : ",
+            italic(chi) ^ 2,
+            "(",
+            df,
+            ") = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue,
+            ", Cramer's ",
+            italic(V),
+            " = ",
+            phicoeff
+          ),
         list(
           y = effect,
           estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(x$chiSq)[[2]], k),
@@ -227,18 +227,19 @@ ggpiestats <-
 
     proptest_subtitle <- function(x) {
       base::substitute(
-        paste(
-          "Proportion test : ",
-          italic(chi) ^ 2,
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue
-        ),
+        expr =
+          paste(
+            "Proportion test : ",
+            italic(chi) ^ 2,
+            "(",
+            df,
+            ") = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue
+          ),
         list(
           estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(x$tests)[[1]], k),
           df = as.data.frame(x$tests)[[2]],
@@ -282,7 +283,8 @@ ggpiestats <-
     # preparing the plot
     p <-
       p +
-      labs(title = title, caption = caption) +
+      labs(title = title,
+           caption = caption) +
       guides(fill = guide_legend(title = legend_title))
 
     return(p)
