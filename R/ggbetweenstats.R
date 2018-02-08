@@ -79,7 +79,7 @@ ggbetweenstats <- function(data = NULL,
   ####################################### argument checks #################################################
   # if any of the arguments have been misspecified
   # effsizetype
-  allowed.effsizetype <- c("biased", "unbiased", "NULL")
+  allowed.effsizetype <- c("biased", "unbiased", NULL)
   if (!(effsizetype %in% allowed.effsizetype)) {
     stop("The effet size type you entered (", effsizetype, ") is not supported.",
          " Here are the supported options: ",
