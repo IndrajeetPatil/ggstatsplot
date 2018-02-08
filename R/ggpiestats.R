@@ -19,6 +19,12 @@
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
 #'
+#' @import ggplot2
+#' @import dplyr
+#' @import rlang
+#'
+#' @importFrom jmv propTestN
+#' @importFrom jmv contTables
 #' @export
 #'
 
@@ -32,8 +38,7 @@ ggpiestats <-
            caption = NULL,
            legend_title = NULL,
            k = 3) {
-    library(dplyr)
-    library(ggplot2)
+
     ################################################## dataframe ####################################################
     # if dataframe is provided
     if (!is.null(data)) {
@@ -261,7 +266,9 @@ ggpiestats <-
     } else {
       # adding subtitle to the plot
       p <-
-        p + labs(subtitle = proptest_subtitle(x = jmv::propTestN(data = data, var = 'main')))
+        p +
+        labs(subtitle = proptest_subtitle(x = jmv::propTestN(data = data,
+                                                             var = 'main')))
 
     }
 
@@ -273,7 +280,9 @@ ggpiestats <-
     }
     # preparing the plot
     p <-
-      p + labs(title = title, caption = caption) + guides(fill = guide_legend(title = legend_title))
+      p +
+      labs(title = title, caption = caption) +
+      guides(fill = guide_legend(title = legend_title))
 
     return(p)
 

@@ -8,13 +8,13 @@
 
 \item{x}{a vector containing the explanatory variable}
 
-\item{y}{the response - a vector of length the number of rows of `x`}
+\item{y}{the response - a vector of length the number of rows of \code{x}}
 
 \item{xlab}{label for x axis variable}
 
 \item{ylab}{label for y axis variable}
 
-\item{marginal}{decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`}
+\item{marginal}{decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}}
 
 \item{marginaltype}{type of marginal distribution to be plotted on the axes (NULL, "histogram", "boxplot", "density")}
 
@@ -24,7 +24,7 @@
 
 \item{test}{statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")}
 
-\item{intercept}{decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted}
+\item{intercept}{decides whether "mean" or "median" or no intercept lines (\code{NULL}) are to be plotted}
 
 \item{title}{title for the plot}
 

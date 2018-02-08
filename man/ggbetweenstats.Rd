@@ -15,7 +15,7 @@ ggbetweenstats(data = NULL, x, y, test = NULL, type = NULL,
 
 \item{x}{the grouping variable}
 
-\item{y}{the response - a vector of length the number of rows of `x`}
+\item{y}{the response - a vector of length the number of rows of \code{x}}
 
 \item{test}{statistical test to be run and displayed as subtitle ("t-test" or "anova")}
 
