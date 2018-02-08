@@ -16,3 +16,10 @@ specify_decimal_p(x, k = NULL, p.value = FALSE)
 \value{
 formatted p-values from statistical tests
 }
+\description{
+Function to format an R object for pretty printing with a specified number of decimal places. The
+function also allows highly significant p-values to be denoted as "p < 0.001" rather than "p = 0.000"
+}
+\author{
+Indrajeet Patil
+}

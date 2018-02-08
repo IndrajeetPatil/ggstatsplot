@@ -27,6 +27,9 @@ ggpiestats(data = NULL, main, condition = NULL, labels = NULL,
 
 \item{k}{number of decimal places expected for results}
 }
+\description{
+Pie charts for categorical data with statistical details included in the plot as a subtitle
+}
 \author{
 Indrajeet Patil
 }

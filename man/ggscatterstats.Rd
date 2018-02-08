@@ -40,6 +40,10 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
 
 \item{k}{number of decimal places expected for results}
 }
+\description{
+Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
+statistical details added as a subtitle
+}
 \author{
 Indrajeet Patil
 }

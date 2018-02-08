@@ -2,6 +2,8 @@
 #' @title scatterplot with ggMarginals
 #' @name ggscatterstats
 #' @author Indrajeet Patil
+#' @description Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
+#' statistical details added as a subtitle
 #'
 #' @param data data frame from which variables specified are preferentially to be taken
 #' @param x a vector containing the explanatory variable

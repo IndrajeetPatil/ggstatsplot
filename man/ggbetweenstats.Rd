@@ -47,6 +47,9 @@ ggbetweenstats(data = NULL, x, y, test = NULL, type = NULL,
 \item{mean.plotting}{whether mean is to be highlighted and its value to be displayed
 this will show y variable values for outliers}
 }
+\description{
+Violin plots for between-subjects designs with statistical details included in the plot as a subtitle
+}
 \author{
 Indrajeet Patil
 }

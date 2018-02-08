@@ -1,6 +1,7 @@
 #'
 #' @title violin plots for group or condition comparisons
 #' @name ggbetweenstats
+#' @description Violin plots for between-subjects designs with statistical details included in the plot as a subtitle
 #' @author Indrajeet Patil
 #'
 #' @param data data frame from which variables specified are preferentially to be taken

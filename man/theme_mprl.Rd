@@ -2,9 +2,13 @@
 % Please edit documentation in R/theme_mprl.R
 \name{theme_mprl}
 \alias{theme_mprl}
-\title{default theme to use for \code{ggstatplot} package figures}
+\title{default theme to use for \code{ggstatsplot} package figures}
 \usage{
 theme_mprl()
+}
+\description{
+Common theme used across all plots generated in \code{ggstatsplot} and assumed by the author to be
+aesthetically pleasing to the user/reader
 }
 \author{
 Indrajeet Patil

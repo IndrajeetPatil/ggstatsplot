@@ -1,13 +1,7 @@
-### ggpie with percentages
-
-# df$main should contain observations of interest
-# df$condition can optionally be used to facet wrap
-# labels should be a character vector of same length as group_by(df, main) or group_by(df, condition, main) if facet wrapping
-# in case you don't want statistical results to be printed out along with the pie chart, set test = FALSE
-
 #'
 #' @title pie charts with statistical tests
 #' @name ggpiestats
+#' @description Pie charts for categorical data with statistical details included in the plot as a subtitle
 #' @author Indrajeet Patil
 #'
 #' @param data the data as a data frame
