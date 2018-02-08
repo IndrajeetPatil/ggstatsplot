@@ -17,6 +17,7 @@
 #' @param k number of decimal places expected for results
 #' @param var.equal a logical variable indicating whether to treat the two variances as being equal
 #' @param nboot number of bootstrap samples
+#' @param outlier.colour default aesthetics for outliers
 #' @param outlier.tagging whether outliers should be tagged
 #' @param outlier.label label to put on the outliers that have been tagged; if data argument is missing
 #' @param mean.plotting whether mean is to be highlighted and its value to be displayed
@@ -32,6 +33,7 @@
 #' @importFrom effsize cohen.d
 #' @importFrom sjstats omega_sq
 #' @importFrom sjstats eta_sq
+#' @importFrom stats na.omit
 #' @importFrom stats t.test
 #' @importFrom stats var.test
 #' @importFrom stats bartlett.test
