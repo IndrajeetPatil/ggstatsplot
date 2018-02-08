@@ -6,3 +6,6 @@
 \usage{
 theme_mprl()
 }
+\author{
+Indrajeet Patil
+}

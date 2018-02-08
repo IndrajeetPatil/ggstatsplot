@@ -19,9 +19,16 @@
 #' @param k number of decimal places expected for results
 #' @param maxit maximum number of iterations for robust linear regression
 #'
+#' @import ggplot2
+#' @import dplyr
+#' @import rlang
+#'
+#' @importFrom MASS rlm
+#' @importFrom sfsmisc f.robftest
+#' @importFrom ggExtra ggMarginal
+#' @importFrom stats cor.test
+#'
 #' @export
-
-library(ggplot2)
 
 ggscatterstats <-
   function(data = NULL,

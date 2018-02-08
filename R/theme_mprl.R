@@ -1,11 +1,13 @@
 #' @title default theme to use for `ggstatplot` package figures
 #' @name theme_mprl
-#' @return
+#' @author Indrajeet Patil
+#'
+#' @import ggplot2
+#' @import grid
 #'
 #' @export
 
 theme_mprl <- function() {
-  library(ggplot2)
   theme_grey() +
     theme(
       axis.title.x = element_text(size = 14, face = "bold"),

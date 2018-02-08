@@ -3,6 +3,12 @@
 \name{ggscatterstats}
 \alias{ggscatterstats}
 \title{scatterplot with ggMarginals}
+\usage{
+ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
+  marginal = NULL, marginaltype = NULL, xfill = NULL, yfill = NULL,
+  intercept = NULL, test = NULL, title = NULL, caption = NULL,
+  maxit = 1000, k = 3)
+}
 \arguments{
 \item{data}{data frame from which variables specified are preferentially to be taken}
 
@@ -22,17 +28,17 @@
 
 \item{yfill}{color fill for y axis distribution}
 
-\item{test}{statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")}
-
 \item{intercept}{decides whether "mean" or "median" or no intercept lines (\code{NULL}) are to be plotted}
+
+\item{test}{statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")}
 
 \item{title}{title for the plot}
 
 \item{caption}{caption for the plot}
 
-\item{k}{number of decimal places expected for results}
-
 \item{maxit}{maximum number of iterations for robust linear regression}
+
+\item{k}{number of decimal places expected for results}
 }
 \author{
 Indrajeet Patil
