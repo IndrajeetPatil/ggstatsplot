@@ -55,6 +55,8 @@
 #'
 #' # more detailed function call
 #' ggbetweenstats(data = mtcars, x = cyl, y = mpg, outlier.tagging = TRUE, outlier.label = disp, mean.plotting = TRUE)
+#'# or
+#' ggbetweenstats(x = mtcars$cyl, y = mtcars$mpg, outlier.tagging = TRUE, outlier.label = mtcars$disp, mean.plotting = TRUE)
 #'
 #' @export
 
