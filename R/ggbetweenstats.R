@@ -567,7 +567,8 @@ ggbetweenstats <- function(data = NULL,
         )
       )
 
-    data_df$outlier[which(is.na(data_df$outlier))] <- as.numeric(NA)
+    # converting outlier column to a numeric value that can be attached to
+    #data_df$outlier[which(is.na(data_df$outlier))] <- as.numeric(NA)
     data_df <- base::as.data.frame(data_df)
 
     # applying the labels to tagged outliers with ggrepel
