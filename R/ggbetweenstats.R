@@ -55,7 +55,7 @@
 #'
 #' # more detailed function call
 #' ggbetweenstats(data = mtcars, x = cyl, y = mpg, outlier.tagging = TRUE, outlier.label = disp, mean.plotting = TRUE)
-#'# or
+#' or
 #' ggbetweenstats(x = mtcars$cyl, y = mtcars$mpg, outlier.tagging = TRUE, outlier.label = mtcars$disp, mean.plotting = TRUE)
 #'
 #' @export
@@ -77,8 +77,7 @@ ggbetweenstats <- function(data = NULL,
                            outlier.label = NULL,
                            outlier.colour = "black",
                            mean.plotting = FALSE) {
-
-   ####################################### creating a dataframe #################################################
+  ####################################### creating a dataframe #################################################
 
   # if dataframe is provided
   if (!is.null(data)) {
@@ -100,6 +99,7 @@ ggbetweenstats <- function(data = NULL,
           y = !!rlang::enquo(y),
           outlier.label = !!rlang::quo_name(rlang::enquo(outlier.label))
         )
+
     }
   } else {
     if (!is.null(outlier.label)) {
@@ -125,7 +125,8 @@ ggbetweenstats <- function(data = NULL,
   }
 
   ################################################### plot ##############################################################
-  plot <- ggplot2::ggplot(data = data, mapping = aes(x, y)) +
+  plot <-
+    ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
     geom_point(
       position = position_jitterdodge(
         jitter.width = NULL,
@@ -523,8 +524,7 @@ ggbetweenstats <- function(data = NULL,
   # if outlier.tagging is set to TRUE, first figure out what labels need to be attached to the outlier
   if (isTRUE(outlier.tagging)) {
     ## getting the data in dataframe format
-    if (is.null(outlier.label)) {
-      # if data is missing, then make a dataframe out of x and y vectors
+    if (missing(outlier.label)) {
       # if outlier label is not provided, outlier labels will just be values of the y vector
       data_df <-
         base::cbind.data.frame(x = data$x,
@@ -532,29 +532,49 @@ ggbetweenstats <- function(data = NULL,
                                outlier.label = data$y)
     } else {
       # if the outlier tag has been provided, just use the dataframe already created
-      data_df <- data
+      data_df <-
+        base::cbind.data.frame(
+          x = data$x,
+          y = data$y,
+          outlier.label = data$outlier.label
+        )
     }
-    ## finding the outliers in the dataframe
-    # function to detect outliers
+    ## finding the outliers in the dataframe using Tukey's interquartile range rule
+
+    # defining function to detect outliers
     check_outlier <- function(v, coef = 1.5) {
-      quantiles <- stats::quantile(x = v, probs = c(0.25, 0.75))
+      # compute the interquartile range
+      quantiles <- stats::quantile(x = v,
+                                   probs = c(0.25, 0.75))
       IQR <- quantiles[2] - quantiles[1]
+      # check for outlier and output a logical
       res <-
         ((v < (quantiles[1] - coef * IQR)) |
            (v > (quantiles[2] + coef * IQR)))
+      # return the result
       return(res)
-
     }
+
     # finding and tagging the outliers
     data_df <- data_df %>%
-      dplyr::group_by(x) %>%
-      dplyr::mutate(outlier = ifelse(check_outlier(y), outlier.label, NA))
+      dplyr::group_by(.data = ., x) %>%
+      dplyr::mutate(
+        .data = .,
+        outlier = base::ifelse(
+          test = check_outlier(y),
+          yes = outlier.label,
+          no = NA
+        )
+      )
+
     data_df$outlier[which(is.na(data_df$outlier))] <- as.numeric(NA)
     data_df <- base::as.data.frame(data_df)
+
     # applying the labels to tagged outliers with ggrepel
     plot <-
-      plot + ggrepel::geom_label_repel(
-        aes(label = data_df$outlier),
+      plot +
+      ggrepel::geom_label_repel(
+        mapping = aes(label = data_df$outlier),
         fontface = 'bold',
         color = 'black',
         max.iter = 3e2,
