@@ -26,6 +26,7 @@
 #' this will show y variable values for outliers
 #'
 #' @import ggplot2
+#' @import ggrepel
 #' @import dplyr
 #' @import rlang
 #'
@@ -568,22 +569,44 @@ ggbetweenstats <- function(data = NULL,
       )
 
     # converting outlier column to a numeric value that can be attached to
-    #data_df$outlier[which(is.na(data_df$outlier))] <- as.numeric(NA)
-    data_df <- base::as.data.frame(data_df)
+    data_df$outlier[which(is.na(data_df$outlier))] <- NA
+    # if outlier.label is in character format, convert it to factor
+    if (is.character(data_df$outlier.label)) {
+      data_df$outlier.label <- as.factor(data_df$outlier.label)
+    }
+    # if outlier labels are words or other types of characters, you want these characters to be diaplyed and not the values
+    if (is.factor(data_df$outlier.label)) {
+      data_df$outlier.label <- as.character(data_df$outlier.label)
+      # applying the labels to tagged outliers with ggrepel
+      plot <-
+        plot +
+        ggrepel::geom_label_repel(
+          mapping = aes(label = data_df$outlier.label),
+          fontface = 'bold',
+          color = 'black',
+          max.iter = 3e2,
+          box.padding = 0.35,
+          point.padding = 0.5,
+          segment.color = 'grey50',
+          force = 2
+        )
+    } else {
+      # if the value for outliers are to be displated, no need to convert outlier labels to character vector
+      # applying the labels to tagged outliers with ggrepel
+      plot <-
+        plot +
+        ggrepel::geom_label_repel(
+          mapping = aes(label = data_df$outlier),
+          fontface = 'bold',
+          color = 'black',
+          max.iter = 3e2,
+          box.padding = 0.35,
+          point.padding = 0.5,
+          segment.color = 'grey50',
+          force = 2
+        )
+    }
 
-    # applying the labels to tagged outliers with ggrepel
-    plot <-
-      plot +
-      ggrepel::geom_label_repel(
-        mapping = aes(label = data_df$outlier),
-        fontface = 'bold',
-        color = 'black',
-        max.iter = 3e2,
-        box.padding = 0.35,
-        point.padding = 0.5,
-        segment.color = 'grey50',
-        force = 2
-      )
   }
 
   ####################################################### mean plotting ################################################
