@@ -56,7 +56,7 @@
 #'
 #' # more detailed function call
 #' ggbetweenstats(data = mtcars, x = cyl, y = mpg, outlier.tagging = TRUE, outlier.label = disp, mean.plotting = TRUE)
-#' or
+#' # or
 #' ggbetweenstats(x = mtcars$cyl, y = mtcars$mpg, outlier.tagging = TRUE, outlier.label = mtcars$disp, mean.plotting = TRUE)
 #'
 #' @export
@@ -544,9 +544,10 @@ ggbetweenstats <- function(data = NULL,
 
     # defining function to detect outliers
     check_outlier <- function(v, coef = 1.5) {
-      # compute the interquartile range
+      # compute the quantiles
       quantiles <- stats::quantile(x = v,
                                    probs = c(0.25, 0.75))
+      # compute the interquartile range
       IQR <- quantiles[2] - quantiles[1]
       # check for outlier and output a logical
       res <-
@@ -611,30 +612,43 @@ ggbetweenstats <- function(data = NULL,
 
   ####################################################### mean plotting ################################################
   if (isTRUE(mean.plotting)) {
-    # custom function to get the mean
-    fun_mean <- function(x) {
-      return(data.frame(
-        y = as.numeric(as.character(
-          ggstatsplot::specify_decimal_p(x = mean(x))
-        )),
-        label = as.numeric(as.character(
-          ggstatsplot::specify_decimal_p(x = mean(x, na.rm = TRUE))
-        ))
-      ))
-    }
-    # add the mean label to the plot
+    # highlight the mean of each group
     plot <- plot +
       stat_summary(
         fun.y = mean,
         geom = "point",
         colour = "darkred",
         size = 5
-      ) +
-      stat_summary(
-        fun.data = fun_mean,
-        geom = "text",
-        vjust = -1.0,
-        size = 5
+      )
+
+    # use ggrepel to attach text label to each mean
+    # create a dataframe with means
+    mean_dat <- data %>%
+      dplyr::group_by(.data = ., x) %>% # group by the independent variable
+      dplyr::mutate_all(.tbl = ., .funs = mean) %>% # compute mean for dependent variable for each level of grouping variable
+      dplyr::distinct(.data = .) %>% # removed duplicated rows
+      dplyr::mutate_if(
+        .tbl = .,
+        .predicate = is.numeric,
+        .funs = ~ as.numeric(as.character(
+          ggstatsplot::specify_decimal_p(x = ., k = k)
+        )) # format the values for printing
+      ) %>%
+      dplyr::select(.data = ., -contains('outlier')) # in case outlier.label is present, remove it since it's of no utility here
+
+    # attach the labels to the plot
+    plot <- plot +
+      ggrepel::geom_label_repel(
+        data = mean_dat,
+        mapping = aes(label = y),
+        fontface = 'bold',
+        color = 'black',
+        #inherit.aes = FALSE, #would result in "error: geom_label_repel requires the following missing aesthetics: x, y"
+        max.iter = 3e2,
+        box.padding = 0.35,
+        point.padding = 0.5,
+        segment.color = 'grey50',
+        force = 2
       )
   }
 
