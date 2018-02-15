@@ -79,7 +79,6 @@ ggbetweenstats <- function(data = NULL,
                            outlier.colour = "black",
                            mean.plotting = FALSE) {
   ####################################### creating a dataframe #################################################
-
   # if dataframe is provided
   if (!is.null(data)) {
     # if outlier label is provided then include it in the dataframe
@@ -625,7 +624,9 @@ ggbetweenstats <- function(data = NULL,
     # create a dataframe with means
     mean_dat <- data %>%
       dplyr::group_by(.data = ., x) %>% # group by the independent variable
-      dplyr::mutate_all(.tbl = ., .funs = mean) %>% # compute mean for dependent variable for each level of grouping variable
+      dplyr::mutate_all(.tbl = .,
+                        .funs = mean,
+                        na.rm = TRUE) %>% # dependent variable mean for each level of grouping variable
       dplyr::distinct(.data = .) %>% # removed duplicated rows
       dplyr::mutate_if(
         .tbl = .,
