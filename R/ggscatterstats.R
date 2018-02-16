@@ -13,14 +13,17 @@
 #' @param ylab label for y axis variable
 #' @param marginal decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`
 #' @param marginaltype type of marginal distribution to be plotted on the axes (NULL, "histogram", "boxplot", "density")
-#' @param xfill color fill for x axis distibution
-#' @param yfill color fill for y axis distribution
+#' @param xfill colour fill for x axis distibution
+#' @param yfill colour fill for y axis distribution
 #' @param test statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")
 #' @param intercept decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted
 #' @param title title for the plot
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
 #' @param maxit maximum number of iterations for robust linear regression
+#' @param jitter.width degree of jitter in x direction. Defaults to 0.40 of the resolution of the data
+#' @param jitter.height degree of jitter in y direction. Defaults to 0
+#' @param dodge.width the amount to dodge in the x direction. Defaults to 0.75, the default `position_dodge()` width
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -48,7 +51,10 @@ ggscatterstats <-
            title = NULL,
            caption = NULL,
            maxit = 1000,
-           k = 3) {
+           k = 3,
+           jitter.width = NULL,
+           jitter.height = 0.2,
+           dodge.width = 0.75) {
     ################################################### dataframe ####################################################
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
@@ -74,11 +80,12 @@ ggscatterstats <-
       # running the correlation test and preparing the subtitle text
       c <-
         stats::cor.test(
-          x = data$x,
-          y = data$y,
+          formula = ~ x + y,
+          data = data,
           method = "pearson",
           alternative = "two.sided",
-          exact = FALSE
+          exact = FALSE,
+          na.action = na.omit
         )
       # preparing the label
       stat_label <-
@@ -110,11 +117,12 @@ ggscatterstats <-
       # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
       c <-
         stats::cor.test(
-          x = data$x,
-          y = data$y,
+          formula = ~ x + y,
+          data = data,
           method = "spearman",
           alternative = "two.sided",
-          exact = FALSE
+          exact = FALSE,
+          na.action = na.omit
         )
       # preparing the label
       stat_label <-
@@ -202,13 +210,13 @@ ggscatterstats <-
                                     y = y)) +
       geom_count(
         show.legend = FALSE,
-        color = "black",
+        colour = "black",
         size = 3,
         alpha = 0.5,
         position = position_jitterdodge(
-          jitter.width = NULL,
-          jitter.height = 0.2,
-          dodge.width = 0.75
+          jitter.width = jitter.width,
+          jitter.height = jitter.height,
+          dodge.width = dodge.width
         )
       ) +
       geom_smooth(method = "lm",
@@ -221,11 +229,13 @@ ggscatterstats <-
         title = title,
         subtitle = stat_label,
         caption = caption
-      )
+      ) +
+      coord_cartesian(xlim = c(min(data$x), max(data$x))) +
+      coord_cartesian(ylim = c(min(data$y), max(data$y)))
 
     ################################################ intercept ##################################################
 
-    # if fill colors for x and y axes are not specified, use the defaults
+    # if fill colours for x and y axes are not specified, use the defaults
     if (is.null(xfill))
       xfill <- "orange"
     if (is.null(yfill))
@@ -241,13 +251,13 @@ ggscatterstats <-
         geom_vline(
           xintercept = mean(data$x),
           linetype = "dashed",
-          color = xfill,
+          colour = xfill,
           size = 1.2
         ) +
         geom_hline(
           yintercept = mean(data$y),
           linetype = "dashed",
-          color = yfill,
+          colour = yfill,
           size = 1.2
         )
 
@@ -256,13 +266,13 @@ ggscatterstats <-
         geom_vline(
           xintercept = mean(data$x),
           linetype = "dashed",
-          color = xfill,
+          colour = xfill,
           size = 1.2
         ) +
         geom_hline(
           yintercept = mean(data$y),
           linetype = "dashed",
-          color = yfill,
+          colour = yfill,
           size = 1.2
         )
 
