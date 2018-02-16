@@ -23,7 +23,7 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
 
 \item{marginal}{decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}}
 
-\item{marginaltype}{type of marginal distribution to be plotted on the axes (NULL, "histogram", "boxplot", "density")}
+\item{marginaltype}{type of marginal distribution to be plotted on the axes ("histogram", "boxplot", "density", "violin")}
 
 \item{xfill}{colour fill for x axis distibution (default: "orange")}
 
