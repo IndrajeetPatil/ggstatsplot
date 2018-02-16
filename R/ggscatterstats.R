@@ -16,6 +16,7 @@
 #' @param xfill colour fill for x axis distibution
 #' @param yfill colour fill for y axis distribution
 #' @param test statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")
+#' @param results.subtitle whether the results of statistical tests are to be displayed as subtitle
 #' @param intercept decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted
 #' @param title title for the plot
 #' @param caption caption for the plot
@@ -48,6 +49,7 @@ ggscatterstats <-
            yfill = NULL,
            intercept = NULL,
            test = NULL,
+           results.subtitle = NULL,
            title = NULL,
            caption = NULL,
            maxit = 1000,
@@ -71,136 +73,146 @@ ggscatterstats <-
         base::cbind.data.frame(x = x,
                                y = y)
     }
-    ################################################### Pearson's r ##################################################
 
-    if (is.null(test))
-      test <- "pearson"
+    ######################################## statistical labels ######################################################
+    # if results.subtitle argument is not specified, default to showing the results
+    if (is.null(results.subtitle))
+      results.subtitle <- TRUE
+    # if results.subtitle argument is set to FALSE then subtitle should be set to NULL
+    if (results.subtitle != TRUE)
+      stats_subtitle <- NULL
 
-    if (test == "pearson") {
-      # running the correlation test and preparing the subtitle text
-      c <-
-        stats::cor.test(
-          formula = ~ x + y,
-          data = data,
-          method = "pearson",
-          alternative = "two.sided",
-          exact = FALSE,
-          na.action = na.omit
-        )
-      # preparing the label
-      stat_label <-
-        base::substitute(
-          expr =
-            paste(
-              "Pearson's ",
-              italic("r"),
-              "(",
-              df,
-              ")",
-              " = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue
-            ),
-          env = base::list(
-            df = c$parameter,
-            # degrees of freedom are always integer
-            estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
-            pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
+    if (results.subtitle == TRUE) {
+      ################################################### Pearson's r ##################################################
+
+      if (is.null(test))
+        test <- "pearson"
+
+      if (test == "pearson") {
+        # running the correlation test and preparing the subtitle text
+        c <-
+          stats::cor.test(
+            formula = ~ x + y,
+            data = data,
+            method = "pearson",
+            alternative = "two.sided",
+            exact = FALSE,
+            na.action = na.omit
+          )
+        # preparing the label
+        stats_subtitle <-
+          base::substitute(
+            expr =
+              paste(
+                "Pearson's ",
+                italic("r"),
+                "(",
+                df,
+                ")",
+                " = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue
+              ),
+            env = base::list(
+              df = c$parameter,
+              # degrees of freedom are always integer
+              estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
+              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
+            )
+          )
+        ################################################### Spearnman's rho ##################################################
+      }   else if (test == "spearman") {
+        # running the correlation test and preparing the subtitle text
+        # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
+        c <-
+          stats::cor.test(
+            formula = ~ x + y,
+            data = data,
+            method = "spearman",
+            alternative = "two.sided",
+            exact = FALSE,
+            na.action = na.omit
+          )
+        # preparing the label
+        stats_subtitle <-
+          base::substitute(
+            expr =
+              paste(
+                "Spearman's ",
+                italic(rho),
+                "(",
+                df,
+                ")",
+                " = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue
+              ),
+            env = base::list(
+              df = (length(data$x) - 2),
+              # degrees of freedom are always integer
+              estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
+              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
+            )
+          )
+        ################################################### robust ##################################################
+      } else if (test == "robust") {
+        # running robust regression test and preparing the subtitle text
+        MASS_res <-
+          MASS::rlm(
+            scale(y) ~ scale(x),
+            maxit = maxit,
+            # number of iterations
+            na.action = na.omit,
+            data = data
+          )
+        # preparing the label
+        stats_subtitle <-
+          base::substitute(
+            expr =
+              paste(
+                "robust regression: estimate = ",
+                estimate,
+                ", ",
+                italic("t"),
+                "(",
+                df,
+                ")",
+                " = ",
+                t,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue
+              ),
+            env = base::list(
+              estimate = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[2]], k),
+              t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
+              df = summary(MASS_res)$df[2],
+              # degrees of freedom are always integer
+              pvalue = ggstatsplot::specify_decimal_p(x = (
+                sfsmisc::f.robftest(object = MASS_res)
+              )$p.value),
+              k,
+              p.value = TRUE
+            )
+          )
+        # preparing the message
+        base::message(
+          paste(
+            "For robust regression: no. of iterations = ",
+            maxit,
+            "; estimate is standardized",
+            sep = ""
           )
         )
-      ################################################### Spearnman's rho ##################################################
-    }   else if (test == "spearman") {
-      # running the correlation test and preparing the subtitle text
-      # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
-      c <-
-        stats::cor.test(
-          formula = ~ x + y,
-          data = data,
-          method = "spearman",
-          alternative = "two.sided",
-          exact = FALSE,
-          na.action = na.omit
-        )
-      # preparing the label
-      stat_label <-
-        base::substitute(
-          expr =
-            paste(
-              "Spearman's ",
-              italic(rho),
-              "(",
-              df,
-              ")",
-              " = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue
-            ),
-          env = base::list(
-            df = (length(data$x) - 2),
-            # degrees of freedom are always integer
-            estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
-            pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
-          )
-        )
-      ################################################### robust ##################################################
-    } else if (test == "robust") {
-      # running robust regression test and preparing the subtitle text
-      MASS_res <-
-        MASS::rlm(
-          scale(y) ~ scale(x),
-          maxit = maxit,
-          # number of iterations
-          na.action = na.omit,
-          data = data
-        )
-      # preparing the label
-      stat_label <-
-        base::substitute(
-          expr =
-            paste(
-              "robust regression: estimate = ",
-              estimate,
-              ", ",
-              italic("t"),
-              "(",
-              df,
-              ")",
-              " = ",
-              t,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[2]], k),
-            t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
-            df = summary(MASS_res)$df[2],
-            # degrees of freedom are always integer
-            pvalue = ggstatsplot::specify_decimal_p(x = (
-              sfsmisc::f.robftest(object = MASS_res)
-            )$p.value),
-            k,
-            p.value = TRUE
-          )
-        )
-      # preparing the message
-      base::message(
-        paste(
-          "For robust regression: no. of iterations = ",
-          maxit,
-          "; estimate is standardized",
-          sep = ""
-        )
-      )
+      }
     }
-
     ################################################### plot ################################################################
 
     # preparing the scatterplotplot
@@ -227,7 +239,7 @@ ggscatterstats <-
         x = xlab,
         y = ylab,
         title = title,
-        subtitle = stat_label,
+        subtitle = stats_subtitle,
         caption = caption
       ) +
       coord_cartesian(xlim = c(min(data$x), max(data$x))) +

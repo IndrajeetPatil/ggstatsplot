@@ -6,9 +6,9 @@
 \usage{
 ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
   marginal = NULL, marginaltype = NULL, xfill = NULL, yfill = NULL,
-  intercept = NULL, test = NULL, title = NULL, caption = NULL,
-  maxit = 1000, k = 3, jitter.width = NULL, jitter.height = 0.2,
-  dodge.width = 0.75)
+  intercept = NULL, test = NULL, results.subtitle = NULL, title = NULL,
+  caption = NULL, maxit = 1000, k = 3, jitter.width = NULL,
+  jitter.height = 0.2, dodge.width = 0.75)
 }
 \arguments{
 \item{data}{data frame from which variables specified are preferentially to be taken}
@@ -32,6 +32,8 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
 \item{intercept}{decides whether "mean" or "median" or no intercept lines (\code{NULL}) are to be plotted}
 
 \item{test}{statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")}
+
+\item{results.subtitle}{whether the results of statistical tests are to be displayed as subtitle}
 
 \item{title}{title for the plot}
 
