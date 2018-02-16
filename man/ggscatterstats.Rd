@@ -57,6 +57,12 @@ statistical details added as a subtitle
 # the most basic and minimalistic way of entering arguments
 library(datasets)
 ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length)
+# or
+ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length)
+
+# more detailed call
+ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
+intercept = 'median', test = 'robust', marginaltype = 'density')
 
 }
 \author{

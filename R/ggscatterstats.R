@@ -39,6 +39,12 @@
 #' # the most basic and minimalistic way of entering arguments
 #' library(datasets)
 #' ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length)
+#' # or
+#' ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length)
+#'
+#' # more detailed call
+#' ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
+#' intercept = 'median', test = 'robust', marginaltype = 'density')
 #'
 #' @export
 
@@ -300,17 +306,29 @@ ggscatterstats <-
       if (is.null(marginaltype))
         marginaltype <- "histogram"
 
-      # creating the ggMarginal plot of a given marginaltype
-      plot <-
-        ggExtra::ggMarginal(
-          p = plot,
-          type = marginaltype,
-          size = 5,
-          xparams = base::list(fill = xfill,
-                               col = "black"),
-          yparams = base::list(fill = yfill,
-                               col = "black")
-        )
+      if (marginaltype != "density") {
+        # creating the ggMarginal plot of a given marginaltype
+        plot <-
+          ggExtra::ggMarginal(
+            p = plot,
+            type = marginaltype,
+            size = 5,
+            xparams = base::list(fill = xfill,
+                                 col = "black"),
+            yparams = base::list(fill = yfill,
+                                 col = "black")
+          )
+      } else {
+        # there are no fill arguments available when marginal type is "density"
+        plot <-
+          ggExtra::ggMarginal(
+            p = plot,
+            type = marginaltype,
+            size = 5,
+            xparams = base::list(col = xfill),
+            yparams = base::list(col = yfill)
+          )
+      }
     }
 
     return(plot)
