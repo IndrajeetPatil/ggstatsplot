@@ -30,6 +30,7 @@ Imports:
   WRS2 (>= 0.9-2)
 Suggests:
   grDevices (>= 3.4.1),
+  gtable (>= 0.2.0),
   knitr (>= 1.19),
   RColorBrewer (>= 1.1-2),
-  gtable (>= 0.2.0)
+  testthat (>= 2.0.0)
