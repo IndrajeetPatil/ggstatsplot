@@ -16,6 +16,7 @@
 #' @param xfill colour fill for x axis distibution
 #' @param yfill colour fill for y axis distribution
 #' @param test statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")
+#' @param results.subtitle whether the results of statistical tests are to be displayed as subtitle
 #' @param intercept decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted
 #' @param title title for the plot
 #' @param caption caption for the plot
@@ -48,6 +49,7 @@ ggscatterstats <-
            yfill = NULL,
            intercept = NULL,
            test = NULL,
+           results.subtitle = NULL,
            title = NULL,
            caption = NULL,
            maxit = 1000,
@@ -71,6 +73,14 @@ ggscatterstats <-
         base::cbind.data.frame(x = x,
                                y = y)
     }
+
+    ######################################## statistical labels ######################################################
+    # if results.subtitle argument is not specified, default to showing the results
+    if (is.null(results.subtitle)) results.subtitle <- TRUE
+    # if results.subtitle argument is set to FALSE then subtitle should be set to NULL
+    if (results.subtitle != TRUE) stats_subtitle <- NULL
+
+    if (results.subtitle == TRUE) {
     ################################################### Pearson's r ##################################################
 
     if (is.null(test))
@@ -88,7 +98,7 @@ ggscatterstats <-
           na.action = na.omit
         )
       # preparing the label
-      stat_label <-
+      stats_subtitle <-
         base::substitute(
           expr =
             paste(
@@ -125,7 +135,7 @@ ggscatterstats <-
           na.action = na.omit
         )
       # preparing the label
-      stat_label <-
+      stats_subtitle <-
         base::substitute(
           expr =
             paste(
@@ -160,7 +170,7 @@ ggscatterstats <-
           data = data
         )
       # preparing the label
-      stat_label <-
+      stats_subtitle <-
         base::substitute(
           expr =
             paste(
@@ -200,7 +210,7 @@ ggscatterstats <-
         )
       )
     }
-
+}
     ################################################### plot ################################################################
 
     # preparing the scatterplotplot
@@ -227,7 +237,7 @@ ggscatterstats <-
         x = xlab,
         y = ylab,
         title = title,
-        subtitle = stat_label,
+        subtitle = stats_subtitle,
         caption = caption
       ) +
       coord_cartesian(xlim = c(min(data$x), max(data$x))) +
