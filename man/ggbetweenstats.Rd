@@ -7,8 +7,8 @@
 ggbetweenstats(data = NULL, x, y, test = NULL, type = NULL,
   effsizetype = NULL, xlab = NULL, ylab = NULL, caption = NULL,
   title = NULL, k = 3, var.equal = FALSE, nboot = 1000,
-  outlier.tagging = NULL, outlier.label = NULL, outlier.colour = "black",
-  mean.plotting = FALSE)
+  outlier.tagging = NULL, outlier.label = NULL, outlier.color = "black",
+  mean.plotting = FALSE, mean.color = "darkred")
 }
 \arguments{
 \item{data}{data frame from which variables specified are preferentially to be taken}
@@ -42,10 +42,12 @@ ggbetweenstats(data = NULL, x, y, test = NULL, type = NULL,
 
 \item{outlier.label}{label to put on the outliers that have been tagged; if data argument is missing}
 
-\item{outlier.colour}{default aesthetics for outliers}
+\item{outlier.color}{default aesthetics for outliers}
 
 \item{mean.plotting}{whether mean is to be highlighted and its value to be displayed
 this will show y variable values for outliers}
+
+\item{mean.color}{color for the data point corresponding to mean}
 }
 \description{
 Violin plots for between-subjects designs with statistical details included in the plot as a subtitle

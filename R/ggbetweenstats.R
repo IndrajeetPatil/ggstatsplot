@@ -19,11 +19,12 @@
 #' @param k number of decimal places expected for results
 #' @param var.equal a logical variable indicating whether to treat the two variances as being equal
 #' @param nboot number of bootstrap samples
-#' @param outlier.colour default aesthetics for outliers
+#' @param outlier.color default aesthetics for outliers
 #' @param outlier.tagging whether outliers should be tagged
 #' @param outlier.label label to put on the outliers that have been tagged; if data argument is missing
 #' @param mean.plotting whether mean is to be highlighted and its value to be displayed
 #' this will show y variable values for outliers
+#' @param mean.color color for the data point corresponding to mean
 #'
 #' @import ggplot2
 #' @import ggrepel
@@ -78,8 +79,9 @@ ggbetweenstats <- function(data = NULL,
                            nboot = 1000,
                            outlier.tagging = NULL,
                            outlier.label = NULL,
-                           outlier.colour = "black",
-                           mean.plotting = FALSE) {
+                           outlier.color = "black",
+                           mean.plotting = FALSE,
+                           mean.color = "darkred") {
   ####################################### creating a dataframe #################################################
   # if dataframe is provided
   if (!is.null(data)) {
@@ -127,7 +129,12 @@ ggbetweenstats <- function(data = NULL,
   }
 
   ################################################### plot ##############################################################
-  plot <-
+  # the default is not to tag the outliers
+  if (is.null(outlier.tagging))
+    outlier.tagging <- FALSE
+
+  # create the plot
+    plot <-
     ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
     geom_point(
       position = position_jitterdodge(
@@ -141,18 +148,26 @@ ggbetweenstats <- function(data = NULL,
     ) +
     geom_violin(width = 0.5,
                 alpha = 0.2,
-                fill = "white") +
-    geom_boxplot(
+                fill = "white")
+    if(isTRUE(outlier.tagging)) {
+    plot <- plot + geom_boxplot(
       width = 0.3,
       alpha = 0.2,
       fill = "white",
-      outlier.colour = outlier.colour,
-      outlier.shape = 16,
-      outlier.size = 3,
-      outlier.alpha = 0.7,
+        outlier.color = outlier.color,
+        outlier.shape = 16,
+        outlier.size = 3,
+        outlier.alpha = 0.7,
       position = position_dodge(width = NULL)
-    ) +
-    ggstatsplot::theme_mprl() +
+    ) } else {
+      plot <- plot + geom_boxplot(
+        width = 0.3,
+        alpha = 0.2,
+        fill = "white"
+      )
+    }
+    # specifying theme and labels for the plot
+    plot <- plot + ggstatsplot::theme_mprl() +
     theme(legend.position = "none") +
     labs(
       x = xlab,
@@ -161,7 +176,7 @@ ggbetweenstats <- function(data = NULL,
       caption = caption
     ) +
     scale_fill_brewer(palette = "Dark2") +
-    scale_colour_brewer(palette = "Dark2")
+    scale_color_brewer(palette = "Dark2")
 
   ## custom function to write results from group comparison test subtitle of a given plot
 
@@ -519,9 +534,7 @@ ggbetweenstats <- function(data = NULL,
   }
 
   ########################################### outlier tagging #########################################################
-  # the default is not to tag the outliers
-  if (is.null(outlier.tagging))
-    outlier.tagging <- FALSE
+
 
   # if outlier.tagging is set to TRUE, first figure out what labels need to be attached to the outlier
   if (isTRUE(outlier.tagging)) {
@@ -618,7 +631,7 @@ ggbetweenstats <- function(data = NULL,
       stat_summary(
         fun.y = mean,
         geom = "point",
-        colour = "darkred",
+        color = mean.color,
         size = 5
       )
 
