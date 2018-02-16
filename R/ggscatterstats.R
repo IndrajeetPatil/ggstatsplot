@@ -13,8 +13,8 @@
 #' @param ylab label for y axis variable
 #' @param marginal decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`
 #' @param marginaltype type of marginal distribution to be plotted on the axes (NULL, "histogram", "boxplot", "density")
-#' @param xfill colour fill for x axis distibution
-#' @param yfill colour fill for y axis distribution
+#' @param xfill colour fill for x axis distibution (default: "orange")
+#' @param yfill colour fill for y axis distribution (default: "green")
 #' @param test statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")
 #' @param results.subtitle whether the results of statistical tests are to be displayed as subtitle
 #' @param intercept decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted
@@ -35,6 +35,11 @@
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
 #'
+#'@examples
+#' # the most basic and minimalistic way of entering arguments
+#' library(datasets)
+#' ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length)
+#'
 #' @export
 
 ggscatterstats <-
@@ -45,8 +50,8 @@ ggscatterstats <-
            ylab = NULL,
            marginal = NULL,
            marginaltype = NULL,
-           xfill = NULL,
-           yfill = NULL,
+           xfill = "orange",
+           yfill = "green",
            intercept = NULL,
            test = NULL,
            results.subtitle = NULL,
@@ -246,12 +251,6 @@ ggscatterstats <-
       coord_cartesian(ylim = c(min(data$y), max(data$y)))
 
     ################################################ intercept ##################################################
-
-    # if fill colours for x and y axes are not specified, use the defaults
-    if (is.null(xfill))
-      xfill <- "orange"
-    if (is.null(yfill))
-      yfill <- "green"
 
     # by default, if the input is NULL, then no intercept lines will be plotted
 

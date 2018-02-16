@@ -5,10 +5,10 @@
 \title{scatterplot with ggMarginals}
 \usage{
 ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
-  marginal = NULL, marginaltype = NULL, xfill = NULL, yfill = NULL,
-  intercept = NULL, test = NULL, results.subtitle = NULL, title = NULL,
-  caption = NULL, maxit = 1000, k = 3, jitter.width = NULL,
-  jitter.height = 0.2, dodge.width = 0.75)
+  marginal = NULL, marginaltype = NULL, xfill = "orange",
+  yfill = "green", intercept = NULL, test = NULL,
+  results.subtitle = NULL, title = NULL, caption = NULL, maxit = 1000,
+  k = 3, jitter.width = NULL, jitter.height = 0.2, dodge.width = 0.75)
 }
 \arguments{
 \item{data}{data frame from which variables specified are preferentially to be taken}
@@ -25,9 +25,9 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
 
 \item{marginaltype}{type of marginal distribution to be plotted on the axes (NULL, "histogram", "boxplot", "density")}
 
-\item{xfill}{colour fill for x axis distibution}
+\item{xfill}{colour fill for x axis distibution (default: "orange")}
 
-\item{yfill}{colour fill for y axis distribution}
+\item{yfill}{colour fill for y axis distribution (default: "green")}
 
 \item{intercept}{decides whether "mean" or "median" or no intercept lines (\code{NULL}) are to be plotted}
 
@@ -52,6 +52,12 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
 \description{
 Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
 statistical details added as a subtitle
+}
+\examples{
+# the most basic and minimalistic way of entering arguments
+library(datasets)
+ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length)
+
 }
 \author{
 Indrajeet Patil
