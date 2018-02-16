@@ -53,14 +53,16 @@ Violin plots for between-subjects designs with statistical details included in t
 \examples{
 # the most basic and minimalistic way of entering arguments
 library(datasets)
-ggbetweenstats(data = iris, x = Species, y = Sepal.Length)
+ggstatsplot::ggbetweenstats(data = iris, x = Species, y = Sepal.Length)
 # or
-ggbetweenstats(x = data$Species, y = data$Sepal.Length)
+ggstatsplot::ggbetweenstats(x = iris$Species, y = iris$Sepal.Length)
 
 # more detailed function call
-ggbetweenstats(data = mtcars, x = cyl, y = mpg, outlier.tagging = TRUE, outlier.label = disp, mean.plotting = TRUE)
+ggstatsplot::ggbetweenstats(data = mtcars, x = cyl, y = mpg,
+outlier.tagging = TRUE, outlier.label = disp, mean.plotting = TRUE)
 # or
-ggbetweenstats(x = mtcars$cyl, y = mtcars$mpg, outlier.tagging = TRUE, outlier.label = mtcars$disp, mean.plotting = TRUE)
+ggstatsplot::ggbetweenstats(x = mtcars$cyl, y = mtcars$mpg,
+outlier.tagging = TRUE, outlier.label = mtcars$disp, mean.plotting = TRUE)
 
 }
 \author{
