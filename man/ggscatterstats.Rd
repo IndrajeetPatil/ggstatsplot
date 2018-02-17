@@ -5,7 +5,7 @@
 \title{scatterplot with ggMarginals}
 \usage{
 ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
-  marginal = NULL, marginaltype = NULL, xfill = "orange",
+  marginal = NULL, marginal.type = "histogram", xfill = "orange",
   yfill = "green", intercept = NULL, test = NULL,
   results.subtitle = NULL, title = NULL, caption = NULL, maxit = 1000,
   k = 3, jitter.width = NULL, jitter.height = 0.2, dodge.width = 0.75)
@@ -23,7 +23,7 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
 
 \item{marginal}{decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}}
 
-\item{marginaltype}{type of marginal distribution to be plotted on the axes ("histogram", "boxplot", "density", "violin")}
+\item{marginal.type}{type of marginal distribution to be plotted on the axes ("histogram", "boxplot", "density", "violin")}
 
 \item{xfill}{colour fill for x axis distibution (default: "orange")}
 
@@ -62,7 +62,7 @@ ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length)
 
 # more detailed call
 ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
-intercept = 'median', test = 'robust', marginaltype = 'density')
+intercept = 'median', test = 'robust', marginal.type = 'density')
 
 }
 \author{
