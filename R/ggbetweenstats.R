@@ -45,6 +45,7 @@
 #' @importFrom stats aov
 #' @importFrom stats quantile
 #' @importFrom coin wilcox_test
+#' @importFrom coin statistic
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom car Anova
@@ -531,18 +532,20 @@ ggbetweenstats <- function(data = NULL,
               italic(Z),
               " = ",
               z_value,
-              italic("p"),
+              italic(" p"),
               " = ",
               pvalue,
-              italic("r"),
+              italic(", r"),
               " = ",
               r
             ),
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = mann_stat$statistic[[1]], k),
-            z_value = ggstatsplot::specify_decimal_p(x = z_stat@statistic@teststatistic[[1]], k),
+            z_value = ggstatsplot::specify_decimal_p(x = coin::statistic(z_stat)[[1]], k),
             pvalue = ggstatsplot::specify_decimal_p(x = mann_stat$p.value[[1]], k, p.value = TRUE),
-            r = (z_stat@statistic@teststatistic[[1]] / length(data$y)) # effect size is r = z/sqrt(n)
+            r = ggstatsplot::specify_decimal_p(x = (
+              coin::statistic(z_stat)[[1]] / length(data$y)
+            ), k) # effect size is r = z/sqrt(n)
           )
         )
       }
