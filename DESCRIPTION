@@ -14,6 +14,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
 Imports: 
   car (>= 2.1-6),
+  coin (>= 1.2-2),
   dplyr (>= 0.7.4),
   effsize (>= 0.7.1),
   ggExtra (>= 0.7),

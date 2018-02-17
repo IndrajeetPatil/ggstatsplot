@@ -44,6 +44,7 @@
 #' @importFrom stats kruskal.test
 #' @importFrom stats aov
 #' @importFrom stats quantile
+#' @importFrom coin wilcox_test
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom car Anova
