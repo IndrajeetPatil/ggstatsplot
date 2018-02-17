@@ -11,8 +11,8 @@
 #' @param xlab label for x axis variable
 #' @param ylab label for y axis variable
 #' @param test statistical test to be run and displayed as subtitle ("t-test" or "anova")
-#' @param type type of statistics expected ("parametric" or "robust")
-#' @param effsizetype type of effect size needed for parametric tests ("biased" (Cohen's d, partial eta-squared) or
+#' @param type type of statistics expected ("parametric" or "nonparametric" or "robust")
+#' @param effsizetype type of effect size needed for *parametric* tests ("biased" (Cohen's d, partial eta-squared) or
 #' "unbiased" (Hedge's g, omega-squared))
 #' @param title title for the plot
 #' @param caption caption for the plot
@@ -41,8 +41,11 @@
 #' @importFrom stats t.test
 #' @importFrom stats var.test
 #' @importFrom stats bartlett.test
+#' @importFrom stats kruskal.test
 #' @importFrom stats aov
 #' @importFrom stats quantile
+#' @importFrom coin wilcox_test
+#' @importFrom coin statistic
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom car Anova
@@ -67,9 +70,8 @@
 ggbetweenstats <- function(data = NULL,
                            x,
                            y,
-                           test = NULL,
-                           type = NULL,
-                           effsizetype = NULL,
+                           type = "parametric",
+                           effsizetype = "unbiased",
                            xlab = NULL,
                            ylab = NULL,
                            caption = NULL,
@@ -134,7 +136,7 @@ ggbetweenstats <- function(data = NULL,
     outlier.tagging <- FALSE
 
   # create the plot
-    plot <-
+  plot <-
     ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
     geom_point(
       position = position_jitterdodge(
@@ -149,25 +151,24 @@ ggbetweenstats <- function(data = NULL,
     geom_violin(width = 0.5,
                 alpha = 0.2,
                 fill = "white")
-    if(isTRUE(outlier.tagging)) {
+  if (isTRUE(outlier.tagging)) {
     plot <- plot + geom_boxplot(
       width = 0.3,
       alpha = 0.2,
       fill = "white",
-        outlier.color = outlier.color,
-        outlier.shape = 16,
-        outlier.size = 3,
-        outlier.alpha = 0.7,
+      outlier.color = outlier.color,
+      outlier.shape = 16,
+      outlier.size = 3,
+      outlier.alpha = 0.7,
       position = position_dodge(width = NULL)
-    ) } else {
-      plot <- plot + geom_boxplot(
-        width = 0.3,
-        alpha = 0.2,
-        fill = "white"
-      )
-    }
-    # specifying theme and labels for the plot
-    plot <- plot + ggstatsplot::theme_mprl() +
+    )
+  } else {
+    plot <- plot + geom_boxplot(width = 0.3,
+                                alpha = 0.2,
+                                fill = "white")
+  }
+  # specifying theme and labels for the plot
+  plot <- plot + ggstatsplot::theme_mprl() +
     theme(legend.position = "none") +
     labs(
       x = xlab,
@@ -180,20 +181,15 @@ ggbetweenstats <- function(data = NULL,
 
   ## custom function to write results from group comparison test subtitle of a given plot
 
-  # if test is not specified, then figure out which test to run based on the number of levels of the independent variables
-  if (is.null(test)) {
-    if (length(levels(as.factor(data$x))) < 3)
-      test <- "t-test"
-    else
-      test <- "anova"
+  # figure out which test to run based on the number of levels of the independent variables
+  if (length(levels(as.factor(data$x))) < 3) {
+    test <- "t-test"
+  } else {
+    test <- "anova"
   }
 
   # running anova
   if (test == "anova") {
-    # if type of test is not specified, then use the default, which is parametric test
-    if (is.null(type))
-      type <- "parametric"
-
     ##################################### parametric ANOVA ############################################################
 
     # running parametric ANOVA
@@ -202,7 +198,6 @@ ggbetweenstats <- function(data = NULL,
       # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
       # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
       # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
-      # setting up the model
       y_aov <- stats::aov(formula = y ~ x,
                           data = data)
       # getting model summary
@@ -210,10 +205,6 @@ ggbetweenstats <- function(data = NULL,
         car::Anova(mod = y_aov,
                    type = "III",
                    white.adjust = FALSE)
-
-      # if type of effect size is not specified, use the unbiased estimate as the default
-      if (is.null(effsizetype))
-        effsizetype <- "unbiased"
 
       # preparing the subtitles with appropriate effect sizes
       if (effsizetype == "unbiased") {
@@ -299,16 +290,46 @@ ggbetweenstats <- function(data = NULL,
       plot <-
         plot + labs(subtitle = results_subtitle(aov_stat = y_aov_stat,
                                                 aov_effsize = y_aov_effsize))
-      # display homogeneity of variances test result as a message
-      bartlett <- stats::bartlett.test(formula = y ~ x,
-                                       data = data)
-      base::message(
-        paste(
-          "Note: Bartlett's test for homogeneity of variances: p-value = ",
-          ggstatsplot::specify_decimal_p(x = bartlett$p.value, p.value = TRUE)
-        )
-      )
 
+
+    } else if (type == "nonparametric") {
+      ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
+      # setting up the anova model and getting its summary
+      y_kw_stat <- stats::kruskal.test(formula = y ~ x,
+                                       data = data,
+                                       na.action = na.omit)
+      # aov_stat input represents the anova object summary derived from car library
+      results_subtitle <- function(kw_stat) {
+        # extracting the elements of the statistical object
+        base::substitute(
+          expr =
+            paste(
+              "Kruskal-Wallis: ",
+              italic(chi) ^ 2,
+              "(",
+              df,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue
+            ),
+          env = base::list(
+            estimate = ggstatsplot::specify_decimal_p(x = kw_stat$statistic[[1]], k),
+            df = kw_stat$parameter[[1]],
+            # degrees of freedom are always integer
+            pvalue = ggstatsplot::specify_decimal_p(x = kw_stat$p.value[[1]], k, p.value = TRUE)
+          )
+        )
+      }
+
+      # adding the subtitle to the plot
+      plot <-
+        plot + labs(subtitle = results_subtitle(kw_stat = y_kw_stat))
+      base::message(paste(
+        "Note: No effect size available for Kruskal-Wallis Rank Sum Test."
+      ))
     } else if (type == "robust") {
       ######################################### robust ANOVA ############################################################
 
@@ -368,7 +389,7 @@ ggbetweenstats <- function(data = NULL,
 
     ##################################### parametric t-test ############################################################
 
-    if (type == "parametric") {
+    if (type == "parametric")  {
       # setting up the anova model and getting its summary and effect size
       y_t_stat <-
         stats::t.test(
@@ -377,10 +398,6 @@ ggbetweenstats <- function(data = NULL,
           var.equal = var.equal,
           na.action = na.omit
         )
-
-      # if type of effect size is not specified, use the unbiased estimate as the default
-      if (is.null(effsizetype))
-        effsizetype <- "unbiased"
 
       if (effsizetype == "unbiased") {
         # t_stat input represents the t-test object summary derived from stats library
@@ -462,21 +479,81 @@ ggbetweenstats <- function(data = NULL,
           )
       }
 
+      # adding subtitle to the plot
       plot <-
         plot +
         labs(subtitle = results_subtitle(t_stat = y_t_stat,
                                          t_effsize = y_t_effsize))
       # display equality of variance result as a message
-      vartest <- stats::var.test(x = as.numeric(data$x), y = data$y)
-      base::message(
-        paste(
-          "Note: F test to compare two variances: p-value = ",
-          ggstatsplot::specify_decimal_p(x = vartest$p.value, p.value = TRUE)
-        )
+      # vartest <- stats::var.test(x = as.numeric(data$x), y = data$y)
+      # base::message(
+      #   paste(
+      #     "Note: F test to compare two variances: p-value = ",
+      #     ggstatsplot::specify_decimal_p(x = vartest$p.value, p.value = TRUE)
+      #   )
+      # )
+
+    }
+    else if (type == "nonparametric") {
+      ######################################### Mann-Whitney U test ######################################################
+      # setting up the Mann-Whitney U-test and getting its summary
+      mann_stat <- stats::wilcox.test(
+        formula = y ~ x,
+        data = data,
+        paired = FALSE,
+        alternative = "two.sided",
+        na.action = na.omit,
+        exact = FALSE,
+        # asymptotic
+        correct = TRUE,
+        conf.int = TRUE,
+        conf.level = 0.95
       )
-
-      #return(plot)
-
+      # computing Z score
+      z_stat <- coin::wilcox_test(
+        formula = y ~ x,
+        data = data,
+        distribution = "asymptotic",
+        alternative = "two.sided",
+        conf.int = TRUE
+      )
+      # mann_stat input represents the U-test summary derived from stats library, while Z is
+      # from Exact Wilcoxon-Pratt Signed-Rank Test from coin library
+      results_subtitle <- function(mann_stat, z_stat) {
+        # extracting the elements of the statistical object
+        base::substitute(
+          expr =
+            paste(
+              "Mann-Whitney: ",
+              italic(U),
+              " = ",
+              estimate,
+              ", ",
+              italic(Z),
+              " = ",
+              z_value,
+              italic(" p"),
+              " = ",
+              pvalue,
+              italic(", r"),
+              " = ",
+              r
+            ),
+          env = base::list(
+            estimate = ggstatsplot::specify_decimal_p(x = mann_stat$statistic[[1]], k),
+            z_value = ggstatsplot::specify_decimal_p(x = coin::statistic(z_stat)[[1]], k),
+            pvalue = ggstatsplot::specify_decimal_p(x = mann_stat$p.value[[1]], k, p.value = TRUE),
+            r = ggstatsplot::specify_decimal_p(x = (
+              coin::statistic(z_stat)[[1]] / length(data$y)
+            ), k) # effect size is r = z/sqrt(n)
+          )
+        )
+      }
+      # adding subtitle to the plot
+      plot <-
+        plot +
+        labs(subtitle = results_subtitle(mann_stat = mann_stat,
+                                         z_stat = z_stat))
     } else if (type == "robust") {
       ######################################### robust t-test ############################################################
 
@@ -668,6 +745,17 @@ ggbetweenstats <- function(data = NULL,
       )
   }
 
+  # display homogeneity of variances test result as a message
+  bartlett <- stats::bartlett.test(formula = y ~ x,
+                                   data = data)
+  base::message(
+    paste(
+      "Note: Bartlett's test for homogeneity of variances: p-value = ",
+      ggstatsplot::specify_decimal_p(x = bartlett$p.value, p.value = TRUE)
+    )
+  )
+
+  # return the final plot
   return(plot)
 
 }

@@ -4,8 +4,8 @@
 \alias{ggbetweenstats}
 \title{violin plots for group or condition comparisons}
 \usage{
-ggbetweenstats(data = NULL, x, y, test = NULL, type = NULL,
-  effsizetype = NULL, xlab = NULL, ylab = NULL, caption = NULL,
+ggbetweenstats(data = NULL, x, y, type = "parametric",
+  effsizetype = "unbiased", xlab = NULL, ylab = NULL, caption = NULL,
   title = NULL, k = 3, var.equal = FALSE, nboot = 1000,
   outlier.tagging = NULL, outlier.label = NULL, outlier.color = "black",
   mean.plotting = FALSE, mean.color = "darkred")
@@ -17,11 +17,9 @@ ggbetweenstats(data = NULL, x, y, test = NULL, type = NULL,
 
 \item{y}{the response - a vector of length the number of rows of \code{x}}
 
-\item{test}{statistical test to be run and displayed as subtitle ("t-test" or "anova")}
+\item{type}{type of statistics expected ("parametric" or "nonparametric" or "robust")}
 
-\item{type}{type of statistics expected ("parametric" or "robust")}
-
-\item{effsizetype}{type of effect size needed for parametric tests ("biased" (Cohen's d, partial eta-squared) or
+\item{effsizetype}{type of effect size needed for \emph{parametric} tests ("biased" (Cohen's d, partial eta-squared) or
 "unbiased" (Hedge's g, omega-squared))}
 
 \item{xlab}{label for x axis variable}
@@ -48,6 +46,8 @@ ggbetweenstats(data = NULL, x, y, test = NULL, type = NULL,
 this will show y variable values for outliers}
 
 \item{mean.color}{color for the data point corresponding to mean}
+
+\item{test}{statistical test to be run and displayed as subtitle ("t-test" or "anova")}
 }
 \description{
 Violin plots for between-subjects designs with statistical details included in the plot as a subtitle
