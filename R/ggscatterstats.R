@@ -12,7 +12,7 @@
 #' @param xlab label for x axis variable
 #' @param ylab label for y axis variable
 #' @param marginal decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`
-#' @param marginaltype type of marginal distribution to be plotted on the axes ("histogram", "boxplot", "density", "violin")
+#' @param marginal.type type of marginal distribution to be plotted on the axes ("histogram", "boxplot", "density", "violin")
 #' @param xfill colour fill for x axis distibution (default: "orange")
 #' @param yfill colour fill for y axis distribution (default: "green")
 #' @param test statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")
@@ -44,7 +44,7 @@
 #'
 #' # more detailed call
 #' ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
-#' intercept = 'median', test = 'robust', marginaltype = 'density')
+#' intercept = 'median', test = 'robust', marginal.type = 'density')
 #'
 #' @export
 
@@ -55,7 +55,7 @@ ggscatterstats <-
            xlab = NULL,
            ylab = NULL,
            marginal = NULL,
-           marginaltype = NULL,
+           marginal.type = "histogram",
            xfill = "orange",
            yfill = "green",
            intercept = NULL,
@@ -302,15 +302,11 @@ ggscatterstats <-
       marginal <- TRUE
 
     if (isTRUE(marginal)) {
-      # if ggmarginal marginaltype has not been specified, go to this default
-      if (is.null(marginaltype))
-        marginaltype <- "histogram"
-
-        # creating the ggMarginal plot of a given marginaltype
+        # creating the ggMarginal plot of a given marginal.type
         plot <-
           ggExtra::ggMarginal(
             p = plot,
-            type = marginaltype,
+            type = marginal.type,
             size = 5,
             xparams = base::list(fill = xfill,
                                  col = "black"),
