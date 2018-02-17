@@ -495,7 +495,7 @@ ggbetweenstats <- function(data = NULL,
 
     }
     else if (type == "nonparametric") {
-      ######################################### Mann–Whitney U test ######################################################
+      ######################################### Mann-Whitney U test ######################################################
       # setting up the Mann-Whitney U-test and getting its summary
       mann_stat <- stats::wilcox.test(
         formula = y ~ x,
@@ -524,7 +524,7 @@ ggbetweenstats <- function(data = NULL,
         base::substitute(
           expr =
             paste(
-              "Mann–Whitney: ",
+              "Mann-Whitney: ",
               italic(U),
               " = ",
               estimate,

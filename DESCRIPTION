@@ -15,9 +15,10 @@ RoxygenNote: 6.0.1
 Imports: 
   car (>= 2.1-6),
   coin (>= 1.2-2),
+  devtools (>= 1.13.4),
   dplyr (>= 0.7.4),
   effsize (>= 0.7.1),
-  ggExtra (>= 0.7),
+  ggExtra,
   ggrepel (>= 0.7.0),
   ggplot2 (>= 2.2.1),
   grid (>= 3.4.1),
@@ -29,6 +30,8 @@ Imports:
   sjstats (>= 0.14.0),
   stats (>= 3.4.1),
   WRS2 (>= 0.9-2)
+Remotes:
+  daattali/ggExtra
 Suggests:
   grDevices (>= 3.4.1),
   gtable (>= 0.2.0),
