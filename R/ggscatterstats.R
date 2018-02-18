@@ -22,6 +22,8 @@
 #' @param caption caption for the plot
 #' @param maxit maximum number of iterations for robust linear regression
 #' @param k number of decimal places expected for results
+#' @param width.jitter degree of jitter in x direction. Defaults to 40\% of the resolution of the data.
+#' @param height.jitter degree of jitter in y direction. Defaults to 40\% of the resolution of the data
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -52,8 +54,10 @@ ggscatterstats <-
            y,
            xlab = NULL,
            ylab = NULL,
-           marginal = NULL,
+           marginal = TRUE,
            marginal.type = "histogram",
+           width.jitter = NULL,
+           height.jitter = NULL,
            xfill = "orange",
            yfill = "green",
            intercept = NULL,
@@ -222,9 +226,12 @@ ggscatterstats <-
       ggplot2::ggplot(data = data,
                       mapping = aes(x = x,
                                     y = y)) +
-      geom_point(size = 3,
-                 alpha = 0.5,
-                 position = position_jitter()) +
+      geom_point(
+        size = 3,
+        alpha = 0.5,
+        position = position_jitter(width = width.jitter,
+                                   height = height.jitter)
+      ) +
       geom_smooth(method = "lm",
                   se = TRUE,
                   size = 1.5) +
@@ -279,10 +286,6 @@ ggscatterstats <-
     }
 
     #################################################### ggMarginal ######################################################
-
-    # if marginal should be plotted or not is not specified, it will be plotted by default
-    if (is.null(marginal))
-      marginal <- TRUE
 
     if (isTRUE(marginal)) {
       # creating the ggMarginal plot of a given marginal.type

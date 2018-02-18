@@ -5,10 +5,10 @@
 \title{scatterplot with ggMarginals}
 \usage{
 ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
-  marginal = NULL, marginal.type = "histogram", xfill = "orange",
-  yfill = "green", intercept = NULL, test = "pearson",
-  results.subtitle = NULL, title = NULL, caption = NULL, maxit = 1000,
-  k = 3)
+  marginal = TRUE, marginal.type = "histogram", width.jitter = NULL,
+  height.jitter = NULL, xfill = "orange", yfill = "green",
+  intercept = NULL, test = "pearson", results.subtitle = NULL,
+  title = NULL, caption = NULL, maxit = 1000, k = 3)
 }
 \arguments{
 \item{data}{data frame from which variables specified are preferentially to be taken}
@@ -24,6 +24,10 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
 \item{marginal}{decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}}
 
 \item{marginal.type}{type of marginal distribution to be plotted on the axes ("histogram", "boxplot", "density", "violin")}
+
+\item{width.jitter}{degree of jitter in x direction. Defaults to 40\% of the resolution of the data.}
+
+\item{height.jitter}{degree of jitter in y direction. Defaults to 40\% of the resolution of the data}
 
 \item{xfill}{colour fill for x axis distibution (default: "orange")}
 
