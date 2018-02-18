@@ -5,7 +5,7 @@
 \title{violin plots for group or condition comparisons}
 \usage{
 ggbetweenstats(data = NULL, x, y, type = "parametric",
-  effsizetype = "unbiased", xlab = NULL, ylab = NULL, caption = NULL,
+  effsize.type = "unbiased", xlab = NULL, ylab = NULL, caption = NULL,
   title = NULL, k = 3, var.equal = FALSE, nboot = 1000,
   outlier.tagging = NULL, outlier.label = NULL, outlier.color = "black",
   mean.plotting = FALSE, mean.color = "darkred")
@@ -19,7 +19,7 @@ ggbetweenstats(data = NULL, x, y, type = "parametric",
 
 \item{type}{type of statistics expected ("parametric" or "nonparametric" or "robust")}
 
-\item{effsizetype}{type of effect size needed for \emph{parametric} tests ("biased" (Cohen's d, partial eta-squared) or
+\item{effsize.type}{type of effect size needed for \emph{parametric} tests ("biased" (Cohen's d, partial eta-squared) or
 "unbiased" (Hedge's g, omega-squared))}
 
 \item{xlab}{label for x axis variable}

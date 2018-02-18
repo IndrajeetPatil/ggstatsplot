@@ -12,7 +12,7 @@
 #' @param ylab label for y axis variable
 #' @param test statistical test to be run and displayed as subtitle ("t-test" or "anova")
 #' @param type type of statistics expected ("parametric" or "nonparametric" or "robust")
-#' @param effsizetype type of effect size needed for *parametric* tests ("biased" (Cohen's d, partial eta-squared) or
+#' @param effsize.type type of effect size needed for *parametric* tests ("biased" (Cohen's d, partial eta-squared) or
 #' "unbiased" (Hedge's g, omega-squared))
 #' @param title title for the plot
 #' @param caption caption for the plot
@@ -71,7 +71,7 @@ ggbetweenstats <- function(data = NULL,
                            x,
                            y,
                            type = "parametric",
-                           effsizetype = "unbiased",
+                           effsize.type = "unbiased",
                            xlab = NULL,
                            ylab = NULL,
                            caption = NULL,
@@ -207,7 +207,7 @@ ggbetweenstats <- function(data = NULL,
                    white.adjust = FALSE)
 
       # preparing the subtitles with appropriate effect sizes
-      if (effsizetype == "unbiased") {
+      if (effsize.type == "unbiased") {
         # partial omega-squared is the biased estimate of effect size for parametric ANOVA
         y_aov_effsize <-
           sjstats::omega_sq(model = y_aov)
@@ -246,7 +246,7 @@ ggbetweenstats <- function(data = NULL,
           )
         }
 
-      } else if (effsizetype == "biased") {
+      } else if (effsize.type == "biased") {
         # partial eta-squared is the biased estimate of effect size for parametric ANOVA
         y_aov_effsize <-
           sjstats::eta_sq(model = y_aov, partial = TRUE)
@@ -399,7 +399,7 @@ ggbetweenstats <- function(data = NULL,
           na.action = na.omit
         )
 
-      if (effsizetype == "unbiased") {
+      if (effsize.type == "unbiased") {
         # t_stat input represents the t-test object summary derived from stats library
         results_subtitle <- function(t_stat, t_effsize) {
           # extracting the elements of the statistical object
@@ -438,7 +438,7 @@ ggbetweenstats <- function(data = NULL,
             hedges.correction = TRUE,
             na.rm = TRUE
           )
-      } else if (effsizetype == "biased") {
+      } else if (effsize.type == "biased") {
         # t_stat input represents the t-test object summary derived from stats library
         results_subtitle <- function(t_stat, t_effsize) {
           # extracting the elements of the statistical object
