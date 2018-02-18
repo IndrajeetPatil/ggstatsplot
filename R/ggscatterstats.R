@@ -20,11 +20,8 @@
 #' @param intercept decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted
 #' @param title title for the plot
 #' @param caption caption for the plot
-#' @param k number of decimal places expected for results
 #' @param maxit maximum number of iterations for robust linear regression
-#' @param jitter.width degree of jitter in x direction. Defaults to 0.40 of the resolution of the data
-#' @param jitter.height degree of jitter in y direction. Defaults to 0
-#' @param dodge.width the amount to dodge in the x direction. Defaults to 0.75, the default `position_dodge()` width
+#' @param k number of decimal places expected for results
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -34,6 +31,7 @@
 #' @importFrom sfsmisc f.robftest
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
+#' @importFrom stats na.omit
 #'
 #'@examples
 #' # the most basic and minimalistic way of entering arguments
@@ -59,15 +57,12 @@ ggscatterstats <-
            xfill = "orange",
            yfill = "green",
            intercept = NULL,
-           test = NULL,
+           test = "pearson",
            results.subtitle = NULL,
            title = NULL,
            caption = NULL,
            maxit = 1000,
-           k = 3,
-           jitter.width = NULL,
-           jitter.height = 0.2,
-           dodge.width = 0.75) {
+           k = 3) {
     ################################################### dataframe ####################################################
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
@@ -95,10 +90,6 @@ ggscatterstats <-
 
     if (results.subtitle == TRUE) {
       ################################################### Pearson's r ##################################################
-
-      if (is.null(test))
-        test <- "pearson"
-
       if (test == "pearson") {
         # running the correlation test and preparing the subtitle text
         c <-
@@ -231,17 +222,9 @@ ggscatterstats <-
       ggplot2::ggplot(data = data,
                       mapping = aes(x = x,
                                     y = y)) +
-      geom_count(
-        show.legend = FALSE,
-        colour = "black",
-        size = 3,
-        alpha = 0.5,
-        position = position_jitterdodge(
-          jitter.width = jitter.width,
-          jitter.height = jitter.height,
-          dodge.width = dodge.width
-        )
-      ) +
+      geom_point(size = 3,
+                 alpha = 0.5,
+                 position = position_jitter()) +
       geom_smooth(method = "lm",
                   se = TRUE,
                   size = 1.5) +
@@ -302,17 +285,17 @@ ggscatterstats <-
       marginal <- TRUE
 
     if (isTRUE(marginal)) {
-        # creating the ggMarginal plot of a given marginal.type
-        plot <-
-          ggExtra::ggMarginal(
-            p = plot,
-            type = marginal.type,
-            size = 5,
-            xparams = base::list(fill = xfill,
-                                 col = "black"),
-            yparams = base::list(fill = yfill,
-                                 col = "black")
-          )
+      # creating the ggMarginal plot of a given marginal.type
+      plot <-
+        ggExtra::ggMarginal(
+          p = plot,
+          type = marginal.type,
+          size = 5,
+          xparams = base::list(fill = xfill,
+                               col = "black"),
+          yparams = base::list(fill = yfill,
+                               col = "black")
+        )
 
     }
 

@@ -6,9 +6,9 @@
 \usage{
 ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
   marginal = NULL, marginal.type = "histogram", xfill = "orange",
-  yfill = "green", intercept = NULL, test = NULL,
+  yfill = "green", intercept = NULL, test = "pearson",
   results.subtitle = NULL, title = NULL, caption = NULL, maxit = 1000,
-  k = 3, jitter.width = NULL, jitter.height = 0.2, dodge.width = 0.75)
+  k = 3)
 }
 \arguments{
 \item{data}{data frame from which variables specified are preferentially to be taken}
@@ -42,12 +42,6 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
 \item{maxit}{maximum number of iterations for robust linear regression}
 
 \item{k}{number of decimal places expected for results}
-
-\item{jitter.width}{degree of jitter in x direction. Defaults to 0.40 of the resolution of the data}
-
-\item{jitter.height}{degree of jitter in y direction. Defaults to 0}
-
-\item{dodge.width}{the amount to dodge in the x direction. Defaults to 0.75, the default \code{position_dodge()} width}
 }
 \description{
 Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
