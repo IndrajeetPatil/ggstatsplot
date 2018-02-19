@@ -5,7 +5,7 @@
 \title{pie charts with statistical tests}
 \usage{
 ggpiestats(data = NULL, main, condition = NULL, labels = NULL,
-  stat_title = NULL, title = NULL, caption = NULL, legend_title = NULL,
+  stat.title = NULL, title = NULL, caption = NULL, legend.title = NULL,
   k = 3)
 }
 \arguments{
@@ -15,20 +15,27 @@ ggpiestats(data = NULL, main, condition = NULL, labels = NULL,
 
 \item{condition}{a string naming the variable to use as the columns in the contingency table}
 
-\item{labels}{a character vector of same length as (data, main) or (data, condition, main) if facet wrapping}
-
-\item{stat_title}{title for the effect being investigated with the chi-square test}
+\item{stat.title}{title for the effect being investigated with the chi-square test}
 
 \item{title}{title for the plot}
 
 \item{caption}{caption for the plot}
 
-\item{legend_title}{title for the legend}
+\item{legend.title}{title for the legend}
 
 \item{k}{number of decimal places expected for results}
 }
 \description{
 Pie charts for categorical data with statistical details included in the plot as a subtitle
+}
+\examples{
+library(datasets)
+ggpiestats(data = iris, main = Species)
+# or
+ggpiestats(main = iris$Species)
+# with condition variable
+ggpiestats(data = mtcars, main = am, condition = cyl)
+
 }
 \author{
 Indrajeet Patil
