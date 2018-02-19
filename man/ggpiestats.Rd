@@ -6,7 +6,7 @@
 \usage{
 ggpiestats(data = NULL, main, condition = NULL, labels = NULL,
   stat.title = NULL, title = NULL, caption = NULL, legend.title = NULL,
-  k = 3)
+  facet.wrap.name = NULL, k = 3)
 }
 \arguments{
 \item{data}{the data as a data frame}
@@ -22,6 +22,8 @@ ggpiestats(data = NULL, main, condition = NULL, labels = NULL,
 \item{caption}{caption for the plot}
 
 \item{legend.title}{title for the legend}
+
+\item{facet.wrap.name}{label for the facet_wrap}
 
 \item{k}{number of decimal places expected for results}
 }
