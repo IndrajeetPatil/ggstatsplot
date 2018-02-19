@@ -8,12 +8,11 @@
 #' @param data the data as a data frame
 #' @param main a string naming the variable to use as the rows in the contingency table
 #' @param condition a string naming the variable to use as the columns in the contingency table
-#' @param labels a character vector of same length as (data, main) or (data, condition, main) if facet wrapping
-#' @param stat_title title for the effect being investigated with the chi-square test
+#' @param stat.title title for the effect being investigated with the chi-square test
 #' @param title title for the plot
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
-#' @param legend_title title for the legend
+#' @param legend.title title for the legend
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -21,6 +20,15 @@
 #'
 #' @importFrom jmv propTestN
 #' @importFrom jmv contTables
+#'
+#' @examples
+#' library(datasets)
+#' ggpiestats(data = iris, main = Species)
+#' # or
+#' ggpiestats(main = iris$Species)
+#' # with condition variable
+#' ggpiestats(data = mtcars, main = am, condition = cyl)
+#'
 #' @export
 #'
 
@@ -29,10 +37,10 @@ ggpiestats <-
            main,
            condition = NULL,
            labels = NULL,
-           stat_title = NULL,
+           stat.title = NULL,
            title = NULL,
            caption = NULL,
-           legend_title = NULL,
+           legend.title = NULL,
            k = 3) {
     ################################################## dataframe ####################################################
     # if dataframe is provided
@@ -49,7 +57,7 @@ ggpiestats <-
           dplyr::select(
             .data = data,
             main = !!rlang::enquo(main),
-            condition = !!rlang::quo_name(enquo(condition))
+            condition = !!rlang::quo_name(rlang::enquo(condition))
           )
       }
     } else {
@@ -69,30 +77,31 @@ ggpiestats <-
     if (base::missing(condition)) {
       df <-
         data %>%
-        dplyr::group_by_(.dots = c('main')) %>%
-        dplyr::summarize(counts = n()) %>%
-        dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
+        dplyr::group_by(.data = ., main) %>%
+        dplyr::summarize(.data = ., counts = n()) %>%
+        dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
         dplyr::arrange(desc(perc))
     } else {
       df <-
         data %>%
-        dplyr::group_by_(.dots = c('condition', 'main')) %>%
-        dplyr::summarize(counts = n()) %>%
-        dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
-        dplyr::arrange(desc(perc))
+        dplyr::group_by(.data = ., condition, main) %>%
+        dplyr::summarize(.data = ., counts = n()) %>%
+        dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
+        dplyr::arrange(.data = ., desc(perc))
     }
-
+    print(df)
     # reorder the category factor levels to order the legend
-    df$main <- factor(df$main, levels = unique(df$main))
+    df$main <- factor(x = df$main,
+                      levels = unique(df$main))
 
-    # if labels haven't been specified, use what's already there
-    if (is.null(labels))
+# getting labels for all levels of the 'main' variable factor
       labels <- as.character(df$main)
-
+    print(labels)
     ################################################## plot ##############################################
 
     if (base::missing(condition)) {
-      p <- ggplot2::ggplot(data = df, mapping = aes(x = '', y = counts)) +
+      p <- ggplot2::ggplot(data = df,
+                           mapping = aes(x = '', y = counts)) +
         geom_col(
           position = 'fill',
           color = 'black',
@@ -100,7 +109,8 @@ ggpiestats <-
           aes(fill = factor(get('main')))
         ) +
         geom_label(
-          aes(label = paste0(round(perc), "%"), group = factor(get('main'))),
+          aes(label = paste0(round(perc), "%"),
+              group = factor(get('main'))),
           position = position_fill(vjust = 0.5),
           color = 'black',
           size = 5,
@@ -257,7 +267,7 @@ ggpiestats <-
             cols = 'main',
             phiCra = TRUE
           ),
-          effect = stat_title
+          effect = stat.title
         ))
 
     } else {
@@ -272,15 +282,15 @@ ggpiestats <-
     ### adding the title for the entire plot and the legend title
 
     # if legend title has not been provided, use the name of the variable corresponding to main
-    if (is.null(legend_title)) {
-      legend_title <- as.character(df$main)
+    if (is.null(legend.title)) {
+      legend.title <- as.character(df$main)
     }
     # preparing the plot
     p <-
       p +
       labs(title = title,
            caption = caption) +
-      guides(fill = guide_legend(title = legend_title))
+      guides(fill = guide_legend(title = legend.title))
 
     return(p)
 
