@@ -89,14 +89,14 @@ ggpiestats <-
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
         dplyr::arrange(.data = ., desc(perc))
     }
-    print(df)
+
     # reorder the category factor levels to order the legend
     df$main <- factor(x = df$main,
                       levels = unique(df$main))
 
-# getting labels for all levels of the 'main' variable factor
-      labels <- as.character(df$main)
-    print(labels)
+    # getting labels for all levels of the 'main' variable factor
+    labels <- as.character(df$main)
+
     ################################################## plot ##############################################
 
     if (base::missing(condition)) {
