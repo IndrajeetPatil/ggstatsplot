@@ -13,6 +13,7 @@
 #' @param caption caption for the plot
 #' @param k number of decimal places expected for results
 #' @param legend.title title for the legend
+#' @param facet.wrap.name label for the facet_wrap
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -41,6 +42,7 @@ ggpiestats <-
            title = NULL,
            caption = NULL,
            legend.title = NULL,
+           facet.wrap.name = NULL,
            k = 3) {
     ################################################## dataframe ####################################################
     # if dataframe is provided
@@ -90,12 +92,23 @@ ggpiestats <-
         dplyr::arrange(.data = ., desc(perc))
     }
 
+    ############################## preparing names for legend and facet_wrap ############################
     # reorder the category factor levels to order the legend
     df$main <- factor(x = df$main,
                       levels = unique(df$main))
 
     # getting labels for all levels of the 'main' variable factor
     labels <- as.character(df$main)
+
+    # custom labeller function
+    label_facet <- function(original_var, custom_name){
+      lev <- levels(as.factor(original_var))
+      lab <- paste0(custom_name, ": ", lev)
+      names(lab) <- lev
+      return(lab)
+    }
+    # if the user hasn't defined
+    if (is.null(facet.wrap.name)) facet.wrap.name <- "condition"
 
     ################################################## plot ##############################################
 
@@ -118,14 +131,17 @@ ggpiestats <-
         ) +
         coord_polar(theta = "y") # convert to polar coordinates
     } else {
-      p <- ggplot2::ggplot(data = df, mapping = aes(x = '', y = counts)) +
+      p <- ggplot2::ggplot(data = df,
+                           mapping = aes(x = '', y = counts)) +
         geom_col(
           position = 'fill',
           color = 'black',
           width = 1,
           aes(fill = factor(get('main')))
         ) +
-        facet_wrap(facets = ~ condition, labeller = "label_both") +
+        facet_wrap(facets = ~ condition,
+                   labeller = labeller(condition = label_facet(original_var = df$condition,
+                                                               custom_name = facet.wrap.name))) +
         geom_label(
           aes(label = paste0(round(perc), "%"), group = factor(get('main'))),
           position = position_fill(vjust = 0.5),
