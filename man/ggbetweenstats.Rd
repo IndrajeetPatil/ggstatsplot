@@ -46,8 +46,6 @@ ggbetweenstats(data = NULL, x, y, type = "parametric",
 this will show y variable values for outliers}
 
 \item{mean.color}{color for the data point corresponding to mean}
-
-\item{test}{statistical test to be run and displayed as subtitle ("t-test" or "anova")}
 }
 \description{
 Violin plots for between-subjects designs with statistical details included in the plot as a subtitle
