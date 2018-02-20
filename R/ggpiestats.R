@@ -37,7 +37,6 @@ ggpiestats <-
   function(data = NULL,
            main,
            condition = NULL,
-           labels = NULL,
            stat.title = NULL,
            title = NULL,
            caption = NULL,

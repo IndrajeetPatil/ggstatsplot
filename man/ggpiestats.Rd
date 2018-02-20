@@ -4,8 +4,8 @@
 \alias{ggpiestats}
 \title{pie charts with statistical tests}
 \usage{
-ggpiestats(data = NULL, main, condition = NULL, labels = NULL,
-  stat.title = NULL, title = NULL, caption = NULL, legend.title = NULL,
+ggpiestats(data = NULL, main, condition = NULL, stat.title = NULL,
+  title = NULL, caption = NULL, legend.title = NULL,
   facet.wrap.name = NULL, k = 3)
 }
 \arguments{
