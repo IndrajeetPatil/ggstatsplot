@@ -70,6 +70,16 @@ ggscatterstats <-
     ################################################### dataframe ####################################################
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
+      # preparing labels from given dataframe
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(x),
+                                       !!rlang::enquo(y)))
+      # if xlab is not provided, use the variable x name
+      if (is.null(xlab))
+        xlab <- lab.df[1]
+      # if ylab is not provided, use the variable y name
+      if (is.null(ylab))
+        ylab <- lab.df[2]
       # if dataframe is provided
       data <-
         dplyr::select(

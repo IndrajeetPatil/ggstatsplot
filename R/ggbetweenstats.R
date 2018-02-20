@@ -10,7 +10,6 @@
 #' @param y the response - a vector of length the number of rows of `x`
 #' @param xlab label for x axis variable
 #' @param ylab label for y axis variable
-#' @param test statistical test to be run and displayed as subtitle ("t-test" or "anova")
 #' @param type type of statistics expected ("parametric" or "nonparametric" or "robust")
 #' @param effsize.type type of effect size needed for *parametric* tests ("biased" (Cohen's d, partial eta-squared) or
 #' "unbiased" (Hedge's g, omega-squared))
@@ -87,6 +86,16 @@ ggbetweenstats <- function(data = NULL,
   ####################################### creating a dataframe #################################################
   # if dataframe is provided
   if (!is.null(data)) {
+    # preparing labels from given dataframe
+    lab.df <- colnames(dplyr::select(.data = data,
+                                     !!rlang::enquo(x),
+                                     !!rlang::enquo(y)))
+    # if xlab is not provided, use the variable x name
+    if (is.null(xlab))
+      xlab <- lab.df[1]
+    # if ylab is not provided, use the variable y name
+    if (is.null(ylab))
+      ylab <- lab.df[2]
     # if outlier label is provided then include it in the dataframe
     if (base::missing(outlier.label)) {
       # if outlier label is not provided then only include the two arguments provided
