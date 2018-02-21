@@ -22,18 +22,17 @@ Here are examples of the three main functions currently supported in `ggstatsplo
 
 -   `ggbetweenstats`
 
-This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in subtitle:
+This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in the subtitle:
 
 ``` r
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
-#> Note: Bartlett's test for homogeneity of variances: p-value =  < 0.001
 ```
 
 ![](man/figures/README-unnamed-chunk-3-1.png)
 
-Number of other arguments can be specified to make this plot even more informative and, additionally, this function returns a `ggplot2` object and thus any layer of choosing can further be modified:
+Number of other arguments can be specified to make this plot even more informative and, additionally, this function returns a `ggplot2` object and thus any of the graphics layers can be further modified:
 
 ``` r
 library(ggplot2)
@@ -45,11 +44,10 @@ ggstatsplot::ggbetweenstats(
   type = "robust",
   outlier.tagging = TRUE,
   title = "Dataset: iris",
-  caption = expression(paste(italic("Note"), "): this is a demo"))
+  caption = expression(paste(italic("Note"), ": this is a demo"))
   ) +
   coord_cartesian(ylim = c(3, 8)) + 
   scale_y_continuous(breaks = seq(3, 8, by = 1))
-#> Note: Bartlett's test for homogeneity of variances: p-value =  < 0.001
 #> Warning: Removed 149 rows containing missing values (geom_label_repel).
 ```
 
@@ -87,7 +85,7 @@ ggstatsplot::ggscatterstats(
 
 ![](man/figures/README-unnamed-chunk-6-1.png)
 
-**Important**: In contrast to all other functions in this package, the `ggscatterstats` function returns object that is not further modifiable with `ggplot2`. This can be avoided by not plotting the marginal distributions (`marginal = FALSE`). Currently trying to find a workaround this problem.
+**Important**: In contrast to all other functions in this package, the `ggscatterstats` function returns object that is **not** further modifiable with `ggplot2`. This can be avoided by not plotting the marginal distributions (`marginal = FALSE`). Currently trying to find a workaround this problem.
 
 -   `ggbetweenstats`
 
@@ -122,7 +120,7 @@ title = "dataset: mtcars",
 stat.title = "interaction effect",
 legend.title = "Transmission",
 facet.wrap.name = "cylinder",
-caption = expression(paste(italic("Note"), "): this is a demo"))
+caption = expression(paste(italic("Note"), ": this is a demo"))
 ) +
 scale_fill_brewer(palette = "Set1")
 ```

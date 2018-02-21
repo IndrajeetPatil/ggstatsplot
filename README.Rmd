@@ -25,21 +25,21 @@ Future versions will include other types of analyses as well.
 # install.packages("devtools")
 devtools::install_github("IndrajeetPatil/ggstatsplot")
 ```
-## Examples
+## Usage
 
 Here are examples of the three main functions currently supported in `ggstatsplot`:
 
 * `ggbetweenstats`
 
-This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in subtitle:
-```{r}
+This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in the subtitle:
+```{r message = FALSE}
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
 ```
 
-Number of other arguments can be specified to make this plot even more informative and, additionally, this function returns a `ggplot2` object and thus any layer of choosing can further be modified:
-```{r}
+Number of other arguments can be specified to make this plot even more informative and, additionally, this function returns a `ggplot2` object and thus any of the graphics layers can be further modified:
+```{r message = FALSE}
 library(ggplot2)
 ggstatsplot::ggbetweenstats(
   data = iris,
@@ -49,7 +49,7 @@ ggstatsplot::ggbetweenstats(
   type = "robust",
   outlier.tagging = TRUE,
   title = "Dataset: iris",
-  caption = expression(paste(italic("Note"), "): this is a demo"))
+  caption = expression(paste(italic("Note"), ": this is a demo"))
   ) +
   coord_cartesian(ylim = c(3, 8)) + 
   scale_y_continuous(breaks = seq(3, 8, by = 1))
@@ -60,14 +60,14 @@ Variant of this function `ggwithinstats` is currently under work.
 * `ggbetweenstats`
 
 This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from `ggExtra::ggMarginal()` and results from statistical tests in subtitle:
-```{r}
+```{r message = FALSE}
 ggstatsplot::ggscatterstats(data = iris, 
                             x = Sepal.Length, 
                             y = Petal.Length)
 ```
 
 Number of other arguments can be specified to modify this basic plot-
-```{r}
+```{r message = FALSE}
 ggstatsplot::ggscatterstats(
   data = subset(iris, iris$Species == "setosa"),
   x = Sepal.Length,
@@ -81,7 +81,7 @@ ggstatsplot::ggscatterstats(
   ) 
 ```
 
-**Important**: In contrast to all other functions in this package, the `ggscatterstats` function returns object that is not further modifiable with `ggplot2`. This can be avoided by not plotting the marginal distributions (`marginal = FALSE`). Currently trying to find a workaround this problem.
+**Important**: In contrast to all other functions in this package, the `ggscatterstats` function returns object that is **not** further modifiable with `ggplot2`. This can be avoided by not plotting the marginal distributions (`marginal = FALSE`). Currently trying to find a workaround this problem.
 
 * `ggbetweenstats`
 
@@ -109,7 +109,7 @@ title = "dataset: mtcars",
 stat.title = "interaction effect",
 legend.title = "Transmission",
 facet.wrap.name = "cylinder",
-caption = expression(paste(italic("Note"), "): this is a demo"))
+caption = expression(paste(italic("Note"), ": this is a demo"))
 ) +
 scale_fill_brewer(palette = "Set1")
 ```
