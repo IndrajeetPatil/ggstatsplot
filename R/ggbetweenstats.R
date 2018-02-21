@@ -439,7 +439,7 @@ ggbetweenstats <- function(data = NULL,
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k)
+              effsize = ggstatsplot::specify_decimal_p(x = abs(t_effsize[[3]]), k)
             )
           )
 
@@ -498,14 +498,6 @@ ggbetweenstats <- function(data = NULL,
         plot +
         labs(subtitle = results_subtitle(t_stat = y_t_stat,
                                          t_effsize = y_t_effsize))
-      # display equality of variance result as a message
-      # vartest <- stats::var.test(x = as.numeric(data$x), y = data$y)
-      # base::message(
-      #   paste(
-      #     "Note: F test to compare two variances: p-value = ",
-      #     ggstatsplot::specify_decimal_p(x = vartest$p.value, p.value = TRUE)
-      #   )
-      # )
 
     }
     else if (type == "nonparametric") {
