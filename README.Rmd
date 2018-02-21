@@ -24,3 +24,20 @@ in the plots themselves and targeted primarily at behavioral sciences community 
 # install.packages("devtools")
 devtools::install_github("IndrajeetPatil/ggstatsplot")
 ```
+## Examples
+
+Here are examples of the three main functions currently supported in `ggstatsplot`:
+
+# `ggbetweenstats`
+
+This function creates a violin plot for between-group or between-condition comparisons with results from statistical tests in subtitle:
+```{r}
+ggstatsplot::ggbetweenstats(data = iris, x = Species, y = Sepal.Length)
+```
+
+Number of other arguments can be specified to make this plot even more informative:
+```{r}
+ggstatsplot::ggbetweenstats(data = iris, x = Species, y = Sepal.Length, mean.plotting = TRUE, 
+                            type = "robust", outlier.tagging = TRUE, outlier.label = Petal.Length, # outlier tags can be from a different variable in the dataframe
+                            title = "Dataset: iris", caption = "Note: this is a demo")
+```
