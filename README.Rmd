@@ -74,6 +74,7 @@ ggstatsplot::ggscatterstats(
   data = subset(iris, iris$Species == "setosa"),
   x = Sepal.Length,
   y = Petal.Length,
+  test = "robust",
   xlab = "Attribute: Sepal Length",
   ylab = "Attribute: Petal Length",
   title = "Dataset: Iris flower data set",
