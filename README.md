@@ -44,8 +44,8 @@ ggstatsplot::ggbetweenstats(
   type = "robust",
   outlier.tagging = TRUE,
   xlab = "Type of Species",
-  ylab = "Speal Length",
-  title = "Dataset: iris",
+  ylab = "Attribute: Sepal Length",
+  title = "Dataset: Iris flower data set",
   caption = expression(paste(italic("Note"), ": this is a demo"))
   ) +
   coord_cartesian(ylim = c(3, 8)) + 
@@ -76,6 +76,10 @@ ggstatsplot::ggscatterstats(
   data = subset(iris, iris$Species == "setosa"),
   x = Sepal.Length,
   y = Petal.Length,
+  xlab = "Attribute: Sepal Length",
+  ylab = "Attribute: Petal Length",
+  title = "Dataset: Iris flower data set",
+  caption = expression(paste(italic("Note"), ": this is a demo")),
   marginal.type = "density",
   xfill = "blue",
   yfill = "red",
@@ -118,10 +122,10 @@ ggstatsplot::ggpiestats(
 data = mtcars,
 main = am,
 condition = cyl,
-title = "dataset: mtcars",
+title = "Dataset: Motor Trend Car Road Tests",
 stat.title = "interaction effect",
 legend.title = "Transmission",
-facet.wrap.name = "cylinder",
+facet.wrap.name = "No. of cylinders",
 caption = expression(paste(italic("Note"), ": this is a demo"))
 ) +
 scale_fill_brewer(palette = "Set1")
