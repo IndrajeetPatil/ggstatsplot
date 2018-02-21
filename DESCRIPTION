@@ -1,10 +1,11 @@
 Package: ggstatsplot
 Type: Package
-Title: ggplot2 based Plots with Statistical Details
-Version: 0.0.0.9000
+Title: ggplot2 Based Plots with Statistical Details
+Version: 0.0.1
 Authors@R: person("Indrajeet", "Patil", email = "patilindrajeet.science@gmail.com", role = c("aut", "cre"))
-Description: ggstatsplot produces various types of common publication ready information-rich plots that contain 
-    details from the statistical tests that will be relevant to plots. 
+Description: ggstatsplot is an extension of `ggplot2` package for creating graphics with details from statistical tests 
+  included in the plots themselves and targeted primarily at behavioral sciences community to provide a 
+  one-line code to produce information-rich figures.
 License: GPL-2
 Depends: R (>= 3.1.0)
 Encoding: UTF-8
@@ -33,8 +34,10 @@ Imports:
 Remotes:
   daattali/ggExtra
 Suggests:
+  datasets,
   grDevices (>= 3.4.1),
   gtable (>= 0.2.0),
   knitr (>= 1.19),
+  remotes (>= 1.1.1),
   RColorBrewer (>= 1.1-2),
   testthat (>= 2.0.0)
