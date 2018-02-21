@@ -15,8 +15,8 @@ Installation
 devtools::install_github("IndrajeetPatil/ggstatsplot")
 ```
 
-Examples
---------
+Usage
+-----
 
 Here are examples of the three main functions currently supported in `ggstatsplot`:
 
@@ -43,6 +43,8 @@ ggstatsplot::ggbetweenstats(
   mean.plotting = TRUE,
   type = "robust",
   outlier.tagging = TRUE,
+  xlab = "Type of Species",
+  ylab = "Speal Length",
   title = "Dataset: iris",
   caption = expression(paste(italic("Note"), ": this is a demo"))
   ) +
