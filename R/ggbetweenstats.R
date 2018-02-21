@@ -144,7 +144,7 @@ ggbetweenstats <- function(data = NULL,
   if (is.null(outlier.tagging))
     outlier.tagging <- FALSE
 
-  # create the plot
+  # create the basic plot
   plot <-
     ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
     geom_point(
@@ -160,22 +160,27 @@ ggbetweenstats <- function(data = NULL,
     geom_violin(width = 0.5,
                 alpha = 0.2,
                 fill = "white")
+
+  # adding a boxplot
   if (isTRUE(outlier.tagging)) {
-    plot <- plot + geom_boxplot(
-      width = 0.3,
-      alpha = 0.2,
-      fill = "white",
-      outlier.color = outlier.color,
-      outlier.shape = 16,
-      outlier.size = 3,
-      outlier.alpha = 0.7,
-      position = position_dodge(width = NULL)
-    )
+    plot <- plot +
+      geom_boxplot(
+        width = 0.3,
+        alpha = 0.2,
+        fill = "white",
+        outlier.color = outlier.color,
+        outlier.shape = 16,
+        outlier.size = 3,
+        outlier.alpha = 0.7,
+        position = position_dodge(width = NULL)
+      )
   } else {
-    plot <- plot + geom_boxplot(width = 0.3,
-                                alpha = 0.2,
-                                fill = "white")
+    plot <- plot +
+      geom_boxplot(width = 0.3,
+                   alpha = 0.2,
+                   fill = "white")
   }
+
   # specifying theme and labels for the plot
   plot <- plot + ggstatsplot::theme_mprl() +
     theme(legend.position = "none") +
@@ -473,7 +478,7 @@ ggbetweenstats <- function(data = NULL,
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k)
+              effsize = ggstatsplot::specify_decimal_p(x = abs(t_effsize[[3]]), k)
             )
           )
 
@@ -736,7 +741,8 @@ ggbetweenstats <- function(data = NULL,
           ggstatsplot::specify_decimal_p(x = ., k = k)
         )) # format the values for printing
       ) %>%
-      dplyr::select(.data = ., -contains('outlier')) # in case outlier.label is present, remove it since it's of no utility here
+      dplyr::select(.data = ., -contains('outlier'))
+    # in case outlier.label is present, remove it since it's of no utility here
 
     # attach the labels to the plot
     plot <- plot +
@@ -760,7 +766,7 @@ ggbetweenstats <- function(data = NULL,
   base::message(
     paste(
       "Note: Bartlett's test for homogeneity of variances: p-value = ",
-      ggstatsplot::specify_decimal_p(x = bartlett$p.value, p.value = TRUE)
+      ggstatsplot::specify_decimal_p(x = bartlett$p.value, k, p.value = TRUE)
     )
   )
 
