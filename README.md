@@ -4,7 +4,7 @@
 Overview
 --------
 
-ggstatsplot is an extension of `ggplot2` package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich figures. Currently, it supports only the most common types of tests used in analysis (**parametric**, **nonparametric**, and **robust** versions of **t-tets**, **anova**, and **contingency tables**). Future versions will include other types of analyses as well.
+ggstatsplot is an extension of `ggplot2` package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich figures. Currently, it supports only the most common types of tests used in analysis (**parametric**, **nonparametric**, and **robust** versions of **t-tets/anova**, **correlation**, and **contingency tables** analyses). Future versions will include other types of analyses as well.
 
 Installation
 ------------

@@ -192,7 +192,9 @@ ggscatterstats <-
           base::substitute(
             expr =
               paste(
-                "robust regression: estimate = ",
+                "robust: ",
+                italic(beta),
+                " = ",
                 estimate,
                 ", ",
                 italic("t"),
@@ -211,11 +213,9 @@ ggscatterstats <-
               t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
               df = summary(MASS_res)$df[2],
               # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(x = (
-                sfsmisc::f.robftest(object = MASS_res)
-              )$p.value),
-              k,
-              p.value = TRUE
+              pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value,
+                                                      k,
+                                                      p.value = TRUE)
             )
           )
         # preparing the message
