@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggstatsplot
+# ggstatsplot: `ggplot2` Based Plots with Statistical Details
 
 [![Travis Build
 Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)
@@ -117,7 +117,9 @@ workaround this problem.
   - `ggpiestats`
 
 This function creates a pie chart for categorical variables with results
-from contingency table analysis included in the subtitle of the plot.
+from contingency table analysis included in the subtitle of the plot. If
+only one categorical variable is entered, proportion test will be
+carried out.
 
 ``` r
 ggstatsplot::ggpiestats(data = iris,
@@ -126,20 +128,24 @@ ggstatsplot::ggpiestats(data = iris,
 
 ![](man/figures/README-unnamed-chunk-7-1.png)<!-- -->
 
-This function can also be used to study interaction between two
-categorical variables-
+This function can also be used to study an interaction between two
+categorical variables. Additionally, as with the other functions in
+`ggstatsplot`, this function returns a `ggplot2` object and can further
+be modified with `ggplot2` syntax (e.g., we can change the color palette
+*after* `ggstatsplot` has produced the plot)-
 
 ``` r
+library(ggplot2)
 ggstatsplot::ggpiestats(data = mtcars,
                         main = am,
-                        condition = cyl)
+                        condition = cyl) +
+  scale_fill_brewer(palette = "Dark2")
 ```
 
 ![](man/figures/README-unnamed-chunk-8-1.png)<!-- -->
 
 As with the other functions, this basic plot can further be modified
-with additional arguments and, additionally, this function returns a
-`ggplot2` object and thus any layer of choosing can further be modified:
+with additional arguments:
 
 ``` r
 library(ggplot2)
@@ -150,10 +156,10 @@ condition = cyl,
 title = "Dataset: Motor Trend Car Road Tests",
 stat.title = "interaction effect",
 legend.title = "Transmission",
+factor.levels = c("0 = automatic", "1 = manual"),
 facet.wrap.name = "No. of cylinders",
 caption = expression(paste(italic("Note"), ": this is a demo"))
-) +
-scale_fill_brewer(palette = "Set1")
+) 
 ```
 
 ![](man/figures/README-unnamed-chunk-9-1.png)<!-- -->
