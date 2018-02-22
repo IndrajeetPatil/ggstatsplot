@@ -1,18 +1,19 @@
 Package: ggstatsplot
+Version: 0.0.1
 Type: Package
 Title: ggplot2 Based Plots with Statistical Details
-Version: 0.0.1
 Authors@R: person("Indrajeet", "Patil", email = "patilindrajeet.science@gmail.com", role = c("aut", "cre"))
-Description: ggstatsplot is an extension of `ggplot2` package for creating graphics with details from statistical tests 
-  included in the plots themselves and targeted primarily at behavioral sciences community to provide a 
-  one-line code to produce information-rich figures.
-License: GPL-2
+Description: Extension of `ggplot2`, ggstatsplot creates graphics with details from statistical tests 
+  included in the plots themselves. It is targeted primarily at behavioral sciences community to provide a 
+  one-line code to generate information-rich plots.
+License: GPL-2 | file LICENSE
 Depends: R (>= 3.1.0)
 Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
+VignetteBuilder: knitr
 Imports: 
   car (>= 2.1-6),
   coin (>= 1.2-2),
