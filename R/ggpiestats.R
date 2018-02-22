@@ -8,6 +8,7 @@
 #' @param data the data as a data frame
 #' @param main a string naming the variable to use as the rows in the contingency table
 #' @param condition a string naming the variable to use as the columns in the contingency table
+#' @param factor.levels a character vector with labels for factor levels of 'main' variable
 #' @param stat.title title for the effect being investigated with the chi-square test
 #' @param title title for the plot
 #' @param caption caption for the plot
@@ -25,10 +26,14 @@
 #' @examples
 #' library(datasets)
 #' ggpiestats(data = iris, main = Species)
-#' # or
+#' # or (less preferable)
 #' ggpiestats(main = iris$Species)
 #' # with condition variable
 #' ggpiestats(data = mtcars, main = am, condition = cyl)
+#' # changing names and labels
+#' ggpiestats(data = mtcars, main = am, condition = cyl, factor.levels = c("zero", "one"),
+#' stat.title = "interaction", title = "Dataset: mtcars", caption = "This is a demo",
+#' legend.title = "transmission", facet.wrap.name = "No. of cylinders")
 #'
 #' @export
 #'
@@ -37,29 +42,48 @@ ggpiestats <-
   function(data = NULL,
            main,
            condition = NULL,
+           factor.levels = NULL,
            stat.title = NULL,
            title = NULL,
            caption = NULL,
            legend.title = NULL,
            facet.wrap.name = NULL,
            k = 3) {
-    ################################################## dataframe ####################################################
+    #================================= dataframe =======================================================
     # if dataframe is provided
     if (!is.null(data)) {
       # if condition variables is provided then include it in the dataframe
       if (base::missing(condition)) {
-        # if outlier label is not provided then only include the two arguments provided
+        if (is.null(legend.title))
+          legend.title <-
+            colnames(dplyr::select(.data = data,
+                                   !!rlang::enquo(main)))[1]
+        # if condition argument is not provided then only include the 'main' argument in dataframe
         data <-
           dplyr::select(.data = data,
                         main = !!rlang::enquo(main))
+
       } else {
-        # if outlier label is provided then include it to make a dataframe
+        # preparing labels from given dataframe
+        lab.df <- colnames(dplyr::select(
+          .data = data,
+          !!rlang::enquo(main),
+          !!rlang::enquo(condition)
+        ))
+        # if legend title is not provided, use the variable name for 'main' argument
+        if (is.null(legend.title))
+          legend.title <- lab.df[1]
+        # if facetting variable name is not specified, use the variable name for 'condition' argument
+        if (is.null(facet.wrap.name))
+          facet.wrap.name <- lab.df[2]
+        # if condition variable is provided, then include it in the dataframe
         data <-
           dplyr::select(
             .data = data,
             main = !!rlang::enquo(main),
             condition = !!rlang::quo_name(rlang::enquo(condition))
           )
+
       }
     } else {
       if (!is.null(condition)) {
@@ -72,6 +96,13 @@ ggpiestats <-
         data <-
           base::cbind.data.frame(main = main)
       }
+      # if the user hasn't defined the legend.title name, default to the name 'main'
+      if (is.null(legend.title))
+        legend.title <- "main"
+
+      # if the user hasn't defined the facet_wrap name, default to the name 'condition'
+      if (is.null(facet.wrap.name))
+        facet.wrap.name <- "condition"
     }
 
     # convert the data into percentages; group by conditional variable if needed
@@ -91,13 +122,18 @@ ggpiestats <-
         dplyr::arrange(.data = ., desc(perc))
     }
 
-    ############################## preparing names for legend and facet_wrap ############################
+    #========================================= preparing names for legend and facet_wrap =============================
+
     # reorder the category factor levels to order the legend
     df$main <- factor(x = df$main,
                       levels = unique(df$main))
 
     # getting labels for all levels of the 'main' variable factor
-    labels <- as.character(df$main)
+    if (is.null(factor.levels)) {
+      labels <- as.character(df$main)
+    } else {
+      labels <- factor.levels
+    }
 
     # custom labeller function to use if the user wants a different name for facet_wrap variable
     label_facet <- function(original_var, custom_name) {
@@ -106,11 +142,8 @@ ggpiestats <-
       names(lab) <- lev
       return(lab)
     }
-    # if the user hasn't defined the facet_wrap name, default to the name 'condition'
-    if (is.null(facet.wrap.name))
-      facet.wrap.name <- "condition"
 
-    ################################################## plot ##############################################
+    #======================================================= plot =====================================================
 
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
@@ -200,9 +233,10 @@ ggpiestats <-
           hjust = 0.5
         )
       ) +
-      guides(fill = guide_legend(override.aes = base::list(colour = NA))) + # remove black diagonal line from legend
-      scale_fill_brewer(palette = "Dark2") +
-      scale_colour_brewer(palette = "Dark2")
+      guides(fill = guide_legend(override.aes = base::list(colour = NA))) # remove black diagonal line from legend
+    #+
+    #scale_fill_brewer(palette = "Dark2") +
+    #scale_colour_brewer(palette = "Dark2")
 
     ############################################ chi-square test #####################################################
 
@@ -314,6 +348,7 @@ ggpiestats <-
            caption = caption) +
       guides(fill = guide_legend(title = legend.title))
 
+    # return the final plot
     return(p)
 
   }

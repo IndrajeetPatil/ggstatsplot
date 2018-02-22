@@ -4,9 +4,11 @@
 \name{ggstatsplot}
 \alias{ggstatsplot}
 \alias{ggstatsplot-package}
-\title{ggstatsplot}
+\title{\code{ggstatsplot}}
 \description{
-Collection of functions to enhance \code{ggplot2} with results from statistical tests.
+Collection of functions to enhance \code{ggplot2} plots with results from statistical tests.
+}
+\details{
 The main functions are-
 \itemize{
 \item \code{\link[ggstatsplot]{ggbetweenstats}} function to produce information-rich comparison plot between
@@ -18,8 +20,7 @@ the statistical tests in the subtitle
 \item \code{\link[ggstatsplot]{theme_mprl}} default theme used for the \code{ggstatplot} package
 \item \code{\link[ggstatsplot]{specify_decimal_p}} format results for pretty printing
 }
-}
-\details{
+
 For more documentation, see \href{https://github.com/IndrajeetPatil/ggstatsplot}{README} on GitHub.
 Vignette preparation in progress.
 }
