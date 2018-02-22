@@ -1,18 +1,23 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-ggstatsplot
-===========
+# ggstatsplot
 
-[![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)
+[![Travis Build
+Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)
 
-Overview
---------
+## Overview
 
-ggstatsplot is an extension of `ggplot2` package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich figures. Currently, it supports only the most common types of tests used in analysis (**parametric**, **nonparametric**, and **robust** versions of **t-tets/anova**, **correlation**, and **contingency tables** analyses). Future versions will include other types of analyses as well.
+ggstatsplot is an extension of `ggplot2` package for creating graphics
+with details from statistical tests included in the plots themselves and
+targeted primarily at behavioral sciences community to provide a
+one-line code to produce information-rich figures. Currently, it
+supports only the most common types of tests used in analysis
+(**parametric**, **nonparametric**, and **robust** versions of
+**t-tets/anova**, **correlation**, and **contingency tables** analyses).
+Future versions will include other types of analyses as well.
 
-Installation
-------------
+## Installation
 
 ``` r
 # You can get the development version from GitHub:
@@ -20,14 +25,16 @@ Installation
 devtools::install_github("IndrajeetPatil/ggstatsplot")
 ```
 
-Usage
------
+## Usage
 
-Here are examples of the three main functions currently supported in `ggstatsplot`:
+Here are examples of the three main functions currently supported in
+`ggstatsplot`:
 
--   `ggbetweenstats`
+  - `ggbetweenstats`
 
-This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in the subtitle:
+This function creates a violin plot for **between**-group or
+**between**-condition comparisons with results from statistical tests in
+the subtitle:
 
 ``` r
 ggstatsplot::ggbetweenstats(data = iris, 
@@ -35,9 +42,11 @@ ggstatsplot::ggbetweenstats(data = iris,
                             y = Sepal.Length)
 ```
 
-![](man/figures/README-unnamed-chunk-3-1.png)
+![](man/figures/README-unnamed-chunk-3-1.png)<!-- -->
 
-Number of other arguments can be specified to make this plot even more informative and, additionally, this function returns a `ggplot2` object and thus any of the graphics layers can be further modified:
+Number of other arguments can be specified to make this plot even more
+informative and, additionally, this function returns a `ggplot2` object
+and thus any of the graphics layers can be further modified:
 
 ``` r
 library(ggplot2)
@@ -58,13 +67,15 @@ ggstatsplot::ggbetweenstats(
 #> Warning: Removed 149 rows containing missing values (geom_label_repel).
 ```
 
-![](man/figures/README-unnamed-chunk-4-1.png)
+![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
 
 Variant of this function `ggwithinstats` is currently under work.
 
--   `ggbetweenstats`
+  - `ggscatterstats`
 
-This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from `ggExtra::ggMarginal()` and results from statistical tests in subtitle:
+This function creates a scatterplot with marginal
+histograms/boxplots/density/violin plots from `ggExtra::ggMarginal()`
+and results from statistical tests in subtitle:
 
 ``` r
 ggstatsplot::ggscatterstats(data = iris, 
@@ -72,7 +83,7 @@ ggstatsplot::ggscatterstats(data = iris,
                             y = Petal.Length)
 ```
 
-![](man/figures/README-unnamed-chunk-5-1.png)
+![](man/figures/README-unnamed-chunk-5-1.png)<!-- -->
 
 Number of other arguments can be specified to modify this basic plot-
 
@@ -95,22 +106,28 @@ ggstatsplot::ggscatterstats(
   ) 
 ```
 
-![](man/figures/README-unnamed-chunk-6-1.png)
+![](man/figures/README-unnamed-chunk-6-1.png)<!-- -->
 
-**Important**: In contrast to all other functions in this package, the `ggscatterstats` function returns object that is **not** further modifiable with `ggplot2`. This can be avoided by not plotting the marginal distributions (`marginal = FALSE`). Currently trying to find a workaround this problem.
+**Important**: In contrast to all other functions in this package, the
+`ggscatterstats` function returns object that is **not** further
+modifiable with `ggplot2`. This can be avoided by not plotting the
+marginal distributions (`marginal = FALSE`). Currently trying to find a
+workaround this problem.
 
--   `ggbetweenstats`
+  - `ggpiestats`
 
-This function creates a pie chart for categorical variables with results from contingency table analysis included in the subtitle of the plot.
+This function creates a pie chart for categorical variables with results
+from contingency table analysis included in the subtitle of the plot.
 
 ``` r
 ggstatsplot::ggpiestats(data = iris,
                         main = Species)
 ```
 
-![](man/figures/README-unnamed-chunk-7-1.png)
+![](man/figures/README-unnamed-chunk-7-1.png)<!-- -->
 
-This function can also be used to study interaction between two categorical variables-
+This function can also be used to study interaction between two
+categorical variables-
 
 ``` r
 ggstatsplot::ggpiestats(data = mtcars,
@@ -118,9 +135,11 @@ ggstatsplot::ggpiestats(data = mtcars,
                         condition = cyl)
 ```
 
-![](man/figures/README-unnamed-chunk-8-1.png)
+![](man/figures/README-unnamed-chunk-8-1.png)<!-- -->
 
-As with the other functions, this basic plot can further be modified with additional arguments and, additionally, this function returns a `ggplot2` object and thus any layer of choosing can further be modified:
+As with the other functions, this basic plot can further be modified
+with additional arguments and, additionally, this function returns a
+`ggplot2` object and thus any layer of choosing can further be modified:
 
 ``` r
 library(ggplot2)
@@ -137,4 +156,4 @@ caption = expression(paste(italic("Note"), ": this is a demo"))
 scale_fill_brewer(palette = "Set1")
 ```
 
-![](man/figures/README-unnamed-chunk-9-1.png)
+![](man/figures/README-unnamed-chunk-9-1.png)<!-- -->

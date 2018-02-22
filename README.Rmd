@@ -62,7 +62,7 @@ ggstatsplot::ggbetweenstats(
 
 Variant of this function `ggwithinstats` is currently under work.
 
-* `ggbetweenstats`
+* `ggscatterstats`
 
 This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from `ggExtra::ggMarginal()` and results from statistical tests in subtitle:
 ```{r message = FALSE}
@@ -93,7 +93,7 @@ ggstatsplot::ggscatterstats(
 
 **Important**: In contrast to all other functions in this package, the `ggscatterstats` function returns object that is **not** further modifiable with `ggplot2`. This can be avoided by not plotting the marginal distributions (`marginal = FALSE`). Currently trying to find a workaround this problem.
 
-* `ggbetweenstats`
+* `ggpiestats`
 
 This function creates a pie chart for categorical variables with results from contingency table analysis included in the subtitle of the plot. 
 ```{r message = FALSE}
