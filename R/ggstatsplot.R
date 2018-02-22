@@ -1,6 +1,7 @@
-#' ggstatsplot
+#' \code{ggstatsplot}
 #'
-#' Collection of functions to enhance \code{ggplot2} with results from statistical tests.
+#' Collection of functions to enhance \code{ggplot2} plots with results from statistical tests.
+#'
 #' The main functions are-
 #' \itemize{
 #'   \item \code{\link[ggstatsplot]{ggbetweenstats}} function to produce information-rich comparison plot between

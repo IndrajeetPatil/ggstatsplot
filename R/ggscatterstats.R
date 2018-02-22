@@ -95,7 +95,8 @@ ggscatterstats <-
     }
 
     ######################################## statistical labels ######################################################
-    # if results.subtitle argument is not specified, default to showing the results
+
+     # if results.subtitle argument is not specified, default to showing the results
     if (is.null(results.subtitle))
       results.subtitle <- TRUE
     # if results.subtitle argument is set to FALSE then subtitle should be set to NULL

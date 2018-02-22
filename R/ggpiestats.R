@@ -204,7 +204,7 @@ ggpiestats <-
       scale_fill_brewer(palette = "Dark2") +
       scale_colour_brewer(palette = "Dark2")
 
-    ###################################### chi-square test ###############################################
+    ############################################ chi-square test #####################################################
 
     # custom function to write results from chi-square test into subtitle for the plot
     # x stands for the chi-square object

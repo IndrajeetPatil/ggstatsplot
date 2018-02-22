@@ -193,7 +193,7 @@ ggbetweenstats <- function(data = NULL,
     scale_fill_brewer(palette = "Dark2") +
     scale_color_brewer(palette = "Dark2")
 
-  ## custom function to write results from group comparison test subtitle of a given plot
+  ################################################  preparing stats subtitles #########################################
 
   # figure out which test to run based on the number of levels of the independent variables
   if (length(levels(as.factor(data$x))) < 3) {
