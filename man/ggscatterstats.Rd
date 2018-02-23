@@ -16,7 +16,8 @@
 
 \item{marginal}{decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}}
 
-\item{marginal.type}{type of marginal distribution to be plotted on the axes ("histogram", "boxplot", "density", "violin")}
+\item{marginal.type}{type of marginal distribution to be plotted on the axes
+("histogram", "boxplot", "density", "violin")}
 
 \item{xfill}{colour fill for x axis distibution (default: "orange")}
 
@@ -43,6 +44,9 @@
 \description{
 Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
 statistical details added as a subtitle
+}
+\note{
+If you want to use \code{marginal.type = "violin"}, you will have to use development version of \code{ggExtra}
 }
 \examples{
 # the most basic and minimalistic way of entering arguments

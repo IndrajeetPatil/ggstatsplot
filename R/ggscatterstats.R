@@ -12,7 +12,8 @@
 #' @param xlab label for x axis variable
 #' @param ylab label for y axis variable
 #' @param marginal decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`
-#' @param marginal.type type of marginal distribution to be plotted on the axes ("histogram", "boxplot", "density", "violin")
+#' @param marginal.type type of marginal distribution to be plotted on the axes
+#' ("histogram", "boxplot", "density", "violin")
 #' @param xfill colour fill for x axis distibution (default: "orange")
 #' @param yfill colour fill for y axis distribution (default: "green")
 #' @param test statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")
@@ -45,6 +46,8 @@
 #' # more detailed call
 #' ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
 #' intercept = 'median', test = 'robust', marginal.type = 'density')
+#'
+#' @note If you want to use `marginal.type = "violin"`, you will have to use development version of `ggExtra`
 #'
 #' @export
 
