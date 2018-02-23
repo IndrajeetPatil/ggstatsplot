@@ -212,19 +212,19 @@ ggbetweenstats <- function(data = NULL,
       # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
       # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
       # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
-      y_aov <- stats::aov(formula = y ~ x,
-                          data = data)
       # getting model summary
-      y_aov_stat <-
-        car::Anova(mod = y_aov,
+      aov_stat <-
+        car::Anova(mod = stats::aov(formula = y ~ x,
+                                    data = data),
                    type = "III",
                    white.adjust = FALSE)
 
       # preparing the subtitles with appropriate effect sizes
       if (effsize.type == "unbiased") {
         # partial omega-squared is the biased estimate of effect size for parametric ANOVA
-        y_aov_effsize <-
-          sjstats::omega_sq(model = y_aov)
+        aov_effsize <-
+          sjstats::omega_sq(model = stats::aov(formula = y ~ x,
+                                               data = data))
         # aov_stat input represents the anova object summary derived from car library
         results_subtitle <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
@@ -262,8 +262,10 @@ ggbetweenstats <- function(data = NULL,
 
       } else if (effsize.type == "biased") {
         # partial eta-squared is the biased estimate of effect size for parametric ANOVA
-        y_aov_effsize <-
-          sjstats::eta_sq(model = y_aov, partial = TRUE)
+        aov_effsize <-
+          sjstats::eta_sq(model = stats::aov(formula = y ~ x,
+                                             data = data),
+                          partial = TRUE)
         # aov_stat input represents the anova object summary derived from car library
         results_subtitle <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
@@ -302,8 +304,9 @@ ggbetweenstats <- function(data = NULL,
       }
       # adding the subtitle to the plot
       plot <-
-        plot + labs(subtitle = results_subtitle(aov_stat = y_aov_stat,
-                                                aov_effsize = y_aov_effsize))
+        plot +
+        labs(subtitle = results_subtitle(aov_stat = aov_stat,
+                                                aov_effsize = aov_effsize))
 
 
     } else if (type == "nonparametric") {
@@ -340,7 +343,10 @@ ggbetweenstats <- function(data = NULL,
 
       # adding the subtitle to the plot
       plot <-
-        plot + labs(subtitle = results_subtitle(kw_stat = y_kw_stat))
+        plot +
+        labs(subtitle = results_subtitle(kw_stat = y_kw_stat))
+
+      # letting the user know that this test doesn't have agreed upon effect size
       base::message(paste(
         "Note: No effect size available for Kruskal-Wallis Rank Sum Test."
       ))
@@ -405,7 +411,7 @@ ggbetweenstats <- function(data = NULL,
 
     if (type == "parametric")  {
       # setting up the anova model and getting its summary and effect size
-      y_t_stat <-
+      t_stat <-
         stats::t.test(
           formula = y ~ x,
           data = data,
@@ -445,7 +451,7 @@ ggbetweenstats <- function(data = NULL,
 
         }
         # Hedge's g is an unbiased estimate of the effect size
-        y_t_effsize <-
+        t_effsize <-
           effsize::cohen.d(
             formula = y ~ x,
             data = data,
@@ -484,7 +490,7 @@ ggbetweenstats <- function(data = NULL,
 
         }
         # Cohen's d is a biased estimate of the effect size
-        y_t_effsize <-
+        t_effsize <-
           effsize::cohen.d(
             formula = y ~ x,
             data = data,
@@ -496,8 +502,8 @@ ggbetweenstats <- function(data = NULL,
       # adding subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = results_subtitle(t_stat = y_t_stat,
-                                         t_effsize = y_t_effsize))
+        labs(subtitle = results_subtitle(t_stat = t_stat,
+                                         t_effsize = t_effsize))
 
     }
     else if (type == "nonparametric") {
