@@ -23,7 +23,7 @@ Imports:
   devtools (>= 1.13.4),
   dplyr (>= 0.7.4),
   effsize (>= 0.7.1),
-  ggExtra,
+  ggExtra (>= 0.7.1),
   ggrepel (>= 0.7.0),
   ggplot2 (>= 2.2.1),
   grid (>= 3.4.1),
@@ -35,14 +35,11 @@ Imports:
   sjstats (>= 0.14.0),
   stats (>= 3.4.1),
   WRS2 (>= 0.9-2)
-Remotes: 
-  github::daattali/ggExtra
 Suggests: 
     datasets,
     grDevices (>= 3.4.1),
     gtable (>= 0.2.0),
     knitr,
-    remotes (>= 1.1.1),
     RColorBrewer (>= 1.1-2),
     testthat (>= 2.0.0),
     rmarkdown
