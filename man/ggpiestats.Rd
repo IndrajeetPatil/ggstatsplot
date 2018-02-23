@@ -3,11 +3,6 @@
 \name{ggpiestats}
 \alias{ggpiestats}
 \title{pie charts with statistical tests}
-\usage{
-ggpiestats(data = NULL, main, condition = NULL, factor.levels = NULL,
-  stat.title = NULL, title = NULL, caption = NULL, legend.title = NULL,
-  facet.wrap.name = NULL, k = 3)
-}
 \arguments{
 \item{data}{the data as a data frame}
 
@@ -23,11 +18,11 @@ ggpiestats(data = NULL, main, condition = NULL, factor.levels = NULL,
 
 \item{caption}{caption for the plot}
 
+\item{k}{number of decimal places expected for results}
+
 \item{legend.title}{title for the legend}
 
 \item{facet.wrap.name}{label for the facet_wrap}
-
-\item{k}{number of decimal places expected for results}
 }
 \description{
 Pie charts for categorical data with statistical details included in the plot as a subtitle

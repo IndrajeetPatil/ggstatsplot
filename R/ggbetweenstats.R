@@ -66,6 +66,38 @@
 #'
 #' @export
 
+# defining global variables and functions to quient the R CMD check notes
+utils::globalVariables(
+  c(
+    "U",
+    "V",
+    "Z",
+    "chi",
+    "counts",
+    "df",
+    "df1",
+    "df2",
+    "effsize",
+    "estimate",
+    "eta",
+    "omega",
+    "perc",
+    "phicoeff",
+    "pvalue",
+    "r",
+    "rho",
+    "xi",
+    "y",
+    "z_value",
+    "italic",
+    "rsubtitle",
+    "stats_subtitle",
+    "chi_subtitle",
+    "proptest_subtitle"
+  )
+)
+
+# defining the function
 ggbetweenstats <- function(data = NULL,
                            x,
                            y,
@@ -226,7 +258,7 @@ ggbetweenstats <- function(data = NULL,
           sjstats::omega_sq(model = stats::aov(formula = y ~ x,
                                                data = data))
         # aov_stat input represents the anova object summary derived from car library
-        results_subtitle <- function(aov_stat, aov_effsize) {
+        rsubtitle <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -267,7 +299,7 @@ ggbetweenstats <- function(data = NULL,
                                              data = data),
                           partial = TRUE)
         # aov_stat input represents the anova object summary derived from car library
-        results_subtitle <- function(aov_stat, aov_effsize) {
+        rsubtitle <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -305,7 +337,7 @@ ggbetweenstats <- function(data = NULL,
       # adding the subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = results_subtitle(aov_stat = aov_stat,
+        labs(subtitle = rsubtitle(aov_stat = aov_stat,
                                                 aov_effsize = aov_effsize))
 
 
@@ -316,7 +348,7 @@ ggbetweenstats <- function(data = NULL,
                                        data = data,
                                        na.action = na.omit)
       # aov_stat input represents the anova object summary derived from car library
-      results_subtitle <- function(kw_stat) {
+      rsubtitle <- function(kw_stat) {
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -344,7 +376,7 @@ ggbetweenstats <- function(data = NULL,
       # adding the subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = results_subtitle(kw_stat = y_kw_stat))
+        labs(subtitle = rsubtitle(kw_stat = y_kw_stat))
 
       # letting the user know that this test doesn't have agreed upon effect size
       base::message(paste(
@@ -354,7 +386,7 @@ ggbetweenstats <- function(data = NULL,
       ######################################### robust ANOVA ############################################################
 
       # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
-      results_subtitle <- function(robust_aov_stat) {
+      rsubtitle <- function(robust_aov_stat) {
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -398,7 +430,7 @@ ggbetweenstats <- function(data = NULL,
 
       # adding the label to the plot
       plot <-
-        plot + labs(subtitle = results_subtitle(robust_aov_stat = robust_y_aov))
+        plot + labs(subtitle = rsubtitle(robust_aov_stat = robust_y_aov))
 
     }
 
@@ -421,7 +453,7 @@ ggbetweenstats <- function(data = NULL,
 
       if (effsize.type == "unbiased") {
         # t_stat input represents the t-test object summary derived from stats library
-        results_subtitle <- function(t_stat, t_effsize) {
+        rsubtitle <- function(t_stat, t_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -460,7 +492,7 @@ ggbetweenstats <- function(data = NULL,
           )
       } else if (effsize.type == "biased") {
         # t_stat input represents the t-test object summary derived from stats library
-        results_subtitle <- function(t_stat, t_effsize) {
+        rsubtitle <- function(t_stat, t_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -502,7 +534,7 @@ ggbetweenstats <- function(data = NULL,
       # adding subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = results_subtitle(t_stat = t_stat,
+        labs(subtitle = rsubtitle(t_stat = t_stat,
                                          t_effsize = t_effsize))
 
     }
@@ -531,7 +563,7 @@ ggbetweenstats <- function(data = NULL,
       )
       # mann_stat input represents the U-test summary derived from stats library, while Z is
       # from Exact Wilcoxon-Pratt Signed-Rank Test from coin library
-      results_subtitle <- function(mann_stat, z_stat) {
+      rsubtitle <- function(mann_stat, z_stat) {
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -564,13 +596,13 @@ ggbetweenstats <- function(data = NULL,
       # adding subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = results_subtitle(mann_stat = mann_stat,
+        labs(subtitle = rsubtitle(mann_stat = mann_stat,
                                          z_stat = z_stat))
     } else if (type == "robust") {
       ######################################### robust t-test ############################################################
 
       # t_robust_stat input represents the t-test object summary derived from WRS2 library
-      results_subtitle <-
+      rsubtitle <-
         function(t_robust_stat, t_robust_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
@@ -614,7 +646,7 @@ ggbetweenstats <- function(data = NULL,
       plot <-
         plot +
         labs(
-          subtitle = results_subtitle(t_robust_stat = y_robust_t_stat,
+          subtitle = rsubtitle(t_robust_stat = y_robust_t_stat,
                                       t_robust_effsize = y_robust_t_effsize)
         )
 
@@ -764,7 +796,9 @@ ggbetweenstats <- function(data = NULL,
   base::message(
     paste(
       "Note: Bartlett's test for homogeneity of variances: p-value = ",
-      ggstatsplot::specify_decimal_p(x = bartlett$p.value, k, p.value = TRUE)
+      ggstatsplot::specify_decimal_p(x = bartlett$p.value,
+                                     k,
+                                     p.value = TRUE)
     )
   )
 
