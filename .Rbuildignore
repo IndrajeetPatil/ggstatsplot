@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^CONDUCT\.md$
 ^\.travis\.yml$
+^README-.*\.png$
+^cran-comments\.md$
