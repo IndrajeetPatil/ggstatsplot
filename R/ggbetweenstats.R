@@ -344,7 +344,7 @@ ggbetweenstats <- function(data = NULL,
     } else if (type == "nonparametric") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
       # setting up the anova model and getting its summary
-      y_kw_stat <- stats::kruskal.test(formula = y ~ x,
+      kw_stat <- stats::kruskal.test(formula = y ~ x,
                                        data = data,
                                        na.action = na.omit)
       # aov_stat input represents the anova object summary derived from car library
@@ -376,7 +376,7 @@ ggbetweenstats <- function(data = NULL,
       # adding the subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle(kw_stat = y_kw_stat))
+        labs(subtitle = rsubtitle(kw_stat = kw_stat))
 
       # letting the user know that this test doesn't have agreed upon effect size
       base::message(paste(
@@ -634,11 +634,11 @@ ggbetweenstats <- function(data = NULL,
         }
 
       # setting up the independent samples t-tests on robust location measures (without bootstraps)
-      y_robust_t_stat <-
+      t_robust_stat <-
         WRS2::yuen(formula = y ~ x,
                    data = data)
       # computing effect sizes
-      y_robust_t_effsize <-
+      t_robust_effsize <-
         WRS2::yuen.effect.ci(formula = y ~ x,
                              data = data)
 
@@ -646,8 +646,8 @@ ggbetweenstats <- function(data = NULL,
       plot <-
         plot +
         labs(
-          subtitle = rsubtitle(t_robust_stat = y_robust_t_stat,
-                                      t_robust_effsize = y_robust_t_effsize)
+          subtitle = rsubtitle(t_robust_stat = t_robust_stat,
+                                      t_robust_effsize = t_robust_effsize)
         )
 
     }
