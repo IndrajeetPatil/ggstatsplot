@@ -420,7 +420,7 @@ ggbetweenstats <- function(data = NULL,
       }
 
       # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
-      robust_y_aov <-
+      robust_aov_stat <-
         WRS2::t1way(
           formula = y ~ x,
           data = data,
@@ -430,7 +430,7 @@ ggbetweenstats <- function(data = NULL,
 
       # adding the label to the plot
       plot <-
-        plot + labs(subtitle = rsubtitle(robust_aov_stat = robust_y_aov))
+        plot + labs(subtitle = rsubtitle(robust_aov_stat = robust_aov_stat))
 
     }
 
