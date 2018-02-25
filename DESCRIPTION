@@ -23,7 +23,7 @@ Imports:
   devtools (>= 1.13.4),
   dplyr (>= 0.7.4),
   effsize (>= 0.7.1),
-  ggExtra (>= 0.7.1),
+  ggExtra (>= 0.7),
   ggrepel (>= 0.7.0),
   ggplot2 (>= 2.2.1),
   grid (>= 3.4.1),
