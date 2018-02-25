@@ -81,20 +81,24 @@ ggpiestats <-
            legend.title = NULL,
            facet.wrap.name = NULL,
            k = 3) {
-    #================================= dataframe =======================================================
+    # ================================= dataframe =======================================================
     # if dataframe is provided
     if (!is.null(data)) {
       # if condition variables is provided then include it in the dataframe
       if (base::missing(condition)) {
-        if (is.null(legend.title))
+        if (is.null(legend.title)) {
           legend.title <-
-            colnames(dplyr::select(.data = data,
-                                   !!rlang::enquo(main)))[1]
+            colnames(dplyr::select(
+              .data = data,
+              !!rlang::enquo(main)
+            ))[1]
+        }
         # if condition argument is not provided then only include the 'main' argument in dataframe
         data <-
-          dplyr::select(.data = data,
-                        main = !!rlang::enquo(main))
-
+          dplyr::select(
+            .data = data,
+            main = !!rlang::enquo(main)
+          )
       } else {
         # preparing labels from given dataframe
         lab.df <- colnames(dplyr::select(
@@ -103,11 +107,13 @@ ggpiestats <-
           !!rlang::enquo(condition)
         ))
         # if legend title is not provided, use the variable name for 'main' argument
-        if (is.null(legend.title))
+        if (is.null(legend.title)) {
           legend.title <- lab.df[1]
+        }
         # if facetting variable name is not specified, use the variable name for 'condition' argument
-        if (is.null(facet.wrap.name))
+        if (is.null(facet.wrap.name)) {
           facet.wrap.name <- lab.df[2]
+        }
         # if condition variable is provided, then include it in the dataframe
         data <-
           dplyr::select(
@@ -115,26 +121,29 @@ ggpiestats <-
             main = !!rlang::enquo(main),
             condition = !!rlang::quo_name(rlang::enquo(condition))
           )
-
       }
     } else {
       if (!is.null(condition)) {
         # if vectors are provided and condition vector is present
         data <-
-          base::cbind.data.frame(main = main,
-                                 condition = condition)
+          base::cbind.data.frame(
+            main = main,
+            condition = condition
+          )
       } else {
         # if condition vector is absent
         data <-
           base::cbind.data.frame(main = main)
       }
       # if the user hasn't defined the legend.title name, default to the name 'main'
-      if (is.null(legend.title))
+      if (is.null(legend.title)) {
         legend.title <- "main"
+      }
 
       # if the user hasn't defined the facet_wrap name, default to the name 'condition'
-      if (is.null(facet.wrap.name))
+      if (is.null(facet.wrap.name)) {
         facet.wrap.name <- "condition"
+      }
     }
 
     # convert the data into percentages; group by conditional variable if needed
@@ -154,11 +163,13 @@ ggpiestats <-
         dplyr::arrange(.data = ., desc(perc))
     }
 
-    #========================================= preparing names for legend and facet_wrap =============================
+    # ========================================= preparing names for legend and facet_wrap =============================
 
     # reorder the category factor levels to order the legend
-    df$main <- factor(x = df$main,
-                      levels = unique(df$main))
+    df$main <- factor(
+      x = df$main,
+      levels = unique(df$main)
+    )
 
     # getting labels for all levels of the 'main' variable factor
     if (is.null(factor.levels)) {
@@ -175,49 +186,57 @@ ggpiestats <-
       return(lab)
     }
 
-    #======================================================= plot =====================================================
+    # ======================================================= plot =====================================================
 
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
-      p <- ggplot2::ggplot(data = df,
-                           mapping = aes(x = '', y = counts)) +
+      p <- ggplot2::ggplot(
+        data = df,
+        mapping = aes(x = "", y = counts)
+      ) +
         geom_col(
-          position = 'fill',
-          color = 'black',
+          position = "fill",
+          color = "black",
           width = 1,
-          aes(fill = factor(get('main')))
+          aes(fill = factor(get("main")))
         ) +
         geom_label(
-          aes(label = paste0(round(perc), "%"),
-              group = factor(get('main'))),
+          aes(
+            label = paste0(round(perc), "%"),
+            group = factor(get("main"))
+          ),
           position = position_fill(vjust = 0.5),
-          color = 'black',
+          color = "black",
           size = 5,
           show.legend = FALSE
         ) +
         coord_polar(theta = "y") # convert to polar coordinates
     } else {
       # if facet_wrap *is* happening
-      p <- ggplot2::ggplot(data = df,
-                           mapping = aes(x = '', y = counts)) +
+      p <- ggplot2::ggplot(
+        data = df,
+        mapping = aes(x = "", y = counts)
+      ) +
         geom_col(
-          position = 'fill',
-          color = 'black',
+          position = "fill",
+          color = "black",
           width = 1,
-          aes(fill = factor(get('main')))
+          aes(fill = factor(get("main")))
         ) +
-        facet_wrap(facets = ~ condition,
-                   # creating facets and, if necessary, changing the facet_wrap name
-                   labeller = labeller(
-                     condition = label_facet(
-                       original_var = df$condition,
-                       custom_name = facet.wrap.name
-                     )
-                   )) +
+        facet_wrap(
+          facets = ~ condition,
+          # creating facets and, if necessary, changing the facet_wrap name
+          labeller = labeller(
+            condition = label_facet(
+              original_var = df$condition,
+              custom_name = facet.wrap.name
+            )
+          )
+        ) +
         geom_label(
-          aes(label = paste0(round(perc), "%"), group = factor(get('main'))),
+          aes(label = paste0(round(perc), "%"), group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
-          color = 'black',
+          color = "black",
           size = 5,
           show.legend = FALSE
         ) +
@@ -230,7 +249,7 @@ ggpiestats <-
       scale_fill_discrete(name = "", labels = unique(labels)) +
       theme_grey() +
       theme(
-        panel.grid  = element_blank(),
+        panel.grid = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
         axis.text.x = element_blank(),
@@ -242,10 +261,10 @@ ggpiestats <-
         legend.title = element_text(size = 14, face = "bold"),
         legend.title.align = 0.5,
         legend.text.align = 0.5,
-        legend.direction = 'horizontal',
-        legend.position = 'bottom',
+        legend.direction = "horizontal",
+        legend.position = "bottom",
         legend.key = element_rect(size = 5),
-        legend.key.size = unit(1.5, 'lines'),
+        legend.key.size = unit(1.5, "lines"),
         legend.margin = margin(5, 5, 5, 5),
         legend.box.margin = margin(5, 5, 5, 5),
         panel.border = element_rect(
@@ -266,9 +285,9 @@ ggpiestats <-
         )
       ) +
       guides(fill = guide_legend(override.aes = base::list(colour = NA))) # remove black diagonal line from legend
-    #+
-    #scale_fill_brewer(palette = "Dark2") +
-    #scale_colour_brewer(palette = "Dark2")
+    # +
+    # scale_fill_brewer(palette = "Dark2") +
+    # scale_colour_brewer(palette = "Dark2")
 
     ############################################ chi-square test #####################################################
 
@@ -280,15 +299,16 @@ ggpiestats <-
 
     chi_subtitle <- function(x, effect = NULL) {
       # if effect label hasn't been specified, use this default
-      if (is.null(effect))
+      if (is.null(effect)) {
         effect <- "Chi-square test"
+      }
 
       base::substitute(
         expr =
           paste(
             y,
             " : ",
-            italic(chi) ^ 2,
+            italic(chi)^2,
             "(",
             df,
             ") = ",
@@ -311,7 +331,6 @@ ggpiestats <-
           phicoeff = ggstatsplot::specify_decimal_p(x = as.data.frame(x$nom)[[4]], k)
         )
       )
-
     }
 
     ###################################### proportion test ###############################################
@@ -324,7 +343,7 @@ ggpiestats <-
         expr =
           paste(
             "Proportion test : ",
-            italic(chi) ^ 2,
+            italic(chi)^2,
             "(",
             df,
             ") = ",
@@ -341,7 +360,6 @@ ggpiestats <-
           pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(x$tests)[[3]], k, p.value = TRUE)
         )
       )
-
     }
 
     #################################### statistical test results #######################################
@@ -351,20 +369,20 @@ ggpiestats <-
         p + labs(subtitle = chi_subtitle(
           x = jmv::contTables(
             data = data,
-            rows = 'condition',
-            cols = 'main',
+            rows = "condition",
+            cols = "main",
             phiCra = TRUE
           ),
           effect = stat.title
         ))
-
     } else {
       # adding subtitle to the plot
       p <-
         p +
-        labs(subtitle = proptest_subtitle(x = jmv::propTestN(data = data,
-                                                             var = 'main')))
-
+        labs(subtitle = proptest_subtitle(x = jmv::propTestN(
+          data = data,
+          var = "main"
+        )))
     }
 
     #################################### putting all together ############################################
@@ -376,11 +394,12 @@ ggpiestats <-
     # preparing the plot
     p <-
       p +
-      labs(title = title,
-           caption = caption) +
+      labs(
+        title = title,
+        caption = caption
+      ) +
       guides(fill = guide_legend(title = legend.title))
 
     # return the final plot
     return(p)
-
   }

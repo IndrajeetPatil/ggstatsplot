@@ -48,5 +48,4 @@ theme_mprl <- function() {
         hjust = 0.5
       )
     )
-
 }

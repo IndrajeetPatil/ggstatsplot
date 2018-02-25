@@ -36,7 +36,7 @@
 #' @importFrom stats cor.test
 #' @importFrom stats na.omit
 #'
-#'@examples
+#' @examples
 #' # the most basic and minimalistic way of entering arguments
 #' library(datasets)
 #' ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length)
@@ -106,15 +106,19 @@ ggscatterstats <-
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(.data = data,
-                                       !!rlang::enquo(x),
-                                       !!rlang::enquo(y)))
+      lab.df <- colnames(dplyr::select(
+        .data = data,
+        !!rlang::enquo(x),
+        !!rlang::enquo(y)
+      ))
       # if xlab is not provided, use the variable x name
-      if (is.null(xlab))
+      if (is.null(xlab)) {
         xlab <- lab.df[1]
+      }
       # if ylab is not provided, use the variable y name
-      if (is.null(ylab))
+      if (is.null(ylab)) {
         ylab <- lab.df[2]
+      }
       # if dataframe is provided
       data <-
         dplyr::select(
@@ -125,18 +129,22 @@ ggscatterstats <-
     } else {
       # if vectors are provided
       data <-
-        base::cbind.data.frame(x = x,
-                               y = y)
+        base::cbind.data.frame(
+          x = x,
+          y = y
+        )
     }
 
     ######################################## statistical labels ######################################################
 
-     # if results.subtitle argument is not specified, default to showing the results
-    if (is.null(results.subtitle))
+    # if results.subtitle argument is not specified, default to showing the results
+    if (is.null(results.subtitle)) {
       results.subtitle <- TRUE
+    }
     # if results.subtitle argument is set to FALSE then subtitle should be set to NULL
-    if (results.subtitle != TRUE)
+    if (results.subtitle != TRUE) {
       stats_subtitle <- NULL
+    }
 
     if (results.subtitle == TRUE) {
       ################################################### Pearson's r ##################################################
@@ -176,7 +184,7 @@ ggscatterstats <-
             )
           )
         ################################################### Spearnman's rho ##################################################
-      }   else if (test == "spearman") {
+      } else if (test == "spearman") {
         # running the correlation test and preparing the subtitle text
         # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
         c <-
@@ -250,8 +258,9 @@ ggscatterstats <-
               df = summary(MASS_res)$df[2],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value,
-                                                      k,
-                                                      p.value = TRUE)
+                k,
+                p.value = TRUE
+              )
             )
           )
         # preparing the message
@@ -269,18 +278,26 @@ ggscatterstats <-
 
     # preparing the scatterplotplot
     plot <-
-      ggplot2::ggplot(data = data,
-                      mapping = aes(x = x,
-                                    y = y)) +
+      ggplot2::ggplot(
+        data = data,
+        mapping = aes(
+          x = x,
+          y = y
+        )
+      ) +
       geom_point(
         size = 3,
         alpha = 0.5,
-        position = position_jitter(width = width.jitter,
-                                   height = height.jitter)
+        position = position_jitter(
+          width = width.jitter,
+          height = height.jitter
+        )
       ) +
-      geom_smooth(method = "lm",
-                  se = TRUE,
-                  size = 1.5) +
+      geom_smooth(
+        method = "lm",
+        se = TRUE,
+        size = 1.5
+      ) +
       ggstatsplot::theme_mprl() +
       labs(
         x = xlab,
@@ -298,7 +315,6 @@ ggscatterstats <-
 
     if (is.null(intercept)) {
       plot <- plot
-
     } else if (intercept == "mean") {
       plot <- plot +
         geom_vline(
@@ -313,7 +329,6 @@ ggscatterstats <-
           colour = yfill,
           size = 1.2
         )
-
     } else if (intercept == "median") {
       plot <- plot +
         geom_vline(
@@ -328,7 +343,6 @@ ggscatterstats <-
           colour = yfill,
           size = 1.2
         )
-
     }
 
     #################################################### ggMarginal ######################################################
@@ -340,14 +354,16 @@ ggscatterstats <-
           p = plot,
           type = marginal.type,
           size = 5,
-          xparams = base::list(fill = xfill,
-                               col = "black"),
-          yparams = base::list(fill = yfill,
-                               col = "black")
+          xparams = base::list(
+            fill = xfill,
+            col = "black"
+          ),
+          yparams = base::list(
+            fill = yfill,
+            col = "black"
+          )
         )
-
     }
 
     return(plot)
-
   }

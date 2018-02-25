@@ -17,13 +17,18 @@ specify_decimal_p <- function(x,
                               k = NULL,
                               p.value = FALSE) {
   # if the number of decimal places hasn't been specified, use the default of 3
-  if (is.null(k))
+  if (is.null(k)) {
     k <- 3
+  }
   # formatting the output properly
   output <-
-    base::trimws(x = base::format(x = base::round(x = x, digits = k),
-                                  nsmall = k),
-                 which = "both")
+    base::trimws(
+      x = base::format(
+        x = base::round(x = x, digits = k),
+        nsmall = k
+      ),
+      which = "both"
+    )
   # if it's a p-value, then format it properly
   if (isTRUE(p.value)) {
     # determing the class of output
