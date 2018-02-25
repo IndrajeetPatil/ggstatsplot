@@ -1,7 +1,7 @@
-Package: ggstatsplot
-Version: 0.0.1
 Type: Package
+Package: ggstatsplot
 Title: ggplot2 Based Plots with Statistical Details
+Version: 0.0.1
 Authors@R: person(given = "Indrajeet", 
   family = "Patil", 
   email = "patilindrajeet.science@gmail.com", 
@@ -11,35 +11,37 @@ Description: Extension of `ggplot2`, ggstatsplot creates graphics with details f
   included in the plots themselves. It is targeted primarily at behavioral sciences community to provide a 
   one-line code to generate information-rich plots.
 License: GPL-2 | file LICENSE
-Depends: R (>= 3.1.0)
-Encoding: UTF-8
-LazyData: true
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.0.1.9000
+Depends: 
+    R (>= 3.1.0)
 Imports: 
-  car (>= 2.1-6),
-  coin (>= 1.2-2),
-  devtools (>= 1.13.4),
-  dplyr (>= 0.7.4),
-  effsize (>= 0.7.1),
-  ggExtra (>= 0.7),
-  ggrepel (>= 0.7.0),
-  ggplot2 (>= 2.2.1),
-  grid (>= 3.4.1),
-  jmv (>= 0.8.0),
-  MASS (>= 7.3-47),
-  plyr (>= 1.8.4),
-  rlang (>= 0.1.6),
-  sfsmisc (>= 1.1-1),
-  sjstats (>= 0.14.0),
-  stats (>= 3.4.1),
-  WRS2 (>= 0.9-2)
+    car (>= 2.1-6),
+    coin (>= 1.2-2),
+    devtools (>= 1.13.4),
+    dplyr (>= 0.7.4),
+    effsize (>= 0.7.1),
+    ggExtra (>= 0.7),
+    ggplot2 (>= 2.2.1),
+    ggrepel (>= 0.7.0),
+    grid (>= 3.4.1),
+    jmv (>= 0.8.0),
+    magrittr,
+    MASS (>= 7.3-47),
+    plyr (>= 1.8.4),
+    rlang (>= 0.1.6),
+    sfsmisc (>= 1.1-1),
+    sjstats (>= 0.14.0),
+    stats (>= 3.4.1),
+    WRS2 (>= 0.9-2)
 Suggests: 
     datasets,
     grDevices (>= 3.4.1),
     gtable (>= 0.2.0),
     knitr,
     RColorBrewer (>= 1.1-2),
-    testthat (>= 2.0.0),
-    rmarkdown
+    rmarkdown,
+    testthat (>= 2.0.0)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.0.1.9000
