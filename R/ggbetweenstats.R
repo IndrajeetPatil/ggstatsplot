@@ -49,6 +49,10 @@
 #' @importFrom rlang quo_name
 #' @importFrom car Anova
 #' @importFrom ggrepel geom_label_repel
+#' @importFrom crayon green
+#' @importFrom crayon blue
+#' @importFrom crayon yellow
+#' @importFrom crayon red
 #'
 #' @examples
 #' # the most basic and minimalistic way of entering arguments
@@ -90,7 +94,9 @@ utils::globalVariables(
     "rsubtitle",
     "stats_subtitle",
     "chi_subtitle",
-    "proptest_subtitle"
+    "proptest_subtitle",
+    "LL",
+    "UL"
   )
 )
 
@@ -116,11 +122,9 @@ ggbetweenstats <- function(data = NULL,
   # if dataframe is provided
   if (!is.null(data)) {
     # preparing labels from given dataframe
-    lab.df <- colnames(dplyr::select(
-      .data = data,
-      !!rlang::enquo(x),
-      !!rlang::enquo(y)
-    ))
+    lab.df <- colnames(dplyr::select(.data = data,
+                                     !!rlang::enquo(x),
+                                     !!rlang::enquo(y)))
     # if xlab is not provided, use the variable x name
     if (is.null(xlab)) {
       xlab <- lab.df[1]
@@ -152,18 +156,14 @@ ggbetweenstats <- function(data = NULL,
     if (!is.null(outlier.label)) {
       # if vectors are provided and outlier label vector is present
       data <-
-        base::cbind.data.frame(
-          x = x,
-          y = y,
-          outlier.label = outlier.label
-        )
+        base::cbind.data.frame(x = x,
+                               y = y,
+                               outlier.label = outlier.label)
     } else {
       # if outlier label vector is absent
       data <-
-        base::cbind.data.frame(
-          x = x,
-          y = y
-        )
+        base::cbind.data.frame(x = x,
+                               y = y)
     }
   }
   # x needs to be a factor for group or condition comparison
@@ -172,7 +172,10 @@ ggbetweenstats <- function(data = NULL,
   # (this will be the case only when data has been set to NULL)
   if (!is.factor(data$x)) {
     data$x <- as.factor(data$x)
-    base::warning("aesthetic `x` was not a factor; converting it to factor")
+    base::message(cat(
+      crayon::green("Note: "),
+      crayon::blue("aesthetic `x` was not a factor; converting it to factor")
+    ))
   }
 
   ################################################### plot ##############################################################
@@ -194,11 +197,9 @@ ggbetweenstats <- function(data = NULL,
       size = 3,
       aes(color = factor(x))
     ) +
-    geom_violin(
-      width = 0.5,
-      alpha = 0.2,
-      fill = "white"
-    )
+    geom_violin(width = 0.5,
+                alpha = 0.2,
+                fill = "white")
 
   # adding a boxplot
   if (isTRUE(outlier.tagging)) {
@@ -215,11 +216,9 @@ ggbetweenstats <- function(data = NULL,
       )
   } else {
     plot <- plot +
-      geom_boxplot(
-        width = 0.3,
-        alpha = 0.2,
-        fill = "white"
-      )
+      geom_boxplot(width = 0.3,
+                   alpha = 0.2,
+                   fill = "white")
   }
 
   # specifying theme and labels for the plot
@@ -256,10 +255,8 @@ ggbetweenstats <- function(data = NULL,
       # getting model summary
       aov_stat <-
         car::Anova(
-          mod = stats::aov(
-            formula = y ~ x,
-            data = data
-          ),
+          mod = stats::aov(formula = y ~ x,
+                           data = data),
           type = "III",
           white.adjust = FALSE
         )
@@ -268,10 +265,8 @@ ggbetweenstats <- function(data = NULL,
       if (effsize.type == "unbiased") {
         # partial omega-squared is the biased estimate of effect size for parametric ANOVA
         aov_effsize <-
-          sjstats::omega_sq(model = stats::aov(
-            formula = y ~ x,
-            data = data
-          ))
+          sjstats::omega_sq(model = stats::aov(formula = y ~ x,
+                                               data = data))
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
@@ -291,7 +286,7 @@ ggbetweenstats <- function(data = NULL,
                 " = ",
                 pvalue,
                 ", ",
-                italic(omega)^2,
+                italic(omega) ^ 2,
                 " = ",
                 effsize
               ),
@@ -309,13 +304,9 @@ ggbetweenstats <- function(data = NULL,
       } else if (effsize.type == "biased") {
         # partial eta-squared is the biased estimate of effect size for parametric ANOVA
         aov_effsize <-
-          sjstats::eta_sq(
-            model = stats::aov(
-              formula = y ~ x,
-              data = data
-            ),
-            partial = TRUE
-          )
+          sjstats::eta_sq(model = stats::aov(formula = y ~ x,
+                                             data = data),
+                          partial = TRUE)
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
@@ -335,7 +326,7 @@ ggbetweenstats <- function(data = NULL,
                 " = ",
                 pvalue,
                 ", p",
-                italic(eta)^2,
+                italic(eta) ^ 2,
                 " = ",
                 effsize
               ),
@@ -354,18 +345,14 @@ ggbetweenstats <- function(data = NULL,
       # adding the subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle(
-          aov_stat = aov_stat,
-          aov_effsize = aov_effsize
-        ))
+        labs(subtitle = rsubtitle(aov_stat = aov_stat,
+                                  aov_effsize = aov_effsize))
     } else if (type == "nonparametric") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
       # setting up the anova model and getting its summary
-      kw_stat <- stats::kruskal.test(
-        formula = y ~ x,
-        data = data,
-        na.action = na.omit
-      )
+      kw_stat <- stats::kruskal.test(formula = y ~ x,
+                                     data = data,
+                                     na.action = na.omit)
       # aov_stat input represents the anova object summary derived from car library
       rsubtitle <- function(kw_stat) {
         # extracting the elements of the statistical object
@@ -373,7 +360,7 @@ ggbetweenstats <- function(data = NULL,
           expr =
             paste(
               "Kruskal-Wallis: ",
-              italic(chi)^2,
+              italic(chi) ^ 2,
               "(",
               df,
               ") = ",
@@ -398,8 +385,9 @@ ggbetweenstats <- function(data = NULL,
         labs(subtitle = rsubtitle(kw_stat = kw_stat))
 
       # letting the user know that this test doesn't have agreed upon effect size
-      base::message(paste(
-        "Note: No effect size available for Kruskal-Wallis Rank Sum Test."
+      base::message(cat(
+        crayon::red("Note: "),
+        crayon::blue("No effect size available for Kruskal-Wallis Rank Sum Test.")
       ))
     } else if (type == "robust") {
       ######################################### robust ANOVA ############################################################
@@ -511,7 +499,8 @@ ggbetweenstats <- function(data = NULL,
           effsize::cohen.d(
             formula = y ~ x,
             data = data,
-            hedges.correction = TRUE, # Hedge's g
+            hedges.correction = TRUE,
+            # Hedge's g
             na.rm = TRUE
           )
       } else if (effsize.type == "biased") {
@@ -556,7 +545,8 @@ ggbetweenstats <- function(data = NULL,
           effsize::cohen.d(
             formula = y ~ x,
             data = data,
-            hedges.correction = FALSE, # Cohen's d
+            hedges.correction = FALSE,
+            # Cohen's d
             na.rm = TRUE
           )
       }
@@ -564,10 +554,8 @@ ggbetweenstats <- function(data = NULL,
       # adding subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle(
-          t_stat = t_stat,
-          t_effsize = t_effsize
-        ))
+        labs(subtitle = rsubtitle(t_stat = t_stat,
+                                  t_effsize = t_effsize))
     }
     else if (type == "nonparametric") {
       ######################################### Mann-Whitney U test ######################################################
@@ -627,10 +615,8 @@ ggbetweenstats <- function(data = NULL,
       # adding subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle(
-          mann_stat = mann_stat,
-          z_stat = z_stat
-        ))
+        labs(subtitle = rsubtitle(mann_stat = mann_stat,
+                                  z_stat = z_stat))
     } else if (type == "robust") {
       ######################################### robust t-test ############################################################
 
@@ -654,39 +640,38 @@ ggbetweenstats <- function(data = NULL,
                 ", ",
                 italic(xi),
                 " = ",
-                effsize
+                effsize,
+                ", 95% CI [",
+                LL,
+                ", ",
+                UL,
+                "]"
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test, k),
               df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df, k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_robust_stat$p.value, k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize, k)
+              effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize, k),
+              LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]], k)
             )
           )
         }
 
       # setting up the independent samples t-tests on robust location measures (without bootstraps)
       t_robust_stat <-
-        WRS2::yuen(
-          formula = y ~ x,
-          data = data
-        )
+        WRS2::yuen(formula = y ~ x,
+                   data = data)
       # computing effect sizes
       t_robust_effsize <-
-        WRS2::yuen.effect.ci(
-          formula = y ~ x,
-          data = data
-        )
+        WRS2::yuen.effect.ci(formula = y ~ x,
+                             data = data)
 
       # adding the label to the plot
       plot <-
         plot +
-        labs(
-          subtitle = rsubtitle(
-            t_robust_stat = t_robust_stat,
-            t_robust_effsize = t_robust_effsize
-          )
-        )
+        labs(subtitle = rsubtitle(t_robust_stat = t_robust_stat,
+                                  t_robust_effsize = t_robust_effsize))
     }
   }
 
@@ -699,11 +684,9 @@ ggbetweenstats <- function(data = NULL,
     if (missing(outlier.label)) {
       # if outlier label is not provided, outlier labels will just be values of the y vector
       data_df <-
-        base::cbind.data.frame(
-          x = data$x,
-          y = data$y,
-          outlier.label = data$y
-        )
+        base::cbind.data.frame(x = data$x,
+                               y = data$y,
+                               outlier.label = data$y)
     } else {
       # if the outlier tag has been provided, just use the dataframe already created
       data_df <-
@@ -718,10 +701,8 @@ ggbetweenstats <- function(data = NULL,
     # defining function to detect outliers
     check_outlier <- function(v, coef = 1.5) {
       # compute the quantiles
-      quantiles <- stats::quantile(
-        x = v,
-        probs = c(0.25, 0.75)
-      )
+      quantiles <- stats::quantile(x = v,
+                                   probs = c(0.25, 0.75))
       # compute the interquartile range
       IQR <- quantiles[2] - quantiles[1]
       # check for outlier and output a logical
@@ -799,11 +780,9 @@ ggbetweenstats <- function(data = NULL,
     # create a dataframe with means
     mean_dat <- data %>%
       dplyr::group_by(.data = ., x) %>% # group by the independent variable
-      dplyr::mutate_all(
-        .tbl = .,
-        .funs = mean,
-        na.rm = TRUE
-      ) %>% # dependent variable mean for each level of grouping variable
+      dplyr::mutate_all(.tbl = .,
+                        .funs = mean,
+                        na.rm = TRUE) %>% # dependent variable mean for each level of grouping variable
       dplyr::distinct(.data = .) %>% # removed duplicated rows
       dplyr::mutate_if(
         .tbl = .,
@@ -832,18 +811,16 @@ ggbetweenstats <- function(data = NULL,
   }
 
   # display homogeneity of variances test result as a message
-  bartlett <- stats::bartlett.test(
-    formula = y ~ x,
-    data = data
-  )
+  bartlett <- stats::bartlett.test(formula = y ~ x,
+                                   data = data)
   base::message(
-    paste(
-      "Note: Bartlett's test for homogeneity of variances: p-value = ",
-      ggstatsplot::specify_decimal_p(
-        x = bartlett$p.value,
-        k,
-        p.value = TRUE
-      )
+    cat(
+      crayon::green("Note: "),
+      crayon::blue(
+      "Bartlett's test for homogeneity of variances: p-value = "),
+      crayon::yellow(ggstatsplot::specify_decimal_p(x = bartlett$p.value,
+                                     k,
+                                     p.value = TRUE))
     )
   )
 
