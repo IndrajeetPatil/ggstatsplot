@@ -489,13 +489,20 @@ ggbetweenstats <- function(data = NULL,
                 ", ",
                 italic("g"),
                 " = ",
-                effsize
+                effsize,
+                ", 95% CI [",
+                LL,
+                ", ",
+                UL,
+                "]"
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = abs(t_effsize[[3]]), k)
+              effsize = ggstatsplot::specify_decimal_p(x = abs(t_effsize[[3]]), k),
+              LL = ggstatsplot::specify_decimal_p(x = abs(t_effsize$conf.int[[1]]), k),
+              UL = ggstatsplot::specify_decimal_p(x = abs(t_effsize$conf.int[[2]]), k)
             )
           )
         }
@@ -504,7 +511,7 @@ ggbetweenstats <- function(data = NULL,
           effsize::cohen.d(
             formula = y ~ x,
             data = data,
-            hedges.correction = TRUE,
+            hedges.correction = TRUE, # Hedge's g
             na.rm = TRUE
           )
       } else if (effsize.type == "biased") {
@@ -527,13 +534,20 @@ ggbetweenstats <- function(data = NULL,
                 ", ",
                 italic("d"),
                 " = ",
-                effsize
+                effsize,
+                ", 95% CI [",
+                LL,
+                ", ",
+                UL,
+                "]"
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = abs(t_effsize[[3]]), k)
+              effsize = ggstatsplot::specify_decimal_p(x = abs(t_effsize[[3]]), k),
+              LL = ggstatsplot::specify_decimal_p(x = abs(t_effsize$conf.int[[1]]), k),
+              UL = ggstatsplot::specify_decimal_p(x = abs(t_effsize$conf.int[[2]]), k)
             )
           )
         }
@@ -542,7 +556,7 @@ ggbetweenstats <- function(data = NULL,
           effsize::cohen.d(
             formula = y ~ x,
             data = data,
-            hedges.correction = FALSE,
+            hedges.correction = FALSE, # Cohen's d
             na.rm = TRUE
           )
       }
@@ -713,7 +727,7 @@ ggbetweenstats <- function(data = NULL,
       # check for outlier and output a logical
       res <-
         ((v < (quantiles[1] - coef * IQR)) |
-          (v > (quantiles[2] + coef * IQR)))
+           (v > (quantiles[2] + coef * IQR)))
       # return the result
       return(res)
     }
