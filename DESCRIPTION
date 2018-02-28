@@ -17,6 +17,7 @@ Depends:
 Imports: 
     car (>= 2.1-6),
     coin (>= 1.2-2),
+    crayon (>= 1.3.4),
     devtools (>= 1.13.4),
     dplyr (>= 0.7.4),
     effsize (>= 0.7.1),
