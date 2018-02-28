@@ -29,12 +29,6 @@ Pie charts for categorical data with statistical details included in the plot as
 }
 \examples{
 library(datasets)
-ggpiestats(data = iris, main = Species)
-# or (less preferable)
-ggpiestats(main = iris$Species)
-# with condition variable
-ggpiestats(data = mtcars, main = am, condition = cyl)
-# changing names and labels
 ggpiestats(data = mtcars, main = am, condition = cyl, factor.levels = c("zero", "one"),
 stat.title = "interaction", title = "Dataset: mtcars", caption = "This is a demo",
 legend.title = "transmission", facet.wrap.name = "No. of cylinders")
