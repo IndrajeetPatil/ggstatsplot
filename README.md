@@ -10,7 +10,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Licence](https://img.shields.io/badge/licence-GPL--2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--02--25-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--01-yellowgreen.svg)](/commits/master)
 
 ## Overview
 
@@ -46,6 +46,7 @@ the subtitle:
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
+#> Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
 ```
 
 ![](man/figures/README-unnamed-chunk-3-1.png)<!-- -->
@@ -70,6 +71,7 @@ ggstatsplot::ggbetweenstats(
   ) +
   coord_cartesian(ylim = c(3, 8)) + 
   scale_y_continuous(breaks = seq(3, 8, by = 1))
+#> Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
 #> Warning: Removed 149 rows containing missing values (geom_label_repel).
 ```
 
