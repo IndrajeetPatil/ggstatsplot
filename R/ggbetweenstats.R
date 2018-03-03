@@ -174,7 +174,7 @@ ggbetweenstats <- function(data = NULL,
   if (!is.factor(data$x)) {
     data$x <- as.factor(data$x)
     base::message(cat(
-      crayon::green("Note: "),
+      crayon::red("Warning: "),
       crayon::blue("aesthetic `x` was not a factor; converting it to factor")
     ))
   }
@@ -491,7 +491,7 @@ ggbetweenstats <- function(data = NULL,
 
       if (effsize.type == "unbiased") {
         # t_stat input represents the t-test object summary derived from stats library
-        rsubtitle <- function(t_stat, t_effsize) {
+        rsubtitle_g <- function(t_stat, t_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -526,6 +526,7 @@ ggbetweenstats <- function(data = NULL,
             )
           )
         }
+
         # Hedge's g is an unbiased estimate of the effect size
         t_effsize <-
           effsize::cohen.d(
@@ -535,9 +536,16 @@ ggbetweenstats <- function(data = NULL,
             # Hedge's g
             na.rm = TRUE
           )
+
+        # adding subtitle to the plot
+        plot <-
+          plot +
+          labs(subtitle = rsubtitle_g(t_stat = t_stat,
+                                    t_effsize = t_effsize))
+
       } else if (effsize.type == "biased") {
         # t_stat input represents the t-test object summary derived from stats library
-        rsubtitle <- function(t_stat, t_effsize) {
+        rsubtitle_d <- function(t_stat, t_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -572,6 +580,7 @@ ggbetweenstats <- function(data = NULL,
             )
           )
         }
+
         # Cohen's d is a biased estimate of the effect size
         t_effsize <-
           effsize::cohen.d(
@@ -581,13 +590,13 @@ ggbetweenstats <- function(data = NULL,
             # Cohen's d
             na.rm = TRUE
           )
-      }
 
-      # adding subtitle to the plot
-      plot <-
-        plot +
-        labs(subtitle = rsubtitle(t_stat = t_stat,
-                                  t_effsize = t_effsize))
+        # adding subtitle to the plot
+        plot <-
+          plot +
+          labs(subtitle = rsubtitle_d(t_stat = t_stat,
+                                    t_effsize = t_effsize))
+      }
     }
     else if (type == "nonparametric") {
       ######################################### Mann-Whitney U test ######################################################
