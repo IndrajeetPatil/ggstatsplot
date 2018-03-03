@@ -10,7 +10,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Licence](https://img.shields.io/badge/licence-GPL--2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--01-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--02-yellowgreen.svg)](/commits/master)
 
 ## Overview
 
@@ -148,6 +148,7 @@ ggstatsplot::ggpiestats(data = mtcars,
                         main = am,
                         condition = cyl) +
   scale_fill_brewer(palette = "Dark2")
+#> Note: The effect size displayed: Cramer's V (500 samples used to generate its bootstrapped 95% CI)
 ```
 
 ![](man/figures/README-unnamed-chunk-8-1.png)<!-- -->
@@ -168,6 +169,7 @@ factor.levels = c("0 = automatic", "1 = manual"),
 facet.wrap.name = "No. of cylinders",
 caption = expression(paste(italic("Note"), ": this is a demo"))
 ) 
+#> Note: The effect size displayed: Cramer's V (500 samples used to generate its bootstrapped 95% CI)
 ```
 
 ![](man/figures/README-unnamed-chunk-9-1.png)<!-- -->
