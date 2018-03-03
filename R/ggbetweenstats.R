@@ -54,6 +54,7 @@
 #' @importFrom crayon yellow
 #' @importFrom crayon red
 #' @importFrom apaTables get.ci.partial.eta.squared
+#' @importFrom userfriendlyscience confIntOmegaSq
 #'
 #' @examples
 #' # the most basic and minimalistic way of entering arguments
@@ -268,46 +269,67 @@ ggbetweenstats <- function(data = NULL,
         aov_effsize <-
           sjstats::omega_sq(model = stats::aov(formula = y ~ x,
                                                data = data))
+        # computing confidence interval for omega-squared
+        aov_effsize_ci <-
+          userfriendlyscience::confIntOmegaSq(var1 = data$x,
+                                              var2 = data$y,
+                                              conf.level = 0.95)
+
         # aov_stat input represents the anova object summary derived from car library
-        rsubtitle_omega <- function(aov_stat, aov_effsize) {
-          # extracting the elements of the statistical object
-          base::substitute(
-            expr =
-              paste(
-                "ANOVA: ",
-                italic("F"),
-                "(",
-                df1,
-                ",",
-                df2,
-                ") = ",
-                estimate,
-                ", ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", ",
-                italic(omega) ^ 2,
-                " = ",
-                effsize
-              ),
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
-              df1 = aov_stat$`Df`[2],
-              # degrees of freedom are always integer
-              df2 = aov_stat$`Df`[3],
-              # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = aov_effsize[[1]], k)
+        rsubtitle_omega <-
+          function(aov_stat,
+                   aov_effsize,
+                   aov_effsize_ci) {
+            # extracting the elements of the statistical object
+            base::substitute(
+              expr =
+                paste(
+                  "ANOVA: ",
+                  italic("F"),
+                  "(",
+                  df1,
+                  ",",
+                  df2,
+                  ") = ",
+                  estimate,
+                  ", ",
+                  italic("p"),
+                  " = ",
+                  pvalue,
+                  ", ",
+                  italic(omega) ^ 2,
+                  " = ",
+                  effsize,
+                  ", 95% CI [",
+                  LL,
+                  ", ",
+                  UL,
+                  "]"
+                ),
+              env = base::list(
+                estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
+                df1 = aov_stat$`Df`[2],
+                # degrees of freedom are always integer
+                df2 = aov_stat$`Df`[3],
+                # degrees of freedom are always integer
+                pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
+                effsize = ggstatsplot::specify_decimal_p(x = aov_effsize[[1]], k),
+                LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[1]], k),
+                UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[2]], k)
+              )
             )
-          )
-        }
+          }
 
         # adding the subtitle to the plot
         plot <-
           plot +
-          labs(subtitle = rsubtitle_omega(aov_stat = aov_stat,
-                                          aov_effsize = aov_effsize))
+          labs(
+            subtitle = rsubtitle_omega(
+              aov_stat = aov_stat,
+              aov_effsize = aov_effsize,
+              aov_effsize_ci = aov_effsize_ci
+            )
+          )
 
       } else if (effsize.type == "biased") {
         # partial eta-squared is the biased estimate of effect size for parametric ANOVA
@@ -316,7 +338,7 @@ ggbetweenstats <- function(data = NULL,
                                              data = data),
                           partial = TRUE)
 
-        # getting effect size for partial eta-squared
+        # getting confidence interval for partial eta-squared
         aov_effsize_ci <- apaTables::get.ci.partial.eta.squared(
           F.value = aov_stat$`F value`[2],
           df1 = aov_stat$`Df`[2],
@@ -541,7 +563,7 @@ ggbetweenstats <- function(data = NULL,
         plot <-
           plot +
           labs(subtitle = rsubtitle_g(t_stat = t_stat,
-                                    t_effsize = t_effsize))
+                                      t_effsize = t_effsize))
 
       } else if (effsize.type == "biased") {
         # t_stat input represents the t-test object summary derived from stats library
@@ -595,7 +617,7 @@ ggbetweenstats <- function(data = NULL,
         plot <-
           plot +
           labs(subtitle = rsubtitle_d(t_stat = t_stat,
-                                    t_effsize = t_effsize))
+                                      t_effsize = t_effsize))
       }
     }
     else if (type == "nonparametric") {
@@ -659,7 +681,7 @@ ggbetweenstats <- function(data = NULL,
       plot <-
         plot +
         labs(subtitle = rsubtitle_mann(mann_stat = mann_stat,
-                                  z_stat = z_stat))
+                                       z_stat = z_stat))
 
     } else if (type == "robust") {
       ######################################### robust t-test ############################################################
@@ -715,7 +737,7 @@ ggbetweenstats <- function(data = NULL,
       plot <-
         plot +
         labs(subtitle = rsubtitle_rob(t_robust_stat = t_robust_stat,
-                                  t_robust_effsize = t_robust_effsize))
+                                      t_robust_effsize = t_robust_effsize))
     }
   }
 
