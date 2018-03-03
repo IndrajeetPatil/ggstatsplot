@@ -53,6 +53,7 @@
 #' @importFrom crayon blue
 #' @importFrom crayon yellow
 #' @importFrom crayon red
+#' @importFrom apaTables get.ci.partial.eta.squared
 #'
 #' @examples
 #' # the most basic and minimalistic way of entering arguments
@@ -268,7 +269,7 @@ ggbetweenstats <- function(data = NULL,
           sjstats::omega_sq(model = stats::aov(formula = y ~ x,
                                                data = data))
         # aov_stat input represents the anova object summary derived from car library
-        rsubtitle <- function(aov_stat, aov_effsize) {
+        rsubtitle_omega <- function(aov_stat, aov_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -301,52 +302,83 @@ ggbetweenstats <- function(data = NULL,
             )
           )
         }
+
+        # adding the subtitle to the plot
+        plot <-
+          plot +
+          labs(subtitle = rsubtitle_omega(aov_stat = aov_stat,
+                                          aov_effsize = aov_effsize))
+
       } else if (effsize.type == "biased") {
         # partial eta-squared is the biased estimate of effect size for parametric ANOVA
         aov_effsize <-
           sjstats::eta_sq(model = stats::aov(formula = y ~ x,
                                              data = data),
                           partial = TRUE)
+
+        # getting effect size for partial eta-squared
+        aov_effsize_ci <- apaTables::get.ci.partial.eta.squared(
+          F.value = aov_stat$`F value`[2],
+          df1 = aov_stat$`Df`[2],
+          df2 = aov_stat$`Df`[3],
+          conf.level = 0.95
+        )
+
         # aov_stat input represents the anova object summary derived from car library
-        rsubtitle <- function(aov_stat, aov_effsize) {
-          # extracting the elements of the statistical object
-          base::substitute(
-            expr =
-              paste(
-                "ANOVA: ",
-                italic("F"),
-                "(",
-                df1,
-                ",",
-                df2,
-                ") = ",
-                estimate,
-                ", ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", p",
-                italic(eta) ^ 2,
-                " = ",
-                effsize
-              ),
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
-              df1 = aov_stat$`Df`[2],
-              # degrees of freedom are always integer
-              df2 = aov_stat$`Df`[3],
-              # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = aov_effsize[[1]], k)
+        rsubtitle_peta <-
+          function(aov_stat,
+                   aov_effsize,
+                   aov_effsize_ci) {
+            # extracting the elements of the statistical object
+            base::substitute(
+              expr =
+                paste(
+                  "ANOVA: ",
+                  italic("F"),
+                  "(",
+                  df1,
+                  ",",
+                  df2,
+                  ") = ",
+                  estimate,
+                  ", ",
+                  italic("p"),
+                  " = ",
+                  pvalue,
+                  ", p",
+                  italic(eta) ^ 2,
+                  " = ",
+                  effsize,
+                  ", 95% CI [",
+                  LL,
+                  ", ",
+                  UL,
+                  "]"
+                ),
+              env = base::list(
+                estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
+                df1 = aov_stat$`Df`[2],
+                # degrees of freedom are always integer
+                df2 = aov_stat$`Df`[3],
+                # degrees of freedom are always integer
+                pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
+                effsize = ggstatsplot::specify_decimal_p(x = aov_effsize[[1]], k),
+                LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$LL[[1]], k),
+                UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$UL[[1]], k)
+              )
+            )
+          }
+        # adding the subtitle to the plot
+        plot <-
+          plot +
+          labs(
+            subtitle = rsubtitle_peta(
+              aov_stat = aov_stat,
+              aov_effsize = aov_effsize,
+              aov_effsize_ci = aov_effsize_ci
             )
           )
-        }
       }
-      # adding the subtitle to the plot
-      plot <-
-        plot +
-        labs(subtitle = rsubtitle(aov_stat = aov_stat,
-                                  aov_effsize = aov_effsize))
     } else if (type == "nonparametric") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
       # setting up the anova model and getting its summary
@@ -813,16 +845,15 @@ ggbetweenstats <- function(data = NULL,
   # display homogeneity of variances test result as a message
   bartlett <- stats::bartlett.test(formula = y ~ x,
                                    data = data)
-  base::message(
-    cat(
-      crayon::green("Note: "),
-      crayon::blue(
-      "Bartlett's test for homogeneity of variances: p-value = "),
-      crayon::yellow(ggstatsplot::specify_decimal_p(x = bartlett$p.value,
+  base::message(cat(
+    crayon::green("Note: "),
+    crayon::blue("Bartlett's test for homogeneity of variances: p-value = "),
+    crayon::yellow(
+      ggstatsplot::specify_decimal_p(x = bartlett$p.value,
                                      k,
-                                     p.value = TRUE))
+                                     p.value = TRUE)
     )
-  )
+  ))
 
   # return the final plot
   return(plot)
