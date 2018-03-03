@@ -386,7 +386,7 @@ ggbetweenstats <- function(data = NULL,
                                      data = data,
                                      na.action = na.omit)
       # aov_stat input represents the anova object summary derived from car library
-      rsubtitle <- function(kw_stat) {
+      rsubtitle_kw <- function(kw_stat) {
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -414,7 +414,7 @@ ggbetweenstats <- function(data = NULL,
       # adding the subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle(kw_stat = kw_stat))
+        labs(subtitle = rsubtitle_kw(kw_stat = kw_stat))
 
       # letting the user know that this test doesn't have agreed upon effect size
       base::message(cat(
@@ -425,7 +425,7 @@ ggbetweenstats <- function(data = NULL,
       ######################################### robust ANOVA ############################################################
 
       # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
-      rsubtitle <- function(robust_aov_stat) {
+      rsubtitle_robaov <- function(robust_aov_stat) {
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -469,7 +469,7 @@ ggbetweenstats <- function(data = NULL,
 
       # adding the label to the plot
       plot <-
-        plot + labs(subtitle = rsubtitle(robust_aov_stat = robust_aov_stat))
+        plot + labs(subtitle = rsubtitle_robaov(robust_aov_stat = robust_aov_stat))
     }
   } else if (test == "t-test") {
     # if type of test is not specified, then use the default, which is parametric test
@@ -613,6 +613,7 @@ ggbetweenstats <- function(data = NULL,
         conf.int = TRUE,
         conf.level = 0.95
       )
+
       # computing Z score
       z_stat <- coin::wilcox_test(
         formula = y ~ x,
@@ -621,9 +622,10 @@ ggbetweenstats <- function(data = NULL,
         alternative = "two.sided",
         conf.int = TRUE
       )
+
       # mann_stat input represents the U-test summary derived from stats library, while Z is
       # from Exact Wilcoxon-Pratt Signed-Rank Test from coin library
-      rsubtitle <- function(mann_stat, z_stat) {
+      rsubtitle_mann <- function(mann_stat, z_stat) {
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -656,13 +658,14 @@ ggbetweenstats <- function(data = NULL,
       # adding subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle(mann_stat = mann_stat,
+        labs(subtitle = rsubtitle_mann(mann_stat = mann_stat,
                                   z_stat = z_stat))
+
     } else if (type == "robust") {
       ######################################### robust t-test ############################################################
 
       # t_robust_stat input represents the t-test object summary derived from WRS2 library
-      rsubtitle <-
+      rsubtitle_rob <-
         function(t_robust_stat, t_robust_effsize) {
           # extracting the elements of the statistical object
           base::substitute(
@@ -711,7 +714,7 @@ ggbetweenstats <- function(data = NULL,
       # adding the label to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle(t_robust_stat = t_robust_stat,
+        labs(subtitle = rsubtitle_rob(t_robust_stat = t_robust_stat,
                                   t_robust_effsize = t_robust_effsize))
     }
   }
