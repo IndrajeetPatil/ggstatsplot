@@ -112,6 +112,8 @@ ggstatsplot::ggscatterstats(
   width.jitter = 0.2,
   height.jitter = 0.4
   ) 
+#> Note: Robust regression using an M estimator: no. of iterations = 500 
+#> In case of non-convergence, increase maxit value.Note: The estimate is standardized.
 ```
 
 ![](man/figures/README-unnamed-chunk-6-1.png)<!-- -->
@@ -173,3 +175,7 @@ caption = expression(paste(italic("Note"), ": this is a demo"))
 ```
 
 ![](man/figures/README-unnamed-chunk-9-1.png)<!-- -->
+
+Please note that this project is released with a [Contributor Code of
+Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project
+you agree to abide by its terms.
