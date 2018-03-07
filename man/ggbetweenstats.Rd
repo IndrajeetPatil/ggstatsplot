@@ -43,11 +43,6 @@
 Violin plots for between-subjects designs with statistical details included in the plot as a subtitle.
 }
 \examples{
-# the most basic and minimalistic way of entering arguments
-library(datasets)
-ggstatsplot::ggbetweenstats(data = iris, x = Species, y = Sepal.Length)
-# or
-ggstatsplot::ggbetweenstats(x = iris$Species, y = iris$Sepal.Length)
 
 # more detailed function call
 ggstatsplot::ggbetweenstats(data = mtcars, x = cyl, y = mpg,

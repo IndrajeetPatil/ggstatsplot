@@ -57,11 +57,6 @@
 #' @importFrom userfriendlyscience confIntOmegaSq
 #'
 #' @examples
-#' # the most basic and minimalistic way of entering arguments
-#' library(datasets)
-#' ggstatsplot::ggbetweenstats(data = iris, x = Species, y = Sepal.Length)
-#' # or
-#' ggstatsplot::ggbetweenstats(x = iris$Species, y = iris$Sepal.Length)
 #'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(data = mtcars, x = cyl, y = mpg,
@@ -414,7 +409,7 @@ ggbetweenstats <- function(data = NULL,
       # displaying the details of the test that was run
       base::message(cat(
         crayon::green("Reference: "),
-        crayon::blue("Welch’s ANOVA is used as a default."),
+        crayon::blue("Welch's ANOVA is used as a default."),
         crayon::yellow("(Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).")
       ))
     } else if (type == "nonparametric") {
@@ -637,7 +632,7 @@ ggbetweenstats <- function(data = NULL,
       # displaying the details of the test that was run
       base::message(cat(
         crayon::green("Reference: "),
-        crayon::blue("Welch’s t-test is used as a default."),
+        crayon::blue("Welch's t-test is used as a default."),
         crayon::yellow("(Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).")
       ))
     }
