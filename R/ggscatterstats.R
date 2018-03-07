@@ -4,27 +4,28 @@
 #' @aliases ggscatterstats
 #' @author Indrajeet Patil
 #' @description Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
-#' statistical details added as a subtitle
+#' statistical details added as a subtitle.
 #'
-#' @param data data frame from which variables specified are preferentially to be taken
-#' @param x a vector containing the explanatory variable
-#' @param y the response - a vector of length the number of rows of `x`
-#' @param xlab label for x axis variable
-#' @param ylab label for y axis variable
-#' @param marginal decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`
-#' @param marginal.type type of marginal distribution to be plotted on the axes
-#' ("histogram", "boxplot", "density", "violin")
-#' @param xfill colour fill for x axis distibution (default: "orange")
-#' @param yfill colour fill for y axis distribution (default: "green")
-#' @param test statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")
-#' @param results.subtitle whether the results of statistical tests are to be displayed as subtitle
-#' @param intercept decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted
-#' @param title title for the plot
-#' @param caption caption for the plot
-#' @param maxit maximum number of iterations for robust linear regression
-#' @param k number of decimal places expected for results
-#' @param width.jitter degree of jitter in x direction. Defaults to 40\% of the resolution of the data.
-#' @param height.jitter degree of jitter in y direction. Defaults to 40\% of the resolution of the data
+#' @param data Dataframe from which variables specified are preferentially to be taken.
+#' @param x A vector containing the explanatory variable.
+#' @param y The response - a vector of length the number of rows of `x`.
+#' @param xlab Label for `x` axis variable.
+#' @param ylab Label for `y` axis variable.
+#' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`.
+#' @param marginal.type Type of marginal distribution to be plotted on the axes
+#' ("histogram", "boxplot", "density", "violin").
+#' @param xfill Colour fill for x axis distibution (default: `orange`).
+#' @param yfill Colour fill for y axis distribution (default: `green`).
+#' @param test Statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust").
+#' @param results.subtitle Decides whether the results of statistical tests are to be displayed as subtitle.
+#' @param intercept Decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted.
+#' @param title The text for the plot title.
+#' @param caption The text for the plot caption.
+#' @param maxit Maximum number of iterations for robust linear regression or bootstrap samples to compute
+#'  Spearman's rho confidence intervals.
+#' @param k Number of decimal places expected for results.
+#' @param width.jitter Degree of jitter in `x` direction. Defaults to 40\% of the resolution of the data.
+#' @param height.jitter Degree of jitter in `y` direction. Defaults to 40\% of the resolution of the data.
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -35,6 +36,7 @@
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
 #' @importFrom stats na.omit
+#' @importFrom RVAideMemoire spearman.ci
 #'
 #' @examples
 #' # the most basic and minimalistic way of entering arguments
@@ -78,7 +80,9 @@ utils::globalVariables(
     "rsubtitle",
     "stats_subtitle",
     "chi_subtitle",
-    "proptest_subtitle"
+    "proptest_subtitle",
+    "LL",
+    "UL"
   )
 )
 
@@ -100,17 +104,15 @@ ggscatterstats <-
            results.subtitle = NULL,
            title = NULL,
            caption = NULL,
-           maxit = 1000,
+           maxit = 500,
            k = 3) {
     ################################################### dataframe ####################################################
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(
-        .data = data,
-        !!rlang::enquo(x),
-        !!rlang::enquo(y)
-      ))
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(x),
+                                       !!rlang::enquo(y)))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
@@ -129,10 +131,8 @@ ggscatterstats <-
     } else {
       # if vectors are provided
       data <-
-        base::cbind.data.frame(
-          x = x,
-          y = y
-        )
+        base::cbind.data.frame(x = x,
+                               y = y)
     }
 
     ######################################## statistical labels ######################################################
@@ -147,9 +147,10 @@ ggscatterstats <-
     }
 
     if (results.subtitle == TRUE) {
-      ################################################### Pearson's r ##################################################
+      # running the correlation test and preparing the subtitle text
       if (test == "pearson") {
-        # running the correlation test and preparing the subtitle text
+        ################################################### Pearson's r ##################################################
+
         c <-
           stats::cor.test(
             formula = ~ x + y,
@@ -159,6 +160,7 @@ ggscatterstats <-
             exact = FALSE,
             na.action = na.omit
           )
+
         # preparing the label
         stats_subtitle <-
           base::substitute(
@@ -166,25 +168,37 @@ ggscatterstats <-
               paste(
                 "Pearson's ",
                 italic("r"),
+                " = ",
+                estimate,
+                ", 95% CI [",
+                LL,
+                ", ",
+                UL,
+                "], ",
+                italic("t"),
                 "(",
                 df,
                 ")",
                 " = ",
-                estimate,
+                t,
                 ", ",
                 italic("p"),
                 " = ",
                 pvalue
               ),
             env = base::list(
-              df = c$parameter,
               # degrees of freedom are always integer
-              estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
-              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
+              df = c$parameter[[1]],
+              t = ggstatsplot::specify_decimal_p(x = c$statistic[[1]], k),
+              estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
+              LL = ggstatsplot::specify_decimal_p(x = c$conf.int[1][[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = c$conf.int[2][[1]], k),
+              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]], k, p.value = TRUE)
             )
           )
-        ################################################### Spearnman's rho ##################################################
+
       } else if (test == "spearman") {
+        ################################################### Spearnman's rho ##################################################
         # running the correlation test and preparing the subtitle text
         # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
         c <-
@@ -196,6 +210,17 @@ ggscatterstats <-
             exact = FALSE,
             na.action = na.omit
           )
+
+        # getting confidence interval for rho
+        c_ci <-
+          RVAideMemoire::spearman.ci(
+            var1 = data$x,
+            var2 = data$y,
+            # no. of interations
+            nrep = maxit,
+            conf.level = 0.95
+          )
+
         # preparing the label
         stats_subtitle <-
           base::substitute(
@@ -208,7 +233,11 @@ ggscatterstats <-
                 ")",
                 " = ",
                 estimate,
+                ", 95% CI [",
+                LL,
                 ", ",
+                UL,
+                "], ",
                 italic("p"),
                 " = ",
                 pvalue
@@ -217,6 +246,8 @@ ggscatterstats <-
               df = (length(data$x) - 2),
               # degrees of freedom are always integer
               estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
+              LL = ggstatsplot::specify_decimal_p(x = c_ci$conf.int[1][[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = c_ci$conf.int[2][[1]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
             )
           )
@@ -226,10 +257,10 @@ ggscatterstats <-
         MASS_res <-
           MASS::rlm(
             scale(y) ~ scale(x),
+            data = data,
             maxit = maxit,
             # number of iterations
-            na.action = na.omit,
-            data = data
+            na.action = na.omit
           )
         # preparing the label
         stats_subtitle <-
@@ -258,46 +289,38 @@ ggscatterstats <-
               df = summary(MASS_res)$df[2],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value,
-                k,
-                p.value = TRUE
-              )
+                                                      k,
+                                                      p.value = TRUE)
             )
           )
-        # preparing the message
-        base::message(
-          paste(
-            "For robust regression: no. of iterations = ",
-            maxit,
-            "; estimate is standardized",
-            sep = ""
-          )
-        )
+        # displaying the details of the test that was run
+        base::message(cat(
+          crayon::green("Note:"),
+          crayon::blue("Robust regression using an M estimator: no. of iterations =", maxit,"\nIn case of non-convergence, increase maxit value.")
+        ))
+        # displaying the details of the test that was run
+        base::message(cat(
+          crayon::green("Note:"),
+          crayon::blue("The estimate is standardized.")
+        ))
       }
     }
     ################################################### plot ################################################################
 
     # preparing the scatterplotplot
     plot <-
-      ggplot2::ggplot(
-        data = data,
-        mapping = aes(
-          x = x,
-          y = y
-        )
-      ) +
+      ggplot2::ggplot(data = data,
+                      mapping = aes(x = x,
+                                    y = y)) +
       geom_point(
         size = 3,
         alpha = 0.5,
-        position = position_jitter(
-          width = width.jitter,
-          height = height.jitter
-        )
+        position = position_jitter(width = width.jitter,
+                                   height = height.jitter)
       ) +
-      geom_smooth(
-        method = "lm",
-        se = TRUE,
-        size = 1.5
-      ) +
+      geom_smooth(method = "lm",
+                  se = TRUE,
+                  size = 1.5) +
       ggstatsplot::theme_mprl() +
       labs(
         x = xlab,
@@ -354,14 +377,10 @@ ggscatterstats <-
           p = plot,
           type = marginal.type,
           size = 5,
-          xparams = base::list(
-            fill = xfill,
-            col = "black"
-          ),
-          yparams = base::list(
-            fill = yfill,
-            col = "black"
-          )
+          xparams = base::list(fill = xfill,
+                               col = "black"),
+          yparams = base::list(fill = yfill,
+                               col = "black")
         )
     }
 

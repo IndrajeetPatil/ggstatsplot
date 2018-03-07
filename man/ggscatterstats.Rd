@@ -4,46 +4,47 @@
 \alias{ggscatterstats}
 \title{scatterplot with ggMarginals}
 \arguments{
-\item{data}{data frame from which variables specified are preferentially to be taken}
+\item{data}{Dataframe from which variables specified are preferentially to be taken.}
 
-\item{x}{a vector containing the explanatory variable}
+\item{x}{A vector containing the explanatory variable.}
 
-\item{y}{the response - a vector of length the number of rows of \code{x}}
+\item{y}{The response - a vector of length the number of rows of \code{x}.}
 
-\item{xlab}{label for x axis variable}
+\item{xlab}{Label for \code{x} axis variable.}
 
-\item{ylab}{label for y axis variable}
+\item{ylab}{Label for \code{y} axis variable.}
 
-\item{marginal}{decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}}
+\item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}.}
 
-\item{marginal.type}{type of marginal distribution to be plotted on the axes
-("histogram", "boxplot", "density", "violin")}
+\item{marginal.type}{Type of marginal distribution to be plotted on the axes
+("histogram", "boxplot", "density", "violin").}
 
-\item{xfill}{colour fill for x axis distibution (default: "orange")}
+\item{xfill}{Colour fill for x axis distibution (default: \code{orange}).}
 
-\item{yfill}{colour fill for y axis distribution (default: "green")}
+\item{yfill}{Colour fill for y axis distribution (default: \code{green}).}
 
-\item{test}{statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust")}
+\item{test}{Statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust").}
 
-\item{results.subtitle}{whether the results of statistical tests are to be displayed as subtitle}
+\item{results.subtitle}{Decides whether the results of statistical tests are to be displayed as subtitle.}
 
-\item{intercept}{decides whether "mean" or "median" or no intercept lines (\code{NULL}) are to be plotted}
+\item{intercept}{Decides whether "mean" or "median" or no intercept lines (\code{NULL}) are to be plotted.}
 
-\item{title}{title for the plot}
+\item{title}{The text for the plot title.}
 
-\item{caption}{caption for the plot}
+\item{caption}{The text for the plot caption.}
 
-\item{maxit}{maximum number of iterations for robust linear regression}
+\item{maxit}{Maximum number of iterations for robust linear regression or bootstrap samples to compute
+Spearman's rho confidence intervals.}
 
-\item{k}{number of decimal places expected for results}
+\item{k}{Number of decimal places expected for results.}
 
-\item{width.jitter}{degree of jitter in x direction. Defaults to 40\% of the resolution of the data.}
+\item{width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\% of the resolution of the data.}
 
-\item{height.jitter}{degree of jitter in y direction. Defaults to 40\% of the resolution of the data}
+\item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of the resolution of the data.}
 }
 \description{
 Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
-statistical details added as a subtitle
+statistical details added as a subtitle.
 }
 \note{
 If you want to use \code{marginal.type = "violin"}, you will have to use development version of \code{ggExtra}
