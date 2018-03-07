@@ -4,28 +4,28 @@
 \alias{ggpiestats}
 \title{pie charts with statistical tests}
 \arguments{
-\item{data}{the data as a data frame}
+\item{data}{The data as a data frame.}
 
-\item{main}{a string naming the variable to use as the rows in the contingency table}
+\item{main}{A string naming the variable to use as the rows in the contingency table.}
 
-\item{condition}{a string naming the variable to use as the columns in the contingency table}
+\item{condition}{A string naming the variable to use as the columns in the contingency table.}
 
-\item{factor.levels}{a character vector with labels for factor levels of 'main' variable}
+\item{factor.levels}{A character vector with labels for factor levels of \code{main} variable.}
 
-\item{stat.title}{title for the effect being investigated with the chi-square test}
+\item{stat.title}{Title for the effect being investigated with the chi-square test.}
 
-\item{title}{title for the plot}
+\item{title}{The text for the plot title.}
 
-\item{caption}{caption for the plot}
+\item{caption}{The text for the plot caption.}
 
-\item{k}{number of decimal places expected for results}
+\item{k}{Number of decimal places expected for results.}
 
-\item{legend.title}{title for the legend}
+\item{legend.title}{Title of legend.}
 
-\item{facet.wrap.name}{label for the facet_wrap}
+\item{facet.wrap.name}{The text for the facet_wrap variable label.}
 }
 \description{
-Pie charts for categorical data with statistical details included in the plot as a subtitle
+Pie charts for categorical data with statistical details included in the plot as a subtitle.
 }
 \examples{
 library(datasets)

@@ -23,7 +23,8 @@
 
 \item{yfill}{Colour fill for y axis distribution (default: \code{green}).}
 
-\item{test}{Statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust").}
+\item{test}{Type of association between paired samples required ("parametric: Pearson's product moment
+correlation coefficient" or "nonparametric: Spearman's rho" or "robust: Robust regression using an M estimator").}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are to be displayed as subtitle.}
 

@@ -3,8 +3,7 @@
 #' @aliases theme_mprl
 #' @author Indrajeet Patil
 #' @description Common theme used across all plots generated in `ggstatsplot` and assumed by the author to be
-#' aesthetically pleasing to the user/reader
-#' @note MPRL stands for Moral Psychology Research Lab, where I was working while theme was developed
+#' aesthetically pleasing to the user/reader.
 #'
 #' @import ggplot2
 #' @import grid

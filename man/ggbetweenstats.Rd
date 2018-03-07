@@ -4,44 +4,43 @@
 \alias{ggbetweenstats}
 \title{violin plots for group or condition comparisons}
 \arguments{
-\item{data}{data frame from which variables specified are preferentially to be taken}
+\item{data}{Dataframe from which variables specified are preferentially to be taken.}
 
-\item{x}{the grouping variable}
+\item{x}{The grouping variable.}
 
-\item{y}{the response - a vector of length the number of rows of \code{x}}
+\item{y}{The response - a vector of length the number of rows of \code{x}.}
 
-\item{xlab}{label for x axis variable}
+\item{xlab}{Label for \code{x} axis variable.}
 
-\item{ylab}{label for y axis variable}
+\item{ylab}{Label for \code{y} axis variable.}
 
-\item{type}{type of statistics expected ("parametric" or "nonparametric" or "robust")}
+\item{type}{Type of statistic expected ("parametric" or "nonparametric" or "robust").}
 
-\item{effsize.type}{type of effect size needed for \emph{parametric} tests ("biased" (Cohen's d, partial eta-squared) or
-"unbiased" (Hedge's g, omega-squared))}
+\item{effsize.type}{Type of effect size needed for \emph{parametric} tests ("biased" (Cohen's d, partial eta-squared) or
+"unbiased" (Hedge's g, omega-squared)).}
 
-\item{title}{title for the plot}
+\item{title}{The text for the plot title.}
 
-\item{caption}{caption for the plot}
+\item{caption}{The text for the plot caption.}
 
-\item{k}{number of decimal places expected for results}
+\item{k}{Number of decimal places expected for results.}
 
-\item{var.equal}{a logical variable indicating whether to treat the two variances as being equal}
+\item{var.equal}{A logical variable indicating whether to treat the two variances as being equal (Default: \code{FALSE}).}
 
-\item{nboot}{number of bootstrap samples}
+\item{nboot}{Number of bootstrap samples.}
 
-\item{outlier.color}{default aesthetics for outliers}
+\item{outlier.color}{Default aesthetics for outliers.}
 
-\item{outlier.tagging}{whether outliers should be tagged}
+\item{outlier.tagging}{Decides whether outliers should be tagged (Default: \code{FALSE}).}
 
-\item{outlier.label}{label to put on the outliers that have been tagged; if data argument is missing}
+\item{outlier.label}{Label to put on the outliers that have been tagged.}
 
-\item{mean.plotting}{whether mean is to be highlighted and its value to be displayed
-this will show y variable values for outliers}
+\item{mean.plotting}{Decides whether mean is to be highlighted and its value to be displayed.}
 
-\item{mean.color}{color for the data point corresponding to mean}
+\item{mean.color}{Color for the data point corresponding to mean.}
 }
 \description{
-Violin plots for between-subjects designs with statistical details included in the plot as a subtitle
+Violin plots for between-subjects designs with statistical details included in the plot as a subtitle.
 }
 \examples{
 # the most basic and minimalistic way of entering arguments

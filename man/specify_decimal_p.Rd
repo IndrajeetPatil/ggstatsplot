@@ -7,18 +7,18 @@
 specify_decimal_p(x, k = NULL, p.value = FALSE)
 }
 \arguments{
-\item{x}{a numeric value}
+\item{x}{A numeric variable.}
 
-\item{k}{the number of digits after decimal point (should be an integer)}
+\item{k}{Number of digits after decimal point (should be an integer).}
 
-\item{p.value}{whether the number is a p-value ("TRUE" or "FALSE")}
+\item{p.value}{Decides whether the number is a p-value (Dafault: \code{FALSE}).}
 }
 \value{
 formatted p-values from statistical tests
 }
 \description{
 Function to format an R object for pretty printing with a specified number of decimal places. The
-function also allows highly significant p-values to be denoted as "p < 0.001" rather than "p = 0.000"
+function also allows highly significant p-values to be denoted as "p < 0.001" rather than "p = 0.000".
 }
 \author{
 Indrajeet Patil

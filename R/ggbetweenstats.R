@@ -2,28 +2,27 @@
 #' @title violin plots for group or condition comparisons
 #' @name ggbetweenstats
 #' @aliases ggbetweenstats
-#' @description Violin plots for between-subjects designs with statistical details included in the plot as a subtitle
+#' @description Violin plots for between-subjects designs with statistical details included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data data frame from which variables specified are preferentially to be taken
-#' @param x the grouping variable
-#' @param y the response - a vector of length the number of rows of `x`
-#' @param xlab label for x axis variable
-#' @param ylab label for y axis variable
-#' @param type type of statistics expected ("parametric" or "nonparametric" or "robust")
-#' @param effsize.type type of effect size needed for *parametric* tests ("biased" (Cohen's d, partial eta-squared) or
-#' "unbiased" (Hedge's g, omega-squared))
-#' @param title title for the plot
-#' @param caption caption for the plot
-#' @param k number of decimal places expected for results
-#' @param var.equal a logical variable indicating whether to treat the two variances as being equal
-#' @param nboot number of bootstrap samples
-#' @param outlier.color default aesthetics for outliers
-#' @param outlier.tagging whether outliers should be tagged
-#' @param outlier.label label to put on the outliers that have been tagged; if data argument is missing
-#' @param mean.plotting whether mean is to be highlighted and its value to be displayed
-#' this will show y variable values for outliers
-#' @param mean.color color for the data point corresponding to mean
+#' @param data Dataframe from which variables specified are preferentially to be taken.
+#' @param x The grouping variable.
+#' @param y The response - a vector of length the number of rows of `x`.
+#' @param xlab Label for `x` axis variable.
+#' @param ylab Label for `y` axis variable.
+#' @param type Type of statistic expected ("parametric" or "nonparametric" or "robust").
+#' @param effsize.type Type of effect size needed for *parametric* tests ("biased" (Cohen's d, partial eta-squared) or
+#' "unbiased" (Hedge's g, omega-squared)).
+#' @param title The text for the plot title.
+#' @param caption The text for the plot caption.
+#' @param k Number of decimal places expected for results.
+#' @param var.equal A logical variable indicating whether to treat the two variances as being equal (Default: `FALSE`).
+#' @param nboot Number of bootstrap samples.
+#' @param outlier.color Default aesthetics for outliers.
+#' @param outlier.tagging Decides whether outliers should be tagged (Default: `FALSE`).
+#' @param outlier.label Label to put on the outliers that have been tagged.
+#' @param mean.plotting Decides whether mean is to be highlighted and its value to be displayed.
+#' @param mean.color Color for the data point corresponding to mean.
 #'
 #' @import ggplot2
 #' @import ggrepel
@@ -682,10 +681,12 @@ ggbetweenstats <- function(data = NULL,
               italic(Z),
               " = ",
               z_value,
+              ", ",
               italic(" p"),
               " = ",
               pvalue,
-              italic(", r"),
+              ", ",
+              italic("r"),
               " = ",
               r
             ),
@@ -694,7 +695,7 @@ ggbetweenstats <- function(data = NULL,
             z_value = ggstatsplot::specify_decimal_p(x = coin::statistic(z_stat)[[1]], k),
             pvalue = ggstatsplot::specify_decimal_p(x = mann_stat$p.value[[1]], k, p.value = TRUE),
             r = ggstatsplot::specify_decimal_p(x = (
-              coin::statistic(z_stat)[[1]] / length(data$y)
+              coin::statistic(z_stat)[[1]] / sqrt(length(data$y))
             ), k) # effect size is r = z/sqrt(n)
           )
         )

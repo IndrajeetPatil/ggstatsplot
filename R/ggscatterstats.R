@@ -16,7 +16,8 @@
 #' ("histogram", "boxplot", "density", "violin").
 #' @param xfill Colour fill for x axis distibution (default: `orange`).
 #' @param yfill Colour fill for y axis distribution (default: `green`).
-#' @param test Statistical test to be run and displayed as subtitle ("pearson", "spearman", "robust").
+#' @param test Type of association between paired samples required ("parametric: Pearson's product moment
+#' correlation coefficient" or "nonparametric: Spearman's rho" or "robust: Robust regression using an M estimator").
 #' @param results.subtitle Decides whether the results of statistical tests are to be displayed as subtitle.
 #' @param intercept Decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted.
 #' @param title The text for the plot title.

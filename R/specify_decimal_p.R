@@ -2,12 +2,12 @@
 #' @name specify_decimal_p
 #' @aliases specify_decimal_p
 #' @description Function to format an R object for pretty printing with a specified number of decimal places. The
-#' function also allows highly significant p-values to be denoted as "p < 0.001" rather than "p = 0.000"
+#' function also allows highly significant p-values to be denoted as "p < 0.001" rather than "p = 0.000".
 #' @author Indrajeet Patil
 #'
-#' @param x a numeric value
-#' @param k the number of digits after decimal point (should be an integer)
-#' @param p.value whether the number is a p-value ("TRUE" or "FALSE")
+#' @param x A numeric variable.
+#' @param k Number of digits after decimal point (should be an integer).
+#' @param p.value Decides whether the number is a p-value (Dafault: `FALSE`).
 #'
 #' @return formatted p-values from statistical tests
 #'
@@ -36,5 +36,6 @@ specify_decimal_p <- function(x,
       output <- "< 0.001"
     }
   }
-  return(output) # this will return a character
+  # this will return a character
+  return(output)
 }

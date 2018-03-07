@@ -2,19 +2,19 @@
 #' @title pie charts with statistical tests
 #' @name ggpiestats
 #' @aliases ggpiestats
-#' @description Pie charts for categorical data with statistical details included in the plot as a subtitle
+#' @description Pie charts for categorical data with statistical details included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data the data as a data frame
-#' @param main a string naming the variable to use as the rows in the contingency table
-#' @param condition a string naming the variable to use as the columns in the contingency table
-#' @param factor.levels a character vector with labels for factor levels of 'main' variable
-#' @param stat.title title for the effect being investigated with the chi-square test
-#' @param title title for the plot
-#' @param caption caption for the plot
-#' @param k number of decimal places expected for results
-#' @param legend.title title for the legend
-#' @param facet.wrap.name label for the facet_wrap
+#' @param data The data as a data frame.
+#' @param main A string naming the variable to use as the rows in the contingency table.
+#' @param condition A string naming the variable to use as the columns in the contingency table.
+#' @param factor.levels A character vector with labels for factor levels of `main` variable.
+#' @param stat.title Title for the effect being investigated with the chi-square test.
+#' @param title The text for the plot title.
+#' @param caption The text for the plot caption.
+#' @param k Number of decimal places expected for results.
+#' @param legend.title Title of legend.
+#' @param facet.wrap.name The text for the facet_wrap variable label.
 #'
 #' @import ggplot2
 #' @import dplyr
