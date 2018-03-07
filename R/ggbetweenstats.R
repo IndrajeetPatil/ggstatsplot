@@ -251,12 +251,12 @@ ggbetweenstats <- function(data = NULL,
 
     # running parametric ANOVA
     if (type == "parametric") {
-      # setting up the anova model and getting its summary
       # Welch's ANOVA run by default
       aov_stat <-
         stats::oneway.test(
           formula = y ~ x,
           data = data,
+          subset = NULL,
           na.action = na.omit,
           var.equal = var.equal
         )
@@ -267,6 +267,7 @@ ggbetweenstats <- function(data = NULL,
         aov_effsize <-
           sjstats::omega_sq(model = stats::aov(formula = y ~ x,
                                                data = data))
+
         # computing confidence interval for omega-squared
         aov_effsize_ci <-
           userfriendlyscience::confIntOmegaSq(var1 = data$x,
@@ -282,7 +283,6 @@ ggbetweenstats <- function(data = NULL,
             base::substitute(
               expr =
                 paste(
-                  "ANOVA: ",
                   italic("F"),
                   "(",
                   df1,
@@ -366,7 +366,6 @@ ggbetweenstats <- function(data = NULL,
             base::substitute(
               expr =
                 paste(
-                  "ANOVA: ",
                   italic("F"),
                   "(",
                   df1,
@@ -400,6 +399,7 @@ ggbetweenstats <- function(data = NULL,
               )
             )
           }
+
         # adding the subtitle to the plot
         plot <-
           plot +
@@ -411,11 +411,12 @@ ggbetweenstats <- function(data = NULL,
             )
           )
       }
+
       # displaying the details of the test that was run
       base::message(cat(
         crayon::green("Reference: "),
         crayon::blue("Welch’s ANOVA is used as a default."),
-        crayon::yellow("(Delacre, Lakens, Mora, & Leys, 2018).")
+        crayon::yellow("(Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).")
       ))
     } else if (type == "nonparametric") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
@@ -423,6 +424,7 @@ ggbetweenstats <- function(data = NULL,
       kw_stat <- stats::kruskal.test(formula = y ~ x,
                                      data = data,
                                      na.action = na.omit)
+
       # aov_stat input represents the anova object summary derived from car library
       rsubtitle_kw <- function(kw_stat) {
         # extracting the elements of the statistical object
@@ -468,7 +470,6 @@ ggbetweenstats <- function(data = NULL,
         base::substitute(
           expr =
             paste(
-              "robust ANOVA: ",
               italic("F"),
               "(",
               df1,
@@ -534,7 +535,6 @@ ggbetweenstats <- function(data = NULL,
           base::substitute(
             expr =
               paste(
-                "t-test: ",
                 italic("t"),
                 "(",
                 df,
@@ -588,7 +588,6 @@ ggbetweenstats <- function(data = NULL,
           base::substitute(
             expr =
               paste(
-                "t-test: ",
                 italic("t"),
                 "(",
                 df,
@@ -640,7 +639,7 @@ ggbetweenstats <- function(data = NULL,
       base::message(cat(
         crayon::green("Reference: "),
         crayon::blue("Welch’s t-test is used as a default."),
-        crayon::yellow("(Delacre, Lakens, & Leys, 2017).")
+        crayon::yellow("(Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).")
       ))
     }
     else if (type == "nonparametric") {
@@ -716,7 +715,6 @@ ggbetweenstats <- function(data = NULL,
           base::substitute(
             expr =
               paste(
-                "robust t-test: ",
                 italic("t"),
                 "(",
                 df,
