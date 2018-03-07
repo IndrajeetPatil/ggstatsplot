@@ -9,8 +9,9 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot.svg?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
-[![Licence](https://img.shields.io/badge/licence-GPL--2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--02-yellowgreen.svg)](/commits/master)
+[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--06-yellowgreen.svg)](/commits/master)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 ## Overview
 
@@ -46,7 +47,7 @@ the subtitle:
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
-#> Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
+#> Reference:  Welch’s ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
 ```
 
 ![](man/figures/README-unnamed-chunk-3-1.png)<!-- -->
@@ -72,7 +73,6 @@ ggstatsplot::ggbetweenstats(
   coord_cartesian(ylim = c(3, 8)) + 
   scale_y_continuous(breaks = seq(3, 8, by = 1))
 #> Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
-#> Warning: Removed 149 rows containing missing values (geom_label_repel).
 ```
 
 ![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
