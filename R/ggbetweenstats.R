@@ -43,6 +43,7 @@
 #' @importFrom stats kruskal.test
 #' @importFrom stats aov
 #' @importFrom stats quantile
+#' @importFrom stats oneway.test
 #' @importFrom coin wilcox_test
 #' @importFrom coin statistic
 #' @importFrom rlang enquo
@@ -251,16 +252,13 @@ ggbetweenstats <- function(data = NULL,
     # running parametric ANOVA
     if (type == "parametric") {
       # setting up the anova model and getting its summary
-      # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
-      # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
-      # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
-      # getting model summary
+      # Welch's ANOVA run by default
       aov_stat <-
-        car::Anova(
-          mod = stats::aov(formula = y ~ x,
-                           data = data),
-          type = "III",
-          white.adjust = FALSE
+        stats::oneway.test(
+          formula = y ~ x,
+          data = data,
+          na.action = na.omit,
+          var.equal = var.equal
         )
 
       # preparing the subtitles with appropriate effect sizes
@@ -307,12 +305,11 @@ ggbetweenstats <- function(data = NULL,
                   "]"
                 ),
               env = base::list(
-                estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
-                df1 = aov_stat$`Df`[2],
-                # degrees of freedom are always integer
-                df2 = aov_stat$`Df`[3],
-                # degrees of freedom are always integer
-                pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
+                estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
+                df1 = aov_stat$parameter[[1]],
+                # numerator degrees of freedom are always integer
+                df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
+                pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
                 effsize = ggstatsplot::specify_decimal_p(x = aov_effsize[[1]], k),
                 LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[1]], k),
                 UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[2]], k)
@@ -338,11 +335,25 @@ ggbetweenstats <- function(data = NULL,
                                              data = data),
                           partial = TRUE)
 
+        # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
+        # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
+        # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
+        aov_stat2 <-
+          car::Anova(
+            mod = stats::aov(formula = y ~ x,
+                             data = data),
+            type = "III",
+            white.adjust = FALSE
+          )
+
         # getting confidence interval for partial eta-squared
+        # if instead of aov_stat2, aov_stat is used then there will be discrepancy between partial eta-squared computed by
+        # sjstats::eta_sq, which is not heteroscedasticity-corrected, and
+        # apaTables::get.ci.partial.eta.squared, which is (if aov_stat) is used
         aov_effsize_ci <- apaTables::get.ci.partial.eta.squared(
-          F.value = aov_stat$`F value`[2],
-          df1 = aov_stat$`Df`[2],
-          df2 = aov_stat$`Df`[3],
+          F.value = aov_stat2$`F value`[2],
+          df1 = aov_stat2$`Df`[2],
+          df2 = aov_stat2$`Df`[3],
           conf.level = 0.95
         )
 
@@ -378,12 +389,11 @@ ggbetweenstats <- function(data = NULL,
                   "]"
                 ),
               env = base::list(
-                estimate = ggstatsplot::specify_decimal_p(x = aov_stat$`F value`[2], k),
-                df1 = aov_stat$`Df`[2],
-                # degrees of freedom are always integer
-                df2 = aov_stat$`Df`[3],
-                # degrees of freedom are always integer
-                pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$`Pr(>F)`[2], k, p.value = TRUE),
+                estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
+                df1 = aov_stat$parameter[[1]],
+                # numerator degrees of freedom are always integer
+                df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
+                pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
                 effsize = ggstatsplot::specify_decimal_p(x = aov_effsize[[1]], k),
                 LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$LL[[1]], k),
                 UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$UL[[1]], k)
@@ -401,6 +411,12 @@ ggbetweenstats <- function(data = NULL,
             )
           )
       }
+      # displaying the details of the test that was run
+      base::message(cat(
+        crayon::green("Reference: "),
+        crayon::blue("Welch’s ANOVA is used as a default."),
+        crayon::yellow("(Delacre, Lakens, Mora, & Leys, 2018).")
+      ))
     } else if (type == "nonparametric") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
       # setting up the anova model and getting its summary
@@ -818,7 +834,8 @@ ggbetweenstats <- function(data = NULL,
           box.padding = 0.35,
           point.padding = 0.5,
           segment.color = "grey50",
-          force = 2
+          force = 2,
+          na.rm = TRUE
         )
     } else {
       # if the value for outliers are to be displated, no need to convert outlier labels to character vector
@@ -833,7 +850,8 @@ ggbetweenstats <- function(data = NULL,
           box.padding = 0.35,
           point.padding = 0.5,
           segment.color = "grey50",
-          force = 2
+          force = 2,
+          na.rm = TRUE
         )
     }
   }
@@ -879,7 +897,8 @@ ggbetweenstats <- function(data = NULL,
         box.padding = 0.35,
         point.padding = 0.5,
         segment.color = "grey50",
-        force = 2
+        force = 2,
+        na.rm = TRUE
       )
   }
 
