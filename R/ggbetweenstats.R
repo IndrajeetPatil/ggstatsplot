@@ -119,9 +119,11 @@ ggbetweenstats <- function(data = NULL,
   # if dataframe is provided
   if (!is.null(data)) {
     # preparing labels from given dataframe
-    lab.df <- colnames(dplyr::select(.data = data,
-                                     !!rlang::enquo(x),
-                                     !!rlang::enquo(y)))
+    lab.df <- colnames(dplyr::select(
+      .data = data,
+      !!rlang::enquo(x),
+      !!rlang::enquo(y)
+    ))
     # if xlab is not provided, use the variable x name
     if (is.null(xlab)) {
       xlab <- lab.df[1]
@@ -153,14 +155,18 @@ ggbetweenstats <- function(data = NULL,
     if (!is.null(outlier.label)) {
       # if vectors are provided and outlier label vector is present
       data <-
-        base::cbind.data.frame(x = x,
-                               y = y,
-                               outlier.label = outlier.label)
+        base::cbind.data.frame(
+          x = x,
+          y = y,
+          outlier.label = outlier.label
+        )
     } else {
       # if outlier label vector is absent
       data <-
-        base::cbind.data.frame(x = x,
-                               y = y)
+        base::cbind.data.frame(
+          x = x,
+          y = y
+        )
     }
   }
   # x needs to be a factor for group or condition comparison
@@ -194,9 +200,11 @@ ggbetweenstats <- function(data = NULL,
       size = 3,
       aes(color = factor(x))
     ) +
-    geom_violin(width = 0.5,
-                alpha = 0.2,
-                fill = "white")
+    geom_violin(
+      width = 0.5,
+      alpha = 0.2,
+      fill = "white"
+    )
 
   # adding a boxplot
   if (isTRUE(outlier.tagging)) {
@@ -213,9 +221,11 @@ ggbetweenstats <- function(data = NULL,
       )
   } else {
     plot <- plot +
-      geom_boxplot(width = 0.3,
-                   alpha = 0.2,
-                   fill = "white")
+      geom_boxplot(
+        width = 0.3,
+        alpha = 0.2,
+        fill = "white"
+      )
   }
 
   # specifying theme and labels for the plot
@@ -259,14 +269,18 @@ ggbetweenstats <- function(data = NULL,
       if (effsize.type == "unbiased") {
         # partial omega-squared is the biased estimate of effect size for parametric ANOVA
         aov_effsize <-
-          sjstats::omega_sq(model = stats::aov(formula = y ~ x,
-                                               data = data))
+          sjstats::omega_sq(model = stats::aov(
+            formula = y ~ x,
+            data = data
+          ))
 
         # computing confidence interval for omega-squared
         aov_effsize_ci <-
-          userfriendlyscience::confIntOmegaSq(var1 = data$x,
-                                              var2 = data$y,
-                                              conf.level = 0.95)
+          userfriendlyscience::confIntOmegaSq(
+            var1 = data$x,
+            var2 = data$y,
+            conf.level = 0.95
+          )
 
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_omega <-
@@ -289,7 +303,7 @@ ggbetweenstats <- function(data = NULL,
                   " = ",
                   pvalue,
                   ", ",
-                  italic(omega) ^ 2,
+                  italic(omega)^2,
                   " = ",
                   effsize,
                   ", 95% CI [",
@@ -321,21 +335,26 @@ ggbetweenstats <- function(data = NULL,
               aov_effsize_ci = aov_effsize_ci
             )
           )
-
       } else if (effsize.type == "biased") {
         # partial eta-squared is the biased estimate of effect size for parametric ANOVA
         aov_effsize <-
-          sjstats::eta_sq(model = stats::aov(formula = y ~ x,
-                                             data = data),
-                          partial = TRUE)
+          sjstats::eta_sq(
+            model = stats::aov(
+              formula = y ~ x,
+              data = data
+            ),
+            partial = TRUE
+          )
 
         # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
         # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
         # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
         aov_stat2 <-
           car::Anova(
-            mod = stats::aov(formula = y ~ x,
-                             data = data),
+            mod = stats::aov(
+              formula = y ~ x,
+              data = data
+            ),
             type = "III",
             white.adjust = FALSE
           )
@@ -372,7 +391,7 @@ ggbetweenstats <- function(data = NULL,
                   " = ",
                   pvalue,
                   ", p",
-                  italic(eta) ^ 2,
+                  italic(eta)^2,
                   " = ",
                   effsize,
                   ", 95% CI [",
@@ -415,9 +434,11 @@ ggbetweenstats <- function(data = NULL,
     } else if (type == "nonparametric") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
       # setting up the anova model and getting its summary
-      kw_stat <- stats::kruskal.test(formula = y ~ x,
-                                     data = data,
-                                     na.action = na.omit)
+      kw_stat <- stats::kruskal.test(
+        formula = y ~ x,
+        data = data,
+        na.action = na.omit
+      )
 
       # aov_stat input represents the anova object summary derived from car library
       rsubtitle_kw <- function(kw_stat) {
@@ -426,7 +447,7 @@ ggbetweenstats <- function(data = NULL,
           expr =
             paste(
               "Kruskal-Wallis: ",
-              italic(chi) ^ 2,
+              italic(chi)^2,
               "(",
               df,
               ") = ",
@@ -572,9 +593,10 @@ ggbetweenstats <- function(data = NULL,
         # adding subtitle to the plot
         plot <-
           plot +
-          labs(subtitle = rsubtitle_g(t_stat = t_stat,
-                                      t_effsize = t_effsize))
-
+          labs(subtitle = rsubtitle_g(
+            t_stat = t_stat,
+            t_effsize = t_effsize
+          ))
       } else if (effsize.type == "biased") {
         # t_stat input represents the t-test object summary derived from stats library
         rsubtitle_d <- function(t_stat, t_effsize) {
@@ -625,8 +647,10 @@ ggbetweenstats <- function(data = NULL,
         # adding subtitle to the plot
         plot <-
           plot +
-          labs(subtitle = rsubtitle_d(t_stat = t_stat,
-                                      t_effsize = t_effsize))
+          labs(subtitle = rsubtitle_d(
+            t_stat = t_stat,
+            t_effsize = t_effsize
+          ))
       }
 
       # displaying the details of the test that was run
@@ -698,9 +722,10 @@ ggbetweenstats <- function(data = NULL,
       # adding subtitle to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle_mann(mann_stat = mann_stat,
-                                       z_stat = z_stat))
-
+        labs(subtitle = rsubtitle_mann(
+          mann_stat = mann_stat,
+          z_stat = z_stat
+        ))
     } else if (type == "robust") {
       ######################################### robust t-test ############################################################
 
@@ -743,18 +768,24 @@ ggbetweenstats <- function(data = NULL,
 
       # setting up the independent samples t-tests on robust location measures (without bootstraps)
       t_robust_stat <-
-        WRS2::yuen(formula = y ~ x,
-                   data = data)
+        WRS2::yuen(
+          formula = y ~ x,
+          data = data
+        )
       # computing effect sizes
       t_robust_effsize <-
-        WRS2::yuen.effect.ci(formula = y ~ x,
-                             data = data)
+        WRS2::yuen.effect.ci(
+          formula = y ~ x,
+          data = data
+        )
 
       # adding the label to the plot
       plot <-
         plot +
-        labs(subtitle = rsubtitle_rob(t_robust_stat = t_robust_stat,
-                                      t_robust_effsize = t_robust_effsize))
+        labs(subtitle = rsubtitle_rob(
+          t_robust_stat = t_robust_stat,
+          t_robust_effsize = t_robust_effsize
+        ))
     }
   }
 
@@ -767,9 +798,11 @@ ggbetweenstats <- function(data = NULL,
     if (missing(outlier.label)) {
       # if outlier label is not provided, outlier labels will just be values of the y vector
       data_df <-
-        base::cbind.data.frame(x = data$x,
-                               y = data$y,
-                               outlier.label = data$y)
+        base::cbind.data.frame(
+          x = data$x,
+          y = data$y,
+          outlier.label = data$y
+        )
     } else {
       # if the outlier tag has been provided, just use the dataframe already created
       data_df <-
@@ -784,14 +817,16 @@ ggbetweenstats <- function(data = NULL,
     # defining function to detect outliers
     check_outlier <- function(v, coef = 1.5) {
       # compute the quantiles
-      quantiles <- stats::quantile(x = v,
-                                   probs = c(0.25, 0.75))
+      quantiles <- stats::quantile(
+        x = v,
+        probs = c(0.25, 0.75)
+      )
       # compute the interquartile range
       IQR <- quantiles[2] - quantiles[1]
       # check for outlier and output a logical
       res <-
         ((v < (quantiles[1] - coef * IQR)) |
-           (v > (quantiles[2] + coef * IQR)))
+          (v > (quantiles[2] + coef * IQR)))
       # return the result
       return(res)
     }
@@ -865,9 +900,11 @@ ggbetweenstats <- function(data = NULL,
     # create a dataframe with means
     mean_dat <- data %>%
       dplyr::group_by(.data = ., x) %>% # group by the independent variable
-      dplyr::mutate_all(.tbl = .,
-                        .funs = mean,
-                        na.rm = TRUE) %>% # dependent variable mean for each level of grouping variable
+      dplyr::mutate_all(
+        .tbl = .,
+        .funs = mean,
+        na.rm = TRUE
+      ) %>% # dependent variable mean for each level of grouping variable
       dplyr::distinct(.data = .) %>% # removed duplicated rows
       dplyr::mutate_if(
         .tbl = .,
@@ -897,15 +934,19 @@ ggbetweenstats <- function(data = NULL,
   }
 
   # display homogeneity of variances test result as a message
-  bartlett <- stats::bartlett.test(formula = y ~ x,
-                                   data = data)
+  bartlett <- stats::bartlett.test(
+    formula = y ~ x,
+    data = data
+  )
   base::message(cat(
     crayon::green("Note: "),
     crayon::blue("Bartlett's test for homogeneity of variances: p-value = "),
     crayon::yellow(
-      ggstatsplot::specify_decimal_p(x = bartlett$p.value,
-                                     k,
-                                     p.value = TRUE)
+      ggstatsplot::specify_decimal_p(
+        x = bartlett$p.value,
+        k,
+        p.value = TRUE
+      )
     )
   ))
 
