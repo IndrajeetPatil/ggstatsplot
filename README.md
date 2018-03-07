@@ -10,7 +10,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--06-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--07-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 ## Overview
@@ -47,7 +47,7 @@ the subtitle:
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
-#> Reference:  Welch’s ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
+#> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
 ```
 
 ![](man/figures/README-unnamed-chunk-3-1.png)<!-- -->
@@ -89,6 +89,7 @@ and results from statistical tests in subtitle:
 ggstatsplot::ggscatterstats(data = iris, 
                             x = Sepal.Length, 
                             y = Petal.Length)
+#> Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
 ```
 
 ![](man/figures/README-unnamed-chunk-5-1.png)<!-- -->
@@ -112,8 +113,7 @@ ggstatsplot::ggscatterstats(
   width.jitter = 0.2,
   height.jitter = 0.4
   ) 
-#> Note: Robust regression using an M estimator: no. of iterations = 500 
-#> In case of non-convergence, increase maxit value.Note: The estimate is standardized.
+#> Note: Robust regression using an M estimator: no. of iterations = 500 In case of non-convergence, increase maxit value.Note: The estimate is standardized.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
 ```
 
 ![](man/figures/README-unnamed-chunk-6-1.png)<!-- -->

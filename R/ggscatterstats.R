@@ -37,6 +37,7 @@
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
 #' @importFrom stats na.omit
+#' @importFrom stats confint.default
 #' @importFrom RVAideMemoire spearman.ci
 #'
 #' @examples
@@ -111,11 +112,9 @@ ggscatterstats <-
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(
-        .data = data,
-        !!rlang::enquo(x),
-        !!rlang::enquo(y)
-      ))
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(x),
+                                       !!rlang::enquo(y)))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
@@ -134,10 +133,8 @@ ggscatterstats <-
     } else {
       # if vectors are provided
       data <-
-        base::cbind.data.frame(
-          x = x,
-          y = y
-        )
+        base::cbind.data.frame(x = x,
+                               y = y)
     }
 
     ######################################## statistical labels ######################################################
@@ -266,6 +263,13 @@ ggscatterstats <-
             # number of iterations
             na.action = na.omit
           )
+
+        # getting confidence interval for rho
+        c_ci <-
+          stats::confint.default(object = MASS_res,
+                                 parm = "scale(x)",
+                                 level = 0.95)
+
         # preparing the label
         stats_subtitle <-
           base::substitute(
@@ -275,7 +279,11 @@ ggscatterstats <-
                 italic(beta),
                 " = ",
                 estimate,
+                ", 95% CI [",
+                LL,
                 ", ",
+                UL,
+                "], ",
                 italic("t"),
                 "(",
                 df,
@@ -289,19 +297,24 @@ ggscatterstats <-
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[2]], k),
+              LL = ggstatsplot::specify_decimal_p(x = c_ci[1], k),
+              UL = ggstatsplot::specify_decimal_p(x = c_ci[2], k),
               t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
               df = summary(MASS_res)$df[2],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value,
-                k,
-                p.value = TRUE
-              )
+                                                      k,
+                                                      p.value = TRUE)
             )
           )
         # displaying the details of the test that was run
         base::message(cat(
           crayon::green("Note:"),
-          crayon::blue("Robust regression using an M estimator: no. of iterations =", maxit, "\nIn case of non-convergence, increase maxit value.")
+          crayon::blue(
+            "Robust regression using an M estimator: no. of iterations =",
+            maxit,
+            "In case of non-convergence, increase maxit value."
+          )
         ))
         # displaying the details of the test that was run
         base::message(cat(
@@ -314,26 +327,18 @@ ggscatterstats <-
 
     # preparing the scatterplotplot
     plot <-
-      ggplot2::ggplot(
-        data = data,
-        mapping = aes(
-          x = x,
-          y = y
-        )
-      ) +
+      ggplot2::ggplot(data = data,
+                      mapping = aes(x = x,
+                                    y = y)) +
       geom_point(
         size = 3,
         alpha = 0.5,
-        position = position_jitter(
-          width = width.jitter,
-          height = height.jitter
-        )
+        position = position_jitter(width = width.jitter,
+                                   height = height.jitter)
       ) +
-      geom_smooth(
-        method = "lm",
-        se = TRUE,
-        size = 1.5
-      ) +
+      geom_smooth(method = "lm",
+                  se = TRUE,
+                  size = 1.5) +
       ggstatsplot::theme_mprl() +
       labs(
         x = xlab,
@@ -390,16 +395,21 @@ ggscatterstats <-
           p = plot,
           type = marginal.type,
           size = 5,
-          xparams = base::list(
-            fill = xfill,
-            col = "black"
-          ),
-          yparams = base::list(
-            fill = yfill,
-            col = "black"
-          )
+          xparams = base::list(fill = xfill,
+                               col = "black"),
+          yparams = base::list(fill = yfill,
+                               col = "black")
         )
     }
 
+    # display warning that this doesn't produce a ggplot2 object
+    base::message(cat(
+      crayon::red("Warning:"),
+      crayon::blue(
+        "This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands."
+      )
+    ))
+
+    # return the final plot
     return(plot)
   }
