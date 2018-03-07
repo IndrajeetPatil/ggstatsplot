@@ -542,9 +542,9 @@ ggbetweenstats <- function(data = NULL,
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = abs(t_effsize[[3]]), k),
-              LL = ggstatsplot::specify_decimal_p(x = abs(t_effsize$conf.int[[1]]), k),
-              UL = ggstatsplot::specify_decimal_p(x = abs(t_effsize$conf.int[[2]]), k)
+              effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
+              LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k)
             )
           )
         }
@@ -596,9 +596,9 @@ ggbetweenstats <- function(data = NULL,
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
               df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = abs(t_effsize[[3]]), k),
-              LL = ggstatsplot::specify_decimal_p(x = abs(t_effsize$conf.int[[1]]), k),
-              UL = ggstatsplot::specify_decimal_p(x = abs(t_effsize$conf.int[[2]]), k)
+              effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
+              LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k)
             )
           )
         }
@@ -619,6 +619,13 @@ ggbetweenstats <- function(data = NULL,
           labs(subtitle = rsubtitle_d(t_stat = t_stat,
                                       t_effsize = t_effsize))
       }
+
+      # displaying the details of the test that was run
+      base::message(cat(
+        crayon::green("Reference: "),
+        crayon::blue("Welch’s t-test is used as a default."),
+        crayon::yellow("(Delacre, Lakens, & Leys, 2017).")
+      ))
     }
     else if (type == "nonparametric") {
       ######################################### Mann-Whitney U test ######################################################
