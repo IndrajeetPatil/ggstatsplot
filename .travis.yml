@@ -10,11 +10,12 @@ fortran: false
 
 matrix:
   include:
-    - os: linux
-      dist: precise
-      sudo: false
-      r_build_args: '--no-build-vignettes'
-      r_check_args: '--ignore-vignettes --no-examples'
+#   precise is getting decommissioned on Travis, so better to leave it out
+#   - os: linux
+#      dist: precise
+#      sudo: required
+#      r_build_args: '--no-build-vignettes'
+#      r_check_args: '--ignore-vignettes --no-examples'
     - os: linux
       dist: trusty
       sudo: false
