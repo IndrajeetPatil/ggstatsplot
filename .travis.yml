@@ -1,8 +1,44 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
+sudo: required
 cache: packages
+dist: trusty
+#addons:
+#  apt:
+#    packages:
+#      - libxml2-dev
+
+r_binary_packages:
+  - apaTables
+  - car
+  - coin
+  - crayon
+  - devtools
+  - dplyr
+  - effsize
+  - ggExtra
+  - ggplot2
+  - ggrepel
+  - grid
+  - jmv
+  - magrittr
+  - MASS
+  - plyr
+  - rlang
+  - RVAideMemoire
+  - sfsmisc
+  - sjstats
+  - stats
+  - userfriendlyscience
+  - WRS2
+  - datasets
+  - grDevices
+  - gtable
+  - knitr
+  - RColorBrewer
+  - rmarkdown
+  - testthat
 
 r_packages:
   - covr
