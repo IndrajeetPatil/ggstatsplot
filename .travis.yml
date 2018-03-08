@@ -31,9 +31,22 @@ addons:
   apt:
     packages:
     - libcurl4-openssl-dev
+    - libxml2-dev
+
+repos:
+  CRAN: https://cloud.r-project.org
+  ropensci: http://packages.ropensci.org
 
 r_packages:
   - covr
+  - apaTables
+  - car
+  - coin
+  - jmv
+  - RVAideMemoire
+  - sjstats
+  - userfriendlyscience
+  - WRS2
 
 warnings_are_errors: true
 #r_check_revdep: true
