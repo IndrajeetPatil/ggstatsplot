@@ -26,7 +26,7 @@
 #' @importFrom crayon red
 #' @importFrom jmv propTestN
 #' @importFrom jmv contTables
-#' @importFrom userfriendlyscience confIntV
+#' @importFrom DescTools CramerV
 #'
 #' @examples
 #' library(datasets)
@@ -87,17 +87,13 @@ ggpiestats <-
       if (base::missing(condition)) {
         if (is.null(legend.title)) {
           legend.title <-
-            colnames(dplyr::select(
-              .data = data,
-              !!rlang::enquo(main)
-            ))[1]
+            colnames(dplyr::select(.data = data,
+                                   !!rlang::enquo(main)))[1]
         }
         # if condition argument is not provided then only include the 'main' argument in dataframe
         data <-
-          dplyr::select(
-            .data = data,
-            main = !!rlang::enquo(main)
-          )
+          dplyr::select(.data = data,
+                        main = !!rlang::enquo(main))
       } else {
         # preparing labels from given dataframe
         lab.df <- colnames(dplyr::select(
@@ -125,10 +121,8 @@ ggpiestats <-
       if (!is.null(condition)) {
         # if vectors are provided and condition vector is present
         data <-
-          base::cbind.data.frame(
-            main = main,
-            condition = condition
-          )
+          base::cbind.data.frame(main = main,
+                                 condition = condition)
       } else {
         # if condition vector is absent
         data <-
@@ -165,10 +159,8 @@ ggpiestats <-
     # ========================================= preparing names for legend and facet_wrap =============================
 
     # reorder the category factor levels to order the legend
-    df$main <- factor(
-      x = df$main,
-      levels = unique(df$main)
-    )
+    df$main <- factor(x = df$main,
+                      levels = unique(df$main))
 
     # getting labels for all levels of the 'main' variable factor
     if (is.null(factor.levels)) {
@@ -189,10 +181,8 @@ ggpiestats <-
 
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
-      p <- ggplot2::ggplot(
-        data = df,
-        mapping = aes(x = "", y = counts)
-      ) +
+      p <- ggplot2::ggplot(data = df,
+                           mapping = aes(x = "", y = counts)) +
         geom_col(
           position = "fill",
           color = "black",
@@ -200,10 +190,8 @@ ggpiestats <-
           aes(fill = factor(get("main")))
         ) +
         geom_label(
-          aes(
-            label = paste0(round(perc), "%"),
-            group = factor(get("main"))
-          ),
+          aes(label = paste0(round(perc), "%"),
+              group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
           color = "black",
           size = 5,
@@ -212,26 +200,22 @@ ggpiestats <-
         coord_polar(theta = "y") # convert to polar coordinates
     } else {
       # if facet_wrap *is* happening
-      p <- ggplot2::ggplot(
-        data = df,
-        mapping = aes(x = "", y = counts)
-      ) +
+      p <- ggplot2::ggplot(data = df,
+                           mapping = aes(x = "", y = counts)) +
         geom_col(
           position = "fill",
           color = "black",
           width = 1,
           aes(fill = factor(get("main")))
         ) +
-        facet_wrap(
-          facets = ~ condition,
-          # creating facets and, if necessary, changing the facet_wrap name
-          labeller = labeller(
-            condition = label_facet(
-              original_var = df$condition,
-              custom_name = facet.wrap.name
-            )
-          )
-        ) +
+        facet_wrap(facets = ~ condition,
+                   # creating facets and, if necessary, changing the facet_wrap name
+                   labeller = labeller(
+                     condition = label_facet(
+                       original_var = df$condition,
+                       custom_name = facet.wrap.name
+                     )
+                   )) +
         geom_label(
           aes(label = paste0(round(perc), "%"), group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
@@ -307,7 +291,7 @@ ggpiestats <-
           paste(
             y,
             " : ",
-            italic(chi)^2,
+            italic(chi) ^ 2,
             "(",
             df,
             ") = ",
@@ -334,8 +318,8 @@ ggpiestats <-
           pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$chiSq)[[4]], k, p.value = TRUE),
           # select Cramer's V
           phicoeff = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$nom)[[4]], k),
-          LL = ggstatsplot::specify_decimal_p(x = cramer_ci$output$confIntV.bootstrap[[1]], k),
-          UL = ggstatsplot::specify_decimal_p(x = cramer_ci$output$confIntV.bootstrap[[2]], k)
+          LL = ggstatsplot::specify_decimal_p(x = cramer_ci[[2]], k),
+          UL = ggstatsplot::specify_decimal_p(x = cramer_ci[[3]], k)
         )
       )
     }
@@ -350,7 +334,7 @@ ggpiestats <-
         expr =
           paste(
             "Proportion test : ",
-            italic(chi)^2,
+            italic(chi) ^ 2,
             "(",
             df,
             ") = ",
@@ -384,14 +368,10 @@ ggpiestats <-
               phiCra = TRUE
             ),
             # getting effect size for Cramer's V
-            cramer_ci = userfriendlyscience::confIntV(
+            cramer_ci = DescTools::CramerV(
               x = data$main,
               y = data$condition,
-              conf.level = 0.95,
-              samples = 500,
-              digits = 5,
-              method = "bootstrap",
-              storeBootstrappingData = FALSE
+              conf.level = 0.95
             ),
             effect = stat.title
           )
@@ -407,10 +387,8 @@ ggpiestats <-
       # adding subtitle to the plot
       p <-
         p +
-        labs(subtitle = proptest_subtitle(jmv_chi = jmv::propTestN(
-          data = data,
-          var = "main"
-        )))
+        labs(subtitle = proptest_subtitle(jmv_chi = jmv::propTestN(data = data,
+                                                                   var = "main")))
     }
 
     #################################### putting all together ############################################
@@ -422,10 +400,8 @@ ggpiestats <-
     # preparing the plot
     p <-
       p +
-      labs(
-        title = title,
-        caption = caption
-      ) +
+      labs(title = title,
+           caption = caption) +
       guides(fill = guide_legend(title = legend.title))
 
     # return the final plot

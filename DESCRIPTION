@@ -20,6 +20,7 @@ Imports:
     coin (>= 1.2-2),
     crayon (>= 1.3.4),
     devtools (>= 1.13.4),
+    DescTools (>= 0.99.23), 
     dplyr (>= 0.7.4),
     effsize (>= 0.7.1),
     ggExtra (>= 0.7),
