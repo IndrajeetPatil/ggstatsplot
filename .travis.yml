@@ -4,44 +4,45 @@ language: R
 sudo: required
 cache: packages
 dist: trusty
-#addons:
-#  apt:
-#    packages:
-#      - libxml2-dev
+latex: false
+fortran: false
 
-r_binary_packages:
-  - apaTables
-  - car
-  - coin
-  - crayon
-  - devtools
-  - dplyr
-  - effsize
-  - ggExtra
-  - ggplot2
-  - ggrepel
-  - grid
-  - jmv
-  - magrittr
-  - MASS
-  - plyr
-  - rlang
-  - RVAideMemoire
-  - sfsmisc
-  - sjstats
-  - stats
-  - userfriendlyscience
-  - WRS2
-  - datasets
-  - grDevices
-  - gtable
-  - knitr
-  - RColorBrewer
-  - rmarkdown
-  - testthat
+# Note: http test servers are flaky and we want to minimze false positives
+# so we skip examples and vignettes (but not unit tests) on OS X.
+
+matrix:
+  include:
+    - os: linux
+      dist: precise
+      sudo: false
+      r_build_args: '--no-build-vignettes'
+      r_check_args: '--ignore-vignettes --no-examples'
+    - os: linux
+      dist: trusty
+      sudo: required
+      env: R_CODECOV = true
+    - os: osx
+      osx_image: xcode9.2
+    - os: osx
+      osx_image: xcode7.3
+      r_build_args: '--no-build-vignettes'
+      r_check_args: '--ignore-vignettes --no-examples'
+
+addons:
+  apt:
+    packages:
+    - libcurl4-openssl-dev
 
 r_packages:
   - covr
+
+warnings_are_errors: true
+#r_check_revdep: true
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
