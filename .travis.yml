@@ -263,4 +263,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - Rscript -e 'library(covr); codecov()'
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
