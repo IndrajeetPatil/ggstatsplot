@@ -13,6 +13,11 @@ matrix:
 #   precise is getting decommissioned on Travis, so better to leave it out
     - os: linux
       dist: trusty
+      sudo: required
+      r_build_args: '--no-build-vignettes'
+      r_check_args: '--ignore-vignettes --no-examples'
+    - os: linux
+      dist: trusty
       sudo: false
       env: R_CODECOV = true
       r_build_args: '--no-build-vignettes'
@@ -36,7 +41,8 @@ repos:
 
 r_packages:
   - covr
-  r_binary_packages:
+
+r_binary_packages:
   # dependencies for ggstatsplot
   - apaTables
   - car
