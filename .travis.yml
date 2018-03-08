@@ -20,6 +20,8 @@ matrix:
       dist: trusty
       sudo: false
       env: R_CODECOV = true
+      r_build_args: '--no-build-vignettes'
+      r_check_args: '--ignore-vignettes --no-examples'
     - os: osx
       osx_image: xcode9.2
     - os: osx
