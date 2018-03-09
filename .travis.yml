@@ -3,7 +3,7 @@
 language: R
 cache: packages
 latex: false
-fortran: false
+fortran: true
 
 # Note: http test servers are flaky and we want to minimze false positives
 # so we skip examples and vignettes (but not unit tests) on OS X.
