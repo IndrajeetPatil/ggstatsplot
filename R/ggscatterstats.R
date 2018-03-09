@@ -106,7 +106,7 @@ ggscatterstats <-
            results.subtitle = NULL,
            title = NULL,
            caption = NULL,
-           maxit = 500,
+           maxit = 1000,
            k = 3) {
     ################################################### dataframe ####################################################
     # preparing a dataframe out of provided inputs
