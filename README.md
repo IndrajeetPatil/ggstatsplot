@@ -113,7 +113,7 @@ ggstatsplot::ggscatterstats(
   width.jitter = 0.2,
   height.jitter = 0.4
   ) 
-#> Note: Robust regression using an M estimator: no. of iterations = 500 In case of non-convergence, increase maxit value.Note: The estimate is standardized.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
+#> Note: Robust regression using an M estimator: no. of iterations = 1000 In case of non-convergence, increase maxit value.Note: The estimate is standardized.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
 ```
 
 ![](man/figures/README-unnamed-chunk-6-1.png)<!-- -->
@@ -150,7 +150,6 @@ ggstatsplot::ggpiestats(data = mtcars,
                         main = am,
                         condition = cyl) +
   scale_fill_brewer(palette = "Dark2")
-#> Note: The effect size displayed: Cramer's V (500 samples used to generate its bootstrapped 95% CI)
 ```
 
 ![](man/figures/README-unnamed-chunk-8-1.png)<!-- -->
@@ -171,7 +170,6 @@ factor.levels = c("0 = automatic", "1 = manual"),
 facet.wrap.name = "No. of cylinders",
 caption = expression(paste(italic("Note"), ": this is a demo"))
 ) 
-#> Note: The effect size displayed: Cramer's V (500 samples used to generate its bootstrapped 95% CI)
 ```
 
 ![](man/figures/README-unnamed-chunk-9-1.png)<!-- -->

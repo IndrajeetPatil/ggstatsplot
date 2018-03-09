@@ -324,71 +324,69 @@ ggpiestats <-
       )
     }
 
-    ##################################################### proportion test ###############################################
-
-    # custom function to write results from chi-square test into subtitle for the plot
-    # jmv_chi stands for the proportion test object from jmv::propTestN()
-
-    proptest_subtitle <- function(jmv_chi) {
-      base::substitute(
-        expr =
-          paste(
-            "Proportion test : ",
-            italic(chi) ^ 2,
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$tests)[[1]], k),
-          df = as.data.frame(jmv_chi$tests)[[2]],
-          # df is always an integer
-          pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$tests)[[3]], k, p.value = TRUE)
-        )
-      )
-    }
-
-
     #################################### adding statistical test results ##################################################
-    # prepare the statistical test subtitle
+
+
     if (!base::missing(condition)) {
+      # running Pearson's Chi-square test using jmv::contTables
+      jmv_chi <- jmv::contTables(
+        data = data,
+        rows = "condition",
+        cols = "main",
+        phiCra = TRUE
+      )
+      # preparing Cramer's V object depending on whether V is NaN or not
+      # it will be NaN in cases where there are no values of one categorial variable for level of another categorial variable
+      if (is.nan(as.data.frame(jmv_chi$nom)[[4]])) {
+        # NaN list in case Cramer's V is also NaN
+        cramer_ci <- c(NaN, NaN, NaN)
+      } else {
+        # results for confidence interval of Cramer's V
+        cramer_ci <- DescTools::CramerV(x = data$main,
+                                        y = data$condition,
+                                        conf.level = 0.95)
+      }
+      # adding chi-square results to the plot subtitle
       p <-
-        p + labs(
-          subtitle = chi_subtitle(
-            # computing chi-square test of association
-            jmv_chi = jmv::contTables(
-              data = data,
-              rows = "condition",
-              cols = "main",
-              phiCra = TRUE
+        p + labs(subtitle = chi_subtitle(
+          # results from Pearson's chi-square test
+          jmv_chi = jmv_chi,
+          # effect size (Cramer's V and it's confidence interval)
+          cramer_ci = cramer_ci,
+          effect = stat.title
+        ))
+    } else {
+      # conducting proportion test with jmv::propTestN()
+      jmv_prop <- jmv::propTestN(data = data,
+                                 var = "main")
+
+      # preparing proportion test subtitle for the plot
+      proptest_subtitle <-
+        base::substitute(
+          expr =
+            paste(
+              "Proportion test : ",
+              italic(chi) ^ 2,
+              "(",
+              df,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue
             ),
-            # getting effect size for Cramer's V
-            cramer_ci = DescTools::CramerV(
-              x = data$main,
-              y = data$condition,
-              conf.level = 0.95
-            ),
-            effect = stat.title
+          env = base::list(
+            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
+            df = as.data.frame(jmv_prop$tests)[[2]],
+            # df is always an integer
+            pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[3]], k, p.value = TRUE)
           )
         )
-      # give details about the test run and the effect size displayed
-      base::message(cat(
-        crayon::green("Note:"),
-        crayon::blue(
-          "The effect size displayed: Cramer's V (500 samples used to generate its bootstrapped 95% CI)"
-        )
-      ))
-    } else {
-      # adding subtitle to the plot
+      # adding proportion test subtitle to the plot
       p <-
         p +
-        labs(subtitle = proptest_subtitle(jmv_chi = jmv::propTestN(data = data,
-                                                                   var = "main")))
+        labs(subtitle = proptest_subtitle)
     }
 
     #################################### putting all together ############################################
