@@ -11,7 +11,8 @@ combine_plots(..., title.text = NULL, title.colour = "black",
   caption.fontface = "plain", sub.text = NULL, sub.colour = "black",
   sub.size = 14, sub.vjust = 0.5, sub.hjust = 0.5,
   sub.fontface = "plain", sub.x = 0.5, sub.y = 0.5,
-  sub.vpadding = grid::unit(1, "lines"), title.rel.heights = c(0.1, 1.2),
+  sub.vpadding = grid::unit(1, "lines"), sub.angle = 0,
+  sub.lineheight = 0.9, title.rel.heights = c(0.1, 1.2),
   caption.rel.heights = c(1.2, 0.1), title.caption.rel.heights = c(0.1, 1.2,
   0.1))
 }
@@ -64,6 +65,10 @@ combine_plots(..., title.text = NULL, title.colour = "black",
 
 \item{sub.vpadding}{Vertical padding. The total vertical space added to the label, given in grid units.
 By default, this is added equally above and below the label. However, by changing the y and vjust parameters, this can be changed.}
+
+\item{sub.angle}{Angle at which annotation label is to be drawn.}
+
+\item{sub.lineheight}{Line height of annotation label.}
 
 \item{title.rel.heights}{Numerical vector of relative columns heights while combining (title, plot).}
 
