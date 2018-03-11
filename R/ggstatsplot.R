@@ -10,6 +10,8 @@
 #'   with a marginal histograms/boxplots/density plots from `ggExtra` and details from the statistical tests in the subtitle
 #'   \item \code{\link[ggstatsplot]{ggpiestats}} function to produce pie chart with details from
 #'   the statistical tests in the subtitle
+#'   \item \code{\link[ggstatsplot]{combine_plots}} function to combine multiple `ggstatsplot` plots using `cowplot::plot_grid()`
+#'    with a combination of title, caption, and annotation label
 #'   \item \code{\link[ggstatsplot]{theme_mprl}} default theme used for the `ggstatplot` package
 #'   \item \code{\link[ggstatsplot]{specify_decimal_p}} format results for pretty printing
 #' }

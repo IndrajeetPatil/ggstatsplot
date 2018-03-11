@@ -11,7 +11,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--09-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--10-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.2.0-6666ff.svg)](https://cran.r-project.org/)
@@ -53,7 +53,7 @@ ggstatsplot::ggbetweenstats(data = iris,
 #> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
 ```
 
-![](man/figures/README-unnamed-chunk-3-1.png)<!-- -->
+![](man/figures/README-ggbetweenstats1-1.png)<!-- -->
 
 Number of other arguments can be specified to make this plot even more
 informative and, additionally, this function returns a `ggplot2` object
@@ -78,7 +78,7 @@ ggstatsplot::ggbetweenstats(
 #> Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
 ```
 
-![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
+![](man/figures/README-ggbetweenstats2-1.png)<!-- -->
 
 Variant of this function `ggwithinstats` is currently under work.
 
@@ -95,7 +95,7 @@ ggstatsplot::ggscatterstats(data = iris,
 #> Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
 ```
 
-![](man/figures/README-unnamed-chunk-5-1.png)<!-- -->
+![](man/figures/README-ggscatterstats1-1.png)<!-- -->
 
 Number of other arguments can be specified to modify this basic plot-
 
@@ -119,7 +119,7 @@ ggstatsplot::ggscatterstats(
 #> Note: Robust regression using an M estimator: no. of iterations = 1000 In case of non-convergence, increase maxit value.Note: The estimate is standardized.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
 ```
 
-![](man/figures/README-unnamed-chunk-6-1.png)<!-- -->
+![](man/figures/README-ggscatterstats2-1.png)<!-- -->
 
 **Important**: In contrast to all other functions in this package, the
 `ggscatterstats` function returns object that is **not** further
@@ -139,7 +139,7 @@ ggstatsplot::ggpiestats(data = iris,
                         main = Species)
 ```
 
-![](man/figures/README-unnamed-chunk-7-1.png)<!-- -->
+![](man/figures/README-ggpiestats1-1.png)<!-- -->
 
 This function can also be used to study an interaction between two
 categorical variables. Additionally, as with the other functions in
@@ -155,7 +155,7 @@ ggstatsplot::ggpiestats(data = mtcars,
   scale_fill_brewer(palette = "Dark2")
 ```
 
-![](man/figures/README-unnamed-chunk-8-1.png)<!-- -->
+![](man/figures/README-ggpiestats2-1.png)<!-- -->
 
 As with the other functions, this basic plot can further be modified
 with additional arguments:
@@ -175,7 +175,48 @@ caption = expression(paste(italic("Note"), ": this is a demo"))
 ) 
 ```
 
-![](man/figures/README-unnamed-chunk-9-1.png)<!-- -->
+![](man/figures/README-ggpiestats3-1.png)<!-- -->
+
+`ggstatsplot` also contains a helper function to combine multiple plots.
+This is a wrapper function around `cowplot::plot_grid` and lets you
+combine multiple plots and add combination of title, caption, and
+annotation texts.
+
+``` r
+library(ggplot2)
+library(plyr)
+library(glue)
+
+ggstatsplot::combine_plots(
+plotlist = plyr::dlply( 
+.data = iris,
+.variables = .(Species),
+.fun = function(data)
+ggstatsplot::ggscatterstats(
+data = data,
+x = Sepal.Length,
+y = Sepal.Width,
+title = glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
+)
+),
+labels = c("(a)", "(b)", "(c)"),
+nrow = 3,
+ncol = 1,
+title.text = "Relationship between sepal length and width for all Iris species",
+title.size = 14,
+title.colour = "blue",
+caption.text = expression(
+paste(
+italic("Note"),
+": Iris flower dataset was collected by Edgar Anderson."
+),
+caption.size = 10
+)
+)
+#> Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
+```
+
+![](man/figures/README-combine_plots-1.png)<!-- -->
 
 Please note that this project is released with a [Contributor Code of
 Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project
