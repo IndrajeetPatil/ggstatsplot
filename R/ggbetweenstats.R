@@ -285,8 +285,8 @@ ggbetweenstats <- function(data = NULL,
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_omega <-
           function(aov_stat,
-                   aov_effsize,
-                   aov_effsize_ci) {
+                             aov_effsize,
+                             aov_effsize_ci) {
             # extracting the elements of the statistical object
             base::substitute(
               expr =
@@ -373,8 +373,8 @@ ggbetweenstats <- function(data = NULL,
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_peta <-
           function(aov_stat,
-                   aov_effsize,
-                   aov_effsize_ci) {
+                             aov_effsize,
+                             aov_effsize_ci) {
             # extracting the elements of the statistical object
             base::substitute(
               expr =

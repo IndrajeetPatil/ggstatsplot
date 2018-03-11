@@ -71,15 +71,15 @@ utils::globalVariables(
 # defining the function
 ggpiestats <-
   function(data = NULL,
-           main,
-           condition = NULL,
-           factor.levels = NULL,
-           stat.title = NULL,
-           title = NULL,
-           caption = NULL,
-           legend.title = NULL,
-           facet.wrap.name = NULL,
-           k = 3) {
+             main,
+             condition = NULL,
+             factor.levels = NULL,
+             stat.title = NULL,
+             title = NULL,
+             caption = NULL,
+             legend.title = NULL,
+             facet.wrap.name = NULL,
+             k = 3) {
     # ================================= dataframe =======================================================
     # if dataframe is provided
     if (!is.null(data)) {

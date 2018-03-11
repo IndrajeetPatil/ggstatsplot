@@ -91,23 +91,23 @@ utils::globalVariables(
 # defining the function
 ggscatterstats <-
   function(data = NULL,
-           x,
-           y,
-           xlab = NULL,
-           ylab = NULL,
-           marginal = TRUE,
-           marginal.type = "histogram",
-           width.jitter = NULL,
-           height.jitter = NULL,
-           xfill = "orange",
-           yfill = "green",
-           intercept = NULL,
-           test = "pearson",
-           results.subtitle = NULL,
-           title = NULL,
-           caption = NULL,
-           maxit = 1000,
-           k = 3) {
+             x,
+             y,
+             xlab = NULL,
+             ylab = NULL,
+             marginal = TRUE,
+             marginal.type = "histogram",
+             width.jitter = NULL,
+             height.jitter = NULL,
+             xfill = "orange",
+             yfill = "green",
+             intercept = NULL,
+             test = "pearson",
+             results.subtitle = NULL,
+             title = NULL,
+             caption = NULL,
+             maxit = 1000,
+             k = 3) {
     ################################################### dataframe ####################################################
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
