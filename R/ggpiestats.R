@@ -30,7 +30,7 @@
 #'
 #' @examples
 #' library(datasets)
-#' ggpiestats(data = mtcars, main = am, condition = cyl, factor.levels = c("zero", "one"),
+#' ggstatsplot::ggpiestats(data = mtcars, main = am, condition = cyl, factor.levels = c("zero", "one"),
 #' stat.title = "interaction", title = "Dataset: mtcars", caption = "This is a demo",
 #' legend.title = "transmission", facet.wrap.name = "No. of cylinders")
 #'

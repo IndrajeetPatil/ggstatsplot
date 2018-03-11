@@ -17,6 +17,8 @@ different groups or conditions with \code{ggplot2} and details from the statisti
 with a marginal histograms/boxplots/density plots from \code{ggExtra} and details from the statistical tests in the subtitle
 \item \code{\link[ggstatsplot]{ggpiestats}} function to produce pie chart with details from
 the statistical tests in the subtitle
+\item \code{\link[ggstatsplot]{gghistostats}} function to produce histogram for a single variable with results from
+one sample test displayed in the subtitle
 \item \code{\link[ggstatsplot]{combine_plots}} function to combine multiple \code{ggstatsplot} plots using \code{cowplot::plot_grid()}
 with a combination of title, caption, and annotation label
 \item \code{\link[ggstatsplot]{theme_mprl}} default theme used for the \code{ggstatplot} package

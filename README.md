@@ -68,20 +68,24 @@ and thus any of the graphics layers can be further modified:
 
 ``` r
 library(ggplot2)
+
 ggstatsplot::ggbetweenstats(
   data = iris,
   x = Species,
   y = Sepal.Length,
-  mean.plotting = TRUE,
-  type = "robust",
-  outlier.tagging = TRUE,
-  xlab = "Type of Species",
-  ylab = "Attribute: Sepal Length",
-  title = "Dataset: Iris flower data set",
-  caption = expression(paste(italic("Note"), ": this is a demo"))
-  ) +
-  coord_cartesian(ylim = c(3, 8)) + 
-  scale_y_continuous(breaks = seq(3, 8, by = 1))
+  mean.plotting = TRUE,                           # whether mean for each group id to be displayed 
+  type = "robust",                                # which type of test is to be run
+  outlier.tagging = TRUE,                         # whether outliers need to be tagged
+  outlier.label = Sepal.Width,                    # variable to be used for the outlier tag
+  xlab = "Type of Species",                       # label for the x-axis variable
+  ylab = "Attribute: Sepal Length",               # label for the y-axis variable
+  title = "Dataset: Iris flower data set",        # title text for the plot
+  caption = expression(                           # caption text for the plot 
+    paste(italic("Note"), ": this is a demo")
+    )
+  ) +                                             # further modifcation outside of ggstatsplot
+  ggplot2::coord_cartesian(ylim = c(3, 8)) + 
+  ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
 #> Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
 ```
 
@@ -98,7 +102,8 @@ and results from statistical tests in subtitle:
 ``` r
 ggstatsplot::ggscatterstats(data = iris, 
                             x = Sepal.Length, 
-                            y = Petal.Length)
+                            y = Petal.Length,
+                            title = "Dataset: Iris flower data set")
 #> Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
 ```
 
@@ -107,21 +112,25 @@ ggstatsplot::ggscatterstats(data = iris,
 Number of other arguments can be specified to modify this basic plot-
 
 ``` r
+library(datasets)
+
 ggstatsplot::ggscatterstats(
   data = subset(iris, iris$Species == "setosa"),
   x = Sepal.Length,
   y = Petal.Length,
-  test = "robust",
-  xlab = "Attribute: Sepal Length",
-  ylab = "Attribute: Petal Length",
-  title = "Dataset: Iris flower data set",
-  caption = expression(paste(italic("Note"), ": this is a demo")),
-  marginal.type = "density",
-  xfill = "blue",
-  yfill = "red",
-  intercept = "median",
-  width.jitter = 0.2,
-  height.jitter = 0.4
+  test = "robust",                               # type of test that needs to be run
+  xlab = "Attribute: Sepal Length",              # label for x axis
+  ylab = "Attribute: Petal Length",              # label for y axis 
+  title = "Dataset: Iris flower data set",       # title text for the plot
+  caption = expression(                          # caption text for the plot
+    paste(italic("Note"), ": this is a demo")
+    ),
+  marginal.type = "density",                     # type of marginal distribution to be displayed
+  xfill = "blue",                                # colour fill for x-axis marginal distribution 
+  yfill = "red",                                 # colour fill for y-axis marginal distribution
+  intercept = "median",                          # which type of intercept line is to be displayed  
+  width.jitter = 0.2,                            # amount of horizontal jitter for data points
+  height.jitter = 0.4                            # amount of vertical jitter for data points
   ) 
 #> Note: Robust regression using an M estimator: no. of iterations = 1000 In case of non-convergence, increase maxit value.Note: The estimate is standardized.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
 ```
@@ -156,10 +165,11 @@ be modified with `ggplot2` syntax (e.g., we can change the color palette
 
 ``` r
 library(ggplot2)
+
 ggstatsplot::ggpiestats(data = mtcars,
-                        main = am,
+                        main = am,                
                         condition = cyl) +
-  scale_fill_brewer(palette = "Dark2")
+  ggplot2::scale_fill_brewer(palette = "Dark2")   # further modifcation outside of ggstatsplot    
 ```
 
 ![](man/figures/README-ggpiestats2-1.png)<!-- -->
@@ -169,25 +179,56 @@ with additional arguments:
 
 ``` r
 library(ggplot2)
+
 ggstatsplot::ggpiestats(
-data = mtcars,
-main = am,
-condition = cyl,
-title = "Dataset: Motor Trend Car Road Tests",
-stat.title = "interaction effect",
-legend.title = "Transmission",
-factor.levels = c("0 = automatic", "1 = manual"),
-facet.wrap.name = "No. of cylinders",
-caption = expression(paste(italic("Note"), ": this is a demo"))
+  data = mtcars,
+  main = am,
+  condition = cyl,
+  title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
+  stat.title = "interaction effect",                  # title for the results from Pearson's chi-squared test
+  legend.title = "Transmission",                      # title for the legend
+  factor.levels = c("0 = automatic", "1 = manual"),   # renaming the factor level names for main variable 
+  facet.wrap.name = "No. of cylinders",               # name for the facetting variable
+  caption = expression(                               # text for the caption
+    paste(italic("Note"), ": this is a demo")
+    )
 ) 
 ```
 
 ![](man/figures/README-ggpiestats3-1.png)<!-- -->
 
-`ggstatsplot` also contains a helper function to combine multiple plots.
-This is a wrapper function around `cowplot::plot_grid` and lets you
-combine multiple plots and add combination of title, caption, and
-annotation texts.
+  - `gghistostats`
+
+In case you would like to see the distribution of one variable and check
+if it is significantly different from a specified value with a one
+sample test, this function will let you do that.
+
+``` r
+library(datasets)
+library(viridis)
+
+ggstatsplot::gghistostats(
+data = iris,
+x = Sepal.Length,
+title = "Distribution of Iris sepal length",
+type = "parametric",            # one sample t-test
+test.value = 3,                 # default value is 0
+centrality.plot = TRUE,         # whether a measure of central tendency is to be plotted
+centrality.para = "mean",       # which measure of central tendency is to be plotted
+normality.plot = TRUE,          # whether normal distribution is to be overlayed on a histogram
+binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
+binwidth = 0.10) +              # binwidth value (needs to be toyed around with until you find the best one)
+viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
+```
+
+![](man/figures/README-gghistostats-1.png)<!-- -->
+
+  - `combine_plots`
+
+`ggstatsplot` also contains a helper function `combine_plots` to combine
+multiple plots. This is a wrapper function around `cowplot::plot_grid`
+and lets you combine multiple plots and add combination of title,
+caption, and annotation texts.
 
 ``` r
 library(ggplot2)
@@ -203,6 +244,7 @@ ggstatsplot::ggscatterstats(
 data = data,
 x = Sepal.Length,
 y = Sepal.Width,
+marginal.type = "boxplot",
 title =
 glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
 )
@@ -225,6 +267,8 @@ caption.size = 10
 ```
 
 ![](man/figures/README-combine_plots-1.png)<!-- -->
+
+  - `theme_mprl`
 
 `ggstatsplot` uses a default theme `theme_mprl()` that can be used with
 any `ggplot2` objects.

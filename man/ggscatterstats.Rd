@@ -51,14 +51,7 @@ statistical details added as a subtitle.
 If you want to use \code{marginal.type = "violin"}, you will have to use development version of \code{ggExtra}
 }
 \examples{
-# the most basic and minimalistic way of entering arguments
-library(datasets)
-ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length)
-# or
-ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length)
-
-# more detailed call
-ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
+ggstatsplot::ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
 intercept = 'median', test = 'robust', marginal.type = 'density')
 
 }
