@@ -9,3 +9,4 @@
 ^CODE_OF_CONDUCT\.md$
 ^SUPPORT\.md$
 ^appveyor\.yml$
+^\.github$
