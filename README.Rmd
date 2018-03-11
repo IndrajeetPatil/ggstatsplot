@@ -18,9 +18,12 @@ knitr::opts_chunk$set(
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) 
 [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.2.0-6666ff.svg)](https://cran.r-project.org/)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
+[![Pending Pull-Requests](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls)
+[![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
 
 ## Overview
 
@@ -142,11 +145,11 @@ caption = expression(paste(italic("Note"), ": this is a demo"))
 
 ```{r combine_plots, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 7}
 library(ggplot2)
-library(plyr)
+library(plyr) # you can alternatively do this with `purrr`
 library(glue)
 
 ggstatsplot::combine_plots(
-plotlist = plyr::dlply( 
+plotlist = plyr::dlply(
 .data = iris,
 .variables = .(Species),
 .fun = function(data)
@@ -154,7 +157,8 @@ ggstatsplot::ggscatterstats(
 data = data,
 x = Sepal.Length,
 y = Sepal.Width,
-title = glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
+title =
+glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
 )
 ),
 labels = c("(a)", "(b)", "(c)"),
