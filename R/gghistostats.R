@@ -87,52 +87,56 @@ utils::globalVariables(
 
 gghistostats <-
   function(data = NULL,
-           x,
-           xlab = NULL,
-           title = NULL,
-           subtitle = NULL,
-           caption = NULL,
-           type = "parametric",
-           test.value = 0,
-           k = 3,
-           results.subtitle = TRUE,
-           normality.plot = FALSE,
-           centrality.plot = FALSE,
-           centrality.para = "mean",
-           binwidth.adjust = FALSE,
-           binwidth = NULL) {
-    #========================================== dataframe ==============================================================
+             x,
+             xlab = NULL,
+             title = NULL,
+             subtitle = NULL,
+             caption = NULL,
+             type = "parametric",
+             test.value = 0,
+             k = 3,
+             results.subtitle = TRUE,
+             normality.plot = FALSE,
+             centrality.plot = FALSE,
+             centrality.para = "mean",
+             binwidth.adjust = FALSE,
+             binwidth = NULL) {
+    # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(.data = data,
-                                       !!rlang::enquo(x)))
+      lab.df <- colnames(dplyr::select(
+        .data = data,
+        !!rlang::enquo(x)
+      ))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
       }
       # if dataframe is provided
       data <-
-        dplyr::select(.data = data,
-                      x = !!rlang::enquo(x))
+        dplyr::select(
+          .data = data,
+          x = !!rlang::enquo(x)
+        )
     } else {
       # if vectors are provided
       data <-
         base::cbind.data.frame(x = x)
     }
-    #========================================== stats ==================================================================
+    # ========================================== stats ==================================================================
     if (isTRUE(results.subtitle)) {
       if (type == "parametric") {
         # model
         jmv_os <- jmv::ttestOneS(
           data = data,
-          vars = 'x',
+          vars = "x",
           students = TRUE,
           bf = FALSE,
           bfPrior = 0.707,
           mann = FALSE,
           # Mann-Whitney U test
-          testValue = test.value ,
+          testValue = test.value,
           hypothesis = "dt",
           # two-sided hypothesis-testing
           effectSize = TRUE
@@ -168,13 +172,13 @@ gghistostats <-
         # model
         jmv_os <- jmv::ttestOneS(
           data = data,
-          vars = 'x',
+          vars = "x",
           students = FALSE,
           bf = FALSE,
           bfPrior = 0.707,
           mann = TRUE,
           # Mann-Whitney U test
-          testValue = test.value ,
+          testValue = test.value,
           hypothesis = "dt",
           # two-sided hypothesis-testing
           effectSize = TRUE
@@ -206,22 +210,27 @@ gghistostats <-
     } else {
       subtitle <- subtitle
     }
-    #========================================== plot ===================================================================
+    # ========================================== plot ===================================================================
 
     # if the user wants to adjust the binwidth
     if (isTRUE(binwidth.adjust)) {
-      plot <- ggplot2::ggplot(data = data,
-                              mapping = aes(x = x)) +
+      plot <- ggplot2::ggplot(
+        data = data,
+        mapping = aes(x = x)
+      ) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
-          mapping = aes(y = ..density..,
-                        fill = ..count..)
+          mapping = aes(
+            y = ..density..,
+            fill = ..count..
+          )
         ) +
         ggplot2::scale_fill_gradient("count",
-                                     low = "green",
-                                     high = "red") +
+          low = "green",
+          high = "red"
+        ) +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -231,16 +240,19 @@ gghistostats <-
         )
     } else {
       # if not, use the defaults
-      plot <- ggplot2::ggplot(data = data,
-                              mapping = aes(x = x)) +
+      plot <- ggplot2::ggplot(
+        data = data,
+        mapping = aes(x = x)
+      ) +
         ggplot2::geom_histogram(
           col = "black",
           alpha = 0.7,
           mapping = aes(y = ..density.., fill = ..count..)
         ) +
         ggplot2::scale_fill_gradient("count",
-                                     low = "green",
-                                     high = "red") +
+          low = "green",
+          high = "red"
+        ) +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -299,8 +311,10 @@ gghistostats <-
         ggplot2::stat_function(
           fun = dnorm,
           color = "black",
-          args = list(mean = mean(data$x),
-                      sd = sd(data$x)),
+          args = list(
+            mean = mean(data$x),
+            sd = sd(data$x)
+          ),
           linetype = "dashed",
           size = 1.2
         )
@@ -308,5 +322,4 @@ gghistostats <-
 
     # return the final plot
     return(plot)
-
   }
