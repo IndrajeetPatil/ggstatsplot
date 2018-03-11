@@ -3,7 +3,7 @@
 
 # ggstatsplot: `ggplot2` Based Plots with Statistical Details
 
-[![packageversion](https://img.shields.io/badge/Package%20version-0.1.1-orange.svg?style=flat-square)](commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
 [![Travis Build
 Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)
 [![AppVeyor Build
@@ -225,6 +225,28 @@ caption.size = 10
 ```
 
 ![](man/figures/README-combine_plots-1.png)<!-- -->
+
+`ggstatsplot` uses a default theme `theme_mprl()` that can be used with
+any `ggplot2` objects.
+
+``` r
+library(ggplot2)
+
+# Basic scatter plot
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()
+```
+
+![](man/figures/README-theme_mprl-1.png)<!-- -->
+
+``` r
+# Basic scatter plot with theme_mprl() added
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point() + 
+  ggstatsplot::theme_mprl()
+```
+
+![](man/figures/README-theme_mprl-2.png)<!-- -->
 
 Please note that this project is released with a [Contributor Code of
 Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project
