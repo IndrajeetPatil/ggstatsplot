@@ -28,6 +28,8 @@
 
 \item{centrality.plot}{Decides \emph{whether} measure of central tendency is to be displayed (in the form of a vertical line).}
 
+\item{centrality.colour}{Decides colour for the vertical line.}
+
 \item{centrality.para}{Decides \emph{which} measure of central tendency is used ("mean" or "median").}
 
 \item{binwidth.adjust}{If set to \code{TRUE}, you can use it to pick better value with the \code{binwidth} argument to \code{stat_bin()}.}

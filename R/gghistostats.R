@@ -17,6 +17,7 @@
 #' @param results.subtitle Decides whether the results of statistical tests are to be displayed as subtitle.
 #' @param normality.plot Decides whether normal distribution plot is overlayed on top of the underlying histogram.
 #' @param centrality.plot Decides *whether* measure of central tendency is to be displayed (in the form of a vertical line).
+#' @param centrality.colour Decides colour for the vertical line.
 #' @param centrality.para Decides *which* measure of central tendency is used ("mean" or "median").
 #' @param binwidth.adjust If set to `TRUE`, you can use it to pick better value with the `binwidth` argument to `stat_bin()`.
 #' @param binwidth The width of the bins. Can be specified as a numeric value, or a function that calculates width from `x`.
@@ -27,6 +28,7 @@
 #'
 #' @importFrom jmv ttestOneS
 #' @importFrom stats dnorm
+#' @importFrom stats shapiro.test
 #'
 #' @examples
 #' library(ggplot2)
@@ -99,6 +101,7 @@ gghistostats <-
              normality.plot = FALSE,
              centrality.plot = FALSE,
              centrality.para = "mean",
+           centrality.colour = "blue",
              binwidth.adjust = FALSE,
              binwidth = NULL) {
     # ========================================== dataframe ==============================================================
@@ -269,7 +272,7 @@ gghistostats <-
           ggplot2::geom_vline(
             xintercept = mean(data$x),
             linetype = "dashed",
-            color = "blue",
+            color = centrality.colour,
             size = 1.2
           )
         # this can be used to label the vertical lines, but leave it out since it makes for an ugly plot
@@ -319,7 +322,19 @@ gghistostats <-
           size = 1.2
         )
     }
-
+    # display homogeneity of variances test result as a message
+    sw_norm <- stats::shapiro.test(data$x)
+    base::message(cat(
+      crayon::green("Note: "),
+      crayon::blue("Shapiro-Wilk test of normality: p-value = "),
+      crayon::yellow(
+        ggstatsplot::specify_decimal_p(
+          x = sw_norm$p.value,
+          k,
+          p.value = TRUE
+        )
+      )
+    ))
     # return the final plot
     return(plot)
   }
