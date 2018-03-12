@@ -14,6 +14,8 @@
 
 \item{ylab}{Label for \code{y} axis variable.}
 
+\item{line.colour}{Colour for the regression line.}
+
 \item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}.}
 
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
@@ -51,7 +53,7 @@ statistical details added as a subtitle.
 If you want to use \code{marginal.type = "violin"}, you will have to use development version of \code{ggExtra}
 }
 \examples{
-ggstatsplot::ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
+ggstatsplot::ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length,
 intercept = 'median', test = 'robust', marginal.type = 'density')
 
 }

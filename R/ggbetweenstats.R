@@ -190,7 +190,7 @@ ggbetweenstats <- function(data = NULL,
   # create the basic plot
   plot <-
     ggplot2::ggplot(data = data, mapping = aes(x = x, y = y)) +
-    geom_point(
+    ggplot2::geom_point(
       position = position_jitterdodge(
         jitter.width = NULL,
         jitter.height = 0.2,
@@ -200,7 +200,7 @@ ggbetweenstats <- function(data = NULL,
       size = 3,
       aes(color = factor(x))
     ) +
-    geom_violin(
+    ggplot2::geom_violin(
       width = 0.5,
       alpha = 0.2,
       fill = "white"
@@ -209,7 +209,7 @@ ggbetweenstats <- function(data = NULL,
   # adding a boxplot
   if (isTRUE(outlier.tagging)) {
     plot <- plot +
-      geom_boxplot(
+      ggplot2::geom_boxplot(
         width = 0.3,
         alpha = 0.2,
         fill = "white",
@@ -221,7 +221,7 @@ ggbetweenstats <- function(data = NULL,
       )
   } else {
     plot <- plot +
-      geom_boxplot(
+      ggplot2::geom_boxplot(
         width = 0.3,
         alpha = 0.2,
         fill = "white"
@@ -230,15 +230,15 @@ ggbetweenstats <- function(data = NULL,
 
   # specifying theme and labels for the plot
   plot <- plot + ggstatsplot::theme_mprl() +
-    theme(legend.position = "none") +
-    labs(
+    ggplot2::theme(legend.position = "none") +
+    ggplot2::labs(
       x = xlab,
       y = ylab,
       title = title,
       caption = caption
     ) +
-    scale_fill_brewer(palette = "Dark2") +
-    scale_color_brewer(palette = "Dark2")
+    ggplot2::scale_fill_brewer(palette = "Dark2") +
+    ggplot2::scale_color_brewer(palette = "Dark2")
 
   ################################################  preparing stats subtitles #########################################
 

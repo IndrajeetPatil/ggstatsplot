@@ -11,6 +11,7 @@
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
+#' @param line.colour Colour for the regression line.
 #' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
 #' ("histogram", "boxplot", "density", "violin").
@@ -41,7 +42,7 @@
 #' @importFrom RVAideMemoire spearman.ci
 #'
 #' @examples
-#' ggstatsplot::ggscatterstats(x = iris$Petal.Length, y = iris$Sepal.Length,
+#' ggstatsplot::ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length,
 #' intercept = 'median', test = 'robust', marginal.type = 'density')
 #'
 #' @note If you want to use `marginal.type = "violin"`, you will have to use development version of `ggExtra`
@@ -88,6 +89,7 @@ ggscatterstats <-
              y,
              xlab = NULL,
              ylab = NULL,
+           line.colour = "blue",
              marginal = TRUE,
              marginal.type = "histogram",
              width.jitter = NULL,
@@ -334,7 +336,7 @@ ggscatterstats <-
           y = y
         )
       ) +
-      geom_point(
+      ggplot2::geom_point(
         size = 3,
         alpha = 0.5,
         position = position_jitter(
@@ -342,21 +344,22 @@ ggscatterstats <-
           height = height.jitter
         )
       ) +
-      geom_smooth(
+      ggplot2::geom_smooth(
         method = "lm",
         se = TRUE,
-        size = 1.5
+        size = 1.5,
+        colour = line.colour
       ) +
       ggstatsplot::theme_mprl() +
-      labs(
+      ggplot2::labs(
         x = xlab,
         y = ylab,
         title = title,
         subtitle = stats_subtitle,
         caption = caption
       ) +
-      coord_cartesian(xlim = c(min(data$x), max(data$x))) +
-      coord_cartesian(ylim = c(min(data$y), max(data$y)))
+      ggplot2::coord_cartesian(xlim = c(min(data$x), max(data$x))) +
+      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y)))
 
     ################################################ intercept ##################################################
 
@@ -366,13 +369,13 @@ ggscatterstats <-
       plot <- plot
     } else if (intercept == "mean") {
       plot <- plot +
-        geom_vline(
+        ggplot2::geom_vline(
           xintercept = mean(data$x),
           linetype = "dashed",
           colour = xfill,
           size = 1.2
         ) +
-        geom_hline(
+        ggplot2::geom_hline(
           yintercept = mean(data$y),
           linetype = "dashed",
           colour = yfill,
@@ -380,13 +383,13 @@ ggscatterstats <-
         )
     } else if (intercept == "median") {
       plot <- plot +
-        geom_vline(
+        ggplot2::geom_vline(
           xintercept = mean(data$x),
           linetype = "dashed",
           colour = xfill,
           size = 1.2
         ) +
-        geom_hline(
+        ggplot2::geom_hline(
           yintercept = mean(data$y),
           linetype = "dashed",
           colour = yfill,
@@ -412,15 +415,15 @@ ggscatterstats <-
             col = "black"
           )
         )
-    }
 
-    # display warning that this doesn't produce a ggplot2 object
-    base::message(cat(
-      crayon::red("Warning:"),
-      crayon::blue(
-        "This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands."
-      )
-    ))
+      # display warning that this doesn't produce a ggplot2 object
+      base::message(cat(
+        crayon::red("Warning:"),
+        crayon::blue(
+          "This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands."
+        )
+      ))
+    }
 
     # return the final plot
     return(plot)

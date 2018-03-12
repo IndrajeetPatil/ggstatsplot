@@ -14,7 +14,7 @@ Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/maste
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--11-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--12-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
@@ -22,6 +22,7 @@ version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-
 Pull-Requests](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls)
 [![Github
 Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
+[![saythanks](http://i.imgur.com/L88apDa.png)](https://saythanks.io/to/IndrajeetPatil)
 
 ## Overview
 
@@ -121,6 +122,7 @@ ggstatsplot::ggscatterstats(
   test = "robust",                               # type of test that needs to be run
   xlab = "Attribute: Sepal Length",              # label for x axis
   ylab = "Attribute: Petal Length",              # label for y axis 
+  line.colour = "green",                         # changing regression line colour line
   title = "Dataset: Iris flower data set",       # title text for the plot
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
@@ -214,11 +216,13 @@ title = "Distribution of Iris sepal length",
 type = "parametric",            # one sample t-test
 test.value = 3,                 # default value is 0
 centrality.plot = TRUE,         # whether a measure of central tendency is to be plotted
+centrality.colour = "red",      # decides colour of vertical line representing central tendency
 centrality.para = "mean",       # which measure of central tendency is to be plotted
 normality.plot = TRUE,          # whether normal distribution is to be overlayed on a histogram
 binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
 binwidth = 0.10) +              # binwidth value (needs to be toyed around with until you find the best one)
 viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
+#> Note:  Shapiro-Wilk test of normality: p-value =  0.010
 ```
 
 ![](man/figures/README-gghistostats-1.png)<!-- -->
