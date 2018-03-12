@@ -89,7 +89,7 @@ ggscatterstats <-
              y,
              xlab = NULL,
              ylab = NULL,
-           line.colour = "blue",
+             line.colour = "blue",
              marginal = TRUE,
              marginal.type = "histogram",
              width.jitter = NULL,

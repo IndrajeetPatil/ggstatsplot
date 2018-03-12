@@ -101,7 +101,7 @@ gghistostats <-
              normality.plot = FALSE,
              centrality.plot = FALSE,
              centrality.para = "mean",
-           centrality.colour = "blue",
+             centrality.colour = "blue",
              binwidth.adjust = FALSE,
              binwidth = NULL) {
     # ========================================== dataframe ==============================================================
