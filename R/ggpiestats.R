@@ -193,13 +193,13 @@ ggpiestats <-
         data = df,
         mapping = aes(x = "", y = counts)
       ) +
-        geom_col(
+        ggplot2::geom_col(
           position = "fill",
           color = "black",
           width = 1,
           aes(fill = factor(get("main")))
         ) +
-        geom_label(
+        ggplot2::geom_label(
           aes(
             label = paste0(round(perc), "%"),
             group = factor(get("main"))
@@ -209,20 +209,20 @@ ggpiestats <-
           size = 5,
           show.legend = FALSE
         ) +
-        coord_polar(theta = "y") # convert to polar coordinates
+        ggplot2::coord_polar(theta = "y") # convert to polar coordinates
     } else {
       # if facet_wrap *is* happening
       p <- ggplot2::ggplot(
         data = df,
         mapping = aes(x = "", y = counts)
       ) +
-        geom_col(
+        ggplot2::geom_col(
           position = "fill",
           color = "black",
           width = 1,
           aes(fill = factor(get("main")))
         ) +
-        facet_wrap(
+        ggplot2::facet_wrap(
           facets = ~ condition,
           # creating facets and, if necessary, changing the facet_wrap name
           labeller = labeller(
@@ -232,22 +232,22 @@ ggpiestats <-
             )
           )
         ) +
-        geom_label(
+        ggplot2::geom_label(
           aes(label = paste0(round(perc), "%"), group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
           color = "black",
           size = 5,
           show.legend = FALSE
         ) +
-        coord_polar(theta = "y") # convert to polar coordinates
+        ggplot2::coord_polar(theta = "y") # convert to polar coordinates
     }
 
     # formatting
     p <- p +
-      scale_y_continuous(breaks = NULL) +
-      scale_fill_discrete(name = "", labels = unique(labels)) +
-      theme_grey() +
-      theme(
+      ggplot2::scale_y_continuous(breaks = NULL) +
+      ggplot2::scale_fill_discrete(name = "", labels = unique(labels)) +
+      ggplot2::theme_grey() +
+      ggplot2::theme(
         panel.grid = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
@@ -283,10 +283,8 @@ ggpiestats <-
           hjust = 0.5
         )
       ) +
-      guides(fill = guide_legend(override.aes = base::list(colour = NA))) # remove black diagonal line from legend
-    # +
-    # scale_fill_brewer(palette = "Dark2") +
-    # scale_colour_brewer(palette = "Dark2")
+      ggplot2::guides(fill = guide_legend(override.aes = base::list(colour = NA))) # remove black diagonal line from legend
+
 
     ############################################ chi-square test #####################################################
 
@@ -418,11 +416,11 @@ ggpiestats <-
     # preparing the plot
     p <-
       p +
-      labs(
+      ggplot2::labs(
         title = title,
         caption = caption
       ) +
-      guides(fill = guide_legend(title = legend.title))
+      ggplot2::guides(fill = guide_legend(title = legend.title))
 
     # return the final plot
     return(p)
