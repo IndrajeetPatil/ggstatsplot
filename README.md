@@ -213,18 +213,18 @@ library(datasets)
 library(viridis)
 
 ggstatsplot::gghistostats(
-data = iris,
-x = Sepal.Length,
-title = "Distribution of Iris sepal length",
-type = "parametric",            # one sample t-test
-test.value = 3,                 # default value is 0
-centrality.plot = TRUE,         # whether a measure of central tendency is to be plotted
-centrality.colour = "red",      # decides colour of vertical line representing central tendency
-centrality.para = "mean",       # which measure of central tendency is to be plotted
-normality.plot = TRUE,          # whether normal distribution is to be overlayed on a histogram
-binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
-binwidth = 0.10) +              # binwidth value (needs to be toyed around with until you find the best one)
-viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
+  data = iris,
+  x = Sepal.Length,
+  title = "Distribution of Iris sepal length",
+  type = "parametric",            # one sample t-test
+  test.value = 3,                 # default value is 0
+  centrality.para = "mean",       # which measure of central tendency is to be plotted
+  centrality.colour = "red",      # decides colour of vertical line representing central tendency
+  density.plot = TRUE,            # whether density plot is to be overlayed on a histogram
+  binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
+  binwidth = 0.10                 # binwidth value (needs to be toyed around with until you find the best one)
+) +              
+  viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
 #> Note:  Shapiro-Wilk test of normality for Sepal.Length : p-value =  0.010
 ```
 

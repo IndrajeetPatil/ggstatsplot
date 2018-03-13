@@ -15,10 +15,10 @@
 #' @param test.value A number specifying the value of the null hypothesis.
 #' @param k Number of decimal places expected for results.
 #' @param results.subtitle Decides whether the results of statistical tests are to be displayed as subtitle.
-#' @param normality.plot Decides whether normal distribution plot is overlayed on top of the underlying histogram.
-#' @param centrality.plot Decides *whether* measure of central tendency is to be displayed (in the form of a vertical line).
+#' @param density.plot Decides whether kernel density estimate, which is a smoothed version of the histogram, is to be overlayed on top of the histogram.
+#' @param density.colour Decides colour for the density plot.
+#' @param centrality.para Decides *which* measure of central tendency ("mean" or "median") is to be displayed as a vertical line.
 #' @param centrality.colour Decides colour for the vertical line.
-#' @param centrality.para Decides *which* measure of central tendency is used ("mean" or "median").
 #' @param binwidth.adjust If set to `TRUE`, you can use it to pick better value with the `binwidth` argument to `stat_bin()`.
 #' @param binwidth The width of the bins. Can be specified as a numeric value, or a function that calculates width from `x`.
 #' The default is to use bins bins that cover the range of the data. You should always override this value,
@@ -40,7 +40,7 @@
 #' test.value = 3,
 #' centrality.plot = TRUE,
 #' centrality.para = "mean",
-#' normality.plot = TRUE,
+#' density.plot = TRUE,
 #' binwidth.adjust = TRUE,
 #' binwidth = 0.10
 #' )
@@ -98,9 +98,9 @@ gghistostats <-
              test.value = 0,
              k = 3,
              results.subtitle = TRUE,
-             normality.plot = FALSE,
-             centrality.plot = FALSE,
-             centrality.para = "mean",
+             density.plot = FALSE,
+           density.colour = "black",
+             centrality.para = NULL,
              centrality.colour = "blue",
              binwidth.adjust = FALSE,
              binwidth = NULL) {
@@ -219,15 +219,16 @@ gghistostats <-
     if (isTRUE(binwidth.adjust)) {
       plot <- ggplot2::ggplot(
         data = data,
-        mapping = aes(x = x)
+        mapping = ggplot2::aes(x = x)
       ) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
-          mapping = aes(
+          mapping = ggplot2::aes(
             y = ..density..,
-            fill = ..count..
+            fill = ..count..,
+            na.rm = TRUE
           )
         ) +
         ggplot2::scale_fill_gradient("count",
@@ -250,7 +251,8 @@ gghistostats <-
         ggplot2::geom_histogram(
           col = "black",
           alpha = 0.7,
-          mapping = aes(y = ..density.., fill = ..count..)
+          mapping = ggplot2::aes(y = ..density.., fill = ..count..),
+          na.rm = TRUE
         ) +
         ggplot2::scale_fill_gradient("count",
           low = "green",
@@ -266,14 +268,15 @@ gghistostats <-
     }
 
     # if central tendency parameter is to be added
-    if (isTRUE(centrality.plot)) {
+    if (!is.null(centrality.para)) {
       if (centrality.para == "mean") {
         plot <- plot +
           ggplot2::geom_vline(
             xintercept = mean(data$x),
             linetype = "dashed",
             color = centrality.colour,
-            size = 1.2
+            size = 1.2,
+            na.rm = TRUE
           )
         # this can be used to label the vertical lines, but leave it out since it makes for an ugly plot
         # + ggplot2::geom_text(
@@ -292,7 +295,8 @@ gghistostats <-
             xintercept = median(data$x),
             linetype = "dashed",
             color = "blue",
-            size = 1.2
+            size = 1.2,
+            na.rm = TRUE
           )
         # this can be used to label the vertical lines, but leave it out since it makes for an ugly plot
         # + ggplot2::geom_text(
@@ -309,17 +313,12 @@ gghistostats <-
     }
 
     # if normal distribution plot is to be added
-    if (isTRUE(normality.plot)) {
+    if (isTRUE(density.plot)) {
       plot <- plot +
-        ggplot2::stat_function(
-          fun = dnorm,
-          color = "black",
-          args = list(
-            mean = mean(data$x),
-            sd = sd(data$x)
-          ),
-          linetype = "dashed",
-          size = 1.2
+        ggplot2::geom_density(
+          colour = density.colour,
+          size = 1.0,
+          na.rm = TRUE
         )
     }
     # display homogeneity of variances test result as a message

@@ -24,13 +24,13 @@
 
 \item{results.subtitle}{Decides whether the results of statistical tests are to be displayed as subtitle.}
 
-\item{normality.plot}{Decides whether normal distribution plot is overlayed on top of the underlying histogram.}
+\item{density.plot}{Decides whether kernel density estimate, which is a smoothed version of the histogram, is to be overlayed on top of the histogram.}
 
-\item{centrality.plot}{Decides \emph{whether} measure of central tendency is to be displayed (in the form of a vertical line).}
+\item{density.colour}{Decides colour for the density plot.}
+
+\item{centrality.para}{Decides \emph{which} measure of central tendency ("mean" or "median") is to be displayed as a vertical line.}
 
 \item{centrality.colour}{Decides colour for the vertical line.}
-
-\item{centrality.para}{Decides \emph{which} measure of central tendency is used ("mean" or "median").}
 
 \item{binwidth.adjust}{If set to \code{TRUE}, you can use it to pick better value with the \code{binwidth} argument to \code{stat_bin()}.}
 
@@ -51,7 +51,7 @@ type = "parametric",
 test.value = 3,
 centrality.plot = TRUE,
 centrality.para = "mean",
-normality.plot = TRUE,
+density.plot = TRUE,
 binwidth.adjust = TRUE,
 binwidth = 0.10
 )
