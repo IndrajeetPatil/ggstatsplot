@@ -71,15 +71,15 @@ utils::globalVariables(
 # defining the function
 ggpiestats <-
   function(data = NULL,
-           main,
-           condition = NULL,
-           factor.levels = NULL,
-           stat.title = NULL,
-           title = NULL,
-           caption = NULL,
-           legend.title = NULL,
-           facet.wrap.name = NULL,
-           k = 3) {
+             main,
+             condition = NULL,
+             factor.levels = NULL,
+             stat.title = NULL,
+             title = NULL,
+             caption = NULL,
+             legend.title = NULL,
+             facet.wrap.name = NULL,
+             k = 3) {
     # ================================= dataframe =======================================================
     # if dataframe is provided
     if (!is.null(data)) {
@@ -87,13 +87,17 @@ ggpiestats <-
       if (base::missing(condition)) {
         if (is.null(legend.title)) {
           legend.title <-
-            colnames(dplyr::select(.data = data,
-                                   !!rlang::enquo(main)))[1]
+            colnames(dplyr::select(
+              .data = data,
+              !!rlang::enquo(main)
+            ))[1]
         }
         # if condition argument is not provided then only include the 'main' argument in dataframe
         data <-
-          dplyr::select(.data = data,
-                        main = !!rlang::enquo(main))
+          dplyr::select(
+            .data = data,
+            main = !!rlang::enquo(main)
+          )
       } else {
         # preparing labels from given dataframe
         lab.df <- colnames(dplyr::select(
@@ -121,8 +125,10 @@ ggpiestats <-
       if (!is.null(condition)) {
         # if vectors are provided and condition vector is present
         data <-
-          base::cbind.data.frame(main = main,
-                                 condition = condition)
+          base::cbind.data.frame(
+            main = main,
+            condition = condition
+          )
       } else {
         # if condition vector is absent
         data <-
@@ -159,8 +165,10 @@ ggpiestats <-
     # ========================================= preparing names for legend and facet_wrap =============================
 
     # reorder the category factor levels to order the legend
-    df$main <- factor(x = df$main,
-                      levels = unique(df$main))
+    df$main <- factor(
+      x = df$main,
+      levels = unique(df$main)
+    )
 
     # getting labels for all levels of the 'main' variable factor
     if (is.null(factor.levels)) {
@@ -181,8 +189,10 @@ ggpiestats <-
 
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
-      p <- ggplot2::ggplot(data = df,
-                           mapping = aes(x = "", y = counts)) +
+      p <- ggplot2::ggplot(
+        data = df,
+        mapping = aes(x = "", y = counts)
+      ) +
         ggplot2::geom_col(
           position = "fill",
           color = "black",
@@ -190,8 +200,10 @@ ggpiestats <-
           aes(fill = factor(get("main")))
         ) +
         ggplot2::geom_label(
-          aes(label = paste0(round(perc), "%"),
-              group = factor(get("main"))),
+          aes(
+            label = paste0(round(perc), "%"),
+            group = factor(get("main"))
+          ),
           position = position_fill(vjust = 0.5),
           color = "black",
           size = 5,
@@ -200,22 +212,26 @@ ggpiestats <-
         ggplot2::coord_polar(theta = "y") # convert to polar coordinates
     } else {
       # if facet_wrap *is* happening
-      p <- ggplot2::ggplot(data = df,
-                           mapping = aes(x = "", y = counts)) +
+      p <- ggplot2::ggplot(
+        data = df,
+        mapping = aes(x = "", y = counts)
+      ) +
         ggplot2::geom_col(
           position = "fill",
           color = "black",
           width = 1,
           aes(fill = factor(get("main")))
         ) +
-        ggplot2::facet_wrap(facets = ~ condition,
-                            # creating facets and, if necessary, changing the facet_wrap name
-                            labeller = labeller(
-                              condition = label_facet(
-                                original_var = df$condition,
-                                custom_name = facet.wrap.name
-                              )
-                            )) +
+        ggplot2::facet_wrap(
+          facets = ~ condition,
+          # creating facets and, if necessary, changing the facet_wrap name
+          labeller = labeller(
+            condition = label_facet(
+              original_var = df$condition,
+              custom_name = facet.wrap.name
+            )
+          )
+        ) +
         ggplot2::geom_label(
           aes(label = paste0(round(perc), "%"), group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
@@ -283,13 +299,13 @@ ggpiestats <-
       if (is.null(effect)) {
         effect <- "Chi-square test"
       }
-# preparing the subtitle
+      # preparing the subtitle
       base::substitute(
         expr =
           paste(
             y,
             " : ",
-            italic(chi) ^ 2,
+            italic(chi)^2,
             "(",
             df,
             ") = ",
@@ -339,9 +355,11 @@ ggpiestats <-
         cramer_ci <- c(NaN, NaN, NaN)
       } else {
         # results for confidence interval of Cramer's V
-        cramer_ci <- DescTools::CramerV(x = data$main,
-                                        y = data$condition,
-                                        conf.level = 0.95)
+        cramer_ci <- DescTools::CramerV(
+          x = data$main,
+          y = data$condition,
+          conf.level = 0.95
+        )
       }
       # adding chi-square results to the plot subtitle
       p <-
@@ -354,8 +372,10 @@ ggpiestats <-
         ))
     } else {
       # conducting proportion test with jmv::propTestN()
-      jmv_prop <- jmv::propTestN(data = data,
-                                 var = "main")
+      jmv_prop <- jmv::propTestN(
+        data = data,
+        var = "main"
+      )
 
       # preparing proportion test subtitle for the plot
       proptest_subtitle <-
@@ -363,7 +383,7 @@ ggpiestats <-
           expr =
             paste(
               "Proportion test : ",
-              italic(chi) ^ 2,
+              italic(chi)^2,
               "(",
               df,
               ") = ",
@@ -395,8 +415,10 @@ ggpiestats <-
     # preparing the plot
     p <-
       p +
-      ggplot2::labs(title = title,
-                    caption = caption) +
+      ggplot2::labs(
+        title = title,
+        caption = caption
+      ) +
       ggplot2::guides(fill = guide_legend(title = legend.title))
 
     # display warning about geom_col issues

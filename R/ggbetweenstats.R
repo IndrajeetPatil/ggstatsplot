@@ -948,9 +948,11 @@ ggbetweenstats <- function(data = NULL,
       ": p-value = "
     ),
     crayon::yellow(
-      ggstatsplot::specify_decimal_p(x = bartlett$p.value,
-                                     k,
-                                     p.value = TRUE)
+      ggstatsplot::specify_decimal_p(
+        x = bartlett$p.value,
+        k,
+        p.value = TRUE
+      )
     )
   ))
 
