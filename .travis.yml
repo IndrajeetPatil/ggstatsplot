@@ -2,6 +2,7 @@
 
 language: R
 cache: packages
+sudo: required
 latex: false
 fortran: true
 
@@ -41,9 +42,9 @@ addons:
 #   https://launchpad.net/ubuntu/+source/r-cran-jsonlite
 
 r_binary_packages:
-  - r-cran-magrittr
+  - magrittr
   - curl
-  - r-cran-jsonlite
+  - jsonlite
 
 repos:
   CRAN: https://cloud.r-project.org
