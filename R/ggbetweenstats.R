@@ -178,18 +178,22 @@ ggbetweenstats <- function(data = NULL,
     # drop the unused levels of factor
     data <-
       data %>%
-      dplyr::mutate_at(.tbl = .,
-                       .vars = "x",
-                       .funs = ~ base::droplevels(x = .))
-  } else  if (!is.factor(data$x)) {
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~ base::droplevels(x = .)
+      )
+  } else if (!is.factor(data$x)) {
     # convert to factor
     data$x <- base::as.factor(x = data$x)
     # drop the unused levels of factor
     data <-
       data %>%
-      dplyr::mutate_at(.tbl = .,
-                       .vars = "x",
-                       .funs = ~ base::droplevels(x = .))
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~ base::droplevels(x = .)
+      )
     # display message
     base::message(cat(
       crayon::red("Warning: "),
