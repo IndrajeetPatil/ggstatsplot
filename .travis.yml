@@ -34,6 +34,17 @@ addons:
     - libxml2-dev
     - libgsl0-dev
 
+# "These installs will be faster than source installs, but may not always be the most recent version"
+# https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
+#   https://launchpad.net/ubuntu/artful/+package/r-cran-magrittr
+#   https://launchpad.net/ubuntu/+source/curl
+#   https://launchpad.net/ubuntu/+source/r-cran-jsonlite
+
+r_binary_packages:
+  - r-cran-magrittr
+  - curl
+  - r-cran-jsonlite
+
 repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
