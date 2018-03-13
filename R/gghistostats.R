@@ -99,7 +99,7 @@ gghistostats <-
              k = 3,
              results.subtitle = TRUE,
              density.plot = FALSE,
-           density.colour = "black",
+             density.colour = "black",
              centrality.para = NULL,
              centrality.colour = "blue",
              binwidth.adjust = FALSE,
