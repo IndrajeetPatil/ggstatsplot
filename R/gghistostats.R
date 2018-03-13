@@ -38,7 +38,6 @@
 #' x = Sepal.Length,
 #' type = "parametric",
 #' test.value = 3,
-#' centrality.plot = TRUE,
 #' centrality.para = "mean",
 #' density.plot = TRUE,
 #' binwidth.adjust = TRUE,
