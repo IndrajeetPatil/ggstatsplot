@@ -32,6 +32,7 @@ addons:
     packages:
     - libcurl4-openssl-dev
     - libxml2-dev
+    - libgsl0-dev
 
 repos:
   CRAN: https://cloud.r-project.org
