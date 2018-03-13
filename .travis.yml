@@ -10,6 +10,9 @@ fortran: true
 
 matrix:
   include:
+    - os: linux
+      dist: trusty
+      sudo: required
 #   precise is getting decommissioned on Travis, so better to leave it out
 #    - os: linux
 #      dist: trusty
