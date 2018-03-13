@@ -65,7 +65,7 @@ utils::globalVariables(
     "eta",
     "omega",
     "perc",
-    "phicoeff",
+    "cramer",
     "pvalue",
     "r",
     "rho",
@@ -313,15 +313,10 @@ ggscatterstats <-
         base::message(cat(
           crayon::green("Note:"),
           crayon::blue(
-            "Robust regression using an M estimator: no. of iterations =",
-            maxit,
+            "Standardized robust regression using an M estimator: no. of iterations =",
+            crayon::yellow(maxit),
             "In case of non-convergence, increase maxit value."
           )
-        ))
-        # displaying the details of the test that was run
-        base::message(cat(
-          crayon::green("Note:"),
-          crayon::blue("The estimate is standardized.")
         ))
       }
     }
@@ -420,7 +415,7 @@ ggscatterstats <-
       base::message(cat(
         crayon::red("Warning:"),
         crayon::blue(
-          "This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands."
+          "This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands."
         )
       ))
     }

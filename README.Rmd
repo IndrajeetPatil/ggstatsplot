@@ -28,16 +28,20 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-ggstatsplot is an extension of `ggplot2` package for creating graphics with details from statistical tests included
-in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich figures. Currently, it supports only the most common types of tests used in analysis (**parametric**, **nonparametric**, and **robust** versions of **t-tets/anova**, **correlation**, and **contingency tables** analyses). 
-Future versions will include other types of analyses as well.
+ggstatsplot is an extension of `ggplot2` package for creating graphics with
+details from statistical tests included in the plots themselves and targeted
+primarily at behavioral sciences community to provide a one-line code to produce
+information-rich figures. Currently, it supports only the most common types
+of tests used in analysis (**parametric**, **nonparametric**, and **robust**
+versions of **t-tets/anova**, **correlation**, and **contingency tables**
+analyses). Future versions will include other types of analyses as well.
 
 ## Installation
 
 ```{r installation, eval = FALSE}
 # You can get the development version from GitHub:
 # install.packages("devtools")
-devtools::install_github("IndrajeetPatil/ggstatsplot")
+devtools::install_github("IndrajeetPatil/ggstatsplot", dependencies = TRUE)
 ```
 ## Usage
 
@@ -45,14 +49,18 @@ Here are examples of the three main functions currently supported in `ggstatsplo
 
 * `ggbetweenstats`
 
-This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in the subtitle:
+This function creates a violin plot for **between**-group or **between**-
+condition comparisons with results from statistical tests in the subtitle:
+
 ```{r ggbetweenstats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
 ```
 
-Number of other arguments can be specified to make this plot even more informative and, additionally, this function returns a `ggplot2` object and thus any of the graphics layers can be further modified:
+Number of other arguments can be specified to make this plot even more
+informative and, additionally, this function returns a `ggplot2` object and thus
+any of the graphics layers can be further modified:
 
 ```{r ggbetweenstats2, message = FALSE, warning = FALSE}
 library(ggplot2)
@@ -80,7 +88,9 @@ Variant of this function `ggwithinstats` is currently under work.
 
 * `ggscatterstats`
 
-This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from `ggExtra::ggMarginal()` and results from statistical tests in subtitle:
+This function creates a scatterplot with marginal histograms/boxplots/density/
+violin plots from `ggExtra::ggMarginal()` and results from statistical tests in
+subtitle:
 
 ```{r ggscatterstats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggscatterstats(data = iris, 
@@ -115,18 +125,27 @@ ggstatsplot::ggscatterstats(
   ) 
 ```
 
-**Important**: In contrast to all other functions in this package, the `ggscatterstats` function returns object that is **not** further modifiable with `ggplot2`. This can be avoided by not plotting the marginal distributions (`marginal = FALSE`). Currently trying to find a workaround this problem.
+**Important**: In contrast to all other functions in this package, the
+`ggscatterstats` function returns object that is **not** further modifiable
+with `ggplot2`. This can be avoided by not plotting the marginal distributions
+(`marginal = FALSE`). Currently trying to find a workaround this problem.
 
 * `ggpiestats`
 
-This function creates a pie chart for categorical variables with results from contingency table analysis included in the subtitle of the plot. If only one categorical variable is entered, proportion test will be carried out.
+This function creates a pie chart for categorical variables with results from
+contingency table analysis included in the subtitle of the plot. If only one
+categorical variable is entered, proportion test will be carried out.
 
 ```{r ggpiestats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggpiestats(data = iris,
                         main = Species)
 ```
 
-This function can also be used to study an interaction between two categorical variables. Additionally, as with the other functions in `ggstatsplot`, this function returns a `ggplot2` object and can further be modified with `ggplot2` syntax (e.g., we can change the color palette *after* `ggstatsplot` has produced the plot)-
+This function can also be used to study an interaction between two categorical
+variables. Additionally, as with the other functions in `ggstatsplot`, this
+function returns a `ggplot2` object and can further be modified with `ggplot2`
+syntax (e.g., we can change the color palette *after* `ggstatsplot` has produced
+the plot)-
 
 ```{r ggpiestats2, message = FALSE, warning = FALSE}
 library(ggplot2)
@@ -159,7 +178,9 @@ ggstatsplot::ggpiestats(
 
 * `gghistostats`
 
-In case you would like to see the distribution of one variable and check if it is significantly different from a specified value with a one sample test, this function will let you do that.
+In case you would like to see the distribution of one variable and check if it
+is significantly different from a specified value with a one sample test, this
+function will let you do that.
 
 
 ```{r gghistostats, message = FALSE, warning = FALSE}
@@ -184,41 +205,97 @@ viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
 
 * `combine_plots`
 
-`ggstatsplot` also contains a helper function `combine_plots` to combine multiple plots. This is a wrapper function around `cowplot::plot_grid` and lets you combine multiple plots and add combination of title, caption, and annotation texts.
+`ggstatsplot` also contains a helper function `combine_plots` to combine
+multiple plots. This is a wrapper function around `cowplot::plot_grid` and lets
+you combine multiple plots and add combination of title, caption, and annotation
+texts. 
 
-```{r combine_plots, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
+```{r combine_plots_plyr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(ggplot2)
-library(plyr) # you can alternatively do this with `purrr`
+library(plyr) 
 library(glue)
 
 ggstatsplot::combine_plots(
-plotlist = plyr::dlply(
-.data = iris,
-.variables = .(Species),
-.fun = function(data)
-ggstatsplot::ggscatterstats(
-data = data,
-x = Sepal.Length,
-y = Sepal.Width,
-marginal.type = "boxplot",
-title =
-glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
+  plotlist = plyr::dlply(
+    .data = iris,
+    .variables = .(Species),
+    .fun = function(data)
+      ggstatsplot::ggscatterstats(
+        data = data,
+        x = Sepal.Length,
+        y = Sepal.Width,
+        marginal.type = "boxplot",
+        title =
+          glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
+      )
+  ),
+  labels = c("(a)", "(b)", "(c)"),
+  nrow = 3,
+  ncol = 1,
+  title.text = "Relationship between sepal length and width for all Iris species",
+  title.size = 14,
+  title.colour = "blue",
+  caption.text = expression(
+    paste(
+      italic("Note"),
+      ": Iris flower dataset was collected by Edgar Anderson."
+    ),
+    caption.size = 10
+  )
 )
-),
-labels = c("(a)", "(b)", "(c)"),
-nrow = 3,
-ncol = 1,
-title.text = "Relationship between sepal length and width for all Iris species",
-title.size = 14,
-title.colour = "blue",
-caption.text = expression(
-paste(
-italic("Note"),
-": Iris flower dataset was collected by Edgar Anderson."
-),
-caption.size = 10
-)
-)
+```
+
+The full power of this package can be leveraged with a functional programming
+package like `purrr` that replaces many for loops with code that is both more
+succinct and easier to read. Here is an example. Notice how little code is
+needed not only to prepare the plots but also to plot the statistical test
+results.
+
+```{r combine_plots_purrr, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 18}
+library(tidyverse)
+library(glue)
+
+### creating a list column with `ggstatsplot` plots
+plots <- datasets::mtcars %>%
+  dplyr::mutate(.data = ., cyl2 = cyl) %>%        # just creates a copy of this variable
+  dplyr::group_by(.data = ., cyl) %>%             # 
+  tidyr::nest(data = .) %>%                       # creates a nested dataframe with list column called `data`
+  dplyr::mutate(                                  # creating a new list column of ggstatsplot outputs
+    .data = .,
+    plot = data %>%
+      purrr::map(
+        .x = .,
+        .f = ~ ggstatsplot::ggbetweenstats(
+          data = .,
+          x = am,
+          y = mpg,
+          xlab = "Transmission",
+          ylab = "Miles/(US) gallon",
+          title = glue::glue(
+            "Number of cylinders: {.$cyl2}"        # this is where the duplicated cyl2 column is useful
+            ) 
+        )
+      )
+  )
+
+### display the new object (notice that the class of the `plot` list column is S3: gg)
+plots
+
+### creating a grid with cowplot
+ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing all ggstatsplot objects
+                           nrow = 1,
+                           ncol = 3,
+                           labels = c("(a)","(b)","(c)"),
+                           title.text = "Relation between MPG and car transmission (for each cylinder count)",
+                           title.size = 14,
+                           title.colour = "blue",
+                           caption.text = expression(
+                             paste(
+                               italic("Transmission"),
+                               ": 0 = automatic, 1 = manual"
+                             ),
+                             caption.size = 10
+                           ))
 ```
 
 * `theme_mprl`
@@ -238,4 +315,6 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 ```
 
-Please note that this project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct]
+(.github/CODE_OF_CONDUCT.md). By participating in this project you agree to
+abide by its terms.

@@ -80,7 +80,7 @@ utils::globalVariables(
     "eta",
     "omega",
     "perc",
-    "phicoeff",
+    "cramer",
     "pvalue",
     "r",
     "rho",
@@ -938,15 +938,19 @@ ggbetweenstats <- function(data = NULL,
     formula = y ~ x,
     data = data
   )
+
+  # display a note to the user about the validity of this assumption
   base::message(cat(
     crayon::green("Note: "),
-    crayon::blue("Bartlett's test for homogeneity of variances: p-value = "),
+    crayon::blue(
+      "Bartlett's test for homogeneity of variances for factor",
+      crayon::yellow(lab.df[1]), # entered x argument
+      ": p-value = "
+    ),
     crayon::yellow(
-      ggstatsplot::specify_decimal_p(
-        x = bartlett$p.value,
-        k,
-        p.value = TRUE
-      )
+      ggstatsplot::specify_decimal_p(x = bartlett$p.value,
+                                     k,
+                                     p.value = TRUE)
     )
   ))
 

@@ -14,7 +14,7 @@ Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/maste
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--12-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--13-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
@@ -40,7 +40,7 @@ Future versions will include other types of analyses as well.
 ``` r
 # You can get the development version from GitHub:
 # install.packages("devtools")
-devtools::install_github("IndrajeetPatil/ggstatsplot")
+devtools::install_github("IndrajeetPatil/ggstatsplot", dependencies = TRUE)
 ```
 
 ## Usage
@@ -51,14 +51,14 @@ Here are examples of the three main functions currently supported in
   - `ggbetweenstats`
 
 This function creates a violin plot for **between**-group or
-**between**-condition comparisons with results from statistical tests in
-the subtitle:
+**between**- condition comparisons with results from statistical tests
+in the subtitle:
 
 ``` r
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
-#> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
+#> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
 ```
 
 ![](man/figures/README-ggbetweenstats1-1.png)<!-- -->
@@ -87,7 +87,7 @@ ggstatsplot::ggbetweenstats(
   ) +                                             # further modifcation outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
-#> Note:  Bartlett's test for homogeneity of variances: p-value =  < 0.001
+#> Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
 ```
 
 ![](man/figures/README-ggbetweenstats2-1.png)<!-- -->
@@ -97,7 +97,7 @@ Variant of this function `ggwithinstats` is currently under work.
   - `ggscatterstats`
 
 This function creates a scatterplot with marginal
-histograms/boxplots/density/violin plots from `ggExtra::ggMarginal()`
+histograms/boxplots/density/ violin plots from `ggExtra::ggMarginal()`
 and results from statistical tests in subtitle:
 
 ``` r
@@ -105,7 +105,7 @@ ggstatsplot::ggscatterstats(data = iris,
                             x = Sepal.Length, 
                             y = Petal.Length,
                             title = "Dataset: Iris flower data set")
-#> Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
+#> Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.
 ```
 
 ![](man/figures/README-ggscatterstats1-1.png)<!-- -->
@@ -134,7 +134,7 @@ ggstatsplot::ggscatterstats(
   width.jitter = 0.2,                            # amount of horizontal jitter for data points
   height.jitter = 0.4                            # amount of vertical jitter for data points
   ) 
-#> Note: Robust regression using an M estimator: no. of iterations = 1000 In case of non-convergence, increase maxit value.Note: The estimate is standardized.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
+#> Note: Standardized robust regression using an M estimator: no. of iterations = 1000 In case of non-convergence, increase maxit value.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.
 ```
 
 ![](man/figures/README-ggscatterstats2-1.png)<!-- -->
@@ -155,6 +155,7 @@ carried out.
 ``` r
 ggstatsplot::ggpiestats(data = iris,
                         main = Species)
+#> Warning: No guarantee this function will work properly if you are using development version of ggplot2 (2.2.1.9000)
 ```
 
 ![](man/figures/README-ggpiestats1-1.png)<!-- -->
@@ -172,6 +173,7 @@ ggstatsplot::ggpiestats(data = mtcars,
                         main = am,                
                         condition = cyl) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modifcation outside of ggstatsplot    
+#> Warning: No guarantee this function will work properly if you are using development version of ggplot2 (2.2.1.9000)
 ```
 
 ![](man/figures/README-ggpiestats2-1.png)<!-- -->
@@ -195,6 +197,7 @@ ggstatsplot::ggpiestats(
     paste(italic("Note"), ": this is a demo")
     )
 ) 
+#> Warning: No guarantee this function will work properly if you are using development version of ggplot2 (2.2.1.9000)
 ```
 
 ![](man/figures/README-ggpiestats3-1.png)<!-- -->
@@ -222,7 +225,7 @@ normality.plot = TRUE,          # whether normal distribution is to be overlayed
 binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
 binwidth = 0.10) +              # binwidth value (needs to be toyed around with until you find the best one)
 viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
-#> Note:  Shapiro-Wilk test of normality: p-value =  0.010
+#> Note:  Shapiro-Wilk test of normality for Sepal.Length : p-value =  0.010
 ```
 
 ![](man/figures/README-gghistostats-1.png)<!-- -->
@@ -236,41 +239,103 @@ caption, and annotation texts.
 
 ``` r
 library(ggplot2)
-library(plyr) # you can alternatively do this with `purrr`
+library(plyr) 
 library(glue)
 
 ggstatsplot::combine_plots(
-plotlist = plyr::dlply(
-.data = iris,
-.variables = .(Species),
-.fun = function(data)
-ggstatsplot::ggscatterstats(
-data = data,
-x = Sepal.Length,
-y = Sepal.Width,
-marginal.type = "boxplot",
-title =
-glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
+  plotlist = plyr::dlply(
+    .data = iris,
+    .variables = .(Species),
+    .fun = function(data)
+      ggstatsplot::ggscatterstats(
+        data = data,
+        x = Sepal.Length,
+        y = Sepal.Width,
+        marginal.type = "boxplot",
+        title =
+          glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
+      )
+  ),
+  labels = c("(a)", "(b)", "(c)"),
+  nrow = 3,
+  ncol = 1,
+  title.text = "Relationship between sepal length and width for all Iris species",
+  title.size = 14,
+  title.colour = "blue",
+  caption.text = expression(
+    paste(
+      italic("Note"),
+      ": Iris flower dataset was collected by Edgar Anderson."
+    ),
+    caption.size = 10
+  )
 )
-),
-labels = c("(a)", "(b)", "(c)"),
-nrow = 3,
-ncol = 1,
-title.text = "Relationship between sepal length and width for all Iris species",
-title.size = 14,
-title.colour = "blue",
-caption.text = expression(
-paste(
-italic("Note"),
-": Iris flower dataset was collected by Edgar Anderson."
-),
-caption.size = 10
-)
-)
-#> Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object. Thus, this plot is not further modifiable with ggplot2 commands.
+#> Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.
 ```
 
-![](man/figures/README-combine_plots-1.png)<!-- -->
+![](man/figures/README-combine_plots_plyr-1.png)<!-- -->
+
+The full power of this package can be leveraged with a functional
+programming package like `purrr` that replaces many for loops with code
+that is both more succinct and easier to read. Here is an example.
+Notice how little code is needed not only to prepare the plots but also
+to plot the statistical test results.
+
+``` r
+library(tidyverse)
+library(glue)
+
+### creating a list column with `ggstatsplot` plots
+plots <- datasets::mtcars %>%
+  dplyr::mutate(.data = ., cyl2 = cyl) %>%        # just creates a copy of this variable
+  dplyr::group_by(.data = ., cyl) %>%             # 
+  tidyr::nest(data = .) %>%                       # creates a nested dataframe with list column called `data`
+  dplyr::mutate(                                  # creating a new list column of ggstatsplot outputs
+    .data = .,
+    plot = data %>%
+      purrr::map(
+        .x = .,
+        .f = ~ ggstatsplot::ggbetweenstats(
+          data = .,
+          x = am,
+          y = mpg,
+          xlab = "Transmission",
+          ylab = "Miles/(US) gallon",
+          title = glue::glue(
+            "Number of cylinders: {.$cyl2}"        # this is where the duplicated cyl2 column is useful
+            ) 
+        )
+      )
+  )
+#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.317Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.144Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.201
+
+### display the new object (notice that the class of the `plot` list column is S3: gg)
+plots
+#> # A tibble: 3 x 3
+#>     cyl data               plot    
+#>   <dbl> <list>             <list>  
+#> 1    6. <tibble [7 x 11]>  <S3: gg>
+#> 2    4. <tibble [11 x 11]> <S3: gg>
+#> 3    8. <tibble [14 x 11]> <S3: gg>
+
+### creating a grid with cowplot
+ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing all ggstatsplot objects
+                           nrow = 1,
+                           ncol = 3,
+                           labels = c("(a)","(b)","(c)"),
+                           title.text = "Relation between MPG and car transmission (for each cylinder count)",
+                           title.size = 14,
+                           title.colour = "blue",
+                           caption.text = expression(
+                             paste(
+                               italic("Transmission"),
+                               ": 0 = automatic, 1 = manual"
+                             ),
+                             caption.size = 10
+                           ))
+```
+
+![](man/figures/README-combine_plots_purrr-1.png)<!-- -->
 
   - `theme_mprl`
 
@@ -296,6 +361,6 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 ![](man/figures/README-theme_mprl-2.png)<!-- -->
 
-Please note that this project is released with a [Contributor Code of
-Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project
-you agree to abide by its terms.
+Please note that this project is released with a \[Contributor Code of
+Conduct\] (.github/CODE\_OF\_CONDUCT.md). By participating in this
+project you agree to abide by its terms.

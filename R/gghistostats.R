@@ -64,7 +64,7 @@ utils::globalVariables(
     "eta",
     "omega",
     "perc",
-    "phicoeff",
+    "cramer",
     "pvalue",
     "r",
     "rho",
@@ -89,39 +89,35 @@ utils::globalVariables(
 
 gghistostats <-
   function(data = NULL,
-             x,
-             xlab = NULL,
-             title = NULL,
-             subtitle = NULL,
-             caption = NULL,
-             type = "parametric",
-             test.value = 0,
-             k = 3,
-             results.subtitle = TRUE,
-             normality.plot = FALSE,
-             centrality.plot = FALSE,
-             centrality.para = "mean",
-             centrality.colour = "blue",
-             binwidth.adjust = FALSE,
-             binwidth = NULL) {
+           x,
+           xlab = NULL,
+           title = NULL,
+           subtitle = NULL,
+           caption = NULL,
+           type = "parametric",
+           test.value = 0,
+           k = 3,
+           results.subtitle = TRUE,
+           normality.plot = FALSE,
+           centrality.plot = FALSE,
+           centrality.para = "mean",
+           centrality.colour = "blue",
+           binwidth.adjust = FALSE,
+           binwidth = NULL) {
     # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(
-        .data = data,
-        !!rlang::enquo(x)
-      ))
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(x)))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
       }
       # if dataframe is provided
       data <-
-        dplyr::select(
-          .data = data,
-          x = !!rlang::enquo(x)
-        )
+        dplyr::select(.data = data,
+                      x = !!rlang::enquo(x))
     } else {
       # if vectors are provided
       data <-
@@ -217,23 +213,18 @@ gghistostats <-
 
     # if the user wants to adjust the binwidth
     if (isTRUE(binwidth.adjust)) {
-      plot <- ggplot2::ggplot(
-        data = data,
-        mapping = aes(x = x)
-      ) +
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = aes(x = x)) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
-          mapping = aes(
-            y = ..density..,
-            fill = ..count..
-          )
+          mapping = aes(y = ..density..,
+                        fill = ..count..)
         ) +
         ggplot2::scale_fill_gradient("count",
-          low = "green",
-          high = "red"
-        ) +
+                                     low = "green",
+                                     high = "red") +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -243,19 +234,16 @@ gghistostats <-
         )
     } else {
       # if not, use the defaults
-      plot <- ggplot2::ggplot(
-        data = data,
-        mapping = aes(x = x)
-      ) +
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = aes(x = x)) +
         ggplot2::geom_histogram(
           col = "black",
           alpha = 0.7,
           mapping = aes(y = ..density.., fill = ..count..)
         ) +
         ggplot2::scale_fill_gradient("count",
-          low = "green",
-          high = "red"
-        ) +
+                                     low = "green",
+                                     high = "red") +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -314,10 +302,8 @@ gghistostats <-
         ggplot2::stat_function(
           fun = dnorm,
           color = "black",
-          args = list(
-            mean = mean(data$x),
-            sd = sd(data$x)
-          ),
+          args = list(mean = mean(data$x),
+                      sd = sd(data$x)),
           linetype = "dashed",
           size = 1.2
         )
@@ -326,13 +312,13 @@ gghistostats <-
     sw_norm <- stats::shapiro.test(data$x)
     base::message(cat(
       crayon::green("Note: "),
-      crayon::blue("Shapiro-Wilk test of normality: p-value = "),
+      crayon::blue("Shapiro-Wilk test of normality for",
+                   crayon::yellow(lab.df[1]), # entered x argument
+                   ": p-value = "),
       crayon::yellow(
-        ggstatsplot::specify_decimal_p(
-          x = sw_norm$p.value,
-          k,
-          p.value = TRUE
-        )
+        ggstatsplot::specify_decimal_p(x = sw_norm$p.value,
+                                       k,
+                                       p.value = TRUE)
       )
     ))
     # return the final plot
