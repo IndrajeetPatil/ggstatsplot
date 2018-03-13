@@ -251,7 +251,7 @@ succinct and easier to read. Here is an example. Notice how little code is
 needed not only to prepare the plots but also to plot the statistical test
 results.
 
-```{r combine_plots_purrr, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 18}
+```{r combine_plots_purrr, message = FALSE, warning = FALSE, fig.height = 13, fig.width = 6}
 library(tidyverse)
 library(glue)
 
@@ -283,11 +283,11 @@ plots
 
 ### creating a grid with cowplot
 ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing all ggstatsplot objects
-                           nrow = 1,
-                           ncol = 3,
+                           nrow = 3,
+                           ncol = 1,
                            labels = c("(a)","(b)","(c)"),
-                           title.text = "Relation between MPG and car transmission (for each cylinder count)",
-                           title.size = 14,
+                           title.text = "MPG and car transmission relationship (for each cylinder count)",
+                           title.size = 13,
                            title.colour = "blue",
                            caption.text = expression(
                              paste(

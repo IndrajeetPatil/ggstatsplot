@@ -320,11 +320,11 @@ plots
 
 ### creating a grid with cowplot
 ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing all ggstatsplot objects
-                           nrow = 1,
-                           ncol = 3,
+                           nrow = 3,
+                           ncol = 1,
                            labels = c("(a)","(b)","(c)"),
-                           title.text = "Relation between MPG and car transmission (for each cylinder count)",
-                           title.size = 14,
+                           title.text = "MPG and car transmission relationship (for each cylinder count)",
+                           title.size = 13,
                            title.colour = "blue",
                            caption.text = expression(
                              paste(
