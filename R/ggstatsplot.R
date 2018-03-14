@@ -20,9 +20,7 @@
 #' combination of title, caption, and annotation label \item
 #' \code{\link[ggstatsplot]{theme_mprl}} default theme used for the `ggstatplot`
 #' package \item \code{\link[ggstatsplot]{specify_decimal_p}} helper function to
-#' format results for pretty printing } \item
-#' \code{\link[ggstatsplot]{legend_title_margin}} helper function to format
-#' margins around title legend }
+#' format results for pretty printing }
 #'
 #' For more documentation, see
 #' \href{https://github.com/IndrajeetPatil/ggstatsplot}{README} on GitHub.
