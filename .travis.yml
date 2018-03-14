@@ -45,6 +45,40 @@ r_binary_packages:
   - magrittr
   - curl
   - jsonlite
+  - Rcpp
+  - bindrcpp
+  - RcppEigen
+  - rpf
+  - openssl
+  - rlang
+  - utf8
+  - gss
+  - haven
+  - XML
+  - data.table
+  - igraph
+  - matrixStats
+  - rgl
+  - stringi
+  - dplyr
+  - purrr
+  - tidyr
+  - readr
+  - minqa
+  - mvtnorm
+  - nloptr
+  - SparseM
+  - lme4
+  - httpuv
+  - markdown
+  - BayesFactor
+  - sem  
+  - OpenMX
+  - readxl
+  - openxlsx
+  - pander
+  - minpack.lm
+  - StanHeaders
 
 repos:
   CRAN: https://cloud.r-project.org
