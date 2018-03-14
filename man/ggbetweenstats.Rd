@@ -4,7 +4,8 @@
 \alias{ggbetweenstats}
 \title{violin plots for group or condition comparisons}
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be taken.}
+\item{data}{Dataframe from which variables specified are preferentially to be
+taken.}
 
 \item{x}{The grouping variable.}
 
@@ -14,10 +15,12 @@
 
 \item{ylab}{Label for \code{y} axis variable.}
 
-\item{type}{Type of statistic expected ("parametric" or "nonparametric" or "robust").}
+\item{type}{Type of statistic expected ("parametric" or "nonparametric" or
+"robust").}
 
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests ("biased" (Cohen's d, partial eta-squared) or
-"unbiased" (Hedge's g, omega-squared)).}
+\item{effsize.type}{Type of effect size needed for \emph{parametric} tests
+("biased" (Cohen's d, partial eta-squared) or "unbiased" (Hedge's g,
+omega-squared)).}
 
 \item{title}{The text for the plot title.}
 
@@ -25,22 +28,26 @@
 
 \item{k}{Number of decimal places expected for results.}
 
-\item{var.equal}{A logical variable indicating whether to treat the two variances as being equal (Default: \code{FALSE}).}
+\item{var.equal}{A logical variable indicating whether to treat the two
+variances as being equal (Default: \code{FALSE}).}
 
 \item{nboot}{Number of bootstrap samples.}
 
 \item{outlier.color}{Default aesthetics for outliers.}
 
-\item{outlier.tagging}{Decides whether outliers should be tagged (Default: \code{FALSE}).}
+\item{outlier.tagging}{Decides whether outliers should be tagged (Default:
+\code{FALSE}).}
 
 \item{outlier.label}{Label to put on the outliers that have been tagged.}
 
-\item{mean.plotting}{Decides whether mean is to be highlighted and its value to be displayed.}
+\item{mean.plotting}{Decides whether mean is to be highlighted and its value
+to be displayed.}
 
 \item{mean.color}{Color for the data point corresponding to mean.}
 }
 \description{
-Violin plots for between-subjects designs with statistical details included in the plot as a subtitle.
+Violin plots for between-subjects designs with statistical
+details included in the plot as a subtitle.
 }
 \examples{
 

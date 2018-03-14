@@ -26,13 +26,14 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-ggstatsplot is an extension of `ggplot2` package for creating graphics with
-details from statistical tests included in the plots themselves and targeted
-primarily at behavioral sciences community to provide a one-line code to produce
-information-rich figures. Currently, it supports only the most common types
-of tests used in analysis (**parametric**, **nonparametric**, and **robust**
-versions of **t-tets/anova**, **correlation**, and **contingency tables**
-analyses). Future versions will include other types of analyses as well.
+`ggstatsplot` is an extension of [`ggplot2`](https://github.com/tidyverse/ggplot2)
+package for creating graphics with details from statistical tests included in
+the plots themselves and targeted primarily at behavioral sciences community
+to provide a one-line code to produce information-rich figures. Currently, it
+supports only the most common types of tests used in analysis (**parametric**,
+**nonparametric**, and **robust** versions of **t-tets/anova**, **correlation**,
+and **contingency tables** analyses). Future versions will include other types
+of analyses as well.
 
 ## Installation
 
@@ -200,6 +201,57 @@ ggstatsplot::gghistostats(
   viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
 ```
 
+* `ggcorrmat`
+
+`ggcorrmat` provides a wrapper function around [`ggcorrplot`](https://
+github.com/kassambara/ggcorrplot) to make correlalograms with minimal amount of
+code.
+
+```{r ggcorrmat1, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
+library(plyr)
+
+plots <- plyr::dlply(
+  .data = iris,
+  .variables = .(Species),
+  .fun = function(data)
+    ggstatsplot::ggcorrmat(
+      data = data,
+      cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+      cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
+      title = glue::glue("Species: {data$Species}"),
+      insig = "blank"
+    )
+)
+
+# combining the individual correlalograms into a single plot
+ ggstatsplot::combine_plots(
+    plotlist = plots,
+    nrow = 3,
+    ncol = 1,
+    labels = c("(a)", "(b)", "(c)", "(d)"),
+    title.text = "Correlalogram for length measures for all Iris species",
+    title.colour = "blue"
+  )
+```
+
+Alternatively, you can use it to just to get the correlation matrices and their
+corresponding p-values.
+
+```{r ggcorrmat2, message = FALSE, warning = FALSE}
+# getting correlations 
+ggstatsplot::ggcorrmat(
+  data = iris,
+  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  output = "correlations"
+)
+
+# getting p-values
+ggstatsplot::ggcorrmat(
+  data = iris,
+  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  output = "p-values"
+)
+```
 
 * `combine_plots`
 
@@ -313,6 +365,5 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 ```
 
-Please note that this project is released with a [Contributor Code of Conduct]
-(.github/CODE_OF_CONDUCT.md). By participating in this project you agree to
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.md). By participating in this project you agree to
 abide by its terms.

@@ -2,26 +2,33 @@
 #' @title violin plots for group or condition comparisons
 #' @name ggbetweenstats
 #' @aliases ggbetweenstats
-#' @description Violin plots for between-subjects designs with statistical details included in the plot as a subtitle.
+#' @description Violin plots for between-subjects designs with statistical
+#'   details included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data Dataframe from which variables specified are preferentially to be taken.
+#' @param data Dataframe from which variables specified are preferentially to be
+#'   taken.
 #' @param x The grouping variable.
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
-#' @param type Type of statistic expected ("parametric" or "nonparametric" or "robust").
-#' @param effsize.type Type of effect size needed for *parametric* tests ("biased" (Cohen's d, partial eta-squared) or
-#' "unbiased" (Hedge's g, omega-squared)).
+#' @param type Type of statistic expected ("parametric" or "nonparametric" or
+#'   "robust").
+#' @param effsize.type Type of effect size needed for *parametric* tests
+#'   ("biased" (Cohen's d, partial eta-squared) or "unbiased" (Hedge's g,
+#'   omega-squared)).
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param k Number of decimal places expected for results.
-#' @param var.equal A logical variable indicating whether to treat the two variances as being equal (Default: `FALSE`).
+#' @param var.equal A logical variable indicating whether to treat the two
+#'   variances as being equal (Default: `FALSE`).
 #' @param nboot Number of bootstrap samples.
 #' @param outlier.color Default aesthetics for outliers.
-#' @param outlier.tagging Decides whether outliers should be tagged (Default: `FALSE`).
+#' @param outlier.tagging Decides whether outliers should be tagged (Default:
+#'   `FALSE`).
 #' @param outlier.label Label to put on the outliers that have been tagged.
-#' @param mean.plotting Decides whether mean is to be highlighted and its value to be displayed.
+#' @param mean.plotting Decides whether mean is to be highlighted and its value
+#'   to be displayed.
 #' @param mean.color Color for the data point corresponding to mean.
 #'
 #' @import ggplot2

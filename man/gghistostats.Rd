@@ -4,7 +4,8 @@
 \alias{gghistostats}
 \title{histogram for distribution of a numeric variable}
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be taken.}
+\item{data}{Dataframe from which variables specified are preferentially to be
+taken.}
 
 \item{x}{A numeric variable.}
 
@@ -12,7 +13,8 @@
 
 \item{title}{The text for the plot title.}
 
-\item{subtitle}{The text for the plot subtitle \emph{if} you don't want results from one sample test to be displayed.}
+\item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
+from one sample test to be displayed.}
 
 \item{caption}{The text for the plot caption.}
 
@@ -22,24 +24,32 @@
 
 \item{k}{Number of decimal places expected for results.}
 
-\item{results.subtitle}{Decides whether the results of statistical tests are to be displayed as subtitle.}
+\item{results.subtitle}{Decides whether the results of statistical tests are
+to be displayed as subtitle.}
 
-\item{density.plot}{Decides whether kernel density estimate, which is a smoothed version of the histogram, is to be overlayed on top of the histogram.}
+\item{density.plot}{Decides whether kernel density estimate, which is a
+smoothed version of the histogram, is to be overlayed on top of the
+histogram.}
 
 \item{density.colour}{Decides colour for the density plot.}
 
-\item{centrality.para}{Decides \emph{which} measure of central tendency ("mean" or "median") is to be displayed as a vertical line.}
+\item{centrality.para}{Decides \emph{which} measure of central tendency ("mean" or
+"median") is to be displayed as a vertical line.}
 
 \item{centrality.colour}{Decides colour for the vertical line.}
 
-\item{binwidth.adjust}{If set to \code{TRUE}, you can use it to pick better value with the \code{binwidth} argument to \code{stat_bin()}.}
+\item{binwidth.adjust}{If set to \code{TRUE}, you can use it to pick better value
+with the \code{binwidth} argument to \code{stat_bin()}.}
 
-\item{binwidth}{The width of the bins. Can be specified as a numeric value, or a function that calculates width from \code{x}.
-The default is to use bins bins that cover the range of the data. You should always override this value,
-exploring multiple widths to find the best to illustrate the stories in your data.}
+\item{binwidth}{The width of the bins. Can be specified as a numeric value,
+or a function that calculates width from \code{x}. The default is to use bins
+bins that cover the range of the data. You should always override this
+value, exploring multiple widths to find the best to illustrate the stories
+in your data.}
 }
 \description{
-Histogram with statistical details from one-sample test included in the plot as a subtitle.
+Histogram with statistical details from one-sample test included
+in the plot as a subtitle.
 }
 \examples{
 library(ggplot2)

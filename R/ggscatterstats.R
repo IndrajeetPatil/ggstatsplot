@@ -3,31 +3,39 @@
 #' @name ggscatterstats
 #' @aliases ggscatterstats
 #' @author Indrajeet Patil
-#' @description Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
-#' statistical details added as a subtitle.
+#' @description Scatterplots from `ggplot2`` combined with add marginal
+#'   histograms/boxplots/density plots with statistical details added as a
+#'   subtitle.
 #'
-#' @param data Dataframe from which variables specified are preferentially to be taken.
+#' @param data Dataframe from which variables specified are preferentially to be
+#'   taken.
 #' @param x A vector containing the explanatory variable.
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param line.colour Colour for the regression line.
-#' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be displayed; the default is `TRUE`.
+#' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be
+#'   displayed; the default is `TRUE`.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
-#' ("histogram", "boxplot", "density", "violin").
+#'   ("histogram", "boxplot", "density", "violin").
 #' @param xfill Colour fill for x axis distibution (default: `orange`).
 #' @param yfill Colour fill for y axis distribution (default: `green`).
-#' @param test Type of association between paired samples required ("parametric: Pearson's product moment
-#' correlation coefficient" or "nonparametric: Spearman's rho" or "robust: Robust regression using an M estimator").
-#' @param results.subtitle Decides whether the results of statistical tests are to be displayed as subtitle.
-#' @param intercept Decides whether "mean" or "median" or no intercept lines (`NULL`) are to be plotted.
+#' @param test Type of association between paired samples required ("parametric:
+#'   Pearson's product moment correlation coefficient" or "nonparametric:
+#'   Spearman's rho" or "robust: Robust regression using an M estimator").
+#' @param results.subtitle Decides whether the results of statistical tests are
+#'   to be displayed as subtitle.
+#' @param intercept Decides whether "mean" or "median" or no intercept lines
+#'   (`NULL`) are to be plotted.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
-#' @param maxit Maximum number of iterations for robust linear regression or bootstrap samples to compute
-#'  Spearman's rho confidence intervals.
+#' @param maxit Maximum number of iterations for robust linear regression or
+#'   bootstrap samples to compute Spearman's rho confidence intervals.
 #' @param k Number of decimal places expected for results.
-#' @param width.jitter Degree of jitter in `x` direction. Defaults to 40\% of the resolution of the data.
-#' @param height.jitter Degree of jitter in `y` direction. Defaults to 40\% of the resolution of the data.
+#' @param width.jitter Degree of jitter in `x` direction. Defaults to 40\% of
+#'   the resolution of the data.
+#' @param height.jitter Degree of jitter in `y` direction. Defaults to 40\% of
+#'   the resolution of the data.
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -45,7 +53,8 @@
 #' ggstatsplot::ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length,
 #' intercept = 'median', test = 'robust', marginal.type = 'density')
 #'
-#' @note If you want to use `marginal.type = "violin"`, you will have to use development version of `ggExtra`
+#' @note If you want to use `marginal.type = "violin"`, you will have to use
+#'   development version of `ggExtra`
 #'
 #' @export
 

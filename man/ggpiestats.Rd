@@ -6,13 +6,17 @@
 \arguments{
 \item{data}{The data as a data frame.}
 
-\item{main}{A string naming the variable to use as the rows in the contingency table.}
+\item{main}{A string naming the variable to use as the rows in the
+contingency table.}
 
-\item{condition}{A string naming the variable to use as the columns in the contingency table.}
+\item{condition}{A string naming the variable to use as the columns in the
+contingency table.}
 
-\item{factor.levels}{A character vector with labels for factor levels of \code{main} variable.}
+\item{factor.levels}{A character vector with labels for factor levels of
+\code{main} variable.}
 
-\item{stat.title}{Title for the effect being investigated with the chi-square test.}
+\item{stat.title}{Title for the effect being investigated with the chi-square
+test.}
 
 \item{title}{The text for the plot title.}
 
@@ -25,7 +29,8 @@
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
 }
 \description{
-Pie charts for categorical data with statistical details included in the plot as a subtitle.
+Pie charts for categorical data with statistical details
+included in the plot as a subtitle.
 }
 \examples{
 library(datasets)

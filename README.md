@@ -14,7 +14,7 @@ Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/maste
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--13-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--14-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
@@ -22,11 +22,12 @@ version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-
 
 ## Overview
 
-ggstatsplot is an extension of `ggplot2` package for creating graphics
-with details from statistical tests included in the plots themselves and
-targeted primarily at behavioral sciences community to provide a
-one-line code to produce information-rich figures. Currently, it
-supports only the most common types of tests used in analysis
+`ggstatsplot` is an extension of
+[`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
+graphics with details from statistical tests included in the plots
+themselves and targeted primarily at behavioral sciences community to
+provide a one-line code to produce information-rich figures. Currently,
+it supports only the most common types of tests used in analysis
 (**parametric**, **nonparametric**, and **robust** versions of
 **t-tets/anova**, **correlation**, and **contingency tables** analyses).
 Future versions will include other types of analyses as well.
@@ -226,6 +227,74 @@ ggstatsplot::gghistostats(
 
 ![](man/figures/README-gghistostats-1.png)<!-- -->
 
+  - `ggcorrmat`
+
+`ggcorrmat` provides a wrapper function around
+[`ggcorrplot`](https://%20github.com/kassambara/ggcorrplot) to make
+correlalograms with minimal amount of code.
+
+``` r
+library(plyr)
+
+plots <- plyr::dlply(
+  .data = iris,
+  .variables = .(Species),
+  .fun = function(data)
+    ggstatsplot::ggcorrmat(
+      data = data,
+      cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+      cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
+      title = glue::glue("Species: {data$Species}"),
+      insig = "blank"
+    )
+)
+
+# combining the individual correlalograms into a single plot
+ ggstatsplot::combine_plots(
+    plotlist = plots,
+    nrow = 3,
+    ncol = 1,
+    labels = c("(a)", "(b)", "(c)", "(d)"),
+    title.text = "Correlalogram for length measures for all Iris species",
+    title.colour = "blue"
+  )
+```
+
+![](man/figures/README-ggcorrmat1-1.png)<!-- -->
+
+Alternatively, you can use it to just to get the correlation matrices
+and their corresponding p-values.
+
+``` r
+# getting correlations 
+ggstatsplot::ggcorrmat(
+  data = iris,
+  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  output = "correlations"
+)
+#> # A tibble: 4 x 5
+#>   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
+#>   <chr>               <dbl>       <dbl>        <dbl>       <dbl>
+#> 1 Sepal.Length        1.00       -0.120        0.870       0.820
+#> 2 Sepal.Width        -0.120       1.00        -0.430      -0.370
+#> 3 Petal.Length        0.870      -0.430        1.00        0.960
+#> 4 Petal.Width         0.820      -0.370        0.960       1.00
+
+# getting p-values
+ggstatsplot::ggcorrmat(
+  data = iris,
+  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  output = "p-values"
+)
+#> # A tibble: 4 x 5
+#>   variable     Sepal.Length  Sepal.Width Petal.Length Petal.Width
+#>   <chr>               <dbl>        <dbl>        <dbl>       <dbl>
+#> 1 Sepal.Length     0.       0.152            1.04e-47    2.33e-37
+#> 2 Sepal.Width      1.52e- 1 0.               4.51e- 8    4.07e- 6
+#> 3 Petal.Length     1.04e-47 0.0000000451     0.          4.68e-86
+#> 4 Petal.Width      2.33e-37 0.00000407       4.68e-86    0.
+```
+
   - `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
@@ -357,6 +426,6 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 ![](man/figures/README-theme_mprl-2.png)<!-- -->
 
-Please note that this project is released with a \[Contributor Code of
-Conduct\] (.github/CODE\_OF\_CONDUCT.md). By participating in this
-project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of
+Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.md).
+By participating in this project you agree to abide by its terms.

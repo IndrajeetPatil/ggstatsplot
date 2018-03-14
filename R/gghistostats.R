@@ -2,27 +2,37 @@
 #' @title histogram for distribution of a numeric variable
 #' @name gghistostats
 #' @aliases gghistostats
-#' @description Histogram with statistical details from one-sample test included in the plot as a subtitle.
+#' @description Histogram with statistical details from one-sample test included
+#'   in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data Dataframe from which variables specified are preferentially to be taken.
+#' @param data Dataframe from which variables specified are preferentially to be
+#'   taken.
 #' @param x A numeric variable.
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
-#' @param subtitle The text for the plot subtitle *if* you don't want results from one sample test to be displayed.
+#' @param subtitle The text for the plot subtitle *if* you don't want results
+#'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
 #' @param type Type of statistic expected ("parametric" or "nonparametric").
 #' @param test.value A number specifying the value of the null hypothesis.
 #' @param k Number of decimal places expected for results.
-#' @param results.subtitle Decides whether the results of statistical tests are to be displayed as subtitle.
-#' @param density.plot Decides whether kernel density estimate, which is a smoothed version of the histogram, is to be overlayed on top of the histogram.
+#' @param results.subtitle Decides whether the results of statistical tests are
+#'   to be displayed as subtitle.
+#' @param density.plot Decides whether kernel density estimate, which is a
+#'   smoothed version of the histogram, is to be overlayed on top of the
+#'   histogram.
 #' @param density.colour Decides colour for the density plot.
-#' @param centrality.para Decides *which* measure of central tendency ("mean" or "median") is to be displayed as a vertical line.
+#' @param centrality.para Decides *which* measure of central tendency ("mean" or
+#'   "median") is to be displayed as a vertical line.
 #' @param centrality.colour Decides colour for the vertical line.
-#' @param binwidth.adjust If set to `TRUE`, you can use it to pick better value with the `binwidth` argument to `stat_bin()`.
-#' @param binwidth The width of the bins. Can be specified as a numeric value, or a function that calculates width from `x`.
-#' The default is to use bins bins that cover the range of the data. You should always override this value,
-#' exploring multiple widths to find the best to illustrate the stories in your data.
+#' @param binwidth.adjust If set to `TRUE`, you can use it to pick better value
+#'   with the `binwidth` argument to `stat_bin()`.
+#' @param binwidth The width of the bins. Can be specified as a numeric value,
+#'   or a function that calculates width from `x`. The default is to use bins
+#'   bins that cover the range of the data. You should always override this
+#'   value, exploring multiple widths to find the best to illustrate the stories
+#'   in your data.
 #'
 #' @import ggplot2
 #'

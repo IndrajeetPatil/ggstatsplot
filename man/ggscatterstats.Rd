@@ -4,7 +4,8 @@
 \alias{ggscatterstats}
 \title{scatterplot with ggMarginals}
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be taken.}
+\item{data}{Dataframe from which variables specified are preferentially to be
+taken.}
 
 \item{x}{A vector containing the explanatory variable.}
 
@@ -16,7 +17,8 @@
 
 \item{line.colour}{Colour for the regression line.}
 
-\item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be displayed; the default is \code{TRUE}.}
+\item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be
+displayed; the default is \code{TRUE}.}
 
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
 ("histogram", "boxplot", "density", "violin").}
@@ -25,32 +27,39 @@
 
 \item{yfill}{Colour fill for y axis distribution (default: \code{green}).}
 
-\item{test}{Type of association between paired samples required ("parametric: Pearson's product moment
-correlation coefficient" or "nonparametric: Spearman's rho" or "robust: Robust regression using an M estimator").}
+\item{test}{Type of association between paired samples required ("parametric:
+Pearson's product moment correlation coefficient" or "nonparametric:
+Spearman's rho" or "robust: Robust regression using an M estimator").}
 
-\item{results.subtitle}{Decides whether the results of statistical tests are to be displayed as subtitle.}
+\item{results.subtitle}{Decides whether the results of statistical tests are
+to be displayed as subtitle.}
 
-\item{intercept}{Decides whether "mean" or "median" or no intercept lines (\code{NULL}) are to be plotted.}
+\item{intercept}{Decides whether "mean" or "median" or no intercept lines
+(\code{NULL}) are to be plotted.}
 
 \item{title}{The text for the plot title.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{maxit}{Maximum number of iterations for robust linear regression or bootstrap samples to compute
-Spearman's rho confidence intervals.}
+\item{maxit}{Maximum number of iterations for robust linear regression or
+bootstrap samples to compute Spearman's rho confidence intervals.}
 
 \item{k}{Number of decimal places expected for results.}
 
-\item{width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\% of the resolution of the data.}
+\item{width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\% of
+the resolution of the data.}
 
-\item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of the resolution of the data.}
+\item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
+the resolution of the data.}
 }
 \description{
-Scatterplots from `ggplot2`` combined with add marginal histograms/boxplots/density plots with
-statistical details added as a subtitle.
+Scatterplots from `ggplot2`` combined with add marginal
+histograms/boxplots/density plots with statistical details added as a
+subtitle.
 }
 \note{
-If you want to use \code{marginal.type = "violin"}, you will have to use development version of \code{ggExtra}
+If you want to use \code{marginal.type = "violin"}, you will have to use
+development version of \code{ggExtra}
 }
 \examples{
 ggstatsplot::ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length,
