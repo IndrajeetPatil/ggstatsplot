@@ -35,6 +35,7 @@
 #' @importFrom effsize cohen.d
 #' @importFrom sjstats omega_sq
 #' @importFrom sjstats eta_sq
+#' @importFrom stats aov
 #' @importFrom stats na.omit
 #' @importFrom stats t.test
 #' @importFrom stats var.test
@@ -47,7 +48,6 @@
 #' @importFrom coin statistic
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
-#' @importFrom car Anova
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon green
 #' @importFrom crayon blue
@@ -373,27 +373,16 @@ ggbetweenstats <- function(data = NULL,
             partial = TRUE
           )
 
-        # Note before that setting white.adjust to TRUE will mean that anova will use a heteroscedasticity-corrected
-        # coefficient covariance matrix, which is highly recommended. BUT doing so will create problems for
-        # sjstats::eta_sq command, which doesn't know how to compute effect size in that case
-        aov_stat2 <-
-          car::Anova(
-            mod = stats::aov(
-              formula = y ~ x,
-              data = data
-            ),
-            type = "III",
-            white.adjust = FALSE
-          )
+        # aov_stat2 object is *only* to compute partial eta-squared since there is no straightforward to get partial
+        # eta-squared for Welch's ANOVA and its confidence interval
+        aov_stat2 <- summary(stats::aov(formula = y ~ x,
+                                  data = data))
 
         # getting confidence interval for partial eta-squared
-        # if instead of aov_stat2, aov_stat is used then there will be discrepancy between partial eta-squared computed by
-        # sjstats::eta_sq, which is not heteroscedasticity-corrected, and
-        # apaTables::get.ci.partial.eta.squared, which is (if aov_stat) is used
         aov_effsize_ci <- apaTables::get.ci.partial.eta.squared(
-          F.value = aov_stat2$`F value`[2],
-          df1 = aov_stat2$`Df`[2],
-          df2 = aov_stat2$`Df`[3],
+          F.value = aov_stat2[[1]][["F value"]][[1]], # F-value
+          df1 = aov_stat2[[1]][["Df"]][[1]], # numerator df
+          df2 = aov_stat2[[1]][["Df"]][[2]], # denominator df
           conf.level = 0.95
         )
 

@@ -16,11 +16,9 @@ Depends:
     R (>= 3.3.3)
 Imports: 
     apaTables (>= 2.0.2),
-    car (>= 2.1-6),
     coin (>= 1.2-2),
     cowplot (>= 0.9.2),
     crayon (>= 1.3.4),
-    devtools (>= 1.13.4),
     DescTools (>= 0.99.23), 
     dplyr (>= 0.7.4),
     effsize (>= 0.7.1),
@@ -31,7 +29,6 @@ Imports:
     jmv,
     magrittr,
     MASS (>= 7.3-47),
-    plyr (>= 1.8.4),
     rlang (>= 0.1.6),
     RVAideMemoire (>= 0.9-69),
     sfsmisc (>= 1.1-1),
@@ -41,12 +38,12 @@ Imports:
     WRS2 (>= 0.9-2)
 Suggests: 
     datasets,
-    grDevices (>= 3.4.1),
-    gtable (>= 0.2.0),
+    grDevices,
+    gtable,
     knitr,
-    RColorBrewer (>= 1.1-2),
+    RColorBrewer,
     rmarkdown,
-    testthat (>= 2.0.0)
+    testthat
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
