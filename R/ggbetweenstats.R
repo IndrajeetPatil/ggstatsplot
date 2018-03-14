@@ -375,8 +375,10 @@ ggbetweenstats <- function(data = NULL,
 
         # aov_stat2 object is *only* to compute partial eta-squared since there is no straightforward to get partial
         # eta-squared for Welch's ANOVA and its confidence interval
-        aov_stat2 <- summary(stats::aov(formula = y ~ x,
-                                  data = data))
+        aov_stat2 <- summary(stats::aov(
+          formula = y ~ x,
+          data = data
+        ))
 
         # getting confidence interval for partial eta-squared
         aov_effsize_ci <- apaTables::get.ci.partial.eta.squared(
