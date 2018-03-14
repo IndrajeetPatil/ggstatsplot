@@ -52,33 +52,6 @@ r_binary_packages:
   - gsl
   - tidyverse
   - nloptr
-#  - rpf
-#  - openssl
-#  - rlang
-#  - igraph
-#  - utf8
-#  - gss
-#  - haven
-#  - XML
-#  - data.table
-#  - matrixStats
-#  - rgl
-#  - dplyr
-#  - purrr
-#  - tidyver
-#  - readr
-#  - minqa
-#  - mvtnorm
-#  - SparseM
-#  - lme4
-#  - httpuv
-#  - markdown
-#  - sem  
-#  - readxl
-#  - openxlsx
-#  - pander
-#  - minpack.lm
-#  - StanHeaders
 
 repos:
   CRAN: https://cloud.r-project.org
