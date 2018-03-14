@@ -42,6 +42,7 @@ addons:
 #   https://launchpad.net/ubuntu/+source/r-cran-jsonlite
 
 r_binary_packages:
+  - stringi
   - magrittr
   - curl
   - jsonlite
@@ -51,15 +52,14 @@ r_binary_packages:
   - rpf
   - openssl
   - rlang
+  - igraph
   - utf8
   - gss
   - haven
   - XML
   - data.table
-  - igraph
   - matrixStats
   - rgl
-  - stringi
   - dplyr
   - purrr
   - tidyr
@@ -72,7 +72,6 @@ r_binary_packages:
   - httpuv
   - markdown
   - sem  
-  - OpenMX
   - readxl
   - openxlsx
   - pander
