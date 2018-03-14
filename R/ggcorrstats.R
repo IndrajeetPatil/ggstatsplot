@@ -88,31 +88,31 @@
 # defining the function
 ggcorrmat <-
   function(data,
-           cor.vars,
-           cor.vars.names = NULL,
-           output = "plot",
-           type = "full",
-           corr.method = "pearson",
-           digits = 2,
-           sig.level = 0.05,
-           hc.order = TRUE,
-           hc.method = "complete",
-           lab = TRUE,
-           colors = c("#6D9EC1", "white", "#E46726"),
-           outline.color = "black",
-           ggtheme = ggplot2::theme_gray,
-           title = NULL,
-           subtitle = NULL,
-           caption = NULL,
-           lab_col = "black",
-           lab_size = 4.5,
-           insig = "pch",
-           pch = 4,
-           pch.col = "black",
-           pch.cex = 5,
-           tl.cex = 12,
-           tl.col = "black",
-           tl.srt = 45) {
+             cor.vars,
+             cor.vars.names = NULL,
+             output = "plot",
+             type = "full",
+             corr.method = "pearson",
+             digits = 2,
+             sig.level = 0.05,
+             hc.order = TRUE,
+             hc.method = "complete",
+             lab = TRUE,
+             colors = c("#6D9EC1", "white", "#E46726"),
+             outline.color = "black",
+             ggtheme = ggplot2::theme_gray,
+             title = NULL,
+             subtitle = NULL,
+             caption = NULL,
+             lab_col = "black",
+             lab_size = 4.5,
+             insig = "pch",
+             pch = 4,
+             pch.col = "black",
+             pch.cex = 5,
+             tl.cex = 12,
+             tl.col = "black",
+             tl.srt = 45) {
     # creating a dataframe out of the entered variables
     df <- data %>%
       dplyr::select(.data = ., !!rlang::enquo(cor.vars)) %>%
@@ -149,8 +149,10 @@ ggcorrmat <-
 
     # compute a correlation matrix of p-values
     p.mat <-
-      ggcorrplot::cor_pmat(x = df,
-                           sig.level = sig.level)
+      ggcorrplot::cor_pmat(
+        x = df,
+        sig.level = sig.level
+      )
 
     # plotting the correlalogram
     plot <- ggcorrplot::ggcorrplot(
@@ -245,7 +247,4 @@ ggcorrmat <-
       # correlalogram plot
       return(plot)
     }
-
   }
-
-
