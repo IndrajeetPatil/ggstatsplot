@@ -2,7 +2,6 @@
 
 language: R
 cache: packages
-sudo: required
 latex: false
 fortran: true
 
@@ -14,6 +13,48 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
+            
+      r_binary_packages:
+        - stringi
+        - magrittr
+        - curl
+        - jsonlite
+        - Rcpp
+        - bindrcpp
+        - RcppEigen
+        - rpf
+        - openssl
+        - rlang
+        - igraph
+        - utf8
+        - gss
+        - haven
+        - XML
+        - data.table
+        - matrixStats
+        - rgl
+        - dplyr
+        - purrr
+        - tidyr
+        - readr
+        - minqa
+        - mvtnorm
+        - nloptr
+        - SparseM
+        - lme4
+        - httpuv
+        - markdown
+        - OpenMx
+        - sem  
+        - readxl
+        - openxlsx
+        - pander
+        - minpack.lm
+        - StanHeaders
+        
+        # "These installs will be faster than source installs, but may not always be the most recent version"
+        # https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
+
 #   precise is getting decommissioned on Travis, so better to leave it out
 #    - os: linux
 #      dist: trusty
@@ -34,24 +75,6 @@ addons:
     - libcurl4-openssl-dev
     - libxml2-dev
     - libgsl0-dev
-
-# "These installs will be faster than source installs, but may not always be the most recent version"
-# https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
-#   https://launchpad.net/ubuntu/artful/+package/r-cran-magrittr
-#   https://launchpad.net/ubuntu/+source/curl
-#   https://launchpad.net/ubuntu/+source/r-cran-jsonlite
-
-r_binary_packages:
-  - stringi
-  - magrittr
-  - curl
-  - jsonlite
-  - Rcpp
-  - bindrcpp
-  - RcppEigen
-  - gsl
-  - tidyverse
-  - nloptr
 
 repos:
   CRAN: https://cloud.r-project.org
