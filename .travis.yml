@@ -71,7 +71,6 @@ r_binary_packages:
   - lme4
   - httpuv
   - markdown
-  - BayesFactor
   - sem  
   - OpenMX
   - readxl
