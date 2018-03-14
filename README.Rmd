@@ -37,11 +37,22 @@ of analyses as well.
 
 ## Installation
 
-```{r installation, eval = FALSE}
-# You can get the development version from GitHub:
+You can get the development version from GitHub. If you are in hurry and want to reduce the time of installation, prefer-
+
+```{r installation1, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("IndrajeetPatil/ggstatsplot", dependencies = TRUE)
+devtools::install_github(pkg = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+                         quick = TRUE)                       # skips docs, demos, and vignettes
 ```
+
+If time is not a constraint-
+```{r installation2, eval = FALSE}
+devtools::install_github("IndrajeetPatil/ggstatsplot",       # package path on GitHub
+                         dependencies = TRUE,                # installs packages which ggstatsplot depends on
+                         upgrade_dependencies = TRUE         # updates any out of date dependencies
+)
+```
+
 ## Usage
 
 Here are examples of the main functions currently supported in `ggstatsplot`:
@@ -110,7 +121,7 @@ ggstatsplot::ggscatterstats(
   test = "robust",                               # type of test that needs to be run
   xlab = "Attribute: Sepal Length",              # label for x axis
   ylab = "Attribute: Petal Length",              # label for y axis 
-  line.colour = "green",                         # changing regression line colour line
+  line.colour = "darkgreen",                     # changing regression line colour line
   title = "Dataset: Iris flower data set",       # title text for the plot
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
@@ -210,16 +221,18 @@ code.
 ```{r ggcorrmat1, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(plyr)
 
+# creating a list of plots
 plots <- plyr::dlply(
   .data = iris,
-  .variables = .(Species),
+  .variables = .(Species),  # creates the ggcorrmat for each level of Species factor
   .fun = function(data)
     ggstatsplot::ggcorrmat(
       data = data,
       cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
       cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
       title = glue::glue("Species: {data$Species}"),
-      insig = "blank"
+      sig.level = 0.05,     # threshold of significance
+      insig = "blank"       # matrix cells with insignificant correlations are left blank
     )
 )
 
@@ -230,12 +243,13 @@ plots <- plyr::dlply(
     ncol = 1,
     labels = c("(a)", "(b)", "(c)", "(d)"),
     title.text = "Correlalogram for length measures for all Iris species",
-    title.colour = "blue"
+    title.colour = "blue",
+    caption.text = "Note: p-values significant for alpha of 0.05; unadjusted"
   )
 ```
 
-Alternatively, you can use it to just to get the correlation matrices and their
-corresponding p-values.
+Alternatively, you can use it just to get the correlation matrices and their
+corresponding p-values (in a [tibble](http://tibble.tidyverse.org/) format).
 
 ```{r ggcorrmat2, message = FALSE, warning = FALSE}
 # getting correlations 
@@ -256,9 +270,9 @@ ggstatsplot::ggcorrmat(
 * `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
-multiple plots. This is a wrapper function around `cowplot::plot_grid` and lets
-you combine multiple plots and add combination of title, caption, and annotation
-texts. 
+multiple plots. This is a wrapper around [`cowplot::plot_grid`](https://cran.r-project.org/web/packages/cowplot/vignettes/plot_grid.html)
+and lets you combine multiple plots and add combination of title, caption, and
+annotation texts with suitable default parameters.
 
 ```{r combine_plots_plyr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(ggplot2)
@@ -295,11 +309,14 @@ ggstatsplot::combine_plots(
 )
 ```
 
-The full power of this package can be leveraged with a functional programming
-package like `purrr` that replaces many for loops with code that is both more
-succinct and easier to read. Here is an example. Notice how little code is
-needed not only to prepare the plots but also to plot the statistical test
-results.
+The full power of `ggstatsplot` can be leveraged with a functional programming
+package like [`purrr`](http://purrr.tidyverse.org/) that replaces many for loops
+with code that is both more succinct and easier to read. Although `plyr` was used to carry out
+looped operations in prior examples, `purrr` is a much more powerful package and
+should be preferrred.
+
+An example is provided below. Notice how little code is needed not only to
+prepare the plots but also to plot the statistical test results. 
 
 ```{r combine_plots_purrr, message = FALSE, warning = FALSE, fig.height = 13, fig.width = 6}
 library(tidyverse)

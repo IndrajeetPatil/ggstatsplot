@@ -42,9 +42,7 @@ Suggests:
     datasets,
     grDevices,
     knitr,
-    RColorBrewer,
-    rmarkdown,
-    testthat
+    rmarkdown
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

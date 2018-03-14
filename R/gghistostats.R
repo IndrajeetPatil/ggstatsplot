@@ -330,7 +330,7 @@ gghistostats <-
           na.rm = TRUE
         )
     }
-    # display homogeneity of variances test result as a message
+    # display normality test result as a message
     sw_norm <- stats::shapiro.test(data$x)
     base::message(cat(
       crayon::green("Note: "),

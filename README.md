@@ -33,10 +33,23 @@ Future versions will include other types of analyses as well.
 
 ## Installation
 
+You can get the development version from GitHub. If you are in hurry and
+want to reduce the time of installation, prefer-
+
 ``` r
-# You can get the development version from GitHub:
 # install.packages("devtools")
-devtools::install_github("IndrajeetPatil/ggstatsplot", dependencies = TRUE)
+devtools::install_github(pkg = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+                         quick = TRUE)                       # skips docs, demos, and vignettes
+```
+
+If time is not a
+constraint-
+
+``` r
+devtools::install_github("IndrajeetPatil/ggstatsplot",       # package path on GitHub
+                         dependencies = TRUE,                # installs packages which ggstatsplot depends on
+                         upgrade_dependencies = TRUE         # updates any out of date dependencies
+)
 ```
 
 ## Usage
@@ -54,7 +67,7 @@ in the subtitle:
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
-#> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
+#> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Shapiro-Wilk test of normality for Sepal.Length : p-value =  0.010Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
 ```
 
 ![](man/figures/README-ggbetweenstats1-1.png)<!-- -->
@@ -83,7 +96,7 @@ ggstatsplot::ggbetweenstats(
   ) +                                             # further modifcation outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
-#> Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
+#> Note:  Shapiro-Wilk test of normality for Sepal.Length : p-value =  0.010Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
 ```
 
 ![](man/figures/README-ggbetweenstats2-1.png)<!-- -->
@@ -118,7 +131,7 @@ ggstatsplot::ggscatterstats(
   test = "robust",                               # type of test that needs to be run
   xlab = "Attribute: Sepal Length",              # label for x axis
   ylab = "Attribute: Petal Length",              # label for y axis 
-  line.colour = "green",                         # changing regression line colour line
+  line.colour = "darkgreen",                     # changing regression line colour line
   title = "Dataset: Iris flower data set",       # title text for the plot
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
@@ -235,16 +248,18 @@ correlalograms with minimal amount of code.
 ``` r
 library(plyr)
 
+# creating a list of plots
 plots <- plyr::dlply(
   .data = iris,
-  .variables = .(Species),
+  .variables = .(Species),  # creates the ggcorrmat for each level of Species factor
   .fun = function(data)
     ggstatsplot::ggcorrmat(
       data = data,
       cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
       cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
       title = glue::glue("Species: {data$Species}"),
-      insig = "blank"
+      sig.level = 0.05,     # threshold of significance
+      insig = "blank"       # matrix cells with insignificant correlations are left blank
     )
 )
 
@@ -255,14 +270,16 @@ plots <- plyr::dlply(
     ncol = 1,
     labels = c("(a)", "(b)", "(c)", "(d)"),
     title.text = "Correlalogram for length measures for all Iris species",
-    title.colour = "blue"
+    title.colour = "blue",
+    caption.text = "Note: p-values significant for alpha of 0.05; unadjusted"
   )
 ```
 
 ![](man/figures/README-ggcorrmat1-1.png)<!-- -->
 
-Alternatively, you can use it to just to get the correlation matrices
-and their corresponding p-values.
+Alternatively, you can use it just to get the correlation matrices and
+their corresponding p-values (in a
+[tibble](http://tibble.tidyverse.org/) format).
 
 ``` r
 # getting correlations 
@@ -297,9 +314,10 @@ ggstatsplot::ggcorrmat(
   - `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
-multiple plots. This is a wrapper function around `cowplot::plot_grid`
+multiple plots. This is a wrapper around
+[`cowplot::plot_grid`](https://cran.r-project.org/web/packages/cowplot/vignettes/plot_grid.html)
 and lets you combine multiple plots and add combination of title,
-caption, and annotation texts.
+caption, and annotation texts with suitable default parameters.
 
 ``` r
 library(ggplot2)
@@ -339,11 +357,15 @@ ggstatsplot::combine_plots(
 
 ![](man/figures/README-combine_plots_plyr-1.png)<!-- -->
 
-The full power of this package can be leveraged with a functional
-programming package like `purrr` that replaces many for loops with code
-that is both more succinct and easier to read. Here is an example.
-Notice how little code is needed not only to prepare the plots but also
-to plot the statistical test results.
+The full power of `ggstatsplot` can be leveraged with a functional
+programming package like [`purrr`](http://purrr.tidyverse.org/) that
+replaces many for loops with code that is both more succinct and easier
+to read. Although `plyr` was used to carry out looped operations in
+prior examples, `purrr` is a much more powerful package and should be
+preferrred.
+
+An example is provided below. Notice how little code is needed not only
+to prepare the plots but also to plot the statistical test results.
 
 ``` r
 library(tidyverse)
@@ -371,7 +393,7 @@ plots <- datasets::mtcars %>%
         )
       )
   )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.317Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.144Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.201
+#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Shapiro-Wilk test of normality for mpg : p-value =  0.325Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.317Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Shapiro-Wilk test of normality for mpg : p-value =  0.261Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.144Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Shapiro-Wilk test of normality for mpg : p-value =  0.323Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.201
 
 ### display the new object (notice that the class of the `plot` list column is S3: gg)
 plots

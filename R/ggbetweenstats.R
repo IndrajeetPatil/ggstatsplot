@@ -49,6 +49,7 @@
 #' @importFrom stats aov
 #' @importFrom stats quantile
 #' @importFrom stats oneway.test
+#' @importFrom stats shapiro.test
 #' @importFrom coin wilcox_test
 #' @importFrom coin statistic
 #' @importFrom rlang enquo
@@ -921,11 +922,28 @@ ggbetweenstats <- function(data = NULL,
 
   ################################################### messages ############################################################
 
-  # display homogeneity of variances test result as a message
+  # display a note to the user about the validity of assumptions for the default linear model
+  # display normality test result as a message
+  sw_norm <- stats::shapiro.test(data$y)
+  base::message(cat(
+    crayon::green("Note: "),
+    crayon::blue(
+      "Shapiro-Wilk test of normality for",
+      crayon::yellow(lab.df[2]), # entered y argument
+      ": p-value = "
+    ),
+    crayon::yellow(
+      ggstatsplot::specify_decimal_p(
+        x = sw_norm$p.value,
+        k,
+        p.value = TRUE
+      )
+    )
+  ))
+  # homogeneity of variance
   bartlett <- stats::bartlett.test(formula = y ~ x,
                                    data = data)
-
-  # display a note to the user about the validity of this assumption
+  # display homogeneity of variances test result as a message
   base::message(cat(
     crayon::green("Note: "),
     crayon::blue(
