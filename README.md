@@ -12,7 +12,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--14-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--15-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
@@ -34,10 +34,11 @@ Future versions will include other types of analyses as well.
 ## Installation
 
 You can get the development version from GitHub. If you are in hurry and
-want to reduce the time of installation, prefer-
+want to reduce the time of installation,
+prefer-
 
 ``` r
-# install.packages("devtools")
+# install.packages("devtools")                                # needed package to download from GitHub repo
 devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
                          quick = TRUE)                        # skips docs, demos, and vignettes
 ```
@@ -52,6 +53,20 @@ devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on 
 )
 ```
 
+## Help
+
+Documentation for any function can be accessed with the standard `help`
+command-
+
+``` r
+?ggbetweenstats
+?ggscatterstats
+?gghistostats
+?ggpiestats
+?ggcorrmat
+?combine_plots
+```
+
 ## Usage
 
 Here are examples of the main functions currently supported in
@@ -60,8 +75,8 @@ Here are examples of the main functions currently supported in
   - `ggbetweenstats`
 
 This function creates a violin plot for **between**-group or
-**between**- condition comparisons with results from statistical tests
-in the subtitle:
+**between**-condition comparisons with results from statistical tests in
+the subtitle:
 
 ``` r
 ggstatsplot::ggbetweenstats(data = iris, 
@@ -106,8 +121,9 @@ Variant of this function `ggwithinstats` is currently under work.
   - `ggscatterstats`
 
 This function creates a scatterplot with marginal
-histograms/boxplots/density/ violin plots from `ggExtra::ggMarginal()`
-and results from statistical tests in subtitle:
+histograms/boxplots/density/violin plots from
+[`ggExtra::ggMarginal()`](https://cran.r-project.org/web/packages/ggExtra/vignettes/ggExtra.html)
+and results from statistical tests in the subtitle:
 
 ``` r
 ggstatsplot::ggscatterstats(data = iris, 
@@ -367,8 +383,7 @@ The full power of `ggstatsplot` can be leveraged with a functional
 programming package like [`purrr`](http://purrr.tidyverse.org/) that
 replaces many for loops with code that is both more succinct and easier
 to read. Although `plyr` was used to carry out looped operations in
-prior examples, `purrr` is a much more powerful package and should be
-preferrred.
+prior examples, `purrr` should be preferrred.
 
 An example is provided below. Notice how little code is needed not only
 to prepare the plots but also to plot the statistical test results.

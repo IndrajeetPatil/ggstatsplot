@@ -40,7 +40,7 @@ of analyses as well.
 You can get the development version from GitHub. If you are in hurry and want to reduce the time of installation, prefer-
 
 ```{r installation1, eval = FALSE}
-# install.packages("devtools")
+# install.packages("devtools")                                # needed package to download from GitHub repo
 devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
                          quick = TRUE)                        # skips docs, demos, and vignettes
 ```
@@ -53,14 +53,25 @@ devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on 
 )
 ```
 
+## Help
+
+Documentation for any function can be accessed with the standard `help` command-
+```{r help, eval = FALSE}
+?ggbetweenstats
+?ggscatterstats
+?gghistostats
+?ggpiestats
+?ggcorrmat
+?combine_plots
+```
+
 ## Usage
 
 Here are examples of the main functions currently supported in `ggstatsplot`:
 
 * `ggbetweenstats`
 
-This function creates a violin plot for **between**-group or **between**-
-condition comparisons with results from statistical tests in the subtitle:
+This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in the subtitle:
 
 ```{r ggbetweenstats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggbetweenstats(data = iris, 
@@ -98,9 +109,7 @@ Variant of this function `ggwithinstats` is currently under work.
 
 * `ggscatterstats`
 
-This function creates a scatterplot with marginal histograms/boxplots/density/
-violin plots from `ggExtra::ggMarginal()` and results from statistical tests in
-subtitle:
+This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from [`ggExtra::ggMarginal()`](https://cran.r-project.org/web/packages/ggExtra/vignettes/ggExtra.html) and results from statistical tests in the subtitle:
 
 ```{r ggscatterstats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggscatterstats(data = iris, 
@@ -317,8 +326,7 @@ ggstatsplot::combine_plots(
 The full power of `ggstatsplot` can be leveraged with a functional programming
 package like [`purrr`](http://purrr.tidyverse.org/) that replaces many for loops
 with code that is both more succinct and easier to read. Although `plyr` was used to carry out
-looped operations in prior examples, `purrr` is a much more powerful package and
-should be preferrred.
+looped operations in prior examples, `purrr` should be preferrred.
 
 An example is provided below. Notice how little code is needed not only to
 prepare the plots but also to plot the statistical test results. 
