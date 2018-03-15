@@ -41,15 +41,15 @@ You can get the development version from GitHub. If you are in hurry and want to
 
 ```{r installation1, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github(pkg = "IndrajeetPatil/ggstatsplot", # package path on GitHub
-                         quick = TRUE)                       # skips docs, demos, and vignettes
+devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+                         quick = TRUE)                        # skips docs, demos, and vignettes
 ```
 
 If time is not a constraint-
 ```{r installation2, eval = FALSE}
-devtools::install_github("IndrajeetPatil/ggstatsplot",       # package path on GitHub
-                         dependencies = TRUE,                # installs packages which ggstatsplot depends on
-                         upgrade_dependencies = TRUE         # updates any out of date dependencies
+devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+                         dependencies = TRUE,                 # installs packages which ggstatsplot depends on
+                         upgrade_dependencies = TRUE          # updates any out of date dependencies
 )
 ```
 

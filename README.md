@@ -38,17 +38,17 @@ want to reduce the time of installation, prefer-
 
 ``` r
 # install.packages("devtools")
-devtools::install_github(pkg = "IndrajeetPatil/ggstatsplot", # package path on GitHub
-                         quick = TRUE)                       # skips docs, demos, and vignettes
+devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+                         quick = TRUE)                        # skips docs, demos, and vignettes
 ```
 
 If time is not a
 constraint-
 
 ``` r
-devtools::install_github("IndrajeetPatil/ggstatsplot",       # package path on GitHub
-                         dependencies = TRUE,                # installs packages which ggstatsplot depends on
-                         upgrade_dependencies = TRUE         # updates any out of date dependencies
+devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+                         dependencies = TRUE,                 # installs packages which ggstatsplot depends on
+                         upgrade_dependencies = TRUE          # updates any out of date dependencies
 )
 ```
 
