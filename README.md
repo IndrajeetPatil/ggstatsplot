@@ -147,7 +147,7 @@ ggstatsplot::ggscatterstats(
   test = "robust",                               # type of test that needs to be run
   xlab = "Attribute: Sepal Length",              # label for x axis
   ylab = "Attribute: Petal Length",              # label for y axis 
-  line.colour = "darkgreen",                     # changing regression line colour line
+  line.colour = "black",                         # changing regression line colour line
   title = "Dataset: Iris flower data set",       # title text for the plot
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
@@ -267,7 +267,7 @@ matrices. (Wrapper around
 ggstatsplot::ggcorrmat(
   data = iris,
   corr.method = "spearman",      # correlation method
-  sig.level = 0.05,              # threshold of significance
+  sig.level = 0.005,              # threshold of significance
   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
   cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
   title = "Correlalogram for length measures for Iris species",
@@ -277,7 +277,7 @@ ggstatsplot::ggcorrmat(
       italic("Note"),
       ": X denotes correlation non-significant at ",
       italic("p "),
-      "< 0.05; unadjusted"
+      "< 0.005; adjusted alpha"
     )
   )
 )
