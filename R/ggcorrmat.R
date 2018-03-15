@@ -151,7 +151,8 @@ ggcorrmat <-
     p.mat <-
       ggcorrplot::cor_pmat(
         x = df,
-        sig.level = sig.level
+        alternative = "two.sided",
+        method = corr.method
       )
 
     # plotting the correlalogram
