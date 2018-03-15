@@ -7,11 +7,11 @@
 \usage{
 ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   type = "full", corr.method = "pearson", digits = 2, sig.level = 0.05,
-  hc.order = TRUE, hc.method = "complete", lab = TRUE,
+  hc.order = FALSE, hc.method = "complete", lab = TRUE,
   colors = c("#6D9EC1", "white", "#E46726"), outline.color = "black",
   ggtheme = ggplot2::theme_gray, title = NULL, subtitle = NULL,
   caption = NULL, lab_col = "black", lab_size = 4.5, insig = "pch",
-  pch = 4, pch.col = "black", pch.cex = 5, tl.cex = 12,
+  pch = 4, pch.col = "blue", pch.cex = 10, tl.cex = 12,
   tl.col = "black", tl.srt = 45)
 }
 \arguments{
@@ -42,8 +42,8 @@ coefficient is to be computed ("pearson" (default) or "kendall", or
 is bigger than sig.level, then the correspondi#' ng correlation coefficient
 is regarded as insignificant.}
 
-\item{hc.order}{logical value. If \code{TRUE}, correlation matrix will be
-hc.ordered using `hclust`` function.}
+\item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be
+hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
 
 \item{hc.method}{The agglomeration method to be used in \code{hclust} (see
 \code{?hclust}).}
@@ -82,7 +82,7 @@ details) will be added on #' the corresponding glyphs.}
 coefficients (only valid when \code{insig = "pch"}). Default value is 4.}
 
 \item{pch.col, pch.cex}{The color and the cex (size) of \code{pch} (only valid when
-\code{insig = "pch"}).}
+\code{insig = "pch"}). Defaults are \code{pch.col = "blue"} and \code{pch.cex = 10}.}
 
 \item{tl.cex, tl.col, tl.srt}{The size, the color, and the string rotation of
 text label (variable names).}

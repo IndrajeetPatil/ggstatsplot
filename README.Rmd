@@ -214,9 +214,9 @@ ggstatsplot::gghistostats(
 
 * `ggcorrmat`
 
-`ggcorrmat` provides a wrapper function around [`ggcorrplot`](https://
-github.com/kassambara/ggcorrplot) to make correlalograms with minimal amount of
-code.
+`ggcorrmat` makes correlalograms with minimal amount of code. Just sticking
+to the defaults itself produces publication-ready correlation matrices.
+ (Wrapper around [`ggcorrplot`](https://github.com/kassambara/ggcorrplot))
 
 ```{r ggcorrmat1, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(plyr)
@@ -230,9 +230,7 @@ plots <- plyr::dlply(
       data = data,
       cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
       cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
-      title = glue::glue("Species: {data$Species}"),
-      sig.level = 0.05,     # threshold of significance
-      insig = "blank"       # matrix cells with insignificant correlations are left blank
+      title = glue::glue("Species: {data$Species}")
     )
 )
 
@@ -244,7 +242,14 @@ plots <- plyr::dlply(
     labels = c("(a)", "(b)", "(c)", "(d)"),
     title.text = "Correlalogram for length measures for all Iris species",
     title.colour = "blue",
-    caption.text = "Note: p-values significant for alpha of 0.05; unadjusted"
+    caption.text = expression(
+        paste(
+          italic("Note"),
+          ": X denotes correlation non-significant at ",
+          italic("p "),
+          "< 0.05; unadjusted"
+        )
+      )
   )
 ```
 

@@ -23,8 +23,8 @@
 #' @param sig.level Significance level (Dafault: 0.05). If the p-value in p-mat
 #'   is bigger than sig.level, then the correspondi#' ng correlation coefficient
 #'   is regarded as insignificant.
-#' @param hc.order logical value. If `TRUE`, correlation matrix will be
-#'   hc.ordered using `hclust`` function.
+#' @param hc.order Logical value. If `TRUE`, correlation matrix will be
+#'   hc.ordered using `hclust` function (Default is `FALSE`).
 #' @param hc.method The agglomeration method to be used in `hclust` (see
 #'   `?hclust`).
 #' @param lab Logical value. If `TRUE`, correlation coefficient values will be
@@ -50,7 +50,7 @@
 #' @param pch Decides the glyphs to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default value is 4.
 #' @param pch.col,pch.cex The color and the cex (size) of `pch` (only valid when
-#'   `insig = "pch"`).
+#'   `insig = "pch"`). Defaults are `pch.col = "blue"` and `pch.cex = 10`.
 #' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
 #'   text label (variable names).
 #'
@@ -95,7 +95,7 @@ ggcorrmat <-
              corr.method = "pearson",
              digits = 2,
              sig.level = 0.05,
-             hc.order = TRUE,
+             hc.order = FALSE,
              hc.method = "complete",
              lab = TRUE,
              colors = c("#6D9EC1", "white", "#E46726"),
@@ -108,8 +108,8 @@ ggcorrmat <-
              lab_size = 4.5,
              insig = "pch",
              pch = 4,
-             pch.col = "black",
-             pch.cex = 5,
+             pch.col = "blue",
+             pch.cex = 10,
              tl.cex = 12,
              tl.col = "black",
              tl.srt = 45) {
