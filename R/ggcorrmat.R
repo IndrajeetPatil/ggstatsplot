@@ -159,6 +159,7 @@ ggcorrmat <-
     plot <- ggcorrplot::ggcorrplot(
       corr = corr.mat,
       p.mat = p.mat,
+      sig.level = sig.level,
       type = type,
       hc.method = hc.method,
       hc.order = hc.order,
