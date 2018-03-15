@@ -263,38 +263,24 @@ matrices. (Wrapper around
 [`ggcorrplot`](https://github.com/kassambara/ggcorrplot))
 
 ``` r
-library(plyr)
-
-# creating a list of plots
-plots <- plyr::dlply(
-  .data = iris,
-  .variables = .(Species),  # creates the ggcorrmat for each level of Species factor
-  .fun = function(data)
-    ggstatsplot::ggcorrmat(
-      data = data,
-      cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
-      cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
-      title = glue::glue("Species: {data$Species}")
+# as a default this function outputs a correlalogram plot
+ggstatsplot::ggcorrmat(
+  data = iris,
+  corr.method = "spearman",      # correlation method
+  sig.level = 0.05,              # threshold of significance
+  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
+  title = "Correlalogram for length measures for Iris species",
+  subtitle = "Iris dataset by Anderson",
+  caption = expression(
+    paste(
+      italic("Note"),
+      ": X denotes correlation non-significant at ",
+      italic("p "),
+      "< 0.05; unadjusted"
     )
-)
-
-# combining the individual correlalograms into a single plot
- ggstatsplot::combine_plots(
-    plotlist = plots,
-    nrow = 3,
-    ncol = 1,
-    labels = c("(a)", "(b)", "(c)", "(d)"),
-    title.text = "Correlalogram for length measures for all Iris species",
-    title.colour = "blue",
-    caption.text = expression(
-        paste(
-          italic("Note"),
-          ": X denotes correlation non-significant at ",
-          italic("p "),
-          "< 0.05; unadjusted"
-        )
-      )
   )
+)
 ```
 
 ![](man/figures/README-ggcorrmat1-1.png)<!-- -->
@@ -341,25 +327,53 @@ multiple plots. This is a wrapper around
 and lets you combine multiple plots and add combination of title,
 caption, and annotation texts with suitable default parameters.
 
-``` r
-library(ggplot2)
-library(plyr) 
-library(glue)
+The full power of `ggstatsplot` can be leveraged with a functional
+programming package like [`purrr`](http://purrr.tidyverse.org/) that
+replaces many for loops with code that is both more succinct and easier
+to read and, therefore, `purrr` should be preferrred.
 
-ggstatsplot::combine_plots(
-  plotlist = plyr::dlply(
-    .data = iris,
-    .variables = .(Species),
-    .fun = function(data)
-      ggstatsplot::ggscatterstats(
-        data = data,
-        x = Sepal.Length,
-        y = Sepal.Width,
-        marginal.type = "boxplot",
-        title =
-          glue::glue("Species: {(data$Species)} (n = {length(data$Sepal.Length)})")
+An example is provided below. Notice how little code is needed not only
+to prepare the plots but also to plot the statistical test results.
+
+``` r
+
+library(glue)
+library(tidyverse)
+
+### creating a list column with `ggstatsplot` plots
+plots <- datasets::iris %>%
+  dplyr::mutate(.data = ., Species2 = Species) %>% # just creates a copy of this variable
+  dplyr::group_by(.data = ., Species) %>%                
+  tidyr::nest(data = .) %>%                        # creates a nested dataframe with list column called `data`
+  dplyr::mutate(                                   # creating a new list column of ggstatsplot outputs
+    .data = .,
+    plot = data %>%
+      purrr::map(
+        .x = .,
+        .f = ~ ggstatsplot::ggscatterstats(
+          data = .,
+          x = Sepal.Length,
+          y = Sepal.Width,
+          marginal.type = "boxplot",
+          title =
+            glue::glue("Species: {.$Species2} (n = {length(.$Sepal.Length)})")
+        )
       )
-  ),
+  )
+#> Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.
+
+### display the new object (notice that the class of the `plot` list column is S3: gg)
+plots
+#> # A tibble: 3 x 3
+#>   Species    data              plot             
+#>   <fct>      <list>            <list>           
+#> 1 setosa     <tibble [50 x 5]> <S3: ggExtraPlot>
+#> 2 versicolor <tibble [50 x 5]> <S3: ggExtraPlot>
+#> 3 virginica  <tibble [50 x 5]> <S3: ggExtraPlot>
+
+### creating a grid with cowplot
+ggstatsplot::combine_plots(
+  plotlist = plots$plot,                           # list column containing all ggstatsplot objects
   labels = c("(a)", "(b)", "(c)"),
   nrow = 3,
   ncol = 1,
@@ -374,19 +388,11 @@ ggstatsplot::combine_plots(
     caption.size = 10
   )
 )
-#> Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.
 ```
 
-![](man/figures/README-combine_plots_plyr-1.png)<!-- -->
+![](man/figures/README-combine_plots_purrr1-1.png)<!-- -->
 
-The full power of `ggstatsplot` can be leveraged with a functional
-programming package like [`purrr`](http://purrr.tidyverse.org/) that
-replaces many for loops with code that is both more succinct and easier
-to read. Although `plyr` was used to carry out looped operations in
-prior examples, `purrr` should be preferrred.
-
-An example is provided below. Notice how little code is needed not only
-to prepare the plots but also to plot the statistical test results.
+Here is another example with `ggbetweenstats`-
 
 ``` r
 library(tidyverse)
@@ -442,7 +448,7 @@ ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing
                            ))
 ```
 
-![](man/figures/README-combine_plots_purrr-1.png)<!-- -->
+![](man/figures/README-combine_plots_purrr2-1.png)<!-- -->
 
   - `theme_mprl`
 
