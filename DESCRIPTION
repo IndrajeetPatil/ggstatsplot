@@ -31,6 +31,7 @@ Imports:
     jmv,
     magrittr,
     MASS (>= 7.3-47),
+    nortest,
     rlang (>= 0.2.0),
     RVAideMemoire (>= 0.9-69),
     sfsmisc (>= 1.1-1),

@@ -38,7 +38,7 @@
 #'
 #' @importFrom jmv ttestOneS
 #' @importFrom stats dnorm
-#' @importFrom stats shapiro.test
+#' @importFrom nortest ad.test
 #'
 #' @examples
 #' library(ggplot2)
@@ -98,39 +98,35 @@ utils::globalVariables(
 
 gghistostats <-
   function(data = NULL,
-             x,
-             xlab = NULL,
-             title = NULL,
-             subtitle = NULL,
-             caption = NULL,
-             type = "parametric",
-             test.value = 0,
-             k = 3,
-             results.subtitle = TRUE,
-             density.plot = FALSE,
-             density.colour = "black",
-             centrality.para = NULL,
-             centrality.colour = "blue",
-             binwidth.adjust = FALSE,
-             binwidth = NULL) {
+           x,
+           xlab = NULL,
+           title = NULL,
+           subtitle = NULL,
+           caption = NULL,
+           type = "parametric",
+           test.value = 0,
+           k = 3,
+           results.subtitle = TRUE,
+           density.plot = FALSE,
+           density.colour = "black",
+           centrality.para = NULL,
+           centrality.colour = "blue",
+           binwidth.adjust = FALSE,
+           binwidth = NULL) {
     # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(
-        .data = data,
-        !!rlang::enquo(x)
-      ))
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(x)))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
       }
       # if dataframe is provided
       data <-
-        dplyr::select(
-          .data = data,
-          x = !!rlang::enquo(x)
-        )
+        dplyr::select(.data = data,
+                      x = !!rlang::enquo(x))
     } else {
       # if vectors are provided
       data <-
@@ -226,10 +222,8 @@ gghistostats <-
 
     # if the user wants to adjust the binwidth
     if (isTRUE(binwidth.adjust)) {
-      plot <- ggplot2::ggplot(
-        data = data,
-        mapping = ggplot2::aes(x = x)
-      ) +
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = ggplot2::aes(x = x)) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
@@ -241,9 +235,8 @@ gghistostats <-
           )
         ) +
         ggplot2::scale_fill_gradient("count",
-          low = "green",
-          high = "red"
-        ) +
+                                     low = "green",
+                                     high = "red") +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -253,10 +246,8 @@ gghistostats <-
         )
     } else {
       # if not, use the defaults
-      plot <- ggplot2::ggplot(
-        data = data,
-        mapping = aes(x = x)
-      ) +
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = aes(x = x)) +
         ggplot2::geom_histogram(
           col = "black",
           alpha = 0.7,
@@ -264,9 +255,8 @@ gghistostats <-
           na.rm = TRUE
         ) +
         ggplot2::scale_fill_gradient("count",
-          low = "green",
-          high = "red"
-        ) +
+                                     low = "green",
+                                     high = "red") +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -324,29 +314,32 @@ gghistostats <-
     # if normal distribution plot is to be added
     if (isTRUE(density.plot)) {
       plot <- plot +
-        ggplot2::geom_density(
-          colour = density.colour,
-          size = 1.0,
-          na.rm = TRUE
-        )
+        ggplot2::geom_density(colour = density.colour,
+                              size = 1.0,
+                              na.rm = TRUE)
     }
+
+    ################################################### messages ############################################################
+
     # display normality test result as a message
-    sw_norm <- stats::shapiro.test(data$x)
-    base::message(cat(
-      crayon::green("Note: "),
-      crayon::blue(
-        "Shapiro-Wilk test of normality for",
-        crayon::yellow(lab.df[1]), # entered x argument
-        ": p-value = "
-      ),
-      crayon::yellow(
-        ggstatsplot::specify_decimal_p(
-          x = sw_norm$p.value,
-          k,
-          p.value = TRUE
+    # # for AD test of normality, sample size must be greater than 7
+    if (length(data$x) > 7) {
+      sw_norm <- nortest::ad.test(x = data$x)
+      base::message(cat(
+        crayon::green("Note: "),
+        crayon::blue(
+          "Anderson-Darling Normality Test for",
+          crayon::yellow(lab.df[1]),
+          # entered x argument
+          ": p-value = "
+        ),
+        crayon::yellow(
+          ggstatsplot::specify_decimal_p(x = sw_norm$p.value,
+                                         k,
+                                         p.value = TRUE)
         )
-      )
-    ))
+      ))
+    }
     # return the final plot
     return(plot)
   }

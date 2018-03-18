@@ -12,7 +12,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--17-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--18-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
@@ -82,7 +82,7 @@ the subtitle:
 ggstatsplot::ggbetweenstats(data = iris, 
                             x = Species, 
                             y = Sepal.Length)
-#> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Shapiro-Wilk test of normality for Sepal.Length : p-value =  0.010Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
+#> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
 ```
 
 ![](man/figures/README-ggbetweenstats1-1.png)<!-- -->
@@ -111,7 +111,7 @@ ggstatsplot::ggbetweenstats(
   ) +                                             # further modifcation outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
-#> Note:  Shapiro-Wilk test of normality for Sepal.Length : p-value =  0.010Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
+#> Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
 ```
 
 ![](man/figures/README-ggbetweenstats2-1.png)<!-- -->
@@ -133,7 +133,7 @@ p1 <- ggstatsplot::ggbetweenstats(
   y = mpg, 
   type = "p"
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Shapiro-Wilk test of normality for mpg : p-value =  0.123Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Anderson-Darling Normality Test for mpg : p-value =  0.121Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
 
 # Mann-Whitney U-test
 p2 <- ggstatsplot::ggbetweenstats(
@@ -142,7 +142,7 @@ p2 <- ggstatsplot::ggbetweenstats(
   y = mpg, 
   type = "np"
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorNote:  Shapiro-Wilk test of normality for mpg : p-value =  0.123Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+#> Warning:  aesthetic `x` was not a factor; converting it to factorNote:  Anderson-Darling Normality Test for mpg : p-value =  0.121Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
 
 # robust t-test
 p3 <- ggstatsplot::ggbetweenstats(
@@ -151,7 +151,7 @@ p3 <- ggstatsplot::ggbetweenstats(
   y = mpg, 
   type = "r"
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorNote:  Shapiro-Wilk test of normality for mpg : p-value =  0.123Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+#> Warning:  aesthetic `x` was not a factor; converting it to factorNote:  Anderson-Darling Normality Test for mpg : p-value =  0.121Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
 
 # combining the individual plots into a single plot
 cowplot::plot_grid(p1, p2, p3, 
@@ -301,7 +301,7 @@ ggstatsplot::gghistostats(
   binwidth = 0.10                 # binwidth value (needs to be toyed around with until you find the best one)
 ) +              
   viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
-#> Note:  Shapiro-Wilk test of normality for Sepal.Length : p-value =  0.010
+#> Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023
 ```
 
 ![](man/figures/README-gghistostats-1.png)<!-- -->
@@ -471,7 +471,7 @@ plots <- datasets::mtcars %>%
         )
       )
   )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Shapiro-Wilk test of normality for mpg : p-value =  0.325Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.317Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Shapiro-Wilk test of normality for mpg : p-value =  0.261Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.144Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Shapiro-Wilk test of normality for mpg : p-value =  0.323Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.201
+#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.317Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Anderson-Darling Normality Test for mpg : p-value =  0.329Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.144Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Anderson-Darling Normality Test for mpg : p-value =  0.263Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.201
 
 ### display the new object (notice that the class of the `plot` list column is S3: gg)
 plots

@@ -428,6 +428,8 @@ ggscatterstats <-
           )
         )
 
+      ################################################### messages ##########################################################
+
       # display warning that this doesn't produce a ggplot2 object
       base::message(cat(
         crayon::red("Warning:"),
