@@ -266,6 +266,9 @@ ggstatsplot::gghistostats(
   viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
 ```
 
+The `type` (of test) argument also accepts the following abbreviations:
+"p" (for *parametric*) or "np" (for *nonparametric*).
+
 * `ggcorrmat`
 
 `ggcorrmat` makes correlalograms with minimal amount of code. Just sticking

@@ -927,7 +927,7 @@ ggbetweenstats <- function(data = NULL,
   # display normality test result as a message
   # for AD test of normality, sample size must be greater than 7
   if (length(data$y) > 7) {
-    sw_norm <- nortest::ad.test(x = data$y)
+    ad_norm <- nortest::ad.test(x = data$y)
     base::message(cat(
       crayon::green("Note: "),
       crayon::blue(
@@ -937,7 +937,7 @@ ggbetweenstats <- function(data = NULL,
         ": p-value = "
       ),
       crayon::yellow(
-        ggstatsplot::specify_decimal_p(x = sw_norm$p.value,
+        ggstatsplot::specify_decimal_p(x = ad_norm$p.value,
                                        k,
                                        p.value = TRUE)
       )

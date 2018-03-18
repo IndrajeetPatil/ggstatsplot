@@ -306,6 +306,9 @@ ggstatsplot::gghistostats(
 
 ![](man/figures/README-gghistostats-1.png)<!-- -->
 
+The `type` (of test) argument also accepts the following abbreviations:
+“p” (for *parametric*) or “np” (for *nonparametric*).
+
   - `ggcorrmat`
 
 `ggcorrmat` makes correlalograms with minimal amount of code. Just

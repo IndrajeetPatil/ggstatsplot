@@ -15,6 +15,7 @@
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
 #' @param type Type of statistic expected ("parametric" or "nonparametric").
+#'   Abbreviations accepted are "p" or "np".
 #' @param test.value A number specifying the value of the null hypothesis.
 #' @param k Number of decimal places expected for results.
 #' @param results.subtitle Decides whether the results of statistical tests are
@@ -134,7 +135,7 @@ gghistostats <-
     }
     # ========================================== stats ==================================================================
     if (isTRUE(results.subtitle)) {
-      if (type == "parametric") {
+      if (type == "parametric" | type == "p") {
         # model
         jmv_os <- jmv::ttestOneS(
           data = data,
@@ -176,7 +177,7 @@ gghistostats <-
             effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$es, k)
           )
         )
-      } else if (type == "nonparametric") {
+      } else if (type == "nonparametric" | type == "np") {
         # model
         jmv_os <- jmv::ttestOneS(
           data = data,
@@ -228,10 +229,10 @@ gghistostats <-
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
+          na.rm = TRUE,
           mapping = ggplot2::aes(
             y = ..density..,
-            fill = ..count..,
-            na.rm = TRUE
+            fill = ..count..
           )
         ) +
         ggplot2::scale_fill_gradient("count",
@@ -324,7 +325,7 @@ gghistostats <-
     # display normality test result as a message
     # # for AD test of normality, sample size must be greater than 7
     if (length(data$x) > 7) {
-      sw_norm <- nortest::ad.test(x = data$x)
+      ad_norm <- nortest::ad.test(x = data$x)
       base::message(cat(
         crayon::green("Note: "),
         crayon::blue(
@@ -334,7 +335,7 @@ gghistostats <-
           ": p-value = "
         ),
         crayon::yellow(
-          ggstatsplot::specify_decimal_p(x = sw_norm$p.value,
+          ggstatsplot::specify_decimal_p(x = ad_norm$p.value,
                                          k,
                                          p.value = TRUE)
         )

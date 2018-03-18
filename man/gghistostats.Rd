@@ -18,7 +18,8 @@ from one sample test to be displayed.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{type}{Type of statistic expected ("parametric" or "nonparametric").}
+\item{type}{Type of statistic expected ("parametric" or "nonparametric").
+Abbreviations accepted are "p" or "np".}
 
 \item{test.value}{A number specifying the value of the null hypothesis.}
 
