@@ -13,7 +13,8 @@
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param type Type of statistic expected ("parametric" or "nonparametric" or
-#'   "robust").
+#'   "robust").Corresponding abbreviations are also accepted: "p" (for
+#'   parametric), "np" (nonparametric), "r" (robust), resp.
 #' @param effsize.type Type of effect size needed for *parametric* tests
 #'   ("biased" (Cohen's d, partial eta-squared) or "unbiased" (Hedge's g,
 #'   omega-squared)).
@@ -282,7 +283,7 @@ ggbetweenstats <- function(data = NULL,
     ##################################### parametric ANOVA ############################################################
 
     # running parametric ANOVA
-    if (type == "parametric") {
+    if (type == "parametric" | type == "p") {
       # Welch's ANOVA run by default
       aov_stat <-
         stats::oneway.test(
@@ -435,7 +436,7 @@ ggbetweenstats <- function(data = NULL,
         crayon::blue("Welch's ANOVA is used as a default."),
         crayon::yellow("(Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).")
       ))
-    } else if (type == "nonparametric") {
+    } else if (type == "nonparametric" | type == "np") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
       # setting up the anova model and getting its summary
       kw_stat <- stats::kruskal.test(formula = y ~ x,
@@ -478,7 +479,7 @@ ggbetweenstats <- function(data = NULL,
         crayon::red("Note: "),
         crayon::blue("No effect size available for Kruskal-Wallis Rank Sum Test.")
       ))
-    } else if (type == "robust") {
+    } else if (type == "robust" | type == "r") {
       ######################################### robust ANOVA ############################################################
 
       # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
@@ -536,7 +537,7 @@ ggbetweenstats <- function(data = NULL,
 
     ##################################### parametric t-test ############################################################
 
-    if (type == "parametric") {
+    if (type == "parametric" | type == "p") {
       # setting up the anova model and getting its summary and effect size
       t_stat <-
         stats::t.test(
@@ -661,7 +662,7 @@ ggbetweenstats <- function(data = NULL,
         )
       ))
     }
-    else if (type == "nonparametric") {
+    else if (type == "nonparametric" | type == "np") {
       ######################################### Mann-Whitney U test ######################################################
       # setting up the Mann-Whitney U-test and getting its summary
       mann_stat <- stats::wilcox.test(
@@ -725,7 +726,7 @@ ggbetweenstats <- function(data = NULL,
         plot +
         ggplot2::labs(subtitle = rsubtitle_mann(mann_stat = mann_stat,
                                                 z_stat = z_stat))
-    } else if (type == "robust") {
+    } else if (type == "robust" | type == "r") {
       ######################################### robust t-test ############################################################
 
       # t_robust_stat input represents the t-test object summary derived from WRS2 library

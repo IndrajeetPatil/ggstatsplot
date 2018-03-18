@@ -12,7 +12,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--15-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--17-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
@@ -116,6 +116,53 @@ ggstatsplot::ggbetweenstats(
 
 ![](man/figures/README-ggbetweenstats2-1.png)<!-- -->
 
+The `type` (of test) argument also accepts the following abbreviations:
+“p” (for *parametric*), “np” (for *nonparametric*), “r” (for
+*robust*).
+
+For example,
+
+``` r
+library(ggplot2)
+library(cowplot)
+
+# parametric t-tet 
+p1 <- ggstatsplot::ggbetweenstats(
+  data = mtcars,
+  x = am,
+  y = mpg, 
+  type = "p"
+)
+#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Shapiro-Wilk test of normality for mpg : p-value =  0.123Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+
+# Mann-Whitney U-test
+p2 <- ggstatsplot::ggbetweenstats(
+  data = mtcars,
+  x = am,
+  y = mpg, 
+  type = "np"
+)
+#> Warning:  aesthetic `x` was not a factor; converting it to factorNote:  Shapiro-Wilk test of normality for mpg : p-value =  0.123Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+
+# robust t-test
+p3 <- ggstatsplot::ggbetweenstats(
+  data = mtcars,
+  x = am,
+  y = mpg, 
+  type = "r"
+)
+#> Warning:  aesthetic `x` was not a factor; converting it to factorNote:  Shapiro-Wilk test of normality for mpg : p-value =  0.123Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+
+# combining the individual plots into a single plot
+cowplot::plot_grid(p1, p2, p3, 
+                   nrow = 3, 
+                   ncol = 1, 
+                   labels = c("(a)", "(b)", "(c)")
+)
+```
+
+![](man/figures/README-ggbetweenstats3-1.png)<!-- -->
+
 Variant of this function `ggwithinstats` is currently under work.
 
   - `ggscatterstats`
@@ -144,7 +191,7 @@ ggstatsplot::ggscatterstats(
   data = subset(iris, iris$Species == "setosa"),
   x = Sepal.Length,
   y = Petal.Length,
-  test = "robust",                               # type of test that needs to be run
+  type = "robust",                               # type of test that needs to be run
   xlab = "Attribute: Sepal Length",              # label for x axis
   ylab = "Attribute: Petal Length",              # label for y axis 
   line.colour = "black",                         # changing regression line colour line
@@ -163,6 +210,10 @@ ggstatsplot::ggscatterstats(
 ```
 
 ![](man/figures/README-ggscatterstats2-1.png)<!-- -->
+
+The `type` (of test) argument also accepts the following abbreviations:
+“p” (for *parametric*/pearson’s), “np” (for *nonparametric*/spearman),
+“r” (for *robust*).
 
 **Important**: In contrast to all other functions in this package, the
 `ggscatterstats` function returns object that is **not** further

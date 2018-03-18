@@ -27,9 +27,11 @@ displayed; the default is \code{TRUE}.}
 
 \item{yfill}{Colour fill for y axis distribution (default: \code{green}).}
 
-\item{test}{Type of association between paired samples required ("parametric:
+\item{type}{Type of association between paired samples required ("parametric:
 Pearson's product moment correlation coefficient" or "nonparametric:
-Spearman's rho" or "robust: Robust regression using an M estimator").}
+Spearman's rho" or "robust: Robust regression using an M estimator").
+Corresponding abbreviations are also accepted: "p" (for
+parametric/pearson's), "np" (nonparametric/spearman), "r" (robust), resp.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle.}
@@ -63,7 +65,7 @@ development version of \code{ggExtra}
 }
 \examples{
 ggstatsplot::ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length,
-intercept = 'median', test = 'robust', marginal.type = 'density')
+intercept = 'median', type = 'robust', marginal.type = 'density')
 
 }
 \author{

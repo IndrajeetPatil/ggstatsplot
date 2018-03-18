@@ -20,9 +20,11 @@
 #'   ("histogram", "boxplot", "density", "violin").
 #' @param xfill Colour fill for x axis distibution (default: `orange`).
 #' @param yfill Colour fill for y axis distribution (default: `green`).
-#' @param test Type of association between paired samples required ("parametric:
+#' @param type Type of association between paired samples required ("parametric:
 #'   Pearson's product moment correlation coefficient" or "nonparametric:
 #'   Spearman's rho" or "robust: Robust regression using an M estimator").
+#'   Corresponding abbreviations are also accepted: "p" (for
+#'   parametric/pearson's), "np" (nonparametric/spearman), "r" (robust), resp.
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle.
 #' @param intercept Decides whether "mean" or "median" or no intercept lines
@@ -51,7 +53,7 @@
 #'
 #' @examples
 #' ggstatsplot::ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length,
-#' intercept = 'median', test = 'robust', marginal.type = 'density')
+#' intercept = 'median', type = 'robust', marginal.type = 'density')
 #'
 #' @note If you want to use `marginal.type = "violin"`, you will have to use
 #'   development version of `ggExtra`
@@ -106,7 +108,7 @@ ggscatterstats <-
              xfill = "orange",
              yfill = "green",
              intercept = NULL,
-             test = "pearson",
+             type = "pearson",
              results.subtitle = NULL,
              title = NULL,
              caption = NULL,
@@ -158,7 +160,7 @@ ggscatterstats <-
 
     if (results.subtitle == TRUE) {
       # running the correlation test and preparing the subtitle text
-      if (test == "pearson") {
+      if (type == "pearson" | type == "p") {
         ################################################### Pearson's r ##################################################
 
         c <-
@@ -206,7 +208,7 @@ ggscatterstats <-
               pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]], k, p.value = TRUE)
             )
           )
-      } else if (test == "spearman") {
+      } else if (type == "spearman" | type == "np") {
         ################################################### Spearnman's rho ##################################################
         # running the correlation test and preparing the subtitle text
         # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
@@ -261,7 +263,7 @@ ggscatterstats <-
             )
           )
         ################################################### robust ##################################################
-      } else if (test == "robust") {
+      } else if (type == "robust" | type == "r") {
         # running robust regression test and preparing the subtitle text
         MASS_res <-
           MASS::rlm(
@@ -346,13 +348,15 @@ ggscatterstats <-
         position = position_jitter(
           width = width.jitter,
           height = height.jitter
-        )
+        ),
+        na.rm = TRUE
       ) +
       ggplot2::geom_smooth(
         method = "lm",
         se = TRUE,
         size = 1.5,
-        colour = line.colour
+        colour = line.colour,
+        na.rm = TRUE
       ) +
       ggstatsplot::theme_mprl() +
       ggplot2::labs(
@@ -377,13 +381,15 @@ ggscatterstats <-
           xintercept = mean(data$x),
           linetype = "dashed",
           colour = xfill,
-          size = 1.2
+          size = 1.2,
+          na.rm = TRUE
         ) +
         ggplot2::geom_hline(
           yintercept = mean(data$y),
           linetype = "dashed",
           colour = yfill,
-          size = 1.2
+          size = 1.2,
+          na.rm = TRUE
         )
     } else if (intercept == "median") {
       plot <- plot +
@@ -391,13 +397,15 @@ ggscatterstats <-
           xintercept = mean(data$x),
           linetype = "dashed",
           colour = xfill,
-          size = 1.2
+          size = 1.2,
+          na.rm = TRUE
         ) +
         ggplot2::geom_hline(
           yintercept = mean(data$y),
           linetype = "dashed",
           colour = yfill,
-          size = 1.2
+          size = 1.2,
+          na.rm = TRUE
         )
     }
 

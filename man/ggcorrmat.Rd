@@ -6,12 +6,12 @@
 'ggplot2'/'ggcorrplot'}
 \usage{
 ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
-  type = "full", corr.method = "pearson", digits = 2, sig.level = 0.05,
-  hc.order = FALSE, hc.method = "complete", lab = TRUE,
-  colors = c("#6D9EC1", "white", "#E46726"), outline.color = "black",
-  ggtheme = ggplot2::theme_gray, title = NULL, subtitle = NULL,
-  caption = NULL, lab_col = "black", lab_size = 4.5, insig = "pch",
-  pch = 4, pch.col = "blue", pch.cex = 10, tl.cex = 12,
+  type = "full", method = "square", corr.method = "pearson", digits = 2,
+  sig.level = 0.05, hc.order = FALSE, hc.method = "complete",
+  lab = TRUE, colors = c("#6D9EC1", "white", "#E46726"),
+  outline.color = "black", ggtheme = ggplot2::theme_gray, title = NULL,
+  subtitle = NULL, caption = NULL, lab_col = "black", lab_size = 4.5,
+  insig = "pch", pch = 4, pch.col = "blue", pch.cex = 10, tl.cex = 12,
   tl.col = "black", tl.srt = 45)
 }
 \arguments{
@@ -30,6 +30,10 @@ p-values).}
 
 \item{type}{Character, "full" (default), "upper" or "lower", display full
 matrix, lowe triangular or upper triangular matrix.}
+
+\item{method}{Character argument that decides the visualization method of
+correlation matrix to be used. Allowed values are "square" (default),
+"circle".}
 
 \item{corr.method}{A character string indicating which correlation
 coefficient is to be computed ("pearson" (default) or "kendall", or
@@ -88,7 +92,8 @@ coefficients (only valid when \code{insig = "pch"}). Default value is 4.}
 text label (variable names).}
 }
 \value{
-Correlation matrix plot or correlation coefficient matrix or matrix of p-values.
+Correlation matrix plot or correlation coefficient matrix or matrix
+of p-values.
 }
 \description{
 Visualization of a correlalogram (or correlation matrix) using

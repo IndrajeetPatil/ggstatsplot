@@ -16,7 +16,8 @@ taken.}
 \item{ylab}{Label for \code{y} axis variable.}
 
 \item{type}{Type of statistic expected ("parametric" or "nonparametric" or
-"robust").}
+"robust").Corresponding abbreviations are also accepted: "p" (for
+parametric), "np" (nonparametric), "r" (robust), resp.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests
 ("biased" (Cohen's d, partial eta-squared) or "unbiased" (Hedge's g,

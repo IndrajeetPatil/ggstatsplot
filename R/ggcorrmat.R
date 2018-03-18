@@ -2,7 +2,8 @@
 #'   'ggplot2'/'ggcorrplot'
 #' @name ggcorrmat
 #' @author Indrajeet Patil
-#' @return Correlation matrix plot or correlation coefficient matrix or matrix of p-values.
+#' @return Correlation matrix plot or correlation coefficient matrix or matrix
+#'   of p-values.
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
@@ -15,6 +16,9 @@
 #'   p-values).
 #' @param type Character, "full" (default), "upper" or "lower", display full
 #'   matrix, lowe triangular or upper triangular matrix.
+#' @param method Character argument that decides the visualization method of
+#'   correlation matrix to be used. Allowed values are "square" (default),
+#'   "circle".
 #' @param corr.method A character string indicating which correlation
 #'   coefficient is to be computed ("pearson" (default) or "kendall", or
 #'   "spearman").
@@ -88,31 +92,32 @@
 # defining the function
 ggcorrmat <-
   function(data,
-             cor.vars,
-             cor.vars.names = NULL,
-             output = "plot",
-             type = "full",
-             corr.method = "pearson",
-             digits = 2,
-             sig.level = 0.05,
-             hc.order = FALSE,
-             hc.method = "complete",
-             lab = TRUE,
-             colors = c("#6D9EC1", "white", "#E46726"),
-             outline.color = "black",
-             ggtheme = ggplot2::theme_gray,
-             title = NULL,
-             subtitle = NULL,
-             caption = NULL,
-             lab_col = "black",
-             lab_size = 4.5,
-             insig = "pch",
-             pch = 4,
-             pch.col = "blue",
-             pch.cex = 10,
-             tl.cex = 12,
-             tl.col = "black",
-             tl.srt = 45) {
+           cor.vars,
+           cor.vars.names = NULL,
+           output = "plot",
+           type = "full",
+           method = "square",
+           corr.method = "pearson",
+           digits = 2,
+           sig.level = 0.05,
+           hc.order = FALSE,
+           hc.method = "complete",
+           lab = TRUE,
+           colors = c("#6D9EC1", "white", "#E46726"),
+           outline.color = "black",
+           ggtheme = ggplot2::theme_gray,
+           title = NULL,
+           subtitle = NULL,
+           caption = NULL,
+           lab_col = "black",
+           lab_size = 4.5,
+           insig = "pch",
+           pch = 4,
+           pch.col = "blue",
+           pch.cex = 10,
+           tl.cex = 12,
+           tl.col = "black",
+           tl.srt = 45) {
     # creating a dataframe out of the entered variables
     df <- data %>%
       dplyr::select(.data = ., !!rlang::enquo(cor.vars)) %>%
@@ -149,15 +154,14 @@ ggcorrmat <-
 
     # compute a correlation matrix of p-values
     p.mat <-
-      ggcorrplot::cor_pmat(
-        x = df,
-        alternative = "two.sided",
-        method = corr.method
-      )
+      ggcorrplot::cor_pmat(x = df,
+                           alternative = "two.sided",
+                           method = corr.method)
 
     # plotting the correlalogram
     plot <- ggcorrplot::ggcorrplot(
       corr = corr.mat,
+      method = method,
       p.mat = p.mat,
       sig.level = sig.level,
       type = type,
@@ -284,11 +288,9 @@ legend_title_margin <- function(plot,
   # set up the heights: for the two margins and the original title
   # unit.c produces a new unit object by combining the unit objects specified as arguments
   heights <-
-    grid::unit.c(
-      t.margin,
-      grid::unit(x = 1, units = "grobheight", data = title),
-      b.margin
-    )
+    grid::unit.c(t.margin,
+                 grid::unit(x = 1, units = "grobheight", data = title),
+                 b.margin)
 
   # set up a column of three viewports
   vp <- grid::viewport(
@@ -302,11 +304,9 @@ legend_title_margin <- function(plot,
 
   # the middle row, where the title text will appear, is named as 'child_vp'.
   child_vp <-
-    grid::viewport(
-      layout.pos.row = 2,
-      clip = "off",
-      name = "child_vp"
-    )
+    grid::viewport(layout.pos.row = 2,
+                   clip = "off",
+                   name = "child_vp")
 
   # put the title into a gTree containing one grob (the title) and the three viewports
   TitleText <- grid::gTree(
@@ -329,7 +329,7 @@ legend_title_margin <- function(plot,
 
   # remove the original title
   leg$grobs <- leg$grobs[-4]
-  leg$layout <- leg$layout[-4, ]
+  leg$layout <- leg$layout[-4,]
 
   # put the legend back into the plot
   g$grobs[[index]][[1]][[1]] <- leg
