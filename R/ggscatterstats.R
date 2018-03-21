@@ -38,6 +38,8 @@
 #'   the resolution of the data.
 #' @param height.jitter Degree of jitter in `y` direction. Defaults to 40\% of
 #'   the resolution of the data.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -96,33 +98,35 @@ utils::globalVariables(
 # defining the function
 ggscatterstats <-
   function(data = NULL,
-             x,
-             y,
-             xlab = NULL,
-             ylab = NULL,
-             line.colour = "blue",
-             marginal = TRUE,
-             marginal.type = "histogram",
-             width.jitter = NULL,
-             height.jitter = NULL,
-             xfill = "orange",
-             yfill = "green",
-             intercept = NULL,
-             type = "pearson",
-             results.subtitle = NULL,
-             title = NULL,
-             caption = NULL,
-             maxit = 1000,
-             k = 3) {
+           x,
+           y,
+           xlab = NULL,
+           ylab = NULL,
+           line.colour = "blue",
+           marginal = TRUE,
+           marginal.type = "histogram",
+           width.jitter = NULL,
+           height.jitter = NULL,
+           xfill = "orange",
+           yfill = "green",
+           intercept = NULL,
+           type = "pearson",
+           results.subtitle = NULL,
+           title = NULL,
+           caption = NULL,
+           maxit = 1000,
+           k = 3,
+           messages = TRUE) {
+    # if data is not available then don't display any messages
+    if (is.null(data))
+      messages <- FALSE
     ################################################### dataframe ####################################################
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(
-        .data = data,
-        !!rlang::enquo(x),
-        !!rlang::enquo(y)
-      ))
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(x),
+                                       !!rlang::enquo(y)))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
@@ -141,10 +145,8 @@ ggscatterstats <-
     } else {
       # if vectors are provided
       data <-
-        base::cbind.data.frame(
-          x = x,
-          y = y
-        )
+        base::cbind.data.frame(x = x,
+                               y = y)
     }
 
     ######################################## statistical labels ######################################################
@@ -276,11 +278,9 @@ ggscatterstats <-
 
         # getting confidence interval for rho
         c_ci <-
-          stats::confint.default(
-            object = MASS_res,
-            parm = "scale(x)",
-            level = 0.95
-          )
+          stats::confint.default(object = MASS_res,
+                                 parm = "scale(x)",
+                                 level = 0.95)
 
         # preparing the label
         stats_subtitle <-
@@ -315,40 +315,35 @@ ggscatterstats <-
               df = summary(MASS_res)$df[2],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value,
-                k,
-                p.value = TRUE
-              )
+                                                      k,
+                                                      p.value = TRUE)
             )
           )
         # displaying the details of the test that was run
-        base::message(cat(
-          crayon::green("Note:"),
-          crayon::blue(
-            "Standardized robust regression using an M estimator: no. of iterations =",
-            crayon::yellow(maxit),
-            "In case of non-convergence, increase maxit value."
-          )
-        ))
+        if (isTRUE(messages)) {
+          base::message(cat(
+            crayon::green("Note:"),
+            crayon::blue(
+              "Standardized robust regression using an M estimator: no. of iterations =",
+              crayon::yellow(maxit),
+              "In case of non-convergence, increase maxit value."
+            )
+          ))
+        }
       }
     }
     ################################################### plot ################################################################
 
     # preparing the scatterplotplot
     plot <-
-      ggplot2::ggplot(
-        data = data,
-        mapping = aes(
-          x = x,
-          y = y
-        )
-      ) +
+      ggplot2::ggplot(data = data,
+                      mapping = aes(x = x,
+                                    y = y)) +
       ggplot2::geom_point(
         size = 3,
         alpha = 0.5,
-        position = position_jitter(
-          width = width.jitter,
-          height = height.jitter
-        ),
+        position = position_jitter(width = width.jitter,
+                                   height = height.jitter),
         na.rm = TRUE
       ) +
       ggplot2::geom_smooth(
@@ -418,25 +413,23 @@ ggscatterstats <-
           p = plot,
           type = marginal.type,
           size = 5,
-          xparams = base::list(
-            fill = xfill,
-            col = "black"
-          ),
-          yparams = base::list(
-            fill = yfill,
-            col = "black"
-          )
+          xparams = base::list(fill = xfill,
+                               col = "black"),
+          yparams = base::list(fill = yfill,
+                               col = "black")
         )
 
       ################################################### messages ##########################################################
 
       # display warning that this doesn't produce a ggplot2 object
-      base::message(cat(
-        crayon::red("Warning:"),
-        crayon::blue(
-          "This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands."
-        )
-      ))
+      if (isTRUE(messages)) {
+        base::message(cat(
+          crayon::red("Warning:"),
+          crayon::blue(
+            "This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands."
+          )
+        ))
+      }
     }
 
     # return the final plot

@@ -27,6 +27,9 @@ test.}
 \item{legend.title}{Title of legend.}
 
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Pie charts for categorical data with statistical details

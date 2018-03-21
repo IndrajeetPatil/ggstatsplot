@@ -45,6 +45,9 @@ variances as being equal (Default: \code{FALSE}).}
 to be displayed.}
 
 \item{mean.color}{Color for the data point corresponding to mean.}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Violin plots for between-subjects designs with statistical

@@ -31,6 +31,8 @@
 #' @param mean.plotting Decides whether mean is to be highlighted and its value
 #'   to be displayed.
 #' @param mean.color Color for the data point corresponding to mean.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #'
 #' @import ggplot2
 #' @import ggrepel
@@ -122,7 +124,11 @@ ggbetweenstats <- function(data = NULL,
                            outlier.label = NULL,
                            outlier.color = "black",
                            mean.plotting = FALSE,
-                           mean.color = "darkred") {
+                           mean.color = "darkred",
+                           messages = TRUE) {
+  # if data is not available then don't display any messages
+  if (is.null(data))
+    messages <- FALSE
   ####################################### creating a dataframe #################################################
   # if dataframe is provided
   if (!is.null(data)) {
@@ -431,11 +437,13 @@ ggbetweenstats <- function(data = NULL,
       }
 
       # displaying the details of the test that was run
-      base::message(cat(
-        crayon::green("Reference: "),
-        crayon::blue("Welch's ANOVA is used as a default."),
-        crayon::yellow("(Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).")
-      ))
+      if (isTRUE(messages)) {
+        base::message(cat(
+          crayon::green("Reference: "),
+          crayon::blue("Welch's ANOVA is used as a default."),
+          crayon::yellow("(Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).")
+        ))
+      }
     } else if (type == "nonparametric" | type == "np") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
       # setting up the anova model and getting its summary
@@ -654,13 +662,15 @@ ggbetweenstats <- function(data = NULL,
       }
 
       # displaying the details of the test that was run
-      base::message(cat(
-        crayon::green("Reference: "),
-        crayon::blue("Welch's t-test is used as a default."),
-        crayon::yellow(
-          "(Delacre, Lakens, & Leys, International Review of Social Psychology, 2017)."
-        )
-      ))
+      if (isTRUE(messages)) {
+        base::message(cat(
+          crayon::green("Reference: "),
+          crayon::blue("Welch's t-test is used as a default."),
+          crayon::yellow(
+            "(Delacre, Lakens, & Leys, International Review of Social Psychology, 2017)."
+          )
+        ))
+      }
     }
     else if (type == "nonparametric" | type == "np") {
       ######################################### Mann-Whitney U test ######################################################
@@ -923,45 +933,46 @@ ggbetweenstats <- function(data = NULL,
 
   ################################################### messages ############################################################
 
-  # display a note to the user about the validity of assumptions for the default linear model
-  # display normality test result as a message
-  # for AD test of normality, sample size must be greater than 7
-  if (length(data$y) > 7) {
-    ad_norm <- nortest::ad.test(x = data$y)
+  if (isTRUE(messages)) {
+    # display a note to the user about the validity of assumptions for the default linear model
+    # display normality test result as a message
+    # for AD test of normality, sample size must be greater than 7
+    if (length(data$y) > 7) {
+      ad_norm <- nortest::ad.test(x = data$y)
+      base::message(cat(
+        crayon::green("Note: "),
+        crayon::blue(
+          "Anderson-Darling Normality Test for",
+          crayon::yellow(lab.df[2]),
+          # entered y argument
+          ": p-value = "
+        ),
+        crayon::yellow(
+          ggstatsplot::specify_decimal_p(x = ad_norm$p.value,
+                                         k,
+                                         p.value = TRUE)
+        )
+      ))
+    }
+    # homogeneity of variance
+    bartlett <- stats::bartlett.test(formula = y ~ x,
+                                     data = data)
+    # display homogeneity of variances test result as a message
     base::message(cat(
       crayon::green("Note: "),
       crayon::blue(
-        "Anderson-Darling Normality Test for",
-        crayon::yellow(lab.df[2]),
-        # entered y argument
+        "Bartlett's test for homogeneity of variances for factor",
+        crayon::yellow(lab.df[1]),
+        # entered x argument
         ": p-value = "
       ),
       crayon::yellow(
-        ggstatsplot::specify_decimal_p(x = ad_norm$p.value,
+        ggstatsplot::specify_decimal_p(x = bartlett$p.value,
                                        k,
                                        p.value = TRUE)
       )
     ))
   }
-  # homogeneity of variance
-  bartlett <- stats::bartlett.test(formula = y ~ x,
-                                   data = data)
-  # display homogeneity of variances test result as a message
-  base::message(cat(
-    crayon::green("Note: "),
-    crayon::blue(
-      "Bartlett's test for homogeneity of variances for factor",
-      crayon::yellow(lab.df[1]),
-      # entered x argument
-      ": p-value = "
-    ),
-    crayon::yellow(
-      ggstatsplot::specify_decimal_p(x = bartlett$p.value,
-                                     k,
-                                     p.value = TRUE)
-    )
-  ))
-
   # return the final plot
   return(plot)
 }

@@ -53,6 +53,9 @@ the resolution of the data.}
 
 \item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
 the resolution of the data.}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Scatterplots from `ggplot2`` combined with add marginal

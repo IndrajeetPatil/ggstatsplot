@@ -12,7 +12,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--18-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--21-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
@@ -68,6 +68,19 @@ command-
 ```
 
 ## Usage
+
+`ggstatsplot` relies on [non-standard
+evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html),
+which means you **can’t** enter arguments in the following manner: `x =
+data$x, y = data$y`. This may work well for most of the functions most
+of the time, but is highly discouraged. You should always specify `data`
+argument for all functions.
+
+Additionally, `ggstatsplot` is a very chatty package and will by default
+output information about references for tests, notes on assumptions
+about linear models, and warnings. If you don’t want your console to be
+cluttered with such messages, they can be turned off by setting
+`messages = FALSE`.
 
 Here are examples of the main functions currently supported in
 `ggstatsplot`:
@@ -408,13 +421,13 @@ plots <- datasets::iris %>%
           data = .,
           x = Sepal.Length,
           y = Sepal.Width,
+          messages = FALSE,                        # turns off all the warnings, notes, and reference messages   
           marginal.type = "boxplot",
           title =
             glue::glue("Species: {.$Species2} (n = {length(.$Sepal.Length)})")
         )
       )
   )
-#> Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.
 
 ### display the new object (notice that the class of the `plot` list column is S3: gg)
 plots
@@ -466,15 +479,16 @@ plots <- datasets::mtcars %>%
           data = .,
           x = am,
           y = mpg,
+          messages = FALSE,                       # turns off all the warnings, notes, and reference messages
           xlab = "Transmission",
           ylab = "Miles/(US) gallon",
           title = glue::glue(
-            "Number of cylinders: {.$cyl2}"        # this is where the duplicated cyl2 column is useful
+            "Number of cylinders: {.$cyl2}"       # this is where the duplicated cyl2 column is useful
             ) 
         )
       )
   )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.317Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Anderson-Darling Normality Test for mpg : p-value =  0.329Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.144Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Anderson-Darling Normality Test for mpg : p-value =  0.263Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.201
+#> Warning:  aesthetic `x` was not a factor; converting it to factorWarning:  aesthetic `x` was not a factor; converting it to factorWarning:  aesthetic `x` was not a factor; converting it to factor
 
 ### display the new object (notice that the class of the `plot` list column is S3: gg)
 plots

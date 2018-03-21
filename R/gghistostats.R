@@ -34,6 +34,8 @@
 #'   bins that cover the range of the data. You should always override this
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #'
 #' @import ggplot2
 #'
@@ -113,7 +115,11 @@ gghistostats <-
            centrality.para = NULL,
            centrality.colour = "blue",
            binwidth.adjust = FALSE,
-           binwidth = NULL) {
+           binwidth = NULL,
+           messages = TRUE) {
+    # if data is not available then don't display any messages
+    if (is.null(data))
+      messages <- FALSE
     # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
@@ -230,10 +236,8 @@ gghistostats <-
           alpha = 0.7,
           binwidth = binwidth,
           na.rm = TRUE,
-          mapping = ggplot2::aes(
-            y = ..density..,
-            fill = ..count..
-          )
+          mapping = ggplot2::aes(y = ..density..,
+                                 fill = ..count..)
         ) +
         ggplot2::scale_fill_gradient("count",
                                      low = "green",
@@ -321,25 +325,26 @@ gghistostats <-
     }
 
     ################################################### messages ############################################################
-
-    # display normality test result as a message
-    # # for AD test of normality, sample size must be greater than 7
-    if (length(data$x) > 7) {
-      ad_norm <- nortest::ad.test(x = data$x)
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue(
-          "Anderson-Darling Normality Test for",
-          crayon::yellow(lab.df[1]),
-          # entered x argument
-          ": p-value = "
-        ),
-        crayon::yellow(
-          ggstatsplot::specify_decimal_p(x = ad_norm$p.value,
-                                         k,
-                                         p.value = TRUE)
-        )
-      ))
+    if (isTRUE(messages)) {
+      # display normality test result as a message
+      # # for AD test of normality, sample size must be greater than 7
+      if (length(data$x) > 7) {
+        ad_norm <- nortest::ad.test(x = data$x)
+        base::message(cat(
+          crayon::green("Note: "),
+          crayon::blue(
+            "Anderson-Darling Normality Test for",
+            crayon::yellow(lab.df[1]),
+            # entered x argument
+            ": p-value = "
+          ),
+          crayon::yellow(
+            ggstatsplot::specify_decimal_p(x = ad_norm$p.value,
+                                           k,
+                                           p.value = TRUE)
+          )
+        ))
+      }
     }
     # return the final plot
     return(plot)
