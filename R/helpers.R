@@ -272,16 +272,16 @@ signif_column <- function(data = NULL, p) {
       base::cbind.data.frame(p = p) # column corresponding to p-values
   }
 
-  # make sure the p-value column is numeric; if not, convert it to numeric and give a warning to the user
-  # if (!is.numeric(df$p)) {
-  #   df$p <- as.numeric(as.character(df$p))
-  #   base::message(cat(
-  #     crayon::red("Warning: "),
-  #     crayon::blue(
-  #       "Entered p-values were not numeric variables, so ipmisc has converted them to numeric"
-  #     )
-  #   ))
-  # }
+  #make sure the p-value column is numeric; if not, convert it to numeric and give a warning to the user
+  if (!is.numeric(df$p)) {
+    df$p <- as.numeric(as.character(df$p))
+    # base::message(cat(
+    #   crayon::red("Warning: "),
+    #   crayon::blue(
+    #     "Entered p-values were not numeric variables, so ipmisc has converted them to numeric"
+    #   )
+    # ))
+  }
   # add new significance column based on standard APA guidelines for describing different levels of significance
   df <- df %>%
     dplyr::mutate(
