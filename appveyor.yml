@@ -34,7 +34,7 @@ before_build:
   #translate from unix: - cmd: ECHO "Revision:" $CI_BUILD_REF >> ./DESCRIPTION
 
 build_script:
-  - set _R_CHECK_FORCE_SUGGESTS_= false
+  - set _R_CHECK_FORCE_SUGGESTS_=FALSE
 # R-devel needs packages recompiled as from 12 Sep 2017
 # Guessing that was the cause of knitr causing AppVeyor R-devel checks to fail
 # Commenting out these for now so at least the rest of data.table is checked on R-devel on Windows
