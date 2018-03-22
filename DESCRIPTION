@@ -43,6 +43,8 @@ Imports:
     userfriendlyscience (>= 0.7.0),
     WRS2 (>= 0.9-2)
 Suggests: 
+    bit64, 
+    curl,
     datasets,
     grDevices,
     knitr,
