@@ -259,8 +259,8 @@ be modified with `ggplot2` syntax (e.g., we can change the color palette
 library(ggplot2)
 
 ggstatsplot::ggpiestats(data = mtcars,
-                        main = am,                
-                        condition = cyl) +
+                        main = cyl,                
+                        condition = am) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modifcation outside of ggstatsplot    
 #> Warning: No guarantee this function will work properly if you are using development version of ggplot2 (2.2.1.9000)
 ```
@@ -282,6 +282,7 @@ ggstatsplot::ggpiestats(
   legend.title = "Transmission",                      # title for the legend
   factor.levels = c("0 = automatic", "1 = manual"),   # renaming the factor level names for main variable 
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
+  facet.proptest = FALSE,                             # turning of facetted proportion test results
   caption = expression(                               # text for the caption
     paste(italic("Note"), ": this is a demo")
     )

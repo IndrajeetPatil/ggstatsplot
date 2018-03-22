@@ -28,6 +28,9 @@ test.}
 
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
 
+\item{facet.proptest}{Decides whether proprotion test for \code{main} variable is
+to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
+
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 }

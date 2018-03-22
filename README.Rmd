@@ -222,8 +222,8 @@ the plot)-
 library(ggplot2)
 
 ggstatsplot::ggpiestats(data = mtcars,
-                        main = am,                
-                        condition = cyl) +
+                        main = cyl,                
+                        condition = am) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modifcation outside of ggstatsplot    
 ```
 
@@ -241,6 +241,7 @@ ggstatsplot::ggpiestats(
   legend.title = "Transmission",                      # title for the legend
   factor.levels = c("0 = automatic", "1 = manual"),   # renaming the factor level names for main variable 
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
+  facet.proptest = FALSE,                             # turning of facetted proportion test results
   caption = expression(                               # text for the caption
     paste(italic("Note"), ": this is a demo")
     )

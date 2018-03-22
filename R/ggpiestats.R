@@ -20,6 +20,8 @@
 #' @param k Number of decimal places expected for results.
 #' @param legend.title Title of legend.
 #' @param facet.wrap.name The text for the facet_wrap variable label.
+#' @param facet.proptest Decides whether proprotion test for `main` variable is
+#'   to be carried out for each level of `condition` (Default: `TRUE`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #'
@@ -71,7 +73,8 @@ utils::globalVariables(
     "rsubtitle",
     "stats_subtitle",
     "chi_subtitle",
-    "proptest_subtitle"
+    "proptest_subtitle",
+    "significance"
   )
 )
 
@@ -87,7 +90,8 @@ ggpiestats <-
            legend.title = NULL,
            facet.wrap.name = NULL,
            k = 3,
-           messages = TRUE) {
+           messages = TRUE,
+           facet.proptest = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data))
       messages <- FALSE
@@ -166,7 +170,6 @@ ggpiestats <-
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
         dplyr::arrange(.data = ., desc(perc))
     }
-
     # ========================================= preparing names for legend and facet_wrap =============================
 
     # reorder the category factor levels to order the legend
@@ -335,7 +338,25 @@ ggpiestats <-
 
     #################################### adding statistical test results ##################################################
 
+    # if facetting by condition is happening
     if (!base::missing(condition)) {
+      if (isTRUE(facet.proptest)) {
+        # running grouped proportion test with helper functions
+        group_prop <- grouped_proptest(data = data,
+                                       grouping.vars = condition,
+                                       measure = main)
+        # merging dataframe containing results from the proportion test with counts and percentage dataframe
+        df2 <-
+          dplyr::full_join(x = df, y = group_prop, by = "condition") %>%
+          dplyr::mutate(
+            significance = dplyr::if_else(
+              condition = duplicated(condition),
+              true = NA_character_,
+              false = significance
+            )
+          ) %>%
+          stats::na.omit(.)
+      }
       # running Pearson's Chi-square test of independence using jmv::contTables
       jmv_chi <- jmv::contTables(
         data = data,
@@ -353,6 +374,18 @@ ggpiestats <-
         cramer_ci <- DescTools::CramerV(x = data$main,
                                         y = data$condition,
                                         conf.level = 0.95)
+      }
+      # adding significance labels to pie charts for grouped proportion tests, if expected
+      if (isTRUE(facet.proptest)) {
+        p <-
+          p +
+          ggplot2::geom_text(
+            data = df2,
+            mapping = aes(label = significance, x = 1.65),
+            position = position_fill(vjust = 1),
+            size = 6,
+            na.rm = TRUE
+          )
       }
       # adding chi-square results to the plot subtitle
       p <-
