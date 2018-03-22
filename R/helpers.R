@@ -198,16 +198,15 @@ grouped_proptest <- function(data, grouping.vars, measure) {
         .x = .,
         .f = ~
           base::cbind.data.frame(
-            "Chi-squared" = ggstatsplot::specify_decimal_p(x = .$statistic, k = 3),
-            "df" = ggstatsplot::specify_decimal_p(x = .$parameter, k = 0),
-            "p-value" = ggstatsplot::specify_decimal_p(
+            "Chi-squared" = as.numeric(as.character(ggstatsplot::specify_decimal_p(x = .$statistic, k = 3))),
+            "df" = as.numeric(as.character(ggstatsplot::specify_decimal_p(x = .$parameter, k = 0))),
+            "p-value" = as.numeric(as.character(ggstatsplot::specify_decimal_p(
               x = .$p.value,
-              k = 3,
-              p.value = TRUE
+              k = 3
             )
-          )
+          ))
       )
-    ) %>%
+    )) %>%
     dplyr::select(.data = ., -data, -chi_sq) %>%
     tidyr::unnest(data = .) %>%
     signif_column(data = ., p = `p-value`)
