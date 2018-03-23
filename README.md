@@ -12,7 +12,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--21-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--23-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.3-6666ff.svg)](https://cran.r-project.org/)
@@ -176,7 +176,11 @@ cowplot::plot_grid(p1, p2, p3,
 
 ![](man/figures/README-ggbetweenstats3-1.png)<!-- -->
 
-Variant of this function `ggwithinstats` is currently under work.
+Variant of this function `ggwithinstats` is currently under work. You
+*can* still use this function just to prepare the **plot**, but the
+statistical details will be incorrect. You can remove them by adding
+`labs(subtitle = NULL)` to your code which will remove the subtitle
+containing stats.
 
   - `ggscatterstats`
 

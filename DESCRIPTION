@@ -13,7 +13,7 @@ Description: Extension of `ggplot2`, ggstatsplot creates graphics with details f
 License: GPL-3 | file LICENSE
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
-    R (>= 3.3.3)
+    R (>= 3.3.0)
 Imports: 
     apaTables (>= 2.0.2),
     broom,

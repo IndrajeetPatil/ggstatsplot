@@ -153,7 +153,7 @@ cowplot::plot_grid(p1, p2, p3,
 )
 ```
 
-Variant of this function `ggwithinstats` is currently under work.
+Variant of this function `ggwithinstats` is currently under work. You *can* still use this function just to prepare the **plot**, but the statistical details will be incorrect. You can remove them by adding `labs(subtitle = NULL)` to your code which will remove the subtitle containing stats.
 
 * `ggscatterstats`
 
