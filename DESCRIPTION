@@ -5,7 +5,8 @@ Version: 0.0.1
 Authors@R: person(given = "Indrajeet", 
   family = "Patil", 
   email = "patilindrajeet.science@gmail.com", 
-  role = c("aut", "cre"))
+  role = c("aut", "cre"), 
+  comment = c(ORCID = "0000-0003-1995-6531"))
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
 Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with details from statistical tests 
   (parametric, non-parametric, or robust) included in the plots themselves. It is targeted primarily at 
