@@ -8,8 +8,9 @@ Authors@R: person(given = "Indrajeet",
   role = c("aut", "cre"))
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
 Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with details from statistical tests 
-  included in the plots themselves. It is targeted primarily at behavioral sciences community to provide a 
-  one-line code to generate information-rich plots.
+  (parametric, non-parametric, or robust) included in the plots themselves. It is targeted primarily at 
+  behavioral sciences community to provide a one-line code to generate information-rich plots for 
+  statistical analysis of continuous (violin plots, scatterplots, histograms) or categorical (pie charts) data.
 License: GPL-3 | file LICENSE
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 

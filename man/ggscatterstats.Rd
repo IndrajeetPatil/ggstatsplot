@@ -67,7 +67,14 @@ If you want to use \code{marginal.type = "violin"}, you will have to use
 development version of \code{ggExtra}
 }
 \examples{
-ggstatsplot::ggscatterstats(data = iris, x = Petal.Length, y = Sepal.Length,
+
+library(datasets)
+
+# simple function call with the defaults
+ggstatsplot::ggscatterstats(data = datasets::mtcars, x = wt, y = mpg)
+
+# more detailed function call
+ggstatsplot::ggscatterstats(data = datasets::iris, x = Petal.Length, y = Sepal.Length,
 intercept = 'median', type = 'robust', marginal.type = 'density')
 
 }

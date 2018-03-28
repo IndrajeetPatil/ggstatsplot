@@ -73,19 +73,34 @@
 #' @importFrom crayon red
 #'
 #' @examples
+#'
+#' library(datasets)
+#' library(ggplot2)
+#'
 #' # to get the correlalogram
-#' ggcorrmat(
-#' data = iris,
+#' ggstatsplot::ggcorrmat(
+#' data = datasets::iris,
 #' cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)
 #' )
 #'
 #' # to get the correlation matrix
-#' ggcorrmat(
-#' data = iris,
+#' ggstatsplot::ggcorrmat(
+#' data = datasets::iris,
 #' cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
 #' output = "correlations"
 #' )
 #' # setting output = "p-values" will return the p-value matrix
+#'
+#' # modifying few elements of the correlation matrix by changing function defaults
+#' ggstatsplot::ggcorrmat(
+#' data = datasets::iris,
+#' cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+#' sig.level = 0.01,
+#' ggtheme = ggplot2::theme_gray,
+#' hc.order = TRUE, type = "lower", outline.col = "white",
+#' title = "Dataset: Iris",
+#' subtitle = "The threshold of significance = 0.01"
+#' )
 #'
 #' @export
 

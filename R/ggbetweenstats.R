@@ -29,7 +29,7 @@
 #'   `FALSE`).
 #' @param outlier.label Label to put on the outliers that have been tagged.
 #' @param mean.plotting Decides whether mean is to be highlighted and its value
-#'   to be displayed.
+#'   to be displayed (Default: `TRUE`).
 #' @param mean.color Color for the data point corresponding to mean.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
@@ -67,6 +67,12 @@
 #' @importFrom jmv anova
 #'
 #' @examples
+#'
+#' library(datasets)
+#' library(ggplot2)
+#'
+#' # simple function call with the defaults
+#' ggstatsplot::ggbetweenstats(data = ggplot2::diamonds, x = clarity, y = carat)
 #'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(data = mtcars, x = cyl, y = mpg,
@@ -123,7 +129,7 @@ ggbetweenstats <- function(data = NULL,
                            outlier.tagging = NULL,
                            outlier.label = NULL,
                            outlier.color = "black",
-                           mean.plotting = FALSE,
+                           mean.plotting = TRUE,
                            mean.color = "darkred",
                            messages = TRUE) {
   # if data is not available then don't display any messages

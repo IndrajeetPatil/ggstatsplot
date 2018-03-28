@@ -44,10 +44,18 @@
 #' @importFrom nortest ad.test
 #'
 #' @examples
+#'
+#' library(datasets)
 #' library(ggplot2)
 #'
+#' # most basic function call with the defaults
 #' ggstatsplot::gghistostats(
-#' data = iris,
+#' data = ggplot2::diamonds,
+#' x = carat)
+#'
+#' # more detailed function call
+#' ggstatsplot::gghistostats(
+#' data = datasets::iris,
 #' x = Sepal.Length,
 #' type = "parametric",
 #' test.value = 3,

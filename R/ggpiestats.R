@@ -39,9 +39,15 @@
 #'
 #' @examples
 #' library(datasets)
-#' ggstatsplot::ggpiestats(data = mtcars, main = am, condition = cyl, factor.levels = c("zero", "one"),
+#' library(ggplot2)
+#'
+#' # simple function call with the defaults
+#' ggstatsplot::ggpiestats(data = ggplot2::diamonds, main = cut, condition = color)
+#'
+#' # more detailed function call
+#' ggstatsplot::ggpiestats(data = datasets::mtcars, main = am, condition = cyl, factor.levels = c("zero", "one"),
 #' stat.title = "interaction", title = "Dataset: mtcars", caption = "This is a demo",
-#' legend.title = "transmission", facet.wrap.name = "No. of cylinders")
+#' legend.title = "transmission", facet.wrap.name = "No. of cylinders", facet.proptest = TRUE)
 #'
 #' @export
 #'

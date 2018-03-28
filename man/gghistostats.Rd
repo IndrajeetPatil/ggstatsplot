@@ -56,10 +56,18 @@ Histogram with statistical details from one-sample test included
 in the plot as a subtitle.
 }
 \examples{
+
+library(datasets)
 library(ggplot2)
 
+# most basic function call with the defaults
 ggstatsplot::gghistostats(
-data = iris,
+data = ggplot2::diamonds,
+x = carat)
+
+# more detailed function call
+ggstatsplot::gghistostats(
+data = datasets::iris,
 x = Sepal.Length,
 type = "parametric",
 test.value = 3,

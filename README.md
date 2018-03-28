@@ -23,7 +23,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--24-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--28-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -39,11 +39,16 @@ version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-
 [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
 graphics with details from statistical tests included in the plots
 themselves and targeted primarily at behavioral sciences community to
-provide a one-line code to produce information-rich figures. Currently,
-it supports only the most common types of tests used in analysis
+provide a one-line code to produce information-rich plots. Currently, it
+supports only the most common types of statisticla tests
 (**parametric**, **nonparametric**, and **robust** versions of
 **t-tets/anova**, **correlation**, and **contingency tables** analyses).
-Future versions will include other types of analyses as well.
+Accordingly, it produces limited kinds of plots: **violin plots** (for
+comparisons between groups or conditions), **pie charts** (for
+categorical data), **scatterplots** (for correlations between
+variables), and **histograms** (for hypothesis about distributions).
+
+Future versions will include other types of analyses and plots as well.
 
 ## Installation
 

@@ -42,7 +42,7 @@ variances as being equal (Default: \code{FALSE}).}
 \item{outlier.label}{Label to put on the outliers that have been tagged.}
 
 \item{mean.plotting}{Decides whether mean is to be highlighted and its value
-to be displayed.}
+to be displayed (Default: \code{TRUE}).}
 
 \item{mean.color}{Color for the data point corresponding to mean.}
 
@@ -54,6 +54,12 @@ Violin plots for between-subjects designs with statistical
 details included in the plot as a subtitle.
 }
 \examples{
+
+library(datasets)
+library(ggplot2)
+
+# simple function call with the defaults
+ggstatsplot::ggbetweenstats(data = ggplot2::diamonds, x = clarity, y = carat)
 
 # more detailed function call
 ggstatsplot::ggbetweenstats(data = mtcars, x = cyl, y = mpg,
