@@ -59,11 +59,19 @@ library(datasets)
 library(ggplot2)
 
 # simple function call with the defaults
-ggstatsplot::ggbetweenstats(data = ggplot2::diamonds, x = clarity, y = carat)
+ggstatsplot::ggbetweenstats(
+data = ggplot2::diamonds,
+x = clarity,
+y = carat
+)
 
 # more detailed function call
-ggstatsplot::ggbetweenstats(data = mtcars, x = cyl, y = mpg,
-outlier.tagging = TRUE, outlier.label = disp, mean.plotting = TRUE)
+ggstatsplot::ggbetweenstats(
+data = mtcars,
+x = cyl,
+y = mpg,
+outlier.tagging = TRUE,
+outlier.label = disp)
 
 }
 \author{

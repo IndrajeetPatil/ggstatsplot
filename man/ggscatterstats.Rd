@@ -71,11 +71,21 @@ development version of \code{ggExtra}
 library(datasets)
 
 # simple function call with the defaults
-ggstatsplot::ggscatterstats(data = datasets::mtcars, x = wt, y = mpg)
+ggstatsplot::ggscatterstats(
+data = datasets::mtcars,
+x = wt,
+y = mpg
+)
 
 # more detailed function call
-ggstatsplot::ggscatterstats(data = datasets::iris, x = Petal.Length, y = Sepal.Length,
-intercept = 'median', type = 'robust', marginal.type = 'density')
+ggstatsplot::ggscatterstats(
+data = datasets::iris,
+x = Petal.Length,
+y = Sepal.Length,
+intercept = 'median',
+type = 'robust',
+marginal.type = 'density'
+)
 
 }
 \author{
