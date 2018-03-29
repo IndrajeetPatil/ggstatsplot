@@ -11,3 +11,5 @@
 ^appveyor\.yml$
 ^\.github$
 ^NEWS$
+^_pkgdown\.yml$
+^docs$
