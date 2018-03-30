@@ -83,8 +83,8 @@
 #' data = datasets::ToothGrowth,
 #' x = supp,
 #' y = len,
-#' xlab = "Tooth length",
-#' ylab = "Supplement type',
+#' xlab = "Supplement type",
+#' ylab = "Tooth length",
 #' outlier.tagging = TRUE)
 #'
 #' @export

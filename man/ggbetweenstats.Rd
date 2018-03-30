@@ -53,6 +53,28 @@ to be displayed (Default: \code{TRUE}).}
 Violin plots for between-subjects designs with statistical
 details included in the plot as a subtitle.
 }
+\examples{
+
+library(datasets)
+library(ggplot2)
+
+# simple function call with the defaults
+ggstatsplot::ggbetweenstats(
+data = ggplot2::diamonds,
+x = clarity,
+y = carat
+)
+
+# more detailed function call
+ggstatsplot::ggbetweenstats(
+data = datasets::ToothGrowth,
+x = supp,
+y = len,
+xlab = "Supplement type",
+ylab = "Tooth length",
+outlier.tagging = TRUE)
+
+}
 \author{
 Indrajeet Patil
 }
