@@ -53,27 +53,6 @@ to be displayed (Default: \code{TRUE}).}
 Violin plots for between-subjects designs with statistical
 details included in the plot as a subtitle.
 }
-\examples{
-
-library(datasets)
-library(ggplot2)
-
-# simple function call with the defaults
-ggstatsplot::ggbetweenstats(
-data = ggplot2::diamonds,
-x = clarity,
-y = carat
-)
-
-# more detailed function call
-ggstatsplot::ggbetweenstats(
-data = mtcars,
-x = cyl,
-y = mpg,
-outlier.tagging = TRUE,
-outlier.label = disp)
-
-}
 \author{
 Indrajeet Patil
 }

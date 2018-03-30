@@ -23,7 +23,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--28-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--29-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -35,12 +35,12 @@ version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-
 
 ## Overview
 
-`ggstatsplot` is an extension of
-[`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
-graphics with details from statistical tests included in the plots
-themselves and targeted primarily at behavioral sciences community to
-provide a one-line code to produce information-rich plots. Currently, it
-supports only the most common types of statisticla tests
+[`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an
+extension of [`ggplot2`](https://github.com/tidyverse/ggplot2) package
+for creating graphics with details from statistical tests included in
+the plots themselves and targeted primarily at behavioral sciences
+community to provide a one-line code to produce information-rich plots.
+Currently, it supports only the most common types of statisticla tests
 (**parametric**, **nonparametric**, and **robust** versions of
 **t-tets/anova**, **correlation**, and **contingency tables** analyses).
 Accordingly, it produces limited kinds of plots: **violin plots** (for
@@ -70,6 +70,18 @@ devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on 
                          dependencies = TRUE,                 # installs packages which ggstatsplot depends on
                          upgrade_dependencies = TRUE          # updates any out of date dependencies
 )
+```
+
+If you are not using the [RStudio IDE](https://www.rstudio.com/) and you
+get an error related to “pandoc” you will either need to remove the
+argument `build_vignettes = TRUE` (to avoid building the vignettes) or
+install [pandoc](http://pandoc.org/). If you have the `rmarkdown` R
+package installed then you can check if you have pandoc by running the
+following in R:
+
+``` r
+rmarkdown::pandoc_available()
+#> [1] TRUE
 ```
 
 ## Help
@@ -111,10 +123,10 @@ This function creates a violin plot for **between**-group or
 the subtitle:
 
 ``` r
-ggstatsplot::ggbetweenstats(data = iris, 
+ggstatsplot::ggbetweenstats(data = datasets::iris, 
                             x = Species, 
-                            y = Sepal.Length)
-#> Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
+                            y = Sepal.Length,
+                            messages = FALSE)
 ```
 
 ![](man/figures/README-ggbetweenstats1-1.png)<!-- -->
@@ -127,7 +139,7 @@ and thus any of the graphics layers can be further modified:
 library(ggplot2)
 
 ggstatsplot::ggbetweenstats(
-  data = iris,
+  data = datasets::iris,
   x = Species,
   y = Sepal.Length,
   mean.plotting = TRUE,                           # whether mean for each group id to be displayed 
@@ -139,11 +151,11 @@ ggstatsplot::ggbetweenstats(
   title = "Dataset: Iris flower data set",        # title text for the plot
   caption = expression(                           # caption text for the plot 
     paste(italic("Note"), ": this is a demo")
-    )
-  ) +                                             # further modifcation outside of ggstatsplot
+  ),
+  messages = FALSE
+) +                                             # further modifcation outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
-#> Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  < 0.001
 ```
 
 ![](man/figures/README-ggbetweenstats2-1.png)<!-- -->
@@ -160,30 +172,33 @@ library(cowplot)
 
 # parametric t-tet 
 p1 <- ggstatsplot::ggbetweenstats(
-  data = mtcars,
+  data = datasets::mtcars,
   x = am,
   y = mpg, 
-  type = "p"
+  type = "p",
+  messages = FALSE
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorReference:  Welch's t-test is used as a default. (Delacre, Lakens, & Leys, International Review of Social Psychology, 2017).Note:  Anderson-Darling Normality Test for mpg : p-value =  0.121Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+#> Warning:  aesthetic `x` was not a factor; converting it to factor
 
 # Mann-Whitney U-test
 p2 <- ggstatsplot::ggbetweenstats(
   data = mtcars,
   x = am,
   y = mpg, 
-  type = "np"
+  type = "np",
+  messages = FALSE
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorNote:  Anderson-Darling Normality Test for mpg : p-value =  0.121Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+#> Warning:  aesthetic `x` was not a factor; converting it to factor
 
 # robust t-test
 p3 <- ggstatsplot::ggbetweenstats(
   data = mtcars,
   x = am,
   y = mpg, 
-  type = "r"
+  type = "r",
+  messages = FALSE
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorNote:  Anderson-Darling Normality Test for mpg : p-value =  0.121Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072
+#> Warning:  aesthetic `x` was not a factor; converting it to factor
 
 # combining the individual plots into a single plot
 cowplot::plot_grid(p1, p2, p3, 
@@ -209,11 +224,11 @@ histograms/boxplots/density/violin plots from
 and results from statistical tests in the subtitle:
 
 ``` r
-ggstatsplot::ggscatterstats(data = iris, 
+ggstatsplot::ggscatterstats(data = datasets::iris, 
                             x = Sepal.Length, 
                             y = Petal.Length,
-                            title = "Dataset: Iris flower data set")
-#> Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.
+                            title = "Dataset: Iris flower data set",
+                            messages = FALSE)
 ```
 
 ![](man/figures/README-ggscatterstats1-1.png)<!-- -->
@@ -224,7 +239,7 @@ Number of other arguments can be specified to modify this basic plot-
 library(datasets)
 
 ggstatsplot::ggscatterstats(
-  data = subset(iris, iris$Species == "setosa"),
+  data = subset(datasets::iris, iris$Species == "setosa"),
   x = Sepal.Length,
   y = Petal.Length,
   type = "robust",                               # type of test that needs to be run
@@ -234,15 +249,15 @@ ggstatsplot::ggscatterstats(
   title = "Dataset: Iris flower data set",       # title text for the plot
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
-    ),
+  ),
   marginal.type = "density",                     # type of marginal distribution to be displayed
   xfill = "blue",                                # colour fill for x-axis marginal distribution 
   yfill = "red",                                 # colour fill for y-axis marginal distribution
   intercept = "median",                          # which type of intercept line is to be displayed  
   width.jitter = 0.2,                            # amount of horizontal jitter for data points
-  height.jitter = 0.4                            # amount of vertical jitter for data points
-  ) 
-#> Note: Standardized robust regression using an M estimator: no. of iterations = 1000 In case of non-convergence, increase maxit value.Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.
+  height.jitter = 0.4,                           # amount of vertical jitter for data points
+  messages = FALSE                               # turn off messages and notes
+) 
 ```
 
 ![](man/figures/README-ggscatterstats2-1.png)<!-- -->
@@ -265,9 +280,9 @@ only one categorical variable is entered, proportion test will be
 carried out.
 
 ``` r
-ggstatsplot::ggpiestats(data = iris,
-                        main = Species)
-#> Warning: No guarantee this function will work properly if you are using development version of ggplot2 (2.2.1.9000)
+ggstatsplot::ggpiestats(data = datasets::iris,
+                        main = Species,
+                        messages = FALSE)
 ```
 
 ![](man/figures/README-ggpiestats1-1.png)<!-- -->
@@ -281,11 +296,11 @@ be modified with `ggplot2` syntax (e.g., we can change the color palette
 ``` r
 library(ggplot2)
 
-ggstatsplot::ggpiestats(data = mtcars,
-                        main = cyl,                
-                        condition = am) +
+ggstatsplot::ggpiestats(data = datasets::mtcars,
+                        main = cyl,
+                        condition = am,
+                        messages = FALSE) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modifcation outside of ggstatsplot    
-#> Warning: No guarantee this function will work properly if you are using development version of ggplot2 (2.2.1.9000)
 ```
 
 ![](man/figures/README-ggpiestats2-1.png)<!-- -->
@@ -297,7 +312,7 @@ with additional arguments:
 library(ggplot2)
 
 ggstatsplot::ggpiestats(
-  data = mtcars,
+  data = datasets::mtcars,
   main = am,
   condition = cyl,
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
@@ -308,9 +323,9 @@ ggstatsplot::ggpiestats(
   facet.proptest = FALSE,                             # turning of facetted proportion test results
   caption = expression(                               # text for the caption
     paste(italic("Note"), ": this is a demo")
-    )
+  ),
+  messages = FALSE                                    # turn off messages and notes
 ) 
-#> Warning: No guarantee this function will work properly if you are using development version of ggplot2 (2.2.1.9000)
 ```
 
 ![](man/figures/README-ggpiestats3-1.png)<!-- -->
@@ -326,7 +341,7 @@ library(datasets)
 library(viridis)
 
 ggstatsplot::gghistostats(
-  data = iris,
+  data = datasets::iris,
   x = Sepal.Length,
   title = "Distribution of Iris sepal length",
   type = "parametric",            # one sample t-test
@@ -335,10 +350,10 @@ ggstatsplot::gghistostats(
   centrality.colour = "red",      # decides colour of vertical line representing central tendency
   density.plot = TRUE,            # whether density plot is to be overlayed on a histogram
   binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
-  binwidth = 0.10                 # binwidth value (needs to be toyed around with until you find the best one)
+  binwidth = 0.10,                # binwidth value (needs to be toyed around with until you find the best one)
+  messages = FALSE                # turn off the messages
 ) +              
   viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
-#> Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023
 ```
 
 ![](man/figures/README-gghistostats-1.png)<!-- -->
@@ -356,7 +371,7 @@ matrices. (Wrapper around
 ``` r
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
-  data = iris,
+  data = datasets::iris,
   corr.method = "spearman",      # correlation method
   sig.level = 0.005,              # threshold of significance
   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
@@ -383,7 +398,7 @@ their corresponding p-values (in a
 ``` r
 # getting correlations 
 ggstatsplot::ggcorrmat(
-  data = iris,
+  data = datasets::iris,
   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
   output = "correlations"
 )
@@ -397,7 +412,7 @@ ggstatsplot::ggcorrmat(
 
 # getting p-values
 ggstatsplot::ggcorrmat(
-  data = iris,
+  data = datasets::iris,
   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
   output = "p-values"
 )
@@ -551,16 +566,18 @@ any `ggplot2` objects.
 library(ggplot2)
 
 # Basic scatter plot
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point()
+ggplot2::ggplot(data = datasets::mtcars, 
+                mapping = ggplot2::aes(x = wt, y = mpg)) + 
+  ggplot2::geom_point()
 ```
 
 ![](man/figures/README-theme_mprl-1.png)<!-- -->
 
 ``` r
 # Basic scatter plot with theme_mprl() added
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point() + 
+ggplot2::ggplot(data = datasets::mtcars, 
+                mapping = ggplot2::aes(x = wt, y = mpg)) + 
+  ggplot2::geom_point() + 
   ggstatsplot::theme_mprl()
 ```
 

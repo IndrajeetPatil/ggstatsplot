@@ -189,33 +189,12 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>library</span>(<span class='no'>datasets</span>)
-<span class='fu'>library</span>(<span class='no'>ggplot2</span>)
-
-<span class='co'># simple function call with the defaults</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats'>ggbetweenstats</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/diamonds'>diamonds</a></span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>clarity</span>,
-<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>carat</span>
-)</div><div class='output co'>#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for carat : p-value =  &lt; 0.001</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor clarity : p-value =  &lt; 0.001</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># more detailed function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats'>ggbetweenstats</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
-<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
-<span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-<span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>disp</span>)</div><div class='output co'>#&gt; Warning:  aesthetic `x` was not a factor; converting it to factor</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for mpg : p-value =  0.121</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor cyl : p-value =  0.015</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
     <h2>Author</h2>
     

@@ -35,17 +35,17 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-`ggstatsplot` is an extension of
-[`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating graphics
-with details from statistical tests included in the plots themselves and
-targeted primarily at behavioral sciences community to provide a one-line code
-to produce information-rich plots. Currently, it supports only the most common
-types of statisticla tests (**parametric**, **nonparametric**, and **robust**
-versions of **t-tets/anova**, **correlation**, and **contingency tables**
-analyses). Accordingly, it produces limited kinds of plots: **violin plots**
-(for comparisons between groups or conditions), **pie charts** (for categorical
-data), **scatterplots** (for correlations between variables), and **histograms** (for
-hypothesis about distributions).
+[`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
+of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
+graphics with details from statistical tests included in the plots themselves
+and targeted primarily at behavioral sciences community to provide a one-line
+code to produce information-rich plots. Currently, it supports only the most
+common types of statisticla tests (**parametric**, **nonparametric**, and
+**robust** versions of **t-tets/anova**, **correlation**, and **contingency
+tables** analyses). Accordingly, it produces limited kinds of plots: **violin
+plots** (for comparisons between groups or conditions), **pie charts** (for
+categorical data), **scatterplots** (for correlations between variables), and
+**histograms** (for hypothesis about distributions).
 
 Future versions will include other types of analyses and plots as well.
 
@@ -65,6 +65,16 @@ devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on 
                          dependencies = TRUE,                 # installs packages which ggstatsplot depends on
                          upgrade_dependencies = TRUE          # updates any out of date dependencies
 )
+```
+
+If you are not using the [RStudio IDE](https://www.rstudio.com/) and you get an
+error related to "pandoc" you will either need to remove the argument
+`build_vignettes = TRUE` (to avoid building the vignettes) or install
+[pandoc](http://pandoc.org/). If you have the `rmarkdown` R package installed
+then you can check if you have pandoc by running the following in R:
+
+```{r pandoc}
+rmarkdown::pandoc_available()
 ```
 
 ## Help
@@ -95,9 +105,10 @@ Here are examples of the main functions currently supported in `ggstatsplot`:
 This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in the subtitle:
 
 ```{r ggbetweenstats1, message = FALSE, warning = FALSE, dpi = 300}
-ggstatsplot::ggbetweenstats(data = iris, 
+ggstatsplot::ggbetweenstats(data = datasets::iris, 
                             x = Species, 
-                            y = Sepal.Length)
+                            y = Sepal.Length,
+                            messages = FALSE)
 ```
 
 Number of other arguments can be specified to make this plot even more
@@ -108,7 +119,7 @@ any of the graphics layers can be further modified:
 library(ggplot2)
 
 ggstatsplot::ggbetweenstats(
-  data = iris,
+  data = datasets::iris,
   x = Species,
   y = Sepal.Length,
   mean.plotting = TRUE,                           # whether mean for each group id to be displayed 
@@ -120,8 +131,9 @@ ggstatsplot::ggbetweenstats(
   title = "Dataset: Iris flower data set",        # title text for the plot
   caption = expression(                           # caption text for the plot 
     paste(italic("Note"), ": this is a demo")
-    )
-  ) +                                             # further modifcation outside of ggstatsplot
+  ),
+  messages = FALSE
+) +                                             # further modifcation outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
 ```
@@ -137,10 +149,11 @@ library(cowplot)
 
 # parametric t-tet 
 p1 <- ggstatsplot::ggbetweenstats(
-  data = mtcars,
+  data = datasets::mtcars,
   x = am,
   y = mpg, 
-  type = "p"
+  type = "p",
+  messages = FALSE
 )
 
 # Mann-Whitney U-test
@@ -148,7 +161,8 @@ p2 <- ggstatsplot::ggbetweenstats(
   data = mtcars,
   x = am,
   y = mpg, 
-  type = "np"
+  type = "np",
+  messages = FALSE
 )
 
 # robust t-test
@@ -156,7 +170,8 @@ p3 <- ggstatsplot::ggbetweenstats(
   data = mtcars,
   x = am,
   y = mpg, 
-  type = "r"
+  type = "r",
+  messages = FALSE
 )
 
 # combining the individual plots into a single plot
@@ -174,10 +189,11 @@ Variant of this function `ggwithinstats` is currently under work. You *can* stil
 This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from [`ggExtra::ggMarginal()`](https://cran.r-project.org/web/packages/ggExtra/vignettes/ggExtra.html) and results from statistical tests in the subtitle:
 
 ```{r ggscatterstats1, message = FALSE, warning = FALSE, dpi = 300}
-ggstatsplot::ggscatterstats(data = iris, 
+ggstatsplot::ggscatterstats(data = datasets::iris, 
                             x = Sepal.Length, 
                             y = Petal.Length,
-                            title = "Dataset: Iris flower data set")
+                            title = "Dataset: Iris flower data set",
+                            messages = FALSE)
 ```
 
 Number of other arguments can be specified to modify this basic plot-
@@ -186,7 +202,7 @@ Number of other arguments can be specified to modify this basic plot-
 library(datasets)
 
 ggstatsplot::ggscatterstats(
-  data = subset(iris, iris$Species == "setosa"),
+  data = subset(datasets::iris, iris$Species == "setosa"),
   x = Sepal.Length,
   y = Petal.Length,
   type = "robust",                               # type of test that needs to be run
@@ -196,14 +212,15 @@ ggstatsplot::ggscatterstats(
   title = "Dataset: Iris flower data set",       # title text for the plot
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
-    ),
+  ),
   marginal.type = "density",                     # type of marginal distribution to be displayed
   xfill = "blue",                                # colour fill for x-axis marginal distribution 
   yfill = "red",                                 # colour fill for y-axis marginal distribution
   intercept = "median",                          # which type of intercept line is to be displayed  
   width.jitter = 0.2,                            # amount of horizontal jitter for data points
-  height.jitter = 0.4                            # amount of vertical jitter for data points
-  ) 
+  height.jitter = 0.4,                           # amount of vertical jitter for data points
+  messages = FALSE                               # turn off messages and notes
+) 
 ```
 
 The `type` (of test) argument also accepts the following abbreviations:
@@ -222,8 +239,9 @@ contingency table analysis included in the subtitle of the plot. If only one
 categorical variable is entered, proportion test will be carried out.
 
 ```{r ggpiestats1, message = FALSE, warning = FALSE, dpi = 300}
-ggstatsplot::ggpiestats(data = iris,
-                        main = Species)
+ggstatsplot::ggpiestats(data = datasets::iris,
+                        main = Species,
+                        messages = FALSE)
 ```
 
 This function can also be used to study an interaction between two categorical
@@ -235,9 +253,10 @@ the plot)-
 ```{r ggpiestats2, message = FALSE, warning = FALSE, dpi = 300}
 library(ggplot2)
 
-ggstatsplot::ggpiestats(data = mtcars,
-                        main = cyl,                
-                        condition = am) +
+ggstatsplot::ggpiestats(data = datasets::mtcars,
+                        main = cyl,
+                        condition = am,
+                        messages = FALSE) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modifcation outside of ggstatsplot    
 ```
 
@@ -247,7 +266,7 @@ As with the other functions, this basic plot can further be modified with additi
 library(ggplot2)
 
 ggstatsplot::ggpiestats(
-  data = mtcars,
+  data = datasets::mtcars,
   main = am,
   condition = cyl,
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
@@ -258,7 +277,8 @@ ggstatsplot::ggpiestats(
   facet.proptest = FALSE,                             # turning of facetted proportion test results
   caption = expression(                               # text for the caption
     paste(italic("Note"), ": this is a demo")
-    )
+  ),
+  messages = FALSE                                    # turn off messages and notes
 ) 
 ```
 
@@ -274,7 +294,7 @@ library(datasets)
 library(viridis)
 
 ggstatsplot::gghistostats(
-  data = iris,
+  data = datasets::iris,
   x = Sepal.Length,
   title = "Distribution of Iris sepal length",
   type = "parametric",            # one sample t-test
@@ -283,7 +303,8 @@ ggstatsplot::gghistostats(
   centrality.colour = "red",      # decides colour of vertical line representing central tendency
   density.plot = TRUE,            # whether density plot is to be overlayed on a histogram
   binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
-  binwidth = 0.10                 # binwidth value (needs to be toyed around with until you find the best one)
+  binwidth = 0.10,                # binwidth value (needs to be toyed around with until you find the best one)
+  messages = FALSE                # turn off the messages
 ) +              
   viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
 ```
@@ -300,7 +321,7 @@ to the defaults itself produces publication-ready correlation matrices.
 ```{r ggcorrmat1, message = FALSE, warning = FALSE, dpi = 300, fig.height = 6, fig.width = 6}
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
-  data = iris,
+  data = datasets::iris,
   corr.method = "spearman",      # correlation method
   sig.level = 0.005,              # threshold of significance
   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
@@ -324,14 +345,14 @@ corresponding p-values (in a [tibble](http://tibble.tidyverse.org/) format).
 ```{r ggcorrmat2, message = FALSE, warning = FALSE}
 # getting correlations 
 ggstatsplot::ggcorrmat(
-  data = iris,
+  data = datasets::iris,
   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
   output = "correlations"
 )
 
 # getting p-values
 ggstatsplot::ggcorrmat(
-  data = iris,
+  data = datasets::iris,
   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
   output = "p-values"
 )
@@ -459,13 +480,14 @@ ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing
 library(ggplot2)
 
 # Basic scatter plot
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point()
+ggplot2::ggplot(data = datasets::mtcars, 
+                mapping = ggplot2::aes(x = wt, y = mpg)) + 
+  ggplot2::geom_point()
 # Basic scatter plot with theme_mprl() added
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point() + 
+ggplot2::ggplot(data = datasets::mtcars, 
+                mapping = ggplot2::aes(x = wt, y = mpg)) + 
+  ggplot2::geom_point() + 
   ggstatsplot::theme_mprl()
-
 ```
 
 Please note that this project is released with a [Contributor Code of Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.md). By participating in this project you agree to

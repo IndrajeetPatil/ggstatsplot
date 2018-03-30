@@ -42,12 +42,14 @@
 #' library(ggplot2)
 #'
 #' # simple function call with the defaults
-#' ggstatsplot::ggpiestats(data = ggplot2::diamonds,
-#' main = cut,
-#' condition = color)
+#' ggstatsplot::ggpiestats(
+#' data = datasets::iris,
+#' main = Species
+#' )
 #'
 #' # more detailed function call
-#' ggstatsplot::ggpiestats(data = datasets::mtcars,
+#' ggstatsplot::ggpiestats(
+#' data = datasets::mtcars,
 #' main = am,
 #' condition = cyl,
 #' factor.levels = c("zero", "one"),
@@ -56,7 +58,8 @@
 #' caption = "This is a demo",
 #' legend.title = "transmission",
 #' facet.wrap.name = "No. of cylinders",
-#' facet.proptest = TRUE)
+#' facet.proptest = TRUE
+#' )
 #'
 #' @export
 #'

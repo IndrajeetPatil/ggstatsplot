@@ -80,11 +80,12 @@
 #'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
-#' data = mtcars,
-#' x = cyl,
-#' y = mpg,
-#' outlier.tagging = TRUE,
-#' outlier.label = disp)
+#' data = datasets::ToothGrowth,
+#' x = supp,
+#' y = len,
+#' xlab = "Tooth length",
+#' ylab = "Supplement type',
+#' outlier.tagging = TRUE)
 #'
 #' @export
 
