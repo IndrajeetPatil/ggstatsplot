@@ -56,13 +56,12 @@ details included in the plot as a subtitle.
 \examples{
 
 library(datasets)
-library(ggplot2)
 
 # simple function call with the defaults
 ggstatsplot::ggbetweenstats(
-data = ggplot2::diamonds,
-x = clarity,
-y = carat
+data = datasets::iris,
+x = Species,
+y = Sepal.Length
 )
 
 # more detailed function call
