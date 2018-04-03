@@ -1,0 +1,14 @@
+{
+  "index_name": "ggstatsplot",
+  "start_urls": {},
+  "sitemap_urls": "/sitemap.xml",
+  "selectors": {
+    "lvl0": ".contents h1",
+    "lvl1": ".contents h2",
+    "lvl2": ".contents h3, .contents th, .contents dt",
+    "lvl3": ".contents h4",
+    "lvl4": ".contents h5",
+    "text": ".contents p, .contents li, .usage, .template-article .contents .pre"
+  },
+  "selectors_exclude": ".dont-index"
+}

@@ -51,7 +51,12 @@ Future versions will include other types of analyses and plots as well.
 
 ## Installation
 
-You can get the development version from GitHub. If you are in hurry and want to reduce the time of installation, prefer-
+To get the latest, stable CRAN release:
+```{r installationCRAN, eval = FALSE}
+utils::install.packages(pkgs = "ggstatsplot")
+```
+
+You can get the **development** version from GitHub. If you are in hurry and want to reduce the time of installation, prefer-
 
 ```{r installation1, eval = FALSE}
 # install.packages("devtools")                                # needed package to download from GitHub repo

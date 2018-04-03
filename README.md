@@ -23,7 +23,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--30-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--03-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -52,8 +52,14 @@ Future versions will include other types of analyses and plots as well.
 
 ## Installation
 
-You can get the development version from GitHub. If you are in hurry and
-want to reduce the time of installation,
+To get the latest, stable CRAN release:
+
+``` r
+utils::install.packages(pkgs = "ggstatsplot")
+```
+
+You can get the **development** version from GitHub. If you are in hurry
+and want to reduce the time of installation,
 prefer-
 
 ``` r
