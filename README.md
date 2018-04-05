@@ -6,6 +6,7 @@
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![CRAN version
 badge](https://www.r-pkg.org/badges/version/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.2.9000-orange.svg?style=flat-square)](commits/master)
 [![Daily downloads
 badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Weekly downloads
@@ -14,7 +15,6 @@ badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](http
 badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Total downloads
 badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
 [![Travis Build
 Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)
 [![AppVeyor Build
@@ -23,14 +23,14 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--03-yellowgreen.svg)](/commits/master)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--05-yellowgreen.svg)](/commits/master)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
-<!-- 
+<https://www.rdocumentation.org/badges/version/ggstatsplot> <!-- 
+[![Research software impact](http://depsy.org/api/package/cran/ggstatsplot/badge.svg)](http://depsy.org/package/r/ggstatsplot)
 [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
-[![Documentation badge](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/badges/version/ggstatsplot)
 -->
 
 ## Overview
@@ -362,10 +362,24 @@ ggstatsplot::gghistostats(
   viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
 ```
 
-![](man/figures/README-gghistostats-1.png)<!-- -->
+![](man/figures/README-gghistostats1-1.png)<!-- -->
 
 The `type` (of test) argument also accepts the following abbreviations:
-“p” (for *parametric*) or “np” (for *nonparametric*).
+“p” (for *parametric*) or “np” (for *nonparametric*) or “bf” (for
+*Bayes Factor*). By default, Bayes Factor quantifies the support for the
+alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is
+displayed).
+
+``` r
+ ggstatsplot::gghistostats(
+ data = NULL,
+ x = stats::rnorm(n = 1000, mean = 0, sd = 1),
+ centrality.para = "mean",
+ type = "bf",
+ bf.prior = 0.8)
+```
+
+![](man/figures/README-gghistostats2-1.png)<!-- -->
 
   - `ggcorrmat`
 
@@ -580,6 +594,7 @@ ggplot2::ggplot(data = datasets::mtcars,
 ![](man/figures/README-theme_mprl-1.png)<!-- -->
 
 ``` r
+
 # Basic scatter plot with theme_mprl() added
 ggplot2::ggplot(data = datasets::mtcars, 
                 mapping = ggplot2::aes(x = wt, y = mpg)) + 

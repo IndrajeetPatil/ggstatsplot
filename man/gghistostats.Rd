@@ -18,10 +18,13 @@ from one sample test to be displayed.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{type}{Type of statistic expected ("parametric" or "nonparametric").
-Abbreviations accepted are "p" or "np".}
+\item{type}{Type of statistic expected ("parametric" or "nonparametric" or "bayes").
+Abbreviations accepted are "p" or "np" or "bf", respectively.}
 
 \item{test.value}{A number specifying the value of the null hypothesis.}
+
+\item{bf.prior}{A number between 0.5 and 2 (default 0.707), the prior width
+to use in calculating Bayes factors.}
 
 \item{k}{Number of decimal places expected for results.}
 
@@ -57,19 +60,25 @@ in the plot as a subtitle.
 }
 \examples{
 
-library(datasets)
-library(ggplot2)
-
 # most basic function call with the defaults
 ggstatsplot::gghistostats(
-data = ggplot2::diamonds,
-x = carat)
+data = datasets::ToothGrowth,
+x = len,
+xlab = "Tooth length")
+
+# another example
+ggstatsplot::gghistostats(
+data = NULL,
+x = stats::rnorm(n = 1000, mean = 0, sd = 1),
+centrality.para = "mean",
+type = "np")
 
 # more detailed function call
 ggstatsplot::gghistostats(
 data = datasets::iris,
 x = Sepal.Length,
-type = "parametric",
+type = "bf",
+bf.prior = 0.8,
 test.value = 3,
 centrality.para = "mean",
 density.plot = TRUE,

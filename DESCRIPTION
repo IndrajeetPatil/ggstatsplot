@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.1
+Version: 0.0.2.9000
 Authors@R: person(given = "Indrajeet", 
   family = "Patil", 
   email = "patilindrajeet.science@gmail.com", 

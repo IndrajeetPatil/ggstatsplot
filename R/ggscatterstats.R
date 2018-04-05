@@ -179,7 +179,7 @@ ggscatterstats <-
 
     if (results.subtitle == TRUE) {
       # running the correlation test and preparing the subtitle text
-      if (type == "pearson" | type == "p") {
+      if (type == "pearson" || type == "p") {
         ################################################### Pearson's r ##################################################
 
         c <-
@@ -227,7 +227,7 @@ ggscatterstats <-
               pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]], k, p.value = TRUE)
             )
           )
-      } else if (type == "spearman" | type == "np") {
+      } else if (type == "spearman" || type == "np") {
         ################################################### Spearnman's rho ##################################################
         # running the correlation test and preparing the subtitle text
         # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
@@ -282,7 +282,7 @@ ggscatterstats <-
             )
           )
         ################################################### robust ##################################################
-      } else if (type == "robust" | type == "r") {
+      } else if (type == "robust" || type == "r") {
         # running robust regression test and preparing the subtitle text
         MASS_res <-
           MASS::rlm(

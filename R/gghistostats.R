@@ -14,9 +14,11 @@
 #' @param subtitle The text for the plot subtitle *if* you don't want results
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
-#' @param type Type of statistic expected ("parametric" or "nonparametric").
-#'   Abbreviations accepted are "p" or "np".
+#' @param type Type of statistic expected ("parametric" or "nonparametric" or "bayes").
+#'   Abbreviations accepted are "p" or "np" or "bf", respectively.
 #' @param test.value A number specifying the value of the null hypothesis.
+#' @param bf.prior A number between 0.5 and 2 (default 0.707), the prior width
+#'   to use in calculating Bayes factors.
 #' @param k Number of decimal places expected for results.
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle.
@@ -42,22 +44,32 @@
 #' @importFrom jmv ttestOneS
 #' @importFrom stats dnorm
 #' @importFrom nortest ad.test
+#' @importFrom crayon green
+#' @importFrom crayon blue
+#' @importFrom crayon yellow
+#' @importFrom crayon red
 #'
 #' @examples
 #'
-#' library(datasets)
-#' library(ggplot2)
-#'
 #' # most basic function call with the defaults
 #' ggstatsplot::gghistostats(
-#' data = ggplot2::diamonds,
-#' x = carat)
+#' data = datasets::ToothGrowth,
+#' x = len,
+#' xlab = "Tooth length")
+#'
+#'# another example
+#' ggstatsplot::gghistostats(
+#' data = NULL,
+#' x = stats::rnorm(n = 1000, mean = 0, sd = 1),
+#' centrality.para = "mean",
+#' type = "np")
 #'
 #' # more detailed function call
 #' ggstatsplot::gghistostats(
 #' data = datasets::iris,
 #' x = Sepal.Length,
-#' type = "parametric",
+#' type = "bf",
+#' bf.prior = 0.8,
 #' test.value = 3,
 #' centrality.para = "mean",
 #' density.plot = TRUE,
@@ -103,7 +115,9 @@ utils::globalVariables(
     "dnorm",
     "mean",
     "median",
-    "sd"
+    "sd",
+    "bf",
+    "bf_error"
   )
 )
 
@@ -116,6 +130,7 @@ gghistostats <-
            caption = NULL,
            type = "parametric",
            test.value = 0,
+           bf.prior = 0.707,
            k = 3,
            results.subtitle = TRUE,
            density.plot = FALSE,
@@ -149,22 +164,23 @@ gghistostats <-
     }
     # ========================================== stats ==================================================================
     if (isTRUE(results.subtitle)) {
-      if (type == "parametric" | type == "p") {
-        # model
-        jmv_os <- jmv::ttestOneS(
-          data = data,
-          vars = "x",
-          students = TRUE,
-          bf = FALSE,
-          bfPrior = 0.707,
-          mann = FALSE,
-          # Mann-Whitney U test
-          testValue = test.value,
-          hypothesis = "dt",
-          # two-sided hypothesis-testing
-          effectSize = TRUE
-        )
+      # model
+      jmv_os <- jmv::ttestOneS(
+        data = data,
+        vars = "x",
+        students = TRUE,
+        bf = TRUE,
+        bfPrior = bf.prior,
+        mann = TRUE,
+        # Mann-Whitney U test
+        testValue = test.value,
+        hypothesis = "dt",
+        # two-sided hypothesis-testing
+        effectSize = TRUE
+      )
 
+      # parametric
+      if (type == "parametric" || type == "p") {
         # preparing the subtitle
         subtitle <- base::substitute(
           expr =
@@ -184,29 +200,18 @@ gghistostats <-
               effsize
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$stat, k),
+            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`stat[stud]`, k),
             # df is integer value for Student's t-test
-            df = as.data.frame(jmv_os$ttest)$df,
-            pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$p, k, p.value = TRUE),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$es, k)
+            df = as.data.frame(jmv_os$ttest)$`df[stud]`,
+            pvalue = ggstatsplot::specify_decimal_p(
+              x = as.data.frame(jmv_os$ttest)$`p[stud]`,
+              k,
+              p.value = TRUE
+            ),
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k)
           )
         )
-      } else if (type == "nonparametric" | type == "np") {
-        # model
-        jmv_os <- jmv::ttestOneS(
-          data = data,
-          vars = "x",
-          students = FALSE,
-          bf = FALSE,
-          bfPrior = 0.707,
-          mann = TRUE,
-          # Mann-Whitney U test
-          testValue = test.value,
-          hypothesis = "dt",
-          # two-sided hypothesis-testing
-          effectSize = TRUE
-        )
-
+      } else if (type == "nonparametric" || type == "np") {
         # preparing the subtitle
         subtitle <- base::substitute(
           expr =
@@ -224,14 +229,63 @@ gghistostats <-
               effsize
             ),
           env = base::list(
-            estimate = as.data.frame(jmv_os$ttest)$stat,
-            pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$p, k, p.value = TRUE),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$es, k)
+            estimate = as.data.frame(jmv_os$ttest)$`stat[mann]`,
+            pvalue = ggstatsplot::specify_decimal_p(
+              x = as.data.frame(jmv_os$ttest)$`p[mann]`,
+              k,
+              p.value = TRUE
+            ),
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[mann]`, k)
           )
         )
+      } else if (type == "bayes" || type == "bf") {
+        # preparing the subtitle
+        subtitle <- base::substitute(
+          expr =
+            paste(
+              italic("t"),
+              "(",
+              df,
+              ") = ",
+              estimate,
+              ", ",
+              "BF"[10],
+              " = ",
+              bf,
+              ", error = ",
+              bf_error,
+              ", ",
+              italic("d"),
+              " = ",
+              effsize
+            ),
+          env = base::list(
+            # df is integer value for Student's t-test
+            df = as.data.frame(jmv_os$ttest)$`df[stud]`,
+            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`stat[stud]`, k),
+            bf = as.data.frame(jmv_os$ttest)$`stat[bf]`,
+            bf_error = as.data.frame(jmv_os$ttest)$`err[bf]`,
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k)
+          )
+        )
+
+        # display a note about prior used to compute Bayes Factor
+        if (isTRUE(messages)) {
+          base::message(cat(
+            crayon::green("Note: "),
+            crayon::blue(
+              "Prior width used to compute Bayes Factor:",
+              crayon::yellow(bf.prior)
+            ),
+            crayon::blue("\nEvidence in favor of the null hypothesis (H0):"),
+            crayon::yellow(
+              1 / as.data.frame(jmv_os$ttest)$`stat[bf]`
+            )
+          ))
+        }
+      } else {
+        subtitle <- subtitle
       }
-    } else {
-      subtitle <- subtitle
     }
     # ========================================== plot ===================================================================
 
