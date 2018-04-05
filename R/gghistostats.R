@@ -121,6 +121,7 @@ utils::globalVariables(
   )
 )
 
+# function body
 gghistostats <-
   function(data = NULL,
            x,
@@ -179,7 +180,7 @@ gghistostats <-
         effectSize = TRUE
       )
 
-      # parametric
+      # ========================================== parametric ==================================================================
       if (type == "parametric" || type == "p") {
         # preparing the subtitle
         subtitle <- base::substitute(
@@ -211,6 +212,34 @@ gghistostats <-
             effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k)
           )
         )
+
+        # if effect is not significant, display Bayes Factor in favor of the NULL
+        # but only if caption has not been specified
+        if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
+          if (is.null(caption)) {
+            caption <-
+              paste(
+                "Note: Evidence in favor of the null hypothesis (H0):",
+                ggstatsplot::specify_decimal_p(x = 1 / as.data.frame(jmv_os$ttest)$`stat[bf]`, k),
+                "with prior =",
+                ggstatsplot::specify_decimal_p(x = bf.prior, k)
+              )
+          } else {
+            # display a note about prior used to compute Bayes Factor
+            if (isTRUE(messages)) {
+              base::message(cat(
+                crayon::green("Note: "),
+                crayon::blue(
+                  "Prior width used to compute Bayes Factor:",
+                  crayon::yellow(bf.prior)
+                ),
+                crayon::blue("\nEvidence in favor of the null hypothesis (H0):"),
+                crayon::yellow(1 / as.data.frame(jmv_os$ttest)$`stat[bf]`)
+              ))
+            }
+          }
+        }
+        # ========================================== non-parametric =====================================================
       } else if (type == "nonparametric" || type == "np") {
         # preparing the subtitle
         subtitle <- base::substitute(
@@ -238,6 +267,7 @@ gghistostats <-
             effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[mann]`, k)
           )
         )
+        # ========================================== bayes ==================================================================
       } else if (type == "bayes" || type == "bf") {
         # preparing the subtitle
         subtitle <- base::substitute(
@@ -278,9 +308,7 @@ gghistostats <-
               crayon::yellow(bf.prior)
             ),
             crayon::blue("\nEvidence in favor of the null hypothesis (H0):"),
-            crayon::yellow(
-              1 / as.data.frame(jmv_os$ttest)$`stat[bf]`
-            )
+            crayon::yellow(1 / as.data.frame(jmv_os$ttest)$`stat[bf]`)
           ))
         }
       } else {

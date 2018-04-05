@@ -27,7 +27,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
-<https://www.rdocumentation.org/badges/version/ggstatsplot> <!-- 
+<!-- 
 [![Research software impact](http://depsy.org/api/package/cran/ggstatsplot/badge.svg)](http://depsy.org/package/r/ggstatsplot)
 [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
@@ -366,20 +366,40 @@ ggstatsplot::gghistostats(
 
 The `type` (of test) argument also accepts the following abbreviations:
 “p” (for *parametric*) or “np” (for *nonparametric*) or “bf” (for
-*Bayes Factor*). By default, Bayes Factor quantifies the support for the
-alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is
-displayed).
+*Bayes Factor*).
 
 ``` r
- ggstatsplot::gghistostats(
- data = NULL,
- x = stats::rnorm(n = 1000, mean = 0, sd = 1),
- centrality.para = "mean",
- type = "bf",
- bf.prior = 0.8)
+ggstatsplot::gghistostats(
+  data = NULL,
+  x = stats::rnorm(n = 1000, mean = 0, sd = 1),
+  centrality.para = "mean",
+  type = "bf",
+  bf.prior = 0.8,
+  messages = FALSE
+)
 ```
 
 ![](man/figures/README-gghistostats2-1.png)<!-- -->
+
+As seen here, by default, Bayes Factor quantifies the support for the
+alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is
+displayed). In case you run parametric t-test and the effect is not
+significant, caption will be displayed containing information about
+evidence in favor of the null hypothesis (H0) **only if** `caption`
+argument has not been specified.
+
+``` r
+ggstatsplot::gghistostats(
+  data = datasets::ToothGrowth,
+  x = len,
+  centrality.para = "mean",
+  test.value = 20,
+  xlab = "Tooth length",
+  messages = FALSE
+)
+```
+
+![](man/figures/README-gghistostats3-1.png)<!-- -->
 
   - `ggcorrmat`
 
