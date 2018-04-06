@@ -20,8 +20,8 @@ taken.}
 parametric), "np" (nonparametric), "r" (robust), resp.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests
-("biased" (Cohen's d, partial eta-squared) or "unbiased" (Hedge's g,
-omega-squared)).}
+(\strong{"biased"} (Cohen's \emph{d} for t-test; partial eta-squared for anova) or
+\strong{"unbiased"} (Hedge's \emph{g} for t-test; omega-squared for anova)).}
 
 \item{title}{The text for the plot title.}
 
@@ -54,8 +54,6 @@ Violin plots for between-subjects designs with statistical
 details included in the plot as a subtitle.
 }
 \examples{
-
-library(datasets)
 
 # simple function call with the defaults
 ggstatsplot::ggbetweenstats(

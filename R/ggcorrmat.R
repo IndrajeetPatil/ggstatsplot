@@ -1,6 +1,8 @@
+#'
 #' @title Visualization of a correlalogram (or correlation matrix) using
 #'   'ggplot2'/'ggcorrplot'
 #' @name ggcorrmat
+#' @aliases ggcorrmat
 #' @author Indrajeet Patil
 #' @return Correlation matrix plot or correlation coefficient matrix or matrix
 #'   of p-values.

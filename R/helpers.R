@@ -1,6 +1,7 @@
 #' @title custom function to set upper and lower margins to legend title in
 #'   ggplot2
 #' @name legend_title_margin
+#' @aliases legend_title_margin
 #' @return A plot with desired margins between the legend title and the legend.
 #'
 #' @author Indrajeet Patil
@@ -89,6 +90,7 @@ legend_title_margin <- function(plot,
 #'
 #'@title Function to run proportion test on grouped data.
 #'@name grouped_proptest
+#'@aliases grouped_proptest
 #'@author Indrajeet Patil
 #'@return Dataframe with percentages and statistical details from a proportion
 #'  test.

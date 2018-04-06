@@ -3,7 +3,7 @@
 #' @aliases theme_mprl
 #' @author Indrajeet Patil
 #' @description Common theme used across all plots generated in `ggstatsplot`
-#'   and assumed by the author to be aesthetically pleasing to the user/reader.
+#'   and *assumed* by the author to be aesthetically pleasing to the user/reader.
 #'
 #' @import ggplot2
 #' @import grid

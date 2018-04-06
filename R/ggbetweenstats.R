@@ -16,8 +16,8 @@
 #'   "robust").Corresponding abbreviations are also accepted: "p" (for
 #'   parametric), "np" (nonparametric), "r" (robust), resp.
 #' @param effsize.type Type of effect size needed for *parametric* tests
-#'   ("biased" (Cohen's d, partial eta-squared) or "unbiased" (Hedge's g,
-#'   omega-squared)).
+#'   (**"biased"** (Cohen's *d* for t-test; partial eta-squared for anova) or
+#'   **"unbiased"** (Hedge's *g* for t-test; omega-squared for anova)).
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param k Number of decimal places expected for results.
@@ -67,8 +67,6 @@
 #' @importFrom jmv anova
 #'
 #' @examples
-#'
-#' library(datasets)
 #'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(

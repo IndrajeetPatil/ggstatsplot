@@ -8,7 +8,7 @@ theme_mprl()
 }
 \description{
 Common theme used across all plots generated in \code{ggstatsplot}
-and assumed by the author to be aesthetically pleasing to the user/reader.
+and \emph{assumed} by the author to be aesthetically pleasing to the user/reader.
 }
 \author{
 Indrajeet Patil

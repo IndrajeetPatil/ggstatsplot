@@ -136,8 +136,8 @@ parametric), "np" (nonparametric), "r" (robust), resp.</p></td>
     <tr>
       <th>effsize.type</th>
       <td><p>Type of effect size needed for <em>parametric</em> tests
-("biased" (Cohen's d, partial eta-squared) or "unbiased" (Hedge's g,
-omega-squared)).</p></td>
+(<strong>"biased"</strong> (Cohen's <em>d</em> for t-test; partial eta-squared for anova) or
+<strong>"unbiased"</strong> (Hedge's <em>g</em> for t-test; omega-squared for anova)).</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -192,8 +192,6 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>library</span>(<span class='no'>datasets</span>)
-
 <span class='co'># simple function call with the defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats'>ggbetweenstats</a></span>(
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
