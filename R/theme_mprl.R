@@ -1,9 +1,11 @@
-#' @title default theme to use for `ggstatsplot` package figures
+#' @title Default theme used in all `ggstatsplot` package plots.
 #' @name theme_mprl
 #' @aliases theme_mprl
 #' @author Indrajeet Patil
 #' @description Common theme used across all plots generated in `ggstatsplot`
-#'   and *assumed* by the author to be aesthetically pleasing to the user/reader.
+#'   and *assumed* by the author to be aesthetically pleasing to the
+#'   user/reader.
+#' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
 #' @import ggplot2
 #' @import grid

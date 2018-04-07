@@ -23,3 +23,4 @@ ggplot2
 \author{
 Indrajeet Patil
 }
+\keyword{internal}

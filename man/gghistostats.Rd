@@ -18,13 +18,17 @@ from one sample test to be displayed.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{type}{Type of statistic expected ("parametric" or "nonparametric" or "bayes").
-Abbreviations accepted are "p" or "np" or "bf", respectively.}
+\item{type}{Type of statistic expected ("parametric" or "nonparametric" or
+"bayes"). Abbreviations accepted are "p" or "np" or "bf", respectively.}
 
 \item{test.value}{A number specifying the value of the null hypothesis.}
 
 \item{bf.prior}{A number between 0.5 and 2 (default 0.707), the prior width
 to use in calculating Bayes factors.}
+
+\item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
+of null hypothesis for parametric test if the null hypothesis can't be
+rejected (Default: \code{bf.message = TRUE}).}
 
 \item{k}{Number of decimal places expected for results.}
 

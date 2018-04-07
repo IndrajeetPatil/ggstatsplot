@@ -23,7 +23,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--05-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--07-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -396,8 +396,9 @@ As seen here, by default, Bayes Factor quantifies the support for the
 alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is
 displayed). In case you run parametric t-test and the effect is not
 significant, caption will be displayed containing information about
-evidence in favor of the null hypothesis (H0) **only if** `caption`
-argument has not been specified.
+evidence in favor of the null hypothesis (H0). This is not recommended,
+but if you want to turn off this behavior, you can use the argument
+`bf.message = FALSE`.
 
 ``` r
 ggstatsplot::gghistostats(

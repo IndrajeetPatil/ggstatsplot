@@ -14,6 +14,8 @@
 #'
 #' @importFrom cowplot ggdraw
 #'
+#' @keywords internal
+#'
 
 legend_title_margin <- function(plot,
                                 t.margin = unit(0, "mm"),
@@ -72,7 +74,7 @@ legend_title_margin <- function(plot,
 
   # remove the original title
   leg$grobs <- leg$grobs[-4]
-  leg$layout <- leg$layout[-4,]
+  leg$layout <- leg$layout[-4, ]
 
   # put the legend back into the plot
   g$grobs[[index]][[1]][[1]] <- leg
@@ -88,26 +90,29 @@ legend_title_margin <- function(plot,
 
 
 #'
-#'@title Function to run proportion test on grouped data.
-#'@name grouped_proptest
-#'@aliases grouped_proptest
-#'@author Indrajeet Patil
-#'@return Dataframe with percentages and statistical details from a proportion
-#'  test.
+#' @title Function to run proportion test on grouped data.
+#' @name grouped_proptest
+#' @aliases grouped_proptest
+#' @author Indrajeet Patil
+#' @return Dataframe with percentages and statistical details from a proportion
+#'   test.
 #'
-#'@param data Dataframe from which variables are to be drawn.
-#'@param grouping.vars List of grouping variables
-#'@param measure A variable for which proportion test needs to be carried out
-#'  for each combination of levels of factors entered in `grouping.vars`.
+#' @param data Dataframe from which variables are to be drawn.
+#' @param grouping.vars List of grouping variables
+#' @param measure A variable for which proportion test needs to be carried out
+#'   for each combination of levels of factors entered in `grouping.vars`.
 #'
-#'@import dplyr
-#'@import rlang
+#' @import dplyr
+#' @import rlang
 #'
-#'@importFrom purrr map
-#'@importFrom tidyr nest
-#'@importFrom tidyr unnest
-#'@importFrom tidyr spread
+#' @importFrom purrr map
+#' @importFrom tidyr nest
+#' @importFrom tidyr unnest
+#' @importFrom tidyr spread
 #'
+#' @keywords internal
+#'
+#' @export
 
 # defining global variables and functions to quient the R CMD check notes
 utils::globalVariables(
@@ -200,15 +205,19 @@ grouped_proptest <- function(data, grouping.vars, measure) {
         .x = .,
         .f = ~
           base::cbind.data.frame(
-            "Chi-squared" = as.numeric(as.character(ggstatsplot::specify_decimal_p(x = .$statistic, k = 3))),
-            "df" = as.numeric(as.character(ggstatsplot::specify_decimal_p(x = .$parameter, k = 0))),
-            "p-value" = as.numeric(as.character(ggstatsplot::specify_decimal_p(
-              x = .$p.value,
-              k = 3
-            )
-          ))
+            "Chi-squared" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(x = .$statistic, k = 3)
+            )),
+            "df" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(x = .$parameter, k = 0)
+            )),
+            "p-value" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(x = .$p.value,
+                                             k = 3)
+            ))
+          )
       )
-    )) %>%
+    ) %>%
     dplyr::select(.data = ., -data, -chi_sq) %>%
     tidyr::unnest(data = .) %>%
     signif_column(data = ., p = `p-value`)
@@ -231,16 +240,19 @@ grouped_proptest <- function(data, grouping.vars, measure) {
 }
 
 
-#' @title creating a column with significance labels
+#' @title Creating a new character type column with significance labels
 #' @name signif_column
 #' @aliases signif_column
 #' @author Indrajeet Patil
-#' @description This function will add a new column to a dataframe containing p-values
-#' @return Returns the originally entered object (either a vector or a dataframe) in tibble format with
-#' an additional column corresponding to statistical significance.
+#' @description This function will add a new column to a dataframe containing
+#'   p-values
+#' @return Returns the originally entered object (either a vector or a
+#'   dataframe) in tibble format with an additional column corresponding to
+#'   statistical significance.
 #'
-#' @param data data frame from which variables specified are preferentially to be taken
-#' @param p the column containing p-values
+#' @param data Data frame from which variables specified are preferentially to
+#'   be taken.
+#' @param p The column containing p-values.
 #'
 #' @import dplyr
 #'
@@ -251,22 +263,22 @@ grouped_proptest <- function(data, grouping.vars, measure) {
 #' @importFrom stats lm
 #' @importFrom tibble as_data_frame
 #'
+#' @keywords internal
+#'
+#' @export
+#'
 
 signif_column <- function(data = NULL, p) {
   # storing variable name to be assigned later
-  p_lab <- colnames(dplyr::select(
-    .data = data,
-    !!rlang::enquo(p)
-  ))
+  p_lab <- colnames(dplyr::select(.data = data,
+                                  !!rlang::enquo(p)))
   # if dataframe is provided
   if (!is.null(data)) {
     df <-
-      dplyr::select(
-        .data = data,
-        # column corresponding to p-values
-        p = !!rlang::enquo(p),
-        dplyr::everything()
-      )
+      dplyr::select(.data = data,
+                    # column corresponding to p-values
+                    p = !!rlang::enquo(p),
+                    dplyr::everything())
   } else {
     # if only vector is provided
     df <-
@@ -276,12 +288,6 @@ signif_column <- function(data = NULL, p) {
   #make sure the p-value column is numeric; if not, convert it to numeric and give a warning to the user
   if (!is.numeric(df$p)) {
     df$p <- as.numeric(as.character(df$p))
-    # base::message(cat(
-    #   crayon::red("Warning: "),
-    #   crayon::blue(
-    #     "Entered p-values were not numeric variables, so ipmisc has converted them to numeric"
-    #   )
-    # ))
   }
   # add new significance column based on standard APA guidelines for describing different levels of significance
   df <- df %>%

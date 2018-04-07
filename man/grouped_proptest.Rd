@@ -21,3 +21,4 @@ Function to run proportion test on grouped data.
 \author{
 Indrajeet Patil
 }
+\keyword{internal}

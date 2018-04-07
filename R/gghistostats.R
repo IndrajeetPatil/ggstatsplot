@@ -14,11 +14,14 @@
 #' @param subtitle The text for the plot subtitle *if* you don't want results
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
-#' @param type Type of statistic expected ("parametric" or "nonparametric" or "bayes").
-#'   Abbreviations accepted are "p" or "np" or "bf", respectively.
+#' @param type Type of statistic expected ("parametric" or "nonparametric" or
+#'   "bayes"). Abbreviations accepted are "p" or "np" or "bf", respectively.
 #' @param test.value A number specifying the value of the null hypothesis.
 #' @param bf.prior A number between 0.5 and 2 (default 0.707), the prior width
 #'   to use in calculating Bayes factors.
+#' @param bf.message Logical. Decides whether to display Bayes Factor in favor
+#'   of null hypothesis for parametric test if the null hypothesis can't be
+#'   rejected (Default: `bf.message = TRUE`).
 #' @param k Number of decimal places expected for results.
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle.
@@ -132,6 +135,7 @@ gghistostats <-
            type = "parametric",
            test.value = 0,
            bf.prior = 0.707,
+           bf.message = TRUE,
            k = 3,
            results.subtitle = TRUE,
            density.plot = FALSE,
@@ -144,6 +148,8 @@ gghistostats <-
     # if data is not available then don't display any messages
     if (is.null(data))
       messages <- FALSE
+    # save the value of caption in another variable because caption is going to be modified in the function body
+    bf.caption <- caption
     # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
@@ -214,12 +220,12 @@ gghistostats <-
         )
 
         # if effect is not significant, display Bayes Factor in favor of the NULL
-        # but only if caption has not been specified
+        # save it as text if bf.message has not been disabled
         if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
-          if (is.null(caption)) {
-            caption <-
+          if (isTRUE(bf.message)) {
+            bf.caption.text <-
               paste(
-                "Note: Evidence in favor of the null hypothesis (H0):",
+                "Note: Evidence in favor of the null hypothesis:",
                 ggstatsplot::specify_decimal_p(x = 1 / as.data.frame(jmv_os$ttest)$`stat[bf]`, k),
                 "with prior =",
                 ggstatsplot::specify_decimal_p(x = bf.prior, k)
@@ -316,6 +322,18 @@ gghistostats <-
       }
     }
     # ========================================== plot ===================================================================
+
+    # preparing caption
+    # if caption is not provided, then use bf.caption.text as caption
+    if (type == "parametric") {
+      if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
+        if (isTRUE(bf.message)) {
+          if (is.null(caption)) {
+            caption <- bf.caption.text
+          }
+        }
+      }
+    }
 
     # if the user wants to adjust the binwidth
     if (isTRUE(binwidth.adjust)) {
@@ -414,7 +432,20 @@ gghistostats <-
                               na.rm = TRUE)
     }
 
-    ################################################### messages ############################################################
+    # if caption is provided then use combine_plots function later on to add this caption
+    # add caption with bayes factor
+    if (type == "parametric") {
+      if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
+        if (isTRUE(bf.message)) {
+          if (!is.null(bf.caption)) {
+            plot <-
+              ggstatsplot::combine_plots(plot,
+                                         caption.text = bf.caption.text)
+          }
+        }
+      }
+    }
+    # ========================================== messages ==================================================================
     if (isTRUE(messages)) {
       # display normality test result as a message
       # # for AD test of normality, sample size must be greater than 7

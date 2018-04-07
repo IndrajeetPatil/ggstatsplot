@@ -2,22 +2,26 @@
 % Please edit documentation in R/helpers.R
 \name{signif_column}
 \alias{signif_column}
-\title{creating a column with significance labels}
+\title{Creating a new character type column with significance labels}
 \usage{
 signif_column(data = NULL, p)
 }
 \arguments{
-\item{data}{data frame from which variables specified are preferentially to be taken}
+\item{data}{Data frame from which variables specified are preferentially to
+be taken.}
 
-\item{p}{the column containing p-values}
+\item{p}{The column containing p-values.}
 }
 \value{
-Returns the originally entered object (either a vector or a dataframe) in tibble format with
-an additional column corresponding to statistical significance.
+Returns the originally entered object (either a vector or a
+dataframe) in tibble format with an additional column corresponding to
+statistical significance.
 }
 \description{
-This function will add a new column to a dataframe containing p-values
+This function will add a new column to a dataframe containing
+p-values
 }
 \author{
 Indrajeet Patil
 }
+\keyword{internal}
