@@ -366,9 +366,9 @@ to the defaults itself produces publication-ready correlation matrices.
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
-  corr.method = "spearman",      # correlation method
-  sig.level = 0.005,              # threshold of significance
-  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  corr.method = "spearman",                # correlation method
+  sig.level = 0.005,                       # threshold of significance
+  cor.vars = c(Sepal.Length:Petal.Width),  # a range of variables can be selected  
   cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
   title = "Correlalogram for length measures for Iris species",
   subtitle = "Iris dataset by Anderson",
@@ -390,14 +390,14 @@ corresponding p-values (in a [tibble](http://tibble.tidyverse.org/) format).
 # getting correlations 
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
-  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  cor.vars = Sepal.Length:Petal.Width, # notice that `c()`, used in the previous example, is unnecessary
   output = "correlations"
 )
 
 # getting p-values
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
-  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  cor.vars = Sepal.Length:Petal.Width,
   output = "p-values"
 )
 ```

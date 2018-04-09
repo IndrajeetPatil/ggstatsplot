@@ -10,9 +10,10 @@ ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   sig.level = 0.05, hc.order = FALSE, hc.method = "complete",
   lab = TRUE, colors = c("#6D9EC1", "white", "#E46726"),
   outline.color = "black", ggtheme = ggplot2::theme_gray, title = NULL,
-  subtitle = NULL, caption = NULL, lab_col = "black", lab_size = 4.5,
-  insig = "pch", pch = 4, pch.col = "blue", pch.cex = 10, tl.cex = 12,
-  tl.col = "black", tl.srt = 45)
+  subtitle = NULL, caption = NULL, caption.default = TRUE,
+  lab_col = "black", lab_size = 4.5, insig = "pch", pch = 4,
+  pch.col = "blue", pch.cex = 10, tl.cex = 12, tl.col = "black",
+  tl.srt = 45)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -69,7 +70,11 @@ etc.}
 
 \item{subtitle}{The text for the plot subtitle.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{The text for the plot caption. If not specified (if it is
+\code{NULL}, i.e.), a default caption will be shown.}
+
+\item{caption.default}{Logical decides whether the default caption should be
+shown.}
 
 \item{lab_col}{Color to be used for the correlation coefficient labels
 (applicable only when \code{lab = TRUE}).}
@@ -101,19 +106,18 @@ Visualization of a correlalogram (or correlation matrix) using
 }
 \examples{
 
-library(datasets)
 library(ggplot2)
 
 # to get the correlalogram
 ggstatsplot::ggcorrmat(
 data = datasets::iris,
-cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)
+cor.vars = c(Sepal.Length:Petal.Width)
 )
 
 # to get the correlation matrix
 ggstatsplot::ggcorrmat(
 data = datasets::iris,
-cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+cor.vars = c(Sepal.Length:Petal.Width),
 output = "correlations"
 )
 # setting output = "p-values" will return the p-value matrix
@@ -125,8 +129,7 @@ cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
 sig.level = 0.01,
 ggtheme = ggplot2::theme_gray,
 hc.order = TRUE, type = "lower", outline.col = "white",
-title = "Dataset: Iris",
-subtitle = "The threshold of significance = 0.01"
+title = "Dataset: Iris"
 )
 
 }

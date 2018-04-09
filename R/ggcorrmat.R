@@ -44,7 +44,10 @@
 #'   etc.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
-#' @param caption The text for the plot caption.
+#' @param caption The text for the plot caption. If not specified (if it is
+#'   `NULL`, i.e.), a default caption will be shown.
+#' @param caption.default Logical decides whether the default caption should be
+#'   shown.
 #' @param lab_col Color to be used for the correlation coefficient labels
 #'   (applicable only when `lab = TRUE`).
 #' @param lab_size Size to be used for the correlation coefficient labels
@@ -76,19 +79,18 @@
 #'
 #' @examples
 #'
-#' library(datasets)
 #' library(ggplot2)
 #'
 #' # to get the correlalogram
 #' ggstatsplot::ggcorrmat(
 #' data = datasets::iris,
-#' cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)
+#' cor.vars = c(Sepal.Length:Petal.Width)
 #' )
 #'
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #' data = datasets::iris,
-#' cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+#' cor.vars = c(Sepal.Length:Petal.Width),
 #' output = "correlations"
 #' )
 #' # setting output = "p-values" will return the p-value matrix
@@ -100,8 +102,7 @@
 #' sig.level = 0.01,
 #' ggtheme = ggplot2::theme_gray,
 #' hc.order = TRUE, type = "lower", outline.col = "white",
-#' title = "Dataset: Iris",
-#' subtitle = "The threshold of significance = 0.01"
+#' title = "Dataset: Iris"
 #' )
 #'
 #' @export
@@ -126,6 +127,7 @@ ggcorrmat <-
            title = NULL,
            subtitle = NULL,
            caption = NULL,
+           caption.default = TRUE,
            lab_col = "black",
            lab_size = 4.5,
            insig = "pch",
@@ -135,6 +137,8 @@ ggcorrmat <-
            tl.cex = 12,
            tl.col = "black",
            tl.srt = 45) {
+    # ========================================== dataframe ==============================================================
+    #
     # creating a dataframe out of the entered variables
     df <- data %>%
       dplyr::select(.data = ., !!rlang::enquo(cor.vars)) %>%
@@ -157,6 +161,8 @@ ggcorrmat <-
       }
     }
 
+    # ========================================== statistics ==============================================================
+    #
     # computing correlations on all included variables
     corr.mat <-
       base::round(
@@ -175,6 +181,8 @@ ggcorrmat <-
                            alternative = "two.sided",
                            method = corr.method)
 
+    # ========================================== plot ==============================================================
+    #
     # plotting the correlalogram
     plot <- ggcorrplot::ggcorrplot(
       corr = corr.mat,
@@ -192,23 +200,41 @@ ggcorrmat <-
       lab_col = lab_col,
       lab_size = lab_size,
       insig = insig,
-      pch = 4,
+      pch = pch,
       pch.col = pch.col,
       pch.cex = pch.cex,
       tl.cex = tl.cex,
       tl.col = tl.col,
       tl.srt = tl.srt
     )
-
-    # adding additional details to the plot
+    # ========================================== labels ==============================================================
+    # if caption is not specified, use the generic version only if caption.default is TRUE
+    if (is.null(caption) && pch == 4 && isTRUE(caption.default)) {
+      # adding text details to the plot
+      plot <- plot +
+        ggplot2::labs(
+          title = title,
+          subtitle = subtitle,
+          caption = paste(
+            "Note: X denotes correlation non-significant at p <",
+            sig.level
+          ),
+          xlab = NULL,
+          ylab = NULL
+        )
+    } else {
+      # adding text details to the plot
+      plot <- plot +
+        ggplot2::labs(
+          title = title,
+          subtitle = subtitle,
+          caption = caption,
+          xlab = NULL,
+          ylab = NULL
+        )
+    }
+    # adding ggstatsplot theme
     plot <- plot +
-      ggplot2::labs(
-        title = title,
-        subtitle = subtitle,
-        caption = caption,
-        xlab = NULL,
-        ylab = NULL
-      ) +
       ggplot2::theme(
         axis.title.x = element_blank(),
         strip.text.x = element_text(size = 12, face = "bold"),
@@ -271,5 +297,3 @@ ggcorrmat <-
       return(plot)
     }
   }
-
-

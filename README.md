@@ -23,7 +23,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--07-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--09-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -424,9 +424,9 @@ matrices. (Wrapper around
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
-  corr.method = "spearman",      # correlation method
-  sig.level = 0.005,              # threshold of significance
-  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  corr.method = "spearman",                # correlation method
+  sig.level = 0.005,                       # threshold of significance
+  cor.vars = c(Sepal.Length:Petal.Width),  # a range of variables can be selected  
   cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
   title = "Correlalogram for length measures for Iris species",
   subtitle = "Iris dataset by Anderson",
@@ -451,7 +451,7 @@ their corresponding p-values (in a
 # getting correlations 
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
-  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  cor.vars = Sepal.Length:Petal.Width, # notice that `c()`, used in the previous example, is unnecessary
   output = "correlations"
 )
 #> # A tibble: 4 x 5
@@ -465,7 +465,7 @@ ggstatsplot::ggcorrmat(
 # getting p-values
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
-  cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+  cor.vars = Sepal.Length:Petal.Width,
   output = "p-values"
 )
 #> # A tibble: 4 x 5

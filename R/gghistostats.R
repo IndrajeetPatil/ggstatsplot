@@ -170,22 +170,22 @@ gghistostats <-
         base::cbind.data.frame(x = x)
     }
     # ========================================== stats ==================================================================
-    if (isTRUE(results.subtitle)) {
-      # model
-      jmv_os <- jmv::ttestOneS(
-        data = data,
-        vars = "x",
-        students = TRUE,
-        bf = TRUE,
-        bfPrior = bf.prior,
-        mann = TRUE,
-        # Mann-Whitney U test
-        testValue = test.value,
-        hypothesis = "dt",
-        # two-sided hypothesis-testing
-        effectSize = TRUE
-      )
+    # model
+    jmv_os <- jmv::ttestOneS(
+      data = data,
+      vars = "x",
+      students = TRUE,
+      bf = TRUE,
+      bfPrior = bf.prior,
+      mann = TRUE,
+      # Mann-Whitney U test
+      testValue = test.value,
+      hypothesis = "dt",
+      # two-sided hypothesis-testing
+      effectSize = TRUE
+    )
 
+    if (isTRUE(results.subtitle)) {
       # ========================================== parametric ==================================================================
       if (type == "parametric" || type == "p") {
         # preparing the subtitle
@@ -227,7 +227,7 @@ gghistostats <-
               paste(
                 "Note: Evidence in favor of the null hypothesis:",
                 ggstatsplot::specify_decimal_p(x = 1 / as.data.frame(jmv_os$ttest)$`stat[bf]`, k),
-                "with prior =",
+                "with prior width=",
                 ggstatsplot::specify_decimal_p(x = bf.prior, k)
               )
           } else {

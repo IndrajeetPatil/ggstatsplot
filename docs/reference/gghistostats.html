@@ -94,7 +94,7 @@ in the plot as a subtitle." />
     <div class="page-header">
     <h1>histogram for distribution of a numeric variable</h1>
     
-    <p class="hidden name"><code>gghistostats.Rd</code></p>
+    <div class="hidden name"><code>gghistostats.Rd</code></div>
     </div>
 
     
@@ -134,8 +134,8 @@ from one sample test to be displayed.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Type of statistic expected ("parametric" or "nonparametric" or "bayes").
-Abbreviations accepted are "p" or "np" or "bf", respectively.</p></td>
+      <td><p>Type of statistic expected ("parametric" or "nonparametric" or
+"bayes"). Abbreviations accepted are "p" or "np" or "bf", respectively.</p></td>
     </tr>
     <tr>
       <th>test.value</th>
@@ -145,6 +145,12 @@ Abbreviations accepted are "p" or "np" or "bf", respectively.</p></td>
       <th>bf.prior</th>
       <td><p>A number between 0.5 and 2 (default 0.707), the prior width
 to use in calculating Bayes factors.</p></td>
+    </tr>
+    <tr>
+      <th>bf.message</th>
+      <td><p>Logical. Decides whether to display Bayes Factor in favor
+of null hypothesis for parametric test if the null hypothesis can't be
+rejected (Default: <code>bf.message = TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>

@@ -94,7 +94,7 @@ title, caption, and annotation label" />
     <div class="page-header">
     <h1>Combining multiple plots using <code>cowplot::plot_grid()</code> with a combination of title, caption, and annotation label</h1>
     
-    <p class="hidden name"><code>combine_plots.Rd</code></p>
+    <div class="hidden name"><code>combine_plots.Rd</code></div>
     </div>
 
     
@@ -239,8 +239,8 @@ By default, this is added equally above and below the label. However, by changin
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># loading the necessary libraries</span>
-<span class='fu'>library</span>(<span class='no'>ggplot2</span>)
-
+<span class='fu'>library</span>(<span class='no'>ggplot2</span>)</div><div class='output co'>#&gt; <span class='message'>Want to understand how all the pieces fit together? Buy the ggplot2</span>
+#&gt; <span class='message'>book: http://ggplot2.org/book/</span></div><div class='input'>
 <span class='co'># preparing the first plot</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span>
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>subset</span>(<span class='no'>iris</span>, <span class='no'>iris</span>$<span class='no'>Species</span> <span class='kw'>==</span> <span class='st'>"setosa"</span>),
