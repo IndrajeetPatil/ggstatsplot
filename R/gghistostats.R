@@ -182,7 +182,9 @@ gghistostats <-
       testValue = test.value,
       hypothesis = "dt",
       # two-sided hypothesis-testing
-      effectSize = TRUE
+      effectSize = TRUE,
+      miss = 'listwise'
+      # excludes a row from all analyses if one of its entries is missing
     )
 
     if (isTRUE(results.subtitle)) {
@@ -227,7 +229,7 @@ gghistostats <-
               paste(
                 "Note: Evidence in favor of the null hypothesis:",
                 ggstatsplot::specify_decimal_p(x = 1 / as.data.frame(jmv_os$ttest)$`stat[bf]`, k),
-                "with prior width=",
+                "with prior width =",
                 ggstatsplot::specify_decimal_p(x = bf.prior, k)
               )
           } else {
@@ -434,13 +436,15 @@ gghistostats <-
 
     # if caption is provided then use combine_plots function later on to add this caption
     # add caption with bayes factor
-    if (type == "parametric") {
-      if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
-        if (isTRUE(bf.message)) {
-          if (!is.null(bf.caption)) {
-            plot <-
-              ggstatsplot::combine_plots(plot,
-                                         caption.text = bf.caption.text)
+    if (isTRUE(results.subtitle)) {
+      if (type == "parametric") {
+        if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
+          if (isTRUE(bf.message)) {
+            if (!is.null(bf.caption)) {
+              plot <-
+                ggstatsplot::combine_plots(plot,
+                                           caption.text = bf.caption.text)
+            }
           }
         }
       }
