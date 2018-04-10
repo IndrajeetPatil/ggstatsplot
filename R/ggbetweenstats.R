@@ -484,7 +484,9 @@ ggbetweenstats <- function(data = NULL,
             estimate = ggstatsplot::specify_decimal_p(x = kw_stat$statistic[[1]], k),
             df = kw_stat$parameter[[1]],
             # degrees of freedom are always integer
-            pvalue = ggstatsplot::specify_decimal_p(x = kw_stat$p.value[[1]], k, p.value = TRUE)
+            pvalue = ggstatsplot::specify_decimal_p(x = kw_stat$p.value[[1]],
+                                                    k,
+                                                    p.value = TRUE)
           )
         )
       }
@@ -525,12 +527,14 @@ ggbetweenstats <- function(data = NULL,
               effsize
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$test, k),
-            df1 = robust_aov_stat$df1,
+            estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$test[[1]], k),
+            df1 = robust_aov_stat$df1[[1]],
             # degrees of freedom are always integer
-            df2 = ggstatsplot::specify_decimal_p(x = robust_aov_stat$df2, k),
-            pvalue = ggstatsplot::specify_decimal_p(x = robust_aov_stat$p.value, k, p.value = TRUE),
-            effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$effsize, k)
+            df2 = ggstatsplot::specify_decimal_p(x = robust_aov_stat$df2[[1]], k),
+            pvalue = ggstatsplot::specify_decimal_p(x = robust_aov_stat$p.value[[1]],
+                                                    k,
+                                                    p.value = TRUE),
+            effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$effsize[[1]], k)
           )
         )
       }
@@ -778,12 +782,14 @@ ggbetweenstats <- function(data = NULL,
                 "]"
               ),
             env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test, k),
-              df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df, k),
-              pvalue = ggstatsplot::specify_decimal_p(x = t_robust_stat$p.value, k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize, k),
-              LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]], k)
+              estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test[[1]], k),
+              df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df[[1]], k),
+              pvalue = ggstatsplot::specify_decimal_p(x = t_robust_stat$p.value[[1]],
+                                                      k,
+                                                      p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize[[1]], k),
+              LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]][[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]][[1]], k)
             )
           )
         }
@@ -868,7 +874,7 @@ ggbetweenstats <- function(data = NULL,
       plot <-
         plot +
         ggrepel::geom_label_repel(
-          mapping = aes(label = data_df$outlier.label),
+          mapping = ggplot2::aes(label = data_df$outlier.label),
           fontface = "bold",
           color = "black",
           max.iter = 3e2,
@@ -884,7 +890,7 @@ ggbetweenstats <- function(data = NULL,
       plot <-
         plot +
         ggrepel::geom_label_repel(
-          mapping = aes(label = data_df$outlier),
+          mapping = ggplot2::aes(label = data_df$outlier),
           fontface = "bold",
           color = "black",
           max.iter = 3e2,
@@ -923,14 +929,14 @@ ggbetweenstats <- function(data = NULL,
           ggstatsplot::specify_decimal_p(x = ., k = k)
         )) # format the values for printing
       ) %>%
-      dplyr::select(.data = ., -contains("outlier"))
+      dplyr::select(.data = ., -dplyr::contains("outlier"))
     # in case outlier.label is present, remove it since it's of no utility here
 
     # attach the labels to the plot
     plot <- plot +
       ggrepel::geom_label_repel(
         data = mean_dat,
-        mapping = aes(label = y),
+        mapping = ggplot2::aes(label = y),
         fontface = "bold",
         color = "black",
         # inherit.aes = FALSE, #would result in "error: geom_label_repel requires the following missing aesthetics: x, y"
@@ -960,7 +966,7 @@ ggbetweenstats <- function(data = NULL,
           ": p-value = "
         ),
         crayon::yellow(
-          ggstatsplot::specify_decimal_p(x = ad_norm$p.value,
+          ggstatsplot::specify_decimal_p(x = ad_norm$p.value[[1]],
                                          k,
                                          p.value = TRUE)
         )
@@ -979,7 +985,7 @@ ggbetweenstats <- function(data = NULL,
         ": p-value = "
       ),
       crayon::yellow(
-        ggstatsplot::specify_decimal_p(x = bartlett$p.value,
+        ggstatsplot::specify_decimal_p(x = bartlett$p.value[[1]],
                                        k,
                                        p.value = TRUE)
       )

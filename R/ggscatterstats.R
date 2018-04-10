@@ -275,10 +275,10 @@ ggscatterstats <-
             env = base::list(
               df = (length(data$x) - 2),
               # degrees of freedom are always integer
-              estimate = ggstatsplot::specify_decimal_p(x = c$estimate, k),
+              estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = c_ci$conf.int[1][[1]], k),
               UL = ggstatsplot::specify_decimal_p(x = c_ci$conf.int[2][[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value, k, p.value = TRUE)
+              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]], k, p.value = TRUE)
             )
           )
         ################################################### robust ##################################################
@@ -326,12 +326,12 @@ ggscatterstats <-
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[2]], k),
-              LL = ggstatsplot::specify_decimal_p(x = c_ci[1], k),
-              UL = ggstatsplot::specify_decimal_p(x = c_ci[2], k),
+              LL = ggstatsplot::specify_decimal_p(x = c_ci[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = c_ci[[2]], k),
               t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
               df = summary(MASS_res)$df[2],
               # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value,
+              pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value[[1]],
                                                       k,
                                                       p.value = TRUE)
             )

@@ -360,7 +360,7 @@ gghistostats <-
     } else {
       # if not, use the defaults
       plot <- ggplot2::ggplot(data = data,
-                              mapping = aes(x = x)) +
+                              mapping = ggplot2::aes(x = x)) +
         ggplot2::geom_histogram(
           col = "black",
           alpha = 0.7,
@@ -460,7 +460,7 @@ gghistostats <-
             ": p-value = "
           ),
           crayon::yellow(
-            ggstatsplot::specify_decimal_p(x = ad_norm$p.value,
+            ggstatsplot::specify_decimal_p(x = ad_norm$p.value[[1]],
                                            k,
                                            p.value = TRUE)
           )
