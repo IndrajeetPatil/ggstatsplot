@@ -33,7 +33,8 @@ rejected (Default: \code{bf.message = TRUE}).}
 \item{k}{Number of decimal places expected for results.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as subtitle.}
+to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
+\code{FALSE}, no statistical tests will be run.}
 
 \item{density.plot}{Decides whether kernel density estimate, which is a
 smoothed version of the histogram, is to be overlayed on top of the

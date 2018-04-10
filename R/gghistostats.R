@@ -24,7 +24,8 @@
 #'   rejected (Default: `bf.message = TRUE`).
 #' @param k Number of decimal places expected for results.
 #' @param results.subtitle Decides whether the results of statistical tests are
-#'   to be displayed as subtitle.
+#'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
+#'   `FALSE`, no statistical tests will be run.
 #' @param density.plot Decides whether kernel density estimate, which is a
 #'   smoothed version of the histogram, is to be overlayed on top of the
 #'   histogram.
@@ -223,27 +224,29 @@ gghistostats <-
 
         # if effect is not significant, display Bayes Factor in favor of the NULL
         # save it as text if bf.message has not been disabled
-        if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
-          if (isTRUE(bf.message)) {
-            bf.caption.text <-
-              paste(
-                "Note: Evidence in favor of the null hypothesis:",
-                ggstatsplot::specify_decimal_p(x = 1 / as.data.frame(jmv_os$ttest)$`stat[bf]`, k),
-                "with prior width =",
-                ggstatsplot::specify_decimal_p(x = bf.prior, k)
-              )
-          } else {
-            # display a note about prior used to compute Bayes Factor
-            if (isTRUE(messages)) {
-              base::message(cat(
-                crayon::green("Note: "),
-                crayon::blue(
-                  "Prior width used to compute Bayes Factor:",
-                  crayon::yellow(bf.prior)
-                ),
-                crayon::blue("\nEvidence in favor of the null hypothesis (H0):"),
-                crayon::yellow(1 / as.data.frame(jmv_os$ttest)$`stat[bf]`)
-              ))
+        if (isTRUE(results.subtitle)) {
+          if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
+            if (isTRUE(bf.message)) {
+              bf.caption.text <-
+                paste(
+                  "Note: Evidence in favor of the null hypothesis:",
+                  ggstatsplot::specify_decimal_p(x = 1 / as.data.frame(jmv_os$ttest)$`stat[bf]`, k),
+                  "with prior width =",
+                  ggstatsplot::specify_decimal_p(x = bf.prior, k)
+                )
+            } else {
+              # display a note about prior used to compute Bayes Factor
+              if (isTRUE(messages)) {
+                base::message(cat(
+                  crayon::green("Note: "),
+                  crayon::blue(
+                    "Prior width used to compute Bayes Factor:",
+                    crayon::yellow(bf.prior)
+                  ),
+                  crayon::blue("\nEvidence in favor of the null hypothesis (H0):"),
+                  crayon::yellow(1 / as.data.frame(jmv_os$ttest)$`stat[bf]`)
+                ))
+              }
             }
           }
         }
@@ -322,20 +325,20 @@ gghistostats <-
       } else {
         subtitle <- subtitle
       }
-    }
-    # ========================================== plot ===================================================================
 
-    # preparing caption
-    # if caption is not provided, then use bf.caption.text as caption
-    if (type == "parametric") {
-      if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
-        if (isTRUE(bf.message)) {
-          if (is.null(caption)) {
-            caption <- bf.caption.text
+      # preparing caption
+      # if caption is not provided, then use bf.caption.text as caption
+      if (type == "parametric") {
+        if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
+          if (isTRUE(bf.message)) {
+            if (is.null(caption)) {
+              caption <- bf.caption.text
+            }
           }
         }
       }
     }
+    # ========================================== plot ===================================================================
 
     # if the user wants to adjust the binwidth
     if (isTRUE(binwidth.adjust)) {
@@ -394,7 +397,7 @@ gghistostats <-
           )
         # this can be used to label the vertical lines, but leave it out since it makes for an ugly plot
         # + ggplot2::geom_text(
-        #   mapping = aes(
+        #   mapping = ggplot2::aes(
         #     x = mean(data$x) + 0.10,
         #     label = "mean",
         #     y = -0.05
@@ -414,7 +417,7 @@ gghistostats <-
           )
         # this can be used to label the vertical lines, but leave it out since it makes for an ugly plot
         # + ggplot2::geom_text(
-        #     mapping = aes(
+        #     mapping = ggplot2::aes(
         #       x = median(data$x) + 0.13,
         #       label = "median",
         #       y = -0.05
