@@ -39,7 +39,7 @@ Pie charts for categorical data with statistical details
 included in the plot as a subtitle.
 }
 \examples{
-library(datasets)
+
 library(ggplot2)
 
 # simple function call with the defaults

@@ -18,6 +18,11 @@ test.
 \description{
 Function to run proportion test on grouped data.
 }
+\note{
+This is a helper function used internally in the package and not
+exported. In case you want to use it, you can do so by
+\code{ggstatsplot:::grouped_proptest}. Note that it is \code{:::} and not \code{::}.
+}
 \author{
 Indrajeet Patil
 }

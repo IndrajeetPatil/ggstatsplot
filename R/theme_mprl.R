@@ -1,16 +1,18 @@
 #' @title Default theme used in all `ggstatsplot` package plots.
 #' @name theme_mprl
-#' @aliases theme_mprl
+#' @aliases theme_ggstatsplot
 #' @author Indrajeet Patil
 #' @description Common theme used across all plots generated in `ggstatsplot`
 #'   and *assumed* by the author to be aesthetically pleasing to the
 #'   user/reader.
+#'
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
 #' @import ggplot2
 #' @import grid
 #'
 #' @export
+#'
 
 theme_mprl <- function() {
   ggplot2::theme_grey() +

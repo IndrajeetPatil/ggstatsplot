@@ -38,7 +38,7 @@
 #' @importFrom DescTools CramerV
 #'
 #' @examples
-#' library(datasets)
+#'
 #' library(ggplot2)
 #'
 #' # simple function call with the defaults
@@ -108,8 +108,8 @@ ggpiestats <-
            legend.title = NULL,
            facet.wrap.name = NULL,
            k = 3,
-           messages = TRUE,
-           facet.proptest = TRUE) {
+           facet.proptest = TRUE,
+           messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data))
       messages <- FALSE
@@ -214,15 +214,15 @@ ggpiestats <-
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
       p <- ggplot2::ggplot(data = df,
-                           mapping = aes(x = "", y = counts)) +
+                           mapping = ggplot2::aes(x = "", y = counts)) +
         ggplot2::geom_col(
           position = "fill",
           color = "black",
           width = 1,
-          aes(fill = factor(get("main")))
+          ggplot2::aes(fill = factor(get("main")))
         ) +
         ggplot2::geom_label(
-          aes(label = paste0(round(perc), "%"),
+          ggplot2::aes(label = paste0(round(perc), "%"),
               group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
           color = "black",
@@ -233,23 +233,23 @@ ggpiestats <-
     } else {
       # if facet_wrap *is* happening
       p <- ggplot2::ggplot(data = df,
-                           mapping = aes(x = "", y = counts)) +
+                           mapping = ggplot2::aes(x = "", y = counts)) +
         ggplot2::geom_col(
           position = "fill",
           color = "black",
           width = 1,
-          aes(fill = factor(get("main")))
+          ggplot2::aes(fill = factor(get("main")))
         ) +
         ggplot2::facet_wrap(facets = ~ condition,
                             # creating facets and, if necessary, changing the facet_wrap name
-                            labeller = labeller(
+                            labeller = ggplot2::labeller(
                               condition = label_facet(
                                 original_var = df$condition,
                                 custom_name = facet.wrap.name
                               )
                             )) +
         ggplot2::geom_label(
-          aes(label = paste0(round(perc), "%"), group = factor(get("main"))),
+          ggplot2::aes(label = paste0(round(perc), "%"), group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
           color = "black",
           size = 5,
@@ -299,7 +299,7 @@ ggpiestats <-
           hjust = 0.5
         )
       ) +
-      ggplot2::guides(fill = guide_legend(override.aes = base::list(colour = NA))) # remove black diagonal line from legend
+      ggplot2::guides(fill = guide_legend(override.aes = list(colour = NA))) # remove black diagonal line from legend
 
 
     ############################################ chi-square test #####################################################
@@ -310,7 +310,9 @@ ggpiestats <-
     # is being investigated in
     # the chi-square test presented...if not entered, the default will be "Chi-square test"
 
-    chi_subtitle <- function(jmv_chi, cramer_ci, effect = NULL) {
+    chi_subtitle <- function(jmv_chi,
+                             cramer_ci,
+                             effect = NULL) {
       # if effect label hasn't been specified, use this default
       if (is.null(effect)) {
         effect <- "Chi-square test"
@@ -345,7 +347,9 @@ ggpiestats <-
           estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$chiSq)[[2]], k),
           df = as.data.frame(jmv_chi$chiSq)[[3]],
           # df always an integer
-          pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$chiSq)[[4]], k, p.value = TRUE),
+          pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$chiSq)[[4]],
+                                                  k,
+                                                  p.value = TRUE),
           # select Cramer's V as effect size
           cramer = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$nom)[[4]], k),
           LL = ggstatsplot::specify_decimal_p(x = cramer_ci[[2]], k),
@@ -365,7 +369,9 @@ ggpiestats <-
                                        measure = main)
         # merging dataframe containing results from the proportion test with counts and percentage dataframe
         df2 <-
-          dplyr::full_join(x = df, y = group_prop, by = "condition") %>%
+          dplyr::full_join(x = df,
+                           y = group_prop,
+                           by = "condition") %>%
           dplyr::mutate(
             significance = dplyr::if_else(
               condition = duplicated(condition),
@@ -399,21 +405,23 @@ ggpiestats <-
           p +
           ggplot2::geom_text(
             data = df2,
-            mapping = aes(label = significance, x = 1.65),
-            position = position_fill(vjust = 1),
+            mapping = ggplot2::aes(label = significance, x = 1.65),
+            position = ggplot2::position_fill(vjust = 1),
             size = 6,
             na.rm = TRUE
           )
       }
+
       # adding chi-square results to the plot subtitle
       p <-
-        p + labs(subtitle = chi_subtitle(
+        p + ggplot2::labs(subtitle = chi_subtitle(
           # results from Pearson's chi-square test
           jmv_chi = jmv_chi,
           # effect size (Cramer's V and it's confidence interval)
           cramer_ci = cramer_ci,
           effect = stat.title
         ))
+
     } else {
       # conducting proportion test with jmv::propTestN()
       jmv_prop <- jmv::propTestN(data = data,
@@ -439,13 +447,15 @@ ggpiestats <-
             estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
             df = base::as.data.frame(jmv_prop$tests)[[2]],
             # df is always an integer
-            pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[3]], k, p.value = TRUE)
+            pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[3]],
+                                                    k,
+                                                    p.value = TRUE)
           )
         )
       # adding proportion test subtitle to the plot
       p <-
         p +
-        labs(subtitle = proptest_subtitle)
+        ggplot2::labs(subtitle = proptest_subtitle)
     }
 
     #################################### putting all together ############################################
@@ -457,9 +467,9 @@ ggpiestats <-
     # preparing the plot
     p <-
       p +
-      ggplot2::labs(title = title,
+      labs(title = title,
                     caption = caption) +
-      ggplot2::guides(fill = guide_legend(title = legend.title))
+      guides(fill = guide_legend(title = legend.title))
 
     # display warning about geom_col issues
     if (isTRUE(messages)) {

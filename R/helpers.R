@@ -1,10 +1,9 @@
-#' @title custom function to set upper and lower margins to legend title in
+#' @title Custom function to set upper and lower margins to legend title in
 #'   ggplot2
 #' @name legend_title_margin
 #' @aliases legend_title_margin
 #' @return A plot with desired margins between the legend title and the legend.
 #'
-#' @author Indrajeet Patil
 #' @param plot Plot with the legend title whose margins need to be modified.
 #' @param t.margin,b.margin Margins in grid units.
 #'
@@ -15,6 +14,10 @@
 #' @importFrom cowplot ggdraw
 #'
 #' @keywords internal
+#'
+#' @note This is a helper function used internally in the package and not
+#' exported. In case you want to use it, you can do so by
+#' `ggstatsplot:::legend_title_margin`. Note that it is `:::` and not `::`.
 #'
 
 legend_title_margin <- function(plot,
@@ -112,7 +115,10 @@ legend_title_margin <- function(plot,
 #'
 #' @keywords internal
 #'
-#' @export
+#' @note This is a helper function used internally in the package and not
+#' exported. In case you want to use it, you can do so by
+#' `ggstatsplot:::grouped_proptest`. Note that it is `:::` and not `::`.
+#'
 
 # defining global variables and functions to quient the R CMD check notes
 utils::globalVariables(
@@ -147,7 +153,9 @@ utils::globalVariables(
   )
 )
 
-grouped_proptest <- function(data, grouping.vars, measure) {
+grouped_proptest <- function(data,
+                             grouping.vars,
+                             measure) {
   # turn off warning messages because there are going to be many of them for tidyr::unnest
   options(warn = -1)
   # check how many variables were entered for this grouping variable
@@ -265,7 +273,9 @@ grouped_proptest <- function(data, grouping.vars, measure) {
 #'
 #' @keywords internal
 #'
-#' @export
+#' @note This is a helper function used internally in the package and not
+#' exported. In case you want to use it, you can do so by
+#' `ggstatsplot:::signif_column`. Note that it is `:::` and not `::`.
 #'
 
 signif_column <- function(data = NULL, p) {

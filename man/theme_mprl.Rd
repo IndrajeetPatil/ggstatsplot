@@ -2,6 +2,7 @@
 % Please edit documentation in R/theme_mprl.R
 \name{theme_mprl}
 \alias{theme_mprl}
+\alias{theme_ggstatsplot}
 \title{Default theme used in all \code{ggstatsplot} package plots.}
 \usage{
 theme_mprl()

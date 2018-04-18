@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{legend_title_margin}
 \alias{legend_title_margin}
-\title{custom function to set upper and lower margins to legend title in
+\title{Custom function to set upper and lower margins to legend title in
 ggplot2}
 \usage{
 legend_title_margin(plot, t.margin = unit(0, "mm"), b.margin = unit(3,
@@ -17,10 +17,12 @@ legend_title_margin(plot, t.margin = unit(0, "mm"), b.margin = unit(3,
 A plot with desired margins between the legend title and the legend.
 }
 \description{
-custom function to set upper and lower margins to legend title in
+Custom function to set upper and lower margins to legend title in
 ggplot2
 }
-\author{
-Indrajeet Patil
+\note{
+This is a helper function used internally in the package and not
+exported. In case you want to use it, you can do so by
+\code{ggstatsplot:::legend_title_margin}. Note that it is \code{:::} and not \code{::}.
 }
 \keyword{internal}

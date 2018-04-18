@@ -23,7 +23,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--10-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--18-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -457,10 +457,10 @@ ggstatsplot::ggcorrmat(
 #> # A tibble: 4 x 5
 #>   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>   <chr>               <dbl>       <dbl>        <dbl>       <dbl>
-#> 1 Sepal.Length        1.00       -0.120        0.870       0.820
-#> 2 Sepal.Width        -0.120       1.00        -0.430      -0.370
-#> 3 Petal.Length        0.870      -0.430        1.00        0.960
-#> 4 Petal.Width         0.820      -0.370        0.960       1.00
+#> 1 Sepal.Length         1          -0.12         0.87        0.82
+#> 2 Sepal.Width         -0.12        1           -0.43       -0.37
+#> 3 Petal.Length         0.87       -0.43         1           0.96
+#> 4 Petal.Width          0.82       -0.37         0.96        1
 
 # getting p-values
 ggstatsplot::ggcorrmat(
@@ -472,7 +472,7 @@ ggstatsplot::ggcorrmat(
 #>   variable     Sepal.Length  Sepal.Width Petal.Length Petal.Width
 #>   <chr>               <dbl>        <dbl>        <dbl>       <dbl>
 #> 1 Sepal.Length     0.       0.152            1.04e-47    2.33e-37
-#> 2 Sepal.Width      1.52e- 1 0.               4.51e- 8    4.07e- 6
+#> 2 Sepal.Width      1.52e- 1 0                4.51e- 8    4.07e- 6
 #> 3 Petal.Length     1.04e-47 0.0000000451     0.          4.68e-86
 #> 4 Petal.Width      2.33e-37 0.00000407       4.68e-86    0.
 ```
@@ -586,9 +586,9 @@ plots
 #> # A tibble: 3 x 3
 #>     cyl data               plot    
 #>   <dbl> <list>             <list>  
-#> 1    6. <tibble [7 x 11]>  <S3: gg>
-#> 2    4. <tibble [11 x 11]> <S3: gg>
-#> 3    8. <tibble [14 x 11]> <S3: gg>
+#> 1     6 <tibble [7 x 11]>  <S3: gg>
+#> 2     4 <tibble [11 x 11]> <S3: gg>
+#> 3     8 <tibble [14 x 11]> <S3: gg>
 
 ### creating a grid with cowplot
 ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing all ggstatsplot objects
