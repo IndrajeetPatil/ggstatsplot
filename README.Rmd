@@ -7,6 +7,8 @@
   ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  dpi = 300,
+  out.width = "100%",
   comment = "#>",
   fig.path = "man/figures/README-"
 )
@@ -120,7 +122,7 @@ Here are examples of the main functions currently supported in `ggstatsplot`:
 
 This function creates a violin plot for **between**-group or **between**-condition comparisons with results from statistical tests in the subtitle:
 
-```{r ggbetweenstats1, message = FALSE, warning = FALSE, dpi = 100}
+```{r ggbetweenstats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggbetweenstats(data = datasets::iris, 
                             x = Species, 
                             y = Sepal.Length,
@@ -131,7 +133,7 @@ Number of other arguments can be specified to make this plot even more
 informative and, additionally, this function returns a `ggplot2` object and thus
 any of the graphics layers can be further modified:
 
-```{r ggbetweenstats2, message = FALSE, warning = FALSE, dpi = 100}
+```{r ggbetweenstats2, message = FALSE, warning = FALSE}
 library(ggplot2)
 
 ggstatsplot::ggbetweenstats(
@@ -159,7 +161,7 @@ The `type` (of test) argument also accepts the following abbreviations:
 *robust*).
 
 For example,
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, dpi = 100, fig.height = 10, fig.width = 6}
+```{r ggbetweenstats3, message = FALSE, warning = FALSE,  fig.height = 10, fig.width = 6}
 library(ggplot2)
 library(cowplot)
 
@@ -207,7 +209,7 @@ to your code which will remove the subtitle containing stats.
 
 This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from [`ggExtra::ggMarginal()`](https://cran.r-project.org/web/packages/ggExtra/vignettes/ggExtra.html) and results from statistical tests in the subtitle:
 
-```{r ggscatterstats1, message = FALSE, warning = FALSE, dpi = 100}
+```{r ggscatterstats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggscatterstats(data = datasets::iris, 
                             x = Sepal.Length, 
                             y = Petal.Length,
@@ -217,7 +219,7 @@ ggstatsplot::ggscatterstats(data = datasets::iris,
 
 Number of other arguments can be specified to modify this basic plot-
 
-```{r ggscatterstats2, message = FALSE, warning = FALSE, dpi = 100}
+```{r ggscatterstats2, message = FALSE, warning = FALSE}
 library(datasets)
 
 ggstatsplot::ggscatterstats(
@@ -257,7 +259,7 @@ This function creates a pie chart for categorical variables with results from
 contingency table analysis included in the subtitle of the plot. If only one
 categorical variable is entered, proportion test will be carried out.
 
-```{r ggpiestats1, message = FALSE, warning = FALSE, dpi = 100}
+```{r ggpiestats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggpiestats(data = datasets::iris,
                         main = Species,
                         messages = FALSE)
@@ -269,7 +271,7 @@ function returns a `ggplot2` object and can further be modified with `ggplot2`
 syntax (e.g., we can change the color palette *after* `ggstatsplot` has produced
 the plot)-
 
-```{r ggpiestats2, message = FALSE, warning = FALSE, dpi = 100}
+```{r ggpiestats2, message = FALSE, warning = FALSE}
 library(ggplot2)
 
 ggstatsplot::ggpiestats(data = datasets::mtcars,
@@ -281,7 +283,7 @@ ggstatsplot::ggpiestats(data = datasets::mtcars,
 
 As with the other functions, this basic plot can further be modified with additional arguments:
 
-```{r ggpiestats3, message = FALSE, warning = FALSE, dpi = 100}
+```{r ggpiestats3, message = FALSE, warning = FALSE}
 library(ggplot2)
 
 ggstatsplot::ggpiestats(
@@ -308,7 +310,7 @@ is significantly different from a specified value with a one sample test, this
 function will let you do that.
 
 
-```{r gghistostats1, message = FALSE, warning = FALSE, dpi = 100}
+```{r gghistostats1, message = FALSE, warning = FALSE}
 library(datasets)
 library(viridis)
 
@@ -330,7 +332,7 @@ ggstatsplot::gghistostats(
 The `type` (of test) argument also accepts the following abbreviations: "p" (for
 *parametric*) or "np" (for *nonparametric*) or "bf" (for *Bayes Factor*). 
 
-```{r gghistostats2, message = FALSE, warning = FALSE, dpi = 100}
+```{r gghistostats2, message = FALSE, warning = FALSE}
 ggstatsplot::gghistostats(
   data = NULL,
   x = stats::rnorm(n = 1000, mean = 0, sd = 1),
@@ -348,7 +350,7 @@ caption will be displayed containing information about evidence in favor of the
 null hypothesis (H0). This is not recommended, but if you want to turn off this
 behavior, you can use the argument `bf.message = FALSE`.
 
-```{r gghistostats3, message = FALSE, warning = FALSE, dpi = 100}
+```{r gghistostats3, message = FALSE, warning = FALSE}
 ggstatsplot::gghistostats(
   data = datasets::ToothGrowth,
   x = len,
@@ -365,7 +367,7 @@ ggstatsplot::gghistostats(
 to the defaults itself produces publication-ready correlation matrices.
  (Wrapper around [`ggcorrplot`](https://github.com/kassambara/ggcorrplot))
 
-```{r ggcorrmat1, message = FALSE, warning = FALSE, dpi = 100, fig.height = 6, fig.width = 6}
+```{r ggcorrmat1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
@@ -419,7 +421,7 @@ should be preferrred.
 
 An example is provided below. 
 
-```{r combine_plots_purrr1, message = FALSE, warning = FALSE, dpi = 100, fig.height = 12, fig.width = 8}
+```{r combine_plots_purrr1, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 
 library(glue)
 library(tidyverse)
@@ -470,7 +472,7 @@ ggstatsplot::combine_plots(
 
 Here is another example with `ggbetweenstats`-
 
-```{r combine_plots_purrr2, message = FALSE, warning = FALSE, dpi = 100, fig.height = 13, fig.width = 6}
+```{r combine_plots_purrr2, message = FALSE, warning = FALSE, fig.height = 13, fig.width = 6}
 library(tidyverse)
 library(glue)
 
@@ -522,7 +524,7 @@ ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing
 
 `ggstatsplot` uses a default theme `theme_mprl()` that can be used with any `ggplot2` objects.
 
-```{r theme_mprl, message = FALSE, warning = FALSE, dpi = 100, fig.height = 3, fig.width = 3}
+```{r theme_mprl, message = FALSE, warning = FALSE}
 library(ggplot2)
 
 # Basic scatter plot

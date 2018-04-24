@@ -145,7 +145,7 @@
 <a class="sourceLine" id="cb7-2" data-line-number="2">                            <span class="dt">x =</span> Species, </a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">                            <span class="dt">y =</span> Sepal.Length,</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">                            <span class="dt">messages =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggbetweenstats1-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>Number of other arguments can be specified to make this plot even more informative and, additionally, this function returns a <code>ggplot2</code> object and thus any of the graphics layers can be further modified:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"></a>
@@ -167,7 +167,7 @@
 <a class="sourceLine" id="cb8-18" data-line-number="18">) <span class="op">+</span><span class="st">                                             </span><span class="co"># further modifcation outside of ggstatsplot</span></a>
 <a class="sourceLine" id="cb8-19" data-line-number="19"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_cartesian">coord_cartesian</a></span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-20" data-line-number="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggbetweenstats2-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggbetweenstats2-1.png" width="100%"></p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: “p” (for <em>parametric</em>), “np” (for <em>nonparametric</em>), “r” (for <em>robust</em>).</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
@@ -209,7 +209,7 @@
 <a class="sourceLine" id="cb9-37" data-line-number="37">                   <span class="dt">ncol =</span> <span class="dv">1</span>, </a>
 <a class="sourceLine" id="cb9-38" data-line-number="38">                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>)</a>
 <a class="sourceLine" id="cb9-39" data-line-number="39">)</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggbetweenstats3-1.png" width="600"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggbetweenstats3-1.png" width="100%"></p>
 <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em> still use this function just to prepare the <strong>plot</strong>, but the statistical details will be incorrect. You can remove them by adding <code>labs(subtitle = NULL)</code> to your code which will remove the subtitle containing stats.</p>
 <ul>
 <li><code>ggscatterstats</code></li>
@@ -220,7 +220,7 @@
 <a class="sourceLine" id="cb10-3" data-line-number="3">                            <span class="dt">y =</span> Petal.Length,</a>
 <a class="sourceLine" id="cb10-4" data-line-number="4">                            <span class="dt">title =</span> <span class="st">"Dataset: Iris flower data set"</span>,</a>
 <a class="sourceLine" id="cb10-5" data-line-number="5">                            <span class="dt">messages =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggscatterstats1-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggscatterstats1-1.png" width="100%"></p>
 <p>Number of other arguments can be specified to modify this basic plot-</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(datasets)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"></a>
@@ -244,7 +244,7 @@
 <a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="dt">height.jitter =</span> <span class="fl">0.4</span>,                           <span class="co"># amount of vertical jitter for data points</span></a>
 <a class="sourceLine" id="cb11-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                               <span class="co"># turn off messages and notes</span></a>
 <a class="sourceLine" id="cb11-22" data-line-number="22">) </a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggscatterstats2-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggscatterstats2-1.png" width="100%"></p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: “p” (for <em>parametric</em>/pearson’s), “np” (for <em>nonparametric</em>/spearman), “r” (for <em>robust</em>).</p>
 <p><strong>Important</strong>: In contrast to all other functions in this package, the <code>ggscatterstats</code> function returns object that is <strong>not</strong> further modifiable with <code>ggplot2</code>. This can be avoided by not plotting the marginal distributions (<code>marginal = FALSE</code>). Currently trying to find a workaround this problem.</p>
 <ul>
@@ -254,7 +254,7 @@
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(<span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2">                        <span class="dt">main =</span> Species,</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3">                        <span class="dt">messages =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggpiestats1-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggpiestats1-1.png" width="100%"></p>
 <p>This function can also be used to study an interaction between two categorical variables. Additionally, as with the other functions in <code>ggstatsplot</code>, this function returns a <code>ggplot2</code> object and can further be modified with <code>ggplot2</code> syntax (e.g., we can change the color palette <em>after</em> <code>ggstatsplot</code> has produced the plot)-</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"></a>
@@ -263,7 +263,7 @@
 <a class="sourceLine" id="cb13-5" data-line-number="5">                        <span class="dt">condition =</span> am,</a>
 <a class="sourceLine" id="cb13-6" data-line-number="6">                        <span class="dt">messages =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb13-7" data-line-number="7"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>)   <span class="co"># further modifcation outside of ggstatsplot    </span></a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggpiestats2-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggpiestats2-1.png" width="100%"></p>
 <p>As with the other functions, this basic plot can further be modified with additional arguments:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2"></a>
@@ -282,7 +282,7 @@
 <a class="sourceLine" id="cb14-15" data-line-number="15">  ),</a>
 <a class="sourceLine" id="cb14-16" data-line-number="16">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
 <a class="sourceLine" id="cb14-17" data-line-number="17">) </a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggpiestats3-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggpiestats3-1.png" width="100%"></p>
 <ul>
 <li><code>gghistostats</code></li>
 </ul>
@@ -303,7 +303,7 @@
 <a class="sourceLine" id="cb15-14" data-line-number="14">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                <span class="co"># turn off the messages</span></a>
 <a class="sourceLine" id="cb15-15" data-line-number="15">) <span class="op">+</span><span class="st">              </span></a>
 <a class="sourceLine" id="cb15-16" data-line-number="16"><span class="st">  </span>viridis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>()   <span class="co"># further modifcation outside of ggstatsplot</span></a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-gghistostats1-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-gghistostats1-1.png" width="100%"></p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: “p” (for <em>parametric</em>) or “np” (for <em>nonparametric</em>) or “bf” (for <em>Bayes Factor</em>).</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb16-2" data-line-number="2">  <span class="dt">data =</span> <span class="ot">NULL</span>,</a>
@@ -313,7 +313,7 @@
 <a class="sourceLine" id="cb16-6" data-line-number="6">  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>,</a>
 <a class="sourceLine" id="cb16-7" data-line-number="7">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb16-8" data-line-number="8">)</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-gghistostats2-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-gghistostats2-1.png" width="100%"></p>
 <p>As seen here, by default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is displayed). In case you run parametric t-test and the effect is not significant, caption will be displayed containing information about evidence in favor of the null hypothesis (H0). This is not recommended, but if you want to turn off this behavior, you can use the argument <code>bf.message = FALSE</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb17-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>ToothGrowth,</a>
@@ -323,7 +323,7 @@
 <a class="sourceLine" id="cb17-6" data-line-number="6">  <span class="dt">xlab =</span> <span class="st">"Tooth length"</span>,</a>
 <a class="sourceLine" id="cb17-7" data-line-number="7">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb17-8" data-line-number="8">)</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-gghistostats3-1.png" width="729.166666666667"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-gghistostats3-1.png" width="100%"></p>
 <ul>
 <li><code>ggcorrmat</code></li>
 </ul>
@@ -346,7 +346,7 @@
 <a class="sourceLine" id="cb18-16" data-line-number="16">    )</a>
 <a class="sourceLine" id="cb18-17" data-line-number="17">  )</a>
 <a class="sourceLine" id="cb18-18" data-line-number="18">)</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggcorrmat1-1.png" width="600"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggcorrmat1-1.png" width="100%"></p>
 <p>Alternatively, you can use it just to get the correlation matrices and their corresponding p-values (in a <a href="http://tibble.tidyverse.org/">tibble</a> format).</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># getting correlations </span></a>
 <a class="sourceLine" id="cb19-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
@@ -433,7 +433,7 @@
 <a class="sourceLine" id="cb20-50" data-line-number="50">    <span class="dt">caption.size =</span> <span class="dv">10</span></a>
 <a class="sourceLine" id="cb20-51" data-line-number="51">  )</a>
 <a class="sourceLine" id="cb20-52" data-line-number="52">)</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-combine_plots_purrr1-1.png" width="800"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-combine_plots_purrr1-1.png" width="100%"></p>
 <p>Here is another example with <code>ggbetweenstats</code>-</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">library</span>(glue)</a>
@@ -487,7 +487,7 @@
 <a class="sourceLine" id="cb21-50" data-line-number="50">                             ),</a>
 <a class="sourceLine" id="cb21-51" data-line-number="51">                             <span class="dt">caption.size =</span> <span class="dv">10</span></a>
 <a class="sourceLine" id="cb21-52" data-line-number="52">                           ))</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-combine_plots_purrr2-1.png" width="600"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-combine_plots_purrr2-1.png" width="100%"></p>
 <ul>
 <li><code>theme_mprl</code></li>
 </ul>
@@ -498,14 +498,14 @@
 <a class="sourceLine" id="cb22-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> datasets<span class="op">::</span>mtcars, </a>
 <a class="sourceLine" id="cb22-5" data-line-number="5">                <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb22-6" data-line-number="6"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>()</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-theme_mprl-1.png" width="300"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-theme_mprl-1.png" width="100%"></p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb23-2" data-line-number="2"><span class="co"># Basic scatter plot with theme_mprl() added</span></a>
 <a class="sourceLine" id="cb23-3" data-line-number="3">ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> datasets<span class="op">::</span>mtcars, </a>
 <a class="sourceLine" id="cb23-4" data-line-number="4">                <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb23-5" data-line-number="5"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb23-6" data-line-number="6"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/theme_mprl">theme_mprl</a></span>()</a></code></pre></div>
-<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-theme_mprl-2.png" width="300"></p>
+<p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-theme_mprl-2.png" width="100%"></p>
 <p>Please note that this project is released with a <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 </div>

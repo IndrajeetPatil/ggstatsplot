@@ -4,7 +4,7 @@
 \alias{grouped_gghistostats}
 \title{Grouped histograms for distribution of a numeric variable}
 \arguments{
-\item{grouping.vars}{List of grouping variables.}
+\item{grouping.var}{Grouping variable.}
 
 \item{...}{Arguments passed on to \code{combine_plots}
 \describe{
@@ -55,8 +55,9 @@ data = gapminder::gapminder,
 x = lifeExp,
 xlab = "Life expectancy",
 test.value = 50,
-grouping.vars = continent,
-nrow = 3
+grouping.var = continent,
+nrow = 3,
+messages = FALSE
 )
 
 }

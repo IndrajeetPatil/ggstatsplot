@@ -145,7 +145,7 @@ ggstatsplot::ggbetweenstats(data = datasets::iris,
                             messages = FALSE)
 ```
 
-![](man/figures/README-ggbetweenstats1-1.png)<!-- -->
+<img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />
 
 Number of other arguments can be specified to make this plot even more
 informative and, additionally, this function returns a `ggplot2` object
@@ -174,7 +174,7 @@ ggstatsplot::ggbetweenstats(
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
 ```
 
-![](man/figures/README-ggbetweenstats2-1.png)<!-- -->
+<img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
 
 The `type` (of test) argument also accepts the following abbreviations:
 “p” (for *parametric*), “np” (for *nonparametric*), “r” (for
@@ -224,7 +224,7 @@ cowplot::plot_grid(p1, p2, p3,
 )
 ```
 
-![](man/figures/README-ggbetweenstats3-1.png)<!-- -->
+<img src="man/figures/README-ggbetweenstats3-1.png" width="100%" />
 
 Variant of this function `ggwithinstats` is currently under work. You
 *can* still use this function just to prepare the **plot**, but the
@@ -247,7 +247,7 @@ ggstatsplot::ggscatterstats(data = datasets::iris,
                             messages = FALSE)
 ```
 
-![](man/figures/README-ggscatterstats1-1.png)<!-- -->
+<img src="man/figures/README-ggscatterstats1-1.png" width="100%" />
 
 Number of other arguments can be specified to modify this basic plot-
 
@@ -276,7 +276,7 @@ ggstatsplot::ggscatterstats(
 ) 
 ```
 
-![](man/figures/README-ggscatterstats2-1.png)<!-- -->
+<img src="man/figures/README-ggscatterstats2-1.png" width="100%" />
 
 The `type` (of test) argument also accepts the following abbreviations:
 “p” (for *parametric*/pearson’s), “np” (for *nonparametric*/spearman),
@@ -301,7 +301,7 @@ ggstatsplot::ggpiestats(data = datasets::iris,
                         messages = FALSE)
 ```
 
-![](man/figures/README-ggpiestats1-1.png)<!-- -->
+<img src="man/figures/README-ggpiestats1-1.png" width="100%" />
 
 This function can also be used to study an interaction between two
 categorical variables. Additionally, as with the other functions in
@@ -319,7 +319,7 @@ ggstatsplot::ggpiestats(data = datasets::mtcars,
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modifcation outside of ggstatsplot    
 ```
 
-![](man/figures/README-ggpiestats2-1.png)<!-- -->
+<img src="man/figures/README-ggpiestats2-1.png" width="100%" />
 
 As with the other functions, this basic plot can further be modified
 with additional arguments:
@@ -344,7 +344,7 @@ ggstatsplot::ggpiestats(
 ) 
 ```
 
-![](man/figures/README-ggpiestats3-1.png)<!-- -->
+<img src="man/figures/README-ggpiestats3-1.png" width="100%" />
 
   - `gghistostats`
 
@@ -371,7 +371,7 @@ ggstatsplot::gghistostats(
   viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
 ```
 
-![](man/figures/README-gghistostats1-1.png)<!-- -->
+<img src="man/figures/README-gghistostats1-1.png" width="100%" />
 
 The `type` (of test) argument also accepts the following abbreviations:
 “p” (for *parametric*) or “np” (for *nonparametric*) or “bf” (for
@@ -388,7 +388,7 @@ ggstatsplot::gghistostats(
 )
 ```
 
-![](man/figures/README-gghistostats2-1.png)<!-- -->
+<img src="man/figures/README-gghistostats2-1.png" width="100%" />
 
 As seen here, by default, Bayes Factor quantifies the support for the
 alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is
@@ -409,7 +409,7 @@ ggstatsplot::gghistostats(
 )
 ```
 
-![](man/figures/README-gghistostats3-1.png)<!-- -->
+<img src="man/figures/README-gghistostats3-1.png" width="100%" />
 
   - `ggcorrmat`
 
@@ -439,7 +439,7 @@ ggstatsplot::ggcorrmat(
 )
 ```
 
-![](man/figures/README-ggcorrmat1-1.png)<!-- -->
+<img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
 
 Alternatively, you can use it just to get the correlation matrices and
 their corresponding p-values (in a
@@ -545,7 +545,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-![](man/figures/README-combine_plots_purrr1-1.png)<!-- -->
+<img src="man/figures/README-combine_plots_purrr1-1.png" width="100%" />
 
 Here is another example with `ggbetweenstats`-
 
@@ -604,7 +604,7 @@ ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing
                            ))
 ```
 
-![](man/figures/README-combine_plots_purrr2-1.png)<!-- -->
+<img src="man/figures/README-combine_plots_purrr2-1.png" width="100%" />
 
   - `theme_mprl`
 
@@ -620,7 +620,7 @@ ggplot2::ggplot(data = datasets::mtcars,
   ggplot2::geom_point()
 ```
 
-![](man/figures/README-theme_mprl-1.png)<!-- -->
+<img src="man/figures/README-theme_mprl-1.png" width="100%" />
 
 ``` r
 
@@ -631,7 +631,7 @@ ggplot2::ggplot(data = datasets::mtcars,
   ggstatsplot::theme_mprl()
 ```
 
-![](man/figures/README-theme_mprl-2.png)<!-- -->
+<img src="man/figures/README-theme_mprl-2.png" width="100%" />
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.md).

@@ -46,7 +46,6 @@ Gapminder Foundation. Let's have a look at the data-
 library(gapminder)
 library(dplyr)
 library(magrittr)
-library(kableExtra)
 
 gapminder::gapminder %>%
   dplyr::glimpse(x = .)
@@ -134,7 +133,7 @@ also a helper funtion that does this for you: `grouped_gghistostats`. It applied
 plots with the help of `ggstatsplot::combine_plots`.  
 
 ```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 10}
-grouped_gghistostats(
+ggstatsplot::grouped_gghistostats(
   # arguments relevant for gghistostats
   data = gapminder::gapminder,
   x = lifeExp,
@@ -142,11 +141,12 @@ grouped_gghistostats(
   test.value = 48,
   messages = FALSE,
   centrality.para = "mean",
-  grouping.vars = continent,
+  grouping.var = continent,
   # arguments for combine_plots
   title.text = "Life expectancy change in different continents since 1950",
   nrow = 3,
-  ncol = 2
+  ncol = 2,
+  labels = c("(a)","(b)","(c)","(d)","(e)")
 )
 ```
 

@@ -7,7 +7,7 @@
 #' @author Indrajeet Patil
 #'
 #' @inheritParams ggstatsplot::gghistostats
-#' @param grouping.vars List of grouping variables.
+#' @param grouping.var Grouping variable.
 #' @inheritDotParams combine_plots
 #'
 #' @import dplyr
@@ -25,8 +25,9 @@
 #' x = lifeExp,
 #' xlab = "Life expectancy",
 #' test.value = 50,
-#' grouping.vars = continent,
-#' nrow = 3
+#' grouping.var = continent,
+#' nrow = 3,
+#' messages = FALSE
 #' )
 #'
 #' @export
@@ -75,7 +76,7 @@ utils::globalVariables(
 # defining the function
 grouped_gghistostats <- function(data,
                                  x,
-                                 grouping.vars,
+                                 grouping.var,
                                  xlab = NULL,
                                  title = NULL,
                                  subtitle = NULL,
@@ -93,47 +94,29 @@ grouped_gghistostats <- function(data,
                                  messages = TRUE,
                                  ...) {
   # ================== preparing dataframe ==================
-  #
-  # check how many variables were entered for criterion variables vector
-  x <-
-    as.list(rlang::quo_squash(rlang::enquo(x)))
-  x <-
-    if (length(x) == 1) {
-      x
-    } else {
-      x[-1]
-    }
-
-  # check how many variables were entered for grouping variable vector
-  grouping.vars <-
-    as.list(rlang::quo_squash(rlang::enquo(grouping.vars)))
-  grouping.vars <-
-    if (length(grouping.vars) == 1) {
-      grouping.vars
-    } else {
-      grouping.vars[-1]
-    }
 
   # getting the dataframe ready
   df <- dplyr::select(
     .data = data,
-    !!!grouping.vars,
-    !!!x
+    !!rlang::enquo(grouping.var),
+    !!rlang::enquo(x)
   ) %>%
-    dplyr::group_by(.data = ., !!!grouping.vars) %>%
+    dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
+
+  print(df$data)
 
   # creating a list of plots
   plotlist_purrr <- df %>%
     dplyr::mutate(
       .data = .,
       plots = data %>%
-        purrr::set_names(!!!grouping.vars) %>%
+        purrr::set_names(!!rlang::enquo(grouping.var)) %>%
         purrr::map(
           .x = .,
           .f = ~ggstatsplot::gghistostats(
             data = .,
-            x = !!!x,
+            x = !!rlang::enquo(x),
             xlab = xlab,
             title = title,
             subtitle = subtitle,

@@ -62,7 +62,8 @@
 #' data = NULL,
 #' x = stats::rnorm(n = 1000, mean = 0, sd = 1),
 #' centrality.para = "mean",
-#' type = "np")
+#' type = "np"
+#' )
 #'
 #' # more detailed function call
 #' ggstatsplot::gghistostats(
