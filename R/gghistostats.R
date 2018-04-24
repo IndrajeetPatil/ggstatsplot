@@ -26,10 +26,6 @@
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
 #'   `FALSE`, no statistical tests will be run.
-#' @param density.plot Decides whether kernel density estimate, which is a
-#'   smoothed version of the histogram, is to be overlayed on top of the
-#'   histogram.
-#' @param density.colour Decides colour for the density plot.
 #' @param centrality.para Decides *which* measure of central tendency ("mean" or
 #'   "median") is to be displayed as a vertical line.
 #' @param centrality.colour Decides colour for the vertical line.
@@ -76,7 +72,6 @@
 #' bf.prior = 0.8,
 #' test.value = 3,
 #' centrality.para = "mean",
-#' density.plot = TRUE,
 #' binwidth.adjust = TRUE,
 #' binwidth = 0.10
 #' )
@@ -115,7 +110,6 @@ utils::globalVariables(
     "LL",
     "UL",
     "..count..",
-    "..density..",
     "dnorm",
     "mean",
     "median",
@@ -139,8 +133,6 @@ gghistostats <-
            bf.message = TRUE,
            k = 3,
            results.subtitle = TRUE,
-           density.plot = FALSE,
-           density.colour = "black",
            centrality.para = NULL,
            centrality.colour = "blue",
            binwidth.adjust = FALSE,
@@ -349,7 +341,7 @@ gghistostats <-
           alpha = 0.7,
           binwidth = binwidth,
           na.rm = TRUE,
-          mapping = ggplot2::aes(y = ..density..,
+          mapping = ggplot2::aes(y = ..count..,
                                  fill = ..count..)
         ) +
         ggplot2::scale_fill_gradient("count",
@@ -369,7 +361,7 @@ gghistostats <-
         ggplot2::geom_histogram(
           col = "black",
           alpha = 0.7,
-          mapping = ggplot2::aes(y = ..density.., fill = ..count..),
+          mapping = ggplot2::aes(y = ..count.., fill = ..count..),
           na.rm = TRUE
         ) +
         ggplot2::scale_fill_gradient("count",
@@ -429,14 +421,6 @@ gghistostats <-
       }
     }
 
-    # if normal distribution plot is to be added
-    if (isTRUE(density.plot)) {
-      plot <- plot +
-        ggplot2::geom_density(colour = density.colour,
-                              size = 1.0,
-                              na.rm = TRUE)
-    }
-
     # if caption is provided then use combine_plots function later on to add this caption
     # add caption with bayes factor
     if (isTRUE(results.subtitle)) {
@@ -452,6 +436,10 @@ gghistostats <-
         }
       }
     }
+
+    # creating proper spacing between the legend.title and the colorbar
+    plot <- legend_title_margin(plot = plot)
+
     # ========================================== messages ==================================================================
     if (isTRUE(messages)) {
       # display normality test result as a message
@@ -474,6 +462,7 @@ gghistostats <-
         ))
       }
     }
+
     # return the final plot
     return(plot)
   }

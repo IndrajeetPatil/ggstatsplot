@@ -14,8 +14,7 @@ knitr::opts_chunk$set(
 # ggstatsplot: `ggplot2` Based Plots with Statistical Details
 
 [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
-[![CRAN version badge](https://www.r-pkg.org/badges/version/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.2.9000-orange.svg?style=flat-square)](commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.1.9000-orange.svg?style=flat-square)](commits/master)
 [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
@@ -29,6 +28,7 @@ knitr::opts_chunk$set(
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
 
 <!-- 
+[![CRAN version badge](https://www.r-pkg.org/badges/version/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Open issues](http://img.shields.io/github/issues/badges/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues/)
 [![Research software impact](http://depsy.org/api/package/cran/ggstatsplot/badge.svg)](http://depsy.org/package/r/ggstatsplot)
 [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
@@ -58,7 +58,8 @@ To get the latest, stable CRAN release:
 utils::install.packages(pkgs = "ggstatsplot")
 ```
 
-You can get the **development** version from GitHub. If you are in hurry and want to reduce the time of installation, prefer-
+You can get the **development** version from GitHub. If you are in hurry and
+want to reduce the time of installation, prefer-
 
 ```{r installation1, eval = FALSE}
 # install.packages("devtools")                                # needed package to download from GitHub repo
@@ -197,7 +198,10 @@ cowplot::plot_grid(p1, p2, p3,
 )
 ```
 
-Variant of this function `ggwithinstats` is currently under work. You *can* still use this function just to prepare the **plot**, but the statistical details will be incorrect. You can remove them by adding `labs(subtitle = NULL)` to your code which will remove the subtitle containing stats.
+Variant of this function `ggwithinstats` is currently under work. You *can*
+still use this function just to prepare the **plot**, but the statistical
+details will be incorrect. You can remove them by adding `labs(subtitle = NULL)`
+to your code which will remove the subtitle containing stats.
 
 * `ggscatterstats`
 
@@ -316,7 +320,6 @@ ggstatsplot::gghistostats(
   test.value = 3,                 # default value is 0
   centrality.para = "mean",       # which measure of central tendency is to be plotted
   centrality.colour = "red",      # decides colour of vertical line representing central tendency
-  density.plot = TRUE,            # whether density plot is to be overlayed on a histogram
   binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
   binwidth = 0.10,                # binwidth value (needs to be toyed around with until you find the best one)
   messages = FALSE                # turn off the messages
@@ -414,8 +417,7 @@ package like [`purrr`](http://purrr.tidyverse.org/) that replaces many for loops
 with code that is both more succinct and easier to read and, therefore, `purrr`
 should be preferrred.
 
-An example is provided below. Notice how little code is needed not only to
-prepare the plots but also to plot the statistical test results.
+An example is provided below. 
 
 ```{r combine_plots_purrr1, message = FALSE, warning = FALSE, dpi = 100, fig.height = 12, fig.width = 8}
 

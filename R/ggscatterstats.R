@@ -74,9 +74,6 @@
 #' marginal.type = 'density'
 #' )
 #'
-#' @note If you want to use `marginal.type = "violin"`, you will have to use
-#'   development version of `ggExtra`
-#'
 #' @export
 
 # defining global variables and functions to quient the R CMD check notes

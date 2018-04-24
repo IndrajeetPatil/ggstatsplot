@@ -36,12 +36,6 @@ rejected (Default: \code{bf.message = TRUE}).}
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \code{FALSE}, no statistical tests will be run.}
 
-\item{density.plot}{Decides whether kernel density estimate, which is a
-smoothed version of the histogram, is to be overlayed on top of the
-histogram.}
-
-\item{density.colour}{Decides colour for the density plot.}
-
 \item{centrality.para}{Decides \emph{which} measure of central tendency ("mean" or
 "median") is to be displayed as a vertical line.}
 
@@ -86,7 +80,6 @@ type = "bf",
 bf.prior = 0.8,
 test.value = 3,
 centrality.para = "mean",
-density.plot = TRUE,
 binwidth.adjust = TRUE,
 binwidth = 0.10
 )

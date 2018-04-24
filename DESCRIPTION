@@ -13,6 +13,7 @@ Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with details
   behavioral sciences community to provide a one-line code to generate information-rich plots for 
   statistical analysis of continuous (violin plots, scatterplots, histograms) or categorical (pie charts) data.
 License: GPL-3 | file LICENSE
+URL: https://indrajeetpatil.github.io/ggstatsplot/
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.3.0)
@@ -32,7 +33,7 @@ Imports:
     grid,
     gtable,
     jmv (>= 0.8.6.2),
-    magrittr,
+    magrittr (>= 1.5),
     MASS (>= 7.3-47),
     nortest,
     purrr,
@@ -44,12 +45,15 @@ Imports:
     tidyr,
     userfriendlyscience (>= 0.7.0),
     WRS2 (>= 0.9-2)
-Suggests: 
+Suggests:
     datasets,
+    gapminder,
     grDevices,
+    kableExtra,
     knitr,
     rmarkdown
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
+VignetteBuilder: knitr

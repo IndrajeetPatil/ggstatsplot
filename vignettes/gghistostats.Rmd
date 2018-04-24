@@ -1,0 +1,154 @@
+---
+title: "gghistostats"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 100
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The function `ggstatsplot::gghistostats` is meant to provide a publication-ready
+histogram with all statistical details included in the plot itself. We will see
+examples of how to use this function in this vignette with the `gapminder`
+dataset.
+
+To begin with, here are some instances where you would want to use
+`gghistostats`-
+
+  - to check distribution of a continuous variable
+  - to check if the mean of variable is different from a specified value
+
+## gapminder dataset
+
+This dataset (available in eponymous
+[package](https://CRAN.R-project.org/package=gapminder) on CRAN)
+provides values for life expectancy, GDP per capita, and population, every five
+years, from 1952 to 2007, for each of 142 countries and was collected by the
+Gapminder Foundation. Let's have a look at the data-
+
+```{r gapminder, warning = FALSE, message = FALSE}
+library(gapminder)
+library(dplyr)
+library(magrittr)
+library(kableExtra)
+
+gapminder::gapminder %>%
+  dplyr::glimpse(x = .)
+```
+
+## Distribution with `gghistostats`
+
+Suppose the first thing we want to check is the distribution of population
+worldwide in 2007. In this case, we are not interested in any statistics and,
+therefore, can set the `results.subtitle` argument to `FALSE`.
+
+```{r age_distribution1, warning = FALSE, message = FALSE, fig.height = 7}
+library(ggstatsplot)
+
+gapminder::gapminder %>%
+  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
+  ggstatsplot::gghistostats(
+    data = .,                                           # data from which variable is to be taken
+    x = pop,                                            # numeric variable
+    results.subtitle = FALSE,                           # don't run statistical tests
+    messages = FALSE,                                   # turn off messages
+    xlab = "Population",                                # x-axis label
+    title = "Distribution of population worldwide",     # title for the plot
+    subtitle = "Year: 2007",                            # subtitle for the plot
+    caption = "Data courtesy of: Gapminder Foundation"  # caption for the plot
+  )
+```
+
+Although this plot is useful, it is still not satisfactory as most of the mass
+seems to be concentrated at 0 due to the large range of numbers. We can remedy
+this by converting population to logarithmic scale. We can additionally adjust
+binwidth so that we have bins for every increase in order of magnitude.
+
+```{r age_distribution2, warning = FALSE, message = FALSE, fig.height = 7}
+gapminder::gapminder %>%
+  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
+  dplyr::mutate(.data = ., pop_log = log10(pop)) %>%    # creating new population variable
+  ggstatsplot::gghistostats(
+    data = .,                                           # data from which variable is to be taken
+    x = pop_log,                                        # numeric variable
+    results.subtitle = FALSE,                           # don't run statistical tests
+    messages = FALSE,                                   # turn off messages
+    xlab = "Population (logarithmic)",                  # x-axis label
+    title = "Distribution of population worldwide",     # title for the plot
+    subtitle = "Year: 2007",                            # subtitle for the plot
+    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
+    binwidth.adjust = TRUE,                             # adjust binwidth
+    binwidth = 1                                        # new binwidth
+  )
+```
+
+## Statistical analysis with `gghistostats`
+
+Let's say we are now interested in investigating whether the mean life
+expectancy in 2007 across the world has improved during the 20th-Century.
+In 1950, it was [48](https://ourworldindata.org/life-expectancy), so this is the
+`test.value` we are going to use.
+
+```{r stats1, warning = FALSE, message = FALSE, fig.height = 7}
+gapminder::gapminder %>%
+  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
+  ggstatsplot::gghistostats(
+    data = .,                                           # data from which variable is to be taken
+    x = lifeExp,                                        # numeric variable
+    messages = FALSE,                                   # turn off messages
+    test.value = 48,                                    # test value for one-sample t-test
+    xlab = "Life expectancy",                           # x-axis label
+    title = "Life expectancy worldwide",                # title for the plot
+    subtitle = "Year: 2007",                            # subtitle for the plot
+    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
+    centrality.para = "mean"                            # plotting centrality parameter (mean)
+  )
+```
+
+Although there are still some countries where the life expectancy is low, on
+average, the life expectancy worldwide has improved compared to what it was
+in 1950.
+
+## Grouped analysis with `gghistostats`
+
+What if we want to do the same analysis separately for all five continents? In
+that case, we will have to either write a `for` loop or use `purrr`. There is
+also a helper funtion that does this for you: `grouped_gghistostats`. It applied
+`gghistostats` across all specified grouping variables and then combines list of
+plots with the help of `ggstatsplot::combine_plots`.  
+
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 10}
+grouped_gghistostats(
+  # arguments relevant for gghistostats
+  data = gapminder::gapminder,
+  x = lifeExp,
+  xlab = "Life expectancy",
+  test.value = 48,
+  messages = FALSE,
+  centrality.para = "mean",
+  grouping.vars = continent,
+  # arguments for combine_plots
+  title.text = "Life expectancy change in different continents since 1950",
+  nrow = 3,
+  ncol = 2
+)
+```
+
+As can be seen from these plots, life expectancy has improved in all continents
+in 2007 as compared to the global average of 1950.

@@ -4,9 +4,7 @@
 # ggstatsplot: `ggplot2` Based Plots with Statistical Details
 
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
-[![CRAN version
-badge](https://www.r-pkg.org/badges/version/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.2.9000-orange.svg?style=flat-square)](commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.1.9000-orange.svg?style=flat-square)](commits/master)
 [![Daily downloads
 badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Weekly downloads
@@ -23,12 +21,13 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--18-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--24-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
 
 <!-- 
+[![CRAN version badge](https://www.r-pkg.org/badges/version/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Open issues](http://img.shields.io/github/issues/badges/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues/)
 [![Research software impact](http://depsy.org/api/package/cran/ggstatsplot/badge.svg)](http://depsy.org/package/r/ggstatsplot)
 [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
@@ -365,7 +364,6 @@ ggstatsplot::gghistostats(
   test.value = 3,                 # default value is 0
   centrality.para = "mean",       # which measure of central tendency is to be plotted
   centrality.colour = "red",      # decides colour of vertical line representing central tendency
-  density.plot = TRUE,            # whether density plot is to be overlayed on a histogram
   binwidth.adjust = TRUE,         # whether binwidth needs to be adjusted
   binwidth = 0.10,                # binwidth value (needs to be toyed around with until you find the best one)
   messages = FALSE                # turn off the messages
@@ -490,8 +488,7 @@ programming package like [`purrr`](http://purrr.tidyverse.org/) that
 replaces many for loops with code that is both more succinct and easier
 to read and, therefore, `purrr` should be preferrred.
 
-An example is provided below. Notice how little code is needed not only
-to prepare the plots but also to plot the statistical test results.
+An example is provided below.
 
 ``` r
 

@@ -62,10 +62,6 @@ Scatterplots from `ggplot2`` combined with add marginal
 histograms/boxplots/density plots with statistical details added as a
 subtitle.
 }
-\note{
-If you want to use \code{marginal.type = "violin"}, you will have to use
-development version of \code{ggExtra}
-}
 \examples{
 
 library(datasets)

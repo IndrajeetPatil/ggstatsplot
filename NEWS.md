@@ -2,13 +2,19 @@
 
 NEW FEATURES
 
-- Bayesian test added to `gghistostats`.
+  - Bayesian test added to `gghistostats`.
+  - Vignette added for `gghistostats`.
+  - Added new function `grouped_gghistostats` to facilitate applying
+    `gghistostats` for multiple levels of a grouping factor.
 
 MAJOR CHANGES
 
-- Functions `signif_column` and `grouped_proptest` are now deprecated. They were
-exported in the first release by mistake.
-
+  - Functions `signif_column` and `grouped_proptest` are now deprecated. They
+    were exported in the first release by mistake.
+  - Function `gghistostats` no longer displays both density and count since the
+    density information was redundant. The `density.plot` argument has also been
+    deprecated.
+    
 MINOR CHANGES
 
 - More examples added to `README` document.
