@@ -104,8 +104,6 @@ grouped_gghistostats <- function(data,
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
 
-  print(df$data)
-
   # creating a list of plots
   plotlist_purrr <- df %>%
     dplyr::mutate(
