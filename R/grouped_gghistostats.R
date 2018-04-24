@@ -6,13 +6,15 @@
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil
 #'
-#' @inheritParams ggstatsplot::gghistostats
 #' @param grouping.var Grouping variable.
 #' @inheritDotParams combine_plots
+#' @inheritParams `gghistostats` -title
 #'
 #' @import dplyr
 #' @import rlang
 #'
+#' @importFrom magrittr "%<>%"
+#' @importFrom magrittr "%>%"
 #' @importFrom purrr map
 #' @importFrom tidyr nest
 #'
@@ -36,6 +38,7 @@
 # defining global variables and functions to quient the R CMD check notes
 utils::globalVariables(
   c(
+    "%<>%",
     "U",
     "V",
     "Z",
@@ -78,7 +81,6 @@ grouped_gghistostats <- function(data,
                                  x,
                                  grouping.var,
                                  xlab = NULL,
-                                 title = NULL,
                                  subtitle = NULL,
                                  caption = NULL,
                                  type = "parametric",
@@ -89,6 +91,8 @@ grouped_gghistostats <- function(data,
                                  results.subtitle = TRUE,
                                  centrality.para = NULL,
                                  centrality.colour = "blue",
+                                 test.value.line = FALSE,
+                                 test.value.colour = "black",
                                  binwidth.adjust = FALSE,
                                  binwidth = NULL,
                                  messages = TRUE,
@@ -96,11 +100,14 @@ grouped_gghistostats <- function(data,
   # ================== preparing dataframe ==================
 
   # getting the dataframe ready
-  df <- dplyr::select(
-    .data = data,
-    !!rlang::enquo(grouping.var),
-    !!rlang::enquo(x)
-  ) %>%
+  df <- dplyr::select(.data = data,
+                      !!rlang::enquo(grouping.var),
+                      !!rlang::enquo(x)) %>%
+    dplyr::mutate(.data = .,
+                  title.text = !!rlang::enquo(grouping.var))
+
+  # creating a nested dataframe
+  df %<>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
 
@@ -112,11 +119,11 @@ grouped_gghistostats <- function(data,
         purrr::set_names(!!rlang::enquo(grouping.var)) %>%
         purrr::map(
           .x = .,
-          .f = ~ggstatsplot::gghistostats(
+          .f = ~ ggstatsplot::gghistostats(
             data = .,
             x = !!rlang::enquo(x),
             xlab = xlab,
-            title = title,
+            title = as.character(.$title.text),
             subtitle = subtitle,
             caption = caption,
             type = type,
@@ -127,6 +134,8 @@ grouped_gghistostats <- function(data,
             results.subtitle = results.subtitle,
             centrality.para = centrality.para,
             centrality.colour = centrality.colour,
+            test.value.line = test.value.line,
+            test.value.colour = test.value.colour,
             binwidth.adjust = binwidth.adjust,
             binwidth = binwidth,
             messages = messages
@@ -136,10 +145,8 @@ grouped_gghistostats <- function(data,
 
   # combining the list of plots into a single plot
   combined_plot <-
-    ggstatsplot::combine_plots(
-      plotlist = plotlist_purrr$plots,
-      ...
-    )
+    ggstatsplot::combine_plots(plotlist = plotlist_purrr$plots,
+                               ...)
 
   # return the combined plot
   return(combined_plot)

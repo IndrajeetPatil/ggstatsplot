@@ -2,7 +2,8 @@
 
 NEW FEATURES
 
-  - Bayesian test added to `gghistostats`.
+  - Bayesian test added to `gghistostats` and two new arguments to also display
+    a vertical line for `test.value` argument.
   - Vignette added for `gghistostats`.
   - Added new function `grouped_gghistostats` to facilitate applying
     `gghistostats` for multiple levels of a grouping factor.

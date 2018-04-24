@@ -139,11 +139,13 @@ ggstatsplot::grouped_gghistostats(
   x = lifeExp,
   xlab = "Life expectancy",
   test.value = 48,
+  test.value.line = TRUE,
   messages = FALSE,
   centrality.para = "mean",
   grouping.var = continent,
   # arguments for combine_plots
   title.text = "Life expectancy change in different continents since 1950",
+  caption.text = "Note: black line - 1950; blue line - 2007",
   nrow = 3,
   ncol = 2,
   labels = c("(a)","(b)","(c)","(d)","(e)")

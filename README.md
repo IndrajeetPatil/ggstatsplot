@@ -404,6 +404,7 @@ ggstatsplot::gghistostats(
   x = len,
   centrality.para = "mean",
   test.value = 20,
+  test.value.line = TRUE,
   xlab = "Tooth length",
   messages = FALSE
 )

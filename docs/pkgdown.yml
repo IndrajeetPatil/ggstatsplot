@@ -1,6 +1,6 @@
 pandoc: 2.1.1
 pkgdown: 0.1.0.9000
-pkgdown_sha: 14687f642251dbba51e880dff534a5973671623d
+pkgdown_sha: 5c13fadb5a5db398f6be93175fdd2d09c2fb3081
 articles:
   gghistostats: gghistostats.html
 

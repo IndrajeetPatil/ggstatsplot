@@ -39,7 +39,14 @@ to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \item{centrality.para}{Decides \emph{which} measure of central tendency ("mean" or
 "median") is to be displayed as a vertical line.}
 
-\item{centrality.colour}{Decides colour for the vertical line.}
+\item{centrality.colour}{Decides colour for the vertical line for centrality
+parameter (Default: \code{"blue"}).}
+
+\item{test.value.line}{Decides whether test value is to be displayed as a
+vertical line (Default: \code{FALSE}).}
+
+\item{test.value.colour}{Decides colour for the vertical line denoting test
+value (Default: \code{"black"}).}
 
 \item{binwidth.adjust}{If set to \code{TRUE}, you can use it to pick better value
 with the \code{binwidth} argument to \code{stat_bin()}.}
@@ -81,6 +88,7 @@ type = "bf",
 bf.prior = 0.8,
 test.value = 3,
 centrality.para = "mean",
+test.value.line = TRUE,
 binwidth.adjust = TRUE,
 binwidth = 0.10
 )
