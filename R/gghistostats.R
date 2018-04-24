@@ -57,7 +57,7 @@
 #' x = len,
 #' xlab = "Tooth length")
 #'
-#'# another example
+#' # another example
 #' ggstatsplot::gghistostats(
 #' data = NULL,
 #' x = stats::rnorm(n = 1000, mean = 0, sd = 1),
@@ -122,41 +122,46 @@ utils::globalVariables(
 # function body
 gghistostats <-
   function(data = NULL,
-           x,
-           xlab = NULL,
-           title = NULL,
-           subtitle = NULL,
-           caption = NULL,
-           type = "parametric",
-           test.value = 0,
-           bf.prior = 0.707,
-           bf.message = TRUE,
-           k = 3,
-           results.subtitle = TRUE,
-           centrality.para = NULL,
-           centrality.colour = "blue",
-           binwidth.adjust = FALSE,
-           binwidth = NULL,
-           messages = TRUE) {
+             x,
+             xlab = NULL,
+             title = NULL,
+             subtitle = NULL,
+             caption = NULL,
+             type = "parametric",
+             test.value = 0,
+             bf.prior = 0.707,
+             bf.message = TRUE,
+             k = 3,
+             results.subtitle = TRUE,
+             centrality.para = NULL,
+             centrality.colour = "blue",
+             binwidth.adjust = FALSE,
+             binwidth = NULL,
+             messages = TRUE) {
     # if data is not available then don't display any messages
-    if (is.null(data))
+    if (is.null(data)) {
       messages <- FALSE
+    }
     # save the value of caption in another variable because caption is going to be modified in the function body
     bf.caption <- caption
     # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(.data = data,
-                                       !!rlang::enquo(x)))
+      lab.df <- colnames(dplyr::select(
+        .data = data,
+        !!rlang::enquo(x)
+      ))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
       }
       # if dataframe is provided
       data <-
-        dplyr::select(.data = data,
-                      x = !!rlang::enquo(x))
+        dplyr::select(
+          .data = data,
+          x = !!rlang::enquo(x)
+        )
     } else {
       # if vectors are provided
       data <-
@@ -176,7 +181,7 @@ gghistostats <-
       hypothesis = "dt",
       # two-sided hypothesis-testing
       effectSize = TRUE,
-      miss = 'listwise'
+      miss = "listwise"
       # excludes a row from all analyses if one of its entries is missing
     )
 
@@ -334,19 +339,24 @@ gghistostats <-
 
     # if the user wants to adjust the binwidth
     if (isTRUE(binwidth.adjust)) {
-      plot <- ggplot2::ggplot(data = data,
-                              mapping = ggplot2::aes(x = x)) +
+      plot <- ggplot2::ggplot(
+        data = data,
+        mapping = ggplot2::aes(x = x)
+      ) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
           na.rm = TRUE,
-          mapping = ggplot2::aes(y = ..count..,
-                                 fill = ..count..)
+          mapping = ggplot2::aes(
+            y = ..count..,
+            fill = ..count..
+          )
         ) +
         ggplot2::scale_fill_gradient("count",
-                                     low = "green",
-                                     high = "red") +
+          low = "green",
+          high = "red"
+        ) +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -356,8 +366,10 @@ gghistostats <-
         )
     } else {
       # if not, use the defaults
-      plot <- ggplot2::ggplot(data = data,
-                              mapping = ggplot2::aes(x = x)) +
+      plot <- ggplot2::ggplot(
+        data = data,
+        mapping = ggplot2::aes(x = x)
+      ) +
         ggplot2::geom_histogram(
           col = "black",
           alpha = 0.7,
@@ -365,8 +377,9 @@ gghistostats <-
           na.rm = TRUE
         ) +
         ggplot2::scale_fill_gradient("count",
-                                     low = "green",
-                                     high = "red") +
+          low = "green",
+          high = "red"
+        ) +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -430,7 +443,8 @@ gghistostats <-
             if (!is.null(bf.caption)) {
               plot <-
                 ggstatsplot::combine_plots(plot,
-                                           caption.text = bf.caption.text)
+                  caption.text = bf.caption.text
+                )
             }
           }
         }
@@ -455,9 +469,11 @@ gghistostats <-
             ": p-value = "
           ),
           crayon::yellow(
-            ggstatsplot::specify_decimal_p(x = ad_norm$p.value[[1]],
-                                           k,
-                                           p.value = TRUE)
+            ggstatsplot::specify_decimal_p(
+              x = ad_norm$p.value[[1]],
+              k,
+              p.value = TRUE
+            )
           )
         ))
       }

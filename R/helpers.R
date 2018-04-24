@@ -36,9 +36,11 @@ legend_title_margin <- function(plot,
   # set up the heights: for the two margins and the original title
   # unit.c produces a new unit object by combining the unit objects specified as arguments
   heights <-
-    grid::unit.c(t.margin,
-                 grid::unit(x = 1, units = "grobheight", data = title),
-                 b.margin)
+    grid::unit.c(
+      t.margin,
+      grid::unit(x = 1, units = "grobheight", data = title),
+      b.margin
+    )
 
   # set up a column of three viewports
   vp <- grid::viewport(
@@ -52,9 +54,11 @@ legend_title_margin <- function(plot,
 
   # the middle row, where the title text will appear, is named as 'child_vp'.
   child_vp <-
-    grid::viewport(layout.pos.row = 2,
-                   clip = "off",
-                   name = "child_vp")
+    grid::viewport(
+      layout.pos.row = 2,
+      clip = "off",
+      name = "child_vp"
+    )
 
   # put the title into a gTree containing one grob (the title) and the three viewports
   TitleText <- grid::gTree(
@@ -171,9 +175,11 @@ grouped_proptest <- function(data,
     }
 
   # getting the dataframe ready
-  df <- dplyr::select(.data = data,
-                      !!!grouping.vars,
-                      measure = !!rlang::enquo(measure))
+  df <- dplyr::select(
+    .data = data,
+    !!!grouping.vars,
+    measure = !!rlang::enquo(measure)
+  )
 
   # creating a nested dataframe
   df_nest <- df %>%
@@ -186,7 +192,7 @@ grouped_proptest <- function(data,
       .data = .,
       percentage = data %>% purrr::map(
         .x = .,
-        .f = ~  dplyr::group_by(.data = ., measure) %>%
+        .f = ~dplyr::group_by(.data = ., measure) %>%
           dplyr::summarize(.data = ., counts = length(measure)) %>%
           dplyr::mutate(
             .data = .,
@@ -202,28 +208,32 @@ grouped_proptest <- function(data,
           )
       )
     ) %>%
-    dplyr::mutate(.data = .,
-                  chi_sq = data %>% purrr::map(
-                    .x = .,
-                    .f = ~ stats::chisq.test(x = base::table(.$measure))
-                  )) %>%
+    dplyr::mutate(
+      .data = .,
+      chi_sq = data %>% purrr::map(
+        .x = .,
+        .f = ~stats::chisq.test(x = base::table(.$measure))
+      )
+    ) %>%
     dplyr::mutate(
       .data = .,
       results = chi_sq %>% purrr::map(
         .x = .,
         .f = ~
-          base::cbind.data.frame(
-            "Chi-squared" = as.numeric(as.character(
-              ggstatsplot::specify_decimal_p(x = .$statistic, k = 3)
-            )),
-            "df" = as.numeric(as.character(
-              ggstatsplot::specify_decimal_p(x = .$parameter, k = 0)
-            )),
-            "p-value" = as.numeric(as.character(
-              ggstatsplot::specify_decimal_p(x = .$p.value,
-                                             k = 3)
-            ))
-          )
+        base::cbind.data.frame(
+          "Chi-squared" = as.numeric(as.character(
+            ggstatsplot::specify_decimal_p(x = .$statistic, k = 3)
+          )),
+          "df" = as.numeric(as.character(
+            ggstatsplot::specify_decimal_p(x = .$parameter, k = 0)
+          )),
+          "p-value" = as.numeric(as.character(
+            ggstatsplot::specify_decimal_p(
+              x = .$p.value,
+              k = 3
+            )
+          ))
+        )
       )
     ) %>%
     dplyr::select(.data = ., -data, -chi_sq) %>%
@@ -280,22 +290,26 @@ grouped_proptest <- function(data,
 
 signif_column <- function(data = NULL, p) {
   # storing variable name to be assigned later
-  p_lab <- colnames(dplyr::select(.data = data,
-                                  !!rlang::enquo(p)))
+  p_lab <- colnames(dplyr::select(
+    .data = data,
+    !!rlang::enquo(p)
+  ))
   # if dataframe is provided
   if (!is.null(data)) {
     df <-
-      dplyr::select(.data = data,
-                    # column corresponding to p-values
-                    p = !!rlang::enquo(p),
-                    dplyr::everything())
+      dplyr::select(
+        .data = data,
+        # column corresponding to p-values
+        p = !!rlang::enquo(p),
+        dplyr::everything()
+      )
   } else {
     # if only vector is provided
     df <-
       base::cbind.data.frame(p = p) # column corresponding to p-values
   }
 
-  #make sure the p-value column is numeric; if not, convert it to numeric and give a warning to the user
+  # make sure the p-value column is numeric; if not, convert it to numeric and give a warning to the user
   if (!is.numeric(df$p)) {
     df$p <- as.numeric(as.character(df$p))
   }

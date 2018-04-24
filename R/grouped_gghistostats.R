@@ -115,9 +115,11 @@ grouped_gghistostats <- function(data,
     }
 
   # getting the dataframe ready
-  df <- dplyr::select(.data = data,
-                      !!!grouping.vars,
-                      !!!x) %>%
+  df <- dplyr::select(
+    .data = data,
+    !!!grouping.vars,
+    !!!x
+  ) %>%
     dplyr::group_by(.data = ., !!!grouping.vars) %>%
     tidyr::nest(data = .)
 
@@ -129,32 +131,35 @@ grouped_gghistostats <- function(data,
         purrr::set_names(!!!grouping.vars) %>%
         purrr::map(
           .x = .,
-          .f = ~ ggstatsplot::gghistostats(data = .,
-                                           x = !!!x,
-                                           xlab = xlab,
-                                           title = title,
-                                           subtitle = subtitle,
-                                           caption = caption,
-                                           type = type,
-                                           test.value = test.value,
-                                           bf.prior = bf.prior,
-                                           bf.message = bf.message,
-                                           k = k,
-                                           results.subtitle = results.subtitle,
-                                           centrality.para = centrality.para,
-                                           centrality.colour = centrality.colour,
-                                           binwidth.adjust = binwidth.adjust,
-                                           binwidth = binwidth,
-                                           messages = messages)
+          .f = ~ggstatsplot::gghistostats(
+            data = .,
+            x = !!!x,
+            xlab = xlab,
+            title = title,
+            subtitle = subtitle,
+            caption = caption,
+            type = type,
+            test.value = test.value,
+            bf.prior = bf.prior,
+            bf.message = bf.message,
+            k = k,
+            results.subtitle = results.subtitle,
+            centrality.para = centrality.para,
+            centrality.colour = centrality.colour,
+            binwidth.adjust = binwidth.adjust,
+            binwidth = binwidth,
+            messages = messages
+          )
         )
     )
 
   # combining the list of plots into a single plot
   combined_plot <-
-    ggstatsplot::combine_plots(plotlist = plotlist_purrr$plots,
-                               ...)
+    ggstatsplot::combine_plots(
+      plotlist = plotlist_purrr$plots,
+      ...
+    )
 
   # return the combined plot
   return(combined_plot)
-
 }

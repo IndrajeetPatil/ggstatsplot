@@ -49,7 +49,6 @@ Suggests:
     datasets,
     gapminder,
     grDevices,
-    kableExtra,
     knitr,
     rmarkdown
 Encoding: UTF-8

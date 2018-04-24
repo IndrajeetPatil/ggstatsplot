@@ -103,7 +103,7 @@ combine_plots <-
              sub.lineheight = 0.9,
              title.rel.heights = c(0.1, 1.2),
              caption.rel.heights = c(1.2, 0.1),
-             title.caption.rel.heights  = c(0.1, 1.2, 0.1)) {
+             title.caption.rel.heights = c(0.1, 1.2, 0.1)) {
     # preparing the basic plot
     plot <- cowplot::plot_grid(...)
 
