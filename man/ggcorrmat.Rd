@@ -6,14 +6,14 @@
 'ggplot2'/'ggcorrplot'}
 \usage{
 ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
-  type = "full", method = "square", corr.method = "pearson", digits = 2,
-  sig.level = 0.05, hc.order = FALSE, hc.method = "complete",
-  lab = TRUE, colors = c("#6D9EC1", "white", "#E46726"),
-  outline.color = "black", ggtheme = ggplot2::theme_gray, title = NULL,
-  subtitle = NULL, caption = NULL, caption.default = TRUE,
-  lab_col = "black", lab_size = 4.5, insig = "pch", pch = 4,
-  pch.col = "blue", pch.cex = 10, tl.cex = 12, tl.col = "black",
-  tl.srt = 45)
+  type = "full", method = "square", corr.method = "pearson",
+  exact = FALSE, continuity = TRUE, digits = 2, sig.level = 0.05,
+  hc.order = FALSE, hc.method = "complete", lab = TRUE,
+  colors = c("#6D9EC1", "white", "#E46726"), outline.color = "black",
+  ggtheme = ggplot2::theme_gray, title = NULL, subtitle = NULL,
+  caption = NULL, caption.default = TRUE, lab_col = "black",
+  lab_size = 4.5, insig = "pch", pch = 4, pch.col = "blue",
+  pch.cex = 10, tl.cex = 12, tl.col = "black", tl.srt = 45)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -39,6 +39,14 @@ correlation matrix to be used. Allowed values are "square" (default),
 \item{corr.method}{A character string indicating which correlation
 coefficient is to be computed ("pearson" (default) or "kendall", or
 "spearman").}
+
+\item{exact}{A logical indicating whether an exact \emph{p}-value should be
+computed. Used for Kendall's \emph{tau} and Spearman's \emph{rho}. For more details,
+see \code{?stats::cor.test}.}
+
+\item{continuity}{A logical. If \code{TRUE}, a continuity correction is used for
+Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Default:
+\code{TRUE}).}
 
 \item{digits}{Decides the number of decimal digits to be added into the plot
 (Default: 2).}
@@ -83,12 +91,12 @@ shown.}
 (applicable only when \code{lab = TRUE}).}
 
 \item{insig}{Character used to show specialized insignificant correlation
-coefficients ("pch" (default) or "blank"). If "blank", the corresponding
-glyphs will be removed; if "pch" is used, characters (see \code{pch} for
-details) will be added on #' the corresponding glyphs.}
+coefficients (\code{"pch"} (default) or \code{"blank"}). If \code{"blank"}, the
+corresponding glyphs will be removed; if "pch" is used, characters (see
+\code{?pch} for details) will be added on the corresponding glyphs.}
 
 \item{pch}{Decides the glyphs to be used for insignificant correlation
-coefficients (only valid when \code{insig = "pch"}). Default value is 4.}
+coefficients (only valid when \code{insig = "pch"}). Default value is \code{pch = 4}.}
 
 \item{pch.col, pch.cex}{The color and the cex (size) of \code{pch} (only valid when
 \code{insig = "pch"}). Defaults are \code{pch.col = "blue"} and \code{pch.cex = 10}.}
@@ -106,8 +114,6 @@ Visualization of a correlalogram (or correlation matrix) using
 }
 \examples{
 
-library(ggplot2)
-
 # to get the correlalogram
 ggstatsplot::ggcorrmat(
 data = datasets::iris,
@@ -120,6 +126,7 @@ data = datasets::iris,
 cor.vars = c(Sepal.Length:Petal.Width),
 output = "correlations"
 )
+
 # setting output = "p-values" will return the p-value matrix
 
 # modifying few elements of the correlation matrix by changing function defaults

@@ -121,14 +121,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>ggcorrmat</span>(<span class='no'>data</span>, <span class='no'>cor.vars</span>, <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"full"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"square"</span>, <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>,
-  <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#6D9EC1"</span>, <span class='st'>"white"</span>, <span class='st'>"#E46726"</span>),
-  <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a></span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>lab_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>lab_size</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>)</pre>
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"full"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"square"</span>, <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
+  <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>continuity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#6D9EC1"</span>, <span class='st'>"white"</span>, <span class='st'>"#E46726"</span>), <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a></span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>lab_size</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +170,18 @@ correlation matrix to be used. Allowed values are "square" (default),
       <td><p>A character string indicating which correlation
 coefficient is to be computed ("pearson" (default) or "kendall", or
 "spearman").</p></td>
+    </tr>
+    <tr>
+      <th>exact</th>
+      <td><p>A logical indicating whether an exact <em>p</em>-value should be
+computed. Used for Kendall's <em>tau</em> and Spearman's <em>rho</em>. For more details,
+see <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>?stats::cor.test</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>continuity</th>
+      <td><p>A logical. If <code>TRUE</code>, a continuity correction is used for
+Kendall's <em>tau</em> and Spearman's <em>rho</em> when not computed exactly (Default:
+<code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>digits</th>
@@ -244,14 +256,14 @@ shown.</p></td>
     <tr>
       <th>insig</th>
       <td><p>Character used to show specialized insignificant correlation
-coefficients ("pch" (default) or "blank"). If "blank", the corresponding
-glyphs will be removed; if "pch" is used, characters (see <code>pch</code> for
-details) will be added on #' the corresponding glyphs.</p></td>
+coefficients (<code>"pch"</code> (default) or <code>"blank"</code>). If <code>"blank"</code>, the
+corresponding glyphs will be removed; if "pch" is used, characters (see
+<code>?pch</code> for details) will be added on the corresponding glyphs.</p></td>
     </tr>
     <tr>
       <th>pch</th>
       <td><p>Decides the glyphs to be used for insignificant correlation
-coefficients (only valid when <code>insig = "pch"</code>). Default value is 4.</p></td>
+coefficients (only valid when <code>insig = "pch"</code>). Default value is <code>pch = 4</code>.</p></td>
     </tr>
     <tr>
       <th>pch.col, pch.cex</th>
@@ -273,8 +285,6 @@ of p-values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>library</span>(<span class='no'>ggplot2</span>)
-
 <span class='co'># to get the correlalogram</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat'>ggcorrmat</a></span>(
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
@@ -291,7 +301,8 @@ of p-values.</p>
 #&gt; 1 Sepal.Length         1          -0.12         0.87        0.82
 #&gt; 2 Sepal.Width         -0.12        1           -0.43       -0.37
 #&gt; 3 Petal.Length         0.87       -0.43         1           0.96
-#&gt; 4 Petal.Width          0.82       -0.37         0.96        1   </div><div class='input'><span class='co'># setting output = "p-values" will return the p-value matrix</span>
+#&gt; 4 Petal.Width          0.82       -0.37         0.96        1   </div><div class='input'>
+<span class='co'># setting output = "p-values" will return the p-value matrix</span>
 
 <span class='co'># modifying few elements of the correlation matrix by changing function defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat'>ggcorrmat</a></span>(

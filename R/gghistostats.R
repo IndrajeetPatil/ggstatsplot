@@ -152,7 +152,11 @@ gghistostats <-
       messages <- FALSE
     }
     # save the value of caption in another variable because caption is going to be modified in the function body
-    bf.caption <- caption
+    if (is.null(caption)) {
+      bf.caption <- caption
+    } else {
+      bf.caption <- NULL
+    }
     # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
@@ -173,24 +177,26 @@ gghistostats <-
         base::cbind.data.frame(x = x)
     }
     # ========================================== stats ==================================================================
-    # model
-    jmv_os <- jmv::ttestOneS(
-      data = data,
-      vars = "x",
-      students = TRUE,
-      bf = TRUE,
-      bfPrior = bf.prior,
-      mann = TRUE,
-      # Mann-Whitney U test
-      testValue = test.value,
-      hypothesis = "dt",
-      # two-sided hypothesis-testing
-      effectSize = TRUE,
-      miss = "listwise"
-      # excludes a row from all analyses if one of its entries is missing
-    )
 
     if (isTRUE(results.subtitle)) {
+
+      # model
+      jmv_os <- jmv::ttestOneS(
+        data = data,
+        vars = "x",
+        students = TRUE,
+        bf = TRUE,
+        bfPrior = bf.prior,
+        mann = TRUE,
+        # Mann-Whitney U test
+        testValue = test.value,
+        hypothesis = "dt",
+        # two-sided hypothesis-testing
+        effectSize = TRUE,
+        miss = "listwise"
+        # excludes a row from all analyses if one of its entries is missing
+      )
+
       # ========================================== parametric ==================================================================
       if (type == "parametric" || type == "p") {
         # preparing the subtitle
@@ -226,7 +232,6 @@ gghistostats <-
 
         # if effect is not significant, display Bayes Factor in favor of the NULL
         # save it as text if bf.message has not been disabled
-        if (isTRUE(results.subtitle)) {
           if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
             if (isTRUE(bf.message)) {
               bf.caption.text <-
@@ -251,7 +256,7 @@ gghistostats <-
               }
             }
           }
-        }
+
         # ========================================== non-parametric =====================================================
       } else if (type == "nonparametric" || type == "np") {
         # preparing the subtitle

@@ -75,7 +75,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-04-24</h4>
+            <h4 class="date">2018-04-25</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -146,6 +146,7 @@
 <a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="dt">binwidth =</span> <span class="dv">1</span>                                        <span class="co"># new binwidth</span></a>
 <a class="sourceLine" id="cb3-15" data-line-number="15">  )</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/age_distribution2-1.png" width="700"></p>
+<p>This shows the utility of <code>gghistostats</code> in case of data exploration.</p>
 </div>
 <div id="statistical-analysis-with-gghistostats" class="section level2">
 <h2 class="hasAnchor">
@@ -158,7 +159,7 @@
 <a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="dt">data =</span> .,                                           <span class="co"># data from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                        <span class="co"># numeric variable</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                    <span class="co"># test value for one-sample t-test</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                    <span class="co"># test value against which sample mean is to be compared</span></a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                           <span class="co"># x-axis label</span></a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                <span class="co"># title for the plot</span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                            <span class="co"># subtitle for the plot</span></a>
@@ -167,31 +168,59 @@
 <a class="sourceLine" id="cb4-13" data-line-number="13">  )</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/stats1-1.png" width="700"></p>
 <p>Although there are still some countries where the life expectancy is low, on average, the life expectancy worldwide has improved compared to what it was in 1950.</p>
+<p><code>gghistostats</code> also provides the opportunity to compute Bayes Factors to quantify evidence in favor of the <strong>alternative</strong> (BF10) or the <strong>null</strong> hypothesis (BF01). In practice, you need to compute only one and the other will just be the inverse. In the current example, let’s say we want to quantify evidence in favor of the alternative hypothesis (H1) that the life expectancy in 2007 has improved significantly worldwide since 1957. The null, in this case, will of course be that there is no improvement.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="dt">data =</span> .,                                              <span class="co"># data from which variable is to be taken</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                           <span class="co"># numeric variable</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                      <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="dt">type =</span> <span class="st">"bf"</span>,                                           <span class="co"># bayesian one sample t-test</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                       <span class="co"># test value </span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                              <span class="co"># x-axis label</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                   <span class="co"># title for the plot</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                               <span class="co"># subtitle for the plot</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">    <span class="dt">caption =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>, <span class="co"># caption for the plot</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                                <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>                               <span class="co"># plotting centrality parameter (mean)</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">  )</a></code></pre></div>
+<p><img src="gghistostats_files/figure-html/stats_bf-1.png" width="700"></p>
+<p>As this analysis shows, Bayes Factor value provides <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794"><strong>conclusive</strong> evidence</a> in favor of the alternative hypothesis: Life expectancy worldwide has improved significantly since 1957.</p>
 </div>
 <div id="grouped-analysis-with-gghistostats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#grouped-analysis-with-gghistostats" class="anchor"></a>Grouped analysis with <code>gghistostats</code>
 </h2>
-<p>What if we want to do the same analysis separately for all five continents? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>. There is also a helper funtion that does this for you: <code>grouped_gghistostats</code>. It applied <code>gghistostats</code> across all specified grouping variables and then combines list of plots with the help of <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_gghistostats">grouped_gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="co"># arguments relevant for gghistostats</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">data =</span> gapminder<span class="op">::</span>gapminder,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">x =</span> lifeExp,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">test.value =</span> <span class="dv">48</span>,</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">  <span class="dt">grouping.var =</span> continent,</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">  <span class="co"># arguments for combine_plots</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">)</a></code></pre></div>
+<p>What if we want to do the same analysis separately for all five continents? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
+<p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
+<p>Let’s see how we can use this function to apply <code>gghistostats</code> for all five continents. We will be running parametric tests (one sample t-test, i.e.). If you set <code>type = "np"</code>, results from non-parametric test will be displayed.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_gghistostats">grouped_gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">data =</span> .,</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">x =</span> lifeExp,</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">type =</span> <span class="st">"p"</span>,                                   <span class="co"># parametric test</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                     <span class="co"># plotting centrality parameter (mean)</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">  <span class="dt">grouping.var =</span> continent,                     <span class="co"># grouping variable with multiple levels</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb6-19" data-line-number="19">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
+<a class="sourceLine" id="cb6-20" data-line-number="20">)</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="960"></p>
-<p>As can be seen from these plots, life expectancy has improved in all continents in 2007 as compared to the global average of 1950.</p>
+<p>As can be seen from these plots, life expectancy has improved in all continents in 2007 as compared to the global average of 1950. Additionally, we see the benefits of plotting this data separately for each continent. If we look at the standardized effect sizes (Cohen’s <em>d</em>), it is apparent that the biggest improvements in life expectancy outcomes were seen on the continents of Europe, Americas, and Oceania (just one data point is available here), while Asia and Africa exhibit the lowest improvements.</p>
+</div>
+<div id="suggestions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#suggestions" class="anchor"></a>Suggestions</h2>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on the GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </div>
 
@@ -204,6 +233,7 @@
       <li><a href="#distribution-with-gghistostats">Distribution with <code>gghistostats</code></a></li>
       <li><a href="#statistical-analysis-with-gghistostats">Statistical analysis with <code>gghistostats</code></a></li>
       <li><a href="#grouped-analysis-with-gghistostats">Grouped analysis with <code>gghistostats</code></a></li>
+      <li><a href="#suggestions">Suggestions</a></li>
       </ul>
 </div>
       </div>

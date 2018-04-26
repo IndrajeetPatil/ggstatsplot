@@ -57,7 +57,7 @@ Suppose the first thing we want to check is the distribution of population
 worldwide in 2007. In this case, we are not interested in any statistics and,
 therefore, can set the `results.subtitle` argument to `FALSE`.
 
-```{r age_distribution1, warning = FALSE, message = FALSE, fig.height = 7}
+```{r age_distribution1, warning = FALSE, message = FALSE, fig.height = 6}
 library(ggstatsplot)
 
 gapminder::gapminder %>%
@@ -79,7 +79,7 @@ seems to be concentrated at 0 due to the large range of numbers. We can remedy
 this by converting population to logarithmic scale. We can additionally adjust
 binwidth so that we have bins for every increase in order of magnitude.
 
-```{r age_distribution2, warning = FALSE, message = FALSE, fig.height = 7}
+```{r age_distribution2, warning = FALSE, message = FALSE, fig.height = 6}
 gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
   dplyr::mutate(.data = ., pop_log = log10(pop)) %>%    # creating new population variable
@@ -97,6 +97,8 @@ gapminder::gapminder %>%
   )
 ```
 
+This shows the utility of `gghistostats` in case of data exploration.
+
 ## Statistical analysis with `gghistostats`
 
 Let's say we are now interested in investigating whether the mean life
@@ -104,14 +106,14 @@ expectancy in 2007 across the world has improved during the 20th-Century.
 In 1950, it was [48](https://ourworldindata.org/life-expectancy), so this is the
 `test.value` we are going to use.
 
-```{r stats1, warning = FALSE, message = FALSE, fig.height = 7}
+```{r stats1, warning = FALSE, message = FALSE, fig.height = 6}
 gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
   ggstatsplot::gghistostats(
     data = .,                                           # data from which variable is to be taken
     x = lifeExp,                                        # numeric variable
     messages = FALSE,                                   # turn off messages
-    test.value = 48,                                    # test value for one-sample t-test
+    test.value = 48,                                    # test value against which sample mean is to be compared
     xlab = "Life expectancy",                           # x-axis label
     title = "Life expectancy worldwide",                # title for the plot
     subtitle = "Year: 2007",                            # subtitle for the plot
@@ -124,26 +126,67 @@ Although there are still some countries where the life expectancy is low, on
 average, the life expectancy worldwide has improved compared to what it was
 in 1950.
 
+`gghistostats` also provides the opportunity to compute Bayes Factors to
+quantify evidence in favor of the **alternative** (BF10) or the **null**
+hypothesis (BF01). In practice, you need to compute only one and the other will
+just be the inverse. In the current example, let's say we want to quantify
+evidence in favor of the alternative hypothesis (H1) that the life expectancy
+in 2007 has improved significantly worldwide since 1957. The
+null, in this case, will of course be that there is no improvement. 
+
+```{r stats_bf, warning = FALSE, message = FALSE, fig.height = 6}
+gapminder::gapminder %>%
+  dplyr::filter(.data = ., year == 2007) %>%
+  ggstatsplot::gghistostats(
+    data = .,                                              # data from which variable is to be taken
+    x = lifeExp,                                           # numeric variable
+    messages = FALSE,                                      # turn off messages
+    type = "bf",                                           # bayesian one sample t-test
+    test.value = 48,                                       # test value 
+    xlab = "Life expectancy",                              # x-axis label
+    title = "Life expectancy worldwide",                   # title for the plot
+    subtitle = "Year: 2007",                               # subtitle for the plot
+    caption = "Note: black line - 1950; blue line - 2007", # caption for the plot
+    test.value.line = TRUE,                                # show a vertical line at `test.value`
+    centrality.para = "mean"                               # plotting centrality parameter (mean)
+  )
+```
+
+As this analysis shows, Bayes Factor value provides [**conclusive** evidence](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794) in favor of
+the alternative hypothesis: Life expectancy worldwide has improved significantly since 1957.
+
 ## Grouped analysis with `gghistostats`
 
 What if we want to do the same analysis separately for all five continents? In
-that case, we will have to either write a `for` loop or use `purrr`. There is
-also a helper funtion that does this for you: `grouped_gghistostats`. It applied
-`gghistostats` across all specified grouping variables and then combines list of
-plots with the help of `ggstatsplot::combine_plots`.  
+that case, we will have to either write a `for` loop or use `purrr`, none of
+which seem like an exciting prospect.
+
+`ggstatsplot` provides a special helper function for such instances:
+`grouped_gghistostats`. This is merely a wrapper function around
+`ggstatsplot::combine_plots`. It applies `gghistostats` across all **levels** of
+a specified **grouping variable** and then combines list of individual plots
+into a single plot. Note that the grouping variable can be anything: conditions
+in a given study, groups in a study sample, different studies, etc. 
+
+Let's see how we can use this function to apply `gghistostats` for all five
+continents. We will be running parametric tests (one sample t-test, i.e.). If
+you set `type = "np"`, results from non-parametric test will be displayed.
 
 ```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 10}
+gapminder::gapminder %>%
+  dplyr::filter(.data = ., year == 2007) %>%
 ggstatsplot::grouped_gghistostats(
-  # arguments relevant for gghistostats
-  data = gapminder::gapminder,
+  # arguments relevant for ggstatsplot::gghistostats
+  data = .,
   x = lifeExp,
   xlab = "Life expectancy",
-  test.value = 48,
-  test.value.line = TRUE,
-  messages = FALSE,
-  centrality.para = "mean",
-  grouping.var = continent,
-  # arguments for combine_plots
+  type = "p",                                   # parametric test
+  test.value = 48,                              # test value against which sample mean is to be compared
+  test.value.line = TRUE,                       # show a vertical line at `test.value`
+  messages = FALSE,                             # turn off messages
+  centrality.para = "mean",                     # plotting centrality parameter (mean)
+  grouping.var = continent,                     # grouping variable with multiple levels
+  # arguments relevant for ggstatsplot::combine_plots
   title.text = "Life expectancy change in different continents since 1950",
   caption.text = "Note: black line - 1950; blue line - 2007",
   nrow = 3,
@@ -153,4 +196,14 @@ ggstatsplot::grouped_gghistostats(
 ```
 
 As can be seen from these plots, life expectancy has improved in all continents
-in 2007 as compared to the global average of 1950.
+in 2007 as compared to the global average of 1950. Additionally, we see the
+benefits of plotting this data separately for each continent. If we look at the
+standardized effect sizes (Cohen's *d*), it is apparent that the biggest
+improvements in life expectancy outcomes were seen on the continents of Europe,
+Americas, and Oceania (just one data point is available here), while Asia and
+Africa exhibit the lowest improvements.
+
+## Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on
+the GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
