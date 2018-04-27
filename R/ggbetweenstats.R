@@ -874,7 +874,7 @@ ggbetweenstats <- function(data = NULL,
             no = NA
           )
         )
-      print(data_df)
+
       # applying the labels to tagged outliers with ggrepel
       plot <-
         plot +
