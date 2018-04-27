@@ -15,7 +15,6 @@ matrix:
       sudo: required
 
       r_binary_packages:
-        - devtools
         - stringi
         - magrittr
         - curl
@@ -83,6 +82,7 @@ repos:
 
 r_packages:
   - covr
+  - devtools
 
 warnings_are_errors: true
 #r_check_revdep: true
