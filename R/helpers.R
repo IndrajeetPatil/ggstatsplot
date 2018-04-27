@@ -342,3 +342,26 @@ signif_column <- function(data = NULL, p) {
   # return the final tibble dataframe
   return(df)
 }
+
+
+## finding the outliers in the dataframe using Tukey's interquartile range rule
+
+# defining function to detect outliers
+check_outlier <- function(var, coef) {
+  # compute the quantiles
+  quantiles <- stats::quantile(
+    x = var,
+    probs = c(0.25, 0.75)
+  )
+
+  # compute the interquartile range
+  IQR <- quantiles[2] - quantiles[1]
+
+  # check for outlier and output a logical
+  res <-
+    ((var < (quantiles[1] - coef * IQR)) |
+       (var > (quantiles[2] + coef * IQR)))
+
+  # return the result
+  return(res)
+}

@@ -13,7 +13,7 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-            
+
       r_binary_packages:
         - stringi
         - magrittr
@@ -45,23 +45,23 @@ matrix:
         - httpuv
         - markdown
         - OpenMx
-        - sem  
+        - sem
         - readxl
         - openxlsx
         - pander
         - minpack.lm
         - StanHeaders
-        
+
         # "These installs will be faster than source installs, but may not always be the most recent version"
         # https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
 
-#   precise is getting decommissioned on Travis, so better to leave it out
-#    - os: linux
-#      dist: trusty
-#      sudo: false
-#      env: R_CODECOV = true
-#      r_build_args: '--no-build-vignettes'
-#      r_check_args: '--ignore-vignettes --no-examples'
+    - os: osx
+      osx_image: xcode9.3beta
+    - os: osx
+      osx_image: xcode9.2
+      before_install:
+        - brew install curl
+        - brew link --force curl
     - os: osx
       osx_image: xcode9.2
     - os: osx

@@ -7,6 +7,9 @@ NEW FEATURES
   - Vignette added for `gghistostats`.
   - Added new function `grouped_gghistostats` to facilitate applying
     `gghistostats` for multiple levels of a grouping factor.
+    - `ggbetweenstats` has a new argument `outlier.coef` to adjust threshold used
+    to detect outliers. Removed bug from the same function when `outlier.label`
+    argument is of factor/character type.
 
 MAJOR CHANGES
 

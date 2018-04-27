@@ -41,6 +41,11 @@ variances as being equal (Default: \code{FALSE}).}
 
 \item{outlier.label}{Label to put on the outliers that have been tagged.}
 
+\item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
+With Tukey’s method, outliers are below (1st Quartile) or above (3rd
+Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
+\code{1.5}).}
+
 \item{mean.plotting}{Decides whether mean is to be highlighted and its value
 to be displayed (Default: \code{TRUE}).}
 
