@@ -7,11 +7,11 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 100
+    dpi: 300
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{gghistostats}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
