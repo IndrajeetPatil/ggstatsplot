@@ -1,3 +1,4 @@
+#'
 #' @title Default theme used in all `ggstatsplot` package plots.
 #' @name theme_mprl
 #' @aliases theme_ggstatsplot

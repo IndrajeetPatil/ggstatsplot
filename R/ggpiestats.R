@@ -1,5 +1,5 @@
 #'
-#' @title pie charts with statistical tests
+#' @title Pie charts with statistical tests
 #' @name ggpiestats
 #' @aliases ggpiestats
 #' @description Pie charts for categorical data with statistical details
@@ -495,12 +495,14 @@ ggpiestats <-
     # preparing the plot
     p <-
       p +
-      labs(
+      ggplot2::labs(
         title = title,
         caption = caption
       ) +
-      guides(fill = guide_legend(title = legend.title))
+      ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
 
+    # ========================================== messages ==================================================================
+    #
     # display warning about geom_col issues
     if (isTRUE(messages)) {
       base::message(cat(
@@ -511,6 +513,8 @@ ggpiestats <-
         crayon::yellow("(2.2.1.9000)")
       ))
     }
+
+
     # return the final plot
     return(p)
   }

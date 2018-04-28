@@ -60,7 +60,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
 
@@ -128,42 +128,146 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
       <td><p>Grouping variable.</p></td>
     </tr>
     <tr>
+      <th>data</th>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>A numeric variable.</p></td>
+    </tr>
+    <tr>
+      <th>xlab</th>
+      <td><p>Label for <code>x</code> axis variable.</p></td>
+    </tr>
+    <tr>
+      <th>subtitle</th>
+      <td><p>The text for the plot subtitle <em>if</em> you don't want results
+from one sample test to be displayed.</p></td>
+    </tr>
+    <tr>
+      <th>caption</th>
+      <td><p>The text for the plot caption.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code> or
+<code>"bayes"</code>). Abbreviations accepted are <code>"p"</code> or <code>"np"</code> or <code>"bf"</code>, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>test.value</th>
+      <td><p>A number specifying the value of the null hypothesis.</p></td>
+    </tr>
+    <tr>
+      <th>bf.prior</th>
+      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
+to use in calculating Bayes factors.</p></td>
+    </tr>
+    <tr>
+      <th>bf.message</th>
+      <td><p>Logical. Decides whether to display Bayes Factor in favor
+of null hypothesis for parametric test if the null hypothesis can't be
+rejected (Default: <code>bf.message = TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of decimal places expected for results.</p></td>
+    </tr>
+    <tr>
+      <th>results.subtitle</th>
+      <td><p>Decides whether the results of statistical tests are
+to be displayed as subtitle (Default: <code>results.subtitle = TRUE</code>). If set to
+<code>FALSE</code>, no statistical tests will be run.</p></td>
+    </tr>
+    <tr>
+      <th>centrality.para</th>
+      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code> or
+<code>"median"</code>) is to be displayed as a vertical line.</p></td>
+    </tr>
+    <tr>
+      <th>centrality.colour</th>
+      <td><p>Decides colour for the vertical line for centrality
+parameter (Default: <code>"blue"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.line</th>
+      <td><p>Decides whether test value is to be displayed as a
+vertical line (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.colour</th>
+      <td><p>Decides colour for the vertical line denoting test
+value (Default: <code>"black"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>binwidth.adjust</th>
+      <td><p>If set to <code>TRUE</code>, you can use it to pick better value
+with the <code>binwidth</code> argument to <code>stat_bin()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>binwidth</th>
+      <td><p>The width of the bins. Can be specified as a numeric value,
+or a function that calculates width from <code>x</code>. The default is to use bins
+bins that cover the range of the data. You should always override this
+value, exploring multiple widths to find the best to illustrate the stories
+in your data.</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code>combine_plots</code></p><dl class='dl-horizontal'>
-  <dt>title.text</dt><dd><p>String or plotmath expression to be drawn as title for the <em>combined plot</em>.</p></dd>
+  <dt>title.text</dt><dd><p>String or plotmath expression to be drawn as title for the
+<em>combined plot</em>.</p></dd>
   <dt>title.colour</dt><dd><p>Text color for title.</p></dd>
   <dt>title.size</dt><dd><p>Point size of title text.</p></dd>
-  <dt>title.vjust</dt><dd><p>Vertical justification for title. Default = 0.5 (centered on y).
-0 = baseline at y, 1 = ascender at y.</p></dd>
-  <dt>title.hjust</dt><dd><p>Horizontal justification for title. Default = 0.5 (centered on x).
-0 = flush-left at x, 1 = flush-right.</p></dd>
+  <dt>title.vjust</dt><dd><p>Vertical justification for title. Default = 0.5 (centered
+on y). 0 = baseline at y, 1 = ascender at y.</p></dd>
+  <dt>title.hjust</dt><dd><p>Horizontal justification for title. Default = 0.5
+(centered on x). 0 = flush-left at x, 1 = flush-right.</p></dd>
   <dt>title.fontface</dt><dd><p>The font face ("plain", "bold", etc.) for title.</p></dd>
-  <dt>caption.text</dt><dd><p>String or plotmath expression to be drawn as the caption for the <em>combined plot</em>.</p></dd>
+  <dt>caption.text</dt><dd><p>String or plotmath expression to be drawn as the caption
+for the <em>combined plot</em>.</p></dd>
   <dt>caption.colour</dt><dd><p>Text color for caption.</p></dd>
   <dt>caption.size</dt><dd><p>Point size of title text.</p></dd>
-  <dt>caption.vjust</dt><dd><p>Vertical justification for caption. Default = 0.5 (centered on y).
-0 = baseline at y, 1 = ascender at y.</p></dd>
-  <dt>caption.hjust</dt><dd><p>Horizontal justification for caption. Default = 0.5 (centered on x).
-0 = flush-left at x, 1 = flush-right.</p></dd>
-  <dt>caption.fontface</dt><dd><p>The font face ("plain", "bold", etc.) for caption.</p></dd>
-  <dt>sub.text</dt><dd><p>The label with which the <em>combined plot</em> should be annotated. Can be a plotmath expression.</p></dd>
+  <dt>caption.vjust</dt><dd><p>Vertical justification for caption. Default = <code>0.5</code>
+(centered on y). <code>0</code> = baseline at y, <code>1</code> = ascender at y.</p></dd>
+  <dt>caption.hjust</dt><dd><p>Horizontal justification for caption. Default = <code>0.5</code>
+(centered on x). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
+  <dt>caption.fontface</dt><dd><p>The font face (<code>"plain"</code>, <code>"bold"</code>, <code>"italic"</code>,
+<code>"bold.italic"</code>) for caption.</p></dd>
+  <dt>sub.text</dt><dd><p>The label with which the <em>combined plot</em> should be annotated.
+Can be a plotmath expression.</p></dd>
   <dt>sub.colour</dt><dd><p>Text color for annotation label.</p></dd>
   <dt>sub.size</dt><dd><p>Point size of annotation text.</p></dd>
   <dt>sub.x</dt><dd><p>The x position of annotation label.</p></dd>
   <dt>sub.y</dt><dd><p>The y position of annotation label.</p></dd>
   <dt>sub.hjust</dt><dd><p>Horizontal justification for annotation label.</p></dd>
   <dt>sub.vjust</dt><dd><p>Vertical justification for annotation label.</p></dd>
-  <dt>sub.vpadding</dt><dd><p>Vertical padding. The total vertical space added to the label, given in grid units.
-By default, this is added equally above and below the label. However, by changing the y and vjust parameters, this can be changed.</p></dd>
-  <dt>sub.fontface</dt><dd><p>The font face ("plain", "bold", etc.) for the annotation label.</p></dd>
+  <dt>sub.vpadding</dt><dd><p>Vertical padding. The total vertical space added to the
+label, given in grid units. By default, this is added equally above and
+below the label. However, by changing the y and vjust parameters, this can
+be changed.</p></dd>
+  <dt>sub.fontface</dt><dd><p>The font face (<code>"plain"</code>, <code>"bold"</code>, <code>"italic"</code>,
+<code>"bold.italic"</code>) for the annotation label.</p></dd>
   <dt>sub.angle</dt><dd><p>Angle at which annotation label is to be drawn.</p></dd>
   <dt>sub.lineheight</dt><dd><p>Line height of annotation label.</p></dd>
-  <dt>title.caption.rel.heights</dt><dd><p>Numerical vector of relative columns heights while combining (title, plot, caption).</p></dd>
-  <dt>title.rel.heights</dt><dd><p>Numerical vector of relative columns heights while combining (title, plot).</p></dd>
-  <dt>caption.rel.heights</dt><dd><p>Numerical vector of relative columns heights while combining (plot, caption).</p></dd>
+  <dt>title.caption.rel.heights</dt><dd><p>Numerical vector of relative columns heights
+while combining (title, plot, caption).</p></dd>
+  <dt>title.rel.heights</dt><dd><p>Numerical vector of relative columns heights while
+combining (title, plot).</p></dd>
+  <dt>caption.rel.heights</dt><dd><p>Numerical vector of relative columns heights while
+combining (plot, caption).</p></dd>
 </dl></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='gghistostats.html'>gghistostats</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -185,7 +289,9 @@ By default, this is added equally above and below the label. However, by changin
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

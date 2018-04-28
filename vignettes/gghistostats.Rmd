@@ -203,7 +203,13 @@ improvements in life expectancy outcomes were seen on the continents of Europe,
 Americas, and Oceania (just one data point is available here), while Asia and
 Africa exhibit the lowest improvements.
 
+Although this is a quick and dirty way to explore large amount of data with
+minimal effort, it does come with an important limitation: reduced flexibility.
+For example, if we wanted to add, let's say, a separate `test.value` argument
+for each continent, this is not possible with `grouped_gghistostats`. For cases
+like these, it would be better to use a function like
+[`purrr::pmap`](https://purrr.tidyverse.org/reference/map2.html).
+
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on
-the GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

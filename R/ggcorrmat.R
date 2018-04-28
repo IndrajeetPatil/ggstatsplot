@@ -13,17 +13,17 @@
 #'   computed and visualized.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
-#' @param output Expected output from this function: "plot" (visualization
-#'   matrix) or "correlations" (correlation matrix) or #' "p-values" (matrix of
+#' @param output Expected output from this function: `"plot"` (visualization
+#'   matrix) or `"correlations"` (correlation matrix) or `"p-values"` (matrix of
 #'   p-values).
-#' @param type Character, "full" (default), "upper" or "lower", display full
+#' @param type Character, `"full"` (default), `"upper"` or `"lower"`, display full
 #'   matrix, lowe triangular or upper triangular matrix.
 #' @param method Character argument that decides the visualization method of
-#'   correlation matrix to be used. Allowed values are "square" (default),
-#'   "circle".
+#'   correlation matrix to be used. Allowed values are `"square"` (default),
+#'   `"circle"`
 #' @param corr.method A character string indicating which correlation
-#'   coefficient is to be computed ("pearson" (default) or "kendall", or
-#'   "spearman").
+#'   coefficient is to be computed (`"pearson"` (default) or `"kendall"` or
+#'   `"spearman"`). Abbreviations will **not** work.
 #' @param exact A logical indicating whether an exact *p*-value should be
 #'   computed. Used for Kendall's *tau* and Spearman's *rho*. For more details,
 #'   see `?stats::cor.test`.
@@ -31,8 +31,8 @@
 #'   Kendall's *tau* and Spearman's *rho* when not computed exactly (Default:
 #'   `TRUE`).
 #' @param digits Decides the number of decimal digits to be added into the plot
-#'   (Default: 2).
-#' @param sig.level Significance level (Dafault: 0.05). If the p-value in p-mat
+#'   (Default: `2`).
+#' @param sig.level Significance level (Dafault: `0.05`). If the p-value in p-mat
 #'   is bigger than sig.level, then the correspondi#' ng correlation coefficient
 #'   is regarded as insignificant.
 #' @param hc.order Logical value. If `TRUE`, correlation matrix will be

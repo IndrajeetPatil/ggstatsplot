@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-04-27</h4>
+            <h4 class="date">2018-04-28</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -216,11 +216,12 @@
 <a class="sourceLine" id="cb6-20" data-line-number="20">)</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="960"></p>
 <p>As can be seen from these plots, life expectancy has improved in all continents in 2007 as compared to the global average of 1950. Additionally, we see the benefits of plotting this data separately for each continent. If we look at the standardized effect sizes (Cohen’s <em>d</em>), it is apparent that the biggest improvements in life expectancy outcomes were seen on the continents of Europe, Americas, and Oceania (just one data point is available here), while Asia and Africa exhibit the lowest improvements.</p>
+<p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each continent, this is not possible with <code>grouped_gghistostats</code>. For cases like these, it would be better to use a function like <a href="https://purrr.tidyverse.org/reference/map2.html"><code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code></a>.</p>
 </div>
 <div id="suggestions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#suggestions" class="anchor"></a>Suggestions</h2>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on the GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </div>
 

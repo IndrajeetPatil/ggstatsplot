@@ -1,42 +1,55 @@
-#' @title Combining multiple plots using `cowplot::plot_grid()` with a combination of title, caption, and annotation label
+#'
+#' @title Combining multiple plots using `cowplot::plot_grid()` with a
+#'   combination of title, caption, and annotation label
 #' @name combine_plots
+#' @aliases combine_plots
 #' @author Indrajeet Patil
-#' @description Wrapper around `cowplot::plot_grid()` that will return a plotgrid along with a combination of
-#' title, caption, and annotation label
+#' @description Wrapper around \code{\link[cowplot]{plot_grid}} that will return
+#'   a plotgrid along with a combination of title, caption, and annotation label
 #' @return Combined plot with title and/or caption and/or annotation label
 #'
 #' @param ... Additional arguments used in the function `cowplot::plot_grid()`.
-#' @param title.text String or plotmath expression to be drawn as title for the *combined plot*.
+#' @param title.text String or plotmath expression to be drawn as title for the
+#'   *combined plot*.
 #' @param title.colour Text color for title.
 #' @param title.size Point size of title text.
-#' @param title.vjust Vertical justification for title. Default = 0.5 (centered on y).
-#' 0 = baseline at y, 1 = ascender at y.
-#' @param title.hjust Horizontal justification for title. Default = 0.5 (centered on x).
-#' 0 = flush-left at x, 1 = flush-right.
+#' @param title.vjust Vertical justification for title. Default = 0.5 (centered
+#'   on y). 0 = baseline at y, 1 = ascender at y.
+#' @param title.hjust Horizontal justification for title. Default = 0.5
+#'   (centered on x). 0 = flush-left at x, 1 = flush-right.
 #' @param title.fontface The font face ("plain", "bold", etc.) for title.
-#' @param caption.text String or plotmath expression to be drawn as the caption for the *combined plot*.
+#' @param caption.text String or plotmath expression to be drawn as the caption
+#'   for the *combined plot*.
 #' @param caption.colour Text color for caption.
 #' @param caption.size Point size of title text.
-#' @param caption.vjust Vertical justification for caption. Default = 0.5 (centered on y).
-#' 0 = baseline at y, 1 = ascender at y.
-#' @param caption.hjust Horizontal justification for caption. Default = 0.5 (centered on x).
-#' 0 = flush-left at x, 1 = flush-right.
-#' @param caption.fontface The font face ("plain", "bold", etc.) for caption.
-#' @param sub.text The label with which the *combined plot* should be annotated. Can be a plotmath expression.
+#' @param caption.vjust Vertical justification for caption. Default = `0.5`
+#'   (centered on y). `0` = baseline at y, `1` = ascender at y.
+#' @param caption.hjust Horizontal justification for caption. Default = `0.5`
+#'   (centered on x). `0` = flush-left at x, `1` = flush-right.
+#' @param caption.fontface The font face (`"plain"`, `"bold"`, `"italic"`,
+#'   `"bold.italic"`) for caption.
+#' @param sub.text The label with which the *combined plot* should be annotated.
+#'   Can be a plotmath expression.
 #' @param sub.colour Text color for annotation label.
 #' @param sub.size Point size of annotation text.
 #' @param sub.x The x position of annotation label.
 #' @param sub.y The y position of annotation label.
 #' @param sub.hjust Horizontal justification for annotation label.
 #' @param sub.vjust Vertical justification for annotation label.
-#' @param sub.vpadding Vertical padding. The total vertical space added to the label, given in grid units.
-#' By default, this is added equally above and below the label. However, by changing the y and vjust parameters, this can be changed.
-#' @param sub.fontface The font face ("plain", "bold", etc.) for the annotation label.
+#' @param sub.vpadding Vertical padding. The total vertical space added to the
+#'   label, given in grid units. By default, this is added equally above and
+#'   below the label. However, by changing the y and vjust parameters, this can
+#'   be changed.
+#' @param sub.fontface The font face (`"plain"`, `"bold"`, `"italic"`,
+#'   `"bold.italic"`) for the annotation label.
 #' @param sub.angle Angle at which annotation label is to be drawn.
 #' @param sub.lineheight Line height of annotation label.
-#' @param title.caption.rel.heights Numerical vector of relative columns heights while combining (title, plot, caption).
-#' @param title.rel.heights Numerical vector of relative columns heights while combining (title, plot).
-#' @param caption.rel.heights Numerical vector of relative columns heights while combining (plot, caption).
+#' @param title.caption.rel.heights Numerical vector of relative columns heights
+#'   while combining (title, plot, caption).
+#' @param title.rel.heights Numerical vector of relative columns heights while
+#'   combining (title, plot).
+#' @param caption.rel.heights Numerical vector of relative columns heights while
+#'   combining (plot, caption).
 #'
 #' @importFrom cowplot plot_grid
 #' @importFrom cowplot add_sub
@@ -46,6 +59,7 @@
 #' @import grid
 #'
 #' @examples
+#'
 #' # loading the necessary libraries
 #' library(ggplot2)
 #'
@@ -75,6 +89,7 @@
 #' )
 #'
 #' @export
+#'
 
 combine_plots <-
   function(...,

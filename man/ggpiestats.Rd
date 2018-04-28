@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggpiestats.R
 \name{ggpiestats}
 \alias{ggpiestats}
-\title{pie charts with statistical tests}
+\title{Pie charts with statistical tests}
 \arguments{
 \item{data}{The data as a data frame.}
 

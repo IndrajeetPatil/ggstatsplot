@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggscatterstats.R
 \name{ggscatterstats}
 \alias{ggscatterstats}
-\title{scatterplot with ggMarginals}
+\title{Scatterplot with marginal distributions}
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
@@ -21,30 +21,33 @@ taken.}
 displayed; the default is \code{TRUE}.}
 
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
-("histogram", "boxplot", "density", "violin").}
+(\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}).}
 
-\item{xfill}{Colour fill for x axis distibution (default: \code{orange}).}
+\item{xfill}{Colour fill for x axis distibution (default: \code{"orange"}).}
 
-\item{yfill}{Colour fill for y axis distribution (default: \code{green}).}
+\item{yfill}{Colour fill for y axis distribution (default: \code{"green"}).}
 
-\item{type}{Type of association between paired samples required ("parametric:
-Pearson's product moment correlation coefficient" or "nonparametric:
-Spearman's rho" or "robust: Robust regression using an M estimator").
-Corresponding abbreviations are also accepted: "p" (for
-parametric/pearson's), "np" (nonparametric/spearman), "r" (robust), resp.}
+\item{type}{Type of association between paired samples required
+("\code{"parametric"}: Pearson's product moment correlation coefficient" or
+"\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: Robust regression using
+an M estimator"). Corresponding abbreviations are also accepted: \code{"p"} (for
+parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
+resp.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle.}
 
-\item{intercept}{Decides whether "mean" or "median" or no intercept lines
-(\code{NULL}) are to be plotted.}
+\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
+or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
+\code{y}) lines.}
 
 \item{title}{The text for the plot title.}
 
 \item{caption}{The text for the plot caption.}
 
 \item{maxit}{Maximum number of iterations for robust linear regression or
-bootstrap samples to compute Spearman's rho confidence intervals.}
+bootstrap samples to compute Spearman's rho confidence intervals (Default:
+\code{500}).}
 
 \item{k}{Number of decimal places expected for results.}
 
@@ -64,9 +67,10 @@ subtitle.
 }
 \examples{
 
-library(datasets)
+# to get reproducible results from bootstrapping
+set.seed(123)
 
-# simple function call with the defaults
+#' # simple function call with the defaults
 ggstatsplot::ggscatterstats(
 data = datasets::mtcars,
 x = wt,
@@ -78,7 +82,7 @@ ggstatsplot::ggscatterstats(
 data = datasets::iris,
 x = Petal.Length,
 y = Sepal.Length,
-intercept = 'median',
+centrality.para = 'median',
 type = 'robust',
 marginal.type = 'density'
 )

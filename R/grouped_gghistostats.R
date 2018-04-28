@@ -1,3 +1,4 @@
+#'
 #' @title Grouped histograms for distribution of a numeric variable
 #' @name grouped_gghistostats
 #' @aliases grouped_gghistostats
@@ -7,8 +8,43 @@
 #' @author Indrajeet Patil
 #'
 #' @param grouping.var Grouping variable.
+#' @param data Dataframe from which variables specified are preferentially to be
+#'   taken.
+#' @param x A numeric variable.
+#' @param xlab Label for `x` axis variable.
+#' @param subtitle The text for the plot subtitle *if* you don't want results
+#'   from one sample test to be displayed.
+#' @param caption The text for the plot caption.
+#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"` or
+#'   `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or `"bf"`, respectively.
+#' @param test.value A number specifying the value of the null hypothesis.
+#' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
+#'   to use in calculating Bayes factors.
+#' @param bf.message Logical. Decides whether to display Bayes Factor in favor
+#'   of null hypothesis for parametric test if the null hypothesis can't be
+#'   rejected (Default: `bf.message = TRUE`).
+#' @param k Number of decimal places expected for results.
+#' @param results.subtitle Decides whether the results of statistical tests are
+#'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
+#'   `FALSE`, no statistical tests will be run.
+#' @param centrality.para Decides *which* measure of central tendency (`"mean"` or
+#'   `"median"`) is to be displayed as a vertical line.
+#' @param centrality.colour Decides colour for the vertical line for centrality
+#'   parameter (Default: `"blue"`).
+#' @param test.value.line Decides whether test value is to be displayed as a
+#'   vertical line (Default: `FALSE`).
+#' @param test.value.colour Decides colour for the vertical line denoting test
+#'   value (Default: `"black"`).
+#' @param binwidth.adjust If set to `TRUE`, you can use it to pick better value
+#'   with the `binwidth` argument to `stat_bin()`.
+#' @param binwidth The width of the bins. Can be specified as a numeric value,
+#'   or a function that calculates width from `x`. The default is to use bins
+#'   bins that cover the range of the data. You should always override this
+#'   value, exploring multiple widths to find the best to illustrate the stories
+#'   in your data.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritDotParams combine_plots
-#' @inheritParams `gghistostats` -title
 #'
 #' @import dplyr
 #' @import rlang
@@ -17,6 +53,8 @@
 #' @importFrom magrittr "%>%"
 #' @importFrom purrr map
 #' @importFrom tidyr nest
+#'
+#' @seealso \code{\link{gghistostats}}
 #'
 #' @examples
 #'
@@ -77,9 +115,9 @@ utils::globalVariables(
 )
 
 # defining the function
-grouped_gghistostats <- function(data,
+grouped_gghistostats <- function(grouping.var,
+                                 data,
                                  x,
-                                 grouping.var,
                                  xlab = NULL,
                                  subtitle = NULL,
                                  caption = NULL,

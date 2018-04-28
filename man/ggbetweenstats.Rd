@@ -15,13 +15,14 @@ taken.}
 
 \item{ylab}{Label for \code{y} axis variable.}
 
-\item{type}{Type of statistic expected ("parametric" or "nonparametric" or
-"robust").Corresponding abbreviations are also accepted: "p" (for
-parametric), "np" (nonparametric), "r" (robust), resp.}
+\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
+or \code{"robust"}).Corresponding abbreviations are also accepted: \code{"p"} (for
+parametric), \code{"np"} (nonparametric), \code{"r"} (robust), resp.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests
-(\strong{"biased"} (Cohen's \emph{d} for t-test; partial eta-squared for anova) or
-\strong{"unbiased"} (Hedge's \emph{g} for t-test; omega-squared for anova)).}
+(\code{"biased"} (Cohen's \emph{d} for \strong{t-test}; partial eta-squared for \strong{anova})
+or \code{"unbiased"} (Hedge's \emph{g} for \strong{t-test}; partial omega-squared for
+\strong{anova})).}
 
 \item{title}{The text for the plot title.}
 
@@ -32,7 +33,8 @@ parametric), "np" (nonparametric), "r" (robust), resp.}
 \item{var.equal}{A logical variable indicating whether to treat the two
 variances as being equal (Default: \code{FALSE}).}
 
-\item{nboot}{Number of bootstrap samples.}
+\item{nboot}{Number of bootstrap samples for computing effect size (Default:
+\code{100}).}
 
 \item{outlier.color}{Default aesthetics for outliers.}
 
@@ -59,6 +61,9 @@ Violin plots for between-subjects designs with statistical
 details included in the plot as a subtitle.
 }
 \examples{
+
+# to get reproducible results from bootstrapping
+set.seed(123)
 
 # simple function call with the defaults
 ggstatsplot::ggbetweenstats(

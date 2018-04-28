@@ -55,7 +55,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
 
@@ -105,9 +105,9 @@
       
     </div>
 
-    <div id="ggstatsplot-0-0-1-9000" class="section level1">
+    <div id="ggstatsplot-0-0-2" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-1-9000" class="anchor"></a>ggstatsplot 0.0.1.9000<small> Unreleased </small>
+<a href="#ggstatsplot-0-0-2" class="anchor"></a>ggstatsplot 0.0.2<small> Unreleased </small>
 </h1>
 <p>NEW FEATURES</p>
 <ul>
@@ -124,10 +124,15 @@
 <ul>
 <li>Functions <code>signif_column</code> and <code>grouped_proptest</code> are now deprecated. They were exported in the first release by mistake.</li>
 <li>Function <code>gghistostats</code> no longer displays both density and count since the density information was redundant. The <code>density.plot</code> argument has also been deprecated.</li>
+<li>
+<code>ggscatterstats</code> argument <code>intercept</code> has now been changed to <code>centrality.para</code>. This was due to possible confusion about interpreation of these lines; they show central tendency measures and not intercept for the linear model. Thus the change.</li>
+<li>The default for <code>effsize.type = "biased"</code> effect size for <code>ggbetweenstats</code> in case of ANOVA is <strong>partial</strong> omega-squared, and not omega-squared. Additionally, both partial eta- and omega-squared are not computed using bootstrapping with (default) 100 bootstrap samples.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li>More examples added to <code>README</code> document.</li>
+<li>More examples added to the <code>README</code> document.</li>
+<li>95% confidence intervals for Spearman’s rho are now computed using <code>broom</code> package. <code>RVAideMemoire</code> package is thus removed from dependencies.</li>
+<li>95% confidence intervals for partial eta- and omega-squared for <code>ggbetweenstats</code> function are now computed using <code>sjstats</code> package, which allows bootstrapping. <code>apaTables</code> and <code>userfriendlyscience</code> packages are thus removed from dependencies.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-1" class="section level1">
@@ -144,7 +149,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggstatsplot-0-0-1-9000">0.0.1.9000</a></li>
+        <li><a href="#ggstatsplot-0-0-2">0.0.2</a></li>
         <li><a href="#ggstatsplot-0-0-1">0.0.1</a></li>
       </ul>
     </div>

@@ -1,5 +1,5 @@
 #'
-#' @title histogram for distribution of a numeric variable
+#' @title Histogram for distribution of a numeric variable
 #' @name gghistostats
 #' @aliases gghistostats
 #' @description Histogram with statistical details from one-sample test included
@@ -14,8 +14,8 @@
 #' @param subtitle The text for the plot subtitle *if* you don't want results
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
-#' @param type Type of statistic expected ("parametric" or "nonparametric" or
-#'   "bayes"). Abbreviations accepted are "p" or "np" or "bf", respectively.
+#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"` or
+#'   `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or `"bf"`, respectively.
 #' @param test.value A number specifying the value of the null hypothesis.
 #' @param bf.prior A number between 0.5 and 2 (default 0.707), the prior width
 #'   to use in calculating Bayes factors.
@@ -26,8 +26,8 @@
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
 #'   `FALSE`, no statistical tests will be run.
-#' @param centrality.para Decides *which* measure of central tendency ("mean" or
-#'   "median") is to be displayed as a vertical line.
+#' @param centrality.para Decides *which* measure of central tendency (`"mean"` or
+#'   `"median"`) is to be displayed as a vertical line.
 #' @param centrality.colour Decides colour for the vertical line for centrality
 #'   parameter (Default: `"blue"`).
 #' @param test.value.line Decides whether test value is to be displayed as a
@@ -82,6 +82,8 @@
 #' binwidth.adjust = TRUE,
 #' binwidth = 0.10
 #' )
+#'
+#' @seealso \code{\link{grouped_gghistostats}}
 #'
 #' @export
 #'

@@ -1,5 +1,5 @@
 #'
-#' @title scatterplot with ggMarginals
+#' @title Scatterplot with marginal distributions
 #' @name ggscatterstats
 #' @aliases ggscatterstats
 #' @author Indrajeet Patil
@@ -17,22 +17,25 @@
 #' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be
 #'   displayed; the default is `TRUE`.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
-#'   ("histogram", "boxplot", "density", "violin").
-#' @param xfill Colour fill for x axis distibution (default: `orange`).
-#' @param yfill Colour fill for y axis distribution (default: `green`).
-#' @param type Type of association between paired samples required ("parametric:
-#'   Pearson's product moment correlation coefficient" or "nonparametric:
-#'   Spearman's rho" or "robust: Robust regression using an M estimator").
-#'   Corresponding abbreviations are also accepted: "p" (for
-#'   parametric/pearson's), "np" (nonparametric/spearman), "r" (robust), resp.
+#'   (`"histogram"`, `"boxplot"`, `"density"`, `"violin"`).
+#' @param xfill Colour fill for x axis distibution (default: `"orange"`).
+#' @param yfill Colour fill for y axis distribution (default: `"green"`).
+#' @param type Type of association between paired samples required
+#'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
+#'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: Robust regression using
+#'   an M estimator"). Corresponding abbreviations are also accepted: `"p"` (for
+#'   parametric/pearson's), `"np"` (nonparametric/spearman), `"r"` (robust),
+#'   resp.
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle.
-#' @param intercept Decides whether "mean" or "median" or no intercept lines
-#'   (`NULL`) are to be plotted.
+#' @param centrality.para Decides *which* measure of central tendency (`"mean"`
+#'   or `"median"`) is to be displayed as vertical (for `x`) and horizontal (for
+#'   `y`) lines.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param maxit Maximum number of iterations for robust linear regression or
-#'   bootstrap samples to compute Spearman's rho confidence intervals.
+#'   bootstrap samples to compute Spearman's rho confidence intervals (Default:
+#'   `500`).
 #' @param k Number of decimal places expected for results.
 #' @param width.jitter Degree of jitter in `x` direction. Defaults to 40\% of
 #'   the resolution of the data.
@@ -47,17 +50,19 @@
 #'
 #' @importFrom MASS rlm
 #' @importFrom sfsmisc f.robftest
+#' @importFrom broom bootstrap
+#' @importFrom broom tidy
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
 #' @importFrom stats na.omit
 #' @importFrom stats confint.default
-#' @importFrom RVAideMemoire spearman.ci
 #'
 #' @examples
 #'
-#' library(datasets)
+#' # to get reproducible results from bootstrapping
+#' set.seed(123)
 #'
-#' # simple function call with the defaults
+#' #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #' data = datasets::mtcars,
 #' x = wt,
@@ -69,7 +74,7 @@
 #' data = datasets::iris,
 #' x = Petal.Length,
 #' y = Sepal.Length,
-#' intercept = 'median',
+#' centrality.para = 'median',
 #' type = 'robust',
 #' marginal.type = 'density'
 #' )
@@ -123,12 +128,12 @@ ggscatterstats <-
              height.jitter = NULL,
              xfill = "orange",
              yfill = "green",
-             intercept = NULL,
+             centrality.para = NULL,
              type = "pearson",
              results.subtitle = NULL,
              title = NULL,
              caption = NULL,
-             maxit = 1000,
+             maxit = 500,
              k = 3,
              messages = TRUE) {
     # if data is not available then don't display any messages
@@ -243,15 +248,22 @@ ggscatterstats <-
             na.action = na.omit
           )
 
-        # getting confidence interval for rho
-        c_ci <-
-          RVAideMemoire::spearman.ci(
-            var1 = data$x,
-            var2 = data$y,
-            # no. of interations
-            nrep = maxit,
-            conf.level = 0.95
-          )
+        # getting confidence interval for rho using broom bootstrap
+        c_ci <- data %>%
+          broom::bootstrap(df = ., m = maxit) %>%
+          do(broom::tidy(
+            stats::cor.test(
+              formula = ~ x + y,
+              data = .,
+              method = "spearman",
+              exact = FALSE,
+              continuity = TRUE
+            )
+          )) %>%
+          tibble::as_data_frame(x = .) %>%
+          dplyr::select(.data = ., estimate) %>%
+          dplyr::summarize(.data = ., low = quantile(estimate, 0.05 / 2),
+                           high = quantile(estimate, 1 - 0.05 / 2))
 
         # preparing the label
         stats_subtitle <-
@@ -278,9 +290,11 @@ ggscatterstats <-
               df = (length(data$x) - 2),
               # degrees of freedom are always integer
               estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
-              LL = ggstatsplot::specify_decimal_p(x = c_ci$conf.int[1][[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = c_ci$conf.int[2][[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]], k, p.value = TRUE)
+              LL = ggstatsplot::specify_decimal_p(x = c_ci$low[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = c_ci$high[[1]], k),
+              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]],
+                                                      k,
+                                                      p.value = TRUE)
             )
           )
         ################################################### robust ##################################################
@@ -360,7 +374,7 @@ ggscatterstats <-
     plot <-
       ggplot2::ggplot(
         data = data,
-        mapping = aes(
+        mapping = ggplot2::aes(
           x = x,
           y = y
         )
@@ -392,13 +406,13 @@ ggscatterstats <-
       ggplot2::coord_cartesian(xlim = c(min(data$x), max(data$x))) +
       ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y)))
 
-    ################################################ intercept ##################################################
+    ################################################ centrality.para ##################################################
 
-    # by default, if the input is NULL, then no intercept lines will be plotted
+    # by default, if the input is NULL, then no centrality.para lines will be plotted
 
-    if (is.null(intercept)) {
+    if (is.null(centrality.para)) {
       plot <- plot
-    } else if (intercept == "mean") {
+    } else if (centrality.para == "mean") {
       plot <- plot +
         ggplot2::geom_vline(
           xintercept = mean(data$x),
@@ -414,7 +428,7 @@ ggscatterstats <-
           size = 1.2,
           na.rm = TRUE
         )
-    } else if (intercept == "median") {
+    } else if (centrality.para == "median") {
       plot <- plot +
         ggplot2::geom_vline(
           xintercept = mean(data$x),

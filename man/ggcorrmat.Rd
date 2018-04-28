@@ -25,20 +25,20 @@ computed and visualized.}
 \item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
 
-\item{output}{Expected output from this function: "plot" (visualization
-matrix) or "correlations" (correlation matrix) or #' "p-values" (matrix of
+\item{output}{Expected output from this function: \code{"plot"} (visualization
+matrix) or \code{"correlations"} (correlation matrix) or \code{"p-values"} (matrix of
 p-values).}
 
-\item{type}{Character, "full" (default), "upper" or "lower", display full
+\item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display full
 matrix, lowe triangular or upper triangular matrix.}
 
 \item{method}{Character argument that decides the visualization method of
-correlation matrix to be used. Allowed values are "square" (default),
-"circle".}
+correlation matrix to be used. Allowed values are \code{"square"} (default),
+\code{"circle"}}
 
 \item{corr.method}{A character string indicating which correlation
-coefficient is to be computed ("pearson" (default) or "kendall", or
-"spearman").}
+coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
+\code{"spearman"}). Abbreviations will \strong{not} work.}
 
 \item{exact}{A logical indicating whether an exact \emph{p}-value should be
 computed. Used for Kendall's \emph{tau} and Spearman's \emph{rho}. For more details,
@@ -49,9 +49,9 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \code{TRUE}).}
 
 \item{digits}{Decides the number of decimal digits to be added into the plot
-(Default: 2).}
+(Default: \code{2}).}
 
-\item{sig.level}{Significance level (Dafault: 0.05). If the p-value in p-mat
+\item{sig.level}{Significance level (Dafault: \code{0.05}). If the p-value in p-mat
 is bigger than sig.level, then the correspondi#' ng correlation coefficient
 is regarded as insignificant.}
 

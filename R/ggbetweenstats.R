@@ -12,18 +12,20 @@
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
-#' @param type Type of statistic expected ("parametric" or "nonparametric" or
-#'   "robust").Corresponding abbreviations are also accepted: "p" (for
-#'   parametric), "np" (nonparametric), "r" (robust), resp.
+#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
+#'   or `"robust"`).Corresponding abbreviations are also accepted: `"p"` (for
+#'   parametric), `"np"` (nonparametric), `"r"` (robust), resp.
 #' @param effsize.type Type of effect size needed for *parametric* tests
-#'   (**"biased"** (Cohen's *d* for t-test; partial eta-squared for anova) or
-#'   **"unbiased"** (Hedge's *g* for t-test; omega-squared for anova)).
+#'   (`"biased"` (Cohen's *d* for **t-test**; partial eta-squared for **anova**)
+#'   or `"unbiased"` (Hedge's *g* for **t-test**; partial omega-squared for
+#'   **anova**)).
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param k Number of decimal places expected for results.
 #' @param var.equal A logical variable indicating whether to treat the two
 #'   variances as being equal (Default: `FALSE`).
-#' @param nboot Number of bootstrap samples.
+#' @param nboot Number of bootstrap samples for computing effect size (Default:
+#'   `100`).
 #' @param outlier.color Default aesthetics for outliers.
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
@@ -47,6 +49,8 @@
 #' @importFrom WRS2 yuen
 #' @importFrom WRS2 yuen.effect.ci
 #' @importFrom effsize cohen.d
+#' @importFrom sjstats eta_sq
+#' @importFrom sjstats omega_sq
 #' @importFrom stats aov
 #' @importFrom stats na.omit
 #' @importFrom stats t.test
@@ -66,11 +70,12 @@
 #' @importFrom crayon blue
 #' @importFrom crayon yellow
 #' @importFrom crayon red
-#' @importFrom apaTables get.ci.partial.eta.squared
-#' @importFrom userfriendlyscience confIntOmegaSq
 #' @importFrom jmv anova
 #'
 #' @examples
+#'
+#' # to get reproducible results from bootstrapping
+#' set.seed(123)
 #'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
@@ -89,6 +94,7 @@
 #' outlier.tagging = TRUE)
 #'
 #' @export
+#'
 
 # defining global variables and functions to quient the R CMD check notes
 utils::globalVariables(
@@ -137,7 +143,7 @@ ggbetweenstats <- function(data = NULL,
                            title = NULL,
                            k = 3,
                            var.equal = FALSE,
-                           nboot = 1000,
+                           nboot = 100,
                            outlier.tagging = NULL,
                            outlier.label = NULL,
                            outlier.color = "black",
@@ -322,12 +328,16 @@ ggbetweenstats <- function(data = NULL,
 
       # preparing the subtitles with appropriate effect sizes
       if (effsize.type == "unbiased") {
+
         # partial omega-squared is the biased estimate of effect size for parametric ANOVA
-        # computing confidence interval for omega-squared
-        aov_effsize_ci <-
-          userfriendlyscience::confIntOmegaSq(var1 = data$x,
-                                              var2 = data$y,
-                                              conf.level = 0.95)
+        aov_effsize_ci <- sjstats::omega_sq(
+          model = stats::lm(formula = y ~ x,
+                            data = data,
+                            na.action = na.omit),
+          partial = TRUE,
+          ci.lvl = 0.95,
+          n = nboot
+        )
 
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_omega <-
@@ -347,8 +357,10 @@ ggbetweenstats <- function(data = NULL,
                   italic("p"),
                   " = ",
                   pvalue,
-                  ", ",
-                  italic(omega) ^ 2,
+                  ", p",
+                  #italic("p"),
+                  #italic(omega) ^ 2,
+                  omega ^ 2,
                   " = ",
                   effsize,
                   ", 95% CI [",
@@ -363,9 +375,12 @@ ggbetweenstats <- function(data = NULL,
                 # numerator degrees of freedom are always integer
                 df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
                 pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
-                effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$es[[1]], k),
-                LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[1]], k),
-                UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[2]], k)
+                effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.omegasq[[1]], k),
+                LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
+                UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
+                # effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$es[[1]], k),
+                # LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[1]], k),
+                # UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[2]], k)
               )
             )
           }
@@ -391,16 +406,14 @@ ggbetweenstats <- function(data = NULL,
                                         data = data))
 
         # getting confidence interval for partial eta-squared
-        aov_effsize_ci <- apaTables::get.ci.partial.eta.squared(
-          F.value = aov_stat2[[1]][["F value"]][[1]],
-          # F-value
-          df1 = aov_stat2[[1]][["Df"]][[1]],
-          # numerator df
-          df2 = aov_stat2[[1]][["Df"]][[2]],
-          # denominator df
-          conf.level = 0.95
+         aov_effsize_ci <- sjstats::eta_sq(
+          model = stats::lm(formula = y ~ x,
+                            data = data,
+                            na.action = na.omit),
+          partial = TRUE,
+          ci.lvl = 0.95,
+          n = nboot
         )
-
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_peta <-
           function(aov_stat,
@@ -422,7 +435,9 @@ ggbetweenstats <- function(data = NULL,
                   " = ",
                   pvalue,
                   ", p",
-                  italic(eta) ^ 2,
+                  #italic("p"),
+                  #italic(eta) ^ 2,
+                  eta ^ 2,
                   " = ",
                   effsize,
                   ", 95% CI [",
@@ -437,9 +452,12 @@ ggbetweenstats <- function(data = NULL,
                 # numerator degrees of freedom are always integer
                 df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
                 pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
-                effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(aov_effsize$main)$etaSqP[[1]], k),
-                LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$LL[[1]], k),
-                UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$UL[[1]], k)
+                effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.etasq[[1]], k),
+                LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
+                UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
+                # effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(aov_effsize$main)$etaSqP[[1]], k),
+                # LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$LL[[1]], k),
+                # UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$UL[[1]], k)
               )
             )
           }

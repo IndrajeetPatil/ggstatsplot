@@ -51,6 +51,7 @@ matrix:
         - pander
         - minpack.lm
         - StanHeaders
+        - devtools
 
         # "These installs will be faster than source installs, but may not always be the most recent version"
         # https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
@@ -82,7 +83,6 @@ repos:
 
 r_packages:
   - covr
-  - devtools
 
 warnings_are_errors: true
 #r_check_revdep: true

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gghistostats.R
 \name{gghistostats}
 \alias{gghistostats}
-\title{histogram for distribution of a numeric variable}
+\title{Histogram for distribution of a numeric variable}
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
@@ -18,8 +18,8 @@ from one sample test to be displayed.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{type}{Type of statistic expected ("parametric" or "nonparametric" or
-"bayes"). Abbreviations accepted are "p" or "np" or "bf", respectively.}
+\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"} or
+\code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or \code{"bf"}, respectively.}
 
 \item{test.value}{A number specifying the value of the null hypothesis.}
 
@@ -36,8 +36,8 @@ rejected (Default: \code{bf.message = TRUE}).}
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \code{FALSE}, no statistical tests will be run.}
 
-\item{centrality.para}{Decides \emph{which} measure of central tendency ("mean" or
-"median") is to be displayed as a vertical line.}
+\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"} or
+\code{"median"}) is to be displayed as a vertical line.}
 
 \item{centrality.colour}{Decides colour for the vertical line for centrality
 parameter (Default: \code{"blue"}).}
@@ -93,6 +93,9 @@ binwidth.adjust = TRUE,
 binwidth = 0.10
 )
 
+}
+\seealso{
+\code{\link{grouped_gghistostats}}
 }
 \author{
 Indrajeet Patil

@@ -5,12 +5,12 @@
 \title{Custom function for getting specified number of decimal places in
 results for p-value}
 \usage{
-specify_decimal_p(x, k = NULL, p.value = FALSE)
+specify_decimal_p(x, k = 3, p.value = FALSE)
 }
 \arguments{
 \item{x}{A numeric variable.}
 
-\item{k}{Number of digits after decimal point (should be an integer).}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{p.value}{Decides whether the number is a p-value (Dafault: \code{FALSE}).}
 }

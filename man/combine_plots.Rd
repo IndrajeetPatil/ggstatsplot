@@ -2,7 +2,8 @@
 % Please edit documentation in R/combine_plots.R
 \name{combine_plots}
 \alias{combine_plots}
-\title{Combining multiple plots using \code{cowplot::plot_grid()} with a combination of title, caption, and annotation label}
+\title{Combining multiple plots using \code{cowplot::plot_grid()} with a
+combination of title, caption, and annotation label}
 \usage{
 combine_plots(..., title.text = NULL, title.colour = "black",
   title.size = 16, title.vjust = 0.5, title.hjust = 0.5,
@@ -19,35 +20,39 @@ combine_plots(..., title.text = NULL, title.colour = "black",
 \arguments{
 \item{...}{Additional arguments used in the function \code{cowplot::plot_grid()}.}
 
-\item{title.text}{String or plotmath expression to be drawn as title for the \emph{combined plot}.}
+\item{title.text}{String or plotmath expression to be drawn as title for the
+\emph{combined plot}.}
 
 \item{title.colour}{Text color for title.}
 
 \item{title.size}{Point size of title text.}
 
-\item{title.vjust}{Vertical justification for title. Default = 0.5 (centered on y).
-0 = baseline at y, 1 = ascender at y.}
+\item{title.vjust}{Vertical justification for title. Default = 0.5 (centered
+on y). 0 = baseline at y, 1 = ascender at y.}
 
-\item{title.hjust}{Horizontal justification for title. Default = 0.5 (centered on x).
-0 = flush-left at x, 1 = flush-right.}
+\item{title.hjust}{Horizontal justification for title. Default = 0.5
+(centered on x). 0 = flush-left at x, 1 = flush-right.}
 
 \item{title.fontface}{The font face ("plain", "bold", etc.) for title.}
 
-\item{caption.text}{String or plotmath expression to be drawn as the caption for the \emph{combined plot}.}
+\item{caption.text}{String or plotmath expression to be drawn as the caption
+for the \emph{combined plot}.}
 
 \item{caption.colour}{Text color for caption.}
 
 \item{caption.size}{Point size of title text.}
 
-\item{caption.vjust}{Vertical justification for caption. Default = 0.5 (centered on y).
-0 = baseline at y, 1 = ascender at y.}
+\item{caption.vjust}{Vertical justification for caption. Default = \code{0.5}
+(centered on y). \code{0} = baseline at y, \code{1} = ascender at y.}
 
-\item{caption.hjust}{Horizontal justification for caption. Default = 0.5 (centered on x).
-0 = flush-left at x, 1 = flush-right.}
+\item{caption.hjust}{Horizontal justification for caption. Default = \code{0.5}
+(centered on x). \code{0} = flush-left at x, \code{1} = flush-right.}
 
-\item{caption.fontface}{The font face ("plain", "bold", etc.) for caption.}
+\item{caption.fontface}{The font face (\code{"plain"}, \code{"bold"}, \code{"italic"},
+\code{"bold.italic"}) for caption.}
 
-\item{sub.text}{The label with which the \emph{combined plot} should be annotated. Can be a plotmath expression.}
+\item{sub.text}{The label with which the \emph{combined plot} should be annotated.
+Can be a plotmath expression.}
 
 \item{sub.colour}{Text color for annotation label.}
 
@@ -57,33 +62,40 @@ combine_plots(..., title.text = NULL, title.colour = "black",
 
 \item{sub.hjust}{Horizontal justification for annotation label.}
 
-\item{sub.fontface}{The font face ("plain", "bold", etc.) for the annotation label.}
+\item{sub.fontface}{The font face (\code{"plain"}, \code{"bold"}, \code{"italic"},
+\code{"bold.italic"}) for the annotation label.}
 
 \item{sub.x}{The x position of annotation label.}
 
 \item{sub.y}{The y position of annotation label.}
 
-\item{sub.vpadding}{Vertical padding. The total vertical space added to the label, given in grid units.
-By default, this is added equally above and below the label. However, by changing the y and vjust parameters, this can be changed.}
+\item{sub.vpadding}{Vertical padding. The total vertical space added to the
+label, given in grid units. By default, this is added equally above and
+below the label. However, by changing the y and vjust parameters, this can
+be changed.}
 
 \item{sub.angle}{Angle at which annotation label is to be drawn.}
 
 \item{sub.lineheight}{Line height of annotation label.}
 
-\item{title.rel.heights}{Numerical vector of relative columns heights while combining (title, plot).}
+\item{title.rel.heights}{Numerical vector of relative columns heights while
+combining (title, plot).}
 
-\item{caption.rel.heights}{Numerical vector of relative columns heights while combining (plot, caption).}
+\item{caption.rel.heights}{Numerical vector of relative columns heights while
+combining (plot, caption).}
 
-\item{title.caption.rel.heights}{Numerical vector of relative columns heights while combining (title, plot, caption).}
+\item{title.caption.rel.heights}{Numerical vector of relative columns heights
+while combining (title, plot, caption).}
 }
 \value{
 Combined plot with title and/or caption and/or annotation label
 }
 \description{
-Wrapper around \code{cowplot::plot_grid()} that will return a plotgrid along with a combination of
-title, caption, and annotation label
+Wrapper around \code{\link[cowplot]{plot_grid}} that will return
+a plotgrid along with a combination of title, caption, and annotation label
 }
 \examples{
+
 # loading the necessary libraries
 library(ggplot2)
 

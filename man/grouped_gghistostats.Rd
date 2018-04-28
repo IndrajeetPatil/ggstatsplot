@@ -6,39 +6,103 @@
 \arguments{
 \item{grouping.var}{Grouping variable.}
 
+\item{data}{Dataframe from which variables specified are preferentially to be
+taken.}
+
+\item{x}{A numeric variable.}
+
+\item{xlab}{Label for \code{x} axis variable.}
+
+\item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
+from one sample test to be displayed.}
+
+\item{caption}{The text for the plot caption.}
+
+\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"} or
+\code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or \code{"bf"}, respectively.}
+
+\item{test.value}{A number specifying the value of the null hypothesis.}
+
+\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
+to use in calculating Bayes factors.}
+
+\item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
+of null hypothesis for parametric test if the null hypothesis can't be
+rejected (Default: \code{bf.message = TRUE}).}
+
+\item{k}{Number of decimal places expected for results.}
+
+\item{results.subtitle}{Decides whether the results of statistical tests are
+to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
+\code{FALSE}, no statistical tests will be run.}
+
+\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"} or
+\code{"median"}) is to be displayed as a vertical line.}
+
+\item{centrality.colour}{Decides colour for the vertical line for centrality
+parameter (Default: \code{"blue"}).}
+
+\item{test.value.line}{Decides whether test value is to be displayed as a
+vertical line (Default: \code{FALSE}).}
+
+\item{test.value.colour}{Decides colour for the vertical line denoting test
+value (Default: \code{"black"}).}
+
+\item{binwidth.adjust}{If set to \code{TRUE}, you can use it to pick better value
+with the \code{binwidth} argument to \code{stat_bin()}.}
+
+\item{binwidth}{The width of the bins. Can be specified as a numeric value,
+or a function that calculates width from \code{x}. The default is to use bins
+bins that cover the range of the data. You should always override this
+value, exploring multiple widths to find the best to illustrate the stories
+in your data.}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
+
 \item{...}{Arguments passed on to \code{combine_plots}
 \describe{
-  \item{title.text}{String or plotmath expression to be drawn as title for the \emph{combined plot}.}
+  \item{title.text}{String or plotmath expression to be drawn as title for the
+\emph{combined plot}.}
   \item{title.colour}{Text color for title.}
   \item{title.size}{Point size of title text.}
-  \item{title.vjust}{Vertical justification for title. Default = 0.5 (centered on y).
-0 = baseline at y, 1 = ascender at y.}
-  \item{title.hjust}{Horizontal justification for title. Default = 0.5 (centered on x).
-0 = flush-left at x, 1 = flush-right.}
+  \item{title.vjust}{Vertical justification for title. Default = 0.5 (centered
+on y). 0 = baseline at y, 1 = ascender at y.}
+  \item{title.hjust}{Horizontal justification for title. Default = 0.5
+(centered on x). 0 = flush-left at x, 1 = flush-right.}
   \item{title.fontface}{The font face ("plain", "bold", etc.) for title.}
-  \item{caption.text}{String or plotmath expression to be drawn as the caption for the \emph{combined plot}.}
+  \item{caption.text}{String or plotmath expression to be drawn as the caption
+for the \emph{combined plot}.}
   \item{caption.colour}{Text color for caption.}
   \item{caption.size}{Point size of title text.}
-  \item{caption.vjust}{Vertical justification for caption. Default = 0.5 (centered on y).
-0 = baseline at y, 1 = ascender at y.}
-  \item{caption.hjust}{Horizontal justification for caption. Default = 0.5 (centered on x).
-0 = flush-left at x, 1 = flush-right.}
-  \item{caption.fontface}{The font face ("plain", "bold", etc.) for caption.}
-  \item{sub.text}{The label with which the \emph{combined plot} should be annotated. Can be a plotmath expression.}
+  \item{caption.vjust}{Vertical justification for caption. Default = \code{0.5}
+(centered on y). \code{0} = baseline at y, \code{1} = ascender at y.}
+  \item{caption.hjust}{Horizontal justification for caption. Default = \code{0.5}
+(centered on x). \code{0} = flush-left at x, \code{1} = flush-right.}
+  \item{caption.fontface}{The font face (\code{"plain"}, \code{"bold"}, \code{"italic"},
+\code{"bold.italic"}) for caption.}
+  \item{sub.text}{The label with which the \emph{combined plot} should be annotated.
+Can be a plotmath expression.}
   \item{sub.colour}{Text color for annotation label.}
   \item{sub.size}{Point size of annotation text.}
   \item{sub.x}{The x position of annotation label.}
   \item{sub.y}{The y position of annotation label.}
   \item{sub.hjust}{Horizontal justification for annotation label.}
   \item{sub.vjust}{Vertical justification for annotation label.}
-  \item{sub.vpadding}{Vertical padding. The total vertical space added to the label, given in grid units.
-By default, this is added equally above and below the label. However, by changing the y and vjust parameters, this can be changed.}
-  \item{sub.fontface}{The font face ("plain", "bold", etc.) for the annotation label.}
+  \item{sub.vpadding}{Vertical padding. The total vertical space added to the
+label, given in grid units. By default, this is added equally above and
+below the label. However, by changing the y and vjust parameters, this can
+be changed.}
+  \item{sub.fontface}{The font face (\code{"plain"}, \code{"bold"}, \code{"italic"},
+\code{"bold.italic"}) for the annotation label.}
   \item{sub.angle}{Angle at which annotation label is to be drawn.}
   \item{sub.lineheight}{Line height of annotation label.}
-  \item{title.caption.rel.heights}{Numerical vector of relative columns heights while combining (title, plot, caption).}
-  \item{title.rel.heights}{Numerical vector of relative columns heights while combining (title, plot).}
-  \item{caption.rel.heights}{Numerical vector of relative columns heights while combining (plot, caption).}
+  \item{title.caption.rel.heights}{Numerical vector of relative columns heights
+while combining (title, plot, caption).}
+  \item{title.rel.heights}{Numerical vector of relative columns heights while
+combining (title, plot).}
+  \item{caption.rel.heights}{Numerical vector of relative columns heights while
+combining (plot, caption).}
 }}
 }
 \description{
@@ -60,6 +124,9 @@ nrow = 3,
 messages = FALSE
 )
 
+}
+\seealso{
+\code{\link{gghistostats}}
 }
 \author{
 Indrajeet Patil

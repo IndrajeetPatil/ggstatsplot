@@ -1,3 +1,4 @@
+#'
 #' @title Custom function for getting specified number of decimal places in
 #'   results for p-value
 #' @name specify_decimal_p
@@ -8,20 +9,18 @@
 #' @author Indrajeet Patil
 #'
 #' @param x A numeric variable.
-#' @param k Number of digits after decimal point (should be an integer).
+#' @param k Number of digits after decimal point (should be an integer) (Default: `k = 3`).
 #' @param p.value Decides whether the number is a p-value (Dafault: `FALSE`).
 #'
 #' @return Formatted numeric values.
 #'
 #' @export
+#'
 
 specify_decimal_p <- function(x,
-                              k = NULL,
+                              k = 3,
                               p.value = FALSE) {
-  # if the number of decimal places hasn't been specified, use the default of 3
-  if (is.null(k)) {
-    k <- 3
-  }
+
   # formatting the output properly
   output <-
     base::trimws(

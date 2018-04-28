@@ -4,7 +4,7 @@
 # ggstatsplot: `ggplot2` Based Plots with Statistical Details
 
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.1.9000-orange.svg?style=flat-square)](commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.2-orange.svg?style=flat-square)](commits/master)
 [![Daily downloads
 badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Weekly downloads
@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--27-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--28-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -112,6 +112,7 @@ command-
 ?ggpiestats
 ?ggcorrmat
 ?combine_plots
+?grouped_gghistostats
 ```
 
 ## Usage
@@ -169,7 +170,7 @@ ggstatsplot::ggbetweenstats(
     paste(italic("Note"), ": this is a demo")
   ),
   messages = FALSE
-) +                                             # further modifcation outside of ggstatsplot
+) +                                               # further modification outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
 ```
@@ -269,7 +270,7 @@ ggstatsplot::ggscatterstats(
   marginal.type = "density",                     # type of marginal distribution to be displayed
   xfill = "blue",                                # colour fill for x-axis marginal distribution 
   yfill = "red",                                 # colour fill for y-axis marginal distribution
-  intercept = "median",                          # which type of intercept line is to be displayed  
+  centrality.para = "median",                          # which type of central tendency lines are to be displayed  
   width.jitter = 0.2,                            # amount of horizontal jitter for data points
   height.jitter = 0.4,                           # amount of vertical jitter for data points
   messages = FALSE                               # turn off messages and notes
@@ -316,7 +317,7 @@ ggstatsplot::ggpiestats(data = datasets::mtcars,
                         main = cyl,
                         condition = am,
                         messages = FALSE) +
-  ggplot2::scale_fill_brewer(palette = "Dark2")   # further modifcation outside of ggstatsplot    
+  ggplot2::scale_fill_brewer(palette = "Dark2")   # further modification outside of ggstatsplot    
 ```
 
 <img src="man/figures/README-ggpiestats2-1.png" width="100%" />
@@ -368,7 +369,7 @@ ggstatsplot::gghistostats(
   binwidth = 0.10,                # binwidth value (needs to be toyed around with until you find the best one)
   messages = FALSE                # turn off the messages
 ) +              
-  viridis::scale_fill_viridis()   # further modifcation outside of ggstatsplot
+  viridis::scale_fill_viridis()   # further modification outside of ggstatsplot
 ```
 
 <img src="man/figures/README-gghistostats1-1.png" width="100%" />
@@ -425,7 +426,7 @@ ggstatsplot::ggcorrmat(
   data = datasets::iris,
   corr.method = "spearman",                # correlation method
   sig.level = 0.005,                       # threshold of significance
-  cor.vars = c(Sepal.Length:Petal.Width),  # a range of variables can be selected  
+  cor.vars = Sepal.Length:Petal.Width,     # a range of variables can be selected  
   cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
   title = "Correlalogram for length measures for Iris species",
   subtitle = "Iris dataset by Anderson",
@@ -450,7 +451,7 @@ their corresponding p-values (in a
 # getting correlations 
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
-  cor.vars = Sepal.Length:Petal.Width, # notice that `c()`, used in the previous example, is unnecessary
+  cor.vars = Sepal.Length:Petal.Width,
   output = "correlations"
 )
 #> # A tibble: 4 x 5
