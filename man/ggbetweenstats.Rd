@@ -36,6 +36,19 @@ variances as being equal (Default: \code{FALSE}).}
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}
 
+\item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be
+displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
+compare groups; if the notches of two boxes do not overlap, this suggests
+that the medians are significantly different.}
+
+\item{notchwidth}{For a notched box plot, width of the notch relative to the
+body (default \code{0.5}).}
+
+\item{linetype}{Character strings (\code{"blank"}, \code{"solid"}, \code{"dashed"},
+\code{"dotted"}, \code{"dotdash"}, \code{"longdash"}, and \code{"twodash"}) specifiying the
+type of line to draw box plots (Default: \code{"solid"}). Alternatively, the
+numbers \code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
+
 \item{outlier.color}{Default aesthetics for outliers.}
 
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:

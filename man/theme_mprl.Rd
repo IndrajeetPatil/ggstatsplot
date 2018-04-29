@@ -3,7 +3,7 @@
 \name{theme_mprl}
 \alias{theme_mprl}
 \alias{theme_ggstatsplot}
-\title{Default theme used in all \code{ggstatsplot} package plots.}
+\title{Default theme used in all \code{ggstatsplot} package plots}
 \usage{
 theme_mprl()
 }

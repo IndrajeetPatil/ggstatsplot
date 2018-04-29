@@ -109,6 +109,10 @@
 <h1 class="page-header">
 <a href="#ggstatsplot-0-0-2-9000" class="anchor"></a>ggstatsplot 0.0.2.9000<small> Unreleased </small>
 </h1>
+<p>NEW FEATURES</p>
+<ul>
+<li>The <code>ggbetweenstats</code> function can now show notched box plots. Two new arguments <code>notch</code> and <code>notchwidth</code> control its behavior. The defaults are still standard box plots.</li>
+</ul>
 </div>
     <div id="ggstatsplot-0-0-2" class="section level1">
 <h1 class="page-header">
@@ -118,12 +122,9 @@
 <ul>
 <li>Bayesian test added to <code>gghistostats</code> and two new arguments to also display a vertical line for <code>test.value</code> argument.</li>
 <li>Vignette added for <code>gghistostats</code>.</li>
-<li>Added new function <code>grouped_gghistostats</code> to facilitate applying <code>gghistostats</code> for multiple levels of a grouping factor.
-<ul>
+<li>Added new function <code>grouped_gghistostats</code> to facilitate applying <code>gghistostats</code> for multiple levels of a grouping factor.</li>
 <li>
 <code>ggbetweenstats</code> has a new argument <code>outlier.coef</code> to adjust threshold used to detect outliers. Removed bug from the same function when <code>outlier.label</code> argument is of factor/character type.</li>
-</ul>
-</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>

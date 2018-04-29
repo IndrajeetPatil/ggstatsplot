@@ -26,6 +26,16 @@
 #'   variances as being equal (Default: `FALSE`).
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `100`).
+#' @param notch A logical. If `FALSE` (default), a standard box plot will be
+#'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
+#'   compare groups; if the notches of two boxes do not overlap, this suggests
+#'   that the medians are significantly different.
+#' @param notchwidth For a notched box plot, width of the notch relative to the
+#'   body (default `0.5`).
+#' @param linetype Character strings (`"blank"`, `"solid"`, `"dashed"`,
+#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifiying the
+#'   type of line to draw box plots (Default: `"solid"`). Alternatively, the
+#'   numbers `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
 #' @param outlier.color Default aesthetics for outliers.
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
@@ -45,6 +55,8 @@
 #' @import dplyr
 #' @import rlang
 #'
+#' @importFrom magrittr "%<>%"
+#' @importFrom magrittr "%>%"
 #' @importFrom WRS2 t1way
 #' @importFrom WRS2 yuen
 #' @importFrom WRS2 yuen.effect.ci
@@ -144,6 +156,9 @@ ggbetweenstats <- function(data = NULL,
                            k = 3,
                            var.equal = FALSE,
                            nboot = 100,
+                           notch = FALSE,
+                           notchwidth = 0.5,
+                           linetype = "solid",
                            outlier.tagging = NULL,
                            outlier.label = NULL,
                            outlier.color = "black",
@@ -210,8 +225,7 @@ ggbetweenstats <- function(data = NULL,
   # unused levels of the factor need to be dropped otherwise anova will be run instead of a t-test
   if (is.factor(data$x)) {
     # drop the unused levels of factor
-    data <-
-      data %>%
+    data %<>%
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
@@ -221,8 +235,7 @@ ggbetweenstats <- function(data = NULL,
     # convert to factor
     data$x <- base::as.factor(x = data$x)
     # drop the unused levels of factor
-    data <-
-      data %>%
+    data %<>%
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
@@ -266,6 +279,9 @@ ggbetweenstats <- function(data = NULL,
   if (isTRUE(outlier.tagging)) {
     plot <- plot +
       ggplot2::geom_boxplot(
+        notch = notch,
+        notchwidth = notchwidth,
+        linetype = linetype,
         width = 0.3,
         alpha = 0.2,
         fill = "white",
@@ -279,6 +295,9 @@ ggbetweenstats <- function(data = NULL,
   } else {
     plot <- plot +
       ggplot2::geom_boxplot(
+        notch = notch,
+        notchwidth = notchwidth,
+        linetype = linetype,
         width = 0.3,
         alpha = 0.2,
         fill = "white",

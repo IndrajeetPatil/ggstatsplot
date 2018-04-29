@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--28-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--04--29-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -137,7 +137,7 @@ Here are examples of the main functions currently supported in
 
 This function creates a violin plot for **between**-group or
 **between**-condition comparisons with results from statistical tests in
-the subtitle:
+the subtitle. The simplest function call looks like this-
 
 ``` r
 ggstatsplot::ggbetweenstats(data = datasets::iris, 
@@ -159,8 +159,9 @@ ggstatsplot::ggbetweenstats(
   data = datasets::iris,
   x = Species,
   y = Sepal.Length,
+  notch = TRUE,                                   # show notched box plot
   mean.plotting = TRUE,                           # whether mean for each group id to be displayed 
-  type = "robust",                                # which type of test is to be run
+  type = "parametric",                            # which type of test is to be run
   outlier.tagging = TRUE,                         # whether outliers need to be tagged
   outlier.label = Sepal.Width,                    # variable to be used for the outlier tag
   xlab = "Type of Species",                       # label for the x-axis variable
@@ -228,10 +229,10 @@ cowplot::plot_grid(p1, p2, p3,
 <img src="man/figures/README-ggbetweenstats3-1.png" width="100%" />
 
 Variant of this function `ggwithinstats` is currently under work. You
-*can* still use this function just to prepare the **plot**, but the
-statistical details will be incorrect. You can remove them by adding
-`labs(subtitle = NULL)` to your code which will remove the subtitle
-containing stats.
+*can* still use this function just to prepare the **plot** for
+exploratort data analysis, but the statistical details will be
+incorrect. You can remove them by adding `ggplot2::labs(subtitle =
+NULL)` to your code which will remove the subtitle containing stats.
 
   - `ggscatterstats`
 
@@ -270,7 +271,7 @@ ggstatsplot::ggscatterstats(
   marginal.type = "density",                     # type of marginal distribution to be displayed
   xfill = "blue",                                # colour fill for x-axis marginal distribution 
   yfill = "red",                                 # colour fill for y-axis marginal distribution
-  centrality.para = "median",                          # which type of central tendency lines are to be displayed  
+  centrality.para = "median",                    # which type of central tendency lines are to be displayed  
   width.jitter = 0.2,                            # amount of horizontal jitter for data points
   height.jitter = 0.4,                           # amount of vertical jitter for data points
   messages = FALSE                               # turn off messages and notes
@@ -316,6 +317,7 @@ library(ggplot2)
 ggstatsplot::ggpiestats(data = datasets::mtcars,
                         main = cyl,
                         condition = am,
+                        title = "Dataset: Motor Trend Car Road Tests",      
                         messages = FALSE) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modification outside of ggstatsplot    
 ```
@@ -381,11 +383,15 @@ The `type` (of test) argument also accepts the following abbreviations:
 ``` r
 ggstatsplot::gghistostats(
   data = NULL,
+  title = "Distribution of variable x",
   x = stats::rnorm(n = 1000, mean = 0, sd = 1),
   centrality.para = "mean",
   type = "bf",
   bf.prior = 0.8,
-  messages = FALSE
+  messages = FALSE,
+  caption = expression(                              
+    paste(italic("Note"), ": black line - test value; blue line - observed mean")
+  )
 )
 ```
 
@@ -403,10 +409,14 @@ but if you want to turn off this behavior, you can use the argument
 ggstatsplot::gghistostats(
   data = datasets::ToothGrowth,
   x = len,
+  title = "Distribution of tooth length",
   centrality.para = "mean",
   test.value = 20,
   test.value.line = TRUE,
   xlab = "Tooth length",
+  caption = expression(                              
+    paste(italic("Note"), ": black line - test value; blue line - observed mean")
+  ),
   messages = FALSE
 )
 ```
@@ -536,7 +546,7 @@ ggstatsplot::combine_plots(
   ncol = 1,
   title.text = "Relationship between sepal length and width for all Iris species",
   title.size = 14,
-  title.colour = "blue",
+  title.colour = "black",
   caption.text = expression(
     paste(
       italic("Note"),
@@ -596,7 +606,7 @@ ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing
                            labels = c("(a)","(b)","(c)"),
                            title.text = "MPG and car transmission relationship (for each cylinder count)",
                            title.size = 13,
-                           title.colour = "blue",
+                           title.colour = "black",
                            caption.text = expression(
                              paste(
                                italic("Transmission"),

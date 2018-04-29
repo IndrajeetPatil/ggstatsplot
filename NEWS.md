@@ -1,5 +1,11 @@
 # ggstatsplot 0.0.2.9000
 
+NEW FEATURES
+
+  - The `ggbetweenstats` function can now show notched box plots. Two new
+    arguments `notch` and `notchwidth` control its behavior. The defaults are
+    still standard box plots.
+    
 # ggstatsplot 0.0.2
 
 NEW FEATURES
@@ -9,7 +15,7 @@ NEW FEATURES
   - Vignette added for `gghistostats`.
   - Added new function `grouped_gghistostats` to facilitate applying
     `gghistostats` for multiple levels of a grouping factor.
-    - `ggbetweenstats` has a new argument `outlier.coef` to adjust threshold used
+  - `ggbetweenstats` has a new argument `outlier.coef` to adjust threshold used
     to detect outliers. Removed bug from the same function when `outlier.label`
     argument is of factor/character type.
 
