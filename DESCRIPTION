@@ -33,7 +33,7 @@ Imports:
     gtable,
     jmv (>= 0.8.6.2),
     magrittr (>= 1.5),
-    MASS (>= 7.3-47),
+    MASS (>= 7.3-50),
     nortest (>= 1.0-4),
     purrr (>= 0.2.4),
     rlang (>= 0.2.0),

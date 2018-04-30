@@ -5,6 +5,8 @@ NEW FEATURES
   - The `ggbetweenstats` function can now show notched box plots. Two new
     arguments `notch` and `notchwidth` control its behavior. The defaults are
     still standard box plots.
+  - Removed warnings that were appearing when `outlier.label` argument was of
+    character type.
     
 # ggstatsplot 0.0.2
 

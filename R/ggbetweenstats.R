@@ -953,12 +953,15 @@ ggbetweenstats <- function(data = NULL,
         fun.y = mean,
         geom = "point",
         color = mean.color,
-        size = 5
+        size = 5,
+        na.rm = TRUE
       )
 
     # use ggrepel to attach text label to each mean
     # create a dataframe with means
     mean_dat <- data %>%
+      # in case outlier.label is present, remove it since it's of no utility here
+      dplyr::select(.data = ., -dplyr::contains("outlier")) %>%
       dplyr::group_by(.data = ., x) %>% # group by the independent variable
       dplyr::mutate_all(.tbl = .,
                         .funs = mean,
@@ -970,9 +973,7 @@ ggbetweenstats <- function(data = NULL,
         .funs = ~ as.numeric(as.character(
           ggstatsplot::specify_decimal_p(x = ., k = k)
         )) # format the values for printing
-      ) %>%
-      dplyr::select(.data = ., -dplyr::contains("outlier"))
-    # in case outlier.label is present, remove it since it's of no utility here
+      )
 
     # attach the labels to the plot
     plot <- plot +

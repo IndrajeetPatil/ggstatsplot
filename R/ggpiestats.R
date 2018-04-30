@@ -279,43 +279,7 @@ ggpiestats <-
     p <- p +
       ggplot2::scale_y_continuous(breaks = NULL) +
       ggplot2::scale_fill_discrete(name = "", labels = unique(labels)) +
-      ggplot2::theme_grey() +
-      ggplot2::theme(
-        panel.grid = element_blank(),
-        axis.ticks = element_blank(),
-        axis.title = element_blank(),
-        axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        strip.text.x = element_text(size = 14, face = "bold"),
-        strip.text.y = element_text(size = 14, face = "bold"),
-        strip.text = element_text(size = 14, face = "bold"),
-        legend.text = element_text(size = 14),
-        legend.title = element_text(size = 14, face = "bold"),
-        legend.title.align = 0.5,
-        legend.text.align = 0.5,
-        legend.direction = "horizontal",
-        legend.position = "bottom",
-        legend.key = element_rect(size = 5),
-        legend.key.size = unit(1.5, "lines"),
-        legend.margin = margin(5, 5, 5, 5),
-        legend.box.margin = margin(5, 5, 5, 5),
-        panel.border = element_rect(
-          colour = "black",
-          fill = NA,
-          size = 1
-        ),
-        plot.subtitle = element_text(
-          color = "black",
-          size = 14,
-          hjust = 0.5
-        ),
-        plot.title = element_text(
-          color = "black",
-          size = 16,
-          face = "bold",
-          hjust = 0.5
-        )
-      ) +
+      theme_pie() +
       ggplot2::guides(fill = guide_legend(override.aes = list(colour = NA))) # remove black diagonal line from legend
 
 
