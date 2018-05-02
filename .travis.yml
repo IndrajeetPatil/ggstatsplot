@@ -81,8 +81,9 @@ repos:
   ropensci: http://packages.ropensci.org
 
 # work around temporary travis + R 3.5 bug
-r_packages: devtools
-  #- covr
+r_packages:
+    - devtools
+    - covr
 
 warnings_are_errors: true
 #r_check_revdep: true
