@@ -117,6 +117,12 @@ details included in the plot as a subtitle.</p>
     
     </div>
 
+    <pre class="usage"><span class='fu'>ggbetweenstats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
+  <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,14 +141,6 @@ taken.</p></td>
       <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
     </tr>
     <tr>
-      <th>xlab</th>
-      <td><p>Label for <code>x</code> axis variable.</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>Label for <code>y</code> axis variable.</p></td>
-    </tr>
-    <tr>
       <th>type</th>
       <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
 or <code>"robust"</code>).Corresponding abbreviations are also accepted: <code>"p"</code> (for
@@ -156,12 +154,20 @@ or <code>"unbiased"</code> (Hedge's <em>g</em> for <strong>t-test</strong>; part
 <strong>anova</strong>)).</p></td>
     </tr>
     <tr>
-      <th>title</th>
-      <td><p>The text for the plot title.</p></td>
+      <th>xlab</th>
+      <td><p>Label for <code>x</code> axis variable.</p></td>
+    </tr>
+    <tr>
+      <th>ylab</th>
+      <td><p>Label for <code>y</code> axis variable.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>The text for the plot caption.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>The text for the plot title.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -197,10 +203,6 @@ type of line to draw box plots (Default: <code>"solid"</code>). Alternatively, t
 numbers <code>0</code> to <code>6</code> can be used (<code>0</code> for "blank", <code>1</code> for "solid", etc.).</p></td>
     </tr>
     <tr>
-      <th>outlier.color</th>
-      <td><p>Default aesthetics for outliers.</p></td>
-    </tr>
-    <tr>
       <th>outlier.tagging</th>
       <td><p>Decides whether outliers should be tagged (Default:
 <code>FALSE</code>).</p></td>
@@ -208,6 +210,10 @@ numbers <code>0</code> to <code>6</code> can be used (<code>0</code> for "blank"
     <tr>
       <th>outlier.label</th>
       <td><p>Label to put on the outliers that have been tagged.</p></td>
+    </tr>
+    <tr>
+      <th>outlier.color</th>
+      <td><p>Default aesthetics for outliers.</p></td>
     </tr>
     <tr>
       <th>outlier.coef</th>

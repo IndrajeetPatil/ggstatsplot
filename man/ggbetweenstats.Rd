@@ -3,6 +3,14 @@
 \name{ggbetweenstats}
 \alias{ggbetweenstats}
 \title{violin plots for group or condition comparisons}
+\usage{
+ggbetweenstats(data = NULL, x, y, type = "parametric",
+  effsize.type = "unbiased", xlab = NULL, ylab = NULL, caption = NULL,
+  title = NULL, k = 3, var.equal = FALSE, nboot = 100, notch = FALSE,
+  notchwidth = 0.5, linetype = "solid", outlier.tagging = NULL,
+  outlier.label = NULL, outlier.color = "black", outlier.coef = 1.5,
+  mean.plotting = TRUE, mean.color = "darkred", messages = TRUE)
+}
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
@@ -10,10 +18,6 @@ taken.}
 \item{x}{The grouping variable.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
-
-\item{xlab}{Label for \code{x} axis variable.}
-
-\item{ylab}{Label for \code{y} axis variable.}
 
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
 or \code{"robust"}).Corresponding abbreviations are also accepted: \code{"p"} (for
@@ -24,9 +28,13 @@ parametric), \code{"np"} (nonparametric), \code{"r"} (robust), resp.}
 or \code{"unbiased"} (Hedge's \emph{g} for \strong{t-test}; partial omega-squared for
 \strong{anova})).}
 
-\item{title}{The text for the plot title.}
+\item{xlab}{Label for \code{x} axis variable.}
+
+\item{ylab}{Label for \code{y} axis variable.}
 
 \item{caption}{The text for the plot caption.}
+
+\item{title}{The text for the plot title.}
 
 \item{k}{Number of decimal places expected for results.}
 
@@ -49,12 +57,12 @@ body (default \code{0.5}).}
 type of line to draw box plots (Default: \code{"solid"}). Alternatively, the
 numbers \code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
 
-\item{outlier.color}{Default aesthetics for outliers.}
-
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
 
 \item{outlier.label}{Label to put on the outliers that have been tagged.}
+
+\item{outlier.color}{Default aesthetics for outliers.}
 
 \item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
 With Tukey’s method, outliers are below (1st Quartile) or above (3rd

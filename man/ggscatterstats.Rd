@@ -3,6 +3,14 @@
 \name{ggscatterstats}
 \alias{ggscatterstats}
 \title{Scatterplot with marginal distributions}
+\usage{
+ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
+  line.colour = "blue", marginal = TRUE, marginal.type = "histogram",
+  width.jitter = NULL, height.jitter = NULL, xfill = "orange",
+  yfill = "green", centrality.para = NULL, type = "pearson",
+  results.subtitle = NULL, title = NULL, caption = NULL, maxit = 500,
+  k = 3, messages = TRUE)
+}
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
@@ -23,9 +31,19 @@ displayed; the default is \code{TRUE}.}
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
 (\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}).}
 
+\item{width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\% of
+the resolution of the data.}
+
+\item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
+the resolution of the data.}
+
 \item{xfill}{Colour fill for x axis distibution (default: \code{"orange"}).}
 
 \item{yfill}{Colour fill for y axis distribution (default: \code{"green"}).}
+
+\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
+or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
+\code{y}) lines.}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
@@ -37,10 +55,6 @@ resp.}
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle.}
 
-\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
-or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
-\code{y}) lines.}
-
 \item{title}{The text for the plot title.}
 
 \item{caption}{The text for the plot caption.}
@@ -50,12 +64,6 @@ bootstrap samples to compute Spearman's rho confidence intervals (Default:
 \code{500}).}
 
 \item{k}{Number of decimal places expected for results.}
-
-\item{width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\% of
-the resolution of the data.}
-
-\item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
-the resolution of the data.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

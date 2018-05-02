@@ -119,6 +119,12 @@ subtitle.</p>
     
     </div>
 
+    <pre class="usage"><span class='fu'>ggscatterstats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>line.colour</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
+  <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
+  <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
+  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxit</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,12 +165,28 @@ displayed; the default is <code>TRUE</code>.</p></td>
 (<code>"histogram"</code>, <code>"boxplot"</code>, <code>"density"</code>, <code>"violin"</code>).</p></td>
     </tr>
     <tr>
+      <th>width.jitter</th>
+      <td><p>Degree of jitter in <code>x</code> direction. Defaults to 40% of
+the resolution of the data.</p></td>
+    </tr>
+    <tr>
+      <th>height.jitter</th>
+      <td><p>Degree of jitter in <code>y</code> direction. Defaults to 40% of
+the resolution of the data.</p></td>
+    </tr>
+    <tr>
       <th>xfill</th>
       <td><p>Colour fill for x axis distibution (default: <code>"orange"</code>).</p></td>
     </tr>
     <tr>
       <th>yfill</th>
       <td><p>Colour fill for y axis distribution (default: <code>"green"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>centrality.para</th>
+      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
+or <code>"median"</code>) is to be displayed as vertical (for <code>x</code>) and horizontal (for
+<code>y</code>) lines.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -179,12 +201,6 @@ resp.</p></td>
       <th>results.subtitle</th>
       <td><p>Decides whether the results of statistical tests are
 to be displayed as subtitle.</p></td>
-    </tr>
-    <tr>
-      <th>centrality.para</th>
-      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
-or <code>"median"</code>) is to be displayed as vertical (for <code>x</code>) and horizontal (for
-<code>y</code>) lines.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -203,16 +219,6 @@ bootstrap samples to compute Spearman's rho confidence intervals (Default:
     <tr>
       <th>k</th>
       <td><p>Number of decimal places expected for results.</p></td>
-    </tr>
-    <tr>
-      <th>width.jitter</th>
-      <td><p>Degree of jitter in <code>x</code> direction. Defaults to 40% of
-the resolution of the data.</p></td>
-    </tr>
-    <tr>
-      <th>height.jitter</th>
-      <td><p>Degree of jitter in <code>y</code> direction. Defaults to 40% of
-the resolution of the data.</p></td>
     </tr>
     <tr>
       <th>messages</th>

@@ -108,41 +108,6 @@
 #' @export
 #'
 
-# defining global variables and functions to quient the R CMD check notes
-utils::globalVariables(
-  c(
-    "U",
-    "V",
-    "Z",
-    "chi",
-    "counts",
-    "df",
-    "df1",
-    "df2",
-    "effsize",
-    "estimate",
-    "eta",
-    "omega",
-    "perc",
-    "cramer",
-    "pvalue",
-    "r",
-    "rho",
-    "xi",
-    "y",
-    "z_value",
-    "italic",
-    "rsubtitle",
-    "stats_subtitle",
-    "chi_subtitle",
-    "proptest_subtitle",
-    "LL",
-    "UL",
-    "outlier",
-    "outlier.label"
-  )
-)
-
 # defining the function
 ggbetweenstats <- function(data = NULL,
                            x,

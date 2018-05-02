@@ -51,7 +51,6 @@ matrix:
         - pander
         - minpack.lm
         - StanHeaders
-        - devtools
 
         # "These installs will be faster than source installs, but may not always be the most recent version"
         # https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
@@ -81,8 +80,9 @@ repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
 
-r_packages:
-  - covr
+# work around temporary travis + R 3.5 bug
+r_packages: devtools
+  #- covr
 
 warnings_are_errors: true
 #r_check_revdep: true
@@ -93,4 +93,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
+  - Rscript -e 'covr::codecov()'

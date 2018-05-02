@@ -3,6 +3,11 @@
 \name{ggpiestats}
 \alias{ggpiestats}
 \title{Pie charts with statistical tests}
+\usage{
+ggpiestats(data = NULL, main, condition = NULL, factor.levels = NULL,
+  stat.title = NULL, title = NULL, caption = NULL, legend.title = NULL,
+  facet.wrap.name = NULL, k = 3, facet.proptest = TRUE, messages = TRUE)
+}
 \arguments{
 \item{data}{The data as a data frame.}
 
@@ -22,11 +27,11 @@ test.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{k}{Number of decimal places expected for results.}
-
 \item{legend.title}{Title of legend.}
 
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
+
+\item{k}{Number of decimal places expected for results.}
 
 \item{facet.proptest}{Decides whether proprotion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}

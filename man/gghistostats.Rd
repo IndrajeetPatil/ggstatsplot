@@ -3,6 +3,14 @@
 \name{gghistostats}
 \alias{gghistostats}
 \title{Histogram for distribution of a numeric variable}
+\usage{
+gghistostats(data = NULL, x, xlab = NULL, title = NULL, subtitle = NULL,
+  caption = NULL, type = "parametric", test.value = 0, bf.prior = 0.707,
+  bf.message = TRUE, k = 3, results.subtitle = TRUE,
+  centrality.para = NULL, centrality.colour = "blue",
+  test.value.line = FALSE, test.value.colour = "black",
+  binwidth.adjust = FALSE, binwidth = NULL, messages = TRUE)
+}
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
