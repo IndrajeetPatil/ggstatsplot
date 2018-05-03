@@ -7,6 +7,20 @@ NEW FEATURES
     still standard box plots.
   - Removed warnings that were appearing when `outlier.label` argument was of
     character type.
+
+MINOR CHANGES
+
+  - Added a new argument to `ggstatsplot.theme` function to control if
+    `ggstatsplot::theme_mprl` is to be overlaid on top of the selected ggtheme
+    (ggplot2 theme, i.e.).
+  - Two new arguments added to `gghistostats` to allow user to change colorbar
+    gradient. Defaults are colorblind friendly.
+
+BUG FIXES
+
+  - The `centrality.para` argument for `ggscatterstats` was not working
+    properly. Choosing `"median"` didn't show median, but the mean. This is
+    fixed now.
     
 # ggstatsplot 0.0.2
 

@@ -14,8 +14,9 @@
 #' @param subtitle The text for the plot subtitle *if* you don't want results
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
-#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"` or
-#'   `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or `"bf"`, respectively.
+#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
+#'   or `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or `"bf"`,
+#'   respectively.
 #' @param test.value A number specifying the value of the null hypothesis.
 #' @param bf.prior A number between 0.5 and 2 (default 0.707), the prior width
 #'   to use in calculating Bayes factors.
@@ -23,11 +24,13 @@
 #'   of null hypothesis for parametric test if the null hypothesis can't be
 #'   rejected (Default: `bf.message = TRUE`).
 #' @param k Number of decimal places expected for results.
+#' @param low.color,high.color Colors for low and high ends of the gradient.
+#'   Defaults are colorblind-friendly.
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
 #'   `FALSE`, no statistical tests will be run.
-#' @param centrality.para Decides *which* measure of central tendency (`"mean"` or
-#'   `"median"`) is to be displayed as a vertical line.
+#' @param centrality.para Decides *which* measure of central tendency (`"mean"`
+#'   or `"median"`) is to be displayed as a vertical line.
 #' @param centrality.colour Decides colour for the vertical line for centrality
 #'   parameter (Default: `"blue"`).
 #' @param test.value.line Decides whether test value is to be displayed as a
@@ -101,6 +104,8 @@ gghistostats <-
            bf.prior = 0.707,
            bf.message = TRUE,
            k = 3,
+           low.color = "#0072B2",
+           high.color = "#D55E00",
            results.subtitle = TRUE,
            centrality.para = NULL,
            centrality.colour = "blue",
@@ -322,8 +327,8 @@ gghistostats <-
                                  fill = ..count..)
         ) +
         ggplot2::scale_fill_gradient("count",
-                                     low = "green",
-                                     high = "red") +
+                                     low = low.color,
+                                     high = high.color) +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -342,8 +347,8 @@ gghistostats <-
           na.rm = TRUE
         ) +
         ggplot2::scale_fill_gradient("count",
-                                     low = "green",
-                                     high = "red") +
+                                     low = low.color,
+                                     high = high.color) +
         ggstatsplot::theme_mprl() +
         ggplot2::labs(
           x = xlab,
@@ -355,7 +360,7 @@ gghistostats <-
 
     # if central tendency parameter is to be added
     if (!is.null(centrality.para)) {
-      if (centrality.para == "mean") {
+      if (isTRUE(centrality.para) || centrality.para == "mean") {
         plot <- plot +
           ggplot2::geom_vline(
             xintercept = mean(data$x),

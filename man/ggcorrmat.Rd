@@ -10,10 +10,11 @@ ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   exact = FALSE, continuity = TRUE, digits = 2, sig.level = 0.05,
   hc.order = FALSE, hc.method = "complete", lab = TRUE,
   colors = c("#6D9EC1", "white", "#E46726"), outline.color = "black",
-  ggtheme = ggplot2::theme_gray, title = NULL, subtitle = NULL,
-  caption = NULL, caption.default = TRUE, lab_col = "black",
-  lab_size = 4.5, insig = "pch", pch = 4, pch.col = "blue",
-  pch.cex = 10, tl.cex = 12, tl.col = "black", tl.srt = 45)
+  ggtheme = ggplot2::theme_gray, ggstatsplot.theme = TRUE, title = NULL,
+  subtitle = NULL, caption = NULL, caption.default = TRUE,
+  lab_col = "black", lab_size = 4.5, insig = "pch", pch = 4,
+  pch.col = "blue", pch.cex = 10, tl.cex = 12, tl.col = "black",
+  tl.srt = 45)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -29,8 +30,8 @@ names should be entered in the same order.}
 matrix) or \code{"correlations"} (correlation matrix) or \code{"p-values"} (matrix of
 p-values).}
 
-\item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display full
-matrix, lowe triangular or upper triangular matrix.}
+\item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
+full matrix, lowe triangular or upper triangular matrix.}
 
 \item{method}{Character argument that decides the visualization method of
 correlation matrix to be used. Allowed values are \code{"square"} (default),
@@ -51,9 +52,9 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \item{digits}{Decides the number of decimal digits to be added into the plot
 (Default: \code{2}).}
 
-\item{sig.level}{Significance level (Dafault: \code{0.05}). If the p-value in p-mat
-is bigger than sig.level, then the correspondi#' ng correlation coefficient
-is regarded as insignificant.}
+\item{sig.level}{Significance level (Dafault: \code{0.05}). If the p-value in
+p-mat is bigger than sig.level, then the correspondi#' ng correlation
+coefficient is regarded as insignificant.}
 
 \item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be
 hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
@@ -67,12 +68,15 @@ displayed in the plot.}
 \item{colors}{A vector of 3 colors for low, mid, and high correlation values.}
 
 \item{outline.color}{The outline color of square or circle. Default value is
-"gray".}
+\code{"gray"}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-theme_minimal. Allowed values are the official \code{ggplot2} themes including
-\code{theme_gray}, \code{theme_bw}, \code{theme_minimal}, \code{theme_classic}, \code{theme_void},
-etc.}
+\code{ggplot2::theme_gray}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_bw}, \code{theme_minimal}, \code{theme_classic}, \code{theme_void}, etc.}
+
+\item{ggstatsplot.theme}{A logical. Decides whether default theme for
+\code{ggstatsplot}, which is \code{theme_mprl}, is to be overlaid on the entered theme
+(Default: \code{ggstatsplot.theme = TRUE}).}
 
 \item{title}{The text for the plot title.}
 

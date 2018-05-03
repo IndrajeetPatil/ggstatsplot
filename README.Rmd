@@ -64,16 +64,22 @@ You can get the **development** version from GitHub. If you are in hurry and
 want to reduce the time of installation, prefer-
 
 ```{r installation1, eval = FALSE}
-# install.packages("devtools")                                # needed package to download from GitHub repo
-devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
-                         quick = TRUE)                        # skips docs, demos, and vignettes
+# needed package to download from GitHub repo
+utils::install.packages(pkgs = "devtools")   
+
+# downloading the package from GitHub
+devtools::install_github(
+  repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+  quick = TRUE                         # skips docs, demos, and vignettes
+)                        
 ```
 
 If time is not a constraint-
 ```{r installation2, eval = FALSE}
-devtools::install_github(repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
-                         dependencies = TRUE,                 # installs packages which ggstatsplot depends on
-                         upgrade_dependencies = TRUE          # updates any out of date dependencies
+devtools::install_github(
+  repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+  dependencies = TRUE,                 # installs packages which ggstatsplot depends on
+  upgrade_dependencies = TRUE          # updates any out of date dependencies
 )
 ```
 
@@ -126,10 +132,12 @@ This function creates a violin plot for **between**-group or
 subtitle. The simplest function call looks like this-
 
 ```{r ggbetweenstats1, message = FALSE, warning = FALSE}
-ggstatsplot::ggbetweenstats(data = datasets::iris, 
-                            x = Species, 
-                            y = Sepal.Length,
-                            messages = FALSE)
+ggstatsplot::ggbetweenstats(
+  data = datasets::iris, 
+  x = Species, 
+  y = Sepal.Length,
+  messages = FALSE
+)
 ```
 
 Number of other arguments can be specified to make this plot even more
@@ -196,10 +204,11 @@ p3 <- ggstatsplot::ggbetweenstats(
 )
 
 # combining the individual plots into a single plot
-cowplot::plot_grid(p1, p2, p3, 
-                   nrow = 3, 
-                   ncol = 1, 
-                   labels = c("(a)", "(b)", "(c)")
+cowplot::plot_grid(
+  p1, p2, p3, 
+  nrow = 3, 
+  ncol = 1, 
+  labels = c("(a)", "(b)", "(c)")
 )
 ```
 
@@ -211,14 +220,16 @@ subtitle containing stats.
 
 * `ggscatterstats`
 
-This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from [`ggExtra::ggMarginal()`](https://cran.r-project.org/web/packages/ggExtra/vignettes/ggExtra.html) and results from statistical tests in the subtitle:
+This function creates a scatterplot with marginal histograms/boxplots/density/violin plots from \code{\link[ggExtra]{ggMarginal}} and results from statistical tests in the subtitle:
 
 ```{r ggscatterstats1, message = FALSE, warning = FALSE}
-ggstatsplot::ggscatterstats(data = datasets::iris, 
-                            x = Sepal.Length, 
-                            y = Petal.Length,
-                            title = "Dataset: Iris flower data set",
-                            messages = FALSE)
+ggstatsplot::ggscatterstats(
+  data = datasets::iris, 
+  x = Sepal.Length, 
+  y = Petal.Length,
+  title = "Dataset: Iris flower data set",
+  messages = FALSE
+)
 ```
 
 Number of other arguments can be specified to modify this basic plot-
@@ -264,9 +275,11 @@ contingency table analysis included in the subtitle of the plot. If only one
 categorical variable is entered, proportion test will be carried out.
 
 ```{r ggpiestats1, message = FALSE, warning = FALSE}
-ggstatsplot::ggpiestats(data = datasets::iris,
-                        main = Species,
-                        messages = FALSE)
+ggstatsplot::ggpiestats(
+  data = datasets::iris,
+  main = Species,
+  messages = FALSE
+)
 ```
 
 This function can also be used to study an interaction between two categorical
@@ -278,11 +291,13 @@ the plot)-
 ```{r ggpiestats2, message = FALSE, warning = FALSE}
 library(ggplot2)
 
-ggstatsplot::ggpiestats(data = datasets::mtcars,
-                        main = cyl,
-                        condition = am,
-                        title = "Dataset: Motor Trend Car Road Tests",      
-                        messages = FALSE) +
+ggstatsplot::ggpiestats(
+  data = datasets::mtcars,
+  main = cyl,
+  condition = am,
+  title = "Dataset: Motor Trend Car Road Tests",      
+  messages = FALSE
+) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modification outside of ggstatsplot    
 ```
 
@@ -403,10 +418,24 @@ ggstatsplot::ggcorrmat(
 )
 ```
 
+Multiple arguments can be modified to change the appearance of the correlation matrix-
+
+```{r ggcorrmat2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+ggstatsplot::ggcorrmat(
+  data = datasets::iris,
+  cor.vars = c(Sepal.Length:Petal.Width),
+  lab_col = "red",                              # label color
+  ggtheme = ggplot2::theme_light,               # selected ggplot2 theme
+  ggstatsplot.theme = FALSE,                    # turn off overlaying theme_mprl on selected ggplot2 theme
+  type = "lower",                               # type of correlation matrix
+  colors = c("green", "white", "yellow")        # selecting color combination
+)
+```
+
 Alternatively, you can use it just to get the correlation matrices and their
 corresponding p-values (in a [tibble](http://tibble.tidyverse.org/) format).
 
-```{r ggcorrmat2, message = FALSE, warning = FALSE}
+```{r ggcorrmat3, message = FALSE, warning = FALSE}
 # getting correlations 
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
@@ -425,7 +454,7 @@ ggstatsplot::ggcorrmat(
 * `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
-multiple plots. This is a wrapper around [`cowplot::plot_grid`](https://cran.r-project.org/web/packages/cowplot/vignettes/plot_grid.html)
+multiple plots. This is a wrapper around \code{\link[cowplot]{plot_grid}} 
 and lets you combine multiple plots and add combination of title, caption, and
 annotation texts with suitable default parameters.
 
@@ -519,20 +548,22 @@ plots <- datasets::mtcars %>%
 plots
 
 ### creating a grid with cowplot
-ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing all ggstatsplot objects
-                           nrow = 3,
-                           ncol = 1,
-                           labels = c("(a)","(b)","(c)"),
-                           title.text = "MPG and car transmission relationship (for each cylinder count)",
-                           title.size = 13,
-                           title.colour = "black",
-                           caption.text = expression(
-                             paste(
-                               italic("Transmission"),
-                               ": 0 = automatic, 1 = manual"
-                             ),
-                             caption.size = 10
-                           ))
+ggstatsplot::combine_plots(
+  plotlist = plots$plot,       # list column containing all ggstatsplot objects
+  nrow = 3,
+  ncol = 1,
+  labels = c("(a)","(b)","(c)"),
+  title.text = "MPG and car transmission relationship (for each cylinder count)",
+  title.size = 13,
+  title.colour = "black",
+  caption.text = expression(
+    paste(
+      italic("Transmission"),
+      ": 0 = automatic, 1 = manual"
+    ),
+    caption.size = 10
+  )
+)
 ```
 
 * `theme_mprl`
@@ -543,13 +574,17 @@ ggstatsplot::combine_plots(plotlist = plots$plot,       # list column containing
 library(ggplot2)
 
 # Basic scatter plot
-ggplot2::ggplot(data = datasets::mtcars, 
-                mapping = ggplot2::aes(x = wt, y = mpg)) + 
+ggplot2::ggplot(
+  data = datasets::mtcars, 
+  mapping = ggplot2::aes(x = wt, y = mpg)
+) + 
   ggplot2::geom_point()
 
 # Basic scatter plot with theme_mprl() added
-ggplot2::ggplot(data = datasets::mtcars, 
-                mapping = ggplot2::aes(x = wt, y = mpg)) + 
+ggplot2::ggplot(
+  data = datasets::mtcars, 
+  mapping = ggplot2::aes(x = wt, y = mpg)
+) + 
   ggplot2::geom_point() + 
   ggstatsplot::theme_mprl()
 ```

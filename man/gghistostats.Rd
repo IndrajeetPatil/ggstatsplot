@@ -6,10 +6,11 @@
 \usage{
 gghistostats(data = NULL, x, xlab = NULL, title = NULL, subtitle = NULL,
   caption = NULL, type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = TRUE, k = 3, results.subtitle = TRUE,
-  centrality.para = NULL, centrality.colour = "blue",
-  test.value.line = FALSE, test.value.colour = "black",
-  binwidth.adjust = FALSE, binwidth = NULL, messages = TRUE)
+  bf.message = TRUE, k = 3, low.color = "#0072B2",
+  high.color = "#D55E00", results.subtitle = TRUE, centrality.para = NULL,
+  centrality.colour = "blue", test.value.line = FALSE,
+  test.value.colour = "black", binwidth.adjust = FALSE, binwidth = NULL,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -26,8 +27,9 @@ from one sample test to be displayed.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"} or
-\code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or \code{"bf"}, respectively.}
+\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
+or \code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or \code{"bf"},
+respectively.}
 
 \item{test.value}{A number specifying the value of the null hypothesis.}
 
@@ -40,12 +42,15 @@ rejected (Default: \code{bf.message = TRUE}).}
 
 \item{k}{Number of decimal places expected for results.}
 
+\item{low.color, high.color}{Colors for low and high ends of the gradient.
+Defaults are colorblind-friendly.}
+
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \code{FALSE}, no statistical tests will be run.}
 
-\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"} or
-\code{"median"}) is to be displayed as a vertical line.}
+\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
+or \code{"median"}) is to be displayed as a vertical line.}
 
 \item{centrality.colour}{Decides colour for the vertical line for centrality
 parameter (Default: \code{"blue"}).}

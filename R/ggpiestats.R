@@ -67,17 +67,32 @@
 # defining the function
 ggpiestats <-
   function(data = NULL,
-             main,
-             condition = NULL,
-             factor.levels = NULL,
-             stat.title = NULL,
-             title = NULL,
-             caption = NULL,
-             legend.title = NULL,
-             facet.wrap.name = NULL,
-             k = 3,
-             facet.proptest = TRUE,
-             messages = TRUE) {
+           main,
+           condition = NULL,
+           factor.levels = NULL,
+           stat.title = NULL,
+           title = NULL,
+           caption = NULL,
+           legend.title = NULL,
+           facet.wrap.name = NULL,
+           k = 3,
+           facet.proptest = TRUE,
+           messages = TRUE) {
+    # ========================================== messages ==================================================================
+    #
+    # display warning about geom_col issues
+    if (isTRUE(messages)) {
+      if (utils::packageVersion(pkg = "ggplot2") == "2.2.1.9000") {
+        base::message(cat(
+          crayon::red("Warning:"),
+          crayon::blue(
+            "No guarantee this function will work properly if you are using development version of ggplot2"
+          ),
+          crayon::yellow("(2.2.1.9000)")
+        ))
+      }
+    }
+
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
@@ -89,17 +104,13 @@ ggpiestats <-
       if (base::missing(condition)) {
         if (is.null(legend.title)) {
           legend.title <-
-            colnames(dplyr::select(
-              .data = data,
-              !!rlang::enquo(main)
-            ))[1]
+            colnames(dplyr::select(.data = data,
+                                   !!rlang::enquo(main)))[1]
         }
         # if condition argument is not provided then only include the 'main' argument in dataframe
         data <-
-          dplyr::select(
-            .data = data,
-            main = !!rlang::enquo(main)
-          )
+          dplyr::select(.data = data,
+                        main = !!rlang::enquo(main))
       } else {
         # preparing labels from given dataframe
         lab.df <- colnames(dplyr::select(
@@ -127,10 +138,8 @@ ggpiestats <-
       if (!is.null(condition)) {
         # if vectors are provided and condition vector is present
         data <-
-          base::cbind.data.frame(
-            main = main,
-            condition = condition
-          )
+          base::cbind.data.frame(main = main,
+                                 condition = condition)
       } else {
         # if condition vector is absent
         data <-
@@ -166,10 +175,8 @@ ggpiestats <-
     # ========================================= preparing names for legend and facet_wrap =============================
 
     # reorder the category factor levels to order the legend
-    df$main <- factor(
-      x = df$main,
-      levels = unique(df$main)
-    )
+    df$main <- factor(x = df$main,
+                      levels = unique(df$main))
 
     # getting labels for all levels of the 'main' variable factor
     if (is.null(factor.levels)) {
@@ -190,10 +197,8 @@ ggpiestats <-
 
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
-      p <- ggplot2::ggplot(
-        data = df,
-        mapping = ggplot2::aes(x = "", y = counts)
-      ) +
+      p <- ggplot2::ggplot(data = df,
+                           mapping = ggplot2::aes(x = "", y = counts)) +
         ggplot2::geom_col(
           position = "fill",
           color = "black",
@@ -201,10 +206,8 @@ ggpiestats <-
           ggplot2::aes(fill = factor(get("main")))
         ) +
         ggplot2::geom_label(
-          ggplot2::aes(
-            label = paste0(round(perc), "%"),
-            group = factor(get("main"))
-          ),
+          ggplot2::aes(label = paste0(round(perc), "%"),
+                       group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
           color = "black",
           size = 5,
@@ -213,10 +216,8 @@ ggpiestats <-
         ggplot2::coord_polar(theta = "y") # convert to polar coordinates
     } else {
       # if facet_wrap *is* happening
-      p <- ggplot2::ggplot(
-        data = df,
-        mapping = ggplot2::aes(x = "", y = counts)
-      ) +
+      p <- ggplot2::ggplot(data = df,
+                           mapping = ggplot2::aes(x = "", y = counts)) +
         ggplot2::geom_col(
           position = "fill",
           color = "black",
@@ -224,7 +225,7 @@ ggpiestats <-
           ggplot2::aes(fill = factor(get("main")))
         ) +
         ggplot2::facet_wrap(
-          facets = ~condition,
+          facets = ~ condition,
           # creating facets and, if necessary, changing the facet_wrap name
           labeller = ggplot2::labeller(
             condition = label_facet(
@@ -250,7 +251,6 @@ ggpiestats <-
       theme_pie() +
       ggplot2::guides(fill = guide_legend(override.aes = list(colour = NA))) # remove black diagonal line from legend
 
-
     ############################################ chi-square test #####################################################
 
     # custom function to write results from chi-square test into subtitle for the plot
@@ -260,8 +260,8 @@ ggpiestats <-
     # the chi-square test presented...if not entered, the default will be "Chi-square test"
 
     chi_subtitle <- function(jmv_chi,
-                                 cramer_ci,
-                                 effect = NULL) {
+                             cramer_ci,
+                             effect = NULL) {
       # if effect label hasn't been specified, use this default
       if (is.null(effect)) {
         effect <- "Chi-square test"
@@ -272,7 +272,7 @@ ggpiestats <-
           paste(
             y,
             " : ",
-            italic(chi)^2,
+            italic(chi) ^ 2,
             "(",
             df,
             ") = ",
@@ -296,11 +296,9 @@ ggpiestats <-
           estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$chiSq)[[2]], k),
           df = as.data.frame(jmv_chi$chiSq)[[3]],
           # df always an integer
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_chi$chiSq)[[4]],
-            k,
-            p.value = TRUE
-          ),
+          pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$chiSq)[[4]],
+                                                  k,
+                                                  p.value = TRUE),
           # select Cramer's V as effect size
           cramer = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$nom)[[4]], k),
           LL = ggstatsplot::specify_decimal_p(x = cramer_ci[[2]], k),
@@ -315,18 +313,14 @@ ggpiestats <-
     if (!base::missing(condition)) {
       if (isTRUE(facet.proptest)) {
         # running grouped proportion test with helper functions
-        group_prop <- grouped_proptest(
-          data = data,
-          grouping.vars = condition,
-          measure = main
-        )
+        group_prop <- grouped_proptest(data = data,
+                                       grouping.vars = condition,
+                                       measure = main)
         # merging dataframe containing results from the proportion test with counts and percentage dataframe
         df2 <-
-          dplyr::full_join(
-            x = df,
-            y = group_prop,
-            by = "condition"
-          ) %>%
+          dplyr::full_join(x = df,
+                           y = group_prop,
+                           by = "condition") %>%
           dplyr::mutate(
             significance = dplyr::if_else(
               condition = duplicated(condition),
@@ -350,11 +344,9 @@ ggpiestats <-
         cramer_ci <- c(NaN, NaN, NaN)
       } else {
         # results for confidence interval of Cramer's V
-        cramer_ci <- DescTools::CramerV(
-          x = data$main,
-          y = data$condition,
-          conf.level = 0.95
-        )
+        cramer_ci <- DescTools::CramerV(x = data$main,
+                                        y = data$condition,
+                                        conf.level = 0.95)
       }
       # adding significance labels to pie charts for grouped proportion tests, if expected
       if (isTRUE(facet.proptest)) {
@@ -380,10 +372,8 @@ ggpiestats <-
         ))
     } else {
       # conducting proportion test with jmv::propTestN()
-      jmv_prop <- jmv::propTestN(
-        data = data,
-        var = "main"
-      )
+      jmv_prop <- jmv::propTestN(data = data,
+                                 var = "main")
 
       # preparing proportion test subtitle for the plot
       proptest_subtitle <-
@@ -391,7 +381,7 @@ ggpiestats <-
           expr =
             paste(
               "Proportion test : ",
-              italic(chi)^2,
+              italic(chi) ^ 2,
               "(",
               df,
               ") = ",
@@ -405,11 +395,9 @@ ggpiestats <-
             estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
             df = base::as.data.frame(jmv_prop$tests)[[2]],
             # df is always an integer
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = as.data.frame(jmv_prop$tests)[[3]],
-              k,
-              p.value = TRUE
-            )
+            pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[3]],
+                                                    k,
+                                                    p.value = TRUE)
           )
         )
       # adding proportion test subtitle to the plot
@@ -427,25 +415,12 @@ ggpiestats <-
     # preparing the plot
     p <-
       p +
-      ggplot2::labs(
-        title = title,
-        caption = caption
-      ) +
+      ggplot2::labs(title = title,
+                    caption = caption) +
       ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
 
-    # ========================================== messages ==================================================================
-    #
-    # display warning about geom_col issues
-    if (isTRUE(messages)) {
-      base::message(cat(
-        crayon::red("Warning:"),
-        crayon::blue(
-          "No guarantee this function will work properly if you are using development version of ggplot2"
-        ),
-        crayon::yellow("(2.2.1.9000)")
-      ))
-    }
-
+    # adding colorbind friendly palette to the final plot
+    #p <- cbpalette_add(plot = p)
 
     # return the final plot
     return(p)

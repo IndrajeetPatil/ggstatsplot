@@ -125,10 +125,11 @@
   <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>continuity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#6D9EC1"</span>, <span class='st'>"white"</span>, <span class='st'>"#E46726"</span>), <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a></span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>lab_size</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>)</pre>
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a></span>, <span class='kw'>ggstatsplot.theme</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>lab_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>lab_size</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,8 +157,8 @@ p-values).</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>, display full
-matrix, lowe triangular or upper triangular matrix.</p></td>
+      <td><p>Character, <code>"full"</code> (default), <code>"upper"</code> or <code>"lower"</code>, display
+full matrix, lowe triangular or upper triangular matrix.</p></td>
     </tr>
     <tr>
       <th>method</th>
@@ -190,9 +191,9 @@ Kendall's <em>tau</em> and Spearman's <em>rho</em> when not computed exactly (De
     </tr>
     <tr>
       <th>sig.level</th>
-      <td><p>Significance level (Dafault: <code>0.05</code>). If the p-value in p-mat
-is bigger than sig.level, then the correspondi#' ng correlation coefficient
-is regarded as insignificant.</p></td>
+      <td><p>Significance level (Dafault: <code>0.05</code>). If the p-value in
+p-mat is bigger than sig.level, then the correspondi#' ng correlation
+coefficient is regarded as insignificant.</p></td>
     </tr>
     <tr>
       <th>hc.order</th>
@@ -216,14 +217,19 @@ displayed in the plot.</p></td>
     <tr>
       <th>outline.color</th>
       <td><p>The outline color of square or circle. Default value is
-"gray".</p></td>
+<code>"gray"</code>.</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-theme_minimal. Allowed values are the official <code>ggplot2</code> themes including
-<code>theme_gray</code>, <code>theme_bw</code>, <code>theme_minimal</code>, <code>theme_classic</code>, <code>theme_void</code>,
-etc.</p></td>
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_gray</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_bw</code>, <code>theme_minimal</code>, <code>theme_classic</code>, <code>theme_void</code>, etc.</p></td>
+    </tr>
+    <tr>
+      <th>ggstatsplot.theme</th>
+      <td><p>A logical. Decides whether default theme for
+<code>ggstatsplot</code>, which is <code>theme_mprl</code>, is to be overlaid on the entered theme
+(Default: <code>ggstatsplot.theme = TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>title</th>

@@ -25,4 +25,7 @@ This is a helper function used internally in the package and not
 exported. In case you want to use it, you can do so by
 \code{ggstatsplot:::legend_title_margin}. Note that it is \code{:::} and not \code{::}.
 }
+\references{
+https://stackoverflow.com/questions/39247025/increase-space-between-legend-title-and-labels-in-ggplot2
+}
 \keyword{internal}

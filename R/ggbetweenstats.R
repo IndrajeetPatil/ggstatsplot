@@ -999,6 +999,10 @@ ggbetweenstats <- function(data = NULL,
       )
     ))
   }
+
+  # adding colorbind friendly palette to the final plot
+  #plot <- cbpalette_add(plot = plot)
+
   # return the final plot
   return(plot)
 }

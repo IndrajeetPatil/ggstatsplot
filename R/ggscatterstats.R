@@ -380,7 +380,7 @@ ggscatterstats <-
 
     if (is.null(centrality.para)) {
       plot <- plot
-    } else if (centrality.para == "mean") {
+    } else if (isTRUE(centrality.para) || centrality.para == "mean") {
       plot <- plot +
         ggplot2::geom_vline(
           xintercept = mean(data$x),
@@ -399,14 +399,14 @@ ggscatterstats <-
     } else if (centrality.para == "median") {
       plot <- plot +
         ggplot2::geom_vline(
-          xintercept = mean(data$x),
+          xintercept = median(data$x),
           linetype = "dashed",
           colour = xfill,
           size = 1.2,
           na.rm = TRUE
         ) +
         ggplot2::geom_hline(
-          yintercept = mean(data$y),
+          yintercept = median(data$y),
           linetype = "dashed",
           colour = yfill,
           size = 1.2,

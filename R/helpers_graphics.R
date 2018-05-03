@@ -7,17 +7,26 @@
 #' @param plot Plot with the legend title whose margins need to be modified.
 #' @param t.margin,b.margin Margins in grid units.
 #'
-#' @import grid
 #' @import ggplot2
-#' @import gtable
 #'
 #' @importFrom cowplot ggdraw
+#' @importFrom grid unit.c
+#' @importFrom grid unit
+#' @importFrom grid viewport
+#' @importFrom grid grid.layout
+#' @importFrom grid gTree
+#' @importFrom grid gList
+#' @importFrom grid vpTree
+#' @importFrom grid vpList
+#' @importFrom gtable gtable_add_grob
 #'
 #' @keywords internal
 #'
 #' @note This is a helper function used internally in the package and not
 #' exported. In case you want to use it, you can do so by
 #' `ggstatsplot:::legend_title_margin`. Note that it is `:::` and not `::`.
+#'
+#' @references https://stackoverflow.com/questions/39247025/increase-space-between-legend-title-and-labels-in-ggplot2
 #'
 
 legend_title_margin <- function(plot,
@@ -77,7 +86,7 @@ legend_title_margin <- function(plot,
 
   # remove the original title
   leg$grobs <- leg$grobs[-4]
-  leg$layout <- leg$layout[-4, ]
+  leg$layout <- leg$layout[-4,]
 
   # put the legend back into the plot
   g$grobs[[index]][[1]][[1]] <- leg
@@ -99,7 +108,8 @@ legend_title_margin <- function(plot,
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
 #' @import ggplot2
-#' @import grid
+#'
+#' @importFrom grid unit
 #'
 #' @keywords internal
 #'
@@ -158,4 +168,80 @@ theme_pie <- function() {
         hjust = 0.5
       )
     )
+}
+
+
+#'
+#' @title Default theme used for correlation matrix
+#' @name theme_corrmat
+#' @author Indrajeet Patil
+#' #'
+#' @return A `ggplot2` object with the `theme_mprl` theme.
+#'
+#' @import ggplot2
+#'
+#' @importFrom grid unit
+#'
+#' @keywords internal
+#'
+#' @note This is a helper function used internally in the package and not
+#' exported. In case you want to use it, you can do so by
+#' `ggstatsplot:::theme_corrmat`. Note that it is `:::` and not `::`.
+#'
+
+theme_corrmat <- function() {
+  ggplot2::theme(
+    axis.title.x = ggplot2::element_blank(),
+    strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
+    strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
+    strip.text = ggplot2::element_text(size = 12, face = "bold"),
+    axis.title.y = ggplot2::element_blank(),
+    axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
+    axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
+    axis.line = ggplot2::element_line(),
+    legend.text = ggplot2::element_text(size = 12),
+    legend.title = ggplot2::element_text(size = 12, face = "bold"),
+    legend.title.align = 0.5,
+    legend.text.align = 0.5,
+    legend.key.height = grid::unit(x = 1, units = "line"),
+    legend.key.width = grid::unit(x = 1, units = "line"),
+    plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),
+    panel.border = ggplot2::element_rect(
+      colour = "black",
+      fill = NA,
+      size = 1
+    ),
+    plot.title = ggplot2::element_text(
+      color = "black",
+      size = 16,
+      face = "bold",
+      hjust = 0.5
+    ),
+    plot.subtitle = ggplot2::element_text(
+      color = "black",
+      size = 12,
+      face = "bold",
+      hjust = 0.5
+    )
+  )
+}
+
+# a colorblind-friendly palette
+# reference:
+# 1. http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette
+# 2. http://jfly.iam.u-tokyo.ac.jp/color/
+# The palette with grey:
+cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#999999")
+
+# The palette with black:
+cbbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+
+
+cbpalette_add <- function(plot) {
+  options(warn = -1)
+  plot <- plot +
+    ggplot2::scale_fill_manual(values = cbPalette) +
+    ggplot2::scale_colour_manual(values = cbPalette)
+  options(warn = 1)
+  return(plot)
 }

@@ -51,12 +51,11 @@
 #' @param caption.rel.heights Numerical vector of relative columns heights while
 #'   combining (plot, caption).
 #'
-#' @import grid
-#'
 #' @importFrom cowplot plot_grid
 #' @importFrom cowplot add_sub
 #' @importFrom cowplot ggdraw
 #' @importFrom cowplot draw_label
+#' @importFrom grid unit
 #'
 #' @examples
 #'

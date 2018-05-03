@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Custom function to set upper and lower margins to legend title in
-ggplot2 — legend_title_margin • ggstatsplot</title>
+<title>Default theme used for correlation matrix — theme_corrmat • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -29,11 +28,9 @@ ggplot2 — legend_title_margin • ggstatsplot</title>
 
 
 
-<meta property="og:title" content="Custom function to set upper and lower margins to legend title in
-ggplot2 — legend_title_margin" />
+<meta property="og:title" content="Default theme used for correlation matrix — theme_corrmat" />
 
-<meta property="og:description" content="Custom function to set upper and lower margins to legend title in
-ggplot2" />
+<meta property="og:description" content="Default theme used for correlation matrix" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,62 +104,44 @@ ggplot2" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Custom function to set upper and lower margins to legend title in
-ggplot2</h1>
+    <h1>Default theme used for correlation matrix</h1>
     
-    <div class="hidden name"><code>legend_title_margin.Rd</code></div>
+    <div class="hidden name"><code>theme_corrmat.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Custom function to set upper and lower margins to legend title in
-ggplot2</p>
+    <p>Default theme used for correlation matrix</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>legend_title_margin</span>(<span class='no'>plot</span>, <span class='kw'>t.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0</span>, <span class='st'>"mm"</span>), <span class='kw'>b.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>3</span>,
-  <span class='st'>"mm"</span>))</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>plot</th>
-      <td><p>Plot with the legend title whose margins need to be modified.</p></td>
-    </tr>
-    <tr>
-      <th>t.margin, b.margin</th>
-      <td><p>Margins in grid units.</p></td>
-    </tr>
-    </table>
-    
+    <pre class="usage"><span class='fu'>theme_corrmat</span>()</pre>
+        
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A plot with desired margins between the legend title and the legend.</p>
+    <p>A <code>ggplot2</code> object with the <code>theme_mprl</code> theme.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>This is a helper function used internally in the package and not
 exported. In case you want to use it, you can do so by
-<code>ggstatsplot:::legend_title_margin</code>. Note that it is <code>:::</code> and not <code>::</code>.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>https://stackoverflow.com/questions/39247025/increase-space-between-legend-title-and-labels-in-ggplot2</p>
+<code>ggstatsplot:::theme_corrmat</code>. Note that it is <code>:::</code> and not <code>::</code>.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
 
       <li><a href="#note">Note</a></li>
-
-      <li><a href="#references">References</a></li>
           </ul>
+
+    <h2>Author</h2>
+    
+Indrajeet Patil
+#'
 
   </div>
 </div>

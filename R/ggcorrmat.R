@@ -16,8 +16,8 @@
 #' @param output Expected output from this function: `"plot"` (visualization
 #'   matrix) or `"correlations"` (correlation matrix) or `"p-values"` (matrix of
 #'   p-values).
-#' @param type Character, `"full"` (default), `"upper"` or `"lower"`, display full
-#'   matrix, lowe triangular or upper triangular matrix.
+#' @param type Character, `"full"` (default), `"upper"` or `"lower"`, display
+#'   full matrix, lowe triangular or upper triangular matrix.
 #' @param method Character argument that decides the visualization method of
 #'   correlation matrix to be used. Allowed values are `"square"` (default),
 #'   `"circle"`
@@ -32,9 +32,9 @@
 #'   `TRUE`).
 #' @param digits Decides the number of decimal digits to be added into the plot
 #'   (Default: `2`).
-#' @param sig.level Significance level (Dafault: `0.05`). If the p-value in p-mat
-#'   is bigger than sig.level, then the correspondi#' ng correlation coefficient
-#'   is regarded as insignificant.
+#' @param sig.level Significance level (Dafault: `0.05`). If the p-value in
+#'   p-mat is bigger than sig.level, then the correspondi#' ng correlation
+#'   coefficient is regarded as insignificant.
 #' @param hc.order Logical value. If `TRUE`, correlation matrix will be
 #'   hc.ordered using `hclust` function (Default is `FALSE`).
 #' @param hc.method The agglomeration method to be used in `hclust` (see
@@ -43,11 +43,13 @@
 #'   displayed in the plot.
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
 #' @param outline.color The outline color of square or circle. Default value is
-#'   "gray".
+#'   `"gray"`.
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   theme_minimal. Allowed values are the official `ggplot2` themes including
-#'   `theme_gray`, `theme_bw`, `theme_minimal`, `theme_classic`, `theme_void`,
-#'   etc.
+#'   `ggplot2::theme_gray`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw`, `theme_minimal`, `theme_classic`, `theme_void`, etc.
+#' @param ggstatsplot.theme A logical. Decides whether default theme for
+#'   `ggstatsplot`, which is `theme_mprl`, is to be overlaid on the entered theme
+#'   (Default: `ggstatsplot.theme = TRUE`).
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
 #' @param caption The text for the plot caption. If not specified (if it is
@@ -134,6 +136,7 @@ ggcorrmat <-
            colors = c("#6D9EC1", "white", "#E46726"),
            outline.color = "black",
            ggtheme = ggplot2::theme_gray,
+           ggstatsplot.theme = TRUE,
            title = NULL,
            subtitle = NULL,
            caption = NULL,
@@ -223,6 +226,7 @@ ggcorrmat <-
       tl.col = tl.col,
       tl.srt = tl.srt
     )
+
     # ========================================== labels ==============================================================
     #
     # if caption is not specified, use the generic version only if caption.default is TRUE
@@ -251,43 +255,11 @@ ggcorrmat <-
         )
     }
 
-    #
-    # adding ggstatsplot theme
-    plot <- plot +
-      ggplot2::theme(
-        axis.title.x = ggplot2::element_blank(),
-        strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
-        strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
-        strip.text = ggplot2::element_text(size = 12, face = "bold"),
-        axis.title.y = ggplot2::element_blank(),
-        axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
-        axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
-        axis.line = ggplot2::element_line(),
-        legend.text = ggplot2::element_text(size = 12),
-        legend.title = ggplot2::element_text(size = 12, face = "bold"),
-        legend.title.align = 0.5,
-        legend.text.align = 0.5,
-        legend.key.height = grid::unit(1, "line"),
-        legend.key.width = grid::unit(1, "line"),
-        plot.margin = grid::unit(c(1, 1, 1, 1), "lines"),
-        panel.border = ggplot2::element_rect(
-          colour = "black",
-          fill = NA,
-          size = 1
-        ),
-        plot.title = ggplot2::element_text(
-          color = "black",
-          size = 16,
-          face = "bold",
-          hjust = 0.5
-        ),
-        plot.subtitle = ggplot2::element_text(
-          color = "black",
-          size = 12,
-          face = "bold",
-          hjust = 0.5
-        )
-      )
+    # adding ggstatsplot theme for correlation matrix
+    if (isTRUE(ggstatsplot.theme)) {
+      plot <- plot +
+        theme_corrmat()
+    }
 
     # creating proper spacing between the legend.title and the colorbar
     plot <- legend_title_margin(plot = plot)
