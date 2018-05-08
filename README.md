@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--02-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--07-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -377,7 +377,7 @@ ggstatsplot::gghistostats(
   type = "parametric",               # one sample t-test
   test.value = 3,                    # default value is 0
   centrality.para = "mean",          # which measure of central tendency is to be plotted
-  centrality.colour = "darkgreen",   # decides colour of vertical line representing central tendency
+  centrality.colour = "darkred",     # decides colour of vertical line representing central tendency
   binwidth.adjust = TRUE,            # whether binwidth needs to be adjusted
   binwidth = 0.10,                   # binwidth value (needs to be toyed around with until you find the best one)
   messages = FALSE                   # turn off the messages

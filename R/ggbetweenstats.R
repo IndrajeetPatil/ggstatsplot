@@ -51,10 +51,10 @@
 #'   to be displayed (Default: `TRUE`).
 #'
 #' @import ggplot2
-#' @import ggrepel
 #' @import dplyr
 #' @import rlang
 #'
+#' @importFrom ggrepel geom_label_repel
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
 #' @importFrom WRS2 t1way

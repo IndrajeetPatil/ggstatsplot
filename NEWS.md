@@ -6,7 +6,8 @@ NEW FEATURES
     arguments `notch` and `notchwidth` control its behavior. The defaults are
     still standard box plots.
   - Removed warnings that were appearing when `outlier.label` argument was of
-    character type.
+    `character` type.
+  - The default color palette used for all plots is colorblind friendly.
 
 MINOR CHANGES
 
@@ -15,6 +16,9 @@ MINOR CHANGES
     (ggplot2 theme, i.e.).
   - Two new arguments added to `gghistostats` to allow user to change colorbar
     gradient. Defaults are colorblind friendly.
+  - Both `gghistostats` and `ggcorrmat` have a new argument
+    `legend.title.margin` to control margin adjustment between the title and the
+    colorbar.
 
 BUG FIXES
 

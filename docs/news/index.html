@@ -112,12 +112,14 @@
 <p>NEW FEATURES</p>
 <ul>
 <li>The <code>ggbetweenstats</code> function can now show notched box plots. Two new arguments <code>notch</code> and <code>notchwidth</code> control its behavior. The defaults are still standard box plots.</li>
-<li>Removed warnings that were appearing when <code>outlier.label</code> argument was of character type.</li>
+<li>Removed warnings that were appearing when <code>outlier.label</code> argument was of <code>character</code> type.</li>
+<li>The default color palette used for all plots is colorblind friendly.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li>Added a new argument to <code>ggstatsplot.theme</code> function to control if <code><a href="../reference/theme_mprl.html">ggstatsplot::theme_mprl</a></code> is to be overlaid on top of the selected ggtheme (ggplot2 theme, i.e.).</li>
 <li>Two new arguments added to <code>gghistostats</code> to allow user to change colorbar gradient. Defaults are colorblind friendly.</li>
+<li>Both <code>gghistostats</code> and <code>ggcorrmat</code> have a new argument <code>legend.title.margin</code> to control margin adjustment between the title and the colorbar.</li>
 </ul>
 <p>BUG FIXES</p>
 <ul>

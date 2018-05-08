@@ -7,10 +7,11 @@
 gghistostats(data = NULL, x, xlab = NULL, title = NULL, subtitle = NULL,
   caption = NULL, type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = TRUE, k = 3, low.color = "#0072B2",
-  high.color = "#D55E00", results.subtitle = TRUE, centrality.para = NULL,
-  centrality.colour = "blue", test.value.line = FALSE,
-  test.value.colour = "black", binwidth.adjust = FALSE, binwidth = NULL,
-  messages = TRUE)
+  high.color = "#D55E00", results.subtitle = TRUE,
+  legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
+  "mm"), centrality.para = NULL, centrality.colour = "blue",
+  test.value.line = FALSE, test.value.colour = "black",
+  binwidth.adjust = FALSE, binwidth = NULL, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -49,6 +50,12 @@ Defaults are colorblind-friendly.}
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \code{FALSE}, no statistical tests will be run.}
 
+\item{legend.title.margin}{Adjusting the margin between legend title and the
+colorbar.}
+
+\item{t.margin, b.margin}{Margins in grid units. For more details, see
+\code{?grid::unit()}.}
+
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as a vertical line.}
 
@@ -76,6 +83,11 @@ to be displayed (Default: \code{TRUE}).}
 \description{
 Histogram with statistical details from one-sample test included
 in the plot as a subtitle.
+}
+\note{
+If you are using R Notebook and see a blank image being inserted when a
+chunk is executed, this behavior can be turned off by setting
+\code{legend.title.margin = FALSE}.
 }
 \examples{
 

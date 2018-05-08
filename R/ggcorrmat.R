@@ -48,8 +48,8 @@
 #'   `ggplot2::theme_gray`. Allowed values are the official `ggplot2` themes,
 #'   including `theme_bw`, `theme_minimal`, `theme_classic`, `theme_void`, etc.
 #' @param ggstatsplot.theme A logical. Decides whether default theme for
-#'   `ggstatsplot`, which is `theme_mprl`, is to be overlaid on the entered theme
-#'   (Default: `ggstatsplot.theme = TRUE`).
+#'   `ggstatsplot`, which is `theme_mprl`, is to be overlaid on the entered
+#'   theme (Default: `ggstatsplot.theme = TRUE`).
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
 #' @param caption The text for the plot caption. If not specified (if it is
@@ -70,6 +70,10 @@
 #'   `insig = "pch"`). Defaults are `pch.col = "blue"` and `pch.cex = 10`.
 #' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
 #'   text label (variable names).
+#' @param legend.title.margin Adjusting the margin between legend title and the
+#'   colorbar.
+#' @param t.margin,b.margin Margins in grid units. For more details, see
+#'   `?grid::unit()`.
 #'
 #' @import ggcorrplot
 #' @import ggplot2
@@ -114,6 +118,10 @@
 #' title = "Dataset: Iris"
 #' )
 #'
+#' @note If you are using R Notebook and see a blank image being inserted when a
+#'   chunk is executed, this behavior can be turned off by setting
+#'   `legend.title.margin = FALSE`.
+#'
 #' @export
 #'
 
@@ -133,7 +141,7 @@ ggcorrmat <-
            hc.order = FALSE,
            hc.method = "complete",
            lab = TRUE,
-           colors = c("#6D9EC1", "white", "#E46726"),
+           colors = c("#E69F00", "#56B4E9", "#009E73"),
            outline.color = "black",
            ggtheme = ggplot2::theme_gray,
            ggstatsplot.theme = TRUE,
@@ -149,7 +157,10 @@ ggcorrmat <-
            pch.cex = 10,
            tl.cex = 12,
            tl.col = "black",
-           tl.srt = 45) {
+           tl.srt = 45,
+           legend.title.margin = TRUE,
+           t.margin = unit(0, "mm"),
+           b.margin = unit(3, "mm")) {
     # ========================================== dataframe ==============================================================
     #
     # creating a dataframe out of the entered variables
@@ -262,7 +273,11 @@ ggcorrmat <-
     }
 
     # creating proper spacing between the legend.title and the colorbar
-    plot <- legend_title_margin(plot = plot)
+    if (isTRUE(legend.title.margin)) {
+      plot <- legend_title_margin(plot = plot,
+                                  t.margin = t.margin,
+                                  b.margin = b.margin)
+    }
 
     # ========================================== output ==============================================================
 

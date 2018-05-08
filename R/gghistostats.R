@@ -29,6 +29,10 @@
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
 #'   `FALSE`, no statistical tests will be run.
+#' @param legend.title.margin Adjusting the margin between legend title and the
+#'   colorbar.
+#' @param t.margin,b.margin Margins in grid units. For more details, see
+#'   `?grid::unit()`.
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
 #'   or `"median"`) is to be displayed as a vertical line.
 #' @param centrality.colour Decides colour for the vertical line for centrality
@@ -86,6 +90,10 @@
 #' binwidth = 0.10
 #' )
 #'
+#' @note If you are using R Notebook and see a blank image being inserted when a
+#'   chunk is executed, this behavior can be turned off by setting
+#'   `legend.title.margin = FALSE`.
+#'
 #' @seealso \code{\link{grouped_gghistostats}}
 #'
 #' @export
@@ -107,6 +115,9 @@ gghistostats <-
            low.color = "#0072B2",
            high.color = "#D55E00",
            results.subtitle = TRUE,
+           legend.title.margin = TRUE,
+           t.margin = unit(0, "mm"),
+           b.margin = unit(3, "mm"),
            centrality.para = NULL,
            centrality.colour = "blue",
            test.value.line = FALSE,
@@ -431,7 +442,11 @@ gghistostats <-
     }
 
     # creating proper spacing between the legend.title and the colorbar
-    plot <- legend_title_margin(plot = plot)
+    if (isTRUE(legend.title.margin)) {
+      plot <- legend_title_margin(plot = plot,
+                                  t.margin = t.margin,
+                                  b.margin = b.margin)
+    }
 
     # ========================================== messages ==================================================================
     if (isTRUE(messages)) {

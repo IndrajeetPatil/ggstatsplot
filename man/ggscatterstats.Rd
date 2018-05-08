@@ -5,11 +5,11 @@
 \title{Scatterplot with marginal distributions}
 \usage{
 ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
-  line.colour = "blue", marginal = TRUE, marginal.type = "histogram",
-  width.jitter = NULL, height.jitter = NULL, xfill = "orange",
-  yfill = "green", centrality.para = NULL, type = "pearson",
-  results.subtitle = NULL, title = NULL, caption = NULL, maxit = 500,
-  k = 3, messages = TRUE)
+  line.size = 1.5, line.colour = "blue", marginal = TRUE,
+  marginal.type = "histogram", width.jitter = NULL, height.jitter = NULL,
+  xfill = "#E69F00", yfill = "#D55E00", centrality.para = NULL,
+  type = "pearson", results.subtitle = NULL, title = NULL,
+  caption = NULL, maxit = 500, k = 3, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -22,6 +22,8 @@ taken.}
 \item{xlab}{Label for \code{x} axis variable.}
 
 \item{ylab}{Label for \code{y} axis variable.}
+
+\item{line.size}{Size for the regression line.}
 
 \item{line.colour}{Colour for the regression line.}
 

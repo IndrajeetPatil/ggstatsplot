@@ -246,7 +246,20 @@ signif_column <- function(data = NULL, p) {
 }
 
 
-## finding the outliers in the dataframe using Tukey's interquartile range rule
+#' @title Finding the outliers in the dataframe using Tukey's interquartile range rule
+#' @name check_outlier
+#' @author Indrajeet Patil
+#' @description Returns a logical vector
+#'
+#' @param var A numeric vector.
+#' @param coef Coefficient for outlier detection using Tukey's method.
+#'   With Tukey’s method, outliers are below (1st Quartile) or above (3rd
+#'   Quartile) `coef` times the Inter-Quartile Range (IQR).
+#'
+#' @importFrom stats quantile
+#'
+#' @keywords internal
+#'
 
 # defining function to detect outliers
 check_outlier <- function(var, coef) {

@@ -9,12 +9,13 @@ ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   type = "full", method = "square", corr.method = "pearson",
   exact = FALSE, continuity = TRUE, digits = 2, sig.level = 0.05,
   hc.order = FALSE, hc.method = "complete", lab = TRUE,
-  colors = c("#6D9EC1", "white", "#E46726"), outline.color = "black",
+  colors = c("#E69F00", "#56B4E9", "#009E73"), outline.color = "black",
   ggtheme = ggplot2::theme_gray, ggstatsplot.theme = TRUE, title = NULL,
   subtitle = NULL, caption = NULL, caption.default = TRUE,
   lab_col = "black", lab_size = 4.5, insig = "pch", pch = 4,
   pch.col = "blue", pch.cex = 10, tl.cex = 12, tl.col = "black",
-  tl.srt = 45)
+  tl.srt = 45, legend.title.margin = TRUE, t.margin = unit(0, "mm"),
+  b.margin = unit(3, "mm"))
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -75,8 +76,8 @@ displayed in the plot.}
 including \code{theme_bw}, \code{theme_minimal}, \code{theme_classic}, \code{theme_void}, etc.}
 
 \item{ggstatsplot.theme}{A logical. Decides whether default theme for
-\code{ggstatsplot}, which is \code{theme_mprl}, is to be overlaid on the entered theme
-(Default: \code{ggstatsplot.theme = TRUE}).}
+\code{ggstatsplot}, which is \code{theme_mprl}, is to be overlaid on the entered
+theme (Default: \code{ggstatsplot.theme = TRUE}).}
 
 \item{title}{The text for the plot title.}
 
@@ -107,6 +108,12 @@ coefficients (only valid when \code{insig = "pch"}). Default value is \code{pch 
 
 \item{tl.cex, tl.col, tl.srt}{The size, the color, and the string rotation of
 text label (variable names).}
+
+\item{legend.title.margin}{Adjusting the margin between legend title and the
+colorbar.}
+
+\item{t.margin, b.margin}{Margins in grid units. For more details, see
+\code{?grid::unit()}.}
 }
 \value{
 Correlation matrix plot or correlation coefficient matrix or matrix
@@ -115,6 +122,11 @@ of p-values.
 \description{
 Visualization of a correlalogram (or correlation matrix) using
 'ggplot2'/'ggcorrplot'
+}
+\note{
+If you are using R Notebook and see a blank image being inserted when a
+chunk is executed, this behavior can be turned off by setting
+\code{legend.title.margin = FALSE}.
 }
 \examples{
 

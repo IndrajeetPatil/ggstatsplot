@@ -120,10 +120,11 @@ in the plot as a subtitle.</p>
     <pre class="usage"><span class='fu'>gghistostats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>,
-  <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>centrality.colour</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>test.value.colour</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>binwidth.adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>legend.title.margin</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>t.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0</span>, <span class='st'>"mm"</span>), <span class='kw'>b.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>3</span>,
+  <span class='st'>"mm"</span>), <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>centrality.colour</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>test.value.colour</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>binwidth.adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,6 +192,16 @@ to be displayed as subtitle (Default: <code>results.subtitle = TRUE</code>). If 
 <code>FALSE</code>, no statistical tests will be run.</p></td>
     </tr>
     <tr>
+      <th>legend.title.margin</th>
+      <td><p>Adjusting the margin between legend title and the
+colorbar.</p></td>
+    </tr>
+    <tr>
+      <th>t.margin, b.margin</th>
+      <td><p>Margins in grid units. For more details, see
+<code>?grid::unit()</code>.</p></td>
+    </tr>
+    <tr>
       <th>centrality.para</th>
       <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
 or <code>"median"</code>) is to be displayed as a vertical line.</p></td>
@@ -229,6 +240,12 @@ in your data.</p></td>
 to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>If you are using R Notebook and see a blank image being inserted when a
+chunk is executed, this behavior can be turned off by setting
+<code>legend.title.margin = FALSE</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -269,6 +286,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#note">Note</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

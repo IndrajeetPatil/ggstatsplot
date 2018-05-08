@@ -19,7 +19,6 @@ Depends:
     R (>= 3.3.0),
     datasets,
     grDevices,
-    grid,
     stats
 Imports: 
     broom (>= 0.4.4),
@@ -33,6 +32,7 @@ Imports:
     ggExtra (>= 0.8),
     ggplot2 (>= 2.2.1),
     ggrepel (>= 0.7.0),
+    grid,
     gtable (>= 0.2.0),
     jmv (>= 0.8.6.2),
     magrittr (>= 1.5),
