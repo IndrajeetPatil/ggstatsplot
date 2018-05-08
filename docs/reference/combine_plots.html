@@ -120,11 +120,11 @@ a plotgrid along with a combination of title, caption, and annotation label</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>combine_plots</span>(<span class='no'>...</span>, <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title.colour</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+    <pre class="usage"><span class='fu'>combine_plots</span>(<span class='no'>...</span>, <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>title.size</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>title.vjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>title.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>title.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.colour</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>title.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>caption.size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>caption.vjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>caption.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>caption.fontface</span> <span class='kw'>=</span> <span class='st'>"plain"</span>, <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sub.colour</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>caption.fontface</span> <span class='kw'>=</span> <span class='st'>"plain"</span>, <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sub.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>sub.size</span> <span class='kw'>=</span> <span class='fl'>14</span>, <span class='kw'>sub.vjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sub.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>sub.fontface</span> <span class='kw'>=</span> <span class='st'>"plain"</span>, <span class='kw'>sub.x</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sub.y</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>sub.vpadding</span> <span class='kw'>=</span> <span class='kw pkg'>grid</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/grid/topics/unit'>unit</a></span>(<span class='fl'>1</span>, <span class='st'>"lines"</span>), <span class='kw'>sub.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -145,7 +145,7 @@ a plotgrid along with a combination of title, caption, and annotation label</p>
 <em>combined plot</em>.</p></td>
     </tr>
     <tr>
-      <th>title.colour</th>
+      <th>title.color</th>
       <td><p>Text color for title.</p></td>
     </tr>
     <tr>
@@ -172,7 +172,7 @@ on y). 0 = baseline at y, 1 = ascender at y.</p></td>
 for the <em>combined plot</em>.</p></td>
     </tr>
     <tr>
-      <th>caption.colour</th>
+      <th>caption.color</th>
       <td><p>Text color for caption.</p></td>
     </tr>
     <tr>
@@ -200,7 +200,7 @@ for the <em>combined plot</em>.</p></td>
 Can be a plotmath expression.</p></td>
     </tr>
     <tr>
-      <th>sub.colour</th>
+      <th>sub.color</th>
       <td><p>Text color for annotation label.</p></td>
     </tr>
     <tr>
@@ -268,8 +268,8 @@ while combining (title, plot, caption).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># loading the necessary libraries</span>
-<span class='fu'>library</span>(<span class='no'>ggplot2</span>)
-
+<span class='fu'>library</span>(<span class='no'>ggplot2</span>)</div><div class='output co'>#&gt; <span class='message'>Want to understand how all the pieces fit together? Buy the ggplot2</span>
+#&gt; <span class='message'>book: http://ggplot2.org/book/</span></div><div class='input'>
 <span class='co'># preparing the first plot</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span>
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>subset</span>(<span class='no'>iris</span>, <span class='no'>iris</span>$<span class='no'>Species</span> <span class='kw'>==</span> <span class='st'>"setosa"</span>),
@@ -291,8 +291,8 @@ while combining (title, plot, caption).</p></td>
   <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"(a)"</span>, <span class='st'>"(b)"</span>),
   <span class='kw'>title.text</span> <span class='kw'>=</span> <span class='st'>"Dataset: Iris Flower dataset"</span>,
   <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"Note: Only two species of flower are displayed"</span>,
-  <span class='kw'>title.colour</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>caption.colour</span> <span class='kw'>=</span> <span class='st'>"blue"</span>
+  <span class='kw'>title.color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+  <span class='kw'>caption.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>
 )</div><div class='img'><img src='combine_plots-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

@@ -11,7 +11,7 @@
 #' @param ... Additional arguments used in the function `cowplot::plot_grid()`.
 #' @param title.text String or plotmath expression to be drawn as title for the
 #'   *combined plot*.
-#' @param title.colour Text color for title.
+#' @param title.color Text color for title.
 #' @param title.size Point size of title text.
 #' @param title.vjust Vertical justification for title. Default = 0.5 (centered
 #'   on y). 0 = baseline at y, 1 = ascender at y.
@@ -20,7 +20,7 @@
 #' @param title.fontface The font face ("plain", "bold", etc.) for title.
 #' @param caption.text String or plotmath expression to be drawn as the caption
 #'   for the *combined plot*.
-#' @param caption.colour Text color for caption.
+#' @param caption.color Text color for caption.
 #' @param caption.size Point size of title text.
 #' @param caption.vjust Vertical justification for caption. Default = `0.5`
 #'   (centered on y). `0` = baseline at y, `1` = ascender at y.
@@ -30,7 +30,7 @@
 #'   `"bold.italic"`) for caption.
 #' @param sub.text The label with which the *combined plot* should be annotated.
 #'   Can be a plotmath expression.
-#' @param sub.colour Text color for annotation label.
+#' @param sub.color Text color for annotation label.
 #' @param sub.size Point size of annotation text.
 #' @param sub.x The x position of annotation label.
 #' @param sub.y The y position of annotation label.
@@ -83,8 +83,8 @@
 #'   labels = c("(a)", "(b)"),
 #'   title.text = "Dataset: Iris Flower dataset",
 #'   caption.text = "Note: Only two species of flower are displayed",
-#'   title.colour = "red",
-#'   caption.colour = "blue"
+#'   title.color = "red",
+#'   caption.color = "blue"
 #' )
 #'
 #' @export
@@ -93,19 +93,19 @@
 combine_plots <-
   function(...,
              title.text = NULL,
-             title.colour = "black",
+             title.color = "black",
              title.size = 16,
              title.vjust = 0.5,
              title.hjust = 0.5,
              title.fontface = "bold",
              caption.text = NULL,
-             caption.colour = "black",
+             caption.color = "black",
              caption.size = 10,
              caption.vjust = 0.5,
              caption.hjust = 0.5,
              caption.fontface = "plain",
              sub.text = NULL,
-             sub.colour = "black",
+             sub.color = "black",
              sub.size = 14,
              sub.vjust = 0.5,
              sub.hjust = 0.5,
@@ -127,7 +127,7 @@ combine_plots <-
         cowplot::ggdraw() +
         cowplot::draw_label(
           label = title.text,
-          colour = title.colour,
+          colour = title.color,
           size = title.size,
           vjust = title.vjust,
           hjust = title.hjust,
@@ -140,7 +140,7 @@ combine_plots <-
         cowplot::ggdraw() +
         cowplot::draw_label(
           label = caption.text,
-          colour = caption.colour,
+          colour = caption.color,
           size = caption.size,
           vjust = caption.vjust,
           hjust = caption.hjust,
@@ -188,7 +188,7 @@ combine_plots <-
             x = sub.x,
             y = sub.y,
             vpadding = sub.vpadding,
-            colour = sub.colour,
+            colour = sub.color,
             size = sub.size,
             vjust = sub.vjust,
             hjust = sub.hjust,

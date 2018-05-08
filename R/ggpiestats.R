@@ -249,7 +249,7 @@ ggpiestats <-
       ggplot2::scale_y_continuous(breaks = NULL) +
       ggplot2::scale_fill_discrete(name = "", labels = unique(labels)) +
       theme_pie() +
-      ggplot2::guides(fill = guide_legend(override.aes = list(colour = NA))) # remove black diagonal line from legend
+      ggplot2::guides(fill = guide_legend(override.aes = list(color = NA))) # remove black diagonal line from legend
 
     ############################################ chi-square test #####################################################
 

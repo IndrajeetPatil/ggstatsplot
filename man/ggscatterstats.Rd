@@ -5,7 +5,7 @@
 \title{Scatterplot with marginal distributions}
 \usage{
 ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
-  line.size = 1.5, line.colour = "blue", marginal = TRUE,
+  line.size = 1.5, line.color = "blue", marginal = TRUE,
   marginal.type = "histogram", width.jitter = NULL, height.jitter = NULL,
   xfill = "#E69F00", yfill = "#D55E00", centrality.para = NULL,
   type = "pearson", results.subtitle = NULL, title = NULL,
@@ -25,7 +25,7 @@ taken.}
 
 \item{line.size}{Size for the regression line.}
 
-\item{line.colour}{Colour for the regression line.}
+\item{line.color}{color for the regression line.}
 
 \item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be
 displayed; the default is \code{TRUE}.}
@@ -39,9 +39,9 @@ the resolution of the data.}
 \item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
 the resolution of the data.}
 
-\item{xfill}{Colour fill for x axis distibution (default: \code{"orange"}).}
+\item{xfill}{color fill for x axis distibution (default: \code{"orange"}).}
 
-\item{yfill}{Colour fill for y axis distribution (default: \code{"green"}).}
+\item{yfill}{color fill for y axis distribution (default: \code{"green"}).}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for

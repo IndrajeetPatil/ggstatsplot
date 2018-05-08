@@ -13,14 +13,14 @@
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
-#' @param line.colour Colour for the regression line.
+#' @param line.color color for the regression line.
 #' @param line.size Size for the regression line.
 #' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be
 #'   displayed; the default is `TRUE`.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
 #'   (`"histogram"`, `"boxplot"`, `"density"`, `"violin"`).
-#' @param xfill Colour fill for x axis distibution (default: `"orange"`).
-#' @param yfill Colour fill for y axis distribution (default: `"green"`).
+#' @param xfill color fill for x axis distibution (default: `"orange"`).
+#' @param yfill color fill for y axis distribution (default: `"green"`).
 #' @param type Type of association between paired samples required
 #'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
 #'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: Robust regression using
@@ -91,7 +91,7 @@ ggscatterstats <-
            xlab = NULL,
            ylab = NULL,
            line.size = 1.5,
-           line.colour = "blue",
+           line.color = "blue",
            marginal = TRUE,
            marginal.type = "histogram",
            width.jitter = NULL,
@@ -352,7 +352,7 @@ ggscatterstats <-
         method = "lm",
         se = TRUE,
         size = line.size,
-        colour = line.colour,
+        color = line.color,
         na.rm = TRUE
       ) +
       ggstatsplot::theme_mprl() +
@@ -378,14 +378,14 @@ ggscatterstats <-
         ggplot2::geom_vline(
           xintercept = mean(data$x),
           linetype = "dashed",
-          colour = xfill,
+          color = xfill,
           size = 1.2,
           na.rm = TRUE
         ) +
         ggplot2::geom_hline(
           yintercept = mean(data$y),
           linetype = "dashed",
-          colour = yfill,
+          color = yfill,
           size = 1.2,
           na.rm = TRUE
         )
@@ -394,14 +394,14 @@ ggscatterstats <-
         ggplot2::geom_vline(
           xintercept = median(data$x),
           linetype = "dashed",
-          colour = xfill,
+          color = xfill,
           size = 1.2,
           na.rm = TRUE
         ) +
         ggplot2::geom_hline(
           yintercept = median(data$y),
           linetype = "dashed",
-          colour = yfill,
+          color = yfill,
           size = 1.2,
           na.rm = TRUE
         )

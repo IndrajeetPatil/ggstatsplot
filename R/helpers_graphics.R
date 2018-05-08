@@ -152,7 +152,7 @@ theme_pie <- function() {
         unit = "pt"
       ),
       panel.border = ggplot2::element_rect(
-        colour = "black",
+        color = "black",
         fill = NA,
         size = 1
       ),
@@ -207,7 +207,7 @@ theme_corrmat <- function() {
     legend.key.width = grid::unit(x = 1, units = "line"),
     plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),
     panel.border = ggplot2::element_rect(
-      colour = "black",
+      color = "black",
       fill = NA,
       size = 1
     ),
@@ -241,7 +241,7 @@ cbpalette_add <- function(plot) {
   options(warn = -1)
   plot <- plot +
     ggplot2::scale_fill_manual(values = cbPalette) +
-    ggplot2::scale_colour_manual(values = cbPalette)
+    ggplot2::scale_color_manual(values = cbPalette)
   options(warn = 1)
   return(plot)
 }

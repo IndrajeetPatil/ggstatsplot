@@ -119,6 +119,13 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     
     </div>
 
+    <pre class="usage"><span class='fu'>grouped_gghistostats</span>(<span class='no'>grouping.var</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>legend.title.margin</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>t.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0</span>, <span class='st'>"mm"</span>), <span class='kw'>b.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>3</span>,
+  <span class='st'>"mm"</span>), <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>line.labeller</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,8 +158,9 @@ from one sample test to be displayed.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code> or
-<code>"bayes"</code>). Abbreviations accepted are <code>"p"</code> or <code>"np"</code> or <code>"bf"</code>, respectively.</p></td>
+      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"bayes"</code>). Abbreviations accepted are <code>"p"</code> or <code>"np"</code> or <code>"bf"</code>,
+respectively.</p></td>
     </tr>
     <tr>
       <th>test.value</th>
@@ -160,7 +168,7 @@ from one sample test to be displayed.</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
-      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
+      <td><p>A number between 0.5 and 2 (default 0.707), the prior width
 to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
@@ -180,13 +188,23 @@ to be displayed as subtitle (Default: <code>results.subtitle = TRUE</code>). If 
 <code>FALSE</code>, no statistical tests will be run.</p></td>
     </tr>
     <tr>
-      <th>centrality.para</th>
-      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code> or
-<code>"median"</code>) is to be displayed as a vertical line.</p></td>
+      <th>legend.title.margin</th>
+      <td><p>Adjusting the margin between legend title and the
+colorbar.</p></td>
     </tr>
     <tr>
-      <th>centrality.colour</th>
-      <td><p>Decides colour for the vertical line for centrality
+      <th>t.margin, b.margin</th>
+      <td><p>Margins in grid units. For more details, see
+<code>?grid::unit()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>centrality.para</th>
+      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
+or <code>"median"</code>) is to be displayed as a vertical line.</p></td>
+    </tr>
+    <tr>
+      <th>centrality.color</th>
+      <td><p>Decides color for the vertical line for centrality
 parameter (Default: <code>"blue"</code>).</p></td>
     </tr>
     <tr>
@@ -195,14 +213,14 @@ parameter (Default: <code>"blue"</code>).</p></td>
 vertical line (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
-      <th>test.value.colour</th>
-      <td><p>Decides colour for the vertical line denoting test
+      <th>test.value.color</th>
+      <td><p>Decides color for the vertical line denoting test
 value (Default: <code>"black"</code>).</p></td>
     </tr>
     <tr>
-      <th>binwidth.adjust</th>
-      <td><p>If set to <code>TRUE</code>, you can use it to pick better value
-with the <code>binwidth</code> argument to <code>stat_bin()</code>.</p></td>
+      <th>line.labeller</th>
+      <td><p>A logical that decides whether line labels should be
+displayed (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>binwidth</th>
@@ -222,7 +240,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
       <td><p>Arguments passed on to <code>combine_plots</code></p><dl class='dl-horizontal'>
   <dt>title.text</dt><dd><p>String or plotmath expression to be drawn as title for the
 <em>combined plot</em>.</p></dd>
-  <dt>title.colour</dt><dd><p>Text color for title.</p></dd>
+  <dt>title.color</dt><dd><p>Text color for title.</p></dd>
   <dt>title.size</dt><dd><p>Point size of title text.</p></dd>
   <dt>title.vjust</dt><dd><p>Vertical justification for title. Default = 0.5 (centered
 on y). 0 = baseline at y, 1 = ascender at y.</p></dd>
@@ -231,7 +249,7 @@ on y). 0 = baseline at y, 1 = ascender at y.</p></dd>
   <dt>title.fontface</dt><dd><p>The font face ("plain", "bold", etc.) for title.</p></dd>
   <dt>caption.text</dt><dd><p>String or plotmath expression to be drawn as the caption
 for the <em>combined plot</em>.</p></dd>
-  <dt>caption.colour</dt><dd><p>Text color for caption.</p></dd>
+  <dt>caption.color</dt><dd><p>Text color for caption.</p></dd>
   <dt>caption.size</dt><dd><p>Point size of title text.</p></dd>
   <dt>caption.vjust</dt><dd><p>Vertical justification for caption. Default = <code>0.5</code>
 (centered on y). <code>0</code> = baseline at y, <code>1</code> = ascender at y.</p></dd>
@@ -241,7 +259,7 @@ for the <em>combined plot</em>.</p></dd>
 <code>"bold.italic"</code>) for caption.</p></dd>
   <dt>sub.text</dt><dd><p>The label with which the <em>combined plot</em> should be annotated.
 Can be a plotmath expression.</p></dd>
-  <dt>sub.colour</dt><dd><p>Text color for annotation label.</p></dd>
+  <dt>sub.color</dt><dd><p>Text color for annotation label.</p></dd>
   <dt>sub.size</dt><dd><p>Point size of annotation text.</p></dd>
   <dt>sub.x</dt><dd><p>The x position of annotation label.</p></dd>
   <dt>sub.y</dt><dd><p>The y position of annotation label.</p></dd>
@@ -262,6 +280,15 @@ combining (title, plot).</p></dd>
   <dt>caption.rel.heights</dt><dd><p>Numerical vector of relative columns heights while
 combining (plot, caption).</p></dd>
 </dl></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>The text for the plot title.</p></td>
+    </tr>
+    <tr>
+      <th>low.color, high.color</th>
+      <td><p>Colors for low and high ends of the gradient.
+Defaults are colorblind-friendly.</p></td>
     </tr>
     </table>
     

@@ -9,9 +9,9 @@ gghistostats(data = NULL, x, xlab = NULL, title = NULL, subtitle = NULL,
   bf.message = TRUE, k = 3, low.color = "#0072B2",
   high.color = "#D55E00", results.subtitle = TRUE,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
-  "mm"), centrality.para = NULL, centrality.colour = "blue",
-  test.value.line = FALSE, test.value.colour = "black",
-  binwidth.adjust = FALSE, binwidth = NULL, messages = TRUE)
+  "mm"), centrality.para = NULL, centrality.color = "blue",
+  test.value.line = FALSE, test.value.color = "black",
+  line.labeller = FALSE, binwidth = NULL, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -59,17 +59,17 @@ colorbar.}
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as a vertical line.}
 
-\item{centrality.colour}{Decides colour for the vertical line for centrality
+\item{centrality.color}{Decides color for the vertical line for centrality
 parameter (Default: \code{"blue"}).}
 
 \item{test.value.line}{Decides whether test value is to be displayed as a
 vertical line (Default: \code{FALSE}).}
 
-\item{test.value.colour}{Decides colour for the vertical line denoting test
+\item{test.value.color}{Decides color for the vertical line denoting test
 value (Default: \code{"black"}).}
 
-\item{binwidth.adjust}{If set to \code{TRUE}, you can use it to pick better value
-with the \code{binwidth} argument to \code{stat_bin()}.}
+\item{line.labeller}{A logical that decides whether line labels should be
+displayed (Default: \code{FALSE}).}
 
 \item{binwidth}{The width of the bins. Can be specified as a numeric value,
 or a function that calculates width from \code{x}. The default is to use bins
@@ -114,7 +114,6 @@ bf.prior = 0.8,
 test.value = 3,
 centrality.para = "mean",
 test.value.line = TRUE,
-binwidth.adjust = TRUE,
 binwidth = 0.10
 )
 

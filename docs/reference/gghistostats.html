@@ -122,9 +122,9 @@ in the plot as a subtitle.</p>
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>,
   <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>legend.title.margin</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>t.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0</span>, <span class='st'>"mm"</span>), <span class='kw'>b.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>3</span>,
-  <span class='st'>"mm"</span>), <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>centrality.colour</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>test.value.colour</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>binwidth.adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='st'>"mm"</span>), <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>line.labeller</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,8 +207,8 @@ colorbar.</p></td>
 or <code>"median"</code>) is to be displayed as a vertical line.</p></td>
     </tr>
     <tr>
-      <th>centrality.colour</th>
-      <td><p>Decides colour for the vertical line for centrality
+      <th>centrality.color</th>
+      <td><p>Decides color for the vertical line for centrality
 parameter (Default: <code>"blue"</code>).</p></td>
     </tr>
     <tr>
@@ -217,14 +217,14 @@ parameter (Default: <code>"blue"</code>).</p></td>
 vertical line (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
-      <th>test.value.colour</th>
-      <td><p>Decides colour for the vertical line denoting test
+      <th>test.value.color</th>
+      <td><p>Decides color for the vertical line denoting test
 value (Default: <code>"black"</code>).</p></td>
     </tr>
     <tr>
-      <th>binwidth.adjust</th>
-      <td><p>If set to <code>TRUE</code>, you can use it to pick better value
-with the <code>binwidth</code> argument to <code>stat_bin()</code>.</p></td>
+      <th>line.labeller</th>
+      <td><p>A logical that decides whether line labels should be
+displayed (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>binwidth</th>
@@ -275,7 +275,6 @@ chunk is executed, this behavior can be turned off by setting
 <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>3</span>,
 <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
 <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-<span class='kw'>binwidth.adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
 <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>
 )</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note:  Prior width used to compute Bayes Factor: 0.8 
 #&gt; Evidence in favor of the null hypothesis (H0): 1.43971963628525e-81</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-3.png' alt='' width='700' height='433' /></div><div class='input'>

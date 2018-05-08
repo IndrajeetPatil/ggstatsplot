@@ -3,6 +3,15 @@
 \name{grouped_gghistostats}
 \alias{grouped_gghistostats}
 \title{Grouped histograms for distribution of a numeric variable}
+\usage{
+grouped_gghistostats(grouping.var, data, x, xlab = NULL, subtitle = NULL,
+  caption = NULL, type = "parametric", test.value = 0, bf.prior = 0.707,
+  bf.message = TRUE, k = 3, results.subtitle = TRUE,
+  legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
+  "mm"), centrality.para = NULL, centrality.color = "blue",
+  test.value.line = FALSE, test.value.color = "black",
+  line.labeller = FALSE, binwidth = NULL, messages = TRUE, ...)
+}
 \arguments{
 \item{grouping.var}{Grouping variable.}
 
@@ -18,12 +27,13 @@ from one sample test to be displayed.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"} or
-\code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or \code{"bf"}, respectively.}
+\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
+or \code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or \code{"bf"},
+respectively.}
 
 \item{test.value}{A number specifying the value of the null hypothesis.}
 
-\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
+\item{bf.prior}{A number between 0.5 and 2 (default 0.707), the prior width
 to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
@@ -36,20 +46,26 @@ rejected (Default: \code{bf.message = TRUE}).}
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \code{FALSE}, no statistical tests will be run.}
 
-\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"} or
-\code{"median"}) is to be displayed as a vertical line.}
+\item{legend.title.margin}{Adjusting the margin between legend title and the
+colorbar.}
 
-\item{centrality.colour}{Decides colour for the vertical line for centrality
+\item{t.margin, b.margin}{Margins in grid units. For more details, see
+\code{?grid::unit()}.}
+
+\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
+or \code{"median"}) is to be displayed as a vertical line.}
+
+\item{centrality.color}{Decides color for the vertical line for centrality
 parameter (Default: \code{"blue"}).}
 
 \item{test.value.line}{Decides whether test value is to be displayed as a
 vertical line (Default: \code{FALSE}).}
 
-\item{test.value.colour}{Decides colour for the vertical line denoting test
+\item{test.value.color}{Decides color for the vertical line denoting test
 value (Default: \code{"black"}).}
 
-\item{binwidth.adjust}{If set to \code{TRUE}, you can use it to pick better value
-with the \code{binwidth} argument to \code{stat_bin()}.}
+\item{line.labeller}{A logical that decides whether line labels should be
+displayed (Default: \code{FALSE}).}
 
 \item{binwidth}{The width of the bins. Can be specified as a numeric value,
 or a function that calculates width from \code{x}. The default is to use bins
@@ -64,7 +80,7 @@ to be displayed (Default: \code{TRUE}).}
 \describe{
   \item{title.text}{String or plotmath expression to be drawn as title for the
 \emph{combined plot}.}
-  \item{title.colour}{Text color for title.}
+  \item{title.color}{Text color for title.}
   \item{title.size}{Point size of title text.}
   \item{title.vjust}{Vertical justification for title. Default = 0.5 (centered
 on y). 0 = baseline at y, 1 = ascender at y.}
@@ -73,7 +89,7 @@ on y). 0 = baseline at y, 1 = ascender at y.}
   \item{title.fontface}{The font face ("plain", "bold", etc.) for title.}
   \item{caption.text}{String or plotmath expression to be drawn as the caption
 for the \emph{combined plot}.}
-  \item{caption.colour}{Text color for caption.}
+  \item{caption.color}{Text color for caption.}
   \item{caption.size}{Point size of title text.}
   \item{caption.vjust}{Vertical justification for caption. Default = \code{0.5}
 (centered on y). \code{0} = baseline at y, \code{1} = ascender at y.}
@@ -83,7 +99,7 @@ for the \emph{combined plot}.}
 \code{"bold.italic"}) for caption.}
   \item{sub.text}{The label with which the \emph{combined plot} should be annotated.
 Can be a plotmath expression.}
-  \item{sub.colour}{Text color for annotation label.}
+  \item{sub.color}{Text color for annotation label.}
   \item{sub.size}{Point size of annotation text.}
   \item{sub.x}{The x position of annotation label.}
   \item{sub.y}{The y position of annotation label.}
@@ -104,6 +120,11 @@ combining (title, plot).}
   \item{caption.rel.heights}{Numerical vector of relative columns heights while
 combining (plot, caption).}
 }}
+
+\item{title}{The text for the plot title.}
+
+\item{low.color, high.color}{Colors for low and high ends of the gradient.
+Defaults are colorblind-friendly.}
 }
 \description{
 Helper function for \code{ggstatsplot::gghistostats} to apply this

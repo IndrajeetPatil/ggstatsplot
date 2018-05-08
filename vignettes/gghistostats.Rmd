@@ -92,7 +92,6 @@ gapminder::gapminder %>%
     title = "Distribution of population worldwide",     # title for the plot
     subtitle = "Year: 2007",                            # subtitle for the plot
     caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    binwidth.adjust = TRUE,                             # adjust binwidth
     binwidth = 1                                        # new binwidth
   )
 ```

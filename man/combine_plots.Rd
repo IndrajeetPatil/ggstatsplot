@@ -5,11 +5,11 @@
 \title{Combining multiple plots using \code{cowplot::plot_grid()} with a
 combination of title, caption, and annotation label}
 \usage{
-combine_plots(..., title.text = NULL, title.colour = "black",
+combine_plots(..., title.text = NULL, title.color = "black",
   title.size = 16, title.vjust = 0.5, title.hjust = 0.5,
-  title.fontface = "bold", caption.text = NULL, caption.colour = "black",
+  title.fontface = "bold", caption.text = NULL, caption.color = "black",
   caption.size = 10, caption.vjust = 0.5, caption.hjust = 0.5,
-  caption.fontface = "plain", sub.text = NULL, sub.colour = "black",
+  caption.fontface = "plain", sub.text = NULL, sub.color = "black",
   sub.size = 14, sub.vjust = 0.5, sub.hjust = 0.5,
   sub.fontface = "plain", sub.x = 0.5, sub.y = 0.5,
   sub.vpadding = grid::unit(1, "lines"), sub.angle = 0,
@@ -23,7 +23,7 @@ combine_plots(..., title.text = NULL, title.colour = "black",
 \item{title.text}{String or plotmath expression to be drawn as title for the
 \emph{combined plot}.}
 
-\item{title.colour}{Text color for title.}
+\item{title.color}{Text color for title.}
 
 \item{title.size}{Point size of title text.}
 
@@ -38,7 +38,7 @@ on y). 0 = baseline at y, 1 = ascender at y.}
 \item{caption.text}{String or plotmath expression to be drawn as the caption
 for the \emph{combined plot}.}
 
-\item{caption.colour}{Text color for caption.}
+\item{caption.color}{Text color for caption.}
 
 \item{caption.size}{Point size of title text.}
 
@@ -54,7 +54,7 @@ for the \emph{combined plot}.}
 \item{sub.text}{The label with which the \emph{combined plot} should be annotated.
 Can be a plotmath expression.}
 
-\item{sub.colour}{Text color for annotation label.}
+\item{sub.color}{Text color for annotation label.}
 
 \item{sub.size}{Point size of annotation text.}
 
@@ -120,8 +120,8 @@ combine_plots(
   labels = c("(a)", "(b)"),
   title.text = "Dataset: Iris Flower dataset",
   caption.text = "Note: Only two species of flower are displayed",
-  title.colour = "red",
-  caption.colour = "blue"
+  title.color = "red",
+  caption.color = "blue"
 )
 
 }

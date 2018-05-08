@@ -271,14 +271,14 @@ ggstatsplot::ggscatterstats(
   type = "robust",                               # type of test that needs to be run
   xlab = "Attribute: Sepal Length",              # label for x axis
   ylab = "Attribute: Petal Length",              # label for y axis 
-  line.colour = "black",                         # changing regression line colour line
+  line.color = "black",                         # changing regression line color line
   title = "Dataset: Iris flower data set",       # title text for the plot
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
   ),
   marginal.type = "density",                     # type of marginal distribution to be displayed
-  xfill = "blue",                                # colour fill for x-axis marginal distribution 
-  yfill = "red",                                 # colour fill for y-axis marginal distribution
+  xfill = "blue",                                # color fill for x-axis marginal distribution 
+  yfill = "red",                                 # color fill for y-axis marginal distribution
   centrality.para = "median",                    # which type of central tendency lines are to be displayed  
   width.jitter = 0.2,                            # amount of horizontal jitter for data points
   height.jitter = 0.4,                           # amount of vertical jitter for data points
@@ -377,8 +377,7 @@ ggstatsplot::gghistostats(
   type = "parametric",               # one sample t-test
   test.value = 3,                    # default value is 0
   centrality.para = "mean",          # which measure of central tendency is to be plotted
-  centrality.colour = "darkred",     # decides colour of vertical line representing central tendency
-  binwidth.adjust = TRUE,            # whether binwidth needs to be adjusted
+  centrality.color = "darkred",     # decides color of vertical line representing central tendency
   binwidth = 0.10,                   # binwidth value (needs to be toyed around with until you find the best one)
   messages = FALSE                   # turn off the messages
 ) 
@@ -397,7 +396,7 @@ ggstatsplot::gghistostats(
   x = stats::rnorm(n = 1000, mean = 0, sd = 1),
   test.value = 1,
   test.value.line = TRUE,
-  test.value.colour = "black",
+  test.value.color = "black",
   centrality.para = "mean",
   type = "bf",
   bf.prior = 0.8,
@@ -575,7 +574,7 @@ ggstatsplot::combine_plots(
   ncol = 1,
   title.text = "Relationship between sepal length and width for all Iris species",
   title.size = 14,
-  title.colour = "black",
+  title.color = "black",
   caption.text = expression(
     paste(
       italic("Note"),
@@ -636,7 +635,7 @@ ggstatsplot::combine_plots(
   labels = c("(a)","(b)","(c)"),
   title.text = "MPG and car transmission relationship (for each cylinder count)",
   title.size = 13,
-  title.colour = "black",
+  title.color = "black",
   caption.text = expression(
     paste(
       italic("Transmission"),

@@ -9,6 +9,13 @@ NEW FEATURES
     `character` type.
   - The default color palette used for all plots is colorblind friendly.
 
+BREAKING FEATURES
+  - To be internally consistent, all functions in `ggstatsplot` use the spelling
+    `color`, rather than `colour` in some functions, while `color` in others.
+  - Removed the redundant argument `binwidth.adjust` from `gghistostats`
+    function. This argument was relevant for the first avatar of this fucntion,
+    but is no longer playing any role.
+
 MINOR CHANGES
 
   - Added a new argument to `ggstatsplot.theme` function to control if
@@ -19,6 +26,9 @@ MINOR CHANGES
   - Both `gghistostats` and `ggcorrmat` have a new argument
     `legend.title.margin` to control margin adjustment between the title and the
     colorbar.
+  - The vertical lines denoting test values and centrality parameters can be
+    tagged with text labels with a new argument `line.labeller` in
+    `gghistostats` function.
 
 BUG FIXES
 
