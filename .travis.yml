@@ -13,9 +13,7 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-
       r:
-        - 3.3
         - oldrel
         - release
         - devel
@@ -28,17 +26,17 @@ matrix:
         - Rcpp
         - bindrcpp
         - RcppEigen
-        - rpf
+        #- rpf
         - openssl
         - rlang
-        - igraph
+        #- igraph
         - utf8
         - gss
         - haven
-        - XML
+        #- XML
         - data.table
-        - matrixStats
-        - rgl
+        #- matrixStats
+        #- rgl
         - dplyr
         - purrr
         - tidyr
@@ -50,13 +48,13 @@ matrix:
         - lme4
         - httpuv
         - markdown
-        - OpenMx
+        #- OpenMx
         - sem
         - readxl
         - openxlsx
         - pander
-        - minpack.lm
-        - StanHeaders
+        #- minpack.lm
+        #- StanHeaders
 
         # "These installs will be faster than source installs, but may not always be the most recent version"
         # https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
@@ -81,7 +79,6 @@ addons:
     - libcurl4-openssl-dev
     - libxml2-dev
     - libgsl0-dev
-    - libfreetype6
 
 repos:
   CRAN: https://cloud.r-project.org
@@ -89,7 +86,6 @@ repos:
 
 # work around temporary travis + R 3.5 bug
 r_packages:
-    - devtools
     - covr
 
 warnings_are_errors: true
