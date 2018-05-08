@@ -121,10 +121,11 @@ subtitle.</p>
 
     <pre class="usage"><span class='fu'>ggscatterstats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#E69F00"</span>, <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxit</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>,
+  <span class='st'>"y"</span>), <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>,
+  <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
+  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxit</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,6 +170,17 @@ displayed; the default is <code>TRUE</code>.</p></td>
 (<code>"histogram"</code>, <code>"boxplot"</code>, <code>"density"</code>, <code>"violin"</code>).</p></td>
     </tr>
     <tr>
+      <th>marginal.size</th>
+      <td><p>Integer describing the relative size of the marginal
+plots compared to the main plot. A size of <code>5</code> means that the main plot is
+5x wider and 5x taller than the marginal plots.</p></td>
+    </tr>
+    <tr>
+      <th>margins</th>
+      <td><p>Character describing along which margins to show the plots.
+Any of the following arguments are accepted: <code>"both"</code>, <code>"x"</code>, <code>"y"</code>.</p></td>
+    </tr>
+    <tr>
       <th>width.jitter</th>
       <td><p>Degree of jitter in <code>x</code> direction. Defaults to 40% of
 the resolution of the data.</p></td>
@@ -180,11 +192,11 @@ the resolution of the data.</p></td>
     </tr>
     <tr>
       <th>xfill</th>
-      <td><p>color fill for x axis distibution (default: <code>"orange"</code>).</p></td>
+      <td><p>color fill for x axis distibution (default: <code>"#009E73"</code>).</p></td>
     </tr>
     <tr>
       <th>yfill</th>
-      <td><p>color fill for y axis distribution (default: <code>"green"</code>).</p></td>
+      <td><p>color fill for y axis distribution (default: <code>"#D55E00"</code>).</p></td>
     </tr>
     <tr>
       <th>centrality.para</th>

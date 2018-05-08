@@ -19,8 +19,13 @@
 #'   displayed; the default is `TRUE`.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
 #'   (`"histogram"`, `"boxplot"`, `"density"`, `"violin"`).
-#' @param xfill color fill for x axis distibution (default: `"orange"`).
-#' @param yfill color fill for y axis distribution (default: `"green"`).
+#' @param marginal.size Integer describing the relative size of the marginal
+#'   plots compared to the main plot. A size of `5` means that the main plot is
+#'   5x wider and 5x taller than the marginal plots.
+#' @param margins Character describing along which margins to show the plots.
+#'   Any of the following arguments are accepted: `"both"`, `"x"`, `"y"`.
+#' @param xfill color fill for x axis distibution (default: `"#009E73"`).
+#' @param yfill color fill for y axis distribution (default: `"#D55E00"`).
 #' @param type Type of association between paired samples required
 #'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
 #'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: Robust regression using
@@ -94,9 +99,11 @@ ggscatterstats <-
            line.color = "blue",
            marginal = TRUE,
            marginal.type = "histogram",
+           marginal.size = 5,
+           margins = c("both", "x", "y"),
            width.jitter = NULL,
            height.jitter = NULL,
-           xfill = "#E69F00",
+           xfill = "#009E73",
            yfill = "#D55E00",
            centrality.para = NULL,
            type = "pearson",
@@ -415,25 +422,30 @@ ggscatterstats <-
         ggExtra::ggMarginal(
           p = plot,
           type = marginal.type,
-          size = 5,
+          margins = margins,
+          size = marginal.size,
           xparams = base::list(fill = xfill,
                                col = "black"),
           yparams = base::list(fill = yfill,
                                col = "black")
         )
 
-      ################################################### messages ##########################################################
-
-      # display warning that this doesn't produce a ggplot2 object
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::red("Warning:"),
-          crayon::blue(
-            "This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands."
-          )
-        ))
-      }
     }
+
+    ################################################### messages ##########################################################
+
+    # display warning that this doesn't produce a ggplot2 object
+    if (isTRUE(messages) &&
+        isTRUE(marginal)) {
+      base::message(cat(
+        crayon::red("Warning:"),
+        crayon::blue(
+          "This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands."
+        )
+      ))
+    }
+
+
 
     # return the final plot
     return(plot)

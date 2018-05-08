@@ -263,10 +263,35 @@ The `type` (of test) argument also accepts the following abbreviations:
 "p" (for *parametric*/pearson's), "np" (for *nonparametric*/spearman), "r" (for
 *robust*).
 
-**Important**: In contrast to all other functions in this package, the
+**Important**: 
+In contrast to all other functions in this package, the
 `ggscatterstats` function returns object that is **not** further modifiable
 with `ggplot2`. This can be avoided by not plotting the marginal distributions
 (`marginal = FALSE`). Currently trying to find a workaround this problem.
+
+**Using `ggscatterstats()` in R Notebooks or Rmarkdown**
+
+If you try including a `ggscatterstats()` plot inside an R Notebook or
+Rmarkdown code chunk, you’ll notice that the plot doesn’t get output. In
+order to get a `ggscatterstats()` to show up in an these contexts, you need
+to save the ggscatterstats plot as a variable in one code chunk, and
+explicitly print it using the `grid` package in another chunk, like
+this:
+
+
+```{r, eval = FALSE}
+# include the following code in your code chunk inside R Notebook or Markdown
+grid::grid.newpage()
+grid::grid.draw(
+  ggstatsplot::ggscatterstats(
+    data = cars,
+    x = speed,
+    y = dist,
+    marginal = TRUE,
+    messages = FALSE
+  )
+)
+```
 
 * `ggpiestats`
 

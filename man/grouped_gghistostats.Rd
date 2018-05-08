@@ -6,7 +6,8 @@
 \usage{
 grouped_gghistostats(grouping.var, data, x, xlab = NULL, subtitle = NULL,
   caption = NULL, type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = TRUE, k = 3, results.subtitle = TRUE,
+  bf.message = TRUE, k = 3, low.color = "#0072B2",
+  high.color = "#D55E00", results.subtitle = TRUE,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
   "mm"), centrality.para = NULL, centrality.color = "blue",
   test.value.line = FALSE, test.value.color = "black",
@@ -41,6 +42,9 @@ of null hypothesis for parametric test if the null hypothesis can't be
 rejected (Default: \code{bf.message = TRUE}).}
 
 \item{k}{Number of decimal places expected for results.}
+
+\item{low.color, high.color}{Colors for low and high ends of the gradient.
+Defaults are colorblind-friendly.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
@@ -122,9 +126,6 @@ combining (plot, caption).}
 }}
 
 \item{title}{The text for the plot title.}
-
-\item{low.color, high.color}{Colors for low and high ends of the gradient.
-Defaults are colorblind-friendly.}
 }
 \description{
 Helper function for \code{ggstatsplot::gghistostats} to apply this

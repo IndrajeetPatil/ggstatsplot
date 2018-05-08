@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--07-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--08-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -297,6 +297,29 @@ The `type` (of test) argument also accepts the following abbreviations:
 modifiable with `ggplot2`. This can be avoided by not plotting the
 marginal distributions (`marginal = FALSE`). Currently trying to find a
 workaround this problem.
+
+**Using `ggscatterstats()` in R Notebooks or Rmarkdown**
+
+If you try including a `ggscatterstats()` plot inside an R Notebook or
+Rmarkdown code chunk, you’ll notice that the plot doesn’t get output. In
+order to get a `ggscatterstats()` to show up in an these contexts, you
+need to save the ggscatterstats plot as a variable in one code chunk,
+and explicitly print it using the `grid` package in another chunk, like
+this:
+
+``` r
+# include the following code in your code chunk inside R Notebook or Markdown
+grid::grid.newpage()
+grid::grid.draw(
+  ggstatsplot::ggscatterstats(
+    data = cars,
+    x = speed,
+    y = dist,
+    marginal = TRUE,
+    messages = FALSE
+  )
+)
+```
 
   - `ggpiestats`
 
