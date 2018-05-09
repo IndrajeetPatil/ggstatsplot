@@ -458,19 +458,24 @@ ggstatsplot::ggcorrmat(
 
 Alternatively, you can use it just to get the correlation matrices and their
 corresponding p-values (in a [tibble](http://tibble.tidyverse.org/) format).
+This is especially useful for robust correlation coefficient, which is not
+currently supported in `ggcorrmat` plot.
 
 ```{r ggcorrmat3, message = FALSE, warning = FALSE}
-# getting correlations 
+# getting the correlation coefficient matrix
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = Sepal.Length:Petal.Width,
-  output = "correlations"
+  corr.method = "robust",
+  output = "correlations",             # specifying the needed output
+  digits = 3                           # number of digits to be dispayed for correlation coefficient
 )
 
-# getting p-values
+# getting the p-value matrix
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = Sepal.Length:Petal.Width,
+  corr.method = "robust",
   output = "p-values"
 )
 ```

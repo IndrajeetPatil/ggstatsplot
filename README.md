@@ -507,36 +507,41 @@ ggstatsplot::ggcorrmat(
 
 Alternatively, you can use it just to get the correlation matrices and
 their corresponding p-values (in a
-[tibble](http://tibble.tidyverse.org/) format).
+[tibble](http://tibble.tidyverse.org/) format). This is especially
+useful for robust correlation coefficient, which is not currently
+supported in `ggcorrmat` plot.
 
 ``` r
-# getting correlations 
+# getting the correlation coefficient matrix
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = Sepal.Length:Petal.Width,
-  output = "correlations"
+  corr.method = "robust",
+  output = "correlations",             # specifying the needed output
+  digits = 3                           # number of digits to be dispayed for correlation coefficient
 )
 #> # A tibble: 4 x 5
 #>   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>   <chr>               <dbl>       <dbl>        <dbl>       <dbl>
-#> 1 Sepal.Length         1          -0.12         0.87        0.82
-#> 2 Sepal.Width         -0.12        1           -0.43       -0.37
-#> 3 Petal.Length         0.87       -0.43         1           0.96
-#> 4 Petal.Width          0.82       -0.37         0.96        1
+#> 1 Sepal.Length        1          -0.193        0.878       0.846
+#> 2 Sepal.Width        -0.193       1           -0.452      -0.392
+#> 3 Petal.Length        0.878      -0.452        1           0.966
+#> 4 Petal.Width         0.846      -0.392        0.966       1
 
-# getting p-values
+# getting the p-value matrix
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = Sepal.Length:Petal.Width,
+  corr.method = "robust",
   output = "p-values"
 )
 #> # A tibble: 4 x 5
-#>   variable     Sepal.Length  Sepal.Width Petal.Length Petal.Width
-#>   <chr>               <dbl>        <dbl>        <dbl>       <dbl>
-#> 1 Sepal.Length     0.       0.152            1.04e-47    2.33e-37
-#> 2 Sepal.Width      1.52e- 1 0                4.51e- 8    4.07e- 6
-#> 3 Petal.Length     1.04e-47 0.0000000451     0.          4.68e-86
-#> 4 Petal.Width      2.33e-37 0.00000407       4.68e-86    0.
+#>   variable     Sepal.Length   Sepal.Width  Petal.Length Petal.Width
+#>   <chr>               <dbl>         <dbl>         <dbl>       <dbl>
+#> 1 Sepal.Length       0      0.0177        0             0          
+#> 2 Sepal.Width        0.0177 0             0.00000000636 0.000000686
+#> 3 Petal.Length       0      0.00000000636 0             0          
+#> 4 Petal.Width        0      0.000000686   0             0
 ```
 
   - `combine_plots`

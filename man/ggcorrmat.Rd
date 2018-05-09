@@ -7,15 +7,16 @@
 \usage{
 ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   type = "full", method = "square", corr.method = "pearson",
-  exact = FALSE, continuity = TRUE, digits = 2, sig.level = 0.05,
-  hc.order = FALSE, hc.method = "complete", lab = TRUE,
-  colors = c("#E69F00", "#56B4E9", "#009E73"), outline.color = "black",
-  ggtheme = ggplot2::theme_gray, ggstatsplot.theme = TRUE, title = NULL,
-  subtitle = NULL, caption = NULL, caption.default = TRUE,
-  lab_col = "black", lab_size = 4.5, insig = "pch", pch = 4,
-  pch.col = "blue", pch.cex = 10, tl.cex = 12, tl.col = "black",
-  tl.srt = 45, legend.title.margin = TRUE, t.margin = unit(0, "mm"),
-  b.margin = unit(3, "mm"))
+  exact = FALSE, continuity = TRUE, beta = 0.2, digits = 2,
+  sig.level = 0.05, hc.order = FALSE, hc.method = "complete",
+  lab = TRUE, colors = c("#E69F00", "#56B4E9", "#009E73"),
+  outline.color = "black", ggtheme = ggplot2::theme_gray,
+  ggstatsplot.theme = TRUE, title = NULL, subtitle = NULL,
+  caption = NULL, caption.default = TRUE, lab_col = "black",
+  lab_size = 4.5, insig = "pch", pch = 4, pch.col = "blue",
+  pch.cex = 10, tl.cex = 12, tl.col = "black", tl.srt = 45,
+  legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
+  "mm"))
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -40,7 +41,10 @@ correlation matrix to be used. Allowed values are \code{"square"} (default),
 
 \item{corr.method}{A character string indicating which correlation
 coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
-\code{"spearman"}). Abbreviations will \strong{not} work.}
+\code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
+is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation
+used is percentage bend correlation (see \code{?WRS2::pball}). Abbreviations
+will \strong{not} work.}
 
 \item{exact}{A logical indicating whether an exact \emph{p}-value should be
 computed. Used for Kendall's \emph{tau} and Spearman's \emph{rho}. For more details,
@@ -49,6 +53,9 @@ see \code{?stats::cor.test}.}
 \item{continuity}{A logical. If \code{TRUE}, a continuity correction is used for
 Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Default:
 \code{TRUE}).}
+
+\item{beta}{A numeric bending constant for robust correlation coefficient
+(Default: \code{0.2}).}
 
 \item{digits}{Decides the number of decimal digits to be added into the plot
 (Default: \code{2}).}
@@ -124,7 +131,7 @@ Visualization of a correlalogram (or correlation matrix) using
 'ggplot2'/'ggcorrplot'
 }
 \note{
-If you are using R Notebook and see a blank image being inserted when a
+If you are using R Notebook or Markdown and see a blank image being inserted when a
 chunk is executed, this behavior can be turned off by setting
 \code{legend.title.margin = FALSE}.
 }

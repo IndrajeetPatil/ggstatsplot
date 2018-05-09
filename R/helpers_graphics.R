@@ -225,23 +225,3 @@ theme_corrmat <- function() {
     )
   )
 }
-
-# a colorblind-friendly palette
-# reference:
-# 1. http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette
-# 2. http://jfly.iam.u-tokyo.ac.jp/color/
-# The palette with grey:
-cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#999999")
-
-# The palette with black:
-cbbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
-
-
-cbpalette_add <- function(plot) {
-  options(warn = -1)
-  plot <- plot +
-    ggplot2::scale_fill_manual(values = cbPalette) +
-    ggplot2::scale_color_manual(values = cbPalette)
-  options(warn = 1)
-  return(plot)
-}

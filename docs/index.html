@@ -398,34 +398,37 @@
 <a class="sourceLine" id="cb20-8" data-line-number="8">  <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">"green"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span>)        <span class="co"># selecting color combination</span></a>
 <a class="sourceLine" id="cb20-9" data-line-number="9">)</a></code></pre></div>
 <p><img src="../../../Indrajeet%20Patil/Documents/ggstatsplot/man/figures/README-ggcorrmat2-1.png" width="100%"></p>
-<p>Alternatively, you can use it just to get the correlation matrices and their corresponding p-values (in a <a href="http://tibble.tidyverse.org/">tibble</a> format).</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># getting correlations </span></a>
+<p>Alternatively, you can use it just to get the correlation matrices and their corresponding p-values (in a <a href="http://tibble.tidyverse.org/">tibble</a> format). This is especially useful for robust correlation coefficient, which is not currently supported in <code>ggcorrmat</code> plot.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># getting the correlation coefficient matrix</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb21-3" data-line-number="3">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
 <a class="sourceLine" id="cb21-4" data-line-number="4">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">  <span class="dt">output =</span> <span class="st">"correlations"</span></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
-<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="co">#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width</span></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="co">#&gt; 1 Sepal.Length         1          -0.12         0.87        0.82</span></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="co">#&gt; 2 Sepal.Width         -0.12        1           -0.43       -0.37</span></a>
-<a class="sourceLine" id="cb21-12" data-line-number="12"><span class="co">#&gt; 3 Petal.Length         0.87       -0.43         1           0.96</span></a>
-<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="co">#&gt; 4 Petal.Width          0.82       -0.37         0.96        1</span></a>
-<a class="sourceLine" id="cb21-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb21-15" data-line-number="15"><span class="co"># getting p-values</span></a>
-<a class="sourceLine" id="cb21-16" data-line-number="16">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb21-17" data-line-number="17">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb21-18" data-line-number="18">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,</a>
-<a class="sourceLine" id="cb21-19" data-line-number="19">  <span class="dt">output =</span> <span class="st">"p-values"</span></a>
-<a class="sourceLine" id="cb21-20" data-line-number="20">)</a>
-<a class="sourceLine" id="cb21-21" data-line-number="21"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
-<a class="sourceLine" id="cb21-22" data-line-number="22"><span class="co">#&gt;   variable     Sepal.Length  Sepal.Width Petal.Length Petal.Width</span></a>
-<a class="sourceLine" id="cb21-23" data-line-number="23"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb21-24" data-line-number="24"><span class="co">#&gt; 1 Sepal.Length     0.       0.152            1.04e-47    2.33e-37</span></a>
-<a class="sourceLine" id="cb21-25" data-line-number="25"><span class="co">#&gt; 2 Sepal.Width      1.52e- 1 0                4.51e- 8    4.07e- 6</span></a>
-<a class="sourceLine" id="cb21-26" data-line-number="26"><span class="co">#&gt; 3 Petal.Length     1.04e-47 0.0000000451     0.          4.68e-86</span></a>
-<a class="sourceLine" id="cb21-27" data-line-number="27"><span class="co">#&gt; 4 Petal.Width      2.33e-37 0.00000407       4.68e-86    0.</span></a></code></pre></div>
+<a class="sourceLine" id="cb21-5" data-line-number="5">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">  <span class="dt">output =</span> <span class="st">"correlations"</span>,             <span class="co"># specifying the needed output</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">  <span class="dt">digits =</span> <span class="dv">3</span>                           <span class="co"># number of digits to be dispayed for correlation coefficient</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="co">#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width</span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb21-12" data-line-number="12"><span class="co">#&gt; 1 Sepal.Length        1          -0.193        0.878       0.846</span></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="co">#&gt; 2 Sepal.Width        -0.193       1           -0.452      -0.392</span></a>
+<a class="sourceLine" id="cb21-14" data-line-number="14"><span class="co">#&gt; 3 Petal.Length        0.878      -0.452        1           0.966</span></a>
+<a class="sourceLine" id="cb21-15" data-line-number="15"><span class="co">#&gt; 4 Petal.Width         0.846      -0.392        0.966       1</span></a>
+<a class="sourceLine" id="cb21-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb21-17" data-line-number="17"><span class="co"># getting the p-value matrix</span></a>
+<a class="sourceLine" id="cb21-18" data-line-number="18">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb21-19" data-line-number="19">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
+<a class="sourceLine" id="cb21-20" data-line-number="20">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,</a>
+<a class="sourceLine" id="cb21-21" data-line-number="21">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
+<a class="sourceLine" id="cb21-22" data-line-number="22">  <span class="dt">output =</span> <span class="st">"p-values"</span></a>
+<a class="sourceLine" id="cb21-23" data-line-number="23">)</a>
+<a class="sourceLine" id="cb21-24" data-line-number="24"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
+<a class="sourceLine" id="cb21-25" data-line-number="25"><span class="co">#&gt;   variable     Sepal.Length   Sepal.Width  Petal.Length Petal.Width</span></a>
+<a class="sourceLine" id="cb21-26" data-line-number="26"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb21-27" data-line-number="27"><span class="co">#&gt; 1 Sepal.Length       0      0.0177        0             0          </span></a>
+<a class="sourceLine" id="cb21-28" data-line-number="28"><span class="co">#&gt; 2 Sepal.Width        0.0177 0             0.00000000636 0.000000686</span></a>
+<a class="sourceLine" id="cb21-29" data-line-number="29"><span class="co">#&gt; 3 Petal.Length       0      0.00000000636 0             0          </span></a>
+<a class="sourceLine" id="cb21-30" data-line-number="30"><span class="co">#&gt; 4 Petal.Width        0      0.000000686   0             0</span></a></code></pre></div>
 <ul>
 <li><code>combine_plots</code></li>
 </ul>
