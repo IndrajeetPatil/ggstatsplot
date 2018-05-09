@@ -12,8 +12,8 @@ ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   lab = TRUE, colors = c("#E69F00", "#56B4E9", "#009E73"),
   outline.color = "black", ggtheme = ggplot2::theme_gray,
   ggstatsplot.theme = TRUE, title = NULL, subtitle = NULL,
-  caption = NULL, caption.default = TRUE, lab_col = "black",
-  lab_size = 4.5, insig = "pch", pch = 4, pch.col = "blue",
+  caption = NULL, caption.default = TRUE, lab.col = "black",
+  lab.size = 4.5, insig = "pch", pch = 4, pch.col = "blue",
   pch.cex = 10, tl.cex = 12, tl.col = "black", tl.srt = 45,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
   "mm"))
@@ -96,10 +96,10 @@ theme (Default: \code{ggstatsplot.theme = TRUE}).}
 \item{caption.default}{Logical decides whether the default caption should be
 shown.}
 
-\item{lab_col}{Color to be used for the correlation coefficient labels
+\item{lab.col}{Color to be used for the correlation coefficient labels
 (applicable only when \code{lab = TRUE}).}
 
-\item{lab_size}{Size to be used for the correlation coefficient labels
+\item{lab.size}{Size to be used for the correlation coefficient labels
 (applicable only when \code{lab = TRUE}).}
 
 \item{insig}{Character used to show specialized insignificant correlation

@@ -15,6 +15,8 @@ BREAKING FEATURES
   - Removed the redundant argument `binwidth.adjust` from `gghistostats`
     function. This argument was relevant for the first avatar of this fucntion,
     but is no longer playing any role.
+  - To be internally consistent, the argument `lab_col` and `lab_size` in
+  `ggcorrmat` have been changed to `lab.col` and `lab.size`, respectively.
 
 MINOR CHANGES
 

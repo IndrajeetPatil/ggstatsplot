@@ -448,7 +448,7 @@ Multiple arguments can be modified to change the appearance of the correlation m
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),
-  lab_col = "red",                              # label color
+  lab.col = "red",                              # label color
   ggtheme = ggplot2::theme_light,               # selected ggplot2 theme
   ggstatsplot.theme = FALSE,                    # turn off overlaying theme_mprl on selected ggplot2 theme
   type = "lower",                               # type of correlation matrix

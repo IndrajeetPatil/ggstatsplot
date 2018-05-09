@@ -1,0 +1,206 @@
+---
+title: "ggcorrmat"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ggcorrmat}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The function `ggstatsplot::ggcorrmat` provides a quick way to produce
+**publication-ready correlation matrix** (aka correlalogram) plot. In addition
+to the plot, it can also be used to get a correlation coefficient matrix or the
+associated p-value matrix. Currently, the plot can display Pearson's *r*,
+Spearman's *rho*, and Kendall's *tau*. Robust correlation coefficient option is
+available only to output coefficients and p-values. The percentage bend
+correlation is used as a robust correlation. Future release will also support
+robust correlation matrix. This function is a convenient wrapper around
+`ggcorrplot` function with some additional functionality, so its documentation
+will be helpful (http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2).
+
+We will see examples of how to use this function in this vignette with the
+`gapminder` dataset.
+
+To begin with, here are some instances where you would want to use
+`ggcorrmat`-
+
+  - to easily visualize a correlation matrix using `ggplot2`
+  - to quickly explore correlation between numeric variables in the dataset
+
+## Correlation matrix plot with `ggcorrmat`
+
+For the first example, we will use the `gapminder` dataset (available in
+eponymous [package](https://CRAN.R-project.org/package=gapminder) on CRAN)
+provides values for life expectancy, Gross Domestic Product (GDP) per capita,
+and population, every five years, from 1952 to 2007, for each of 142 countries
+and was collected by the Gapminder Foundation. Let's have a look at the data-
+
+```{r gapminder, warning = FALSE, message = FALSE}
+library(gapminder)
+library(dplyr)
+
+dplyr::glimpse(x = gapminder)
+```
+
+Let's say we are interested in studying correlation between population of a
+country, average life expectancy, and GDP per capita across countries only for
+the year 2007.
+
+The simplest way to get a correlation matrix is to stick to the defaults-
+```{r ggcorrmat1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+library(ggstatsplot)
+
+# select data only from the year 2007
+gapminder_2007 <- dplyr::filter(.data = gapminder::gapminder, year == 2007)
+
+# producing the correlation matrix
+ggstatsplot::ggcorrmat(
+  data = gapminder_2007,             # data from which variable is to be taken
+  cor.vars = lifeExp:gdpPercap       # specifying correlation matrix variables
+)
+```
+
+This plot can be further modified with additional arguments-
+```{r ggcorrmat2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+ggstatsplot::ggcorrmat(
+  data = gapminder_2007,                      # data from which variable is to be taken
+  cor.vars = lifeExp:gdpPercap,               # specifying correlation matrix variables
+  cor.vars.names = c("Life Expectancy", "population", "GDP (per capita)"),
+  corr.method = "kendall",                    # which correlation coefficient is to be computed
+  lab.col = "red",                            # label color
+  ggtheme = ggplot2::theme_light,             # selected ggplot2 theme
+  ggstatsplot.theme = FALSE,                  # turn off default ggestatsplot theme overlay
+  type = "lower",                             # type of correlation matrix
+  colors = c("green", "white", "yellow"),     # selecting color combination
+  title = "Gapminder correlation matrix",     # custom title
+  subtitle = "Source: Gapminder Foundation"   # custom subtitle
+)
+```
+
+As seen from this correlation matrix, although there is no relationship between
+population and life expectancy worldwide, at least in 2007, there is a strong
+positive relationship between GDP, a well-established indicator of a country's
+economic performance.
+
+Given that there were only three variables, this doesn't look that impressive.
+So let's work with another example from `ggplot2` package: the `diamonds`
+[dataset](http://ggplot2.tidyverse.org/reference/diamonds.html). This dataset
+contains the prices and other attributes of almost 54,000 diamonds.
+
+Let's have a look at the data-
+
+```{r diamonds, warning = FALSE, message = FALSE}
+library(ggplot2)
+
+dplyr::glimpse(x = diamonds)
+```
+
+Let's see the correlation matrix between different attributes of the diamond and
+the price.
+
+```{r ggcorrmat3, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 7}
+ggstatsplot::ggcorrmat(
+  data = diamonds,             
+  cor.vars = c(carat, depth:z),        # note how the variables are getting selected
+  cor.vars.names = c("carat", "total depth", "table", "price", "length (in mm)", "width (in mm)", "depth (in mm)"),
+  hc.order = TRUE                      # use hierarchical clustering
+)
+```
+
+We can make a number of changes to this basic correlation matrix. For example,
+since we were interested in relationship between price and other attributes,
+let's make the `price` column to te the first column. Additionally, since we are
+running 6 correlations that are of *a priori* interest to us, we can adjust our
+threshold of significance to (0.05/6 ~ 0.008). Additionally, let's use a
+non-parametric correlation coefficient. Please note that it is **important** to
+always make sure that the order in which `cor.vars` and `cor.vars.names` are
+entered is in sync. Otherwise, wrong column labels will be displayed.
+
+```{r ggcorrmat4, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 7}
+ggstatsplot::ggcorrmat(
+  data = diamonds,             
+  cor.vars = c(price, carat, depth:table, x:z),    # note how the variables are getting selected
+  cor.vars.names = c("price", "carat", "total depth", "table",  "length (in mm)", "width (in mm)", "depth (in mm)"),
+  corr.method = "spearman",
+  sig.level = 0.008,
+  type = "lower",
+  title = "Relationship between diamond attributes and price",
+  subtitle = "Dataset: Diamonds from ggplot2 package",
+  colors = c("#0072B2", "#D55E00", "#CC79A7"),
+  lab.col = "yellow",
+  lab.size = 6,
+  pch = 7,
+  pch.col = "white",
+  pch.cex = 14,
+  caption = expression(                            # changing the default caption text for the plot 
+    paste(italic("Note"), ": Point shape denotes correlation non-significant at p < 0.008; adjusted for 6 comparisons")
+  )
+)
+```
+
+As seen here, and unsurprisingly, the strongest predictor of the diamond price is its carat value, which a unit of mass equal to 200 mg. In other words, the heavier the diamond, the more expensive it is going to be.
+
+## Correlation statistics matrix with `ggcorrmat`
+
+Another utility of `ggcorrmat` is in obtaining matrix of correlation
+coefficients and their p-values for a quick and dirty exploratory data analysis.
+For example, for the correlation matrix we just ran, we can get a coefficient
+matrix and a p-value matrix. We will use robust correlation for this
+illustration as this correlation is supported only to get correlation
+coeffcients and p-values.
+
+```{r ggcorrmat5, warning = FALSE, message = FALSE}
+# to get correlations
+ggstatsplot::ggcorrmat(
+  data = diamonds,             
+  cor.vars = c(price, carat, depth:table, x:z),
+  output = "correlations",
+  corr.method = "robust",
+  digits = 3
+)
+
+# to get p-values
+ggstatsplot::ggcorrmat(
+  data = diamonds,             
+  cor.vars = c(price, carat, depth:table, x:z),
+  output = "p-values",
+  corr.method = "robust",
+  digits = 3
+)
+```
+
+Note that this function also makes it easy to run the same correlation matrix
+across different levels of a factor/grouping variable. For example, if we wanted
+to get the same correlation coefficient matrix for `color` of the diamond, we
+can do the following-
+
+```{r ggcorrmat6, warning = FALSE, message = FALSE}
+# splitting the dataframe by color and creting a list
+color_list <- ggplot2::diamonds %>%
+  base::split(x = ., f = .$color, drop = TRUE)
+
+# running the same function for all elements of the list
+purrr::map_dfr(
+  .x = color_list,                                  # list on which map operation needs to be carried out
+  .f = ~ ggstatsplot::ggcorrmat(
+    data = .,                                       # `.` is just a placeholder for list element
+    cor.vars = c(price, carat, depth:table, x:z),
+    output = "correlations",
+    corr.method = "robust",
+    digits = 3
+  ),
+  .id = "color"                                      # identity/grouping variable
+)
+```
+
+As this example illustrates, there is a minimal coding overhead to exlore
+correlations in your dataset with the `ggcorrmat` function.

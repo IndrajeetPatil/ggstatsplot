@@ -84,6 +84,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/ggcorrmat.html">ggcorrmat</a>
+    </li>
+    <li>
       <a href="../articles/gghistostats.html">gghistostats</a>
     </li>
   </ul>
@@ -127,8 +130,8 @@
   <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#E69F00"</span>, <span class='st'>"#56B4E9"</span>, <span class='st'>"#009E73"</span>),
   <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_gray</a></span>,
   <span class='kw'>ggstatsplot.theme</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>lab_size</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>lab.size</span> <span class='kw'>=</span> <span class='fl'>4.5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
   <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>,
   <span class='kw'>legend.title.margin</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>t.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0</span>, <span class='st'>"mm"</span>), <span class='kw'>b.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>3</span>,
   <span class='st'>"mm"</span>))</pre>
@@ -260,12 +263,12 @@ theme (Default: <code>ggstatsplot.theme = TRUE</code>).</p></td>
 shown.</p></td>
     </tr>
     <tr>
-      <th>lab_col</th>
+      <th>lab.col</th>
       <td><p>Color to be used for the correlation coefficient labels
 (applicable only when <code>lab = TRUE</code>).</p></td>
     </tr>
     <tr>
-      <th>lab_size</th>
+      <th>lab.size</th>
       <td><p>Size to be used for the correlation coefficient labels
 (applicable only when <code>lab = TRUE</code>).</p></td>
     </tr>

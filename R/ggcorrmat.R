@@ -61,9 +61,9 @@
 #'   `NULL`, i.e.), a default caption will be shown.
 #' @param caption.default Logical decides whether the default caption should be
 #'   shown.
-#' @param lab_col Color to be used for the correlation coefficient labels
+#' @param lab.col Color to be used for the correlation coefficient labels
 #'   (applicable only when `lab = TRUE`).
-#' @param lab_size Size to be used for the correlation coefficient labels
+#' @param lab.size Size to be used for the correlation coefficient labels
 #'   (applicable only when `lab = TRUE`).
 #' @param insig Character used to show specialized insignificant correlation
 #'   coefficients (`"pch"` (default) or `"blank"`). If `"blank"`, the
@@ -157,8 +157,8 @@ ggcorrmat <-
            subtitle = NULL,
            caption = NULL,
            caption.default = TRUE,
-           lab_col = "black",
-           lab_size = 4.5,
+           lab.col = "black",
+           lab.size = 4.5,
            insig = "pch",
            pch = 4,
            pch.col = "blue",
@@ -260,8 +260,8 @@ ggcorrmat <-
           ggtheme = ggtheme,
           colors = colors,
           legend.title = corr.method,
-          lab_col = lab_col,
-          lab_size = lab_size,
+          lab_col = lab.col,
+          lab_size = lab.size,
           insig = insig,
           pch = pch,
           pch.col = pch.col,
