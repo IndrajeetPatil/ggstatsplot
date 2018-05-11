@@ -1,5 +1,5 @@
 ---
-title: "theme_mprl"
+title: "Default theme (theme_mprl)"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -47,6 +47,33 @@ ggplot2::ggplot(
 ) + 
   ggplot2::geom_point() + 
   ggstatsplot::theme_mprl()
+```
+
+All plots in this package have this theme by default. For example, since the
+`ggcorrmat` allows you to use different `ggplot2` themes, it contains an
+argument to prevent overlaying the default ggstatsplot theme. Otherwise,
+whichever `ggtheme` you chose will just be overridden by the ggstatsplot theme.
+
+```{r ggcorrmat_theme1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+ggstatsplot::ggcorrmat(
+  data = datasets::iris,
+  cor.vars = c(Sepal.Length:Petal.Width),
+  type = "upper",
+  ggtheme = ggplot2::theme_dark,          # selected ggplot2 theme
+  ggstatsplot.theme = FALSE               # turn off overlaying theme_mprl on selected ggplot2 theme
+)
+```
+
+Contrast this what it looks like if you don't turn off the default theme overlay:
+
+```{r ggcorrmat_theme2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+ggstatsplot::ggcorrmat(
+  data = datasets::iris,
+  cor.vars = c(Sepal.Length:Petal.Width),
+  type = "upper",
+  ggtheme = ggplot2::theme_dark,         # selected ggplot2 theme
+  ggstatsplot.theme = TRUE                # overlaying theme_mprl on selected ggplot2 theme
+)
 ```
 
 ## Suggestions

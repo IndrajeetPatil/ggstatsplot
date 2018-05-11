@@ -12,9 +12,9 @@ ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   lab = TRUE, colors = c("#E69F00", "#56B4E9", "#009E73"),
   outline.color = "black", ggtheme = ggplot2::theme_gray,
   ggstatsplot.theme = TRUE, title = NULL, subtitle = NULL,
-  caption = NULL, caption.default = TRUE, lab.col = "black",
-  lab.size = 4.5, insig = "pch", pch = 4, pch.col = "blue",
-  pch.cex = 10, tl.cex = 12, tl.col = "black", tl.srt = 45,
+  caption = NULL, caption.default = TRUE, lab.col = "#F0E442",
+  lab.size = 5, insig = "pch", pch = 4, pch.col = "#000000",
+  pch.cex = 11, tl.cex = 12, tl.col = "black", tl.srt = 45,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
   "mm"))
 }
@@ -111,7 +111,7 @@ corresponding glyphs will be removed; if "pch" is used, characters (see
 coefficients (only valid when \code{insig = "pch"}). Default value is \code{pch = 4}.}
 
 \item{pch.col, pch.cex}{The color and the cex (size) of \code{pch} (only valid when
-\code{insig = "pch"}). Defaults are \code{pch.col = "blue"} and \code{pch.cex = 10}.}
+\code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
 
 \item{tl.cex, tl.col, tl.srt}{The size, the color, and the string rotation of
 text label (variable names, i.e.).}

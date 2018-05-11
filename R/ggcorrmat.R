@@ -72,7 +72,7 @@
 #' @param pch Decides the glyphs (read point shapes) to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default value is `pch = 4`.
 #' @param pch.col,pch.cex The color and the cex (size) of `pch` (only valid when
-#'   `insig = "pch"`). Defaults are `pch.col = "blue"` and `pch.cex = 10`.
+#'   `insig = "pch"`). Defaults are `pch.col = "#F0E442"` and `pch.cex = 10`.
 #' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
 #'   text label (variable names, i.e.).
 #' @param legend.title.margin Logical indicating whether to adjust the margin between legend title and the
@@ -157,12 +157,12 @@ ggcorrmat <-
            subtitle = NULL,
            caption = NULL,
            caption.default = TRUE,
-           lab.col = "black",
-           lab.size = 4.5,
+           lab.col = "#F0E442",
+           lab.size = 5,
            insig = "pch",
            pch = 4,
-           pch.col = "blue",
-           pch.cex = 10,
+           pch.col = "#000000",
+           pch.cex = 11,
            tl.cex = 12,
            tl.col = "black",
            tl.srt = 45,

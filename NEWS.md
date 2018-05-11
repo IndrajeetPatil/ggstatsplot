@@ -8,8 +8,8 @@ NEW FEATURES
   - Removed warnings that were appearing when `outlier.label` argument was of
     `character` type.
   - The default color palette used for all plots is colorblind friendly.
-  - `gghistostats` supports both `count` and `density` as a value measure for
-    bar heights to show raw counts and proportions. New argument `bar.measure`
+  - `gghistostats` supports `proportion` and `density` as a value measure for
+    bar heights to show proportions and density. New argument `bar.measure`
     controls this behavior.
 
 BREAKING FEATURES

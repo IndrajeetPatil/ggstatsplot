@@ -458,6 +458,9 @@ ggstatsplot::gghistostats(
 
 <img src="man/figures/README-gghistostats3-1.png" width="100%" />
 
+For more, see the `gghistostats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html>
+
   - `ggcorrmat`
 
 `ggcorrmat` makes correlalograms with minimal amount of code. Just
@@ -489,21 +492,8 @@ ggstatsplot::ggcorrmat(
 <img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
 
 Multiple arguments can be modified to change the appearance of the
-correlation matrix-
-
-``` r
-ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  cor.vars = c(Sepal.Length:Petal.Width),
-  lab.col = "red",                              # label color
-  ggtheme = ggplot2::theme_light,               # selected ggplot2 theme
-  ggstatsplot.theme = FALSE,                    # turn off overlaying theme_mprl on selected ggplot2 theme
-  type = "lower",                               # type of correlation matrix
-  colors = c("green", "white", "yellow")        # selecting color combination
-)
-```
-
-<img src="man/figures/README-ggcorrmat2-1.png" width="100%" />
+correlation matrix. For more, see the `ggcorrmat` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html>
 
 Alternatively, you can use it just to get the correlation matrices and
 their corresponding p-values (in a
@@ -676,6 +666,6 @@ ggstatsplot::combine_plots(
 
 <img src="man/figures/README-combine_plots_purrr2-1.png" width="100%" />
 
-Please note that this project is released with a [Contributor Code of
-Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.md).
-By participating in this project you agree to abide by its terms.
+All plots from `ggstatsplot` have a default theme: `theme_mprl`. For
+more, see the associated vignette-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/theme_mprl.html>

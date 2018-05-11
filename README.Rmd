@@ -326,7 +326,8 @@ ggstatsplot::ggpiestats(
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modification outside of ggstatsplot    
 ```
 
-As with the other functions, this basic plot can further be modified with additional arguments:
+As with the other functions, this basic plot can further be modified with
+additional arguments:
 
 ```{r ggpiestats3, message = FALSE, warning = FALSE}
 library(ggplot2)
@@ -415,6 +416,9 @@ ggstatsplot::gghistostats(
 )
 ```
 
+For more, see the `gghistostats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html>
+
 * `ggcorrmat`
 
 `ggcorrmat` makes correlalograms with minimal amount of code. Just sticking
@@ -442,19 +446,9 @@ ggstatsplot::ggcorrmat(
 )
 ```
 
-Multiple arguments can be modified to change the appearance of the correlation matrix-
-
-```{r ggcorrmat2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
-ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  cor.vars = c(Sepal.Length:Petal.Width),
-  lab.col = "red",                              # label color
-  ggtheme = ggplot2::theme_light,               # selected ggplot2 theme
-  ggstatsplot.theme = FALSE,                    # turn off overlaying theme_mprl on selected ggplot2 theme
-  type = "lower",                               # type of correlation matrix
-  colors = c("green", "white", "yellow")        # selecting color combination
-)
-```
+Multiple arguments can be modified to change the appearance of the correlation
+matrix. For more, see the `ggcorrmat` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html>
 
 Alternatively, you can use it just to get the correlation matrices and their
 corresponding p-values (in a [tibble](http://tibble.tidyverse.org/) format).
@@ -595,5 +589,6 @@ ggstatsplot::combine_plots(
 )
 ```
 
-Please note that this project is released with a [Contributor Code of Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.md). By participating in this project you agree to
-abide by its terms.
+All plots from `ggstatsplot` have a default theme: `theme_mprl`. For more, see
+the associated vignette-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/theme_mprl.html>
