@@ -14,7 +14,8 @@
 #' @param bar.measure Character describing what value needs to be represented as
 #'   height in the bar chart. This can either be `"count"`, which shows number
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
-#'   integrate to 1.
+#'   integrate to 1, or "`proportion`", which shows relative frequencies of
+#'   observations in each bin.
 #' @param xlab Label for `x` axis variable.
 #' @param title.prefix The prefix text for the fixed plot title (name of each
 #'   factor level).

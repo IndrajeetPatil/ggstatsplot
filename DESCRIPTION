@@ -41,6 +41,7 @@ Imports:
     nortest (>= 1.0-4),
     purrr (>= 0.2.4),
     rlang (>= 0.2.0),
+    scales,
     sfsmisc (>= 1.1-1),
     sjstats (>= 0.14.2-3),
     tibble (>= 1.4.2),

@@ -123,6 +123,28 @@ gapminder::gapminder %>%
   )
 ```
 
+And yet another option is to show relative frequencies that denote percentage
+`"proportion"` of the total observations that fall in a given bin.
+
+```{r age_distribution4, warning = FALSE, message = FALSE, fig.height = 6}
+gapminder::gapminder %>%
+  dplyr::filter(.data = ., year == 2007) %>%            
+  ggstatsplot::gghistostats(
+    data = .,                                           # data from which variable is to be taken
+    x = lifeExp,                                        # numeric variable
+    bar.measure = "proportion",                         # bar height measure
+    results.subtitle = FALSE,                           # don't run statistical tests
+    messages = FALSE,                                   # turn off messages
+    xlab = "Life expectancy",                           # x-axis label
+    title = "Distribution of life expectancy",          # title for the plot
+    subtitle = "Year: 2007",                            # subtitle for the plot
+    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
+    binwidth = 5,                                       # new binwidth
+    low.color = "#009E73",                              # color for the lower end of the colorbar
+    high.color = "#F0E442"                              # color for the upper end of the colorbar
+  )
+```
+
 This shows the utility of `gghistostats` in case of data exploration.
 
 ## Statistical analysis with `gghistostats`

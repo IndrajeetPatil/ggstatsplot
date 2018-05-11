@@ -9,7 +9,6 @@ fortran: true
 # so we skip examples and vignettes (but not unit tests) on OS X.
 
 r:
-- 3.3
 - oldrel
 - release
 - devel
@@ -19,7 +18,6 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-
 
       r_binary_packages:
         - stringi

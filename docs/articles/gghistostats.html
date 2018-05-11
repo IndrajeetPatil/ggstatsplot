@@ -166,6 +166,24 @@
 <a class="sourceLine" id="cb4-16" data-line-number="16">    <span class="dt">high.color =</span> <span class="st">"#F0E442"</span>                              <span class="co"># color for the upper end of the colorbar</span></a>
 <a class="sourceLine" id="cb4-17" data-line-number="17">  )</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/age_distribution3-1.png" width="700"></p>
+<p>And yet another option is to show relative frequencies that denote percentage <code>"proportion"</code> of the total observations that fall in a given bin.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st">            </span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="dt">data =</span> .,                                           <span class="co"># data from which variable is to be taken</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                        <span class="co"># numeric variable</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">bar.measure =</span> <span class="st">"proportion"</span>,                         <span class="co"># bar height measure</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,                           <span class="co"># don't run statistical tests</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                           <span class="co"># x-axis label</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="dt">title =</span> <span class="st">"Distribution of life expectancy"</span>,          <span class="co"># title for the plot</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                            <span class="co"># subtitle for the plot</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: Gapminder Foundation"</span>, <span class="co"># caption for the plot</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">    <span class="dt">binwidth =</span> <span class="dv">5</span>,                                       <span class="co"># new binwidth</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">    <span class="dt">low.color =</span> <span class="st">"#009E73"</span>,                              <span class="co"># color for the lower end of the colorbar</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">    <span class="dt">high.color =</span> <span class="st">"#F0E442"</span>                              <span class="co"># color for the upper end of the colorbar</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">  )</a></code></pre></div>
+<p><img src="gghistostats_files/figure-html/age_distribution4-1.png" width="700"></p>
 <p>This shows the utility of <code>gghistostats</code> in case of data exploration.</p>
 </div>
 <div id="statistical-analysis-with-gghistostats" class="section level2">
@@ -173,37 +191,37 @@
 <a href="#statistical-analysis-with-gghistostats" class="anchor"></a>Statistical analysis with <code>gghistostats</code>
 </h2>
 <p>Let’s say we are now interested in investigating whether the mean life expectancy in 2007 across the world has improved during the 20th-Century. In 1950, it was <a href="https://ourworldindata.org/life-expectancy">48</a>, so this is the <code>test.value</code> we are going to use.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># select data only from the year 2007</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="dt">data =</span> .,                                           <span class="co"># data from which variable is to be taken</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                        <span class="co"># numeric variable</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                    <span class="co"># test value against which sample mean is to be compared</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                           <span class="co"># x-axis label</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                            <span class="co"># subtitle for the plot</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: Gapminder Foundation"</span>, <span class="co"># caption for the plot</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>                            <span class="co"># plotting centrality parameter (mean)</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">  )</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># select data only from the year 2007</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">    <span class="dt">data =</span> .,                                           <span class="co"># data from which variable is to be taken</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                        <span class="co"># numeric variable</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                    <span class="co"># test value against which sample mean is to be compared</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                           <span class="co"># x-axis label</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                <span class="co"># title for the plot</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                            <span class="co"># subtitle for the plot</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: Gapminder Foundation"</span>, <span class="co"># caption for the plot</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>                            <span class="co"># plotting centrality parameter (mean)</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">  )</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/stats1-1.png" width="700"></p>
 <p>Although there are still some countries where the life expectancy is low, on average, the life expectancy worldwide has improved compared to what it was in 1950.</p>
 <p><code>gghistostats</code> also provides the opportunity to compute Bayes Factors to quantify evidence in favor of the <strong>alternative</strong> (BF10) or the <strong>null</strong> hypothesis (BF01). In practice, you need to compute only one and the other will just be the inverse. In the current example, let’s say we want to quantify evidence in favor of the alternative hypothesis (H1) that the life expectancy in 2007 has improved significantly worldwide since 1957. The null, in this case, will of course be that there is no improvement.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">    <span class="dt">data =</span> .,                                              <span class="co"># data from which variable is to be taken</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                           <span class="co"># numeric variable</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                      <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">    <span class="dt">type =</span> <span class="st">"bf"</span>,                                           <span class="co"># bayesian one sample t-test</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                       <span class="co"># test value </span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                              <span class="co"># x-axis label</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                   <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                               <span class="co"># subtitle for the plot</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">    <span class="dt">caption =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>, <span class="co"># caption for the plot</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                                <span class="co"># show a vertical line at `test.value`</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>                               <span class="co"># plotting centrality parameter (mean)</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">  )</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">    <span class="dt">data =</span> .,                                              <span class="co"># data from which variable is to be taken</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                           <span class="co"># numeric variable</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                      <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="dt">type =</span> <span class="st">"bf"</span>,                                           <span class="co"># bayesian one sample t-test</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                       <span class="co"># test value </span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                              <span class="co"># x-axis label</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                   <span class="co"># title for the plot</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                               <span class="co"># subtitle for the plot</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">    <span class="dt">caption =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>, <span class="co"># caption for the plot</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                                <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>                               <span class="co"># plotting centrality parameter (mean)</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">  )</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/stats_bf-1.png" width="700"></p>
 <p>As this analysis shows, Bayes Factor value provides <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794"><strong>conclusive</strong> evidence</a> in favor of the alternative hypothesis: Life expectancy worldwide has improved significantly since 1957.</p>
 </div>
@@ -214,27 +232,27 @@
 <p>What if we want to do the same analysis separately for all five continents? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>gghistostats</code> for all five continents. We will be running parametric tests (one sample t-test, i.e.). If you set <code>type = "np"</code>, results from non-parametric test will be displayed.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_gghistostats">grouped_gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">data =</span> .,                                     <span class="co"># `.` is placeholder for data plugged by %&gt;%</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">x =</span> lifeExp,</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">  <span class="dt">title.prefix =</span> <span class="st">"Continent: "</span>,                 <span class="co"># prefix for the fixed title</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9">  <span class="dt">type =</span> <span class="st">"p"</span>,                                   <span class="co"># parametric test</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                     <span class="co"># plotting centrality parameter (mean)</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14">  <span class="dt">grouping.var =</span> continent,                     <span class="co"># grouping variable with multiple levels</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
-<a class="sourceLine" id="cb7-17" data-line-number="17">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb7-18" data-line-number="18">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb7-19" data-line-number="19">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb7-20" data-line-number="20">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
-<a class="sourceLine" id="cb7-21" data-line-number="21">)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_gghistostats">grouped_gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">data =</span> .,                                     <span class="co"># `.` is placeholder for data plugged by %&gt;%</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">x =</span> lifeExp,</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="dt">title.prefix =</span> <span class="st">"Continent: "</span>,                 <span class="co"># prefix for the fixed title</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">  <span class="dt">type =</span> <span class="st">"p"</span>,                                   <span class="co"># parametric test</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                     <span class="co"># plotting centrality parameter (mean)</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">  <span class="dt">grouping.var =</span> continent,                     <span class="co"># grouping variable with multiple levels</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
+<a class="sourceLine" id="cb8-21" data-line-number="21">)</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="960"></p>
 <p>As can be seen from these plots, life expectancy has improved in all continents in 2007 as compared to the global average of 1950. Additionally, we see the benefits of plotting this data separately for each continent. If we look at the standardized effect sizes (Cohen’s <em>d</em>), it is apparent that the biggest improvements in life expectancy outcomes were seen on the continents of Europe, Americas, and Oceania (just one data point is available here), while Asia and Africa exhibit the lowest improvements.</p>
 <p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each continent, this is not possible with <code>grouped_gghistostats</code>. For cases like these, it would be better to use a function like <a href="https://purrr.tidyverse.org/reference/map2.html"><code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code></a>.</p>
@@ -244,86 +262,86 @@
 <a href="#grouped-analysis-with-gghistostats-purrr" class="anchor"></a>Grouped analysis with <code>gghistostats</code> + <code>purrr</code>
 </h2>
 <p>So far we have been comparing life expectancy in 2007 for a particular continent to the global average from 1957. But what if we want to compare to contient-specifc life expectancy from 1957 (<a href="https://ourworldindata.org/life-expectancy" class="uri">https://ourworldindata.org/life-expectancy</a>). This is not possible <code>grouped_gghistostats</code> function, but can be easily achieved with <code>purrr</code> package from tidyverse.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># let's split the dataframe and create a list by continent</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">continent_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>continent, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co"># this created a list with 5 elements, each for one contient</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw">str</span>(continent_list)</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt; List of 5</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;  $ Africa  :Classes 'tbl_df', 'tbl' and 'data.frame':    52 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 3 4 11 14 17 18 20 22 23 27 ...</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;   ..$ year     : int [1:52] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;   ..$ lifeExp  : num [1:52] 72.3 42.7 56.7 50.7 52.3 ...</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt;   ..$ pop      : int [1:52] 33333216 12420476 8078314 1639131 14326203 8390505 17696293 4369038 10238807 710960 ...</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt;   ..$ gdpPercap: num [1:52] 6223 4797 1441 12570 1217 ...</span></a>
-<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;  $ Americas:Classes 'tbl_df', 'tbl' and 'data.frame':    25 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 5 12 15 21 24 26 30 33 37 38 ...</span></a>
-<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 2 2 2 2 2 2 2 2 2 2 ...</span></a>
-<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co">#&gt;   ..$ year     : int [1:25] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
-<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="co">#&gt;   ..$ lifeExp  : num [1:25] 75.3 65.6 72.4 80.7 78.6 ...</span></a>
-<a class="sourceLine" id="cb8-21" data-line-number="21"><span class="co">#&gt;   ..$ pop      : int [1:25] 40301927 9119152 190010647 33390141 16284741 44227550 4133884 11416987 9319622 13755680 ...</span></a>
-<a class="sourceLine" id="cb8-22" data-line-number="22"><span class="co">#&gt;   ..$ gdpPercap: num [1:25] 12779 3822 9066 36319 13172 ...</span></a>
-<a class="sourceLine" id="cb8-23" data-line-number="23"><span class="co">#&gt;  $ Asia    :Classes 'tbl_df', 'tbl' and 'data.frame':    33 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 8 9 19 25 56 59 60 61 62 ...</span></a>
-<a class="sourceLine" id="cb8-25" data-line-number="25"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...</span></a>
-<a class="sourceLine" id="cb8-26" data-line-number="26"><span class="co">#&gt;   ..$ year     : int [1:33] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
-<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="co">#&gt;   ..$ lifeExp  : num [1:33] 43.8 75.6 64.1 59.7 73 ...</span></a>
-<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="co">#&gt;   ..$ pop      : int [1:33] 31889923 708573 150448339 14131858 1318683096 6980412 1110396331 223547000 69453570 27499638 ...</span></a>
-<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co">#&gt;   ..$ gdpPercap: num [1:33] 975 29796 1391 1714 4959 ...</span></a>
-<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&gt;  $ Europe  :Classes 'tbl_df', 'tbl' and 'data.frame':    30 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 2 7 10 13 16 32 34 35 44 45 ...</span></a>
-<a class="sourceLine" id="cb8-32" data-line-number="32"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 4 4 4 4 4 4 4 4 4 4 ...</span></a>
-<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="co">#&gt;   ..$ year     : int [1:30] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
-<a class="sourceLine" id="cb8-34" data-line-number="34"><span class="co">#&gt;   ..$ lifeExp  : num [1:30] 76.4 79.8 79.4 74.9 73 ...</span></a>
-<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co">#&gt;   ..$ pop      : int [1:30] 3600523 8199783 10392226 4552198 7322858 4493312 10228744 5468120 5238460 61083916 ...</span></a>
-<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt;   ..$ gdpPercap: num [1:30] 5937 36126 33693 7446 10681 ...</span></a>
-<a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt;  $ Oceania :Classes 'tbl_df', 'tbl' and 'data.frame':    2 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 6 92</span></a>
-<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 5 5</span></a>
-<a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt;   ..$ year     : int [1:2] 2007 2007</span></a>
-<a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt;   ..$ lifeExp  : num [1:2] 81.2 80.2</span></a>
-<a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt;   ..$ pop      : int [1:2] 20434176 4115771</span></a>
-<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt;   ..$ gdpPercap: num [1:2] 34435 25185</span></a>
-<a class="sourceLine" id="cb8-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co"># running function on every element of this list note that if you want the same</span></a>
-<a class="sourceLine" id="cb8-46" data-line-number="46"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>
-<a class="sourceLine" id="cb8-47" data-line-number="47"><span class="co"># specify it just once</span></a>
-<a class="sourceLine" id="cb8-48" data-line-number="48">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(</a>
-<a class="sourceLine" id="cb8-49" data-line-number="49">  <span class="dt">.l =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb8-50" data-line-number="50">    <span class="dt">data =</span> continent_list,</a>
-<a class="sourceLine" id="cb8-51" data-line-number="51">    <span class="dt">x =</span> <span class="st">"lifeExp"</span>,</a>
-<a class="sourceLine" id="cb8-52" data-line-number="52">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb8-53" data-line-number="53">    <span class="dt">test.value =</span> <span class="kw">list</span>(<span class="fl">35.6</span>, <span class="fl">58.4</span>, <span class="fl">41.6</span>, <span class="fl">64.7</span>, <span class="fl">63.4</span>),</a>
-<a class="sourceLine" id="cb8-54" data-line-number="54">    <span class="dt">title =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb8-55" data-line-number="55">      <span class="st">"Continent: Africa"</span>,</a>
-<a class="sourceLine" id="cb8-56" data-line-number="56">      <span class="st">"Continent: Americas"</span>,</a>
-<a class="sourceLine" id="cb8-57" data-line-number="57">      <span class="st">"Continent: Asia"</span>,</a>
-<a class="sourceLine" id="cb8-58" data-line-number="58">      <span class="st">"Continent: Europe"</span>,</a>
-<a class="sourceLine" id="cb8-59" data-line-number="59">      <span class="st">"Continent: Oceania"</span></a>
-<a class="sourceLine" id="cb8-60" data-line-number="60">    ),</a>
-<a class="sourceLine" id="cb8-61" data-line-number="61">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb8-62" data-line-number="62">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb8-63" data-line-number="63">    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb8-64" data-line-number="64">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
-<a class="sourceLine" id="cb8-65" data-line-number="65">    <span class="dt">centrality.color =</span> <span class="st">"blue"</span>,</a>
-<a class="sourceLine" id="cb8-66" data-line-number="66">    <span class="dt">low.color =</span> <span class="kw">list</span>(<span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"#999999"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>),</a>
-<a class="sourceLine" id="cb8-67" data-line-number="67">    <span class="dt">high.color =</span> <span class="kw">list</span>(<span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#56B4E9"</span>)</a>
-<a class="sourceLine" id="cb8-68" data-line-number="68">  ),</a>
-<a class="sourceLine" id="cb8-69" data-line-number="69">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
-<a class="sourceLine" id="cb8-70" data-line-number="70">)</a>
-<a class="sourceLine" id="cb8-71" data-line-number="71">  </a>
-<a class="sourceLine" id="cb8-72" data-line-number="72"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb8-73" data-line-number="73">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb8-74" data-line-number="74">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb8-75" data-line-number="75">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
-<a class="sourceLine" id="cb8-76" data-line-number="76">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb8-77" data-line-number="77">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb8-78" data-line-number="78">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb8-79" data-line-number="79">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>)</a>
-<a class="sourceLine" id="cb8-80" data-line-number="80">)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># let's split the dataframe and create a list by continent</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">continent_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>continent, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co"># this created a list with 5 elements, each for one contient</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="kw">str</span>(continent_list)</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt; List of 5</span></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt;  $ Africa  :Classes 'tbl_df', 'tbl' and 'data.frame':    52 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 3 4 11 14 17 18 20 22 23 27 ...</span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt;   ..$ year     : int [1:52] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;   ..$ lifeExp  : num [1:52] 72.3 42.7 56.7 50.7 52.3 ...</span></a>
+<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#&gt;   ..$ pop      : int [1:52] 33333216 12420476 8078314 1639131 14326203 8390505 17696293 4369038 10238807 710960 ...</span></a>
+<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#&gt;   ..$ gdpPercap: num [1:52] 6223 4797 1441 12570 1217 ...</span></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt;  $ Americas:Classes 'tbl_df', 'tbl' and 'data.frame':    25 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 5 12 15 21 24 26 30 33 37 38 ...</span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#&gt;   ..$ year     : int [1:25] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
+<a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt;   ..$ lifeExp  : num [1:25] 75.3 65.6 72.4 80.7 78.6 ...</span></a>
+<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt;   ..$ pop      : int [1:25] 40301927 9119152 190010647 33390141 16284741 44227550 4133884 11416987 9319622 13755680 ...</span></a>
+<a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt;   ..$ gdpPercap: num [1:25] 12779 3822 9066 36319 13172 ...</span></a>
+<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="co">#&gt;  $ Asia    :Classes 'tbl_df', 'tbl' and 'data.frame':    33 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 8 9 19 25 56 59 60 61 62 ...</span></a>
+<a class="sourceLine" id="cb9-25" data-line-number="25"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...</span></a>
+<a class="sourceLine" id="cb9-26" data-line-number="26"><span class="co">#&gt;   ..$ year     : int [1:33] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
+<a class="sourceLine" id="cb9-27" data-line-number="27"><span class="co">#&gt;   ..$ lifeExp  : num [1:33] 43.8 75.6 64.1 59.7 73 ...</span></a>
+<a class="sourceLine" id="cb9-28" data-line-number="28"><span class="co">#&gt;   ..$ pop      : int [1:33] 31889923 708573 150448339 14131858 1318683096 6980412 1110396331 223547000 69453570 27499638 ...</span></a>
+<a class="sourceLine" id="cb9-29" data-line-number="29"><span class="co">#&gt;   ..$ gdpPercap: num [1:33] 975 29796 1391 1714 4959 ...</span></a>
+<a class="sourceLine" id="cb9-30" data-line-number="30"><span class="co">#&gt;  $ Europe  :Classes 'tbl_df', 'tbl' and 'data.frame':    30 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb9-31" data-line-number="31"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 2 7 10 13 16 32 34 35 44 45 ...</span></a>
+<a class="sourceLine" id="cb9-32" data-line-number="32"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 4 4 4 4 4 4 4 4 4 4 ...</span></a>
+<a class="sourceLine" id="cb9-33" data-line-number="33"><span class="co">#&gt;   ..$ year     : int [1:30] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
+<a class="sourceLine" id="cb9-34" data-line-number="34"><span class="co">#&gt;   ..$ lifeExp  : num [1:30] 76.4 79.8 79.4 74.9 73 ...</span></a>
+<a class="sourceLine" id="cb9-35" data-line-number="35"><span class="co">#&gt;   ..$ pop      : int [1:30] 3600523 8199783 10392226 4552198 7322858 4493312 10228744 5468120 5238460 61083916 ...</span></a>
+<a class="sourceLine" id="cb9-36" data-line-number="36"><span class="co">#&gt;   ..$ gdpPercap: num [1:30] 5937 36126 33693 7446 10681 ...</span></a>
+<a class="sourceLine" id="cb9-37" data-line-number="37"><span class="co">#&gt;  $ Oceania :Classes 'tbl_df', 'tbl' and 'data.frame':    2 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb9-38" data-line-number="38"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 6 92</span></a>
+<a class="sourceLine" id="cb9-39" data-line-number="39"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 5 5</span></a>
+<a class="sourceLine" id="cb9-40" data-line-number="40"><span class="co">#&gt;   ..$ year     : int [1:2] 2007 2007</span></a>
+<a class="sourceLine" id="cb9-41" data-line-number="41"><span class="co">#&gt;   ..$ lifeExp  : num [1:2] 81.2 80.2</span></a>
+<a class="sourceLine" id="cb9-42" data-line-number="42"><span class="co">#&gt;   ..$ pop      : int [1:2] 20434176 4115771</span></a>
+<a class="sourceLine" id="cb9-43" data-line-number="43"><span class="co">#&gt;   ..$ gdpPercap: num [1:2] 34435 25185</span></a>
+<a class="sourceLine" id="cb9-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb9-45" data-line-number="45"><span class="co"># running function on every element of this list note that if you want the same</span></a>
+<a class="sourceLine" id="cb9-46" data-line-number="46"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>
+<a class="sourceLine" id="cb9-47" data-line-number="47"><span class="co"># specify it just once</span></a>
+<a class="sourceLine" id="cb9-48" data-line-number="48">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(</a>
+<a class="sourceLine" id="cb9-49" data-line-number="49">  <span class="dt">.l =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb9-50" data-line-number="50">    <span class="dt">data =</span> continent_list,</a>
+<a class="sourceLine" id="cb9-51" data-line-number="51">    <span class="dt">x =</span> <span class="st">"lifeExp"</span>,</a>
+<a class="sourceLine" id="cb9-52" data-line-number="52">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
+<a class="sourceLine" id="cb9-53" data-line-number="53">    <span class="dt">test.value =</span> <span class="kw">list</span>(<span class="fl">35.6</span>, <span class="fl">58.4</span>, <span class="fl">41.6</span>, <span class="fl">64.7</span>, <span class="fl">63.4</span>),</a>
+<a class="sourceLine" id="cb9-54" data-line-number="54">    <span class="dt">title =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb9-55" data-line-number="55">      <span class="st">"Continent: Africa"</span>,</a>
+<a class="sourceLine" id="cb9-56" data-line-number="56">      <span class="st">"Continent: Americas"</span>,</a>
+<a class="sourceLine" id="cb9-57" data-line-number="57">      <span class="st">"Continent: Asia"</span>,</a>
+<a class="sourceLine" id="cb9-58" data-line-number="58">      <span class="st">"Continent: Europe"</span>,</a>
+<a class="sourceLine" id="cb9-59" data-line-number="59">      <span class="st">"Continent: Oceania"</span></a>
+<a class="sourceLine" id="cb9-60" data-line-number="60">    ),</a>
+<a class="sourceLine" id="cb9-61" data-line-number="61">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb9-62" data-line-number="62">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb9-63" data-line-number="63">    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb9-64" data-line-number="64">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
+<a class="sourceLine" id="cb9-65" data-line-number="65">    <span class="dt">centrality.color =</span> <span class="st">"blue"</span>,</a>
+<a class="sourceLine" id="cb9-66" data-line-number="66">    <span class="dt">low.color =</span> <span class="kw">list</span>(<span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"#999999"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>),</a>
+<a class="sourceLine" id="cb9-67" data-line-number="67">    <span class="dt">high.color =</span> <span class="kw">list</span>(<span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#56B4E9"</span>)</a>
+<a class="sourceLine" id="cb9-68" data-line-number="68">  ),</a>
+<a class="sourceLine" id="cb9-69" data-line-number="69">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
+<a class="sourceLine" id="cb9-70" data-line-number="70">)</a>
+<a class="sourceLine" id="cb9-71" data-line-number="71">  </a>
+<a class="sourceLine" id="cb9-72" data-line-number="72"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb9-73" data-line-number="73">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb9-74" data-line-number="74">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb9-75" data-line-number="75">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
+<a class="sourceLine" id="cb9-76" data-line-number="76">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb9-77" data-line-number="77">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb9-78" data-line-number="78">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb9-79" data-line-number="79">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>)</a>
+<a class="sourceLine" id="cb9-80" data-line-number="80">)</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped2-1.png" width="768"></p>
 <p>This shows a much more detailed account of changes in life expectancy as compared to the previous plot. Compared to their respective average life expectancies in 1950’s, the continent that has had the highest improvement is Oceania (Australia and New Zealand), while the continent with the least improvement is Africa (as seen by Cohen’s <em>d</em> values). This again shows the ease with which publication-ready plots or plots for exploratory data analysis can be prepared if <code>ggstatsplot</code> is coupled with a functional programming package like <code>purrr</code>.</p>
 </div>

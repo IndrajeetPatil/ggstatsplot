@@ -12,7 +12,8 @@
 #' @param bar.measure Character describing what value needs to be represented as
 #'   height in the bar chart. This can either be `"count"`, which shows number
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
-#'   integrate to 1.
+#'   integrate to 1, or "`proportion`", which shows relative frequencies of
+#'   observations in each bin.
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle *if* you don't want results
@@ -70,6 +71,7 @@
 #' @importFrom jmv ttestOneS
 #' @importFrom stats dnorm
 #' @importFrom nortest ad.test
+#' @importFrom scales percent
 #' @importFrom crayon green
 #' @importFrom crayon blue
 #' @importFrom crayon yellow
@@ -359,6 +361,23 @@ gghistostats <-
         ggplot2::scale_fill_gradient(name = "count",
                                      low = low.color,
                                      high = high.color)
+    } else if (bar.measure == "proportion") {
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = ggplot2::aes(x = x)) +
+        ggplot2::stat_bin(
+          col = "black",
+          alpha = 0.7,
+          binwidth = binwidth,
+          na.rm = TRUE,
+          mapping = ggplot2::aes(y = ..count../sum(..count..),
+                                 fill = ..count../sum(..count..))
+        ) +
+        ggplot2::scale_fill_gradient(name = "proportion",
+                                     low = low.color,
+                                     high = high.color,
+                                     labels = percent) +
+        ggplot2::scale_y_continuous(labels = scales::percent) +
+        ggplot2::ylab("relative frequencies")
     } else if (bar.measure == "density") {
       plot <- ggplot2::ggplot(data = data,
                               mapping = ggplot2::aes(x = x)) +
