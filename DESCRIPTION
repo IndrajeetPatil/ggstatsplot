@@ -32,7 +32,7 @@ Imports:
     ggExtra (>= 0.8),
     ggplot2 (>= 2.2.1),
     ggrepel (>= 0.7.0),
-    glue,
+    glue (>= 1.2.0),
     grid,
     gtable (>= 0.2.0),
     jmv (>= 0.8.6.2),

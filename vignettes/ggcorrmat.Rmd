@@ -2,7 +2,14 @@
 title: "ggcorrmat"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    warning: FALSE
+    message: FALSE
 vignette: >
   %\VignetteIndexEntry{ggcorrmat}
   %\VignetteEngine{knitr::rmarkdown}
@@ -36,6 +43,10 @@ To begin with, here are some instances where you would want to use
 
   - to easily visualize a correlation matrix using `ggplot2`
   - to quickly explore correlation between numeric variables in the dataset
+
+**Note before**: The following demo uses the pipe operator (`%>%`), so in case
+you are not familiar with this operator, here is a good explanation:
+<http://r4ds.had.co.nz/pipes.html>
 
 ## Correlation matrix plot with `ggcorrmat`
 

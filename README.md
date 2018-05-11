@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--09-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--11-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -675,37 +675,6 @@ ggstatsplot::combine_plots(
 ```
 
 <img src="man/figures/README-combine_plots_purrr2-1.png" width="100%" />
-
-  - `theme_mprl`
-
-`ggstatsplot` uses a default theme `theme_mprl()` that can be used with
-any `ggplot2` objects.
-
-``` r
-library(ggplot2)
-
-# Basic scatter plot
-ggplot2::ggplot(
-  data = datasets::mtcars, 
-  mapping = ggplot2::aes(x = wt, y = mpg)
-) + 
-  ggplot2::geom_point()
-```
-
-<img src="man/figures/README-theme_mprl-1.png" width="100%" />
-
-``` r
-
-# Basic scatter plot with theme_mprl() added
-ggplot2::ggplot(
-  data = datasets::mtcars, 
-  mapping = ggplot2::aes(x = wt, y = mpg)
-) + 
-  ggplot2::geom_point() + 
-  ggstatsplot::theme_mprl()
-```
-
-<img src="man/figures/README-theme_mprl-2.png" width="100%" />
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.md).

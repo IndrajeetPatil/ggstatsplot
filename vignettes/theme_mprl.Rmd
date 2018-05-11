@@ -1,0 +1,54 @@
+---
+title: "theme_mprl"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{theme_mprl}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Default theme for the package: `theme_mprl`
+
+`ggstatsplot` uses a default theme `theme_mprl()` that can be used with any
+`ggplot2` object.
+
+Here is a simple example:
+
+```{r theme_mprl, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
+library(ggplot2)
+
+# Basic scatter plot
+ggplot2::ggplot(
+  data = datasets::mtcars, 
+  mapping = ggplot2::aes(x = wt, y = mpg)
+) + 
+  ggplot2::geom_point()
+
+# Basic scatter plot with theme_mprl() added
+ggplot2::ggplot(
+  data = datasets::mtcars, 
+  mapping = ggplot2::aes(x = wt, y = mpg)
+) + 
+  ggplot2::geom_point() + 
+  ggstatsplot::theme_mprl()
+```
+
+## Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

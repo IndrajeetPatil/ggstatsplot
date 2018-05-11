@@ -595,28 +595,5 @@ ggstatsplot::combine_plots(
 )
 ```
 
-* `theme_mprl`
-
-`ggstatsplot` uses a default theme `theme_mprl()` that can be used with any `ggplot2` objects.
-
-```{r theme_mprl, message = FALSE, warning = FALSE}
-library(ggplot2)
-
-# Basic scatter plot
-ggplot2::ggplot(
-  data = datasets::mtcars, 
-  mapping = ggplot2::aes(x = wt, y = mpg)
-) + 
-  ggplot2::geom_point()
-
-# Basic scatter plot with theme_mprl() added
-ggplot2::ggplot(
-  data = datasets::mtcars, 
-  mapping = ggplot2::aes(x = wt, y = mpg)
-) + 
-  ggplot2::geom_point() + 
-  ggstatsplot::theme_mprl()
-```
-
 Please note that this project is released with a [Contributor Code of Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CONDUCT.md). By participating in this project you agree to
 abide by its terms.

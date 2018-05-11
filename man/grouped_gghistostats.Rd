@@ -11,8 +11,11 @@ grouped_gghistostats(grouping.var, data, x, bar.measure = "count",
   high.color = "#D55E00", results.subtitle = TRUE,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
   "mm"), centrality.para = NULL, centrality.color = "blue",
+  centrality.size = 1.2, centrality.linetype = "dashed",
   test.value.line = FALSE, test.value.color = "black",
-  line.labeller = FALSE, binwidth = NULL, messages = TRUE, ...)
+  test.value.size = 1.2, test.value.linetype = "dashed",
+  line.labeller = FALSE, line.labeller.y = -2, binwidth = NULL,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -71,14 +74,29 @@ or \code{"median"}) is to be displayed as a vertical line.}
 \item{centrality.color}{Decides color for the vertical line for centrality
 parameter (Default: \code{"blue"}).}
 
+\item{centrality.size}{Decides size for the vertical line for centrality
+parameter (Default: \code{1.2}).}
+
+\item{centrality.linetype}{Decides linetype for the vertical line for centrality
+parameter (Default: \code{"dashed"}).}
+
 \item{test.value.line}{Decides whether test value is to be displayed as a
 vertical line (Default: \code{FALSE}).}
 
 \item{test.value.color}{Decides color for the vertical line denoting test
 value (Default: \code{"black"}).}
 
+\item{test.value.size}{Decides size for the vertical line for test value
+(Default: \code{1.2}).}
+
+\item{test.value.linetype}{Decides linetype for the vertical line for test
+value (Default: \code{"dashed"}).}
+
 \item{line.labeller}{A logical that decides whether line labels should be
 displayed (Default: \code{FALSE}).}
+
+\item{line.labeller.y}{A numeric denoting the y-coordinate for displaying
+line labels (Default: \code{-2}).}
 
 \item{binwidth}{The width of the bins. Can be specified as a numeric value,
 or a function that calculates width from \code{x}. The default is to use bins

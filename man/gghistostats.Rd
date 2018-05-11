@@ -4,20 +4,29 @@
 \alias{gghistostats}
 \title{Histogram for distribution of a numeric variable}
 \usage{
-gghistostats(data = NULL, x, bar.measure = "count", xlab = NULL,
-  title = NULL, subtitle = NULL, caption = NULL, type = "parametric",
-  test.value = 0, bf.prior = 0.707, bf.message = TRUE, k = 3,
-  low.color = "#0072B2", high.color = "#D55E00", results.subtitle = TRUE,
+gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
+  xlab = NULL, title = NULL, subtitle = NULL, caption = NULL,
+  type = "parametric", test.value = 0, bf.prior = 0.707,
+  bf.message = TRUE, k = 3, low.color = "#0072B2",
+  high.color = "#D55E00", results.subtitle = TRUE,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
   "mm"), centrality.para = NULL, centrality.color = "blue",
+  centrality.size = 1.2, centrality.linetype = "dashed",
   test.value.line = FALSE, test.value.color = "black",
-  line.labeller = FALSE, binwidth = NULL, messages = TRUE)
+  test.value.size = 1.2, test.value.linetype = "dashed",
+  line.labeller = FALSE, line.labeller.y = -2, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
 
 \item{x}{A numeric variable.}
+
+\item{binwidth}{The width of the bins. Can be specified as a numeric value,
+or a function that calculates width from \code{x}. The default is to use bins
+bins that cover the range of the data. You should always override this
+value, exploring multiple widths to find the best to illustrate the stories
+in your data.}
 
 \item{bar.measure}{Character describing what value needs to be represented as
 height in the bar chart. This can either be \code{"count"}, which shows number
@@ -67,20 +76,29 @@ or \code{"median"}) is to be displayed as a vertical line.}
 \item{centrality.color}{Decides color for the vertical line for centrality
 parameter (Default: \code{"blue"}).}
 
+\item{centrality.size}{Decides size for the vertical line for centrality
+parameter (Default: \code{1.2}).}
+
+\item{centrality.linetype}{Decides linetype for the vertical line for
+centrality parameter (Default: \code{"dashed"}).}
+
 \item{test.value.line}{Decides whether test value is to be displayed as a
 vertical line (Default: \code{FALSE}).}
 
 \item{test.value.color}{Decides color for the vertical line denoting test
 value (Default: \code{"black"}).}
 
+\item{test.value.size}{Decides size for the vertical line for test value
+(Default: \code{1.2}).}
+
+\item{test.value.linetype}{Decides linetype for the vertical line for test
+value (Default: \code{"dashed"}).}
+
 \item{line.labeller}{A logical that decides whether line labels should be
 displayed (Default: \code{FALSE}).}
 
-\item{binwidth}{The width of the bins. Can be specified as a numeric value,
-or a function that calculates width from \code{x}. The default is to use bins
-bins that cover the range of the data. You should always override this
-value, exploring multiple widths to find the best to illustrate the stories
-in your data.}
+\item{line.labeller.y}{A numeric denoting the y-coordinate for displaying
+line labels (Default: \code{-2}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

@@ -97,7 +97,7 @@ gapminder::gapminder %>%
   )
 ```
 
-So far we have been showing the count informatiton wiht the bar chart. Another
+So far we have been showing the count informatiton with the bar chart. Another
 option included is `density`. Showing `count` gives an idea about *raw* counts,
 while `density` gives information about *proportional* prevalence of values in a
 certain range.
@@ -246,7 +246,7 @@ contient-specifc life expectancy from 1957
 `grouped_gghistostats` function, but can be easily achieved with `purrr` package
 from tidyverse.
 
-```{r grouped2, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 10}
+```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
 # let's split the dataframe and create a list by continent
 continent_list <- gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007) %>%
@@ -255,27 +255,52 @@ continent_list <- gapminder::gapminder %>%
 # this created a list with 5 elements, each for one contient
 str(continent_list)
 
-# running function on every element of this list
-plot_list <- purrr::pmap(.l = list(data = continent_list,
-                                   x = "lifeExp",
-                                   test.value = list(35.6, 58.4, 41.6, 64.7, 63.4),
-                                   title = list(paste0("Continent: ", c("Africa",	"Americas",	"Asia",	"Europe", "Oceania"))),
-                                   test.value.line = TRUE, 
-                                   test.value.color = "black",
-                                   centrality.para = "mean", 
-                                   centrality.color = "blue", 
-                                   low.color = list("#56B4E9", "#009E73", "#999999", "#0072B2", "#D55E00"),
-                                   high.color = list("#D55E00", "#0072B2", "#F0E442", "#009E73", "#56B4E9")),
-                         .f = ggstatsplot::gghistostats)
-
-# combining all individual plots from the list into a single plot
+# running function on every element of this list note that if you want the same
+# value for a given argument across all elements of the list, you need to
+# specify it just once
+plot_list <- purrr::pmap(
+  .l = list(
+    data = continent_list,
+    x = "lifeExp",
+    xlab = "Life expectancy",
+    test.value = list(35.6, 58.4, 41.6, 64.7, 63.4),
+    title = list(
+      "Continent: Africa",
+      "Continent: Americas",
+      "Continent: Asia",
+      "Continent: Europe",
+      "Continent: Oceania"
+    ),
+    messages = FALSE,
+    test.value.line = TRUE,
+    test.value.color = "black",
+    centrality.para = "mean",
+    centrality.color = "blue",
+    low.color = list("#56B4E9", "#009E73", "#999999", "#0072B2", "#D55E00"),
+    high.color = list("#D55E00", "#CC79A7", "#F0E442", "#D55E00", "#56B4E9")
+  ),
+  .f = ggstatsplot::gghistostats
+)
+  
+# combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
-  plotlist = plot_list, 
+  plotlist = plot_list,
   title.text = "Improvement in life expectancy worldwide since 1950",
-  caption.text = "Note: black line - 1950; blue line - 2007"
-  )
-
+  caption.text = "Note: black line - 1950; blue line - 2007",
+  nrow = 3,
+  ncol = 2,
+  labels = c("(a)", "(b)", "(c)", "(d)", "(e)")
+)
 ```  
+
+This shows a much more detailed account of changes in life expectancy as
+compared to the previous plot. Compared to their respective average life
+expectancies in 1950's, the continent that has had the highest improvement is
+Oceania (Australia and New Zealand), while the continent with the least
+improvement is Africa (as seen by Cohen's *d* values). This again shows the ease
+with which publication-ready plots or plots for exploratory data analysis can be
+prepared if `ggstatsplot` is coupled with a functional programming package like
+`purrr`.
 
 ## Suggestions
 

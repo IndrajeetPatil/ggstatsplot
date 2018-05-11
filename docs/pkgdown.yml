@@ -4,4 +4,5 @@ pkgdown_sha: ~
 articles:
   ggcorrmat: ggcorrmat.html
   gghistostats: gghistostats.html
+  theme_mprl: theme_mprl.html
 

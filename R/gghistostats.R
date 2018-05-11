@@ -22,6 +22,10 @@
 #'   or `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or `"bf"`,
 #'   respectively.
 #' @param test.value A number specifying the value of the null hypothesis.
+#' @param test.value.size Decides size for the vertical line for test value
+#'   (Default: `1.2`).
+#' @param test.value.linetype Decides linetype for the vertical line for test
+#'   value (Default: `"dashed"`).
 #' @param bf.prior A number between 0.5 and 2 (default 0.707), the prior width
 #'   to use in calculating Bayes factors.
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
@@ -41,12 +45,18 @@
 #'   or `"median"`) is to be displayed as a vertical line.
 #' @param centrality.color Decides color for the vertical line for centrality
 #'   parameter (Default: `"blue"`).
+#' @param centrality.size Decides size for the vertical line for centrality
+#'   parameter (Default: `1.2`).
+#' @param centrality.linetype Decides linetype for the vertical line for
+#'   centrality parameter (Default: `"dashed"`).
 #' @param test.value.line Decides whether test value is to be displayed as a
 #'   vertical line (Default: `FALSE`).
 #' @param test.value.color Decides color for the vertical line denoting test
 #'   value (Default: `"black"`).
 #' @param line.labeller A logical that decides whether line labels should be
 #'   displayed (Default: `FALSE`).
+#' @param line.labeller.y A numeric denoting the y-coordinate for displaying
+#'   line labels (Default: `-2`).
 #' @param binwidth The width of the bins. Can be specified as a numeric value,
 #'   or a function that calculates width from `x`. The default is to use bins
 #'   bins that cover the range of the data. You should always override this
@@ -106,6 +116,7 @@
 gghistostats <-
   function(data = NULL,
            x,
+           binwidth = NULL,
            bar.measure = "count",
            xlab = NULL,
            title = NULL,
@@ -124,10 +135,14 @@ gghistostats <-
            b.margin = unit(3, "mm"),
            centrality.para = NULL,
            centrality.color = "blue",
+           centrality.size = 1.2,
+           centrality.linetype = "dashed",
            test.value.line = FALSE,
            test.value.color = "black",
+           test.value.size = 1.2,
+           test.value.linetype = "dashed",
            line.labeller = FALSE,
-           binwidth = NULL,
+           line.labeller.y = -2,
            messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
@@ -376,9 +391,9 @@ gghistostats <-
         plot <- plot +
           ggplot2::geom_vline(
             xintercept = mean(data$x),
-            linetype = "dashed",
+            linetype = centrality.linetype,
             color = centrality.color,
-            size = 1.2,
+            size = centrality.size,
             na.rm = TRUE
           )
 
@@ -389,7 +404,7 @@ gghistostats <-
               mapping = ggplot2::aes(
                 x = mean(data$x) + 0.20,
                 label = "mean",
-                y = -2
+                y = line.labeller.y
               ),
               color = centrality.color,
               angle = 0,
@@ -400,9 +415,9 @@ gghistostats <-
         plot <- plot +
           ggplot2::geom_vline(
             xintercept = median(data$x),
-            linetype = "dashed",
+            linetype = centrality.linetype,
             color = centrality.color,
-            size = 1.2,
+            size = centrality.size,
             na.rm = TRUE
           )
         # this can be used to label the vertical lines, but makes for an ugly plot
@@ -412,7 +427,7 @@ gghistostats <-
               mapping = ggplot2::aes(
                 x = median(data$x) + 0.20,
                 label = "median",
-                y = -2
+                y = line.labeller.y
               ),
               color = centrality.color,
               angle = 0,
@@ -426,9 +441,9 @@ gghistostats <-
         plot <- plot +
           ggplot2::geom_vline(
             xintercept = test.value,
-            linetype = "dashed",
+            linetype = test.value.linetype,
             color = test.value.color,
-            size = 1.2,
+            size = test.value.size,
             na.rm = TRUE
           )
         # if a text label is to be attached the line
@@ -438,7 +453,7 @@ gghistostats <-
               mapping = ggplot2::aes(
                 x = test.value + 0.20,
                 label = "test",
-                y = -2
+                y = line.labeller.y
               ),
               color = "black",
               angle = 0,

@@ -44,12 +44,22 @@
 #'   or `"median"`) is to be displayed as a vertical line.
 #' @param centrality.color Decides color for the vertical line for centrality
 #'   parameter (Default: `"blue"`).
+#' @param centrality.size Decides size for the vertical line for centrality
+#'   parameter (Default: `1.2`).
+#' @param centrality.linetype Decides linetype for the vertical line for centrality
+#'   parameter (Default: `"dashed"`).
+#' @param test.value.size Decides size for the vertical line for test value
+#'   (Default: `1.2`).
+#' @param test.value.linetype Decides linetype for the vertical line for test
+#'   value (Default: `"dashed"`).
 #' @param test.value.line Decides whether test value is to be displayed as a
 #'   vertical line (Default: `FALSE`).
 #' @param test.value.color Decides color for the vertical line denoting test
 #'   value (Default: `"black"`).
 #' @param line.labeller A logical that decides whether line labels should be
 #'   displayed (Default: `FALSE`).
+#' @param line.labeller.y A numeric denoting the y-coordinate for displaying
+#'   line labels (Default: `-2`).
 #' @param binwidth The width of the bins. Can be specified as a numeric value,
 #'   or a function that calculates width from `x`. The default is to use bins
 #'   bins that cover the range of the data. You should always override this
@@ -109,9 +119,14 @@ grouped_gghistostats <- function(grouping.var,
                                  b.margin = unit(3, "mm"),
                                  centrality.para = NULL,
                                  centrality.color = "blue",
+                                 centrality.size = 1.2,
+                                 centrality.linetype = "dashed",
                                  test.value.line = FALSE,
                                  test.value.color = "black",
+                                 test.value.size = 1.2,
+                                 test.value.linetype = "dashed",
                                  line.labeller = FALSE,
+                                 line.labeller.y = -2,
                                  binwidth = NULL,
                                  messages = TRUE,
                                  ...) {
@@ -155,8 +170,14 @@ grouped_gghistostats <- function(grouping.var,
             results.subtitle = results.subtitle,
             centrality.para = centrality.para,
             centrality.color = centrality.color,
+            centrality.size = centrality.size,
+            centrality.linetype = centrality.linetype,
             test.value.line = test.value.line,
             test.value.color = test.value.color,
+            test.value.size = test.value.size,
+            test.value.linetype = test.value.linetype,
+            line.labeller = line.labeller,
+            line.labeller.y = line.labeller.y,
             binwidth = binwidth,
             messages = messages
           )
