@@ -4,8 +4,9 @@
 \alias{grouped_gghistostats}
 \title{Grouped histograms for distribution of a numeric variable}
 \usage{
-grouped_gghistostats(grouping.var, data, x, xlab = NULL, subtitle = NULL,
-  caption = NULL, type = "parametric", test.value = 0, bf.prior = 0.707,
+grouped_gghistostats(grouping.var, data, x, bar.measure = "count",
+  xlab = NULL, title.prefix = NULL, subtitle = NULL, caption = NULL,
+  type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = TRUE, k = 3, low.color = "#0072B2",
   high.color = "#D55E00", results.subtitle = TRUE,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
@@ -21,7 +22,15 @@ taken.}
 
 \item{x}{A numeric variable.}
 
+\item{bar.measure}{Character describing what value needs to be represented as
+height in the bar chart. This can either be \code{"count"}, which shows number
+of points in bin, or \code{"density"}, which density of points in bin, scaled to
+integrate to 1.}
+
 \item{xlab}{Label for \code{x} axis variable.}
+
+\item{title.prefix}{The prefix text for the fixed plot title (name of each
+factor level).}
 
 \item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
 from one sample test to be displayed.}
@@ -124,8 +133,6 @@ combining (title, plot).}
   \item{caption.rel.heights}{Numerical vector of relative columns heights while
 combining (plot, caption).}
 }}
-
-\item{title}{The text for the plot title.}
 }
 \description{
 Helper function for \code{ggstatsplot::gghistostats} to apply this

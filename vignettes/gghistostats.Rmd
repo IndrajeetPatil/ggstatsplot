@@ -34,24 +34,25 @@ To begin with, here are some instances where you would want to use
   - to check distribution of a continuous variable
   - to check if the mean of variable is different from a specified value
 
-## gapminder dataset
+**Note before**: The following demo uses the pipe operator (`%>%`), so in case
+you are not familiar with this operator, here is a good explanation:
+<http://r4ds.had.co.nz/pipes.html>
 
-This dataset (available in eponymous
-[package](https://CRAN.R-project.org/package=gapminder) on CRAN)
-provides values for life expectancy, GDP per capita, and population, every five
-years, from 1952 to 2007, for each of 142 countries and was collected by the
-Gapminder Foundation. Let's have a look at the data-
+## Distribution with `gghistostats`
+
+To illustrate how this function can be used, we will use the `gapminder`
+dataset. This dataset (available in eponymous
+[package](https://CRAN.R-project.org/package=gapminder) on CRAN) provides values
+for life expectancy, GDP per capita, and population, every five years, from 1952
+to 2007, for each of 142 countries and was collected by the Gapminder
+Foundation. Let's have a look at the data-
 
 ```{r gapminder, warning = FALSE, message = FALSE}
 library(gapminder)
 library(dplyr)
-library(magrittr)
 
-gapminder::gapminder %>%
-  dplyr::glimpse(x = .)
+dplyr::glimpse(x = gapminder::gapminder)
 ```
-
-## Distribution with `gghistostats`
 
 Suppose the first thing we want to check is the distribution of population
 worldwide in 2007. In this case, we are not interested in any statistics and,
@@ -93,6 +94,32 @@ gapminder::gapminder %>%
     subtitle = "Year: 2007",                            # subtitle for the plot
     caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
     binwidth = 1                                        # new binwidth
+  )
+```
+
+So far we have been showing the count informatiton wiht the bar chart. Another
+option included is `density`. Showing `count` gives an idea about *raw* counts,
+while `density` gives information about *proportional* prevalence of values in a
+certain range.
+
+For example,
+```{r age_distribution3, warning = FALSE, message = FALSE, fig.height = 6}
+gapminder::gapminder %>%
+  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
+  dplyr::mutate(.data = ., pop_log = log10(pop)) %>%    # creating new population variable
+  ggstatsplot::gghistostats(
+    data = .,                                           # data from which variable is to be taken
+    x = pop_log,                                        # numeric variable
+    bar.measure = "density",                            # bar height measure
+    results.subtitle = FALSE,                           # don't run statistical tests
+    messages = FALSE,                                   # turn off messages
+    xlab = "Population (logarithmic)",                  # x-axis label
+    title = "Distribution of population worldwide",     # title for the plot
+    subtitle = "Year: 2007",                            # subtitle for the plot
+    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
+    binwidth = 1,                                       # new binwidth
+    low.color = "#009E73",                              # color for the lower end of the colorbar
+    high.color = "#F0E442"                              # color for the upper end of the colorbar
   )
 ```
 
@@ -176,9 +203,10 @@ gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007) %>%
 ggstatsplot::grouped_gghistostats(
   # arguments relevant for ggstatsplot::gghistostats
-  data = .,
+  data = .,                                     # `.` is placeholder for data plugged by %>%
   x = lifeExp,
   xlab = "Life expectancy",
+  title.prefix = "Continent: ",                 # prefix for the fixed title
   type = "p",                                   # parametric test
   test.value = 48,                              # test value against which sample mean is to be compared
   test.value.line = TRUE,                       # show a vertical line at `test.value`
@@ -208,6 +236,46 @@ For example, if we wanted to add, let's say, a separate `test.value` argument
 for each continent, this is not possible with `grouped_gghistostats`. For cases
 like these, it would be better to use a function like
 [`purrr::pmap`](https://purrr.tidyverse.org/reference/map2.html).
+
+## Grouped analysis with `gghistostats` + `purrr`
+
+So far we have been comparing life expectancy in 2007 for a particular continent
+to the global average from 1957. But what if we want to compare to
+contient-specifc life expectancy from 1957
+(<https://ourworldindata.org/life-expectancy>). This is not possible
+`grouped_gghistostats` function, but can be easily achieved with `purrr` package
+from tidyverse.
+
+```{r grouped2, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 10}
+# let's split the dataframe and create a list by continent
+continent_list <- gapminder::gapminder %>%
+  dplyr::filter(.data = ., year == 2007) %>%
+  base::split(x = ., f = .$continent, drop = TRUE)
+
+# this created a list with 5 elements, each for one contient
+str(continent_list)
+
+# running function on every element of this list
+plot_list <- purrr::pmap(.l = list(data = continent_list,
+                                   x = "lifeExp",
+                                   test.value = list(35.6, 58.4, 41.6, 64.7, 63.4),
+                                   title = list(paste0("Continent: ", c("Africa",	"Americas",	"Asia",	"Europe", "Oceania"))),
+                                   test.value.line = TRUE, 
+                                   test.value.color = "black",
+                                   centrality.para = "mean", 
+                                   centrality.color = "blue", 
+                                   low.color = list("#56B4E9", "#009E73", "#999999", "#0072B2", "#D55E00"),
+                                   high.color = list("#D55E00", "#0072B2", "#F0E442", "#009E73", "#56B4E9")),
+                         .f = ggstatsplot::gghistostats)
+
+# combining all individual plots from the list into a single plot
+ggstatsplot::combine_plots(
+  plotlist = plot_list, 
+  title.text = "Improvement in life expectancy worldwide since 1950",
+  caption.text = "Note: black line - 1950; blue line - 2007"
+  )
+
+```  
 
 ## Suggestions
 

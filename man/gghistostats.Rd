@@ -4,10 +4,10 @@
 \alias{gghistostats}
 \title{Histogram for distribution of a numeric variable}
 \usage{
-gghistostats(data = NULL, x, xlab = NULL, title = NULL, subtitle = NULL,
-  caption = NULL, type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = TRUE, k = 3, low.color = "#0072B2",
-  high.color = "#D55E00", results.subtitle = TRUE,
+gghistostats(data = NULL, x, bar.measure = "count", xlab = NULL,
+  title = NULL, subtitle = NULL, caption = NULL, type = "parametric",
+  test.value = 0, bf.prior = 0.707, bf.message = TRUE, k = 3,
+  low.color = "#0072B2", high.color = "#D55E00", results.subtitle = TRUE,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
   "mm"), centrality.para = NULL, centrality.color = "blue",
   test.value.line = FALSE, test.value.color = "black",
@@ -18,6 +18,11 @@ gghistostats(data = NULL, x, xlab = NULL, title = NULL, subtitle = NULL,
 taken.}
 
 \item{x}{A numeric variable.}
+
+\item{bar.measure}{Character describing what value needs to be represented as
+height in the bar chart. This can either be \code{"count"}, which shows number
+of points in bin, or \code{"density"}, which density of points in bin, scaled to
+integrate to 1.}
 
 \item{xlab}{Label for \code{x} axis variable.}
 

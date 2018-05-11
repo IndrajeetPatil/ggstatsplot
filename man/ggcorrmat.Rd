@@ -61,8 +61,8 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 (Default: \code{2}).}
 
 \item{sig.level}{Significance level (Dafault: \code{0.05}). If the p-value in
-p-mat is bigger than sig.level, then the correspondi#' ng correlation
-coefficient is regarded as insignificant.}
+p-mat (p-value matrix) is bigger than \code{sig.level}, then the corresponding
+correlation coefficient is regarded as insignificant.}
 
 \item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be
 hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
@@ -107,17 +107,17 @@ coefficients (\code{"pch"} (default) or \code{"blank"}). If \code{"blank"}, the
 corresponding glyphs will be removed; if "pch" is used, characters (see
 \code{?pch} for details) will be added on the corresponding glyphs.}
 
-\item{pch}{Decides the glyphs to be used for insignificant correlation
+\item{pch}{Decides the glyphs (read point shapes) to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default value is \code{pch = 4}.}
 
 \item{pch.col, pch.cex}{The color and the cex (size) of \code{pch} (only valid when
 \code{insig = "pch"}). Defaults are \code{pch.col = "blue"} and \code{pch.cex = 10}.}
 
 \item{tl.cex, tl.col, tl.srt}{The size, the color, and the string rotation of
-text label (variable names).}
+text label (variable names, i.e.).}
 
-\item{legend.title.margin}{Adjusting the margin between legend title and the
-colorbar.}
+\item{legend.title.margin}{Logical indicating whether to adjust the margin between legend title and the
+colorbar (Default: \code{TRUE}).}
 
 \item{t.margin, b.margin}{Margins in grid units. For more details, see
 \code{?grid::unit()}.}
@@ -131,9 +131,9 @@ Visualization of a correlalogram (or correlation matrix) using
 'ggplot2'/'ggcorrplot'
 }
 \note{
-If you are using R Notebook or Markdown and see a blank image being inserted when a
-chunk is executed, this behavior can be turned off by setting
-\code{legend.title.margin = FALSE}.
+If you are using R Notebook or Markdown and see a blank image being
+inserted when a chunk is executed, this behavior can be turned off by
+setting \code{legend.title.margin = FALSE}.
 }
 \examples{
 

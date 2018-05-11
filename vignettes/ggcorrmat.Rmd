@@ -25,7 +25,8 @@ available only to output coefficients and p-values. The percentage bend
 correlation is used as a robust correlation. Future release will also support
 robust correlation matrix. This function is a convenient wrapper around
 `ggcorrplot` function with some additional functionality, so its documentation
-will be helpful (http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2).
+will be helpful
+(<http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2>).
 
 We will see examples of how to use this function in this vignette with the
 `gapminder` dataset.
@@ -204,3 +205,7 @@ purrr::map_dfr(
 
 As this example illustrates, there is a minimal coding overhead to exlore
 correlations in your dataset with the `ggcorrmat` function.
+
+## Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

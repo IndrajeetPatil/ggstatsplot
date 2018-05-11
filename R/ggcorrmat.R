@@ -38,8 +38,8 @@
 #' @param digits Decides the number of decimal digits to be added into the plot
 #'   (Default: `2`).
 #' @param sig.level Significance level (Dafault: `0.05`). If the p-value in
-#'   p-mat is bigger than sig.level, then the correspondi#' ng correlation
-#'   coefficient is regarded as insignificant.
+#'   p-mat (p-value matrix) is bigger than `sig.level`, then the corresponding
+#'   correlation coefficient is regarded as insignificant.
 #' @param hc.order Logical value. If `TRUE`, correlation matrix will be
 #'   hc.ordered using `hclust` function (Default is `FALSE`).
 #' @param hc.method The agglomeration method to be used in `hclust` (see
@@ -69,14 +69,14 @@
 #'   coefficients (`"pch"` (default) or `"blank"`). If `"blank"`, the
 #'   corresponding glyphs will be removed; if "pch" is used, characters (see
 #'   `?pch` for details) will be added on the corresponding glyphs.
-#' @param pch Decides the glyphs to be used for insignificant correlation
+#' @param pch Decides the glyphs (read point shapes) to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default value is `pch = 4`.
 #' @param pch.col,pch.cex The color and the cex (size) of `pch` (only valid when
 #'   `insig = "pch"`). Defaults are `pch.col = "blue"` and `pch.cex = 10`.
 #' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
-#'   text label (variable names).
-#' @param legend.title.margin Adjusting the margin between legend title and the
-#'   colorbar.
+#'   text label (variable names, i.e.).
+#' @param legend.title.margin Logical indicating whether to adjust the margin between legend title and the
+#'   colorbar (Default: `TRUE`).
 #' @param t.margin,b.margin Margins in grid units. For more details, see
 #'   `?grid::unit()`.
 #'
@@ -125,9 +125,9 @@
 #' title = "Dataset: Iris"
 #' )
 #'
-#' @note If you are using R Notebook or Markdown and see a blank image being inserted when a
-#'   chunk is executed, this behavior can be turned off by setting
-#'   `legend.title.margin = FALSE`.
+#' @note If you are using R Notebook or Markdown and see a blank image being
+#'   inserted when a chunk is executed, this behavior can be turned off by
+#'   setting `legend.title.margin = FALSE`.
 #'
 #' @export
 #'

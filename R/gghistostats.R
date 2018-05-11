@@ -9,6 +9,10 @@
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
 #' @param x A numeric variable.
+#' @param bar.measure Character describing what value needs to be represented as
+#'   height in the bar chart. This can either be `"count"`, which shows number
+#'   of points in bin, or `"density"`, which density of points in bin, scaled to
+#'   integrate to 1.
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle *if* you don't want results
@@ -102,6 +106,7 @@
 gghistostats <-
   function(data = NULL,
            x,
+           bar.measure = "count",
            xlab = NULL,
            title = NULL,
            subtitle = NULL,
@@ -323,26 +328,40 @@ gghistostats <-
     }
     # ========================================== plot ===================================================================
 
-    # if the user wants to adjust the binwidth
-    # if (isTRUE(binwidth.adjust)) {
-    #   # uset the entered binwidth
-    #   binwidth <- binwidth
-    # }
 
-    # adjusting the binwidth
-    plot <- ggplot2::ggplot(data = data,
-                            mapping = ggplot2::aes(x = x)) +
-      ggplot2::stat_bin(
-        col = "black",
-        alpha = 0.7,
-        binwidth = binwidth,
-        na.rm = TRUE,
-        mapping = ggplot2::aes(y = ..count..,
-                               fill = ..count..)
-      ) +
-      ggplot2::scale_fill_gradient(name = "count",
-                                   low = low.color,
-                                   high = high.color) +
+    # preparing the basic layout of the plot based on whether counts or density information is needed
+    if (bar.measure == "count") {
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = ggplot2::aes(x = x)) +
+        ggplot2::stat_bin(
+          col = "black",
+          alpha = 0.7,
+          binwidth = binwidth,
+          na.rm = TRUE,
+          mapping = ggplot2::aes(y = ..count..,
+                                 fill = ..count..)
+        ) +
+        ggplot2::scale_fill_gradient(name = "count",
+                                     low = low.color,
+                                     high = high.color)
+    } else if (bar.measure == "density") {
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = ggplot2::aes(x = x)) +
+        ggplot2::stat_bin(
+          col = "black",
+          alpha = 0.7,
+          binwidth = binwidth,
+          na.rm = TRUE,
+          mapping = ggplot2::aes(y = ..density..,
+                                 fill = ..density..)
+        ) +
+        ggplot2::scale_fill_gradient(name = "density",
+                                     low = low.color,
+                                     high = high.color)
+    }
+
+    # adding the theme and labels
+    plot <- plot +
       ggstatsplot::theme_mprl() +
       ggplot2::labs(
         x = xlab,

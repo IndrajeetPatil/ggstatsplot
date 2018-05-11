@@ -205,8 +205,8 @@ Kendall's <em>tau</em> and Spearman's <em>rho</em> when not computed exactly (De
     <tr>
       <th>sig.level</th>
       <td><p>Significance level (Dafault: <code>0.05</code>). If the p-value in
-p-mat is bigger than sig.level, then the correspondi#' ng correlation
-coefficient is regarded as insignificant.</p></td>
+p-mat (p-value matrix) is bigger than <code>sig.level</code>, then the corresponding
+correlation coefficient is regarded as insignificant.</p></td>
     </tr>
     <tr>
       <th>hc.order</th>
@@ -281,7 +281,7 @@ corresponding glyphs will be removed; if "pch" is used, characters (see
     </tr>
     <tr>
       <th>pch</th>
-      <td><p>Decides the glyphs to be used for insignificant correlation
+      <td><p>Decides the glyphs (read point shapes) to be used for insignificant correlation
 coefficients (only valid when <code>insig = "pch"</code>). Default value is <code>pch = 4</code>.</p></td>
     </tr>
     <tr>
@@ -292,12 +292,12 @@ coefficients (only valid when <code>insig = "pch"</code>). Default value is <cod
     <tr>
       <th>tl.cex, tl.col, tl.srt</th>
       <td><p>The size, the color, and the string rotation of
-text label (variable names).</p></td>
+text label (variable names, i.e.).</p></td>
     </tr>
     <tr>
       <th>legend.title.margin</th>
-      <td><p>Adjusting the margin between legend title and the
-colorbar.</p></td>
+      <td><p>Logical indicating whether to adjust the margin between legend title and the
+colorbar (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>t.margin, b.margin</th>
@@ -313,9 +313,9 @@ of p-values.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>If you are using R Notebook or Markdown and see a blank image being inserted when a
-chunk is executed, this behavior can be turned off by setting
-<code>legend.title.margin = FALSE</code>.</p>
+    <p>If you are using R Notebook or Markdown and see a blank image being
+inserted when a chunk is executed, this behavior can be turned off by
+setting <code>legend.title.margin = FALSE</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

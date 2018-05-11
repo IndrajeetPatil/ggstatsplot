@@ -37,6 +37,7 @@ utils::globalVariables(
     "proptest_subtitle",
     "significance",
     "..count..",
+    "..density..",
     "dnorm",
     "mean",
     "median",

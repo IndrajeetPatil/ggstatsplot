@@ -11,8 +11,13 @@
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
 #' @param x A numeric variable.
+#' @param bar.measure Character describing what value needs to be represented as
+#'   height in the bar chart. This can either be `"count"`, which shows number
+#'   of points in bin, or `"density"`, which density of points in bin, scaled to
+#'   integrate to 1.
 #' @param xlab Label for `x` axis variable.
-#' @param title The text for the plot title.
+#' @param title.prefix The prefix text for the fixed plot title (name of each
+#'   factor level).
 #' @param subtitle The text for the plot subtitle *if* you don't want results
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
@@ -59,6 +64,7 @@
 #'
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
+#' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest
 #'
@@ -85,7 +91,9 @@
 grouped_gghistostats <- function(grouping.var,
                                  data,
                                  x,
+                                 bar.measure = "count",
                                  xlab = NULL,
+                                 title.prefix = NULL,
                                  subtitle = NULL,
                                  caption = NULL,
                                  type = "parametric",
@@ -132,8 +140,9 @@ grouped_gghistostats <- function(grouping.var,
           .f = ~ ggstatsplot::gghistostats(
             data = .,
             x = !!rlang::enquo(x),
+            bar.measure = bar.measure,
             xlab = xlab,
-            title = as.character(.$title.text),
+            title = glue::glue(if(!is.null(title.prefix)) title.prefix, "{as.character(.$title.text)}"),
             subtitle = subtitle,
             caption = caption,
             type = type,
