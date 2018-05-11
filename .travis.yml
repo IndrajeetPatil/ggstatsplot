@@ -8,15 +8,18 @@ fortran: true
 # Note: http test servers are flaky and we want to minimze false positives
 # so we skip examples and vignettes (but not unit tests) on OS X.
 
+r:
+- 3.3
+- oldrel
+- release
+- devel
+
 matrix:
   include:
     - os: linux
       dist: trusty
       sudo: required
-      r:
-        - oldrel
-        - release
-        - devel
+
 
       r_binary_packages:
         - stringi
@@ -75,9 +78,8 @@ repos:
   ropensci: http://packages.ropensci.org
 
 # work around temporary travis + R 3.5 bug
-r_packages:
-    - covr
-    - devtools
+r_packages: devtools
+    #- covr
 
 warnings_are_errors: true
 #r_check_revdep: true
