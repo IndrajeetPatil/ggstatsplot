@@ -4,12 +4,13 @@
 \alias{ggbetweenstats}
 \title{violin plots for group or condition comparisons}
 \usage{
-ggbetweenstats(data = NULL, x, y, type = "parametric",
-  effsize.type = "unbiased", xlab = NULL, ylab = NULL, caption = NULL,
-  title = NULL, k = 3, var.equal = FALSE, nboot = 100, notch = FALSE,
-  notchwidth = 0.5, linetype = "solid", outlier.tagging = NULL,
-  outlier.label = NULL, outlier.color = "black", outlier.coef = 1.5,
-  mean.plotting = TRUE, mean.color = "darkred", messages = TRUE)
+ggbetweenstats(data = NULL, x, y, plot.type = "boxviolin",
+  type = "parametric", effsize.type = "unbiased", xlab = NULL,
+  ylab = NULL, caption = NULL, title = NULL, k = 3, var.equal = FALSE,
+  nboot = 100, notch = FALSE, notchwidth = 0.5, linetype = "solid",
+  outlier.tagging = NULL, outlier.label = NULL, outlier.color = "black",
+  outlier.coef = 1.5, mean.plotting = TRUE, mean.color = "darkred",
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -18,6 +19,10 @@ taken.}
 \item{x}{The grouping variable.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
+
+\item{plot.type}{Character describing the \emph{type} of plot. Currently supported
+plots are \code{"box"} (for pure boxplots), \code{"violin"} (for pure violin plots),
+and \code{"boxviolin"} (for a mix of box and violin plots; default).}
 
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
 or \code{"robust"}).Corresponding abbreviations are also accepted: \code{"p"} (for
@@ -47,7 +52,9 @@ variances as being equal (Default: \code{FALSE}).}
 \item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
-that the medians are significantly different.}
+that the medians are significantly different. In a notched box plot, the
+notches extend 1.58 * IQR / sqrt(n). This gives a roughly 95% confidence
+interval for comparing medians. IQR: Inter-Quartile Range.}
 
 \item{notchwidth}{For a notched box plot, width of the notch relative to the
 body (default \code{0.5}).}

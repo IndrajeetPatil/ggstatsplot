@@ -10,6 +10,9 @@
 #'   taken.
 #' @param x The grouping variable.
 #' @param y The response - a vector of length the number of rows of `x`.
+#' @param plot.type Character describing the *type* of plot. Currently supported
+#'   plots are `"box"` (for pure boxplots), `"violin"` (for pure violin plots),
+#'   and `"boxviolin"` (for a mix of box and violin plots; default).
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
@@ -29,7 +32,9 @@
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
 #'   compare groups; if the notches of two boxes do not overlap, this suggests
-#'   that the medians are significantly different.
+#'   that the medians are significantly different. In a notched box plot, the
+#'   notches extend 1.58 * IQR / sqrt(n). This gives a roughly 95% confidence
+#'   interval for comparing medians. IQR: Inter-Quartile Range.
 #' @param notchwidth For a notched box plot, width of the notch relative to the
 #'   body (default `0.5`).
 #' @param linetype Character strings (`"blank"`, `"solid"`, `"dashed"`,
@@ -52,8 +57,7 @@
 #'
 #' @import ggplot2
 #' @import dplyr
-#' @import rlang
-#'
+
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
@@ -112,6 +116,7 @@
 ggbetweenstats <- function(data = NULL,
                            x,
                            y,
+                           plot.type = "boxviolin",
                            type = "parametric",
                            effsize.type = "unbiased",
                            xlab = NULL,
@@ -221,7 +226,8 @@ ggbetweenstats <- function(data = NULL,
 
   # create the basic plot
   plot <-
-    ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = x, y = y)) +
+    ggplot2::ggplot(data = data,
+                    mapping = ggplot2::aes(x = x, y = y)) +
     ggplot2::geom_point(
       position = ggplot2::position_jitterdodge(
         jitter.width = NULL,
@@ -232,44 +238,68 @@ ggbetweenstats <- function(data = NULL,
       size = 3,
       na.rm = TRUE,
       ggplot2::aes(color = factor(x))
-    ) +
-    ggplot2::geom_violin(
-      width = 0.5,
-      alpha = 0.2,
-      fill = "white",
-      na.rm = TRUE
     )
 
-  # adding a boxplot
-  if (isTRUE(outlier.tagging)) {
+  if (plot.type == "box" || plot.type == "boxviolin") {
+    # adding a boxplot
+    if (isTRUE(outlier.tagging)) {
+      plot <- plot +
+        ggplot2::geom_boxplot(
+          notch = notch,
+          notchwidth = notchwidth,
+          linetype = linetype,
+          width = 0.3,
+          alpha = 0.2,
+          fill = "white",
+          position = ggplot2::position_dodge(width = NULL),
+          na.rm = TRUE,
+          outlier.color = outlier.color
+        ) +
+        ggplot2::stat_boxplot(
+          notch = notch,
+          notchwidth = notchwidth,
+          linetype = linetype,
+          geom = "boxplot",
+          width = 0.3,
+          alpha = 0.2,
+          fill = "white",
+          outlier.shape = 16,
+          outlier.size = 3,
+          outlier.alpha = 0.7,
+          coef = outlier.coef,
+          na.rm = TRUE
+        )
+    } else {
+      plot <- plot +
+        ggplot2::geom_boxplot(
+          notch = notch,
+          notchwidth = notchwidth,
+          linetype = linetype,
+          width = 0.3,
+          alpha = 0.2,
+          fill = "white",
+          position = ggplot2::position_dodge(width = NULL),
+          na.rm = TRUE
+        )
+    }
+    if (plot.type == "boxviolin") {
+      plot <- plot +
+        ggplot2::geom_violin(
+          width = 0.5,
+          alpha = 0.2,
+          fill = "white",
+          na.rm = TRUE
+        )
+    }
+  } else if (plot.type == "violin") {
     plot <- plot +
-      ggplot2::geom_boxplot(
-        notch = notch,
-        notchwidth = notchwidth,
-        linetype = linetype,
-        width = 0.3,
-        alpha = 0.2,
-        fill = "white",
-        outlier.color = outlier.color,
-        outlier.shape = 16,
-        outlier.size = 3,
-        outlier.alpha = 0.7,
-        position = ggplot2::position_dodge(width = NULL),
-        na.rm = TRUE
-      )
-  } else {
-    plot <- plot +
-      ggplot2::geom_boxplot(
-        notch = notch,
-        notchwidth = notchwidth,
-        linetype = linetype,
-        width = 0.3,
+      ggplot2::geom_violin(
+        width = 0.5,
         alpha = 0.2,
         fill = "white",
         na.rm = TRUE
       )
   }
-
   # specifying theme and labels for the final plot
   plot <- plot +
     ggstatsplot::theme_mprl() +
@@ -312,12 +342,13 @@ ggbetweenstats <- function(data = NULL,
 
       # preparing the subtitles with appropriate effect sizes
       if (effsize.type == "unbiased") {
-
         # partial omega-squared is the biased estimate of effect size for parametric ANOVA
         aov_effsize_ci <- sjstats::omega_sq(
-          model = stats::lm(formula = y ~ x,
-                            data = data,
-                            na.action = na.omit),
+          model = stats::lm(
+            formula = y ~ x,
+            data = data,
+            na.action = na.omit
+          ),
           partial = TRUE,
           ci.lvl = 0.95,
           n = nboot
@@ -390,10 +421,12 @@ ggbetweenstats <- function(data = NULL,
                                         data = data))
 
         # getting confidence interval for partial eta-squared
-         aov_effsize_ci <- sjstats::eta_sq(
-          model = stats::lm(formula = y ~ x,
-                            data = data,
-                            na.action = na.omit),
+        aov_effsize_ci <- sjstats::eta_sq(
+          model = stats::lm(
+            formula = y ~ x,
+            data = data,
+            na.action = na.omit
+          ),
           partial = TRUE,
           ci.lvl = 0.95,
           n = nboot
@@ -554,8 +587,7 @@ ggbetweenstats <- function(data = NULL,
         WRS2::t1way(
           formula = y ~ x,
           data = data,
-          tr = 0.2,
-          nboot = nboot
+          tr = 0.2
         )
 
       # adding the label to the plot

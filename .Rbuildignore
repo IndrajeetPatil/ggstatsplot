@@ -12,3 +12,4 @@
 ^NEWS$
 ^_pkgdown\.yml$
 ^docs$
+^revdep$

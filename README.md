@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--11-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--12-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -186,43 +186,45 @@ ggstatsplot::ggbetweenstats(
 
 The `type` (of test) argument also accepts the following abbreviations:
 “p” (for *parametric*), “np” (for *nonparametric*), “r” (for
-*robust*).
+*robust*), in addition to the type of plot to be used.
 
 For example,
 
 ``` r
 library(ggplot2)
 library(cowplot)
+library(gapminder)
 
-# parametric t-tet 
+# parametric ANOVA
 p1 <- ggstatsplot::ggbetweenstats(
-  data = datasets::mtcars,
-  x = am,
-  y = mpg, 
+  data = dplyr::filter(.data = gapminder, year == 2007),
+  x = continent,
+  y = lifeExp,
+  plot.type = "box",
   type = "p",
   messages = FALSE
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factor
 
-# Mann-Whitney U-test
+# Kruskal-Wallis test (nonparametric ANOVA)
 p2 <- ggstatsplot::ggbetweenstats(
-  data = mtcars,
-  x = am,
-  y = mpg, 
+  data = dplyr::filter(.data = gapminder, year == 2007),
+  x = continent,
+  y = lifeExp,
+  plot.type = "violin",
   type = "np",
   messages = FALSE
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factor
+#> Note:  No effect size available for Kruskal-Wallis Rank Sum Test.
 
-# robust t-test
+# robust ANOVA
 p3 <- ggstatsplot::ggbetweenstats(
-  data = mtcars,
-  x = am,
-  y = mpg, 
+  data = dplyr::filter(.data = gapminder, year == 2007),
+  x = continent,
+  y = lifeExp,
+  plot.type = "boxviolin",
   type = "r",
   messages = FALSE
 )
-#> Warning:  aesthetic `x` was not a factor; converting it to factor
 
 # combining the individual plots into a single plot
 cowplot::plot_grid(
@@ -546,125 +548,10 @@ programming package like [`purrr`](http://purrr.tidyverse.org/) that
 replaces many for loops with code that is both more succinct and easier
 to read and, therefore, `purrr` should be preferrred.
 
-An example is provided below.
+For more, see the associated vignette-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/theme_mprl.html>
 
-``` r
-
-library(glue)
-library(tidyverse)
-
-### creating a list column with `ggstatsplot` plots
-plots <- datasets::iris %>%
-  dplyr::mutate(.data = ., Species2 = Species) %>% # just creates a copy of this variable
-  dplyr::group_by(.data = ., Species) %>%                
-  tidyr::nest(data = .) %>%                        # creates a nested dataframe with list column called `data`
-  dplyr::mutate(                                   # creating a new list column of ggstatsplot outputs
-    .data = .,
-    plot = data %>%
-      purrr::map(
-        .x = .,
-        .f = ~ ggstatsplot::ggscatterstats(
-          data = .,
-          x = Sepal.Length,
-          y = Sepal.Width,
-          messages = FALSE,                        # turns off all the warnings, notes, and reference messages   
-          marginal.type = "boxplot",
-          title =
-            glue::glue("Species: {.$Species2} (n = {length(.$Sepal.Length)})")
-        )
-      )
-  )
-
-### display the new object (notice that the class of the `plot` list column is S3: gg)
-plots
-#> # A tibble: 3 x 3
-#>   Species    data              plot             
-#>   <fct>      <list>            <list>           
-#> 1 setosa     <tibble [50 x 5]> <S3: ggExtraPlot>
-#> 2 versicolor <tibble [50 x 5]> <S3: ggExtraPlot>
-#> 3 virginica  <tibble [50 x 5]> <S3: ggExtraPlot>
-
-### creating a grid with cowplot
-ggstatsplot::combine_plots(
-  plotlist = plots$plot,                           # list column containing all ggstatsplot objects
-  labels = c("(a)", "(b)", "(c)"),
-  nrow = 3,
-  ncol = 1,
-  title.text = "Relationship between sepal length and width for all Iris species",
-  title.size = 14,
-  title.color = "black",
-  caption.text = expression(
-    paste(
-      italic("Note"),
-      ": Iris flower dataset was collected by Edgar Anderson."
-    ),
-    caption.size = 10
-  )
-)
-```
-
-<img src="man/figures/README-combine_plots_purrr1-1.png" width="100%" />
-
-Here is another example with `ggbetweenstats`-
-
-``` r
-library(tidyverse)
-library(glue)
-
-### creating a list column with `ggstatsplot` plots
-plots <- datasets::mtcars %>%
-  dplyr::mutate(.data = ., cyl2 = cyl) %>%        # just creates a copy of this variable
-  dplyr::group_by(.data = ., cyl) %>%             # 
-  tidyr::nest(data = .) %>%                       # creates a nested dataframe with list column called `data`
-  dplyr::mutate(                                  # creating a new list column of ggstatsplot outputs
-    .data = .,
-    plot = data %>%
-      purrr::map(
-        .x = .,
-        .f = ~ ggstatsplot::ggbetweenstats(
-          data = .,
-          x = am,
-          y = mpg,
-          messages = FALSE,                       # turns off all the warnings, notes, and reference messages
-          xlab = "Transmission",
-          ylab = "Miles/(US) gallon",
-          title = glue::glue(
-            "Number of cylinders: {.$cyl2}"       # this is where the duplicated cyl2 column is useful
-            ) 
-        )
-      )
-  )
-#> Warning:  aesthetic `x` was not a factor; converting it to factorWarning:  aesthetic `x` was not a factor; converting it to factorWarning:  aesthetic `x` was not a factor; converting it to factor
-
-### display the new object (notice that the class of the `plot` list column is S3: gg)
-plots
-#> # A tibble: 3 x 3
-#>     cyl data               plot    
-#>   <dbl> <list>             <list>  
-#> 1     6 <tibble [7 x 11]>  <S3: gg>
-#> 2     4 <tibble [11 x 11]> <S3: gg>
-#> 3     8 <tibble [14 x 11]> <S3: gg>
-
-### creating a grid with cowplot
-ggstatsplot::combine_plots(
-  plotlist = plots$plot,       # list column containing all ggstatsplot objects
-  nrow = 3,
-  ncol = 1,
-  labels = c("(a)","(b)","(c)"),
-  title.text = "MPG and car transmission relationship (for each cylinder count)",
-  title.size = 13,
-  title.color = "black",
-  caption.text = expression(
-    paste(
-      italic("Transmission"),
-      ": 0 = automatic, 1 = manual"
-    ),
-    caption.size = 10
-  )
-)
-```
-
-<img src="man/figures/README-combine_plots_purrr2-1.png" width="100%" />
+  - `theme_mprl`
 
 All plots from `ggstatsplot` have a default theme: `theme_mprl`. For
 more, see the associated vignette-
