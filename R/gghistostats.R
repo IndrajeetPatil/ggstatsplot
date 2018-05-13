@@ -68,6 +68,14 @@
 #'
 #' @import ggplot2
 #'
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr n
+#' @importFrom dplyr arrange
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr mutate_if
 #' @importFrom jmv ttestOneS
 #' @importFrom stats dnorm
 #' @importFrom nortest ad.test

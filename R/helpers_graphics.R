@@ -7,8 +7,7 @@
 #' @param plot Plot with the legend title whose margins need to be modified.
 #' @param t.margin,b.margin Margins in grid units.
 #'
-#' @import ggplot2
-#'
+#' @importFrom ggplot2 ggplotGrob
 #' @importFrom cowplot ggdraw
 #' @importFrom grid unit.c
 #' @importFrom grid unit
@@ -107,8 +106,13 @@ legend_title_margin <- function(plot,
 #' #'
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
-#' @import ggplot2
-#'
+#' @importFrom ggplot2 theme
+#' @importFrom ggplot2 theme_grey
+#' @importFrom ggplot2 element_blank
+#' @importFrom ggplot2 element_text
+#' @importFrom ggplot2 element_line
+#' @importFrom ggplot2 element_rect
+#' @importFrom ggplot2 margin
 #' @importFrom grid unit
 #'
 #' @keywords internal
@@ -175,11 +179,15 @@ theme_pie <- function() {
 #' @title Default theme used for correlation matrix
 #' @name theme_corrmat
 #' @author Indrajeet Patil
-#' #'
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
-#' @import ggplot2
-#'
+#' @importFrom ggplot2 theme
+#' @importFrom ggplot2 theme_grey
+#' @importFrom ggplot2 element_blank
+#' @importFrom ggplot2 element_text
+#' @importFrom ggplot2 element_line
+#' @importFrom ggplot2 element_rect
+#' @importFrom ggplot2 margin
 #' @importFrom grid unit
 #'
 #' @keywords internal

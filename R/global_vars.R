@@ -1,5 +1,4 @@
 # defining global variables and functions to appease R CMD Check
-#
 
 utils::globalVariables(
   names = c(
@@ -12,6 +11,8 @@ utils::globalVariables(
     "df",
     "df1",
     "df2",
+    "desc",
+    "do",
     "effsize",
     "estimate",
     "eta",
@@ -43,7 +44,34 @@ utils::globalVariables(
     "median",
     "sd",
     "bf",
-    "bf_error"
+    "bf_error",
+    "Df",
+    "F value",
+    "F.value",
+    "LL",
+    "Pr(>F)",
+    "UL",
+    "complete",
+    "data",
+    "df1",
+    "df2",
+    "effect",
+    "effsize",
+    "formula",
+    "hist",
+    "median",
+    "p0",
+    "p100",
+    "p50",
+    "p25",
+    "p75",
+    "sd",
+    "type",
+    "Chi-squared",
+    "df",
+    "p-value",
+    "chi_sq",
+    "significance"
   ),
   package = "ggstatsplot",
   add = FALSE

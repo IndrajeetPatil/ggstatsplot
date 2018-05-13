@@ -70,11 +70,18 @@
 #'   to be displayed (Default: `TRUE`).
 #' @inheritDotParams combine_plots
 #'
-#' @import dplyr
-#' @import rlang
-#'
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr n
+#' @importFrom dplyr arrange
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr mutate_if
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
 #' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest

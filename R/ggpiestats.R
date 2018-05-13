@@ -26,9 +26,17 @@
 #'   to be displayed (Default: `TRUE`).
 #'
 #' @import ggplot2
-#' @import dplyr
-#' @import rlang
 #'
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr n
+#' @importFrom dplyr arrange
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr mutate_if
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
 #' @importFrom crayon green
 #' @importFrom crayon blue
 #' @importFrom crayon yellow
@@ -79,19 +87,6 @@ ggpiestats <-
            facet.proptest = TRUE,
            messages = TRUE) {
     # ========================================== messages ==================================================================
-    #
-    # display warning about geom_col issues
-    if (isTRUE(messages)) {
-      if (utils::packageVersion(pkg = "ggplot2") == "2.2.1.9000") {
-        base::message(cat(
-          crayon::red("Warning:"),
-          crayon::blue(
-            "No guarantee this function will work properly if you are using development version of ggplot2"
-          ),
-          crayon::yellow("(2.2.1.9000)")
-        ))
-      }
-    }
 
     # if data is not available then don't display any messages
     if (is.null(data)) {

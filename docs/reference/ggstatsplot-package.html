@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default theme used for correlation matrix — theme_corrmat • ggstatsplot</title>
+<title><code>ggstatsplot</code> — ggstatsplot-package • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,10 @@
 
 
 
-<meta property="og:title" content="Default theme used for correlation matrix — theme_corrmat" />
+<meta property="og:title" content="<code>ggstatsplot</code> — ggstatsplot-package" />
 
-<meta property="og:description" content="Default theme used for correlation matrix" />
+<meta property="og:description" content="Collection of functions to enhance ggplot2 plots with results from
+statistical tests." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,28 +114,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Default theme used for correlation matrix</h1>
+    <h1><code>ggstatsplot</code></h1>
     
-    <div class="hidden name"><code>theme_corrmat.Rd</code></div>
+    <div class="hidden name"><code>ggstatsplot-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Default theme used for correlation matrix</p>
+    <p>Collection of functions to enhance <code>ggplot2</code> plots with results from
+statistical tests.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_corrmat</span>()</pre>
         
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A <code>ggplot2</code> object with the <code>theme_mprl</code> theme.</p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>This is a helper function used internally in the package and not
-exported. In case you want to use it, you can do so by
-<code>ggstatsplot:::theme_corrmat</code>. Note that it is <code>:::</code> and not <code>::</code>.</p>
+    <p>The main functions are-</p><ul>
+<li><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code> function to produce
+information-rich comparison plot between different groups or conditions with
+<code>ggplot2</code> and details from the statistical tests in the subtitle</p></li>
+<li><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code> function to produce <code>ggplot2</code>
+scatterplots along with a marginal histograms/boxplots/density plots from
+<code>ggExtra</code> and details from the statistical tests in the subtitle</p></li>
+<li><p><code><a href='ggpiestats.html'>ggpiestats</a></code> function to produce pie chart with
+details from the statistical tests in the subtitle</p></li>
+<li><p><code><a href='gghistostats.html'>gghistostats</a></code> function to produce histogram for a
+single variable with results from one sample test displayed in the subtitle</p></li>
+<li><p><code><a href='ggcorrmat.html'>ggcorrmat</a></code> function to visualize correlation
+matrix</p></li>
+<li><p><code><a href='combine_plots.html'>combine_plots</a></code> helper function to
+combine multiple <code>ggstatsplot</code> plots using <code><a href='http://www.rdocumentation.org/packages/cowplot/topics/plot_grid'>cowplot::plot_grid()</a></code> with a
+combination of title, caption, and annotation label</p></li>
+<li><p><code><a href='theme_mprl.html'>theme_mprl</a></code> default theme used for this package</p></li>
+<li><p><code><a href='specify_decimal_p.html'>specify_decimal_p</a></code> helper function to format
+results for pretty printing</p></li>
+</ul>
+    <p>For more documentation, see
+<a href='https://github.com/IndrajeetPatil/ggstatsplot'>README</a> on GitHub.
+Vignette preparation in progress.</p>
     
 
   </div>
@@ -142,14 +159,8 @@ exported. In case you want to use it, you can do so by
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
+      <li><a href="#details">Details</a></li>
           </ul>
-
-    <h2>Author</h2>
-    
-Indrajeet Patil
 
   </div>
 </div>

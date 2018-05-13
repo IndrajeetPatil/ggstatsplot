@@ -11,9 +11,20 @@
 #' @param measure A variable for which proportion test needs to be carried out
 #'   for each combination of levels of factors entered in `grouping.vars`.
 #'
-#' @import dplyr
-#' @import rlang
-#'
+#' @importFrom rlang enquo
+#' @importFrom rlang quo_name
+#' @importFrom rlang quo_squash
+#' @importFrom dplyr everything
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr n
+#' @importFrom dplyr arrange
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr mutate_if
+#' @importFrom magrittr "%<>%"
+#' @importFrom magrittr "%>%"
 #' @importFrom purrr map
 #' @importFrom tidyr nest
 #' @importFrom tidyr unnest
@@ -26,39 +37,7 @@
 #' `ggstatsplot:::grouped_proptest`. Note that it is `:::` and not `::`.
 #'
 
-# defining global variables and functions to quient the R CMD check notes
-utils::globalVariables(
-  c(
-    "Df",
-    "F value",
-    "F.value",
-    "LL",
-    "Pr(>F)",
-    "UL",
-    "complete",
-    "data",
-    "df1",
-    "df2",
-    "effect",
-    "effsize",
-    "formula",
-    "hist",
-    "median",
-    "p0",
-    "p100",
-    "p50",
-    "p25",
-    "p75",
-    "sd",
-    "type",
-    "Chi-squared",
-    "df",
-    "p-value",
-    "chi_sq",
-    "significance"
-  )
-)
-
+# function body
 grouped_proptest <- function(data,
                              grouping.vars,
                              measure) {
@@ -174,8 +153,15 @@ grouped_proptest <- function(data,
 #'   be taken.
 #' @param p The column containing p-values.
 #'
-#' @import dplyr
-#'
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr n
+#' @importFrom dplyr arrange
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr mutate_if
+#' @importFrom magrittr "%<>%"
+#' @importFrom magrittr "%>%"
 #' @importFrom broom tidy
 #' @importFrom crayon red
 #' @importFrom crayon blue

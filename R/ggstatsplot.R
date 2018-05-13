@@ -28,6 +28,6 @@
 #' Vignette preparation in progress.
 #'
 #' @docType package
-#' @name ggstatsplot
+#' @name ggstatsplot-package
 #'
 NULL

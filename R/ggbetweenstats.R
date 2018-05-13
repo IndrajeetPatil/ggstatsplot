@@ -56,8 +56,15 @@
 #'   to be displayed (Default: `TRUE`).
 #'
 #' @import ggplot2
-#' @import dplyr
-
+#'
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr n
+#' @importFrom dplyr arrange
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr mutate_if
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
@@ -105,9 +112,9 @@
 #' data = datasets::ToothGrowth,
 #' x = supp,
 #' y = len,
+#' plot.type = "box",
 #' xlab = "Supplement type",
-#' ylab = "Tooth length",
-#' outlier.tagging = TRUE)
+#' ylab = "Tooth length")
 #'
 #' @export
 #'

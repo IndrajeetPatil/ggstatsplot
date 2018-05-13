@@ -84,7 +84,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-12</h4>
+            <h4 class="date">2018-05-13</h4>
       
       
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -105,9 +105,9 @@
 </h2>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="http://purrr.tidyverse.org/"><code>purrr</code></a> that replaces many for loops with code that is both more succinct and easier to read and, therefore, <code>purrr</code> should be preferrred.</p>
 <p>An example is provided below.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(glue)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(tidyverse)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(glue)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb1-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5">### creating a list column with `ggstatsplot` plots</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">plots &lt;-<span class="st"> </span>datasets<span class="op">::</span>iris <span class="op">%&gt;%</span></a>
@@ -159,7 +159,7 @@
 <a class="sourceLine" id="cb1-52" data-line-number="52">)</a></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_purrr-1.png" width="768"></p>
 <p>Here is another example with <code>ggbetweenstats</code>-</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(glue)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4">### creating a list column with `ggstatsplot` plots</a>

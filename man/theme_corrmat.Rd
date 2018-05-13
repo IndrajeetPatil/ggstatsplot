@@ -19,6 +19,5 @@ exported. In case you want to use it, you can do so by
 }
 \author{
 Indrajeet Patil
-#'
 }
 \keyword{internal}

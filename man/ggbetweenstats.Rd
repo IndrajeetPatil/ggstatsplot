@@ -105,9 +105,9 @@ ggstatsplot::ggbetweenstats(
 data = datasets::ToothGrowth,
 x = supp,
 y = len,
+plot.type = "box",
 xlab = "Supplement type",
-ylab = "Tooth length",
-outlier.tagging = TRUE)
+ylab = "Tooth length")
 
 }
 \author{

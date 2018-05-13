@@ -80,10 +80,18 @@
 #' @param t.margin,b.margin Margins in grid units. For more details, see
 #'   `?grid::unit()`.
 #'
-#' @import ggcorrplot
 #' @import ggplot2
-#' @import dplyr
 #'
+#' @importFrom ggcorrplot cor_pmat
+#' @importFrom ggcorrplot ggcorrplot
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr n
+#' @importFrom dplyr arrange
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr mutate_if
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
 #' @importFrom purrr is_bare_double
