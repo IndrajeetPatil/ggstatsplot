@@ -19,35 +19,35 @@ matrix:
       dist: trusty
       sudo: required
 
-      r_binary_packages:
-        - stringi
-        - magrittr
-        - curl
-        - jsonlite
-        - Rcpp
-        - bindrcpp
-        - RcppEigen
-        - openssl
-        - rlang
-        - utf8
-        - gss
-        - haven
-        - data.table
-        - dplyr
-        - purrr
-        - tidyr
-        - readr
-        - minqa
-        - mvtnorm
-        - nloptr
-        - SparseM
-        - lme4
-        - httpuv
-        - markdown
-        - sem
-        - readxl
-        - openxlsx
-        - pander
+      # r_binary_packages:
+      #   - stringi
+      #   - magrittr
+      #   - curl
+      #   - jsonlite
+      #   - Rcpp
+      #   - bindrcpp
+      #   - RcppEigen
+      #   - openssl
+      #   - rlang
+      #   - utf8
+      #   - gss
+      #   - haven
+      #   - data.table
+      #   - dplyr
+      #   - purrr
+      #   - tidyr
+      #   - readr
+      #   - minqa
+      #   - mvtnorm
+      #   - nloptr
+      #   - SparseM
+      #   - lme4
+      #   - httpuv
+      #   - markdown
+      #   - sem
+      #   - readxl
+      #   - openxlsx
+      #   - pander
 
         # "These installs will be faster than source installs, but may not always be the most recent version"
         # https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
