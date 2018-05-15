@@ -66,11 +66,11 @@ matrix:
 
 addons:
   apt:
+    update: true     # Experimenting to see if it fixes https://travis-ci.org/IndrajeetPatil/ggstatsplot/builds/379394919#L397-L399
     packages:
     - libcurl4-openssl-dev
     - libxml2-dev
     - libgsl0-dev
-
 # repos:
   # CRAN: https://cloud.r-project.org
   # ropensci: http://packages.ropensci.org
