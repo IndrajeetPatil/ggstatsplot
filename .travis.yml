@@ -73,7 +73,7 @@ addons:
 
 repos:
   CRAN: https://cloud.r-project.org
-  ropensci: http://packages.ropensci.org
+  # ropensci: http://packages.ropensci.org
 
 # work around temporary travis + R 3.5 bug
 r_packages: #devtools
