@@ -71,8 +71,8 @@ addons:
     - libxml2-dev
     - libgsl0-dev
 
-repos:
-  CRAN: https://cloud.r-project.org
+# repos:
+  # CRAN: https://cloud.r-project.org
   # ropensci: http://packages.ropensci.org
 
 # work around temporary travis + R 3.5 bug
