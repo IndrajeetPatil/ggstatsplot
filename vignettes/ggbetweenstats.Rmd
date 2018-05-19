@@ -1,0 +1,168 @@
+---
+title: "ggbetweenstats"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{ggbetweenstats}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The function `ggstatsplot::ggbetweenstats` is designed with a publication-ready
+comparison plot in mind, with all statistical details included in the plot itself. We will see
+examples of how to use this function in this vignette.
+
+To begin with, here are some instances where you would want to use
+`ggbetweenstats`-
+
+  - to check if a continuous (numeric) variable differs between two groups or conditions
+  - to check for outliers
+
+**Note before**: The following demo uses the pipe operator (`%>%`), so in case
+you are not familiar with this operator, here is a good explanation:
+<http://r4ds.had.co.nz/pipes.html>
+
+## Group comparison with `ggbetweenstats`
+
+To illustrate how this function can be used, we will use the `gapminder`
+dataset. This dataset (available in eponymous
+[package](https://CRAN.R-project.org/package=gapminder) on CRAN) provides values
+for life expectancy, GDP per capita, and population, every five years, from 1952
+to 2007, for each of 142 countries and was collected by the Gapminder
+Foundation. Let's have a look at the data-
+
+```{r gapminder, warning = FALSE, message = FALSE}
+library(gapminder)
+library(dplyr)
+
+dplyr::glimpse(x = gapminder::gapminder)
+```
+
+Suppose the first thing we want to check is the distribution of life expectancy
+worldwide (across continents, i.e.) in 2007. That is, we want to see if the
+average (across countries in a given continent) life expectancy differs
+significantly across five continents.
+
+The simplest form of the function call is-
+```{r ggbetweenstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+library(ggstatsplot)
+library(gapminder)
+
+ggstatsplot::ggbetweenstats(
+  data = dplyr::filter(.data = gapminder, year == 2007),
+  x = continent,
+  y = lifeExp
+)
+```
+
+Note that the test automatically figures out whether independent t-test is to be
+run or an ANOVA based on the number of levels in the grouping variable.
+Additionally, the function output a `ggplot` object which means that it can be
+further modified.
+
+We will see how this basic call can be further modified with additional arguments-
+
+```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 7}
+library(ggstatsplot)
+library(gapminder)
+
+ggstatsplot::ggbetweenstats(
+  data = dplyr::filter(.data = gapminder, year == 2007),      # dataframe
+  x = continent,                                              # grouping/independent variable
+  y = lifeExp,                                                # dependent variables
+  plot.type = "boxviolin",                                    # type of plot
+  type = "parametric",                                        # type of statistical test  
+  effsize.type = "biased",                                    # type of effect size
+  outlier.tagging = TRUE,                                     # whether outliers should be flagged
+  outlier.coef = 1.5,                                         # coefficient for Tukey's rule
+  outlier.label = country,                                    # label to attacht to outlier values
+  outlier.label.color = "red",                                # outlier point label color
+  mean.plotting = TRUE,                                       # whether the mean is to be displayed
+  mean.color = "darkblue",                                    # color for mean
+  messages = FALSE,                                           # turn off messages
+  title = "Comparison of life expectancy across continents (Year: 2007)",
+  caption = "Source: Gapminder Foundation"
+) +                                                           # modifying the plot further
+  ggplot2::scale_y_continuous(limits = c(35,85), breaks = seq(from = 35, to = 85, by = 5))
+```
+
+
+The `type` (of test) argument also accepts the following abbreviations: `"p"`
+(for *parametric*), `"np"` (for *nonparametric*), `"r"` (for *robust*).
+Additionally, the type of plot to be displayed can also be modified (`"box"`,
+`"violin"`, or `"boxviolin"`). Let's produce all of these variations in the plot
+below.
+
+For example,
+```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 7}
+library(ggstatsplot)
+library(gapminder)
+
+# parametric ANOVA and box plot
+p1 <- ggstatsplot::ggbetweenstats(
+  data = dplyr::filter(.data = gapminder, year == 2007),
+  x = continent,
+  y = lifeExp,
+  plot.type = "box",
+  type = "p",
+  messages = FALSE
+)
+
+# Kruskal-Wallis test (nonparametric ANOVA) and violin plot
+p2 <- ggstatsplot::ggbetweenstats(
+  data = dplyr::filter(.data = gapminder, year == 2007),
+  x = continent,
+  y = lifeExp,
+  plot.type = "violin",
+  type = "np",
+  messages = FALSE
+)
+
+# robust ANOVA and boxviolin plot
+p3 <- ggstatsplot::ggbetweenstats(
+  data = dplyr::filter(.data = gapminder, year == 2007),
+  x = continent,
+  y = lifeExp,
+  plot.type = "boxviolin",
+  type = "r",
+  messages = FALSE
+)
+
+# combining the individual plots into a single plot
+ggstatsplot::combine_plots(
+  p1, p2, p3, 
+  nrow = 3, 
+  ncol = 1, 
+  labels = c("(a)", "(b)", "(c)"),
+  title.text = "Comparison of life expectancy across continents (Year: 2007)",
+  caption.text = "Note: Comparing results from parametric, non-parametric, and robust tests",
+  title.size = 14,
+  caption.size = 12
+)
+```
+
+## Within-subjects designs?
+
+Variant of this function `ggwithinstats` is currently under work. You *can*
+still use this function just to prepare the **plot** for exploratory data
+analysis, but the statistical details displayed in the subtitle will be
+incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
+
+## Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

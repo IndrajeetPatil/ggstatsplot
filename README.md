@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--13-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--19-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -185,63 +185,18 @@ ggstatsplot::ggbetweenstats(
 <img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
 
 The `type` (of test) argument also accepts the following abbreviations:
-“p” (for *parametric*), “np” (for *nonparametric*), “r” (for
-*robust*), in addition to the type of plot to be used.
-
-For example,
-
-``` r
-library(ggplot2)
-library(cowplot)
-library(gapminder)
-
-# parametric ANOVA
-p1 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
-  x = continent,
-  y = lifeExp,
-  plot.type = "box",
-  type = "p",
-  messages = FALSE
-)
-
-# Kruskal-Wallis test (nonparametric ANOVA)
-p2 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
-  x = continent,
-  y = lifeExp,
-  plot.type = "violin",
-  type = "np",
-  messages = FALSE
-)
-#> Note:  No effect size available for Kruskal-Wallis Rank Sum Test.
-
-# robust ANOVA
-p3 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
-  x = continent,
-  y = lifeExp,
-  plot.type = "boxviolin",
-  type = "r",
-  messages = FALSE
-)
-
-# combining the individual plots into a single plot
-cowplot::plot_grid(
-  p1, p2, p3, 
-  nrow = 3, 
-  ncol = 1, 
-  labels = c("(a)", "(b)", "(c)")
-)
-```
-
-<img src="man/figures/README-ggbetweenstats3-1.png" width="100%" />
+`"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"` (for
+*robust*). Additionally, the type of plot to be displayed can also be
+modified (`"box"`, `"violin"`, or `"boxviolin"`).
 
 Variant of this function `ggwithinstats` is currently under work. You
 *can* still use this function just to prepare the **plot** for
-exploratort data analysis, but the statistical details will be
-incorrect. You can remove them by adding `ggplot2::labs(subtitle =
-NULL)` to your code which will remove the subtitle containing stats.
+exploratory data analysis, but the statistical details displayed in the
+subtitle will be incorrect. You can remove them by adding `+
+ggplot2::labs(subtitle = NULL)`.
+
+For more, see the `gghistostats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
   - `ggscatterstats`
 
@@ -291,8 +246,8 @@ ggstatsplot::ggscatterstats(
 <img src="man/figures/README-ggscatterstats2-1.png" width="100%" />
 
 The `type` (of test) argument also accepts the following abbreviations:
-“p” (for *parametric*/pearson’s), “np” (for *nonparametric*/spearman),
-“r” (for *robust*).
+`"p"` (for *parametric*/pearson’s), `"np"` (for
+*nonparametric*/spearman), `"r"` (for *robust*).
 
 **Important**: In contrast to all other functions in this package, the
 `ggscatterstats` function returns object that is **not** further
@@ -411,7 +366,7 @@ ggstatsplot::gghistostats(
 <img src="man/figures/README-gghistostats1-1.png" width="100%" />
 
 The `type` (of test) argument also accepts the following abbreviations:
-“p” (for *parametric*) or “np” (for *nonparametric*) or “bf” (for
+`"p"` (for *parametric*) or `"np"` (for *nonparametric*) or `"bf"` (for
 *Bayes Factor*).
 
 ``` r

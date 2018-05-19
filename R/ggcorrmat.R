@@ -157,7 +157,7 @@ ggcorrmat <-
            hc.order = FALSE,
            hc.method = "complete",
            lab = TRUE,
-           colors = c("#E69F00", "#56B4E9", "#009E73"),
+           colors = c("#E69F00", "white", "#009E73"),
            outline.color = "black",
            ggtheme = ggplot2::theme_gray,
            ggstatsplot.theme = TRUE,
@@ -165,11 +165,11 @@ ggcorrmat <-
            subtitle = NULL,
            caption = NULL,
            caption.default = TRUE,
-           lab.col = "#F0E442",
+           lab.col = "black",
            lab.size = 5,
            insig = "pch",
            pch = 4,
-           pch.col = "#000000",
+           pch.col = "black",
            pch.cex = 11,
            tl.cex = 12,
            tl.col = "black",
@@ -312,6 +312,22 @@ ggcorrmat <-
         if (isTRUE(ggstatsplot.theme)) {
           plot <- plot +
             theme_corrmat()
+        }
+
+        if (tl.srt >= 45 & tl.srt <= 75) {
+          # even if ggstatsplot theme is not overlaid, still make sure there is
+          # enough distance between the axis and the label
+          plot <- plot +
+            ggplot2::theme(
+            axis.text.x = ggplot2::element_text(
+            margin = ggplot2::margin(
+              t = 12,
+              r = 0,
+              b = 0,
+              l = 0,
+              unit = "pt"
+            )
+          ))
         }
 
         # creating proper spacing between the legend.title and the colorbar

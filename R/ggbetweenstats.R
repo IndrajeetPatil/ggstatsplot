@@ -2,8 +2,9 @@
 #' @title violin plots for group or condition comparisons
 #' @name ggbetweenstats
 #' @aliases ggbetweenstats
-#' @description Violin plots for between-subjects designs with statistical
-#'   details included in the plot as a subtitle.
+#' @description A combination of box and violin plots along with jittered data
+#'   points for between-subjects designs with statistical details included in
+#'   the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
@@ -41,17 +42,22 @@
 #'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifiying the
 #'   type of line to draw box plots (Default: `"solid"`). Alternatively, the
 #'   numbers `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
-#' @param outlier.color Default aesthetics for outliers.
+#' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
 #' @param outlier.label Label to put on the outliers that have been tagged.
+#' @param outlier.label.color Color for the label to to put on the outliers that
+#'   have been tagged (Default: `"black"`).
 #' @param outlier.coef Coefficient for outlier detection using Tukey's method.
 #'   With Tukey’s method, outliers are below (1st Quartile) or above (3rd
 #'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
 #'   `1.5`).
 #' @param mean.plotting Decides whether mean is to be highlighted and its value
 #'   to be displayed (Default: `TRUE`).
-#' @param mean.color Color for the data point corresponding to mean.
+#' @param mean.color Color for the data point corresponding to mean (Default:
+#'   `"darkred"`).
+#' @param mean.size Point size for the data point corresponding to mean
+#'   (Default: `5`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #'
@@ -138,9 +144,11 @@ ggbetweenstats <- function(data = NULL,
                            linetype = "solid",
                            outlier.tagging = NULL,
                            outlier.label = NULL,
+                           outlier.label.color = "black",
                            outlier.color = "black",
                            outlier.coef = 1.5,
                            mean.plotting = TRUE,
+                           mean.size = 5,
                            mean.color = "darkred",
                            messages = TRUE) {
   # if data is not available then don't display any messages
@@ -270,6 +278,7 @@ ggbetweenstats <- function(data = NULL,
           width = 0.3,
           alpha = 0.2,
           fill = "white",
+          outlier.color = outlier.color,
           outlier.shape = 16,
           outlier.size = 3,
           outlier.alpha = 0.7,
@@ -317,8 +326,8 @@ ggbetweenstats <- function(data = NULL,
       title = title,
       caption = caption
     ) +
-    ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-    ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y))) +
+    #ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
+    #ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y))) +
     ggplot2::scale_fill_brewer(palette = "Dark2") +
     ggplot2::scale_color_brewer(palette = "Dark2")
 
@@ -380,8 +389,6 @@ ggbetweenstats <- function(data = NULL,
                   " = ",
                   pvalue,
                   ", p",
-                  #italic("p"),
-                  #italic(omega) ^ 2,
                   omega ^ 2,
                   " = ",
                   effsize,
@@ -400,9 +407,6 @@ ggbetweenstats <- function(data = NULL,
                 effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.omegasq[[1]], k),
                 LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
                 UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
-                # effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$es[[1]], k),
-                # LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[1]], k),
-                # UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$output$ci[[2]], k)
               )
             )
           }
@@ -424,8 +428,8 @@ ggbetweenstats <- function(data = NULL,
 
         # aov_stat2 object is *only* to compute partial eta-squared since there is no straightforward to get partial
         # eta-squared for Welch's ANOVA and its confidence interval
-        aov_stat2 <- summary(stats::aov(formula = y ~ x,
-                                        data = data))
+        # aov_stat2 <- summary(stats::aov(formula = y ~ x,
+        #                                 data = data))
 
         # getting confidence interval for partial eta-squared
         aov_effsize_ci <- sjstats::eta_sq(
@@ -459,8 +463,6 @@ ggbetweenstats <- function(data = NULL,
                   " = ",
                   pvalue,
                   ", p",
-                  #italic("p"),
-                  #italic(eta) ^ 2,
                   eta ^ 2,
                   " = ",
                   effsize,
@@ -479,9 +481,6 @@ ggbetweenstats <- function(data = NULL,
                 effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.etasq[[1]], k),
                 LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
                 UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
-                # effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(aov_effsize$main)$etaSqP[[1]], k),
-                # LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$LL[[1]], k),
-                # UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$UL[[1]], k)
               )
             )
           }
@@ -547,10 +546,13 @@ ggbetweenstats <- function(data = NULL,
         ggplot2::labs(subtitle = rsubtitle_kw(kw_stat = kw_stat))
 
       # letting the user know that this test doesn't have agreed upon effect size
-      base::message(cat(
-        crayon::red("Note: "),
-        crayon::blue("No effect size available for Kruskal-Wallis Rank Sum Test.")
-      ))
+      if (isTRUE(messages)) {
+        base::message(cat(
+          crayon::red("Note: "),
+          crayon::blue("No effect size available for Kruskal-Wallis Rank Sum Test.")
+        ))
+      }
+
     } else if (type == "robust" || type == "r") {
       ######################################### robust ANOVA ############################################################
 
@@ -922,7 +924,7 @@ ggbetweenstats <- function(data = NULL,
         ggrepel::geom_label_repel(
           mapping = ggplot2::aes(label = data_df$outlier),
           fontface = "bold",
-          color = "black",
+          color = outlier.label.color,
           max.iter = 3e2,
           box.padding = 0.35,
           point.padding = 0.5,
@@ -938,7 +940,7 @@ ggbetweenstats <- function(data = NULL,
         ggrepel::geom_label_repel(
           mapping = ggplot2::aes(label = data_df$outlier),
           fontface = "bold",
-          color = "black",
+          color = outlier.label.color,
           max.iter = 3e2,
           box.padding = 0.35,
           point.padding = 0.5,
@@ -950,14 +952,15 @@ ggbetweenstats <- function(data = NULL,
   }
 
   ####################################################### mean plotting ################################################
+
+  # highlight the mean of each group
   if (isTRUE(mean.plotting)) {
-    # highlight the mean of each group
     plot <- plot +
       ggplot2::stat_summary(
         fun.y = mean,
         geom = "point",
         color = mean.color,
-        size = 5,
+        size =  mean.size,
         na.rm = TRUE
       )
 
@@ -1038,9 +1041,6 @@ ggbetweenstats <- function(data = NULL,
       )
     ))
   }
-
-  # adding colorbind friendly palette to the final plot
-  #plot <- cbpalette_add(plot = plot)
 
   # return the final plot
   return(plot)

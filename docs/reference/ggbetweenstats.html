@@ -30,8 +30,9 @@
 
 <meta property="og:title" content="violin plots for group or condition comparisons — ggbetweenstats" />
 
-<meta property="og:description" content="Violin plots for between-subjects designs with statistical
-details included in the plot as a subtitle." />
+<meta property="og:description" content="A combination of box and violin plots along with jittered data
+points for between-subjects designs with statistical details included in
+the plot as a subtitle." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -85,6 +86,9 @@ details included in the plot as a subtitle." />
       <a href="../articles/combine_plots.html">combine_plots</a>
     </li>
     <li>
+      <a href="../articles/ggbetweenstats.html">ggbetweenstats</a>
+    </li>
+    <li>
       <a href="../articles/ggcorrmat.html">ggcorrmat</a>
     </li>
     <li>
@@ -121,8 +125,9 @@ details included in the plot as a subtitle." />
 
     <div class="ref-description">
     
-    <p>Violin plots for between-subjects designs with statistical
-details included in the plot as a subtitle.</p>
+    <p>A combination of box and violin plots along with jittered data
+points for between-subjects designs with statistical details included in
+the plot as a subtitle.</p>
     
     </div>
 
@@ -130,9 +135,10 @@ details included in the plot as a subtitle.</p>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,8 +236,13 @@ numbers <code>0</code> to <code>6</code> can be used (<code>0</code> for "blank"
       <td><p>Label to put on the outliers that have been tagged.</p></td>
     </tr>
     <tr>
+      <th>outlier.label.color</th>
+      <td><p>Color for the label to to put on the outliers that
+have been tagged (Default: <code>"black"</code>).</p></td>
+    </tr>
+    <tr>
       <th>outlier.color</th>
-      <td><p>Default aesthetics for outliers.</p></td>
+      <td><p>Default aesthetics for outliers (Default: <code>"black"</code>).</p></td>
     </tr>
     <tr>
       <th>outlier.coef</th>
@@ -246,8 +257,14 @@ Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Defaul
 to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
+      <th>mean.size</th>
+      <td><p>Point size for the data point corresponding to mean
+(Default: <code>5</code>).</p></td>
+    </tr>
+    <tr>
       <th>mean.color</th>
-      <td><p>Color for the data point corresponding to mean.</p></td>
+      <td><p>Color for the data point corresponding to mean (Default:
+<code>"darkred"</code>).</p></td>
     </tr>
     <tr>
       <th>messages</th>

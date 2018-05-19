@@ -1,8 +1,9 @@
 pandoc: 2.1.1
-pkgdown: 1.0.0
-pkgdown_sha: ~
+pkgdown: 1.0.0.9000
+pkgdown_sha: 5eeb2aab0b68924bcde72ded0f7326070eaa0fa0
 articles:
   combine_plots: combine_plots.html
+  ggbetweenstats: ggbetweenstats.html
   ggcorrmat: ggcorrmat.html
   gghistostats: gghistostats.html
   theme_mprl: theme_mprl.html

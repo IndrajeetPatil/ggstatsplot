@@ -8,9 +8,10 @@ ggbetweenstats(data = NULL, x, y, plot.type = "boxviolin",
   type = "parametric", effsize.type = "unbiased", xlab = NULL,
   ylab = NULL, caption = NULL, title = NULL, k = 3, var.equal = FALSE,
   nboot = 100, notch = FALSE, notchwidth = 0.5, linetype = "solid",
-  outlier.tagging = NULL, outlier.label = NULL, outlier.color = "black",
-  outlier.coef = 1.5, mean.plotting = TRUE, mean.color = "darkred",
-  messages = TRUE)
+  outlier.tagging = NULL, outlier.label = NULL,
+  outlier.label.color = "black", outlier.color = "black",
+  outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
+  mean.color = "darkred", messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -69,7 +70,10 @@ numbers \code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "so
 
 \item{outlier.label}{Label to put on the outliers that have been tagged.}
 
-\item{outlier.color}{Default aesthetics for outliers.}
+\item{outlier.label.color}{Color for the label to to put on the outliers that
+have been tagged (Default: \code{"black"}).}
+
+\item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
 
 \item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
 With Tukey’s method, outliers are below (1st Quartile) or above (3rd
@@ -79,14 +83,19 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \item{mean.plotting}{Decides whether mean is to be highlighted and its value
 to be displayed (Default: \code{TRUE}).}
 
-\item{mean.color}{Color for the data point corresponding to mean.}
+\item{mean.size}{Point size for the data point corresponding to mean
+(Default: \code{5}).}
+
+\item{mean.color}{Color for the data point corresponding to mean (Default:
+\code{"darkred"}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 }
 \description{
-Violin plots for between-subjects designs with statistical
-details included in the plot as a subtitle.
+A combination of box and violin plots along with jittered data
+points for between-subjects designs with statistical details included in
+the plot as a subtitle.
 }
 \examples{
 

@@ -85,7 +85,7 @@ legend_title_margin <- function(plot,
 
   # remove the original title
   leg$grobs <- leg$grobs[-4]
-  leg$layout <- leg$layout[-4,]
+  leg$layout <- leg$layout[-4, ]
 
   # put the legend back into the plot
   g$grobs[[index]][[1]][[1]] <- leg

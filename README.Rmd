@@ -168,59 +168,18 @@ ggstatsplot::ggbetweenstats(
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
 ```
 
-The `type` (of test) argument also accepts the following abbreviations: "p" (for
-*parametric*), "np" (for *nonparametric*), "r" (for *robust*), in addition to the type of plot to be used.
-
-For example,
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 6}
-library(ggplot2)
-library(cowplot)
-library(gapminder)
-
-# parametric ANOVA
-p1 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
-  x = continent,
-  y = lifeExp,
-  plot.type = "box",
-  type = "p",
-  messages = FALSE
-)
-
-# Kruskal-Wallis test (nonparametric ANOVA)
-p2 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
-  x = continent,
-  y = lifeExp,
-  plot.type = "violin",
-  type = "np",
-  messages = FALSE
-)
-
-# robust ANOVA
-p3 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
-  x = continent,
-  y = lifeExp,
-  plot.type = "boxviolin",
-  type = "r",
-  messages = FALSE
-)
-
-# combining the individual plots into a single plot
-cowplot::plot_grid(
-  p1, p2, p3, 
-  nrow = 3, 
-  ncol = 1, 
-  labels = c("(a)", "(b)", "(c)")
-)
-```
+The `type` (of test) argument also accepts the following abbreviations: `"p"`
+(for *parametric*), `"np"` (for *nonparametric*), `"r"` (for *robust*).
+Additionally, the type of plot to be displayed can also be modified (`"box"`,
+`"violin"`, or `"boxviolin"`).
 
 Variant of this function `ggwithinstats` is currently under work. You *can*
-still use this function just to prepare the **plot** for exploratort data
-analysis, but the statistical details will be incorrect. You can remove them by
-adding `ggplot2::labs(subtitle = NULL)` to your code which will remove the
-subtitle containing stats.
+still use this function just to prepare the **plot** for exploratory data
+analysis, but the statistical details displayed in the subtitle will be
+incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
+
+For more, see the `gghistostats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
 * `ggscatterstats`
 
@@ -263,8 +222,8 @@ ggstatsplot::ggscatterstats(
 ) 
 ```
 
-The `type` (of test) argument also accepts the following abbreviations:
-"p" (for *parametric*/pearson's), "np" (for *nonparametric*/spearman), "r" (for
+The `type` (of test) argument also accepts the following abbreviations: `"p"`
+(for *parametric*/pearson's), `"np"` (for *nonparametric*/spearman), `"r"` (for
 *robust*).
 
 **Important**: 
@@ -281,7 +240,6 @@ order to get a `ggscatterstats()` to show up in an these contexts, you need
 to save the ggscatterstats plot as a variable in one code chunk, and
 explicitly print it using the `grid` package in another chunk, like
 this:
-
 
 ```{r, eval = FALSE}
 # include the following code in your code chunk inside R Notebook or Markdown
@@ -376,8 +334,8 @@ ggstatsplot::gghistostats(
 ) 
 ```
 
-The `type` (of test) argument also accepts the following abbreviations: "p" (for
-*parametric*) or "np" (for *nonparametric*) or "bf" (for *Bayes Factor*). 
+The `type` (of test) argument also accepts the following abbreviations: `"p"` (for
+*parametric*) or `"np"` (for *nonparametric*) or `"bf"` (for *Bayes Factor*). 
 
 ```{r gghistostats2, message = FALSE, warning = FALSE}
 ggstatsplot::gghistostats(
