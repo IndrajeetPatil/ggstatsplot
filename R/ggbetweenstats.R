@@ -326,7 +326,7 @@ ggbetweenstats <- function(data = NULL,
       title = title,
       caption = caption
     ) +
-    #ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
+    ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
     #ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y))) +
     ggplot2::scale_fill_brewer(palette = "Dark2") +
     ggplot2::scale_color_brewer(palette = "Dark2")

@@ -4,7 +4,7 @@
 
   <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-  ```{r, echo = FALSE}
+```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   dpi = 300,
@@ -178,7 +178,7 @@ still use this function just to prepare the **plot** for exploratory data
 analysis, but the statistical details displayed in the subtitle will be
 incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
 
-For more, see the `gghistostats` vignette:
+For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
 * `ggscatterstats`
@@ -241,7 +241,7 @@ to save the ggscatterstats plot as a variable in one code chunk, and
 explicitly print it using the `grid` package in another chunk, like
 this:
 
-```{r, eval = FALSE}
+```{r ggscatterstats3, eval = FALSE}
 # include the following code in your code chunk inside R Notebook or Markdown
 grid::grid.newpage()
 grid::grid.draw(

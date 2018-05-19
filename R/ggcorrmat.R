@@ -65,6 +65,10 @@
 #'   (applicable only when `lab = TRUE`).
 #' @param lab.size Size to be used for the correlation coefficient labels
 #'   (applicable only when `lab = TRUE`).
+#' @param axis.text.x.margin.t,axis.text.x.margin.r,axis.text.x.margin.b,axis.text.x.margin.l
+#'   Margins between x-axis and the variable name texts (t: top, r: right, b:
+#'   bottom, l:left) in case the names are slanted, i.e. when the tl.srt is
+#'   between `45` and `75` (Defaults: `12`, `0`, `0`, `0`, resp.).
 #' @param insig Character used to show specialized insignificant correlation
 #'   coefficients (`"pch"` (default) or `"blank"`). If `"blank"`, the
 #'   corresponding glyphs will be removed; if "pch" is used, characters (see
@@ -174,6 +178,10 @@ ggcorrmat <-
            tl.cex = 12,
            tl.col = "black",
            tl.srt = 45,
+           axis.text.x.margin.t = 12,
+           axis.text.x.margin.r = 0,
+           axis.text.x.margin.b = 0,
+           axis.text.x.margin.l = 0,
            legend.title.margin = TRUE,
            t.margin = unit(0, "mm"),
            b.margin = unit(3, "mm")) {
@@ -321,10 +329,10 @@ ggcorrmat <-
             ggplot2::theme(
             axis.text.x = ggplot2::element_text(
             margin = ggplot2::margin(
-              t = 12,
-              r = 0,
-              b = 0,
-              l = 0,
+              t = axis.text.x.margin.t,
+              r = axis.text.x.margin.r,
+              b = axis.text.x.margin.b,
+              l = axis.text.x.margin.l,
               unit = "pt"
             )
           ))

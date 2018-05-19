@@ -195,7 +195,7 @@ exploratory data analysis, but the statistical details displayed in the
 subtitle will be incorrect. You can remove them by adding `+
 ggplot2::labs(subtitle = NULL)`.
 
-For more, see the `gghistostats` vignette:
+For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
   - `ggscatterstats`
