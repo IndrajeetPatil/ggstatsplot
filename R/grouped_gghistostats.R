@@ -8,6 +8,8 @@
 #' @author Indrajeet Patil
 #'
 #' @param grouping.var Grouping variable.
+#' @param title.prefix Character specifying the prefix text for the fixed plot
+#'   title (name of each factor level) (Default: `"Group"`).
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
 #' @param x A numeric variable.
@@ -17,8 +19,6 @@
 #'   integrate to 1, or "`proportion`", which shows relative frequencies of
 #'   observations in each bin.
 #' @param xlab Label for `x` axis variable.
-#' @param title.prefix The prefix text for the fixed plot title (name of each
-#'   factor level).
 #' @param subtitle The text for the plot subtitle *if* you don't want results
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
@@ -111,7 +111,7 @@ grouped_gghistostats <- function(grouping.var,
                                  x,
                                  bar.measure = "count",
                                  xlab = NULL,
-                                 title.prefix = NULL,
+                                 title.prefix = "Group",
                                  subtitle = NULL,
                                  caption = NULL,
                                  type = "parametric",
@@ -149,6 +149,12 @@ grouped_gghistostats <- function(grouping.var,
 
   # creating a nested dataframe
   df %<>%
+    dplyr::mutate_if(
+      .tbl = .,
+      .predicate = is.factor,
+      .funs = ~ base::droplevels(.)
+    ) %>%
+    dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
 
@@ -165,7 +171,7 @@ grouped_gghistostats <- function(grouping.var,
             x = !!rlang::enquo(x),
             bar.measure = bar.measure,
             xlab = xlab,
-            title = glue::glue(if(!is.null(title.prefix)) title.prefix, "{as.character(.$title.text)}"),
+            title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
             subtitle = subtitle,
             caption = caption,
             type = type,

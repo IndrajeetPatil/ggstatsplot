@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--19-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--20-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -117,6 +117,7 @@ command-
 ?ggcorrmat
 ?combine_plots
 ?grouped_gghistostats
+?grouped_ggpiestats
 ```
 
 ## Usage
@@ -341,7 +342,8 @@ ggstatsplot::ggpiestats(
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />
 
-For more, see the `ggpiestats` vignette:
+For more, including information about the variant of this function
+`grouped_ggpiestats`, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html>
 
   - `gghistostats`
@@ -418,7 +420,8 @@ ggstatsplot::gghistostats(
 
 <img src="man/figures/README-gghistostats3-1.png" width="100%" />
 
-For more, see the `gghistostats` vignette:
+For more, including information about the variant of this function
+`grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html>
 
   - `ggcorrmat`

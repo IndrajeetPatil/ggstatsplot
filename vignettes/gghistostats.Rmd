@@ -228,7 +228,7 @@ ggstatsplot::grouped_gghistostats(
   data = .,                                     # `.` is placeholder for data plugged by %>%
   x = lifeExp,
   xlab = "Life expectancy",
-  title.prefix = "Continent: ",                 # prefix for the fixed title
+  title.prefix = "Continent",                 # prefix for the fixed title
   type = "p",                                   # parametric test
   test.value = 48,                              # test value against which sample mean is to be compared
   test.value.line = TRUE,                       # show a vertical line at `test.value`
@@ -274,7 +274,7 @@ continent_list <- gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007) %>%
   base::split(x = ., f = .$continent, drop = TRUE)
 
-# this created a list with 5 elements, each for one contient
+# this created a list with 5 elements, one for each continent
 str(continent_list)
 
 # running function on every element of this list note that if you want the same

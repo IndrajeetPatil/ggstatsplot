@@ -90,7 +90,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-19</h4>
+            <h4 class="date">2018-05-20</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -248,7 +248,7 @@
 <a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">data =</span> .,                                     <span class="co"># `.` is placeholder for data plugged by %&gt;%</span></a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">x =</span> lifeExp,</a>
 <a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="dt">title.prefix =</span> <span class="st">"Continent: "</span>,                 <span class="co"># prefix for the fixed title</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="dt">title.prefix =</span> <span class="st">"Continent"</span>,                 <span class="co"># prefix for the fixed title</span></a>
 <a class="sourceLine" id="cb8-9" data-line-number="9">  <span class="dt">type =</span> <span class="st">"p"</span>,                                   <span class="co"># parametric test</span></a>
 <a class="sourceLine" id="cb8-10" data-line-number="10">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
 <a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
@@ -276,7 +276,7 @@
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>continent, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co"># this created a list with 5 elements, each for one contient</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co"># this created a list with 5 elements, one for each continent</span></a>
 <a class="sourceLine" id="cb9-7" data-line-number="7"><span class="kw">str</span>(continent_list)</a>
 <a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt; List of 5</span></a>
 <a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt;  $ Africa  :Classes 'tbl_df', 'tbl' and 'data.frame':    52 obs. of  6 variables:</span></a>

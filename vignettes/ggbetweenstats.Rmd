@@ -158,7 +158,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Within-subjects designs?
+## Within-subjects designs
 
 Variant of this function `ggwithinstats` is currently under work. You *can*
 still use this function just to prepare the **plot** for exploratory data

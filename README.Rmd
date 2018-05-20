@@ -112,6 +112,7 @@ Documentation for any function can be accessed with the standard `help` command-
 ?ggcorrmat
 ?combine_plots
 ?grouped_gghistostats
+?grouped_ggpiestats
 ```
 
 ## Usage
@@ -311,7 +312,8 @@ ggstatsplot::ggpiestats(
 ) 
 ```
 
-For more, see the `ggpiestats` vignette:
+For more, including information about the variant of this function
+`grouped_ggpiestats`, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html>
 
 * `gghistostats`
@@ -319,7 +321,6 @@ For more, see the `ggpiestats` vignette:
 In case you would like to see the distribution of one variable and check if it
 is significantly different from a specified value with a one sample test, this
 function will let you do that.
-
 
 ```{r gghistostats1, message = FALSE, warning = FALSE}
 library(datasets)
@@ -381,7 +382,8 @@ ggstatsplot::gghistostats(
 )
 ```
 
-For more, see the `gghistostats` vignette:
+For more, including information about the variant of this function
+`grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html>
 
 * `ggcorrmat`
