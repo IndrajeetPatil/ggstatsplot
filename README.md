@@ -341,6 +341,9 @@ ggstatsplot::ggpiestats(
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />
 
+For more, see the `ggpiestats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html>
+
   - `gghistostats`
 
 In case you would like to see the distribution of one variable and check

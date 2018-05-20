@@ -311,6 +311,9 @@ ggstatsplot::ggpiestats(
 ) 
 ```
 
+For more, see the `ggpiestats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html>
+
 * `gghistostats`
 
 In case you would like to see the distribution of one variable and check if it

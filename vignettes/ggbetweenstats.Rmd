@@ -24,13 +24,14 @@ knitr::opts_chunk$set(
 ```
 
 The function `ggstatsplot::ggbetweenstats` is designed with a publication-ready
-comparison plot in mind, with all statistical details included in the plot itself. We will see
-examples of how to use this function in this vignette.
+comparison plot in mind, with all statistical details included in the plot
+itself. We will see examples of how to use this function in this vignette.
 
 To begin with, here are some instances where you would want to use
 `ggbetweenstats`-
 
-  - to check if a continuous (numeric) variable differs between two groups or conditions
+  - to check if a continuous (numeric) variable differs between two groups or
+    conditions
   - to check for outliers
 
 **Note before**: The following demo uses the pipe operator (`%>%`), so in case
@@ -75,7 +76,8 @@ run or an ANOVA based on the number of levels in the grouping variable.
 Additionally, the function output a `ggplot` object which means that it can be
 further modified.
 
-We will see how this basic call can be further modified with additional arguments-
+We will see how this basic call can be further modified with additional
+arguments-
 
 ```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 7}
 library(ggstatsplot)

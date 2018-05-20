@@ -1,0 +1,143 @@
+---
+title: "ggpiestats"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{ggpiestats}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+The function `ggstatsplot::ggpiestats` can be used to prepare pie charts to
+summarize the statistical relationship between two categorical variables. We
+will see examples of how to use this function in this vignette.
+
+To begin with, here are some instances where you would want to use `ggpiestats`-
+
+  - to see if the frequency distribution of two categorial variables are
+    independent of each other using the contingency table analysis
+  - to check if the proportion of observations at each level of a categorial
+    variable is equal
+
+**Note before**: The following demo uses the pipe operator (`%>%`), so in case
+you are not familiar with this operator, here is a good explanation:
+<http://r4ds.had.co.nz/pipes.html>
+
+## Statistical independence of categorical variables with `ggpiestats`
+
+To demonstrate how `ggpiestats` can be used to we will be using the `Titanic`
+dataset that is included in the `datasets` library. Titanic Passenger Survival
+Data Set provides information "on the fate of passengers on the fatal maiden
+voyage of the ocean liner *Titanic*, summarized according to economic status
+(class), sex, age, and survival." 
+
+Let's have a look at the structure of this table and also convert it into a tibble while we are at it.
+
+```{r titanic1, warning = FALSE, message = FALSE}
+library(datasets)
+library(dplyr)
+
+# looking at the table
+dplyr::glimpse(x = Titanic)
+
+# converting to tibble
+tibble::as_data_frame(x = Titanic)
+```
+
+Note that the last column in this dataframe contains count information, which
+means we will have to modify this dataframe to reflect this count structure.
+
+```{r titanic2, warning = FALSE, message = FALSE}
+
+# a custom function to repeat dataframe `rep` number of times, which is going to
+# be count data for us
+rep_df <- function(df, rep) {
+  df[rep(1:nrow(df), rep), ]
+}
+
+# converting dataframe to full length based on count information
+Titanic_full <- tibble::as_data_frame(datasets::Titanic) %>%
+  tibble::rowid_to_column(df = ., var = "id") %>%
+  dplyr::mutate_at(
+    .tbl = .,
+    .vars = dplyr::vars("id"),
+    .funs = ~ as.factor(.)
+  ) %>%
+  base::split(x = ., f = .$id) %>%
+  purrr::map_dfr(.x = ., .f = ~ rep_df(df = ., rep = .$n)) %>%
+  dplyr::mutate_at(
+    .tbl = .,
+    .vars = dplyr::vars("id"),
+    .funs = ~ as.numeric(as.character(.))
+  ) %>%
+  dplyr::arrange(.data = ., id)
+
+# looking at the final dataset
+dplyr::glimpse(Titanic_full)
+```
+
+Notice that our final dataset contains information about over 2000 passangers.
+Now we can start asking interesting question from this dataset.
+
+First, let's see if the proportion of people who survived was different between
+sexes using `ggpiestats`.
+
+```{r ggpiestats1, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
+library(ggstatsplot)
+
+ggstatsplot::ggpiestats(data = Titanic_full,
+                        condition = Sex,
+                        main = Survived) 
+```
+
+A number of arguments can be modified to change the appearance of this plot:
+
+```{r ggpiestats2, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
+library(ggstatsplot)
+
+ggstatsplot::ggpiestats(
+  data = Titanic_full,                          # dataframe
+  main = Survived,                              # rows in the contingency table
+  condition = Sex,                              # columns in the contingecy table
+  title = "Passengar survival by gender",       # title for the entire plot
+  caption = "Source: Titanic survival dataset", # caption for the entire plot
+  legend.title = "Survived?",                   # legend title
+  facet.wrap.name = "Gender",                   # changing the facet wrap title
+  facet.proptest = TRUE,                        # proportion test for each facet
+  stat.title = "survival x gender"              # title for statistical test
+) +                                             # further modification outside of ggstatsplot
+  ggplot2::scale_fill_brewer(palette = "Dark2")
+```
+
+As seen from this plot, the Pearson's chi-square test of independence shows that
+the distribution of survival was different across males and females.
+Additionally, among both males and females, the proportion of survival was not
+equally likely (at 50%, i.e.), as shown by significant results (`***`) from one-sample
+proportion tests for each facet.
+
+## Within-subjects designs?
+
+Variant of this function for within-subjects designs, which will display results
+from McNemar test, is currently under work. You *can* still use this function
+just to prepare the **plot** for exploratory data analysis, but the statistical
+details displayed in the subtitle will be incorrect. You can remove them by
+adding `+ ggplot2::labs(subtitle = NULL)`.
+
+## Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+

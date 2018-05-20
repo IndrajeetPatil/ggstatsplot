@@ -278,7 +278,6 @@ ggbetweenstats <- function(data = NULL,
           width = 0.3,
           alpha = 0.2,
           fill = "white",
-          outlier.color = outlier.color,
           outlier.shape = 16,
           outlier.size = 3,
           outlier.alpha = 0.7,
@@ -327,7 +326,7 @@ ggbetweenstats <- function(data = NULL,
       caption = caption
     ) +
     ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-    #ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y))) +
+    ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y))) +
     ggplot2::scale_fill_brewer(palette = "Dark2") +
     ggplot2::scale_color_brewer(palette = "Dark2")
 
@@ -425,11 +424,6 @@ ggbetweenstats <- function(data = NULL,
             factors = "x",
             effectSize = c("omega", "partEta")
           )
-
-        # aov_stat2 object is *only* to compute partial eta-squared since there is no straightforward to get partial
-        # eta-squared for Welch's ANOVA and its confidence interval
-        # aov_stat2 <- summary(stats::aov(formula = y ~ x,
-        #                                 data = data))
 
         # getting confidence interval for partial eta-squared
         aov_effsize_ci <- sjstats::eta_sq(
