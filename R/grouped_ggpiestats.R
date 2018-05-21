@@ -76,15 +76,21 @@ grouped_ggpiestats <- function(grouping.var,
       !!rlang::enquo(main),
       !!rlang::enquo(condition)
     ) %>%
-      dplyr::mutate(.data = .,
-                    title.text = !!rlang::enquo(grouping.var))
+      dplyr::mutate(
+        .data = .,
+        title.text = !!rlang::enquo(grouping.var)
+      )
   } else {
     # if condition variable is *not* provided
-    df <- dplyr::select(.data = data,
-                        !!rlang::enquo(grouping.var),
-                        !!rlang::enquo(main)) %>%
-      dplyr::mutate(.data = .,
-                    title.text = !!rlang::enquo(grouping.var))
+    df <- dplyr::select(
+      .data = data,
+      !!rlang::enquo(grouping.var),
+      !!rlang::enquo(main)
+    ) %>%
+      dplyr::mutate(
+        .data = .,
+        title.text = !!rlang::enquo(grouping.var)
+      )
   }
 
   # creating a nested dataframe
@@ -92,7 +98,7 @@ grouped_ggpiestats <- function(grouping.var,
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
+      .funs = ~base::droplevels(.)
     ) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
@@ -107,7 +113,7 @@ grouped_ggpiestats <- function(grouping.var,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ ggstatsplot::ggpiestats(
+            .f = ~ggstatsplot::ggpiestats(
               data = .,
               !!rlang::enquo(main),
               condition = NULL,
@@ -132,7 +138,7 @@ grouped_ggpiestats <- function(grouping.var,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ ggstatsplot::ggpiestats(
+            .f = ~ggstatsplot::ggpiestats(
               data = .,
               !!rlang::enquo(main),
               condition = !!rlang::enquo(condition),
@@ -152,8 +158,10 @@ grouped_ggpiestats <- function(grouping.var,
 
   # combining the list of plots into a single plot
   combined_plot <-
-    ggstatsplot::combine_plots(plotlist = plotlist_purrr$plots,
-                               ...)
+    ggstatsplot::combine_plots(
+      plotlist = plotlist_purrr$plots,
+      ...
+    )
 
   # return the combined plot
   return(combined_plot)

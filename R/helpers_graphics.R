@@ -44,9 +44,11 @@ legend_title_margin <- function(plot,
   # set up the heights: for the two margins and the original title
   # unit.c produces a new unit object by combining the unit objects specified as arguments
   heights <-
-    grid::unit.c(t.margin,
-                 grid::unit(x = 1, units = "grobheight", data = title),
-                 b.margin)
+    grid::unit.c(
+      t.margin,
+      grid::unit(x = 1, units = "grobheight", data = title),
+      b.margin
+    )
 
   # set up a column of three viewports
   vp <- grid::viewport(
@@ -60,9 +62,11 @@ legend_title_margin <- function(plot,
 
   # the middle row, where the title text will appear, is named as 'child_vp'.
   child_vp <-
-    grid::viewport(layout.pos.row = 2,
-                   clip = "off",
-                   name = "child_vp")
+    grid::viewport(
+      layout.pos.row = 2,
+      clip = "off",
+      name = "child_vp"
+    )
 
   # put the title into a gTree containing one grob (the title) and the three viewports
   TitleText <- grid::gTree(

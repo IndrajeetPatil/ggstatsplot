@@ -178,18 +178,22 @@ grouped_ggcorrmat <- function(grouping.var,
   # ========================================= preparing dataframe ==================================================
 
   # getting the dataframe ready
-  df <- dplyr::select(.data = data,
-                      !!rlang::enquo(grouping.var),
-                      !!rlang::enquo(cor.vars)) %>%
-    dplyr::mutate(.data = .,
-                  title.text = !!rlang::enquo(grouping.var))
+  df <- dplyr::select(
+    .data = data,
+    !!rlang::enquo(grouping.var),
+    !!rlang::enquo(cor.vars)
+  ) %>%
+    dplyr::mutate(
+      .data = .,
+      title.text = !!rlang::enquo(grouping.var)
+    )
 
   # creating a nested dataframe
   df %<>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
+      .funs = ~base::droplevels(.)
     ) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
@@ -206,7 +210,7 @@ grouped_ggcorrmat <- function(grouping.var,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ ggstatsplot::ggcorrmat(
+            .f = ~ggstatsplot::ggcorrmat(
               title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
               data = .,
               cor.vars = !!rlang::enquo(cor.vars),
@@ -252,8 +256,10 @@ grouped_ggcorrmat <- function(grouping.var,
 
     # combining the list of plots into a single plot
     combined_plot <-
-      ggstatsplot::combine_plots(plotlist = plotlist_purrr$plots,
-                                 ...)
+      ggstatsplot::combine_plots(
+        plotlist = plotlist_purrr$plots,
+        ...
+      )
 
     # return the combined plot
     return(combined_plot)
@@ -268,7 +274,7 @@ grouped_ggcorrmat <- function(grouping.var,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ ggstatsplot::ggcorrmat(
+            .f = ~ggstatsplot::ggcorrmat(
               data = .,
               cor.vars = !!rlang::enquo(cor.vars),
               cor.vars.names = cor.vars.names,
@@ -292,5 +298,4 @@ grouped_ggcorrmat <- function(grouping.var,
     # return the datafrmae
     return(final_statsdf)
   }
-
 }

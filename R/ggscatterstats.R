@@ -101,28 +101,28 @@
 # defining the function
 ggscatterstats <-
   function(data = NULL,
-           x,
-           y,
-           xlab = NULL,
-           ylab = NULL,
-           line.size = 1.5,
-           line.color = "blue",
-           marginal = TRUE,
-           marginal.type = "histogram",
-           marginal.size = 5,
-           margins = c("both", "x", "y"),
-           width.jitter = NULL,
-           height.jitter = NULL,
-           xfill = "#009E73",
-           yfill = "#D55E00",
-           centrality.para = NULL,
-           type = "pearson",
-           results.subtitle = NULL,
-           title = NULL,
-           caption = NULL,
-           maxit = 500,
-           k = 3,
-           messages = TRUE) {
+             x,
+             y,
+             xlab = NULL,
+             ylab = NULL,
+             line.size = 1.5,
+             line.color = "blue",
+             marginal = TRUE,
+             marginal.type = "histogram",
+             marginal.size = 5,
+             margins = c("both", "x", "y"),
+             width.jitter = NULL,
+             height.jitter = NULL,
+             xfill = "#009E73",
+             yfill = "#D55E00",
+             centrality.para = NULL,
+             type = "pearson",
+             results.subtitle = NULL,
+             title = NULL,
+             caption = NULL,
+             maxit = 500,
+             k = 3,
+             messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
@@ -131,9 +131,11 @@ ggscatterstats <-
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(.data = data,
-                                       !!rlang::enquo(x),
-                                       !!rlang::enquo(y)))
+      lab.df <- colnames(dplyr::select(
+        .data = data,
+        !!rlang::enquo(x),
+        !!rlang::enquo(y)
+      ))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
@@ -152,8 +154,10 @@ ggscatterstats <-
     } else {
       # if vectors are provided
       data <-
-        base::cbind.data.frame(x = x,
-                               y = y)
+        base::cbind.data.frame(
+          x = x,
+          y = y
+        )
     }
 
     ######################################## statistical labels ######################################################
@@ -174,7 +178,7 @@ ggscatterstats <-
 
         c <-
           stats::cor.test(
-            formula = ~ x + y,
+            formula = ~x + y,
             data = data,
             method = "pearson",
             alternative = "two.sided",
@@ -223,7 +227,7 @@ ggscatterstats <-
         # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
         c <-
           stats::cor.test(
-            formula = ~ x + y,
+            formula = ~x + y,
             data = data,
             method = "spearman",
             alternative = "two.sided",
@@ -236,7 +240,7 @@ ggscatterstats <-
           broom::bootstrap(df = ., m = maxit) %>%
           do(broom::tidy(
             stats::cor.test(
-              formula = ~ x + y,
+              formula = ~x + y,
               data = .,
               method = "spearman",
               exact = FALSE,
@@ -278,9 +282,11 @@ ggscatterstats <-
               estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = c_ci$low[[1]], k),
               UL = ggstatsplot::specify_decimal_p(x = c_ci$high[[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]],
-                                                      k,
-                                                      p.value = TRUE)
+              pvalue = ggstatsplot::specify_decimal_p(
+                x = c$p.value[[1]],
+                k,
+                p.value = TRUE
+              )
             )
           )
         ################################################### robust ##################################################
@@ -297,9 +303,11 @@ ggscatterstats <-
 
         # getting confidence interval for rho
         c_ci <-
-          stats::confint.default(object = MASS_res,
-                                 parm = "scale(x)",
-                                 level = 0.95)
+          stats::confint.default(
+            object = MASS_res,
+            parm = "scale(x)",
+            level = 0.95
+          )
 
         # preparing the label
         stats_subtitle <-
@@ -334,8 +342,9 @@ ggscatterstats <-
               df = summary(MASS_res)$df[2],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value[[1]],
-                                                      k,
-                                                      p.value = TRUE)
+                k,
+                p.value = TRUE
+              )
             )
           )
         # displaying the details of the test that was run
@@ -355,14 +364,20 @@ ggscatterstats <-
 
     # preparing the scatterplotplot
     plot <-
-      ggplot2::ggplot(data = data,
-                      mapping = ggplot2::aes(x = x,
-                                             y = y)) +
+      ggplot2::ggplot(
+        data = data,
+        mapping = ggplot2::aes(
+          x = x,
+          y = y
+        )
+      ) +
       ggplot2::geom_point(
         size = 3,
         alpha = 0.5,
-        position = position_jitter(width = width.jitter,
-                                   height = height.jitter),
+        position = position_jitter(
+          width = width.jitter,
+          height = height.jitter
+        ),
         na.rm = TRUE
       ) +
       ggplot2::geom_smooth(
@@ -390,7 +405,7 @@ ggscatterstats <-
     if (is.null(centrality.para)) {
       plot <- plot
     } else if (isTRUE(centrality.para) ||
-               centrality.para == "mean") {
+      centrality.para == "mean") {
       plot <- plot +
         ggplot2::geom_vline(
           xintercept = mean(data$x),
@@ -434,19 +449,22 @@ ggscatterstats <-
           type = marginal.type,
           margins = margins,
           size = marginal.size,
-          xparams = base::list(fill = xfill,
-                               col = "black"),
-          yparams = base::list(fill = yfill,
-                               col = "black")
+          xparams = base::list(
+            fill = xfill,
+            col = "black"
+          ),
+          yparams = base::list(
+            fill = yfill,
+            col = "black"
+          )
         )
-
     }
 
     ################################################### messages ##########################################################
 
     # display warning that this doesn't produce a ggplot2 object
     if (isTRUE(messages) &&
-        isTRUE(marginal)) {
+      isTRUE(marginal)) {
       base::message(cat(
         crayon::red("Warning:"),
         crayon::blue(
