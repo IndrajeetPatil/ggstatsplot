@@ -4,8 +4,8 @@
 \alias{grouped_gghistostats}
 \title{Grouped histograms for distribution of a numeric variable}
 \usage{
-grouped_gghistostats(grouping.var, data, x, bar.measure = "count",
-  xlab = NULL, title.prefix = "Group", subtitle = NULL, caption = NULL,
+grouped_gghistostats(grouping.var, title.prefix = "Group", data, x,
+  bar.measure = "count", xlab = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = TRUE, k = 3, low.color = "#0072B2",
   high.color = "#D55E00", results.subtitle = TRUE,
@@ -20,6 +20,9 @@ grouped_gghistostats(grouping.var, data, x, bar.measure = "count",
 \arguments{
 \item{grouping.var}{Grouping variable.}
 
+\item{title.prefix}{Character specifying the prefix text for the fixed plot
+title (name of each factor level) (Default: \code{"Group"}).}
+
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
 
@@ -32,9 +35,6 @@ integrate to 1, or "\code{proportion}", which shows relative frequencies of
 observations in each bin.}
 
 \item{xlab}{Label for \code{x} axis variable.}
-
-\item{title.prefix}{Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: \code{"Group"}).}
 
 \item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
 from one sample test to be displayed.}

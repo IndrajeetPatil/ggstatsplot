@@ -23,9 +23,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-The function `ggstatsplot::ggbetweenstats` is designed with a publication-ready
-comparison plot in mind, with all statistical details included in the plot
-itself. We will see examples of how to use this function in this vignette.
+The function `ggstatsplot::ggbetweenstats` is designed with a
+**publication-ready box-violin plot** in mind, with all statistical details
+included in the plot itself. We will see examples of how to use this function in
+this vignette.
 
 To begin with, here are some instances where you would want to use
 `ggbetweenstats`-

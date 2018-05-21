@@ -113,6 +113,7 @@ Documentation for any function can be accessed with the standard `help` command-
 ?combine_plots
 ?grouped_gghistostats
 ?grouped_ggpiestats
+?grouped_ggcorrmat
 ```
 
 ## Usage

@@ -190,32 +190,135 @@ ggstatsplot::ggcorrmat(
 )
 ```
 
+## Grouped analysis with `grouped_ggcorrmat`
+
+What if we want to do the same analysis separately for each type of quality of
+the diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? In that case, we will
+have to either write a `for` loop or use `purrr`, none of which seem like an
+exciting prospect.
+
+`ggstatsplot` provides a special helper function for such instances:
+`grouped_ggcorrmat`. This is merely a wrapper function around
+`ggstatsplot::combine_plots`. It applies `ggcorrmat` across all **levels** of
+a specified **grouping variable** and then combines list of individual plots
+into a single plot. Note that the grouping variable can be anything: conditions
+in a given study, groups in a study sample, different studies, etc. 
+
+```{r ggcorrmat6, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
+ggstatsplot::grouped_ggcorrmat(
+  # arguments relevant for ggstatsplot::ggcorrmat
+  data = ggplot2::diamonds,
+  grouping.var = cut,
+  title.prefix = "Quality of cut",
+  cor.vars = c(carat, depth:z),
+  cor.vars.names = c(
+    "carat",
+    "total depth",
+    "table",
+    "price",
+    "length (in mm)",
+    "width (in mm)",
+    "depth (in mm)"
+  ),
+  lab.size = 3.5,
+  # arguments relevant for ggstatsplot::combine_plots
+  title.text = "Relationship between diamond attributes and price across cut",
+  title.size = 16,
+  title.color = "red",
+  caption.text = "Dataset: Diamonds from ggplot2 package",
+  caption.size = 14,
+  caption.color = "blue",
+  labels = c("(a)","(b)","(c)","(d)","(e)"),
+  nrow = 3,
+  ncol = 2
+)
+```
+
 Note that this function also makes it easy to run the same correlation matrix
 across different levels of a factor/grouping variable. For example, if we wanted
 to get the same correlation coefficient matrix for `color` of the diamond, we
 can do the following-
 
-```{r ggcorrmat6, warning = FALSE, message = FALSE}
-# splitting the dataframe by color and creting a list
-color_list <- ggplot2::diamonds %>%
-  base::split(x = ., f = .$color, drop = TRUE)
-
-# running the same function for all elements of the list
-purrr::map_dfr(
-  .x = color_list,                                  # list on which map operation needs to be carried out
-  .f = ~ ggstatsplot::ggcorrmat(
-    data = .,                                       # `.` is just a placeholder for list element
-    cor.vars = c(price, carat, depth:table, x:z),
-    output = "correlations",
-    corr.method = "robust",
-    digits = 3
-  ),
-  .id = "color"                                      # identity/grouping variable
+```{r ggcorrmat7, warning = FALSE, message = FALSE}
+ggstatsplot::grouped_ggcorrmat(
+  data = ggplot2::diamonds,
+  grouping.var = cut,
+  cor.vars = c(price, carat, depth:table, x:z),
+  output = "correlations",
+  corr.method = "robust",
+  digits = 3
 )
 ```
 
 As this example illustrates, there is a minimal coding overhead to exlore
-correlations in your dataset with the `ggcorrmat` function.
+correlations in your dataset with the `grouped_ggcorrmat` function.
+
+## Grouped analysis with `ggcorrmat` + `purrr`
+
+Although `grouped_` function is good for quickly exploring the data, it reduces
+the flexibility with which this function can be used. This is the because the
+common parameters used are applied to plots corresponding to all levels of the
+grouping variable and there is no way to adapt them based on the level of the
+grouping variable. We will see how this can be done using the `purrr` package
+from tidyverse. 
+
+```{r ggcorrmat8, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
+# splitting the dataframe by cut and creting a list
+cut_list <- ggplot2::diamonds %>%
+  base::split(x = ., f = .$cut, drop = TRUE)
+
+# this created a list with 5 elements, one for each quality of cut
+str(cut_list)
+
+# running function on every element of this list note that if you want the same
+# value for a given argument across all elements of the list, you need to
+# specify it just once
+plot_list <- purrr::pmap(
+  .l = list(
+    data = cut_list,
+    cor.vars = list(c("carat", "depth", "table",
+                 "price", "x", "y", "z")),
+    cor.vars.names = list(c(
+      "carat",
+      "total depth",
+      "table",
+      "price",
+      "length (in mm)",
+      "width (in mm)",
+      "depth (in mm)"
+    )),
+    corr.method = list("pearson", "spearman", "spearman", "pearson", "pearson"),
+    sig.level = list(0.05, 0.001, 0.01, 0.05, 0.003),
+    lab.size = 3.5,
+    colors = list(
+      c("#56B4E9", "white", "#999999"),
+      c("#0072B2", "white", "#D55E00"),
+      c("#CC79A7", "white", "#F0E442"),
+      c("#56B4E9", "white", "#D55E00"),
+      c("#0072B2", "white", "#999999")
+    )
+  ),
+  .f = ggstatsplot::ggcorrmat
+)
+
+# combining all individual plots from the list into a single plot using combine_plots function
+ggstatsplot::combine_plots(
+  plotlist = plot_list,
+  title.text = "Relationship between diamond attributes and price across cut",
+  title.size = 16,
+  title.color = "red",
+  caption.text = "Dataset: Diamonds from ggplot2 package",
+  caption.size = 14,
+  caption.color = "blue",
+  labels = c("(a)", "(b)", "(c)", "(d)", "(e)"),
+  nrow = 3,
+  ncol = 2
+)
+```
+
+As can be seen from this example, combination of `purrr` and `ggstatsplot` much
+more flexibility in analyzing the data and preparing a combined plot across
+studies or conditions.
 
 ## Suggestions
 

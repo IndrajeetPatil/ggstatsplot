@@ -107,11 +107,11 @@
 
 # defining the function
 grouped_gghistostats <- function(grouping.var,
+                                 title.prefix = "Group",
                                  data,
                                  x,
                                  bar.measure = "count",
                                  xlab = NULL,
-                                 title.prefix = "Group",
                                  subtitle = NULL,
                                  caption = NULL,
                                  type = "parametric",

@@ -23,10 +23,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-The function `ggstatsplot::gghistostats` is meant to provide a publication-ready
-histogram with all statistical details included in the plot itself. We will see
-examples of how to use this function in this vignette with the `gapminder`
-dataset.
+The function `ggstatsplot::gghistostats` is meant to provide a
+**publication-ready histogram** with all statistical details included in the
+plot itself. We will see examples of how to use this function in this vignette
+with the `gapminder` dataset.
 
 To begin with, here are some instances where you would want to use
 `gghistostats`-
@@ -203,7 +203,7 @@ gapminder::gapminder %>%
 As this analysis shows, Bayes Factor value provides [**conclusive** evidence](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794) in favor of
 the alternative hypothesis: Life expectancy worldwide has improved significantly since 1957.
 
-## Grouped analysis with `gghistostats`
+## Grouped analysis with `grouped_gghistostats`
 
 What if we want to do the same analysis separately for all five continents? In
 that case, we will have to either write a `for` loop or use `purrr`, none of

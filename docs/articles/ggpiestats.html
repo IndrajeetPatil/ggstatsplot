@@ -90,7 +90,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-20</h4>
+            <h4 class="date">2018-05-21</h4>
       
       
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -99,7 +99,7 @@
 
     
     
-<p>The function <code><a href="../reference/ggpiestats.html">ggstatsplot::ggpiestats</a></code> can be used to prepare pie charts to summarize the statistical relationship between two categorical variables. We will see examples of how to use this function in this vignette.</p>
+<p>The function <code><a href="../reference/ggpiestats.html">ggstatsplot::ggpiestats</a></code> can be used to prepare <strong>publication-ready pie charts</strong> to summarize the statistical relationship between two categorical variables. We will see examples of how to use this function in this vignette.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggpiestats</code>-</p>
 <ul>
 <li>to see if the frequency distribution of two categorial variables are independent of each other using the contingency table analysis</li>
@@ -224,9 +224,9 @@
 <p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="576"></p>
 <p>As this plot shows there were overwhelmingly more number of adults than children on the boat and the proportion test attests to this.</p>
 </div>
-<div id="grouped-analysis-with-ggpiestats" class="section level2">
+<div id="grouped-analysis-with-grouped_ggpiestats" class="section level2">
 <h2 class="hasAnchor">
-<a href="#grouped-analysis-with-ggpiestats" class="anchor"></a>Grouped analysis with <code>ggpiestats</code>
+<a href="#grouped-analysis-with-grouped_ggpiestats" class="anchor"></a>Grouped analysis with <code>grouped_ggpiestats</code>
 </h2>
 <p>What if we want to do the same analysis separately for the four different Class on the Titanic (1st, 2nd, 3rd, Crew), i.e. checking how the survival-by-gender interaction changes by the passenger class in which the people were traveling? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, both of which are time consuming and can be a bit of a struggle.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
@@ -350,7 +350,7 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#statistical-independence-of-categorical-variables-with-ggpiestats">Statistical independence of categorical variables with <code>ggpiestats</code></a></li>
-      <li><a href="#grouped-analysis-with-ggpiestats">Grouped analysis with <code>ggpiestats</code></a></li>
+      <li><a href="#grouped-analysis-with-grouped_ggpiestats">Grouped analysis with <code>grouped_ggpiestats</code></a></li>
       <li><a href="#grouped-analysis-with-ggpiestats-purrr">Grouped analysis with <code>ggpiestats</code> + <code>purrr</code></a></li>
       <li><a href="#within-subjects-designs">Within-subjects designs</a></li>
       <li><a href="#suggestions">Suggestions</a></li>

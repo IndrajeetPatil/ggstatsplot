@@ -90,7 +90,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-20</h4>
+            <h4 class="date">2018-05-21</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -99,7 +99,7 @@
 
     
     
-<p>The function <code><a href="../reference/gghistostats.html">ggstatsplot::gghistostats</a></code> is meant to provide a publication-ready histogram with all statistical details included in the plot itself. We will see examples of how to use this function in this vignette with the <code>gapminder</code> dataset.</p>
+<p>The function <code><a href="../reference/gghistostats.html">ggstatsplot::gghistostats</a></code> is meant to provide a <strong>publication-ready histogram</strong> with all statistical details included in the plot itself. We will see examples of how to use this function in this vignette with the <code>gapminder</code> dataset.</p>
 <p>To begin with, here are some instances where you would want to use <code>gghistostats</code>-</p>
 <ul>
 <li>to check distribution of a continuous variable</li>
@@ -234,9 +234,9 @@
 <p><img src="gghistostats_files/figure-html/stats_bf-1.png" width="700"></p>
 <p>As this analysis shows, Bayes Factor value provides <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794"><strong>conclusive</strong> evidence</a> in favor of the alternative hypothesis: Life expectancy worldwide has improved significantly since 1957.</p>
 </div>
-<div id="grouped-analysis-with-gghistostats" class="section level2">
+<div id="grouped-analysis-with-grouped_gghistostats" class="section level2">
 <h2 class="hasAnchor">
-<a href="#grouped-analysis-with-gghistostats" class="anchor"></a>Grouped analysis with <code>gghistostats</code>
+<a href="#grouped-analysis-with-grouped_gghistostats" class="anchor"></a>Grouped analysis with <code>grouped_gghistostats</code>
 </h2>
 <p>What if we want to do the same analysis separately for all five continents? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
@@ -368,7 +368,7 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#distribution-with-gghistostats">Distribution with <code>gghistostats</code></a></li>
       <li><a href="#statistical-analysis-with-gghistostats">Statistical analysis with <code>gghistostats</code></a></li>
-      <li><a href="#grouped-analysis-with-gghistostats">Grouped analysis with <code>gghistostats</code></a></li>
+      <li><a href="#grouped-analysis-with-grouped_gghistostats">Grouped analysis with <code>grouped_gghistostats</code></a></li>
       <li><a href="#grouped-analysis-with-gghistostats-purrr">Grouped analysis with <code>gghistostats</code> + <code>purrr</code></a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       </ul>
