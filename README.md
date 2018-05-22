@@ -4,7 +4,7 @@
 # ggstatsplot: `ggplot2` Based Plots with Statistical Details
 
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.3-orange.svg?style=flat-square)](commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.3.9000-orange.svg?style=flat-square)](commits/master)
 [![Daily downloads
 badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Weekly downloads

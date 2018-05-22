@@ -1,4 +1,7 @@
-# ggstatsplot 0.0.2.9000
+
+# ggstatsplot 0.0.3.9000
+
+# ggstatsplot 0.0.3
 
 NEW FEATURES
 
