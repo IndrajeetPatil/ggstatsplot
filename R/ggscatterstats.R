@@ -126,7 +126,7 @@ ggscatterstats <-
              caption = NULL,
              maxit = 500,
              k = 3,
-           axes.range.restrict = FALSE,
+             axes.range.restrict = FALSE,
              messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
