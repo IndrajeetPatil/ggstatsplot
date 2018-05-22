@@ -47,6 +47,14 @@
 #'
 #' @seealso \code{\link{ggpiestats}}
 #'
+#' @examples
+#'
+#' # grouped one-sample proportion tests
+#' ggstatsplot::grouped_ggpiestats(
+#' data = mtcars,
+#' grouping.var = am,
+#' main = cyl
+#' )
 #'
 #' @export
 #'
@@ -97,6 +105,11 @@ grouped_ggpiestats <- function(grouping.var,
   df %<>%
     dplyr::mutate_if(
       .tbl = .,
+      .predicate = purrr::is_bare_character,
+      .funs = ~as.factor(.)
+    ) %>%
+    dplyr::mutate_if(
+      .tbl = .,
       .predicate = is.factor,
       .funs = ~base::droplevels(.)
     ) %>%
@@ -104,7 +117,7 @@ grouped_ggpiestats <- function(grouping.var,
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
 
-  if (base::missing(condition)) {
+  if (!base::missing(condition)) {
     # creating a list of plots
     plotlist_purrr <- df %>%
       dplyr::mutate(
@@ -115,8 +128,8 @@ grouped_ggpiestats <- function(grouping.var,
             .x = .,
             .f = ~ggstatsplot::ggpiestats(
               data = .,
-              !!rlang::enquo(main),
-              condition = NULL,
+              main = !!rlang::enquo(main),
+              condition = !!rlang::enquo(condition),
               title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
               factor.levels = factor.levels,
               stat.title = stat.title,
@@ -140,8 +153,7 @@ grouped_ggpiestats <- function(grouping.var,
             .x = .,
             .f = ~ggstatsplot::ggpiestats(
               data = .,
-              !!rlang::enquo(main),
-              condition = !!rlang::enquo(condition),
+              main = !!rlang::enquo(main),
               title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
               factor.levels = factor.levels,
               stat.title = stat.title,

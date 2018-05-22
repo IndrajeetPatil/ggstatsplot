@@ -160,14 +160,12 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 
-library(gapminder)
 
 ggstatsplot::grouped_gghistostats(
-data = gapminder::gapminder,
-x = lifeExp,
-xlab = "Life expectancy",
-test.value = 50,
-grouping.var = continent,
+data = iris,
+x = Sepal.Length,
+test.value = 5,
+grouping.var = Species,
 nrow = 3,
 messages = FALSE
 )

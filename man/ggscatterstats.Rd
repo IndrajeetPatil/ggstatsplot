@@ -10,7 +10,7 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
   "y"), width.jitter = NULL, height.jitter = NULL, xfill = "#009E73",
   yfill = "#D55E00", centrality.para = NULL, type = "pearson",
   results.subtitle = NULL, title = NULL, caption = NULL, maxit = 500,
-  k = 3, messages = TRUE)
+  k = 3, axes.range.restrict = FALSE, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -75,11 +75,14 @@ bootstrap samples to compute Spearman's rho confidence intervals (Default:
 
 \item{k}{Number of decimal places expected for results.}
 
+\item{axes.range.restrict}{Logical decides whther to restrict the axes values
+ranges to min and max values of the \code{x} and \code{y} variables (Default: \code{FALSE}).}
+
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 }
 \description{
-Scatterplots from `ggplot2`` combined with add marginal
+Scatterplots from \code{ggplot2} combined with marginal
 histograms/boxplots/density plots with statistical details added as a
 subtitle.
 }
@@ -88,7 +91,7 @@ subtitle.
 # to get reproducible results from bootstrapping
 set.seed(123)
 
-#' # simple function call with the defaults
+# simple function call with the defaults
 ggstatsplot::ggscatterstats(
 data = datasets::mtcars,
 x = wt,
@@ -105,6 +108,9 @@ type = 'robust',
 marginal.type = 'density'
 )
 
+}
+\seealso{
+\code{\link{grouped_ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
 }
 \author{
 Indrajeet Patil

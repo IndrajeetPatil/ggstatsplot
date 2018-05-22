@@ -1,0 +1,245 @@
+---
+title: "ggscatterstats"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{ggscatterstats}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The function `ggstatsplot::ggscatterstats` is meant to provide a
+**publication-ready scatterplot** with all statistical details included in the
+plot itself to show association between two continuous variables. We will see
+examples of how to use this function in this vignette with the `ggplot2movies`
+dataset.
+
+To begin with, here are some instances where you would want to use
+`ggscatterstats`-
+
+  - to check linear association between two continuous variables
+  - to check distribution of two continuous variables
+
+**Note before**: The following demo uses the pipe operator (`%>%`), so in case
+you are not familiar with this operator, here is a good explanation:
+<http://r4ds.had.co.nz/pipes.html>
+
+## Correlation plot with `ggscatterstats`
+
+To illustrate how this function can be used, we will use the `ggplot2movies`
+dataset. This dataset (available in
+[package](https://CRAN.R-project.org/package=ggplot2movies) on CRAN) provides a
+dataset about movies scraped from [IMDB](https://www.imdb.com/). Let's have a
+look at the data-
+
+```{r ggplot2movies1, warning = FALSE, message = FALSE}
+library(ggplot2movies)
+library(dplyr)
+
+dplyr::glimpse(x = ggplot2movies::movies)
+```
+
+Since we will be using this dataset for the current vignette, let's first clean
+it up by selecting only variables that will be of interest to us.
+
+```{r ggplot2movies2, warning = FALSE, message = FALSE}
+
+# selecting data of interest
+movies_wide <- ggplot2movies::movies %>%
+  dplyr::select(.data = ., c(title:votes, mpaa)) %>%         # `.` is just a placeholder for the data
+  dplyr::filter(.data = ., mpaa != "") %>%                   # removing movies without mpaa ratings
+  stats::na.omit(.) %>%                                      # removing NAs 
+  dplyr::mutate(.data = ., budget = budget/1000000) %>%      # convert the budge to millions of dollars
+  dplyr::mutate_if(.tbl = .,                                 # convert mpaa ratings to a factor
+                   .predicate = purrr::is_bare_character,
+                   .funs = ~as.factor(.))
+  
+# see the selected data (we have data from 1813 movies)
+dplyr::glimpse(x = movies_wide)
+```
+
+Now that we have a clean dataset, we can start asking some interesting
+questions. For example, let's see if the average rating a movie has depends on its budget.
+
+```{r ggscatterstats1, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+
+ggstatsplot::ggscatterstats(
+  data = movies_wide,                                          # dataframe from which variables are to be taken
+  x = budget,                                                  # predictor/independent variable 
+  y = rating,                                                  # dependent variable
+  xlab = "Budget (in millions of US dollars)",                 # label for the x-axis
+  ylab = "Rating on IMDB",                                     # label for the y-axis
+  marginal = TRUE,                                             # show marginal distribution 
+  marginal.type = "histogram",                                 # type of plot for marginal distribution
+  centrality.para = "mean",                                    # if and which type of centrality parameter to be plotted
+  margins = "both",                                            # marginal distribution on both axes
+  xfill = "#CC79A7",                                           # fill for marginal distributions on the x-axis
+  yfill = "#009E73",                                           # fill for marginal distributions on the y-axis
+  type = "pearson",                                            # type of linear association
+  title = "Relationship between movie budget and IMDB rating",
+  caption = "Source: www.imdb.com",
+  messages = FALSE
+)
+```
+
+There is indeed a significant, positive correlation between the amount of money
+studio invests in a movie and the ratings given by the audiences. We should also
+note that this is a really small correlation and only about 1% of variation in
+ratings is explained by budget.
+
+The `type` (of test) argument also accepts the following abbreviations: `"p"`
+(for *parametric*/pearson's), `"np"` (for *nonparametric*/spearman), `"r"` (for
+*robust*).
+
+**Important**: 
+In contrast to all other functions in this package, the
+`ggscatterstats` function returns object that is **not** further modifiable
+with `ggplot2`. This can be avoided by not plotting the marginal distributions
+(`marginal = FALSE`). Currently trying to find a workaround this problem.
+
+**Using `ggscatterstats()` in R Notebooks or Rmarkdown**
+
+If you try including a `ggscatterstats()` plot inside an R Notebook or
+Rmarkdown code chunk, you’ll notice that the plot doesn’t get output. In
+order to get a `ggscatterstats()` to show up in an these contexts, you need
+to save the ggscatterstats plot as a variable in one code chunk, and
+explicitly print it using the `grid` package in another chunk, like
+this:
+
+```{r ggscatterstats2, eval = FALSE}
+# include the following code in your code chunk inside R Notebook or Markdown
+grid::grid.newpage()
+grid::grid.draw(
+  ggstatsplot::ggscatterstats(
+    data = movies_wide,
+    x = budget,
+    y = rating,
+    marginal = TRUE,
+    messages = FALSE
+  )
+)
+```
+
+## Grouped analysis with `grouped_ggscatterstats`
+
+What if we want to do the same analysis do the same analysis for movies with
+different MPAA (Motion Picture Association of America) film ratings (NC-17, PG,
+PG-13, R)? In that case, we will have to either write a `for` loop or use
+`purrr`, none of which seem like an exciting prospect.
+
+`ggstatsplot` provides a special helper function for such instances:
+`grouped_ggstatsplot`. This is merely a wrapper function around
+`ggstatsplot::combine_plots`. It applies `ggstatsplot` across all **levels** of
+a specified **grouping variable** and then combines list of individual plots
+into a single plot. Note that the grouping variable can be anything: conditions
+in a given study, groups in a study sample, different studies, etc. 
+
+Let's see how we can use this function to apply `ggscatterstats` for all MPAA
+ratings. We will be running parametric tests (Pearson's *r*, i.e.). If you set
+`type = "np"` or `type = "r"`, results from non-parametric or robust test will
+be displayed.
+
+```{r grouped1, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
+ggstatsplot::grouped_ggscatterstats(
+  # arguments relevant for ggstatsplot::ggscatterstats
+  data = movies_wide,
+  title.prefix = "MPAA Rating",
+  x = budget,
+  y = rating,
+  grouping.var = mpaa,
+  marginal.type = "boxplot",
+  # arguments relevant for ggstatsplot::combine_plots
+  title.text = "Relationship between movie budget and IMDB rating",
+  caption.text = "Source: www.imdb.com",
+  nrow = 4,
+  ncol = 1,
+  labels = c("(a)","(b)","(c)","(d)")
+)
+```
+
+As seen from the plot, this analysis has revealed something interesting: The
+relationship we found between budget and IMDB rating holds only for PG-13 and
+R-rated movies. Indeed, the relationship even reverses for non-rated or NC-17
+rated films.
+
+Although this is a quick and dirty way to explore large amount of data with
+minimal effort, it does come with an important limitation: reduced flexibility.
+For example, if we wanted to add, let's say, a separate type of marginal
+distribution plot for each MPAA rating or if we wanted to use different types of
+correlations across different levels of MPAA ratings (NC-17 has only 6 movies,
+so a robust correlation would be a good idea), this is not possible. But this
+can be easily done using `purrr`.
+
+## Grouped analysis with `ggscatterstats` + `purrr`
+
+Let's run the same analysis using `purrr::pmap`.
+
+**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
+will need to *quote* the arguments.
+
+```{r grouped2, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 8}
+# let's split the dataframe and create a list by mpss rating
+mpaa_list <- movies_wide %>%
+  base::split(x = ., f = .$mpaa, drop = TRUE)
+
+# this created a list with 4 elements, one for each mpaa rating
+str(mpaa_list)
+
+# running function on every element of this list note that if you want the same
+# value for a given argument across all elements of the list, you need to
+# specify it just once
+plot_list <- purrr::pmap(
+  .l = list(
+    data = mpaa_list,
+    x = "budget",
+    y = "rating",
+    xlab = "Budget (in millions of US dollars)",
+    ylab = "Rating on IMDB",
+    title = list(
+      "MPAA Rating: NC-17",
+      "MPAA Rating: PG",
+      "MPAA Rating: PG-13",
+      "MPAA Rating: R"
+    ),
+    type = list("r", "np", "np", "np"),
+    marginal.type = list("histogram", "boxplot", "density", "violin"),
+    centrality.para = "mean",
+    xfill = list("#56B4E9", "#009E73", "#999999", "#0072B2"),
+    yfill = list("#D55E00", "#CC79A7", "#F0E442", "#D55E00"),
+    messages = FALSE
+  ),
+  .f = ggstatsplot::ggscatterstats
+)
+  
+# combining all individual plots from the list into a single plot using combine_plots function
+ggstatsplot::combine_plots(
+  plotlist = plot_list,
+  title.text = "Relationship between movie budget and IMDB rating",
+  caption.text = "Source: www.imdb.com",
+  caption.size = 16,
+  title.color = "red",
+  caption.color = "blue",
+  nrow = 4,
+  ncol = 1,
+  labels = c("(a)","(b)","(c)","(d)")
+)
+```
+
+## Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

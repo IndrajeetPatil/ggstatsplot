@@ -30,7 +30,7 @@
 
 <meta property="og:title" content="Scatterplot with marginal distributions — ggscatterstats" />
 
-<meta property="og:description" content="Scatterplots from `ggplot2`` combined with add marginal
+<meta property="og:description" content="Scatterplots from ggplot2 combined with marginal
 histograms/boxplots/density plots with statistical details added as a
 subtitle." />
 <meta name="twitter:card" content="summary" />
@@ -98,6 +98,9 @@ subtitle." />
       <a href="../articles/ggpiestats.html">ggpiestats</a>
     </li>
     <li>
+      <a href="../articles/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
       <a href="../articles/theme_mprl.html">Default theme (theme_mprl)</a>
     </li>
   </ul>
@@ -128,7 +131,7 @@ subtitle." />
 
     <div class="ref-description">
     
-    <p>Scatterplots from `ggplot2`` combined with add marginal
+    <p>Scatterplots from <code>ggplot2</code> combined with marginal
 histograms/boxplots/density plots with statistical details added as a
 subtitle.</p>
     
@@ -140,7 +143,7 @@ subtitle.</p>
   <span class='st'>"y"</span>), <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>,
   <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxit</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -252,11 +255,20 @@ bootstrap samples to compute Spearman's rho confidence intervals (Default:
       <td><p>Number of decimal places expected for results.</p></td>
     </tr>
     <tr>
+      <th>axes.range.restrict</th>
+      <td><p>Logical decides whther to restrict the axes values
+ranges to min and max values of the <code>x</code> and <code>y</code> variables (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
       <th>messages</th>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='grouped_ggscatterstats.html'>grouped_ggscatterstats</a></code> <code><a href='ggcorrmat.html'>ggcorrmat</a></code> <code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -264,12 +276,12 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'>set.seed</span>(<span class='fl'>123</span>)
 
-<span class='co'>#' # simple function call with the defaults</span>
+<span class='co'># simple function call with the defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats'>ggscatterstats</a></span>(
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/mtcars'>mtcars</a></span>,
 <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>,
 <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>
-)</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># more detailed function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats'>ggscatterstats</a></span>(
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
@@ -278,14 +290,16 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>'median'</span>,
 <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'robust'</span>,
 <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>'density'</span>
-)</div><div class='output co'>#&gt; Note: Standardized robust regression using an M estimator: no. of iterations = 500 In case of non-convergence, increase maxit value.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; Note: Standardized robust regression using an M estimator: no. of iterations = 500 In case of non-convergence, increase maxit value.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

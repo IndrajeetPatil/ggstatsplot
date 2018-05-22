@@ -110,6 +110,8 @@
 #' @importFrom crayon red
 #' @importFrom WRS2 pball
 #'
+#' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}} \code{\link{grouped_ggscatterstats}}
+#'
 #' @examples
 #'
 #' # to get the correlalogram

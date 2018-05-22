@@ -3,7 +3,7 @@
 #' @name ggscatterstats
 #' @aliases ggscatterstats
 #' @author Indrajeet Patil
-#' @description Scatterplots from `ggplot2`` combined with add marginal
+#' @description Scatterplots from `ggplot2` combined with marginal
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
 #'
@@ -47,6 +47,8 @@
 #'   the resolution of the data.
 #' @param height.jitter Degree of jitter in `y` direction. Defaults to 40\% of
 #'   the resolution of the data.
+#' @param axes.range.restrict Logical decides whther to restrict the axes values
+#'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #'
@@ -73,12 +75,14 @@
 #' @importFrom stats na.omit
 #' @importFrom stats confint.default
 #'
+#' @seealso \code{\link{grouped_ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
+#'
 #' @examples
 #'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #'
-#' #' # simple function call with the defaults
+#' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #' data = datasets::mtcars,
 #' x = wt,
@@ -122,6 +126,7 @@ ggscatterstats <-
              caption = NULL,
              maxit = 500,
              k = 3,
+           axes.range.restrict = FALSE,
              messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
@@ -394,10 +399,14 @@ ggscatterstats <-
         title = title,
         subtitle = stats_subtitle,
         caption = caption
-      ) +
-      ggplot2::coord_cartesian(xlim = c(min(data$x), max(data$x))) +
-      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y)))
+      )
 
+    # forcing the plots to get cut off at min and max values of the variable
+    if (isTRUE(axes.range.restrict)) {
+      plot <- plot +
+        ggplot2::coord_cartesian(xlim = c(min(data$x), max(data$x))) +
+        ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y)))
+    }
     ################################################ centrality.para ##################################################
 
     # by default, if the input is NULL, then no centrality.para lines will be plotted

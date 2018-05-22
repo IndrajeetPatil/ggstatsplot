@@ -192,6 +192,11 @@ grouped_ggcorrmat <- function(grouping.var,
   df %<>%
     dplyr::mutate_if(
       .tbl = .,
+      .predicate = purrr::is_bare_character,
+      .funs = ~as.factor(.)
+    ) %>%
+    dplyr::mutate_if(
+      .tbl = .,
       .predicate = is.factor,
       .funs = ~base::droplevels(.)
     ) %>%

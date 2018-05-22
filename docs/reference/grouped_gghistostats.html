@@ -98,6 +98,9 @@ resulting plots using ggstatsplot::combine_plots." />
       <a href="../articles/ggpiestats.html">ggpiestats</a>
     </li>
     <li>
+      <a href="../articles/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
       <a href="../articles/theme_mprl.html">Default theme (theme_mprl)</a>
     </li>
   </ul>
@@ -353,17 +356,15 @@ combining (plot, caption).</p></dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>library</span>(<span class='no'>gapminder</span>)
 
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_gghistostats'>grouped_gghistostats</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>gapminder</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/gapminder/topics/gapminder'>gapminder</a></span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lifeExp</span>,
-<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Life expectancy"</span>,
-<span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-<span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>continent</span>,
+<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+<span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+<span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
 <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>,
 <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

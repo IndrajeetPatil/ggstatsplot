@@ -67,6 +67,9 @@
       <a href="../articles/ggpiestats.html">ggpiestats</a>
     </li>
     <li>
+      <a href="../articles/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
       <a href="../articles/theme_mprl.html">Default theme (theme_mprl)</a>
     </li>
   </ul>
@@ -90,7 +93,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-21</h4>
+            <h4 class="date">2018-05-22</h4>
       
       
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -309,6 +312,7 @@
 <a href="#grouped-analysis-with-ggcorrmat-purrr" class="anchor"></a>Grouped analysis with <code>ggcorrmat</code> + <code>purrr</code>
 </h2>
 <p>Although <code>grouped_</code> function is good for quickly exploring the data, it reduces the flexibility with which this function can be used. This is the because the common parameters used are applied to plots corresponding to all levels of the grouping variable and there is no way to adapt them based on the level of the grouping variable. We will see how this can be done using the <code>purrr</code> package from tidyverse.</p>
+<p><strong>Note before</strong>: Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># splitting the dataframe by cut and creting a list</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">cut_list &lt;-<span class="st"> </span>ggplot2<span class="op">::</span>diamonds <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>cut, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>

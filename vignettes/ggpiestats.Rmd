@@ -203,6 +203,20 @@ were more likely to perish than survive, whereas women were more likely to
 survive than perish. The only exception was the 3rd Class passangers where women
 were as likely to survive as to perish.
 
+This will work even if the condition argument is not specified:
+
+```{r ggpiestats5, cache.extra = Titanic_full, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
+library(ggstatsplot)
+
+ggstatsplot::grouped_ggpiestats(
+  data = Titanic_full,                          
+  main = Age,
+  grouping.var = Class
+  ) 
+```
+
+## Grouped analysis with `ggpiestats` + `purrr` 
+
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the color palette can't be further
 modified, the legend color combination differs across different levels of the
@@ -210,10 +224,10 @@ grouping variable based on the frequencies, etc. For cases like these, it would
 be better to use a function like
 [`purrr::pmap`](https://purrr.tidyverse.org/reference/map2.html).
 
-## Grouped analysis with `ggpiestats` + `purrr` 
+**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
+will need to *quote* the arguments.
 
-
-```{r ggpiestats5, cache.extra = Titanic_full, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
+```{r ggpiestats6, cache.extra = Titanic_full, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
 # let's split the dataframe and create a list by passenger class
 class_list <- Titanic_full %>%
   base::split(x = ., f = .$Class, drop = TRUE)

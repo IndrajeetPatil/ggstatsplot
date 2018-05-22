@@ -90,14 +90,12 @@
 #'
 #' @examples
 #'
-#' library(gapminder)
 #'
 #' ggstatsplot::grouped_gghistostats(
-#' data = gapminder::gapminder,
-#' x = lifeExp,
-#' xlab = "Life expectancy",
-#' test.value = 50,
-#' grouping.var = continent,
+#' data = iris,
+#' x = Sepal.Length,
+#' test.value = 5,
+#' grouping.var = Species,
 #' nrow = 3,
 #' messages = FALSE
 #' )
@@ -153,6 +151,11 @@ grouped_gghistostats <- function(grouping.var,
 
   # creating a nested dataframe
   df %<>%
+    dplyr::mutate_if(
+      .tbl = .,
+      .predicate = purrr::is_bare_character,
+      .funs = ~as.factor(.)
+    ) %>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,

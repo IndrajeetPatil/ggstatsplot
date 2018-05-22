@@ -98,6 +98,9 @@ resulting plots using ggstatsplot::combine_plots." />
       <a href="../articles/ggpiestats.html">ggpiestats</a>
     </li>
     <li>
+      <a href="../articles/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
       <a href="../articles/theme_mprl.html">Default theme (theme_mprl)</a>
     </li>
   </ul>
@@ -254,6 +257,15 @@ combining (plot, caption).</p></dd>
     <div class='dont-index'><p><code><a href='ggpiestats.html'>ggpiestats</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># grouped one-sample proportion tests</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats'>grouped_ggpiestats</a></span>(
+<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+<span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>am</span>,
+<span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>cyl</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -261,7 +273,9 @@ combining (plot, caption).</p></dd>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     

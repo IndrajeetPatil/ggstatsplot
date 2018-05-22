@@ -262,6 +262,9 @@ grouping variable and there is no way to adapt them based on the level of the
 grouping variable. We will see how this can be done using the `purrr` package
 from tidyverse. 
 
+**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
+will need to *quote* the arguments.
+
 ```{r ggcorrmat8, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
 # splitting the dataframe by cut and creting a list
 cut_list <- ggplot2::diamonds %>%

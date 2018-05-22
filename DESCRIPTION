@@ -48,6 +48,7 @@ Imports:
     tidyr (>= 0.8.0),
     WRS2 (>= 0.9-2)
 Suggests:
+    ggplot2movies,
     gapminder (>= 0.3.0),
     knitr,
     rmarkdown

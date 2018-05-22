@@ -93,6 +93,16 @@ Helper function for \code{ggstatsplot::ggpiestats} to apply this
 function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
+\examples{
+
+# grouped one-sample proportion tests
+ggstatsplot::grouped_ggpiestats(
+data = mtcars,
+grouping.var = am,
+main = cyl
+)
+
+}
 \seealso{
 \code{\link{ggpiestats}}
 }
