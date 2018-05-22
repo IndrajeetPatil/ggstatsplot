@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.3</span>
       </span>
     </div>
 
@@ -148,10 +148,10 @@
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>lab.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>,
-  <span class='kw'>axis.text.x.margin.t</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>axis.text.x.margin.r</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>axis.text.x.margin.t</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.r</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>axis.text.x.margin.b</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.l</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>legend.title.margin</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>t.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0</span>, <span class='st'>"mm"</span>), <span class='kw'>b.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>3</span>,
-  <span class='st'>"mm"</span>))</pre>
+  <span class='st'>"mm"</span>), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -314,8 +314,8 @@ text label (variable names, i.e.).</p></td>
     <tr>
       <th>axis.text.x.margin.t, axis.text.x.margin.r, axis.text.x.margin.b, axis.text.x.margin.l</th>
       <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left) in case the names are slanted, i.e. when the tl.srt is
-between <code>45</code> and <code>75</code> (Defaults: <code>12</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
+bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
     </tr>
     <tr>
       <th>legend.title.margin</th>
@@ -326,6 +326,11 @@ colorbar (Default: <code>TRUE</code>).</p></td>
       <th>t.margin, b.margin</th>
       <td><p>Margins in grid units. For more details, see
 <code>?grid::unit()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
     

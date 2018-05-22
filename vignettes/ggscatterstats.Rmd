@@ -154,7 +154,7 @@ ratings. We will be running parametric tests (Pearson's *r*, i.e.). If you set
 `type = "np"` or `type = "r"`, results from non-parametric or robust test will
 be displayed.
 
-```{r grouped1, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
+```{r grouped1, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
 ggstatsplot::grouped_ggscatterstats(
   # arguments relevant for ggstatsplot::ggscatterstats
   data = movies_wide,
@@ -193,7 +193,7 @@ Let's run the same analysis using `purrr::pmap`.
 will need to *quote* the arguments.
 
 ```{r grouped2, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 8}
-# let's split the dataframe and create a list by mpss rating
+# let's split the dataframe and create a list by mpaa rating
 mpaa_list <- movies_wide %>%
   base::split(x = ., f = .$mpaa, drop = TRUE)
 

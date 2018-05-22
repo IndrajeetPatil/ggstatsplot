@@ -101,6 +101,8 @@
 #' @importFrom crayon red
 #' @importFrom jmv anova
 #'
+#' @seealso \code{\link{grouped_ggbetweenstats}}
+#'
 #' @examples
 #'
 #' # to get reproducible results from bootstrapping

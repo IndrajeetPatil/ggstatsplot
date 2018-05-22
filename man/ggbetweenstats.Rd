@@ -119,6 +119,9 @@ xlab = "Supplement type",
 ylab = "Tooth length")
 
 }
+\seealso{
+\code{\link{grouped_ggbetweenstats}}
+}
 \author{
 Indrajeet Patil
 }

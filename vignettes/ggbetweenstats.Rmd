@@ -31,15 +31,14 @@ this vignette.
 To begin with, here are some instances where you would want to use
 `ggbetweenstats`-
 
-  - to check if a continuous (numeric) variable differs between two groups or
-    conditions
+  - to check if a continuous variable differs between two groups or conditions
   - to check for outliers
 
 **Note before**: The following demo uses the pipe operator (`%>%`), so in case
 you are not familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-## Group comparison with `ggbetweenstats`
+## Between-subjects comparisons with `ggbetweenstats`
 
 To illustrate how this function can be used, we will use the `gapminder`
 dataset. This dataset (available in eponymous
@@ -61,14 +60,15 @@ average (across countries in a given continent) life expectancy differs
 significantly across five continents.
 
 The simplest form of the function call is-
-```{r ggbetweenstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+```{r ggbetweenstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 library(ggstatsplot)
 library(gapminder)
 
 ggstatsplot::ggbetweenstats(
   data = dplyr::filter(.data = gapminder, year == 2007),
   x = continent,
-  y = lifeExp
+  y = lifeExp,
+  messages = FALSE
 )
 ```
 
@@ -80,7 +80,7 @@ further modified.
 We will see how this basic call can be further modified with additional
 arguments-
 
-```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 7}
+```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 library(ggstatsplot)
 library(gapminder)
 
@@ -88,6 +88,8 @@ ggstatsplot::ggbetweenstats(
   data = dplyr::filter(.data = gapminder, year == 2007),      # dataframe
   x = continent,                                              # grouping/independent variable
   y = lifeExp,                                                # dependent variables
+  xlab = "Continent",                                         # label for the x-axis
+  ylab = "Life expectancy",                                   # label for the y-axis
   plot.type = "boxviolin",                                    # type of plot
   type = "parametric",                                        # type of statistical test  
   effsize.type = "biased",                                    # type of effect size
@@ -104,15 +106,22 @@ ggstatsplot::ggbetweenstats(
   ggplot2::scale_y_continuous(limits = c(35,85), breaks = seq(from = 35, to = 85, by = 5))
 ```
 
+As can be appreciated from the effect size of 0.635, there are big differences
+in the observed life expectancy across continents. Importantly, this plot also
+helps us appreciate the differences within any given continent. For example,
+although Asian countries are doing much better than African countries, on
+average, Afghanistan has a particularly grim average for the Asian continent,
+possibly reflecting the war and the political turmoil.
 
-The `type` (of test) argument also accepts the following abbreviations: `"p"`
-(for *parametric*), `"np"` (for *nonparametric*), `"r"` (for *robust*).
-Additionally, the type of plot to be displayed can also be modified (`"box"`,
-`"violin"`, or `"boxviolin"`). Let's produce all of these variations in the plot
-below.
+Out of curiosity, we can repeat the same analysis with other available tests in
+`ggstatsplot`. The `type` (of test) argument also accepts the following
+abbreviations: `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"`
+(for *robust*). Additionally, the type of plot to be displayed can also be
+modified (`"box"`, `"violin"`, or `"boxviolin"`). Let's produce all of these
+variations in the plot below.
 
 For example,
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 7}
+```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(ggstatsplot)
 library(gapminder)
 
@@ -156,6 +165,142 @@ ggstatsplot::combine_plots(
   caption.text = "Note: Comparing results from parametric, non-parametric, and robust tests",
   title.size = 14,
   caption.size = 12
+)
+```
+
+## Grouped analysis with `grouped_ggbetweenstats`
+
+What if we want to do the same analysis separately for each year for which the
+data is available, i.e. checking how the differences in life expectancy have
+changed since this data collection started in 1952 until 2007? In that case, we
+will have to either write a `for` loop or use `purrr`, both of which are time
+consuming and can be a bit of a struggle.
+
+`ggstatsplot` provides a special helper function for such instances:
+`grouped_ggbetweenstats`. This is merely a wrapper function around
+`ggstatsplot::combine_plots`. It applies `ggbetweenstats` across all **levels** of
+a specified **grouping variable** and then combines list of individual plots
+into a single plot. Note that the grouping variable can be anything: conditions
+in a given study, groups in a study sample, different studies, etc. 
+
+Let's focus on the following years to see these changes for every 10
+years: 1957, 1967, 1977, 1987, 1997, 2007. 
+
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 7}
+ggstatsplot::grouped_ggbetweenstats(
+  # arguments relevant for ggstatsplot::ggbetweenstats
+  data = dplyr::filter(
+    .data = gapminder::gapminder,
+    year == 1957 |
+    year == 1967 |
+    year == 1977 |
+    year == 1987 |
+    year == 1997 |
+    year == 2007
+  ),
+  x = continent,
+  y = lifeExp,
+  outlier.tagging = TRUE,
+  outlier.label = country,
+  grouping.var = year,
+  title.prefix = "Year",
+  messages = FALSE,
+  # arguments relevant for ggstatsplot::combine_plots
+  title.text = "Changes in life expectancy across continents (1957-2007)",
+  nrow = 6,
+  ncol = 1,
+  labels = c("(a)","(b)","(c)", "(d)", "(e)", "(f)")
+)
+```
+
+As seen from the plot, although the life expectancy has been improving steadily
+across all continents as we go from 1957 to 2007, this improvement has not been
+happening at the same rate for all continents. Additionally, irrespective of
+which year we look at, we still find significant differences in life expectancy
+across continents which have been surprisingly consistent across five decades
+(based on the observed effect sizes).
+
+## Grouped analysis with `ggbetweenstats` + `purrr` 
+
+Although this grouping function provides a quick way to explore the data, it
+leaves much to be desired. For example, the same type of plot and test is
+applied for all years, but maybe we want to change this for different years, or
+maybe we want to gave different effect sizes for different years. This type of
+customization for different levels of a grouping variable is not possible with
+`grouped_ggbetweenstats`, but we will see how this can be easily achieved using
+the `purrr` package.
+
+**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
+will need to *quote* the arguments.
+
+
+```{r grouped2, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 7}
+# let's split the dataframe and create a list by years of interest
+year_list <- gapminder::gapminder %>%
+  dplyr::filter(
+    .data = .,
+    year == 1957 |
+    year == 1967 |
+    year == 1977 |
+    year == 1987 |
+    year == 1997 |
+    year == 2007
+  ) %>%
+  base::split(x = ., f = .$year, drop = TRUE)
+
+# this created a list with 4 elements, one for each mpaa rating
+str(year_list)
+
+# running function on every element of this list note that if you want the same
+# value for a given argument across all elements of the list, you need to
+# specify it just once
+plot_list <- purrr::pmap(
+  .l = list(
+    data = year_list,
+    x = "continent",
+    y = "lifeExp",
+    outlier.label = "country",
+    outlier.label.color = list(
+      "#56B4E9",
+      "#009E73",
+      "#F0E442",
+      "#0072B2",
+      "#D55E00",
+      "#CC79A7"
+    ),
+    xlab = "Continent",
+    ylab = "Life expectancy",
+    title = list(
+      "Year: 1957",
+      "Year: 1967",
+      "Year: 1977",
+      "Year: 1987",
+      "Year: 1997",
+      "Year: 2007"
+    ),
+    type = list("r", "p", "np", "p", "np", "r"),
+    effsize.type = list(
+      "biased",
+      "unbiased",
+      "biased",
+      "unbiased",
+      "biased",
+      "unbiased"
+    ),
+    plot.type = list("box", "boxviolin", "box", "boxviolin", "box", "violin"),
+    messages = FALSE
+  ),
+  .f = ggstatsplot::ggbetweenstats
+)
+  
+# combining all individual plots from the list into a single plot using combine_plots function
+ggstatsplot::combine_plots(
+  plotlist = plot_list,
+  title.text = "Changes in life expectancy across continents (1957-2007)",
+  title.color = "red",
+  nrow = 6,
+  ncol = 1,
+  labels = c("(a)","(b)","(c)","(d)", "(e)", "(f)")
 )
 ```
 

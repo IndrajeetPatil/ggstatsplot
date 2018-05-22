@@ -70,8 +70,8 @@
 #'   (applicable only when `lab = TRUE`).
 #' @param axis.text.x.margin.t,axis.text.x.margin.r,axis.text.x.margin.b,axis.text.x.margin.l
 #'   Margins between x-axis and the variable name texts (t: top, r: right, b:
-#'   bottom, l:left) in case the names are slanted, i.e. when the tl.srt is
-#'   between `45` and `75` (Defaults: `12`, `0`, `0`, `0`, resp.).
+#'   bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+#'   between `45` and `75` (Defaults: `0`, `0`, `0`, `0`, resp.).
 #' @param insig Character used to show specialized insignificant correlation
 #'   coefficients (`"pch"` (default) or `"blank"`). If `"blank"`, the
 #'   corresponding glyphs will be removed; if "pch" is used, characters (see
@@ -86,6 +86,8 @@
 #'   colorbar (Default: `TRUE`).
 #' @param t.margin,b.margin Margins in grid units. For more details, see
 #'   `?grid::unit()`.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritDotParams combine_plots
 #'
 #' @importFrom dplyr select
@@ -118,8 +120,8 @@
 #'  grouping.var = Species,
 #'  cor.vars = Sepal.Length:Petal.Width,
 #'  output = "plot",
-#'  nrow = 1,
-#'  ncol = 3
+#'  nrow = 3,
+#'  ncol = 1
 #' )
 #'
 #' # for getting correlations
@@ -167,38 +169,35 @@ grouped_ggcorrmat <- function(grouping.var,
                               tl.cex = 12,
                               tl.col = "black",
                               tl.srt = 45,
-                              axis.text.x.margin.t = 12,
+                              axis.text.x.margin.t = 0,
                               axis.text.x.margin.r = 0,
                               axis.text.x.margin.b = 0,
                               axis.text.x.margin.l = 0,
                               legend.title.margin = TRUE,
                               t.margin = unit(0, "mm"),
                               b.margin = unit(3, "mm"),
+                              messages = TRUE,
                               ...) {
   # ========================================= preparing dataframe ==================================================
 
   # getting the dataframe ready
-  df <- dplyr::select(
-    .data = data,
-    !!rlang::enquo(grouping.var),
-    !!rlang::enquo(cor.vars)
-  ) %>%
-    dplyr::mutate(
-      .data = .,
-      title.text = !!rlang::enquo(grouping.var)
-    )
+  df <- dplyr::select(.data = data,
+                      !!rlang::enquo(grouping.var),
+                      !!rlang::enquo(cor.vars)) %>%
+    dplyr::mutate(.data = .,
+                  title.text = !!rlang::enquo(grouping.var))
 
   # creating a nested dataframe
   df %<>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = purrr::is_bare_character,
-      .funs = ~as.factor(.)
+      .funs = ~ as.factor(.)
     ) %>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
-      .funs = ~base::droplevels(.)
+      .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
@@ -215,7 +214,7 @@ grouped_ggcorrmat <- function(grouping.var,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ggstatsplot::ggcorrmat(
+            .f = ~ ggstatsplot::ggcorrmat(
               title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
               data = .,
               cor.vars = !!rlang::enquo(cor.vars),
@@ -254,17 +253,16 @@ grouped_ggcorrmat <- function(grouping.var,
               axis.text.x.margin.l = axis.text.x.margin.l,
               legend.title.margin = legend.title.margin,
               t.margin = t.margin,
-              b.margin = b.margin
+              b.margin = b.margin,
+              messages = messages
             )
           )
       )
 
     # combining the list of plots into a single plot
     combined_plot <-
-      ggstatsplot::combine_plots(
-        plotlist = plotlist_purrr$plots,
-        ...
-      )
+      ggstatsplot::combine_plots(plotlist = plotlist_purrr$plots,
+                                 ...)
 
     # return the combined plot
     return(combined_plot)
@@ -279,7 +277,7 @@ grouped_ggcorrmat <- function(grouping.var,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ggstatsplot::ggcorrmat(
+            .f = ~ ggstatsplot::ggcorrmat(
               data = .,
               cor.vars = !!rlang::enquo(cor.vars),
               cor.vars.names = cor.vars.names,

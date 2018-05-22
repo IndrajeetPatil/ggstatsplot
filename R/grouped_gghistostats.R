@@ -96,7 +96,7 @@
 #' x = Sepal.Length,
 #' test.value = 5,
 #' grouping.var = Species,
-#' nrow = 3,
+#' nrow = 1,
 #' messages = FALSE
 #' )
 #'

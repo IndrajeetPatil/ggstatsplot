@@ -15,10 +15,10 @@ ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   caption = NULL, caption.default = TRUE, lab.col = "black",
   lab.size = 5, insig = "pch", pch = 4, pch.col = "black",
   pch.cex = 11, tl.cex = 12, tl.col = "black", tl.srt = 45,
-  axis.text.x.margin.t = 12, axis.text.x.margin.r = 0,
+  axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
   axis.text.x.margin.b = 0, axis.text.x.margin.l = 0,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
-  "mm"))
+  "mm"), messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -119,14 +119,17 @@ coefficients (only valid when \code{insig = "pch"}). Default value is \code{pch 
 text label (variable names, i.e.).}
 
 \item{axis.text.x.margin.t, axis.text.x.margin.r, axis.text.x.margin.b, axis.text.x.margin.l}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left) in case the names are slanted, i.e. when the tl.srt is
-between \code{45} and \code{75} (Defaults: \code{12}, \code{0}, \code{0}, \code{0}, resp.).}
+bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
 
 \item{legend.title.margin}{Logical indicating whether to adjust the margin between legend title and the
 colorbar (Default: \code{TRUE}).}
 
 \item{t.margin, b.margin}{Margins in grid units. For more details, see
 \code{?grid::unit()}.}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 }
 \value{
 Correlation matrix plot or correlation coefficient matrix or matrix

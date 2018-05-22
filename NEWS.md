@@ -11,9 +11,9 @@ NEW FEATURES
   - `gghistostats` supports `proportion` and `density` as a value measure for
     bar heights to show proportions and density. New argument `bar.measure`
     controls this behavior.
-  - `grouped_` variants of functions `ggcorrmat`, `ggscatterstats`, and
-    `ggpiestats` introduced to create multiple plots for different levels of a
-    grouping variable.
+  - `grouped_` variants of functions `ggcorrmat`, `ggscatterstats`,
+    `ggbetweenstats`, and `ggpiestats` introduced to create multiple plots for
+    different levels of a grouping variable.
 
 BREAKING FEATURES
   - To be internally consistent, all functions in `ggstatsplot` use the spelling

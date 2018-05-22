@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.2.9000
+Version: 0.0.3
 Authors@R: person(given = "Indrajeet", 
   family = "Patil", 
   email = "patilindrajeet.science@gmail.com", 
@@ -41,7 +41,7 @@ Imports:
     nortest (>= 1.0-4),
     purrr (>= 0.2.4),
     rlang (>= 0.2.0),
-    scales,
+    scales (>= 0.5.0),
     sfsmisc (>= 1.1-1),
     sjstats (>= 0.14.2-3),
     tibble (>= 1.4.2),

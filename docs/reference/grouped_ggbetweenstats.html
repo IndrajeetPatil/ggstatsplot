@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>violin plots for group or condition comparisons — ggbetweenstats • ggstatsplot</title>
+<title>Violin plots for group or condition comparisons repeated across all
+levels of a grouping variable. — grouped_ggbetweenstats • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,11 +29,11 @@
 
 
 
-<meta property="og:title" content="violin plots for group or condition comparisons — ggbetweenstats" />
+<meta property="og:title" content="Violin plots for group or condition comparisons repeated across all
+levels of a grouping variable. — grouped_ggbetweenstats" />
 
-<meta property="og:description" content="A combination of box and violin plots along with jittered data
-points for between-subjects designs with statistical details included in
-the plot as a subtitle." />
+<meta property="og:description" content="A combined plot of comparison plot created for levels of a
+grouping variable." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,31 +125,40 @@ the plot as a subtitle." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>violin plots for group or condition comparisons</h1>
+    <h1>Violin plots for group or condition comparisons repeated across all
+levels of a grouping variable.</h1>
     
-    <div class="hidden name"><code>ggbetweenstats.Rd</code></div>
+    <div class="hidden name"><code>grouped_ggbetweenstats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A combination of box and violin plots along with jittered data
-points for between-subjects designs with statistical details included in
-the plot as a subtitle.</p>
+    <p>A combined plot of comparison plot created for levels of a
+grouping variable.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggbetweenstats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"boxviolin"</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>grouped_ggbetweenstats</span>(<span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>,
+  <span class='no'>y</span>, <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"boxviolin"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>grouping.var</th>
+      <td><p>Grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>title.prefix</th>
+      <td><p>Character specifying the prefix text for the fixed plot
+title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
+    </tr>
     <tr>
       <th>data</th>
       <td><p>Dataframe from which variables specified are preferentially to be
@@ -192,10 +202,6 @@ or <code>"unbiased"</code> (Hedge's <em>g</em> for <strong>t-test</strong>; part
     <tr>
       <th>caption</th>
       <td><p>The text for the plot caption.</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>The text for the plot title.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -277,11 +283,57 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments passed on to <code>combine_plots</code></p><dl class='dl-horizontal'>
+  <dt>title.text</dt><dd><p>String or plotmath expression to be drawn as title for the
+<em>combined plot</em>.</p></dd>
+  <dt>title.color</dt><dd><p>Text color for title.</p></dd>
+  <dt>title.size</dt><dd><p>Point size of title text.</p></dd>
+  <dt>title.vjust</dt><dd><p>Vertical justification for title. Default = 0.5 (centered
+on y). 0 = baseline at y, 1 = ascender at y.</p></dd>
+  <dt>title.hjust</dt><dd><p>Horizontal justification for title. Default = 0.5
+(centered on x). 0 = flush-left at x, 1 = flush-right.</p></dd>
+  <dt>title.fontface</dt><dd><p>The font face ("plain", "bold", etc.) for title.</p></dd>
+  <dt>caption.text</dt><dd><p>String or plotmath expression to be drawn as the caption
+for the <em>combined plot</em>.</p></dd>
+  <dt>caption.color</dt><dd><p>Text color for caption.</p></dd>
+  <dt>caption.size</dt><dd><p>Point size of title text.</p></dd>
+  <dt>caption.vjust</dt><dd><p>Vertical justification for caption. Default = <code>0.5</code>
+(centered on y). <code>0</code> = baseline at y, <code>1</code> = ascender at y.</p></dd>
+  <dt>caption.hjust</dt><dd><p>Horizontal justification for caption. Default = <code>0.5</code>
+(centered on x). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
+  <dt>caption.fontface</dt><dd><p>The font face (<code>"plain"</code>, <code>"bold"</code>, <code>"italic"</code>,
+<code>"bold.italic"</code>) for caption.</p></dd>
+  <dt>sub.text</dt><dd><p>The label with which the <em>combined plot</em> should be annotated.
+Can be a plotmath expression.</p></dd>
+  <dt>sub.color</dt><dd><p>Text color for annotation label.</p></dd>
+  <dt>sub.size</dt><dd><p>Point size of annotation text.</p></dd>
+  <dt>sub.x</dt><dd><p>The x position of annotation label.</p></dd>
+  <dt>sub.y</dt><dd><p>The y position of annotation label.</p></dd>
+  <dt>sub.hjust</dt><dd><p>Horizontal justification for annotation label.</p></dd>
+  <dt>sub.vjust</dt><dd><p>Vertical justification for annotation label.</p></dd>
+  <dt>sub.vpadding</dt><dd><p>Vertical padding. The total vertical space added to the
+label, given in grid units. By default, this is added equally above and
+below the label. However, by changing the y and vjust parameters, this can
+be changed.</p></dd>
+  <dt>sub.fontface</dt><dd><p>The font face (<code>"plain"</code>, <code>"bold"</code>, <code>"italic"</code>,
+<code>"bold.italic"</code>) for the annotation label.</p></dd>
+  <dt>sub.angle</dt><dd><p>Angle at which annotation label is to be drawn.</p></dd>
+  <dt>sub.lineheight</dt><dd><p>Line height of annotation label.</p></dd>
+  <dt>title.caption.rel.heights</dt><dd><p>Numerical vector of relative columns heights
+while combining (title, plot, caption).</p></dd>
+  <dt>title.rel.heights</dt><dd><p>Numerical vector of relative columns heights while
+combining (title, plot).</p></dd>
+  <dt>caption.rel.heights</dt><dd><p>Numerical vector of relative columns heights while
+combining (plot, caption).</p></dd>
+</dl></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code></p></div>
+    <div class='dont-index'><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -289,20 +341,13 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'>set.seed</span>(<span class='fl'>123</span>)
 
-<span class='co'># simple function call with the defaults</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats'>ggbetweenstats</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>
-)</div><div class='output co'>#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  &lt; 0.001</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># more detailed function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats'>ggbetweenstats</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/ToothGrowth'>ToothGrowth</a></span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>supp</span>,
-<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>len</span>,
-<span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"box"</span>,
-<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Supplement type"</span>,
-<span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>)</div><div class='output co'>#&gt; Reference:  Welch's t-test is used as a default. (Delacre, Lakens, &amp; Leys, International Review of Social Psychology, 2017).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for len : p-value =  0.087</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor supp : p-value =  0.233</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># the most basic function call</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggbetweenstats'>grouped_ggbetweenstats</a></span>(
+<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
+<span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>am</span>
+)</div><div class='output co'>#&gt; Warning:  aesthetic `x` was not a factor; converting it to factor</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for wt : p-value =  0.001</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor cyl : p-value =  0.022</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning:  aesthetic `x` was not a factor; converting it to factor</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for wt : p-value =  0.907</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor cyl : p-value =  0.337</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

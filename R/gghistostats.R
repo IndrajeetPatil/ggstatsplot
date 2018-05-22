@@ -439,7 +439,7 @@ gghistostats <-
       if (isTRUE(centrality.para) || centrality.para == "mean") {
         plot <- plot +
           ggplot2::geom_vline(
-            xintercept = mean(data$x),
+            xintercept = mean(x = data$x, na.rm = TRUE),
             linetype = centrality.linetype,
             color = centrality.color,
             size = centrality.size,
@@ -451,7 +451,7 @@ gghistostats <-
           plot <- plot +
             ggplot2::geom_text(
               mapping = ggplot2::aes(
-                x = mean(data$x) + 0.20,
+                x = mean(x = data$x, na.rm = TRUE) + 0.20,
                 label = "mean",
                 y = line.labeller.y
               ),
@@ -463,7 +463,7 @@ gghistostats <-
       } else if (centrality.para == "median") {
         plot <- plot +
           ggplot2::geom_vline(
-            xintercept = median(data$x),
+            xintercept = median(x = data$x, na.rm = TRUE),
             linetype = centrality.linetype,
             color = centrality.color,
             size = centrality.size,
@@ -474,7 +474,7 @@ gghistostats <-
           plot <- plot +
             ggplot2::geom_text(
               mapping = ggplot2::aes(
-                x = median(data$x) + 0.20,
+                x = median(x = data$x, na.rm = TRUE) + 0.20,
                 label = "median",
                 y = line.labeller.y
               ),
