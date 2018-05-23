@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--22-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--23-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -41,7 +41,7 @@ extension of [`ggplot2`](https://github.com/tidyverse/ggplot2) package
 for creating graphics with details from statistical tests included in
 the plots themselves and targeted primarily at behavioral sciences
 community to provide a one-line code to produce information-rich plots.
-Currently, it supports only the most common types of statisticla tests
+Currently, it supports only the most common types of statistical tests
 (**parametric**, **nonparametric**, and **robust** versions of
 **t-tets/anova**, **correlation**, and **contingency tables** analyses).
 Accordingly, it produces limited kinds of plots: **violin plots** (for
@@ -286,6 +286,7 @@ ggstatsplot::ggpiestats(
   messages = FALSE
 ) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modification outside of ggstatsplot    
+#> Warning:  the argument for `main` was not a factor; converting it to factorWarning:  the argument for `condition` was not a factor; converting it to factor
 ```
 
 <img src="man/figures/README-ggpiestats2-1.png" width="100%" />
@@ -311,6 +312,7 @@ ggstatsplot::ggpiestats(
   ),
   messages = FALSE                                    # turn off messages and notes
 ) 
+#> Warning:  the argument for `main` was not a factor; converting it to factorWarning:  the argument for `condition` was not a factor; converting it to factor
 ```
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />

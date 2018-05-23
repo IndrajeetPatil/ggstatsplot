@@ -44,7 +44,7 @@ of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
 graphics with details from statistical tests included in the plots themselves
 and targeted primarily at behavioral sciences community to provide a one-line
 code to produce information-rich plots. Currently, it supports only the most
-common types of statisticla tests (**parametric**, **nonparametric**, and
+common types of statistical tests (**parametric**, **nonparametric**, and
 **robust** versions of **t-tets/anova**, **correlation**, and **contingency
 tables** analyses). Accordingly, it produces limited kinds of plots: **violin
 plots** (for comparisons between groups or conditions), **pie charts** (for

@@ -157,6 +157,66 @@ ggpiestats <-
       }
     }
 
+    # ========================================= percentage dataframe ======================================
+    #
+    # main needs to be a factor for this analysis it is possible that sometimes
+    # the variable hasn't been converted to factor class and this will produce
+    # an error
+    if (is.factor(data$main)) {
+      # drop the unused levels of factor
+      data %<>%
+        dplyr::mutate_at(
+          .tbl = .,
+          .vars = "main",
+          .funs = ~base::droplevels(x = .)
+        )
+    } else if (!is.factor(data$main)) {
+      # convert to factor
+      data$main <- base::as.factor(x = data$main)
+      # drop the unused levels of factor
+      data %<>%
+        dplyr::mutate_at(
+          .tbl = .,
+          .vars = "main",
+          .funs = ~base::droplevels(x = .)
+        )
+      # display message
+      base::message(cat(
+        crayon::red("Warning: "),
+        crayon::blue("the argument for `main` was not a factor; converting it to factor")
+      ))
+    }
+
+    if (!base::missing(condition)) {
+      # condition needs to be a factor for this analysis it is possible that sometimes
+      # the variable hasn't been converted to factor class and this will produce
+      # an error
+      if (is.factor(data$condition)) {
+        # drop the unused levels of factor
+        data %<>%
+          dplyr::mutate_at(
+            .tbl = .,
+            .vars = "condition",
+            .funs = ~base::droplevels(x = .)
+          )
+      } else if (!is.factor(data$condition)) {
+        # convert to factor
+        data$condition <- base::as.factor(x = data$condition)
+        # drop the unused levels of factor
+        data %<>%
+          dplyr::mutate_at(
+            .tbl = .,
+            .vars = "condition",
+            .funs = ~base::droplevels(x = .)
+          )
+        # display message
+        base::message(cat(
+          crayon::red("Warning: "),
+          crayon::blue("the argument for `condition` was not a factor; converting it to factor")
+        ))
+      }
+    }
+
     # convert the data into percentages; group by conditional variable if needed
     if (base::missing(condition)) {
       df <-
