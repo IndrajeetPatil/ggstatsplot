@@ -1,0 +1,20 @@
+---
+title: "paper"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  collapse = TRUE,
+  dpi = 300,
+  out.width = "100%",
+  comment = "#>"
+  ) 
+```
+
+## Summary
+
+## References

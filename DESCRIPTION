@@ -51,9 +51,12 @@ Suggests:
     ggplot2movies,
     gapminder (>= 0.3.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat,
+    vdiffr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
 VignetteBuilder: knitr
+

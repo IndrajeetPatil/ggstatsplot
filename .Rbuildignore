@@ -13,3 +13,4 @@
 ^_pkgdown\.yml$
 ^docs$
 ^revdep$
+JOSS/*

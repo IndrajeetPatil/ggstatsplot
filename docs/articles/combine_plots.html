@@ -93,7 +93,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-23</h4>
+            <h4 class="date">2018-05-24</h4>
       
       
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -195,34 +195,33 @@
 <a class="sourceLine" id="cb2-25" data-line-number="25">        )</a>
 <a class="sourceLine" id="cb2-26" data-line-number="26">      )</a>
 <a class="sourceLine" id="cb2-27" data-line-number="27">  )</a>
-<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt; Warning:  aesthetic `x` was not a factor; converting it to factorWarning:  aesthetic `x` was not a factor; converting it to factorWarning:  aesthetic `x` was not a factor; converting it to factor</span></a>
-<a class="sourceLine" id="cb2-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb2-30" data-line-number="30">### display the new object (notice that the class of the `plot` list column is S3: gg)</a>
-<a class="sourceLine" id="cb2-31" data-line-number="31">plots</a>
-<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
-<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">#&gt;     cyl data               plot    </span></a>
-<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">#&gt;   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;  </span></a>
-<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">#&gt; 1     6 &lt;tibble [7 x 11]&gt;  &lt;S3: gg&gt;</span></a>
-<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt; 2     4 &lt;tibble [11 x 11]&gt; &lt;S3: gg&gt;</span></a>
-<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt; 3     8 &lt;tibble [14 x 11]&gt; &lt;S3: gg&gt;</span></a>
-<a class="sourceLine" id="cb2-38" data-line-number="38"></a>
-<a class="sourceLine" id="cb2-39" data-line-number="39">### creating a grid with cowplot</a>
-<a class="sourceLine" id="cb2-40" data-line-number="40">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb2-41" data-line-number="41">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,       <span class="co"># list column containing all ggstatsplot objects</span></a>
-<a class="sourceLine" id="cb2-42" data-line-number="42">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb2-43" data-line-number="43">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb2-44" data-line-number="44">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>),</a>
-<a class="sourceLine" id="cb2-45" data-line-number="45">  <span class="dt">title.text =</span> <span class="st">"MPG and car transmission relationship (for each cylinder count)"</span>,</a>
-<a class="sourceLine" id="cb2-46" data-line-number="46">  <span class="dt">title.size =</span> <span class="dv">13</span>,</a>
-<a class="sourceLine" id="cb2-47" data-line-number="47">  <span class="dt">title.color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb2-48" data-line-number="48">  <span class="dt">caption.text =</span> <span class="kw">expression</span>(</a>
-<a class="sourceLine" id="cb2-49" data-line-number="49">    <span class="kw">paste</span>(</a>
-<a class="sourceLine" id="cb2-50" data-line-number="50">      <span class="kw">italic</span>(<span class="st">"Transmission"</span>),</a>
-<a class="sourceLine" id="cb2-51" data-line-number="51">      <span class="st">": 0 = automatic, 1 = manual"</span></a>
-<a class="sourceLine" id="cb2-52" data-line-number="52">    ),</a>
-<a class="sourceLine" id="cb2-53" data-line-number="53">    <span class="dt">caption.size =</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb2-54" data-line-number="54">  )</a>
-<a class="sourceLine" id="cb2-55" data-line-number="55">)</a></code></pre></div>
+<a class="sourceLine" id="cb2-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29">### display the new object (notice that the class of the `plot` list column is S3: gg)</a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">plots</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
+<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co">#&gt;     cyl data               plot    </span></a>
+<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">#&gt;   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;  </span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">#&gt; 1     6 &lt;tibble [7 x 11]&gt;  &lt;S3: gg&gt;</span></a>
+<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">#&gt; 2     4 &lt;tibble [11 x 11]&gt; &lt;S3: gg&gt;</span></a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt; 3     8 &lt;tibble [14 x 11]&gt; &lt;S3: gg&gt;</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38">### creating a grid with cowplot</a>
+<a class="sourceLine" id="cb2-39" data-line-number="39">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb2-40" data-line-number="40">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,       <span class="co"># list column containing all ggstatsplot objects</span></a>
+<a class="sourceLine" id="cb2-41" data-line-number="41">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb2-42" data-line-number="42">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>),</a>
+<a class="sourceLine" id="cb2-44" data-line-number="44">  <span class="dt">title.text =</span> <span class="st">"MPG and car transmission relationship (for each cylinder count)"</span>,</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">  <span class="dt">title.size =</span> <span class="dv">13</span>,</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46">  <span class="dt">title.color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb2-47" data-line-number="47">  <span class="dt">caption.text =</span> <span class="kw">expression</span>(</a>
+<a class="sourceLine" id="cb2-48" data-line-number="48">    <span class="kw">paste</span>(</a>
+<a class="sourceLine" id="cb2-49" data-line-number="49">      <span class="kw">italic</span>(<span class="st">"Transmission"</span>),</a>
+<a class="sourceLine" id="cb2-50" data-line-number="50">      <span class="st">": 0 = automatic, 1 = manual"</span></a>
+<a class="sourceLine" id="cb2-51" data-line-number="51">    ),</a>
+<a class="sourceLine" id="cb2-52" data-line-number="52">    <span class="dt">caption.size =</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb2-53" data-line-number="53">  )</a>
+<a class="sourceLine" id="cb2-54" data-line-number="54">)</a></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggbetweenstats_purrr-1.png" width="768"></p>
 </div>
 <div id="suggestions" class="section level2">
