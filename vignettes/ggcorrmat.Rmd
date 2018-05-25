@@ -298,7 +298,7 @@ plot_list <- purrr::pmap(
       c("#0072B2", "white", "#D55E00"),
       c("#CC79A7", "white", "#F0E442"),
       c("#56B4E9", "white", "#D55E00"),
-      c("#0072B2", "white", "#999999")
+      c("#999999", "white", "#0072B2")
     )
   ),
   .f = ggstatsplot::ggcorrmat

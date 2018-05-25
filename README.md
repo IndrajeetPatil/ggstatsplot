@@ -21,7 +21,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--23-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--24-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -286,7 +286,6 @@ ggstatsplot::ggpiestats(
   messages = FALSE
 ) +
   ggplot2::scale_fill_brewer(palette = "Dark2")   # further modification outside of ggstatsplot    
-#> Warning:  the argument for `main` was not a factor; converting it to factorWarning:  the argument for `condition` was not a factor; converting it to factor
 ```
 
 <img src="man/figures/README-ggpiestats2-1.png" width="100%" />
@@ -312,7 +311,6 @@ ggstatsplot::ggpiestats(
   ),
   messages = FALSE                                    # turn off messages and notes
 ) 
-#> Warning:  the argument for `main` was not a factor; converting it to factorWarning:  the argument for `condition` was not a factor; converting it to factor
 ```
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />

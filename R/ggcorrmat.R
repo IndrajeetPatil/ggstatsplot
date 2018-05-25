@@ -328,7 +328,8 @@ ggcorrmat <-
 
         # label adjustment message for the development version of ggplot2
         if (isTRUE(messages)) {
-          if (utils::packageVersion(pkg = "ggplot2") == "2.2.1.9000") {
+          if (utils::packageVersion(pkg = "ggplot2") == "2.2.1.9000" ||
+              utils::packageVersion(pkg = "ggplot2") == "2.3.0") {
             base::message(cat(
               crayon::red("Note:"),
               crayon::blue(
