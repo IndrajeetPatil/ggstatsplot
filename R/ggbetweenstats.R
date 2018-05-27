@@ -179,7 +179,9 @@ ggbetweenstats <- function(data = NULL,
           .data = data,
           x = !!rlang::enquo(x),
           y = !!rlang::enquo(y)
-        )
+        ) %>%
+        dplyr::mutate(.data = .,
+                      outlier.label = y)
     } else {
       # if outlier label is provided then include it to make a dataframe
       data <-
@@ -426,6 +428,7 @@ ggbetweenstats <- function(data = NULL,
             data = data,
             dep = "y",
             factors = "x",
+            ss = "3",
             effectSize = c("omega", "partEta")
           )
 
@@ -615,6 +618,7 @@ ggbetweenstats <- function(data = NULL,
         stats::t.test(
           formula = y ~ x,
           data = data,
+          alternative = "two.sided",
           var.equal = var.equal,
           na.action = na.omit
         )
@@ -861,27 +865,13 @@ ggbetweenstats <- function(data = NULL,
 
   ########################################### outlier tagging #########################################################
 
-  # if outlier.tagging is set to TRUE, first figure out what labels need to be attached to the outlier
+  # if outlier.tagging is set to TRUE, first figure out what labels need to be
+  # attached to the outlier if outlier label is not provided, outlier labels
+  # will just be values of the y vector if the outlier tag has been provided,
+  # just use the dataframe already created
   if (isTRUE(outlier.tagging)) {
-    ## getting the data in dataframe format
-    if (missing(outlier.label)) {
-      # if outlier label is not provided, outlier labels will just be values of the y vector
-      data_df <-
-        base::cbind.data.frame(x = data$x,
-                               y = data$y,
-                               outlier.label = data$y)
-    } else {
-      # if the outlier tag has been provided, just use the dataframe already created
-      data_df <-
-        base::cbind.data.frame(
-          x = data$x,
-          y = data$y,
-          outlier.label = data$outlier.label
-        )
-    }
-
     # finding and tagging the outliers
-    data_df %<>%
+    data_df <- data %>%
       dplyr::group_by(.data = ., x) %>%
       dplyr::mutate(
         .data = .,
@@ -968,13 +958,6 @@ ggbetweenstats <- function(data = NULL,
       dplyr::select(.data = ., -dplyr::contains("outlier")) %>%
       dplyr::group_by(.data = ., x) %>%
       dplyr::summarise(.data = ., y = mean(y))
-      # group by the independent variable
-      # dplyr::mutate_if(
-      #   .tbl = .,
-      #   .predicate = purrr::is_bare_numeric,
-      #   .funs = ~ base::mean(x = ., na.rm = TRUE)
-      # ) %>% # dependent variable mean for each level of grouping variable
-      # dplyr::distinct(.data = .)
 
     # format the numeric values
     mean_dat %<>%

@@ -2,7 +2,7 @@
 #' @title Display normality test result as a message.
 #' @name normality_message
 #' @aliases normality_message
-#' @param x A numeric vector
+#' @param x A numeric vector.
 #' @param lab A character describing label for the variable.
 #' @param k Number of decimal places expected for results (Default: `3`).
 #' @param output What output is desired: `"message"` (default) or `"stats"` objects.

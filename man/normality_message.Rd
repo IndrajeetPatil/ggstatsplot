@@ -7,7 +7,7 @@
 normality_message(x, lab, k = 3, output = "message")
 }
 \arguments{
-\item{x}{A numeric vector}
+\item{x}{A numeric vector.}
 
 \item{lab}{A character describing label for the variable.}
 

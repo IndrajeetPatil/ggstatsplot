@@ -326,19 +326,6 @@ ggcorrmat <-
             theme_corrmat()
         }
 
-        # label adjustment message for the development version of ggplot2
-        if (isTRUE(messages)) {
-          if (utils::packageVersion(pkg = "ggplot2") == "2.2.1.9000" ||
-              utils::packageVersion(pkg = "ggplot2") == "2.3.0") {
-            base::message(cat(
-              crayon::red("Note:"),
-              crayon::blue(
-                "If you are using development version of ggplot2, the x-axis labels may not properly.
-                Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names."
-              )
-            ))
-          }
-        }
         # even if ggstatsplot theme is not overlaid, still make sure there is
         # enough distance between the axis and the label
         plot <- plot +
