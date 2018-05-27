@@ -92,7 +92,6 @@
 #' @importFrom stats aov
 #' @importFrom stats quantile
 #' @importFrom stats oneway.test
-#' @importFrom nortest ad.test
 #' @importFrom coin wilcox_test
 #' @importFrom coin statistic
 #' @importFrom rlang enquo
@@ -178,6 +177,7 @@ grouped_ggbetweenstats <- function(grouping.var,
         title.text = !!rlang::enquo(grouping.var)
       )
   }
+
   # creating a nested dataframe
   df %<>%
     dplyr::mutate_if(

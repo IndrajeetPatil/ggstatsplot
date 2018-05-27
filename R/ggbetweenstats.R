@@ -89,7 +89,6 @@
 #' @importFrom stats aov
 #' @importFrom stats quantile
 #' @importFrom stats oneway.test
-#' @importFrom nortest ad.test
 #' @importFrom coin wilcox_test
 #' @importFrom coin statistic
 #' @importFrom rlang enquo
@@ -967,11 +966,18 @@ ggbetweenstats <- function(data = NULL,
     mean_dat <- data %>%
       # in case outlier.label is present, remove it since it's of no utility here
       dplyr::select(.data = ., -dplyr::contains("outlier")) %>%
-      dplyr::group_by(.data = ., x) %>% # group by the independent variable
-      dplyr::mutate_all(.tbl = .,
-                        .funs = mean,
-                        na.rm = TRUE) %>% # dependent variable mean for each level of grouping variable
-      dplyr::distinct(.data = .) %>% # removed duplicated rows
+      dplyr::group_by(.data = ., x) %>%
+      dplyr::summarise(.data = ., y = mean(y))
+      # group by the independent variable
+      # dplyr::mutate_if(
+      #   .tbl = .,
+      #   .predicate = purrr::is_bare_numeric,
+      #   .funs = ~ base::mean(x = ., na.rm = TRUE)
+      # ) %>% # dependent variable mean for each level of grouping variable
+      # dplyr::distinct(.data = .)
+
+    # format the numeric values
+    mean_dat %<>%
       dplyr::mutate_if(
         .tbl = .,
         .predicate = is.numeric,
@@ -1000,26 +1006,8 @@ ggbetweenstats <- function(data = NULL,
   ################################################### messages ############################################################
 
   if (isTRUE(messages)) {
-    # display a note to the user about the validity of assumptions for the default linear model
     # display normality test result as a message
-    # for AD test of normality, sample size must be greater than 7
-    if (length(data$y) > 7) {
-      ad_norm <- nortest::ad.test(x = data$y)
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue(
-          "Anderson-Darling Normality Test for",
-          crayon::yellow(lab.df[2]),
-          # entered y argument
-          ": p-value = "
-        ),
-        crayon::yellow(
-          ggstatsplot::specify_decimal_p(x = ad_norm$p.value[[1]],
-                                         k,
-                                         p.value = TRUE)
-        )
-      ))
-    }
+    normality_message(x = data$y, lab = lab.df[2], k = k)
     # homogeneity of variance
     bartlett <- stats::bartlett.test(formula = y ~ x,
                                      data = data)

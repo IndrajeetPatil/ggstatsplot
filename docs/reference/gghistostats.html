@@ -312,7 +312,7 @@ chunk is executed, this behavior can be turned off by setting
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats'>gghistostats</a></span>(
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/ToothGrowth'>ToothGrowth</a></span>,
 <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>len</span>,
-<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for len : p-value =  0.087</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; Note:  Shapuro-Wilk Normality Test for len : p-value =  0.109</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># another example</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats'>gghistostats</a></span>(
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -331,7 +331,7 @@ chunk is executed, this behavior can be turned off by setting
 <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
 <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>
 )</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note:  Prior width used to compute Bayes Factor: 0.8 
-#&gt; Evidence in favor of the null hypothesis (H0): 1.43971963628525e-81</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Anderson-Darling Normality Test for Sepal.Length : p-value =  0.023</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-3.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; Evidence in favor of the null hypothesis (H0): 1.43971963628525e-81</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapuro-Wilk Normality Test for Sepal.Length : p-value =  0.010</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-3.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

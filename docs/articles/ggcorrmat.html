@@ -93,7 +93,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-24</h4>
+            <h4 class="date">2018-05-27</h4>
       
       
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -139,7 +139,9 @@
 <a class="sourceLine" id="cb2-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">  <span class="dt">data =</span> gapminder_<span class="dv">2007</span>,             <span class="co"># data from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb2-9" data-line-number="9">  <span class="dt">cor.vars =</span> lifeExp<span class="op">:</span>gdpPercap       <span class="co"># specifying correlation matrix variables</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">)</a></code></pre></div>
+<a class="sourceLine" id="cb2-10" data-line-number="10">)</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.</span></a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" width="576"></p>
 <p>This plot can be further modified with additional arguments-</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
@@ -154,7 +156,9 @@
 <a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">"green"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span>),     <span class="co"># selecting color combination</span></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">title =</span> <span class="st">"Gapminder correlation matrix"</span>,     <span class="co"># custom title</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder Foundation"</span>   <span class="co"># custom subtitle</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">)</a></code></pre></div>
+<a class="sourceLine" id="cb3-13" data-line-number="13">)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.</span></a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="576"></p>
 <p>As seen from this correlation matrix, although there is no relationship between population and life expectancy worldwide, at least in 2007, there is a strong positive relationship between GDP, a well-established indicator of a country’s economic performance.</p>
 <p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <code>ggplot2</code> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
@@ -180,7 +184,9 @@
 <a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(carat, depth<span class="op">:</span>z),        <span class="co"># note how the variables are getting selected</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">cor.vars.names =</span> <span class="kw">c</span>(<span class="st">"carat"</span>, <span class="st">"total depth"</span>, <span class="st">"table"</span>, <span class="st">"price"</span>, <span class="st">"length (in mm)"</span>, <span class="st">"width (in mm)"</span>, <span class="st">"depth (in mm)"</span>),</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">hc.order =</span> <span class="ot">TRUE</span>                      <span class="co"># use hierarchical clustering</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">)</a></code></pre></div>
+<a class="sourceLine" id="cb5-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.</span></a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" width="672"></p>
 <p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to te the first column. Additionally, since we are running 6 correlations that are of <em>a priori</em> interest to us, we can adjust our threshold of significance to (0.05/6 ~ 0.008). Additionally, let’s use a non-parametric correlation coefficient. Please note that it is <strong>important</strong> to always make sure that the order in which <code>cor.vars</code> and <code>cor.vars.names</code> are entered is in sync. Otherwise, wrong column labels will be displayed.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
@@ -201,7 +207,9 @@
 <a class="sourceLine" id="cb6-16" data-line-number="16">  <span class="dt">caption =</span> <span class="kw">expression</span>(                            <span class="co"># changing the default caption text for the plot </span></a>
 <a class="sourceLine" id="cb6-17" data-line-number="17">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": Point shape denotes correlation non-significant at p &lt; 0.008; adjusted for 6 comparisons"</span>)</a>
 <a class="sourceLine" id="cb6-18" data-line-number="18">  )</a>
-<a class="sourceLine" id="cb6-19" data-line-number="19">)</a></code></pre></div>
+<a class="sourceLine" id="cb6-19" data-line-number="19">)</a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt; Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.</span></a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" width="672"></p>
 <p>As seen here, and unsurprisingly, the strongest predictor of the diamond price is its carat value, which a unit of mass equal to 200 mg. In other words, the heavier the diamond, the more expensive it is going to be.</p>
 </div>
@@ -280,7 +288,13 @@
 <a class="sourceLine" id="cb8-24" data-line-number="24">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>),</a>
 <a class="sourceLine" id="cb8-25" data-line-number="25">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb8-26" data-line-number="26">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb8-27" data-line-number="27">)</a></code></pre></div>
+<a class="sourceLine" id="cb8-27" data-line-number="27">)</a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="co">#&gt; Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb8-32" data-line-number="32"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.</span></a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat6-1.png" width="960"></p>
 <p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable. For example, if we wanted to get the same correlation coefficient matrix for <code>color</code> of the diamond, we can do the following-</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggcorrmat">grouped_ggcorrmat</a></span>(</a>
@@ -406,20 +420,26 @@
 <a class="sourceLine" id="cb10-91" data-line-number="91">  ),</a>
 <a class="sourceLine" id="cb10-92" data-line-number="92">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggcorrmat</a>
 <a class="sourceLine" id="cb10-93" data-line-number="93">)</a>
-<a class="sourceLine" id="cb10-94" data-line-number="94"></a>
-<a class="sourceLine" id="cb10-95" data-line-number="95"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb10-96" data-line-number="96">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb10-97" data-line-number="97">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb10-98" data-line-number="98">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
-<a class="sourceLine" id="cb10-99" data-line-number="99">  <span class="dt">title.size =</span> <span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb10-100" data-line-number="100">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb10-101" data-line-number="101">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
-<a class="sourceLine" id="cb10-102" data-line-number="102">  <span class="dt">caption.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb10-103" data-line-number="103">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
-<a class="sourceLine" id="cb10-104" data-line-number="104">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>),</a>
-<a class="sourceLine" id="cb10-105" data-line-number="105">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb10-106" data-line-number="106">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb10-107" data-line-number="107">)</a></code></pre></div>
+<a class="sourceLine" id="cb10-94" data-line-number="94"><span class="co">#&gt; Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb10-95" data-line-number="95"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb10-96" data-line-number="96"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb10-97" data-line-number="97"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb10-98" data-line-number="98"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.Note: If you are using development version of ggplot2, the x-axis labels may not properly.</span></a>
+<a class="sourceLine" id="cb10-99" data-line-number="99"><span class="co">#&gt;                 Try setting `axis.text.x.margin.t` to 12 or 14; depends on the length of your variable names.</span></a>
+<a class="sourceLine" id="cb10-100" data-line-number="100"></a>
+<a class="sourceLine" id="cb10-101" data-line-number="101"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb10-102" data-line-number="102">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb10-103" data-line-number="103">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb10-104" data-line-number="104">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
+<a class="sourceLine" id="cb10-105" data-line-number="105">  <span class="dt">title.size =</span> <span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb10-106" data-line-number="106">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb10-107" data-line-number="107">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
+<a class="sourceLine" id="cb10-108" data-line-number="108">  <span class="dt">caption.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb10-109" data-line-number="109">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
+<a class="sourceLine" id="cb10-110" data-line-number="110">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>),</a>
+<a class="sourceLine" id="cb10-111" data-line-number="111">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-112" data-line-number="112">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb10-113" data-line-number="113">)</a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat8-1.png" width="960"></p>
 <p>As can be seen from this example, combination of <code>purrr</code> and <code>ggstatsplot</code> much more flexibility in analyzing the data and preparing a combined plot across studies or conditions.</p>
 </div>

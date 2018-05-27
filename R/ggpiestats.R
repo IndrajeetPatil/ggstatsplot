@@ -482,9 +482,6 @@ ggpiestats <-
                     caption = caption) +
       ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
 
-    # adding colorbind friendly palette to the final plot
-    # p <- cbpalette_add(plot = p)
-
     # return the final plot
     return(p)
   }

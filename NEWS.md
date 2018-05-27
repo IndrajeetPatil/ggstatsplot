@@ -1,6 +1,10 @@
 
 # ggstatsplot 0.0.3.9000
 
+MINOR CHANGES
+
+  - Switched back to Shapiro-Wilk test of normality to remove `nortest` from imports.
+
 # ggstatsplot 0.0.3
 
 NEW FEATURES

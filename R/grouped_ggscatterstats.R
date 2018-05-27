@@ -125,7 +125,7 @@ grouped_ggscatterstats <- function(grouping.var,
                                    axes.range.restrict = FALSE,
                                    messages = TRUE,
                                    ...) {
-  # ================== preparing dataframe ==================
+  # ========================================= preparing dataframe =======================================================
 
   # getting the dataframe ready
   df <- dplyr::select(

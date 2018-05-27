@@ -77,8 +77,6 @@
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
 #' @importFrom jmv ttestOneS
-#' @importFrom stats dnorm
-#' @importFrom nortest ad.test
 #' @importFrom scales percent
 #' @importFrom crayon green
 #' @importFrom crayon blue
@@ -540,26 +538,7 @@ gghistostats <-
     # ========================================== messages ==================================================================
     if (isTRUE(messages)) {
       # display normality test result as a message
-      # # for AD test of normality, sample size must be greater than 7
-      if (length(data$x) > 7) {
-        ad_norm <- nortest::ad.test(x = data$x)
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue(
-            "Anderson-Darling Normality Test for",
-            crayon::yellow(lab.df[1]),
-            # entered x argument
-            ": p-value = "
-          ),
-          crayon::yellow(
-            ggstatsplot::specify_decimal_p(
-              x = ad_norm$p.value[[1]],
-              k,
-              p.value = TRUE
-            )
-          )
-        ))
-      }
+      normality_message(x = data$x, lab = lab.df[1], k = k)
     }
 
     # return the final plot
