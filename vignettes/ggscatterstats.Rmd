@@ -54,32 +54,23 @@ library(dplyr)
 dplyr::glimpse(x = ggplot2movies::movies)
 ```
 
-Since we will be using this dataset for the current vignette, let's first clean
-it up by selecting only variables that will be of interest to us.
+We will be using cleaned version of this dataset included in the `ggstatsplot`
+package itself.
 
 ```{r ggplot2movies2, warning = FALSE, message = FALSE}
+library(ggstatsplot)
 
-# selecting data of interest
-movies_wide <- ggplot2movies::movies %>%
-  dplyr::select(.data = ., c(title:votes, mpaa)) %>%         # `.` is just a placeholder for the data
-  dplyr::filter(.data = ., mpaa != "") %>%                   # removing movies without mpaa ratings
-  stats::na.omit(.) %>%                                      # removing NAs 
-  dplyr::mutate(.data = ., budget = budget/1000000) %>%      # convert the budge to millions of dollars
-  dplyr::mutate_if(.tbl = .,                                 # convert mpaa ratings to a factor
-                   .predicate = purrr::is_bare_character,
-                   .funs = ~as.factor(.))
-  
 # see the selected data (we have data from 1813 movies)
-dplyr::glimpse(x = movies_wide)
+dplyr::glimpse(x = ggstatsplot::movies_wide)
 ```
 
 Now that we have a clean dataset, we can start asking some interesting
 questions. For example, let's see if the average rating a movie has depends on its budget.
 
-```{r ggscatterstats1, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+```{r ggscatterstats1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 
 ggstatsplot::ggscatterstats(
-  data = movies_wide,                                          # dataframe from which variables are to be taken
+  data = ggstatsplot::movies_wide,                             # dataframe from which variables are to be taken
   x = budget,                                                  # predictor/independent variable 
   y = rating,                                                  # dependent variable
   xlab = "Budget (in millions of US dollars)",                 # label for the x-axis
@@ -126,7 +117,7 @@ this:
 grid::grid.newpage()
 grid::grid.draw(
   ggstatsplot::ggscatterstats(
-    data = movies_wide,
+    data = ggstatsplot::movies_wide,
     x = budget,
     y = rating,
     marginal = TRUE,
@@ -154,10 +145,10 @@ ratings. We will be running parametric tests (Pearson's *r*, i.e.). If you set
 `type = "np"` or `type = "r"`, results from non-parametric or robust test will
 be displayed.
 
-```{r grouped1, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
 ggstatsplot::grouped_ggscatterstats(
   # arguments relevant for ggstatsplot::ggscatterstats
-  data = movies_wide,
+  data = ggstatsplot::movies_wide,
   title.prefix = "MPAA Rating",
   x = budget,
   y = rating,
@@ -192,9 +183,9 @@ Let's run the same analysis using `purrr::pmap`.
 **Note before**: Unlike the function call so far, while using `purrr::pmap`, we
 will need to *quote* the arguments.
 
-```{r grouped2, cache.extra = movies_wide, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 8}
+```{r grouped2, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 8}
 # let's split the dataframe and create a list by mpaa rating
-mpaa_list <- movies_wide %>%
+mpaa_list <- ggstatsplot::movies_wide %>%
   base::split(x = ., f = .$mpaa, drop = TRUE)
 
 # this created a list with 4 elements, one for each mpaa rating

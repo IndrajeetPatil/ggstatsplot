@@ -1,5 +1,5 @@
 ---
-title: "paper"
+title: "'ggplot2' Based Plots with Statistical Details"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output: html_document
@@ -17,4 +17,26 @@ knitr::opts_chunk$set(
 
 ## Summary
 
+`ggstatsplot` is an extension of `ggplot2` package (Wickham, 2016) for creating
+graphics with details from statistical tests included in the plots themselves
+and targeted primarily at behavioral sciences community to provide a one-line
+code to produce information-rich plots for exploratory data analysis or
+publications.
+
+Currently, the package supports only the most common types of statistical tests
+(**parametric**, **nonparametric**, and **robust** versions of **t-tets/anova**,
+**correlation**, and **crosstabs** analyses). Accordingly, it produces limited
+kinds of plots:
+
+  - **box/violin plots** (for comparisons between groups or conditions)
+  - **pie charts** (for categorical data)
+  - **scatterplots** (for correlations between two variables) 
+  - **correlation matrices** (for correlations between multiple variables)
+  - **histograms** (for hypothesis about distributions).
+
+Future versions will include other types of analyses (within-subjects variants
+of the existing function) and plots as well.
+
 ## References
+
+Wickham, H. (2016). *ggplot2: elegant graphics for data analysis*. Springer.

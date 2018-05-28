@@ -5,6 +5,8 @@
 
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![packageversion](https://img.shields.io/badge/Package%20version-0.0.3.9000-orange.svg?style=flat-square)](commits/master)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Daily downloads
 badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Weekly downloads
@@ -27,10 +29,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
 
 <!-- 
-[![CRAN version badge](https://www.r-pkg.org/badges/version/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Open issues](http://img.shields.io/github/issues/badges/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues/)
-[![Research software impact](http://depsy.org/api/package/cran/ggstatsplot/badge.svg)](http://depsy.org/package/r/ggstatsplot)
-[![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
 -->
 

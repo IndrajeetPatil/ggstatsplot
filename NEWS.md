@@ -3,7 +3,9 @@
 
 MINOR CHANGES
 
-  - Switched back to Shapiro-Wilk test of normality to remove `nortest` from imports.
+  - Switched back to Shapiro-Wilk test of normality to remove `nortest` from
+    imports.
+  - Three new datasets added: `Titanic_full`, `movies_wide`, `movies_long`.
 
 # ggstatsplot 0.0.3
 
