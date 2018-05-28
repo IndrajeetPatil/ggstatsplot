@@ -239,7 +239,7 @@ signif_column <- function(data = NULL, p) {
 #'
 #' @param var A numeric vector.
 #' @param coef Coefficient for outlier detection using Tukey's method.
-#'   With Tukey’s method, outliers are below (1st Quartile) or above (3rd
+#'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
 #'   Quartile) `coef` times the Inter-Quartile Range (IQR).
 #'
 #' @importFrom stats quantile

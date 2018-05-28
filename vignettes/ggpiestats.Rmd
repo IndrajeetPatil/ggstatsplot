@@ -29,9 +29,9 @@ function in this vignette.
 
 To begin with, here are some instances where you would want to use `ggpiestats`-
 
-  - to see if the frequency distribution of two categorial variables are
+  - to see if the frequency distribution of two categorical variables are
     independent of each other using the contingency table analysis
-  - to check if the proportion of observations at each level of a categorial
+  - to check if the proportion of observations at each level of a categorical
     variable is equal
 
 **Note before**: The following demo uses the pipe operator (`%>%`), so in case
@@ -107,7 +107,7 @@ Titanic_full$Class <-
 dplyr::glimpse(Titanic_full)
 ```
 
-Notice that our final dataset contains information about over 2000 passangers,
+Notice that our final dataset contains information about over 2000 passengers,
 while the original dataset with counts information had only 32 rows. Now we can
 start asking interesting question from this dataset.
 
@@ -200,7 +200,7 @@ ggstatsplot::grouped_ggpiestats(
 As seen from this quick exploratory analysis, across all passenger classes, the
 proportion of survived to non-survived individuals differed across genders: Men
 were more likely to perish than survive, whereas women were more likely to
-survive than perish. The only exception was the 3rd Class passangers where women
+survive than perish. The only exception was the 3rd Class passengers where women
 were as likely to survive as to perish.
 
 This will work even if the condition argument is not specified:

@@ -54,7 +54,7 @@ the resolution of the data.}
 \item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
 the resolution of the data.}
 
-\item{xfill}{color fill for x axis distibution (default: \code{"#009E73"}).}
+\item{xfill}{color fill for x axis distribution (default: \code{"#009E73"}).}
 
 \item{yfill}{color fill for y axis distribution (default: \code{"#D55E00"}).}
 
@@ -80,7 +80,7 @@ bootstrap samples to compute Spearman's rho confidence intervals (Default:
 
 \item{k}{Number of decimal places expected for results.}
 
-\item{axes.range.restrict}{Logical decides whther to restrict the axes values
+\item{axes.range.restrict}{Logical decides whether to restrict the axes values
 ranges to min and max values of the \code{x} and \code{y} variables (Default: \code{FALSE}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are

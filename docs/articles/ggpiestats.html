@@ -93,7 +93,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-27</h4>
+            <h4 class="date">2018-05-28</h4>
       
       
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -105,8 +105,8 @@
 <p>The function <code><a href="../reference/ggpiestats.html">ggstatsplot::ggpiestats</a></code> can be used to prepare <strong>publication-ready pie charts</strong> to summarize the statistical relationship between two categorical variables. We will see examples of how to use this function in this vignette.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggpiestats</code>-</p>
 <ul>
-<li>to see if the frequency distribution of two categorial variables are independent of each other using the contingency table analysis</li>
-<li>to check if the proportion of observations at each level of a categorial variable is equal</li>
+<li>to see if the frequency distribution of two categorical variables are independent of each other using the contingency table analysis</li>
+<li>to check if the proportion of observations at each level of a categorical variable is equal</li>
 </ul>
 <p><strong>Note before</strong>: The following demo uses the pipe operator (<code>%&gt;%</code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="statistical-independence-of-categorical-variables-with-ggpiestats" class="section level2">
@@ -193,7 +193,7 @@
 <a class="sourceLine" id="cb2-47" data-line-number="47"><span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Chil...</span></a>
 <a class="sourceLine" id="cb2-48" data-line-number="48"><span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, N...</span></a>
 <a class="sourceLine" id="cb2-49" data-line-number="49"><span class="co">#&gt; $ n        &lt;dbl&gt; 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 3...</span></a></code></pre></div>
-<p>Notice that our final dataset contains information about over 2000 passangers, while the original dataset with counts information had only 32 rows. Now we can start asking interesting question from this dataset.</p>
+<p>Notice that our final dataset contains information about over 2000 passengers, while the original dataset with counts information had only 32 rows. Now we can start asking interesting question from this dataset.</p>
 <p>First, let’s see if the proportion of people who survived was different between sexes using <code>ggpiestats</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(<span class="dt">data =</span> Titanic_full,</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">                        <span class="dt">condition =</span> Sex,</a>
@@ -251,7 +251,7 @@
 <a class="sourceLine" id="cb6-16" data-line-number="16">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
 <a class="sourceLine" id="cb6-17" data-line-number="17">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="864"></p>
-<p>As seen from this quick exploratory analysis, across all passenger classes, the proportion of survived to non-survived individuals differed across genders: Men were more likely to perish than survive, whereas women were more likely to survive than perish. The only exception was the 3rd Class passangers where women were as likely to survive as to perish.</p>
+<p>As seen from this quick exploratory analysis, across all passenger classes, the proportion of survived to non-survived individuals differed across genders: Men were more likely to perish than survive, whereas women were more likely to survive than perish. The only exception was the 3rd Class passengers where women were as likely to survive as to perish.</p>
 <p>This will work even if the condition argument is not specified:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"></a>

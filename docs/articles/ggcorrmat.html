@@ -93,7 +93,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-27</h4>
+            <h4 class="date">2018-05-28</h4>
       
       
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -182,7 +182,7 @@
 <a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">hc.order =</span> <span class="ot">TRUE</span>                      <span class="co"># use hierarchical clustering</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">)</a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" width="672"></p>
-<p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to te the first column. Additionally, since we are running 6 correlations that are of <em>a priori</em> interest to us, we can adjust our threshold of significance to (0.05/6 ~ 0.008). Additionally, let’s use a non-parametric correlation coefficient. Please note that it is <strong>important</strong> to always make sure that the order in which <code>cor.vars</code> and <code>cor.vars.names</code> are entered is in sync. Otherwise, wrong column labels will be displayed.</p>
+<p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to the the first column. Additionally, since we are running 6 correlations that are of <em>a priori</em> interest to us, we can adjust our threshold of significance to (0.05/6 ~ 0.008). Additionally, let’s use a non-parametric correlation coefficient. Please note that it is <strong>important</strong> to always make sure that the order in which <code>cor.vars</code> and <code>cor.vars.names</code> are entered is in sync. Otherwise, wrong column labels will be displayed.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="dt">data =</span> diamonds,             </a>
 <a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),    <span class="co"># note how the variables are getting selected</span></a>
@@ -209,7 +209,7 @@
 <h2 class="hasAnchor">
 <a href="#correlation-statistics-matrix-with-ggcorrmat" class="anchor"></a>Correlation statistics matrix with <code>ggcorrmat</code>
 </h2>
-<p>Another utility of <code>ggcorrmat</code> is in obtaining matrix of correlation coefficients and their p-values for a quick and dirty exploratory data analysis. For example, for the correlation matrix we just ran, we can get a coefficient matrix and a p-value matrix. We will use robust correlation for this illustration as this correlation is supported only to get correlation coeffcients and p-values.</p>
+<p>Another utility of <code>ggcorrmat</code> is in obtaining matrix of correlation coefficients and their p-values for a quick and dirty exploratory data analysis. For example, for the correlation matrix we just ran, we can get a coefficient matrix and a p-value matrix. We will use robust correlation for this illustration as this correlation is supported only to get correlation coefficients and p-values.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># to get correlations</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">data =</span> diamonds,             </a>
@@ -305,7 +305,7 @@
 <a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt;  9 Good  carat     0.954  1     -0.053  0.229  0.991  0.991  0.988</span></a>
 <a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt; 10 Good  depth    -0.055 -0.053  1     -0.576 -0.135 -0.139  0.042</span></a>
 <a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt; # ... with 25 more rows</span></a></code></pre></div>
-<p>As this example illustrates, there is a minimal coding overhead to exlore correlations in your dataset with the <code>grouped_ggcorrmat</code> function.</p>
+<p>As this example illustrates, there is a minimal coding overhead to explore correlations in your dataset with the <code>grouped_ggcorrmat</code> function.</p>
 </div>
 <div id="grouped-analysis-with-ggcorrmat-purrr" class="section level2">
 <h2 class="hasAnchor">

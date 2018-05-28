@@ -29,7 +29,7 @@ title (name of each factor level) (Default: \code{"Group"}).}
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
 
-\item{cor.vars}{List of vairables for which the correlation matrix is to be
+\item{cor.vars}{List of variables for which the correlation matrix is to be
 computed and visualized.}
 
 \item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
@@ -40,7 +40,7 @@ matrix) or \code{"correlations"} (correlation matrix) or \code{"p-values"} (matr
 p-values).}
 
 \item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
-full matrix, lowe triangular or upper triangular matrix.}
+full matrix, lower triangular or upper triangular matrix.}
 
 \item{method}{Character argument that decides the visualization method of
 correlation matrix to be used. Allowed values are \code{"square"} (default),
@@ -67,7 +67,7 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \item{digits}{Decides the number of decimal digits to be added into the plot
 (Default: \code{2}).}
 
-\item{sig.level}{Significance level (Dafault: \code{0.05}). If the p-value in
+\item{sig.level}{Significance level (Default: \code{0.05}). If the p-value in
 p-mat (p-value matrix) is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant.}
 

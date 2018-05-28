@@ -115,7 +115,7 @@ with `ggplot2`. This can be avoided by not plotting the marginal distributions
 **Using `ggscatterstats()` in R Notebooks or Rmarkdown**
 
 If you try including a `ggscatterstats()` plot inside an R Notebook or
-Rmarkdown code chunk, you’ll notice that the plot doesn’t get output. In
+Rmarkdown code chunk, you'll notice that the plot doesn't get output. In
 order to get a `ggscatterstats()` to show up in an these contexts, you need
 to save the ggscatterstats plot as a variable in one code chunk, and
 explicitly print it using the `grid` package in another chunk, like

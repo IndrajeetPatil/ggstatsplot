@@ -10,7 +10,7 @@ check_outlier(var, coef)
 \item{var}{A numeric vector.}
 
 \item{coef}{Coefficient for outlier detection using Tukey's method.
-With Tukey’s method, outliers are below (1st Quartile) or above (3rd
+With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{coef} times the Inter-Quartile Range (IQR).}
 }
 \description{

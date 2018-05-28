@@ -28,7 +28,7 @@
 #'   5x wider and 5x taller than the marginal plots.
 #' @param margins Character describing along which margins to show the plots.
 #'   Any of the following arguments are accepted: `"both"`, `"x"`, `"y"`.
-#' @param xfill color fill for x axis distibution (default: `"#009E73"`).
+#' @param xfill color fill for x axis distribution (default: `"#009E73"`).
 #' @param yfill color fill for y axis distribution (default: `"#D55E00"`).
 #' @param type Type of association between paired samples required
 #'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
@@ -50,7 +50,7 @@
 #'   the resolution of the data.
 #' @param height.jitter Degree of jitter in `y` direction. Defaults to 40\% of
 #'   the resolution of the data.
-#' @param axes.range.restrict Logical decides whther to restrict the axes values
+#' @param axes.range.restrict Logical decides whether to restrict the axes values
 #'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).

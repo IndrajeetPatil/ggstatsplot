@@ -12,7 +12,7 @@ specify_decimal_p(x, k = 3, p.value = FALSE)
 
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
-\item{p.value}{Decides whether the number is a p-value (Dafault: \code{FALSE}).}
+\item{p.value}{Decides whether the number is a p-value (Default: \code{FALSE}).}
 }
 \value{
 Formatted numeric values.

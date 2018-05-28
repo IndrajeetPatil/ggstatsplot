@@ -61,7 +61,7 @@ interval for comparing medians. IQR: Inter-Quartile Range.}
 body (default \code{0.5}).}
 
 \item{linetype}{Character strings (\code{"blank"}, \code{"solid"}, \code{"dashed"},
-\code{"dotted"}, \code{"dotdash"}, \code{"longdash"}, and \code{"twodash"}) specifiying the
+\code{"dotted"}, \code{"dotdash"}, \code{"longdash"}, and \code{"twodash"}) specifying the
 type of line to draw box plots (Default: \code{"solid"}). Alternatively, the
 numbers \code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
 
@@ -76,7 +76,7 @@ have been tagged (Default: \code{"black"}).}
 \item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
 
 \item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
-With Tukey’s method, outliers are below (1st Quartile) or above (3rd
+With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
 

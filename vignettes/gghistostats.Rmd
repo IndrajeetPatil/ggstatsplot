@@ -97,7 +97,7 @@ gapminder::gapminder %>%
   )
 ```
 
-So far we have been showing the count informatiton with the bar chart. Another
+So far we have been showing the count information with the bar chart. Another
 option included is `density`. Showing `count` gives an idea about *raw* counts,
 while `density` gives information about *proportional* prevalence of values in a
 certain range.
@@ -263,7 +263,7 @@ like these, it would be better to use a function like
 
 So far we have been comparing life expectancy in 2007 for a particular continent
 to the global average from 1957. But what if we want to compare to
-contient-specifc life expectancy from 1957
+continent-specific life expectancy from 1957
 (<https://ourworldindata.org/life-expectancy>). This is not possible
 `grouped_gghistostats` function, but can be easily achieved with `purrr` package
 from tidyverse.

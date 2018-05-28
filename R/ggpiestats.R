@@ -20,7 +20,7 @@
 #' @param k Number of decimal places expected for results.
 #' @param legend.title Title of legend.
 #' @param facet.wrap.name The text for the facet_wrap variable label.
-#' @param facet.proptest Decides whether proprotion test for `main` variable is
+#' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).

@@ -41,7 +41,7 @@
 #' @param notchwidth For a notched box plot, width of the notch relative to the
 #'   body (default `0.5`).
 #' @param linetype Character strings (`"blank"`, `"solid"`, `"dashed"`,
-#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifiying the
+#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifying the
 #'   type of line to draw box plots (Default: `"solid"`). Alternatively, the
 #'   numbers `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
@@ -51,7 +51,7 @@
 #' @param outlier.label.color Color for the label to to put on the outliers that
 #'   have been tagged (Default: `"black"`).
 #' @param outlier.coef Coefficient for outlier detection using Tukey's method.
-#'   With Tukey’s method, outliers are below (1st Quartile) or above (3rd
+#'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
 #'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
 #'   `1.5`).
 #' @param mean.plotting Decides whether mean is to be highlighted and its value

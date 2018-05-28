@@ -93,7 +93,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-05-27</h4>
+            <h4 class="date">2018-05-28</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -158,7 +158,7 @@
 <a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="dt">binwidth =</span> <span class="dv">1</span>                                        <span class="co"># new binwidth</span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14">  )</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/age_distribution2-1.png" width="700"></p>
-<p>So far we have been showing the count informatiton with the bar chart. Another option included is <code>density</code>. Showing <code>count</code> gives an idea about <em>raw</em> counts, while <code>density</code> gives information about <em>proportional</em> prevalence of values in a certain range.</p>
+<p>So far we have been showing the count information with the bar chart. Another option included is <code>density</code>. Showing <code>count</code> gives an idea about <em>raw</em> counts, while <code>density</code> gives information about <em>proportional</em> prevalence of values in a certain range.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># select data only from the year 2007</span></a>
@@ -273,7 +273,7 @@
 <h2 class="hasAnchor">
 <a href="#grouped-analysis-with-gghistostats-purrr" class="anchor"></a>Grouped analysis with <code>gghistostats</code> + <code>purrr</code>
 </h2>
-<p>So far we have been comparing life expectancy in 2007 for a particular continent to the global average from 1957. But what if we want to compare to contient-specifc life expectancy from 1957 (<a href="https://ourworldindata.org/life-expectancy" class="uri">https://ourworldindata.org/life-expectancy</a>). This is not possible <code>grouped_gghistostats</code> function, but can be easily achieved with <code>purrr</code> package from tidyverse.</p>
+<p>So far we have been comparing life expectancy in 2007 for a particular continent to the global average from 1957. But what if we want to compare to continent-specific life expectancy from 1957 (<a href="https://ourworldindata.org/life-expectancy" class="uri">https://ourworldindata.org/life-expectancy</a>). This is not possible <code>grouped_gghistostats</code> function, but can be easily achieved with <code>purrr</code> package from tidyverse.</p>
 <p><strong>Note before</strong>: Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># let's split the dataframe and create a list by continent</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">continent_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>

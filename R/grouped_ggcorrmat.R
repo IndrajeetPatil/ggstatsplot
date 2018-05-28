@@ -13,7 +13,7 @@
 #'   title (name of each factor level) (Default: `"Group"`).
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
-#' @param cor.vars List of vairables for which the correlation matrix is to be
+#' @param cor.vars List of variables for which the correlation matrix is to be
 #'   computed and visualized.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
@@ -21,7 +21,7 @@
 #'   matrix) or `"correlations"` (correlation matrix) or `"p-values"` (matrix of
 #'   p-values).
 #' @param type Character, `"full"` (default), `"upper"` or `"lower"`, display
-#'   full matrix, lowe triangular or upper triangular matrix.
+#'   full matrix, lower triangular or upper triangular matrix.
 #' @param method Character argument that decides the visualization method of
 #'   correlation matrix to be used. Allowed values are `"square"` (default),
 #'   `"circle"`
@@ -41,7 +41,7 @@
 #'   (Default: `0.2`).
 #' @param digits Decides the number of decimal digits to be added into the plot
 #'   (Default: `2`).
-#' @param sig.level Significance level (Dafault: `0.05`). If the p-value in
+#' @param sig.level Significance level (Default: `0.05`). If the p-value in
 #'   p-mat (p-value matrix) is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant.
 #' @param hc.order Logical value. If `TRUE`, correlation matrix will be

@@ -37,7 +37,7 @@ test.}
 
 \item{k}{Number of decimal places expected for results.}
 
-\item{facet.proptest}{Decides whether proprotion test for \code{main} variable is
+\item{facet.proptest}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are

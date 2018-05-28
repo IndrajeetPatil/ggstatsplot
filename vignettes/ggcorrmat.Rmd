@@ -130,7 +130,7 @@ ggstatsplot::ggcorrmat(
 
 We can make a number of changes to this basic correlation matrix. For example,
 since we were interested in relationship between price and other attributes,
-let's make the `price` column to te the first column. Additionally, since we are
+let's make the `price` column to the the first column. Additionally, since we are
 running 6 correlations that are of *a priori* interest to us, we can adjust our
 threshold of significance to (0.05/6 ~ 0.008). Additionally, let's use a
 non-parametric correlation coefficient. Please note that it is **important** to
@@ -168,7 +168,7 @@ coefficients and their p-values for a quick and dirty exploratory data analysis.
 For example, for the correlation matrix we just ran, we can get a coefficient
 matrix and a p-value matrix. We will use robust correlation for this
 illustration as this correlation is supported only to get correlation
-coeffcients and p-values.
+coefficients and p-values.
 
 ```{r ggcorrmat5, warning = FALSE, message = FALSE}
 # to get correlations
@@ -250,7 +250,7 @@ ggstatsplot::grouped_ggcorrmat(
 )
 ```
 
-As this example illustrates, there is a minimal coding overhead to exlore
+As this example illustrates, there is a minimal coding overhead to explore
 correlations in your dataset with the `grouped_ggcorrmat` function.
 
 ## Grouped analysis with `ggcorrmat` + `purrr`
