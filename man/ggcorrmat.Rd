@@ -7,7 +7,7 @@
 \usage{
 ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   type = "full", method = "square", corr.method = "pearson",
-  exact = FALSE, continuity = TRUE, beta = 0.2, digits = 2,
+  exact = FALSE, continuity = TRUE, beta = 0.1, digits = 2,
   sig.level = 0.05, hc.order = FALSE, hc.method = "complete",
   lab = TRUE, colors = c("#E69F00", "white", "#009E73"),
   outline.color = "black", ggtheme = ggplot2::theme_gray,
@@ -57,7 +57,7 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \code{TRUE}).}
 
 \item{beta}{A numeric bending constant for robust correlation coefficient
-(Default: \code{0.2}).}
+(Default: \code{0.1}).}
 
 \item{digits}{Decides the number of decimal digits to be added into the plot
 (Default: \code{2}).}

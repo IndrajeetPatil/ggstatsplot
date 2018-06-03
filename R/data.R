@@ -82,7 +82,7 @@
 #'
 #' @format A data frame with 2201 rows and 5 variables
 #' \itemize{
-#'   \item id. Dummy identiy number for each person.
+#'   \item id. Dummy identity number for each person.
 #'   \item Class.	1st, 2nd, 3rd, Crew.
 #'   \item Sex.	Male, Female.
 #'   \item Age.	Child, Adult.

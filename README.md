@@ -23,7 +23,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--28-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--03-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -447,10 +447,10 @@ ggstatsplot::ggcorrmat(
 #> # A tibble: 4 x 5
 #>   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>   <chr>               <dbl>       <dbl>        <dbl>       <dbl>
-#> 1 Sepal.Length        1          -0.193        0.878       0.846
-#> 2 Sepal.Width        -0.193       1           -0.452      -0.392
-#> 3 Petal.Length        0.878      -0.452        1           0.966
-#> 4 Petal.Width         0.846      -0.392        0.966       1
+#> 1 Sepal.Length        1          -0.143        0.878       0.837
+#> 2 Sepal.Width        -0.143       1           -0.426      -0.373
+#> 3 Petal.Length        0.878      -0.426        1           0.966
+#> 4 Petal.Width         0.837      -0.373        0.966       1
 
 # getting the p-value matrix
 ggstatsplot::ggcorrmat(
@@ -460,12 +460,12 @@ ggstatsplot::ggcorrmat(
   output = "p-values"
 )
 #> # A tibble: 4 x 5
-#>   variable     Sepal.Length   Sepal.Width  Petal.Length Petal.Width
-#>   <chr>               <dbl>         <dbl>         <dbl>       <dbl>
-#> 1 Sepal.Length       0      0.0177        0             0          
-#> 2 Sepal.Width        0.0177 0             0.00000000636 0.000000686
-#> 3 Petal.Length       0      0.00000000636 0             0          
-#> 4 Petal.Width        0      0.000000686   0             0
+#>   variable     Sepal.Length  Sepal.Width Petal.Length Petal.Width
+#>   <chr>               <dbl>        <dbl>        <dbl>       <dbl>
+#> 1 Sepal.Length       0      0.0818       0             0         
+#> 2 Sepal.Width        0.0818 0            0.0000000529  0.00000252
+#> 3 Petal.Length       0      0.0000000529 0             0         
+#> 4 Petal.Width        0      0.00000252   0             0
 ```
 
 For examples and more information, see the `ggcorrmat` vignette:

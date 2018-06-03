@@ -34,7 +34,7 @@
 #'   Kendall's *tau* and Spearman's *rho* when not computed exactly (Default:
 #'   `TRUE`).
 #' @param beta A numeric bending constant for robust correlation coefficient
-#'   (Default: `0.2`).
+#'   (Default: `0.1`).
 #' @param digits Decides the number of decimal digits to be added into the plot
 #'   (Default: `2`).
 #' @param sig.level Significance level (Default: `0.05`). If the p-value in
@@ -102,6 +102,7 @@
 #' @importFrom magrittr "%>%"
 #' @importFrom purrr is_bare_double
 #' @importFrom stats cor
+#' @importFrom stats na.omit
 #' @importFrom tibble as_data_frame
 #' @importFrom tibble rownames_to_column
 #' @importFrom rlang enquo
@@ -159,7 +160,7 @@ ggcorrmat <-
              corr.method = "pearson",
              exact = FALSE,
              continuity = TRUE,
-             beta = 0.2,
+             beta = 0.1,
              digits = 2,
              sig.level = 0.05,
              hc.order = FALSE,

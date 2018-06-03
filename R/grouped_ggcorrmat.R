@@ -38,7 +38,7 @@
 #'   Kendall's *tau* and Spearman's *rho* when not computed exactly (Default:
 #'   `TRUE`).
 #' @param beta A numeric bending constant for robust correlation coefficient
-#'   (Default: `0.2`).
+#'   (Default: `0.1`).
 #' @param digits Decides the number of decimal digits to be added into the plot
 #'   (Default: `2`).
 #' @param sig.level Significance level (Default: `0.05`). If the p-value in
@@ -105,6 +105,7 @@
 #' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest
+#' @importFrom stats na.omit
 #'
 #' @seealso \code{\link{ggcorrmat}}
 #'
@@ -147,7 +148,7 @@ grouped_ggcorrmat <- function(grouping.var,
                               corr.method = "pearson",
                               exact = FALSE,
                               continuity = TRUE,
-                              beta = 0.2,
+                              beta = 0.1,
                               digits = 2,
                               sig.level = 0.05,
                               hc.order = FALSE,
@@ -189,7 +190,8 @@ grouped_ggcorrmat <- function(grouping.var,
     dplyr::mutate(
       .data = .,
       title.text = !!rlang::enquo(grouping.var)
-    )
+    ) %>%
+    stats::na.omit(object = .)
 
   # creating a nested dataframe
   df %<>%
