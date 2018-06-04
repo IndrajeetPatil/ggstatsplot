@@ -390,7 +390,6 @@ ggbetweenstats <- function(data = NULL,
 
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_omega <-
-          function(aov_stat, aov_effsize_ci) {
             # extracting the elements of the statistical object
             base::substitute(
               expr =
@@ -427,13 +426,12 @@ ggbetweenstats <- function(data = NULL,
                 UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
               )
             )
-          }
 
         # adding the subtitle to the plot
         plot <-
           plot +
-          ggplot2::labs(subtitle = rsubtitle_omega(aov_stat = aov_stat,
-                                                   aov_effsize_ci = aov_effsize_ci))
+          ggplot2::labs(subtitle = rsubtitle_omega)
+
       } else if (effsize.type == "biased") {
         # partial eta-squared is the biased estimate of effect size for parametric ANOVA
         aov_effsize <-
@@ -458,9 +456,6 @@ ggbetweenstats <- function(data = NULL,
         )
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_peta <-
-          function(aov_stat,
-                   aov_effsize,
-                   aov_effsize_ci) {
             # extracting the elements of the statistical object
             base::substitute(
               expr =
@@ -497,17 +492,12 @@ ggbetweenstats <- function(data = NULL,
                 UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
               )
             )
-          }
 
         # adding the subtitle to the plot
         plot <-
           plot +
           ggplot2::labs(
-            subtitle = rsubtitle_peta(
-              aov_stat = aov_stat,
-              aov_effsize = aov_effsize,
-              aov_effsize_ci = aov_effsize_ci
-            )
+            subtitle = rsubtitle_peta
           )
       }
 
@@ -1019,29 +1009,23 @@ ggbetweenstats <- function(data = NULL,
       )
   }
 
-  ################################################### messages ############################################################
+  #============================================= messages =============================================
 
   if (isTRUE(messages)) {
     # display normality test result as a message
-    normality_message(x = data$y, lab = lab.df[2], k = k)
-    # homogeneity of variance
-    bartlett <- stats::bartlett.test(formula = y ~ x,
-                                     data = data)
-    # display homogeneity of variances test result as a message
-    base::message(cat(
-      crayon::green("Note: "),
-      crayon::blue(
-        "Bartlett's test for homogeneity of variances for factor",
-        crayon::yellow(lab.df[1]),
-        # entered x argument
-        ": p-value = "
-      ),
-      crayon::yellow(
-        ggstatsplot::specify_decimal_p(x = bartlett$p.value[[1]],
-                                       k,
-                                       p.value = TRUE)
-      )
-    ))
+    normality_message(
+      x = data$y,
+      lab = lab.df[2],
+      k = k,
+      output = "message"
+    )
+    # display homogeneity of variance test as a message
+    bartlett_message(
+      data = data,
+      lab = lab.df[1],
+      k = k,
+      output = "message"
+    )
   }
 
   # return the final plot

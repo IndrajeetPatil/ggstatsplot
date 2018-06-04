@@ -32,6 +32,16 @@
 #'   variances as being equal (Default: `FALSE`).
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `100`).
+#' @param tr Trim level for the mean when carrying out `robust` tests. If you
+#'   get error stating "Standard error cannot be computed because of Winsorized
+#'   variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+#'   try to play around with the value of `tr`, which is by default set to
+#'   `0.1`. Lowering the value might help.
+#' @param conf.type A vector of character strings representing the type of
+#'   intervals required. The value should be any subset of the values `"norm"`,
+#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
+#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
+#'   lower and upper confidence intervals (`0.95`).
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
 #'   compare groups; if the notches of two boxes do not overlap, this suggests
@@ -136,6 +146,9 @@ grouped_ggbetweenstats <- function(grouping.var,
                                    k = 3,
                                    var.equal = FALSE,
                                    nboot = 100,
+                                   tr = 0.1,
+                                   conf.level = 0.95,
+                                   conf.type = "norm",
                                    notch = FALSE,
                                    notchwidth = 0.5,
                                    linetype = "solid",
@@ -217,6 +230,9 @@ grouped_ggbetweenstats <- function(grouping.var,
               k = k,
               var.equal = var.equal,
               nboot = nboot,
+              tr = tr,
+              conf.level = conf.level,
+              conf.type = conf.type,
               notch = notch,
               notchwidth = notchwidth,
               linetype = linetype,
@@ -255,6 +271,9 @@ grouped_ggbetweenstats <- function(grouping.var,
               k = k,
               var.equal = var.equal,
               nboot = nboot,
+              tr = tr,
+              conf.level = conf.level,
+              conf.type = conf.type,
               notch = notch,
               notchwidth = notchwidth,
               linetype = linetype,
