@@ -71,7 +71,13 @@ utils::globalVariables(
     "df",
     "p-value",
     "chi_sq",
-    "significance"
+    "significance",
+    "F-value",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "conf"
   ),
   package = "ggstatsplot",
   add = FALSE

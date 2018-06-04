@@ -166,13 +166,14 @@
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" width="768"></p>
 <p>As can be appreciated from the effect size of 0.635, there are big differences in the observed life expectancy across continents. Importantly, this plot also helps us appreciate the differences within any given continent. For example, although Asian countries are doing much better than African countries, on average, Afghanistan has a particularly grim average for the Asian continent, possibly reflecting the war and the political turmoil.</p>
 <p>Out of curiosity, we can repeat the same analysis with other available tests in <code>ggstatsplot</code>. The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>). Let’s produce all of these variations in the plot below.</p>
+<p>Let’s try out both of these features by plotting continent-level differences for three different years, separated by a decade. Also, since there are just two data points for the continent of Oceania, let’s leave out this continent from our analysis.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(gapminder)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># parametric ANOVA and box plot</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
 <a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">x =</span> continent,</a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">y =</span> lifeExp,</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
@@ -182,7 +183,7 @@
 <a class="sourceLine" id="cb4-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
 <a class="sourceLine" id="cb4-15" data-line-number="15">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
 <a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">x =</span> continent,</a>
 <a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">y =</span> lifeExp,</a>
 <a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
@@ -192,25 +193,26 @@
 <a class="sourceLine" id="cb4-23" data-line-number="23"></a>
 <a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co"># robust ANOVA and boxviolin plot</span></a>
 <a class="sourceLine" id="cb4-25" data-line-number="25">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
 <a class="sourceLine" id="cb4-27" data-line-number="27">  <span class="dt">x =</span> continent,</a>
-<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">y =</span> gdpPercap,</a>
 <a class="sourceLine" id="cb4-29" data-line-number="29">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
 <a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
-<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-32" data-line-number="32">)</a>
-<a class="sourceLine" id="cb4-33" data-line-number="33"></a>
-<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-35" data-line-number="35">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb4-36" data-line-number="36">  p1, p2, p3, </a>
-<a class="sourceLine" id="cb4-37" data-line-number="37">  <span class="dt">nrow =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">  <span class="dt">ncol =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb4-39" data-line-number="39">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
-<a class="sourceLine" id="cb4-40" data-line-number="40">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,</a>
-<a class="sourceLine" id="cb4-41" data-line-number="41">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, and robust tests"</span>,</a>
-<a class="sourceLine" id="cb4-42" data-line-number="42">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb4-44" data-line-number="44">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">)</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co"># combining the individual plots into a single plot</span></a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">  p1, p2, p3, </a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">  <span class="dt">nrow =</span> <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">  <span class="dt">ncol =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy across continents (1987-2007)"</span>,</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, and robust tests"</span>,</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="768"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level2">
@@ -229,7 +231,7 @@
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1977</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11">  ),</a>
 <a class="sourceLine" id="cb5-12" data-line-number="12">  <span class="dt">x =</span> continent,</a>
 <a class="sourceLine" id="cb5-13" data-line-number="13">  <span class="dt">y =</span> lifeExp,</a>
@@ -262,55 +264,55 @@
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1977</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb6-9" data-line-number="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11">  ) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-12" data-line-number="12"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>year, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb6-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co"># this created a list with 4 elements, one for each mpaa rating</span></a>
 <a class="sourceLine" id="cb6-15" data-line-number="15"><span class="kw">str</span>(year_list)</a>
 <a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; List of 6</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt;  $ 1957:Classes 'tbl_df', 'tbl' and 'data.frame':    142 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 6 7 8 9 10 ...</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 5 4 3 3 4 ...</span></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt;   ..$ year     : int [1:142] 1957 1957 1957 1957 1957 1957 1957 1957 1957 1957 ...</span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt;   ..$ lifeExp  : num [1:142] 30.3 59.3 45.7 32 64.4 ...</span></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt;   ..$ pop      : int [1:142] 9240934 1476505 10270856 4561361 19610538 9712569 6965860 138655 51365468 8989111 ...</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt;   ..$ gdpPercap: num [1:142] 821 1942 3014 3828 6857 ...</span></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt;  $ 1967:Classes 'tbl_df', 'tbl' and 'data.frame':    142 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 6 7 8 9 10 ...</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 5 4 3 3 4 ...</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt;   ..$ year     : int [1:142] 1967 1967 1967 1967 1967 1967 1967 1967 1967 1967 ...</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt;   ..$ lifeExp  : num [1:142] 34 66.2 51.4 36 65.6 ...</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co">#&gt;   ..$ pop      : int [1:142] 11537966 1984060 12760499 5247469 22934225 11872264 7376998 202182 62821884 9556500 ...</span></a>
-<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co">#&gt;   ..$ gdpPercap: num [1:142] 836 2760 3247 5523 8053 ...</span></a>
-<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co">#&gt;  $ 1977:Classes 'tbl_df', 'tbl' and 'data.frame':    142 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 6 7 8 9 10 ...</span></a>
-<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 5 4 3 3 4 ...</span></a>
-<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt;   ..$ year     : int [1:142] 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 ...</span></a>
-<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="co">#&gt;   ..$ lifeExp  : num [1:142] 38.4 68.9 58 39.5 68.5 ...</span></a>
-<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt;   ..$ pop      : int [1:142] 14880372 2509048 17152804 6162675 26983828 14074100 7568430 297410 80428306 9821800 ...</span></a>
-<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt;   ..$ gdpPercap: num [1:142] 786 3533 4910 3009 10079 ...</span></a>
-<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">#&gt;  $ 1987:Classes 'tbl_df', 'tbl' and 'data.frame':    142 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 6 7 8 9 10 ...</span></a>
-<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 5 4 3 3 4 ...</span></a>
-<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt;   ..$ year     : int [1:142] 1987 1987 1987 1987 1987 1987 1987 1987 1987 1987 ...</span></a>
-<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt;   ..$ lifeExp  : num [1:142] 40.8 72 65.8 39.9 70.8 ...</span></a>
-<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt;   ..$ pop      : int [1:142] 13867957 3075321 23254956 7874230 31620918 16257249 7578903 454612 103764241 9870200 ...</span></a>
-<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">#&gt;   ..$ gdpPercap: num [1:142] 852 3739 5681 2430 9140 ...</span></a>
-<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt;  $ 1997:Classes 'tbl_df', 'tbl' and 'data.frame':    142 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 6 7 8 9 10 ...</span></a>
-<a class="sourceLine" id="cb6-47" data-line-number="47"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 5 4 3 3 4 ...</span></a>
-<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="co">#&gt;   ..$ year     : int [1:142] 1997 1997 1997 1997 1997 1997 1997 1997 1997 1997 ...</span></a>
-<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="co">#&gt;   ..$ lifeExp  : num [1:142] 41.8 73 69.2 41 73.3 ...</span></a>
-<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="co">#&gt;   ..$ pop      : int [1:142] 22227415 3428038 29072015 9875024 36203463 18565243 8069876 598561 123315288 10199787 ...</span></a>
-<a class="sourceLine" id="cb6-51" data-line-number="51"><span class="co">#&gt;   ..$ gdpPercap: num [1:142] 635 3193 4797 2277 10967 ...</span></a>
-<a class="sourceLine" id="cb6-52" data-line-number="52"><span class="co">#&gt;  $ 2007:Classes 'tbl_df', 'tbl' and 'data.frame':    142 obs. of  6 variables:</span></a>
-<a class="sourceLine" id="cb6-53" data-line-number="53"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 6 7 8 9 10 ...</span></a>
-<a class="sourceLine" id="cb6-54" data-line-number="54"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 5 4 3 3 4 ...</span></a>
-<a class="sourceLine" id="cb6-55" data-line-number="55"><span class="co">#&gt;   ..$ year     : int [1:142] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
-<a class="sourceLine" id="cb6-56" data-line-number="56"><span class="co">#&gt;   ..$ lifeExp  : num [1:142] 43.8 76.4 72.3 42.7 75.3 ...</span></a>
-<a class="sourceLine" id="cb6-57" data-line-number="57"><span class="co">#&gt;   ..$ pop      : int [1:142] 31889923 3600523 33333216 12420476 40301927 20434176 8199783 708573 150448339 10392226 ...</span></a>
-<a class="sourceLine" id="cb6-58" data-line-number="58"><span class="co">#&gt;   ..$ gdpPercap: num [1:142] 975 5937 6223 4797 12779 ...</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt;  $ 1957:Classes 'tbl_df', 'tbl' and 'data.frame':    140 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 7 8 9 10 11 ...</span></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 4 3 3 4 1 ...</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt;   ..$ year     : int [1:140] 1957 1957 1957 1957 1957 1957 1957 1957 1957 1957 ...</span></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt;   ..$ lifeExp  : num [1:140] 30.3 59.3 45.7 32 64.4 ...</span></a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt;   ..$ pop      : int [1:140] 9240934 1476505 10270856 4561361 19610538 6965860 138655 51365468 8989111 1925173 ...</span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt;   ..$ gdpPercap: num [1:140] 821 1942 3014 3828 6857 ...</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt;  $ 1967:Classes 'tbl_df', 'tbl' and 'data.frame':    140 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 7 8 9 10 11 ...</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 4 3 3 4 1 ...</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt;   ..$ year     : int [1:140] 1967 1967 1967 1967 1967 1967 1967 1967 1967 1967 ...</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt;   ..$ lifeExp  : num [1:140] 34 66.2 51.4 36 65.6 ...</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co">#&gt;   ..$ pop      : int [1:140] 11537966 1984060 12760499 5247469 22934225 7376998 202182 62821884 9556500 2427334 ...</span></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co">#&gt;   ..$ gdpPercap: num [1:140] 836 2760 3247 5523 8053 ...</span></a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co">#&gt;  $ 1977:Classes 'tbl_df', 'tbl' and 'data.frame':    140 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 7 8 9 10 11 ...</span></a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 4 3 3 4 1 ...</span></a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt;   ..$ year     : int [1:140] 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 ...</span></a>
+<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="co">#&gt;   ..$ lifeExp  : num [1:140] 38.4 68.9 58 39.5 68.5 ...</span></a>
+<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt;   ..$ pop      : int [1:140] 14880372 2509048 17152804 6162675 26983828 7568430 297410 80428306 9821800 3168267 ...</span></a>
+<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt;   ..$ gdpPercap: num [1:140] 786 3533 4910 3009 10079 ...</span></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">#&gt;  $ 1987:Classes 'tbl_df', 'tbl' and 'data.frame':    140 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 7 8 9 10 11 ...</span></a>
+<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 4 3 3 4 1 ...</span></a>
+<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt;   ..$ year     : int [1:140] 1987 1987 1987 1987 1987 1987 1987 1987 1987 1987 ...</span></a>
+<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt;   ..$ lifeExp  : num [1:140] 40.8 72 65.8 39.9 70.8 ...</span></a>
+<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt;   ..$ pop      : int [1:140] 13867957 3075321 23254956 7874230 31620918 7578903 454612 103764241 9870200 4243788 ...</span></a>
+<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">#&gt;   ..$ gdpPercap: num [1:140] 852 3739 5681 2430 9140 ...</span></a>
+<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt;  $ 1997:Classes 'tbl_df', 'tbl' and 'data.frame':    140 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 7 8 9 10 11 ...</span></a>
+<a class="sourceLine" id="cb6-47" data-line-number="47"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 4 3 3 4 1 ...</span></a>
+<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="co">#&gt;   ..$ year     : int [1:140] 1997 1997 1997 1997 1997 1997 1997 1997 1997 1997 ...</span></a>
+<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="co">#&gt;   ..$ lifeExp  : num [1:140] 41.8 73 69.2 41 73.3 ...</span></a>
+<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="co">#&gt;   ..$ pop      : int [1:140] 22227415 3428038 29072015 9875024 36203463 8069876 598561 123315288 10199787 6066080 ...</span></a>
+<a class="sourceLine" id="cb6-51" data-line-number="51"><span class="co">#&gt;   ..$ gdpPercap: num [1:140] 635 3193 4797 2277 10967 ...</span></a>
+<a class="sourceLine" id="cb6-52" data-line-number="52"><span class="co">#&gt;  $ 2007:Classes 'tbl_df', 'tbl' and 'data.frame':    140 obs. of  6 variables:</span></a>
+<a class="sourceLine" id="cb6-53" data-line-number="53"><span class="co">#&gt;   ..$ country  : Factor w/ 142 levels "Afghanistan",..: 1 2 3 4 5 7 8 9 10 11 ...</span></a>
+<a class="sourceLine" id="cb6-54" data-line-number="54"><span class="co">#&gt;   ..$ continent: Factor w/ 5 levels "Africa","Americas",..: 3 4 1 1 2 4 3 3 4 1 ...</span></a>
+<a class="sourceLine" id="cb6-55" data-line-number="55"><span class="co">#&gt;   ..$ year     : int [1:140] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</span></a>
+<a class="sourceLine" id="cb6-56" data-line-number="56"><span class="co">#&gt;   ..$ lifeExp  : num [1:140] 43.8 76.4 72.3 42.7 75.3 ...</span></a>
+<a class="sourceLine" id="cb6-57" data-line-number="57"><span class="co">#&gt;   ..$ pop      : int [1:140] 31889923 3600523 33333216 12420476 40301927 8199783 708573 150448339 10392226 8078314 ...</span></a>
+<a class="sourceLine" id="cb6-58" data-line-number="58"><span class="co">#&gt;   ..$ gdpPercap: num [1:140] 975 5937 6223 4797 12779 ...</span></a>
 <a class="sourceLine" id="cb6-59" data-line-number="59"></a>
 <a class="sourceLine" id="cb6-60" data-line-number="60"><span class="co"># running function on every element of this list note that if you want the same</span></a>
 <a class="sourceLine" id="cb6-61" data-line-number="61"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>

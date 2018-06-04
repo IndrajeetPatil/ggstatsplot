@@ -6,6 +6,7 @@ MINOR CHANGES
   - Switched back to Shapiro-Wilk test of normality to remove `nortest` from
     imports.
   - Three new datasets added: `Titanic_full`, `movies_wide`, `movies_long`.
+  - Added confidence interval for effect size for robust ANOVA.
 
 # ggstatsplot 0.0.3
 

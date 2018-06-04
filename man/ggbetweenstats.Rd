@@ -7,7 +7,8 @@
 ggbetweenstats(data = NULL, x, y, plot.type = "boxviolin",
   type = "parametric", effsize.type = "unbiased", xlab = NULL,
   ylab = NULL, caption = NULL, title = NULL, k = 3, var.equal = FALSE,
-  nboot = 100, notch = FALSE, notchwidth = 0.5, linetype = "solid",
+  nboot = 100, tr = 0.1, conf.level = 0.95, conf.type = "norm",
+  notch = FALSE, notchwidth = 0.5, linetype = "solid",
   outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
@@ -49,6 +50,19 @@ variances as being equal (Default: \code{FALSE}).}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}
+
+\item{tr}{Trim level for the mean when carrying out \code{robust} tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of \code{tr}, which is by default set to
+\code{0.1}. Lowering the value might help.}
+
+\item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return 95%
+lower and upper confidence intervals (\code{0.95}).}
+
+\item{conf.type}{A vector of character strings representing the type of
+intervals required. The value should be any subset of the values \code{"norm"},
+\code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
 
 \item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to

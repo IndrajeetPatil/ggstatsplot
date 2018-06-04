@@ -352,7 +352,7 @@ ggscatterstats <-
               )
             )
           )
-        # displaying the details of the test that was run
+        # helper message in case of non-convergence
         if (isTRUE(messages)) {
           base::message(cat(
             crayon::green("Note:"),

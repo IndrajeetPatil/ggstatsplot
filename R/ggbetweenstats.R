@@ -30,6 +30,16 @@
 #'   variances as being equal (Default: `FALSE`).
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `100`).
+#' @param tr Trim level for the mean when carrying out `robust` tests. If you
+#'   get error stating "Standard error cannot be computed because of Winsorized
+#'   variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+#'   try to play around with the value of `tr`, which is by default set to
+#'   `0.1`. Lowering the value might help.
+#' @param conf.type A vector of character strings representing the type of
+#'   intervals required. The value should be any subset of the values `"norm"`,
+#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
+#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
+#'   lower and upper confidence intervals (`0.95`).
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
 #'   compare groups; if the notches of two boxes do not overlap, this suggests
@@ -140,6 +150,9 @@ ggbetweenstats <- function(data = NULL,
                            k = 3,
                            var.equal = FALSE,
                            nboot = 100,
+                           tr = 0.1,
+                           conf.level = 0.95,
+                           conf.type = "norm",
                            notch = FALSE,
                            notchwidth = 0.5,
                            linetype = "solid",
@@ -558,8 +571,17 @@ ggbetweenstats <- function(data = NULL,
     } else if (type == "robust" || type == "r") {
       ######################################### robust ANOVA ############################################################
 
+      # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
+      robust_aov_stat <- t1way_ci(data = data,
+               x = x,
+               y = y,
+               tr = tr,
+               nboot = nboot,
+               conf.level = conf.level,
+               conf.type = conf.type)
+
       # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
-      rsubtitle_robaov <- function(robust_aov_stat) {
+      rsubtitle_robaov <-
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -578,31 +600,42 @@ ggbetweenstats <- function(data = NULL,
               ", ",
               italic(xi),
               " = ",
-              effsize
+              effsize,
+              ", 95% CI [",
+              LL,
+              ", ",
+              UL,
+              "]"
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$test[[1]], k),
+            estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$`F-value`[[1]], k),
             df1 = robust_aov_stat$df1[[1]],
             # degrees of freedom are always integer
             df2 = ggstatsplot::specify_decimal_p(x = robust_aov_stat$df2[[1]], k),
-            pvalue = ggstatsplot::specify_decimal_p(x = robust_aov_stat$p.value[[1]],
+            pvalue = ggstatsplot::specify_decimal_p(x = robust_aov_stat$`p-value`[[1]],
                                                     k,
                                                     p.value = TRUE),
-            effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$effsize[[1]], k)
+            effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$xi[[1]], k),
+            LL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.low[[1]], k),
+            UL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.high[[1]], k)
           )
         )
-      }
 
-      # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
-      robust_aov_stat <-
-        WRS2::t1way(formula = y ~ x,
-                    data = data,
-                    tr = 0.2)
+      # displaying the details of the test that was run
+      if (isTRUE(messages)) {
+        base::message(cat(
+          crayon::green("Note:"),
+          crayon::blue(
+            "In case of error, try reducing the trimming level", crayon::yellow(tr),
+            "and/or increasing the number of bootstrap samples", crayon::yellow(nboot)
+          )
+        ))
+      }
 
       # adding the label to the plot
       plot <-
         plot +
-        ggplot2::labs(subtitle = rsubtitle_robaov(robust_aov_stat = robust_aov_stat))
+        ggplot2::labs(subtitle = rsubtitle_robaov)
     }
   } else if (test == "t-test") {
     # if type of test is not specified, then use the default, which is parametric test

@@ -120,6 +120,11 @@ abbreviations: `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"`
 modified (`"box"`, `"violin"`, or `"boxviolin"`). Let's produce all of these
 variations in the plot below.
 
+Let's try out both of these features by plotting continent-level differences for
+three different years, separated by a decade. Also, since there are just two
+data points for the continent of Oceania, let's leave out this continent from
+our analysis.
+
 For example,
 ```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(ggstatsplot)
@@ -127,7 +132,7 @@ library(gapminder)
 
 # parametric ANOVA and box plot
 p1 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
+  data = dplyr::filter(.data = gapminder, year == 2007, continent != "Oceania"),
   x = continent,
   y = lifeExp,
   plot.type = "box",
@@ -137,7 +142,7 @@ p1 <- ggstatsplot::ggbetweenstats(
 
 # Kruskal-Wallis test (nonparametric ANOVA) and violin plot
 p2 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
+  data = dplyr::filter(.data = gapminder, year == 1997, continent != "Oceania"),
   x = continent,
   y = lifeExp,
   plot.type = "violin",
@@ -147,11 +152,12 @@ p2 <- ggstatsplot::ggbetweenstats(
 
 # robust ANOVA and boxviolin plot
 p3 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
+  data = dplyr::filter(.data = gapminder, year == 1987, continent != "Oceania"),
   x = continent,
-  y = lifeExp,
+  y = gdpPercap,
   plot.type = "boxviolin",
   type = "r",
+  tr = 0.005,
   messages = FALSE
 )
 
@@ -161,7 +167,7 @@ ggstatsplot::combine_plots(
   nrow = 3, 
   ncol = 1, 
   labels = c("(a)", "(b)", "(c)"),
-  title.text = "Comparison of life expectancy across continents (Year: 2007)",
+  title.text = "Comparison of life expectancy across continents (1987-2007)",
   caption.text = "Note: Comparing results from parametric, non-parametric, and robust tests",
   title.size = 14,
   caption.size = 12
@@ -196,7 +202,7 @@ ggstatsplot::grouped_ggbetweenstats(
     year == 1977 |
     year == 1987 |
     year == 1997 |
-    year == 2007
+    year == 2007, continent != "Oceania"
   ),
   x = continent,
   y = lifeExp,
@@ -244,7 +250,7 @@ year_list <- gapminder::gapminder %>%
     year == 1977 |
     year == 1987 |
     year == 1997 |
-    year == 2007
+    year == 2007, continent != "Oceania"
   ) %>%
   base::split(x = ., f = .$year, drop = TRUE)
 
