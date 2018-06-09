@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--03-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--09-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -116,6 +116,7 @@ command-
 ?gghistostats
 ?ggpiestats
 ?ggcorrmat
+?gglmstats
 ?combine_plots
 ?grouped_ggbetweenstats
 ?grouped_ggscatterstats
@@ -472,6 +473,21 @@ ggstatsplot::ggcorrmat(
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html>
+
+  - `gglmstats`
+
+`gglmstats` creates a lot with the regression coefficients’ point
+estimates as dots with confidence interval whiskers. This is a wrapper
+function around `dotwhisker::dwplot`.
+
+``` r
+ggstatsplot::gglmstats(
+  formula = mpg ~ cyl * am,      # formula for the linear model
+  data = mtcars                  # data containing variables in the formula
+  ) 
+```
+
+<img src="man/figures/README-gglmstats1-1.png" width="100%" />
 
   - `combine_plots`
 

@@ -50,6 +50,7 @@ spearman
 srt
 stackoverflow
 sthda
+stype
 th
 tibble
 tibbles
@@ -59,4 +60,5 @@ VignetteEncoding
 VignetteEngine
 VignetteIndexEntry
 vjust
+Winsorized
 www

@@ -77,7 +77,13 @@ utils::globalVariables(
     "V3",
     "V4",
     "V5",
-    "conf"
+    "conf",
+    "AIC",
+    "BIC",
+    "R",
+    "adj.r.squared",
+    "p.value",
+    "term"
   ),
   package = "ggstatsplot",
   add = FALSE

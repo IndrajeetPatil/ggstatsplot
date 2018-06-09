@@ -109,6 +109,7 @@ Documentation for any function can be accessed with the standard `help` command-
 ?gghistostats
 ?ggpiestats
 ?ggcorrmat
+?gglmstats
 ?combine_plots
 ?grouped_ggbetweenstats
 ?grouped_ggscatterstats
@@ -414,6 +415,19 @@ ggstatsplot::ggcorrmat(
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html>
+
+* `gglmstats`
+
+`gglmstats` creates a lot with the regression coefficients' point estimates as
+dots with confidence interval whiskers. This is a wrapper function around
+`dotwhisker::dwplot`.
+
+```{r gglmstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+ggstatsplot::gglmstats(
+  formula = mpg ~ cyl * am,      # formula for the linear model
+  data = mtcars                  # data containing variables in the formula
+  ) 
+```
 
 * `combine_plots`
 

@@ -1,6 +1,10 @@
 
 # ggstatsplot 0.0.3.9000
 
+MAJOR CHANGES
+
+  - New function: `gglmstats` for linear models.
+
 MINOR CHANGES
 
   - Switched back to Shapiro-Wilk test of normality to remove `nortest` from

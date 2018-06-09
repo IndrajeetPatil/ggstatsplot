@@ -93,7 +93,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-05</h4>
+            <h4 class="date">2018-06-09</h4>
       
       
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -115,59 +115,59 @@
 </h2>
 <p>To demonstrate how <code>ggpiestats</code> can be used to we will be using the <code>Titanic</code> dataset that is included in the <code>datasets</code> library. Titanic Passenger Survival Data Set provides information “on the fate of passengers on the fatal maiden voyage of the ocean liner <em>Titanic</em>, summarized according to economic status (class), sex, age, and survival.”</p>
 <p>Let’s have a look at the structure of this table and also convert it into a tibble while we are at it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(datasets)
-<span class="kw">library</span>(dplyr)
-
-<span class="co"># looking at the table</span>
-dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> Titanic)
-<span class="co">#&gt;  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...</span>
-<span class="co">#&gt;  - attr(*, "dimnames")=List of 4</span>
-<span class="co">#&gt;   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"</span>
-<span class="co">#&gt;   ..$ Sex     : chr [1:2] "Male" "Female"</span>
-<span class="co">#&gt;   ..$ Age     : chr [1:2] "Child" "Adult"</span>
-<span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(datasets)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># looking at the table</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> Titanic)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt;  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt;  - attr(*, "dimnames")=List of 4</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt;   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt;   ..$ Sex     : chr [1:2] "Male" "Female"</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt;   ..$ Age     : chr [1:2] "Child" "Adult"</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span></a></code></pre></div>
 <p>Note that the last column in this dataframe contains count information, which means we will have to modify it to reflect this count structure. This has already been carried out and the final dataset is included in the <code>ggstatsplot</code> package in <code>Titanic_full</code>. Let’s have a look at this dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggstatsplot)
-
-<span class="co"># looking at the final dataset</span>
-dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(ggstatsplot<span class="op">::</span>Titanic_full)
-<span class="co">#&gt; Observations: 2,201</span>
-<span class="co">#&gt; Variables: 5</span>
-<span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16...</span>
-<span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd...</span>
-<span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male,...</span>
-<span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Chil...</span>
-<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, N...</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># looking at the final dataset</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(ggstatsplot<span class="op">::</span>Titanic_full)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; Observations: 2,201</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; Variables: 5</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16...</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd...</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male,...</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Chil...</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, N...</span></a></code></pre></div>
 <p>First, let’s see if the proportion of people who survived was different between sexes using <code>ggpiestats</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(<span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,
-                        <span class="dt">condition =</span> Sex,
-                        <span class="dt">main =</span> Survived) </code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(<span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">                        <span class="dt">condition =</span> Sex,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                        <span class="dt">main =</span> Survived) </a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="768"></p>
 <p>A number of arguments can be modified to change the appearance of this plot:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggstatsplot)
-
-ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(
-  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,                          <span class="co"># dataframe</span>
-  <span class="dt">main =</span> Survived,                              <span class="co"># rows in the contingency table</span>
-  <span class="dt">condition =</span> Sex,                              <span class="co"># columns in the contingecy table</span>
-  <span class="dt">title =</span> <span class="st">"Passengar survival by gender"</span>,       <span class="co"># title for the entire plot</span>
-  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>, <span class="co"># caption for the entire plot</span>
-  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                   <span class="co"># legend title</span>
-  <span class="dt">facet.wrap.name =</span> <span class="st">"Gender"</span>,                   <span class="co"># changing the facet wrap title</span>
-  <span class="dt">facet.proptest =</span> <span class="ot">TRUE</span>,                        <span class="co"># proportion test for each facet</span>
-  <span class="dt">stat.title =</span> <span class="st">"survival x gender"</span>              <span class="co"># title for statistical test</span>
-) <span class="op">+</span><span class="st">                                             </span><span class="co"># further modification outside of ggstatsplot</span>
-<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,                          <span class="co"># dataframe</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">main =</span> Survived,                              <span class="co"># rows in the contingency table</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">condition =</span> Sex,                              <span class="co"># columns in the contingecy table</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">title =</span> <span class="st">"Passengar survival by gender"</span>,       <span class="co"># title for the entire plot</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>, <span class="co"># caption for the entire plot</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                   <span class="co"># legend title</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">facet.wrap.name =</span> <span class="st">"Gender"</span>,                   <span class="co"># changing the facet wrap title</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">facet.proptest =</span> <span class="ot">TRUE</span>,                        <span class="co"># proportion test for each facet</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">stat.title =</span> <span class="st">"survival x gender"</span>              <span class="co"># title for statistical test</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">) <span class="op">+</span><span class="st">                                             </span><span class="co"># further modification outside of ggstatsplot</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats2-1.png" width="768"></p>
 <p>As seen from this plot, the Pearson’s chi-square test of independence shows that the distribution of survival was different across males and females. Additionally, among both males and females, the proportion of survival was not equally likely (at 50%, i.e.), as shown by significant results (<code>***</code>) from one-sample proportion tests for each facet.</p>
 <p>In case the <code>condition</code> argument is not specified, instead of chi-square test of independence, a proportion test will be carried out. For example, let’s see if there were equal proportions of different age groups.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggstatsplot)
-
-ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(
-  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,                          
-  <span class="dt">main =</span> Age
-  ) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Set2"</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,                          </a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">main =</span> Age</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  ) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Set2"</span>)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="576"></p>
 <p>As this plot shows there were overwhelmingly more number of adults than children on the boat and the proportion test attests to this.</p>
 </div>
@@ -177,33 +177,33 @@ ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocum
 </h2>
 <p>What if we want to do the same analysis separately for the four different Class on the Titanic (1st, 2nd, 3rd, Crew), i.e. checking how the survival-by-gender interaction changes by the passenger class in which the people were traveling? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, both of which are time consuming and can be a bit of a struggle.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggstatsplot)
-
-ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(
-  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span>
-  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,
-  <span class="dt">grouping.var =</span> Class,
-  <span class="dt">title.prefix =</span> <span class="st">"Passenger class"</span>,
-  <span class="dt">stat.title =</span> <span class="st">"survival x gender"</span>,
-  <span class="dt">main =</span> Survived,
-  <span class="dt">condition =</span> Sex,
-  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,
-  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; ***: p &lt; 0.001, ns: non-significant"</span>,
-  <span class="dt">nrow =</span> <span class="dv">4</span>,
-  <span class="dt">ncol =</span> <span class="dv">1</span>,
-  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>)
-)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">grouping.var =</span> Class,</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="dt">title.prefix =</span> <span class="st">"Passenger class"</span>,</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">stat.title =</span> <span class="st">"survival x gender"</span>,</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">  <span class="dt">main =</span> Survived,</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">  <span class="dt">condition =</span> Sex,</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; ***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="864"></p>
 <p>As seen from this quick exploratory analysis, across all passenger classes, the proportion of survived to non-survived individuals differed across genders: Men were more likely to perish than survive, whereas women were more likely to survive than perish. The only exception was the 3rd Class passengers where women were as likely to survive as to perish.</p>
 <p>This will work even if the condition argument is not specified:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggstatsplot)
-
-ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(
-  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,                          
-  <span class="dt">main =</span> Age,
-  <span class="dt">grouping.var =</span> Class
-  ) </code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,                          </a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">main =</span> Age,</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">grouping.var =</span> Class</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">  ) </a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats5-1.png" width="960"></p>
 </div>
 <div id="grouped-analysis-with-ggpiestats-purrr" class="section level2">
@@ -212,76 +212,76 @@ ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocum
 </h2>
 <p>Although this grouping function provides a quick way to explore the data, it leaves much to be desired. For example, the color palette can’t be further modified, the legend color combination differs across different levels of the grouping variable based on the frequencies, etc. For cases like these, it would be better to use a function like <a href="https://purrr.tidyverse.org/reference/map2.html"><code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code></a>.</p>
 <p><strong>Note before</strong>: Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># let's split the dataframe and create a list by passenger class</span>
-class_list &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>Titanic_full <span class="op">%&gt;%</span>
-<span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>Class, <span class="dt">drop =</span> <span class="ot">TRUE</span>)
-
-<span class="co"># this created a list with 4 elements, one for each class</span>
-<span class="kw">str</span>(class_list)
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ 1st :Classes 'tbl_df', 'tbl' and 'data.frame':    325 obs. of  5 variables:</span>
-<span class="co">#&gt;   ..$ id      : num [1:325] 53 54 55 56 57 58 59 60 61 62 ...</span>
-<span class="co">#&gt;   ..$ Class   : Factor w/ 5 levels "1st","2nd","3rd",..: 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;   ..$ Sex     : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...</span>
-<span class="co">#&gt;   ..$ Age     : Factor w/ 2 levels "Adult","Child": 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;   ..$ Survived: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ 2nd :Classes 'tbl_df', 'tbl' and 'data.frame':    285 obs. of  5 variables:</span>
-<span class="co">#&gt;   ..$ id      : num [1:285] 171 172 173 174 175 176 177 178 179 180 ...</span>
-<span class="co">#&gt;   ..$ Class   : Factor w/ 5 levels "1st","2nd","3rd",..: 2 2 2 2 2 2 2 2 2 2 ...</span>
-<span class="co">#&gt;   ..$ Sex     : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...</span>
-<span class="co">#&gt;   ..$ Age     : Factor w/ 2 levels "Adult","Child": 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;   ..$ Survived: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ 3rd :Classes 'tbl_df', 'tbl' and 'data.frame':    706 obs. of  5 variables:</span>
-<span class="co">#&gt;   ..$ id      : num [1:706] 1 2 3 4 5 6 7 8 9 10 ...</span>
-<span class="co">#&gt;   ..$ Class   : Factor w/ 5 levels "1st","2nd","3rd",..: 3 3 3 3 3 3 3 3 3 3 ...</span>
-<span class="co">#&gt;   ..$ Sex     : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...</span>
-<span class="co">#&gt;   ..$ Age     : Factor w/ 2 levels "Adult","Child": 2 2 2 2 2 2 2 2 2 2 ...</span>
-<span class="co">#&gt;   ..$ Survived: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ Crew:Classes 'tbl_df', 'tbl' and 'data.frame':    885 obs. of  5 variables:</span>
-<span class="co">#&gt;   ..$ id      : num [1:885] 712 713 714 715 716 717 718 719 720 721 ...</span>
-<span class="co">#&gt;   ..$ Class   : Factor w/ 5 levels "1st","2nd","3rd",..: 4 4 4 4 4 4 4 4 4 4 ...</span>
-<span class="co">#&gt;   ..$ Sex     : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...</span>
-<span class="co">#&gt;   ..$ Age     : Factor w/ 2 levels "Adult","Child": 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;   ..$ Survived: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...</span>
-
-<span class="co"># running function on every element of this list note that if you want the same</span>
-<span class="co"># value for a given argument across all elements of the list, you need to</span>
-<span class="co"># specify it just once</span>
-plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(
-  <span class="dt">.l =</span> <span class="kw">list</span>(
-    <span class="dt">data =</span> class_list,
-    <span class="dt">main =</span> <span class="st">"Survived"</span>,
-    <span class="dt">condition =</span> <span class="st">"Sex"</span>,
-    <span class="dt">facet.wrap.name =</span> <span class="st">"Gender"</span>,
-    <span class="dt">title =</span> <span class="kw">list</span>(
-      <span class="st">"Passenger class: 1st"</span>,
-      <span class="st">"Passenger class: 2nd"</span>,
-      <span class="st">"Passenger class: 3rd"</span>,
-      <span class="st">"Passenger class: Crew"</span>
-    ),
-    <span class="dt">caption =</span> <span class="kw">list</span>(
-      <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,
-      <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,
-      <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,
-      <span class="st">"Not available"</span>
-    ),
-    <span class="dt">messages =</span> <span class="ot">FALSE</span>
-  ),
-  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats
-)
-  
-<span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
-ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(
-  plot_list<span class="op">$</span><span class="st">`</span><span class="dt">1st</span><span class="st">`</span> <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>),
-  plot_list<span class="op">$</span><span class="st">`</span><span class="dt">2nd</span><span class="st">`</span> <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>),
-  plot_list<span class="op">$</span><span class="st">`</span><span class="dt">3rd</span><span class="st">`</span> <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual">scale_fill_manual</a></span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">"#D95F02"</span>, <span class="st">"#1B9E77"</span>)), <span class="co"># to be consistent with other legends</span>
-  plot_list<span class="op">$</span>Crew <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>),
-  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,
-  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; ***: p &lt; 0.001, ns: non-significant"</span>,
-  <span class="dt">nrow =</span> <span class="dv">4</span>,
-  <span class="dt">ncol =</span> <span class="dv">1</span>,
-  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>)
-)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># let's split the dataframe and create a list by passenger class</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">class_list &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>Titanic_full <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>Class, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co"># this created a list with 4 elements, one for each class</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">str</span>(class_list)</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; List of 4</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt;  $ 1st :Classes 'tbl_df', 'tbl' and 'data.frame':    325 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;   ..$ id      : num [1:325] 53 54 55 56 57 58 59 60 61 62 ...</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;   ..$ Class   : Factor w/ 5 levels "1st","2nd","3rd",..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;   ..$ Sex     : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;   ..$ Age     : Factor w/ 2 levels "Adult","Child": 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;   ..$ Survived: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt;  $ 2nd :Classes 'tbl_df', 'tbl' and 'data.frame':    285 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt;   ..$ id      : num [1:285] 171 172 173 174 175 176 177 178 179 180 ...</span></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;   ..$ Class   : Factor w/ 5 levels "1st","2nd","3rd",..: 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt;   ..$ Sex     : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="co">#&gt;   ..$ Age     : Factor w/ 2 levels "Adult","Child": 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co">#&gt;   ..$ Survived: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="co">#&gt;  $ 3rd :Classes 'tbl_df', 'tbl' and 'data.frame':    706 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb8-21" data-line-number="21"><span class="co">#&gt;   ..$ id      : num [1:706] 1 2 3 4 5 6 7 8 9 10 ...</span></a>
+<a class="sourceLine" id="cb8-22" data-line-number="22"><span class="co">#&gt;   ..$ Class   : Factor w/ 5 levels "1st","2nd","3rd",..: 3 3 3 3 3 3 3 3 3 3 ...</span></a>
+<a class="sourceLine" id="cb8-23" data-line-number="23"><span class="co">#&gt;   ..$ Sex     : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="co">#&gt;   ..$ Age     : Factor w/ 2 levels "Adult","Child": 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb8-25" data-line-number="25"><span class="co">#&gt;   ..$ Survived: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb8-26" data-line-number="26"><span class="co">#&gt;  $ Crew:Classes 'tbl_df', 'tbl' and 'data.frame':    885 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="co">#&gt;   ..$ id      : num [1:885] 712 713 714 715 716 717 718 719 720 721 ...</span></a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="co">#&gt;   ..$ Class   : Factor w/ 5 levels "1st","2nd","3rd",..: 4 4 4 4 4 4 4 4 4 4 ...</span></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co">#&gt;   ..$ Sex     : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&gt;   ..$ Age     : Factor w/ 2 levels "Adult","Child": 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="co">#&gt;   ..$ Survived: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb8-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="co"># running function on every element of this list note that if you want the same</span></a>
+<a class="sourceLine" id="cb8-34" data-line-number="34"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>
+<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co"># specify it just once</span></a>
+<a class="sourceLine" id="cb8-36" data-line-number="36">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(</a>
+<a class="sourceLine" id="cb8-37" data-line-number="37">  <span class="dt">.l =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb8-38" data-line-number="38">    <span class="dt">data =</span> class_list,</a>
+<a class="sourceLine" id="cb8-39" data-line-number="39">    <span class="dt">main =</span> <span class="st">"Survived"</span>,</a>
+<a class="sourceLine" id="cb8-40" data-line-number="40">    <span class="dt">condition =</span> <span class="st">"Sex"</span>,</a>
+<a class="sourceLine" id="cb8-41" data-line-number="41">    <span class="dt">facet.wrap.name =</span> <span class="st">"Gender"</span>,</a>
+<a class="sourceLine" id="cb8-42" data-line-number="42">    <span class="dt">title =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb8-43" data-line-number="43">      <span class="st">"Passenger class: 1st"</span>,</a>
+<a class="sourceLine" id="cb8-44" data-line-number="44">      <span class="st">"Passenger class: 2nd"</span>,</a>
+<a class="sourceLine" id="cb8-45" data-line-number="45">      <span class="st">"Passenger class: 3rd"</span>,</a>
+<a class="sourceLine" id="cb8-46" data-line-number="46">      <span class="st">"Passenger class: Crew"</span></a>
+<a class="sourceLine" id="cb8-47" data-line-number="47">    ),</a>
+<a class="sourceLine" id="cb8-48" data-line-number="48">    <span class="dt">caption =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb8-49" data-line-number="49">      <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,</a>
+<a class="sourceLine" id="cb8-50" data-line-number="50">      <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,</a>
+<a class="sourceLine" id="cb8-51" data-line-number="51">      <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,</a>
+<a class="sourceLine" id="cb8-52" data-line-number="52">      <span class="st">"Not available"</span></a>
+<a class="sourceLine" id="cb8-53" data-line-number="53">    ),</a>
+<a class="sourceLine" id="cb8-54" data-line-number="54">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb8-55" data-line-number="55">  ),</a>
+<a class="sourceLine" id="cb8-56" data-line-number="56">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</a>
+<a class="sourceLine" id="cb8-57" data-line-number="57">)</a>
+<a class="sourceLine" id="cb8-58" data-line-number="58">  </a>
+<a class="sourceLine" id="cb8-59" data-line-number="59"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb8-60" data-line-number="60">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb8-61" data-line-number="61">  plot_list<span class="op">$</span><span class="st">`</span><span class="dt">1st</span><span class="st">`</span> <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>),</a>
+<a class="sourceLine" id="cb8-62" data-line-number="62">  plot_list<span class="op">$</span><span class="st">`</span><span class="dt">2nd</span><span class="st">`</span> <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>),</a>
+<a class="sourceLine" id="cb8-63" data-line-number="63">  plot_list<span class="op">$</span><span class="st">`</span><span class="dt">3rd</span><span class="st">`</span> <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_manual">scale_fill_manual</a></span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">"#D95F02"</span>, <span class="st">"#1B9E77"</span>)), <span class="co"># to be consistent with other legends</span></a>
+<a class="sourceLine" id="cb8-64" data-line-number="64">  plot_list<span class="op">$</span>Crew <span class="op">+</span><span class="st"> </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Dark2"</span>),</a>
+<a class="sourceLine" id="cb8-65" data-line-number="65">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
+<a class="sourceLine" id="cb8-66" data-line-number="66">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; ***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb8-67" data-line-number="67">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb8-68" data-line-number="68">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb8-69" data-line-number="69">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
+<a class="sourceLine" id="cb8-70" data-line-number="70">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats6-1.png" width="864"></p>
 <p>As can be appreciated from this example, although <code>grouped_ggpiestats</code> provides a quick way to explore data, <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code> lets us utilize the full functionality of this function and <code>ggplot2</code>.</p>
 </div>
