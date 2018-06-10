@@ -142,7 +142,7 @@ summary as a caption.</p>
     </div>
 
     <pre class="usage"><span class='fu'>gglmstats</span>(<span class='no'>data</span>, <span class='no'>formula</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>dot.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"estimate"</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,7 +155,7 @@ summary as a caption.</p>
       <th>formula</th>
       <td><p>An object of class "formula" (or one that can be coerced to
 that class): a symbolic description of the model to be fitted. The details
-of model specification are given under ‘Details’.</p></td>
+of model specification are given under 'Details'.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -176,6 +176,16 @@ of model specification are given under ‘Details’.</p></td>
     <tr>
       <th>title</th>
       <td><p>The text for the plot title.</p></td>
+    </tr>
+    <tr>
+      <th>subtitle</th>
+      <td><p>The text for the plot subtitle.</p></td>
+    </tr>
+    <tr>
+      <th>stats.labels</th>
+      <td><p>Logical. Decides whether the statistic and p-values for
+each coefficient are to be attached to each dot as a text label using
+<code>ggrepel</code>.</p></td>
     </tr>
     </table>
     

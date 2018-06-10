@@ -14,8 +14,12 @@
 #' @param xlab Label for `x` axis variable (Default: `"estimate"`).
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param title The text for the plot title.
+#' @param subtitle The text for the plot subtitle.
 #' @param k Number of decimal places expected for results.
 #' @param dot.color Character describing color for the dot (Default: `"blue"`).
+#' @param stats.labels Logical. Decides whether the statistic and p-values for
+#'   each coefficient are to be attached to each dot as a text label using
+#'   `ggrepel`.
 #'
 #' @import ggplot2
 #'
@@ -48,8 +52,9 @@ gglmstats <- function(data,
                       dot.color = "blue",
                       xlab = "estimate",
                       ylab = "term",
-                      title = NULL) {
-
+                      title = NULL,
+                      subtitle = NULL,
+                      stats.labels = TRUE) {
   #================================================== model and its summary ===========================================================
 
   # linear model object
@@ -83,11 +88,6 @@ gglmstats <- function(data,
       .collate = "rows",
       .to = "p.value.formatted",
       .labels = TRUE
-    ) %>%
-    dplyr::mutate(
-      label = glue::glue(
-        "t({glance_df$df.residual}) = {.$statistic}, p = {.$p.value.formatted}"
-      )
     )
 
   #================================================== summary caption ===========================================================
@@ -133,7 +133,7 @@ gglmstats <- function(data,
       )
     )
 
-  #================================================== plot ===========================================================
+  #================================================== basic plot ===========================================================
 
   # creating the dot-whisker plot
   plot <- dotwhisker::dwplot(
@@ -151,31 +151,50 @@ gglmstats <- function(data,
       linetype = 2,
       size = 1,
       na.rm = TRUE
+    )
+
+  #================================================== ggrepel labels ===========================================================
+
+  if (isTRUE(stats.labels)) {
+    # creating the labels as a column
+    model_df$label <- glue::glue(
+      "t({glance_df$df.residual}) = {model_df$statistic}, p = {model_df$p.value.formatted}"
+    )
+
+    # adding the labels
+    plot <- plot +
+      ggrepel::geom_label_repel(
+        mapping = ggplot2::aes(label = model_df$label),
+        size = 5,
+        box.padding = grid::unit(x = 0.75, units = "lines"),
+        fontface = "bold",
+        direction = "both",
+        color = "black",
+        label.size = 0.25,
+        max.iter = 3e2,
+        point.padding = 0.5,
+        segment.size = 0.2,
+        segment.color = "grey50",
+        force = 2,
+        na.rm = TRUE
+      )
+  } else {
+
+  }
+
+  #================================================== other text labels ===========================================================
+  #
+  plot <- plot +
+    ggplot2::labs(
+      x = xlab,
+      y = ylab,
+      caption = caption.text,
+      subtitle = subtitle,
+      title = title
     ) +
-    ggrepel::geom_label_repel(
-      mapping = ggplot2::aes(label = model_df$label),
-      size = 5,
-      box.padding = grid::unit(x = 0.75, units = "lines"),
-      fontface = "bold",
-      direction = "both",
-      color = "black",
-      label.size = 0.25,
-      max.iter = 3e2,
-      point.padding = 0.5,
-      segment.size = 0.2,
-      segment.color = "grey50",
-      force = 2,
-      na.rm = TRUE
-    ) +
-    ggplot2::labs(x = xlab,
-                  y = ylab,
-                  caption = caption.text,
-                  title = title) +
     ggstatsplot::theme_mprl() +
     ggplot2::theme(plot.caption = ggplot2::element_text(size = 12))
 
   # return the final plot
   return(plot)
 }
-
-

@@ -49,9 +49,9 @@
 #' @param notchwidth For a notched box plot, width of the notch relative to the
 #'   body (default `0.5`).
 #' @param linetype Character strings (`"blank"`, `"solid"`, `"dashed"`,
-#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifying the
-#'   type of line to draw box plots (Default: `"solid"`). Alternatively, the
-#'   numbers `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
+#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifying the type
+#'   of line to draw box plots (Default: `"solid"`). Alternatively, the numbers
+#'   `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
@@ -70,6 +70,12 @@
 #'   (Default: `5`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @param point.jitter.width Numeric specifying the degree of jitter in `x`
+#'   direction. Defaults to `40%` of the resolution of the data.
+#' @param point.jitter.height Numeric specifying the degree of jitter in `y`
+#'   direction. Defaults to `0`.
+#' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
+#'   direction. Defaults to `0.75`.
 #'
 #' @import ggplot2
 #'
@@ -164,7 +170,10 @@ ggbetweenstats <- function(data = NULL,
                            mean.plotting = TRUE,
                            mean.size = 5,
                            mean.color = "darkred",
-                           messages = TRUE) {
+                           messages = TRUE,
+                           point.jitter.width = NULL,
+                           point.jitter.height = 0.2,
+                           point.dodge.width = 0.75) {
   # if data is not available then don't display any messages
   if (is.null(data)) {
     messages <- FALSE
@@ -264,9 +273,9 @@ ggbetweenstats <- function(data = NULL,
                     mapping = ggplot2::aes(x = x, y = y)) +
     ggplot2::geom_point(
       position = ggplot2::position_jitterdodge(
-        jitter.width = NULL,
-        jitter.height = 0.2,
-        dodge.width = 0.75
+        jitter.width = point.jitter.width,
+        dodge.width = point.dodge.width,
+        jitter.height = point.jitter.height
       ),
       alpha = 0.5,
       size = 3,

@@ -482,12 +482,35 @@ function around `dotwhisker::dwplot`.
 
 ``` r
 ggstatsplot::gglmstats(
-  formula = mpg ~ cyl * am,      # formula for the linear model
-  data = mtcars                  # data containing variables in the formula
+  formula = Sepal.Length ~ Species,      # formula for the linear model
+  data = iris                            # data containing variables in the formula
   ) 
 ```
 
 <img src="man/figures/README-gglmstats1-1.png" width="100%" />
+
+The basic can be further modified to one’s liking with additional
+arguments:
+
+``` r
+ggstatsplot::gglmstats(
+  formula = Sepal.Length ~ Species,      
+  data = iris,
+  stats.labels = FALSE,                  # removing the attached labels
+  title = "Differences in Sepal Length across Iris species",
+  subtitle = "Source: Iris dataset"
+  ) +                                    # further modification with the ggplot2 commands
+  ggplot2::scale_y_discrete(labels = c("Species (virginica)", "Species (versicolor)")) +
+  ggplot2::labs(x = "regression coefficient", 
+                y = NULL)
+```
+
+<img src="man/figures/README-gglmstats2-1.png" width="100%" />
+
+``` r
+  
+# note the order in which the labels were entered
+```
 
   - `combine_plots`
 

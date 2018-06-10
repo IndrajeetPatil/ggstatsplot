@@ -6,7 +6,7 @@
 summary as a caption.}
 \usage{
 gglmstats(data, formula, k = 3, dot.color = "blue", xlab = "estimate",
-  ylab = "term", title = NULL)
+  ylab = "term", title = NULL, subtitle = NULL, stats.labels = TRUE)
 }
 \arguments{
 \item{data}{A data frame containing the variables in the model.}
@@ -24,6 +24,12 @@ of model specification are given under 'Details'.}
 \item{ylab}{Label for \code{y} axis variable (Default: \code{"term"}).}
 
 \item{title}{The text for the plot title.}
+
+\item{subtitle}{The text for the plot subtitle.}
+
+\item{stats.labels}{Logical. Decides whether the statistic and p-values for
+each coefficient are to be attached to each dot as a text label using
+\code{ggrepel}.}
 }
 \value{
 Plot with the regression coefficients' point estimates as dots with

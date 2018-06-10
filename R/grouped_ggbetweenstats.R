@@ -51,9 +51,9 @@
 #' @param notchwidth For a notched box plot, width of the notch relative to the
 #'   body (default `0.5`).
 #' @param linetype Character strings (`"blank"`, `"solid"`, `"dashed"`,
-#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifying the
-#'   type of line to draw box plots (Default: `"solid"`). Alternatively, the
-#'   numbers `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
+#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifying the type
+#'   of line to draw box plots (Default: `"solid"`). Alternatively, the numbers
+#'   `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
@@ -72,6 +72,12 @@
 #'   (Default: `5`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @param point.jitter.width Numeric specifying the degree of jitter in `x`
+#'   direction. Defaults to `40%` of the resolution of the data.
+#' @param point.jitter.height Numeric specifying the degree of jitter in `y`
+#'   direction. Defaults to `0`.
+#' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
+#'   direction. Defaults to `0.75`.
 #' @inheritDotParams combine_plots
 #'
 #' @import ggplot2
@@ -161,6 +167,9 @@ grouped_ggbetweenstats <- function(grouping.var,
                                    mean.size = 5,
                                    mean.color = "darkred",
                                    messages = TRUE,
+                                   point.jitter.width = NULL,
+                                   point.jitter.height = 0.2,
+                                   point.dodge.width = 0.75,
                                    ...) {
   # ================== preparing dataframe ==================
 
@@ -244,7 +253,10 @@ grouped_ggbetweenstats <- function(grouping.var,
               mean.plotting = mean.plotting,
               mean.size = mean.size,
               mean.color = mean.color,
-              messages = messages
+              messages = messages,
+              point.jitter.width = point.jitter.width,
+              point.dodge.width = point.dodge.width,
+              point.jitter.height = point.jitter.height
             )
           )
       )
@@ -284,7 +296,10 @@ grouped_ggbetweenstats <- function(grouping.var,
               mean.plotting = mean.plotting,
               mean.size = mean.size,
               mean.color = mean.color,
-              messages = messages
+              messages = messages,
+              point.jitter.width = point.jitter.width,
+              point.dodge.width = point.dodge.width,
+              point.jitter.height = point.jitter.height
             )
           )
       )

@@ -13,7 +13,8 @@ grouped_ggbetweenstats(grouping.var, title.prefix = "Group", data = NULL, x,
   linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
-  mean.color = "darkred", messages = TRUE, ...)
+  mean.color = "darkred", messages = TRUE, point.jitter.width = NULL,
+  point.jitter.height = 0.2, point.dodge.width = 0.75, ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -79,9 +80,9 @@ interval for comparing medians. IQR: Inter-Quartile Range.}
 body (default \code{0.5}).}
 
 \item{linetype}{Character strings (\code{"blank"}, \code{"solid"}, \code{"dashed"},
-\code{"dotted"}, \code{"dotdash"}, \code{"longdash"}, and \code{"twodash"}) specifying the
-type of line to draw box plots (Default: \code{"solid"}). Alternatively, the
-numbers \code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
+\code{"dotted"}, \code{"dotdash"}, \code{"longdash"}, and \code{"twodash"}) specifying the type
+of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
+\code{0} to \code{6} can be used (\code{0} for "blank", \code{1} for "solid", etc.).}
 
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
@@ -109,6 +110,15 @@ to be displayed (Default: \code{TRUE}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
+direction. Defaults to \code{40\%} of the resolution of the data.}
+
+\item{point.jitter.height}{Numeric specifying the degree of jitter in \code{y}
+direction. Defaults to \code{0}.}
+
+\item{point.dodge.width}{Numeric specifying the amount to dodge in the \code{x}
+direction. Defaults to \code{0.75}.}
 
 \item{...}{Arguments passed on to \code{combine_plots}
 \describe{

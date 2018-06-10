@@ -149,7 +149,8 @@ grouping variable.</p>
   <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.75</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -257,9 +258,9 @@ body (default <code>0.5</code>).</p></td>
     <tr>
       <th>linetype</th>
       <td><p>Character strings (<code>"blank"</code>, <code>"solid"</code>, <code>"dashed"</code>,
-<code>"dotted"</code>, <code>"dotdash"</code>, <code>"longdash"</code>, and <code>"twodash"</code>) specifying the
-type of line to draw box plots (Default: <code>"solid"</code>). Alternatively, the
-numbers <code>0</code> to <code>6</code> can be used (<code>0</code> for "blank", <code>1</code> for "solid", etc.).</p></td>
+<code>"dotted"</code>, <code>"dotdash"</code>, <code>"longdash"</code>, and <code>"twodash"</code>) specifying the type
+of line to draw box plots (Default: <code>"solid"</code>). Alternatively, the numbers
+<code>0</code> to <code>6</code> can be used (<code>0</code> for "blank", <code>1</code> for "solid", etc.).</p></td>
     </tr>
     <tr>
       <th>outlier.tagging</th>
@@ -305,6 +306,21 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
       <th>messages</th>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>point.jitter.width</th>
+      <td><p>Numeric specifying the degree of jitter in <code>x</code>
+direction. Defaults to <code>40%</code> of the resolution of the data.</p></td>
+    </tr>
+    <tr>
+      <th>point.jitter.height</th>
+      <td><p>Numeric specifying the degree of jitter in <code>y</code>
+direction. Defaults to <code>0</code>.</p></td>
+    </tr>
+    <tr>
+      <th>point.dodge.width</th>
+      <td><p>Numeric specifying the amount to dodge in the <code>x</code>
+direction. Defaults to <code>0.75</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
