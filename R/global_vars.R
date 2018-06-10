@@ -83,7 +83,8 @@ utils::globalVariables(
     "R",
     "adj.r.squared",
     "p.value",
-    "term"
+    "term",
+    "label"
   ),
   package = "ggstatsplot",
   add = FALSE

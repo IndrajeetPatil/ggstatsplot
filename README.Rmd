@@ -420,7 +420,7 @@ For examples and more information, see the `ggcorrmat` vignette:
 
 `gglmstats` creates a lot with the regression coefficients' point estimates as
 dots with confidence interval whiskers. This is a wrapper function around
-`dotwhisker::dwplot`.
+`GGally::ggcoef`.
 
 ```{r gglmstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 ggstatsplot::gglmstats(

@@ -141,8 +141,14 @@ summary as a caption.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>gglmstats</span>(<span class='no'>data</span>, <span class='no'>formula</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>dot.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"estimate"</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>gglmstats</span>(<span class='no'>data</span>, <span class='no'>formula</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>dot.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>dot.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>vline.intercept</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"none"</span>, <span class='st'>"ascending"</span>,
+  <span class='st'>"decending"</span>), <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"estimate"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,6 +172,73 @@ of model specification are given under 'Details'.</p></td>
       <td><p>Character describing color for the dot (Default: <code>"blue"</code>).</p></td>
     </tr>
     <tr>
+      <th>dot.size</th>
+      <td><p>Numeric specifying size for the dot (Default: <code>3</code>).</p></td>
+    </tr>
+    <tr>
+      <th>conf.int</th>
+      <td><p>Logical. Decides whether to display confidence intervals as
+error bars (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>Numeric deciding level of confidence intervals (Default:
+<code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>exponentiate</th>
+      <td><p>If <code>TRUE</code>, the x-axis will be logarithmic (Default:
+<code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>errorbar.color</th>
+      <td><p>Character deciding color of the error bars (Default:
+<code>"black"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>errorbar.height</th>
+      <td><p>Numeric specifying the height of the error bars
+(Default: <code>0</code>).</p></td>
+    </tr>
+    <tr>
+      <th>errorbar.linetype</th>
+      <td><p>Line type of the error bars (Default: <code>"solid"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>errorbar.size</th>
+      <td><p>Numeric speifying the size of the error bars (Default:
+<code>0.5</code>).</p></td>
+    </tr>
+    <tr>
+      <th>vline</th>
+      <td><p>Decides whether to display a vertical line (Default: <code>"TRUE"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>vline.intercept</th>
+      <td><p>The xintercept for the vertical line. "auto" for x =
+<code>0</code> (or x = <code>1</code> if <code>exponentiate</code> is TRUE)</p></td>
+    </tr>
+    <tr>
+      <th>vline.color</th>
+      <td><p>Character specifying color of the vertical line (Default:
+<code>"black"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>vline.linetype</th>
+      <td><p>Character specifying line type of the vertical line
+(Default: <code>"dashed"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>vline.size</th>
+      <td><p>Numeric specifying the size of the vertical line (Default:
+<code>1</code>).</p></td>
+    </tr>
+    <tr>
+      <th>sort</th>
+      <td><p><code>"none"</code> (default) do not sort, <code>"ascending"</code> sort by increasing
+coefficient value, or <code>"decending"</code> sort by decreasing coefficient value.</p></td>
+    </tr>
+    <tr>
       <th>xlab</th>
       <td><p>Label for <code>x</code> axis variable (Default: <code>"estimate"</code>).</p></td>
     </tr>
@@ -186,6 +259,11 @@ of model specification are given under 'Details'.</p></td>
       <td><p>Logical. Decides whether the statistic and p-values for
 each coefficient are to be attached to each dot as a text label using
 <code>ggrepel</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.direction</th>
+      <td><p>Character (<code>"both"</code>, <code>"x"</code>, or <code>"y"</code>) -- direction in
+which to adjust position of labels (Default: <code>"y"</code>).</p></td>
     </tr>
     </table>
     

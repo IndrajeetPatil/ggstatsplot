@@ -5,8 +5,14 @@
 \title{Regression coefficients for fitted linear models with the model
 summary as a caption.}
 \usage{
-gglmstats(data, formula, k = 3, dot.color = "blue", xlab = "estimate",
-  ylab = "term", title = NULL, subtitle = NULL, stats.labels = TRUE)
+gglmstats(data, formula, k = 3, dot.color = "blue", dot.size = 3,
+  conf.int = TRUE, conf.level = 0.95, exponentiate = FALSE,
+  errorbar.color = "black", errorbar.height = 0,
+  errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
+  vline.intercept = "auto", vline.color = "black",
+  vline.linetype = "dashed", vline.size = 1, sort = c("none", "ascending",
+  "decending"), xlab = "estimate", ylab = "term", title = NULL,
+  subtitle = NULL, stats.labels = TRUE, label.direction = "y")
 }
 \arguments{
 \item{data}{A data frame containing the variables in the model.}
@@ -19,6 +25,45 @@ of model specification are given under 'Details'.}
 
 \item{dot.color}{Character describing color for the dot (Default: \code{"blue"}).}
 
+\item{dot.size}{Numeric specifying size for the dot (Default: \code{3}).}
+
+\item{conf.int}{Logical. Decides whether to display confidence intervals as
+error bars (Default: \code{TRUE}).}
+
+\item{conf.level}{Numeric deciding level of confidence intervals (Default:
+\code{0.95}).}
+
+\item{exponentiate}{If \code{TRUE}, the x-axis will be logarithmic (Default:
+\code{FALSE}).}
+
+\item{errorbar.color}{Character deciding color of the error bars (Default:
+\code{"black"}).}
+
+\item{errorbar.height}{Numeric specifying the height of the error bars
+(Default: \code{0}).}
+
+\item{errorbar.linetype}{Line type of the error bars (Default: \code{"solid"}).}
+
+\item{errorbar.size}{Numeric speifying the size of the error bars (Default:
+\code{0.5}).}
+
+\item{vline}{Decides whether to display a vertical line (Default: \code{"TRUE"}).}
+
+\item{vline.intercept}{The xintercept for the vertical line. "auto" for x =
+\code{0} (or x = \code{1} if \code{exponentiate} is TRUE)}
+
+\item{vline.color}{Character specifying color of the vertical line (Default:
+\code{"black"}).}
+
+\item{vline.linetype}{Character specifying line type of the vertical line
+(Default: \code{"dashed"}).}
+
+\item{vline.size}{Numeric specifying the size of the vertical line (Default:
+\code{1}).}
+
+\item{sort}{\code{"none"} (default) do not sort, \code{"ascending"} sort by increasing
+coefficient value, or \code{"decending"} sort by decreasing coefficient value.}
+
 \item{xlab}{Label for \code{x} axis variable (Default: \code{"estimate"}).}
 
 \item{ylab}{Label for \code{y} axis variable (Default: \code{"term"}).}
@@ -30,6 +75,9 @@ of model specification are given under 'Details'.}
 \item{stats.labels}{Logical. Decides whether the statistic and p-values for
 each coefficient are to be attached to each dot as a text label using
 \code{ggrepel}.}
+
+\item{label.direction}{Character (\code{"both"}, \code{"x"}, or \code{"y"}) -- direction in
+which to adjust position of labels (Default: \code{"y"}).}
 }
 \value{
 Plot with the regression coefficients' point estimates as dots with

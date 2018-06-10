@@ -17,9 +17,37 @@
 #' @param subtitle The text for the plot subtitle.
 #' @param k Number of decimal places expected for results.
 #' @param dot.color Character describing color for the dot (Default: `"blue"`).
+#' @param dot.size Numeric specifying size for the dot (Default: `3`).
+#' @param conf.int Logical. Decides whether to display confidence intervals as
+#'   error bars (Default: `TRUE`).
+#' @param conf.level Numeric deciding level of confidence intervals (Default:
+#'   `0.95`).
+#' @param exponentiate If `TRUE`, the x-axis will be logarithmic (Default:
+#'   `FALSE`).
+#' @param errorbar.color Character deciding color of the error bars (Default:
+#'   `"black"`).
+#' @param errorbar.height Numeric specifying the height of the error bars
+#'   (Default: `0`).
+#' @param errorbar.linetype Line type of the error bars (Default: `"solid"`).
+#' @param errorbar.size Numeric speifying the size of the error bars (Default:
+#'   `0.5`).
+#' @param vline Decides whether to display a vertical line (Default: `"TRUE"`).
+#' @param vline.intercept The xintercept for the vertical line. "auto" for x =
+#'   `0` (or x = `1` if `exponentiate` is TRUE)
+#' @param vline.color Character specifying color of the vertical line (Default:
+#'   `"black"`).
+#' @param vline.linetype Character specifying line type of the vertical line
+#'   (Default: `"dashed"`).
+#' @param vline.size Numeric specifying the size of the vertical line (Default:
+#'   `1`).
+#' @param sort `"none"` (default) do not sort, `"ascending"` sort by increasing
+#'   coefficient value, or `"decending"` sort by decreasing coefficient value.
 #' @param stats.labels Logical. Decides whether the statistic and p-values for
 #'   each coefficient are to be attached to each dot as a text label using
 #'   `ggrepel`.
+#' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
+#'   which to adjust position of labels (Default: `"y"`).
+#'
 #'
 #' @import ggplot2
 #'
@@ -28,14 +56,13 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr filter
 #' @importFrom dplyr mutate_at
-#' @importFrom glue glue
 #' @importFrom purrrlyr by_row
-#' @importFrom dotwhisker dwplot
 #' @importFrom stats as.formula
 #' @importFrom stats lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
 #' @importFrom magrittr "%>%"
+#' @importFrom GGally ggcoef
 #'
 #' @examples
 #'
@@ -50,11 +77,26 @@ gglmstats <- function(data,
                       formula,
                       k = 3,
                       dot.color = "blue",
+                      dot.size = 3,
+                      conf.int = TRUE,
+                      conf.level = 0.95,
+                      exponentiate = FALSE,
+                      errorbar.color = "black",
+                      errorbar.height = 0,
+                      errorbar.linetype = "solid",
+                      errorbar.size = 0.5,
+                      vline = TRUE,
+                      vline.intercept = "auto",
+                      vline.color = "black",
+                      vline.linetype = "dashed",
+                      vline.size = 1,
+                      sort = c("none", "ascending", "decending"),
                       xlab = "estimate",
                       ylab = "term",
                       title = NULL,
                       subtitle = NULL,
-                      stats.labels = TRUE) {
+                      stats.labels = TRUE,
+                      label.direction = "y") {
   #================================================== model and its summary ===========================================================
 
   # linear model object
@@ -87,6 +129,21 @@ gglmstats <- function(data,
       ),
       .collate = "rows",
       .to = "p.value.formatted",
+      .labels = TRUE
+    ) %>%
+    purrrlyr::by_row(
+      .d = .,
+      ..f = ~ paste(
+        "t(",
+        glance_df$df.residual,
+        ") = ",
+        .$statistic,
+        ", p = ",
+        .$p.value.formatted,
+        sep = ""
+      ),
+      .collate = "rows",
+      .to = "label",
       .labels = TRUE
     )
 
@@ -136,39 +193,39 @@ gglmstats <- function(data,
   #================================================== basic plot ===========================================================
 
   # creating the dot-whisker plot
-  plot <- dotwhisker::dwplot(
+  plot <- GGally::ggcoef(
     x = lm.object,
-    show_intercept = FALSE,
-    dodge_size = 0.2,
-    tyle = "dotwhisker",
-    dot_args = list(size = 0.8, color = dot.color),
-    line_args = list(alpha = 0.75, size = 1)
-  )  +
-    ggplot2::theme(legend.position = 'none') +
-    ggplot2::geom_vline(
-      xintercept = 0,
-      colour = "grey60",
-      linetype = 2,
-      size = 1,
-      na.rm = TRUE
-    )
+    mapping = ggplot2::aes_string(y = "term", x = "estimate"),
+    color = dot.color,
+    size = dot.size,
+    conf.int = conf.int,
+    conf.level = conf.level,
+    exponentiate = exponentiate,
+    exclude_intercept = TRUE,
+    vline = vline,
+    vline_intercept = vline.intercept,
+    vline_color = vline.color,
+    vline_linetype = vline.linetype,
+    vline_size = vline.size,
+    errorbar_color = errorbar.color,
+    errorbar_height = errorbar.height,
+    errorbar_linetype = errorbar.linetype,
+    errorbar_size = errorbar.size,
+    sort = sort
+  )
 
   #================================================== ggrepel labels ===========================================================
 
   if (isTRUE(stats.labels)) {
-    # creating the labels as a column
-    model_df$label <- glue::glue(
-      "t({glance_df$df.residual}) = {model_df$statistic}, p = {model_df$p.value.formatted}"
-    )
-
     # adding the labels
     plot <- plot +
       ggrepel::geom_label_repel(
-        mapping = ggplot2::aes(label = model_df$label),
+        data = model_df,
+        mapping = ggplot2::aes(x = estimate, y = term, label = label),
         size = 5,
         box.padding = grid::unit(x = 0.75, units = "lines"),
         fontface = "bold",
-        direction = "both",
+        direction = label.direction,
         color = "black",
         label.size = 0.25,
         max.iter = 3e2,
@@ -178,12 +235,11 @@ gglmstats <- function(data,
         force = 2,
         na.rm = TRUE
       )
-  } else {
-
   }
 
   #================================================== other text labels ===========================================================
   #
+  # adding other labels to the plot
   plot <- plot +
     ggplot2::labs(
       x = xlab,
