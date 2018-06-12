@@ -3,7 +3,7 @@
 
 MAJOR CHANGES
 
-  - New function: `gglmstats` for linear models.
+  - New function: `ggcoefstats` for displaying model coefficients.
 
 MINOR CHANGES
 

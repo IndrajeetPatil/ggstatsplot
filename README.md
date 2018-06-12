@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--10-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--12-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -116,7 +116,7 @@ command-
 ?gghistostats
 ?ggpiestats
 ?ggcorrmat
-?gglmstats
+?ggcoefstats
 ?combine_plots
 ?grouped_ggbetweenstats
 ?grouped_ggscatterstats
@@ -474,43 +474,91 @@ ggstatsplot::ggcorrmat(
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html>
 
-  - `gglmstats`
+  - `ggcoefstats`
 
-`gglmstats` creates a lot with the regression coefficients’ point
+`ggcoefstats` creates a lot with the regression coefficients’ point
 estimates as dots with confidence interval whiskers. This is a wrapper
 function around `GGally::ggcoef`.
 
 ``` r
-ggstatsplot::gglmstats(
-  formula = Sepal.Length ~ Species,      # formula for the linear model
-  data = iris                            # data containing variables in the formula
-  ) 
+ggstatsplot::ggcoefstats(x = stats::lm(formula = Sepal.Length ~ Species,
+                                       data = iris)) 
 ```
 
-<img src="man/figures/README-gglmstats1-1.png" width="100%" />
+<img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
 
 The basic can be further modified to one’s liking with additional
 arguments:
 
 ``` r
-ggstatsplot::gglmstats(
-  formula = Sepal.Length ~ Species,      
-  data = iris,
-  stats.labels = FALSE,                  # removing the attached labels
+ggstatsplot::ggcoefstats(
+  x = stats::lm(formula = Sepal.Length ~ Species,
+                data = iris),
+  stats.labels = FALSE,
+  # removing the attached labels
   title = "Differences in Sepal Length across Iris species",
   subtitle = "Source: Iris dataset"
-  ) +                                    # further modification with the ggplot2 commands
+) +                                    
+  # further modification with the ggplot2 commands
+  # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("Species (virginica)", "Species (versicolor)")) +
-  ggplot2::labs(x = "regression coefficient", 
+  ggplot2::labs(x = "regression coefficient",
                 y = NULL)
 ```
 
-<img src="man/figures/README-gglmstats2-1.png" width="100%" />
+<img src="man/figures/README-ggcoefstats2-1.png" width="100%" />
+
+All the classes that are supported in the `broom` package with `tidy`
+and `glance` methods
+(<https://broom.tidyverse.org/articles/available-methods.html>) are also
+supported by `ggcoefstats`. Let’s see few examples:
 
 ``` r
-  
-# note the order in which the labels were entered
+library(dplyr)
+
+# creating dataframes needed for the analysis below
+# for k-means analysis
+set.seed(2014)
+centers <- data.frame(
+  cluster = factor(1:3),
+  size = c(100, 150, 50),
+  x1 = c(5, 0, -3),
+  x2 = c(-1, 1, -2)
+)
+points <- centers %>% group_by(cluster) %>%
+  do(data.frame(x1 = rnorm(.$size[1], .$x1[1]),
+                x2 = rnorm(.$size[1], .$x2[1])))
+
+# for glm
+d <- as.data.frame(Titanic)
+
+# combining plots together
+ggstatsplot::combine_plots(
+  # general linear model
+  ggstatsplot::ggcoefstats(
+    x = stats::glm(
+      formula = Survived ~ Sex + Age + Class,
+      data = d,
+      weights = d$Freq,
+      family = "binomial"
+    )
+  ),
+  # nonlinear least squares
+  ggstatsplot::ggcoefstats(x = stats::nls(
+    formula = mpg ~ k / wt + b,
+    data = mtcars,
+    start = list(k = 1, b = 0)
+  )),
+  # linear model
+  ggstatsplot::ggcoefstats(x = stats::lm(formula = stack.loss ~ .,
+                                         data = stackloss)),
+  labels = c("(a)", "(b)", "(c)"),
+  nrow = 3,
+  ncol = 1
+)
 ```
+
+<img src="man/figures/README-ggcoefstats3-1.png" width="100%" />
 
   - `combine_plots`
 

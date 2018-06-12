@@ -1,16 +1,13 @@
 #'
-#' @title Regression coefficients for fitted linear models with the model
-#'   summary as a caption.
-#' @name gglmstats
-#' @aliases gglmstats
+#' @title Model coefficients for fitted linear models with the model summary as
+#'   a caption.
+#' @name ggcoefstats
+#' @aliases ggcoefstats
 #' @author Indrajeet Patil
 #' @return Plot with the regression coefficients' point estimates as dots with
 #'   confidence interval whiskers.
 #'
-#' @param formula An object of class "formula" (or one that can be coerced to
-#'   that class): a symbolic description of the model to be fitted. The details
-#'   of model specification are given under 'Details'.
-#' @param data A data frame containing the variables in the model.
+#' @param x A model object to be tidied with `broom::tidy`.
 #' @param xlab Label for `x` axis variable (Default: `"estimate"`).
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param title The text for the plot title.
@@ -18,6 +15,8 @@
 #' @param k Number of decimal places expected for results.
 #' @param dot.color Character describing color for the dot (Default: `"blue"`).
 #' @param dot.size Numeric specifying size for the dot (Default: `3`).
+#' @param dot.shape Numeric specifying shape to draw the points (Default: `16`
+#'   (a dot)).
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
@@ -44,10 +43,11 @@
 #'   coefficient value, or `"decending"` sort by decreasing coefficient value.
 #' @param stats.labels Logical. Decides whether the statistic and p-values for
 #'   each coefficient are to be attached to each dot as a text label using
-#'   `ggrepel`.
+#'   `ggrepel` (Default: `TRUE`).
+#' @param caption.summary Logical. Decides whether the model summary should be
+#'   displayed as a cation to the plot (Default: `TRUE`).
 #' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
 #'   which to adjust position of labels (Default: `"y"`).
-#'
 #'
 #' @import ggplot2
 #'
@@ -67,51 +67,44 @@
 #' @examples
 #'
 #' set.seed(123)
-#' gglmstats(formula = mpg ~ cyl * am, data = mtcars)
+#' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #'
 #' @export
 #'
 
 # function body
-gglmstats <- function(data,
-                      formula,
-                      k = 3,
-                      dot.color = "blue",
-                      dot.size = 3,
-                      conf.int = TRUE,
-                      conf.level = 0.95,
-                      exponentiate = FALSE,
-                      errorbar.color = "black",
-                      errorbar.height = 0,
-                      errorbar.linetype = "solid",
-                      errorbar.size = 0.5,
-                      vline = TRUE,
-                      vline.intercept = "auto",
-                      vline.color = "black",
-                      vline.linetype = "dashed",
-                      vline.size = 1,
-                      sort = c("none", "ascending", "decending"),
-                      xlab = "estimate",
-                      ylab = "term",
-                      title = NULL,
-                      subtitle = NULL,
-                      stats.labels = TRUE,
-                      label.direction = "y") {
+ggcoefstats <- function(x,
+                        k = 3,
+                        dot.color = "blue",
+                        dot.size = 3,
+                        dot.shape = 16,
+                        conf.int = TRUE,
+                        conf.level = 0.95,
+                        exponentiate = FALSE,
+                        errorbar.color = "black",
+                        errorbar.height = 0,
+                        errorbar.linetype = "solid",
+                        errorbar.size = 0.5,
+                        vline = TRUE,
+                        vline.intercept = "auto",
+                        vline.color = "black",
+                        vline.linetype = "dashed",
+                        vline.size = 1,
+                        sort = c("none", "ascending", "decending"),
+                        xlab = "estimate",
+                        ylab = "term",
+                        title = NULL,
+                        subtitle = NULL,
+                        stats.labels = TRUE,
+                        caption.summary = TRUE,
+                        label.direction = "y") {
   #================================================== model and its summary ===========================================================
 
-  # linear model object
-  lm.object <-
-    stats::lm(
-      formula = stats::as.formula(formula),
-      data = data,
-      na.action = na.omit
-    )
-
   # glance object from broom
-  glance_df <- broom::glance(x = lm.object)
+  glance_df <- broom::glance(x = x)
 
   # tidy dataframe of results from the linear model
-  model_df <- broom::tidy(x = lm.object) %>%
+  model_df <- broom::tidy(x = x) %>%
     dplyr::filter(.data = ., term != "(Intercept)") %>%
     dplyr::select(.data = ., term, estimate, statistic, p.value) %>%
     dplyr::mutate_at(
@@ -134,10 +127,10 @@ gglmstats <- function(data,
     purrrlyr::by_row(
       .d = .,
       ..f = ~ paste(
-        "t(",
-        glance_df$df.residual,
-        ") = ",
+        "statistic = ",
         .$statistic,
+        ", df = ",
+        glance_df$df.residual,
         ", p = ",
         .$p.value.formatted,
         sep = ""
@@ -149,55 +142,76 @@ gglmstats <- function(data,
 
   #================================================== summary caption ===========================================================
 
-  # extracting the elements of the statistical object to prepare the caption
-  caption.text <-
-    base::substitute(
-      expr =
-        paste(
-          italic("F"),
-          "(",
-          df1,
-          ",",
-          df2,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", AIC = ",
-          AIC,
-          ", BIC = ",
-          BIC,
-          ", Adjusted ",
-          R ^ {
-            2
-          },
-          " = ",
-          adj.r.squared
-        ),
-      env = base::list(
-        estimate = ggstatsplot::specify_decimal_p(x = glance_df$statistic[[1]], k),
-        df1 = glance_df$df[[1]],
-        # degrees of freedom are always integer
-        df2 = glance_df$df.residual[[1]],
-        pvalue = ggstatsplot::specify_decimal_p(x = glance_df$p.value[[1]],
-                                                k,
-                                                p.value = TRUE),
-        AIC = ggstatsplot::specify_decimal_p(x = glance_df$AIC[[1]], k),
-        BIC = ggstatsplot::specify_decimal_p(x = glance_df$BIC[[1]], k),
-        adj.r.squared = ggstatsplot::specify_decimal_p(x = glance_df$adj.r.squared[[1]], k)
+  if (isTRUE(caption.summary)) {
+    # extracting the elements of the statistical object to prepare the caption
+    # caption.text <-
+    #   base::substitute(
+    #     expr =
+    #       paste(
+    #         italic("F"),
+    #         "(",
+    #         df1,
+    #         ",",
+    #         df2,
+    #         ") = ",
+    #         estimate,
+    #         ", ",
+    #         italic("p"),
+    #         " = ",
+    #         pvalue,
+    #         ", AIC = ",
+    #         AIC,
+    #         ", BIC = ",
+    #         BIC,
+    #         ", Adjusted ",
+    #         R ^ {
+    #           2
+    #         },
+    #         " = ",
+    #         adj.r.squared
+    #       ),
+    #     env = base::list(
+    #       estimate = ggstatsplot::specify_decimal_p(x = glance_df$statistic[[1]], k),
+    #       df1 = glance_df$df[[1]],
+    #       # degrees of freedom are always integer
+    #       df2 = glance_df$df.residual[[1]],
+    #       pvalue = ggstatsplot::specify_decimal_p(x = glance_df$p.value[[1]],
+    #                                               k,
+    #                                               p.value = TRUE),
+    #       AIC = ggstatsplot::specify_decimal_p(x = glance_df$AIC[[1]], k),
+    #       BIC = ggstatsplot::specify_decimal_p(x = glance_df$BIC[[1]], k),
+    #       adj.r.squared = ggstatsplot::specify_decimal_p(x = glance_df$adj.r.squared[[1]], k)
+    #     )
+    #   )
+    caption.text <-
+      base::substitute(
+        expr =
+          paste(
+            "AIC = ",
+            AIC,
+            ", BIC = ",
+            BIC,
+            ", log-likelihood = ",
+            loglik
+          ),
+        env = base::list(
+          AIC = ggstatsplot::specify_decimal_p(x = glance_df$AIC[[1]], k),
+          BIC = ggstatsplot::specify_decimal_p(x = glance_df$BIC[[1]], k),
+          loglik = ggstatsplot::specify_decimal_p(x = glance_df$logLik[[1]], k)
+        )
       )
-    )
-
+  } else {
+    caption.text <- NULL
+  }
   #================================================== basic plot ===========================================================
 
   # creating the dot-whisker plot
   plot <- GGally::ggcoef(
-    x = lm.object,
+    x = x,
     mapping = ggplot2::aes_string(y = "term", x = "estimate"),
     color = dot.color,
     size = dot.size,
+    shape = dot.shape,
     conf.int = conf.int,
     conf.level = conf.level,
     exponentiate = exponentiate,
@@ -222,16 +236,18 @@ gglmstats <- function(data,
       ggrepel::geom_label_repel(
         data = model_df,
         mapping = ggplot2::aes(x = estimate, y = term, label = label),
-        size = 5,
+        size = 3,
         box.padding = grid::unit(x = 0.75, units = "lines"),
         fontface = "bold",
         direction = label.direction,
         color = "black",
         label.size = 0.25,
-        max.iter = 3e2,
+        segment.color = "black",
+        segment.size = 0.5,
+        segment.alpha = NULL,
+        min.segment.length = 0.5,
+        max.iter = 2000,
         point.padding = 0.5,
-        segment.size = 0.2,
-        segment.color = "grey50",
         force = 2,
         na.rm = TRUE
       )
