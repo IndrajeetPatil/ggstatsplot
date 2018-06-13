@@ -66,6 +66,10 @@
 #'   bins that cover the range of the data. You should always override this
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritDotParams combine_plots
@@ -134,6 +138,7 @@ grouped_gghistostats <- function(grouping.var,
                                  line.labeller = FALSE,
                                  line.labeller.y = -2,
                                  binwidth = NULL,
+                                 ggtheme = ggplot2::theme_grey(),
                                  messages = TRUE,
                                  ...) {
   # ================== preparing dataframe ==================
@@ -200,6 +205,7 @@ grouped_gghistostats <- function(grouping.var,
             line.labeller = line.labeller,
             line.labeller.y = line.labeller.y,
             binwidth = binwidth,
+            ggtheme = ggtheme,
             messages = messages
           )
         )

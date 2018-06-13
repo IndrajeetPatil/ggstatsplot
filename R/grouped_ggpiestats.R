@@ -25,6 +25,10 @@
 #' @param facet.wrap.name The text for the facet_wrap variable label.
 #' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritDotParams combine_plots
@@ -72,6 +76,7 @@ grouped_ggpiestats <- function(grouping.var,
                                facet.wrap.name = NULL,
                                k = 3,
                                facet.proptest = TRUE,
+                               ggtheme = ggplot2::theme_grey(),
                                messages = TRUE,
                                ...) {
   # ================================ preparing dataframe ======================================
@@ -138,6 +143,7 @@ grouped_ggpiestats <- function(grouping.var,
               facet.wrap.name = facet.wrap.name,
               k = k,
               facet.proptest = facet.proptest,
+              ggtheme = ggtheme,
               messages = messages
             )
           )
@@ -162,6 +168,7 @@ grouped_ggpiestats <- function(grouping.var,
               facet.wrap.name = facet.wrap.name,
               k = k,
               facet.proptest = facet.proptest,
+              ggtheme = ggtheme,
               messages = messages
             )
           )

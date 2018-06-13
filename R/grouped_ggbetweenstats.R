@@ -78,6 +78,10 @@
 #'   direction. Defaults to `0`.
 #' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
 #'   direction. Defaults to `0.75`.
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
 #' @inheritDotParams combine_plots
 #'
 #' @import ggplot2
@@ -170,6 +174,7 @@ grouped_ggbetweenstats <- function(grouping.var,
                                    point.jitter.width = NULL,
                                    point.jitter.height = 0.2,
                                    point.dodge.width = 0.75,
+                                   ggtheme = ggplot2::theme_grey(),
                                    ...) {
   # ================== preparing dataframe ==================
 
@@ -253,6 +258,7 @@ grouped_ggbetweenstats <- function(grouping.var,
               mean.plotting = mean.plotting,
               mean.size = mean.size,
               mean.color = mean.color,
+              ggtheme = ggtheme,
               messages = messages,
               point.jitter.width = point.jitter.width,
               point.dodge.width = point.dodge.width,
@@ -296,6 +302,7 @@ grouped_ggbetweenstats <- function(grouping.var,
               mean.plotting = mean.plotting,
               mean.size = mean.size,
               mean.color = mean.color,
+              ggtheme = ggtheme,
               messages = messages,
               point.jitter.width = point.jitter.width,
               point.dodge.width = point.dodge.width,

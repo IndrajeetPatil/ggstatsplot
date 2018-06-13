@@ -10,7 +10,8 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
   "y"), width.jitter = NULL, height.jitter = NULL, xfill = "#009E73",
   yfill = "#D55E00", centrality.para = NULL, type = "pearson",
   results.subtitle = NULL, title = NULL, caption = NULL, maxit = 500,
-  k = 3, axes.range.restrict = FALSE, messages = TRUE)
+  k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_grey(),
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -77,6 +78,11 @@ bootstrap samples to compute Spearman's rho confidence intervals (Default:
 
 \item{axes.range.restrict}{Logical decides whether to restrict the axes values
 ranges to min and max values of the \code{x} and \code{y} variables (Default: \code{FALSE}).}
+
+\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{theme_void()}, etc.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

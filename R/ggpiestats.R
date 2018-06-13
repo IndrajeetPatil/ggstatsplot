@@ -22,6 +22,10 @@
 #' @param facet.wrap.name The text for the facet_wrap variable label.
 #' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #'
@@ -85,6 +89,7 @@ ggpiestats <-
            facet.wrap.name = NULL,
            k = 3,
            facet.proptest = TRUE,
+           ggtheme = ggplot2::theme_grey(),
            messages = TRUE) {
     # ========================================== messages ==================================================================
 
@@ -311,7 +316,7 @@ ggpiestats <-
     p <- p +
       ggplot2::scale_y_continuous(breaks = NULL) +
       ggplot2::scale_fill_discrete(name = "", labels = unique(labels)) +
-      theme_pie() +
+      theme_pie(ggtheme = ggtheme) +
       ggplot2::guides(fill = guide_legend(override.aes = list(color = NA))) # remove black diagonal line from legend
 
     ############################################ chi-square test #####################################################

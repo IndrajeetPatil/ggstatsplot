@@ -143,7 +143,8 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <pre class="usage"><span class='fu'>grouped_ggpiestats</span>(<span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='no'>data</span>, <span class='no'>main</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,6 +202,13 @@ test.</p></td>
       <th>facet.proptest</th>
       <td><p>Decides whether proportion test for <code>main</code> variable is
 to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>ggtheme</th>
+      <td><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code>theme_void()</code>, etc.</p></td>
     </tr>
     <tr>
       <th>messages</th>

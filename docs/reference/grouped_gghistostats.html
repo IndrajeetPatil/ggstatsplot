@@ -151,7 +151,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
   <span class='kw'>line.labeller</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>line.labeller.y</span> <span class='kw'>=</span> -<span class='fl'>2</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -298,6 +298,13 @@ or a function that calculates width from <code>x</code>. The default is to use b
 bins that cover the range of the data. You should always override this
 value, exploring multiple widths to find the best to illustrate the stories
 in your data.</p></td>
+    </tr>
+    <tr>
+      <th>ggtheme</th>
+      <td><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code>theme_void()</code>, etc.</p></td>
     </tr>
     <tr>
       <th>messages</th>

@@ -150,7 +150,7 @@ subtitle.</p>
   <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>, <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>,
   <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxit</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -270,6 +270,13 @@ bootstrap samples to compute Spearman's rho confidence intervals (Default:
       <th>axes.range.restrict</th>
       <td><p>Logical decides whether to restrict the axes values
 ranges to min and max values of the <code>x</code> and <code>y</code> variables (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>ggtheme</th>
+      <td><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code>theme_void()</code>, etc.</p></td>
     </tr>
     <tr>
       <th>messages</th>

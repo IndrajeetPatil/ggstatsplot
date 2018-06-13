@@ -14,7 +14,8 @@ grouped_ggbetweenstats(grouping.var, title.prefix = "Group", data = NULL, x,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
   mean.color = "darkred", messages = TRUE, point.jitter.width = NULL,
-  point.jitter.height = 0.2, point.dodge.width = 0.75, ...)
+  point.jitter.height = 0.2, point.dodge.width = 0.75,
+  ggtheme = ggplot2::theme_grey(), ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -119,6 +120,11 @@ direction. Defaults to \code{0}.}
 
 \item{point.dodge.width}{Numeric specifying the amount to dodge in the \code{x}
 direction. Defaults to \code{0.75}.}
+
+\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{theme_void()}, etc.}
 
 \item{...}{Arguments passed on to \code{combine_plots}
 \describe{

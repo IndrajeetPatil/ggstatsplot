@@ -110,6 +110,11 @@ legend_title_margin <- function(plot,
 #' #'
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
+#'
 #' @importFrom ggplot2 theme
 #' @importFrom ggplot2 theme_grey
 #' @importFrom ggplot2 element_blank
@@ -126,8 +131,8 @@ legend_title_margin <- function(plot,
 #' `ggstatsplot:::theme_pie`. Note that it is `:::` and not `::`.
 #'
 
-theme_pie <- function() {
-  ggplot2::theme_grey() +
+theme_pie <- function(ggtheme = ggplot2::theme_grey()) {
+  ggtheme +
     ggplot2::theme(
       panel.grid = ggplot2::element_blank(),
       axis.ticks = ggplot2::element_blank(),

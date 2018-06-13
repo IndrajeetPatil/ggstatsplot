@@ -476,7 +476,8 @@ ggstatsplot::combine_plots(
       data = d,
       weights = d$Freq,
       family = "binomial"
-    )
+    ),
+    exponentiate = TRUE
   ),
   # nonlinear least squares
   ggstatsplot::ggcoefstats(x = stats::nls(

@@ -7,7 +7,8 @@
 grouped_ggpiestats(grouping.var, title.prefix = "Group", data, main,
   condition = NULL, factor.levels = NULL, stat.title = NULL,
   caption = NULL, legend.title = NULL, facet.wrap.name = NULL, k = 3,
-  facet.proptest = TRUE, messages = TRUE, ...)
+  facet.proptest = TRUE, ggtheme = ggplot2::theme_grey(), messages = TRUE,
+  ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -39,6 +40,11 @@ test.}
 
 \item{facet.proptest}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
+
+\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{theme_void()}, etc.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

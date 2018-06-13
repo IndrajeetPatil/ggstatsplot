@@ -49,6 +49,10 @@
 #'   the resolution of the data.
 #' @param axes.range.restrict Logical decides whether to restrict the axes values
 #'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #'
@@ -105,29 +109,30 @@
 # defining the function
 ggscatterstats <-
   function(data = NULL,
-             x,
-             y,
-             xlab = NULL,
-             ylab = NULL,
-             line.size = 1.5,
-             line.color = "blue",
-             marginal = TRUE,
-             marginal.type = "histogram",
-             marginal.size = 5,
-             margins = c("both", "x", "y"),
-             width.jitter = NULL,
-             height.jitter = NULL,
-             xfill = "#009E73",
-             yfill = "#D55E00",
-             centrality.para = NULL,
-             type = "pearson",
-             results.subtitle = NULL,
-             title = NULL,
-             caption = NULL,
-             maxit = 500,
-             k = 3,
-             axes.range.restrict = FALSE,
-             messages = TRUE) {
+           x,
+           y,
+           xlab = NULL,
+           ylab = NULL,
+           line.size = 1.5,
+           line.color = "blue",
+           marginal = TRUE,
+           marginal.type = "histogram",
+           marginal.size = 5,
+           margins = c("both", "x", "y"),
+           width.jitter = NULL,
+           height.jitter = NULL,
+           xfill = "#009E73",
+           yfill = "#D55E00",
+           centrality.para = NULL,
+           type = "pearson",
+           results.subtitle = NULL,
+           title = NULL,
+           caption = NULL,
+           maxit = 500,
+           k = 3,
+           axes.range.restrict = FALSE,
+           ggtheme = ggplot2::theme_grey(),
+           messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
@@ -136,11 +141,9 @@ ggscatterstats <-
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(
-        .data = data,
-        !!rlang::enquo(x),
-        !!rlang::enquo(y)
-      ))
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(x),
+                                       !!rlang::enquo(y)))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
@@ -159,10 +162,8 @@ ggscatterstats <-
     } else {
       # if vectors are provided
       data <-
-        base::cbind.data.frame(
-          x = x,
-          y = y
-        )
+        base::cbind.data.frame(x = x,
+                               y = y)
     }
 
     ######################################## statistical labels ######################################################
@@ -183,7 +184,7 @@ ggscatterstats <-
 
         c <-
           stats::cor.test(
-            formula = ~x + y,
+            formula = ~ x + y,
             data = data,
             method = "pearson",
             alternative = "two.sided",
@@ -232,7 +233,7 @@ ggscatterstats <-
         # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
         c <-
           stats::cor.test(
-            formula = ~x + y,
+            formula = ~ x + y,
             data = data,
             method = "spearman",
             alternative = "two.sided",
@@ -245,7 +246,7 @@ ggscatterstats <-
           broom::bootstrap(df = ., m = maxit) %>%
           do(broom::tidy(
             stats::cor.test(
-              formula = ~x + y,
+              formula = ~ x + y,
               data = .,
               method = "spearman",
               exact = FALSE,
@@ -287,11 +288,9 @@ ggscatterstats <-
               estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = c_ci$low[[1]], k),
               UL = ggstatsplot::specify_decimal_p(x = c_ci$high[[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(
-                x = c$p.value[[1]],
-                k,
-                p.value = TRUE
-              )
+              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]],
+                                                      k,
+                                                      p.value = TRUE)
             )
           )
         ################################################### robust ##################################################
@@ -308,11 +307,9 @@ ggscatterstats <-
 
         # getting confidence interval for rho
         c_ci <-
-          stats::confint.default(
-            object = MASS_res,
-            parm = "scale(x)",
-            level = 0.95
-          )
+          stats::confint.default(object = MASS_res,
+                                 parm = "scale(x)",
+                                 level = 0.95)
 
         # preparing the label
         stats_subtitle <-
@@ -347,9 +344,8 @@ ggscatterstats <-
               df = summary(MASS_res)$df[2],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value[[1]],
-                k,
-                p.value = TRUE
-              )
+                                                      k,
+                                                      p.value = TRUE)
             )
           )
         # helper message in case of non-convergence
@@ -369,20 +365,14 @@ ggscatterstats <-
 
     # preparing the scatterplotplot
     plot <-
-      ggplot2::ggplot(
-        data = data,
-        mapping = ggplot2::aes(
-          x = x,
-          y = y
-        )
-      ) +
+      ggplot2::ggplot(data = data,
+                      mapping = ggplot2::aes(x = x,
+                                             y = y)) +
       ggplot2::geom_point(
         size = 3,
         alpha = 0.5,
-        position = position_jitter(
-          width = width.jitter,
-          height = height.jitter
-        ),
+        position = position_jitter(width = width.jitter,
+                                   height = height.jitter),
         na.rm = TRUE
       ) +
       ggplot2::geom_smooth(
@@ -392,7 +382,7 @@ ggscatterstats <-
         color = line.color,
         na.rm = TRUE
       ) +
-      ggstatsplot::theme_mprl() +
+      ggstatsplot::theme_mprl(ggtheme = ggtheme) +
       ggplot2::labs(
         x = xlab,
         y = ylab,
@@ -414,7 +404,7 @@ ggscatterstats <-
     if (is.null(centrality.para)) {
       plot <- plot
     } else if (isTRUE(centrality.para) ||
-      centrality.para == "mean") {
+               centrality.para == "mean") {
       plot <- plot +
         ggplot2::geom_vline(
           xintercept = mean(x = data$x, na.rm = TRUE),
@@ -458,14 +448,10 @@ ggscatterstats <-
           type = marginal.type,
           margins = margins,
           size = marginal.size,
-          xparams = base::list(
-            fill = xfill,
-            col = "black"
-          ),
-          yparams = base::list(
-            fill = yfill,
-            col = "black"
-          )
+          xparams = base::list(fill = xfill,
+                               col = "black"),
+          yparams = base::list(fill = yfill,
+                               col = "black")
         )
     }
 
@@ -473,7 +459,7 @@ ggscatterstats <-
 
     # display warning that this doesn't produce a ggplot2 object
     if (isTRUE(messages) &&
-      isTRUE(marginal)) {
+        isTRUE(marginal)) {
       base::message(cat(
         crayon::red("Warning:"),
         crayon::blue(

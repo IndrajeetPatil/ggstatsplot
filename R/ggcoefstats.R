@@ -98,6 +98,15 @@ ggcoefstats <- function(x,
                         stats.labels = TRUE,
                         caption.summary = TRUE,
                         label.direction = "y") {
+  #====================================== checking if object is supported =============================================================
+  if (class(x)[[1]] == "aov") {
+    base::message(cat(
+      crayon::green("Note:"),
+      crayon::blue(
+        "The objects of class", crayon::yellow(class(x)[[1]]), "aren't currently supported."
+      )
+    ))
+  }
   #================================================== model and its summary ===========================================================
 
   # glance object from broom
@@ -231,6 +240,10 @@ ggcoefstats <- function(x,
   #================================================== ggrepel labels ===========================================================
 
   if (isTRUE(stats.labels)) {
+    # if the coefficients are to be exponentiated, the label positions will also have to be adjusted
+    if (isTRUE(exponentiate)) {
+      model_df$estimate <- base::exp(model_df$estimate)
+    }
     # adding the labels
     plot <- plot +
       ggrepel::geom_label_repel(

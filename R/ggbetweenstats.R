@@ -68,6 +68,10 @@
 #'   `"darkred"`).
 #' @param mean.size Point size for the data point corresponding to mean
 #'   (Default: `5`).
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @param point.jitter.width Numeric specifying the degree of jitter in `x`
@@ -171,6 +175,7 @@ ggbetweenstats <- function(data = NULL,
                            mean.size = 5,
                            mean.color = "darkred",
                            messages = TRUE,
+                           ggtheme = ggplot2::theme_grey(),
                            point.jitter.width = NULL,
                            point.jitter.height = 0.2,
                            point.dodge.width = 0.75) {
@@ -345,7 +350,7 @@ ggbetweenstats <- function(data = NULL,
   }
   # specifying theme and labels for the final plot
   plot <- plot +
-    ggstatsplot::theme_mprl() +
+    ggstatsplot::theme_mprl(ggtheme = ggtheme) +
     ggplot2::theme(legend.position = "none") +
     ggplot2::labs(
       x = xlab,

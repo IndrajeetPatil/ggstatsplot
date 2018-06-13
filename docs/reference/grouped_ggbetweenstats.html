@@ -150,7 +150,8 @@ grouping variable.</p>
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.75</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.75</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -321,6 +322,13 @@ direction. Defaults to <code>0</code>.</p></td>
       <th>point.dodge.width</th>
       <td><p>Numeric specifying the amount to dodge in the <code>x</code>
 direction. Defaults to <code>0.75</code>.</p></td>
+    </tr>
+    <tr>
+      <th>ggtheme</th>
+      <td><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code>theme_void()</code>, etc.</p></td>
     </tr>
     <tr>
       <th>...</th>

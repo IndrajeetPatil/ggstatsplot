@@ -63,6 +63,10 @@
 #'   bins that cover the range of the data. You should always override this
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #'
@@ -151,6 +155,7 @@ gghistostats <-
              test.value.linetype = "dashed",
              line.labeller = FALSE,
              line.labeller.y = -2,
+           ggtheme = ggplot2::theme_grey(),
              messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
@@ -424,7 +429,7 @@ gghistostats <-
 
     # adding the theme and labels
     plot <- plot +
-      ggstatsplot::theme_mprl() +
+      ggstatsplot::theme_mprl(ggtheme = ggtheme) +
       ggplot2::labs(
         x = xlab,
         title = title,

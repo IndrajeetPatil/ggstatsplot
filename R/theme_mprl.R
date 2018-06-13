@@ -7,6 +7,11 @@
 #'   and *assumed* by the author to be aesthetically pleasing to the
 #'   user/reader.
 #'
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
+#'
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
 #' @import ggplot2
@@ -15,8 +20,8 @@
 #' @export
 #'
 
-theme_mprl <- function() {
-  ggplot2::theme_grey() +
+theme_mprl <- function(ggtheme = ggplot2::theme_grey()) {
+  ggtheme +
     ggplot2::theme(
       axis.title.x = ggplot2::element_text(size = 14, face = "bold"),
       strip.text.x = ggplot2::element_text(size = 14, face = "bold"),

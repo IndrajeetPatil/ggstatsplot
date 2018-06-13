@@ -15,7 +15,7 @@ grouped_gghistostats(grouping.var, title.prefix = "Group", data, x,
   test.value.line = FALSE, test.value.color = "black",
   test.value.size = 1.2, test.value.linetype = "dashed",
   line.labeller = FALSE, line.labeller.y = -2, binwidth = NULL,
-  messages = TRUE, ...)
+  ggtheme = ggplot2::theme_grey(), messages = TRUE, ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -104,6 +104,11 @@ or a function that calculates width from \code{x}. The default is to use bins
 bins that cover the range of the data. You should always override this
 value, exploring multiple widths to find the best to illustrate the stories
 in your data.}
+
+\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{theme_void()}, etc.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

@@ -12,7 +12,8 @@ ggbetweenstats(data = NULL, x, y, plot.type = "boxviolin",
   outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
-  mean.color = "darkred", messages = TRUE, point.jitter.width = NULL,
+  mean.color = "darkred", messages = TRUE,
+  ggtheme = ggplot2::theme_grey(), point.jitter.width = NULL,
   point.jitter.height = 0.2, point.dodge.width = 0.75)
 }
 \arguments{
@@ -106,6 +107,11 @@ to be displayed (Default: \code{TRUE}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{theme_void()}, etc.}
 
 \item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
 direction. Defaults to \code{40\%} of the resolution of the data.}
