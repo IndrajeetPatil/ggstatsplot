@@ -21,6 +21,8 @@
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
 #'   `0.95`).
+#' @param exclude_intercept Logical that decides whether the intercept should be
+#'   excluded from the plot (Default: `TRUE`).
 #' @param exponentiate If `TRUE`, the x-axis will be logarithmic (Default:
 #'   `FALSE`).
 #' @param errorbar.color Character deciding color of the error bars (Default:
@@ -28,7 +30,7 @@
 #' @param errorbar.height Numeric specifying the height of the error bars
 #'   (Default: `0`).
 #' @param errorbar.linetype Line type of the error bars (Default: `"solid"`).
-#' @param errorbar.size Numeric speifying the size of the error bars (Default:
+#' @param errorbar.size Numeric specifying the size of the error bars (Default:
 #'   `0.5`).
 #' @param vline Decides whether to display a vertical line (Default: `"TRUE"`).
 #' @param vline.intercept The xintercept for the vertical line. "auto" for x =
@@ -48,6 +50,10 @@
 #'   displayed as a cation to the plot (Default: `TRUE`).
 #' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
 #'   which to adjust position of labels (Default: `"y"`).
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `theme_void()`, etc.
 #'
 #' @import ggplot2
 #'
@@ -56,13 +62,18 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr filter
 #' @importFrom dplyr mutate_at
+#' @importFrom dplyr full_join
 #' @importFrom purrrlyr by_row
 #' @importFrom stats as.formula
 #' @importFrom stats lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
 #' @importFrom magrittr "%>%"
+#' @importFrom magrittr "%<>%"
 #' @importFrom GGally ggcoef
+#' @importFrom lmerTest as_lmerModLmerTest
+#' @importFrom tibble rownames_to_column
+#' @importFrom tibble as_data_frame
 #'
 #' @examples
 #'
@@ -80,6 +91,7 @@ ggcoefstats <- function(x,
                         dot.shape = 16,
                         conf.int = TRUE,
                         conf.level = 0.95,
+                        exclude_intercept = TRUE,
                         exponentiate = FALSE,
                         errorbar.color = "black",
                         errorbar.height = 0,
@@ -97,7 +109,8 @@ ggcoefstats <- function(x,
                         subtitle = NULL,
                         stats.labels = TRUE,
                         caption.summary = TRUE,
-                        label.direction = "y") {
+                        label.direction = "y",
+                        ggtheme = ggplot2::theme_grey()) {
   #====================================== checking if object is supported =============================================================
   if (class(x)[[1]] == "aov") {
     base::message(cat(
@@ -113,9 +126,37 @@ ggcoefstats <- function(x,
   glance_df <- broom::glance(x = x)
 
   # tidy dataframe of results from the linear model
-  model_df <- broom::tidy(x = x) %>%
-    dplyr::filter(.data = ., term != "(Intercept)") %>%
-    dplyr::select(.data = ., term, estimate, statistic, p.value) %>%
+  model_df <- broom::tidy(x = x, conf.int = TRUE, effects = "fixed", group = "fixed")
+
+  # p-values won't be computed by default
+  if (class(x)[[1]] == "lmerMod") {
+    # computing p-values
+    lmer_p <- coef(summary(lmerTest::as_lmerModLmerTest(model = x))) %>%
+      base::as.data.frame(.) %>%
+      tibble::rownames_to_column(df = ., var = "term") %>%
+      dplyr::select(.data = ., term, p.value = `Pr(>|t|)`) %>%
+      tibble::as_data_frame(x = .)
+
+    # merging the two dataframes
+    model_df <- dplyr::full_join(x = model_df, y = lmer_p, by = "term")
+  }
+
+  # ordering the dataframe
+  model_df %<>%
+    dplyr::select(.data = ., term, estimate, conf.low, conf.high, statistic, p.value)
+
+  # whether to show model intercept; if not, remove the corresponding terms from the dataframe
+  if (isTRUE(exclude_intercept)) {
+    model_df %<>% dplyr::filter(.data = ., !base::grepl(pattern = "(Intercept)", x = term, ignore.case = TRUE))
+  }
+
+  # if the coefficients are to be exponentiated, the label positions will also have to be adjusted
+  if (isTRUE(exponentiate)) {
+    model_df$estimate <- base::exp(model_df$estimate)
+  }
+
+  # formatting the numbers for display and preparing labels
+  model_df %<>%
     dplyr::mutate_at(
       .tbl = .,
       .vars = "statistic",
@@ -136,10 +177,11 @@ ggcoefstats <- function(x,
     purrrlyr::by_row(
       .d = .,
       ..f = ~ paste(
-        "statistic = ",
+        "estimate = ",
+        ggstatsplot::specify_decimal_p(
+          x = .$estimate, k = k),
+        ", statistic = ",
         .$statistic,
-        ", df = ",
-        glance_df$df.residual,
         ", p = ",
         .$p.value.formatted,
         sep = ""
@@ -152,46 +194,6 @@ ggcoefstats <- function(x,
   #================================================== summary caption ===========================================================
 
   if (isTRUE(caption.summary)) {
-    # extracting the elements of the statistical object to prepare the caption
-    # caption.text <-
-    #   base::substitute(
-    #     expr =
-    #       paste(
-    #         italic("F"),
-    #         "(",
-    #         df1,
-    #         ",",
-    #         df2,
-    #         ") = ",
-    #         estimate,
-    #         ", ",
-    #         italic("p"),
-    #         " = ",
-    #         pvalue,
-    #         ", AIC = ",
-    #         AIC,
-    #         ", BIC = ",
-    #         BIC,
-    #         ", Adjusted ",
-    #         R ^ {
-    #           2
-    #         },
-    #         " = ",
-    #         adj.r.squared
-    #       ),
-    #     env = base::list(
-    #       estimate = ggstatsplot::specify_decimal_p(x = glance_df$statistic[[1]], k),
-    #       df1 = glance_df$df[[1]],
-    #       # degrees of freedom are always integer
-    #       df2 = glance_df$df.residual[[1]],
-    #       pvalue = ggstatsplot::specify_decimal_p(x = glance_df$p.value[[1]],
-    #                                               k,
-    #                                               p.value = TRUE),
-    #       AIC = ggstatsplot::specify_decimal_p(x = glance_df$AIC[[1]], k),
-    #       BIC = ggstatsplot::specify_decimal_p(x = glance_df$BIC[[1]], k),
-    #       adj.r.squared = ggstatsplot::specify_decimal_p(x = glance_df$adj.r.squared[[1]], k)
-    #     )
-    #   )
     caption.text <-
       base::substitute(
         expr =
@@ -224,7 +226,7 @@ ggcoefstats <- function(x,
     conf.int = conf.int,
     conf.level = conf.level,
     exponentiate = exponentiate,
-    exclude_intercept = TRUE,
+    exclude_intercept = exclude_intercept,
     vline = vline,
     vline_intercept = vline.intercept,
     vline_color = vline.color,
@@ -240,17 +242,14 @@ ggcoefstats <- function(x,
   #================================================== ggrepel labels ===========================================================
 
   if (isTRUE(stats.labels)) {
-    # if the coefficients are to be exponentiated, the label positions will also have to be adjusted
-    if (isTRUE(exponentiate)) {
-      model_df$estimate <- base::exp(model_df$estimate)
-    }
+
     # adding the labels
     plot <- plot +
       ggrepel::geom_label_repel(
         data = model_df,
         mapping = ggplot2::aes(x = estimate, y = term, label = label),
         size = 3,
-        box.padding = grid::unit(x = 0.75, units = "lines"),
+        box.padding = grid::unit(x = 1, units = "lines"),
         fontface = "bold",
         direction = label.direction,
         color = "black",
@@ -277,8 +276,8 @@ ggcoefstats <- function(x,
       subtitle = subtitle,
       title = title
     ) +
-    ggstatsplot::theme_mprl() +
-    ggplot2::theme(plot.caption = ggplot2::element_text(size = 12))
+    ggstatsplot::theme_mprl(ggtheme = ggtheme) +
+    ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
 
   # return the final plot
   return(plot)

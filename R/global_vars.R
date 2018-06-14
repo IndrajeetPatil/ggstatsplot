@@ -85,7 +85,11 @@ utils::globalVariables(
     "p.value",
     "term",
     "label",
-    "loglik"
+    "loglik",
+    "Pr(>|t|)",
+    "coef",
+    "conf.high",
+    "conf.low"
   ),
   package = "ggstatsplot",
   add = FALSE

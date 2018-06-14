@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--13-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--14-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -485,7 +485,7 @@ ggstatsplot::ggcoefstats(x = stats::lm(formula = Sepal.Length ~ Species,
                                        data = iris)) 
 ```
 
-<img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
+<img src="man/figures/README-ggcoefstats1-1.png" width="80%" />
 
 The basic can be further modified to one’s liking with additional
 arguments:
@@ -494,7 +494,6 @@ arguments:
 ggstatsplot::ggcoefstats(
   x = stats::lm(formula = Sepal.Length ~ Species,
                 data = iris),
-  stats.labels = FALSE,
   # removing the attached labels
   title = "Differences in Sepal Length across Iris species",
   subtitle = "Source: Iris dataset"
@@ -506,7 +505,7 @@ ggstatsplot::ggcoefstats(
                 y = NULL)
 ```
 
-<img src="man/figures/README-ggcoefstats2-1.png" width="100%" />
+<img src="man/figures/README-ggcoefstats2-1.png" width="80%" />
 
 All the classes that are supported in the `broom` package with `tidy`
 and `glance` methods
@@ -515,21 +514,12 @@ supported by `ggcoefstats`. Let’s see few examples:
 
 ``` r
 library(dplyr)
+library(lme4)
+
+# for reproducibility
+set.seed(200)
 
 # creating dataframes needed for the analysis below
-# for k-means analysis
-set.seed(2014)
-centers <- data.frame(
-  cluster = factor(1:3),
-  size = c(100, 150, 50),
-  x1 = c(5, 0, -3),
-  x2 = c(-1, 1, -2)
-)
-points <- centers %>% group_by(cluster) %>%
-  do(data.frame(x1 = rnorm(.$size[1], .$x1[1]),
-                x2 = rnorm(.$size[1], .$x2[1])))
-
-# for glm
 d <- as.data.frame(Titanic)
 
 # combining plots together
@@ -537,25 +527,44 @@ ggstatsplot::combine_plots(
   # general linear model
   ggstatsplot::ggcoefstats(
     x = stats::glm(
-      formula = Survived ~ Sex + Age + Class,
+      formula = Survived ~ Sex + Age,
       data = d,
       weights = d$Freq,
       family = "binomial"
     ),
-    exponentiate = TRUE
+    exponentiate = TRUE,
+    exclude_intercept = FALSE
   ),
   # nonlinear least squares
-  ggstatsplot::ggcoefstats(x = stats::nls(
-    formula = mpg ~ k / wt + b,
-    data = mtcars,
-    start = list(k = 1, b = 0)
-  )),
-  # linear model
-  ggstatsplot::ggcoefstats(x = stats::lm(formula = stack.loss ~ .,
-                                         data = stackloss)),
-  labels = c("(a)", "(b)", "(c)"),
-  nrow = 3,
-  ncol = 1
+  ggstatsplot::ggcoefstats(
+    x = stats::nls(
+      formula = mpg ~ k / wt + b,
+      data = mtcars,
+      start = list(k = 1, b = 0)
+    ),
+    dot.color = "green"
+  ),
+  # linear mmodel
+  ggstatsplot::ggcoefstats(
+    x = lme4::lmer(
+      formula = Reaction ~ Days + (Days | Subject),
+      data = lme4::sleepstudy
+    ),
+    dot.color = "red",
+    exclude_intercept = FALSE
+  ),
+  # generalized linear mixed-effects model
+  ggstatsplot::ggcoefstats(
+    x = lme4::glmer(
+      formula = cbind(incidence, size - incidence) ~ period + (1 | herd),
+      data = lme4::cbpp,
+      family = binomial
+    ),
+    exclude_intercept = TRUE
+  ),
+  labels = c("(a)", "(b)", "(c)", ("(d)")),
+  nrow = 2,
+  ncol = 2
 )
 ```
 

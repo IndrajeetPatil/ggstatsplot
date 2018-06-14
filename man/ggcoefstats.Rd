@@ -6,14 +6,14 @@
 a caption.}
 \usage{
 ggcoefstats(x, k = 3, dot.color = "blue", dot.size = 3, dot.shape = 16,
-  conf.int = TRUE, conf.level = 0.95, exponentiate = FALSE,
-  errorbar.color = "black", errorbar.height = 0,
+  conf.int = TRUE, conf.level = 0.95, exclude_intercept = TRUE,
+  exponentiate = FALSE, errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
   vline.intercept = "auto", vline.color = "black",
   vline.linetype = "dashed", vline.size = 1, sort = c("none", "ascending",
   "decending"), xlab = "estimate", ylab = "term", title = NULL,
   subtitle = NULL, stats.labels = TRUE, caption.summary = TRUE,
-  label.direction = "y")
+  label.direction = "y", ggtheme = ggplot2::theme_grey())
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}.}
@@ -33,6 +33,9 @@ error bars (Default: \code{TRUE}).}
 \item{conf.level}{Numeric deciding level of confidence intervals (Default:
 \code{0.95}).}
 
+\item{exclude_intercept}{Logical that decides whether the intercept should be
+excluded from the plot (Default: \code{TRUE}).}
+
 \item{exponentiate}{If \code{TRUE}, the x-axis will be logarithmic (Default:
 \code{FALSE}).}
 
@@ -44,7 +47,7 @@ error bars (Default: \code{TRUE}).}
 
 \item{errorbar.linetype}{Line type of the error bars (Default: \code{"solid"}).}
 
-\item{errorbar.size}{Numeric speifying the size of the error bars (Default:
+\item{errorbar.size}{Numeric specifying the size of the error bars (Default:
 \code{0.5}).}
 
 \item{vline}{Decides whether to display a vertical line (Default: \code{"TRUE"}).}
@@ -81,6 +84,11 @@ displayed as a cation to the plot (Default: \code{TRUE}).}
 
 \item{label.direction}{Character (\code{"both"}, \code{"x"}, or \code{"y"}) -- direction in
 which to adjust position of labels (Default: \code{"y"}).}
+
+\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{theme_void()}, etc.}
 }
 \value{
 Plot with the regression coefficients' point estimates as dots with

@@ -142,14 +142,14 @@ a caption.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>dot.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>dot.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>dot.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>exclude_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>vline.intercept</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"none"</span>, <span class='st'>"ascending"</span>,
   <span class='st'>"decending"</span>), <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"estimate"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>)</pre>
+  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -186,6 +186,11 @@ error bars (Default: <code>TRUE</code>).</p></td>
 <code>0.95</code>).</p></td>
     </tr>
     <tr>
+      <th>exclude_intercept</th>
+      <td><p>Logical that decides whether the intercept should be
+excluded from the plot (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
       <th>exponentiate</th>
       <td><p>If <code>TRUE</code>, the x-axis will be logarithmic (Default:
 <code>FALSE</code>).</p></td>
@@ -206,7 +211,7 @@ error bars (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>errorbar.size</th>
-      <td><p>Numeric speifying the size of the error bars (Default:
+      <td><p>Numeric specifying the size of the error bars (Default:
 <code>0.5</code>).</p></td>
     </tr>
     <tr>
@@ -269,6 +274,13 @@ displayed as a cation to the plot (Default: <code>TRUE</code>).</p></td>
       <th>label.direction</th>
       <td><p>Character (<code>"both"</code>, <code>"x"</code>, or <code>"y"</code>) -- direction in
 which to adjust position of labels (Default: <code>"y"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>ggtheme</th>
+      <td><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code>theme_void()</code>, etc.</p></td>
     </tr>
     </table>
     
