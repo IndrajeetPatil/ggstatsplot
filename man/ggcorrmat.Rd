@@ -10,7 +10,7 @@ ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   exact = FALSE, continuity = TRUE, beta = 0.1, digits = 2,
   sig.level = 0.05, hc.order = FALSE, hc.method = "complete",
   lab = TRUE, colors = c("#E69F00", "white", "#009E73"),
-  outline.color = "black", ggtheme = ggplot2::theme_gray,
+  outline.color = "black", ggtheme = ggplot2::theme_bw,
   ggstatsplot.theme = TRUE, title = NULL, subtitle = NULL,
   caption = NULL, caption.default = TRUE, lab.col = "black",
   lab.size = 5, insig = "pch", pch = 4, pch.col = "black",
@@ -81,8 +81,8 @@ displayed in the plot.}
 \code{"gray"}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_gray}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_bw}, \code{theme_minimal}, \code{theme_classic}, \code{theme_void}, etc.}
+\code{ggplot2::theme_bw}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_grey}, \code{theme_minimal}, \code{theme_classic}, \code{theme_void}, etc.}
 
 \item{ggstatsplot.theme}{A logical. Decides whether default theme for
 \code{ggstatsplot}, which is \code{theme_mprl}, is to be overlaid on the entered
@@ -166,14 +166,18 @@ ggstatsplot::ggcorrmat(
 data = datasets::iris,
 cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
 sig.level = 0.01,
-ggtheme = ggplot2::theme_gray,
+ggtheme = ggplot2::theme_bw,
 hc.order = TRUE, type = "lower", outline.col = "white",
 title = "Dataset: Iris"
 )
 
 }
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html}
+}
 \seealso{
-\code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}} \code{\link{grouped_ggscatterstats}}
+\code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
+\code{\link{grouped_ggscatterstats}}
 }
 \author{
 Indrajeet Patil

@@ -70,18 +70,18 @@
 #'   `"darkred"`).
 #' @param mean.size Point size for the data point corresponding to mean
 #'   (Default: `5`).
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
+#' @param ggtheme A function, `ggplot2` theme name. Default value is
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
+#'   including `ggplot2::theme_grey()`, `ggplot2::theme_minimal()`,
+#'   `ggplot2::theme_classic()`, `ggplot2::theme_void()`, etc.
 #' @param point.jitter.width Numeric specifying the degree of jitter in `x`
 #'   direction. Defaults to `40%` of the resolution of the data.
 #' @param point.jitter.height Numeric specifying the degree of jitter in `y`
 #'   direction. Defaults to `0`.
 #' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
 #'   direction. Defaults to `0.75`.
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
-#'   `theme_void()`, etc.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritDotParams combine_plots
 #'
 #' @import ggplot2
@@ -124,6 +124,9 @@
 #' @importFrom jmv anova
 #'
 #' @seealso \code{\link{ggbetweenstats}}
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}
 #'
 #' @examples
 #'
@@ -170,11 +173,11 @@ grouped_ggbetweenstats <- function(grouping.var,
                                    mean.plotting = TRUE,
                                    mean.size = 5,
                                    mean.color = "darkred",
-                                   messages = TRUE,
                                    point.jitter.width = NULL,
                                    point.jitter.height = 0.2,
                                    point.dodge.width = 0.75,
-                                   ggtheme = ggplot2::theme_grey(),
+                                   ggtheme = ggplot2::theme_bw(),
+                                   messages = TRUE,
                                    ...) {
   # ================== preparing dataframe ==================
 

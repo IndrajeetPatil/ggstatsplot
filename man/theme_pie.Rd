@@ -4,12 +4,12 @@
 \alias{theme_pie}
 \title{Default theme used for pie chart}
 \usage{
-theme_pie(ggtheme = ggplot2::theme_grey())
+theme_pie(ggtheme = ggplot2::theme_bw())
 }
 \arguments{
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
 \code{theme_void()}, etc.}
 }
 \value{

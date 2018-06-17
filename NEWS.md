@@ -5,7 +5,8 @@ MAJOR CHANGES
 
   - New function: `ggcoefstats` for displaying model coefficients.
   - All functions now have `ggtheme` argument that can be used to change the
-    default theme.
+    default theme, which has now been changed from `theme_grey()` to
+    `theme_bw()`. 
 
 MINOR CHANGES
 

@@ -11,11 +11,11 @@ grouped_ggcorrmat(grouping.var, title.prefix = "Group", data, cor.vars,
   continuity = TRUE, beta = 0.1, digits = 2, sig.level = 0.05,
   hc.order = FALSE, hc.method = "complete", lab = TRUE,
   colors = c("#E69F00", "white", "#009E73"), outline.color = "black",
-  ggtheme = ggplot2::theme_gray, ggstatsplot.theme = TRUE,
-  subtitle = NULL, caption = NULL, caption.default = TRUE,
-  lab.col = "black", lab.size = 5, insig = "pch", pch = 4,
-  pch.col = "black", pch.cex = 11, tl.cex = 12, tl.col = "black",
-  tl.srt = 45, axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
+  ggtheme = ggplot2::theme_bw, ggstatsplot.theme = TRUE, subtitle = NULL,
+  caption = NULL, caption.default = TRUE, lab.col = "black",
+  lab.size = 5, insig = "pch", pch = 4, pch.col = "black",
+  pch.cex = 11, tl.cex = 12, tl.col = "black", tl.srt = 45,
+  axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
   axis.text.x.margin.b = 0, axis.text.x.margin.l = 0,
   legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
   "mm"), messages = TRUE, ...)
@@ -86,8 +86,8 @@ displayed in the plot.}
 \code{"gray"}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_gray}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_bw}, \code{theme_minimal}, \code{theme_classic}, \code{theme_void}, etc.}
+\code{ggplot2::theme_bw}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_grey}, \code{theme_minimal}, \code{theme_classic}, \code{theme_void}, etc.}
 
 \item{ggstatsplot.theme}{A logical. Decides whether default theme for
 \code{ggstatsplot}, which is \code{theme_mprl}, is to be overlaid on the entered
@@ -210,8 +210,12 @@ ggstatsplot::grouped_ggcorrmat(
 )
 
 }
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html}
+}
 \seealso{
-\code{\link{ggcorrmat}}
+\code{\link{ggcorrmat}} \code{\link{ggscatterstats}}
+\code{\link{grouped_ggscatterstats}}
 }
 \author{
 Indrajeet Patil

@@ -15,7 +15,7 @@ gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
   test.value.line = FALSE, test.value.color = "black",
   test.value.size = 1.2, test.value.linetype = "dashed",
   line.labeller = FALSE, line.labeller.y = -2,
-  ggtheme = ggplot2::theme_grey(), messages = TRUE)
+  ggtheme = ggplot2::theme_bw(), messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -103,8 +103,8 @@ displayed (Default: \code{FALSE}).}
 line labels (Default: \code{-2}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
 \code{theme_void()}, etc.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
@@ -127,15 +127,7 @@ data = datasets::ToothGrowth,
 x = len,
 xlab = "Tooth length")
 
-# another example
-ggstatsplot::gghistostats(
-data = NULL,
-x = stats::rnorm(n = 1000, mean = 0, sd = 1),
-centrality.para = "mean",
-type = "np"
-)
-
-# more detailed function call
+# a detailed function call
 ggstatsplot::gghistostats(
 data = datasets::iris,
 x = Sepal.Length,
@@ -147,6 +139,9 @@ test.value.line = TRUE,
 binwidth = 0.10
 )
 
+}
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}
 }
 \seealso{
 \code{\link{grouped_gghistostats}}

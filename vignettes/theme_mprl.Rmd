@@ -1,5 +1,5 @@
 ---
-title: "Default theme (theme_mprl)"
+title: "Default theme"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -11,13 +11,15 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{theme_mprl}
+  %\VignetteIndexEntry{Default theme}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
+  dpi = 300,
+  out.width = "100%",
   collapse = TRUE,
   comment = "#>"
 )
@@ -25,12 +27,13 @@ knitr::opts_chunk$set(
 
 ## Default theme for the package: `theme_mprl`
 
-`ggstatsplot` uses a default theme `theme_mprl()` that can be used with any
+`ggstatsplot` uses a default theme `theme_mprl()`, which is a selected `ggplot2`
+theme with few aesthetic modifcations overlaid on top, that can be used with any
 `ggplot2` object.
 
 Here is a simple example:
 
-```{r theme_mprl, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
+```{r theme_mprl, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 5}
 library(ggplot2)
 
 # Basic scatter plot
@@ -38,7 +41,8 @@ ggplot2::ggplot(
   data = datasets::mtcars, 
   mapping = ggplot2::aes(x = wt, y = mpg)
 ) + 
-  ggplot2::geom_point()
+  ggplot2::geom_point() +
+  ggplot2::theme_bw()
 
 # Basic scatter plot with theme_mprl() added
 ggplot2::ggplot(
@@ -46,36 +50,46 @@ ggplot2::ggplot(
   mapping = ggplot2::aes(x = wt, y = mpg)
 ) + 
   ggplot2::geom_point() + 
-  ggstatsplot::theme_mprl()
+  ggstatsplot::theme_mprl(ggtheme = ggplot2::theme_bw())
 ```
 
-All plots in this package have this theme by default. For example, since the
-`ggcorrmat` allows you to use different `ggplot2` themes, it contains an
-argument to prevent overlaying the default ggstatsplot theme. Otherwise,
-whichever `ggtheme` you chose will just be overridden by the ggstatsplot theme.
+All plots in this package have `theme_bw()` by default as the base on which
+`theme_mprl()` is built, but this can be modified using the `ggtheme` argument
+provided for all functions. For example, for the `ggbetweenstats` function the
+default theme can be changed to, for exmaple, `theme_grey()`:
 
-```{r ggcorrmat_theme1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+```{r theme1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+ggstatsplot::ggbetweenstats(
+  data = datasets::iris,
+  x = Species,
+  y = Sepal.Length,
+  ggtheme = ggplot2::theme_grey()          # selected ggplot2 theme
+)
+```
+
+Another example with `ggscatterstats`:
+```{r theme2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+ggstatsplot::ggscatterstats(
+  data = datasets::iris,
+  x = Sepal.Width,
+  y = Sepal.Length,
+  ggtheme = ggplot2::theme_dark()          # selected ggplot2 theme
+)
+```
+
+The only exception for how `ggtheme` argument is to be entered is `ggcorrmat`
+function where the theme should **not** be entered as a function.
+```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),
   type = "upper",
-  ggtheme = ggplot2::theme_dark,          # selected ggplot2 theme
-  ggstatsplot.theme = FALSE               # turn off overlaying theme_mprl on selected ggplot2 theme
+  ggtheme = ggplot2::theme_dark            # selected ggplot2 theme
 )
 ```
 
-Contrast this what it looks like if you don't turn off the default theme overlay:
-
-```{r ggcorrmat_theme2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
-ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  cor.vars = c(Sepal.Length:Petal.Width),
-  type = "upper",
-  ggtheme = ggplot2::theme_dark,         # selected ggplot2 theme
-  ggstatsplot.theme = TRUE                # overlaying theme_mprl on selected ggplot2 theme
-)
-```
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on
+GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

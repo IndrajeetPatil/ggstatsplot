@@ -54,8 +54,8 @@
 #' @param outline.color The outline color of square or circle. Default value is
 #'   `"gray"`.
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_gray`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw`, `theme_minimal`, `theme_classic`, `theme_void`, etc.
+#'   `ggplot2::theme_bw`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_grey`, `theme_minimal`, `theme_classic`, `theme_void`, etc.
 #' @param ggstatsplot.theme A logical. Decides whether default theme for
 #'   `ggstatsplot`, which is `theme_mprl`, is to be overlaid on the entered
 #'   theme (Default: `ggstatsplot.theme = TRUE`).
@@ -107,7 +107,11 @@
 #' @importFrom tidyr nest
 #' @importFrom stats na.omit
 #'
-#' @seealso \code{\link{ggcorrmat}}
+#' @seealso \code{\link{ggcorrmat}} \code{\link{ggscatterstats}}
+#'   \code{\link{grouped_ggscatterstats}}
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html}
 #'
 #' @note If you are using R Notebook or Markdown and see a blank image being
 #'   inserted when a chunk is executed, this behavior can be turned off by
@@ -156,7 +160,7 @@ grouped_ggcorrmat <- function(grouping.var,
                               lab = TRUE,
                               colors = c("#E69F00", "white", "#009E73"),
                               outline.color = "black",
-                              ggtheme = ggplot2::theme_gray,
+                              ggtheme = ggplot2::theme_bw,
                               ggstatsplot.theme = TRUE,
                               subtitle = NULL,
                               caption = NULL,

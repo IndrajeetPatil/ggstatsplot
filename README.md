@@ -482,8 +482,8 @@ estimates as dots with confidence interval whiskers. This is a wrapper
 function around `GGally::ggcoef`.
 
 ``` r
-ggstatsplot::ggcoefstats(x = stats::lm(formula = Sepal.Length ~ Species,
-                                       data = iris)) 
+ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
+                                       data = mtcars)) 
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="80%" />
@@ -493,15 +493,17 @@ arguments:
 
 ``` r
 ggstatsplot::ggcoefstats(
-  x = stats::lm(formula = Sepal.Length ~ Species,
-                data = iris),
-  # removing the attached labels
-  title = "Differences in Sepal Length across Iris species",
-  subtitle = "Source: Iris dataset"
+  x = stats::lm(formula = mpg ~ am * cyl,
+                data = mtcars),
+  point.color = "red",
+  stats.label.size = 3.5,
+  stats.label.color = c("#0072B2", "#D55E00", "#CC79A7"),
+  title = "Car performance predicted by transmission and cylinder count",
+  subtitle = "Source: 1974 Motor Trend US magazine"
 ) +                                    
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
-  ggplot2::scale_y_discrete(labels = c("Species (virginica)", "Species (versicolor)")) +
+  ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
   ggplot2::labs(x = "regression coefficient",
                 y = NULL)
 ```
@@ -543,7 +545,7 @@ ggstatsplot::combine_plots(
       data = mtcars,
       start = list(k = 1, b = 0)
     ),
-    point.color = "green"
+    point.color = "darkgreen"
   ),
   # linear mmodel
   ggstatsplot::ggcoefstats(
@@ -584,10 +586,10 @@ replaces many for loops with code that is both more succinct and easier
 to read and, therefore, `purrr` should be preferrred.
 
 For more, see the associated vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/theme_mprl.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html>
 
   - `theme_mprl`
 
 All plots from `ggstatsplot` have a default theme: `theme_mprl`. For
-more, see the associated vignette-
+more on how to modify it, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_mprl.html>

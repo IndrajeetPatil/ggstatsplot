@@ -104,7 +104,7 @@ resulting plots using ggstatsplot::combine_plots." />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/theme_mprl.html">Default theme (theme_mprl)</a>
+      <a href="../articles/theme_mprl.html">Default theme</a>
     </li>
   </ul>
 </li>
@@ -143,7 +143,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <pre class="usage"><span class='fu'>grouped_ggpiestats</span>(<span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='no'>data</span>, <span class='no'>main</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -206,8 +206,8 @@ to be carried out for each level of <code>condition</code> (Default: <code>TRUE<
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
-including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_grey()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
 <code>theme_void()</code>, etc.</p></td>
     </tr>
     <tr>
@@ -263,6 +263,10 @@ combining (plot, caption).</p></dd>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html</a></p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ggpiestats.html'>ggpiestats</a></code></p></div>
@@ -283,6 +287,8 @@ combining (plot, caption).</p></dd>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#references">References</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

@@ -8,19 +8,22 @@
 #'   user/reader.
 #'
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
 #'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
 #'   `theme_void()`, etc.
 #'
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
 #' @import ggplot2
-#' @import grid
+#' @importFrom grid unit
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_mprl.html}
 #'
 #' @export
 #'
 
-theme_mprl <- function(ggtheme = ggplot2::theme_grey()) {
+theme_mprl <- function(ggtheme = ggplot2::theme_bw()) {
   ggtheme +
     ggplot2::theme(
       axis.title.x = ggplot2::element_text(size = 14, face = "bold"),

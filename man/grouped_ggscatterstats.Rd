@@ -12,7 +12,7 @@ grouped_ggscatterstats(grouping.var, title.prefix = "Group", data, x, y,
   height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00",
   centrality.para = NULL, type = "pearson", results.subtitle = NULL,
   caption = NULL, maxit = 500, k = 3, axes.range.restrict = FALSE,
-  ggtheme = ggplot2::theme_grey(), messages = TRUE, ...)
+  ggtheme = ggplot2::theme_bw(), messages = TRUE, ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -84,8 +84,8 @@ bootstrap samples to compute Spearman's rho confidence intervals (Default:
 ranges to min and max values of the \code{x} and \code{y} variables (Default: \code{FALSE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
 \code{theme_void()}, etc.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
@@ -155,6 +155,9 @@ ggstatsplot::grouped_ggscatterstats(
  messages = FALSE
 )
 
+}
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html}
 }
 \seealso{
 \code{\link{ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}

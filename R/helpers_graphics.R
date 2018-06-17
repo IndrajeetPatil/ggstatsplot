@@ -7,7 +7,8 @@
 #' @param plot Plot with the legend title whose margins need to be modified.
 #' @param t.margin,b.margin Margins in grid units.
 #'
-#' @importFrom ggplot2 ggplotGrob
+#' @import ggplot2
+#'
 #' @importFrom cowplot ggdraw
 #' @importFrom grid unit.c
 #' @importFrom grid unit
@@ -111,17 +112,12 @@ legend_title_margin <- function(plot,
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
 #'   `theme_void()`, etc.
 #'
-#' @importFrom ggplot2 theme
-#' @importFrom ggplot2 theme_grey
-#' @importFrom ggplot2 element_blank
-#' @importFrom ggplot2 element_text
-#' @importFrom ggplot2 element_line
-#' @importFrom ggplot2 element_rect
-#' @importFrom ggplot2 margin
+#' @import ggplot2
+#'
 #' @importFrom grid unit
 #'
 #' @keywords internal
@@ -131,7 +127,7 @@ legend_title_margin <- function(plot,
 #' `ggstatsplot:::theme_pie`. Note that it is `:::` and not `::`.
 #'
 
-theme_pie <- function(ggtheme = ggplot2::theme_grey()) {
+theme_pie <- function(ggtheme = ggplot2::theme_bw()) {
   ggtheme +
     ggplot2::theme(
       panel.grid = ggplot2::element_blank(),
@@ -190,13 +186,8 @@ theme_pie <- function(ggtheme = ggplot2::theme_grey()) {
 #' @author Indrajeet Patil
 #' @return A `ggplot2` object with the `theme_mprl` theme.
 #'
-#' @importFrom ggplot2 theme
-#' @importFrom ggplot2 theme_grey
-#' @importFrom ggplot2 element_blank
-#' @importFrom ggplot2 element_text
-#' @importFrom ggplot2 element_line
-#' @importFrom ggplot2 element_rect
-#' @importFrom ggplot2 margin
+#' @import ggplot2
+#'
 #' @importFrom grid unit
 #'
 #' @keywords internal

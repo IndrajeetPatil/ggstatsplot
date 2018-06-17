@@ -64,8 +64,8 @@
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
 #'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
@@ -95,15 +95,7 @@
 #' x = len,
 #' xlab = "Tooth length")
 #'
-#' # another example
-#' ggstatsplot::gghistostats(
-#' data = NULL,
-#' x = stats::rnorm(n = 1000, mean = 0, sd = 1),
-#' centrality.para = "mean",
-#' type = "np"
-#' )
-#'
-#' # more detailed function call
+#' # a detailed function call
 #' ggstatsplot::gghistostats(
 #' data = datasets::iris,
 #' x = Sepal.Length,
@@ -120,6 +112,9 @@
 #'   `legend.title.margin = FALSE`.
 #'
 #' @seealso \code{\link{grouped_gghistostats}}
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}
 #'
 #' @export
 #'
@@ -155,7 +150,7 @@ gghistostats <-
              test.value.linetype = "dashed",
              line.labeller = FALSE,
              line.labeller.y = -2,
-           ggtheme = ggplot2::theme_grey(),
+           ggtheme = ggplot2::theme_bw(),
              messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {

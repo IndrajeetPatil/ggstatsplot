@@ -104,7 +104,7 @@ resulting plots using ggstatsplot::combine_plots." />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/theme_mprl.html">Default theme (theme_mprl)</a>
+      <a href="../articles/theme_mprl.html">Default theme</a>
     </li>
   </ul>
 </li>
@@ -151,7 +151,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
   <span class='kw'>line.labeller</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>line.labeller.y</span> <span class='kw'>=</span> -<span class='fl'>2</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -302,8 +302,8 @@ in your data.</p></td>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
-including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_grey()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
 <code>theme_void()</code>, etc.</p></td>
     </tr>
     <tr>
@@ -359,6 +359,10 @@ combining (plot, caption).</p></dd>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html</a></p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='gghistostats.html'>gghistostats</a></code></p></div>
@@ -366,7 +370,6 @@ combining (plot, caption).</p></dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_gghistostats'>grouped_gghistostats</a></span>(
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
 <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
@@ -382,6 +385,8 @@ combining (plot, caption).</p></dd>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#references">References</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

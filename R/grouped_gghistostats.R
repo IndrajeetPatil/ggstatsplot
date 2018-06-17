@@ -67,8 +67,8 @@
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
 #'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
@@ -92,8 +92,10 @@
 #'
 #' @seealso \code{\link{gghistostats}}
 #'
-#' @examples
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}
 #'
+#' @examples
 #'
 #' ggstatsplot::grouped_gghistostats(
 #' data = iris,
@@ -138,7 +140,7 @@ grouped_gghistostats <- function(grouping.var,
                                  line.labeller = FALSE,
                                  line.labeller.y = -2,
                                  binwidth = NULL,
-                                 ggtheme = ggplot2::theme_grey(),
+                                 ggtheme = ggplot2::theme_bw(),
                                  messages = TRUE,
                                  ...) {
   # ================== preparing dataframe ==================

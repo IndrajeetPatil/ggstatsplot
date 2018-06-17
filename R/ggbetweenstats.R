@@ -69,17 +69,17 @@
 #' @param mean.size Point size for the data point corresponding to mean
 #'   (Default: `5`).
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
-#'   `theme_void()`, etc.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
+#'   including `ggplot2::theme_grey()`, `ggplot2::theme_minimal()`,
+#'   `ggplot2::theme_classic()`, `ggplot2::theme_void()`, etc.
 #' @param point.jitter.width Numeric specifying the degree of jitter in `x`
 #'   direction. Defaults to `40%` of the resolution of the data.
 #' @param point.jitter.height Numeric specifying the degree of jitter in `y`
 #'   direction. Defaults to `0`.
 #' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
 #'   direction. Defaults to `0.75`.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #'
 #' @import ggplot2
 #'
@@ -121,6 +121,9 @@
 #' @importFrom jmv anova
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}
 #'
 #' @examples
 #'
@@ -174,11 +177,12 @@ ggbetweenstats <- function(data = NULL,
                            mean.plotting = TRUE,
                            mean.size = 5,
                            mean.color = "darkred",
-                           messages = TRUE,
-                           ggtheme = ggplot2::theme_grey(),
+                           ggtheme = ggplot2::theme_bw(),
                            point.jitter.width = NULL,
                            point.jitter.height = 0.2,
-                           point.dodge.width = 0.75) {
+                           point.dodge.width = 0.75,
+                           messages = TRUE
+                           ) {
   # if data is not available then don't display any messages
   if (is.null(data)) {
     messages <- FALSE

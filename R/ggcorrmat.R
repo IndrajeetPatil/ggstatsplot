@@ -50,8 +50,8 @@
 #' @param outline.color The outline color of square or circle. Default value is
 #'   `"gray"`.
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_gray`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw`, `theme_minimal`, `theme_classic`, `theme_void`, etc.
+#'   `ggplot2::theme_bw`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_grey`, `theme_minimal`, `theme_classic`, `theme_void`, etc.
 #' @param ggstatsplot.theme A logical. Decides whether default theme for
 #'   `ggstatsplot`, which is `theme_mprl`, is to be overlaid on the entered
 #'   theme (Default: `ggstatsplot.theme = TRUE`).
@@ -113,7 +113,11 @@
 #' @importFrom crayon red
 #' @importFrom WRS2 pball
 #'
-#' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}} \code{\link{grouped_ggscatterstats}}
+#' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
+#'   \code{\link{grouped_ggscatterstats}}
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html}
 #'
 #' @examples
 #'
@@ -137,7 +141,7 @@
 #' data = datasets::iris,
 #' cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
 #' sig.level = 0.01,
-#' ggtheme = ggplot2::theme_gray,
+#' ggtheme = ggplot2::theme_bw,
 #' hc.order = TRUE, type = "lower", outline.col = "white",
 #' title = "Dataset: Iris"
 #' )
@@ -168,7 +172,7 @@ ggcorrmat <-
              lab = TRUE,
              colors = c("#E69F00", "white", "#009E73"),
              outline.color = "black",
-             ggtheme = ggplot2::theme_gray,
+             ggtheme = ggplot2::theme_bw,
              ggstatsplot.theme = TRUE,
              title = NULL,
              subtitle = NULL,

@@ -103,7 +103,7 @@ included in the plot as a subtitle." />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/theme_mprl.html">Default theme (theme_mprl)</a>
+      <a href="../articles/theme_mprl.html">Default theme</a>
     </li>
   </ul>
 </li>
@@ -141,7 +141,7 @@ included in the plot as a subtitle.</p>
     <pre class="usage"><span class='fu'>ggpiestats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,8 +198,8 @@ to be carried out for each level of <code>condition</code> (Default: <code>TRUE<
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
-including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_grey()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
 <code>theme_void()</code>, etc.</p></td>
     </tr>
     <tr>
@@ -208,6 +208,10 @@ including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_cla
 to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -219,26 +223,15 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
 <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Species</span>
 )</div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># more detailed function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats'>ggpiestats</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/mtcars'>mtcars</a></span>,
-<span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
-<span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
-<span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"zero"</span>, <span class='st'>"one"</span>),
-<span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='st'>"interaction"</span>,
-<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dataset: mtcars"</span>,
-<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"This is a demo"</span>,
-<span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"transmission"</span>,
-<span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='st'>"No. of cylinders"</span>,
-<span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; Warning:  the argument for `main` was not a factor; converting it to factor</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning:  the argument for `condition` was not a factor; converting it to factor</div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#references">References</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

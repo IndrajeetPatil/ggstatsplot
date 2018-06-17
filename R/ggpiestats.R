@@ -23,8 +23,8 @@
 #' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
 #'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
@@ -49,6 +49,9 @@
 #' @importFrom jmv contTables
 #' @importFrom DescTools CramerV
 #'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}
+#'
 #' @examples
 #'
 #' library(ggplot2)
@@ -57,20 +60,6 @@
 #' ggstatsplot::ggpiestats(
 #' data = datasets::iris,
 #' main = Species
-#' )
-#'
-#' # more detailed function call
-#' ggstatsplot::ggpiestats(
-#' data = datasets::mtcars,
-#' main = am,
-#' condition = cyl,
-#' factor.levels = c("zero", "one"),
-#' stat.title = "interaction",
-#' title = "Dataset: mtcars",
-#' caption = "This is a demo",
-#' legend.title = "transmission",
-#' facet.wrap.name = "No. of cylinders",
-#' facet.proptest = TRUE
 #' )
 #'
 #' @export
@@ -89,7 +78,7 @@ ggpiestats <-
            facet.wrap.name = NULL,
            k = 3,
            facet.proptest = TRUE,
-           ggtheme = ggplot2::theme_grey(),
+           ggtheme = ggplot2::theme_bw(),
            messages = TRUE) {
     # ========================================== messages ==================================================================
 

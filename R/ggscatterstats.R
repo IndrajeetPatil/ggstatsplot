@@ -50,8 +50,8 @@
 #' @param axes.range.restrict Logical decides whether to restrict the axes values
 #'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
 #'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
@@ -81,6 +81,9 @@
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
 #'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html}
+#'
 #' @examples
 #'
 #' # to get reproducible results from bootstrapping
@@ -91,16 +94,6 @@
 #' data = datasets::mtcars,
 #' x = wt,
 #' y = mpg
-#' )
-#'
-#' # more detailed function call
-#' ggstatsplot::ggscatterstats(
-#' data = datasets::iris,
-#' x = Petal.Length,
-#' y = Sepal.Length,
-#' centrality.para = 'median',
-#' type = 'robust',
-#' marginal.type = 'density'
 #' )
 #'
 #' @export
@@ -131,7 +124,7 @@ ggscatterstats <-
            maxit = 500,
            k = 3,
            axes.range.restrict = FALSE,
-           ggtheme = ggplot2::theme_grey(),
+           ggtheme = ggplot2::theme_bw(),
            messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {

@@ -7,7 +7,7 @@
 ggpiestats(data = NULL, main, condition = NULL, factor.levels = NULL,
   stat.title = NULL, title = NULL, caption = NULL, legend.title = NULL,
   facet.wrap.name = NULL, k = 3, facet.proptest = TRUE,
-  ggtheme = ggplot2::theme_grey(), messages = TRUE)
+  ggtheme = ggplot2::theme_bw(), messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame.}
@@ -38,8 +38,8 @@ test.}
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
 \code{theme_void()}, etc.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
@@ -59,20 +59,9 @@ data = datasets::iris,
 main = Species
 )
 
-# more detailed function call
-ggstatsplot::ggpiestats(
-data = datasets::mtcars,
-main = am,
-condition = cyl,
-factor.levels = c("zero", "one"),
-stat.title = "interaction",
-title = "Dataset: mtcars",
-caption = "This is a demo",
-legend.title = "transmission",
-facet.wrap.name = "No. of cylinders",
-facet.proptest = TRUE
-)
-
+}
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}
 }
 \author{
 Indrajeet Patil

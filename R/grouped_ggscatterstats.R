@@ -53,8 +53,8 @@
 #' @param axes.range.restrict Logical decides whether to restrict the axes values
 #'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_grey()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
+#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
+#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
 #'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
@@ -84,6 +84,9 @@
 #' @importFrom stats confint.default
 #'
 #' @seealso \code{\link{ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html}
 #'
 #' @examples
 #'
@@ -127,7 +130,7 @@ grouped_ggscatterstats <- function(grouping.var,
                                    maxit = 500,
                                    k = 3,
                                    axes.range.restrict = FALSE,
-                                   ggtheme = ggplot2::theme_grey(),
+                                   ggtheme = ggplot2::theme_bw(),
                                    messages = TRUE,
                                    ...) {
   # ========================================= preparing dataframe =======================================================

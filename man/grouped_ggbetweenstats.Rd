@@ -13,9 +13,9 @@ grouped_ggbetweenstats(grouping.var, title.prefix = "Group", data = NULL, x,
   linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
-  mean.color = "darkred", messages = TRUE, point.jitter.width = NULL,
+  mean.color = "darkred", point.jitter.width = NULL,
   point.jitter.height = 0.2, point.dodge.width = 0.75,
-  ggtheme = ggplot2::theme_grey(), ...)
+  ggtheme = ggplot2::theme_bw(), messages = TRUE, ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -109,9 +109,6 @@ to be displayed (Default: \code{TRUE}).}
 \item{mean.color}{Color for the data point corresponding to mean (Default:
 \code{"darkred"}).}
 
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
-
 \item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
 direction. Defaults to \code{40\%} of the resolution of the data.}
 
@@ -122,9 +119,12 @@ direction. Defaults to \code{0}.}
 direction. Defaults to \code{0.75}.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
-\code{theme_void()}, etc.}
+\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
+including \code{ggplot2::theme_grey()}, \code{ggplot2::theme_minimal()},
+\code{ggplot2::theme_classic()}, \code{ggplot2::theme_void()}, etc.}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 
 \item{...}{Arguments passed on to \code{combine_plots}
 \describe{
@@ -188,6 +188,9 @@ y = wt,
 grouping.var = am
 )
 
+}
+\references{
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}
 }
 \seealso{
 \code{\link{ggbetweenstats}}
