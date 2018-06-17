@@ -2,29 +2,39 @@
 % Please edit documentation in R/ggcoefstats.R
 \name{ggcoefstats}
 \alias{ggcoefstats}
-\title{Model coefficients for fitted linear models with the model summary as
-a caption.}
+\title{Model coefficients for fitted models with the model summary as a
+caption.}
 \usage{
-ggcoefstats(x, k = 3, dot.color = "blue", dot.size = 3, dot.shape = 16,
-  conf.int = TRUE, conf.level = 0.95, exclude_intercept = TRUE,
-  exponentiate = FALSE, errorbar.color = "black", errorbar.height = 0,
+ggcoefstats(x, output = "plot", effects.mermod = "fixed",
+  group.mermod = "fixed", point.color = "blue", point.size = 3,
+  point.shape = 16, conf.int = TRUE, conf.level = 0.95, k = 3,
+  exclude.intercept = TRUE, exponentiate = FALSE,
+  errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
-  vline.intercept = "auto", vline.color = "black",
-  vline.linetype = "dashed", vline.size = 1, sort = c("none", "ascending",
-  "decending"), xlab = "estimate", ylab = "term", title = NULL,
+  vline.color = "black", vline.linetype = "dashed", vline.size = 1,
+  sort = "none", xlab = "estimate", ylab = "term", title = NULL,
   subtitle = NULL, stats.labels = TRUE, caption.summary = TRUE,
-  label.direction = "y", ggtheme = ggplot2::theme_grey())
+  label.direction = "y", ggtheme = ggplot2::theme_grey(), ...)
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}.}
 
-\item{k}{Number of decimal places expected for results.}
+\item{output}{Character descrbing the expected output from this function:
+\code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
+dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
+\code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}
 
-\item{dot.color}{Character describing color for the dot (Default: \code{"blue"}).}
+\item{effects.mermod, group.mermod}{In case the object is of class \code{merMod}
+(\code{lmerMod}, \code{glmerMod}, \code{nlmerMod}), these arguments determine which
+effects are to be displayed. By default, only the \code{"fixed"} effects will be
+shown.}
 
-\item{dot.size}{Numeric specifying size for the dot (Default: \code{3}).}
+\item{point.color}{Character describing color for the point (Default:
+\code{"blue"}).}
 
-\item{dot.shape}{Numeric specifying shape to draw the points (Default: \code{16}
+\item{point.size}{Numeric specifying size for the point (Default: \code{3}).}
+
+\item{point.shape}{Numeric specifying shape to draw the points (Default: \code{16}
 (a dot)).}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
@@ -33,7 +43,9 @@ error bars (Default: \code{TRUE}).}
 \item{conf.level}{Numeric deciding level of confidence intervals (Default:
 \code{0.95}).}
 
-\item{exclude_intercept}{Logical that decides whether the intercept should be
+\item{k}{Number of decimal places expected for results.}
+
+\item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}
 
 \item{exponentiate}{If \code{TRUE}, the x-axis will be logarithmic (Default:
@@ -52,9 +64,6 @@ excluded from the plot (Default: \code{TRUE}).}
 
 \item{vline}{Decides whether to display a vertical line (Default: \code{"TRUE"}).}
 
-\item{vline.intercept}{The xintercept for the vertical line. "auto" for x =
-\code{0} (or x = \code{1} if \code{exponentiate} is TRUE)}
-
 \item{vline.color}{Character specifying color of the vertical line (Default:
 \code{"black"}).}
 
@@ -65,7 +74,7 @@ excluded from the plot (Default: \code{TRUE}).}
 \code{1}).}
 
 \item{sort}{\code{"none"} (default) do not sort, \code{"ascending"} sort by increasing
-coefficient value, or \code{"decending"} sort by decreasing coefficient value.}
+coefficient value, or \code{"descending"} sort by decreasing coefficient value.}
 
 \item{xlab}{Label for \code{x} axis variable (Default: \code{"estimate"}).}
 
@@ -89,14 +98,16 @@ which to adjust position of labels (Default: \code{"y"}).}
 \code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
 including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
 \code{theme_void()}, etc.}
+
+\item{\dots}{Extra arguments to pass to \code{\link[broom]{tidy}}.}
 }
 \value{
 Plot with the regression coefficients' point estimates as dots with
 confidence interval whiskers.
 }
 \description{
-Model coefficients for fitted linear models with the model summary as
-a caption.
+Model coefficients for fitted models with the model summary as a
+caption.
 }
 \examples{
 

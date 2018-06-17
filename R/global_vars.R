@@ -89,7 +89,8 @@ utils::globalVariables(
     "Pr(>|t|)",
     "coef",
     "conf.high",
-    "conf.low"
+    "conf.low",
+    "rowid"
   ),
   package = "ggstatsplot",
   add = FALSE

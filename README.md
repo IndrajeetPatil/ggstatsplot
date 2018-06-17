@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--14-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--16-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -533,7 +533,7 @@ ggstatsplot::combine_plots(
       family = "binomial"
     ),
     exponentiate = TRUE,
-    exclude_intercept = FALSE
+    exclude.intercept = FALSE
   ),
   # nonlinear least squares
   ggstatsplot::ggcoefstats(
@@ -542,7 +542,7 @@ ggstatsplot::combine_plots(
       data = mtcars,
       start = list(k = 1, b = 0)
     ),
-    dot.color = "green"
+    point.color = "green"
   ),
   # linear mmodel
   ggstatsplot::ggcoefstats(
@@ -550,8 +550,8 @@ ggstatsplot::combine_plots(
       formula = Reaction ~ Days + (Days | Subject),
       data = lme4::sleepstudy
     ),
-    dot.color = "red",
-    exclude_intercept = FALSE
+    point.color = "red",
+    exclude.intercept = TRUE
   ),
   # generalized linear mixed-effects model
   ggstatsplot::ggcoefstats(
@@ -560,7 +560,7 @@ ggstatsplot::combine_plots(
       data = lme4::cbpp,
       family = binomial
     ),
-    exclude_intercept = TRUE
+    exclude.intercept = FALSE
   ),
   labels = c("(a)", "(b)", "(c)", ("(d)")),
   nrow = 2,

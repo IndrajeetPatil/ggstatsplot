@@ -468,7 +468,7 @@ ggstatsplot::combine_plots(
       family = "binomial"
     ),
     exponentiate = TRUE,
-    exclude_intercept = FALSE
+    exclude.intercept = FALSE
   ),
   # nonlinear least squares
   ggstatsplot::ggcoefstats(
@@ -477,7 +477,7 @@ ggstatsplot::combine_plots(
       data = mtcars,
       start = list(k = 1, b = 0)
     ),
-    dot.color = "green"
+    point.color = "green"
   ),
   # linear mmodel
   ggstatsplot::ggcoefstats(
@@ -485,8 +485,8 @@ ggstatsplot::combine_plots(
       formula = Reaction ~ Days + (Days | Subject),
       data = lme4::sleepstudy
     ),
-    dot.color = "red",
-    exclude_intercept = TRUE
+    point.color = "red",
+    exclude.intercept = TRUE
   ),
   # generalized linear mixed-effects model
   ggstatsplot::ggcoefstats(
@@ -495,7 +495,7 @@ ggstatsplot::combine_plots(
       data = lme4::cbpp,
       family = binomial
     ),
-    exclude_intercept = FALSE
+    exclude.intercept = FALSE
   ),
   labels = c("(a)", "(b)", "(c)", ("(d)")),
   nrow = 2,

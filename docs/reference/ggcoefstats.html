@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Model coefficients for fitted linear models with the model summary as
-a caption. — ggcoefstats • ggstatsplot</title>
+<title>Model coefficients for fitted models with the model summary as a
+caption. — ggcoefstats • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,11 +31,11 @@ a caption. — ggcoefstats • ggstatsplot</title>
 
 
 
-<meta property="og:title" content="Model coefficients for fitted linear models with the model summary as
-a caption. — ggcoefstats" />
+<meta property="og:title" content="Model coefficients for fitted models with the model summary as a
+caption. — ggcoefstats" />
 
-<meta property="og:description" content="Model coefficients for fitted linear models with the model summary as
-a caption." />
+<meta property="og:description" content="Model coefficients for fitted models with the model summary as a
+caption." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,28 +128,29 @@ a caption." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Model coefficients for fitted linear models with the model summary as
-a caption.</h1>
+    <h1>Model coefficients for fitted models with the model summary as a
+caption.</h1>
     
     <div class="hidden name"><code>ggcoefstats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Model coefficients for fitted linear models with the model summary as
-a caption.</p>
+    <p>Model coefficients for fitted models with the model summary as a
+caption.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>dot.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>dot.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>dot.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>exclude_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+    <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>effects.mermod</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>,
+  <span class='kw'>group.mermod</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>vline.intercept</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"none"</span>, <span class='st'>"ascending"</span>,
-  <span class='st'>"decending"</span>), <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"estimate"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"estimate"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>())</pre>
+  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,19 +160,30 @@ a caption.</p>
       <td><p>A model object to be tidied with <code><a href='http://www.rdocumentation.org/packages/broom/topics/tidy'>broom::tidy</a></code>.</p></td>
     </tr>
     <tr>
-      <th>k</th>
-      <td><p>Number of decimal places expected for results.</p></td>
+      <th>output</th>
+      <td><p>Character descrbing the expected output from this function:
+<code>"plot"</code> (visualization of regression coefficients) or <code>"tidy"</code> (tidy
+dataframe of results from <code><a href='http://www.rdocumentation.org/packages/broom/topics/tidy'>broom::tidy</a></code>) or <code>"glance"</code> (object from
+<code><a href='http://www.rdocumentation.org/packages/broom/topics/glance'>broom::glance</a></code>) or <code>"augment"</code> (object from <code><a href='http://www.rdocumentation.org/packages/broom/topics/augment'>broom::augment</a></code>).</p></td>
     </tr>
     <tr>
-      <th>dot.color</th>
-      <td><p>Character describing color for the dot (Default: <code>"blue"</code>).</p></td>
+      <th>effects.mermod, group.mermod</th>
+      <td><p>In case the object is of class <code>merMod</code>
+(<code>lmerMod</code>, <code>glmerMod</code>, <code>nlmerMod</code>), these arguments determine which
+effects are to be displayed. By default, only the <code>"fixed"</code> effects will be
+shown.</p></td>
     </tr>
     <tr>
-      <th>dot.size</th>
-      <td><p>Numeric specifying size for the dot (Default: <code>3</code>).</p></td>
+      <th>point.color</th>
+      <td><p>Character describing color for the point (Default:
+<code>"blue"</code>).</p></td>
     </tr>
     <tr>
-      <th>dot.shape</th>
+      <th>point.size</th>
+      <td><p>Numeric specifying size for the point (Default: <code>3</code>).</p></td>
+    </tr>
+    <tr>
+      <th>point.shape</th>
       <td><p>Numeric specifying shape to draw the points (Default: <code>16</code>
 (a dot)).</p></td>
     </tr>
@@ -186,7 +198,11 @@ error bars (Default: <code>TRUE</code>).</p></td>
 <code>0.95</code>).</p></td>
     </tr>
     <tr>
-      <th>exclude_intercept</th>
+      <th>k</th>
+      <td><p>Number of decimal places expected for results.</p></td>
+    </tr>
+    <tr>
+      <th>exclude.intercept</th>
       <td><p>Logical that decides whether the intercept should be
 excluded from the plot (Default: <code>TRUE</code>).</p></td>
     </tr>
@@ -219,11 +235,6 @@ excluded from the plot (Default: <code>TRUE</code>).</p></td>
       <td><p>Decides whether to display a vertical line (Default: <code>"TRUE"</code>).</p></td>
     </tr>
     <tr>
-      <th>vline.intercept</th>
-      <td><p>The xintercept for the vertical line. "auto" for x =
-<code>0</code> (or x = <code>1</code> if <code>exponentiate</code> is TRUE)</p></td>
-    </tr>
-    <tr>
       <th>vline.color</th>
       <td><p>Character specifying color of the vertical line (Default:
 <code>"black"</code>).</p></td>
@@ -241,7 +252,7 @@ excluded from the plot (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>sort</th>
       <td><p><code>"none"</code> (default) do not sort, <code>"ascending"</code> sort by increasing
-coefficient value, or <code>"decending"</code> sort by decreasing coefficient value.</p></td>
+coefficient value, or <code>"descending"</code> sort by decreasing coefficient value.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -281,6 +292,10 @@ which to adjust position of labels (Default: <code>"y"</code>).</p></td>
 <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
 including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
 <code>theme_void()</code>, etc.</p></td>
+    </tr>
+    <tr>
+      <th>&#8230;</th>
+      <td><p>Extra arguments to pass to <code><a href='http://www.rdocumentation.org/packages/broom/topics/tidy'>tidy</a></code>.</p></td>
     </tr>
     </table>
     

@@ -29,7 +29,6 @@ Imports:
     DescTools (>= 0.99.24),
     dplyr (>= 0.7.5),
     effsize (>= 0.7.1),
-    GGally,
     ggcorrplot (>= 0.1.1),
     ggExtra (>= 0.8),
     ggplot2 (>= 2.2.1),
