@@ -144,13 +144,21 @@ caption.</p>
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>effects.mermod</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>,
   <span class='kw'>group.mermod</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"estimate"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_grey</a></span>(), <span class='no'>...</span>)</pre>
+  <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>stats.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
+  <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
+  <span class='kw'>label.box.padding</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
+  <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
+  <span class='kw'>label.segment.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.segment.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.force.pull</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -199,7 +207,12 @@ error bars (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Number of decimal places expected for results.</p></td>
+      <td><p>Number of decimal places expected for results displayed in labels.</p></td>
+    </tr>
+    <tr>
+      <th>k.caption.summary</th>
+      <td><p>Number of decimal places expected for results
+displayed in captions.</p></td>
     </tr>
     <tr>
       <th>exclude.intercept</th>
@@ -279,7 +292,82 @@ each coefficient are to be attached to each dot as a text label using
     <tr>
       <th>caption.summary</th>
       <td><p>Logical. Decides whether the model summary should be
-displayed as a cation to the plot (Default: <code>TRUE</code>).</p></td>
+displayed as a cation to the plot (Default: <code>TRUE</code>). Color of the line
+segment. Defaults to the same colour as the text.</p></td>
+    </tr>
+    <tr>
+      <th>stats.label.size, stats.label.fontface, stats.label.color</th>
+      <td><p>Aesthetics for
+the labels. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, resp.</p></td>
+    </tr>
+    <tr>
+      <th>label.r, </th>
+      <td><p>Radius of rounded corners, as unit or number. Defaults to
+<code>0.15</code>. (Default unit is lines).</p></td>
+    </tr>
+    <tr>
+      <th>label.size</th>
+      <td><p>Size of label border, in mm. Defaults to <code>0.25</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.box.padding</th>
+      <td><p>Amount of padding around bounding box, as number.
+Defaults to <code>1</code>. (Default unit is lines).</p></td>
+    </tr>
+    <tr>
+      <th>label.label.padding</th>
+      <td><p>Amount of padding around label, as number.
+Defaults to <code>0.25</code>. (Default unit is lines).</p></td>
+    </tr>
+    <tr>
+      <th>label.point.padding</th>
+      <td><p>Amount of padding around labeled point, as
+number. Defaults to <code>0</code>. (Default unit is lines).</p></td>
+    </tr>
+    <tr>
+      <th>label.segment.color</th>
+      <td><p>Color of the line segment (Default: <code>"grey50"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>label.segment.size</th>
+      <td><p>Width of line segment connecting the data point to
+the text label, in mm. Defaults to <code>0.5</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.segment.alpha</th>
+      <td><p>Transparency of the line segment. Defaults to the
+same transparency as the text.</p></td>
+    </tr>
+    <tr>
+      <th>label.min.segment.length</th>
+      <td><p>Skip drawing segments shorter than this.
+Defaults to <code>0.5</code>. (Default unit is lines).</p></td>
+    </tr>
+    <tr>
+      <th>label.force</th>
+      <td><p>Force of repulsion between overlapping text labels.
+Defaults to <code>1</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.force.pull</th>
+      <td><p>Force of attraction between a text label and its
+corresponding data point. Defaults to <code>1</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.max.iter</th>
+      <td><p>Maximum number of iterations to try to resolve
+overlaps. Defaults to <code>2000</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.nudge.x, label.nudge.y</th>
+      <td><p>Horizontal and vertical adjustments to
+nudge the starting position of each text label. Defaults to <code>0</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.xlim, label.ylim</th>
+      <td><p>Limits for the x and y axes. Text labels will be
+constrained to these limits. By default, text labels are constrained to the
+entire plot area. Defaults to <code>c(NA, NA)</code>.</p></td>
     </tr>
     <tr>
       <th>label.direction</th>
@@ -289,7 +377,7 @@ which to adjust position of labels (Default: <code>"y"</code>).</p></td>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_grey()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
 including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
 <code>theme_void()</code>, etc.</p></td>
     </tr>

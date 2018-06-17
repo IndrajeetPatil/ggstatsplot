@@ -8,13 +8,21 @@ caption.}
 ggcoefstats(x, output = "plot", effects.mermod = "fixed",
   group.mermod = "fixed", point.color = "blue", point.size = 3,
   point.shape = 16, conf.int = TRUE, conf.level = 0.95, k = 3,
-  exclude.intercept = TRUE, exponentiate = FALSE,
+  k.caption.summary = 0, exclude.intercept = TRUE, exponentiate = FALSE,
   errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
   vline.color = "black", vline.linetype = "dashed", vline.size = 1,
   sort = "none", xlab = "estimate", ylab = "term", title = NULL,
   subtitle = NULL, stats.labels = TRUE, caption.summary = TRUE,
-  label.direction = "y", ggtheme = ggplot2::theme_grey(), ...)
+  stats.label.size = 3, stats.label.fontface = "bold",
+  stats.label.color = "black", label.r = 0.15, label.size = 0.25,
+  label.box.padding = 1, label.label.padding = 0.25,
+  label.point.padding = 0.5, label.segment.color = "grey50",
+  label.segment.size = 0.5, label.segment.alpha = NULL,
+  label.min.segment.length = 0.5, label.force = 1, label.force.pull = 1,
+  label.max.iter = 2000, label.nudge.x = 0, label.nudge.y = 0,
+  label.xlim = c(NA, NA), label.ylim = c(NA, NA), label.direction = "y",
+  ggtheme = ggplot2::theme_bw(), ...)
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}.}
@@ -43,7 +51,10 @@ error bars (Default: \code{TRUE}).}
 \item{conf.level}{Numeric deciding level of confidence intervals (Default:
 \code{0.95}).}
 
-\item{k}{Number of decimal places expected for results.}
+\item{k}{Number of decimal places expected for results displayed in labels.}
+
+\item{k.caption.summary}{Number of decimal places expected for results
+displayed in captions.}
 
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}
@@ -89,13 +100,58 @@ each coefficient are to be attached to each dot as a text label using
 \code{ggrepel} (Default: \code{TRUE}).}
 
 \item{caption.summary}{Logical. Decides whether the model summary should be
-displayed as a cation to the plot (Default: \code{TRUE}).}
+displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
+segment. Defaults to the same colour as the text.}
+
+\item{stats.label.size, stats.label.fontface, stats.label.color}{Aesthetics for
+the labels. Defaults: \code{3}, \code{"bold"},\code{"black"}, resp.}
+
+\item{label.r, }{Radius of rounded corners, as unit or number. Defaults to
+\code{0.15}. (Default unit is lines).}
+
+\item{label.size}{Size of label border, in mm. Defaults to \code{0.25}.}
+
+\item{label.box.padding}{Amount of padding around bounding box, as number.
+Defaults to \code{1}. (Default unit is lines).}
+
+\item{label.label.padding}{Amount of padding around label, as number.
+Defaults to \code{0.25}. (Default unit is lines).}
+
+\item{label.point.padding}{Amount of padding around labeled point, as
+number. Defaults to \code{0}. (Default unit is lines).}
+
+\item{label.segment.color}{Color of the line segment (Default: \code{"grey50"}).}
+
+\item{label.segment.size}{Width of line segment connecting the data point to
+the text label, in mm. Defaults to \code{0.5}.}
+
+\item{label.segment.alpha}{Transparency of the line segment. Defaults to the
+same transparency as the text.}
+
+\item{label.min.segment.length}{Skip drawing segments shorter than this.
+Defaults to \code{0.5}. (Default unit is lines).}
+
+\item{label.force}{Force of repulsion between overlapping text labels.
+Defaults to \code{1}.}
+
+\item{label.force.pull}{Force of attraction between a text label and its
+corresponding data point. Defaults to \code{1}.}
+
+\item{label.max.iter}{Maximum number of iterations to try to resolve
+overlaps. Defaults to \code{2000}.}
+
+\item{label.nudge.x, label.nudge.y}{Horizontal and vertical adjustments to
+nudge the starting position of each text label. Defaults to \code{0}.}
+
+\item{label.xlim, label.ylim}{Limits for the x and y axes. Text labels will be
+constrained to these limits. By default, text labels are constrained to the
+entire plot area. Defaults to \code{c(NA, NA)}.}
 
 \item{label.direction}{Character (\code{"both"}, \code{"x"}, or \code{"y"}) -- direction in
 which to adjust position of labels (Default: \code{"y"}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_grey()}. Allowed values are the official \code{ggplot2} themes,
+\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
 including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
 \code{theme_void()}, etc.}
 

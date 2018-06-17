@@ -69,6 +69,7 @@ utils::install.packages(pkgs = "devtools")
 # downloading the package from GitHub
 devtools::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
+  dependencies = FALSE,                # assumes that you already have all packages installed needed for this package to work
   quick = TRUE                         # skips docs, demos, and vignettes
 )                        
 ```
@@ -423,22 +424,24 @@ dots with confidence interval whiskers. This is a wrapper function around
 `GGally::ggcoef`.
 
 ```{r ggcoefstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8, out.width = "80%"}
-ggstatsplot::ggcoefstats(x = stats::lm(formula = Sepal.Length ~ Species,
-                                       data = iris)) 
+ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
+                                       data = mtcars)) 
 ```
 
 The basic can be further modified to one's liking with additional arguments:
 ```{r ggcoefstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8, out.width = "80%"}
 ggstatsplot::ggcoefstats(
-  x = stats::lm(formula = Sepal.Length ~ Species,
-                data = iris),
-  # removing the attached labels
-  title = "Differences in Sepal Length across Iris species",
-  subtitle = "Source: Iris dataset"
+  x = stats::lm(formula = mpg ~ am * cyl,
+                data = mtcars),
+  point.color = "red",
+  stats.label.size = 3.5,
+  stats.label.color = c("#0072B2", "#D55E00", "#CC79A7"),
+  title = "Car performance predicted by transmission and cylinder count",
+  subtitle = "Source: 1974 Motor Trend US magazine"
 ) +                                    
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
-  ggplot2::scale_y_discrete(labels = c("Species (virginica)", "Species (versicolor)")) +
+  ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
   ggplot2::labs(x = "regression coefficient",
                 y = NULL)
 ```
@@ -477,7 +480,7 @@ ggstatsplot::combine_plots(
       data = mtcars,
       start = list(k = 1, b = 0)
     ),
-    point.color = "green"
+    point.color = "darkgreen"
   ),
   # linear mmodel
   ggstatsplot::ggcoefstats(
