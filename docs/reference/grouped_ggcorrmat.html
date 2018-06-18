@@ -312,17 +312,50 @@ corresponding glyphs will be removed; if "pch" is used, characters (see
 coefficients (only valid when <code>insig = "pch"</code>). Default value is <code>pch = 4</code>.</p></td>
     </tr>
     <tr>
-      <th>pch.col, pch.cex</th>
+      <th>pch.col</th>
       <td><p>The color and the cex (size) of <code>pch</code> (only valid when
 <code>insig = "pch"</code>). Defaults are <code>pch.col = "#F0E442"</code> and <code>pch.cex = 10</code>.</p></td>
     </tr>
     <tr>
-      <th>tl.cex, tl.col, tl.srt</th>
+      <th>pch.cex</th>
+      <td><p>The color and the cex (size) of <code>pch</code> (only valid when
+<code>insig = "pch"</code>). Defaults are <code>pch.col = "#F0E442"</code> and <code>pch.cex = 10</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tl.cex</th>
       <td><p>The size, the color, and the string rotation of
 text label (variable names, i.e.).</p></td>
     </tr>
     <tr>
-      <th>axis.text.x.margin.t, axis.text.x.margin.r, axis.text.x.margin.b, axis.text.x.margin.l</th>
+      <th>tl.col</th>
+      <td><p>The size, the color, and the string rotation of
+text label (variable names, i.e.).</p></td>
+    </tr>
+    <tr>
+      <th>tl.srt</th>
+      <td><p>The size, the color, and the string rotation of
+text label (variable names, i.e.).</p></td>
+    </tr>
+    <tr>
+      <th>axis.text.x.margin.t</th>
+      <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
+bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
+    </tr>
+    <tr>
+      <th>axis.text.x.margin.r</th>
+      <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
+bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
+    </tr>
+    <tr>
+      <th>axis.text.x.margin.b</th>
+      <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
+bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
+    </tr>
+    <tr>
+      <th>axis.text.x.margin.l</th>
       <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
 bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
 between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
@@ -333,7 +366,12 @@ between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</
 colorbar (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
-      <th>t.margin, b.margin</th>
+      <th>t.margin</th>
+      <td><p>Margins in grid units. For more details, see
+<code>?grid::unit()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>b.margin</th>
       <td><p>Margins in grid units. For more details, see
 <code>?grid::unit()</code>.</p></td>
     </tr>

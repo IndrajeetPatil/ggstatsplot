@@ -115,20 +115,44 @@ corresponding glyphs will be removed; if "pch" is used, characters (see
 \item{pch}{Decides the glyphs (read point shapes) to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default value is \code{pch = 4}.}
 
-\item{pch.col, pch.cex}{The color and the cex (size) of \code{pch} (only valid when
+\item{pch.col}{The color and the cex (size) of \code{pch} (only valid when
 \code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
 
-\item{tl.cex, tl.col, tl.srt}{The size, the color, and the string rotation of
+\item{pch.cex}{The color and the cex (size) of \code{pch} (only valid when
+\code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
+
+\item{tl.cex}{The size, the color, and the string rotation of
 text label (variable names, i.e.).}
 
-\item{axis.text.x.margin.t, axis.text.x.margin.r, axis.text.x.margin.b, axis.text.x.margin.l}{Margins between x-axis and the variable name texts (t: top, r: right, b:
+\item{tl.col}{The size, the color, and the string rotation of
+text label (variable names, i.e.).}
+
+\item{tl.srt}{The size, the color, and the string rotation of
+text label (variable names, i.e.).}
+
+\item{axis.text.x.margin.t}{Margins between x-axis and the variable name texts (t: top, r: right, b:
+bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
+
+\item{axis.text.x.margin.r}{Margins between x-axis and the variable name texts (t: top, r: right, b:
+bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
+
+\item{axis.text.x.margin.b}{Margins between x-axis and the variable name texts (t: top, r: right, b:
+bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
+between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
+
+\item{axis.text.x.margin.l}{Margins between x-axis and the variable name texts (t: top, r: right, b:
 bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
 between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
 
 \item{legend.title.margin}{Logical indicating whether to adjust the margin between legend title and the
 colorbar (Default: \code{TRUE}).}
 
-\item{t.margin, b.margin}{Margins in grid units. For more details, see
+\item{t.margin}{Margins in grid units. For more details, see
+\code{?grid::unit()}.}
+
+\item{b.margin}{Margins in grid units. For more details, see
 \code{?grid::unit()}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are

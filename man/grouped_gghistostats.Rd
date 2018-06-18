@@ -56,7 +56,10 @@ rejected (Default: \code{bf.message = TRUE}).}
 
 \item{k}{Number of decimal places expected for results.}
 
-\item{low.color, high.color}{Colors for low and high ends of the gradient.
+\item{low.color}{Colors for low and high ends of the gradient.
+Defaults are colorblind-friendly.}
+
+\item{high.color}{Colors for low and high ends of the gradient.
 Defaults are colorblind-friendly.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
@@ -66,7 +69,10 @@ to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \item{legend.title.margin}{Adjusting the margin between legend title and the
 colorbar.}
 
-\item{t.margin, b.margin}{Margins in grid units. For more details, see
+\item{t.margin}{Margins in grid units. For more details, see
+\code{?grid::unit()}.}
+
+\item{b.margin}{Margins in grid units. For more details, see
 \code{?grid::unit()}.}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
@@ -78,8 +84,8 @@ parameter (Default: \code{"blue"}).}
 \item{centrality.size}{Decides size for the vertical line for centrality
 parameter (Default: \code{1.2}).}
 
-\item{centrality.linetype}{Decides linetype for the vertical line for centrality
-parameter (Default: \code{"dashed"}).}
+\item{centrality.linetype}{Decides linetype for the vertical line for
+centrality parameter (Default: \code{"dashed"}).}
 
 \item{test.value.line}{Decides whether test value is to be displayed as a
 vertical line (Default: \code{FALSE}).}

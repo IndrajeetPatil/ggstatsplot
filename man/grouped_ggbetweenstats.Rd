@@ -63,7 +63,7 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
-\item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return 95%
+\item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return \code{95\%}
 lower and upper confidence intervals (\code{0.95}).}
 
 \item{conf.type}{A vector of character strings representing the type of
@@ -74,7 +74,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend 1.58 * IQR / sqrt(n). This gives a roughly 95% confidence
+notches extend 1.58 * IQR / sqrt(n). This gives a roughly \code{95\%} confidence
 interval for comparing medians. IQR: Inter-Quartile Range.}
 
 \item{notchwidth}{For a notched box plot, width of the notch relative to the

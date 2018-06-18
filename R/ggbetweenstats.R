@@ -38,13 +38,13 @@
 #' @param conf.type A vector of character strings representing the type of
 #'   intervals required. The value should be any subset of the values `"norm"`,
 #'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
-#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
+#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return `95%`
 #'   lower and upper confidence intervals (`0.95`).
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
 #'   compare groups; if the notches of two boxes do not overlap, this suggests
 #'   that the medians are significantly different. In a notched box plot, the
-#'   notches extend 1.58 * IQR / sqrt(n). This gives a roughly 95% confidence
+#'   notches extend 1.58 * IQR / sqrt(n). This gives a roughly `95%` confidence
 #'   interval for comparing medians. IQR: Inter-Quartile Range.
 #' @param notchwidth For a notched box plot, width of the notch relative to the
 #'   body (default `0.5`).

@@ -10,78 +10,7 @@
 #' @param grouping.var Grouping variable.
 #' @param title.prefix Character specifying the prefix text for the fixed plot
 #'   title (name of each factor level) (Default: `"Group"`).
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
-#' @param x The grouping variable.
-#' @param y The response - a vector of length the number of rows of `x`.
-#' @param plot.type Character describing the *type* of plot. Currently supported
-#'   plots are `"box"` (for pure boxplots), `"violin"` (for pure violin plots),
-#'   and `"boxviolin"` (for a mix of box and violin plots; default).
-#' @param xlab Label for `x` axis variable.
-#' @param ylab Label for `y` axis variable.
-#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
-#'   or `"robust"`).Corresponding abbreviations are also accepted: `"p"` (for
-#'   parametric), `"np"` (nonparametric), `"r"` (robust), resp.
-#' @param effsize.type Type of effect size needed for *parametric* tests
-#'   (`"biased"` (Cohen's *d* for **t-test**; partial eta-squared for **anova**)
-#'   or `"unbiased"` (Hedge's *g* for **t-test**; partial omega-squared for
-#'   **anova**)).
-#' @param caption The text for the plot caption.
-#' @param k Number of decimal places expected for results.
-#' @param var.equal A logical variable indicating whether to treat the two
-#'   variances as being equal (Default: `FALSE`).
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `100`).
-#' @param tr Trim level for the mean when carrying out `robust` tests. If you
-#'   get error stating "Standard error cannot be computed because of Winsorized
-#'   variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-#'   try to play around with the value of `tr`, which is by default set to
-#'   `0.1`. Lowering the value might help.
-#' @param conf.type A vector of character strings representing the type of
-#'   intervals required. The value should be any subset of the values `"norm"`,
-#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
-#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
-#'   lower and upper confidence intervals (`0.95`).
-#' @param notch A logical. If `FALSE` (default), a standard box plot will be
-#'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
-#'   compare groups; if the notches of two boxes do not overlap, this suggests
-#'   that the medians are significantly different. In a notched box plot, the
-#'   notches extend 1.58 * IQR / sqrt(n). This gives a roughly 95% confidence
-#'   interval for comparing medians. IQR: Inter-Quartile Range.
-#' @param notchwidth For a notched box plot, width of the notch relative to the
-#'   body (default `0.5`).
-#' @param linetype Character strings (`"blank"`, `"solid"`, `"dashed"`,
-#'   `"dotted"`, `"dotdash"`, `"longdash"`, and `"twodash"`) specifying the type
-#'   of line to draw box plots (Default: `"solid"`). Alternatively, the numbers
-#'   `0` to `6` can be used (`0` for "blank", `1` for "solid", etc.).
-#' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
-#' @param outlier.tagging Decides whether outliers should be tagged (Default:
-#'   `FALSE`).
-#' @param outlier.label Label to put on the outliers that have been tagged.
-#' @param outlier.label.color Color for the label to to put on the outliers that
-#'   have been tagged (Default: `"black"`).
-#' @param outlier.coef Coefficient for outlier detection using Tukey's method.
-#'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
-#'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
-#'   `1.5`).
-#' @param mean.plotting Decides whether mean is to be highlighted and its value
-#'   to be displayed (Default: `TRUE`).
-#' @param mean.color Color for the data point corresponding to mean (Default:
-#'   `"darkred"`).
-#' @param mean.size Point size for the data point corresponding to mean
-#'   (Default: `5`).
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
-#'   including `ggplot2::theme_grey()`, `ggplot2::theme_minimal()`,
-#'   `ggplot2::theme_classic()`, `ggplot2::theme_void()`, etc.
-#' @param point.jitter.width Numeric specifying the degree of jitter in `x`
-#'   direction. Defaults to `40%` of the resolution of the data.
-#' @param point.jitter.height Numeric specifying the degree of jitter in `y`
-#'   direction. Defaults to `0`.
-#' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
-#'   direction. Defaults to `0.75`.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
+#' @inheritParams ggbetweenstats
 #' @inheritDotParams combine_plots
 #'
 #' @import ggplot2

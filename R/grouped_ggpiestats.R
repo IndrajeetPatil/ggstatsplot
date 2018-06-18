@@ -10,27 +10,7 @@
 #' @param grouping.var Grouping variable.
 #' @param title.prefix Character specifying the prefix text for the fixed plot
 #'   title (name of each factor level) (Default: `"Group"`).
-#' @param data The data as a data frame.
-#' @param main A string naming the variable to use as the rows in the
-#'   contingency table.
-#' @param condition A string naming the variable to use as the columns in the
-#'   contingency table.
-#' @param factor.levels A character vector with labels for factor levels of
-#'   `main` variable.
-#' @param stat.title Title for the effect being investigated with the chi-square
-#'   test.
-#' @param caption The text for the plot caption.
-#' @param k Number of decimal places expected for results.
-#' @param legend.title Title of legend.
-#' @param facet.wrap.name The text for the facet_wrap variable label.
-#' @param facet.proptest Decides whether proportion test for `main` variable is
-#'   to be carried out for each level of `condition` (Default: `TRUE`).
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
-#'   `theme_void()`, etc.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
+#' @inheritParams ggpiestats
 #' @inheritDotParams combine_plots
 #'
 #' @importFrom dplyr select
