@@ -10,8 +10,8 @@ ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
   "y"), width.jitter = NULL, height.jitter = NULL, xfill = "#009E73",
   yfill = "#D55E00", centrality.para = NULL, type = "pearson",
   results.subtitle = NULL, title = NULL, caption = NULL, maxit = 500,
-  k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
-  messages = TRUE)
+  nboot = 100, k = 3, axes.range.restrict = FALSE,
+  ggtheme = ggplot2::theme_bw(), messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -74,6 +74,9 @@ to be displayed as subtitle.}
 bootstrap samples to compute Spearman's rho confidence intervals (Default:
 \code{500}).}
 
+\item{nboot}{Number of bootstrap samples for computing effect size (Default:
+\code{100}).}
+
 \item{k}{Number of decimal places expected for results.}
 
 \item{axes.range.restrict}{Logical decides whether to restrict the axes values
@@ -101,7 +104,8 @@ set.seed(123)
 ggstatsplot::ggscatterstats(
 data = datasets::mtcars,
 x = wt,
-y = mpg
+y = mpg,
+type = "np"
 )
 
 }

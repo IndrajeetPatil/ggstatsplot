@@ -42,6 +42,8 @@
 #' @param maxit Maximum number of iterations for robust linear regression or
 #'   bootstrap samples to compute Spearman's rho confidence intervals (Default:
 #'   `500`).
+#' @param nboot Number of bootstrap samples for computing effect size (Default:
+#'   `100`).
 #' @param k Number of decimal places expected for results.
 #' @param width.jitter Degree of jitter in `x` direction. Defaults to 40\% of
 #'   the resolution of the data.
@@ -93,7 +95,8 @@
 #' ggstatsplot::ggscatterstats(
 #' data = datasets::mtcars,
 #' x = wt,
-#' y = mpg
+#' y = mpg,
+#' type = "np"
 #' )
 #'
 #' @export
@@ -122,6 +125,7 @@ ggscatterstats <-
            title = NULL,
            caption = NULL,
            maxit = 500,
+           nboot = 100,
            k = 3,
            axes.range.restrict = FALSE,
            ggtheme = ggplot2::theme_bw(),
@@ -235,24 +239,12 @@ ggscatterstats <-
           )
 
         # getting confidence interval for rho using broom bootstrap
-        c_ci <- data %>%
-          broom::bootstrap(df = ., m = maxit) %>%
-          do(broom::tidy(
-            stats::cor.test(
-              formula = ~ x + y,
-              data = .,
-              method = "spearman",
-              exact = FALSE,
-              continuity = TRUE
-            )
-          )) %>%
-          tibble::as_data_frame(x = .) %>%
-          dplyr::select(.data = ., estimate) %>%
-          dplyr::summarize(
-            .data = .,
-            low = quantile(estimate, 0.05 / 2),
-            high = quantile(estimate, 1 - 0.05 / 2)
-          )
+        c_ci <- cor_tets_ci(
+          data = data,
+          x = x,
+          y = y,
+          nboot = nboot
+        )
 
         # preparing the label
         stats_subtitle <-
@@ -279,8 +271,8 @@ ggscatterstats <-
               df = (length(data$x) - 2),
               # degrees of freedom are always integer
               estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
-              LL = ggstatsplot::specify_decimal_p(x = c_ci$low[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = c_ci$high[[1]], k),
+              LL = ggstatsplot::specify_decimal_p(x = c_ci$conf.low[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = c_ci$conf.high[[1]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]],
                                                       k,
                                                       p.value = TRUE)

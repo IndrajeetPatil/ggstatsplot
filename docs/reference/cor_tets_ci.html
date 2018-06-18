@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A heteroscedastic one-way ANOVA for trimmed means with confidence
-interval for effect size. — t1way_ci • ggstatsplot</title>
+<title>A correlation test with confidence interval for effect size. — cor_tets_ci • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,11 +30,10 @@ interval for effect size. — t1way_ci • ggstatsplot</title>
 
 
 
-<meta property="og:title" content="A heteroscedastic one-way ANOVA for trimmed means with confidence
-interval for effect size. — t1way_ci" />
+<meta property="og:title" content="A correlation test with confidence interval for effect size. — cor_tets_ci" />
 
 <meta property="og:description" content="Custom function to get confidence intervals for effect size
-measure for robust ANOVA." />
+measure for parametric or non-parametric correlaiton coefficient." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,21 +126,21 @@ measure for robust ANOVA." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A heteroscedastic one-way ANOVA for trimmed means with confidence
-interval for effect size.</h1>
+    <h1>A correlation test with confidence interval for effect size.</h1>
     
-    <div class="hidden name"><code>t1way_ci.Rd</code></div>
+    <div class="hidden name"><code>cor_tets_ci.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>Custom function to get confidence intervals for effect size
-measure for robust ANOVA.</p>
+measure for parametric or non-parametric correlaiton coefficient.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>t1way_ci</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>cor_tets_ci</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"spearman"</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>continuity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,19 +152,37 @@ taken.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping variable.</p></td>
+      <td><p>A vector containing the explanatory variable.</p></td>
     </tr>
     <tr>
       <th>y</th>
       <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
     </tr>
     <tr>
-      <th>tr</th>
-      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
-<code>0.1</code>. Lowering the value might help.</p></td>
+      <th>method</th>
+      <td><p>a character string indicating which correlation
+    coefficient is to be  used for the test.  One of <code>"pearson"</code>,
+    <code>"kendall"</code>, or <code>"spearman"</code>, can be abbreviated.</p></td>
+    </tr>
+    <tr>
+      <th>exact</th>
+      <td><p>a logical indicating whether an exact p-value should be
+    computed.  Used for Kendall's \(\tau\) and
+    Spearman's \(\rho\).
+    See &#8216;Details&#8217; for the meaning of <code>NULL</code> (the default).</p></td>
+    </tr>
+    <tr>
+      <th>continuity</th>
+      <td><p>logical: if true, a continuity correction is used
+    for Kendall's \(\tau\) and Spearman's \(\rho\) when
+    not computed exactly.</p></td>
+    </tr>
+    <tr>
+      <th>alternative</th>
+      <td><p>indicates the alternative hypothesis and must be
+    one of <code>"two.sided"</code>, <code>"greater"</code> or <code>"less"</code>.  You
+    can specify just the initial letter.  <code>"greater"</code> corresponds
+    to positive association, <code>"less"</code> to negative association.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -183,6 +199,10 @@ lower and upper confidence intervals (<code>0.95</code>).</p></td>
       <td><p>A vector of character strings representing the type of
 intervals required. The value should be any subset of the values <code>"norm"</code>,
 <code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments to be passed to or from methods.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -294,9 +314,9 @@ intervals required. The value should be any subset of the values <code>"norm"</c
 # important for reproducibility
 # set.seed(123)
 
-# ggstatsplot:::t1way_ci(
+# ggstatsplot:::cor_test_ci(
 # data = iris,
-# x = Species,
+# x = Sepal.Width,
 # y = Sepal.Length,
 # conf.type = "norm"
 # )
