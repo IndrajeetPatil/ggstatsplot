@@ -74,7 +74,6 @@
 #' @importFrom rlang quo_name
 #' @importFrom MASS rlm
 #' @importFrom sfsmisc f.robftest
-#' @importFrom broom bootstrap
 #' @importFrom broom tidy
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
