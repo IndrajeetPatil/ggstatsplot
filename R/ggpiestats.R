@@ -17,6 +17,8 @@
 #'   test.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
+#' @param nboot Number of bootstrap samples for computing effect size (Default:
+#'   `25`).
 #' @param k Number of decimal places expected for results.
 #' @param legend.title Title of legend.
 #' @param facet.wrap.name The text for the facet_wrap variable label.
@@ -47,16 +49,20 @@
 #' @importFrom crayon red
 #' @importFrom jmv propTestN
 #' @importFrom jmv contTables
-#' @importFrom DescTools CramerV
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}
 #'
 #' @examples
 #'
-#' library(ggplot2)
+#' set.seed(123)
 #'
-#' # simple function call with the defaults
+#' # simple function call with the defaults (with condition)
+#' ggstatsplot::ggpiestats(data = datasets::mtcars,
+#' main = am,
+#' condition = cyl)
+#'
+#' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #' data = datasets::iris,
 #' main = Species
@@ -74,6 +80,7 @@ ggpiestats <-
            stat.title = NULL,
            title = NULL,
            caption = NULL,
+           nboot = 25,
            legend.title = NULL,
            facet.wrap.name = NULL,
            k = 3,
@@ -358,8 +365,8 @@ ggpiestats <-
                                                   p.value = TRUE),
           # select Cramer's V as effect size
           cramer = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$nom)[[4]], k),
-          LL = ggstatsplot::specify_decimal_p(x = cramer_ci[[2]], k),
-          UL = ggstatsplot::specify_decimal_p(x = cramer_ci[[3]], k)
+          LL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.low[[1]], k),
+          UL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.high[[1]], k)
         )
       )
     }
@@ -401,9 +408,13 @@ ggpiestats <-
         cramer_ci <- c(NaN, NaN, NaN)
       } else {
         # results for confidence interval of Cramer's V
-        cramer_ci <- DescTools::CramerV(x = data$main,
-                                        y = data$condition,
-                                        conf.level = 0.95)
+        cramer_ci <- chisq_v_ci(
+          data = data,
+          rows = main,
+          cols = condition,
+          nboot = nboot,
+          conf.level = 0.95
+        )
       }
       # adding significance labels to pie charts for grouped proportion tests, if expected
       if (isTRUE(facet.proptest)) {

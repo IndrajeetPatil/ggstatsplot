@@ -185,12 +185,12 @@ measure for parametric or non-parametric correlaiton coefficient.
 # important for reproducibility
 # set.seed(123)
 
-# ggstatsplot:::cor_test_ci(
+# cor_test_ci(
 # data = iris,
 # x = Sepal.Width,
 # y = Sepal.Length,
 # conf.type = "norm"
-# )
+#)
 
 }
 \keyword{internal}

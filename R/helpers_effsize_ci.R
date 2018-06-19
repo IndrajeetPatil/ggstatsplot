@@ -40,12 +40,12 @@
 #' # important for reproducibility
 #' # set.seed(123)
 #'
-#' # ggstatsplot:::t1way_ci(
+#' # t1way_ci(
 #' # data = iris,
 #' # x = Species,
 #' # y = Sepal.Length,
 #' # conf.type = "norm"
-#' # )
+#' #)
 #'
 #' @keywords internal
 #'
@@ -140,10 +140,7 @@ t1way_ci <- function(data,
         `F-value`,
         df1,
         df2,
-        `p-value`,
-        conf,
-        tr,
-        nboot
+        dplyr::everything()
       )
   } else {
     results_df %<>%
@@ -155,10 +152,7 @@ t1way_ci <- function(data,
         `F-value`,
         df1,
         df2,
-        `p-value`,
-        conf,
-        tr,
-        nboot
+        dplyr::everything()
       )
   }
 
@@ -203,12 +197,12 @@ t1way_ci <- function(data,
 #' # important for reproducibility
 #' # set.seed(123)
 #'
-#' # ggstatsplot:::cor_test_ci(
+#' # cor_test_ci(
 #' # data = iris,
 #' # x = Sepal.Width,
 #' # y = Sepal.Length,
 #' # conf.type = "norm"
-#' # )
+#' #)
 #'
 #' @keywords internal
 #'
@@ -346,3 +340,168 @@ cor_tets_ci <- function(data,
   # return the final dataframe
   return(results_df)
 }
+
+
+
+#' @title X² test of association with confidence interval for effect size
+#'   (Cramer's V).
+#' @name chisq_v_ci
+#' @description Custom function to get confidence intervals for effect size
+#'   measure for X² test of association (Contingency Tables analyses, i.e.).
+#'
+#' @param data Dataframe from which variables specified are preferentially to be
+#'   taken.
+#' @param rows The variable to use as the rows in the contingency table.
+#' @param cols the variable to use as the columns in the contingency table.
+#' @param nboot Number of bootstrap samples for computing effect size (Default:
+#'   `25`).
+#' @param conf.type A vector of character strings representing the type of
+#'   intervals required. The value should be any subset of the values `"norm"`,
+#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
+#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
+#'   lower and upper confidence intervals (`0.95`).
+#' @inheritDotParams boot::boot
+#'
+#' @importFrom tibble as_data_frame
+#' @importFrom dplyr select
+#' @importFrom rlang enquo
+#' @importFrom jmv contTables
+#' @importFrom boot boot
+#' @importFrom boot boot.ci
+#' @importFrom stats na.omit
+#' @importFrom magrittr "%<>%"
+#' @importFrom magrittr "%>%"
+#'
+#' @examples
+#'
+#' # basic call
+#'
+#' # important for reproducibility
+#' #set.seed(123)
+#'
+#' #chisq_v_ci(
+#' #data = mtcars,
+#' #rows = am,
+#' #cols = cyl,
+#' #conf.type = "norm"
+#  #)
+#'
+#' @keywords internal
+#'
+
+chisq_v_ci <- function(data,
+                       rows,
+                       cols,
+                       nboot = 25,
+                       conf.level = 0.95,
+                       conf.type = "norm",
+                       ...) {
+  # creating a dataframe from entered data
+  data <- dplyr::select(
+    .data = data,
+    rows = !!rlang::enquo(rows),
+    cols = !!rlang::enquo(cols)
+  )
+
+  # results from jamovi
+  jmv_df <- jmv::contTables(
+    data = data,
+    rows = 'rows',
+    cols = 'cols',
+    phiCra = TRUE
+  )
+
+  # the basic function to get the confidence interval
+  cramer_ci <- function(data,
+                        rows,
+                        cols,
+                        phiCra,
+                        indices) {
+    # allows boot to select sample
+    d <- data[indices,]
+    # allows boot to select sample
+    boot_df <- jmv::contTables(
+      data = d,
+      rows = 'rows',
+      cols = 'cols',
+      phiCra = phiCra
+    )
+
+    # return the value of interest: effect size
+    return(as.data.frame(boot_df$nom)$`v[cra]`[[1]])
+  }
+
+  # save the bootstrapped results to an object
+  bootobj <- boot::boot(
+    data = data,
+    statistic = cramer_ci,
+    R = nboot,
+    rows = rows,
+    cols = cols,
+    phiCra = TRUE,
+    parallel =  "multicore",
+    ...
+  )
+
+  # get 95% CI from the bootstrapped object
+  bootci <- boot::boot.ci(boot.out = bootobj,
+                          conf = conf.level,
+                          type = conf.type)
+
+  # extracting ci part
+  if (conf.type == "norm") {
+    ci <- bootci$normal
+  } else if (conf.type == "basic") {
+    ci <- bootci$basic
+  } else if (conf.type == "perc") {
+    ci <- bootci$perc
+  } else if (conf.type == "bca") {
+    ci <- bootci$bca
+  }
+
+  # preparing the dataframe
+  results_df <-
+    tibble::as_data_frame(
+      x = cbind.data.frame(
+        # cramer' V and confidence intervals
+        "Cramer's V" = as.data.frame(jmv_df$nom)$`v[cra]`[[1]],
+        ci,
+        # getting rest of the details from chi-square test
+        as.data.frame(jmv_df$chiSq) %>%
+          tibble::as_data_frame()
+      )
+    )
+
+  # selecting the columns corresponding to the confidence intervals
+  if (conf.type == "norm") {
+    results_df %<>%
+      dplyr::select(
+        .data = .,
+        chi.sq = `value[chiSq]`,
+        df = `df[chiSq]`,
+        `Cramer's V`,
+        conf.low = V2,
+        conf.high = V3,
+        `p-value` = `p[chiSq]`,
+        dplyr::everything()
+      )
+  } else {
+    results_df %<>%
+      dplyr::select(
+        .data = .,
+        chi.sq = `value[chiSq]`,
+        df = `df[chiSq]`,
+        `Cramer's V`,
+        conf.low = V4,
+        conf.high = V5,
+        `p-value` = `p[chiSq]`,
+        dplyr::everything()
+      )
+  }
+
+  # return the final dataframe
+  return(results_df)
+}
+
+
+

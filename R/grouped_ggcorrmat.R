@@ -29,7 +29,6 @@
 #' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest
-#' @importFrom stats na.omit
 #'
 #' @seealso \code{\link{ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}

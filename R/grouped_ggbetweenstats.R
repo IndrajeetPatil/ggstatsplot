@@ -23,34 +23,14 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
-#' @importFrom ggrepel geom_label_repel
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
-#' @importFrom WRS2 t1way
-#' @importFrom WRS2 yuen
-#' @importFrom WRS2 yuen.effect.ci
-#' @importFrom effsize cohen.d
-#' @importFrom sjstats eta_sq
-#' @importFrom sjstats omega_sq
-#' @importFrom stats aov
-#' @importFrom stats na.omit
-#' @importFrom stats t.test
-#' @importFrom stats var.test
-#' @importFrom stats bartlett.test
-#' @importFrom stats kruskal.test
-#' @importFrom stats aov
-#' @importFrom stats quantile
-#' @importFrom stats oneway.test
-#' @importFrom coin wilcox_test
-#' @importFrom coin statistic
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom crayon green
-#' @importFrom crayon blue
-#' @importFrom crayon yellow
-#' @importFrom crayon red
-#' @importFrom jmv anova
+#' @importFrom glue glue
+#' @importFrom purrr map
+#' @importFrom tidyr nest
+#'
 #'
 #' @seealso \code{\link{ggbetweenstats}}
 #'

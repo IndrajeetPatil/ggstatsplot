@@ -5,9 +5,9 @@
 \title{Pie charts with statistical tests}
 \usage{
 ggpiestats(data = NULL, main, condition = NULL, factor.levels = NULL,
-  stat.title = NULL, title = NULL, caption = NULL, legend.title = NULL,
-  facet.wrap.name = NULL, k = 3, facet.proptest = TRUE,
-  ggtheme = ggplot2::theme_bw(), messages = TRUE)
+  stat.title = NULL, title = NULL, caption = NULL, nboot = 25,
+  legend.title = NULL, facet.wrap.name = NULL, k = 3,
+  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(), messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame.}
@@ -27,6 +27,9 @@ test.}
 \item{title}{The text for the plot title.}
 
 \item{caption}{The text for the plot caption.}
+
+\item{nboot}{Number of bootstrap samples for computing effect size (Default:
+\code{25}).}
 
 \item{legend.title}{Title of legend.}
 
@@ -51,9 +54,14 @@ included in the plot as a subtitle.
 }
 \examples{
 
-library(ggplot2)
+set.seed(123)
 
-# simple function call with the defaults
+# simple function call with the defaults (with condition)
+ggstatsplot::ggpiestats(data = datasets::mtcars,
+main = am,
+condition = cyl)
+
+# simple function call with the defaults (without condition)
 ggstatsplot::ggpiestats(
 data = datasets::iris,
 main = Species

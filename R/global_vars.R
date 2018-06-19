@@ -90,7 +90,11 @@ utils::globalVariables(
     "coef",
     "conf.high",
     "conf.low",
-    "rowid"
+    "rowid",
+    "Cramer's V",
+    "df[chiSq]",
+    "p[chiSq]",
+    "value[chiSq]"
   ),
   package = "ggstatsplot",
   add = FALSE

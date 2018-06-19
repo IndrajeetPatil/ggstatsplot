@@ -14,6 +14,8 @@ MINOR CHANGES
     imports.
   - Three new datasets added: `Titanic_full`, `movies_wide`, `movies_long`.
   - Added confidence interval for effect size for robust ANOVA.
+  - 95% CI for Cramer'V computed using `boot::boot`. Therefore, the package
+    no longer imports `DescTools`.
 
 # ggstatsplot 0.0.3
 

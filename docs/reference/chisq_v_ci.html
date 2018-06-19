@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A heteroscedastic one-way ANOVA for trimmed means with confidence
-interval for effect size. — t1way_ci • ggstatsplot</title>
+<title>X² test of association with confidence interval for effect size
+(Cramer's V). — chisq_v_ci • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,11 +31,11 @@ interval for effect size. — t1way_ci • ggstatsplot</title>
 
 
 
-<meta property="og:title" content="A heteroscedastic one-way ANOVA for trimmed means with confidence
-interval for effect size. — t1way_ci" />
+<meta property="og:title" content="X² test of association with confidence interval for effect size
+(Cramer's V). — chisq_v_ci" />
 
 <meta property="og:description" content="Custom function to get confidence intervals for effect size
-measure for robust ANOVA." />
+measure for X² test of association (Contingency Tables analyses, i.e.)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,20 +128,20 @@ measure for robust ANOVA." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A heteroscedastic one-way ANOVA for trimmed means with confidence
-interval for effect size.</h1>
+    <h1>X² test of association with confidence interval for effect size
+(Cramer's V).</h1>
     
-    <div class="hidden name"><code>t1way_ci.Rd</code></div>
+    <div class="hidden name"><code>chisq_v_ci.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>Custom function to get confidence intervals for effect size
-measure for robust ANOVA.</p>
+measure for X² test of association (Contingency Tables analyses, i.e.).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>t1way_ci</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+    <pre class="usage"><span class='fu'>chisq_v_ci</span>(<span class='no'>data</span>, <span class='no'>rows</span>, <span class='no'>cols</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -153,25 +153,17 @@ measure for robust ANOVA.</p>
 taken.</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>The grouping variable.</p></td>
+      <th>rows</th>
+      <td><p>The variable to use as the rows in the contingency table.</p></td>
     </tr>
     <tr>
-      <th>y</th>
-      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tr</th>
-      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
-<code>0.1</code>. Lowering the value might help.</p></td>
+      <th>cols</th>
+      <td><p>the variable to use as the columns in the contingency table.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
       <td><p>Number of bootstrap samples for computing effect size (Default:
-<code>100</code>).</p></td>
+<code>25</code>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -292,17 +284,14 @@ intervals required. The value should be any subset of the values <code>"norm"</c
 <span class='co'># basic call</span>
 
 <span class='co'># important for reproducibility</span>
- <span class='fu'>set.seed</span>(<span class='fl'>123</span>)
+<span class='fu'>set.seed</span>(<span class='fl'>123</span>)
 
- <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/t1way_ci'>t1way_ci</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>
-)</div><div class='output co'>#&gt; # A tibble: 1 x 10
-#&gt;      xi conf.low conf.high `F-value`   df1   df2  conf `p-value` nboot    tr
-#&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
-#&gt; 1 0.916    0.847     0.963      124.     2  71.6  0.95         0   100   0.1</div><div class='input'>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/chisq_v_ci'>chisq_v_ci</a></span>(
+<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+<span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>
+)</div><div class='output co'>#&gt; <span class='error'>Error in is_call(expr, paren_sym): argument "expr" is missing, with no default</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -28,13 +28,7 @@
 #' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
-#' @importFrom MASS rlm
-#' @importFrom sfsmisc f.robftest
-#' @importFrom broom tidy
-#' @importFrom ggExtra ggMarginal
-#' @importFrom stats cor.test
-#' @importFrom stats na.omit
-#' @importFrom stats confint.default
+#' @importFrom purrr set_names
 #'
 #' @seealso \code{\link{ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
 #'
