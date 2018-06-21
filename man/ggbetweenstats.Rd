@@ -13,8 +13,8 @@ ggbetweenstats(data = NULL, x, y, plot.type = "boxviolin",
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
   mean.color = "darkred", ggtheme = ggplot2::theme_bw(),
-  point.jitter.width = NULL, point.jitter.height = 0.2,
-  point.dodge.width = 0.75, messages = TRUE)
+  palette = "Dark2", point.jitter.width = NULL, point.jitter.height = 0.1,
+  point.dodge.width = 0.6, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -110,14 +110,18 @@ to be displayed (Default: \code{TRUE}).}
 including \code{ggplot2::theme_grey()}, \code{ggplot2::theme_minimal()},
 \code{ggplot2::theme_classic()}, \code{ggplot2::theme_void()}, etc.}
 
+\item{palette}{If a character string (e.g., \code{"Set1"}), will use that named
+palette. If a number, will index into the list of palettes of appropriate
+type. Default palette is \code{"Dark2"}.}
+
 \item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
 direction. Defaults to \code{40\%} of the resolution of the data.}
 
 \item{point.jitter.height}{Numeric specifying the degree of jitter in \code{y}
-direction. Defaults to \code{0}.}
+direction. Defaults to \code{0.1}.}
 
 \item{point.dodge.width}{Numeric specifying the amount to dodge in the \code{x}
-direction. Defaults to \code{0.75}.}
+direction. Defaults to \code{0.60}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

@@ -504,4 +504,160 @@ chisq_v_ci <- function(data,
 }
 
 
+#'
+#' @title Robust correlation coefficient and its confidence interval
+#' @name robcor_ci
+#' @description Custom function to get confidence intervals for robust
+#'   correlation coefficient.
+#' @return A tibble with correlation coefficient, along with its confidence
+#'   intervals, and the number of bootstrap samples used to generate confidence
+#'   intervals. Additionally, it also incldues information about sample size,
+#'   bending constant, no. of bootstrap samples, etc.
+#'
+#' @param data Dataframe from which variables specified are preferentially to be
+#'   taken.
+#' @param x A vector containing the explanatory variable.
+#' @param y The response - a vector of length the number of rows of `x`.
+#' @param nboot Number of bootstrap samples for computing effect size (Default:
+#'   `500`).
+#' @param beta bending constant (Default: `0.1`). For more, see `?WRS2::pbcor`.
+#' @param conf.type A vector of character strings representing the type of
+#'   intervals required. The value should be any subset of the values `"norm"`,
+#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
+#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
+#'   lower and upper confidence intervals (`0.95`).
+#' @inheritDotParams boot::boot
+#'
+#' @importFrom tibble as_data_frame
+#' @importFrom dplyr select
+#' @importFrom rlang enquo
+#' @importFrom WRS2 pbcor
+#' @importFrom boot boot
+#' @importFrom boot boot.ci
+#' @importFrom stats na.omit
+#' @importFrom magrittr "%<>%"
+#' @importFrom magrittr "%>%"
+#'
+#' @examples
+#'
+#' # for reproducibility
+#' set.seed(123)
+#'
+#' # robcor_ci(
+#' # data = iris,
+#' # x = Sepal.Width,
+#' # y = Sepal.Length
+#' # )
+#'
+#' @keywords internal
+#'
+
+robcor_ci <- function(data,
+                      x,
+                      y,
+                      beta = 0.1,
+                      nboot = 500,
+                      conf.level = 0.95,
+                      conf.type = "norm",
+                      ...) {
+  # creating a dataframe from entered data
+  data <- dplyr::select(
+    .data = data,
+    x = !!rlang::enquo(x),
+    y = !!rlang::enquo(y)
+  ) %>%
+    stats::na.omit(object = .)
+
+  # getting the p-value for the correlation coefficient
+  fit <-
+    WRS2::pbcor(x = data$x,
+                y = data$y,
+                beta = beta)
+
+  # function to obtain 95% CI for xi
+  robcor_ci <- function(data, x, y, beta = beta, indices) {
+    # allows boot to select sample
+    d <- data[indices,]
+    # allows boot to select sample
+    fit <-
+      WRS2::pbcor(x = d$x,
+                  y = d$y,
+                  beta = beta)
+
+    # return the value of interest: correlation coefficient
+    return(fit$cor)
+  }
+
+  # save the bootstrapped results to an object
+  bootobj <- boot::boot(
+    data = data,
+    statistic = robcor_ci,
+    R = nboot,
+    x = x,
+    y = y,
+    beta = beta,
+    parallel = "multicore",
+    ...
+  )
+
+  # get 95% CI from the bootstrapped object
+  bootci <- boot::boot.ci(boot.out = bootobj,
+                          conf = conf.level,
+                          type = conf.type)
+
+  # extracting ci part
+  if (conf.type == "norm") {
+    ci <- bootci$normal
+  } else if (conf.type == "basic") {
+    ci <- bootci$basic
+  } else if (conf.type == "perc") {
+    ci <- bootci$perc
+  } else if (conf.type == "bca") {
+    ci <- bootci$bca
+  }
+
+  # preparing a dataframe out of the results
+  results_df <-
+    tibble::as_data_frame(x = cbind.data.frame(
+      "r" =  bootci$t0,
+      ci,
+      "p-value" = fit$p.value,
+      "n" = fit$n,
+      "nboot" =  bootci$R,
+      beta
+    ))
+
+  # selecting the columns corresponding to the confidence intervals
+  if (conf.type == "norm") {
+    results_df %<>%
+      dplyr::select(
+        .data = .,
+        r,
+        conf.low = V2,
+        conf.high = V3,
+        `p-value`,
+        conf,
+        n,
+        beta,
+        nboot
+      )
+  } else {
+    results_df %<>%
+      dplyr::select(
+        .data = .,
+        r,
+        conf.low = V4,
+        conf.high = V5,
+        `p-value`,
+        conf,
+        n,
+        beta,
+        nboot
+      )
+  }
+
+  # returning the results
+  return(results_df)
+
+}
 

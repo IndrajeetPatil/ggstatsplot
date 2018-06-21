@@ -38,16 +38,14 @@ Imports:
     jmv (>= 0.8.6.2),
     lmerTest (>= 3.0-1),
     magrittr,
-    MASS (>= 7.3-49),
     purrr (>= 0.2.4),
     purrrlyr (>= 0.0.3),
     rlang (>= 0.2.0),
     scales (>= 0.5.0),
-    sfsmisc (>= 1.1-1),
-    sjstats (>= 0.14.3),
-    tibble,
+    sjstats (>= 0.15.0),
+    tibble (>= 1.4.2),
     tidyr (>= 0.8.1),
-    WRS2 (>= 0.9-2)
+    WRS2 (>= 0.10-0)
 Suggests:
     ggplot2movies,
     gapminder (>= 0.3.0),

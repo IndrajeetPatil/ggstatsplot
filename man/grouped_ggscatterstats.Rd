@@ -11,7 +11,7 @@ grouped_ggscatterstats(grouping.var, title.prefix = "Group", data, x, y,
   margins = c("both", "x", "y"), width.jitter = NULL,
   height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00",
   centrality.para = NULL, type = "pearson", results.subtitle = NULL,
-  caption = NULL, maxit = 500, nboot = 100, k = 3,
+  caption = NULL, nboot = 100, beta = 0.1, k = 3,
   axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
   messages = TRUE, ...)
 }
@@ -75,12 +75,10 @@ to be displayed as subtitle.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{maxit}{Maximum number of iterations for robust linear regression or
-bootstrap samples to compute Spearman's rho confidence intervals (Default:
-\code{500}).}
-
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}
+
+\item{beta}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
 
 \item{k}{Number of decimal places expected for results.}
 

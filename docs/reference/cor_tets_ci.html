@@ -309,17 +309,18 @@ intervals required. The value should be any subset of the values <code>"norm"</c
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># basic call</span>
+# basic call
 
-<span class='co'># important for reproducibility</span>
-<span class='fu'>set.seed</span>(<span class='fl'>123</span>)
+# important for reproducibility
+# set.seed(123)
 
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'>cor_test_ci</span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Width</span>,
-<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-<span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in get(name, envir = asNamespace(pkg), inherits = FALSE): object 'cor_test_ci' not found</span></div><div class='input'>
+# cor_test_ci(
+# data = iris,
+# x = Sepal.Width,
+# y = Sepal.Length,
+# conf.type = "norm"
+#)
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

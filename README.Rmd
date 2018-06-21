@@ -167,6 +167,8 @@ ggstatsplot::ggbetweenstats(
   caption = expression(                           # caption text for the plot 
     paste(italic("Note"), ": this is a demo")
   ),
+  ggtheme = ggplot2::theme_grey(),                # choosing a different theme
+  palette = "Set1",                               # choosing a different color palette
   messages = FALSE
 ) +                                               # further modification outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 

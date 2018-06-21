@@ -294,6 +294,7 @@ plot_list <- purrr::pmap(
       "unbiased"
     ),
     plot.type = list("box", "boxviolin", "box", "boxviolin", "box", "violin"),
+    palette = list("Accent", "Dark2", "Paired", "Pastel1", "Pastel2", "Set1"),
     messages = FALSE
   ),
   .f = ggstatsplot::ggbetweenstats

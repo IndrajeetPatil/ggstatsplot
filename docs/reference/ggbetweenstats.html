@@ -149,8 +149,8 @@ the plot as a subtitle.</p>
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
-  <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.75</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+  <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -305,6 +305,12 @@ including <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/g
 <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_classic()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_void()</a></code>, etc.</p></td>
     </tr>
     <tr>
+      <th>palette</th>
+      <td><p>If a character string (e.g., <code>"Set1"</code>), will use that named
+palette. If a number, will index into the list of palettes of appropriate
+type. Default palette is <code>"Dark2"</code>.</p></td>
+    </tr>
+    <tr>
       <th>point.jitter.width</th>
       <td><p>Numeric specifying the degree of jitter in <code>x</code>
 direction. Defaults to <code>40%</code> of the resolution of the data.</p></td>
@@ -312,12 +318,12 @@ direction. Defaults to <code>40%</code> of the resolution of the data.</p></td>
     <tr>
       <th>point.jitter.height</th>
       <td><p>Numeric specifying the degree of jitter in <code>y</code>
-direction. Defaults to <code>0</code>.</p></td>
+direction. Defaults to <code>0.1</code>.</p></td>
     </tr>
     <tr>
       <th>point.dodge.width</th>
       <td><p>Numeric specifying the amount to dodge in the <code>x</code>
-direction. Defaults to <code>0.75</code>.</p></td>
+direction. Defaults to <code>0.60</code>.</p></td>
     </tr>
     <tr>
       <th>messages</th>

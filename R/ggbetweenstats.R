@@ -71,13 +71,16 @@
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
 #'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
 #'   including `ggplot2::theme_grey()`, `ggplot2::theme_minimal()`,
-#'   `ggplot2::theme_classic()`, `ggplot2::theme_void()`, etc.
+#' `ggplot2::theme_classic()`, `ggplot2::theme_void()`, etc.
+#' @param palette If a character string (e.g., `"Set1"`), will use that named
+#'   palette. If a number, will index into the list of palettes of appropriate
+#'   type. Default palette is `"Dark2"`.
 #' @param point.jitter.width Numeric specifying the degree of jitter in `x`
 #'   direction. Defaults to `40%` of the resolution of the data.
 #' @param point.jitter.height Numeric specifying the degree of jitter in `y`
-#'   direction. Defaults to `0`.
+#'   direction. Defaults to `0.1`.
 #' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
-#'   direction. Defaults to `0.75`.
+#'   direction. Defaults to `0.60`.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #'
@@ -178,9 +181,10 @@ ggbetweenstats <- function(data = NULL,
                            mean.size = 5,
                            mean.color = "darkred",
                            ggtheme = ggplot2::theme_bw(),
+                           palette = "Dark2",
                            point.jitter.width = NULL,
-                           point.jitter.height = 0.2,
-                           point.dodge.width = 0.75,
+                           point.jitter.height = 0.1,
+                           point.dodge.width = 0.60,
                            messages = TRUE
                            ) {
   # if data is not available then don't display any messages
@@ -363,9 +367,12 @@ ggbetweenstats <- function(data = NULL,
       caption = caption
     ) +
     ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-    ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y))) +
-    ggplot2::scale_fill_brewer(palette = "Dark2") +
-    ggplot2::scale_color_brewer(palette = "Dark2")
+    ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+
+  # choosing palette
+    plot <- plot +
+      ggplot2::scale_fill_brewer(palette = palette) +
+      ggplot2::scale_color_brewer(palette = palette)
 
   ################################################  preparing stats subtitles #########################################
 

@@ -39,11 +39,9 @@
 #'   `y`) lines.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
-#' @param maxit Maximum number of iterations for robust linear regression or
-#'   bootstrap samples to compute Spearman's rho confidence intervals (Default:
-#'   `500`).
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `100`).
+#' @param beta bending constant (Default: `0.1`). For more, see `?WRS2::pbcor`.
 #' @param k Number of decimal places expected for results.
 #' @param width.jitter Degree of jitter in `x` direction. Defaults to 40\% of
 #'   the resolution of the data.
@@ -72,8 +70,6 @@
 #' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
-#' @importFrom MASS rlm
-#' @importFrom sfsmisc f.robftest
 #' @importFrom broom tidy
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
@@ -123,8 +119,8 @@ ggscatterstats <-
            results.subtitle = NULL,
            title = NULL,
            caption = NULL,
-           maxit = 500,
            nboot = 100,
+           beta = 0.1,
            k = 3,
            axes.range.restrict = FALSE,
            ggtheme = ggplot2::theme_bw(),
@@ -195,6 +191,9 @@ ggscatterstats <-
               paste(
                 "Pearson's ",
                 italic("r"),
+                "(",
+                df,
+                ")",
                 " = ",
                 estimate,
                 ", 95% CI [",
@@ -202,13 +201,6 @@ ggscatterstats <-
                 ", ",
                 UL,
                 "], ",
-                italic("t"),
-                "(",
-                df,
-                ")",
-                " = ",
-                t,
-                ", ",
                 italic("p"),
                 " = ",
                 pvalue
@@ -279,70 +271,62 @@ ggscatterstats <-
           )
         ################################################### robust ##################################################
       } else if (type == "robust" || type == "r") {
-        # running robust regression test and preparing the subtitle text
-        MASS_res <-
-          MASS::rlm(
-            scale(y) ~ scale(x),
-            data = data,
-            maxit = maxit,
-            # number of iterations
-            na.action = na.omit
-          )
 
-        # getting confidence interval for rho
-        c_ci <-
-          stats::confint.default(object = MASS_res,
-                                 parm = "scale(x)",
-                                 level = 0.95)
+        # running robust correlation
+        rob_res <- robcor_ci(
+          data = data,
+          x = x,
+          y = y,
+          beta = beta,
+          nboot = nboot,
+          conf.level = 0.95,
+          conf.type = "norm"
+        )
 
-        # preparing the label
+        # preparing the subtitle
         stats_subtitle <-
           base::substitute(
             expr =
               paste(
-                "robust: ",
-                italic(beta),
+                "robust ",
+                italic(r),
                 " = ",
                 estimate,
                 ", 95% CI [",
                 LL,
                 ", ",
                 UL,
-                "], ",
-                italic("t"),
-                "(",
-                df,
-                ")",
-                " = ",
-                t,
+                "], n = ",
+                n,
                 ", ",
                 italic("p"),
                 " = ",
                 pvalue
               ),
             env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[2]], k),
-              LL = ggstatsplot::specify_decimal_p(x = c_ci[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = c_ci[[2]], k),
-              t = ggstatsplot::specify_decimal_p(x = summary(MASS_res)$coefficients[[6]], k),
-              df = summary(MASS_res)$df[2],
+              estimate = ggstatsplot::specify_decimal_p(x = rob_res$r[[1]], k),
+              LL = ggstatsplot::specify_decimal_p(x = rob_res$conf.low[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = rob_res$conf.high[[1]], k),
+              n = rob_res$n[[1]],
               # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(sfsmisc::f.robftest(MASS_res)$p.value[[1]],
+              pvalue = ggstatsplot::specify_decimal_p(rob_res$`p-value`[[1]],
                                                       k,
                                                       p.value = TRUE)
             )
           )
-        # helper message in case of non-convergence
+
+        # displaying message about what correlation was used
         if (isTRUE(messages)) {
           base::message(cat(
             crayon::green("Note:"),
             crayon::blue(
-              "Standardized robust regression using an M estimator: no. of iterations =",
-              crayon::yellow(maxit),
-              "In case of non-convergence, increase maxit value."
+              "Percentage bend correlation with",
+              crayon::yellow(nboot),
+              "bootstrap samples was run."
             )
           ))
         }
+
       }
     }
     ################################################### plot ################################################################
