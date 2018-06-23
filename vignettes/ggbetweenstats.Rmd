@@ -295,6 +295,7 @@ plot_list <- purrr::pmap(
     ),
     plot.type = list("box", "boxviolin", "box", "boxviolin", "box", "violin"),
     palette = list("Accent", "Dark2", "Paired", "Pastel1", "Pastel2", "Set1"),
+    sample.size.label = list(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE),
     messages = FALSE
   ),
   .f = ggstatsplot::ggbetweenstats

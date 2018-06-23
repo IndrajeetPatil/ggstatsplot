@@ -133,19 +133,18 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li>New function: <code>ggcoefstats</code> for displaying model coefficients.</li>
-<li>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.
-<ul>
+<li>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</li>
 <li>The robust correlation is no longer <code><a href="http://www.rdocumentation.org/packages/MASS/topics/rlm">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="http://www.rdocumentation.org/packages/WRS2/topics/pbcor">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</li>
-</ul>
-</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li>Switched back to Shapiro-Wilk test of normality to remove <code>nortest</code> from imports.</li>
+<li>
+<code>ggbetweenstats</code> now displays sample sizes for each level of the groping factor by default. This behavior can be turned off by setting <code>sample.size.label</code> to <code>FALSE</code>.</li>
 <li>Three new datasets added: <code>Titanic_full</code>, <code>movies_wide</code>, <code>movies_long</code>.</li>
 <li>Added confidence interval for effect size for robust ANOVA.</li>
-<li>95% CI for Cramer’V computed using <code><a href="http://www.rdocumentation.org/packages/boot/topics/boot">boot::boot</a></code>. Therefore, the package no longer imports <code>DescTools</code>.</li>
-<li>To be consistent across correlations covered, all correlations now show estimates for correlation coefficients, confidence intervals for the estimate, and <em>p</em>-values. Therefore, <em>t</em>-values and regression coefficients are no longer displayed for Pearson’r <em>r</em>.</li>
+<li>The 95% CI for Cramer’V computed using <code><a href="http://www.rdocumentation.org/packages/boot/topics/boot">boot::boot</a></code>. Therefore, the package no longer imports <code>DescTools</code>.</li>
+<li>To be consistent across correlations covered, all correlations now show estimates for correlation coefficients, confidence intervals for the estimate, and <em>p</em>-values. Therefore, <em>t</em>-values and regression coefficients are no longer displayed for Pearson’s <em>r</em>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-3" class="section level1">

@@ -27,12 +27,12 @@ theme_mprl <- function(ggtheme = ggplot2::theme_bw()) {
   ggtheme +
     ggplot2::theme(
       axis.title.x = ggplot2::element_text(size = 14, face = "bold"),
-      strip.text.x = ggplot2::element_text(size = 14, face = "bold"),
-      strip.text.y = ggplot2::element_text(size = 14, face = "bold"),
+      strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
+      strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
       strip.text = ggplot2::element_text(size = 14, face = "bold"),
       axis.title.y = ggplot2::element_text(size = 14, face = "bold"),
-      axis.text.x = ggplot2::element_text(size = 14, face = "bold"),
-      axis.text.y = ggplot2::element_text(size = 14, face = "bold"),
+      axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
+      axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
       axis.line = ggplot2::element_line(),
       legend.text = ggplot2::element_text(size = 14),
       legend.title = ggplot2::element_text(size = 14, face = "bold"),

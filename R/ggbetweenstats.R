@@ -25,6 +25,9 @@
 #'   **anova**)).
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
+#' @param sample.size.label Logical that decides whether sample size information
+#'   should be displayed for each level of the grouping variable `x` (Default:
+#'   `TRUE`).
 #' @param k Number of decimal places expected for results.
 #' @param var.equal A logical variable indicating whether to treat the two
 #'   variances as being equal (Default: `FALSE`).
@@ -163,6 +166,7 @@ ggbetweenstats <- function(data = NULL,
                            ylab = NULL,
                            caption = NULL,
                            title = NULL,
+                           sample.size.label = TRUE,
                            k = 3,
                            var.equal = FALSE,
                            nboot = 100,
@@ -1033,6 +1037,25 @@ ggbetweenstats <- function(data = NULL,
         na.rm = TRUE
       )
   }
+
+    # adding sample size labels to the x axes
+    if (isTRUE(sample.size.label)) {
+      data_label <- data %>%
+        dplyr::group_by(x) %>%
+        dplyr::mutate(n = length(x)) %>%
+        dplyr::ungroup(x = .) %>%
+        dplyr::mutate(x = paste0(x, " (n = ", n, ")", sep = "")) %>% # changing character variables into factors
+        dplyr::mutate_if(
+          .tbl = .,
+          .predicate = purrr::is_bare_character,
+          .funs = ~ base::as.factor(.)
+        )
+
+      # adding new labels to the plot
+      plot <- plot +
+        ggplot2::scale_x_discrete(labels = unique(levels(data_label$x)))
+
+    }
 
   #============================================= messages =============================================
 

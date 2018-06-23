@@ -7,7 +7,7 @@ MAJOR CHANGES
   - All functions now have `ggtheme` argument that can be used to change the
     default theme, which has now been changed from `theme_grey()` to
     `theme_bw()`.
-    - The robust correlation is no longer `MASS::rlm`, but percentage bend
+  - The robust correlation is no longer `MASS::rlm`, but percentage bend
     correlation, as implemented in `WRS2::pbcor`. This was done to be consistent
     across different functions. `ggcorrmat` also uses percentage bend
     correlation as the robust correlation measure. This also means that
@@ -16,15 +16,18 @@ MAJOR CHANGES
 MINOR CHANGES
 
   - Switched back to Shapiro-Wilk test of normality to remove `nortest` from
-    imports.
-  - Three new datasets added: `Titanic_full`, `movies_wide`, `movies_long`.
-  - Added confidence interval for effect size for robust ANOVA.
-  - 95% CI for Cramer'V computed using `boot::boot`. Therefore, the package no
-    longer imports `DescTools`.
+    imports. 
+  - `ggbetweenstats` now displays sample sizes for each level of the
+    groping factor by default. This behavior can be turned off by setting
+  `sample.size.label` to `FALSE`. 
+  - Three new datasets added: `Titanic_full`, `movies_wide`, `movies_long`. 
+  - Added confidence interval for effect size for robust ANOVA. 
+  - The 95% CI for Cramer'V computed using `boot::boot`. Therefore,
+    the package no longer imports `DescTools`. 
   - To be consistent across correlations covered, all correlations now show
-    estimates for correlation coefficients, confidence intervals for the
-    estimate, and *p*-values. Therefore, *t*-values and regression coefficients
-    are no longer displayed for Pearson'r *r*.
+    estimates for correlation coefficients, confidence intervals for the estimate,
+    and *p*-values. Therefore, *t*-values and regression coefficients are no
+    longer displayed for Pearson's *r*.
 
 # ggstatsplot 0.0.3
 

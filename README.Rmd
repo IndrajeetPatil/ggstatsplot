@@ -167,6 +167,7 @@ ggstatsplot::ggbetweenstats(
   caption = expression(                           # caption text for the plot 
     paste(italic("Note"), ": this is a demo")
   ),
+  sample.size.label = FALSE,                      # turn off display of sample sizes on the x-axes
   ggtheme = ggplot2::theme_grey(),                # choosing a different theme
   palette = "Set1",                               # choosing a different color palette
   messages = FALSE

@@ -6,10 +6,10 @@
 \usage{
 ggbetweenstats(data = NULL, x, y, plot.type = "boxviolin",
   type = "parametric", effsize.type = "unbiased", xlab = NULL,
-  ylab = NULL, caption = NULL, title = NULL, k = 3, var.equal = FALSE,
-  nboot = 100, tr = 0.1, conf.level = 0.95, conf.type = "norm",
-  notch = FALSE, notchwidth = 0.5, linetype = "solid",
-  outlier.tagging = NULL, outlier.label = NULL,
+  ylab = NULL, caption = NULL, title = NULL, sample.size.label = TRUE,
+  k = 3, var.equal = FALSE, nboot = 100, tr = 0.1, conf.level = 0.95,
+  conf.type = "norm", notch = FALSE, notchwidth = 0.5,
+  linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
   mean.color = "darkred", ggtheme = ggplot2::theme_bw(),
@@ -44,6 +44,10 @@ or \code{"unbiased"} (Hedge's \emph{g} for \strong{t-test}; partial omega-square
 \item{caption}{The text for the plot caption.}
 
 \item{title}{The text for the plot title.}
+
+\item{sample.size.label}{Logical that decides whether sample size information
+should be displayed for each level of the grouping variable \code{x} (Default:
+\code{TRUE}).}
 
 \item{k}{Number of decimal places expected for results.}
 
