@@ -150,7 +150,7 @@ ggcoefstats <- function(x,
                         vline.linetype = "dashed",
                         vline.size = 1,
                         sort = "none",
-                        xlab = "estimate",
+                        xlab = "regression coefficient",
                         ylab = "term",
                         title = NULL,
                         subtitle = NULL,
@@ -178,6 +178,18 @@ ggcoefstats <- function(x,
                         label.direction = "y",
                         ggtheme = ggplot2::theme_bw(),
                         ...) {
+
+  #====================================== creating a list of objects ==================================================================
+
+  # models for which statistic is t-value
+  t.mods <- c("lmerMod", "lm", "nls", "lmRob", "rq")
+
+  # models for which statistic is z-value
+  z.mods <- c("glm", "glmerMod", "glmRob", "clm", "clmm")
+
+  # creating a list of objects which will have "effects" or "groups" in their summary outputs
+  lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod")
+
   #====================================== checking if object is supported =============================================================
   if (class(x)[[1]] == "aov") {
     base::message(cat(
@@ -197,15 +209,24 @@ ggcoefstats <- function(x,
 
   # tidy dataframe of results from the model
   # if these are merMod objects, choose whether the random effects are to be displayed
-  tidy_df <-
-    broom::tidy(
-      x = x,
-      conf.int = TRUE,
-      conf.level = conf.level,
-      effects = effects.mermod,
-      group = group.mermod,
-      ...
-    )
+  if (class(x)[[1]] %in% lmm.mods) {
+    tidy_df <-
+      broom::tidy(
+        x = x,
+        conf.int = TRUE,
+        conf.level = conf.level,
+        effects = effects.mermod,
+        group = group.mermod,
+        ...
+      )
+  } else {
+    tidy_df <-
+      broom::tidy(
+        x = x,
+        conf.int = TRUE,
+        conf.level = conf.level
+      )
+  }
 
   # p-values won't be computed by default for the lmer models
   if (class(x)[[1]] == "lmerMod") {
@@ -265,6 +286,8 @@ ggcoefstats <- function(x,
                        .funs = ~base::exp(x = .))
   }
 
+  #========================================================= stats labels =========================================================
+  #
   # formatting the numbers for display and preparing labels
   if (isTRUE(stats.labels)) {
     tidy_df %<>%
@@ -285,21 +308,51 @@ ggcoefstats <- function(x,
         .to = "p.value.formatted",
         .labels = TRUE
       ) %>%
-      purrrlyr::by_row(
-        .d = .,
-        ..f = ~ paste(
-          "estimate = ",
-          ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-          ", statistic = ",
-          .$statistic,
-          ", p = ",
-          .$p.value.formatted,
-          sep = ""
-        ),
-        .collate = "rows",
-        .to = "label",
-        .labels = TRUE
+      dplyr::mutate(
+        .data = .,
+        p.value.formatted2 = dplyr::case_when(
+          p.value.formatted == "< 0.001" ~ "<= 0.001",
+          p.value.formatted != "< 0.001" ~ paste("==", p.value.formatted, sep = "")
+        )
       )
+
+    if (class(x)[[1]] %in% t.mods) {
+      tidy_df %<>%
+        purrrlyr::by_row(
+          .d = .,
+          ..f = ~ paste(
+            "list(~italic(beta)==",
+            ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
+            ", ~italic(t)==",
+            .$statistic,
+            ", ~italic(p)",
+            .$p.value.formatted2,
+            ")",
+            sep = ""
+          ),
+          .collate = "rows",
+          .to = "label",
+          .labels = TRUE
+        )
+    } else if (class(x)[[1]] %in% z.mods) {
+      tidy_df %<>%
+        purrrlyr::by_row(
+          .d = .,
+          ..f = ~ paste(
+            "list(~italic(beta)==",
+            ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
+            ", ~italic(z)==",
+            .$statistic,
+            ", ~italic(p)",
+            .$p.value.formatted2,
+            ")",
+            sep = ""
+          ),
+          .collate = "rows",
+          .to = "label",
+          .labels = TRUE
+        )
+    }
   }
   #================================================== summary caption ===========================================================
 
@@ -422,7 +475,8 @@ ggcoefstats <- function(x,
         ylim = label.ylim,
         na.rm = TRUE,
         show.legend = FALSE,
-        direction = label.direction
+        direction = label.direction,
+        parse = TRUE
       )
   }
 

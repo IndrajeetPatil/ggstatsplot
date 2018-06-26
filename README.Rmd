@@ -449,13 +449,16 @@ ggstatsplot::ggcoefstats(
                 y = NULL)
 ```
 
-All the classes that are supported in the `broom` package with `tidy` and
-`glance` methods (<https://broom.tidyverse.org/articles/available-methods.html>)
-are also supported by `ggcoefstats`. Let's see few examples:
+All the regression model classes that are supported in the `broom` package with
+`tidy` and `glance` methods
+(<https://broom.tidyverse.org/articles/available-methods.html>) are also
+supported by `ggcoefstats`. Let's see few examples:
 
 ```{r ggcoefstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10, out.width = "100%"}
 library(dplyr)
 library(lme4)
+library(robust)
+data(engel)
 
 # for reproducibility
 set.seed(200)
@@ -503,7 +506,7 @@ ggstatsplot::combine_plots(
     ),
     exclude.intercept = FALSE
   ),
-  labels = c("(a)", "(b)", "(c)", ("(d)")),
+  labels = c("(a)", "(b)", "(c)", "(d)"),
   nrow = 2,
   ncol = 2
 )

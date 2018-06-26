@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--23-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--25-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -513,14 +513,16 @@ ggstatsplot::ggcoefstats(
 
 <img src="man/figures/README-ggcoefstats2-1.png" width="80%" />
 
-All the classes that are supported in the `broom` package with `tidy`
-and `glance` methods
+All the regression model classes that are supported in the `broom`
+package with `tidy` and `glance` methods
 (<https://broom.tidyverse.org/articles/available-methods.html>) are also
 supported by `ggcoefstats`. Let’s see few examples:
 
 ``` r
 library(dplyr)
 library(lme4)
+library(robust)
+data(engel)
 
 # for reproducibility
 set.seed(200)
@@ -568,7 +570,7 @@ ggstatsplot::combine_plots(
     ),
     exclude.intercept = FALSE
   ),
-  labels = c("(a)", "(b)", "(c)", ("(d)")),
+  labels = c("(a)", "(b)", "(c)", "(d)"),
   nrow = 2,
   ncol = 2
 )
