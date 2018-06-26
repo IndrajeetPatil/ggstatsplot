@@ -6,9 +6,10 @@
 \usage{
 grouped_ggpiestats(grouping.var, title.prefix = "Group", data, main,
   condition = NULL, factor.levels = NULL, stat.title = NULL,
-  caption = NULL, nboot = 25, legend.title = NULL,
-  facet.wrap.name = NULL, k = 3, facet.proptest = TRUE,
-  ggtheme = ggplot2::theme_bw(), messages = TRUE, ...)
+  sample.size.label = TRUE, caption = NULL, nboot = 25,
+  legend.title = NULL, facet.wrap.name = NULL, k = 3,
+  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(), messages = TRUE,
+  ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -29,6 +30,10 @@ contingency table.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test.}
+
+\item{sample.size.label}{Logical that decides whether sample size information
+should be displayed for each level of the grouping variable \code{condition} (Default:
+\code{TRUE}).}
 
 \item{caption}{The text for the plot caption.}
 

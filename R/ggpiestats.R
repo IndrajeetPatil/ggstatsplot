@@ -17,6 +17,9 @@
 #'   test.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
+#' @param sample.size.label Logical that decides whether sample size information
+#'   should be displayed for each level of the grouping variable `condition` (Default:
+#'   `TRUE`).
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `25`).
 #' @param k Number of decimal places expected for results.
@@ -78,6 +81,7 @@ ggpiestats <-
            condition = NULL,
            factor.levels = NULL,
            stat.title = NULL,
+           sample.size.label = TRUE,
            title = NULL,
            caption = NULL,
            nboot = 25,
@@ -152,7 +156,7 @@ ggpiestats <-
       }
     }
 
-    # ========================================= percentage dataframe ======================================
+    # ======================================================== percentage dataframe ======================================================
     #
     # main needs to be a factor for this analysis it is possible that sometimes
     # the variable hasn't been converted to factor class and this will produce
@@ -227,6 +231,7 @@ ggpiestats <-
         dplyr::group_by(.data = ., main) %>%
         dplyr::summarize(.data = ., counts = n()) %>%
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
+        dplyr::ungroup(x = .) %>%
         dplyr::arrange(desc(perc))
     } else {
       df <-
@@ -234,8 +239,41 @@ ggpiestats <-
         dplyr::group_by(.data = ., condition, main) %>%
         dplyr::summarize(.data = ., counts = n()) %>%
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
+        dplyr::ungroup(x = .) %>%
         dplyr::arrange(.data = ., desc(perc))
     }
+
+    # ======================================================== sample size label ======================================================
+
+    if (isTRUE(sample.size.label)) {
+      if (!base::missing(condition)) {
+        df_n_label <- dplyr::full_join(
+          x = df,
+          y = df %>%
+            dplyr::group_by(.data = ., condition) %>%
+            dplyr::summarize(.data = ., total_n = sum(counts)) %>%
+            dplyr::ungroup(x = .) %>%
+            dplyr::mutate(condition_n_label = paste("(n = ", total_n, ")", sep = "")) %>% # changing character variables into factors
+            dplyr::mutate_if(
+              .tbl = .,
+              .predicate = purrr::is_bare_character,
+              .funs = ~ base::as.factor(.)
+
+            ),
+          by  = "condition"
+        ) %>%
+          dplyr::mutate(
+            .data = .,
+            condition_n_label = dplyr::if_else(
+              condition = duplicated(condition),
+              true = NA_character_,
+              false = as.character(condition_n_label)
+            )
+          ) %>%
+          stats::na.omit(.)
+      }
+    }
+
     # ========================================= preparing names for legend and facet_wrap =============================
 
     # reorder the category factor levels to order the legend
@@ -429,6 +467,19 @@ ggpiestats <-
           )
       }
 
+      # adding significance labels to pie charts for grouped proportion tests, if expected
+      if (isTRUE(sample.size.label)) {
+        p <-
+          p +
+          ggplot2::geom_text(
+            data = df_n_label,
+            mapping = ggplot2::aes(label = condition_n_label, x = 1.65),
+            position = ggplot2::position_fill(vjust = 0.5),
+            size = 5,
+            na.rm = TRUE
+          )
+      }
+
       # adding chi-square results to the plot subtitle
       p <-
         p + ggplot2::labs(subtitle = chi_subtitle(
@@ -457,7 +508,11 @@ ggpiestats <-
               ", ",
               italic("p"),
               " = ",
-              pvalue
+              pvalue,
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
@@ -465,7 +520,8 @@ ggpiestats <-
             # df is always an integer
             pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[3]],
                                                     k,
-                                                    p.value = TRUE)
+                                                    p.value = TRUE),
+            n = nrow(x = data)
           )
         )
       # adding proportion test subtitle to the plot

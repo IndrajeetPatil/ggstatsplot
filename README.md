@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--25-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--26-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -45,10 +45,19 @@ community to provide a one-line code to produce information-rich plots.
 Currently, it supports only the most common types of statistical tests
 (**parametric**, **nonparametric**, and **robust** versions of
 **t-tets/anova**, **correlation**, and **contingency tables** analyses).
-Accordingly, it produces limited kinds of plots: **violin plots** (for
-comparisons between groups or conditions), **pie charts** (for
-categorical data), **scatterplots** (for correlations between
-variables), and **histograms** (for hypothesis about distributions).
+
+It, therefore, produces a limited kinds of plots for the supported
+analyses:
+
+  - **violin plots** (for comparisons between groups or conditions),
+  - **pie charts** (for categorical data),
+  - **scatterplots** (for correlations between variables),
+  - **histograms** (for hypothesis about distributions), and
+  - **dot-and-whisker plots** (for regression models).
+
+In addition to these basic plots, `ggstatsplot` also provides `grouped_`
+versions of all functions that makes it easy to repeat the same anlysis
+for any grouping variable.
 
 Future versions will include other types of analyses and plots as well.
 
@@ -108,8 +117,11 @@ utils::citation(package = "ggstatsplot")
 
 ## Help
 
-Documentation for any function can be accessed with the standard `help`
-command-
+There is a dedicated website to `ggstatplot`, which is updated after
+every new commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
+
+In `R`, documentation for any function can be accessed with the standard
+`help` command-
 
 ``` r
 ?ggbetweenstats
@@ -130,25 +142,30 @@ command-
 
 `ggstatsplot` relies on [non-standard
 evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html),
-which means you **can’t** enter arguments in the following manner: `x =
-data$x, y = data$y`. This may work well for most of the functions most
-of the time, but is highly discouraged. You should always specify `data`
-argument for all functions.
+which means you **can’t** enter arguments in the following manner: `data
+= NULL, x = data$x, y = data$y`. This may work well for most of the
+functions most of the time, but is highly discouraged. You should always
+specify `data` argument for all functions.
 
 Additionally, `ggstatsplot` is a very chatty package and will by default
 output information about references for tests, notes on assumptions
 about linear models, and warnings. If you don’t want your console to be
-cluttered with such messages, they can be turned off by setting
-`messages = FALSE`.
+cluttered with such messages, they can be turned off by setting argument
+`messages = FALSE` in the function call.
 
 Here are examples of the main functions currently supported in
-`ggstatsplot`:
+`ggstatsplot`. **Note**: The documentation below is for the
+**development** version of the package. So you may see some features
+available here that are not currently present in the stable version of
+this package on **CRAN**:
+<https://cran.r-project.org/web/packages/ggstatsplot/index.html>
 
   - `ggbetweenstats`
 
-This function creates a violin plot for **between**-group or
-**between**-condition comparisons with results from statistical tests in
-the subtitle. The simplest function call looks like this-
+This function creates either a violin plot, a box plot, or a mix of two
+for **between**-group or **between**-condition comparisons with results
+from statistical tests in the subtitle. The simplest function call looks
+like this-
 
 ``` r
 ggstatsplot::ggbetweenstats(
@@ -521,8 +538,6 @@ supported by `ggcoefstats`. Let’s see few examples:
 ``` r
 library(dplyr)
 library(lme4)
-library(robust)
-data(engel)
 
 # for reproducibility
 set.seed(200)

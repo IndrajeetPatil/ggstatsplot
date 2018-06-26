@@ -17,9 +17,9 @@ MINOR CHANGES
 
   - Switched back to Shapiro-Wilk test of normality to remove `nortest` from
     imports. 
-  - `ggbetweenstats` now displays sample sizes for each level of the
-    groping factor by default. This behavior can be turned off by setting
-  `sample.size.label` to `FALSE`. 
+  - `ggbetweenstats` and `ggpiestats` now display sample sizes for each level of
+    the groping factor by default. This behavior can be turned off by setting
+    `sample.size.label` to `FALSE`.
   - Three new datasets added: `Titanic_full`, `movies_wide`, `movies_long`. 
   - Added confidence interval for effect size for robust ANOVA. 
   - The 95% CI for Cramer'V computed using `boot::boot`. Therefore,
@@ -28,6 +28,8 @@ MINOR CHANGES
     estimates for correlation coefficients, confidence intervals for the estimate,
     and *p*-values. Therefore, *t*-values and regression coefficients are no
     longer displayed for Pearson's *r*.
+  - The `legend.title.margin` arguments for `gghistostats` and `ggcorrmat` now
+    default to `FALSE`, since `ggplot2 3.0.0` has better legend title margins.
 
 # ggstatsplot 0.0.3
 

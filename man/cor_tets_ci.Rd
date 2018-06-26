@@ -176,7 +176,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 }
 \description{
 Custom function to get confidence intervals for effect size
-measure for parametric or non-parametric correlaiton coefficient.
+measure for parametric or non-parametric correlation coefficient.
 }
 \examples{
 

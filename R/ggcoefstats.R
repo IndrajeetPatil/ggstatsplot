@@ -8,7 +8,7 @@
 #'   confidence interval whiskers.
 #'
 #' @param x A model object to be tidied with `broom::tidy`.
-#' @param output Character descrbing the expected output from this function:
+#' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
 #'   dataframe of results from `broom::tidy`) or `"glance"` (object from
 #'   `broom::glance`) or `"augment"` (object from `broom::augment`).
@@ -57,7 +57,7 @@
 #'   `ggrepel` (Default: `TRUE`).
 #' @param caption.summary Logical. Decides whether the model summary should be
 #'   displayed as a cation to the plot (Default: `TRUE`). Color of the line
-#'   segment. Defaults to the same colour as the text.
+#'   segment. Defaults to the same color as the text.
 #' @param stats.label.size,stats.label.fontface,stats.label.color Aesthetics for
 #'   the labels. Defaults: `3`, `"bold"`,`"black"`, resp.
 #' @param label.r, Radius of rounded corners, as unit or number. Defaults to

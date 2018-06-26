@@ -5,9 +5,10 @@
 \title{Pie charts with statistical tests}
 \usage{
 ggpiestats(data = NULL, main, condition = NULL, factor.levels = NULL,
-  stat.title = NULL, title = NULL, caption = NULL, nboot = 25,
-  legend.title = NULL, facet.wrap.name = NULL, k = 3,
-  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(), messages = TRUE)
+  stat.title = NULL, sample.size.label = TRUE, title = NULL,
+  caption = NULL, nboot = 25, legend.title = NULL,
+  facet.wrap.name = NULL, k = 3, facet.proptest = TRUE,
+  ggtheme = ggplot2::theme_bw(), messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame.}
@@ -23,6 +24,10 @@ contingency table.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test.}
+
+\item{sample.size.label}{Logical that decides whether sample size information
+should be displayed for each level of the grouping variable \code{condition} (Default:
+\code{TRUE}).}
 
 \item{title}{The text for the plot title.}
 

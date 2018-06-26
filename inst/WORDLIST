@@ -5,6 +5,7 @@ cex
 colorbar
 correlalogram
 cowplot
+Cramer's
 ds
 english
 expectancies
@@ -31,7 +32,6 @@ linetype
 McNemar
 mpaa
 MPAA
-mprl
 nd
 nz
 ourworldindata
@@ -62,4 +62,3 @@ VignetteIndexEntry
 vjust
 Winsorized
 www
-xintercept

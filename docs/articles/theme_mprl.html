@@ -93,7 +93,7 @@
       <h1>Default theme</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-25</h4>
+            <h4 class="date">2018-06-26</h4>
       
       
       <div class="hidden name"><code>theme_mprl.Rmd</code></div>
@@ -106,7 +106,7 @@
 <h2 class="hasAnchor">
 <a href="#default-theme-for-the-package-theme_mprl" class="anchor"></a>Default theme for the package: <code>theme_mprl</code>
 </h2>
-<p><code>ggstatsplot</code> uses a default theme <code><a href="../reference/theme_mprl.html">theme_mprl()</a></code>, which is a selected <code>ggplot2</code> theme with few aesthetic modifcations overlaid on top, that can be used with any <code>ggplot2</code> object.</p>
+<p><code>ggstatsplot</code> uses a default theme <code><a href="../reference/theme_mprl.html">theme_mprl()</a></code>, which is a selected <code>ggplot2</code> theme with few aesthetic modifications overlaid on top, that can be used with any <code>ggplot2</code> object.</p>
 <p>Here is a simple example:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
@@ -127,7 +127,7 @@
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/theme_mprl">theme_mprl</a></span>(<span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>())</a></code></pre></div>
 <p><img src="theme_mprl_files/figure-html/theme_mprl-2.png" width="100%"></p>
-<p>All plots in this package have <code>theme_bw()</code> by default as the base on which <code><a href="../reference/theme_mprl.html">theme_mprl()</a></code> is built, but this can be modified using the <code>ggtheme</code> argument provided for all functions. For example, for the <code>ggbetweenstats</code> function the default theme can be changed to, for exmaple, <code>theme_grey()</code>:</p>
+<p>All plots in this package have <code>theme_bw()</code> by default as the base on which <code><a href="../reference/theme_mprl.html">theme_mprl()</a></code> is built, but this can be modified using the <code>ggtheme</code> argument provided for all functions. For example, for the <code>ggbetweenstats</code> function the default theme can be changed to, for example, <code>theme_grey()</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">x =</span> Species,</a>

@@ -214,6 +214,7 @@ plot_list <- purrr::pmap(
       "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
       "Not available"
     ),
+    sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
     messages = FALSE
   ),
   .f = ggstatsplot::ggpiestats

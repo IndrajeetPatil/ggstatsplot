@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 ## Default theme for the package: `theme_mprl`
 
 `ggstatsplot` uses a default theme `theme_mprl()`, which is a selected `ggplot2`
-theme with few aesthetic modifcations overlaid on top, that can be used with any
+theme with few aesthetic modifications overlaid on top, that can be used with any
 `ggplot2` object.
 
 Here is a simple example:
@@ -56,7 +56,7 @@ ggplot2::ggplot(
 All plots in this package have `theme_bw()` by default as the base on which
 `theme_mprl()` is built, but this can be modified using the `ggtheme` argument
 provided for all functions. For example, for the `ggbetweenstats` function the
-default theme can be changed to, for exmaple, `theme_grey()`:
+default theme can be changed to, for example, `theme_grey()`:
 
 ```{r theme1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 ggstatsplot::ggbetweenstats(

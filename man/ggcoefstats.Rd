@@ -28,7 +28,7 @@ ggcoefstats(x, output = "plot", effects.mermod = "fixed",
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}.}
 
-\item{output}{Character descrbing the expected output from this function:
+\item{output}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
 dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}
@@ -102,7 +102,7 @@ each coefficient are to be attached to each dot as a text label using
 
 \item{caption.summary}{Logical. Decides whether the model summary should be
 displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
-segment. Defaults to the same colour as the text.}
+segment. Defaults to the same color as the text.}
 
 \item{stats.label.size, stats.label.fontface, stats.label.color}{Aesthetics for
 the labels. Defaults: \code{3}, \code{"bold"},\code{"black"}, resp.}

@@ -296,13 +296,16 @@ ggscatterstats <-
                 LL,
                 ", ",
                 UL,
-                "], n = ",
+                "], ",
+                italic("n") ,
+                " = ",
                 n,
                 ", ",
                 italic("p"),
                 " = ",
                 pvalue
               ),
+
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = rob_res$r[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = rob_res$conf.low[[1]], k),

@@ -39,7 +39,7 @@
 #'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
 #'   `FALSE`, no statistical tests will be run.
 #' @param legend.title.margin Adjusting the margin between legend title and the
-#'   colorbar.
+#'   colorbar (Default: `FALSE`).
 #' @param t.margin,b.margin Margins in grid units. For more details, see
 #'   `?grid::unit()`.
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
@@ -137,7 +137,7 @@ gghistostats <-
              low.color = "#0072B2",
              high.color = "#D55E00",
              results.subtitle = TRUE,
-             legend.title.margin = TRUE,
+             legend.title.margin = FALSE,
              t.margin = unit(0, "mm"),
              b.margin = unit(3, "mm"),
              centrality.para = NULL,

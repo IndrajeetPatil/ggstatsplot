@@ -80,7 +80,7 @@
 #' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
 #'   text label (variable names, i.e.).
 #' @param legend.title.margin Logical indicating whether to adjust the margin between legend title and the
-#'   colorbar (Default: `TRUE`).
+#'   colorbar (Default: `FALSE`).
 #' @param t.margin,b.margin Margins in grid units. For more details, see
 #'   `?grid::unit()`.
 #' @param messages Decides whether messages references, notes, and warnings are
@@ -191,7 +191,7 @@ ggcorrmat <-
              axis.text.x.margin.r = 0,
              axis.text.x.margin.b = 0,
              axis.text.x.margin.l = 0,
-             legend.title.margin = TRUE,
+             legend.title.margin = FALSE,
              t.margin = unit(0, "mm"),
              b.margin = unit(3, "mm"),
              messages = TRUE) {

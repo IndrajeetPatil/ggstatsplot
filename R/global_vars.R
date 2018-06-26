@@ -94,7 +94,9 @@ utils::globalVariables(
     "Cramer's V",
     "df[chiSq]",
     "p[chiSq]",
-    "value[chiSq]"
+    "value[chiSq]",
+    "condition_n_label",
+    "total_n"
   ),
   package = "ggstatsplot",
   add = FALSE

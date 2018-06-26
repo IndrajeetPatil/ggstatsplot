@@ -17,8 +17,8 @@ grouped_ggcorrmat(grouping.var, title.prefix = "Group", data, cor.vars,
   pch.cex = 11, tl.cex = 12, tl.col = "black", tl.srt = 45,
   axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
   axis.text.x.margin.b = 0, axis.text.x.margin.l = 0,
-  legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
-  "mm"), messages = TRUE, ...)
+  legend.title.margin = FALSE, t.margin = unit(0, "mm"),
+  b.margin = unit(3, "mm"), messages = TRUE, ...)
 }
 \arguments{
 \item{grouping.var}{Grouping variable.}
@@ -147,7 +147,7 @@ bottom, l:left), especially useful in case the names are slanted, i.e. when the 
 between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
 
 \item{legend.title.margin}{Logical indicating whether to adjust the margin between legend title and the
-colorbar (Default: \code{TRUE}).}
+colorbar (Default: \code{FALSE}).}
 
 \item{t.margin}{Margins in grid units. For more details, see
 \code{?grid::unit()}.}

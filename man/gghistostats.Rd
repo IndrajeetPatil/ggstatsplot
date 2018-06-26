@@ -9,13 +9,13 @@ gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = TRUE, k = 3, low.color = "#0072B2",
   high.color = "#D55E00", results.subtitle = TRUE,
-  legend.title.margin = TRUE, t.margin = unit(0, "mm"), b.margin = unit(3,
-  "mm"), centrality.para = NULL, centrality.color = "blue",
-  centrality.size = 1.2, centrality.linetype = "dashed",
-  test.value.line = FALSE, test.value.color = "black",
-  test.value.size = 1.2, test.value.linetype = "dashed",
-  line.labeller = FALSE, line.labeller.y = -2,
-  ggtheme = ggplot2::theme_bw(), messages = TRUE)
+  legend.title.margin = FALSE, t.margin = unit(0, "mm"),
+  b.margin = unit(3, "mm"), centrality.para = NULL,
+  centrality.color = "blue", centrality.size = 1.2,
+  centrality.linetype = "dashed", test.value.line = FALSE,
+  test.value.color = "black", test.value.size = 1.2,
+  test.value.linetype = "dashed", line.labeller = FALSE,
+  line.labeller.y = -2, ggtheme = ggplot2::theme_bw(), messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -67,7 +67,7 @@ to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \code{FALSE}, no statistical tests will be run.}
 
 \item{legend.title.margin}{Adjusting the margin between legend title and the
-colorbar.}
+colorbar (Default: \code{FALSE}).}
 
 \item{t.margin, b.margin}{Margins in grid units. For more details, see
 \code{?grid::unit()}.}

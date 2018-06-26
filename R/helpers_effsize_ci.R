@@ -164,7 +164,7 @@ t1way_ci <- function(data,
 #' @title A correlation test with confidence interval for effect size.
 #' @name cor_tets_ci
 #' @description Custom function to get confidence intervals for effect size
-#'   measure for parametric or non-parametric correlaiton coefficient.
+#'   measure for parametric or non-parametric correlation coefficient.
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
@@ -343,11 +343,11 @@ cor_tets_ci <- function(data,
 
 
 
-#' @title X² test of association with confidence interval for effect size
+#' @title Chi-squared test of association with confidence interval for effect size
 #'   (Cramer's V).
 #' @name chisq_v_ci
 #' @description Custom function to get confidence intervals for effect size
-#'   measure for X² test of association (Contingency Tables analyses, i.e.).
+#'   measure for chi-squared test of association (Contingency Tables analyses, i.e.).
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
@@ -511,7 +511,7 @@ chisq_v_ci <- function(data,
 #'   correlation coefficient.
 #' @return A tibble with correlation coefficient, along with its confidence
 #'   intervals, and the number of bootstrap samples used to generate confidence
-#'   intervals. Additionally, it also incldues information about sample size,
+#'   intervals. Additionally, it also includes information about sample size,
 #'   bending constant, no. of bootstrap samples, etc.
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
