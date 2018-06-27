@@ -29,7 +29,8 @@ contingency table.}
 \code{main} variable.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
-test.}
+test. The default is \code{NULL}, i.e. no title will be added to describe the
+effect being shown. An exemple of a stat.title will be \code{"main x condition"}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{condition} (Default:

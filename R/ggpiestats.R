@@ -14,7 +14,9 @@
 #' @param factor.levels A character vector with labels for factor levels of
 #'   `main` variable.
 #' @param stat.title Title for the effect being investigated with the chi-square
-#'   test.
+#'   test. The default is `NULL`, i.e. no title will be added to describe the
+#'   effect being shown. An exemple of a stat.title will be `"main x
+#'   condition"`.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param sample.size.label Logical that decides whether sample size information
@@ -373,15 +375,14 @@ ggpiestats <-
                              cramer_ci,
                              effect = NULL) {
       # if effect label hasn't been specified, use this default
-      if (is.null(effect)) {
-        effect <- "Chi-square test"
+      if (!is.null(effect)) {
+        effect <- paste(effect, ": ", sep = "")
       }
       # preparing the subtitle
       base::substitute(
         expr =
           paste(
             y,
-            " : ",
             italic(chi) ^ 2,
             "(",
             df,
@@ -521,7 +522,7 @@ ggpiestats <-
           base::substitute(
             expr =
               paste(
-                "Proportion test : ",
+                #"Proportion test : ",
                 italic(chi) ^ 2,
                 "(",
                 df,

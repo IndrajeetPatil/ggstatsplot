@@ -279,8 +279,8 @@ For more, see the `ggscatterstats` vignette:
 
 This function creates a pie chart for categorical variables with results
 from contingency table analysis included in the subtitle of the plot. If
-only one categorical variable is entered, proportion test will be
-carried out.
+only one categorical variable is entered, results from one-sample
+**proportion test** will be displayed as a subtitle.
 
 ``` r
 ggstatsplot::ggpiestats(
@@ -307,8 +307,8 @@ ggstatsplot::ggpiestats(
   condition = am,
   title = "Dataset: Motor Trend Car Road Tests",      
   messages = FALSE
-) +
-  ggplot2::scale_fill_brewer(palette = "Dark2")   # further modification outside of ggstatsplot    
+) + # further modification outside of ggstatsplot to change the default palette as an example 
+  ggplot2::scale_fill_brewer(palette = "Set1")     
 ```
 
 <img src="man/figures/README-ggpiestats2-1.png" width="100%" />

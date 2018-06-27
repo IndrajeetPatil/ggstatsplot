@@ -33,6 +33,10 @@ MINOR CHANGES
   - `ggpiestats` now sorts the summary dataframes not by percentages but by the
     levels of `main` variable. This was done to have the same legends across
     different levels of a grouping variable in `grouped_ggpiestats`.
+  - To remove cluttered display of results in the subtitle, `ggpiestats` no
+    longer shows titles for the tests run (these were "Proportion test" and
+    "Chi-Square test"). From the pie charts, it should be obvious to the user or
+    reader what test was run.
 
 # ggstatsplot 0.0.3
 
