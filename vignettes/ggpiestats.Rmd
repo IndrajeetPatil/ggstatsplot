@@ -176,10 +176,9 @@ ggstatsplot::grouped_ggpiestats(
 ## Grouped analysis with `ggpiestats` + `purrr` 
 
 Although this grouping function provides a quick way to explore the data, it
-leaves much to be desired. For example, the color palette can't be further
-modified, the legend color combination differs across different levels of the
-grouping variable based on the frequencies, etc. For cases like these, it would
-be better to use a function like
+leaves much to be desired. For example, we may want to add different captions,
+titles, themes, or palettes for each level of the grouping variable, etc. For
+cases like these, it would be better to use a function like
 [`purrr::pmap`](https://purrr.tidyverse.org/reference/map2.html).
 
 **Note before**: Unlike the function call so far, while using `purrr::pmap`, we
@@ -214,6 +213,13 @@ plot_list <- purrr::pmap(
       "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
       "Not available"
     ),
+    palette = list("Accent", "Paired", "Pastel1", "Set2"),
+    ggtheme = list(
+      ggplot2::theme_grey(),
+      ggplot2::theme_classic(),
+      ggplot2::theme_light(),
+      ggplot2::theme_minimal()
+    ),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
     messages = FALSE
   ),
@@ -222,10 +228,7 @@ plot_list <- purrr::pmap(
   
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
-  plot_list$`1st` + ggplot2::scale_fill_brewer(palette = "Dark2"),
-  plot_list$`2nd` + ggplot2::scale_fill_brewer(palette = "Dark2"),
-  plot_list$`3rd` + ggplot2::scale_fill_manual(values = c("#D95F02", "#1B9E77")), # to be consistent with other legends
-  plot_list$Crew + ggplot2::scale_fill_brewer(palette = "Dark2"),
+  plotlist = plot_list,
   title.text = "Survival in Titanic disaster by gender for all passenger classes",
   caption.text = "Asterisks denote results from proportion tests; ***: p < 0.001, ns: non-significant",
   nrow = 4,

@@ -295,6 +295,14 @@ plot_list <- purrr::pmap(
     ),
     plot.type = list("box", "boxviolin", "box", "boxviolin", "box", "violin"),
     palette = list("Accent", "Dark2", "Paired", "Pastel1", "Pastel2", "Set1"),
+    ggtheme = list(
+      ggplot2::theme_grey(),
+      ggplot2::theme_classic(),
+      ggplot2::theme_light(),
+      ggplot2::theme_minimal(),
+      ggplot2::theme_bw(),
+      ggplot2::theme_void()
+    ),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE),
     messages = FALSE
   ),
@@ -321,4 +329,5 @@ incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>

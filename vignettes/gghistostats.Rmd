@@ -302,7 +302,14 @@ plot_list <- purrr::pmap(
     centrality.para = "mean",
     centrality.color = "blue",
     low.color = list("#56B4E9", "#009E73", "#999999", "#0072B2", "#D55E00"),
-    high.color = list("#D55E00", "#CC79A7", "#F0E442", "#D55E00", "#56B4E9")
+    high.color = list("#D55E00", "#CC79A7", "#F0E442", "#D55E00", "#56B4E9"),
+    ggtheme = list(
+      ggplot2::theme_grey(),
+      ggplot2::theme_classic(),
+      ggplot2::theme_light(),
+      ggplot2::theme_minimal(),
+      ggplot2::theme_bw()
+    )
   ),
   .f = ggstatsplot::gghistostats
 )
@@ -329,4 +336,5 @@ prepared if `ggstatsplot` is coupled with a functional programming package like
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>

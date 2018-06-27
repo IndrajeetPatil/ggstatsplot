@@ -299,6 +299,14 @@ plot_list <- purrr::pmap(
       c("#CC79A7", "white", "#F0E442"),
       c("#56B4E9", "white", "#D55E00"),
       c("#999999", "white", "#0072B2")
+    ),
+    ggstatsplot.theme = list(FALSE),
+    ggtheme = list(
+      ggplot2::theme_grey,
+      ggplot2::theme_classic,
+      ggplot2::theme_minimal,
+      ggplot2::theme_bw,
+      ggplot2::theme_dark
     )
   ),
   .f = ggstatsplot::ggcorrmat
@@ -325,4 +333,5 @@ studies or conditions.
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>

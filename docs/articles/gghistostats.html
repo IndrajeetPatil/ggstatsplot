@@ -93,7 +93,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-26</h4>
+            <h4 class="date">2018-06-27</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -341,20 +341,27 @@
 <a class="sourceLine" id="cb9-64" data-line-number="64">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
 <a class="sourceLine" id="cb9-65" data-line-number="65">    <span class="dt">centrality.color =</span> <span class="st">"blue"</span>,</a>
 <a class="sourceLine" id="cb9-66" data-line-number="66">    <span class="dt">low.color =</span> <span class="kw">list</span>(<span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"#999999"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>),</a>
-<a class="sourceLine" id="cb9-67" data-line-number="67">    <span class="dt">high.color =</span> <span class="kw">list</span>(<span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#56B4E9"</span>)</a>
-<a class="sourceLine" id="cb9-68" data-line-number="68">  ),</a>
-<a class="sourceLine" id="cb9-69" data-line-number="69">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
-<a class="sourceLine" id="cb9-70" data-line-number="70">)</a>
-<a class="sourceLine" id="cb9-71" data-line-number="71">  </a>
-<a class="sourceLine" id="cb9-72" data-line-number="72"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb9-73" data-line-number="73">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb9-74" data-line-number="74">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb9-75" data-line-number="75">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
-<a class="sourceLine" id="cb9-76" data-line-number="76">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb9-77" data-line-number="77">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb9-78" data-line-number="78">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb9-79" data-line-number="79">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>)</a>
-<a class="sourceLine" id="cb9-80" data-line-number="80">)</a></code></pre></div>
+<a class="sourceLine" id="cb9-67" data-line-number="67">    <span class="dt">high.color =</span> <span class="kw">list</span>(<span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#56B4E9"</span>),</a>
+<a class="sourceLine" id="cb9-68" data-line-number="68">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb9-69" data-line-number="69">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb9-70" data-line-number="70">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb9-71" data-line-number="71">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),</a>
+<a class="sourceLine" id="cb9-72" data-line-number="72">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
+<a class="sourceLine" id="cb9-73" data-line-number="73">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>()</a>
+<a class="sourceLine" id="cb9-74" data-line-number="74">    )</a>
+<a class="sourceLine" id="cb9-75" data-line-number="75">  ),</a>
+<a class="sourceLine" id="cb9-76" data-line-number="76">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
+<a class="sourceLine" id="cb9-77" data-line-number="77">)</a>
+<a class="sourceLine" id="cb9-78" data-line-number="78">  </a>
+<a class="sourceLine" id="cb9-79" data-line-number="79"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb9-80" data-line-number="80">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb9-81" data-line-number="81">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb9-82" data-line-number="82">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
+<a class="sourceLine" id="cb9-83" data-line-number="83">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb9-84" data-line-number="84">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb9-85" data-line-number="85">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb9-86" data-line-number="86">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>)</a>
+<a class="sourceLine" id="cb9-87" data-line-number="87">)</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped2-1.png" width="768"></p>
 <p>This shows a much more detailed account of changes in life expectancy as compared to the previous plot. Compared to their respective average life expectancies in 1950’s, the continent that has had the highest improvement is Oceania (Australia and New Zealand), while the continent with the least improvement is Africa (as seen by Cohen’s <em>d</em> values). This again shows the ease with which publication-ready plots or plots for exploratory data analysis can be prepared if <code>ggstatsplot</code> is coupled with a functional programming package like <code>purrr</code>.</p>
 </div>

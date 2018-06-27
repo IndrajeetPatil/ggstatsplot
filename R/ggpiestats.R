@@ -22,6 +22,9 @@
 #'   `TRUE`).
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `25`).
+#' @param palette If a character string (e.g., `"Set1"`), will use that named
+#'   palette. If a number, will index into the list of palettes of appropriate
+#'   type. Default palette is `"Dark2"`
 #' @param k Number of decimal places expected for results.
 #' @param legend.title Title of legend.
 #' @param facet.wrap.name The text for the facet_wrap variable label.
@@ -44,6 +47,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
+#' @importFrom dplyr desc
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom crayon green
@@ -85,6 +89,7 @@ ggpiestats <-
            title = NULL,
            caption = NULL,
            nboot = 25,
+           palette = "Dark2",
            legend.title = NULL,
            facet.wrap.name = NULL,
            k = 3,
@@ -93,6 +98,7 @@ ggpiestats <-
            messages = TRUE) {
     # ========================================== messages ==================================================================
 
+    new_palette <- palette
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
@@ -232,7 +238,7 @@ ggpiestats <-
         dplyr::summarize(.data = ., counts = n()) %>%
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
         dplyr::ungroup(x = .) %>%
-        dplyr::arrange(desc(perc))
+        dplyr::arrange(.data = ., dplyr::desc(x = main))
     } else {
       df <-
         data %>%
@@ -240,11 +246,13 @@ ggpiestats <-
         dplyr::summarize(.data = ., counts = n()) %>%
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
         dplyr::ungroup(x = .) %>%
-        dplyr::arrange(.data = ., desc(perc))
+        dplyr::arrange(.data = ., dplyr::desc(x = main))
     }
 
     # ======================================================== sample size label ======================================================
 
+    # if sample size labels are to be displayed at the bottom of the pie charts
+    # for each facet
     if (isTRUE(sample.size.label)) {
       if (!base::missing(condition)) {
         df_n_label <- dplyr::full_join(
@@ -282,9 +290,9 @@ ggpiestats <-
 
     # getting labels for all levels of the 'main' variable factor
     if (is.null(factor.levels)) {
-      labels <- as.character(df$main)
-    } else {
-      labels <- factor.levels
+      legend.labels <- as.character(df$main)
+    } else if (!missing(factor.levels)) {
+      legend.labels <- factor.levels
     }
 
     # custom labeller function to use if the user wants a different name for facet_wrap variable
@@ -349,7 +357,7 @@ ggpiestats <-
     # formatting
     p <- p +
       ggplot2::scale_y_continuous(breaks = NULL) +
-      ggplot2::scale_fill_discrete(name = "", labels = unique(labels)) +
+      ggplot2::scale_fill_brewer(name = "", labels = unique(legend.labels), palette = palette) +
       theme_pie(ggtheme = ggtheme) +
       ggplot2::guides(fill = guide_legend(override.aes = list(color = NA))) # remove black diagonal line from legend
 
@@ -490,40 +498,55 @@ ggpiestats <-
           effect = stat.title
         ))
     } else {
+
       # conducting proportion test with jmv::propTestN()
       jmv_prop <- jmv::propTestN(data = data,
                                  var = "main")
+      # if there is no value corresponding to one of the levels of the 'main'
+      # variable, then no subtitle is needed
+      if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
+        proptest_subtitle <- NULL
+        # display message
+        base::message(cat(
+          crayon::red("Warning: "),
+          crayon::blue("Proportion test will not be run because it requires"),
+          crayon::yellow(legend.title),
+          crayon::blue("to have at least 2 levels with non-zero frequencies.")
+        ))
 
-      # preparing proportion test subtitle for the plot
-      proptest_subtitle <-
-        base::substitute(
-          expr =
-            paste(
-              "Proportion test : ",
-              italic(chi) ^ 2,
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
-            df = base::as.data.frame(jmv_prop$tests)[[2]],
-            # df is always an integer
-            pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[3]],
-                                                    k,
-                                                    p.value = TRUE),
-            n = nrow(x = data)
+      } else {
+
+        # preparing proportion test subtitle for the plot
+        proptest_subtitle <-
+          base::substitute(
+            expr =
+              paste(
+                "Proportion test : ",
+                italic(chi) ^ 2,
+                "(",
+                df,
+                ") = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue,
+                ", ",
+                italic("n"),
+                " = ",
+                n
+              ),
+            env = base::list(
+              estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
+              df = base::as.data.frame(jmv_prop$tests)[[2]],
+              # df is always an integer
+              pvalue = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[3]],
+                                                      k,
+                                                      p.value = TRUE),
+              n = nrow(x = data)
+            )
           )
-        )
+      }
       # adding proportion test subtitle to the plot
       p <-
         p +

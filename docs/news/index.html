@@ -146,6 +146,8 @@
 <li>The 95% CI for Cramer’V computed using <code><a href="http://www.rdocumentation.org/packages/boot/topics/boot">boot::boot</a></code>. Therefore, the package no longer imports <code>DescTools</code>.</li>
 <li>To be consistent across correlations covered, all correlations now show estimates for correlation coefficients, confidence intervals for the estimate, and <em>p</em>-values. Therefore, <em>t</em>-values and regression coefficients are no longer displayed for Pearson’s <em>r</em>.</li>
 <li>The <code>legend.title.margin</code> arguments for <code>gghistostats</code> and <code>ggcorrmat</code> now default to <code>FALSE</code>, since <code>ggplot2 3.0.0</code> has better legend title margins.</li>
+<li>
+<code>ggpiestats</code> now sorts the summary dataframes not by percentages but by the levels of <code>main</code> variable. This was done to have the same legends across different levels of a grouping variable in <code>grouped_ggpiestats</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-3" class="section level1">

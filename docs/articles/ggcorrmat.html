@@ -93,7 +93,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-26</h4>
+            <h4 class="date">2018-06-27</h4>
       
       
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -402,24 +402,32 @@
 <a class="sourceLine" id="cb10-87" data-line-number="87">      <span class="kw">c</span>(<span class="st">"#CC79A7"</span>, <span class="st">"white"</span>, <span class="st">"#F0E442"</span>),</a>
 <a class="sourceLine" id="cb10-88" data-line-number="88">      <span class="kw">c</span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#D55E00"</span>),</a>
 <a class="sourceLine" id="cb10-89" data-line-number="89">      <span class="kw">c</span>(<span class="st">"#999999"</span>, <span class="st">"white"</span>, <span class="st">"#0072B2"</span>)</a>
-<a class="sourceLine" id="cb10-90" data-line-number="90">    )</a>
-<a class="sourceLine" id="cb10-91" data-line-number="91">  ),</a>
-<a class="sourceLine" id="cb10-92" data-line-number="92">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggcorrmat</a>
-<a class="sourceLine" id="cb10-93" data-line-number="93">)</a>
-<a class="sourceLine" id="cb10-94" data-line-number="94"></a>
-<a class="sourceLine" id="cb10-95" data-line-number="95"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb10-96" data-line-number="96">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb10-97" data-line-number="97">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb10-98" data-line-number="98">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
-<a class="sourceLine" id="cb10-99" data-line-number="99">  <span class="dt">title.size =</span> <span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb10-100" data-line-number="100">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb10-101" data-line-number="101">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
-<a class="sourceLine" id="cb10-102" data-line-number="102">  <span class="dt">caption.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb10-103" data-line-number="103">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
-<a class="sourceLine" id="cb10-104" data-line-number="104">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>),</a>
-<a class="sourceLine" id="cb10-105" data-line-number="105">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb10-106" data-line-number="106">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb10-107" data-line-number="107">)</a></code></pre></div>
+<a class="sourceLine" id="cb10-90" data-line-number="90">    ),</a>
+<a class="sourceLine" id="cb10-91" data-line-number="91">    <span class="dt">ggstatsplot.theme =</span> <span class="kw">list</span>(<span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb10-92" data-line-number="92">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb10-93" data-line-number="93">      ggplot2<span class="op">::</span>theme_grey,</a>
+<a class="sourceLine" id="cb10-94" data-line-number="94">      ggplot2<span class="op">::</span>theme_classic,</a>
+<a class="sourceLine" id="cb10-95" data-line-number="95">      ggplot2<span class="op">::</span>theme_minimal,</a>
+<a class="sourceLine" id="cb10-96" data-line-number="96">      ggplot2<span class="op">::</span>theme_bw,</a>
+<a class="sourceLine" id="cb10-97" data-line-number="97">      ggplot2<span class="op">::</span>theme_dark</a>
+<a class="sourceLine" id="cb10-98" data-line-number="98">    )</a>
+<a class="sourceLine" id="cb10-99" data-line-number="99">  ),</a>
+<a class="sourceLine" id="cb10-100" data-line-number="100">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggcorrmat</a>
+<a class="sourceLine" id="cb10-101" data-line-number="101">)</a>
+<a class="sourceLine" id="cb10-102" data-line-number="102"></a>
+<a class="sourceLine" id="cb10-103" data-line-number="103"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb10-104" data-line-number="104">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb10-105" data-line-number="105">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb10-106" data-line-number="106">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
+<a class="sourceLine" id="cb10-107" data-line-number="107">  <span class="dt">title.size =</span> <span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb10-108" data-line-number="108">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb10-109" data-line-number="109">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
+<a class="sourceLine" id="cb10-110" data-line-number="110">  <span class="dt">caption.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb10-111" data-line-number="111">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
+<a class="sourceLine" id="cb10-112" data-line-number="112">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>),</a>
+<a class="sourceLine" id="cb10-113" data-line-number="113">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-114" data-line-number="114">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb10-115" data-line-number="115">)</a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat8-1.png" width="960"></p>
 <p>As can be seen from this example, combination of <code>purrr</code> and <code>ggstatsplot</code> much more flexibility in analyzing the data and preparing a combined plot across studies or conditions.</p>
 </div>

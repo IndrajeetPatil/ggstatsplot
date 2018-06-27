@@ -7,7 +7,7 @@
 grouped_ggpiestats(grouping.var, title.prefix = "Group", data, main,
   condition = NULL, factor.levels = NULL, stat.title = NULL,
   sample.size.label = TRUE, caption = NULL, nboot = 25,
-  legend.title = NULL, facet.wrap.name = NULL, k = 3,
+  palette = "Dark2", legend.title = NULL, facet.wrap.name = NULL, k = 3,
   facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(), messages = TRUE,
   ...)
 }
@@ -39,6 +39,10 @@ should be displayed for each level of the grouping variable \code{condition} (De
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{25}).}
+
+\item{palette}{If a character string (e.g., \code{"Set1"}), will use that named
+palette. If a number, will index into the list of palettes of appropriate
+type. Default palette is \code{"Dark2"}}
 
 \item{legend.title}{Title of legend.}
 

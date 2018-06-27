@@ -93,7 +93,7 @@
       <h1>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-26</h4>
+            <h4 class="date">2018-06-27</h4>
       
       
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -324,23 +324,29 @@
 <a class="sourceLine" id="cb6-87" data-line-number="87">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
 <a class="sourceLine" id="cb6-88" data-line-number="88">    <span class="dt">xfill =</span> <span class="kw">list</span>(<span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"#999999"</span>, <span class="st">"#0072B2"</span>),</a>
 <a class="sourceLine" id="cb6-89" data-line-number="89">    <span class="dt">yfill =</span> <span class="kw">list</span>(<span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>),</a>
-<a class="sourceLine" id="cb6-90" data-line-number="90">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb6-91" data-line-number="91">  ),</a>
-<a class="sourceLine" id="cb6-92" data-line-number="92">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggscatterstats</a>
-<a class="sourceLine" id="cb6-93" data-line-number="93">)</a>
-<a class="sourceLine" id="cb6-94" data-line-number="94">  </a>
-<a class="sourceLine" id="cb6-95" data-line-number="95"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb6-96" data-line-number="96">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb6-97" data-line-number="97">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb6-98" data-line-number="98">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</a>
-<a class="sourceLine" id="cb6-99" data-line-number="99">  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</a>
-<a class="sourceLine" id="cb6-100" data-line-number="100">  <span class="dt">caption.size =</span> <span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb6-101" data-line-number="101">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb6-102" data-line-number="102">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
-<a class="sourceLine" id="cb6-103" data-line-number="103">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb6-104" data-line-number="104">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-105" data-line-number="105">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>)</a>
-<a class="sourceLine" id="cb6-106" data-line-number="106">)</a></code></pre></div>
+<a class="sourceLine" id="cb6-90" data-line-number="90">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb6-91" data-line-number="91">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb6-92" data-line-number="92">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb6-93" data-line-number="93">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),</a>
+<a class="sourceLine" id="cb6-94" data-line-number="94">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</a>
+<a class="sourceLine" id="cb6-95" data-line-number="95">    ),</a>
+<a class="sourceLine" id="cb6-96" data-line-number="96">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb6-97" data-line-number="97">  ),</a>
+<a class="sourceLine" id="cb6-98" data-line-number="98">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggscatterstats</a>
+<a class="sourceLine" id="cb6-99" data-line-number="99">)</a>
+<a class="sourceLine" id="cb6-100" data-line-number="100">  </a>
+<a class="sourceLine" id="cb6-101" data-line-number="101"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb6-102" data-line-number="102">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb6-103" data-line-number="103">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb6-104" data-line-number="104">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</a>
+<a class="sourceLine" id="cb6-105" data-line-number="105">  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</a>
+<a class="sourceLine" id="cb6-106" data-line-number="106">  <span class="dt">caption.size =</span> <span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb6-107" data-line-number="107">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb6-108" data-line-number="108">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
+<a class="sourceLine" id="cb6-109" data-line-number="109">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb6-110" data-line-number="110">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-111" data-line-number="111">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>)</a>
+<a class="sourceLine" id="cb6-112" data-line-number="112">)</a></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/grouped2-1.png" width="768"></p>
 </div>
 <div id="suggestions" class="section level2">

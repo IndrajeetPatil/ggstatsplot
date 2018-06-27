@@ -212,6 +212,12 @@ plot_list <- purrr::pmap(
     centrality.para = "mean",
     xfill = list("#56B4E9", "#009E73", "#999999", "#0072B2"),
     yfill = list("#D55E00", "#CC79A7", "#F0E442", "#D55E00"),
+    ggtheme = list(
+      ggplot2::theme_grey(),
+      ggplot2::theme_classic(),
+      ggplot2::theme_light(),
+      ggplot2::theme_minimal()
+    ),
     messages = FALSE
   ),
   .f = ggstatsplot::ggscatterstats
@@ -233,4 +239,5 @@ ggstatsplot::combine_plots(
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>

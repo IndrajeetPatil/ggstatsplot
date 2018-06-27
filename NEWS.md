@@ -30,6 +30,9 @@ MINOR CHANGES
     longer displayed for Pearson's *r*.
   - The `legend.title.margin` arguments for `gghistostats` and `ggcorrmat` now
     default to `FALSE`, since `ggplot2 3.0.0` has better legend title margins.
+  - `ggpiestats` now sorts the summary dataframes not by percentages but by the
+    levels of `main` variable. This was done to have the same legends across
+    different levels of a grouping variable in `grouped_ggpiestats`.
 
 # ggstatsplot 0.0.3
 

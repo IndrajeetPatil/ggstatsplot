@@ -143,7 +143,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <pre class="usage"><span class='fu'>grouped_ggpiestats</span>(<span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='no'>data</span>, <span class='no'>main</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>)</pre>
     
@@ -197,6 +197,12 @@ should be displayed for each level of the grouping variable <code>condition</cod
       <th>nboot</th>
       <td><p>Number of bootstrap samples for computing effect size (Default:
 <code>25</code>).</p></td>
+    </tr>
+    <tr>
+      <th>palette</th>
+      <td><p>If a character string (e.g., <code>"Set1"</code>), will use that named
+palette. If a number, will index into the list of palettes of appropriate
+type. Default palette is <code>"Dark2"</code></p></td>
     </tr>
     <tr>
       <th>legend.title</th>

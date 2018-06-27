@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--26-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--27-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -326,7 +326,7 @@ ggstatsplot::ggpiestats(
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
   stat.title = "interaction effect",                  # title for the results from Pearson's chi-squared test
   legend.title = "Transmission",                      # title for the legend
-  factor.levels = c("0 = automatic", "1 = manual"),   # renaming the factor level names for main variable 
+  factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names for 'main' variable 
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
   facet.proptest = FALSE,                             # turning of facetted proportion test results
   caption = expression(                               # text for the caption
