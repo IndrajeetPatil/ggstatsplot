@@ -100,7 +100,6 @@ ggpiestats <-
            messages = TRUE) {
     # ========================================== messages ==================================================================
 
-    new_palette <- palette
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
@@ -506,7 +505,12 @@ ggpiestats <-
       # if there is no value corresponding to one of the levels of the 'main'
       # variable, then no subtitle is needed
       if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
-        proptest_subtitle <- NULL
+        proptest_subtitle <-
+          base::substitute(expr =
+                             paste(italic("n"),
+                                   " = ",
+                                   n),
+                           env = base::list(n = nrow(x = data)))
         # display message
         base::message(cat(
           crayon::red("Warning: "),
