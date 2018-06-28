@@ -23,10 +23,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-The function `ggstatsplot::gghistostats` is meant to provide a
-**publication-ready histogram** with all statistical details included in the
-plot itself. We will see examples of how to use this function in this vignette
-with the `gapminder` dataset.
+The function `ggstatsplot::gghistostats` can be used during **data exploration**
+phase and is also meant to provide an easy way to make **publication-ready
+histogram** with all statistical details included in the plot itself. We will
+see examples of how to use this function in this vignette with the `gapminder`
+dataset.
 
 To begin with, here are some instances where you would want to use
 `gghistostats`-
@@ -228,8 +229,9 @@ ggstatsplot::grouped_gghistostats(
   data = .,                                     # `.` is placeholder for data plugged by %>%
   x = lifeExp,
   xlab = "Life expectancy",
-  title.prefix = "Continent",                 # prefix for the fixed title
-  type = "p",                                   # parametric test
+  title.prefix = "Continent",                   # prefix for the fixed title
+  type = "robust",                              # robust test: one-sample percentile bootstrap
+  robust.estimator = "mom",                     # the modified one-step M-estimator of location
   test.value = 48,                              # test value against which sample mean is to be compared
   test.value.line = TRUE,                       # show a vertical line at `test.value`
   messages = FALSE,                             # turn off messages
@@ -264,14 +266,15 @@ like these, it would be better to use a function like
 So far we have been comparing life expectancy in 2007 for a particular continent
 to the global average from 1957. But what if we want to compare to
 continent-specific life expectancy from 1957
-(<https://ourworldindata.org/life-expectancy>). This is not possible
-`grouped_gghistostats` function, but can be easily achieved with `purrr` package
-from tidyverse.
+(<https://ourworldindata.org/life-expectancy>), or run separate kinds of tests
+(robust for some, parametric for other, while Bayesian for some other levels of
+the group). This is not possible `grouped_gghistostats` function, but can be
+easily achieved with `purrr` package from tidyverse.
 
 **Note before**: Unlike the function call so far, while using `purrr::pmap`, we
 will need to *quote* the arguments.
 
-```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
+```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 10}
 # let's split the dataframe and create a list by continent
 continent_list <- gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007) %>%
@@ -289,6 +292,7 @@ plot_list <- purrr::pmap(
     x = "lifeExp",
     xlab = "Life expectancy",
     test.value = list(35.6, 58.4, 41.6, 64.7, 63.4),
+    type = list("p", "np", "r", "np", "p"),
     title = list(
       "Continent: Africa",
       "Continent: Americas",

@@ -23,10 +23,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-The function `ggstatsplot::ggbetweenstats` is designed with a
-**publication-ready box-violin plot** in mind, with all statistical details
-included in the plot itself. We will see examples of how to use this function in
-this vignette.
+The function `ggstatsplot::ggbetweenstats` is designed not just to facilitate
+**data exploration**, but also for making **publication-ready box-violin plot**,
+with all statistical details included in the plot itself. We will see examples
+of how to use this function in this vignette.
 
 To begin with, here are some instances where you would want to use
 `ggbetweenstats`-
@@ -137,6 +137,7 @@ p1 <- ggstatsplot::ggbetweenstats(
   y = lifeExp,
   plot.type = "box",
   type = "p",
+  title = "parametric test",
   messages = FALSE
 )
 
@@ -147,6 +148,7 @@ p2 <- ggstatsplot::ggbetweenstats(
   y = lifeExp,
   plot.type = "violin",
   type = "np",
+  title = "non-parametric test",
   messages = FALSE
 )
 
@@ -157,6 +159,7 @@ p3 <- ggstatsplot::ggbetweenstats(
   y = gdpPercap,
   plot.type = "boxviolin",
   type = "r",
+  title = "robust test",
   tr = 0.005,
   messages = FALSE
 )

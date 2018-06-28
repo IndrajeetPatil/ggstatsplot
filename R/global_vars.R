@@ -96,7 +96,8 @@ utils::globalVariables(
     "p[chiSq]",
     "value[chiSq]",
     "condition_n_label",
-    "total_n"
+    "total_n",
+    "robust"
   ),
   package = "ggstatsplot",
   add = FALSE

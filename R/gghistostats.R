@@ -20,8 +20,8 @@
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
 #' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
-#'   or `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or `"bf"`,
-#'   respectively.
+#'   or `"robust"` or `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or
+#'   `"r"` or `"bf"`, respectively.
 #' @param test.value A number specifying the value of the null hypothesis.
 #' @param test.value.size Decides size for the vertical line for test value
 #'   (Default: `1.2`).
@@ -32,6 +32,10 @@
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
 #'   of null hypothesis for parametric test if the null hypothesis can't be
 #'   rejected (Default: `bf.message = TRUE`).
+#' @param robust.estimator If `test = "robust"` robust estimator to be used
+#'   (`"onestep"` (Default), `"mom"`, or `"median"`). For more, see
+#'   `?WRS2::onesampb`.
+#' @param nboot Number of bootstrap samples for robust one-sample location test.
 #' @param k Number of decimal places expected for results.
 #' @param low.color,high.color Colors for low and high ends of the gradient.
 #'   Defaults are colorblind-friendly.
@@ -81,6 +85,7 @@
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
 #' @importFrom jmv ttestOneS
+#' @importFrom WRS2 onesampb
 #' @importFrom scales percent
 #' @importFrom crayon green
 #' @importFrom crayon blue
@@ -122,36 +127,38 @@
 # function body
 gghistostats <-
   function(data = NULL,
-             x,
-             binwidth = NULL,
-             bar.measure = "count",
-             xlab = NULL,
-             title = NULL,
-             subtitle = NULL,
-             caption = NULL,
-             type = "parametric",
-             test.value = 0,
-             bf.prior = 0.707,
-             bf.message = TRUE,
-             k = 3,
-             low.color = "#0072B2",
-             high.color = "#D55E00",
-             results.subtitle = TRUE,
-             legend.title.margin = FALSE,
-             t.margin = unit(0, "mm"),
-             b.margin = unit(3, "mm"),
-             centrality.para = NULL,
-             centrality.color = "blue",
-             centrality.size = 1.2,
-             centrality.linetype = "dashed",
-             test.value.line = FALSE,
-             test.value.color = "black",
-             test.value.size = 1.2,
-             test.value.linetype = "dashed",
-             line.labeller = FALSE,
-             line.labeller.y = -2,
+           x,
+           binwidth = NULL,
+           bar.measure = "count",
+           xlab = NULL,
+           title = NULL,
+           subtitle = NULL,
+           caption = NULL,
+           type = "parametric",
+           test.value = 0,
+           bf.prior = 0.707,
+           bf.message = TRUE,
+           robust.estimator = "onestep",
+           nboot = 500,
+           k = 3,
+           low.color = "#0072B2",
+           high.color = "#D55E00",
+           results.subtitle = TRUE,
+           legend.title.margin = FALSE,
+           t.margin = unit(0, "mm"),
+           b.margin = unit(3, "mm"),
+           centrality.para = NULL,
+           centrality.color = "blue",
+           centrality.size = 1.2,
+           centrality.linetype = "dashed",
+           test.value.line = FALSE,
+           test.value.color = "black",
+           test.value.size = 1.2,
+           test.value.linetype = "dashed",
+           line.labeller = FALSE,
+           line.labeller.y = -2,
            ggtheme = ggplot2::theme_bw(),
-             messages = TRUE) {
+           messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
@@ -166,20 +173,16 @@ gghistostats <-
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(
-        .data = data,
-        !!rlang::enquo(x)
-      ))
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(x)))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
       }
       # if dataframe is provided
       data <-
-        dplyr::select(
-          .data = data,
-          x = !!rlang::enquo(x)
-        )
+        dplyr::select(.data = data,
+                      x = !!rlang::enquo(x))
     } else {
       # if vectors are provided
       data <-
@@ -293,6 +296,44 @@ gghistostats <-
             effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[mann]`, k)
           )
         )
+        # ========================================== robust ==================================================================
+      } else if (type == "robust" || type == "r") {
+
+        # running one-sample percentile bootstrap
+        rob_os <- WRS2::onesampb(
+          x = data$x,
+          est = robust.estimator,
+          nboot = nboot,
+          nv = test.value
+        )
+
+        # preparing the subtitle
+        subtitle <- base::substitute(
+          expr =
+            paste(
+              "M"[robust],
+              " = ",
+              estimate,
+              ", 95% CI [",
+              LL,
+              ", ",
+              UL,
+              "], ",
+              italic("p"),
+              " = ",
+              pvalue
+            ),
+          env = base::list(
+            estimate = ggstatsplot::specify_decimal_p(x = rob_os$estimate[[1]], k),
+            LL = ggstatsplot::specify_decimal_p(x = rob_os$ci[[1]], k),
+            UL = ggstatsplot::specify_decimal_p(x = rob_os$ci[[2]], k),
+            pvalue = ggstatsplot::specify_decimal_p(
+              x = rob_os$p.value[[1]],
+              k,
+              p.value = TRUE
+            )
+          )
+        )
         # ========================================== bayes ==================================================================
       } else if (type == "bayes" || type == "bf") {
         # preparing the subtitle
@@ -305,10 +346,10 @@ gghistostats <-
               ") = ",
               estimate,
               ", ",
-              "BF"[10],
-              " = ",
+              "log(BF"[10],
+              ") = ",
               bf,
-              ", error = ",
+              ", log(error) = ",
               bf_error,
               ", ",
               italic("d"),
@@ -319,8 +360,8 @@ gghistostats <-
             # df is integer value for Student's t-test
             df = as.data.frame(jmv_os$ttest)$`df[stud]`,
             estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`stat[stud]`, k),
-            bf = as.data.frame(jmv_os$ttest)$`stat[bf]`,
-            bf_error = as.data.frame(jmv_os$ttest)$`err[bf]`,
+            bf = ggstatsplot::specify_decimal_p(x = log10(x = as.data.frame(jmv_os$ttest)$`stat[bf]`), k = 0),
+            bf_error = ggstatsplot::specify_decimal_p(x = log10(x = as.data.frame(jmv_os$ttest)$`err[bf]`), k = 0),
             effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k)
           )
         )
@@ -358,30 +399,22 @@ gghistostats <-
 
     # preparing the basic layout of the plot based on whether counts or density information is needed
     if (bar.measure == "count") {
-      plot <- ggplot2::ggplot(
-        data = data,
-        mapping = ggplot2::aes(x = x)
-      ) +
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = ggplot2::aes(x = x)) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
           na.rm = TRUE,
-          mapping = ggplot2::aes(
-            y = ..count..,
-            fill = ..count..
-          )
+          mapping = ggplot2::aes(y = ..count..,
+                                 fill = ..count..)
         ) +
-        ggplot2::scale_fill_gradient(
-          name = "count",
-          low = low.color,
-          high = high.color
-        )
+        ggplot2::scale_fill_gradient(name = "count",
+                                     low = low.color,
+                                     high = high.color)
     } else if (bar.measure == "proportion") {
-      plot <- ggplot2::ggplot(
-        data = data,
-        mapping = ggplot2::aes(x = x)
-      ) +
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = ggplot2::aes(x = x)) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
@@ -401,25 +434,19 @@ gghistostats <-
         ggplot2::scale_y_continuous(labels = scales::percent) +
         ggplot2::ylab("relative frequencies")
     } else if (bar.measure == "density") {
-      plot <- ggplot2::ggplot(
-        data = data,
-        mapping = ggplot2::aes(x = x)
-      ) +
+      plot <- ggplot2::ggplot(data = data,
+                              mapping = ggplot2::aes(x = x)) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
           na.rm = TRUE,
-          mapping = ggplot2::aes(
-            y = ..density..,
-            fill = ..density..
-          )
+          mapping = ggplot2::aes(y = ..density..,
+                                 fill = ..density..)
         ) +
-        ggplot2::scale_fill_gradient(
-          name = "density",
-          low = low.color,
-          high = high.color
-        )
+        ggplot2::scale_fill_gradient(name = "density",
+                                     low = low.color,
+                                     high = high.color)
     }
 
     # adding the theme and labels
@@ -518,8 +545,7 @@ gghistostats <-
             if (!is.null(bf.caption)) {
               plot <-
                 ggstatsplot::combine_plots(plot,
-                  caption.text = bf.caption.text
-                )
+                                           caption.text = bf.caption.text)
             }
           }
         }
@@ -528,11 +554,9 @@ gghistostats <-
 
     # creating proper spacing between the legend.title and the colorbar
     if (isTRUE(legend.title.margin)) {
-      plot <- legend_title_margin(
-        plot = plot,
-        t.margin = t.margin,
-        b.margin = b.margin
-      )
+      plot <- legend_title_margin(plot = plot,
+                                  t.margin = t.margin,
+                                  b.margin = b.margin)
     }
 
     # ========================================== messages ==================================================================

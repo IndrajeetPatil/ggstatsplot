@@ -24,15 +24,15 @@ knitr::opts_chunk$set(
 ```
 
 The function `ggstatsplot::ggcorrmat` provides a quick way to produce
-**publication-ready correlation matrix** (aka correlalogram) plot. In addition
-to the plot, it can also be used to get a correlation coefficient matrix or the
-associated p-value matrix. Currently, the plot can display Pearson's *r*,
-Spearman's *rho*, and Kendall's *tau*. Robust correlation coefficient option is
-available only to output coefficients and p-values. The percentage bend
-correlation is used as a robust correlation. Future release will also support
-robust correlation matrix. This function is a convenient wrapper around
-`ggcorrplot` function with some additional functionality, so its documentation
-will be helpful
+**publication-ready correlation matrix** (aka correlalogram) plot. The function
+can also be used for quick **data exploration**. In addition to the plot, it can
+also be used to get a correlation coefficient matrix or the associated p-value
+matrix. Currently, the plot can display Pearson's *r*, Spearman's *rho*, and
+Kendall's *tau*. Robust correlation coefficient option is available only to
+output coefficients and p-values. The percentage bend correlation is used as a
+robust correlation. Future release will also support robust correlation matrix.
+This function is a convenient wrapper around `ggcorrplot` function with some
+additional functionality, so its documentation will be helpful
 (<http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2>).
 
 We will see examples of how to use this function in this vignette with the

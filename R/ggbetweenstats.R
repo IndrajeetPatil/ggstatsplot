@@ -1044,7 +1044,7 @@ ggbetweenstats <- function(data = NULL,
         dplyr::group_by(x) %>%
         dplyr::mutate(n = length(x)) %>%
         dplyr::ungroup(x = .) %>%
-        dplyr::mutate(x = paste0(x, " (n = ", n, ")", sep = "")) %>% # changing character variables into factors
+        dplyr::mutate(x = paste0(x, "\n(n = ", n, ")", sep = "")) %>% # changing character variables into factors
         dplyr::mutate_if(
           .tbl = .,
           .predicate = purrr::is_bare_character,

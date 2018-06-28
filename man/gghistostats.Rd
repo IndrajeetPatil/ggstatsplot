@@ -7,8 +7,8 @@
 gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
   xlab = NULL, title = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = TRUE, k = 3, low.color = "#0072B2",
-  high.color = "#D55E00", results.subtitle = TRUE,
+  bf.message = TRUE, robust.estimator = "onestep", nboot = 500, k = 3,
+  low.color = "#0072B2", high.color = "#D55E00", results.subtitle = TRUE,
   legend.title.margin = FALSE, t.margin = unit(0, "mm"),
   b.margin = unit(3, "mm"), centrality.para = NULL,
   centrality.color = "blue", centrality.size = 1.2,
@@ -45,8 +45,8 @@ from one sample test to be displayed.}
 \item{caption}{The text for the plot caption.}
 
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
-or \code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or \code{"bf"},
-respectively.}
+or \code{"robust"} or \code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or
+\code{"r"} or \code{"bf"}, respectively.}
 
 \item{test.value}{A number specifying the value of the null hypothesis.}
 
@@ -56,6 +56,12 @@ to use in calculating Bayes factors.}
 \item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
 of null hypothesis for parametric test if the null hypothesis can't be
 rejected (Default: \code{bf.message = TRUE}).}
+
+\item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
+(\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
+\code{?WRS2::onesampb}.}
+
+\item{nboot}{Number of bootstrap samples for robust one-sample location test.}
 
 \item{k}{Number of decimal places expected for results.}
 

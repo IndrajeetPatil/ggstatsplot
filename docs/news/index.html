@@ -148,7 +148,12 @@
 <li>The <code>legend.title.margin</code> arguments for <code>gghistostats</code> and <code>ggcorrmat</code> now default to <code>FALSE</code>, since <code>ggplot2 3.0.0</code> has better legend title margins.</li>
 <li>
 <code>ggpiestats</code> now sorts the summary dataframes not by percentages but by the levels of <code>main</code> variable. This was done to have the same legends across different levels of a grouping variable in <code>grouped_ggpiestats</code>.</li>
-<li>To remove cluttered display of results in the subtitle, <code>ggpiestats</code> no longer shows titles for the tests run (these were “Proportion test” and “Chi-Square test”). From the pie charts, it should be obvious to the user or reader what test was run.</li>
+<li>To remove cluttered display of results in the subtitle, <code>ggpiestats</code> no longer shows titles for the tests run (these were “Proportion test” and “Chi-Square test”). From the pie charts, it should be obvious to the user or reader what test was run.
+<ul>
+<li>
+<code>gghistostats</code> also allows running robust version of one-sample test now (One-sample percentile bootstrap).</li>
+</ul>
+</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-3" class="section level1">

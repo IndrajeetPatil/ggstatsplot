@@ -15,8 +15,8 @@
 #'   `main` variable.
 #' @param stat.title Title for the effect being investigated with the chi-square
 #'   test. The default is `NULL`, i.e. no title will be added to describe the
-#'   effect being shown. An exemple of a stat.title will be `"main x
-#'   condition"`.
+#'   effect being shown. An example of a `stat.title` argument will be something
+#'   like `"main x condition"` or `"interaction"`.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param sample.size.label Logical that decides whether sample size information

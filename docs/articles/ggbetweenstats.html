@@ -93,7 +93,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-27</h4>
+            <h4 class="date">2018-06-28</h4>
       
       
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -102,7 +102,7 @@
 
     
     
-<p>The function <code><a href="../reference/ggbetweenstats.html">ggstatsplot::ggbetweenstats</a></code> is designed with a <strong>publication-ready box-violin plot</strong> in mind, with all statistical details included in the plot itself. We will see examples of how to use this function in this vignette.</p>
+<p>The function <code><a href="../reference/ggbetweenstats.html">ggstatsplot::ggbetweenstats</a></code> is designed not just to facilitate <strong>data exploration</strong>, but also for making <strong>publication-ready box-violin plot</strong>, with all statistical details included in the plot itself. We will see examples of how to use this function in this vignette.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggbetweenstats</code>-</p>
 <ul>
 <li>to check if a continuous variable differs between two groups or conditions</li>
@@ -178,41 +178,44 @@
 <a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">y =</span> lifeExp,</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">type =</span> <span class="st">"p"</span>,</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">)</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">x =</span> continent,</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">type =</span> <span class="st">"np"</span>,</a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22">)</a>
-<a class="sourceLine" id="cb4-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co"># robust ANOVA and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
-<a class="sourceLine" id="cb4-27" data-line-number="27">  <span class="dt">x =</span> continent,</a>
-<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">y =</span> gdpPercap,</a>
-<a class="sourceLine" id="cb4-29" data-line-number="29">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
-<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
-<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
-<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-33" data-line-number="33">)</a>
-<a class="sourceLine" id="cb4-34" data-line-number="34"></a>
-<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-36" data-line-number="36">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb4-37" data-line-number="37">  p1, p2, p3, </a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">  <span class="dt">nrow =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb4-39" data-line-number="39">  <span class="dt">ncol =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb4-40" data-line-number="40">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
-<a class="sourceLine" id="cb4-41" data-line-number="41">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy across continents (1987-2007)"</span>,</a>
-<a class="sourceLine" id="cb4-42" data-line-number="42">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, and robust tests"</span>,</a>
-<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb4-45" data-line-number="45">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">title =</span> <span class="st">"parametric test"</span>,</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">)</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">x =</span> continent,</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">type =</span> <span class="st">"np"</span>,</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">title =</span> <span class="st">"non-parametric test"</span>,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">)</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co"># robust ANOVA and boxviolin plot</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">  <span class="dt">x =</span> continent,</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">y =</span> gdpPercap,</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">  <span class="dt">title =</span> <span class="st">"robust test"</span>,</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">)</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="co"># combining the individual plots into a single plot</span></a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">  p1, p2, p3, </a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">  <span class="dt">nrow =</span> <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">  <span class="dt">ncol =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy across continents (1987-2007)"</span>,</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, and robust tests"</span>,</a>
+<a class="sourceLine" id="cb4-46" data-line-number="46">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb4-47" data-line-number="47">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb4-48" data-line-number="48">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="768"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level2">

@@ -25,9 +25,9 @@ knitr::opts_chunk$set(
 
 The function `ggstatsplot::ggscatterstats` is meant to provide a
 **publication-ready scatterplot** with all statistical details included in the
-plot itself to show association between two continuous variables. We will see
-examples of how to use this function in this vignette with the `ggplot2movies`
-dataset.
+plot itself to show association between two continuous variables. This function
+is also helpful during the **data exploration** phase. We will see examples of how
+to use this function in this vignette with the `ggplot2movies` dataset.
 
 To begin with, here are some instances where you would want to use
 `ggscatterstats`-

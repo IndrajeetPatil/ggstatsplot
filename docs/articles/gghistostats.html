@@ -93,7 +93,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-27</h4>
+            <h4 class="date">2018-06-28</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -102,7 +102,7 @@
 
     
     
-<p>The function <code><a href="../reference/gghistostats.html">ggstatsplot::gghistostats</a></code> is meant to provide a <strong>publication-ready histogram</strong> with all statistical details included in the plot itself. We will see examples of how to use this function in this vignette with the <code>gapminder</code> dataset.</p>
+<p>The function <code><a href="../reference/gghistostats.html">ggstatsplot::gghistostats</a></code> can be used during <strong>data exploration</strong> phase and is also meant to provide an easy way to make <strong>publication-ready histogram</strong> with all statistical details included in the plot itself. We will see examples of how to use this function in this vignette with the <code>gapminder</code> dataset.</p>
 <p>To begin with, here are some instances where you would want to use <code>gghistostats</code>-</p>
 <ul>
 <li>to check distribution of a continuous variable</li>
@@ -251,20 +251,21 @@
 <a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">data =</span> .,                                     <span class="co"># `.` is placeholder for data plugged by %&gt;%</span></a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">x =</span> lifeExp,</a>
 <a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="dt">title.prefix =</span> <span class="st">"Continent"</span>,                 <span class="co"># prefix for the fixed title</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9">  <span class="dt">type =</span> <span class="st">"p"</span>,                                   <span class="co"># parametric test</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                     <span class="co"># plotting centrality parameter (mean)</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14">  <span class="dt">grouping.var =</span> continent,                     <span class="co"># grouping variable with multiple levels</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb8-16" data-line-number="16">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
-<a class="sourceLine" id="cb8-17" data-line-number="17">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb8-18" data-line-number="18">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb8-19" data-line-number="19">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb8-20" data-line-number="20">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
-<a class="sourceLine" id="cb8-21" data-line-number="21">)</a></code></pre></div>
+<a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="dt">title.prefix =</span> <span class="st">"Continent"</span>,                   <span class="co"># prefix for the fixed title</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">  <span class="dt">type =</span> <span class="st">"robust"</span>,                              <span class="co"># robust test: one-sample percentile bootstrap</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">  <span class="dt">robust.estimator =</span> <span class="st">"mom"</span>,                     <span class="co"># the modified one-step M-estimator of location</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                     <span class="co"># plotting centrality parameter (mean)</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">  <span class="dt">grouping.var =</span> continent,                     <span class="co"># grouping variable with multiple levels</span></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb8-21" data-line-number="21">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
+<a class="sourceLine" id="cb8-22" data-line-number="22">)</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="960"></p>
 <p>As can be seen from these plots, life expectancy has improved in all continents in 2007 as compared to the global average of 1950. Additionally, we see the benefits of plotting this data separately for each continent. If we look at the standardized effect sizes (Cohen’s <em>d</em>), it is apparent that the biggest improvements in life expectancy outcomes were seen on the continents of Europe, Americas, and Oceania (just one data point is available here), while Asia and Africa exhibit the lowest improvements.</p>
 <p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each continent, this is not possible with <code>grouped_gghistostats</code>. For cases like these, it would be better to use a function like <a href="https://purrr.tidyverse.org/reference/map2.html"><code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code></a>.</p>
@@ -273,7 +274,7 @@
 <h2 class="hasAnchor">
 <a href="#grouped-analysis-with-gghistostats-purrr" class="anchor"></a>Grouped analysis with <code>gghistostats</code> + <code>purrr</code>
 </h2>
-<p>So far we have been comparing life expectancy in 2007 for a particular continent to the global average from 1957. But what if we want to compare to continent-specific life expectancy from 1957 (<a href="https://ourworldindata.org/life-expectancy" class="uri">https://ourworldindata.org/life-expectancy</a>). This is not possible <code>grouped_gghistostats</code> function, but can be easily achieved with <code>purrr</code> package from tidyverse.</p>
+<p>So far we have been comparing life expectancy in 2007 for a particular continent to the global average from 1957. But what if we want to compare to continent-specific life expectancy from 1957 (<a href="https://ourworldindata.org/life-expectancy" class="uri">https://ourworldindata.org/life-expectancy</a>), or run separate kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group). This is not possible <code>grouped_gghistostats</code> function, but can be easily achieved with <code>purrr</code> package from tidyverse.</p>
 <p><strong>Note before</strong>: Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># let's split the dataframe and create a list by continent</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">continent_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
@@ -328,41 +329,42 @@
 <a class="sourceLine" id="cb9-51" data-line-number="51">    <span class="dt">x =</span> <span class="st">"lifeExp"</span>,</a>
 <a class="sourceLine" id="cb9-52" data-line-number="52">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
 <a class="sourceLine" id="cb9-53" data-line-number="53">    <span class="dt">test.value =</span> <span class="kw">list</span>(<span class="fl">35.6</span>, <span class="fl">58.4</span>, <span class="fl">41.6</span>, <span class="fl">64.7</span>, <span class="fl">63.4</span>),</a>
-<a class="sourceLine" id="cb9-54" data-line-number="54">    <span class="dt">title =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb9-55" data-line-number="55">      <span class="st">"Continent: Africa"</span>,</a>
-<a class="sourceLine" id="cb9-56" data-line-number="56">      <span class="st">"Continent: Americas"</span>,</a>
-<a class="sourceLine" id="cb9-57" data-line-number="57">      <span class="st">"Continent: Asia"</span>,</a>
-<a class="sourceLine" id="cb9-58" data-line-number="58">      <span class="st">"Continent: Europe"</span>,</a>
-<a class="sourceLine" id="cb9-59" data-line-number="59">      <span class="st">"Continent: Oceania"</span></a>
-<a class="sourceLine" id="cb9-60" data-line-number="60">    ),</a>
-<a class="sourceLine" id="cb9-61" data-line-number="61">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb9-62" data-line-number="62">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb9-63" data-line-number="63">    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb9-64" data-line-number="64">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
-<a class="sourceLine" id="cb9-65" data-line-number="65">    <span class="dt">centrality.color =</span> <span class="st">"blue"</span>,</a>
-<a class="sourceLine" id="cb9-66" data-line-number="66">    <span class="dt">low.color =</span> <span class="kw">list</span>(<span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"#999999"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>),</a>
-<a class="sourceLine" id="cb9-67" data-line-number="67">    <span class="dt">high.color =</span> <span class="kw">list</span>(<span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#56B4E9"</span>),</a>
-<a class="sourceLine" id="cb9-68" data-line-number="68">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb9-69" data-line-number="69">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb9-70" data-line-number="70">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb9-71" data-line-number="71">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),</a>
-<a class="sourceLine" id="cb9-72" data-line-number="72">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
-<a class="sourceLine" id="cb9-73" data-line-number="73">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>()</a>
-<a class="sourceLine" id="cb9-74" data-line-number="74">    )</a>
-<a class="sourceLine" id="cb9-75" data-line-number="75">  ),</a>
-<a class="sourceLine" id="cb9-76" data-line-number="76">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
-<a class="sourceLine" id="cb9-77" data-line-number="77">)</a>
-<a class="sourceLine" id="cb9-78" data-line-number="78">  </a>
-<a class="sourceLine" id="cb9-79" data-line-number="79"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb9-80" data-line-number="80">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb9-81" data-line-number="81">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb9-82" data-line-number="82">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
-<a class="sourceLine" id="cb9-83" data-line-number="83">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb9-84" data-line-number="84">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb9-85" data-line-number="85">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb9-86" data-line-number="86">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>)</a>
-<a class="sourceLine" id="cb9-87" data-line-number="87">)</a></code></pre></div>
-<p><img src="gghistostats_files/figure-html/grouped2-1.png" width="768"></p>
+<a class="sourceLine" id="cb9-54" data-line-number="54">    <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"r"</span>, <span class="st">"np"</span>, <span class="st">"p"</span>),</a>
+<a class="sourceLine" id="cb9-55" data-line-number="55">    <span class="dt">title =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb9-56" data-line-number="56">      <span class="st">"Continent: Africa"</span>,</a>
+<a class="sourceLine" id="cb9-57" data-line-number="57">      <span class="st">"Continent: Americas"</span>,</a>
+<a class="sourceLine" id="cb9-58" data-line-number="58">      <span class="st">"Continent: Asia"</span>,</a>
+<a class="sourceLine" id="cb9-59" data-line-number="59">      <span class="st">"Continent: Europe"</span>,</a>
+<a class="sourceLine" id="cb9-60" data-line-number="60">      <span class="st">"Continent: Oceania"</span></a>
+<a class="sourceLine" id="cb9-61" data-line-number="61">    ),</a>
+<a class="sourceLine" id="cb9-62" data-line-number="62">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb9-63" data-line-number="63">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb9-64" data-line-number="64">    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb9-65" data-line-number="65">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
+<a class="sourceLine" id="cb9-66" data-line-number="66">    <span class="dt">centrality.color =</span> <span class="st">"blue"</span>,</a>
+<a class="sourceLine" id="cb9-67" data-line-number="67">    <span class="dt">low.color =</span> <span class="kw">list</span>(<span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"#999999"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>),</a>
+<a class="sourceLine" id="cb9-68" data-line-number="68">    <span class="dt">high.color =</span> <span class="kw">list</span>(<span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#56B4E9"</span>),</a>
+<a class="sourceLine" id="cb9-69" data-line-number="69">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb9-70" data-line-number="70">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb9-71" data-line-number="71">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb9-72" data-line-number="72">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),</a>
+<a class="sourceLine" id="cb9-73" data-line-number="73">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
+<a class="sourceLine" id="cb9-74" data-line-number="74">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>()</a>
+<a class="sourceLine" id="cb9-75" data-line-number="75">    )</a>
+<a class="sourceLine" id="cb9-76" data-line-number="76">  ),</a>
+<a class="sourceLine" id="cb9-77" data-line-number="77">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
+<a class="sourceLine" id="cb9-78" data-line-number="78">)</a>
+<a class="sourceLine" id="cb9-79" data-line-number="79">  </a>
+<a class="sourceLine" id="cb9-80" data-line-number="80"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb9-81" data-line-number="81">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb9-82" data-line-number="82">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb9-83" data-line-number="83">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
+<a class="sourceLine" id="cb9-84" data-line-number="84">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb9-85" data-line-number="85">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb9-86" data-line-number="86">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb9-87" data-line-number="87">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>)</a>
+<a class="sourceLine" id="cb9-88" data-line-number="88">)</a></code></pre></div>
+<p><img src="gghistostats_files/figure-html/grouped2-1.png" width="960"></p>
 <p>This shows a much more detailed account of changes in life expectancy as compared to the previous plot. Compared to their respective average life expectancies in 1950’s, the continent that has had the highest improvement is Oceania (Australia and New Zealand), while the continent with the least improvement is Africa (as seen by Cohen’s <em>d</em> values). This again shows the ease with which publication-ready plots or plots for exploratory data analysis can be prepared if <code>ggstatsplot</code> is coupled with a functional programming package like <code>purrr</code>.</p>
 </div>
 <div id="suggestions" class="section level2">

@@ -22,8 +22,8 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-The function `ggstatsplot::ggpiestats` can be used to prepare
-**publication-ready pie charts** to summarize the statistical relationship
+The function `ggstatsplot::ggpiestats` can be used for quick **data exploration** 
+and/or to prepare **publication-ready pie charts** to summarize the statistical relationship
 between two categorical variables. We will see examples of how to use this
 function in this vignette.
 
