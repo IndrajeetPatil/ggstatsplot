@@ -359,7 +359,7 @@ ggstatsplot::gghistostats(
   type = "parametric",               # one sample t-test
   test.value = 3,                    # default value is 0
   centrality.para = "mean",          # which measure of central tendency is to be plotted
-  centrality.color = "darkred",     # decides color of vertical line representing central tendency
+  centrality.color = "darkred",      # decides color of vertical line representing central tendency
   binwidth = 0.10,                   # binwidth value (needs to be toyed around with until you find the best one)
   messages = FALSE                   # turn off the messages
 ) 
@@ -393,29 +393,7 @@ ggstatsplot::gghistostats(
 
 As seen here, by default, Bayes Factor quantifies the support for the
 alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is
-displayed). In case you run parametric t-test and the effect is not
-significant, caption will be displayed containing information about
-evidence in favor of the null hypothesis (H0). This is not recommended,
-but if you want to turn off this behavior, you can use the argument
-`bf.message = FALSE`.
-
-``` r
-ggstatsplot::gghistostats(
-  data = datasets::ToothGrowth,
-  x = len,
-  title = "Distribution of tooth length",
-  centrality.para = "mean",
-  test.value = 20,
-  test.value.line = TRUE,
-  xlab = "Tooth length",
-  caption = expression(                              
-    paste(italic("Note"), ": black line - test value; blue line - observed mean")
-  ),
-  messages = FALSE
-)
-```
-
-<img src="man/figures/README-gghistostats3-1.png" width="100%" />
+displayed).
 
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:

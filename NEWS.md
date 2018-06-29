@@ -37,7 +37,7 @@ MINOR CHANGES
     longer shows titles for the tests run (these were "Proportion test" and
     "Chi-Square test"). From the pie charts, it should be obvious to the user or
     reader what test was run.
-    - `gghistostats` also allows running robust version of one-sample test now
+  - `gghistostats` also allows running robust version of one-sample test now
     (One-sample percentile bootstrap).
 
 # ggstatsplot 0.0.3
