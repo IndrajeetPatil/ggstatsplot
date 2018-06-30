@@ -60,7 +60,10 @@ dplyr::glimpse(x = Titanic)
 Note that the last column in this dataframe contains count information, which
 means we will have to modify it to reflect this count structure. This has
 already been carried out and the final dataset is included in the `ggstatsplot`
-package in `Titanic_full`. Let's have a look at this dataset.
+package in `Titanic_full`. This is not necessary as `ggpiestats` **can** handle
+table structures as well (see examples below).
+
+Let's have a look at this dataset.
 
 ```{r titanic2, warning = FALSE, message = FALSE}
 library(ggstatsplot)
@@ -73,6 +76,10 @@ First, let's see if the proportion of people who survived was different between
 sexes using `ggpiestats`.
 
 ```{r ggpiestats1, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
+# since effect size confidence intervals are computed using bootstrapping, let's
+# set seed for reproducibility
+set.seed(123)
+
 ggstatsplot::ggpiestats(data = ggstatsplot::Titanic_full,
                         condition = Sex,
                         main = Survived) 
@@ -81,10 +88,11 @@ ggstatsplot::ggpiestats(data = ggstatsplot::Titanic_full,
 A number of arguments can be modified to change the appearance of this plot:
 
 ```{r ggpiestats2, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
-library(ggstatsplot)
+# for reproducibility
+set.seed(123)
 
 ggstatsplot::ggpiestats(
-  data = ggstatsplot::Titanic_full,                          # dataframe
+  data = ggstatsplot::Titanic_full,             # dataframe (matrix or table will not be accepted)
   main = Survived,                              # rows in the contingency table
   condition = Sex,                              # columns in the contingecy table
   title = "Passengar survival by gender",       # title for the entire plot
@@ -92,9 +100,10 @@ ggstatsplot::ggpiestats(
   legend.title = "Survived?",                   # legend title
   facet.wrap.name = "Gender",                   # changing the facet wrap title
   facet.proptest = TRUE,                        # proportion test for each facet
-  stat.title = "survival x gender"              # title for statistical test
-) +                                             # further modification outside of ggstatsplot
-  ggplot2::scale_fill_brewer(palette = "Dark2")
+  stat.title = "survival x gender",             # title for statistical test
+  palette = "Set1",                             # changing the color palette
+  ggtheme = ggplot2::theme_classic()            # changing plot theme 
+) 
 ```
 
 As seen from this plot, the Pearson's chi-square test of independence shows that
@@ -108,13 +117,10 @@ independence, a proportion test will be carried out. For example, let's see if
 there were equal proportions of different age groups.
 
 ```{r ggpiestats3, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
-library(ggstatsplot)
-
 ggstatsplot::ggpiestats(
   data = ggstatsplot::Titanic_full,                          
   main = Age
-  ) + 
-  ggplot2::scale_fill_brewer(palette = "Set2")
+)
 ```
 
 As this plot shows there were overwhelmingly more number of adults than children
@@ -136,8 +142,6 @@ into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
 ```{r ggpiestats4, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
-library(ggstatsplot)
-
 ggstatsplot::grouped_ggpiestats(
   # arguments relevant for ggstatsplot::gghistostats
   data = ggstatsplot::Titanic_full,
@@ -164,8 +168,6 @@ were as likely to survive as to perish.
 This will work even if the condition argument is not specified:
 
 ```{r ggpiestats5, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
-library(ggstatsplot)
-
 ggstatsplot::grouped_ggpiestats(
   data = ggstatsplot::Titanic_full,
   main = Age,
@@ -191,7 +193,12 @@ class_list <- ggstatsplot::Titanic_full %>%
   base::split(x = ., f = .$Class, drop = TRUE)
 
 # this created a list with 4 elements, one for each class
-str(class_list)
+# you can check the structure of the file for yourself
+# str(class_list)
+
+# checking the length and names of each element
+length(class_list)
+names(class_list)
 
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to
@@ -242,6 +249,83 @@ As can be appreciated from this example, although `grouped_ggpiestats` provides
 a quick way to explore data, `purrr::pmap` lets us utilize the full
 functionality of this function and `ggplot2`.
 
+## Working with `counts` data
+
+`ggpiestats` can also work with dataframe containing counts (aka tabled data),
+i.e., when each row doesn't correspond to a unique observation. For example,
+consider the following `fishing` dataframe containing data from two boats (`A`
+and `B`) about the number of different types fish they caught in the months of
+`February` and `March`. In this dataframe, each row doesn't equal a unique
+observation. In such cases, we can use `counts` argument. Let's say we want to
+investigate if the frequency of different types of fish caughts differs across
+the two months:
+
+```{r ggpiestats7, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 9}
+# for reproducibility
+set.seed(123)
+
+# creating a dataframe
+# (this is completely fictional; I don't know first thing about fishing!)
+(
+  fishing <- data.frame(
+    Boat = c(rep("B", 4), rep("A", 4), rep("A", 4), rep("B", 4)),
+    Month = c(rep("February", 2), rep("March", 2), rep("February", 2), rep("March", 2)),
+    Fish = c(
+      "Bass",
+      "Catfish",
+      "Cod",
+      "Haddock",
+      "Cod",
+      "Haddock",
+      "Bass",
+      "Catfish",
+      "Bass",
+      "Catfish",
+      "Cod",
+      "Haddock",
+      "Cod",
+      "Haddock",
+      "Bass",
+      "Catfish"
+    ),
+    SumOfCaught = c(25, 20, 35, 40, 40, 25, 30, 42, 40, 30, 33, 26, 100, 30, 20, 20)
+  ) %>% # converting to a tibble dataframe
+    tibble::as_data_frame(x = .)
+)
+
+# running `ggpiestats` with counts information
+ggstatsplot::ggpiestats(
+  data = fishing,
+  main = Fish,
+  condition = Month,
+  counts = SumOfCaught
+)
+
+```
+
+We just verified that the frequency of different types of fish caught differs
+across the two months, but what if we further want to know if this difference is
+present for both boats (since they are fishing in different parts of the sea)?
+For this, we can again utilize `grouped_ggpiestats`:
+
+```{r ggpiestats8, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
+# running the grouped variant of the function
+ggstatsplot::grouped_ggpiestats(
+  data = fishing,
+  main = Fish,
+  condition = Month,
+  counts = SumOfCaught,
+  grouping.var = Boat,
+  title.prefix = "Boat",
+  nrow = 2
+)
+```
+
+As seen from these charts, this difference is found only for the location in
+which the boat B has been fishing. Additionally, facetted proportion tests also
+reveal that all fish are not equally likely to be caught at this location with
+cod being the most frequent fish caught.
+
 ## Within-subjects designs
 
 Variant of this function for within-subjects designs, which will display results
@@ -252,5 +336,6 @@ adding `+ ggplot2::labs(subtitle = NULL)`.
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>
 

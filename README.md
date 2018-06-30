@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--28-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--29-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -145,9 +145,8 @@ In `R`, documentation for any function can be accessed with the standard
 `ggstatsplot` relies on [non-standard
 evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html),
 which means you **shouldn’t** enter arguments in the following manner:
-`data = NULL, x = data$x, y = data$y`. This may work well for most of
-the functions most of the time, but is highly discouraged. You should
-always specify `data` argument for all functions.
+`data = NULL, x = data$x, y = data$y`. You **must** always specify the
+`data` argument for all functions.
 
 Additionally, `ggstatsplot` is a very chatty package and will by default
 output information about references for tests, notes on assumptions
@@ -318,8 +317,6 @@ As with the other functions, this basic plot can further be modified
 with additional arguments:
 
 ``` r
-library(ggplot2)
-
 ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = am,

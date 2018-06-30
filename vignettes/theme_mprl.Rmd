@@ -33,7 +33,7 @@ theme with few aesthetic modifications overlaid on top, that can be used with an
 
 Here is a simple example:
 
-```{r theme_mprl, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 5}
+```{r theme_mprl, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
 library(ggplot2)
 
 # Basic scatter plot

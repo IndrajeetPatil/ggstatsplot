@@ -6,13 +6,15 @@
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data The data as a data frame.
-#' @param main A string naming the variable to use as the **rows** in the
+#' @param data The data as a data frame (matrix or tables will not be accepted).
+#' @param main The variable to use as the **rows** in the
 #'   contingency table.
-#' @param condition A string naming the variable to use as the **columns** in the
-#'   contingency table. This argument is optional (Default: `NULL`). If this
-#'   argument is provided, then Perarson's chi-square test of independence will
-#'   be run. If not, a goodness of fit test will be run on the `main` variable.
+#' @param condition The variable to use as the **columns** in the contingency
+#'   table. This argument is optional (Default: `NULL`). If this argument is
+#'   provided, then Perarson's chi-square test of independence will be run. If
+#'   not, a goodness of fit test will be run on the `main` variable.
+#' @param counts A string naming a variable in data containing counts, or `NULL`
+#'   if each row represents a single observation (Default).
 #' @param ratio A vector of numbers: the expected proportions for the proportion
 #'   test. Default is `NULL`, which means if there are two levels `ratio =
 #'   c(1,1)`, etc.
@@ -90,6 +92,7 @@ ggpiestats <-
   function(data,
            main,
            condition = NULL,
+           counts = NULL,
            ratio = NULL,
            factor.levels = NULL,
            stat.title = NULL,
@@ -104,43 +107,76 @@ ggpiestats <-
            facet.proptest = TRUE,
            ggtheme = ggplot2::theme_bw(),
            messages = TRUE) {
+    #================================= extracting column names as labels  =======================================================
 
-    # ================================= dataframe =======================================================
+    if (base::missing(condition)) {
+      # saving the column label for the 'main' variables
+      if (is.null(legend.title)) {
+        legend.title <-
+          colnames(dplyr::select(.data = data,
+                                 !!rlang::enquo(main)))[1]
+      }
+    } else {
+      # saving the column labels for the 'main' and the 'condition' variables
+      lab.df <- colnames(dplyr::select(.data = data,
+                                       !!rlang::enquo(main),
+                                       !!rlang::enquo(condition)))
+      # if legend title is not provided, use the variable name for 'main' argument
+      if (is.null(legend.title)) {
+        legend.title <- lab.df[1]
+      }
+      # if facetting variable name is not specified, use the variable name for 'condition' argument
+      if (is.null(facet.wrap.name)) {
+        facet.wrap.name <- lab.df[2]
+      }
+    }
 
-      # if condition variables is provided then include it in the dataframe
-      if (base::missing(condition)) {
-        if (is.null(legend.title)) {
-          legend.title <-
-            colnames(dplyr::select(.data = data,
-                                   !!rlang::enquo(main)))[1]
-        }
-        # if condition argument is not provided then only include the 'main' argument in dataframe
+    #================================= dataframe ================================================================================
+
+    # creating a dataframe based on which variables are provided
+    if (base::missing(condition)) {
+      if (base::missing(counts)) {
         data <-
           dplyr::select(.data = data,
-                        main = !!rlang::enquo(main))
+                        main = !!rlang::enquo(main)) %>%
+          tibble::as_data_frame(x = .)
       } else {
-        # preparing labels from given dataframe
-        lab.df <- colnames(dplyr::select(
-          .data = data,
-          !!rlang::enquo(main),
-          !!rlang::enquo(condition)
-        ))
-        # if legend title is not provided, use the variable name for 'main' argument
-        if (is.null(legend.title)) {
-          legend.title <- lab.df[1]
-        }
-        # if facetting variable name is not specified, use the variable name for 'condition' argument
-        if (is.null(facet.wrap.name)) {
-          facet.wrap.name <- lab.df[2]
-        }
-        # if condition variable is provided, then include it in the dataframe
+        data <-
+          dplyr::select(
+            .data = data,
+            main = !!rlang::enquo(main),
+            counts = !!rlang::enquo(counts)
+          ) %>%
+          tibble::as_data_frame(x = .)
+      }
+    } else {
+      if (base::missing(counts)) {
         data <-
           dplyr::select(
             .data = data,
             main = !!rlang::enquo(main),
             condition = !!rlang::quo_name(rlang::enquo(condition))
-          )
+          ) %>%
+          tibble::as_data_frame(x = .)
+      } else {
+        data <-
+          dplyr::select(
+            .data = data,
+            main = !!rlang::enquo(main),
+            condition = !!rlang::quo_name(rlang::enquo(condition)),
+            counts = !!rlang::quo_name(rlang::enquo(counts))
+          ) %>%
+          tibble::as_data_frame(x = .)
       }
+    }
+
+    # ======================================================== converting counts ========================================================
+
+    # untable the dataframe based on the count for each obervation
+    if (!base::missing(counts)) {
+      data %<>% untable(data = ., counts = counts) %>%
+        dplyr::select(.data = ., -counts)
+    }
 
     # ======================================================== percentage dataframe ======================================================
     #
@@ -337,7 +373,11 @@ ggpiestats <-
     # formatting
     p <- p +
       ggplot2::scale_y_continuous(breaks = NULL) +
-      ggplot2::scale_fill_brewer(name = "", labels = unique(legend.labels), palette = palette) +
+      ggplot2::scale_fill_brewer(
+        name = "",
+        labels = unique(legend.labels),
+        palette = palette
+      ) +
       theme_pie(ggtheme = ggtheme) +
       ggplot2::guides(fill = guide_legend(override.aes = list(color = NA))) # remove black diagonal line from legend
 
@@ -477,7 +517,6 @@ ggpiestats <-
           effect = stat.title
         ))
     } else {
-
       # conducting proportion test with jmv::propTestN()
       jmv_prop <- jmv::propTestN(data = data,
                                  var = "main",
@@ -500,7 +539,6 @@ ggpiestats <-
         ))
 
       } else {
-
         # preparing proportion test subtitle for the plot
         proptest_subtitle <-
           base::substitute(

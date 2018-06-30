@@ -287,8 +287,6 @@ As with the other functions, this basic plot can further be modified with
 additional arguments:
 
 ```{r ggpiestats3, message = FALSE, warning = FALSE}
-library(ggplot2)
-
 ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = am,

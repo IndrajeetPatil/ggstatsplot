@@ -56,11 +56,9 @@ grouped_proptest <- function(data,
     }
 
   # getting the dataframe ready
-  df <- dplyr::select(
-    .data = data,
-    !!!grouping.vars,
-    measure = !!rlang::enquo(measure)
-  )
+  df <- dplyr::select(.data = data,
+                      !!!grouping.vars,
+                      measure = !!rlang::enquo(measure))
 
   # creating a nested dataframe
   df_nest <- df %>%
@@ -73,7 +71,7 @@ grouped_proptest <- function(data,
       .data = .,
       percentage = data %>% purrr::map(
         .x = .,
-        .f = ~dplyr::group_by(.data = ., measure) %>%
+        .f = ~ dplyr::group_by(.data = ., measure) %>%
           dplyr::summarize(.data = ., counts = length(measure)) %>%
           dplyr::mutate(
             .data = .,
@@ -89,32 +87,28 @@ grouped_proptest <- function(data,
           )
       )
     ) %>%
-    dplyr::mutate(
-      .data = .,
-      chi_sq = data %>% purrr::map(
-        .x = .,
-        .f = ~stats::chisq.test(x = base::table(.$measure))
-      )
-    ) %>%
+    dplyr::mutate(.data = .,
+                  chi_sq = data %>% purrr::map(
+                    .x = .,
+                    .f = ~ stats::chisq.test(x = base::table(.$measure))
+                  )) %>%
     dplyr::mutate(
       .data = .,
       results = chi_sq %>% purrr::map(
         .x = .,
         .f = ~
-        base::cbind.data.frame(
-          "Chi-squared" = as.numeric(as.character(
-            ggstatsplot::specify_decimal_p(x = .$statistic, k = 3)
-          )),
-          "df" = as.numeric(as.character(
-            ggstatsplot::specify_decimal_p(x = .$parameter, k = 0)
-          )),
-          "p-value" = as.numeric(as.character(
-            ggstatsplot::specify_decimal_p(
-              x = .$p.value,
-              k = 3
-            )
-          ))
-        )
+          base::cbind.data.frame(
+            "Chi-squared" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(x = .$statistic, k = 3)
+            )),
+            "df" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(x = .$parameter, k = 0)
+            )),
+            "p-value" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(x = .$p.value,
+                                             k = 3)
+            ))
+          )
       )
     ) %>%
     dplyr::select(.data = ., -data, -chi_sq) %>%
@@ -178,19 +172,15 @@ grouped_proptest <- function(data,
 
 signif_column <- function(data = NULL, p) {
   # storing variable name to be assigned later
-  p_lab <- colnames(dplyr::select(
-    .data = data,
-    !!rlang::enquo(p)
-  ))
+  p_lab <- colnames(dplyr::select(.data = data,
+                                  !!rlang::enquo(p)))
   # if dataframe is provided
   if (!is.null(data)) {
     df <-
-      dplyr::select(
-        .data = data,
-        # column corresponding to p-values
-        p = !!rlang::enquo(p),
-        dplyr::everything()
-      )
+      dplyr::select(.data = data,
+                    # column corresponding to p-values
+                    p = !!rlang::enquo(p),
+                    dplyr::everything())
   } else {
     # if only vector is provided
     df <-
@@ -250,10 +240,8 @@ signif_column <- function(data = NULL, p) {
 # defining function to detect outliers
 check_outlier <- function(var, coef) {
   # compute the quantiles
-  quantiles <- stats::quantile(
-    x = var,
-    probs = c(0.25, 0.75)
-  )
+  quantiles <- stats::quantile(x = var,
+                               probs = c(0.25, 0.75))
 
   # compute the interquartile range
   IQR <- quantiles[2] - quantiles[1]
@@ -261,8 +249,56 @@ check_outlier <- function(var, coef) {
   # check for outlier and output a logical
   res <-
     ((var < (quantiles[1] - coef * IQR)) |
-      (var > (quantiles[2] + coef * IQR)))
+       (var > (quantiles[2] + coef * IQR)))
 
   # return the result
   return(res)
+}
+
+#' @title Untable a dataset
+#' @name untable
+#' @description Given a tabulated dataset, this will untabulate it by repeating
+#'   each row by the number of times it was repeated.
+#'
+#' @param data A data.frame to untable.
+#' @param counts A column containing counts.
+#'
+#' @importFrom purrr map_dfr
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr everything
+#' @importFrom tibble rowid_to_column
+#' @importFrom rlang enquo
+#'
+#' @examples
+#' # untable(data = tibble::as_data_frame(datasets::Titanic), counts = n)
+#'
+#' @keywords internal
+#'
+
+untable <- function(data, counts) {
+  # creating a dataframe
+  data <-
+    dplyr::select(.data = data,
+                  counts = !!rlang::enquo(counts),
+                  dplyr::everything())
+
+  # a custom function to repeat dataframe `rep` number of times, which is going to
+  # be count data for us
+  rep_df <- function(df, rep) {
+    df[base::rep(x = 1:nrow(df), times = rep), ]
+  }
+
+  # converting dataframe to full length based on count information
+  data %<>% tibble::as_data_frame(.) %>%
+    tibble::rowid_to_column(df = ., var = "id") %>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = dplyr::vars("id"),
+      .funs = ~ as.factor(.)
+    ) %>%
+    base::split(x = ., f = .$id) %>%
+    purrr::map_dfr(.x = ., .f = ~ rep_df(df = ., rep = .$counts))
+
+  # returned the expanded dataset
+  return(data)
 }

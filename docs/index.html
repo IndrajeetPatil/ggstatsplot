@@ -281,23 +281,21 @@
 <a class="sourceLine" id="cb12-10" data-line-number="10"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Set1"</span>)     </a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
 <p>As with the other functions, this basic plot can further be modified with additional arguments:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">  <span class="dt">data =</span> datasets<span class="op">::</span>mtcars,</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">  <span class="dt">main =</span> am,</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="dt">condition =</span> cyl,</a>
-<a class="sourceLine" id="cb13-7" data-line-number="7">  <span class="dt">title =</span> <span class="st">"Dataset: Motor Trend Car Road Tests"</span>,      <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8">  <span class="dt">stat.title =</span> <span class="st">"interaction effect"</span>,                  <span class="co"># title for the results from Pearson's chi-squared test</span></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9">  <span class="dt">legend.title =</span> <span class="st">"Transmission"</span>,                      <span class="co"># title for the legend</span></a>
-<a class="sourceLine" id="cb13-10" data-line-number="10">  <span class="dt">factor.levels =</span> <span class="kw">c</span>(<span class="st">"1 = manual"</span>, <span class="st">"0 = automatic"</span>),   <span class="co"># renaming the factor level names for 'main' variable </span></a>
-<a class="sourceLine" id="cb13-11" data-line-number="11">  <span class="dt">facet.wrap.name =</span> <span class="st">"No. of cylinders"</span>,               <span class="co"># name for the facetting variable</span></a>
-<a class="sourceLine" id="cb13-12" data-line-number="12">  <span class="dt">facet.proptest =</span> <span class="ot">FALSE</span>,                             <span class="co"># turning of facetted proportion test results</span></a>
-<a class="sourceLine" id="cb13-13" data-line-number="13">  <span class="dt">caption =</span> <span class="kw">expression</span>(                               <span class="co"># text for the caption</span></a>
-<a class="sourceLine" id="cb13-14" data-line-number="14">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": this is a demo"</span>)</a>
-<a class="sourceLine" id="cb13-15" data-line-number="15">  ),</a>
-<a class="sourceLine" id="cb13-16" data-line-number="16">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
-<a class="sourceLine" id="cb13-17" data-line-number="17">) </a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>mtcars,</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">  <span class="dt">main =</span> am,</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">  <span class="dt">condition =</span> cyl,</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">  <span class="dt">title =</span> <span class="st">"Dataset: Motor Trend Car Road Tests"</span>,      <span class="co"># title for the plot</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="dt">stat.title =</span> <span class="st">"interaction effect"</span>,                  <span class="co"># title for the results from Pearson's chi-squared test</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">  <span class="dt">legend.title =</span> <span class="st">"Transmission"</span>,                      <span class="co"># title for the legend</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">  <span class="dt">factor.levels =</span> <span class="kw">c</span>(<span class="st">"1 = manual"</span>, <span class="st">"0 = automatic"</span>),   <span class="co"># renaming the factor level names for 'main' variable </span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">  <span class="dt">facet.wrap.name =</span> <span class="st">"No. of cylinders"</span>,               <span class="co"># name for the facetting variable</span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">  <span class="dt">facet.proptest =</span> <span class="ot">FALSE</span>,                             <span class="co"># turning of facetted proportion test results</span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11">  <span class="dt">caption =</span> <span class="kw">expression</span>(                               <span class="co"># text for the caption</span></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": this is a demo"</span>)</a>
+<a class="sourceLine" id="cb13-13" data-line-number="13">  ),</a>
+<a class="sourceLine" id="cb13-14" data-line-number="14">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
 <p>For more, including information about the variant of this function <code>grouped_ggpiestats</code>, see the <code>ggpiestats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html</a></p>
 <ul>

@@ -272,7 +272,12 @@ year_list <- gapminder::gapminder %>%
   base::split(x = ., f = .$year, drop = TRUE)
 
 # this created a list with 4 elements, one for each mpaa rating
-str(year_list)
+# you can check the structure of the file for yourself
+# str(year_list)
+
+# checking the length and names of each element
+length(year_list)
+names(year_list)
 
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to

@@ -4,22 +4,25 @@
 \alias{ggpiestats}
 \title{Pie charts with statistical tests}
 \usage{
-ggpiestats(data, main, condition = NULL, ratio = NULL,
+ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   factor.levels = NULL, stat.title = NULL, sample.size.label = TRUE,
   title = NULL, caption = NULL, nboot = 25, palette = "Dark2",
   legend.title = NULL, facet.wrap.name = NULL, k = 3,
   facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(), messages = TRUE)
 }
 \arguments{
-\item{data}{The data as a data frame.}
+\item{data}{The data as a data frame (matrix or tables will not be accepted).}
 
-\item{main}{A string naming the variable to use as the \strong{rows} in the
+\item{main}{The variable to use as the \strong{rows} in the
 contingency table.}
 
-\item{condition}{A string naming the variable to use as the \strong{columns} in the
-contingency table. This argument is optional (Default: \code{NULL}). If this
-argument is provided, then Perarson's chi-square test of independence will
-be run. If not, a goodness of fit test will be run on the \code{main} variable.}
+\item{condition}{The variable to use as the \strong{columns} in the contingency
+table. This argument is optional (Default: \code{NULL}). If this argument is
+provided, then Perarson's chi-square test of independence will be run. If
+not, a goodness of fit test will be run on the \code{main} variable.}
+
+\item{counts}{A string naming a variable in data containing counts, or \code{NULL}
+if each row represents a single observation (Default).}
 
 \item{ratio}{A vector of numbers: the expected proportions for the proportion
 test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}

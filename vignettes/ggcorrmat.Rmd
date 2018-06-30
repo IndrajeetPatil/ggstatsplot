@@ -271,7 +271,12 @@ cut_list <- ggplot2::diamonds %>%
   base::split(x = ., f = .$cut, drop = TRUE)
 
 # this created a list with 5 elements, one for each quality of cut
-str(cut_list)
+# you can check the structure of the file for yourself
+# str(cut_list)
+
+# checking the length and names of each element
+length(cut_list)
+names(cut_list)
 
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to

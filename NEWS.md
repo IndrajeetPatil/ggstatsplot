@@ -19,7 +19,8 @@ MAJOR CHANGES
 MINOR CHANGES
 
   - Switched back to Shapiro-Wilk test of normality to remove `nortest` from
-    imports. 
+    imports.
+  - `ggpiestats` can now handle dataframes with 
   - `ggbetweenstats` and `ggpiestats` now display sample sizes for each level of
     the groping factor by default. This behavior can be turned off by setting
     `sample.size.label` to `FALSE`.

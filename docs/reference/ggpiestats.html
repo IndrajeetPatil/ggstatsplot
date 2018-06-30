@@ -138,7 +138,7 @@ included in the plot as a subtitle.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggpiestats</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>ggpiestats</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
@@ -149,19 +149,24 @@ included in the plot as a subtitle.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>The data as a data frame.</p></td>
+      <td><p>The data as a data frame (matrix or tables will not be accepted).</p></td>
     </tr>
     <tr>
       <th>main</th>
-      <td><p>A string naming the variable to use as the <strong>rows</strong> in the
+      <td><p>The variable to use as the <strong>rows</strong> in the
 contingency table.</p></td>
     </tr>
     <tr>
       <th>condition</th>
-      <td><p>A string naming the variable to use as the <strong>columns</strong> in the
-contingency table. This argument is optional (Default: <code>NULL</code>). If this
-argument is provided, then Perarson's chi-square test of independence will
-be run. If not, a goodness of fit test will be run on the <code>main</code> variable.</p></td>
+      <td><p>The variable to use as the <strong>columns</strong> in the contingency
+table. This argument is optional (Default: <code>NULL</code>). If this argument is
+provided, then Perarson's chi-square test of independence will be run. If
+not, a goodness of fit test will be run on the <code>main</code> variable.</p></td>
+    </tr>
+    <tr>
+      <th>counts</th>
+      <td><p>A string naming a variable in data containing counts, or <code>NULL</code>
+if each row represents a single observation (Default).</p></td>
     </tr>
     <tr>
       <th>ratio</th>
