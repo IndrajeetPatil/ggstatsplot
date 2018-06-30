@@ -143,8 +143,8 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_ggcorrmat</span>(<span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='no'>data</span>, <span class='no'>cor.vars</span>,
-  <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
+    <pre class="usage"><span class='fu'>grouped_ggcorrmat</span>(<span class='no'>data</span>, <span class='no'>cor.vars</span>, <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>grouping.var</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"square"</span>, <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>continuity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -162,15 +162,6 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>grouping.var</th>
-      <td><p>Grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>title.prefix</th>
-      <td><p>Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
-    </tr>
-    <tr>
       <th>data</th>
       <td><p>Dataframe from which variables specified are preferentially to be
 taken.</p></td>
@@ -184,6 +175,15 @@ computed and visualized.</p></td>
       <th>cor.vars.names</th>
       <td><p>Optional list of names to be used for <code>cor.vars</code>. The
 names should be entered in the same order.</p></td>
+    </tr>
+    <tr>
+      <th>grouping.var</th>
+      <td><p>Grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>title.prefix</th>
+      <td><p>Character specifying the prefix text for the fixed plot
+title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
     </tr>
     <tr>
       <th>output</th>

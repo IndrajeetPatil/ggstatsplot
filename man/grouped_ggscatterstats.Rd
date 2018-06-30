@@ -5,7 +5,7 @@
 \title{Scatterplot with marginal distributions for all levels of a grouping
 variable}
 \usage{
-grouped_ggscatterstats(grouping.var, title.prefix = "Group", data, x, y,
+grouped_ggscatterstats(data, x, y, grouping.var, title.prefix = "Group",
   xlab = NULL, ylab = NULL, line.size = 1.5, line.color = "blue",
   marginal = TRUE, marginal.type = "histogram", marginal.size = 5,
   margins = c("both", "x", "y"), width.jitter = NULL,
@@ -16,17 +16,17 @@ grouped_ggscatterstats(grouping.var, title.prefix = "Group", data, x, y,
   messages = TRUE, ...)
 }
 \arguments{
-\item{grouping.var}{Grouping variable.}
-
-\item{title.prefix}{Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: \code{"Group"}).}
-
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
 
 \item{x}{A vector containing the explanatory variable.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
+
+\item{grouping.var}{Grouping variable.}
+
+\item{title.prefix}{Character specifying the prefix text for the fixed plot
+title (name of each factor level) (Default: \code{"Group"}).}
 
 \item{xlab}{Label for \code{x} axis variable.}
 

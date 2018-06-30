@@ -99,7 +99,7 @@
 
 # defining the function
 ggscatterstats <-
-  function(data = NULL,
+  function(data,
            x,
            y,
            xlab = NULL,
@@ -125,38 +125,26 @@ ggscatterstats <-
            axes.range.restrict = FALSE,
            ggtheme = ggplot2::theme_bw(),
            messages = TRUE) {
-    # if data is not available then don't display any messages
-    if (is.null(data)) {
-      messages <- FALSE
-    }
     ################################################### dataframe ####################################################
-    # preparing a dataframe out of provided inputs
-    if (!is.null(data)) {
-      # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(.data = data,
-                                       !!rlang::enquo(x),
-                                       !!rlang::enquo(y)))
-      # if xlab is not provided, use the variable x name
-      if (is.null(xlab)) {
-        xlab <- lab.df[1]
-      }
-      # if ylab is not provided, use the variable y name
-      if (is.null(ylab)) {
-        ylab <- lab.df[2]
-      }
-      # if dataframe is provided
-      data <-
-        dplyr::select(
-          .data = data,
-          x = !!rlang::enquo(x),
-          y = !!rlang::enquo(y)
-        )
-    } else {
-      # if vectors are provided
-      data <-
-        base::cbind.data.frame(x = x,
-                               y = y)
+
+    lab.df <- colnames(dplyr::select(.data = data,
+                                     !!rlang::enquo(x),
+                                     !!rlang::enquo(y)))
+    # if xlab is not provided, use the variable x name
+    if (is.null(xlab)) {
+      xlab <- lab.df[1]
     }
+    # if ylab is not provided, use the variable y name
+    if (is.null(ylab)) {
+      ylab <- lab.df[2]
+    }
+    # if dataframe is provided
+    data <-
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x),
+        y = !!rlang::enquo(y)
+      )
 
     ######################################## statistical labels ######################################################
 
@@ -271,7 +259,6 @@ ggscatterstats <-
           )
         ################################################### robust ##################################################
       } else if (type == "robust" || type == "r") {
-
         # running robust correlation
         rob_res <- robcor_ci(
           data = data,
@@ -434,7 +421,7 @@ ggscatterstats <-
       base::message(cat(
         crayon::red("Warning:"),
         crayon::blue(
-          "This function doesn't return ggplot2 object and is not further modifiable with ggplot2 commands."
+          "This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions."
         )
       ))
     }

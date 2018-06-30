@@ -93,7 +93,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-28</h4>
+            <h4 class="date">2018-06-29</h4>
       
       
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -200,11 +200,12 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,                          </a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">main =</span> Age,</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">grouping.var =</span> Class</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">  ) </a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; Warning:  Proportion test will not be run because it requires Age to have at least 2 levels with non-zero frequencies.</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">grouping.var =</span> Class,</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">  <span class="dt">title.prefix =</span> <span class="st">"Passenger Class"</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">) </a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; Warning:  Proportion test will not be run because it requires Age to have at least 2 levels with non-zero frequencies.</span></a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats5-1.png" width="960"></p>
 </div>
 <div id="grouped-analysis-with-ggpiestats-purrr" class="section level2">

@@ -143,7 +143,7 @@ subtitle.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_ggscatterstats</span>(<span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>,
+    <pre class="usage"><span class='fu'>grouped_ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
   <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -157,15 +157,6 @@ subtitle.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>grouping.var</th>
-      <td><p>Grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>title.prefix</th>
-      <td><p>Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
-    </tr>
-    <tr>
       <th>data</th>
       <td><p>Dataframe from which variables specified are preferentially to be
 taken.</p></td>
@@ -177,6 +168,15 @@ taken.</p></td>
     <tr>
       <th>y</th>
       <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>grouping.var</th>
+      <td><p>Grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>title.prefix</th>
+      <td><p>Character specifying the prefix text for the fixed plot
+title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
     </tr>
     <tr>
       <th>xlab</th>

@@ -49,10 +49,10 @@
 #'
 
 # defining the function
-grouped_gghistostats <- function(grouping.var,
-                                 title.prefix = "Group",
-                                 data,
+grouped_gghistostats <- function(data,
                                  x,
+                                 grouping.var,
+                                 title.prefix = "Group",
                                  bar.measure = "count",
                                  xlab = NULL,
                                  subtitle = NULL,

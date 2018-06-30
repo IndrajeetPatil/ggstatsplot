@@ -61,9 +61,15 @@ significantly across five continents.
 
 The simplest form of the function call is-
 ```{r ggbetweenstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+# loading the necessary libraries
 library(ggstatsplot)
 library(gapminder)
 
+# since the confidence intervals for the effect sizes are computed using
+# bootstrapping, important to set a seed for reproducibility
+set.seed(123)
+
+# function call
 ggstatsplot::ggbetweenstats(
   data = dplyr::filter(.data = gapminder, year == 2007),
   x = continent,
@@ -83,6 +89,8 @@ arguments-
 ```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 library(ggstatsplot)
 library(gapminder)
+
+set.seed(123)
 
 ggstatsplot::ggbetweenstats(
   data = dplyr::filter(.data = gapminder, year == 2007),      # dataframe
@@ -129,6 +137,8 @@ For example,
 ```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(ggstatsplot)
 library(gapminder)
+
+set.seed(123)
 
 # parametric ANOVA and box plot
 p1 <- ggstatsplot::ggbetweenstats(
@@ -196,6 +206,8 @@ Let's focus on the following years to see these changes for every 10
 years: 1957, 1967, 1977, 1987, 1997, 2007. 
 
 ```{r grouped1, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 7}
+set.seed(123)
+
 ggstatsplot::grouped_ggbetweenstats(
   # arguments relevant for ggstatsplot::ggbetweenstats
   data = dplyr::filter(
@@ -244,6 +256,8 @@ will need to *quote* the arguments.
 
 
 ```{r grouped2, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 7}
+set.seed(123)
+
 # let's split the dataframe and create a list by years of interest
 year_list <- gapminder::gapminder %>%
   dplyr::filter(

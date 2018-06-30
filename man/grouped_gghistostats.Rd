@@ -4,7 +4,7 @@
 \alias{grouped_gghistostats}
 \title{Grouped histograms for distribution of a numeric variable}
 \usage{
-grouped_gghistostats(grouping.var, title.prefix = "Group", data, x,
+grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
   bar.measure = "count", xlab = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = TRUE, robust.estimator = "onestep", nboot = 500, k = 3,
@@ -19,15 +19,15 @@ grouped_gghistostats(grouping.var, title.prefix = "Group", data, x,
   messages = TRUE, ...)
 }
 \arguments{
+\item{data}{Dataframe from which variables specified are preferentially to be
+taken. This argument is optional.}
+
+\item{x}{A numeric variable.}
+
 \item{grouping.var}{Grouping variable.}
 
 \item{title.prefix}{Character specifying the prefix text for the fixed plot
 title (name of each factor level) (Default: \code{"Group"}).}
-
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
-
-\item{x}{A numeric variable.}
 
 \item{bar.measure}{Character describing what value needs to be represented as
 height in the bar chart. This can either be \code{"count"}, which shows number

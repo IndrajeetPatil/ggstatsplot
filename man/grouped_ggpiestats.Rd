@@ -4,26 +4,31 @@
 \alias{grouped_ggpiestats}
 \title{Grouped pie charts with statistical tests}
 \usage{
-grouped_ggpiestats(grouping.var, title.prefix = "Group", data, main,
-  condition = NULL, factor.levels = NULL, stat.title = NULL,
-  sample.size.label = TRUE, caption = NULL, nboot = 25,
-  palette = "Dark2", legend.title = NULL, facet.wrap.name = NULL, k = 3,
-  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(), messages = TRUE,
-  ...)
+grouped_ggpiestats(data, main, condition = NULL, grouping.var,
+  title.prefix = "Group", ratio = NULL, factor.levels = NULL,
+  stat.title = NULL, sample.size.label = TRUE, caption = NULL,
+  nboot = 25, palette = "Dark2", legend.title = NULL,
+  facet.wrap.name = NULL, k = 3, facet.proptest = TRUE,
+  ggtheme = ggplot2::theme_bw(), messages = TRUE, ...)
 }
 \arguments{
+\item{data}{The data as a data frame.}
+
+\item{main}{A string naming the variable to use as the \strong{rows} in the
+contingency table.}
+
+\item{condition}{A string naming the variable to use as the \strong{columns} in the
+contingency table. This argument is optional (Default: \code{NULL}). If this
+argument is provided, then Perarson's chi-square test of independence will
+be run. If not, a goodness of fit test will be run on the \code{main} variable.}
+
 \item{grouping.var}{Grouping variable.}
 
 \item{title.prefix}{Character specifying the prefix text for the fixed plot
 title (name of each factor level) (Default: \code{"Group"}).}
 
-\item{data}{The data as a data frame.}
-
-\item{main}{A string naming the variable to use as the rows in the
-contingency table.}
-
-\item{condition}{A string naming the variable to use as the columns in the
-contingency table.}
+\item{ratio}{A vector of numbers: the expected proportions for the proportion
+test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
 
 \item{factor.levels}{A character vector with labels for factor levels of
 \code{main} variable.}

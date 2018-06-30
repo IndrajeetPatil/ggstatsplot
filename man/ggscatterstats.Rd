@@ -4,14 +4,14 @@
 \alias{ggscatterstats}
 \title{Scatterplot with marginal distributions}
 \usage{
-ggscatterstats(data = NULL, x, y, xlab = NULL, ylab = NULL,
-  line.size = 1.5, line.color = "blue", marginal = TRUE,
-  marginal.type = "histogram", marginal.size = 5, margins = c("both", "x",
-  "y"), width.jitter = NULL, height.jitter = NULL, xfill = "#009E73",
-  yfill = "#D55E00", centrality.para = NULL, type = "pearson",
-  results.subtitle = NULL, title = NULL, caption = NULL, nboot = 100,
-  beta = 0.1, k = 3, axes.range.restrict = FALSE,
-  ggtheme = ggplot2::theme_bw(), messages = TRUE)
+ggscatterstats(data, x, y, xlab = NULL, ylab = NULL, line.size = 1.5,
+  line.color = "blue", marginal = TRUE, marginal.type = "histogram",
+  marginal.size = 5, margins = c("both", "x", "y"), width.jitter = NULL,
+  height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00",
+  centrality.para = NULL, type = "pearson", results.subtitle = NULL,
+  title = NULL, caption = NULL, nboot = 100, beta = 0.1, k = 3,
+  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be

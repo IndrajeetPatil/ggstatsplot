@@ -19,7 +19,7 @@ gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+taken. This argument is optional.}
 
 \item{x}{A numeric variable.}
 

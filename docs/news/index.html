@@ -135,6 +135,7 @@
 <li>New function: <code>ggcoefstats</code> for displaying model coefficients.</li>
 <li>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</li>
 <li>The robust correlation is no longer <code><a href="http://www.rdocumentation.org/packages/MASS/topics/rlm">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="http://www.rdocumentation.org/packages/WRS2/topics/pbcor">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</li>
+<li>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -167,7 +168,7 @@
 <li>
 <code>grouped_</code> variants of functions <code>ggcorrmat</code>, <code>ggscatterstats</code>, <code>ggbetweenstats</code>, and <code>ggpiestats</code> introduced to create multiple plots for different levels of a grouping variable.</li>
 </ul>
-<p>BREAKING FEATURES</p>
+<p>MAJOR CHANGES</p>
 <ul>
 <li>To be internally consistent, all functions in <code>ggstatsplot</code> use the spelling <code>color</code>, rather than <code>colour</code> in some functions, while <code>color</code> in others.</li>
 <li>Removed the redundant argument <code>binwidth.adjust</code> from <code>gghistostats</code> function. This argument was relevant for the first avatar of this fucntion, but is no longer playing any role.</li>

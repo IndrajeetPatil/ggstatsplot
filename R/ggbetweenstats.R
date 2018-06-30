@@ -156,7 +156,7 @@
 #'
 
 # defining the function
-ggbetweenstats <- function(data = NULL,
+ggbetweenstats <- function(data,
                            x,
                            y,
                            plot.type = "boxviolin",
@@ -189,63 +189,43 @@ ggbetweenstats <- function(data = NULL,
                            point.jitter.width = NULL,
                            point.jitter.height = 0.1,
                            point.dodge.width = 0.60,
-                           messages = TRUE
-                           ) {
-  # if data is not available then don't display any messages
-  if (is.null(data)) {
-    messages <- FALSE
-  }
+                           messages = TRUE) {
   ####################################### creating a dataframe #################################################
-  # if dataframe is provided
-  if (!is.null(data)) {
-    # preparing labels from given dataframe
-    lab.df <- colnames(dplyr::select(.data = data,
-                                     !!rlang::enquo(x),
-                                     !!rlang::enquo(y)))
-    # if xlab is not provided, use the variable x name
-    if (is.null(xlab)) {
-      xlab <- lab.df[1]
-    }
-    # if ylab is not provided, use the variable y name
-    if (is.null(ylab)) {
-      ylab <- lab.df[2]
-    }
-    # if outlier label is provided then include it in the dataframe
-    if (base::missing(outlier.label)) {
-      # if outlier label is not provided then only include the two arguments provided
-      data <-
-        dplyr::select(
-          .data = data,
-          x = !!rlang::enquo(x),
-          y = !!rlang::enquo(y)
-        ) %>%
-        dplyr::mutate(.data = .,
-                      outlier.label = y)
-    } else {
-      # if outlier label is provided then include it to make a dataframe
-      data <-
-        dplyr::select(
-          .data = data,
-          x = !!rlang::enquo(x),
-          y = !!rlang::enquo(y),
-          outlier.label = !!rlang::quo_name(rlang::enquo(outlier.label))
-        )
-    }
-  } else {
-    if (!is.null(outlier.label)) {
-      # if vectors are provided and outlier label vector is present
-      data <-
-        base::cbind.data.frame(x = x,
-                               y = y,
-                               outlier.label = outlier.label)
-    } else {
-      # if outlier label vector is absent
-      data <-
-        base::cbind.data.frame(x = x,
-                               y = y)
-    }
+
+  # preparing labels from given dataframe
+  lab.df <- colnames(dplyr::select(.data = data,
+                                   !!rlang::enquo(x),
+                                   !!rlang::enquo(y)))
+  # if xlab is not provided, use the variable x name
+  if (is.null(xlab)) {
+    xlab <- lab.df[1]
   }
-  # x needs to be a factor for group or condition comparison
+  # if ylab is not provided, use the variable y name
+  if (is.null(ylab)) {
+    ylab <- lab.df[2]
+  }
+  # if outlier label is provided then include it in the dataframe
+  if (base::missing(outlier.label)) {
+    # if outlier label is not provided then only include the two arguments provided
+    data <-
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x),
+        y = !!rlang::enquo(y)
+      ) %>%
+      dplyr::mutate(.data = .,
+                    outlier.label = y)
+  } else {
+    # if outlier label is provided then include it to make a dataframe
+    data <-
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x),
+        y = !!rlang::enquo(y),
+        outlier.label = !!rlang::quo_name(rlang::enquo(outlier.label))
+      )
+  }
+
   # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
   # if that's the case, convert it to factor
   # (this will be the case only when data has been set to NULL)
@@ -374,9 +354,9 @@ ggbetweenstats <- function(data = NULL,
     ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
 
   # choosing palette
-    plot <- plot +
-      ggplot2::scale_fill_brewer(palette = palette) +
-      ggplot2::scale_color_brewer(palette = palette)
+  plot <- plot +
+    ggplot2::scale_fill_brewer(palette = palette) +
+    ggplot2::scale_color_brewer(palette = palette)
 
   ################################################  preparing stats subtitles #########################################
 
@@ -419,42 +399,42 @@ ggbetweenstats <- function(data = NULL,
 
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_omega <-
-            # extracting the elements of the statistical object
-            base::substitute(
-              expr =
-                paste(
-                  italic("F"),
-                  "(",
-                  df1,
-                  ",",
-                  df2,
-                  ") = ",
-                  estimate,
-                  ", ",
-                  italic("p"),
-                  " = ",
-                  pvalue,
-                  ", p",
-                  omega ^ 2,
-                  " = ",
-                  effsize,
-                  ", 95% CI [",
-                  LL,
-                  ", ",
-                  UL,
-                  "]"
-                ),
-              env = base::list(
-                estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
-                df1 = aov_stat$parameter[[1]],
-                # numerator degrees of freedom are always integer
-                df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
-                pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
-                effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.omegasq[[1]], k),
-                LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
-                UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
-              )
+          # extracting the elements of the statistical object
+          base::substitute(
+            expr =
+              paste(
+                italic("F"),
+                "(",
+                df1,
+                ",",
+                df2,
+                ") = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue,
+                ", p",
+                omega ^ 2,
+                " = ",
+                effsize,
+                ", 95% CI [",
+                LL,
+                ", ",
+                UL,
+                "]"
+              ),
+            env = base::list(
+              estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
+              df1 = aov_stat$parameter[[1]],
+              # numerator degrees of freedom are always integer
+              df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
+              pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.omegasq[[1]], k),
+              LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
             )
+          )
 
         # adding the subtitle to the plot
         plot <-
@@ -485,49 +465,47 @@ ggbetweenstats <- function(data = NULL,
         )
         # aov_stat input represents the anova object summary derived from car library
         rsubtitle_peta <-
-            # extracting the elements of the statistical object
-            base::substitute(
-              expr =
-                paste(
-                  italic("F"),
-                  "(",
-                  df1,
-                  ",",
-                  df2,
-                  ") = ",
-                  estimate,
-                  ", ",
-                  italic("p"),
-                  " = ",
-                  pvalue,
-                  ", p",
-                  eta ^ 2,
-                  " = ",
-                  effsize,
-                  ", 95% CI [",
-                  LL,
-                  ", ",
-                  UL,
-                  "]"
-                ),
-              env = base::list(
-                estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
-                df1 = aov_stat$parameter[[1]],
-                # numerator degrees of freedom are always integer
-                df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
-                pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
-                effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.etasq[[1]], k),
-                LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
-                UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
-              )
+          # extracting the elements of the statistical object
+          base::substitute(
+            expr =
+              paste(
+                italic("F"),
+                "(",
+                df1,
+                ",",
+                df2,
+                ") = ",
+                estimate,
+                ", ",
+                italic("p"),
+                " = ",
+                pvalue,
+                ", p",
+                eta ^ 2,
+                " = ",
+                effsize,
+                ", 95% CI [",
+                LL,
+                ", ",
+                UL,
+                "]"
+              ),
+            env = base::list(
+              estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
+              df1 = aov_stat$parameter[[1]],
+              # numerator degrees of freedom are always integer
+              df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
+              pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
+              effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.etasq[[1]], k),
+              LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
+              UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
             )
+          )
 
         # adding the subtitle to the plot
         plot <-
           plot +
-          ggplot2::labs(
-            subtitle = rsubtitle_peta
-          )
+          ggplot2::labs(subtitle = rsubtitle_peta)
       }
 
       # displaying the details of the test that was run
@@ -591,13 +569,15 @@ ggbetweenstats <- function(data = NULL,
       ######################################### robust ANOVA ############################################################
 
       # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
-      robust_aov_stat <- t1way_ci(data = data,
-               x = x,
-               y = y,
-               tr = tr,
-               nboot = nboot,
-               conf.level = conf.level,
-               conf.type = conf.type)
+      robust_aov_stat <- t1way_ci(
+        data = data,
+        x = x,
+        y = y,
+        tr = tr,
+        nboot = nboot,
+        conf.level = conf.level,
+        conf.type = conf.type
+      )
 
       # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
       rsubtitle_robaov <-
@@ -645,8 +625,10 @@ ggbetweenstats <- function(data = NULL,
         base::message(cat(
           crayon::green("Note:"),
           crayon::blue(
-            "In case of error, try reducing the trimming level", crayon::yellow(tr),
-            "and/or increasing the number of bootstrap samples", crayon::yellow(nboot)
+            "In case of error, try reducing the trimming level",
+            crayon::yellow(tr),
+            "and/or increasing the number of bootstrap samples",
+            crayon::yellow(nboot)
           )
         ))
       }
@@ -1038,24 +1020,24 @@ ggbetweenstats <- function(data = NULL,
       )
   }
 
-    # adding sample size labels to the x axes
-    if (isTRUE(sample.size.label)) {
-      data_label <- data %>%
-        dplyr::group_by(x) %>%
-        dplyr::mutate(n = length(x)) %>%
-        dplyr::ungroup(x = .) %>%
-        dplyr::mutate(x = paste0(x, "\n(n = ", n, ")", sep = "")) %>% # changing character variables into factors
-        dplyr::mutate_if(
-          .tbl = .,
-          .predicate = purrr::is_bare_character,
-          .funs = ~ base::as.factor(.)
-        )
+  # adding sample size labels to the x axes
+  if (isTRUE(sample.size.label)) {
+    data_label <- data %>%
+      dplyr::group_by(x) %>%
+      dplyr::mutate(n = length(x)) %>%
+      dplyr::ungroup(x = .) %>%
+      dplyr::mutate(x = paste0(x, "\n(n = ", n, ")", sep = "")) %>% # changing character variables into factors
+      dplyr::mutate_if(
+        .tbl = .,
+        .predicate = purrr::is_bare_character,
+        .funs = ~ base::as.factor(.)
+      )
 
-      # adding new labels to the plot
-      plot <- plot +
-        ggplot2::scale_x_discrete(labels = unique(levels(data_label$x)))
+    # adding new labels to the plot
+    plot <- plot +
+      ggplot2::scale_x_discrete(labels = unique(levels(data_label$x)))
 
-    }
+  }
 
   #============================================= messages =============================================
 

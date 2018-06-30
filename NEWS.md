@@ -12,6 +12,9 @@ MAJOR CHANGES
     across different functions. `ggcorrmat` also uses percentage bend
     correlation as the robust correlation measure. This also means that
     `ggstatsplot` no longer imports `MASS` and `sfsmisc`.
+  - The `data` argument is no longer `NULL` for all functions, except
+    `gghistostats`. In other words, the user **must** provide a dataframe from
+    which variables or formulas should be selected.
 
 MINOR CHANGES
 
@@ -57,14 +60,14 @@ NEW FEATURES
     `ggbetweenstats`, and `ggpiestats` introduced to create multiple plots for
     different levels of a grouping variable.
 
-BREAKING FEATURES
+MAJOR CHANGES
   - To be internally consistent, all functions in `ggstatsplot` use the spelling
     `color`, rather than `colour` in some functions, while `color` in others.
   - Removed the redundant argument `binwidth.adjust` from `gghistostats`
     function. This argument was relevant for the first avatar of this fucntion,
     but is no longer playing any role.
   - To be internally consistent, the argument `lab_col` and `lab_size` in
-  `ggcorrmat` have been changed to `lab.col` and `lab.size`, respectively.
+    `ggcorrmat` have been changed to `lab.col` and `lab.size`, respectively.
 
 MINOR CHANGES
 

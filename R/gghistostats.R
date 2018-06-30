@@ -7,7 +7,7 @@
 #' @author Indrajeet Patil
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
+#'   taken. This argument is optional.
 #' @param x A numeric variable.
 #' @param bar.measure Character describing what value needs to be represented as
 #'   height in the bar chart. This can either be `"count"`, which shows number

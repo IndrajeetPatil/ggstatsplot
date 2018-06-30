@@ -64,11 +64,11 @@
 #'
 
 # defining the function
-grouped_ggcorrmat <- function(grouping.var,
-                              title.prefix = "Group",
-                              data,
+grouped_ggcorrmat <- function(data,
                               cor.vars,
                               cor.vars.names = NULL,
+                              grouping.var,
+                              title.prefix = "Group",
                               output = "plot",
                               type = "full",
                               method = "square",

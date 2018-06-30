@@ -133,7 +133,7 @@ In `R`, documentation for any function can be accessed with the standard `help` 
 
 ## Usage
 
-`ggstatsplot` relies on [non-standard evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html), which means you **shouldn't** enter arguments in the following manner: `data = NULL, x = data$x, y = data$y`. This may work well for most of the functions most of the time, but is highly discouraged. You should always specify `data` argument for all functions. 
+`ggstatsplot` relies on [non-standard evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html), which means you **shouldn't** enter arguments in the following manner: `data = NULL, x = data$x, y = data$y`. You **must** always specify the `data` argument for all functions. 
 
 Additionally, `ggstatsplot` is a very chatty package and will by default output
 information about references for tests, notes on assumptions about linear

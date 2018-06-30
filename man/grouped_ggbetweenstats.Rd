@@ -5,30 +5,30 @@
 \title{Violin plots for group or condition comparisons repeated across all
 levels of a grouping variable.}
 \usage{
-grouped_ggbetweenstats(grouping.var, title.prefix = "Group", data = NULL, x,
-  y, plot.type = "boxviolin", type = "parametric",
-  effsize.type = "unbiased", xlab = NULL, ylab = NULL, caption = NULL,
-  sample.size.label = TRUE, k = 3, var.equal = FALSE, nboot = 100,
-  tr = 0.1, conf.level = 0.95, conf.type = "norm", notch = FALSE,
-  notchwidth = 0.5, linetype = "solid", outlier.tagging = NULL,
-  outlier.label = NULL, outlier.label.color = "black",
-  outlier.color = "black", outlier.coef = 1.5, mean.plotting = TRUE,
-  mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
+grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
+  plot.type = "boxviolin", type = "parametric", effsize.type = "unbiased",
+  xlab = NULL, ylab = NULL, caption = NULL, sample.size.label = TRUE,
+  k = 3, var.equal = FALSE, nboot = 100, tr = 0.1, conf.level = 0.95,
+  conf.type = "norm", notch = FALSE, notchwidth = 0.5,
+  linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
+  outlier.label.color = "black", outlier.color = "black",
+  outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
+  mean.color = "darkred", point.jitter.width = NULL,
   point.jitter.height = 0.2, point.dodge.width = 0.75,
   ggtheme = ggplot2::theme_bw(), palette = "Dark2", messages = TRUE, ...)
 }
 \arguments{
-\item{grouping.var}{Grouping variable.}
-
-\item{title.prefix}{Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: \code{"Group"}).}
-
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
 
 \item{x}{The grouping variable.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
+
+\item{grouping.var}{Grouping variable.}
+
+\item{title.prefix}{Character specifying the prefix text for the fixed plot
+title (name of each factor level) (Default: \code{"Group"}).}
 
 \item{plot.type}{Character describing the \emph{type} of plot. Currently supported
 plots are \code{"box"} (for pure boxplots), \code{"violin"} (for pure violin plots),

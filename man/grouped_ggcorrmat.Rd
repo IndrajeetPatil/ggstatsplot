@@ -5,8 +5,8 @@
 \title{Visualization of a correlalogram (or correlation matrix) using
 'ggplot2'/'ggcorrplot' for all levels of a grouping variable}
 \usage{
-grouped_ggcorrmat(grouping.var, title.prefix = "Group", data, cor.vars,
-  cor.vars.names = NULL, output = "plot", type = "full",
+grouped_ggcorrmat(data, cor.vars, cor.vars.names = NULL, grouping.var,
+  title.prefix = "Group", output = "plot", type = "full",
   method = "square", corr.method = "pearson", exact = FALSE,
   continuity = TRUE, beta = 0.1, digits = 2, sig.level = 0.05,
   hc.order = FALSE, hc.method = "complete", lab = TRUE,
@@ -21,11 +21,6 @@ grouped_ggcorrmat(grouping.var, title.prefix = "Group", data, cor.vars,
   b.margin = unit(3, "mm"), messages = TRUE, ...)
 }
 \arguments{
-\item{grouping.var}{Grouping variable.}
-
-\item{title.prefix}{Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: \code{"Group"}).}
-
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
 
@@ -34,6 +29,11 @@ computed and visualized.}
 
 \item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
+
+\item{grouping.var}{Grouping variable.}
+
+\item{title.prefix}{Character specifying the prefix text for the fixed plot
+title (name of each factor level) (Default: \code{"Group"}).}
 
 \item{output}{Expected output from this function: \code{"plot"} (visualization
 matrix) or \code{"correlations"} (correlation matrix) or \code{"p-values"} (matrix of

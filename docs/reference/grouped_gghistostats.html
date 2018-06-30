@@ -140,7 +140,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_gghistostats</span>(<span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='no'>data</span>, <span class='no'>x</span>,
+    <pre class="usage"><span class='fu'>grouped_gghistostats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>,
   <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"count"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
@@ -158,6 +158,15 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>data</th>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken. This argument is optional.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>A numeric variable.</p></td>
+    </tr>
+    <tr>
       <th>grouping.var</th>
       <td><p>Grouping variable.</p></td>
     </tr>
@@ -165,15 +174,6 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
       <th>title.prefix</th>
       <td><p>Character specifying the prefix text for the fixed plot
 title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>data</th>
-      <td><p>Dataframe from which variables specified are preferentially to be
-taken.</p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>A numeric variable.</p></td>
     </tr>
     <tr>
       <th>bar.measure</th>

@@ -167,10 +167,11 @@ This will work even if the condition argument is not specified:
 library(ggstatsplot)
 
 ggstatsplot::grouped_ggpiestats(
-  data = ggstatsplot::Titanic_full,                          
+  data = ggstatsplot::Titanic_full,
   main = Age,
-  grouping.var = Class
-  ) 
+  grouping.var = Class,
+  title.prefix = "Passenger Class"
+) 
 ```
 
 ## Grouped analysis with `ggpiestats` + `purrr` 

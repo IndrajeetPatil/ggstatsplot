@@ -7,10 +7,15 @@
 #' @author Indrajeet Patil
 #'
 #' @param data The data as a data frame.
-#' @param main A string naming the variable to use as the rows in the
+#' @param main A string naming the variable to use as the **rows** in the
 #'   contingency table.
-#' @param condition A string naming the variable to use as the columns in the
-#'   contingency table.
+#' @param condition A string naming the variable to use as the **columns** in the
+#'   contingency table. This argument is optional (Default: `NULL`). If this
+#'   argument is provided, then Perarson's chi-square test of independence will
+#'   be run. If not, a goodness of fit test will be run on the `main` variable.
+#' @param ratio A vector of numbers: the expected proportions for the proportion
+#'   test. Default is `NULL`, which means if there are two levels `ratio =
+#'   c(1,1)`, etc.
 #' @param factor.levels A character vector with labels for factor levels of
 #'   `main` variable.
 #' @param stat.title Title for the effect being investigated with the chi-square
@@ -82,9 +87,10 @@
 
 # defining the function
 ggpiestats <-
-  function(data = NULL,
+  function(data,
            main,
            condition = NULL,
+           ratio = NULL,
            factor.levels = NULL,
            stat.title = NULL,
            sample.size.label = TRUE,
@@ -98,15 +104,9 @@ ggpiestats <-
            facet.proptest = TRUE,
            ggtheme = ggplot2::theme_bw(),
            messages = TRUE) {
-    # ========================================== messages ==================================================================
 
-    # if data is not available then don't display any messages
-    if (is.null(data)) {
-      messages <- FALSE
-    }
     # ================================= dataframe =======================================================
-    # if dataframe is provided
-    if (!is.null(data)) {
+
       # if condition variables is provided then include it in the dataframe
       if (base::missing(condition)) {
         if (is.null(legend.title)) {
@@ -141,27 +141,6 @@ ggpiestats <-
             condition = !!rlang::quo_name(rlang::enquo(condition))
           )
       }
-    } else {
-      if (!is.null(condition)) {
-        # if vectors are provided and condition vector is present
-        data <-
-          base::cbind.data.frame(main = main,
-                                 condition = condition)
-      } else {
-        # if condition vector is absent
-        data <-
-          base::cbind.data.frame(main = main)
-      }
-      # if the user hasn't defined the legend.title name, default to the name 'main'
-      if (is.null(legend.title)) {
-        legend.title <- "main"
-      }
-
-      # if the user hasn't defined the facet_wrap name, default to the name 'condition'
-      if (is.null(facet.wrap.name)) {
-        facet.wrap.name <- "condition"
-      }
-    }
 
     # ======================================================== percentage dataframe ======================================================
     #
@@ -501,7 +480,8 @@ ggpiestats <-
 
       # conducting proportion test with jmv::propTestN()
       jmv_prop <- jmv::propTestN(data = data,
-                                 var = "main")
+                                 var = "main",
+                                 ratio = ratio)
       # if there is no value corresponding to one of the levels of the 'main'
       # variable, then no subtitle is needed
       if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
