@@ -11,7 +11,7 @@
 #'   contingency table.
 #' @param condition The variable to use as the **columns** in the contingency
 #'   table. This argument is optional (Default: `NULL`). If this argument is
-#'   provided, then Perarson's chi-square test of independence will be run. If
+#'   provided, then Pearson's chi-square test of independence will be run. If
 #'   not, a goodness of fit test will be run on the `main` variable.
 #' @param counts A string naming a variable in data containing counts, or `NULL`
 #'   if each row represents a single observation (Default).
@@ -392,10 +392,7 @@ ggpiestats <-
     chi_subtitle <- function(jmv_chi,
                              cramer_ci,
                              effect = NULL) {
-      # if effect label hasn't been specified, use this default
-      if (!is.null(effect)) {
-        effect <- paste(effect, ": ", sep = "")
-      }
+
       # preparing the subtitle
       base::substitute(
         expr =
@@ -418,7 +415,11 @@ ggpiestats <-
             LL,
             ", ",
             UL,
-            "]"
+            "]",
+            ", ",
+            italic("n"),
+            " = ",
+            n
           ),
         env = base::list(
           y = effect,
@@ -431,7 +432,8 @@ ggpiestats <-
           # select Cramer's V as effect size
           cramer = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$nom)[[4]], k),
           LL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.low[[1]], k),
-          UL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.high[[1]], k)
+          UL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.high[[1]], k),
+          n = nrow(x = data)
         )
       )
     }
@@ -544,7 +546,6 @@ ggpiestats <-
           base::substitute(
             expr =
               paste(
-                #"Proportion test : ",
                 italic(chi) ^ 2,
                 "(",
                 df,

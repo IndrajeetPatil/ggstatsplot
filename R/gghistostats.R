@@ -226,7 +226,11 @@ gghistostats <-
               ", ",
               italic("d"),
               " = ",
-              effsize
+              effsize,
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`stat[stud]`, k),
@@ -237,7 +241,8 @@ gghistostats <-
               k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k)
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k),
+            n = nrow(x = data)
           )
         )
 
@@ -284,7 +289,11 @@ gghistostats <-
               ", ",
               italic("d"),
               " = ",
-              effsize
+              effsize,
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
           env = base::list(
             estimate = as.data.frame(jmv_os$ttest)$`stat[mann]`,
@@ -293,7 +302,8 @@ gghistostats <-
               k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[mann]`, k)
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[mann]`, k),
+            n = nrow(x = data)
           )
         )
         # ========================================== robust ==================================================================
@@ -321,7 +331,11 @@ gghistostats <-
               "], ",
               italic("p"),
               " = ",
-              pvalue
+              pvalue,
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = rob_os$estimate[[1]], k),
@@ -331,7 +345,8 @@ gghistostats <-
               x = rob_os$p.value[[1]],
               k,
               p.value = TRUE
-            )
+            ),
+            n = nrow(x = data)
           )
         )
         # ========================================== bayes ==================================================================
@@ -354,7 +369,11 @@ gghistostats <-
               ", ",
               italic("d"),
               " = ",
-              effsize
+              effsize,
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
           env = base::list(
             # df is integer value for Student's t-test
@@ -362,7 +381,8 @@ gghistostats <-
             estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`stat[stud]`, k),
             bf = ggstatsplot::specify_decimal_p(x = log10(x = as.data.frame(jmv_os$ttest)$`stat[bf]`), k = 0),
             bf_error = ggstatsplot::specify_decimal_p(x = log10(x = as.data.frame(jmv_os$ttest)$`err[bf]`), k = 0),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k)
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k),
+            n = nrow(x = data)
           )
         )
 

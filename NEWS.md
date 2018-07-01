@@ -15,6 +15,9 @@ MAJOR CHANGES
   - The `data` argument is no longer `NULL` for all functions, except
     `gghistostats`. In other words, the user **must** provide a dataframe from
     which variables or formulas should be selected.
+  - All subtitles containing results now also show sample size information
+    (*n*). To adjust for the inflated length of the subtitle, the default
+    subtitle text size has been changed from `12` to `11`.
 
 MINOR CHANGES
 

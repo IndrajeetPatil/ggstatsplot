@@ -191,7 +191,11 @@ ggscatterstats <-
                 "], ",
                 italic("p"),
                 " = ",
-                pvalue
+                pvalue,
+                ", ",
+                italic("n"),
+                " = ",
+                n
               ),
             env = base::list(
               # degrees of freedom are always integer
@@ -200,7 +204,8 @@ ggscatterstats <-
               estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = c$conf.int[1][[1]], k),
               UL = ggstatsplot::specify_decimal_p(x = c$conf.int[2][[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]], k, p.value = TRUE)
+              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]], k, p.value = TRUE),
+              n = nrow(x = data)
             )
           )
       } else if (type == "spearman" || type == "np") {
@@ -244,7 +249,11 @@ ggscatterstats <-
                 "], ",
                 italic("p"),
                 " = ",
-                pvalue
+                pvalue,
+                ", ",
+                italic("n"),
+                " = ",
+                n
               ),
             env = base::list(
               df = (length(data$x) - 2),
@@ -254,7 +263,8 @@ ggscatterstats <-
               UL = ggstatsplot::specify_decimal_p(x = c_ci$conf.high[[1]], k),
               pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]],
                                                       k,
-                                                      p.value = TRUE)
+                                                      p.value = TRUE),
+              n = nrow(x = data)
             )
           )
         ################################################### robust ##################################################
@@ -284,24 +294,25 @@ ggscatterstats <-
                 ", ",
                 UL,
                 "], ",
-                italic("n") ,
-                " = ",
-                n,
                 ", ",
                 italic("p"),
                 " = ",
-                pvalue
+                pvalue,
+                ", ",
+                italic("n"),
+                " = ",
+                n
               ),
 
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = rob_res$r[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = rob_res$conf.low[[1]], k),
               UL = ggstatsplot::specify_decimal_p(x = rob_res$conf.high[[1]], k),
-              n = rob_res$n[[1]],
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(rob_res$`p-value`[[1]],
                                                       k,
-                                                      p.value = TRUE)
+                                                      p.value = TRUE),
+              n = rob_res$n[[1]]
             )
           )
 

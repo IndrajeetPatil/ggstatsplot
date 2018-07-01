@@ -19,7 +19,7 @@ contingency table.}
 
 \item{condition}{The variable to use as the \strong{columns} in the contingency
 table. This argument is optional (Default: \code{NULL}). If this argument is
-provided, then Perarson's chi-square test of independence will be run. If
+provided, then Pearson's chi-square test of independence will be run. If
 not, a goodness of fit test will be run on the \code{main} variable.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}

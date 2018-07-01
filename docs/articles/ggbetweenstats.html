@@ -93,7 +93,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-06-29</h4>
+            <h4 class="date">2018-07-01</h4>
       
       
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -149,28 +149,29 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(gapminder)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),      <span class="co"># dataframe</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">x =</span> continent,                                              <span class="co"># grouping/independent variable</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="dt">y =</span> lifeExp,                                                <span class="co"># dependent variables</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">xlab =</span> <span class="st">"Continent"</span>,                                         <span class="co"># label for the x-axis</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,                                   <span class="co"># label for the y-axis</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,                                    <span class="co"># type of plot</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">type =</span> <span class="st">"parametric"</span>,                                        <span class="co"># type of statistical test  </span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">effsize.type =</span> <span class="st">"biased"</span>,                                    <span class="co"># type of effect size</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,                                     <span class="co"># whether outliers should be flagged</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">outlier.coef =</span> <span class="fl">1.5</span>,                                         <span class="co"># coefficient for Tukey's rule</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">outlier.label =</span> country,                                    <span class="co"># label to attacht to outlier values</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">outlier.label.color =</span> <span class="st">"red"</span>,                                <span class="co"># outlier point label color</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">mean.plotting =</span> <span class="ot">TRUE</span>,                                       <span class="co"># whether the mean is to be displayed</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="dt">mean.color =</span> <span class="st">"darkblue"</span>,                                    <span class="co"># color for mean</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                           <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">  <span class="dt">title =</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">  <span class="dt">caption =</span> <span class="st">"Source: Gapminder Foundation"</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">) <span class="op">+</span><span class="st">                                                           </span><span class="co"># modifying the plot further</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">85</span>), <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">35</span>, <span class="dt">to =</span> <span class="dv">85</span>, <span class="dt">by =</span> <span class="dv">5</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),      <span class="co"># dataframe</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="dt">x =</span> continent,                                              <span class="co"># grouping/independent variable</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">y =</span> lifeExp,                                                <span class="co"># dependent variables</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">xlab =</span> <span class="st">"Continent"</span>,                                         <span class="co"># label for the x-axis</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,                                   <span class="co"># label for the y-axis</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,                                    <span class="co"># type of plot</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">type =</span> <span class="st">"parametric"</span>,                                        <span class="co"># type of statistical test  </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">  <span class="dt">effsize.type =</span> <span class="st">"biased"</span>,                                    <span class="co"># type of effect size</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,                                     <span class="co"># whether outliers should be flagged</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">outlier.coef =</span> <span class="fl">1.5</span>,                                         <span class="co"># coefficient for Tukey's rule</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">outlier.label =</span> country,                                    <span class="co"># label to attacht to outlier values</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">outlier.label.color =</span> <span class="st">"red"</span>,                                <span class="co"># outlier point label color</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="dt">mean.plotting =</span> <span class="ot">TRUE</span>,                                       <span class="co"># whether the mean is to be displayed</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">mean.color =</span> <span class="st">"darkblue"</span>,                                    <span class="co"># color for mean</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                           <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">  <span class="dt">title =</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">  <span class="dt">caption =</span> <span class="st">"Source: Gapminder Foundation"</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">) <span class="op">+</span><span class="st">                                                           </span><span class="co"># modifying the plot further</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">85</span>), <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">35</span>, <span class="dt">to =</span> <span class="dv">85</span>, <span class="dt">by =</span> <span class="dv">5</span>))</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" width="768"></p>
 <p>As can be appreciated from the effect size of 0.635, there are big differences in the observed life expectancy across continents. Importantly, this plot also helps us appreciate the differences within any given continent. For example, although Asian countries are doing much better than African countries, on average, Afghanistan has a particularly grim average for the Asian continent, possibly reflecting the war and the political turmoil.</p>
 <p>Out of curiosity, we can repeat the same analysis with other available tests in <code>ggstatsplot</code>. The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>). Let’s produce all of these variations in the plot below.</p>
@@ -179,53 +180,54 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(gapminder)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># parametric ANOVA and box plot</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">x =</span> continent,</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">type =</span> <span class="st">"p"</span>,</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">title =</span> <span class="st">"parametric test"</span>,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">)</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">x =</span> continent,</a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">type =</span> <span class="st">"np"</span>,</a>
-<a class="sourceLine" id="cb4-24" data-line-number="24">  <span class="dt">title =</span> <span class="st">"non-parametric test"</span>,</a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">)</a>
-<a class="sourceLine" id="cb4-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co"># robust ANOVA and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-29" data-line-number="29">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
-<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">x =</span> continent,</a>
-<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">y =</span> gdpPercap,</a>
-<a class="sourceLine" id="cb4-33" data-line-number="33">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
-<a class="sourceLine" id="cb4-34" data-line-number="34">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
-<a class="sourceLine" id="cb4-35" data-line-number="35">  <span class="dt">title =</span> <span class="st">"robust test"</span>,</a>
-<a class="sourceLine" id="cb4-36" data-line-number="36">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
-<a class="sourceLine" id="cb4-37" data-line-number="37">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">)</a>
-<a class="sourceLine" id="cb4-39" data-line-number="39"></a>
-<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-41" data-line-number="41">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb4-42" data-line-number="42">  p1, p2, p3, </a>
-<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">nrow =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">ncol =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb4-45" data-line-number="45">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
-<a class="sourceLine" id="cb4-46" data-line-number="46">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy across continents (1987-2007)"</span>,</a>
-<a class="sourceLine" id="cb4-47" data-line-number="47">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, and robust tests"</span>,</a>
-<a class="sourceLine" id="cb4-48" data-line-number="48">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb4-49" data-line-number="49">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb4-50" data-line-number="50">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co"># parametric ANOVA and box plot</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">x =</span> continent,</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">type =</span> <span class="st">"p"</span>,</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">title =</span> <span class="st">"parametric test"</span>,</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">)</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">x =</span> continent,</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">  <span class="dt">type =</span> <span class="st">"np"</span>,</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">  <span class="dt">title =</span> <span class="st">"non-parametric test"</span>,</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">)</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co"># robust ANOVA and boxviolin plot</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">x =</span> continent,</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">  <span class="dt">y =</span> gdpPercap,</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">  <span class="dt">title =</span> <span class="st">"robust test"</span>,</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">)</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co"># combining the individual plots into a single plot</span></a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">  p1, p2, p3, </a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">nrow =</span> <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">  <span class="dt">ncol =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb4-46" data-line-number="46">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
+<a class="sourceLine" id="cb4-47" data-line-number="47">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy across continents (1987-2007)"</span>,</a>
+<a class="sourceLine" id="cb4-48" data-line-number="48">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, and robust tests"</span>,</a>
+<a class="sourceLine" id="cb4-49" data-line-number="49">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb4-50" data-line-number="50">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb4-51" data-line-number="51">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="768"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level2">
@@ -235,32 +237,33 @@
 <p>What if we want to do the same analysis separately for each year for which the data is available, i.e. checking how the differences in life expectancy have changed since this data collection started in 1952 until 2007? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, both of which are time consuming and can be a bit of a struggle.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggbetweenstats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggbetweenstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s focus on the following years to see these changes for every 10 years: 1957, 1967, 1977, 1987, 1997, 2007.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggbetweenstats">grouped_ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder,</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">    year <span class="op">==</span><span class="st"> </span><span class="dv">1957</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1977</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">  ),</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">  <span class="dt">x =</span> continent,</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="dt">outlier.label =</span> country,</a>
-<a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">grouping.var =</span> year,</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggbetweenstats">grouped_ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder,</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    year <span class="op">==</span><span class="st"> </span><span class="dv">1957</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1977</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">  ),</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">  <span class="dt">x =</span> continent,</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">outlier.label =</span> country,</a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">grouping.var =</span> year,</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb5-26" data-line-number="26">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1957 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
 </div>
@@ -270,92 +273,93 @@
 </h2>
 <p>Although this grouping function provides a quick way to explore the data, it leaves much to be desired. For example, the same type of plot and test is applied for all years, but maybe we want to change this for different years, or maybe we want to gave different effect sizes for different years. This type of customization for different levels of a grouping variable is not possible with <code>grouped_ggbetweenstats</code>, but we will see how this can be easily achieved using the <code>purrr</code> package.</p>
 <p><strong>Note before</strong>: Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># let's split the dataframe and create a list by years of interest</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">year_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">    <span class="dt">.data =</span> .,</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">    year <span class="op">==</span><span class="st"> </span><span class="dv">1957</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1977</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>year, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co"># this created a list with 4 elements, one for each mpaa rating</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co"># you can check the structure of the file for yourself</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co"># str(year_list)</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co"># checking the length and names of each element</span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="kw">length</span>(year_list)</a>
-<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt; [1] 6</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="kw">names</span>(year_list)</a>
-<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt; [1] "1957" "1967" "1977" "1987" "1997" "2007"</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co"># running function on every element of this list note that if you want the same</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co"># specify it just once</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(</a>
-<a class="sourceLine" id="cb6-30" data-line-number="30">  <span class="dt">.l =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb6-31" data-line-number="31">    <span class="dt">data =</span> year_list,</a>
-<a class="sourceLine" id="cb6-32" data-line-number="32">    <span class="dt">x =</span> <span class="st">"continent"</span>,</a>
-<a class="sourceLine" id="cb6-33" data-line-number="33">    <span class="dt">y =</span> <span class="st">"lifeExp"</span>,</a>
-<a class="sourceLine" id="cb6-34" data-line-number="34">    <span class="dt">outlier.label =</span> <span class="st">"country"</span>,</a>
-<a class="sourceLine" id="cb6-35" data-line-number="35">    <span class="dt">outlier.label.color =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb6-36" data-line-number="36">      <span class="st">"#56B4E9"</span>,</a>
-<a class="sourceLine" id="cb6-37" data-line-number="37">      <span class="st">"#009E73"</span>,</a>
-<a class="sourceLine" id="cb6-38" data-line-number="38">      <span class="st">"#F0E442"</span>,</a>
-<a class="sourceLine" id="cb6-39" data-line-number="39">      <span class="st">"#0072B2"</span>,</a>
-<a class="sourceLine" id="cb6-40" data-line-number="40">      <span class="st">"#D55E00"</span>,</a>
-<a class="sourceLine" id="cb6-41" data-line-number="41">      <span class="st">"#CC79A7"</span></a>
-<a class="sourceLine" id="cb6-42" data-line-number="42">    ),</a>
-<a class="sourceLine" id="cb6-43" data-line-number="43">    <span class="dt">xlab =</span> <span class="st">"Continent"</span>,</a>
-<a class="sourceLine" id="cb6-44" data-line-number="44">    <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb6-45" data-line-number="45">    <span class="dt">title =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb6-46" data-line-number="46">      <span class="st">"Year: 1957"</span>,</a>
-<a class="sourceLine" id="cb6-47" data-line-number="47">      <span class="st">"Year: 1967"</span>,</a>
-<a class="sourceLine" id="cb6-48" data-line-number="48">      <span class="st">"Year: 1977"</span>,</a>
-<a class="sourceLine" id="cb6-49" data-line-number="49">      <span class="st">"Year: 1987"</span>,</a>
-<a class="sourceLine" id="cb6-50" data-line-number="50">      <span class="st">"Year: 1997"</span>,</a>
-<a class="sourceLine" id="cb6-51" data-line-number="51">      <span class="st">"Year: 2007"</span></a>
-<a class="sourceLine" id="cb6-52" data-line-number="52">    ),</a>
-<a class="sourceLine" id="cb6-53" data-line-number="53">    <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">"r"</span>, <span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"r"</span>),</a>
-<a class="sourceLine" id="cb6-54" data-line-number="54">    <span class="dt">effsize.type =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb6-55" data-line-number="55">      <span class="st">"biased"</span>,</a>
-<a class="sourceLine" id="cb6-56" data-line-number="56">      <span class="st">"unbiased"</span>,</a>
-<a class="sourceLine" id="cb6-57" data-line-number="57">      <span class="st">"biased"</span>,</a>
-<a class="sourceLine" id="cb6-58" data-line-number="58">      <span class="st">"unbiased"</span>,</a>
-<a class="sourceLine" id="cb6-59" data-line-number="59">      <span class="st">"biased"</span>,</a>
-<a class="sourceLine" id="cb6-60" data-line-number="60">      <span class="st">"unbiased"</span></a>
-<a class="sourceLine" id="cb6-61" data-line-number="61">    ),</a>
-<a class="sourceLine" id="cb6-62" data-line-number="62">    <span class="dt">plot.type =</span> <span class="kw">list</span>(<span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"box"</span>, <span class="st">"violin"</span>),</a>
-<a class="sourceLine" id="cb6-63" data-line-number="63">    <span class="dt">palette =</span> <span class="kw">list</span>(<span class="st">"Accent"</span>, <span class="st">"Dark2"</span>, <span class="st">"Paired"</span>, <span class="st">"Pastel1"</span>, <span class="st">"Pastel2"</span>, <span class="st">"Set1"</span>),</a>
-<a class="sourceLine" id="cb6-64" data-line-number="64">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb6-65" data-line-number="65">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb6-66" data-line-number="66">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb6-67" data-line-number="67">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),</a>
-<a class="sourceLine" id="cb6-68" data-line-number="68">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
-<a class="sourceLine" id="cb6-69" data-line-number="69">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>(),</a>
-<a class="sourceLine" id="cb6-70" data-line-number="70">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_void</a></span>()</a>
-<a class="sourceLine" id="cb6-71" data-line-number="71">    ),</a>
-<a class="sourceLine" id="cb6-72" data-line-number="72">    <span class="dt">sample.size.label =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb6-73" data-line-number="73">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb6-74" data-line-number="74">  ),</a>
-<a class="sourceLine" id="cb6-75" data-line-number="75">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
-<a class="sourceLine" id="cb6-76" data-line-number="76">)</a>
-<a class="sourceLine" id="cb6-77" data-line-number="77">  </a>
-<a class="sourceLine" id="cb6-78" data-line-number="78"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb6-79" data-line-number="79">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb6-80" data-line-number="80">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb6-81" data-line-number="81">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
-<a class="sourceLine" id="cb6-82" data-line-number="82">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb6-83" data-line-number="83">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb6-84" data-line-number="84">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-85" data-line-number="85">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
-<a class="sourceLine" id="cb6-86" data-line-number="86">)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># let's split the dataframe and create a list by years of interest</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">year_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">    <span class="dt">.data =</span> .,</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">    year <span class="op">==</span><span class="st"> </span><span class="dv">1957</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1977</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>year, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co"># this created a list with 4 elements, one for each mpaa rating</span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co"># you can check the structure of the file for yourself</span></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co"># str(year_list)</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co"># checking the length and names of each element</span></a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="kw">length</span>(year_list)</a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt; [1] 6</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="kw">names</span>(year_list)</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt; [1] "1957" "1967" "1977" "1987" "1997" "2007"</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co"># running function on every element of this list note that if you want the same</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co"># specify it just once</span></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31">  <span class="dt">.l =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb6-32" data-line-number="32">    <span class="dt">data =</span> year_list,</a>
+<a class="sourceLine" id="cb6-33" data-line-number="33">    <span class="dt">x =</span> <span class="st">"continent"</span>,</a>
+<a class="sourceLine" id="cb6-34" data-line-number="34">    <span class="dt">y =</span> <span class="st">"lifeExp"</span>,</a>
+<a class="sourceLine" id="cb6-35" data-line-number="35">    <span class="dt">outlier.label =</span> <span class="st">"country"</span>,</a>
+<a class="sourceLine" id="cb6-36" data-line-number="36">    <span class="dt">outlier.label.color =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb6-37" data-line-number="37">      <span class="st">"#56B4E9"</span>,</a>
+<a class="sourceLine" id="cb6-38" data-line-number="38">      <span class="st">"#009E73"</span>,</a>
+<a class="sourceLine" id="cb6-39" data-line-number="39">      <span class="st">"#F0E442"</span>,</a>
+<a class="sourceLine" id="cb6-40" data-line-number="40">      <span class="st">"#0072B2"</span>,</a>
+<a class="sourceLine" id="cb6-41" data-line-number="41">      <span class="st">"#D55E00"</span>,</a>
+<a class="sourceLine" id="cb6-42" data-line-number="42">      <span class="st">"#CC79A7"</span></a>
+<a class="sourceLine" id="cb6-43" data-line-number="43">    ),</a>
+<a class="sourceLine" id="cb6-44" data-line-number="44">    <span class="dt">xlab =</span> <span class="st">"Continent"</span>,</a>
+<a class="sourceLine" id="cb6-45" data-line-number="45">    <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>,</a>
+<a class="sourceLine" id="cb6-46" data-line-number="46">    <span class="dt">title =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb6-47" data-line-number="47">      <span class="st">"Year: 1957"</span>,</a>
+<a class="sourceLine" id="cb6-48" data-line-number="48">      <span class="st">"Year: 1967"</span>,</a>
+<a class="sourceLine" id="cb6-49" data-line-number="49">      <span class="st">"Year: 1977"</span>,</a>
+<a class="sourceLine" id="cb6-50" data-line-number="50">      <span class="st">"Year: 1987"</span>,</a>
+<a class="sourceLine" id="cb6-51" data-line-number="51">      <span class="st">"Year: 1997"</span>,</a>
+<a class="sourceLine" id="cb6-52" data-line-number="52">      <span class="st">"Year: 2007"</span></a>
+<a class="sourceLine" id="cb6-53" data-line-number="53">    ),</a>
+<a class="sourceLine" id="cb6-54" data-line-number="54">    <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">"r"</span>, <span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"r"</span>),</a>
+<a class="sourceLine" id="cb6-55" data-line-number="55">    <span class="dt">effsize.type =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb6-56" data-line-number="56">      <span class="st">"biased"</span>,</a>
+<a class="sourceLine" id="cb6-57" data-line-number="57">      <span class="st">"unbiased"</span>,</a>
+<a class="sourceLine" id="cb6-58" data-line-number="58">      <span class="st">"biased"</span>,</a>
+<a class="sourceLine" id="cb6-59" data-line-number="59">      <span class="st">"unbiased"</span>,</a>
+<a class="sourceLine" id="cb6-60" data-line-number="60">      <span class="st">"biased"</span>,</a>
+<a class="sourceLine" id="cb6-61" data-line-number="61">      <span class="st">"unbiased"</span></a>
+<a class="sourceLine" id="cb6-62" data-line-number="62">    ),</a>
+<a class="sourceLine" id="cb6-63" data-line-number="63">    <span class="dt">plot.type =</span> <span class="kw">list</span>(<span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"box"</span>, <span class="st">"violin"</span>),</a>
+<a class="sourceLine" id="cb6-64" data-line-number="64">    <span class="dt">palette =</span> <span class="kw">list</span>(<span class="st">"Accent"</span>, <span class="st">"Dark2"</span>, <span class="st">"Paired"</span>, <span class="st">"Pastel1"</span>, <span class="st">"Pastel2"</span>, <span class="st">"Set1"</span>),</a>
+<a class="sourceLine" id="cb6-65" data-line-number="65">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb6-66" data-line-number="66">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb6-67" data-line-number="67">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb6-68" data-line-number="68">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),</a>
+<a class="sourceLine" id="cb6-69" data-line-number="69">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
+<a class="sourceLine" id="cb6-70" data-line-number="70">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>(),</a>
+<a class="sourceLine" id="cb6-71" data-line-number="71">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_void</a></span>()</a>
+<a class="sourceLine" id="cb6-72" data-line-number="72">    ),</a>
+<a class="sourceLine" id="cb6-73" data-line-number="73">    <span class="dt">sample.size.label =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb6-74" data-line-number="74">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb6-75" data-line-number="75">  ),</a>
+<a class="sourceLine" id="cb6-76" data-line-number="76">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
+<a class="sourceLine" id="cb6-77" data-line-number="77">)</a>
+<a class="sourceLine" id="cb6-78" data-line-number="78">  </a>
+<a class="sourceLine" id="cb6-79" data-line-number="79"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb6-80" data-line-number="80">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb6-81" data-line-number="81">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb6-82" data-line-number="82">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
+<a class="sourceLine" id="cb6-83" data-line-number="83">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb6-84" data-line-number="84">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb6-85" data-line-number="85">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-86" data-line-number="86">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
+<a class="sourceLine" id="cb6-87" data-line-number="87">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped2-1.png" width="672"></p>
 </div>
 <div id="within-subjects-designs" class="section level2">

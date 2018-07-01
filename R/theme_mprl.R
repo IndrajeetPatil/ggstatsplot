@@ -48,13 +48,13 @@ theme_mprl <- function(ggtheme = ggplot2::theme_bw()) {
       ),
       plot.title = ggplot2::element_text(
         color = "black",
-        size = 16,
+        size = 14,
         face = "bold",
         hjust = 0.5
       ),
       plot.subtitle = ggplot2::element_text(
         color = "black",
-        size = 12,
+        size = 11,
         face = "bold",
         hjust = 0.5
       )

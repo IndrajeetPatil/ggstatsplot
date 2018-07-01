@@ -221,7 +221,7 @@ Let's see how we can use this function to apply `gghistostats` for all five
 continents. We will be running parametric tests (one sample t-test, i.e.). If
 you set `type = "np"`, results from non-parametric test will be displayed.
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 10}
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 12}
 gapminder::gapminder %>%                        # select data only for the year 2007
   dplyr::filter(.data = ., year == 2007) %>%
 ggstatsplot::grouped_gghistostats(
@@ -274,7 +274,7 @@ easily achieved with `purrr` package from tidyverse.
 **Note before**: Unlike the function call so far, while using `purrr::pmap`, we
 will need to *quote* the arguments.
 
-```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 10}
+```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 12}
 # let's split the dataframe and create a list by continent
 continent_list <- gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007) %>%

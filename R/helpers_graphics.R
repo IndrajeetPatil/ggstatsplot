@@ -167,12 +167,12 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw()) {
       ),
       plot.subtitle = ggplot2::element_text(
         color = "black",
-        size = 14,
+        size = 11,
         hjust = 0.5
       ),
       plot.title = ggplot2::element_text(
         color = "black",
-        size = 16,
+        size = 14,
         face = "bold",
         hjust = 0.5
       )
@@ -208,7 +208,7 @@ theme_corrmat <- function() {
     axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
     axis.line = ggplot2::element_line(),
     legend.text = ggplot2::element_text(size = 12),
-    legend.title = ggplot2::element_text(size = 12, face = "bold"),
+    legend.title = ggplot2::element_text(size = 11, face = "bold"),
     legend.title.align = 0.5,
     legend.text.align = 0.5,
     legend.key.height = grid::unit(x = 1, units = "line"),
@@ -221,13 +221,13 @@ theme_corrmat <- function() {
     ),
     plot.title = ggplot2::element_text(
       color = "black",
-      size = 16,
+      size = 14,
       face = "bold",
       hjust = 0.5
     ),
     plot.subtitle = ggplot2::element_text(
       color = "black",
-      size = 12,
+      size = 11,
       face = "bold",
       hjust = 0.5
     )

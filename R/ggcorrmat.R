@@ -284,7 +284,7 @@ ggcorrmat <-
           outline.color = outline.color,
           ggtheme = ggtheme,
           colors = colors,
-          legend.title = corr.method,
+          legend.title = paste("n = ", nrow(x = data), "\n", corr.method, sep = ""),
           lab_col = lab.col,
           lab_size = lab.size,
           insig = insig,

@@ -154,6 +154,10 @@ This function creates either a violin plot, a box plot, or a mix of two for
 statistical tests in the subtitle. The simplest function call looks like this-
 
 ```{r ggbetweenstats1, message = FALSE, warning = FALSE}
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggbetweenstats(
   data = datasets::iris, 
   x = Species, 
@@ -169,6 +173,10 @@ any of the graphics layers can be further modified:
 ```{r ggbetweenstats2, message = FALSE, warning = FALSE}
 library(ggplot2)
 
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggbetweenstats(
   data = datasets::iris,
   x = Species,
@@ -224,6 +232,10 @@ Number of other arguments can be specified to modify this basic plot-
 ```{r ggscatterstats2, message = FALSE, warning = FALSE}
 library(datasets)
 
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggscatterstats(
   data = subset(datasets::iris, iris$Species == "setosa"),
   x = Sepal.Length,
@@ -257,6 +269,10 @@ categorical variable is entered, results from one-sample **proportion test**
 will be displayed as a subtitle.
 
 ```{r ggpiestats1, message = FALSE, warning = FALSE}
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggpiestats(
   data = datasets::iris,
   main = Species,
@@ -273,6 +289,10 @@ the plot)-
 ```{r ggpiestats2, message = FALSE, warning = FALSE}
 library(ggplot2)
 
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = cyl,
@@ -287,12 +307,16 @@ As with the other functions, this basic plot can further be modified with
 additional arguments:
 
 ```{r ggpiestats3, message = FALSE, warning = FALSE}
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = am,
   condition = cyl,
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
-  stat.title = "interaction effect",                  # title for the results from Pearson's chi-squared test
+  stat.title = "interaction: ",                       # title for the results from Pearson's chi-squared test
   legend.title = "Transmission",                      # title for the legend
   factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names for 'main' variable 
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable

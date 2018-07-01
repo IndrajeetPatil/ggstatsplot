@@ -88,6 +88,8 @@ ggstatsplot::ggpiestats(data = ggstatsplot::Titanic_full,
 A number of arguments can be modified to change the appearance of this plot:
 
 ```{r ggpiestats2, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
+library(ggplot2)
+
 # for reproducibility
 set.seed(123)
 
@@ -100,10 +102,16 @@ ggstatsplot::ggpiestats(
   legend.title = "Survived?",                   # legend title
   facet.wrap.name = "Gender",                   # changing the facet wrap title
   facet.proptest = TRUE,                        # proportion test for each facet
-  stat.title = "survival x gender",             # title for statistical test
+  stat.title = "survival x gender: ",           # title for statistical test
   palette = "Set1",                             # changing the color palette
   ggtheme = ggplot2::theme_classic()            # changing plot theme 
-) 
+) +                                             # further modification with ggplot2 commands
+  ggplot2::theme(plot.subtitle = ggplot2::element_text(
+    color = "black",
+    size = 10,
+    face = "bold",
+    hjust = 0.5
+  ))
 ```
 
 As seen from this plot, the Pearson's chi-square test of independence shows that
@@ -147,7 +155,7 @@ ggstatsplot::grouped_ggpiestats(
   data = ggstatsplot::Titanic_full,
   grouping.var = Class,
   title.prefix = "Passenger class",
-  stat.title = "survival x gender",
+  stat.title = "survival x gender: ",
   main = Survived,
   condition = Sex,
   # arguments relevant for ggstatsplot::combine_plots
@@ -257,7 +265,7 @@ consider the following `fishing` dataframe containing data from two boats (`A`
 and `B`) about the number of different types fish they caught in the months of
 `February` and `March`. In this dataframe, each row doesn't equal a unique
 observation. In such cases, we can use `counts` argument. Let's say we want to
-investigate if the frequency of different types of fish caughts differs across
+investigate if the frequency of different types of fish caught differs across
 the two months:
 
 ```{r ggpiestats7, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 9}
@@ -322,9 +330,8 @@ ggstatsplot::grouped_ggpiestats(
 ```
 
 As seen from these charts, this difference is found only for the location in
-which the boat B has been fishing. Additionally, facetted proportion tests also
-reveal that all fish are not equally likely to be caught at this location with
-cod being the most frequent fish caught.
+which the boat `B` has been fishing. Additionally, faceted proportion tests also
+reveal that all fish are not equally likely to be caught at this location.
 
 ## Within-subjects designs
 

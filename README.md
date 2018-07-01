@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--29-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--01-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -169,6 +169,10 @@ from statistical tests in the subtitle. The simplest function call looks
 like this-
 
 ``` r
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggbetweenstats(
   data = datasets::iris, 
   x = Species, 
@@ -186,6 +190,10 @@ and thus any of the graphics layers can be further modified:
 ``` r
 library(ggplot2)
 
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggbetweenstats(
   data = datasets::iris,
   x = Species,
@@ -248,6 +256,10 @@ Number of other arguments can be specified to modify this basic plot-
 ``` r
 library(datasets)
 
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggscatterstats(
   data = subset(datasets::iris, iris$Species == "setosa"),
   x = Sepal.Length,
@@ -283,6 +295,10 @@ only one categorical variable is entered, results from one-sample
 **proportion test** will be displayed as a subtitle.
 
 ``` r
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggpiestats(
   data = datasets::iris,
   main = Species,
@@ -301,6 +317,10 @@ be modified with `ggplot2` syntax (e.g., we can change the color palette
 ``` r
 library(ggplot2)
 
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = cyl,
@@ -317,12 +337,16 @@ As with the other functions, this basic plot can further be modified
 with additional arguments:
 
 ``` r
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = am,
   condition = cyl,
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
-  stat.title = "interaction effect",                  # title for the results from Pearson's chi-squared test
+  stat.title = "interaction: ",                       # title for the results from Pearson's chi-squared test
   legend.title = "Transmission",                      # title for the legend
   factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names for 'main' variable 
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable

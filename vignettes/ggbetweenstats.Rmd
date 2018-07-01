@@ -90,6 +90,7 @@ arguments-
 library(ggstatsplot)
 library(gapminder)
 
+# for reproducibility
 set.seed(123)
 
 ggstatsplot::ggbetweenstats(
@@ -138,6 +139,7 @@ For example,
 library(ggstatsplot)
 library(gapminder)
 
+# for reproducibility
 set.seed(123)
 
 # parametric ANOVA and box plot
@@ -205,7 +207,8 @@ in a given study, groups in a study sample, different studies, etc.
 Let's focus on the following years to see these changes for every 10
 years: 1957, 1967, 1977, 1987, 1997, 2007. 
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 7}
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 7}
+# for reproducibility
 set.seed(123)
 
 ggstatsplot::grouped_ggbetweenstats(
@@ -256,6 +259,7 @@ will need to *quote* the arguments.
 
 
 ```{r grouped2, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 7}
+# for reproducibility
 set.seed(123)
 
 # let's split the dataframe and create a list by years of interest

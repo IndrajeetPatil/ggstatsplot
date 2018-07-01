@@ -422,7 +422,11 @@ ggbetweenstats <- function(data,
                 LL,
                 ", ",
                 UL,
-                "]"
+                "]",
+                ", ",
+                italic("n"),
+                " = ",
+                n
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
@@ -432,7 +436,8 @@ ggbetweenstats <- function(data,
               pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
               effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.omegasq[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
+              UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k),
+              n = nrow(x = data)
             )
           )
 
@@ -488,7 +493,11 @@ ggbetweenstats <- function(data,
                 LL,
                 ", ",
                 UL,
-                "]"
+                "]",
+                ", ",
+                italic("n"),
+                " = ",
+                n
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
@@ -498,7 +507,8 @@ ggbetweenstats <- function(data,
               pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
               effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.etasq[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k)
+              UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k),
+              n = nrow(x = data)
             )
           )
 
@@ -538,7 +548,11 @@ ggbetweenstats <- function(data,
               ", ",
               italic("p"),
               " = ",
-              pvalue
+              pvalue,
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = kw_stat$statistic[[1]], k),
@@ -546,7 +560,8 @@ ggbetweenstats <- function(data,
             # degrees of freedom are always integer
             pvalue = ggstatsplot::specify_decimal_p(x = kw_stat$p.value[[1]],
                                                     k,
-                                                    p.value = TRUE)
+                                                    p.value = TRUE),
+            n = nrow(x = data)
           )
         )
       }
@@ -604,7 +619,11 @@ ggbetweenstats <- function(data,
               LL,
               ", ",
               UL,
-              "]"
+              "]",
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$`F-value`[[1]], k),
@@ -616,7 +635,8 @@ ggbetweenstats <- function(data,
                                                     p.value = TRUE),
             effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$xi[[1]], k),
             LL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.low[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.high[[1]], k)
+            UL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.high[[1]], k),
+            n = nrow(x = data)
           )
         )
 
@@ -681,7 +701,11 @@ ggbetweenstats <- function(data,
                 LL,
                 ", ",
                 UL,
-                "]"
+                "]",
+                ", ",
+                italic("n"),
+                " = ",
+                n
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
@@ -689,7 +713,8 @@ ggbetweenstats <- function(data,
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
               effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
               LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k)
+              UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
+              n = nrow(x = data)
             )
           )
         }
@@ -733,7 +758,11 @@ ggbetweenstats <- function(data,
                 LL,
                 ", ",
                 UL,
-                "]"
+                "]",
+                ", ",
+                italic("n"),
+                " = ",
+                n
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
@@ -741,7 +770,8 @@ ggbetweenstats <- function(data,
               pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
               effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
               LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k)
+              UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
+              n = nrow(x = data)
             )
           )
         }
@@ -821,15 +851,21 @@ ggbetweenstats <- function(data,
               ", ",
               italic("r"),
               " = ",
-              r
+              r,
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = mann_stat$statistic[[1]], k),
             z_value = ggstatsplot::specify_decimal_p(x = coin::statistic(z_stat)[[1]], k),
             pvalue = ggstatsplot::specify_decimal_p(x = mann_stat$p.value[[1]], k, p.value = TRUE),
+            # effect size is r = z/sqrt(n)
             r = ggstatsplot::specify_decimal_p(x = (
               coin::statistic(z_stat)[[1]] / sqrt(length(data$y))
-            ), k) # effect size is r = z/sqrt(n)
+            ), k),
+            n = nrow(x = data)
           )
         )
       }
@@ -865,7 +901,11 @@ ggbetweenstats <- function(data,
                 LL,
                 ", ",
                 UL,
-                "]"
+                "]",
+                ", ",
+                italic("n"),
+                " = ",
+                n
               ),
             env = base::list(
               estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test[[1]], k),
@@ -875,7 +915,8 @@ ggbetweenstats <- function(data,
                                                       p.value = TRUE),
               effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]][[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]][[1]], k)
+              UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]][[1]], k),
+              n = nrow(x = data)
             )
           )
         }

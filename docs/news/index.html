@@ -136,6 +136,7 @@
 <li>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</li>
 <li>The robust correlation is no longer <code><a href="http://www.rdocumentation.org/packages/MASS/topics/rlm">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="http://www.rdocumentation.org/packages/WRS2/topics/pbcor">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</li>
 <li>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</li>
+<li>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
