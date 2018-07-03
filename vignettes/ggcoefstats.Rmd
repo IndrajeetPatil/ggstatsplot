@@ -1,0 +1,275 @@
+---
+title: "ggcoefstats"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{ggcoefstats}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** of
+regression models saved in tidy data frames (produced with the `broom` package).
+By default, the plot displays `95%` confidence intervals for the regression
+coefficients. The function currently supports only those classes of object that
+are supported by the `broom` package. For an exhaustive list, see-
+<https://broom.tidyverse.org/articles/available-methods.html>
+
+In this vignette, we will see examples of how to use this function. We will try
+to cover as many classes of objects as possible. Unfortunately, there is no
+single dataset that will be helpful for carrying out all types of regression
+analyses and, therefore, we will use various datasets to explore data-specific
+hypotheses using regression models.
+
+**Note before**: The following demo uses the pipe operator (`%>%`), so in case
+you are not familiar with this operator, here is a good explanation:
+<http://r4ds.had.co.nz/pipes.html>
+
+## General structure of the plots
+
+Although the statistical models displayed in the plot may differ based on the
+class of models being investigated, there are few aspects of the plot that will
+be invariant across models:
+
+  - The dot-whisker plot containts a dot representing the **estimate** (which
+    can be effect sizes, regression coefficients, etc.) and their **confidence
+    intervals** (`95%` is the default). The function will also, by default,
+    display a helpful x-axis label that should clear up what estimates are being
+    displayed. The confidence intervals can sometimes be asymmetric if
+    bootstrapping was used.
+  - The caption will always contain diagnostic information about models that can
+    be useful for model selection: The smaller the Akaike's Information
+    Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**) values,
+    the "better" the model is. Additionally, the higher the **log-likelihood**
+    value the "better" is the model fit.
+
+In the following examples, we will try out a number of regression models and,
+additionally, we will also see how we can change different aspects of the plot
+itself.
+
+## omnibus ANOVA (`stats::aov`)
+
+Let's use the `movies_long` dataset, which provides information about IMDB
+ratings, budget, length, MPAA ratings, and genre for a number of movies. Let's
+say our hypothesis is that the IMDB rarings for a movie are predicted by a
+multiplicative effect of the genre and the MPAA rating it got. To begin with,
+let's carry out an omnibus ANOVA to see if this is the case.
+
+```{r aov, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+# for reproducibility
+set.seed(123)
+
+# looking at the data
+dplyr::glimpse(x = ggstatsplot::movies_long)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = stats::aov(
+    formula = rating ~ mpaa * genre,
+    data = ggstatsplot::movies_long
+  ),
+  effsize = "omega",                        # changing the effect size estimate being displayed
+  point.color = "red",                      # changing the point color
+  point.size = 4,                           # changing the point size
+  point.shape = 15                          # changing the point shape
+) +                                    
+  # further modification with the ggplot2 commands
+  # note the order in which the labels are entered
+  ggplot2::scale_y_discrete(labels = c("MPAA", "Genre", "Interaction term")) +
+  ggplot2::labs(x = "effect size estimate (partial omega-squared)",
+                y = NULL)
+```
+
+As this plot shows, there is no interaction effect between these two factors. 
+
+Note that we can also use this function for model selection. Let's try out
+different models and see how the AIC, BIC, and log-likelihood values change.
+
+```{r aov2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
+library(ggstatsplot)
+library(sjmisc)
+
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::combine_plots(
+  # model 1
+  ggstatsplot::ggcoefstats(
+    x = stats::aov(formula = rating ~ mpaa,
+                   data = ggstatsplot::movies_long),
+    title = "1. Only MPAA ratings"
+  ),
+  ggstatsplot::ggcoefstats(
+    x = stats::aov(formula = rating ~ genre,
+                   data = ggstatsplot::movies_long),
+    title = "2. Only genre"
+  ),
+  ggstatsplot::ggcoefstats(
+    x = stats::aov(formula = rating ~ mpaa + genre,
+                   data = ggstatsplot::movies_long),
+    title = "3. Additive effect of MPAA and genre"
+  ),
+  ggstatsplot::ggcoefstats(
+    x = stats::aov(formula = rating ~ mpaa * genre,
+                   data = ggstatsplot::movies_long),
+    title = "4. Multiplicative effect of MPAA and genre"
+  ),
+  title.text = "Model selection using ggcoefstats",
+  labels = c("(a)", "(b)", "(c)", "(d)")
+)
+```
+
+Looking at the model diagnostics, we can see that the model with only `genre` as
+the predictor of ratings seems to perform almost equally well as more
+complicated additive and multiplicative models. Although there is certainly some
+improvement with additive and multiplicative, it is by no means convincing
+enough (e.g., AIC improves by a mere `0.09%`) for us to abandon a simpler model.
+This insight can also be garnered by just looking at the effect sizes, which
+also tell us that which genre the movie belongs to seems to account for the
+largest variance.
+
+## linear model (`stats::lm`)
+
+Now that we have figured out that the movie `genre` best explains variation in
+how good people find the movie to be. Let's run a linear regression model to see
+how different types of genres compare with each other-
+
+```{r lm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+# let's check all the levels for the genre variable
+levels(ggstatsplot::movies_long$genre)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = stats::lm(
+    formula = rating ~ genre,
+    data = ggstatsplot::movies_long
+  ),
+  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
+  sort = "ascending",                     # sorting the terms of the model based on estimate values
+  label.direction = "both",               # direction in which to adjust position of labels (both x and y)
+  ggtheme = ggplot2::theme_gray(),        # changing the default theme
+  stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "black", "red"),
+  title = "Movie ratings by their genre",
+  subtitle = "Source: www.imdb.com"
+) +                                    
+  # further modification with the ggplot2 commands
+  # note the order in which the labels are entered
+  ggplot2::scale_y_discrete(labels = c("Comedy", "Romance", "Documentary", "Animation", "Drama")) +
+  ggplot2::labs(y = "genre (comparison level: Action)") + 
+  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
+```
+
+As can be seen from the regression coefficients, compared to the action movies,
+only romantic movies, animated movies, and dramas fare better with the
+audiences.
+
+## linear mixed-effects model (`lme4::lmer`)
+
+Now let's say we want to see how movie budget relates to how good the movie is
+rated to be on IMDB (e.g., more money, better ratings?). But we have reasons to
+believe that the relationship between these two variables is differnt for
+different genres (e.g., budget might be a good predictor of how good the movie
+is rated to be for animations or actions movies as more money can help with
+better visual effects and animations, but this may not be true for dramas), so
+we don't want to use `stats::lm`. In this case, therefore, we will be running a
+linear mixed-effects model (using `lme4::lmer` and p-values generated using the
+`lmerTest` package) with a random slope for the genre variable.
+
+```{r lmer, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
+library(lme4)
+library(ggstatsplot)
+
+# combining the two different plots
+ggstatsplot::combine_plots(
+  # model 1: simple linear model
+  ggstatsplot::ggcoefstats(
+    x = stats::lm(
+      formula = scale(rating) ~ scale(budget),
+      data = ggstatsplot::movies_long
+    ),
+    title = "linear model",
+    exclude.intercept = FALSE         # show the intercept
+  ) +
+  ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)")),
+  # model 2: linear mixed-effects model
+  ggstatsplot::ggcoefstats(
+    x = lme4::lmer(
+      formula = rating ~ budget + (budget | genre),
+      data = ggstatsplot::movies_long
+    ),
+    title = "linear mixed-effects model",
+    exclude.intercept = FALSE,       # show the intercept
+    conf.method = "profile",         # chaning default method for computing confidence intervals
+    effects = c("ran_pars", "fixed")   # show both fixed and random effects
+  ) +
+  ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)")),
+  labels = c("(a)", "(b)"),
+  nrow = 2,
+  ncol = 1,
+  title.text = "Relationship between movie budget and its IMDB rating"
+)
+```
+
+As can be seen from these plots, although there seems to be a really small
+correlation between budget and rating, this effect is not found once we take
+into account the random effects.
+
+## Repeated measures ANOVA (`aovlist`)
+
+Let's now to run a different type of analysis: repeated measures design.
+
+```{r aovlist, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+library(dplyr)
+
+# for reproducibility
+set.seed(123)
+
+# converting the iris dataset to long format
+iris_long <- datasets::iris %>%
+  dplyr::mutate(.data = ., id = dplyr::row_number(x = Species)) %>%
+  tidyr::gather(
+    data = .,
+    key = "condition",
+    value = "value",
+    Sepal.Length:Petal.Width,
+    convert = TRUE,
+    factor_key = TRUE
+  ) %>%
+  tidyr::separate(
+    col = "condition",
+    into = c("attribute", "measure"),
+    sep = "\\.",
+    convert = TRUE
+  ) %>%
+  tibble::as_data_frame(x = .)
+
+# looking at the data
+dplyr::glimpse(x = iris_long)
+
+# specifying the model
+ggstatsplot::ggcoefstats(
+  x = stats::aov(formula = value ~ attribute * measure + Error(id / (attribute * measure)),
+             data = iris_long)
+)
+```
+
+## Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>

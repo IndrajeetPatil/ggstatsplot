@@ -5,9 +5,9 @@
 \title{Model coefficients for fitted models with the model summary as a
 caption.}
 \usage{
-ggcoefstats(x, output = "plot", effects.mermod = "fixed",
-  group.mermod = "fixed", effsize = "eta", nboot = 1000,
-  point.color = "blue", point.size = 3, point.shape = 16,
+ggcoefstats(x, output = "plot", effects = "fixed", scales = NULL,
+  ran.prefix = NULL, conf.method = "Wald", effsize = "eta",
+  nboot = 1000, point.color = "blue", point.size = 3, point.shape = 16,
   conf.int = TRUE, conf.level = 0.95, k = 3, k.caption.summary = 0,
   exclude.intercept = TRUE, exponentiate = FALSE,
   errorbar.color = "black", errorbar.height = 0,
@@ -34,10 +34,19 @@ ggcoefstats(x, output = "plot", effects.mermod = "fixed",
 dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}
 
-\item{effects.mermod, group.mermod}{In case the object is of class \code{merMod}
+\item{effects}{In case the object is of class \code{merMod}
 (\code{lmerMod}, \code{glmerMod}, \code{nlmerMod}), these arguments determine which
 effects are to be displayed. By default, only the \code{"fixed"} effects will be
-shown.}
+shown. Other option is \code{"ran_pars"}.}
+
+\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation
+or logistic) are not yet implemented, but may be in the future.}
+
+\item{ran.prefix}{A length-2 character vector specifying the strings to use
+as prefixes for self- (variance/standard deviation) and cross- (covarianc
+/correlation) random effects terms.}
+
+\item{conf.method}{method for computing confidence intervals (see \code{lme4::confint.merMod})}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}.}
@@ -51,7 +60,7 @@ eta-squared and omega-squared (Default: \code{1000}).}
 \item{point.size}{Numeric specifying size for the point (Default: \code{3}).}
 
 \item{point.shape}{Numeric specifying shape to draw the points (Default: \code{16}
-(a dot)).}
+(\strong{a dot})).}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}

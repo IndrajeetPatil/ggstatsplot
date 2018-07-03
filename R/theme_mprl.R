@@ -26,16 +26,16 @@
 theme_mprl <- function(ggtheme = ggplot2::theme_bw()) {
   ggtheme +
     ggplot2::theme(
-      axis.title.x = ggplot2::element_text(size = 14, face = "bold"),
+      axis.title.x = ggplot2::element_text(size = 12, face = "bold"),
       strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
       strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
-      strip.text = ggplot2::element_text(size = 14, face = "bold"),
-      axis.title.y = ggplot2::element_text(size = 14, face = "bold"),
+      strip.text = ggplot2::element_text(size = 12, face = "bold"),
+      axis.title.y = ggplot2::element_text(size = 12, face = "bold"),
       axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
       axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
       axis.line = ggplot2::element_line(),
-      legend.text = ggplot2::element_text(size = 14),
-      legend.title = ggplot2::element_text(size = 14, face = "bold"),
+      legend.text = ggplot2::element_text(size = 12),
+      legend.title = ggplot2::element_text(size = 12, face = "bold"),
       legend.title.align = 0.5,
       legend.text.align = 0.5,
       legend.key.height = grid::unit(x = 1, units = "line"),
@@ -48,7 +48,7 @@ theme_mprl <- function(ggtheme = ggplot2::theme_bw()) {
       ),
       plot.title = ggplot2::element_text(
         color = "black",
-        size = 14,
+        size = 13,
         face = "bold",
         hjust = 0.5
       ),

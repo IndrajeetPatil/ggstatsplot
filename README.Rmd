@@ -457,8 +457,10 @@ ggstatsplot::ggcoefstats(
   x = stats::lm(formula = mpg ~ am * cyl,
                 data = mtcars),
   point.color = "red",
+  vline.color = "#CC79A7",
+  vline.linetype = "dotdash",
   stats.label.size = 3.5,
-  stats.label.color = c("#0072B2", "#D55E00", "#CC79A7"),
+  stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission and cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine"
 ) +                                    
@@ -529,6 +531,11 @@ ggstatsplot::combine_plots(
   ncol = 2
 )
 ```
+
+This is by no means an exhaustive list of models supported by `ggcoefstats`. For
+more, see the associated vignette-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html>
+
 
 * `combine_plots`
 

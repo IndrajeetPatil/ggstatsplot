@@ -16,15 +16,18 @@
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
-#' @param effects.mermod,group.mermod In case the object is of class `merMod`
+#' @param effects In case the object is of class `merMod`
 #'   (`lmerMod`, `glmerMod`, `nlmerMod`), these arguments determine which
 #'   effects are to be displayed. By default, only the `"fixed"` effects will be
-#'   shown.
+#'   shown. Other option is `"ran_pars"`.
+#' @param ran.prefix A length-2 character vector specifying the strings to use
+#'   as prefixes for self- (variance/standard deviation) and cross- (covarianc
+#'   /correlation) random effects terms.
 #' @param point.color Character describing color for the point (Default:
 #'   `"blue"`).
 #' @param point.size Numeric specifying size for the point (Default: `3`).
 #' @param point.shape Numeric specifying shape to draw the points (Default: `16`
-#'   (a dot)).
+#'   (**a dot**)).
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
@@ -94,6 +97,7 @@
 #'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
 #'   `theme_void()`, etc.
 #' @inheritParams lm_effsize_ci
+#' @inheritParams broom::tidy.merMod
 #' @param \dots Extra arguments to pass to \code{\link[broom]{tidy}}.
 #'
 #' @import ggplot2
@@ -131,8 +135,10 @@
 # function body
 ggcoefstats <- function(x,
                         output = "plot",
-                        effects.mermod = "fixed",
-                        group.mermod = "fixed",
+                        effects = "fixed",
+                        scales = NULL,
+                        ran.prefix = NULL,
+                        conf.method = "Wald",
                         effsize = "eta",
                         nboot = 1000,
                         point.color = "blue",
@@ -196,7 +202,7 @@ ggcoefstats <- function(x,
   f.mods <- c("aov", "aovlist")
 
   # models which are currently not supported
-  unsupported.mods <- c("glht", "rlm")
+  unsupported.mods <- c("glht", "rlm", "kmeans")
 
   # models for which glance is not supported
   noglance.mods <- c("aovlist")
@@ -204,35 +210,46 @@ ggcoefstats <- function(x,
   #====================================== checking if object is supported =============================================================
   # glace is not supported for all models
   if (class(x)[[1]] %in% unsupported.mods) {
-    base::message(cat(
+    base::stop(base::message(cat(
       crayon::green("Note:"),
       crayon::blue(
-        "The objects of class",
+        "The object of class",
         crayon::yellow(class(x)[[1]]),
         "aren't currently supported."
       )
-    ))
+    )))
   }
   #================================================== model and its summary ===========================================================
 
   # glance object from broom
   if (!(class(x)[[1]] %in% noglance.mods)) {
-  glance_df <- broom::glance(x = x) %>%
-    tibble::as_data_frame(x = .)
+    glance_df <- broom::glance(x = x) %>%
+      tibble::as_data_frame(x = .)
+  } else {
+    base::message(cat(
+      crayon::green("Note:"),
+      crayon::blue(
+        "No model diagnostics information available for the object of class",
+        crayon::yellow(class(x)[[1]]),
+        ". Future release might support this."
+      )
+    ))
   }
 
   # tidy dataframe of results from the model
   # if these are merMod objects, choose whether the random effects are to be displayed
   if (class(x)[[1]] %in% lmm.mods) {
-    tidy_df <-
-      broom::tidy(
-        x = x,
-        conf.int = TRUE,
-        conf.level = conf.level,
-        effects = effects.mermod,
-        group = group.mermod,
-        ...
-      )
+      tidy_df <-
+        broom::tidy(
+          x = x,
+          conf.int = TRUE,
+          conf.level = conf.level,
+          effects = effects,
+          scales = scales,
+          ran_prefix = ran.prefix,
+          conf.method = conf.method,
+          ...
+        )
   } else if (class(x)[[1]] %in% f.mods) {
     tidy_df <- lm_effsize_ci(
       object = x,
@@ -378,6 +395,16 @@ ggcoefstats <- function(x,
           .to = "label",
           .labels = TRUE
         )
+      # if random effects are displayed, then remove labels since no p-values are available
+      if (effects != "fixed") {
+        tidy_df %<>%
+          dplyr::mutate(
+            .data = .,
+            label = dplyr::case_when(is.na(p.value) ~ NA_character_,
+                                     TRUE ~ label)
+          )
+      }
+
       #========================================================= z-statistic =========================================================
     } else if (class(x)[[1]] %in% z.mods) {
       tidy_df %<>%
@@ -400,28 +427,28 @@ ggcoefstats <- function(x,
       #========================================================= F-statistic =========================================================
     } else if (class(x)[[1]] %in% f.mods) {
       if (effsize == "eta") {
-      tidy_df %<>%
-        purrrlyr::by_row(
-          .d = .,
-          ..f = ~ paste(
-            "list(~italic(F)",
-            "(",
-            .$df1,
-            ",",
-            .$df2,
-            ")==",
-            .$statistic,
-            ", ~italic(p)",
-            .$p.value.formatted2,
-            ", ~italic(eta)[p]^2==",
-            ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-            ")",
-            sep = ""
-          ),
-          .collate = "rows",
-          .to = "label",
-          .labels = TRUE
-        )
+        tidy_df %<>%
+          purrrlyr::by_row(
+            .d = .,
+            ..f = ~ paste(
+              "list(~italic(F)",
+              "(",
+              .$df1,
+              ",",
+              .$df2,
+              ")==",
+              .$statistic,
+              ", ~italic(p)",
+              .$p.value.formatted2,
+              ", ~italic(eta)[p]^2==",
+              ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
+              ")",
+              sep = ""
+            ),
+            .collate = "rows",
+            .to = "label",
+            .labels = TRUE
+          )
       } else if (effsize == "omega") {
         tidy_df %<>%
           purrrlyr::by_row(
@@ -450,7 +477,7 @@ ggcoefstats <- function(x,
   }
   #================================================== summary caption ===========================================================
 
-
+  # caption containing model diagnostics
   if (isTRUE(caption.summary)) {
     if (!(class(x)[[1]] %in% noglance.mods)) {
       caption.text <-

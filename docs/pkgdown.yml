@@ -4,6 +4,7 @@ pkgdown_sha: 88eacb1caeeb9bfa4e929681917576579e06bd7f
 articles:
   combine_plots: combine_plots.html
   ggbetweenstats: ggbetweenstats.html
+  ggcoefstats: ggcoefstats.html
   ggcorrmat: ggcorrmat.html
   gghistostats: gghistostats.html
   ggpiestats: ggpiestats.html
