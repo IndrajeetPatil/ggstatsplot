@@ -661,3 +661,123 @@ robcor_ci <- function(data,
 
 }
 
+#'
+#' @title Confidence intervals for partial eta-squared and omega-squared for
+#'   linear models.
+#' @name lm_effsize_ci
+#' @author Indrajeet Patil
+#' @description This function will convert a linear model object to a dataframe
+#'   containing statistical details for all effects along with partial
+#'   eta-squared effect size and its confidence interval.
+#' @return A dataframe with results from `stats::lm()` with partial eta-squared,
+#'   omega-squared, and bootstrapped confidence interval for the same.
+#'
+#' @param object The linear model object (can be of class `lm`, `aov`, or
+#'   `aovlist`).
+#' @param effsize Character describing the effect size to be displayed: `"eta"`
+#'   (default) or `"omega"`.
+#' @param partial Logical that decides if partial eta-squared or omega-squared
+#'   are returned (Default: `TRUE`).
+#' @param conf.level Numeric specifying Level of confidence for the confidence
+#'   interval (Default: `0.95`).
+#' @param nboot Number of bootstrap samples for confidence intervals for partial
+#'   eta-squared and omega-squared (Default: `1000`).
+#'
+#' @importFrom sjstats eta_sq
+#' @importFrom sjstats omega_sq
+#' @importFrom stats anova
+#' @importFrom stats na.omit
+#' @importFrom stats lm
+#' @importFrom tibble as_data_frame
+#' @importFrom tibble rownames_to_column
+#' @importFrom broom tidy
+#'
+#' @examples
+#'
+#' # lm object
+#' # lm_effsize_ci(object = stats::lm(formula = wt ~ am * cyl, data = mtcars),
+#' # effsize = "omega",
+#' # partial = TRUE)
+#'
+#' # aov object
+#' # lm_effsize_ci(object = stats::aov(formula = wt ~ am * cyl, data = mtcars),
+#' # effsize = "eta",
+#' # partial = FALSE)
+#'
+#' @keywords internal
+#'
+
+# defining the function body
+lm_effsize_ci <-
+  function(object,
+           effsize = "eta",
+           partial = TRUE,
+           conf.level = 0.95,
+           nboot = 1000) {
+    # based on the class, get the tidy output using broom
+    if (class(object)[[1]] == "lm") {
+      aov_df <-
+        broom::tidy(stats::anova(object = object))
+    } else if (class(object)[[1]] == "aov") {
+      aov_df <- broom::tidy(x = object)
+    } else if (class(object)[[1]] == "aovlist") {
+      aov_df <- broom::tidy(x = object) %>%
+        dplyr::filter(.data = ., stratum == "Within")
+    }
+
+    # create a new column for residual degrees of freedom
+    aov_df$df2 <- aov_df$df[aov_df$term == "Residuals"]
+
+    # cleaning up the dataframe
+    aov_df %<>%
+      dplyr::select(.data = .,
+                    -c(base::grep(pattern = "sq",
+                                  x = names(.)))) %>% # rename to something more meaningful and tidy
+      dplyr::rename(.data = .,
+                    df1 = df) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
+      stats::na.omit(.) %>%
+      tibble::as_data_frame(x = .)
+
+    # computing the effect sizes using sjstats
+    if (effsize == "eta") {
+      # creating dataframe of partial eta-squared effect size and its CI with sjstats
+      effsize_df <- sjstats::eta_sq(
+        model = object,
+        partial = partial,
+        ci.lvl = conf.level,
+        n = nboot
+      ) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
+        stats::na.omit(.)
+    } else if (effsize == "omega") {
+      # creating dataframe of partial omega-squared effect size and its CI with sjstats
+      effsize_df <- sjstats::omega_sq(
+        model = object,
+        partial = partial,
+        ci.lvl = conf.level,
+        n = nboot
+      ) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
+        stats::na.omit(.)
+    }
+
+    # combining the dataframes (erge the two preceding pieces of information by the common element of Effect
+    combined_df <- dplyr::left_join(x = aov_df,
+                                    y = effsize_df,
+                                    by = "term") %>% # reordering columns
+      dplyr::select(.data = .,
+                    term,
+                    F.value = statistic,
+                    df1,
+                    df2,
+                    p.value,
+                    dplyr::everything()) %>%
+      tibble::as_data_frame(x = .)
+
+    # in case of within-subjects design, the stratum columns will be unnecessarily added
+    if ("stratum.x" %in% names(combined_df)) {
+      combined_df %<>%
+        dplyr::select(.data = ., -c(base::grep(pattern = "stratum", x = names(.))))
+    }
+
+    # returning the final dataframe
+    return(combined_df)
+  }

@@ -285,7 +285,7 @@ untable <- function(data, counts) {
   # a custom function to repeat dataframe `rep` number of times, which is going to
   # be count data for us
   rep_df <- function(df, rep) {
-    df[base::rep(x = 1:nrow(df), times = rep), ]
+    df[base::rep(x = 1:nrow(df), times = rep),]
   }
 
   # converting dataframe to full length based on count information
@@ -302,3 +302,5 @@ untable <- function(data, counts) {
   # returned the expanded dataset
   return(data)
 }
+
+

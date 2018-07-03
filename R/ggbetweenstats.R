@@ -124,7 +124,6 @@
 #' @importFrom crayon blue
 #' @importFrom crayon yellow
 #' @importFrom crayon red
-#' @importFrom jmv anova
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}
 #'
@@ -176,7 +175,7 @@ ggbetweenstats <- function(data,
                            notch = FALSE,
                            notchwidth = 0.5,
                            linetype = "solid",
-                           outlier.tagging = NULL,
+                           outlier.tagging = FALSE,
                            outlier.label = NULL,
                            outlier.label.color = "black",
                            outlier.color = "black",
@@ -259,10 +258,6 @@ ggbetweenstats <- function(data,
   }
 
   ################################################### plot ##############################################################
-  # the default is not to tag the outliers
-  if (is.null(outlier.tagging)) {
-    outlier.tagging <- FALSE
-  }
 
   # create the basic plot
   plot <-
@@ -447,15 +442,6 @@ ggbetweenstats <- function(data,
           ggplot2::labs(subtitle = rsubtitle_omega)
 
       } else if (effsize.type == "biased") {
-        # partial eta-squared is the biased estimate of effect size for parametric ANOVA
-        aov_effsize <-
-          jmv::anova(
-            data = data,
-            dep = "y",
-            factors = "x",
-            ss = "3",
-            effectSize = c("omega", "partEta")
-          )
 
         # getting confidence interval for partial eta-squared
         aov_effsize_ci <- sjstats::eta_sq(

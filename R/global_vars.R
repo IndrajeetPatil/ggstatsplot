@@ -97,7 +97,10 @@ utils::globalVariables(
     "value[chiSq]",
     "condition_n_label",
     "total_n",
-    "robust"
+    "robust",
+    "partial.etasq",
+    "partial.omegasq",
+    "stratum"
   ),
   package = "ggstatsplot",
   add = FALSE

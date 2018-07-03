@@ -6,9 +6,10 @@
 caption.}
 \usage{
 ggcoefstats(x, output = "plot", effects.mermod = "fixed",
-  group.mermod = "fixed", point.color = "blue", point.size = 3,
-  point.shape = 16, conf.int = TRUE, conf.level = 0.95, k = 3,
-  k.caption.summary = 0, exclude.intercept = TRUE, exponentiate = FALSE,
+  group.mermod = "fixed", effsize = "eta", nboot = 1000,
+  point.color = "blue", point.size = 3, point.shape = 16,
+  conf.int = TRUE, conf.level = 0.95, k = 3, k.caption.summary = 0,
+  exclude.intercept = TRUE, exponentiate = FALSE,
   errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
   vline.color = "black", vline.linetype = "dashed", vline.size = 1,
@@ -37,6 +38,12 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 (\code{lmerMod}, \code{glmerMod}, \code{nlmerMod}), these arguments determine which
 effects are to be displayed. By default, only the \code{"fixed"} effects will be
 shown.}
+
+\item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
+(default) or \code{"omega"}.}
+
+\item{nboot}{Number of bootstrap samples for confidence intervals for partial
+eta-squared and omega-squared (Default: \code{1000}).}
 
 \item{point.color}{Character describing color for the point (Default:
 \code{"blue"}).}

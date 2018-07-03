@@ -142,9 +142,10 @@ caption.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>effects.mermod</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>,
-  <span class='kw'>group.mermod</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>group.mermod</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+  <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
+  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -181,6 +182,16 @@ dataframe of results from <code><a href='http://www.rdocumentation.org/packages/
 (<code>lmerMod</code>, <code>glmerMod</code>, <code>nlmerMod</code>), these arguments determine which
 effects are to be displayed. By default, only the <code>"fixed"</code> effects will be
 shown.</p></td>
+    </tr>
+    <tr>
+      <th>effsize</th>
+      <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
+(default) or <code>"omega"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for confidence intervals for partial
+eta-squared and omega-squared (Default: <code>1000</code>).</p></td>
     </tr>
     <tr>
       <th>point.color</th>
