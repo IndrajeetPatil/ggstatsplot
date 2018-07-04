@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--03-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--04-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -549,7 +549,7 @@ d <- as.data.frame(Titanic)
 
 # combining plots together
 ggstatsplot::combine_plots(
-  # general linear model
+  # generalized linear model
   ggstatsplot::ggcoefstats(
     x = stats::glm(
       formula = Survived ~ Sex + Age,
@@ -558,7 +558,8 @@ ggstatsplot::combine_plots(
       family = "binomial"
     ),
     exponentiate = TRUE,
-    exclude.intercept = FALSE
+    exclude.intercept = FALSE,
+    title = "generalized linear model"
   ),
   # nonlinear least squares
   ggstatsplot::ggcoefstats(
@@ -567,7 +568,8 @@ ggstatsplot::combine_plots(
       data = mtcars,
       start = list(k = 1, b = 0)
     ),
-    point.color = "darkgreen"
+    point.color = "darkgreen",
+    title = "non-linear least squares"
   ),
   # linear mmodel
   ggstatsplot::ggcoefstats(
@@ -576,7 +578,8 @@ ggstatsplot::combine_plots(
       data = lme4::sleepstudy
     ),
     point.color = "red",
-    exclude.intercept = TRUE
+    exclude.intercept = TRUE,
+    title = "linear mixed-effects model"
   ),
   # generalized linear mixed-effects model
   ggstatsplot::ggcoefstats(
@@ -585,7 +588,8 @@ ggstatsplot::combine_plots(
       data = lme4::cbpp,
       family = binomial
     ),
-    exclude.intercept = FALSE
+    exclude.intercept = FALSE,
+    title = "generalized linear mixed-effects model"
   ),
   labels = c("(a)", "(b)", "(c)", "(d)"),
   nrow = 2,

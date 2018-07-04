@@ -96,7 +96,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-07-03</h4>
+            <h4 class="date">2018-07-04</h4>
       
       
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -119,9 +119,9 @@
 </ul>
 <p>In the following examples, we will try out a number of regression models and, additionally, we will also see how we can change different aspects of the plot itself.</p>
 </div>
-<div id="omnibus-anova-statsaov" class="section level2">
+<div id="omnibus-anova-aov" class="section level2">
 <h2 class="hasAnchor">
-<a href="#omnibus-anova-statsaov" class="anchor"></a>omnibus ANOVA (<code><a href="http://www.rdocumentation.org/packages/stats/topics/aov">stats::aov</a></code>)</h2>
+<a href="#omnibus-anova-aov" class="anchor"></a>omnibus ANOVA (<code>aov</code>)</h2>
 <p>Let’s use the <code>movies_long</code> dataset, which provides information about IMDB ratings, budget, length, MPAA ratings, and genre for a number of movies. Let’s say our hypothesis is that the IMDB ratings for a movie are predicted by a multiplicative effect of the genre and the MPAA rating it got. To begin with, let’s carry out an omnibus ANOVA to see if this is the case.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
@@ -192,9 +192,9 @@
 <p><img src="ggcoefstats_files/figure-html/aov2-1.png" width="960"></p>
 <p>Looking at the model diagnostics, we can see that the model with only <code>genre</code> as the predictor of ratings seems to perform almost equally well as more complicated additive and multiplicative models. Although there is certainly some improvement with additive and multiplicative, it is by no means convincing enough (e.g., AIC improves by a mere <code>0.09%</code>) for us to abandon a simpler model. This insight can also be garnered by just looking at the effect sizes, which also tell us that which genre the movie belongs to seems to account for the largest variance.</p>
 </div>
-<div id="linear-model-statslm" class="section level2">
+<div id="linear-model-lm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#linear-model-statslm" class="anchor"></a>linear model (<code><a href="http://www.rdocumentation.org/packages/stats/topics/lm">stats::lm</a></code>)</h2>
+<a href="#linear-model-lm" class="anchor"></a>linear model (<code>lm</code>)</h2>
 <p>Now that we have figured out that the movie <code>genre</code> best explains variation in how good people find the movie to be. Let’s run a linear regression model to see how different types of genres compare with each other-</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># let's check all the levels for the genre variable</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">levels</span>(ggstatsplot<span class="op">::</span>movies_long<span class="op">$</span>genre)</a>
@@ -223,9 +223,9 @@
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
 <p>As can be seen from the regression coefficients, compared to the action movies, only romantic movies, animated movies, and dramas fare better with the audiences.</p>
 </div>
-<div id="linear-mixed-effects-model-lme4lmer" class="section level2">
+<div id="linear-mixed-effects-model-lmer" class="section level2">
 <h2 class="hasAnchor">
-<a href="#linear-mixed-effects-model-lme4lmer" class="anchor"></a>linear mixed-effects model (<code><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lme4::lmer</a></code>)</h2>
+<a href="#linear-mixed-effects-model-lmer" class="anchor"></a>linear mixed-effects model (<code>lmer</code>)</h2>
 <p>Now let’s say we want to see how movie budget relates to how good the movie is rated to be on IMDB (e.g., more money, better ratings?). But we have reasons to believe that the relationship between these two variables is different for different genres (e.g., budget might be a good predictor of how good the movie is rated to be for animations or actions movies as more money can help with better visual effects and animations, but this may not be true for dramas; also see the <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html"><code>ggscatterstats</code></a> vignette), so we don’t want to use <code><a href="http://www.rdocumentation.org/packages/stats/topics/lm">stats::lm</a></code>. In this case, therefore, we will be running a linear mixed-effects model (using <code><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lme4::lmer</a></code> and p-values generated using the <code>lmerTest</code> package) with a random slope for the genre variable.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(lme4)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(ggstatsplot)</a>
@@ -262,9 +262,9 @@
 <p><img src="ggcoefstats_files/figure-html/lmer-1.png" width="672"></p>
 <p>As can be seen from these plots, although there seems to be a really small correlation between budget and rating, this effect is not found once we take into account the random effects structure.</p>
 </div>
-<div id="non-linear-weighted-least-squares-model-statsnls" class="section level2">
+<div id="non-linear-least-squares-model-nls" class="section level2">
 <h2 class="hasAnchor">
-<a href="#non-linear-weighted-least-squares-model-statsnls" class="anchor"></a>Non-linear (weighted) least-squares model (<code><a href="http://www.rdocumentation.org/packages/stats/topics/nls">stats::nls</a></code>)</h2>
+<a href="#non-linear-least-squares-model-nls" class="anchor"></a>Non-linear least-squares model (<code>nls</code>)</h2>
 <p>So far we have been assuming a linear relationship between movie budget and rating. But what is we want to also explore the possibility of a non-linear relationship? In that case, we can run a non-linear least squares regression. Note that you need to choose the same non-linear function (<code>y ~ k/x + c</code>) implemented here (try out other non-linear functions, e.g. <code>Y ~ k * exp(-b*c)</code>).</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"></a>
@@ -281,9 +281,9 @@
 <p><img src="ggcoefstats_files/figure-html/nls-1.png" width="576"></p>
 <p>This analysis shows that there is indeed a possible non-linear association between rating and budget, at least with the particular non-linear function we used.</p>
 </div>
-<div id="generalized-linear-model-statsglm" class="section level2">
+<div id="generalized-linear-model-glm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#generalized-linear-model-statsglm" class="anchor"></a>generalized linear model (<code><a href="http://www.rdocumentation.org/packages/stats/topics/glm">stats::glm</a></code>)</h2>
+<a href="#generalized-linear-model-glm" class="anchor"></a>generalized linear model (<code>glm</code>)</h2>
 <p>In all the analyses carried out thus far, the outcome variable (<code>y</code> in <code>y ~ x</code>) has been continuous. In case the outcome variable is categorical/factor, we can use the <strong>generalized</strong> form of linear model that works even if the response is a numeric vector or a factor vector, etc.</p>
 <p>To explore this model, we will use the Titanic dataset, which tabulates information on the fate of passengers on the fatal maiden voyage of the ocean liner <em>Titanic</em>, summarized according to economic status (class), sex, age, and survival. Let’s say we want to know what was the strongest predictor of whether someone survived the Titanic disaster-</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
@@ -344,9 +344,9 @@
 <p><img src="ggcoefstats_files/figure-html/glm-1.png" width="576"></p>
 <p>As can be seen from the regression coefficients, all entered predictors were significant predictors of the outcome. More specifically, being a female was associated with higher likelihood of survival (compared to male). On other hand, being an adult was associated with decreased likelihood of survival (compared to child).</p>
 </div>
-<div id="generalized-linear-mixed-effects-model-lme4glmer" class="section level2">
+<div id="generalized-linear-mixed-effects-model-glmer" class="section level2">
 <h2 class="hasAnchor">
-<a href="#generalized-linear-mixed-effects-model-lme4glmer" class="anchor"></a>generalized linear mixed-effects model (<code><a href="http://www.rdocumentation.org/packages/lme4/topics/glmer">lme4::glmer</a></code>)</h2>
+<a href="#generalized-linear-mixed-effects-model-glmer" class="anchor"></a>generalized linear mixed-effects model (<code>glmer</code>)</h2>
 <p>In the previous example, we saw how being a female and being a child was predictive of surviving the Titanic disaster. But in that analysis, we didn’t take into another important factor: the passenger class in which people were traveling. Naively, we have reasons to believe that the effects of sex and age might be dependent on the class. To take into account this hierarchical structure of the data, we can run generalized linear mixed effects model with a random slope for class.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
@@ -361,9 +361,9 @@
 <p><img src="ggcoefstats_files/figure-html/glmer-1.png" width="576"></p>
 <p>As we had expected, once we take into account the differential relationship that might exist between survival and predictor across different passenger classes, only the sex factor remain a significant predictor (also see the <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggspiestats.html"><code>ggspiestats</code></a> vignette where we had explored this dataset).</p>
 </div>
-<div id="cumulative-link-models-ordinalclm" class="section level2">
+<div id="cumulative-link-models-clm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#cumulative-link-models-ordinalclm" class="anchor"></a>Cumulative Link Models (<code><a href="http://www.rdocumentation.org/packages/ordinal/topics/clm">ordinal::clm</a></code>)</h2>
+<a href="#cumulative-link-models-clm" class="anchor"></a>Cumulative Link Models (<code>clm</code>)</h2>
 <p>So far we have dealt either with continuous or nominal/factor responses (or output variables), but sometimes we will encounter <strong>ordinal</strong> data (e.g., Likert scale measurement in behavioral sciences). In these cases, ordinal regression models are suitable. To study these models, we will use <code>intent_morality</code> dataset included in the <code>ggstatsplot</code> package. This dataset contains moral judgments (“how wrong was this behavior?”, “how much punishment does the agent deserve?”; on a Likert scale of 1-7) by participants about third-party actors who harm someone. There are four different conditions formed out of belief (neutral, negative) and outcome (neutral, negative) for four different vignettes, each featuring a different type of harm. The question we are interested in is what explains variation in participants’ rating: information about intentionality, consequences, or their interaction? We will carry out this analysis for each type of harm-</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">library</span>(purrr)</a>
@@ -391,9 +391,9 @@
 <p><img src="ggcoefstats_files/figure-html/clm-1.png" width="1152"></p>
 <p>As can be seen from this plot, across all four types of harm, the actors who had malicious intent are judged to be worse than actors who had neutral intent, and actors who cause harm are judged to more harshly than actors who don’t. But how intent and outcome information interact with each other depends on the type of harm.</p>
 </div>
-<div id="cumulative-link-mixed-models-ordinalclmm" class="section level2">
+<div id="cumulative-link-mixed-models-clmm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#cumulative-link-mixed-models-ordinalclmm" class="anchor"></a>Cumulative Link Mixed Models (<code><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm">ordinal::clmm</a></code>)</h2>
+<a href="#cumulative-link-mixed-models-clmm" class="anchor"></a>Cumulative Link Mixed Models (<code>clmm</code>)</h2>
 <p>In the previous analysis, we carried four separate ordinal regression models to see effect of intent and outcome information on moral judgments. But a better of accounting for such item level differences is to model them as random factors. So, in the current section, we used ordinal mixed-effects regression model to see how belief and outcome contribute towards variation in moral judgment ratings-</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"></a>
@@ -405,21 +405,22 @@
 <a class="sourceLine" id="cb9-8" data-line-number="8">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>intent_morality</a>
 <a class="sourceLine" id="cb9-9" data-line-number="9">  )) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb9-10" data-line-number="10"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"belief (neutral)"</span>, <span class="st">"interaction"</span>, <span class="st">"outcome (neutral)"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"probit regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from probit mixed-effects regression"</span>,</a>
 <a class="sourceLine" id="cb9-12" data-line-number="12">                  <span class="dt">y =</span> <span class="st">"fixed effects"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/clmm-1.png" width="576"></p>
-<p>Note that by default, <code>beta</code> parameters are shown for <code>clm</code> and <code>clmm</code> models, but you can also plot either just <code>alpha</code> or <code>both</code> using <code>ggcoefstats</code>.</p>
+<p>As we had premeditated from the item-level analysis, mixed effects regression didn’t reveal any interaction effect. That is, most of the variance was accounted for by the information about whether there was harmful intent and whether there was harm, at least this is the effect we found with these four types of (minor) harms.</p>
+<p>Note that, by default, <code>beta</code> parameters are shown for <code>clm</code> and <code>clmm</code> models, but you can also plot either just <code>alpha</code> or <code>both</code> using <code>ggcoefstats</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">x =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm">clmm</a></span>(</a>
 <a class="sourceLine" id="cb10-5" data-line-number="5">    <span class="dt">formula =</span> <span class="kw">as.factor</span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>(belief <span class="op">+</span><span class="st"> </span>outcome <span class="op">|</span></a>
 <a class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">                                                        </span>harm),</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">    <span class="dt">link =</span> <span class="st">"probit"</span>,</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">    <span class="dt">link =</span> <span class="st">"logit"</span>,</a>
 <a class="sourceLine" id="cb10-8" data-line-number="8">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>intent_morality</a>
 <a class="sourceLine" id="cb10-9" data-line-number="9">  ),</a>
 <a class="sourceLine" id="cb10-10" data-line-number="10">  <span class="dt">coefficient.type =</span> <span class="st">"alpha"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficients"</span>,</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
 <a class="sourceLine" id="cb10-12" data-line-number="12">                <span class="dt">y =</span> <span class="st">"threshold parameters"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/clmm1-1.png" width="576"></p>
 </div>
@@ -487,6 +488,17 @@
 <p><img src="ggcoefstats_files/figure-html/aovlist-1.png" width="768"></p>
 <p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
 </div>
+<div id="and-much-more" class="section level2">
+<h2 class="hasAnchor">
+<a href="#and-much-more" class="anchor"></a>And much more…</h2>
+<p>This vignette was supposed to give just a taste for only <em>some</em> of the regression models supported by <code>ggcoefstats</code>. The full list of supported models will keep expanding as additional tidiers are added to the <code>broom</code> package: <a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a></p>
+<p>Note that not <strong>all</strong> models supported by <code>broom</code> will be supported by <code>ggcoefstats</code>. In particular, those classes of objects are not supported for which there is:</p>
+<ul>
+<li>no confidence intervals for the estimate available (e.g., <code>lmRob</code>, <code>glmRob</code>, etc.)</li>
+<li>no estimates present (e.g., <code>kmeans</code>)</li>
+</ul>
+<p>Some of the models might be supported in future.</p>
+</div>
 <div id="suggestions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#suggestions" class="anchor"></a>Suggestions</h2>
@@ -500,15 +512,16 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#general-structure-of-the-plots">General structure of the plots</a></li>
-      <li><a href="#omnibus-anova-statsaov">omnibus ANOVA (<code><a href="http://www-rdocumentation-org/packages/stats/topics/aov">stats::aov</a></code>)</a></li>
-      <li><a href="#linear-model-statslm">linear model (<code><a href="http://www-rdocumentation-org/packages/stats/topics/lm">stats::lm</a></code>)</a></li>
-      <li><a href="#linear-mixed-effects-model-lme4lmer">linear mixed-effects model (<code><a href="http://www-rdocumentation-org/packages/lme4/topics/lmer">lme4::lmer</a></code>)</a></li>
-      <li><a href="#non-linear-weighted-least-squares-model-statsnls">Non-linear (weighted) least-squares model (<code><a href="http://www-rdocumentation-org/packages/stats/topics/nls">stats::nls</a></code>)</a></li>
-      <li><a href="#generalized-linear-model-statsglm">generalized linear model (<code><a href="http://www-rdocumentation-org/packages/stats/topics/glm">stats::glm</a></code>)</a></li>
-      <li><a href="#generalized-linear-mixed-effects-model-lme4glmer">generalized linear mixed-effects model (<code><a href="http://www-rdocumentation-org/packages/lme4/topics/glmer">lme4::glmer</a></code>)</a></li>
-      <li><a href="#cumulative-link-models-ordinalclm">Cumulative Link Models (<code><a href="http://www-rdocumentation-org/packages/ordinal/topics/clm">ordinal::clm</a></code>)</a></li>
-      <li><a href="#cumulative-link-mixed-models-ordinalclmm">Cumulative Link Mixed Models (<code><a href="http://www-rdocumentation-org/packages/ordinal/topics/clmm">ordinal::clmm</a></code>)</a></li>
+      <li><a href="#omnibus-anova-aov">omnibus ANOVA (<code>aov</code>)</a></li>
+      <li><a href="#linear-model-lm">linear model (<code>lm</code>)</a></li>
+      <li><a href="#linear-mixed-effects-model-lmer">linear mixed-effects model (<code>lmer</code>)</a></li>
+      <li><a href="#non-linear-least-squares-model-nls">Non-linear least-squares model (<code>nls</code>)</a></li>
+      <li><a href="#generalized-linear-model-glm">generalized linear model (<code>glm</code>)</a></li>
+      <li><a href="#generalized-linear-mixed-effects-model-glmer">generalized linear mixed-effects model (<code>glmer</code>)</a></li>
+      <li><a href="#cumulative-link-models-clm">Cumulative Link Models (<code>clm</code>)</a></li>
+      <li><a href="#cumulative-link-mixed-models-clmm">Cumulative Link Mixed Models (<code>clmm</code>)</a></li>
       <li><a href="#repeated-measures-anova-aovlist">Repeated measures ANOVA (<code>aovlist</code>)</a></li>
+      <li><a href="#and-much-more">And much more…</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       </ul>
 </div>

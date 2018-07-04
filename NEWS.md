@@ -1,5 +1,5 @@
 
-# ggstatsplot 0.0.3.9000
+# ggstatsplot 0.0.4
 
 MAJOR CHANGES
 

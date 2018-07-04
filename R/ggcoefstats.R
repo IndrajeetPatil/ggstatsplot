@@ -208,7 +208,7 @@ ggcoefstats <- function(x,
   f.mods <- c("aov", "aovlist")
 
   # models which are currently not supported
-  unsupported.mods <- c("glht", "rlm", "kmeans")
+  unsupported.mods <- c("glht", "rlm", "kmeans", "rq")
 
   # models for which glance is not supported
   noglance.mods <- c("aovlist")

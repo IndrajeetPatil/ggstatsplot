@@ -488,7 +488,7 @@ d <- as.data.frame(Titanic)
 
 # combining plots together
 ggstatsplot::combine_plots(
-  # general linear model
+  # generalized linear model
   ggstatsplot::ggcoefstats(
     x = stats::glm(
       formula = Survived ~ Sex + Age,
@@ -497,7 +497,8 @@ ggstatsplot::combine_plots(
       family = "binomial"
     ),
     exponentiate = TRUE,
-    exclude.intercept = FALSE
+    exclude.intercept = FALSE,
+    title = "generalized linear model"
   ),
   # nonlinear least squares
   ggstatsplot::ggcoefstats(
@@ -506,7 +507,8 @@ ggstatsplot::combine_plots(
       data = mtcars,
       start = list(k = 1, b = 0)
     ),
-    point.color = "darkgreen"
+    point.color = "darkgreen",
+    title = "non-linear least squares"
   ),
   # linear mmodel
   ggstatsplot::ggcoefstats(
@@ -515,7 +517,8 @@ ggstatsplot::combine_plots(
       data = lme4::sleepstudy
     ),
     point.color = "red",
-    exclude.intercept = TRUE
+    exclude.intercept = TRUE,
+    title = "linear mixed-effects model"
   ),
   # generalized linear mixed-effects model
   ggstatsplot::ggcoefstats(
@@ -524,7 +527,8 @@ ggstatsplot::combine_plots(
       data = lme4::cbpp,
       family = binomial
     ),
-    exclude.intercept = FALSE
+    exclude.intercept = FALSE,
+    title = "generalized linear mixed-effects model"
   ),
   labels = c("(a)", "(b)", "(c)", "(d)"),
   nrow = 2,

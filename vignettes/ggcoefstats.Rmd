@@ -66,7 +66,7 @@ In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
 itself.
 
-## omnibus ANOVA (`stats::aov`)
+## omnibus ANOVA (`aov`)
 
 Let's use the `movies_long` dataset, which provides information about IMDB
 ratings, budget, length, MPAA ratings, and genre for a number of movies. Let's
@@ -147,7 +147,7 @@ This insight can also be garnered by just looking at the effect sizes, which
 also tell us that which genre the movie belongs to seems to account for the
 largest variance.
 
-## linear model (`stats::lm`)
+## linear model (`lm`)
 
 Now that we have figured out that the movie `genre` best explains variation in
 how good people find the movie to be. Let's run a linear regression model to see
@@ -182,7 +182,7 @@ As can be seen from the regression coefficients, compared to the action movies,
 only romantic movies, animated movies, and dramas fare better with the
 audiences.
 
-## linear mixed-effects model (`lme4::lmer`)
+## linear mixed-effects model (`lmer`)
 
 Now let's say we want to see how movie budget relates to how good the movie is
 rated to be on IMDB (e.g., more money, better ratings?). But we have reasons to
@@ -236,7 +236,7 @@ As can be seen from these plots, although there seems to be a really small
 correlation between budget and rating, this effect is not found once we take
 into account the random effects structure.
 
-## Non-linear (weighted) least-squares model (`stats::nls`)
+## Non-linear least-squares model (`nls`)
 
 So far we have been assuming a linear relationship between movie budget and
 rating. But what is we want to also explore the possibility of a non-linear
@@ -263,7 +263,7 @@ This analysis shows that there is indeed a possible non-linear association
 between rating and budget, at least with the particular non-linear function we
 used.
 
-## generalized linear model (`stats::glm`)
+## generalized linear model (`glm`)
 
 In all the analyses carried out thus far, the outcome variable (`y` in `y ~ x`)
 has been continuous. In case the outcome variable is categorical/factor, we can use
@@ -307,7 +307,7 @@ associated with higher likelihood of survival (compared to male). On other hand,
 being an adult was associated with decreased likelihood of survival (compared to
 child).
 
-## generalized linear mixed-effects model (`lme4::glmer`)
+## generalized linear mixed-effects model (`glmer`)
 
 In the previous example, we saw how being a female and being a child was
 predictive of surviving the Titanic disaster. But in that analysis, we didn't
@@ -337,7 +337,7 @@ only the sex factor remain a significant predictor (also see the
 vignette where we had explored this dataset).
 
 
-## Cumulative Link Models (`ordinal::clm`)
+## Cumulative Link Models (`clm`)
 
 So far we have dealt either with continuous or nominal/factor responses (or
 output variables), but sometimes we will encounter **ordinal** data (e.g.,
@@ -386,7 +386,7 @@ actors who cause harm are judged to more harshly than actors who don't. But how
 intent and outcome information interact with each other depends on the type of
 harm.
 
-## Cumulative Link Mixed Models (`ordinal::clmm`)
+## Cumulative Link Mixed Models (`clmm`)
 
 In the previous analysis, we carried four separate ordinal regression models to
 see effect of intent and outcome information on moral judgments. But a better of
@@ -406,11 +406,17 @@ ggstatsplot::ggcoefstats(
     data = ggstatsplot::intent_morality
   )) + 
     ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
-    ggplot2::labs(x = "probit regression coefficient",
+    ggplot2::labs(x = "coefficient from probit mixed-effects regression",
                   y = "fixed effects")
 ```
 
-Note that by default, `beta` parameters are shown for `clm` and `clmm` models,
+As we had premeditated from the item-level analysis, mixed effects regression
+didn't reveal any interaction effect. That is, most of the variance was
+accounted for by the information about whether there was harmful intent and
+whether there was harm, at least this is the effect we found with these four
+types of (minor) harms.
+
+Note that, by default, `beta` parameters are shown for `clm` and `clmm` models,
 but you can also plot either just `alpha` or `both` using `ggcoefstats`. 
 
 ```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
@@ -420,11 +426,11 @@ ggstatsplot::ggcoefstats(
   x = ordinal::clmm(
     formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
                                                         harm),
-    link = "probit",
+    link = "logit",
     data = ggstatsplot::intent_morality
   ),
   coefficient.type = "alpha") +
-  ggplot2::labs(x = "coefficients",
+  ggplot2::labs(x = "logit regression coefficients",
                 y = "threshold parameters")
 ```
 
@@ -488,6 +494,23 @@ As revealed by this analysis, all effects of this model are significant. But
 most of the variance is explained by the `attribute`, with the next important
 explanatory factor being the `measure` used. A very little amount of variation
 in measurement is accounted for by the interaction between these two factors.
+
+## And much more...
+
+This vignette was supposed to give just a taste for only *some* of the
+regression models supported by `ggcoefstats`. The full list of supported models
+will keep expanding as additional tidiers are added to the `broom` package:
+<https://broom.tidyverse.org/articles/available-methods.html> 
+
+Note that not **all** models supported by `broom` will be supported by
+`ggcoefstats`. In particular, those classes of objects are not supported for
+which there is:
+
+  - no confidence intervals for the estimate available (e.g., `lmRob`, `glmRob`,
+    etc.)
+  - no estimates present (e.g., `kmeans`)
+
+Some of the models might be supported in future.
 
 ## Suggestions
 
