@@ -6,10 +6,10 @@
 caption.}
 \usage{
 ggcoefstats(x, output = "plot", effects = "fixed", scales = NULL,
-  ran.prefix = NULL, conf.method = "Wald", effsize = "eta",
-  nboot = 1000, point.color = "blue", point.size = 3, point.shape = 16,
-  conf.int = TRUE, conf.level = 0.95, k = 3, k.caption.summary = 0,
-  exclude.intercept = TRUE, exponentiate = FALSE,
+  ran.prefix = NULL, conf.method = "Wald", coefficient.type = "beta",
+  effsize = "eta", nboot = 1000, point.color = "blue", point.size = 3,
+  point.shape = 16, conf.int = TRUE, conf.level = 0.95, k = 3,
+  k.caption.summary = 0, exclude.intercept = TRUE, exponentiate = FALSE,
   errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
   vline.color = "black", vline.linetype = "dashed", vline.size = 1,
@@ -43,10 +43,15 @@ shown. Other option is \code{"ran_pars"}.}
 or logistic) are not yet implemented, but may be in the future.}
 
 \item{ran.prefix}{A length-2 character vector specifying the strings to use
-as prefixes for self- (variance/standard deviation) and cross- (covarianc
+as prefixes for self- (variance/standard deviation) and cross- (covariance
 /correlation) random effects terms.}
 
 \item{conf.method}{method for computing confidence intervals (see \code{lme4::confint.merMod})}
+
+\item{coefficient.type}{For ordinal regression models, which parameters to
+display in the plot. By default only \code{"beta"} (a vector of regression
+parameters) parameters will be show. Other options are \code{"alpha"} (a vector
+of threshold parameters) or \code{"both"}.}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}.}

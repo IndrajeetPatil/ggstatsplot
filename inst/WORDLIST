@@ -11,6 +11,7 @@ english
 expectancies
 Gapminder
 ggbetweenstats
+ggcoefstats
 ggcorrmat
 ggcorrplot
 gghistostats
@@ -26,8 +27,10 @@ imdb
 IMDB
 Indrajeet
 IndrajeetPatil
+intentionality
 jitter
 knitr
+Likert
 linetype
 McNemar
 mpaa
@@ -46,6 +49,7 @@ Quartile
 README
 rmarkdown
 Rmarkdown
+sdcor
 spearman
 srt
 stackoverflow
@@ -59,6 +63,7 @@ tl
 untable
 Untable
 untabulate
+vcov
 VignetteEncoding
 VignetteEngine
 VignetteIndexEntry

@@ -96,3 +96,43 @@
 #' head(Titanic_full)
 #'
 "Titanic_full"
+
+
+#'
+#' @title Moral judgments about third-party moral behavior.
+#' @name intent_morality
+#' @details This dataset contains data from a recent study about how people
+#'   judge behavior of others when they unintentionally or intentionally cause
+#'   harm to others.
+#'
+#' Participants responded to four different vignettes that contains four different types of conditions-
+#'  \itemize{
+#'   \item accidental harm. neutral belief, harmful/negative outcome
+#'   \item intentional harm. harmful/negative belief, harmful/negative outcome
+#'   \item attempted harm. harmful/negative belief, neutral outcome
+#'   \item neutral harm. neutral belief, neutral outcome
+#' }
+#'
+#' Additionally, participants saw one of the four variants for each of the four
+#' items. Each of the item had a different type of harm.
+#'
+#' @format A data frame with 4016 rows and 8 variables
+#' \itemize{
+#'   \item id.  Participant id.
+#'   \item gender.  Participant's gender.
+#'   \item item.  Which story/vignette participants read for a given `condition`.
+#'   \item harm.  What kind of harm was involved in the `item`.
+#'   \item belief.  What kind of belief the actor had (neutral or negative/harmful).
+#'   \item outcome.  What kind of outcome the actor caused (neutral or negative/harmful).
+#'   \item condition.  Type of harm, composed of `belif` and `outcome`.
+#'   \item question. Type of moral judgment asked (`wrongess` or `punishment`).
+#'   \item rating. Moral judgment rating on a scale of 1 to 7.
+#' }
+#'
+#' @source \url{https://www.nature.com/articles/s41598-017-05299-9}
+#'
+#' @examples
+#' dim(intent_morality)
+#' head(intent_morality)
+#'
+"intent_morality"

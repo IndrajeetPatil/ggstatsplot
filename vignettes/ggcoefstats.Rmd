@@ -46,17 +46,21 @@ Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are few aspects of the plot that will
 be invariant across models:
 
-  - The dot-whisker plot containts a dot representing the **estimate** (which
-    can be effect sizes, regression coefficients, etc.) and their **confidence
-    intervals** (`95%` is the default). The function will also, by default,
-    display a helpful x-axis label that should clear up what estimates are being
-    displayed. The confidence intervals can sometimes be asymmetric if
-    bootstrapping was used.
+  - The dot-whisker plot contains a dot representing the **estimate** and their
+    **confidence intervals** (`95%` is the default). The estimate can either be
+    effect sizes (for tests that depend on the `F`-statistic) or regression
+    coefficients (for tests with `t` and `z` statistic), etc. The function will,
+    by default, display a helpful x-axis label that should clear up what
+    estimates are being displayed. The confidence intervals can sometimes be
+    asymmetric if bootstrapping was used.
   - The caption will always contain diagnostic information about models that can
     be useful for model selection: The smaller the Akaike's Information
     Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**) values,
     the "better" the model is. Additionally, the higher the **log-likelihood**
     value the "better" is the model fit.
+  - The output of this function will be a `ggplot2` object and, thus, it can be
+    further modified (e.g., change themes, etc.) further with `ggplot2`
+    functions.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -66,7 +70,7 @@ itself.
 
 Let's use the `movies_long` dataset, which provides information about IMDB
 ratings, budget, length, MPAA ratings, and genre for a number of movies. Let's
-say our hypothesis is that the IMDB rarings for a movie are predicted by a
+say our hypothesis is that the IMDB ratings for a movie are predicted by a
 multiplicative effect of the genre and the MPAA rating it got. To begin with,
 let's carry out an omnibus ANOVA to see if this is the case.
 
@@ -102,7 +106,6 @@ different models and see how the AIC, BIC, and log-likelihood values change.
 
 ```{r aov2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
 library(ggstatsplot)
-library(sjmisc)
 
 # for reproducibility
 set.seed(123)
@@ -183,15 +186,18 @@ audiences.
 
 Now let's say we want to see how movie budget relates to how good the movie is
 rated to be on IMDB (e.g., more money, better ratings?). But we have reasons to
-believe that the relationship between these two variables is differnt for
+believe that the relationship between these two variables is different for
 different genres (e.g., budget might be a good predictor of how good the movie
 is rated to be for animations or actions movies as more money can help with
-better visual effects and animations, but this may not be true for dramas), so
-we don't want to use `stats::lm`. In this case, therefore, we will be running a
-linear mixed-effects model (using `lme4::lmer` and p-values generated using the
-`lmerTest` package) with a random slope for the genre variable.
+better visual effects and animations, but this may not be true for dramas; also
+see the
+[`ggscatterstats`](https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html)
+vignette), so we don't want to use `stats::lm`. In this case, therefore, we will
+be running a linear mixed-effects model (using `lme4::lmer` and p-values
+generated using the `lmerTest` package) with a random slope for the genre
+variable.
 
-```{r lmer, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
+```{r lmer, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
 library(lme4)
 library(ggstatsplot)
 
@@ -228,17 +234,220 @@ ggstatsplot::combine_plots(
 
 As can be seen from these plots, although there seems to be a really small
 correlation between budget and rating, this effect is not found once we take
-into account the random effects.
+into account the random effects structure.
+
+## Non-linear (weighted) least-squares model (`stats::nls`)
+
+So far we have been assuming a linear relationship between movie budget and
+rating. But what is we want to also explore the possibility of a non-linear
+relationship? In that case, we can run a non-linear least squares regression.
+Note that you need to choose the same non-linear function (`y ~ k/x + c`)
+implemented here (try out other non-linear functions, e.g. `Y ~ k * exp(-b*c)`).
+
+```{r nls, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+library(ggstatsplot)
+
+# plot
+ggstatsplot::ggcoefstats(
+    x = stats::nls(
+      formula = rating ~ k / budget + c,                # try toying around with the form of non-linear function
+      data = ggstatsplot::movies_long,
+      start = list(k = 1, c = 0)
+    ),
+    title = "Non-linear relationship between budget and rating",
+    subtitle = "Source: IMDB"
+  )
+```
+
+This analysis shows that there is indeed a possible non-linear association
+between rating and budget, at least with the particular non-linear function we
+used.
+
+## generalized linear model (`stats::glm`)
+
+In all the analyses carried out thus far, the outcome variable (`y` in `y ~ x`)
+has been continuous. In case the outcome variable is categorical/factor, we can use
+the **generalized** form of linear model that works even if the response is a
+numeric vector or a factor vector, etc. 
+
+To explore this model, we will use the Titanic dataset, which tabulates
+information on the fate of passengers on the fatal maiden voyage of the ocean
+liner *Titanic*, summarized according to economic status (class), sex, age, and
+survival. Let's say we want to know what was the strongest predictor of whether
+someone survived the Titanic disaster-
+
+```{r glm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+library(ggstatsplot)
+
+# having a look at the Titanic dataset
+(df <- as.data.frame(x = Titanic))
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = stats::glm(
+    formula = Survived ~ Sex + Age,
+    data = df,
+    weights = df$Freq,                          # vector containing weights (no. of observations per row)
+    family = "binomial"
+  ),
+  exponentiate = TRUE,
+  ggtheme = ggplot2::theme_dark(),
+  vline.color = "red",
+  vline.linetype = "solid",
+  label.segment.color = "red",
+  stats.label.size = 3.5,
+  stats.label.color = c("orangered",
+                        "dodgerblue")
+) 
+```
+
+As can be seen from the regression coefficients, all entered predictors were
+significant predictors of the outcome. More specifically, being a female was
+associated with higher likelihood of survival (compared to male). On other hand,
+being an adult was associated with decreased likelihood of survival (compared to
+child).
+
+## generalized linear mixed-effects model (`lme4::glmer`)
+
+In the previous example, we saw how being a female and being a child was
+predictive of surviving the Titanic disaster. But in that analysis, we didn't
+take into another important factor: the passenger class in which people were
+traveling. Naively, we have reasons to believe that the effects of sex and age
+might be dependent on the class. To take into account this hierarchical
+structure of the data, we can run generalized linear mixed effects model with a
+random slope for class.
+
+```{r glmer, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# plot
+ggstatsplot::ggcoefstats(
+  x = lme4::glmer(
+    formula = Survived ~ Sex + Age + (Sex + Age | Class),
+    data = df,
+    weights = df$Freq,                          # vector containing weights (no. of observations per row)
+    family = "binomial"
+  ),
+  exponentiate = TRUE
+)
+```
+
+As we had expected, once we take into account the differential relationship that
+might exist between survival and predictor across different passenger classes,
+only the sex factor remain a significant predictor (also see the
+[`ggspiestats`](https://indrajeetpatil.github.io/ggstatsplot/articles/ggspiestats.html)
+vignette where we had explored this dataset).
+
+
+## Cumulative Link Models (`ordinal::clm`)
+
+So far we have dealt either with continuous or nominal/factor responses (or
+output variables), but sometimes we will encounter **ordinal** data (e.g.,
+Likert scale measurement in behavioral sciences). In these cases, ordinal
+regression models are suitable. To study these models, we will use
+`intent_morality` dataset included in the `ggstatsplot` package. This dataset
+contains moral judgments ("how wrong was this behavior?", "how much punishment
+does the agent deserve?"; on a Likert scale of 1-7) by participants about
+third-party actors who harm someone. There are four different conditions formed
+out of belief (neutral, negative) and outcome (neutral, negative) for four
+different vignettes, each featuring a different type of harm. The question we
+are interested in is what explains variation in participants' rating:
+information about intentionality, consequences, or their interaction?
+We will carry out this analysis for each type of harm-
+
+```{r clm, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 12}
+library(ggstatsplot)
+library(purrr)
+library(glue)
+
+# running the function for each type of harm and creating a list of plots
+plotlist <- ggstatsplot::intent_morality %>%
+  dplyr::mutate(.data = ., plot.title = harm) %>%
+  base::split(x = ., f = .$harm) %>%
+  purrr::map(.x = .,
+             .f = ~ ggstatsplot::ggcoefstats(
+               x = ordinal::clm(
+                 formula = as.factor(rating) ~ belief * outcome,
+                 link = "probit",
+                 data = .
+               ),
+               title = glue::glue("Type of harm: {.$plot.title}")
+             ) + 
+               ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
+               ggplot2::labs(x = "probit regression coefficient",
+                             y = NULL))
+
+# combining the plots
+ggstatsplot::combine_plots(plotlist = plotlist)
+
+```
+
+As can be seen from this plot, across all four types of harm, the actors who had
+malicious intent are judged to be worse than actors who had neutral intent, and
+actors who cause harm are judged to more harshly than actors who don't. But how
+intent and outcome information interact with each other depends on the type of
+harm.
+
+## Cumulative Link Mixed Models (`ordinal::clmm`)
+
+In the previous analysis, we carried four separate ordinal regression models to
+see effect of intent and outcome information on moral judgments. But a better of
+accounting for such item level differences is to model them as random factors.
+So, in the current section, we used ordinal mixed-effects regression model to
+see how belief and outcome contribute towards variation in moral judgment
+ratings-
+
+```{r clmm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+library(ggstatsplot)
+
+ggstatsplot::ggcoefstats(
+  x = ordinal::clmm(
+    formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
+                                                        harm),
+    link = "probit",
+    data = ggstatsplot::intent_morality
+  )) + 
+    ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
+    ggplot2::labs(x = "probit regression coefficient",
+                  y = "fixed effects")
+```
+
+Note that by default, `beta` parameters are shown for `clm` and `clmm` models,
+but you can also plot either just `alpha` or `both` using `ggcoefstats`. 
+
+```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+library(ggstatsplot)
+
+ggstatsplot::ggcoefstats(
+  x = ordinal::clmm(
+    formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
+                                                        harm),
+    link = "probit",
+    data = ggstatsplot::intent_morality
+  ),
+  coefficient.type = "alpha") +
+  ggplot2::labs(x = "coefficients",
+                y = "threshold parameters")
+```
 
 ## Repeated measures ANOVA (`aovlist`)
 
-Let's now to run a different type of analysis: repeated measures design.
+Let's now to run a different type of analysis: repeated measures design. To
+carry out this analysis, we will first have to convert the iris dataset from
+wide to long format such that there is one column corresponding to `attribute`
+(which part of the calyx of a flower is being measured: `sepal` or `petal`?) and
+one column corresponding to `measure` used (`length` or `width`?). Note that
+this is within-subjects design since the same flower has both measures for both
+attributes. The question we are interested in is the variance in measurements
+explained by both of these factors.
 
 ```{r aovlist, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
-library(dplyr)
+library(ggstatsplot)
+library(ggplot2)
 
 # for reproducibility
 set.seed(123)
+
+# having a look at iris before converting to long format
+dplyr::glimpse(iris)
 
 # converting the iris dataset to long format
 iris_long <- datasets::iris %>%
@@ -259,15 +468,26 @@ iris_long <- datasets::iris %>%
   ) %>%
   tibble::as_data_frame(x = .)
 
-# looking at the data
+# looking at the long format data
 dplyr::glimpse(x = iris_long)
 
-# specifying the model
+# specifying the model (note the error structure)
 ggstatsplot::ggcoefstats(
   x = stats::aov(formula = value ~ attribute * measure + Error(id / (attribute * measure)),
-             data = iris_long)
-)
+             data = iris_long),
+  ggtheme = ggplot2::theme_grey(),
+  stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
+  title = "Variation in measurements for Iris species",
+  subtitle = "Source: Iris data set (by Fisher or Anderson)"
+) + 
+  ggplot2::labs(caption = "Results from 2 by 2 RM ANOVA") + 
+  ggplot2::theme(plot.subtitle = element_text(size = 11, face = "plain"))
 ```
+
+As revealed by this analysis, all effects of this model are significant. But
+most of the variance is explained by the `attribute`, with the next important
+explanatory factor being the `measure` used. A very little amount of variation
+in measurement is accounted for by the interaction between these two factors.
 
 ## Suggestions
 

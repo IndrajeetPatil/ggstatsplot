@@ -21,7 +21,7 @@
 #'   effects are to be displayed. By default, only the `"fixed"` effects will be
 #'   shown. Other option is `"ran_pars"`.
 #' @param ran.prefix A length-2 character vector specifying the strings to use
-#'   as prefixes for self- (variance/standard deviation) and cross- (covarianc
+#'   as prefixes for self- (variance/standard deviation) and cross- (covariance
 #'   /correlation) random effects terms.
 #' @param point.color Character describing color for the point (Default:
 #'   `"blue"`).
@@ -32,6 +32,10 @@
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
 #'   `0.95`).
+#' @param coefficient.type For ordinal regression models, which parameters to
+#'   display in the plot. By default only `"beta"` (a vector of regression
+#'   parameters) parameters will be show. Other options are `"alpha"` (a vector
+#'   of threshold parameters) or `"both"`.
 #' @param k Number of decimal places expected for results displayed in labels.
 #' @param k.caption.summary Number of decimal places expected for results
 #'   displayed in captions.
@@ -98,6 +102,7 @@
 #'   `theme_void()`, etc.
 #' @inheritParams lm_effsize_ci
 #' @inheritParams broom::tidy.merMod
+#' @inheritParams broom::tidy.clm
 #' @param \dots Extra arguments to pass to \code{\link[broom]{tidy}}.
 #'
 #' @import ggplot2
@@ -139,6 +144,7 @@ ggcoefstats <- function(x,
                         scales = NULL,
                         ran.prefix = NULL,
                         conf.method = "Wald",
+                        coefficient.type = "beta",
                         effsize = "eta",
                         nboot = 1000,
                         point.color = "blue",
@@ -270,6 +276,23 @@ ggcoefstats <- function(x,
         dplyr::rename(.data = ., estimate = partial.omegasq)
       xlab <- "partial omega-squared"
     }
+  } else if (class(x)[[1]] == "clm" || class(x)[[1]] == "clmm" ) {
+    tidy_df <-
+      broom::tidy(x = x,
+                  conf.int = TRUE,
+                  conf.level = conf.level,
+                  quick = FALSE,
+                  conf.type = "Wald")
+
+    # selecting which coeffiecients to display
+    if (coefficient.type == "alpha") {
+      tidy_df %<>%
+        dplyr::filter(.data = ., coefficient_type == "alpha")
+    } else if (coefficient.type == "beta") {
+      tidy_df %<>%
+        dplyr::filter(.data = ., coefficient_type == "beta")
+    }
+
   } else {
     tidy_df <-
       broom::tidy(x = x,
@@ -475,6 +498,7 @@ ggcoefstats <- function(x,
       }
     }
   }
+
   #================================================== summary caption ===========================================================
 
   # caption containing model diagnostics
@@ -604,7 +628,8 @@ ggcoefstats <- function(x,
         na.rm = TRUE,
         show.legend = FALSE,
         direction = label.direction,
-        parse = TRUE
+        parse = TRUE,
+        seed = 123
       )
   }
 

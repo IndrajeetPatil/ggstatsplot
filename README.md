@@ -25,7 +25,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--01-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--03-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -516,8 +516,10 @@ ggstatsplot::ggcoefstats(
   x = stats::lm(formula = mpg ~ am * cyl,
                 data = mtcars),
   point.color = "red",
+  vline.color = "#CC79A7",
+  vline.linetype = "dotdash",
   stats.label.size = 3.5,
-  stats.label.color = c("#0072B2", "#D55E00", "#CC79A7"),
+  stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission and cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine"
 ) +                                    
@@ -592,6 +594,10 @@ ggstatsplot::combine_plots(
 ```
 
 <img src="man/figures/README-ggcoefstats3-1.png" width="100%" />
+
+This is by no means an exhaustive list of models supported by
+`ggcoefstats`. For more, see the associated vignette-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html>
 
   - `combine_plots`
 

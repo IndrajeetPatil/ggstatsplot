@@ -100,7 +100,8 @@ utils::globalVariables(
     "robust",
     "partial.etasq",
     "partial.omegasq",
-    "stratum"
+    "stratum",
+    "coefficient_type"
   ),
   package = "ggstatsplot",
   add = FALSE

@@ -310,7 +310,7 @@ plot_list <- purrr::pmap(
       "Year: 1997",
       "Year: 2007"
     ),
-    type = list("r", "p", "np", "p", "np", "r"),
+    type = list("r", "p", "np", "p", "p", "r"),
     effsize.type = list(
       "biased",
       "unbiased",
