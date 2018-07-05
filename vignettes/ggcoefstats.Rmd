@@ -348,6 +348,185 @@ vignette where we had explored this dataset). In other words, being a female was
 the strongest predictor of whether someone survived the tragedy that befell the
 Titanic.
 
+## Cumulative Link Models (`clm`)
+
+So far we have dealt either with continuous or nominal/factor responses (or
+output variables), but sometimes we will encounter **ordinal** data (e.g.,
+Likert scale measurement in behavioral sciences). In these cases, ordinal
+regression models are more suitable. To study these models, we will use
+`intent_morality` dataset included in the `ggstatsplot` package. This dataset
+contains moral judgments ("how wrong was this behavior?", "how much punishment
+does the agent deserve?"; on a Likert scale of 1-7) by participants about
+third-party actors who harmed someone. There are four different conditions
+formed out of belief (neutral, negative) and outcome (neutral, negative) for
+four different vignettes, each featuring a different type of harm. The question
+we are interested in is what explains variation in participants' rating:
+information about intentionality, consequences, or their interaction? 
+
+We will carry out this analysis for each type of harm because we might expect
+that people might rely on intent information for some types of harm, but not
+others (e.g., take into account intent information for minor harms, like bumping
+into someone, but not for more serious harms, like burning someone's hand)-
+
+```{r clm, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 12}
+library(ggstatsplot)
+library(purrr)
+library(glue)
+
+# running the function for each type of harm and creating a list of plots
+plotlist <- ggstatsplot::intent_morality %>%
+  dplyr::mutate(.data = ., plot.title = harm) %>%
+  base::split(x = ., f = .$harm) %>%
+  purrr::map(.x = .,
+             .f = ~ ggstatsplot::ggcoefstats(
+               x = ordinal::clm(
+                 formula = as.factor(rating) ~ belief * outcome,
+                 link = "logit",
+                 data = .,
+                 control = ordinal::clm.control(method = "nlminb", maxIter = 10000, convergence = "silent"),
+               ),
+               title = glue::glue("Type of harm: {.$plot.title}"),
+               caption.summary = FALSE                            # suppress model diagnostics
+             ) + 
+               ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
+               ggplot2::labs(x = "logit regression coefficient",
+                             y = NULL))
+
+# combining the plots
+ggstatsplot::combine_plots(plotlist = plotlist)
+
+```
+
+As can be seen from this plot, across all four types of harm, the actors who had
+malicious intent are judged to be worse than actors who had neutral intent, and
+actors who cause harm are judged to more harshly than actors who don't. But how
+intent and outcome information interact with each other depends on the type of
+harm.
+
+## Cumulative Link Mixed Models (`clmm`)
+
+In the previous analysis, we carried four separate ordinal regression models to
+see the generalizability (across items) of effects intent and outcome
+information on moral judgments. But a better of accounting for such item level
+differences is to model them as random factors. So, in the current section, we
+used ordinal mixed-effects regression model to see how belief and outcome
+contribute towards variation in moral judgment ratings-
+
+```{r clmm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+library(ggstatsplot)
+
+ggstatsplot::ggcoefstats(
+  x = ordinal::clmm(
+    formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
+                                                        harm),
+    data = ggstatsplot::intent_morality,
+    control = ordinal::clmm.control(
+      method = "nlminb",
+      maxIter = 1000,
+      gradTol = 1e-5,
+      innerCtrl = "noWarn"
+    )
+  ),
+  # suppress model diagnostics
+  caption.summary = FALSE
+) +
+  ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
+  ggplot2::labs(x = "coefficient from ordinal mixed-effects regression",
+                y = "fixed effects")
+```
+
+As we had premeditated from the item-level analysis, mixed effects regression
+didn't reveal any interaction effect. That is, most of the variance was
+accounted for by the information about whether there was harmful intent and
+whether there was harm, at least this is the effect we found with these four
+types of (minor) harms.
+
+Note that, by default, `beta` parameters are shown for `clm` and `clmm` models,
+but you can also plot either just `alpha` or `both` using `ggcoefstats`. 
+
+```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+library(ggstatsplot)
+
+ggstatsplot::ggcoefstats(
+  x = ordinal::clmm(
+    formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
+                                                        harm),
+    link = "logit",
+    data = ggstatsplot::intent_morality,
+    control = ordinal::clmm.control(
+      maxIter = 1000,
+      gradTol = 1e-5,
+      innerCtrl = "noWarn"
+    )
+  ),
+  coefficient.type = "alpha"
+) +
+  ggplot2::labs(x = "logit regression coefficients",
+                y = "threshold parameters")
+```
+
+## Repeated measures ANOVA (`aovlist`)
+
+Let's now consider an example of a repeated measures design where we want to run
+omnibus ANOVA with a specific error structure. To carry out this analysis, we
+will first have to convert the iris dataset from wide to long format such that
+there is one column corresponding to `attribute` (which part of the calyx of a
+flower is being measured: `sepal` or `petal`?) and one column corresponding to
+`measure` used (`length` or `width`?). Note that this is within-subjects design
+since the same flower has both measures for both attributes. The question we are
+interested in is how much of the variance in measurements is explained by both
+of these factors and their interaction.
+
+```{r aovlist, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+library(ggstatsplot)
+library(ggplot2)
+
+# for reproducibility
+set.seed(123)
+
+# having a look at iris before converting to long format
+dplyr::glimpse(iris)
+
+# converting the iris dataset to long format
+iris_long <- datasets::iris %>%
+  dplyr::mutate(.data = ., id = dplyr::row_number(x = Species)) %>%
+  tidyr::gather(
+    data = .,
+    key = "condition",
+    value = "value",
+    Sepal.Length:Petal.Width,
+    convert = TRUE,
+    factor_key = TRUE
+  ) %>%
+  tidyr::separate(
+    col = "condition",
+    into = c("attribute", "measure"),
+    sep = "\\.",
+    convert = TRUE
+  ) %>%
+  tibble::as_data_frame(x = .)
+
+# looking at the long format data
+dplyr::glimpse(x = iris_long)
+
+# specifying the model (note the error structure)
+ggstatsplot::ggcoefstats(
+  x = stats::aov(formula = value ~ attribute * measure + Error(id / (attribute * measure)),
+             data = iris_long),
+  ggtheme = ggplot2::theme_grey(),
+  stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
+  title = "Variation in measurements for Iris species",
+  subtitle = "Source: Iris data set (by Fisher or Anderson)"
+) + 
+  ggplot2::labs(caption = "Results from 2 by 2 RM ANOVA") + 
+  ggplot2::theme(plot.subtitle = element_text(size = 11, face = "plain"))
+```
+
+As revealed by this analysis, all effects of this model are significant. But
+most of the variance is explained by the `attribute`, with the next important
+explanatory factor being the `measure` used. A very little amount of variation
+in measurement is accounted for by the interaction between these two factors.
+
 
 ## And much more...
 
