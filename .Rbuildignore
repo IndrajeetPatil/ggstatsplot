@@ -18,3 +18,4 @@ JOSS/*
 ^data-raw$
 ^\.httr-oauth$
 ^CRAN-RELEASE$
+tests\^spelling

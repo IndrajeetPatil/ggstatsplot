@@ -21,10 +21,9 @@ ggcoefstats(x, output = "plot", effects = "fixed", scales = NULL,
   label.label.padding = 0.25, label.point.padding = 0.5,
   label.segment.color = "grey50", label.segment.size = 0.5,
   label.segment.alpha = NULL, label.min.segment.length = 0.5,
-  label.force = 1, label.force.pull = 1, label.max.iter = 2000,
-  label.nudge.x = 0, label.nudge.y = 0, label.xlim = c(NA, NA),
-  label.ylim = c(NA, NA), label.direction = "y",
-  ggtheme = ggplot2::theme_bw(), ...)
+  label.force = 1, label.max.iter = 2000, label.nudge.x = 0,
+  label.nudge.y = 0, label.xlim = c(NA, NA), label.ylim = c(NA, NA),
+  label.direction = "y", ggtheme = ggplot2::theme_bw(), ...)
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}.}
@@ -155,9 +154,6 @@ Defaults to \code{0.5}. (Default unit is lines).}
 
 \item{label.force}{Force of repulsion between overlapping text labels.
 Defaults to \code{1}.}
-
-\item{label.force.pull}{Force of attraction between a text label and its
-corresponding data point. Defaults to \code{1}.}
 
 \item{label.max.iter}{Maximum number of iterations to try to resolve
 overlaps. Defaults to \code{2000}.}

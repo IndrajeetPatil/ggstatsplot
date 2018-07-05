@@ -64,7 +64,7 @@ caption." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.3.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.4</span>
       </span>
     </div>
 
@@ -160,10 +160,9 @@ caption.</p>
   <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>label.segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>, <span class='kw'>label.segment.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>label.segment.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.force.pull</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
-  <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
-  <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='no'>...</span>)</pre>
+  <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -384,11 +383,6 @@ Defaults to <code>0.5</code>. (Default unit is lines).</p></td>
       <th>label.force</th>
       <td><p>Force of repulsion between overlapping text labels.
 Defaults to <code>1</code>.</p></td>
-    </tr>
-    <tr>
-      <th>label.force.pull</th>
-      <td><p>Force of attraction between a text label and its
-corresponding data point. Defaults to <code>1</code>.</p></td>
     </tr>
     <tr>
       <th>label.max.iter</th>

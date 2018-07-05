@@ -85,8 +85,6 @@
 #'   Defaults to `0.5`. (Default unit is lines).
 #' @param label.force Force of repulsion between overlapping text labels.
 #'   Defaults to `1`.
-#' @param label.force.pull Force of attraction between a text label and its
-#'   corresponding data point. Defaults to `1`.
 #' @param label.max.iter Maximum number of iterations to try to resolve
 #'   overlaps. Defaults to `2000`.
 #' @param label.nudge.x,label.nudge.y Horizontal and vertical adjustments to
@@ -184,7 +182,6 @@ ggcoefstats <- function(x,
                         label.segment.alpha = NULL,
                         label.min.segment.length = 0.5,
                         label.force = 1,
-                        label.force.pull = 1,
                         label.max.iter = 2000,
                         label.nudge.x = 0,
                         label.nudge.y = 0,
@@ -229,8 +226,8 @@ ggcoefstats <- function(x,
 
   # glance object from broom
   if (!(class(x)[[1]] %in% noglance.mods)) {
-    glance_df <- broom::glance(x = x) %>%
-      tibble::as_data_frame(x = .)
+      glance_df <- broom::glance(x = x) %>%
+        tibble::as_data_frame(x = .)
   } else {
     base::message(cat(
       crayon::green("Note:"),
@@ -619,7 +616,6 @@ ggcoefstats <- function(x,
         segment.alpha = label.segment.alpha,
         min.segment.length = label.min.segment.length,
         force = label.force,
-        force_pull = label.force.pull,
         max.iter = label.max.iter,
         nudge_x = label.nudge.x,
         nudge_y = label.nudge.y,
