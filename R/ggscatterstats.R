@@ -294,7 +294,6 @@ ggscatterstats <-
                 ", ",
                 UL,
                 "], ",
-                ", ",
                 italic("p"),
                 " = ",
                 pvalue,

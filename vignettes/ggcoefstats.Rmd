@@ -377,20 +377,25 @@ library(glue)
 plotlist <- ggstatsplot::intent_morality %>%
   dplyr::mutate(.data = ., plot.title = harm) %>%
   base::split(x = ., f = .$harm) %>%
-  purrr::map(.x = .,
-             .f = ~ ggstatsplot::ggcoefstats(
-               x = ordinal::clm(
-                 formula = as.factor(rating) ~ belief * outcome,
-                 link = "logit",
-                 data = .,
-                 control = ordinal::clm.control(method = "nlminb", maxIter = 10000, convergence = "silent"),
-               ),
-               title = glue::glue("Type of harm: {.$plot.title}"),
-               caption.summary = FALSE                            # suppress model diagnostics
-             ) + 
-               ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
-               ggplot2::labs(x = "logit regression coefficient",
-                             y = NULL))
+  purrr::map(
+    .x = .,
+    .f = ~ ggstatsplot::ggcoefstats(
+      x = ordinal::clm(
+        formula = as.factor(rating) ~ belief * outcome,
+        link = "logit",
+        data = .,
+        control = ordinal::clm.control(
+          maxIter = 1000,
+          convergence = "silent"
+        ),
+      ),
+      title = glue::glue("Type of harm: {.$plot.title}"),
+      caption.summary = FALSE                            # suppress model diagnostics
+    ) +
+      ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
+      ggplot2::labs(x = "logit regression coefficient",
+                    y = NULL)
+  )
 
 # combining the plots
 ggstatsplot::combine_plots(plotlist = plotlist)

@@ -1,4 +1,9 @@
 
+# ggstatsplot 0.0.4.9000
+
+MINOR CHANGES
+  - Removed the trailing comma from the robust correlation analyses.
+
 # ggstatsplot 0.0.4
 
 MAJOR CHANGES
