@@ -33,7 +33,7 @@ taken.}
 displayed; the default is \code{TRUE}.}
 
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
-(\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}).}
+(\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
 
 \item{marginal.size}{Integer describing the relative size of the marginal
 plots compared to the main plot. A size of \code{5} means that the main plot is
@@ -92,6 +92,11 @@ to be displayed (Default: \code{TRUE}).}
 Scatterplots from \code{ggplot2} combined with marginal
 histograms/boxplots/density plots with statistical details added as a
 subtitle.
+}
+\note{
+\code{marginal.type = "densigram"} will work only with the development
+version of \code{ggExtra} that you can download from \code{GitHub}:
+\code{devtools::install_github("daattali/ggExtra")}
 }
 \examples{
 

@@ -192,7 +192,7 @@ displayed; the default is <code>TRUE</code>.</p></td>
     <tr>
       <th>marginal.type</th>
       <td><p>Type of marginal distribution to be plotted on the axes
-(<code>"histogram"</code>, <code>"boxplot"</code>, <code>"density"</code>, <code>"violin"</code>).</p></td>
+(<code>"histogram"</code>, <code>"boxplot"</code>, <code>"density"</code>, <code>"violin"</code>, <code>"densigram"</code>).</p></td>
     </tr>
     <tr>
       <th>marginal.size</th>
@@ -283,6 +283,12 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p><code>marginal.type = "densigram"</code> will work only with the development
+version of <code>ggExtra</code> that you can download from <code>GitHub</code>:
+<code><a href='http://www.rdocumentation.org/packages/devtools/topics/install_github'>devtools::install_github("daattali/ggExtra")</a></code></p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html</a></p>
@@ -311,6 +317,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#note">Note</a></li>
+
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>

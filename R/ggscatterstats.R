@@ -18,7 +18,7 @@
 #' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be
 #'   displayed; the default is `TRUE`.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
-#'   (`"histogram"`, `"boxplot"`, `"density"`, `"violin"`).
+#'   (`"histogram"`, `"boxplot"`, `"density"`, `"violin"`, `"densigram"`).
 #' @param marginal.size Integer describing the relative size of the marginal
 #'   plots compared to the main plot. A size of `5` means that the main plot is
 #'   5x wider and 5x taller than the marginal plots.
@@ -80,6 +80,10 @@
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html}
+#'
+#' @note `marginal.type = "densigram"` will work only with the development
+#'   version of `ggExtra` that you can download from `GitHub`:
+#'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
 #'

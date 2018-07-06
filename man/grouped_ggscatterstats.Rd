@@ -40,7 +40,7 @@ title (name of each factor level) (Default: \code{"Group"}).}
 displayed; the default is \code{TRUE}.}
 
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
-(\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}).}
+(\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
 
 \item{marginal.size}{Integer describing the relative size of the marginal
 plots compared to the main plot. A size of \code{5} means that the main plot is
