@@ -189,8 +189,7 @@ ggstatsplot::grouped_ggpiestats(
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, we may want to add different captions,
 titles, themes, or palettes for each level of the grouping variable, etc. For
-cases like these, it would be better to use a function like
-[`purrr::pmap`](https://purrr.tidyverse.org/reference/map2.html).
+cases like these, it would be better to use \code{\link[purrr]{pmap}} (e.g.).
 
 **Note before**: Unlike the function call so far, while using `purrr::pmap`, we
 will need to *quote* the arguments.

@@ -149,7 +149,7 @@ a plotgrid along with a combination of title, caption, and annotation label</p>
   <span class='kw'>title.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>caption.size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>caption.vjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>caption.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>caption.fontface</span> <span class='kw'>=</span> <span class='st'>"plain"</span>, <span class='kw'>sub.text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sub.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>sub.size</span> <span class='kw'>=</span> <span class='fl'>14</span>, <span class='kw'>sub.vjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sub.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>sub.size</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>sub.vjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sub.hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>sub.fontface</span> <span class='kw'>=</span> <span class='st'>"plain"</span>, <span class='kw'>sub.x</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sub.y</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>sub.vpadding</span> <span class='kw'>=</span> <span class='kw pkg'>grid</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/grid/topics/unit'>unit</a></span>(<span class='fl'>1</span>, <span class='st'>"lines"</span>), <span class='kw'>sub.angle</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>sub.lineheight</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>title.rel.heights</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>1.2</span>),
@@ -178,17 +178,18 @@ a plotgrid along with a combination of title, caption, and annotation label</p>
     </tr>
     <tr>
       <th>title.vjust</th>
-      <td><p>Vertical justification for title. Default = 0.5 (centered
-on y). 0 = baseline at y, 1 = ascender at y.</p></td>
+      <td><p>Vertical justification for title. Default = <code>0.5</code> (centered
+on y). <code>0</code> = baseline at y, 1 = ascender at y.</p></td>
     </tr>
     <tr>
       <th>title.hjust</th>
-      <td><p>Horizontal justification for title. Default = 0.5
-(centered on x). 0 = flush-left at x, 1 = flush-right.</p></td>
+      <td><p>Horizontal justification for title. Default = <code>0.5</code>
+(centered on x). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></td>
     </tr>
     <tr>
       <th>title.fontface</th>
-      <td><p>The font face ("plain", "bold", etc.) for title.</p></td>
+      <td><p>The font face (<code>"plain"</code>, <code>"bold"</code> (default), <code>"italic"</code>,
+<code>"bold.italic"</code>) for title.</p></td>
     </tr>
     <tr>
       <th>caption.text</th>
@@ -215,7 +216,7 @@ for the <em>combined plot</em>.</p></td>
     </tr>
     <tr>
       <th>caption.fontface</th>
-      <td><p>The font face (<code>"plain"</code>, <code>"bold"</code>, <code>"italic"</code>,
+      <td><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
 <code>"bold.italic"</code>) for caption.</p></td>
     </tr>
     <tr>
@@ -225,43 +226,46 @@ Can be a plotmath expression.</p></td>
     </tr>
     <tr>
       <th>sub.color</th>
-      <td><p>Text color for annotation label.</p></td>
+      <td><p>Text color for annotation label (Default: <code>"black"</code>).</p></td>
     </tr>
     <tr>
       <th>sub.size</th>
-      <td><p>Point size of annotation text.</p></td>
+      <td><p>Point size of annotation text (Default: <code>12</code>).</p></td>
     </tr>
     <tr>
       <th>sub.vjust</th>
-      <td><p>Vertical justification for annotation label.</p></td>
+      <td><p>Vertical justification for annotation label (Default:
+<code>0.5</code>).</p></td>
     </tr>
     <tr>
       <th>sub.hjust</th>
-      <td><p>Horizontal justification for annotation label.</p></td>
+      <td><p>Horizontal justification for annotation label (Default:
+<code>0.5</code>).</p></td>
     </tr>
     <tr>
       <th>sub.fontface</th>
-      <td><p>The font face (<code>"plain"</code>, <code>"bold"</code>, <code>"italic"</code>,
+      <td><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
 <code>"bold.italic"</code>) for the annotation label.</p></td>
     </tr>
     <tr>
       <th>sub.x</th>
-      <td><p>The x position of annotation label.</p></td>
+      <td><p>The x position of annotation label (Default: <code>0.5</code>).</p></td>
     </tr>
     <tr>
       <th>sub.y</th>
-      <td><p>The y position of annotation label.</p></td>
+      <td><p>The y position of annotation label (Default: <code>0.5</code>).</p></td>
     </tr>
     <tr>
       <th>sub.vpadding</th>
       <td><p>Vertical padding. The total vertical space added to the
 label, given in grid units. By default, this is added equally above and
 below the label. However, by changing the y and vjust parameters, this can
-be changed.</p></td>
+be changed (Default: <code><a href='http://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></td>
     </tr>
     <tr>
       <th>sub.angle</th>
-      <td><p>Angle at which annotation label is to be drawn.</p></td>
+      <td><p>Angle at which annotation label is to be drawn (Default:
+<code>0</code>).</p></td>
     </tr>
     <tr>
       <th>sub.lineheight</th>

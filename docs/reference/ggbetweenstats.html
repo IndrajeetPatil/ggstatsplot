@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>violin plots for group or condition comparisons — ggbetweenstats • ggstatsplot</title>
+<title>Violin plots for group or condition comparisons in between-subjects
+designs. — ggbetweenstats • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +31,8 @@
 
 
 
-<meta property="og:title" content="violin plots for group or condition comparisons — ggbetweenstats" />
+<meta property="og:title" content="Violin plots for group or condition comparisons in between-subjects
+designs. — ggbetweenstats" />
 
 <meta property="og:description" content="A combination of box and violin plots along with jittered data
 points for between-subjects designs with statistical details included in
@@ -130,7 +132,8 @@ the plot as a subtitle." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>violin plots for group or condition comparisons</h1>
+    <h1>Violin plots for group or condition comparisons in between-subjects
+designs.</h1>
     
     <div class="hidden name"><code>ggbetweenstats.Rd</code></div>
     </div>
@@ -144,14 +147,15 @@ the plot as a subtitle.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggbetweenstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"boxviolin"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
-  <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
+  <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
+  <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
   <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -189,6 +193,12 @@ parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), resp.
 (<code>"biased"</code> (Cohen's <em>d</em> for <strong>t-test</strong>; partial eta-squared for <strong>anova</strong>)
 or <code>"unbiased"</code> (Hedge's <em>g</em> for <strong>t-test</strong>; partial omega-squared for
 <strong>anova</strong>)).</p></td>
+    </tr>
+    <tr>
+      <th>effsize.noncentral</th>
+      <td><p>Logical indicating whether to use non-central
+<em>t</em>-distributions for computing the 95<!-- % confidence interval for Cohen's \emph{d} -->
+or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -242,8 +252,13 @@ lower and upper confidence intervals (<code>0.95</code>).</p></td>
     <tr>
       <th>conf.type</th>
       <td><p>A vector of character strings representing the type of
-intervals required. The value should be any subset of the values <code>"norm"</code>,
+confidence intervals required from bootstrapping for partial eta- and omega-squared. The value should be any subset of the values <code>"norm"</code>,
 <code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>mean.label.size, mean.label.fontface, mean.label.color</th>
+      <td><p>Aesthetics for
+the labels. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, resp.</p></td>
     </tr>
     <tr>
       <th>notch</th>
@@ -293,8 +308,13 @@ Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Defaul
     </tr>
     <tr>
       <th>mean.plotting</th>
-      <td><p>Decides whether mean is to be highlighted and its value
-to be displayed (Default: <code>TRUE</code>).</p></td>
+      <td><p>Logical that decides whether mean is to be highlighted
+and its value to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>mean.ci</th>
+      <td><p>Logical that decides whether 95<!-- % confidence interval for mean -->
+is to be displayed (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>mean.size</th>

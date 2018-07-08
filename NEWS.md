@@ -4,6 +4,8 @@
 MINOR CHANGES
   - Removed the trailing comma from the robust correlation analyses.
   - `gghistostats` has a new argument to remove color fill gradient.
+  - `ggbetweenstats` takes new argument `mean.ci` to show confidence intervals
+    for the mean values.
 
 # ggstatsplot 0.0.4
 

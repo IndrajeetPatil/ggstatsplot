@@ -260,8 +260,7 @@ Although this is a quick and dirty way to explore large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
 For example, if we wanted to add, let's say, a separate `test.value` argument
 for each continent, this is not possible with `grouped_gghistostats`. For cases
-like these, it would be better to use a function like
-[`purrr::pmap`](https://purrr.tidyverse.org/reference/map2.html).
+like these, it would be better to use \code{\link[purrr]{pmap}} (e.g.).
 
 ## Grouped analysis with `gghistostats` + `purrr`
 

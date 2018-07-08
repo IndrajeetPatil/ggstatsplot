@@ -1,5 +1,6 @@
 #'
-#' @title violin plots for group or condition comparisons
+#' @title Violin plots for group or condition comparisons in between-subjects
+#'   designs.
 #' @name ggbetweenstats
 #' @aliases ggbetweenstats
 #' @description A combination of box and violin plots along with jittered data
@@ -23,6 +24,9 @@
 #'   (`"biased"` (Cohen's *d* for **t-test**; partial eta-squared for **anova**)
 #'   or `"unbiased"` (Hedge's *g* for **t-test**; partial omega-squared for
 #'   **anova**)).
+#' @param effsize.noncentral Logical indicating whether to use non-central
+#'   *t*-distributions for computing the 95% confidence interval for Cohen's *d*
+#'   or Hedge's *g* (Default: `FALSE`).
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param sample.size.label Logical that decides whether sample size information
@@ -39,8 +43,10 @@
 #'   try to play around with the value of `tr`, which is by default set to
 #'   `0.1`. Lowering the value might help.
 #' @param conf.type A vector of character strings representing the type of
-#'   intervals required. The value should be any subset of the values `"norm"`,
+#'   confidence intervals required from bootstrapping for partial eta- and omega-squared. The value should be any subset of the values `"norm"`,
 #'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
+#' @param mean.label.size,mean.label.fontface,mean.label.color Aesthetics for
+#'   the labels. Defaults: `3`, `"bold"`,`"black"`, resp.
 #' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return `95%`
 #'   lower and upper confidence intervals (`0.95`).
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
@@ -65,8 +71,10 @@
 #'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
 #'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
 #'   `1.5`).
-#' @param mean.plotting Decides whether mean is to be highlighted and its value
-#'   to be displayed (Default: `TRUE`).
+#' @param mean.plotting Logical that decides whether mean is to be highlighted
+#'   and its value to be displayed (Default: `TRUE`).
+#' @param mean.ci Logical that decides whether 95% confidence interval for mean
+#'   is to be displayed (Default: `FALSE`).
 #' @param mean.color Color for the data point corresponding to mean (Default:
 #'   `"darkred"`).
 #' @param mean.size Point size for the data point corresponding to mean
@@ -107,6 +115,7 @@
 #' @importFrom sjstats eta_sq
 #' @importFrom sjstats omega_sq
 #' @importFrom stats aov
+#' @importFrom stats sd
 #' @importFrom stats na.omit
 #' @importFrom stats t.test
 #' @importFrom stats var.test
@@ -115,6 +124,7 @@
 #' @importFrom stats aov
 #' @importFrom stats quantile
 #' @importFrom stats oneway.test
+#' @importFrom stats qt
 #' @importFrom coin wilcox_test
 #' @importFrom coin statistic
 #' @importFrom rlang enquo
@@ -161,6 +171,7 @@ ggbetweenstats <- function(data,
                            plot.type = "boxviolin",
                            type = "parametric",
                            effsize.type = "unbiased",
+                           effsize.noncentral = FALSE,
                            xlab = NULL,
                            ylab = NULL,
                            caption = NULL,
@@ -172,6 +183,9 @@ ggbetweenstats <- function(data,
                            tr = 0.1,
                            conf.level = 0.95,
                            conf.type = "norm",
+                           mean.label.size = 3,
+                           mean.label.fontface = "bold",
+                           mean.label.color = "black",
                            notch = FALSE,
                            notchwidth = 0.5,
                            linetype = "solid",
@@ -181,6 +195,7 @@ ggbetweenstats <- function(data,
                            outlier.color = "black",
                            outlier.coef = 1.5,
                            mean.plotting = TRUE,
+                           mean.ci = FALSE,
                            mean.size = 5,
                            mean.color = "darkred",
                            ggtheme = ggplot2::theme_bw(),
@@ -711,8 +726,9 @@ ggbetweenstats <- function(data,
             formula = y ~ x,
             data = data,
             hedges.correction = TRUE,
-            # Hedge's g
-            na.rm = TRUE
+            na.rm = TRUE,
+            conf.level = 0.95,
+            noncentral = effsize.noncentral
           )
 
         # adding subtitle to the plot
@@ -768,8 +784,9 @@ ggbetweenstats <- function(data,
             formula = y ~ x,
             data = data,
             hedges.correction = FALSE,
-            # Cohen's d
-            na.rm = TRUE
+            na.rm = TRUE,
+            conf.level = 0.95,
+            noncentral = effsize.noncentral
           )
 
         # adding subtitle to the plot
@@ -976,7 +993,7 @@ ggbetweenstats <- function(data,
           max.iter = 3e2,
           box.padding = 0.35,
           point.padding = 0.5,
-          segment.color = "grey50",
+          segment.color = "black",
           force = 2,
           na.rm = TRUE
         )
@@ -992,7 +1009,7 @@ ggbetweenstats <- function(data,
           max.iter = 3e2,
           box.padding = 0.35,
           point.padding = 0.5,
-          segment.color = "grey50",
+          segment.color = "black",
           force = 2,
           na.rm = TRUE
         )
@@ -1012,36 +1029,78 @@ ggbetweenstats <- function(data,
         na.rm = TRUE
       )
 
-    # use ggrepel to attach text label to each mean
-    # create a dataframe with means
-    mean_dat <- data %>%
-      # in case outlier.label is present, remove it since it's of no utility here
-      dplyr::select(.data = ., -dplyr::contains("outlier")) %>%
-      dplyr::group_by(.data = ., x) %>%
-      dplyr::summarise(.data = ., y = mean(y))
+    if (!isTRUE(mean.ci)) {
+      # use ggrepel to attach text label to each mean
+      # create a dataframe with means
+      mean_dat <- data %>%
+        # in case outlier.label is present, remove it since it's of no utility here
+        dplyr::select(.data = ., -dplyr::contains("outlier")) %>%
+        dplyr::group_by(.data = ., x) %>%
+        dplyr::summarise(.data = ., y = mean(y, na.rm = TRUE)) %>%
+        dplyr::mutate(.data = ., label = y) %>%
+        dplyr::ungroup(x = .)
+    } else {
+      mean_dat <- data %>%
+        # in case outlier.label is present, remove it since it's of no utility here
+        dplyr::select(.data = ., -dplyr::contains("outlier")) %>%
+        dplyr::group_by(.data = ., x) %>%
+        dplyr::summarise(
+          .data = .,
+          mean.y = base::mean(x = y, na.rm = TRUE),
+          sd.y = stats::sd(x = y, na.rm = TRUE),
+          n.y = dplyr::n()
+        ) %>%
+        dplyr::mutate(
+          .data = .,
+          se.y = sd.y / base::sqrt(n.y),
+          lower.ci.y = mean.y - stats::qt(p = 1 - (0.05 / 2), df = n.y - 1, lower.tail = TRUE) * se.y,
+          upper.ci.y = mean.y + stats::qt(p = 1 - (0.05 / 2), df = n.y - 1, lower.tail = TRUE) * se.y
+        ) %>%
+        dplyr::ungroup(x = .)
+    }
 
     # format the numeric values
     mean_dat %<>%
       dplyr::mutate_if(
         .tbl = .,
-        .predicate = is.numeric,
+        .predicate = purrr::is_bare_numeric,
         .funs = ~ as.numeric(as.character(
           ggstatsplot::specify_decimal_p(x = ., k = k)
         )) # format the values for printing
       )
 
+    if (isTRUE(mean.ci)) {
+      mean_dat %<>%
+        purrrlyr::by_row(
+          .d = .,
+          ..f = ~ paste(.$mean.y,
+                      ", 95% CI [",
+                      .$lower.ci.y,
+                      ", ",
+                      .$upper.ci.y,
+                      "]",
+                      sep = "",
+                      collapse = ""),
+          .collate = "rows",
+          .to = "label",
+          .labels = TRUE
+        ) %>%
+        dplyr::rename(.data = ., y = mean.y)
+    }
+
     # attach the labels to the plot
     plot <- plot +
       ggrepel::geom_label_repel(
         data = mean_dat,
-        mapping = ggplot2::aes(label = y),
-        fontface = "bold",
-        color = "black",
-        # inherit.aes = FALSE, #would result in "error: geom_label_repel requires the following missing aesthetics: x, y"
+        mapping = ggplot2::aes(x = x, y = y, label = label),
+        size = mean.label.size,
+        fontface = mean.label.fontface,
+        color = mean.label.color,
+        direction = "both",
         max.iter = 3e2,
         box.padding = 0.35,
         point.padding = 0.5,
-        segment.color = "grey50",
+        segment.color = "black",
         force = 2,
         na.rm = TRUE
       )

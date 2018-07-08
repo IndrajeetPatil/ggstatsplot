@@ -28,9 +28,17 @@ knitr::opts_chunk$set(
 `ggstatsplot` also contains a helper function `combine_plots` to combine
 multiple plots. This is a wrapper around \code{\link[cowplot]{plot_grid}} 
 and lets you combine multiple plots and add combination of title, caption, and
-annotation texts with suitable default parameters.
+annotation texts with suitable default parameters. This is also the 
 
-## Examples with `purrr`
+**Note before**: The codes below illustrates the utility of `combine_plots` for
+combining multiple plots created with `ggstatsplot` functions. But, if you have
+just one grouping variable, it's not even necessary to use `purrr` or `plyr`
+since the `grouped_` variants
+(<https://indrajeetpatil.github.io/ggstatsplot/reference/index.html>) of all
+functions will take care of this for you and rely on the `combine_plots`
+function behind the curtains.
+
+## Combining plots: Examples with `purrr`
 
 The full power of `ggstatsplot` can be leveraged with a functional programming
 package like [`purrr`](http://purrr.tidyverse.org/) that replaces many for loops
@@ -77,13 +85,13 @@ ggstatsplot::combine_plots(
   ncol = 1,
   title.text = "Relationship between sepal length and width for all Iris species",
   title.size = 14,
-  title.color = "black",
   caption.text = expression(
     paste(
       italic("Note"),
-      ": Iris flower dataset was collected by Edgar Anderson."
+      ": Iris flower dataset was collected by Edgar Anderson.",
+      sep = ""
     ),
-    caption.size = 10
+    caption.size = 12
   )
 )
 ```
@@ -130,17 +138,117 @@ ggstatsplot::combine_plots(
   labels = c("(a)","(b)","(c)"),
   title.text = "MPG and car transmission relationship (for each cylinder count)",
   title.size = 13,
-  title.color = "black",
+  title.color = "blue",
   caption.text = expression(
     paste(
       italic("Transmission"),
-      ": 0 = automatic, 1 = manual"
+      ": 0 = automatic, 1 = manual",
+      sep = ""
     ),
-    caption.size = 10
+    caption.size = 10,
+    caption.color = "red"
   )
+)
+```
+
+## Combining plots: Examples with `plyr`
+
+Another popular package for handling big datasets is `plyr`, where we can
+repeatedly apply a common function on smaller pieces and then combine the
+results.
+
+We'll use the `ggpiestats` function as an example function and the `movies_long`
+dataset from `ggstatsplot` package. This dataset provides information about
+movies scraped from [IMDB](https://www.imdb.com/). Let's say we are interested
+in figuring out whether the proportion of different types of MPAA ratings a
+given genre gets differs across genres (for example, Action movie are more
+likely to get R-rating, while animated movies to get PG rating?).
+
+```{r ggbetweenstats_plyr1, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
+library(plyr)
+library(ggstatsplot)
+
+# for reproducibility
+set.seed(123)
+
+# let's have a look at the structure of the data
+dplyr::glimpse(x = ggstatsplot::movies_long)
+
+# creating a list of plots
+plots <- plyr::dlply(
+  .data = ggstatsplot::movies_long,
+  .variables = .(genre),
+  .fun = function(data)
+    ggstatsplot::ggpiestats(
+      data = data,
+      main = mpaa,
+      title = glue::glue("Genre: {data$genre}")
+    )
+)
+
+# combining individual plots
+ggstatsplot::combine_plots(plotlist = plots, 
+                           title.text = "Differences in MPAA ratings by movie genre",
+                           title.color = "darkgreen",
+                           caption.text = "MPAA: Motion Picture Association of America",
+                           caption.color = "orange",
+                           nrow = 3,
+                           ncol = 2)
+```
+
+As can be seen from these plots, our hunch was correct: all ratings are not
+equally likely for any of the genres, for example Dramas and Documentary genre
+movies most frequently R-rating, while Animations genre movies overwhelmingly
+get PG rating.
+
+## Combining plot with additional text 
+
+This function can also be useful adding some additional text information that
+can't be contained in either title, subtitle, or caption. Here is an example:
+We want to run a polynomial regression and want to annotate the formula.
+
+```{r ggbetweenstats_subtext, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 8}
+library(ggstatsplot)
+
+ggstatsplot::combine_plots(
+  # preparing the plot with ggstatsplot function
+  ggstatsplot::ggcoefstats(
+    x = stats::lm(
+      formula = rating ~ stats::poly(budget, degree = 3),
+      data = ggstatsplot::movies_long,
+      na.action = na.omit
+    ),
+    exclude.intercept = FALSE,
+    title = "Relationship between movie budget and IMDB rating",
+    subtitle = "Source: Internet Movie Database",
+    ggtheme = ggplot2::theme_gray(),
+    stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "red")
+  ) +
+    # modifying the plot outside of ggstatsplot using ggplot2 functions
+    ggplot2::scale_y_discrete(
+      labels = c(
+        "Intercept (c)",
+        "1st degree (b1)",
+        "2nd degree (b2)",
+        "3rd degree (b3)"
+      )
+    ) + 
+    ggplot2::labs(y = "term (polynomial regression)"),
+  # adding additional text element to the plot since title, subtitle, caption are all already occupied
+  sub.text = expression(
+    paste(
+      "linear model: ", bolditalic(y),
+      " ~ ",
+      italic(c) + italic(b)[1] * bolditalic(x) + italic(b)[2] * bolditalic(x) ^
+        2 + italic(b)[3] * bolditalic(x) ^ 3,
+      sep = ""
+    )
+  ),
+  sub.size = 12
 )
 ```
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>

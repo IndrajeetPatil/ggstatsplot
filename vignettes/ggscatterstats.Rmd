@@ -42,10 +42,8 @@ you are not familiar with this operator, here is a good explanation:
 ## Correlation plot with `ggscatterstats`
 
 To illustrate how this function can be used, we will use the `ggplot2movies`
-dataset. This dataset (available in
-[package](https://CRAN.R-project.org/package=ggplot2movies) on CRAN) provides a
-dataset about movies scraped from [IMDB](https://www.imdb.com/). Let's have a
-look at the data-
+dataset. This dataset provides information about movies scraped from
+[IMDB](https://www.imdb.com/). Let's have a look at the data-
 
 ```{r ggplot2movies1, warning = FALSE, message = FALSE}
 library(ggplot2movies)

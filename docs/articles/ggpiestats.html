@@ -223,7 +223,7 @@
 <h2 class="hasAnchor">
 <a href="#grouped-analysis-with-ggpiestats-purrr" class="anchor"></a>Grouped analysis with <code>ggpiestats</code> + <code>purrr</code>
 </h2>
-<p>Although this grouping function provides a quick way to explore the data, it leaves much to be desired. For example, we may want to add different captions, titles, themes, or palettes for each level of the grouping variable, etc. For cases like these, it would be better to use a function like <a href="https://purrr.tidyverse.org/reference/map2.html"><code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code></a>.</p>
+<p>Although this grouping function provides a quick way to explore the data, it leaves much to be desired. For example, we may want to add different captions, titles, themes, or palettes for each level of the grouping variable, etc. For cases like these, it would be better to use  (e.g.).</p>
 <p><strong>Note before</strong>: Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># let's split the dataframe and create a list by passenger class</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">class_list &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>Titanic_full <span class="op">%&gt;%</span></a>

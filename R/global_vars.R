@@ -101,7 +101,11 @@ utils::globalVariables(
     "partial.etasq",
     "partial.omegasq",
     "stratum",
-    "coefficient_type"
+    "coefficient_type",
+    "mean.y",
+    "n.y",
+    "sd.y",
+    "se.y"
   ),
   package = "ggstatsplot",
   add = FALSE

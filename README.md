@@ -26,9 +26,10 @@ Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstat
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
-
-<!-- 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+<!--
 [![Open issues](http://img.shields.io/github/issues/badges/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues/)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
 -->
@@ -63,14 +64,15 @@ Future versions will include other types of analyses and plots as well.
 
 ## Installation
 
-To get the latest, stable CRAN release:
+To get the latest, stable CRAN release (`0.0.4`):
 
 ``` r
 utils::install.packages(pkgs = "ggstatsplot")
 ```
 
-You can get the **development** version from GitHub. If you are in hurry
-and want to reduce the time of installation, prefer-
+You can get the **development** version of the package from GitHub
+(`0.0.4.9000`). If you are in hurry and want to reduce the time of
+installation, prefer-
 
 ``` r
 # needed package to download from GitHub repo
@@ -197,8 +199,11 @@ ggstatsplot::ggbetweenstats(
   x = Species,
   y = Sepal.Length,
   notch = TRUE,                                   # show notched box plot
-  mean.plotting = TRUE,                           # whether mean for each group id to be displayed 
+  mean.plotting = TRUE,                           # whether mean for each group is to be displayed 
+  mean.ci = TRUE,                                 # whether to display confidence interval for means
+  mean.label.size = 2,                            # size of the label for mean
   type = "parametric",                            # which type of test is to be run
+  k = 2,                                          # number of decimal places for statistical results
   outlier.tagging = TRUE,                         # whether outliers need to be tagged
   outlier.label = Sepal.Width,                    # variable to be used for the outlier tag
   xlab = "Type of Species",                       # label for the x-axis variable
@@ -221,6 +226,8 @@ The `type` (of test) argument also accepts the following abbreviations:
 `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"` (for
 *robust*). Additionally, the type of plot to be displayed can also be
 modified (`"box"`, `"violin"`, or `"boxviolin"`).
+
+\*\* This function is not appropriate for within-subjects designs.\*\*
 
 Variant of this function `ggwithinstats` is currently under work. You
 *can* still use this function just to prepare the **plot** for
@@ -265,7 +272,7 @@ ggstatsplot::ggscatterstats(
   type = "robust",                               # type of test that needs to be run
   xlab = "Attribute: Sepal Length",              # label for x axis
   ylab = "Attribute: Petal Length",              # label for y axis 
-  line.color = "black",                         # changing regression line color line
+  line.color = "black",                          # changing regression line color line
   title = "Dataset: Iris flower data set",       # title text for the plot
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")

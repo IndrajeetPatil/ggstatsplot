@@ -7,7 +7,6 @@ correlalogram
 cowplot
 Cramer's
 ds
-english
 expectancies
 Gapminder
 generalizability
@@ -27,8 +26,10 @@ https
 imdb
 IMDB
 Indrajeet
+indrajeetpatil
 IndrajeetPatil
 intentionality
+io
 jitter
 knitr
 Likert
@@ -44,8 +45,10 @@ pch
 pearson's
 plotgrid
 plotmath
+pmap
 preferrred
 priori
+purrr
 Quartile
 README
 rmarkdown
@@ -54,7 +57,6 @@ sdcor
 spearman
 srt
 stackoverflow
-sthda
 stype
 th
 tibble
@@ -71,4 +73,3 @@ VignetteEngine
 VignetteIndexEntry
 vjust
 Winsorized
-www

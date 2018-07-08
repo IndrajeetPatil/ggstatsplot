@@ -2,17 +2,19 @@
 % Please edit documentation in R/ggbetweenstats.R
 \name{ggbetweenstats}
 \alias{ggbetweenstats}
-\title{violin plots for group or condition comparisons}
+\title{Violin plots for group or condition comparisons in between-subjects
+designs.}
 \usage{
 ggbetweenstats(data, x, y, plot.type = "boxviolin", type = "parametric",
-  effsize.type = "unbiased", xlab = NULL, ylab = NULL, caption = NULL,
-  title = NULL, sample.size.label = TRUE, k = 3, var.equal = FALSE,
-  nboot = 100, tr = 0.1, conf.level = 0.95, conf.type = "norm",
-  notch = FALSE, notchwidth = 0.5, linetype = "solid",
-  outlier.tagging = FALSE, outlier.label = NULL,
+  effsize.type = "unbiased", effsize.noncentral = FALSE, xlab = NULL,
+  ylab = NULL, caption = NULL, title = NULL, sample.size.label = TRUE,
+  k = 3, var.equal = FALSE, nboot = 100, tr = 0.1, conf.level = 0.95,
+  conf.type = "norm", mean.label.size = 3, mean.label.fontface = "bold",
+  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
+  linetype = "solid", outlier.tagging = FALSE, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
-  outlier.coef = 1.5, mean.plotting = TRUE, mean.size = 5,
-  mean.color = "darkred", ggtheme = ggplot2::theme_bw(),
+  outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
+  mean.size = 5, mean.color = "darkred", ggtheme = ggplot2::theme_bw(),
   palette = "Dark2", point.jitter.width = NULL, point.jitter.height = 0.1,
   point.dodge.width = 0.6, messages = TRUE)
 }
@@ -36,6 +38,10 @@ parametric), \code{"np"} (nonparametric), \code{"r"} (robust), resp.}
 (\code{"biased"} (Cohen's \emph{d} for \strong{t-test}; partial eta-squared for \strong{anova})
 or \code{"unbiased"} (Hedge's \emph{g} for \strong{t-test}; partial omega-squared for
 \strong{anova})).}
+
+\item{effsize.noncentral}{Logical indicating whether to use non-central
+\emph{t}-distributions for computing the 95% confidence interval for Cohen's \emph{d}
+or Hedge's \emph{g} (Default: \code{FALSE}).}
 
 \item{xlab}{Label for \code{x} axis variable.}
 
@@ -67,8 +73,11 @@ try to play around with the value of \code{tr}, which is by default set to
 lower and upper confidence intervals (\code{0.95}).}
 
 \item{conf.type}{A vector of character strings representing the type of
-intervals required. The value should be any subset of the values \code{"norm"},
+confidence intervals required from bootstrapping for partial eta- and omega-squared. The value should be any subset of the values \code{"norm"},
 \code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
+
+\item{mean.label.size, mean.label.fontface, mean.label.color}{Aesthetics for
+the labels. Defaults: \code{3}, \code{"bold"},\code{"black"}, resp.}
 
 \item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
@@ -100,8 +109,11 @@ With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
 
-\item{mean.plotting}{Decides whether mean is to be highlighted and its value
-to be displayed (Default: \code{TRUE}).}
+\item{mean.plotting}{Logical that decides whether mean is to be highlighted
+and its value to be displayed (Default: \code{TRUE}).}
+
+\item{mean.ci}{Logical that decides whether 95% confidence interval for mean
+is to be displayed (Default: \code{FALSE}).}
 
 \item{mean.size}{Point size for the data point corresponding to mean
 (Default: \code{5}).}

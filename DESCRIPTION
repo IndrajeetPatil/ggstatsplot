@@ -51,13 +51,14 @@ Imports:
 Suggests:
     ggplot2movies,
     gapminder (>= 0.3.0),
-    lme4,
-    ordinal,
     knitr,
+    lme4 (>= 1.1-17),
+    ordinal (>= 2018.4-19),
+    plyr (>= 1.8.4),
     rmarkdown,
+    spelling,
     testthat,
-    vdiffr,
-    spelling
+    vdiffr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

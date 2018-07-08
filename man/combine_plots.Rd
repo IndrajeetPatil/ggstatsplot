@@ -10,7 +10,7 @@ combine_plots(..., title.text = NULL, title.color = "black",
   title.fontface = "bold", caption.text = NULL, caption.color = "black",
   caption.size = 10, caption.vjust = 0.5, caption.hjust = 0.5,
   caption.fontface = "plain", sub.text = NULL, sub.color = "black",
-  sub.size = 14, sub.vjust = 0.5, sub.hjust = 0.5,
+  sub.size = 12, sub.vjust = 0.5, sub.hjust = 0.5,
   sub.fontface = "plain", sub.x = 0.5, sub.y = 0.5,
   sub.vpadding = grid::unit(1, "lines"), sub.angle = 0,
   sub.lineheight = 0.9, title.rel.heights = c(0.1, 1.2),
@@ -27,13 +27,14 @@ combine_plots(..., title.text = NULL, title.color = "black",
 
 \item{title.size}{Point size of title text.}
 
-\item{title.vjust}{Vertical justification for title. Default = 0.5 (centered
-on y). 0 = baseline at y, 1 = ascender at y.}
+\item{title.vjust}{Vertical justification for title. Default = \code{0.5} (centered
+on y). \code{0} = baseline at y, 1 = ascender at y.}
 
-\item{title.hjust}{Horizontal justification for title. Default = 0.5
-(centered on x). 0 = flush-left at x, 1 = flush-right.}
+\item{title.hjust}{Horizontal justification for title. Default = \code{0.5}
+(centered on x). \code{0} = flush-left at x, \code{1} = flush-right.}
 
-\item{title.fontface}{The font face ("plain", "bold", etc.) for title.}
+\item{title.fontface}{The font face (\code{"plain"}, \code{"bold"} (default), \code{"italic"},
+\code{"bold.italic"}) for title.}
 
 \item{caption.text}{String or plotmath expression to be drawn as the caption
 for the \emph{combined plot}.}
@@ -48,33 +49,36 @@ for the \emph{combined plot}.}
 \item{caption.hjust}{Horizontal justification for caption. Default = \code{0.5}
 (centered on x). \code{0} = flush-left at x, \code{1} = flush-right.}
 
-\item{caption.fontface}{The font face (\code{"plain"}, \code{"bold"}, \code{"italic"},
+\item{caption.fontface}{The font face (\code{"plain"} (default), \code{"bold"}, \code{"italic"},
 \code{"bold.italic"}) for caption.}
 
 \item{sub.text}{The label with which the \emph{combined plot} should be annotated.
 Can be a plotmath expression.}
 
-\item{sub.color}{Text color for annotation label.}
+\item{sub.color}{Text color for annotation label (Default: \code{"black"}).}
 
-\item{sub.size}{Point size of annotation text.}
+\item{sub.size}{Point size of annotation text (Default: \code{12}).}
 
-\item{sub.vjust}{Vertical justification for annotation label.}
+\item{sub.vjust}{Vertical justification for annotation label (Default:
+\code{0.5}).}
 
-\item{sub.hjust}{Horizontal justification for annotation label.}
+\item{sub.hjust}{Horizontal justification for annotation label (Default:
+\code{0.5}).}
 
-\item{sub.fontface}{The font face (\code{"plain"}, \code{"bold"}, \code{"italic"},
+\item{sub.fontface}{The font face (\code{"plain"} (default), \code{"bold"}, \code{"italic"},
 \code{"bold.italic"}) for the annotation label.}
 
-\item{sub.x}{The x position of annotation label.}
+\item{sub.x}{The x position of annotation label (Default: \code{0.5}).}
 
-\item{sub.y}{The y position of annotation label.}
+\item{sub.y}{The y position of annotation label (Default: \code{0.5}).}
 
 \item{sub.vpadding}{Vertical padding. The total vertical space added to the
 label, given in grid units. By default, this is added equally above and
 below the label. However, by changing the y and vjust parameters, this can
-be changed.}
+be changed (Default: \code{grid::unit(1, "lines")}).}
 
-\item{sub.angle}{Angle at which annotation label is to be drawn.}
+\item{sub.angle}{Angle at which annotation label is to be drawn (Default:
+\code{0}).}
 
 \item{sub.lineheight}{Line height of annotation label.}
 
