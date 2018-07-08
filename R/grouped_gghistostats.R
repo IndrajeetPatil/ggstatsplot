@@ -82,6 +82,7 @@ grouped_gghistostats <- function(data,
                                  line.labeller.y = -2,
                                  binwidth = NULL,
                                  ggtheme = ggplot2::theme_bw(),
+                                 fill.gradient = TRUE,
                                  messages = TRUE,
                                  ...) {
   # ================== preparing dataframe ==================
@@ -151,6 +152,7 @@ grouped_gghistostats <- function(data,
             line.labeller.y = line.labeller.y,
             binwidth = binwidth,
             ggtheme = ggtheme,
+            fill.gradient = fill.gradient,
             messages = messages
           )
         )

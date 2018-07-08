@@ -67,6 +67,8 @@
 #'   bins that cover the range of the data. You should always override this
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
+#' @param fill.gradient Logical decides whether color fill gradient is to be
+#'   displayed (Default: `TRUE`). If `FALSE`, the legend will also be removed.
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
 #'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
 #'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
@@ -158,17 +160,26 @@ gghistostats <-
            line.labeller = FALSE,
            line.labeller.y = -2,
            ggtheme = ggplot2::theme_bw(),
+           fill.gradient = TRUE,
            messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
     }
+
     # save the value of caption in another variable because caption is going to be modified in the function body
     if (is.null(caption)) {
       bf.caption <- caption
     } else {
       bf.caption <- NULL
     }
+
+    # if no color fill is to be displayed, set low and high color to white
+    if (!isTRUE(fill.gradient)) {
+      low.color <- "white"
+      high.color <- "white"
+    }
+
     # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
@@ -577,6 +588,12 @@ gghistostats <-
       plot <- legend_title_margin(plot = plot,
                                   t.margin = t.margin,
                                   b.margin = b.margin)
+    }
+
+    # if no color fill gradient is used, then remove the legend
+    if (!isTRUE(fill.gradient)) {
+      plot <- plot +
+        ggplot2::theme(legend.position = "none")
     }
 
     # ========================================== messages ==================================================================

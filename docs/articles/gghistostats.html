@@ -96,7 +96,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-07-06</h4>
+            <h4 class="date">2018-07-08</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -217,8 +217,10 @@
 <a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                <span class="co"># title for the plot</span></a>
 <a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                            <span class="co"># subtitle for the plot</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: Gapminder Foundation"</span>, <span class="co"># caption for the plot</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>                            <span class="co"># plotting centrality parameter (mean)</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">  )</a></code></pre></div>
+<a class="sourceLine" id="cb6-12" data-line-number="12">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                           <span class="co"># plotting centrality parameter (mean)</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">    <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),                    <span class="co"># change the default theme</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">    <span class="dt">fill.gradient =</span> <span class="ot">FALSE</span>                               <span class="co"># turn off color fill gradient</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">  )</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/stats1-1.png" width="700"></p>
 <p>Although there are still some countries where the life expectancy is low, on average, the life expectancy worldwide has improved compared to what it was in 1950.</p>
 <p><code>gghistostats</code> also provides the opportunity to compute Bayes Factors to quantify evidence in favor of the <strong>alternative</strong> (BF10) or the <strong>null</strong> hypothesis (BF01). In practice, you need to compute only one and the other will just be the inverse. In the current example, let’s say we want to quantify evidence in favor of the alternative hypothesis (H1) that the life expectancy in 2007 has improved significantly worldwide since 1957. The null, in this case, will of course be that there is no improvement.</p>

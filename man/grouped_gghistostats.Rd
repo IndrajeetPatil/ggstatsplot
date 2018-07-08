@@ -16,7 +16,7 @@ grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
   test.value.color = "black", test.value.size = 1.2,
   test.value.linetype = "dashed", line.labeller = FALSE,
   line.labeller.y = -2, binwidth = NULL, ggtheme = ggplot2::theme_bw(),
-  messages = TRUE, ...)
+  fill.gradient = TRUE, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -122,6 +122,9 @@ in your data.}
 \code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
 including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
 \code{theme_void()}, etc.}
+
+\item{fill.gradient}{Logical decides whether color fill gradient is to be
+displayed (Default: \code{TRUE}). If \code{FALSE}, the legend will also be removed.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

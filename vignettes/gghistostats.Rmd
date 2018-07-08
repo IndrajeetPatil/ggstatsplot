@@ -167,7 +167,9 @@ gapminder::gapminder %>%
     title = "Life expectancy worldwide",                # title for the plot
     subtitle = "Year: 2007",                            # subtitle for the plot
     caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    centrality.para = "mean"                            # plotting centrality parameter (mean)
+    centrality.para = "mean",                           # plotting centrality parameter (mean)
+    ggtheme = ggplot2::theme_grey(),                    # change the default theme
+    fill.gradient = FALSE                               # turn off color fill gradient
   )
 ```
 

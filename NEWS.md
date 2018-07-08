@@ -3,6 +3,7 @@
 
 MINOR CHANGES
   - Removed the trailing comma from the robust correlation analyses.
+  - `gghistostats` has a new argument to remove color fill gradient.
 
 # ggstatsplot 0.0.4
 
