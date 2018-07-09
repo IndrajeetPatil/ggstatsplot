@@ -23,6 +23,11 @@
 #' @param ran.prefix A length-2 character vector specifying the strings to use
 #'   as prefixes for self- (variance/standard deviation) and cross- (covariance
 #'   /correlation) random effects terms.
+#' @param conf.method Character describing method for computing confidence
+#'   intervals (for more, see `lme4::confint.merMod`).
+#' @param p.kr Logical, if `TRUE`, the computation of p-values for `lmer` is
+#'   based on conditional F-tests with Kenward-Roger approximation for the df.
+#'   For details, see `?sjstats::p_value`.
 #' @param point.color Character describing color for the point (Default:
 #'   `"blue"`).
 #' @param point.size Numeric specifying size for the point (Default: `3`).
@@ -57,7 +62,7 @@
 #'   (Default: `"dashed"`).
 #' @param vline.size Numeric specifying the size of the vertical line (Default:
 #'   `1`).
-#' @param sort `"none"` (default) do not sort, `"ascending"` sort by increasing
+#' @param sort If `"none"` (default) do not sort, `"ascending"` sort by increasing
 #'   coefficient value, or `"descending"` sort by decreasing coefficient value.
 #' @param stats.labels Logical. Decides whether the statistic and p-values for
 #'   each coefficient are to be attached to each dot as a text label using
@@ -123,7 +128,7 @@
 #' @importFrom grid unit
 #' @importFrom magrittr "%>%"
 #' @importFrom magrittr "%<>%"
-#' @importFrom lmerTest as_lmerModLmerTest
+#' @importFrom sjstats p_value
 #' @importFrom tibble rownames_to_column
 #' @importFrom tibble as_data_frame
 #'
@@ -142,6 +147,7 @@ ggcoefstats <- function(x,
                         scales = NULL,
                         ran.prefix = NULL,
                         conf.method = "Wald",
+                        p.kr = TRUE,
                         coefficient.type = "beta",
                         effsize = "eta",
                         nboot = 1000,
@@ -300,16 +306,23 @@ ggcoefstats <- function(x,
   # p-values won't be computed by default for the lmer models
   if (class(x)[[1]] == "lmerMod") {
     # computing p-values
-    lmer_p <-
-      coef(summary(lmerTest::as_lmerModLmerTest(model = x, tol = 1e-08))) %>%
-      base::as.data.frame(.) %>%
-      tibble::rownames_to_column(df = ., var = "term") %>%
-      dplyr::select(.data = ., term, p.value = `Pr(>|t|)`) %>%
-      tibble::as_data_frame(x = .)
-
-    # merging the two dataframes
-    tidy_df <-
-      dplyr::full_join(x = tidy_df, y = lmer_p, by = "term")
+    tidy_df %<>%
+      tibble::as_data_frame(x = .) %>%
+      dplyr::mutate_at(.tbl = .,
+                       .vars = "term",
+                       .funs = ~ as.character(x = .)) %>%
+    dplyr::full_join(
+      x = .,
+      y = sjstats::p_value(fit = x, p.kr = p.kr) %>%
+        tibble::as_data_frame(x = .) %>%
+        dplyr::select(.data = ., -std.error) %>%
+        dplyr::mutate_at(
+          .tbl = .,
+          .vars = "term",
+          .funs = ~ as.character(x = .)
+        ),
+      by = "term"
+    )
   }
 
   # if broom output doesn't contain p-value

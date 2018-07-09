@@ -184,7 +184,7 @@ ggstatsplot::ggbetweenstats(
   notch = TRUE,                                   # show notched box plot
   mean.plotting = TRUE,                           # whether mean for each group is to be displayed 
   mean.ci = TRUE,                                 # whether to display confidence interval for means
-  mean.label.size = 2,                            # size of the label for mean
+  mean.label.size = 2.5,                          # size of the label for mean
   type = "parametric",                            # which type of test is to be run
   k = 2,                                          # number of decimal places for statistical results
   outlier.tagging = TRUE,                         # whether outliers need to be tagged

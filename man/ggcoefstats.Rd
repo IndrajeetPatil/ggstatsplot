@@ -6,10 +6,11 @@
 caption.}
 \usage{
 ggcoefstats(x, output = "plot", effects = "fixed", scales = NULL,
-  ran.prefix = NULL, conf.method = "Wald", coefficient.type = "beta",
-  effsize = "eta", nboot = 1000, point.color = "blue", point.size = 3,
-  point.shape = 16, conf.int = TRUE, conf.level = 0.95, k = 3,
-  k.caption.summary = 0, exclude.intercept = TRUE, exponentiate = FALSE,
+  ran.prefix = NULL, conf.method = "Wald", p.kr = TRUE,
+  coefficient.type = "beta", effsize = "eta", nboot = 1000,
+  point.color = "blue", point.size = 3, point.shape = 16,
+  conf.int = TRUE, conf.level = 0.95, k = 3, k.caption.summary = 0,
+  exclude.intercept = TRUE, exponentiate = FALSE,
   errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
   vline.color = "black", vline.linetype = "dashed", vline.size = 1,
@@ -45,7 +46,12 @@ or logistic) are not yet implemented, but may be in the future.}
 as prefixes for self- (variance/standard deviation) and cross- (covariance
 /correlation) random effects terms.}
 
-\item{conf.method}{method for computing confidence intervals (see \code{lme4::confint.merMod})}
+\item{conf.method}{Character describing method for computing confidence
+intervals (for more, see \code{lme4::confint.merMod}).}
+
+\item{p.kr}{Logical, if \code{TRUE}, the computation of p-values for \code{lmer} is
+based on conditional F-tests with Kenward-Roger approximation for the df.
+For details, see \code{?sjstats::p_value}.}
 
 \item{coefficient.type}{For ordinal regression models, which parameters to
 display in the plot. By default only \code{"beta"} (a vector of regression
@@ -105,7 +111,7 @@ excluded from the plot (Default: \code{TRUE}).}
 \item{vline.size}{Numeric specifying the size of the vertical line (Default:
 \code{1}).}
 
-\item{sort}{\code{"none"} (default) do not sort, \code{"ascending"} sort by increasing
+\item{sort}{If \code{"none"} (default) do not sort, \code{"ascending"} sort by increasing
 coefficient value, or \code{"descending"} sort by decreasing coefficient value.}
 
 \item{xlab}{Label for \code{x} axis variable (Default: \code{"estimate"}).}

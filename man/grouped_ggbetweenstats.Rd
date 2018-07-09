@@ -73,27 +73,28 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
-\item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return \code{95\%}
-lower and upper confidence intervals (\code{0.95}).}
+\item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{conf.type}{A vector of character strings representing the type of
-confidence intervals required from bootstrapping for partial eta- and omega-squared. The value should be any subset of the values \code{"norm"},
+confidence intervals required from bootstrapping for partial eta- and
+omega-squared. The value should be any subset of the values \code{"norm"},
 \code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
 
 \item{mean.label.size}{Aesthetics for
-the labels. Defaults: \code{3}, \code{"bold"},\code{"black"}, resp.}
+the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
 
 \item{mean.label.fontface}{Aesthetics for
-the labels. Defaults: \code{3}, \code{"bold"},\code{"black"}, resp.}
+the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
 
 \item{mean.label.color}{Aesthetics for
-the labels. Defaults: \code{3}, \code{"bold"},\code{"black"}, resp.}
+the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
 
 \item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend 1.58 * IQR / sqrt(n). This gives a roughly \code{95\%} confidence
+notches extend \code{1.58 * IQR / sqrt(n)}. This gives a roughly \code{95\%} confidence
 interval for comparing medians. IQR: Inter-Quartile Range.}
 
 \item{notchwidth}{For a notched box plot, width of the notch relative to the

@@ -140,6 +140,9 @@
 <code>gghistostats</code> has a new argument to remove color fill gradient.</li>
 <li>
 <code>ggbetweenstats</code> takes new argument <code>mean.ci</code> to show confidence intervals for the mean values.</li>
+<li>For <code>lmer</code> models, p-values are now computed using <code><a href="http://www.rdocumentation.org/packages/sjstats/topics/p_value">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</li>
+<li>
+<code>sjstats</code> no longer suggests <code>apaTables</code> package to compute confidence intervals for partial eta- and omega-squared. Therefore, <code>apaTables</code> and <code>MBESS</code> are removed from dependencies.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-4" class="section level1">

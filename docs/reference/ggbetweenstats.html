@@ -246,19 +246,20 @@ try to play around with the value of <code>tr</code>, which is by default set to
     </tr>
     <tr>
       <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If <code>NULL</code>, the defaults return <code>95%</code>
-lower and upper confidence intervals (<code>0.95</code>).</p></td>
+      <td><p>Scalar between 0 and 1. If <code>NULL</code>, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>conf.type</th>
       <td><p>A vector of character strings representing the type of
-confidence intervals required from bootstrapping for partial eta- and omega-squared. The value should be any subset of the values <code>"norm"</code>,
+confidence intervals required from bootstrapping for partial eta- and
+omega-squared. The value should be any subset of the values <code>"norm"</code>,
 <code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
     </tr>
     <tr>
       <th>mean.label.size, mean.label.fontface, mean.label.color</th>
       <td><p>Aesthetics for
-the labels. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, resp.</p></td>
+the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></td>
     </tr>
     <tr>
       <th>notch</th>
@@ -266,7 +267,7 @@ the labels. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, 
 displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend 1.58 * IQR / sqrt(n). This gives a roughly <code>95%</code> confidence
+notches extend <code>1.58 * IQR / sqrt(n)</code>. This gives a roughly <code>95%</code> confidence
 interval for comparing medians. IQR: Inter-Quartile Range.</p></td>
     </tr>
     <tr>

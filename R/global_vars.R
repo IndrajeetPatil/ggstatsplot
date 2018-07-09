@@ -105,7 +105,8 @@ utils::globalVariables(
     "mean.y",
     "n.y",
     "sd.y",
-    "se.y"
+    "se.y",
+    "std.error"
   ),
   package = "ggstatsplot",
   add = FALSE

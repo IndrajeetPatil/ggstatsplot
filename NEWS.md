@@ -6,6 +6,11 @@ MINOR CHANGES
   - `gghistostats` has a new argument to remove color fill gradient.
   - `ggbetweenstats` takes new argument `mean.ci` to show confidence intervals
     for the mean values.
+  - For `lmer` models, p-values are now computed using `sjstats::p_value`. This
+    removes `lmerTest` package from dependencies.
+  - `sjstats` no longer suggests `apaTables` package to compute confidence
+    intervals for partial eta- and omega-squared. Therefore, `apaTables` and
+    `MBESS` are removed from dependencies.
 
 # ggstatsplot 0.0.4
 

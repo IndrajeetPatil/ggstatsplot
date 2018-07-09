@@ -145,10 +145,11 @@ caption.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>effects</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ran.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='st'>"beta"</span>,
-  <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>ran.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='st'>"beta"</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+  <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
+  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -198,7 +199,14 @@ as prefixes for self- (variance/standard deviation) and cross- (covariance
     </tr>
     <tr>
       <th>conf.method</th>
-      <td><p>method for computing confidence intervals (see <code><a href='http://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>lme4::confint.merMod</a></code>)</p></td>
+      <td><p>Character describing method for computing confidence
+intervals (for more, see <code><a href='http://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>lme4::confint.merMod</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>p.kr</th>
+      <td><p>Logical, if <code>TRUE</code>, the computation of p-values for <code>lmer</code> is
+based on conditional F-tests with Kenward-Roger approximation for the df.
+For details, see <code><a href='http://www.rdocumentation.org/packages/sjstats/topics/p_value'>?sjstats::p_value</a></code>.</p></td>
     </tr>
     <tr>
       <th>coefficient.type</th>
@@ -300,7 +308,7 @@ excluded from the plot (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>sort</th>
-      <td><p><code>"none"</code> (default) do not sort, <code>"ascending"</code> sort by increasing
+      <td><p>If <code>"none"</code> (default) do not sort, <code>"ascending"</code> sort by increasing
 coefficient value, or <code>"descending"</code> sort by decreasing coefficient value.</p></td>
     </tr>
     <tr>

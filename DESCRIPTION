@@ -21,7 +21,6 @@ Depends:
     grDevices,
     stats
 Imports: 
-    apaTables (>= 2.0.4),
     boot (>= 1.3-20),
     broom (>= 0.4.5),
     coin (>= 1.2-2),
@@ -37,9 +36,7 @@ Imports:
     grid,
     gtable (>= 0.2.0),
     jmv (>= 0.8.6.2),
-    lmerTest (>= 3.0-1),
     magrittr,
-    MBESS (>= 4.4.3),
     purrr (>= 0.2.4),
     purrrlyr (>= 0.0.3),
     rlang (>= 0.2.0),
@@ -56,7 +53,7 @@ Suggests:
     ordinal (>= 2018.4-19),
     plyr (>= 1.8.4),
     rmarkdown,
-    spelling,
+    spelling (>= 1.2),
     testthat,
     vdiffr
 Encoding: UTF-8

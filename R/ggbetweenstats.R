@@ -43,17 +43,18 @@
 #'   try to play around with the value of `tr`, which is by default set to
 #'   `0.1`. Lowering the value might help.
 #' @param conf.type A vector of character strings representing the type of
-#'   confidence intervals required from bootstrapping for partial eta- and omega-squared. The value should be any subset of the values `"norm"`,
+#'   confidence intervals required from bootstrapping for partial eta- and
+#'   omega-squared. The value should be any subset of the values `"norm"`,
 #'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
 #' @param mean.label.size,mean.label.fontface,mean.label.color Aesthetics for
-#'   the labels. Defaults: `3`, `"bold"`,`"black"`, resp.
-#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return `95%`
-#'   lower and upper confidence intervals (`0.95`).
+#'   the label displaying mean. Defaults: `3`, `"bold"`,`"black"`, respectively.
+#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return
+#'   `95%` lower and upper confidence intervals (`0.95`).
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
 #'   compare groups; if the notches of two boxes do not overlap, this suggests
 #'   that the medians are significantly different. In a notched box plot, the
-#'   notches extend 1.58 * IQR / sqrt(n). This gives a roughly `95%` confidence
+#'   notches extend `1.58 * IQR / sqrt(n)`. This gives a roughly `95%` confidence
 #'   interval for comparing medians. IQR: Inter-Quartile Range.
 #' @param notchwidth For a notched box plot, width of the notch relative to the
 #'   body (default `0.5`).
