@@ -623,8 +623,8 @@ to read and, therefore, `purrr` should be preferrred.
 For more, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html>
 
-  - `theme_mprl`
+  - `theme_ggstatsplot`
 
-All plots from `ggstatsplot` have a default theme: `theme_mprl`. For
-more on how to modify it, see the associated vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/theme_mprl.html>
+All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`.
+For more on how to modify it, see the associated vignette-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>

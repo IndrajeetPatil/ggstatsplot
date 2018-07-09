@@ -1,7 +1,6 @@
 #'
 #' @title Default theme used in all `ggstatsplot` package plots
 #' @name theme_mprl
-#' @aliases theme_ggstatsplot
 #' @author Indrajeet Patil
 #' @description Common theme used across all plots generated in `ggstatsplot`
 #'   and *assumed* by the author to be aesthetically pleasing to the
@@ -17,8 +16,10 @@
 #' @import ggplot2
 #' @importFrom grid unit
 #'
+#' @note This is just another name for the function `theme_ggstatsplot()`.
+#'
 #' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_mprl.html}
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html}
 #'
 #' @export
 #'
@@ -59,4 +60,25 @@ theme_mprl <- function(ggtheme = ggplot2::theme_bw()) {
         hjust = 0.5
       )
     )
+}
+
+#'
+#' @title Default theme used in all `ggstatsplot` package plots
+#' @name theme_ggstatsplot
+#' @author Indrajeet Patil
+#' @description Common theme used across all plots generated in `ggstatsplot`
+#'   and *assumed* by the author to be aesthetically pleasing to the
+#'   user/reader.
+#'
+#' @inheritParams theme_mprl
+#' @note This is just another name for the function `theme_mprl()`.
+#'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html}
+#'
+#' @export
+#'
+
+theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw()) {
+  theme_mprl(ggtheme = ggtheme)
 }

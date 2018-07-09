@@ -1,6 +1,11 @@
 
 # ggstatsplot 0.0.4.9000
 
+MAJOR CHANGES
+  - For the sake of consistency, `theme_mprl` is now called `theme_ggstatsplot`.
+    The `theme_mprl` function will still be around and not be deprecated, so feel
+    free to use either or both of them since they are identical.
+
 MINOR CHANGES
   - Removed the trailing comma from the robust correlation analyses.
   - `gghistostats` has a new argument to remove color fill gradient.

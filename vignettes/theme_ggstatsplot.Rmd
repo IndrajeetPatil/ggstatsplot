@@ -1,5 +1,5 @@
 ---
-title: "Default theme"
+title: "ggstatsplot theme"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -11,7 +11,7 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{Default theme}
+  %\VignetteIndexEntry{ggstatsplot theme}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -25,15 +25,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Default theme for the package: `theme_mprl`
+## Default theme for the package: `theme_ggstatsplot`
 
-`ggstatsplot` uses a default theme `theme_mprl()`, which is a selected `ggplot2`
+`ggstatsplot` uses a default theme `theme_ggstatsplot()`, which is a selected `ggplot2`
 theme with few aesthetic modifications overlaid on top, that can be used with any
-`ggplot2` object.
+`ggplot2` object. Alternative name for this function is `theme_mprl`.
 
 Here is a simple example:
 
-```{r theme_mprl, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
+```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
 library(ggplot2)
 
 # Basic scatter plot
@@ -44,17 +44,17 @@ ggplot2::ggplot(
   ggplot2::geom_point() +
   ggplot2::theme_bw()
 
-# Basic scatter plot with theme_mprl() added
+# Basic scatter plot with theme_ggstatsplot() added
 ggplot2::ggplot(
   data = datasets::mtcars, 
   mapping = ggplot2::aes(x = wt, y = mpg)
 ) + 
   ggplot2::geom_point() + 
-  ggstatsplot::theme_mprl(ggtheme = ggplot2::theme_bw())
+  ggstatsplot::theme_ggstatsplot(ggtheme = ggplot2::theme_bw())
 ```
 
 All plots in this package have `theme_bw()` by default as the base on which
-`theme_mprl()` is built, but this can be modified using the `ggtheme` argument
+`theme_ggstatsplot()` is built, but this can be modified using the `ggtheme` argument
 provided for all functions. For example, for the `ggbetweenstats` function the
 default theme can be changed to, for example, `theme_grey()`:
 
