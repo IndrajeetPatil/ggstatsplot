@@ -73,16 +73,18 @@ included in the plot as a subtitle.
 }
 \examples{
 
+# for reproducibility
 set.seed(123)
 
 # simple function call with the defaults (with condition)
 ggstatsplot::ggpiestats(data = datasets::mtcars,
 main = am,
-condition = cyl)
+condition = cyl,
+nboot = 10)
 
 # simple function call with the defaults (without condition)
 ggstatsplot::ggpiestats(
-data = datasets::iris,
+data = iris,
 main = Species
 )
 

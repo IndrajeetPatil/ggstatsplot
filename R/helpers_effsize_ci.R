@@ -748,6 +748,12 @@ lm_effsize_ci <-
         n = nboot
       ) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
         stats::na.omit(.)
+
+      if (class(object)[[1]] == "aovlist") {
+        effsize_df %<>%
+          dplyr::filter(.data = ., stratum == "Within")
+      }
+
     } else if (effsize == "omega") {
       # creating dataframe of partial omega-squared effect size and its CI with sjstats
       effsize_df <- sjstats::omega_sq(
@@ -757,6 +763,11 @@ lm_effsize_ci <-
         n = nboot
       ) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
         stats::na.omit(.)
+
+      if (class(object)[[1]] == "aovlist") {
+        effsize_df %<>%
+          dplyr::filter(.data = ., stratum == "Within")
+      }
     }
 
     # combining the dataframes (erge the two preceding pieces of information by the common element of Effect
@@ -775,7 +786,8 @@ lm_effsize_ci <-
     # in case of within-subjects design, the stratum columns will be unnecessarily added
     if ("stratum.x" %in% names(combined_df)) {
       combined_df %<>%
-        dplyr::select(.data = ., -c(base::grep(pattern = "stratum", x = names(.))))
+        dplyr::select(.data = ., -c(base::grep(pattern = "stratum", x = names(.)))) %>%
+        dplyr::mutate(.data = ., stratum = "Within")
     }
 
     # returning the final dataframe

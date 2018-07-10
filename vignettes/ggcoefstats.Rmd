@@ -518,6 +518,7 @@ dplyr::glimpse(x = iris_long)
 ggstatsplot::ggcoefstats(
   x = stats::aov(formula = value ~ attribute * measure + Error(id / (attribute * measure)),
              data = iris_long),
+  effsize = "omega",
   ggtheme = ggplot2::theme_grey(),
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Variation in measurements for Iris species",

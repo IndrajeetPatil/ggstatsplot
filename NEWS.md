@@ -5,6 +5,10 @@ MAJOR CHANGES
   - For the sake of consistency, `theme_mprl` is now called `theme_ggstatsplot`.
     The `theme_mprl` function will still be around and not be deprecated, so feel
     free to use either or both of them since they are identical.
+    
+BUG FIXES
+  - `ggcoefstats` wasn't producing partial omega-squared for `aovlist` objects.
+    Fixed that with new version of `sjstats`.
 
 MINOR CHANGES
   - Removed the trailing comma from the robust correlation analyses.
