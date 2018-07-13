@@ -53,7 +53,7 @@ Suggests:
     ordinal (>= 2018.4-19),
     plyr (>= 1.8.4),
     rmarkdown,
-    spelling (>= 1.2),
+    spelling,
     testthat,
     vdiffr
 Encoding: UTF-8

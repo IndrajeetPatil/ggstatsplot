@@ -746,8 +746,7 @@ lm_effsize_ci <-
         partial = partial,
         ci.lvl = conf.level,
         n = nboot
-      ) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
-        stats::na.omit(.)
+      )
 
       if (class(object)[[1]] == "aovlist") {
         effsize_df %<>%
@@ -761,8 +760,7 @@ lm_effsize_ci <-
         partial = partial,
         ci.lvl = conf.level,
         n = nboot
-      ) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
-        stats::na.omit(.)
+      )
 
       if (class(object)[[1]] == "aovlist") {
         effsize_df %<>%
