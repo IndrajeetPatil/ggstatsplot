@@ -284,7 +284,6 @@ ggpiestats <-
               .tbl = .,
               .predicate = purrr::is_bare_character,
               .funs = ~ base::as.factor(.)
-
             ),
           by  = "condition"
         ) %>%

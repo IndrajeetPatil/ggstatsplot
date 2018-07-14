@@ -1107,26 +1107,24 @@ ggbetweenstats <- function(data,
       )
   }
 
+  #============================================= sample sizes ================================================
+
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
     data_label <- data %>%
-      dplyr::group_by(x) %>%
-      dplyr::mutate(n = length(x)) %>%
-      dplyr::ungroup(x = .) %>%
-      dplyr::mutate(x = paste0(x, "\n(n = ", n, ")", sep = "")) %>% # changing character variables into factors
-      dplyr::mutate_if(
-        .tbl = .,
-        .predicate = purrr::is_bare_character,
-        .funs = ~ base::as.factor(.)
-      )
+      dplyr::group_by(.data = ., x) %>%
+      dplyr::mutate(.data = ., n = dplyr::n()) %>%
+      dplyr::ungroup(.data = ., x = .) %>%
+      dplyr::mutate(.data = ., label = paste0(x, "\n(n = ", n, ")", sep = "")) %>%
+      dplyr::arrange(.data = ., x)
 
     # adding new labels to the plot
     plot <- plot +
-      ggplot2::scale_x_discrete(labels = unique(levels(data_label$x)))
+      ggplot2::scale_x_discrete(labels = c(unique(data_label$label)))
 
   }
 
-  #============================================= messages =============================================
+  #============================================= messages ===================================================
 
   if (isTRUE(messages)) {
     # display normality test result as a message

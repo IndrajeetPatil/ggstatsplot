@@ -3,10 +3,13 @@
 
 MAJOR CHANGES
   - For the sake of consistency, `theme_mprl` is now called `theme_ggstatsplot`.
-    The `theme_mprl` function will still be around and not be deprecated, so feel
-    free to use either or both of them since they are identical.
+    The `theme_mprl` function will still be around and will **not** be deprecated,
+    so feel free to use either or both of them since they are identical.
     
 BUG FIXES
+  - `ggbetweenstats` was producing wrong axes labels when `sample.size.label`
+    was set to `TRUE` and user had reordered factor levels before using this
+    function. The new version fixes this.
   - `ggcoefstats` wasn't producing partial omega-squared for `aovlist` objects.
     Fixed that with new version of `sjstats`.
 

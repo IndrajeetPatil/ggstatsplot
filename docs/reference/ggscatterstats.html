@@ -147,10 +147,10 @@ subtitle.</p>
   <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
   <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>, <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>,
-  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>yalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
+  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -216,12 +216,16 @@ the resolution of the data.</p></td>
 the resolution of the data.</p></td>
     </tr>
     <tr>
-      <th>xfill</th>
-      <td><p>color fill for x axis distribution (default: <code>"#009E73"</code>).</p></td>
+      <th>xfill, yfill</th>
+      <td><p>Character describing color fill for <code>x</code> and <code>y</code> axes
+marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
+<code>y</code>)).</p></td>
     </tr>
     <tr>
-      <th>yfill</th>
-      <td><p>color fill for y axis distribution (default: <code>"#D55E00"</code>).</p></td>
+      <th>xalpha, yalpha</th>
+      <td><p>Numeric deciding transparency levels for the marginal
+distributions. Any numbers from <code>0</code> (transparent) to <code>1</code> (opaque). The
+default is <code>1</code> for both axes.</p></td>
     </tr>
     <tr>
       <th>centrality.para</th>

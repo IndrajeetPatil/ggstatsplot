@@ -10,9 +10,9 @@ grouped_ggscatterstats(data, x, y, grouping.var, title.prefix = "Group",
   marginal = TRUE, marginal.type = "histogram", marginal.size = 5,
   margins = c("both", "x", "y"), width.jitter = NULL,
   height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00",
-  centrality.para = NULL, type = "pearson", results.subtitle = NULL,
-  caption = NULL, nboot = 100, beta = 0.1, k = 3,
-  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
+  xalpha = 1, yalpha = 1, centrality.para = NULL, type = "pearson",
+  results.subtitle = NULL, caption = NULL, nboot = 100, beta = 0.1,
+  k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
   messages = TRUE, ...)
 }
 \arguments{
@@ -55,9 +55,21 @@ the resolution of the data.}
 \item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
 the resolution of the data.}
 
-\item{xfill}{color fill for x axis distribution (default: \code{"#009E73"}).}
+\item{xfill}{Character describing color fill for \code{x} and \code{y} axes
+marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
+\code{y})).}
 
-\item{yfill}{color fill for y axis distribution (default: \code{"#D55E00"}).}
+\item{yfill}{Character describing color fill for \code{x} and \code{y} axes
+marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
+\code{y})).}
+
+\item{xalpha}{Numeric deciding transparency levels for the marginal
+distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
+default is \code{1} for both axes.}
+
+\item{yalpha}{Numeric deciding transparency levels for the marginal
+distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
+default is \code{1} for both axes.}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for

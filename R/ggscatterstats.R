@@ -24,8 +24,12 @@
 #'   5x wider and 5x taller than the marginal plots.
 #' @param margins Character describing along which margins to show the plots.
 #'   Any of the following arguments are accepted: `"both"`, `"x"`, `"y"`.
-#' @param xfill color fill for x axis distribution (default: `"#009E73"`).
-#' @param yfill color fill for y axis distribution (default: `"#D55E00"`).
+#' @param xfill,yfill Character describing color fill for `x` and `y` axes
+#'   marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
+#'   `y`)).
+#' @param xalpha,yalpha Numeric deciding transparency levels for the marginal
+#'   distributions. Any numbers from `0` (transparent) to `1` (opaque). The
+#'   default is `1` for both axes.
 #' @param type Type of association between paired samples required
 #'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
 #'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: Robust regression using
@@ -118,6 +122,8 @@ ggscatterstats <-
            height.jitter = NULL,
            xfill = "#009E73",
            yfill = "#D55E00",
+           xalpha = 1,
+           yalpha = 1,
            centrality.para = NULL,
            type = "pearson",
            results.subtitle = NULL,
@@ -421,8 +427,10 @@ ggscatterstats <-
           margins = margins,
           size = marginal.size,
           xparams = base::list(fill = xfill,
+                               alpha = xalpha,
                                col = "black"),
           yparams = base::list(fill = yfill,
+                               alpha = yalpha,
                                col = "black")
         )
     }

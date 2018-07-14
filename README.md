@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--09-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--14-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -71,8 +71,12 @@ utils::install.packages(pkgs = "ggstatsplot")
 ```
 
 You can get the **development** version of the package from GitHub
-(`0.0.4.9000`). If you are in hurry and want to reduce the time of
-installation, prefer-
+(`0.0.4.9000`). To see what new changes have been made to the package
+since the last release on `CRAN`, you can check the detailed log of
+changes here:
+<https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
+
+If you are in hurry and want to reduce the time of installation, prefer-
 
 ``` r
 # needed package to download from GitHub repo
@@ -161,7 +165,7 @@ available here that are not currently present in the stable version of
 this package on **CRAN**:
 <https://cran.r-project.org/web/packages/ggstatsplot/index.html>
 
-  - `ggbetweenstats`
+## `ggbetweenstats`
 
 This function creates either a violin plot, a box plot, or a mix of two
 for **between**-group or **between**-condition comparisons with results
@@ -193,9 +197,15 @@ library(ggplot2)
 # for reproducibility
 set.seed(123)
 
+# let's change the levels of our factors, a common routine in data analysis
+# pipeline, to see if this function respects the new factor levels
+iris$Species <-
+  base::factor(x = iris$Species,
+               levels = c("setosa", "virginica" , "versicolor"))
+
 # plot
 ggstatsplot::ggbetweenstats(
-  data = datasets::iris,
+  data = iris,                                    # note that we are no longer using `datasets::iris`
   x = Species,
   y = Sepal.Length,
   notch = TRUE,                                   # show notched box plot
@@ -238,11 +248,11 @@ ggplot2::labs(subtitle = NULL)`.
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
-  - `ggscatterstats`
+## `ggscatterstats`
 
 This function creates a scatterplot with marginal
-histograms/boxplots/density/violin plots from  and results from
-statistical tests in the subtitle:
+histograms/boxplots/density/violin/densigram plots from  and results
+from statistical tests in the subtitle:
 
 ``` r
 ggstatsplot::ggscatterstats(
@@ -280,6 +290,8 @@ ggstatsplot::ggscatterstats(
   marginal.type = "density",                     # type of marginal distribution to be displayed
   xfill = "blue",                                # color fill for x-axis marginal distribution 
   yfill = "red",                                 # color fill for y-axis marginal distribution
+  xalpha = 0.5,                                  # transparency for x-axis marginal distribution
+  yalpha = 0.5,                                  # transparency for y-axis marginal distribution
   centrality.para = "median",                    # which type of central tendency lines are to be displayed  
   width.jitter = 0.2,                            # amount of horizontal jitter for data points
   height.jitter = 0.4,                           # amount of vertical jitter for data points
@@ -292,7 +304,7 @@ ggstatsplot::ggscatterstats(
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html>
 
-  - `ggpiestats`
+## `ggpiestats`
 
 This function creates a pie chart for categorical variables with results
 from contingency table analysis included in the subtitle of the plot. If
@@ -317,7 +329,7 @@ This function can also be used to study an interaction between two
 categorical variables. Additionally, as with the other functions in
 `ggstatsplot`, this function returns a `ggplot2` object and can further
 be modified with `ggplot2` syntax (e.g., we can change the color palette
-*after* `ggstatsplot` has produced the plot)-
+\*after\#\# `ggstatsplot` has produced the plot)-
 
 ``` r
 library(ggplot2)
@@ -369,7 +381,7 @@ For more, including information about the variant of this function
 `grouped_ggpiestats`, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html>
 
-  - `gghistostats`
+## `gghistostats`
 
 In case you would like to see the distribution of one variable and check
 if it is significantly different from a specified value with a one
@@ -382,12 +394,12 @@ ggstatsplot::gghistostats(
   data = datasets::iris,
   x = Sepal.Length,
   title = "Distribution of Iris sepal length",
-  type = "parametric",               # one sample t-test
-  test.value = 3,                    # default value is 0
-  centrality.para = "mean",          # which measure of central tendency is to be plotted
-  centrality.color = "darkred",      # decides color of vertical line representing central tendency
-  binwidth = 0.10,                   # binwidth value (needs to be toyed around with until you find the best one)
-  messages = FALSE                   # turn off the messages
+  type = "parametric",                           # one sample t-test
+  test.value = 3,                                # default value is 0
+  centrality.para = "mean",                      # which measure of central tendency is to be plotted
+  centrality.color = "darkred",                  # decides color of vertical line representing central tendency
+  binwidth = 0.10,                               # binwidth value (experiment until you find the best one)
+  messages = FALSE                               # turn off the messages
 ) 
 ```
 
@@ -410,7 +422,7 @@ ggstatsplot::gghistostats(
   bf.prior = 0.8,
   messages = FALSE,
   caption = expression(                              
-    paste(italic("Note"), ": black line - test value; blue line - observed mean")
+    paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
   )
 )
 ```
@@ -425,7 +437,7 @@ For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html>
 
-  - `ggcorrmat`
+## `ggcorrmat`
 
 `ggcorrmat` makes correlalograms with minimal amount of code. Just
 sticking to the defaults itself produces publication-ready correlation
@@ -500,7 +512,7 @@ ggstatsplot::ggcorrmat(
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html>
 
-  - `ggcoefstats`
+## `ggcoefstats`
 
 `ggcoefstats` creates a lot with the regression coefficients’ point
 estimates as dots with confidence interval whiskers. This is a wrapper
@@ -508,7 +520,7 @@ function around `GGally::ggcoef`.
 
 ``` r
 ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
-                                       data = mtcars)) 
+                                       data = datasets::mtcars)) 
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="80%" />
@@ -519,7 +531,7 @@ arguments:
 ``` r
 ggstatsplot::ggcoefstats(
   x = stats::lm(formula = mpg ~ am * cyl,
-                data = mtcars),
+                data = datasets::mtcars),
   point.color = "red",
   vline.color = "#CC79A7",
   vline.linetype = "dotdash",
@@ -549,7 +561,7 @@ library(lme4)
 # for reproducibility
 set.seed(200)
 
-# creating dataframes needed for the analysis below
+# creating dataframe needed for one of the analyses below
 d <- as.data.frame(Titanic)
 
 # combining plots together
@@ -570,7 +582,7 @@ ggstatsplot::combine_plots(
   ggstatsplot::ggcoefstats(
     x = stats::nls(
       formula = mpg ~ k / wt + b,
-      data = mtcars,
+      data = datasets::mtcars,
       start = list(k = 1, b = 0)
     ),
     point.color = "darkgreen",
@@ -608,7 +620,7 @@ This is by no means an exhaustive list of models supported by
 `ggcoefstats`. For more, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html>
 
-  - `combine_plots`
+## `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
 multiple plots. This is a wrapper around  and lets you combine multiple
@@ -623,8 +635,10 @@ to read and, therefore, `purrr` should be preferrred.
 For more, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html>
 
-  - `theme_ggstatsplot`
+## `theme_ggstatsplot`
 
-All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`.
-For more on how to modify it, see the associated vignette-
+All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`,
+which is also called as `theme_mprl` (both of which are identical
+functions with different names). For more on how to modify it, see the
+associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
