@@ -51,13 +51,13 @@
 #'
 
 t1way_ci <- function(data,
-                         x,
-                         y,
-                         tr = 0.1,
-                         nboot = 100,
-                         conf.level = 0.95,
-                         conf.type = "norm",
-                         ...) {
+                     x,
+                     y,
+                     tr = 0.1,
+                     nboot = 100,
+                     conf.level = 0.95,
+                     conf.type = "norm",
+                     ...) {
   # creating a dataframe from entered data
   data <- dplyr::select(
     .data = data,
@@ -67,9 +67,11 @@ t1way_ci <- function(data,
 
   # running robust one-way anova
   fit <-
-    WRS2::t1way(formula = stats::as.formula(y ~ x),
-                data = data,
-                tr = tr)
+    WRS2::t1way(
+      formula = stats::as.formula(y ~ x),
+      data = data,
+      tr = tr
+    )
 
   # function to obtain 95% CI for xi
   xici <- function(formula, data, tr = tr, indices) {
@@ -94,14 +96,16 @@ t1way_ci <- function(data,
     R = nboot,
     formula = y ~ x,
     tr = tr,
-    parallel =  "multicore",
+    parallel = "multicore",
     ...
   )
 
   # get 95% CI from the bootstrapped object
-  bootci <- boot::boot.ci(boot.out = bootobj,
-                          conf = conf.level,
-                          type = conf.type)
+  bootci <- boot::boot.ci(
+    boot.out = bootobj,
+    conf = conf.level,
+    type = conf.type
+  )
 
   # extracting ci part
   if (conf.type == "norm") {
@@ -118,13 +122,13 @@ t1way_ci <- function(data,
   results_df <-
     tibble::as_data_frame(
       x = cbind.data.frame(
-        "xi" =  bootci$t0,
+        "xi" = bootci$t0,
         ci,
         "F-value" = fit$test,
         "df1" = fit$df1,
         "df2" = fit$df2,
         "p-value" = fit$p.value,
-        "nboot" =  bootci$R,
+        "nboot" = bootci$R,
         tr
       )
     )
@@ -158,7 +162,6 @@ t1way_ci <- function(data,
 
   # returning the results
   return(results_df)
-
 }
 
 #' @title A correlation test with confidence interval for effect size.
@@ -228,7 +231,7 @@ cor_tets_ci <- function(data,
   # running correlation and creating a tidy dataframe
   tidy_df <- broom::tidy(
     x = stats::cor.test(
-      formula = stats::as.formula( ~ x + y),
+      formula = stats::as.formula(~x + y),
       data = data,
       method = method,
       exact = exact,
@@ -239,20 +242,20 @@ cor_tets_ci <- function(data,
 
   # function to obtain 95% CI for xi
   corci <- function(formula,
-                    x,
-                    y,
-                    method = method,
-                    exact = exact,
-                    continuity = continuity,
-                    alternative = alternative,
-                    indices) {
+                      x,
+                      y,
+                      method = method,
+                      exact = exact,
+                      continuity = continuity,
+                      alternative = alternative,
+                      indices) {
     # allows boot to select sample
-    d <- data[indices,]
+    d <- data[indices, ]
     # allows boot to select sample
     boot_df <-
       broom::tidy(
         stats::cor.test(
-          formula = stats::as.formula( ~ x + y),
+          formula = stats::as.formula(~x + y),
           data = d,
           method = method,
           exact = exact,
@@ -276,14 +279,16 @@ cor_tets_ci <- function(data,
     exact = exact,
     continuity = continuity,
     alternative = alternative,
-    parallel =  "multicore",
+    parallel = "multicore",
     ...
   )
 
   # get 95% CI from the bootstrapped object
-  bootci <- boot::boot.ci(boot.out = bootobj,
-                          conf = conf.level,
-                          type = conf.type)
+  bootci <- boot::boot.ci(
+    boot.out = bootobj,
+    conf = conf.level,
+    type = conf.type
+  )
 
   # extracting ci part
   if (conf.type == "norm") {
@@ -300,11 +305,11 @@ cor_tets_ci <- function(data,
   results_df <-
     tibble::as_data_frame(
       x = cbind.data.frame(
-        "r" =  tidy_df$estimate,
+        "r" = tidy_df$estimate,
         ci,
         "statistic" = tidy_df$statistic,
         "p-value" = tidy_df$p.value,
-        "nboot" =  bootci$R,
+        "nboot" = bootci$R,
         "method" = tidy_df$method,
         "alternative" = "two.sided"
       )
@@ -406,24 +411,24 @@ chisq_v_ci <- function(data,
   # results from jamovi
   jmv_df <- jmv::contTables(
     data = data,
-    rows = 'rows',
-    cols = 'cols',
+    rows = "rows",
+    cols = "cols",
     phiCra = TRUE
   )
 
   # the basic function to get the confidence interval
   cramer_ci <- function(data,
-                        rows,
-                        cols,
-                        phiCra,
-                        indices) {
+                          rows,
+                          cols,
+                          phiCra,
+                          indices) {
     # allows boot to select sample
-    d <- data[indices,]
+    d <- data[indices, ]
     # allows boot to select sample
     boot_df <- jmv::contTables(
       data = d,
-      rows = 'rows',
-      cols = 'cols',
+      rows = "rows",
+      cols = "cols",
       phiCra = phiCra
     )
 
@@ -439,14 +444,16 @@ chisq_v_ci <- function(data,
     rows = rows,
     cols = cols,
     phiCra = TRUE,
-    parallel =  "multicore",
+    parallel = "multicore",
     ...
   )
 
   # get 95% CI from the bootstrapped object
-  bootci <- boot::boot.ci(boot.out = bootobj,
-                          conf = conf.level,
-                          type = conf.type)
+  bootci <- boot::boot.ci(
+    boot.out = bootobj,
+    conf = conf.level,
+    type = conf.type
+  )
 
   # extracting ci part
   if (conf.type == "norm") {
@@ -570,19 +577,23 @@ robcor_ci <- function(data,
 
   # getting the p-value for the correlation coefficient
   fit <-
-    WRS2::pbcor(x = data$x,
-                y = data$y,
-                beta = beta)
+    WRS2::pbcor(
+      x = data$x,
+      y = data$y,
+      beta = beta
+    )
 
   # function to obtain 95% CI for xi
   robcor_ci <- function(data, x, y, beta = beta, indices) {
     # allows boot to select sample
-    d <- data[indices,]
+    d <- data[indices, ]
     # allows boot to select sample
     fit <-
-      WRS2::pbcor(x = d$x,
-                  y = d$y,
-                  beta = beta)
+      WRS2::pbcor(
+        x = d$x,
+        y = d$y,
+        beta = beta
+      )
 
     # return the value of interest: correlation coefficient
     return(fit$cor)
@@ -601,9 +612,11 @@ robcor_ci <- function(data,
   )
 
   # get 95% CI from the bootstrapped object
-  bootci <- boot::boot.ci(boot.out = bootobj,
-                          conf = conf.level,
-                          type = conf.type)
+  bootci <- boot::boot.ci(
+    boot.out = bootobj,
+    conf = conf.level,
+    type = conf.type
+  )
 
   # extracting ci part
   if (conf.type == "norm") {
@@ -619,11 +632,11 @@ robcor_ci <- function(data,
   # preparing a dataframe out of the results
   results_df <-
     tibble::as_data_frame(x = cbind.data.frame(
-      "r" =  bootci$t0,
+      "r" = bootci$t0,
       ci,
       "p-value" = fit$p.value,
       "n" = fit$n,
-      "nboot" =  bootci$R,
+      "nboot" = bootci$R,
       beta
     ))
 
@@ -658,7 +671,6 @@ robcor_ci <- function(data,
 
   # returning the results
   return(results_df)
-
 }
 
 #'
@@ -710,10 +722,10 @@ robcor_ci <- function(data,
 # defining the function body
 lm_effsize_ci <-
   function(object,
-           effsize = "eta",
-           partial = TRUE,
-           conf.level = 0.95,
-           nboot = 1000) {
+             effsize = "eta",
+             partial = TRUE,
+             conf.level = 0.95,
+             nboot = 1000) {
     # based on the class, get the tidy output using broom
     if (class(object)[[1]] == "lm") {
       aov_df <-
@@ -730,11 +742,17 @@ lm_effsize_ci <-
 
     # cleaning up the dataframe
     aov_df %<>%
-      dplyr::select(.data = .,
-                    -c(base::grep(pattern = "sq",
-                                  x = names(.)))) %>% # rename to something more meaningful and tidy
-      dplyr::rename(.data = .,
-                    df1 = df) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
+      dplyr::select(
+        .data = .,
+        -c(base::grep(
+          pattern = "sq",
+          x = names(.)
+        ))
+      ) %>% # rename to something more meaningful and tidy
+      dplyr::rename(
+        .data = .,
+        df1 = df
+      ) %>% # remove NAs, which would remove the row containing Residuals (redundant at this point)
       stats::na.omit(.) %>%
       tibble::as_data_frame(x = .)
 
@@ -752,7 +770,6 @@ lm_effsize_ci <-
         effsize_df %<>%
           dplyr::filter(.data = ., stratum == "Within")
       }
-
     } else if (effsize == "omega") {
       # creating dataframe of partial omega-squared effect size and its CI with sjstats
       effsize_df <- sjstats::omega_sq(
@@ -769,16 +786,20 @@ lm_effsize_ci <-
     }
 
     # combining the dataframes (erge the two preceding pieces of information by the common element of Effect
-    combined_df <- dplyr::left_join(x = aov_df,
-                                    y = effsize_df,
-                                    by = "term") %>% # reordering columns
-      dplyr::select(.data = .,
-                    term,
-                    F.value = statistic,
-                    df1,
-                    df2,
-                    p.value,
-                    dplyr::everything()) %>%
+    combined_df <- dplyr::left_join(
+      x = aov_df,
+      y = effsize_df,
+      by = "term"
+    ) %>% # reordering columns
+      dplyr::select(
+        .data = .,
+        term,
+        F.value = statistic,
+        df1,
+        df2,
+        p.value,
+        dplyr::everything()
+      ) %>%
       tibble::as_data_frame(x = .)
 
     # in case of within-subjects design, the stratum columns will be unnecessarily added

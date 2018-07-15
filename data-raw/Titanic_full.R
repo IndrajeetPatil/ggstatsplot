@@ -22,35 +22,39 @@ Titanic_full <- tibble::as_data_frame(datasets::Titanic) %>%
   dplyr::mutate_at(
     .tbl = .,
     .vars = dplyr::vars("id"),
-    .funs = ~ as.factor(.)
+    .funs = ~as.factor(.)
   ) %>%
   base::split(x = ., f = .$id) %>%
-  purrr::map_dfr(.x = ., .f = ~ rep_df(df = ., rep = .$n)) %>%
+  purrr::map_dfr(.x = ., .f = ~rep_df(df = ., rep = .$n)) %>%
   dplyr::mutate_at(
     .tbl = .,
     .vars = dplyr::vars("id"),
-    .funs = ~ as.numeric(as.character(.))
+    .funs = ~as.numeric(as.character(.))
   ) %>%
   dplyr::mutate_if(
     .tbl = .,
     .predicate = is.character,
-    .funs = ~ base::as.factor(.)
+    .funs = ~base::as.factor(.)
   ) %>%
   dplyr::mutate_if(
     .tbl = .,
     .predicate = is.factor,
-    .funs = ~ base::droplevels(.)
+    .funs = ~base::droplevels(.)
   ) %>%
   dplyr::select(.data = ., -n, -id) %>%
   tibble::rownames_to_column(df = ., var = "id") %>%
-  dplyr::mutate_at(.tbl = .,
-                   .vars = "id",
-                   .funs = ~as.numeric(as.character(.)))
+  dplyr::mutate_at(
+    .tbl = .,
+    .vars = "id",
+    .funs = ~as.numeric(as.character(.))
+  )
 
 # reordering the Class variables
 Titanic_full$Class <-
-  base::factor(x = Titanic_full$Class,
-               levels = c("1st", "2nd", "3rd", "Crew", ordered = TRUE))
+  base::factor(
+    x = Titanic_full$Class,
+    levels = c("1st", "2nd", "3rd", "Crew", ordered = TRUE)
+  )
 
 # looking at the final dataset
 dplyr::glimpse(Titanic_full)

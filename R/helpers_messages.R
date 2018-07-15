@@ -17,7 +17,7 @@
 #'
 #' @keywords internal
 #'
-#'@note This is a helper function used internally in the package and not
+#' @note This is a helper function used internally in the package and not
 #'  exported. In case you want to use it, you can do so by
 #'  `ggstatsplot:::normality_message`. Note that it is `:::` and not `::`.
 #'
@@ -71,7 +71,7 @@ normality_message <- function(x, lab, k = 3, output = "message") {
 #'
 #' @keywords internal
 #'
-#'@note This is a helper function used internally in the package and not
+#' @note This is a helper function used internally in the package and not
 #'  exported. In case you want to use it, you can do so by
 #'  `ggstatsplot:::bartlett_message`. Note that it is `:::` and not `::`.
 #'
@@ -81,8 +81,10 @@ bartlett_message <- function(data,
                              k = 3,
                              output = "message") {
   # running the test
-  bartlett <- stats::bartlett.test(formula = y ~ x,
-                                   data = data)
+  bartlett <- stats::bartlett.test(
+    formula = y ~ x,
+    data = data
+  )
   if (output == "message") {
     # display homogeneity of variances test result as a message
     base::message(cat(
@@ -94,9 +96,11 @@ bartlett_message <- function(data,
         ": p-value = "
       ),
       crayon::yellow(
-        ggstatsplot::specify_decimal_p(x = bartlett$p.value[[1]],
-                                       k,
-                                       p.value = TRUE)
+        ggstatsplot::specify_decimal_p(
+          x = bartlett$p.value[[1]],
+          k,
+          p.value = TRUE
+        )
       )
     ))
   } else if (output == "stats") {

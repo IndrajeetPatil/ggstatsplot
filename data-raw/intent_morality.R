@@ -18,20 +18,22 @@ intent_morality %<>%
       item == "Anna" ~ "Burn"
     )
   ) %>%
-  dplyr::select(.data = .,
-                id,
-                gender,
-                item,
-                harm,
-                belief,
-                outcome,
-                condition,
-                question,
-                rating) %>%
+  dplyr::select(
+    .data = .,
+    id,
+    gender,
+    item,
+    harm,
+    belief,
+    outcome,
+    condition,
+    question,
+    rating
+  ) %>%
   dplyr::mutate_if(
     .tbl = .,
     .predicate = purrr::is_bare_character,
-    .funs = ~ as.factor(.)
+    .funs = ~as.factor(.)
   )
 
 # saving the data

@@ -156,45 +156,45 @@
 # defining the function
 ggcorrmat <-
   function(data,
-           cor.vars,
-           cor.vars.names = NULL,
-           output = "plot",
-           type = "full",
-           method = "square",
-           corr.method = "pearson",
-           exact = FALSE,
-           continuity = TRUE,
-           beta = 0.1,
-           digits = 2,
-           sig.level = 0.05,
-           hc.order = FALSE,
-           hc.method = "complete",
-           lab = TRUE,
-           colors = c("#E69F00", "white", "#009E73"),
-           outline.color = "black",
-           ggtheme = ggplot2::theme_bw,
-           ggstatsplot.theme = TRUE,
-           title = NULL,
-           subtitle = NULL,
-           caption = NULL,
-           caption.default = TRUE,
-           lab.col = "black",
-           lab.size = 5,
-           insig = "pch",
-           pch = 4,
-           pch.col = "black",
-           pch.cex = 11,
-           tl.cex = 12,
-           tl.col = "black",
-           tl.srt = 45,
-           axis.text.x.margin.t = 0,
-           axis.text.x.margin.r = 0,
-           axis.text.x.margin.b = 0,
-           axis.text.x.margin.l = 0,
-           legend.title.margin = FALSE,
-           t.margin = unit(0, "mm"),
-           b.margin = unit(3, "mm"),
-           messages = TRUE) {
+             cor.vars,
+             cor.vars.names = NULL,
+             output = "plot",
+             type = "full",
+             method = "square",
+             corr.method = "pearson",
+             exact = FALSE,
+             continuity = TRUE,
+             beta = 0.1,
+             digits = 2,
+             sig.level = 0.05,
+             hc.order = FALSE,
+             hc.method = "complete",
+             lab = TRUE,
+             colors = c("#E69F00", "white", "#009E73"),
+             outline.color = "black",
+             ggtheme = ggplot2::theme_bw,
+             ggstatsplot.theme = TRUE,
+             title = NULL,
+             subtitle = NULL,
+             caption = NULL,
+             caption.default = TRUE,
+             lab.col = "black",
+             lab.size = 5,
+             insig = "pch",
+             pch = 4,
+             pch.col = "black",
+             pch.cex = 11,
+             tl.cex = 12,
+             tl.col = "black",
+             tl.srt = 45,
+             axis.text.x.margin.t = 0,
+             axis.text.x.margin.r = 0,
+             axis.text.x.margin.b = 0,
+             axis.text.x.margin.l = 0,
+             legend.title.margin = FALSE,
+             t.margin = unit(0, "mm"),
+             b.margin = unit(3, "mm"),
+             messages = TRUE) {
     # ========================================== dataframe ==============================================================
     #
     # creating a dataframe out of the entered variables
@@ -222,8 +222,8 @@ ggcorrmat <-
     # ========================================== statistics ==============================================================
     #
     if (corr.method == "pearson" ||
-        corr.method == "spearman" ||
-        corr.method == "kendall") {
+      corr.method == "spearman" ||
+      corr.method == "kendall") {
       # computing correlations on all included variables
       corr.mat <-
         base::round(
@@ -258,7 +258,7 @@ ggcorrmat <-
         dplyr::mutate_if(
           .tbl = .,
           .predicate = purrr::is_bare_double,
-          .funs = ~ base::round(x = ., digits = digits)
+          .funs = ~base::round(x = ., digits = digits)
         )
 
       # creating a correlation matrix of p-values
@@ -269,8 +269,8 @@ ggcorrmat <-
     # ========================================== plot ==============================================================
     if (output == "plot") {
       if (corr.method == "pearson" ||
-          corr.method == "spearman" ||
-          corr.method == "kendall") {
+        corr.method == "spearman" ||
+        corr.method == "kendall") {
         # plotting the correlalogram
         plot <- ggcorrplot::ggcorrplot(
           corr = corr.mat,
@@ -300,7 +300,7 @@ ggcorrmat <-
         #
         # if caption is not specified, use the generic version only if caption.default is TRUE
         if (is.null(caption) &&
-            pch == 4 && isTRUE(caption.default)) {
+          pch == 4 && isTRUE(caption.default)) {
           # adding text details to the plot
           plot <- plot +
             ggplot2::labs(
@@ -346,9 +346,11 @@ ggcorrmat <-
 
         # creating proper spacing between the legend.title and the colorbar
         if (isTRUE(legend.title.margin)) {
-          plot <- legend_title_margin(plot = plot,
-                                      t.margin = t.margin,
-                                      b.margin = b.margin)
+          plot <- legend_title_margin(
+            plot = plot,
+            t.margin = t.margin,
+            b.margin = b.margin
+          )
         }
       } else if (corr.method == "robust") {
         base::message(cat(
@@ -364,8 +366,8 @@ ggcorrmat <-
     # return the desired result
     if (output == "correlations") {
       if (corr.method == "pearson" ||
-          corr.method == "spearman" ||
-          corr.method == "kendall") {
+        corr.method == "spearman" ||
+        corr.method == "kendall") {
         # correlation matrix
         corr.mat %<>%
           base::as.data.frame(x = .) %>%
@@ -376,8 +378,8 @@ ggcorrmat <-
       return(corr.mat)
     } else if (output == "p-values") {
       if (corr.method == "pearson" ||
-          corr.method == "spearman" ||
-          corr.method == "kendall") {
+        corr.method == "spearman" ||
+        corr.method == "kendall") {
         # p-value matrix
         p.mat %<>%
           base::as.data.frame(x = .) %>%
@@ -388,8 +390,8 @@ ggcorrmat <-
       return(p.mat)
     } else if (output == "plot") {
       if (corr.method == "pearson" ||
-          corr.method == "spearman" ||
-          corr.method == "kendall") {
+        corr.method == "spearman" ||
+        corr.method == "kendall") {
         # correlalogram plot
         return(plot)
       }

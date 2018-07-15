@@ -12,7 +12,8 @@ testthat::test_that(desc = "ggbetweenstats working correctly?", code = {
     messages = FALSE
   )
   # comparison using vdiffr package
-  vdiffr::expect_doppelganger(title = "ggbetweenstats anova",
-                              fig = ggbetweenstats_anova)
-
+  vdiffr::expect_doppelganger(
+    title = "ggbetweenstats anova",
+    fig = ggbetweenstats_anova
+  )
 })

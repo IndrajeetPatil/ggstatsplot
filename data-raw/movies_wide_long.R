@@ -9,15 +9,15 @@ dplyr::glimpse(x = ggplot2movies::movies)
 
 # converting to wide format
 movies_wide <- ggplot2movies::movies %>%
-  dplyr::select(.data = ., c(title:votes, mpaa:Short)) %>%    # `.` is just a placeholder for the data
-  dplyr::filter(.data = ., mpaa != "") %>%                    # removing movies without mpaa ratings
-  stats::na.omit(.) %>%                                       # removing NAs
-  dplyr::mutate(.data = ., budget = budget / 1000000) %>%     # convert the budge to millions of dollars
+  dplyr::select(.data = ., c(title:votes, mpaa:Short)) %>% # `.` is just a placeholder for the data
+  dplyr::filter(.data = ., mpaa != "") %>% # removing movies without mpaa ratings
+  stats::na.omit(.) %>% # removing NAs
+  dplyr::mutate(.data = ., budget = budget / 1000000) %>% # convert the budge to millions of dollars
   dplyr::mutate_if(
     .tbl = .,
     # convert mpaa ratings to a factor
     .predicate = purrr::is_bare_character,
-    .funs = ~ as.factor(.)
+    .funs = ~as.factor(.)
   )
 
 
@@ -34,8 +34,10 @@ movies_long <- movies_wide %>%
     convert = TRUE,
     factor_key = TRUE
   ) %>%
-  dplyr::filter(.data = .,
-                value == 1) %>%
+  dplyr::filter(
+    .data = .,
+    value == 1
+  ) %>%
   dplyr::select(.data = ., -value) %>%
   dplyr::arrange(.data = ., desc(rating), title, year)
 
@@ -51,12 +53,12 @@ movies_long %<>%
   dplyr::mutate_if(
     .tbl = .,
     .predicate = purrr::is_bare_character,
-    .funs = ~ base::as.factor(.)
+    .funs = ~base::as.factor(.)
   ) %>%
   dplyr::mutate_if(
     .tbl = .,
     .predicate = base::is.factor,
-    .funs = ~ base::droplevels(.)
+    .funs = ~base::droplevels(.)
   ) %>%
   dplyr::select(.data = ., -n)
 

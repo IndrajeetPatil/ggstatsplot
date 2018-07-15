@@ -108,38 +108,40 @@
 # defining the function
 ggscatterstats <-
   function(data,
-           x,
-           y,
-           xlab = NULL,
-           ylab = NULL,
-           line.size = 1.5,
-           line.color = "blue",
-           marginal = TRUE,
-           marginal.type = "histogram",
-           marginal.size = 5,
-           margins = c("both", "x", "y"),
-           width.jitter = NULL,
-           height.jitter = NULL,
-           xfill = "#009E73",
-           yfill = "#D55E00",
-           xalpha = 1,
-           yalpha = 1,
-           centrality.para = NULL,
-           type = "pearson",
-           results.subtitle = NULL,
-           title = NULL,
-           caption = NULL,
-           nboot = 100,
-           beta = 0.1,
-           k = 3,
-           axes.range.restrict = FALSE,
-           ggtheme = ggplot2::theme_bw(),
-           messages = TRUE) {
+             x,
+             y,
+             xlab = NULL,
+             ylab = NULL,
+             line.size = 1.5,
+             line.color = "blue",
+             marginal = TRUE,
+             marginal.type = "histogram",
+             marginal.size = 5,
+             margins = c("both", "x", "y"),
+             width.jitter = NULL,
+             height.jitter = NULL,
+             xfill = "#009E73",
+             yfill = "#D55E00",
+             xalpha = 1,
+             yalpha = 1,
+             centrality.para = NULL,
+             type = "pearson",
+             results.subtitle = NULL,
+             title = NULL,
+             caption = NULL,
+             nboot = 100,
+             beta = 0.1,
+             k = 3,
+             axes.range.restrict = FALSE,
+             ggtheme = ggplot2::theme_bw(),
+             messages = TRUE) {
     ################################################### dataframe ####################################################
 
-    lab.df <- colnames(dplyr::select(.data = data,
-                                     !!rlang::enquo(x),
-                                     !!rlang::enquo(y)))
+    lab.df <- colnames(dplyr::select(
+      .data = data,
+      !!rlang::enquo(x),
+      !!rlang::enquo(y)
+    ))
     # if xlab is not provided, use the variable x name
     if (is.null(xlab)) {
       xlab <- lab.df[1]
@@ -174,7 +176,7 @@ ggscatterstats <-
 
         c <-
           stats::cor.test(
-            formula = ~ x + y,
+            formula = ~x + y,
             data = data,
             method = "pearson",
             alternative = "two.sided",
@@ -224,7 +226,7 @@ ggscatterstats <-
         # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
         c <-
           stats::cor.test(
-            formula = ~ x + y,
+            formula = ~x + y,
             data = data,
             method = "spearman",
             alternative = "two.sided",
@@ -271,9 +273,11 @@ ggscatterstats <-
               estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
               LL = ggstatsplot::specify_decimal_p(x = c_ci$conf.low[[1]], k),
               UL = ggstatsplot::specify_decimal_p(x = c_ci$conf.high[[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]],
-                                                      k,
-                                                      p.value = TRUE),
+              pvalue = ggstatsplot::specify_decimal_p(
+                x = c$p.value[[1]],
+                k,
+                p.value = TRUE
+              ),
               n = nrow(x = data)
             )
           )
@@ -319,8 +323,9 @@ ggscatterstats <-
               UL = ggstatsplot::specify_decimal_p(x = rob_res$conf.high[[1]], k),
               # degrees of freedom are always integer
               pvalue = ggstatsplot::specify_decimal_p(rob_res$`p-value`[[1]],
-                                                      k,
-                                                      p.value = TRUE),
+                k,
+                p.value = TRUE
+              ),
               n = rob_res$n[[1]]
             )
           )
@@ -336,21 +341,26 @@ ggscatterstats <-
             )
           ))
         }
-
       }
     }
     ################################################### plot ################################################################
 
     # preparing the scatterplotplot
     plot <-
-      ggplot2::ggplot(data = data,
-                      mapping = ggplot2::aes(x = x,
-                                             y = y)) +
+      ggplot2::ggplot(
+        data = data,
+        mapping = ggplot2::aes(
+          x = x,
+          y = y
+        )
+      ) +
       ggplot2::geom_point(
         size = 3,
         alpha = 0.5,
-        position = position_jitter(width = width.jitter,
-                                   height = height.jitter),
+        position = position_jitter(
+          width = width.jitter,
+          height = height.jitter
+        ),
         na.rm = TRUE
       ) +
       ggplot2::geom_smooth(
@@ -382,7 +392,7 @@ ggscatterstats <-
     if (is.null(centrality.para)) {
       plot <- plot
     } else if (isTRUE(centrality.para) ||
-               centrality.para == "mean") {
+      centrality.para == "mean") {
       plot <- plot +
         ggplot2::geom_vline(
           xintercept = mean(x = data$x, na.rm = TRUE),
@@ -426,12 +436,16 @@ ggscatterstats <-
           type = marginal.type,
           margins = margins,
           size = marginal.size,
-          xparams = base::list(fill = xfill,
-                               alpha = xalpha,
-                               col = "black"),
-          yparams = base::list(fill = yfill,
-                               alpha = yalpha,
-                               col = "black")
+          xparams = base::list(
+            fill = xfill,
+            alpha = xalpha,
+            col = "black"
+          ),
+          yparams = base::list(
+            fill = yfill,
+            alpha = yalpha,
+            col = "black"
+          )
         )
     }
 
@@ -439,7 +453,7 @@ ggscatterstats <-
 
     # display warning that this doesn't produce a ggplot2 object
     if (isTRUE(messages) &&
-        isTRUE(marginal)) {
+      isTRUE(marginal)) {
       base::message(cat(
         crayon::red("Warning:"),
         crayon::blue(

@@ -129,39 +129,39 @@
 # function body
 gghistostats <-
   function(data = NULL,
-           x,
-           binwidth = NULL,
-           bar.measure = "count",
-           xlab = NULL,
-           title = NULL,
-           subtitle = NULL,
-           caption = NULL,
-           type = "parametric",
-           test.value = 0,
-           bf.prior = 0.707,
-           bf.message = TRUE,
-           robust.estimator = "onestep",
-           nboot = 500,
-           k = 3,
-           low.color = "#0072B2",
-           high.color = "#D55E00",
-           results.subtitle = TRUE,
-           legend.title.margin = FALSE,
-           t.margin = unit(0, "mm"),
-           b.margin = unit(3, "mm"),
-           centrality.para = NULL,
-           centrality.color = "blue",
-           centrality.size = 1.2,
-           centrality.linetype = "dashed",
-           test.value.line = FALSE,
-           test.value.color = "black",
-           test.value.size = 1.2,
-           test.value.linetype = "dashed",
-           line.labeller = FALSE,
-           line.labeller.y = -2,
-           ggtheme = ggplot2::theme_bw(),
-           fill.gradient = TRUE,
-           messages = TRUE) {
+             x,
+             binwidth = NULL,
+             bar.measure = "count",
+             xlab = NULL,
+             title = NULL,
+             subtitle = NULL,
+             caption = NULL,
+             type = "parametric",
+             test.value = 0,
+             bf.prior = 0.707,
+             bf.message = TRUE,
+             robust.estimator = "onestep",
+             nboot = 500,
+             k = 3,
+             low.color = "#0072B2",
+             high.color = "#D55E00",
+             results.subtitle = TRUE,
+             legend.title.margin = FALSE,
+             t.margin = unit(0, "mm"),
+             b.margin = unit(3, "mm"),
+             centrality.para = NULL,
+             centrality.color = "blue",
+             centrality.size = 1.2,
+             centrality.linetype = "dashed",
+             test.value.line = FALSE,
+             test.value.color = "black",
+             test.value.size = 1.2,
+             test.value.linetype = "dashed",
+             line.labeller = FALSE,
+             line.labeller.y = -2,
+             ggtheme = ggplot2::theme_bw(),
+             fill.gradient = TRUE,
+             messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
@@ -184,16 +184,20 @@ gghistostats <-
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
-      lab.df <- colnames(dplyr::select(.data = data,
-                                       !!rlang::enquo(x)))
+      lab.df <- colnames(dplyr::select(
+        .data = data,
+        !!rlang::enquo(x)
+      ))
       # if xlab is not provided, use the variable x name
       if (is.null(xlab)) {
         xlab <- lab.df[1]
       }
       # if dataframe is provided
       data <-
-        dplyr::select(.data = data,
-                      x = !!rlang::enquo(x))
+        dplyr::select(
+          .data = data,
+          x = !!rlang::enquo(x)
+        )
     } else {
       # if vectors are provided
       data <-
@@ -430,22 +434,30 @@ gghistostats <-
 
     # preparing the basic layout of the plot based on whether counts or density information is needed
     if (bar.measure == "count") {
-      plot <- ggplot2::ggplot(data = data,
-                              mapping = ggplot2::aes(x = x)) +
+      plot <- ggplot2::ggplot(
+        data = data,
+        mapping = ggplot2::aes(x = x)
+      ) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
           na.rm = TRUE,
-          mapping = ggplot2::aes(y = ..count..,
-                                 fill = ..count..)
+          mapping = ggplot2::aes(
+            y = ..count..,
+            fill = ..count..
+          )
         ) +
-        ggplot2::scale_fill_gradient(name = "count",
-                                     low = low.color,
-                                     high = high.color)
+        ggplot2::scale_fill_gradient(
+          name = "count",
+          low = low.color,
+          high = high.color
+        )
     } else if (bar.measure == "proportion") {
-      plot <- ggplot2::ggplot(data = data,
-                              mapping = ggplot2::aes(x = x)) +
+      plot <- ggplot2::ggplot(
+        data = data,
+        mapping = ggplot2::aes(x = x)
+      ) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
@@ -465,19 +477,25 @@ gghistostats <-
         ggplot2::scale_y_continuous(labels = scales::percent) +
         ggplot2::ylab("relative frequencies")
     } else if (bar.measure == "density") {
-      plot <- ggplot2::ggplot(data = data,
-                              mapping = ggplot2::aes(x = x)) +
+      plot <- ggplot2::ggplot(
+        data = data,
+        mapping = ggplot2::aes(x = x)
+      ) +
         ggplot2::stat_bin(
           col = "black",
           alpha = 0.7,
           binwidth = binwidth,
           na.rm = TRUE,
-          mapping = ggplot2::aes(y = ..density..,
-                                 fill = ..density..)
+          mapping = ggplot2::aes(
+            y = ..density..,
+            fill = ..density..
+          )
         ) +
-        ggplot2::scale_fill_gradient(name = "density",
-                                     low = low.color,
-                                     high = high.color)
+        ggplot2::scale_fill_gradient(
+          name = "density",
+          low = low.color,
+          high = high.color
+        )
     }
 
     # adding the theme and labels
@@ -576,7 +594,8 @@ gghistostats <-
             if (!is.null(bf.caption)) {
               plot <-
                 ggstatsplot::combine_plots(plot,
-                                           caption.text = bf.caption.text)
+                  caption.text = bf.caption.text
+                )
             }
           }
         }
@@ -585,9 +604,11 @@ gghistostats <-
 
     # creating proper spacing between the legend.title and the colorbar
     if (isTRUE(legend.title.margin)) {
-      plot <- legend_title_margin(plot = plot,
-                                  t.margin = t.margin,
-                                  b.margin = b.margin)
+      plot <- legend_title_margin(
+        plot = plot,
+        t.margin = t.margin,
+        b.margin = b.margin
+      )
     }
 
     # if no color fill gradient is used, then remove the legend
