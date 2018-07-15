@@ -241,37 +241,15 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # it is possible that sometimes the variable hasn't been converted to factor class and this will produce an error
-  # if that's the case, convert it to factor
-  # (this will be the case only when data has been set to NULL)
-  # unused levels of the factor need to be dropped otherwise anova will be run instead of a t-test
-  if (is.factor(data$x)) {
-    # drop the unused levels of factor
-    data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = .)
-      )
-  } else if (!is.factor(data$x)) {
-    # convert to factor
-    data$x <- base::as.factor(x = data$x)
-    # drop the unused levels of factor
-    data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = .)
-      )
-
-    # display message
-    if (isTRUE(messages)) {
-      base::message(cat(
-        crayon::red("Warning: "),
-        crayon::blue("aesthetic `x` was not a factor; converting it to factor")
-      ))
-    }
-  }
+  # it is possible that sometimes the variable hasn't been converted to factor
+  # class and this will produce an error unused levels of the factor need to be
+  # dropped otherwise anova will be run instead of a t-test
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    )
 
   ################################################### plot ##############################################################
 

@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--14-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--15-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -197,15 +197,18 @@ library(ggplot2)
 # for reproducibility
 set.seed(123)
 
+# let's leave out one of the factor levels and see if instead of anova, a t-test will be run
+iris2 <- dplyr::filter(.data = datasets::iris, Species != "setosa")
+
 # let's change the levels of our factors, a common routine in data analysis
 # pipeline, to see if this function respects the new factor levels
-iris$Species <-
-  base::factor(x = iris$Species,
-               levels = c("setosa", "virginica" , "versicolor"))
+iris2$Species <-
+  base::factor(x = iris2$Species,
+               levels = c("virginica" , "versicolor"))
 
 # plot
 ggstatsplot::ggbetweenstats(
-  data = iris,                                    # note that we are no longer using `datasets::iris`
+  data = iris2,                                    
   x = Species,
   y = Sepal.Length,
   notch = TRUE,                                   # show notched box plot
@@ -216,6 +219,7 @@ ggstatsplot::ggbetweenstats(
   k = 2,                                          # number of decimal places for statistical results
   outlier.tagging = TRUE,                         # whether outliers need to be tagged
   outlier.label = Sepal.Width,                    # variable to be used for the outlier tag
+  outlier.label.color = "darkgreen",              # changing the color for the text label
   xlab = "Type of Species",                       # label for the x-axis variable
   ylab = "Attribute: Sepal Length",               # label for the y-axis variable
   title = "Dataset: Iris flower data set",        # title text for the plot
