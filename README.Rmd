@@ -30,6 +30,7 @@ knitr::opts_chunk$set(
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+
 <!--
 [![Open issues](http://img.shields.io/github/issues/badges/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues/)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
@@ -134,6 +135,24 @@ In `R`, documentation for any function can be accessed with the standard `help` 
 ?grouped_ggpiestats
 ?grouped_ggcorrmat
 ```
+
+Another handy tool to see arguments to any of the functions is `args`. For example-
+```{r args}
+args(name = ggstatsplot::ggscatterstats)
+```
+
+In case you want to look at the function body for any of the functions, just
+type the name of the function without the paranetheses:
+```{r funbody}
+ggstatsplot::theme_mprl
+```
+
+If you are not familiar either with what namespace `::` does or how to use pipe
+operator `%>%`, something this package and its documentation relies a lot on,
+you can check out these links-
+
+  - <http://r-pkgs.had.co.nz/namespace.html>
+  - <http://r4ds.had.co.nz/pipes.html>
 
 ## Usage
 

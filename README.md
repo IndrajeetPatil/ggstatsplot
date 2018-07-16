@@ -22,13 +22,14 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--15-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--16-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+
 <!--
 [![Open issues](http://img.shields.io/github/issues/badges/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues/)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
@@ -143,6 +144,75 @@ In `R`, documentation for any function can be accessed with the standard
 ?grouped_ggpiestats
 ?grouped_ggcorrmat
 ```
+
+Another handy tool to see arguments to any of the functions is `args`.
+For example-
+
+``` r
+args(name = ggstatsplot::ggscatterstats)
+#> function (data, x, y, xlab = NULL, ylab = NULL, line.size = 1.5, 
+#>     line.color = "blue", marginal = TRUE, marginal.type = "histogram", 
+#>     marginal.size = 5, margins = c("both", "x", "y"), width.jitter = NULL, 
+#>     height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00", 
+#>     xalpha = 1, yalpha = 1, centrality.para = NULL, type = "pearson", 
+#>     results.subtitle = NULL, title = NULL, caption = NULL, nboot = 100, 
+#>     beta = 0.1, k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(), 
+#>     messages = TRUE) 
+#> NULL
+```
+
+In case you want to look at the function body for any of the functions,
+just type the name of the function without the paranetheses:
+
+``` r
+ggstatsplot::theme_mprl
+#> function(ggtheme = ggplot2::theme_bw()) {
+#>   ggtheme +
+#>     ggplot2::theme(
+#>       axis.title.x = ggplot2::element_text(size = 12, face = "bold"),
+#>       strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
+#>       strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
+#>       strip.text = ggplot2::element_text(size = 12, face = "bold"),
+#>       axis.title.y = ggplot2::element_text(size = 12, face = "bold"),
+#>       axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
+#>       axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
+#>       axis.line = ggplot2::element_line(),
+#>       legend.text = ggplot2::element_text(size = 12),
+#>       legend.title = ggplot2::element_text(size = 12, face = "bold"),
+#>       legend.title.align = 0.5,
+#>       legend.text.align = 0.5,
+#>       legend.key.height = grid::unit(x = 1, units = "line"),
+#>       legend.key.width = grid::unit(x = 1, units = "line"),
+#>       plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),
+#>       panel.border = ggplot2::element_rect(
+#>         color = "black",
+#>         fill = NA,
+#>         size = 1
+#>       ),
+#>       plot.title = ggplot2::element_text(
+#>         color = "black",
+#>         size = 13,
+#>         face = "bold",
+#>         hjust = 0.5
+#>       ),
+#>       plot.subtitle = ggplot2::element_text(
+#>         color = "black",
+#>         size = 11,
+#>         face = "bold",
+#>         hjust = 0.5
+#>       )
+#>     )
+#> }
+#> <bytecode: 0x0000000027860938>
+#> <environment: namespace:ggstatsplot>
+```
+
+If you are not familiar either with what namespace `::` does or how to
+use pipe operator `%>%`, something this package and its documentation
+relies a lot on, you can check out these links-
+
+  - <http://r-pkgs.had.co.nz/namespace.html>
+  - <http://r4ds.had.co.nz/pipes.html>
 
 ## Usage
 
