@@ -30,6 +30,7 @@
 #' @param xalpha,yalpha Numeric deciding transparency levels for the marginal
 #'   distributions. Any numbers from `0` (transparent) to `1` (opaque). The
 #'   default is `1` for both axes.
+#' @param xsize,ysize Size for the marginal distribution boundaries (Default: `0.7`).
 #' @param type Type of association between paired samples required
 #'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
 #'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: Robust regression using
@@ -124,6 +125,8 @@ ggscatterstats <-
              yfill = "#D55E00",
              xalpha = 1,
              yalpha = 1,
+             xsize = 0.7,
+             ysize = 0.7,
              centrality.para = NULL,
              type = "pearson",
              results.subtitle = NULL,
@@ -439,11 +442,13 @@ ggscatterstats <-
           xparams = base::list(
             fill = xfill,
             alpha = xalpha,
+            size = xsize,
             col = "black"
           ),
           yparams = base::list(
             fill = yfill,
             alpha = yalpha,
+            size = ysize,
             col = "black"
           )
         )

@@ -8,10 +8,11 @@ ggscatterstats(data, x, y, xlab = NULL, ylab = NULL, line.size = 1.5,
   line.color = "blue", marginal = TRUE, marginal.type = "histogram",
   marginal.size = 5, margins = c("both", "x", "y"), width.jitter = NULL,
   height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00",
-  xalpha = 1, yalpha = 1, centrality.para = NULL, type = "pearson",
-  results.subtitle = NULL, title = NULL, caption = NULL, nboot = 100,
-  beta = 0.1, k = 3, axes.range.restrict = FALSE,
-  ggtheme = ggplot2::theme_bw(), messages = TRUE)
+  xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7,
+  centrality.para = NULL, type = "pearson", results.subtitle = NULL,
+  title = NULL, caption = NULL, nboot = 100, beta = 0.1, k = 3,
+  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -55,6 +56,8 @@ marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55
 \item{xalpha, yalpha}{Numeric deciding transparency levels for the marginal
 distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
 default is \code{1} for both axes.}
+
+\item{xsize, ysize}{Size for the marginal distribution boundaries (Default: \code{0.7}).}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for

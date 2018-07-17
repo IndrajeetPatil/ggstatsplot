@@ -10,9 +10,10 @@ grouped_ggscatterstats(data, x, y, grouping.var, title.prefix = "Group",
   marginal = TRUE, marginal.type = "histogram", marginal.size = 5,
   margins = c("both", "x", "y"), width.jitter = NULL,
   height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00",
-  xalpha = 1, yalpha = 1, centrality.para = NULL, type = "pearson",
-  results.subtitle = NULL, caption = NULL, nboot = 100, beta = 0.1,
-  k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
+  xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7,
+  centrality.para = NULL, type = "pearson", results.subtitle = NULL,
+  caption = NULL, nboot = 100, beta = 0.1, k = 3,
+  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
   messages = TRUE, ...)
 }
 \arguments{
@@ -70,6 +71,10 @@ default is \code{1} for both axes.}
 \item{yalpha}{Numeric deciding transparency levels for the marginal
 distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
 default is \code{1} for both axes.}
+
+\item{xsize}{Size for the marginal distribution boundaries (Default: \code{0.7}).}
+
+\item{ysize}{Size for the marginal distribution boundaries (Default: \code{0.7}).}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for

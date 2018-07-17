@@ -23,6 +23,9 @@ MINOR CHANGES
   - `sjstats` no longer suggests `apaTables` package to compute confidence
     intervals for partial eta- and omega-squared. Therefore, `apaTables` and
     `MBESS` are removed from dependencies.
+  - `ggscatterstats` supports `densigram` with the development version of
+    `ggExtra`. It additionally gains few extra arguments to change aesthetics of
+    marginals (alpha, size, etc.).
 
 # ggstatsplot 0.0.4
 

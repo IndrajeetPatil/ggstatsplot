@@ -132,6 +132,9 @@
 #' @importFrom tibble rownames_to_column
 #' @importFrom tibble as_data_frame
 #'
+#' @references
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html}
+#'
 #' @examples
 #'
 #' set.seed(123)

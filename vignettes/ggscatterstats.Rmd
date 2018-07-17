@@ -74,11 +74,15 @@ ggstatsplot::ggscatterstats(
   xlab = "Budget (in millions of US dollars)",                 # label for the x-axis
   ylab = "Rating on IMDB",                                     # label for the y-axis
   marginal = TRUE,                                             # show marginal distribution 
-  marginal.type = "histogram",                                 # type of plot for marginal distribution
+  marginal.type = "density",                                   # type of plot for marginal distribution
   centrality.para = "mean",                                    # if and which type of centrality parameter to be plotted
   margins = "both",                                            # marginal distribution on both axes
   xfill = "#CC79A7",                                           # fill for marginal distributions on the x-axis
   yfill = "#009E73",                                           # fill for marginal distributions on the y-axis
+  xalpha = 0.5,                                                # changing transparency for the x-axis marginals
+  yalpha = 0.75,                                               # changing transparency for the y-axis marginals
+  xsize = 1,                                                   # changing size for the x-axis marginals
+  ysize = 1,                                                   # changing size for the y-axis marginals
   type = "pearson",                                            # type of linear association
   title = "Relationship between movie budget and IMDB rating",
   caption = "Source: www.imdb.com",
