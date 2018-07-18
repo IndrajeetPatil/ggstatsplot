@@ -16,13 +16,6 @@
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
-#' @param effects In case the object is of class `merMod`
-#'   (`lmerMod`, `glmerMod`, `nlmerMod`), these arguments determine which
-#'   effects are to be displayed. By default, only the `"fixed"` effects will be
-#'   shown. Other option is `"ran_pars"`.
-#' @param ran.prefix A length-2 character vector specifying the strings to use
-#'   as prefixes for self- (variance/standard deviation) and cross- (covariance
-#'   /correlation) random effects terms.
 #' @param conf.method Character describing method for computing confidence
 #'   intervals (for more, see `lme4::confint.merMod`).
 #' @param p.kr Logical, if `TRUE`, the computation of p-values for `lmer` is
@@ -146,9 +139,7 @@
 # function body
 ggcoefstats <- function(x,
                         output = "plot",
-                        effects = "fixed",
                         scales = NULL,
-                        ran.prefix = NULL,
                         conf.method = "Wald",
                         p.kr = TRUE,
                         coefficient.type = "beta",
@@ -199,25 +190,32 @@ ggcoefstats <- function(x,
                         label.direction = "y",
                         ggtheme = ggplot2::theme_bw(),
                         ...) {
-  # ====================================== creating a list of objects ==================================================================
+  # ================================== list of objects (for tidy and glance) ==========================================================
 
-  # models for which statistic is t-value
-  t.mods <- c("lmerMod", "lm", "nls", "lmRob", "rq")
-
-  # models for which statistic is z-value
-  z.mods <- c("glm", "glmerMod", "glmRob", "clm", "clmm")
-
-  # creating a list of objects which will have "effects" or "groups" in their summary outputs
+  # creating a list of objects which will have fixed and random "effects"
+  # only fixed effects will be selected
   lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod")
-
-  # models for which statistic is t-value
-  f.mods <- c("aov", "aovlist")
 
   # models which are currently not supported
   unsupported.mods <- c("glht", "rlm", "kmeans", "rq")
 
   # models for which glance is not supported
   noglance.mods <- c("aovlist")
+
+  # ================================== list of objects (for statistic) ================================================================
+
+  # models for which statistic is t-value
+  t.mods <- c("lmerMod", "lm", "nls", "lmRob", "rq")
+
+  # models for which statistic is z-value
+  z.mods <- c("clm", "clmm", "glmRob")
+
+  # models for which statistic is F-value
+  f.mods <- c("aov", "aovlist")
+
+  # models for which there is no clear t-or z-statistic
+  # which statistic to use will be decided based on the family used
+  g.mods <- c("glm", "glmerMod")
 
   # ====================================== checking if object is supported =============================================================
   # glace is not supported for all models
@@ -249,20 +247,23 @@ ggcoefstats <- function(x,
   }
 
   # tidy dataframe of results from the model
-  # if these are merMod objects, choose whether the random effects are to be displayed
+  #===================================== lmm tidying =======================================================================
   if (class(x)[[1]] %in% lmm.mods) {
     tidy_df <-
       broom::tidy(
         x = x,
         conf.int = TRUE,
         conf.level = conf.level,
-        effects = effects,
+        effects = "fixed",
         scales = scales,
-        ran_prefix = ran.prefix,
         conf.method = conf.method,
         ...
       )
+
   } else if (class(x)[[1]] %in% f.mods) {
+
+    #===================================== aov tidying =======================================================================
+    #
     tidy_df <- lm_effsize_ci(
       object = x,
       effsize = effsize,
@@ -282,6 +283,7 @@ ggcoefstats <- function(x,
         dplyr::rename(.data = ., estimate = partial.omegasq)
       xlab <- "partial omega-squared"
     }
+    #===================================== clm and clmm tidying =======================================================================
   } else if (class(x)[[1]] == "clm" || class(x)[[1]] == "clmm") {
     tidy_df <-
       broom::tidy(
@@ -300,6 +302,7 @@ ggcoefstats <- function(x,
       tidy_df %<>%
         dplyr::filter(.data = ., coefficient_type == "beta")
     }
+    #===================================== tidying everything else =======================================================================
   } else {
     tidy_df <-
       broom::tidy(
@@ -309,6 +312,7 @@ ggcoefstats <- function(x,
       )
   }
 
+  #===================================== p-value check =======================================================================
   # p-values won't be computed by default for the lmer models
   if (class(x)[[1]] == "lmerMod") {
     # computing p-values
@@ -388,7 +392,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # ========================================================= stats labels =========================================================
+  # ========================================================= p-value formatting =========================================================
   #
   # formatting the numbers for display and preparing labels
   if (isTRUE(stats.labels)) {
@@ -418,61 +422,88 @@ ggcoefstats <- function(x,
         )
       )
 
-    # ========================================================= t-statistic =========================================================
+    # ========================================================= t-statistic labels =========================================================
     if (class(x)[[1]] %in% t.mods) {
-      tidy_df %<>%
-        purrrlyr::by_row(
-          .d = .,
-          ..f = ~paste(
-            "list(~italic(beta)==",
-            ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-            ", ~italic(t)",
-            "(",
-            glance_df$df.residual,
-            ")==",
-            .$statistic,
-            ", ~italic(p)",
-            .$p.value.formatted2,
-            ")",
-            sep = ""
-          ),
-          .collate = "rows",
-          .to = "label",
-          .labels = TRUE
-        )
-      # if random effects are displayed, then remove labels since no p-values are available
-      if (effects != "fixed") {
-        tidy_df %<>%
-          dplyr::mutate(
-            .data = .,
-            label = dplyr::case_when(
-              is.na(p.value) ~ NA_character_,
-              TRUE ~ label
-            )
-          )
-      }
 
-      # ========================================================= z-statistic =========================================================
-    } else if (class(x)[[1]] %in% z.mods) {
       tidy_df %<>%
-        purrrlyr::by_row(
-          .d = .,
-          ..f = ~paste(
-            "list(~italic(beta)==",
-            ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-            ", ~italic(z)==",
-            .$statistic,
-            ", ~italic(p)",
-            .$p.value.formatted2,
-            ")",
-            sep = ""
-          ),
-          .collate = "rows",
-          .to = "label",
-          .labels = TRUE
+        tz_labeller(
+          tidy_df = .,
+          glance_df = glance_df,
+          statistic = "t",
+          k = k
         )
+
+      # ========================================================= z-statistic labels =========================================================
+    } else if (class(x)[[1]] %in% z.mods) {
+
+      tidy_df %<>%
+        tz_labeller(
+          tidy_df = .,
+          glance_df = glance_df,
+          statistic = "z",
+          k = k
+        )
+
+      # ========================================================= t/z-statistic labels =========================================================
+    } else if (class(x)[[1]] %in% g.mods) {
+
+      if (class(x)[[1]] == "glm") {
+        if (summary(x)$family$family[[1]] %in% c("quasi",
+                                                 "gaussian",
+                                                 "quasibinomial",
+                                                 "quasipoisson",
+                                                 "Gamma",
+                                                 "inverse.gaussian")) {
+          tidy_df %<>%
+            tz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "t",
+              k = k
+            )
+
+        } else if (summary(x)$family$family[[1]] %in% c("binomial", "poisson")) {
+          tidy_df %<>%
+            tz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "z",
+              k = k
+            )
+
+        }
+      } else if (class(x)[[1]] == "glmerMod") {
+
+        if (summary(x)$family[[1]] %in% c("quasi",
+                                          "gaussian",
+                                          "quasibinomial",
+                                          "quasipoisson",
+                                          "Gamma",
+                                          "inverse.gaussian")) {
+
+          tidy_df %<>%
+            tz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "t",
+              k = k
+            )
+
+        } else if (summary(x)$family[[1]] %in% c("binomial", "poisson")) {
+
+          tidy_df %<>%
+            tz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "z",
+              k = k
+            )
+
+        }
+      }
       # ========================================================= F-statistic =========================================================
-    } else if (class(x)[[1]] %in% f.mods) {
+      } else if (class(x)[[1]] %in% f.mods) {
+      # which effect size is needed?
       if (effsize == "eta") {
         tidy_df %<>%
           purrrlyr::by_row(
@@ -528,23 +559,26 @@ ggcoefstats <- function(x,
   # caption containing model diagnostics
   if (isTRUE(caption.summary)) {
     if (!(class(x)[[1]] %in% noglance.mods)) {
-      caption.text <-
-        base::substitute(
-          expr =
-            paste(
-              "AIC = ",
-              AIC,
-              ", BIC = ",
-              BIC,
-              ", log-likelihood = ",
-              loglik
-            ),
-          env = base::list(
-            AIC = ggstatsplot::specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
-            BIC = ggstatsplot::specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary),
-            loglik = ggstatsplot::specify_decimal_p(x = glance_df$logLik[[1]], k = k.caption.summary)
+      if (!is.na(glance_df$AIC[[1]])) {
+        # preparing caption with model diagnostics
+        caption.text <-
+          base::substitute(
+            expr =
+              paste("AIC = ",
+                    AIC,
+                    ", BIC = ",
+                    BIC,
+                    ", log-likelihood = ",
+                    loglik),
+            env = base::list(
+              AIC = ggstatsplot::specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
+              BIC = ggstatsplot::specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary),
+              loglik = ggstatsplot::specify_decimal_p(x = glance_df$logLik[[1]], k = k.caption.summary)
+            )
           )
-        )
+      } else {
+        caption.text <- NULL
+      }
     } else {
       caption.text <- NULL
     }
@@ -566,7 +600,8 @@ ggcoefstats <- function(x,
       base::factor(x = tidy_df$term, levels = tidy_df$term[new_order])
   } else {
     tidy_df$term <- base::as.factor(tidy_df$term)
-    tidy_df %<>% tibble::rownames_to_column(df = ., var = "rowid")
+    tidy_df %<>%
+      tibble::rownames_to_column(., var = "rowid")
     new_order <- base::order(tidy_df$rowid, decreasing = FALSE)
     tidy_df$term <- as.character(tidy_df$term)
     tidy_df$term <-

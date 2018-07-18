@@ -144,9 +144,8 @@ caption.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>effects</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ran.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='st'>"beta"</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+    <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>,
+  <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='st'>"beta"</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
   <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
   <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -180,22 +179,9 @@ dataframe of results from <code><a href='http://www.rdocumentation.org/packages/
 <code><a href='http://www.rdocumentation.org/packages/broom/topics/glance'>broom::glance</a></code>) or <code>"augment"</code> (object from <code><a href='http://www.rdocumentation.org/packages/broom/topics/augment'>broom::augment</a></code>).</p></td>
     </tr>
     <tr>
-      <th>effects</th>
-      <td><p>In case the object is of class <code>merMod</code>
-(<code>lmerMod</code>, <code>glmerMod</code>, <code>nlmerMod</code>), these arguments determine which
-effects are to be displayed. By default, only the <code>"fixed"</code> effects will be
-shown. Other option is <code>"ran_pars"</code>.</p></td>
-    </tr>
-    <tr>
       <th>scales</th>
       <td><p>scales on which to report the variables: for random effects, the choices are &#8216;"sdcor"&#8217; (standard deviations and correlations: the default if <code>scales</code> is <code>NULL</code>) or &#8216;"vcov"&#8217; (variances and covariances). <code>NA</code> means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation
 or logistic) are not yet implemented, but may be in the future.</p></td>
-    </tr>
-    <tr>
-      <th>ran.prefix</th>
-      <td><p>A length-2 character vector specifying the strings to use
-as prefixes for self- (variance/standard deviation) and cross- (covariance
-/correlation) random effects terms.</p></td>
     </tr>
     <tr>
       <th>conf.method</th>

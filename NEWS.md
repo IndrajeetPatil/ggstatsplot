@@ -5,7 +5,9 @@ MAJOR CHANGES
   - For the sake of consistency, `theme_mprl` is now called `theme_ggstatsplot`.
     The `theme_mprl` function will still be around and will **not** be deprecated,
     so feel free to use either or both of them since they are identical.
-    
+  - `ggcoefstats` no longer has arguments `effects` and `ran_params` because
+    only fixed effects are shown for mixed-effects models.
+     
 BUG FIXES
   - `ggbetweenstats` was producing wrong axes labels when `sample.size.label`
     was set to `TRUE` and user had reordered factor levels before using this
