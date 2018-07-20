@@ -51,6 +51,7 @@ Suggests:
     knitr,
     lme4 (>= 1.1-17),
     ordinal (>= 2018.4-19),
+    robust (>= 0.4-18),
     plyr (>= 1.8.4),
     rmarkdown,
     spelling,

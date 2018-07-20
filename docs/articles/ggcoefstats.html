@@ -96,7 +96,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-07-18</h4>
+            <h4 class="date">2018-07-20</h4>
       
       
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -639,16 +639,36 @@
 <p><img src="ggcoefstats_files/figure-html/aovlist-1.png" width="768"></p>
 <p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
 </div>
+<div id="robust-regression-lmrob-glmrob" class="section level2">
+<h2 class="hasAnchor">
+<a href="#robust-regression-lmrob-glmrob" class="anchor"></a>Robust regression (<code>lmRob</code>, <code>glmRob</code>)</h2>
+<p>The robust regression models, as implemented in robust package are also supported. But since no 95% CI are available in this case, only the dots will be shown.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">    <span class="dt">x =</span> robust<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/robust/topics/glmRob">glmRob</a></span>(</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">      <span class="dt">formula =</span> Survived <span class="op">~</span><span class="st"> </span>Sex,</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">      <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"logit"</span>)</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">    ),</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">    <span class="dt">title =</span> <span class="st">"generalized robust linear model"</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">  ),</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb14-11" data-line-number="11">    <span class="dt">x =</span> robust<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/robust/topics/lmRob">lmRob</a></span>(<span class="dt">formula =</span> Sepal.Length <span class="op">~</span><span class="st"> </span>Sepal.Width <span class="op">*</span><span class="st"> </span>Species, <span class="dt">data =</span> iris),</a>
+<a class="sourceLine" id="cb14-12" data-line-number="12">    <span class="dt">title =</span> <span class="st">"robust linear model"</span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13">  ),</a>
+<a class="sourceLine" id="cb14-14" data-line-number="14">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
+<a class="sourceLine" id="cb14-15" data-line-number="15">  <span class="dt">title.text =</span> <span class="st">"Robust variants of lm and glm"</span>,</a>
+<a class="sourceLine" id="cb14-16" data-line-number="16">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb14-17" data-line-number="17">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18">)</a>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt; Note: No 95% confidence intervals available for regression coefficients from glmRob object, so skipping whiskers in the plot.Note: No 95% confidence intervals available for regression coefficients from lmRob object, so skipping whiskers in the plot.</span></a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/robust-1.png" width="768"></p>
+</div>
 <div id="and-much-more" class="section level2">
 <h2 class="hasAnchor">
 <a href="#and-much-more" class="anchor"></a>And much more…</h2>
 <p>This vignette was supposed to give just a taste for only <em>some</em> of the regression models supported by <code>ggcoefstats</code>. The full list of supported models will keep expanding as additional tidiers are added to the <code>broom</code> package: <a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a></p>
-<p>Note that not <strong>all</strong> models supported by <code>broom</code> will be supported by <code>ggcoefstats</code>. In particular, classes of objects for which there is:</p>
-<ul>
-<li>no confidence intervals for the estimate available (e.g., <code>lmRob</code>, <code>glmRob</code>, etc.)</li>
-<li>no estimates present (e.g., <code>kmeans</code>)</li>
-</ul>
-<p>will not be supported. That said, some of these models might be supported in future.</p>
+<p>Note that not <strong>all</strong> models supported by <code>broom</code> will be supported by <code>ggcoefstats</code>. In particular, classes of objects for which there is no estimates present (e.g., <code>kmeans</code>) are not supported.</p>
 </div>
 <div id="suggestions" class="section level2">
 <h2 class="hasAnchor">
@@ -672,6 +692,7 @@
       <li><a href="#cumulative-link-models-clm">Cumulative Link Models (<code>clm</code>)</a></li>
       <li><a href="#cumulative-link-mixed-models-clmm">Cumulative Link Mixed Models (<code>clmm</code>)</a></li>
       <li><a href="#repeated-measures-anova-aovlist">Repeated measures ANOVA (<code>aovlist</code>)</a></li>
+      <li><a href="#robust-regression-lmrob-glmrob">Robust regression (<code>lmRob</code>, <code>glmRob</code>)</a></li>
       <li><a href="#and-much-more">And much more…</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       </ul>

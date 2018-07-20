@@ -634,6 +634,33 @@ explanatory factor being the `measure` used. A very little amount of variation
 in measurement is accounted for by the interaction between these two factors.
 
 
+## Robust regression (`lmRob`, `glmRob`)
+
+The robust regression models, as implemented in robust package are also
+supported. But since no 95% CI are available in this case, only the dots will be
+shown.
+
+```{r robust, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
+ggstatsplot::combine_plots(
+  ggstatsplot::ggcoefstats(
+    x = robust::glmRob(
+      formula = Survived ~ Sex,
+      data = ggstatsplot::Titanic_full,
+      family = stats::binomial(link = "logit")
+    ),
+    title = "generalized robust linear model"
+  ),
+  ggstatsplot::ggcoefstats(
+    x = robust::lmRob(formula = Sepal.Length ~ Sepal.Width * Species, data = iris),
+    title = "robust linear model"
+  ),
+  labels = c("(a)", "(b)"),
+  title.text = "Robust variants of lm and glm",
+  nrow = 2,
+  ncol = 1
+)
+```
+
 ## And much more...
 
 This vignette was supposed to give just a taste for only *some* of the
@@ -642,14 +669,8 @@ will keep expanding as additional tidiers are added to the `broom` package:
 <https://broom.tidyverse.org/articles/available-methods.html>
 
 Note that not **all** models supported by `broom` will be supported by
-`ggcoefstats`. In particular, classes of objects for which there is:
-
-  - no confidence intervals for the estimate available (e.g., `lmRob`, `glmRob`,
-    etc.)
-  - no estimates present (e.g., `kmeans`)
-
-will not be supported. That said, some of these models might be supported in
-future.
+`ggcoefstats`. In particular, classes of objects for which there is no estimates
+present (e.g., `kmeans`) are not supported.
 
 ## Suggestions
 
