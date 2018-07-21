@@ -96,7 +96,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-07-20</h4>
+            <h4 class="date">2018-07-21</h4>
       
       
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -462,10 +462,26 @@
 <a class="sourceLine" id="cb8-121" data-line-number="121">    ),</a>
 <a class="sourceLine" id="cb8-122" data-line-number="122">    <span class="dt">title =</span> <span class="st">"Family: Quasibinomial"</span></a>
 <a class="sourceLine" id="cb8-123" data-line-number="123">  ),</a>
-<a class="sourceLine" id="cb8-124" data-line-number="124">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
-<a class="sourceLine" id="cb8-125" data-line-number="125">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb8-126" data-line-number="126">  <span class="dt">title.text =</span> <span class="st">"Exploring models with different glm families"</span></a>
-<a class="sourceLine" id="cb8-127" data-line-number="127">)</a></code></pre></div>
+<a class="sourceLine" id="cb8-124" data-line-number="124">    ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb8-125" data-line-number="125">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(</a>
+<a class="sourceLine" id="cb8-126" data-line-number="126">      <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x,</a>
+<a class="sourceLine" id="cb8-127" data-line-number="127">      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/family">quasipoisson</a></span>(<span class="dt">link =</span> <span class="st">"log"</span>),</a>
+<a class="sourceLine" id="cb8-128" data-line-number="128">      <span class="dt">data =</span> df<span class="fl">.4</span></a>
+<a class="sourceLine" id="cb8-129" data-line-number="129">    ),</a>
+<a class="sourceLine" id="cb8-130" data-line-number="130">    <span class="dt">title =</span> <span class="st">"Family: Quasipoisson"</span></a>
+<a class="sourceLine" id="cb8-131" data-line-number="131">  ),</a>
+<a class="sourceLine" id="cb8-132" data-line-number="132">    ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb8-133" data-line-number="133">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(</a>
+<a class="sourceLine" id="cb8-134" data-line-number="134">      <span class="dt">formula =</span> Sepal.Length <span class="op">~</span><span class="st"> </span>Species,</a>
+<a class="sourceLine" id="cb8-135" data-line-number="135">      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/family">gaussian</a></span>(<span class="dt">link =</span> <span class="st">"identity"</span>),</a>
+<a class="sourceLine" id="cb8-136" data-line-number="136">      <span class="dt">data =</span> iris</a>
+<a class="sourceLine" id="cb8-137" data-line-number="137">    ),</a>
+<a class="sourceLine" id="cb8-138" data-line-number="138">    <span class="dt">title =</span> <span class="st">"Family: Gaussian"</span></a>
+<a class="sourceLine" id="cb8-139" data-line-number="139">  ),</a>
+<a class="sourceLine" id="cb8-140" data-line-number="140">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>),</a>
+<a class="sourceLine" id="cb8-141" data-line-number="141">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb8-142" data-line-number="142">  <span class="dt">title.text =</span> <span class="st">"Exploring models with different glm families"</span></a>
+<a class="sourceLine" id="cb8-143" data-line-number="143">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glm2-1.png" width="960"></p>
 </div>
 <div id="generalized-linear-mixed-effects-model-glmer" class="section level2">

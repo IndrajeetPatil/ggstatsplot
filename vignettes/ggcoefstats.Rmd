@@ -334,7 +334,7 @@ families. Note that some families have a `t` statistic associated with them,
 while others a `z` statistic. The function will figure this out for you in the
 background.
 
-```{r glm2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
+```{r glm2, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 10}
 # creating dataframes to use for regression analyses
 library(dplyr)
 
@@ -406,7 +406,23 @@ ggstatsplot::combine_plots(
     ),
     title = "Family: Quasibinomial"
   ),
-  labels = c("(a)", "(b)", "(c)", "(d)"),
+    ggstatsplot::ggcoefstats(
+    x = stats::glm(
+      formula = y ~ x,
+      family = stats::quasipoisson(link = "log"),
+      data = df.4
+    ),
+    title = "Family: Quasipoisson"
+  ),
+    ggstatsplot::ggcoefstats(
+    x = stats::glm(
+      formula = Sepal.Length ~ Species,
+      family = stats::gaussian(link = "identity"),
+      data = iris
+    ),
+    title = "Family: Gaussian"
+  ),
+  labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)"),
   ncol = 2,
   title.text = "Exploring models with different glm families"
 )
