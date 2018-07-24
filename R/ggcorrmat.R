@@ -371,7 +371,7 @@ ggcorrmat <-
         # correlation matrix
         corr.mat %<>%
           base::as.data.frame(x = .) %>%
-          tibble::rownames_to_column(df = ., var = "variable") %>%
+          tibble::rownames_to_column(., var = "variable") %>%
           tibble::as_data_frame(x = .)
       }
       # return the tibble
@@ -383,7 +383,7 @@ ggcorrmat <-
         # p-value matrix
         p.mat %<>%
           base::as.data.frame(x = .) %>%
-          tibble::rownames_to_column(df = ., var = "variable") %>%
+          tibble::rownames_to_column(., var = "variable") %>%
           tibble::as_data_frame(x = .)
       }
       # return the final tibble

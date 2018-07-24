@@ -701,7 +701,6 @@ robcor_ci <- function(data,
 #' @importFrom stats na.omit
 #' @importFrom stats lm
 #' @importFrom tibble as_data_frame
-#' @importFrom tibble rownames_to_column
 #' @importFrom broom tidy
 #'
 #' @examples
