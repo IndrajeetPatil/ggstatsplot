@@ -24,7 +24,7 @@ single variable with results from one sample test displayed in the subtitle
 correlation matrix \item \code{\link[ggstatsplot]{combine_plots}} helper
 function to combine multiple \code{ggstatsplot} plots using
 \code{cowplot::plot_grid()} with a combination of title, caption, and annotation
-label \item \code{\link[ggcoefstats]{ggcoefstats}} function to visualize
+label \item \code{\link[ggstatsplot]{ggcoefstats}} function to visualize
 results from regression analyses \item
 \code{\link[ggstatsplot]{theme_ggstatsplot}} default theme used for this
 package \item \code{\link[ggstatsplot]{specify_decimal_p}} helper function
