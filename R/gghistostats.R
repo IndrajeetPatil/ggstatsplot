@@ -525,7 +525,7 @@ gghistostats <-
           plot <- plot +
             ggplot2::geom_text(
               mapping = ggplot2::aes(
-                x = mean(x = data$x, na.rm = TRUE) + 0.20,
+                x = mean(x = data$x, na.rm = TRUE),
                 label = "mean",
                 y = line.labeller.y
               ),
@@ -548,7 +548,7 @@ gghistostats <-
           plot <- plot +
             ggplot2::geom_text(
               mapping = ggplot2::aes(
-                x = median(x = data$x, na.rm = TRUE) + 0.20,
+                x = median(x = data$x, na.rm = TRUE),
                 label = "median",
                 y = line.labeller.y
               ),
@@ -574,7 +574,7 @@ gghistostats <-
           plot <- plot +
             ggplot2::geom_text(
               mapping = ggplot2::aes(
-                x = test.value + 0.20,
+                x = test.value,
                 label = "test",
                 y = line.labeller.y
               ),
