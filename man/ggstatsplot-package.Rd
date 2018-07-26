@@ -5,8 +5,13 @@
 \alias{ggstatsplot-package}
 \title{\code{ggstatsplot}}
 \description{
-Collection of functions to enhance \code{ggplot2} plots with results from
-statistical tests.
+ggstatsplot is an extension of ggplot2 package for creating
+graphics with details from statistical tests included in the plots
+themselves and targeted primarily at behavioral sciences community to
+provide a one-line code to produce information-rich plots. Currently, it
+supports only the most common types of statistical tests (parametric,
+nonparametric, and robust versions of t-tets/anova, correlation, and
+contingency tables analyses).
 }
 \details{
 The main functions are- \itemize{ \item
@@ -30,7 +35,6 @@ results from regression analyses \item
 package \item \code{\link[ggstatsplot]{specify_decimal_p}} helper function
 to format results for pretty printing }
 
-For more documentation, see
-\href{https://github.com/IndrajeetPatil/ggstatsplot}{README} on GitHub.
-Vignette preparation in progress.
+For more documentation, see the dedicated
+\href{https://indrajeetpatil.github.io/ggstatsplot/}{Website}.
 }
