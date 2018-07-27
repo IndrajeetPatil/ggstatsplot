@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--21-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--28-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -72,9 +72,9 @@ utils::install.packages(pkgs = "ggstatsplot")
 ```
 
 You can get the **development** version of the package from GitHub
-(`0.0.4.9000`). To see what new changes have been made to the package
-since the last release on `CRAN`, you can check the detailed log of
-changes here:
+(`0.0.4.9000`). To see what new changes (and bug fixes) have been made
+to the package since the last release on `CRAN`, you can check the
+detailed log of changes here:
 <https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
 
 If you are in hurry and want to reduce the time of installation, prefer-
@@ -116,11 +116,14 @@ rmarkdown::pandoc_available()
 ## Citation
 
 If you want to cite this package in a scientific journal or in any other
-context, run the following code in your R console:
+context, run the following code in your `R` console:
 
 ``` r
 utils::citation(package = "ggstatsplot")
 ```
+
+There is currently a publication in preparation corresponding this
+package and the citation will be updated once it’s published.
 
 ## Help
 
@@ -203,12 +206,12 @@ ggstatsplot::theme_mprl
 #>       )
 #>     )
 #> }
-#> <bytecode: 0x0000000027afd910>
+#> <bytecode: 0x00000000271e3998>
 #> <environment: namespace:ggstatsplot>
 ```
 
-If you are not familiar either with what namespace `::` does or how to
-use pipe operator `%>%`, something this package and its documentation
+If you are not familiar either with what the namespace `::` does or how
+to use pipe operator `%>%`, something this package and its documentation
 relies a lot on, you can check out these links-
 
   - <http://r-pkgs.had.co.nz/namespace.html>
