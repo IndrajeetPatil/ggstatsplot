@@ -59,7 +59,7 @@ In addition to these basic plots, `ggstatsplot` also provides `grouped_`
 versions of all functions that makes it easy to repeat the same anlysis for any
 grouping variable.
 
-Future versions will include other types of analyses and plots as well.
+Future versions will include other types of statistical analyses and plots as well.
 
 ## Installation
 

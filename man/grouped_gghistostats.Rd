@@ -5,18 +5,20 @@
 \title{Grouped histograms for distribution of a numeric variable}
 \usage{
 grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
-  bar.measure = "count", xlab = NULL, subtitle = NULL, caption = NULL,
-  type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = TRUE, robust.estimator = "onestep", nboot = 500, k = 3,
-  low.color = "#0072B2", high.color = "#D55E00", results.subtitle = TRUE,
+  bar.measure = "count", xlab = NULL, subtitle = NULL,
+  caption = NULL, type = "parametric", test.value = 0,
+  bf.prior = 0.707, bf.message = TRUE, robust.estimator = "onestep",
+  nboot = 500, k = 3, low.color = "#0072B2",
+  high.color = "#D55E00", results.subtitle = TRUE,
   legend.title.margin = FALSE, t.margin = unit(0, "mm"),
   b.margin = unit(3, "mm"), centrality.para = NULL,
   centrality.color = "blue", centrality.size = 1.2,
   centrality.linetype = "dashed", test.value.line = FALSE,
   test.value.color = "black", test.value.size = 1.2,
   test.value.linetype = "dashed", line.labeller = FALSE,
-  line.labeller.y = -2, binwidth = NULL, ggtheme = ggplot2::theme_bw(),
-  fill.gradient = TRUE, messages = TRUE, ...)
+  line.labeller.y = -2, binwidth = NULL,
+  ggtheme = ggplot2::theme_bw(), fill.gradient = TRUE,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be

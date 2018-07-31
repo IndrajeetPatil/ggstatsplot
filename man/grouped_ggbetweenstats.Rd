@@ -6,18 +6,20 @@
 designs repeated across all levels of a grouping variable.}
 \usage{
 grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
-  plot.type = "boxviolin", type = "parametric", effsize.type = "unbiased",
-  effsize.noncentral = FALSE, xlab = NULL, ylab = NULL, caption = NULL,
-  sample.size.label = TRUE, k = 3, var.equal = FALSE, nboot = 100,
-  tr = 0.1, conf.level = 0.95, conf.type = "norm", mean.label.size = 3,
-  mean.label.fontface = "bold", mean.label.color = "black", notch = FALSE,
-  notchwidth = 0.5, linetype = "solid", outlier.tagging = NULL,
-  outlier.label = NULL, outlier.label.color = "black",
-  outlier.color = "black", outlier.coef = 1.5, mean.plotting = TRUE,
-  mean.ci = FALSE, mean.size = 5, mean.color = "darkred",
-  point.jitter.width = NULL, point.jitter.height = 0.2,
-  point.dodge.width = 0.75, ggtheme = ggplot2::theme_bw(),
-  palette = "Dark2", messages = TRUE, ...)
+  plot.type = "boxviolin", type = "parametric",
+  effsize.type = "unbiased", effsize.noncentral = FALSE, xlab = NULL,
+  ylab = NULL, caption = NULL, sample.size.label = TRUE, k = 3,
+  var.equal = FALSE, nboot = 100, tr = 0.1, conf.level = 0.95,
+  conf.type = "norm", mean.label.size = 3,
+  mean.label.fontface = "bold", mean.label.color = "black",
+  notch = FALSE, notchwidth = 0.5, linetype = "solid",
+  outlier.tagging = NULL, outlier.label = NULL,
+  outlier.label.color = "black", outlier.color = "black",
+  outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
+  mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
+  point.jitter.height = 0.2, point.dodge.width = 0.75,
+  ggtheme = ggplot2::theme_bw(), palette = "Dark2", messages = TRUE,
+  ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be

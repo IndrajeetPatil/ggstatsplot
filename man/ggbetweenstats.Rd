@@ -5,17 +5,20 @@
 \title{Violin plots for group or condition comparisons in between-subjects
 designs.}
 \usage{
-ggbetweenstats(data, x, y, plot.type = "boxviolin", type = "parametric",
-  effsize.type = "unbiased", effsize.noncentral = FALSE, xlab = NULL,
-  ylab = NULL, caption = NULL, title = NULL, sample.size.label = TRUE,
-  k = 3, var.equal = FALSE, nboot = 100, tr = 0.1, conf.level = 0.95,
-  conf.type = "norm", mean.label.size = 3, mean.label.fontface = "bold",
-  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
-  linetype = "solid", outlier.tagging = FALSE, outlier.label = NULL,
+ggbetweenstats(data, x, y, plot.type = "boxviolin",
+  type = "parametric", effsize.type = "unbiased",
+  effsize.noncentral = FALSE, xlab = NULL, ylab = NULL,
+  caption = NULL, title = NULL, sample.size.label = TRUE, k = 3,
+  var.equal = FALSE, nboot = 100, tr = 0.1, conf.level = 0.95,
+  conf.type = "norm", mean.label.size = 3,
+  mean.label.fontface = "bold", mean.label.color = "black",
+  notch = FALSE, notchwidth = 0.5, linetype = "solid",
+  outlier.tagging = FALSE, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
-  mean.size = 5, mean.color = "darkred", ggtheme = ggplot2::theme_bw(),
-  palette = "Dark2", point.jitter.width = NULL, point.jitter.height = 0.1,
+  mean.size = 5, mean.color = "darkred",
+  ggtheme = ggplot2::theme_bw(), palette = "Dark2",
+  point.jitter.width = NULL, point.jitter.height = 0.1,
   point.dodge.width = 0.6, messages = TRUE)
 }
 \arguments{

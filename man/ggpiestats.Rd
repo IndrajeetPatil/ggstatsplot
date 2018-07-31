@@ -8,7 +8,8 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   factor.levels = NULL, stat.title = NULL, sample.size.label = TRUE,
   title = NULL, caption = NULL, nboot = 25, palette = "Dark2",
   legend.title = NULL, facet.wrap.name = NULL, k = 3,
-  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(), messages = TRUE)
+  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
+  messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
