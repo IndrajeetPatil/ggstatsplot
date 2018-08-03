@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--31-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--03-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -207,7 +207,7 @@ ggstatsplot::theme_mprl
 #>       )
 #>     )
 #> }
-#> <bytecode: 0x0000000027214198>
+#> <bytecode: 0x0000000027202840>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -261,9 +261,10 @@ ggstatsplot::ggbetweenstats(
 
 <img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />
 
-Number of other arguments can be specified to make this plot even more
-informative and, additionally, this function returns a `ggplot2` object
-and thus any of the graphics layers can be further modified:
+A number of other arguments can be specified to make this plot even more
+informative or change some of the default options. Additionally, this
+function returns a `ggplot2` object and thus any of the graphics layers
+can be further modified:
 
 ``` r
 library(ggplot2)
@@ -315,6 +316,9 @@ The `type` (of test) argument also accepts the following abbreviations:
 *robust*). Additionally, the type of plot to be displayed can also be
 modified (`"box"`, `"violin"`, or `"boxviolin"`).
 
+For more, see the `ggbetweenstats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
+
 \*\* This function is not appropriate for within-subjects designs.\*\*
 
 Variant of this function `ggwithinstats` is currently under work. You
@@ -322,9 +326,6 @@ Variant of this function `ggwithinstats` is currently under work. You
 exploratory data analysis, but the statistical details displayed in the
 subtitle will be incorrect. You can remove them by adding `+
 ggplot2::labs(subtitle = NULL)`.
-
-For more, see the `ggbetweenstats` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
 ## `ggscatterstats`
 

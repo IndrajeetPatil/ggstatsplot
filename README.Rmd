@@ -193,9 +193,10 @@ ggstatsplot::ggbetweenstats(
 )
 ```
 
-Number of other arguments can be specified to make this plot even more
-informative and, additionally, this function returns a `ggplot2` object and thus
-any of the graphics layers can be further modified:
+A number of other arguments can be specified to make this plot even more
+informative or change some of the default options. Additionally, this function
+returns a `ggplot2` object and thus any of the graphics layers can be further
+modified:
 
 ```{r ggbetweenstats2, message = FALSE, warning = FALSE}
 library(ggplot2)
@@ -245,15 +246,15 @@ The `type` (of test) argument also accepts the following abbreviations: `"p"`
 Additionally, the type of plot to be displayed can also be modified (`"box"`,
 `"violin"`, or `"boxviolin"`).
 
+For more, see the `ggbetweenstats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
+
 ** This function is not appropriate for within-subjects designs.**
 
 Variant of this function `ggwithinstats` is currently under work. You *can*
 still use this function just to prepare the **plot** for exploratory data
 analysis, but the statistical details displayed in the subtitle will be
 incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
-
-For more, see the `ggbetweenstats` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
 ## `ggscatterstats`
 
