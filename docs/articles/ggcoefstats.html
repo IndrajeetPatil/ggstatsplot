@@ -96,7 +96,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-07-31</h4>
+            <h4 class="date">2018-08-09</h4>
       
       
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -223,6 +223,33 @@
 <a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
 <p>As can be seen from the regression coefficients, compared to the action movies, only romantic movies, animated movies, and dramas fare better with the audiences.</p>
+<!-- 
+## robust linear model (`rlm`)
+
+A linear model by robust regression using an M estimator, as implemented in `MASS::rlm` is also supported.
+
+
+```r
+ggstatsplot::ggcoefstats(
+  x = MASS::rlm(
+    formula = rating ~ genre,
+    data = ggstatsplot::movies_long
+  ),
+  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
+  sort = "ascending",                     # sorting the terms of the model based on estimate values
+  label.direction = "both",               # direction in which to adjust position of labels (both x and y)
+  ggtheme = ggplot2::theme_gray(),        # changing the default theme
+  stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "black", "red"),
+  title = "Movie ratings by their genre",
+  subtitle = "Source: www.imdb.com"
+) +                                    
+  ggplot2::scale_y_discrete(labels = c("Comedy", "Romance", "Documentary", "Animation", "Drama")) +
+  ggplot2::labs(y = "genre (comparison level: Action)") + 
+  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
+```
+
+<img src="ggcoefstats_files/figure-html/rlm-1.png" width="768" />
+-->
 </div>
 <div id="linear-mixed-effects-model-lmer" class="section level2">
 <h2 class="hasAnchor">
@@ -263,8 +290,8 @@
 <a class="sourceLine" id="cb4-33" data-line-number="33">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lmer-1.png" width="672"></p>
 <p>As can be seen from these plots, although there seems to be a really small correlation between budget and rating in a linear model, this effect is not significant once we take into account the hierarchical structure of the data.</p>
-<p>Note that for mixed-effects models, only the fixed effects are shown as there are no confidence intervals for random effects terms to show with whiskers in a dot-and-whisker plots. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="http://www.rdocumentation.org/packages/broom/topics/tidy">broom::tidy</a></code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">broom<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/broom/topics/tidy">tidy</a></span>(</a>
+<p>Note that for mixed-effects models, only the fixed effects are shown as there are no confidence intervals for random effects terms to show with whiskers in a dot-and-whisker plots. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="http://www.rdocumentation.org/packages/broom/topics/reexports">broom::tidy</a></code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">broom<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/broom/topics/reexports">tidy</a></span>(</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">    <span class="dt">formula =</span> rating <span class="op">~</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>(budget <span class="op">|</span><span class="st"> </span>genre),</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
@@ -533,7 +560,7 @@
 <a class="sourceLine" id="cb10-21" data-line-number="21">      <span class="dt">title =</span> glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(<span class="st">"Type of harm: {.$plot.title}"</span>),</a>
 <a class="sourceLine" id="cb10-22" data-line-number="22">      <span class="dt">caption.summary =</span> <span class="ot">FALSE</span>                            <span class="co"># suppress model diagnostics</span></a>
 <a class="sourceLine" id="cb10-23" data-line-number="23">    ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="st">      </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"belief (neutral)"</span>, <span class="st">"interaction"</span>, <span class="st">"outcome (neutral)"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="st">      </span><span class="co">#ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +</span></a>
 <a class="sourceLine" id="cb10-25" data-line-number="25"><span class="st">      </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb10-26" data-line-number="26">                    <span class="dt">y =</span> <span class="ot">NULL</span>)</a>
 <a class="sourceLine" id="cb10-27" data-line-number="27">  )</a>
@@ -564,7 +591,7 @@
 <a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="co"># suppress model diagnostics</span></a>
 <a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">caption.summary =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb11-17" data-line-number="17">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"belief (neutral)"</span>, <span class="st">"interaction"</span>, <span class="st">"outcome (neutral)"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">  </span><span class="co">#ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +</span></a>
 <a class="sourceLine" id="cb11-19" data-line-number="19"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
 <a class="sourceLine" id="cb11-20" data-line-number="20">                <span class="dt">y =</span> <span class="st">"fixed effects"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/clmm-1.png" width="576"></p>

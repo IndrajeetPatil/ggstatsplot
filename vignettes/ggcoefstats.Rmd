@@ -183,6 +183,31 @@ As can be seen from the regression coefficients, compared to the action movies,
 only romantic movies, animated movies, and dramas fare better with the
 audiences.
 
+<!-- 
+## robust linear model (`rlm`)
+
+A linear model by robust regression using an M estimator, as implemented in `MASS::rlm` is also supported.
+
+```{r rlm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+ggstatsplot::ggcoefstats(
+  x = MASS::rlm(
+    formula = rating ~ genre,
+    data = ggstatsplot::movies_long
+  ),
+  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
+  sort = "ascending",                     # sorting the terms of the model based on estimate values
+  label.direction = "both",               # direction in which to adjust position of labels (both x and y)
+  ggtheme = ggplot2::theme_gray(),        # changing the default theme
+  stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "black", "red"),
+  title = "Movie ratings by their genre",
+  subtitle = "Source: www.imdb.com"
+) +                                    
+  ggplot2::scale_y_discrete(labels = c("Comedy", "Romance", "Documentary", "Animation", "Drama")) +
+  ggplot2::labs(y = "genre (comparison level: Action)") + 
+  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
+```
+-->
+
 ## linear mixed-effects model (`lmer`)
 
 Now let's say we want to see how movie's budget relates to how good the movie is
@@ -508,7 +533,7 @@ plotlist <- ggstatsplot::intent_morality %>%
       title = glue::glue("Type of harm: {.$plot.title}"),
       caption.summary = FALSE                            # suppress model diagnostics
     ) +
-      ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
+      #ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
       ggplot2::labs(x = "logit regression coefficient",
                     y = NULL)
   )
@@ -551,7 +576,7 @@ ggstatsplot::ggcoefstats(
   # suppress model diagnostics
   caption.summary = FALSE
 ) +
-  ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
+  #ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +
   ggplot2::labs(x = "coefficient from ordinal mixed-effects regression",
                 y = "fixed effects")
 ```

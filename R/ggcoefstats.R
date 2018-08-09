@@ -197,7 +197,7 @@ ggcoefstats <- function(x,
   lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod")
 
   # models which are currently not supported
-  unsupported.mods <- c("glht", "rlm", "kmeans", "rq")
+  unsupported.mods <- c("glht", "kmeans", "rq")
 
   # models for which glance is not supported
   noglance.mods <- c("aovlist")
@@ -208,7 +208,7 @@ ggcoefstats <- function(x,
   # ================================== list of objects (for statistic) ================================================================
 
   # models for which statistic is t-value
-  t.mods <- c("lmerMod", "lm", "nls", "lmRob", "rq")
+  t.mods <- c("lmerMod", "lm", "nls", "lmRob", "rq", "rlm")
 
   # models for which statistic is z-value
   z.mods <- c("clm", "clmm")
@@ -322,7 +322,7 @@ ggcoefstats <- function(x,
   # ===================================== p-value computation =======================================================================
   #
   # p-values won't be computed by default for the lmer models
-  if (class(x)[[1]] == "lmerMod") {
+  if (class(x)[[1]] == "lmerMod" || class(x)[[1]] == "rlm") {
     # computing p-values
     tidy_df %<>%
       tibble::as_data_frame(x = .) %>%
@@ -463,7 +463,6 @@ ggcoefstats <- function(x,
           statistic = "t",
           k = k
         )
-
       # ========================================================= z-statistic labels =========================================================
     } else if (class(x)[[1]] %in% z.mods) {
       tidy_df %<>%
