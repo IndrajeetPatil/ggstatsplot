@@ -95,25 +95,25 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#'
+#' 
 #' # most basic function call with the defaults
 #' ggstatsplot::gghistostats(
-#' data = datasets::ToothGrowth,
-#' x = len,
-#' xlab = "Tooth length")
-#'
+#'   data = datasets::ToothGrowth,
+#'   x = len,
+#'   xlab = "Tooth length"
+#' )
+#' 
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
-#' data = datasets::iris,
-#' x = Sepal.Length,
-#' type = "bf",
-#' bf.prior = 0.8,
-#' test.value = 3,
-#' centrality.para = "mean",
-#' test.value.line = TRUE,
-#' binwidth = 0.10
+#'   data = datasets::iris,
+#'   x = Sepal.Length,
+#'   type = "bf",
+#'   bf.prior = 0.8,
+#'   test.value = 3,
+#'   centrality.para = "mean",
+#'   test.value.line = TRUE,
+#'   binwidth = 0.10
 #' )
-#'
 #' @note If you are using R Notebook and see a blank image being inserted when a
 #'   chunk is executed, this behavior can be turned off by setting
 #'   `legend.title.margin = FALSE`.

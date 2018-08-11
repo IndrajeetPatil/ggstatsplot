@@ -96,7 +96,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-09</h4>
+            <h4 class="date">2018-08-11</h4>
       
       
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -365,7 +365,30 @@
 <div id="within-subjects-designs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h2>
-<p>Variant of this function for within-subjects designs, which will display results from McNemar test, is currently under work. You <em>can</em> still use this function just to prepare the <strong>plot</strong> for exploratory data analysis, but the statistical details displayed in the subtitle will be incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code>.</p>
+<p>In case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from McNemar test in the subtitle.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># seed for reproducibility</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co"># data</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">clinical_trial &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">  </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/tribble">tribble</a></span>(</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">    <span class="op">~</span>Control,   <span class="op">~</span>Case,  <span class="op">~</span>pairs,</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">    <span class="st">"No"</span>,   <span class="st">"Yes"</span>,  <span class="dv">25</span>,</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">    <span class="st">"Yes"</span>,  <span class="st">"No"</span>,   <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">    <span class="st">"Yes"</span>,  <span class="st">"Yes"</span>,  <span class="dv">13</span>,</a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">    <span class="st">"No"</span>,   <span class="st">"No"</span>,   <span class="dv">92</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">  )</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(<span class="dt">data =</span> clinical_trial,</a>
+<a class="sourceLine" id="cb11-16" data-line-number="16">                        <span class="dt">condition =</span> Control,</a>
+<a class="sourceLine" id="cb11-17" data-line-number="17">                        <span class="dt">main =</span> Case,</a>
+<a class="sourceLine" id="cb11-18" data-line-number="18">                        <span class="dt">counts =</span> pairs,</a>
+<a class="sourceLine" id="cb11-19" data-line-number="19">                        <span class="dt">paired =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb11-20" data-line-number="20">                        <span class="dt">stat.title =</span> <span class="st">"McNemar test: "</span>,</a>
+<a class="sourceLine" id="cb11-21" data-line-number="21">                        <span class="dt">title =</span> <span class="st">"Results from case-control study"</span>,</a>
+<a class="sourceLine" id="cb11-22" data-line-number="22">                        <span class="dt">palette =</span> <span class="st">"Accent"</span>) </a></code></pre></div>
+<p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="768"></p>
 </div>
 <div id="suggestions" class="section level2">
 <h2 class="hasAnchor">

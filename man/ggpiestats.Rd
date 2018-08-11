@@ -5,11 +5,11 @@
 \title{Pie charts with statistical tests}
 \usage{
 ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
-  factor.levels = NULL, stat.title = NULL, sample.size.label = TRUE,
-  title = NULL, caption = NULL, nboot = 25, palette = "Dark2",
-  legend.title = NULL, facet.wrap.name = NULL, k = 3,
-  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
-  messages = TRUE)
+  paired = FALSE, factor.levels = NULL, stat.title = NULL,
+  sample.size.label = TRUE, title = NULL, caption = NULL,
+  nboot = 25, palette = "Dark2", legend.title = NULL,
+  facet.wrap.name = NULL, k = 3, facet.proptest = TRUE,
+  ggtheme = ggplot2::theme_bw(), messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -27,6 +27,11 @@ if each row represents a single observation (Default).}
 
 \item{ratio}{A vector of numbers: the expected proportions for the proportion
 test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
+
+\item{paired}{A logical indicating whether to consider the values as paired.
+If \code{paired = FALSE} (default), details from Pearson's chi-square test of independence
+will be displayed. If \code{paired = TRUE}, details from McNemar's test will be
+displayed.}
 
 \item{factor.levels}{A character vector with labels for factor levels of
 \code{main} variable.}
@@ -78,17 +83,18 @@ included in the plot as a subtitle.
 set.seed(123)
 
 # simple function call with the defaults (with condition)
-ggstatsplot::ggpiestats(data = datasets::mtcars,
-main = am,
-condition = cyl,
-nboot = 10)
+ggstatsplot::ggpiestats(
+  data = datasets::mtcars,
+  main = am,
+  condition = cyl,
+  nboot = 10
+)
 
 # simple function call with the defaults (without condition)
 ggstatsplot::ggpiestats(
-data = iris,
-main = Species
+  data = iris,
+  main = Species
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}

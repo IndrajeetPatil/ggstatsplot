@@ -32,7 +32,6 @@
 #' @examples
 #' dim(movies_wide)
 #' head(movies_wide)
-#'
 "movies_wide"
 
 
@@ -69,7 +68,6 @@
 #' @examples
 #' dim(movies_long)
 #' head(movies_long)
-#'
 "movies_long"
 
 #' @title Titanic dataset.
@@ -94,7 +92,6 @@
 #' @examples
 #' dim(Titanic_full)
 #' head(Titanic_full)
-#'
 "Titanic_full"
 
 
@@ -134,5 +131,4 @@
 #' @examples
 #' dim(intent_morality)
 #' head(intent_morality)
-#'
 "intent_morality"

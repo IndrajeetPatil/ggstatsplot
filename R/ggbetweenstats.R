@@ -142,26 +142,26 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
-#' data = datasets::iris,
-#' x = Species,
-#' y = Sepal.Length
+#'   data = datasets::iris,
+#'   x = Species,
+#'   y = Sepal.Length
 #' )
-#'
+#' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
-#' data = datasets::ToothGrowth,
-#' x = supp,
-#' y = len,
-#' plot.type = "box",
-#' xlab = "Supplement type",
-#' ylab = "Tooth length")
-#'
+#'   data = datasets::ToothGrowth,
+#'   x = supp,
+#'   y = len,
+#'   plot.type = "box",
+#'   xlab = "Supplement type",
+#'   ylab = "Tooth length"
+#' )
 #' @export
 #'
 

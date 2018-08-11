@@ -120,32 +120,31 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get the correlalogram
 #' ggstatsplot::ggcorrmat(
-#' data = datasets::iris,
-#' cor.vars = c(Sepal.Length:Petal.Width)
+#'   data = datasets::iris,
+#'   cor.vars = c(Sepal.Length:Petal.Width)
 #' )
-#'
+#' 
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
-#' data = datasets::iris,
-#' cor.vars = c(Sepal.Length:Petal.Width),
-#' output = "correlations"
+#'   data = datasets::iris,
+#'   cor.vars = c(Sepal.Length:Petal.Width),
+#'   output = "correlations"
 #' )
-#'
+#' 
 #' # setting output = "p-values" will return the p-value matrix
-#'
+#' 
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
-#' data = datasets::iris,
-#' cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
-#' sig.level = 0.01,
-#' ggtheme = ggplot2::theme_bw,
-#' hc.order = TRUE, type = "lower", outline.col = "white",
-#' title = "Dataset: Iris"
+#'   data = datasets::iris,
+#'   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+#'   sig.level = 0.01,
+#'   ggtheme = ggplot2::theme_bw,
+#'   hc.order = TRUE, type = "lower", outline.col = "white",
+#'   title = "Dataset: Iris"
 #' )
-#'
 #' @note If you are using R Notebook or Markdown and see a blank image being
 #'   inserted when a chunk is executed, this behavior can be turned off by
 #'   setting `legend.title.margin = FALSE`.

@@ -35,14 +35,13 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}
 #'
 #' @examples
-#'
+#' 
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
-#' data = mtcars,
-#' grouping.var = am,
-#' main = cyl
+#'   data = mtcars,
+#'   grouping.var = am,
+#'   main = cyl
 #' )
-#'
 #' @export
 #'
 
@@ -54,6 +53,7 @@ grouped_ggpiestats <- function(data,
                                grouping.var,
                                title.prefix = "Group",
                                ratio = NULL,
+                               paired = FALSE,
                                factor.levels = NULL,
                                stat.title = NULL,
                                sample.size.label = TRUE,
@@ -153,6 +153,7 @@ grouped_ggpiestats <- function(data,
                 condition = !!rlang::enquo(condition),
                 title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
                 ratio = ratio,
+                paired = paired,
                 factor.levels = factor.levels,
                 stat.title = stat.title,
                 sample.size.label = sample.size.label,
@@ -183,6 +184,7 @@ grouped_ggpiestats <- function(data,
                 counts = !!rlang::enquo(counts),
                 title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
                 ratio = ratio,
+                paired = paired,
                 factor.levels = factor.levels,
                 stat.title = stat.title,
                 sample.size.label = sample.size.label,
@@ -214,6 +216,7 @@ grouped_ggpiestats <- function(data,
                 main = !!rlang::enquo(main),
                 title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
                 ratio = ratio,
+                paired = paired,
                 factor.levels = factor.levels,
                 stat.title = stat.title,
                 caption = caption,
@@ -241,6 +244,7 @@ grouped_ggpiestats <- function(data,
               counts = !!rlang::enquo(counts),
               title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
               ratio = ratio,
+              paired = paired,
               factor.levels = factor.levels,
               stat.title = stat.title,
               caption = caption,

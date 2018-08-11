@@ -41,25 +41,24 @@
 #'   setting `legend.title.margin = FALSE`.
 #'
 #' @examples
-#'
+#' 
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
-#'  data = datasets::iris,
-#'  grouping.var = Species,
-#'  cor.vars = Sepal.Length:Petal.Width,
-#'  output = "plot",
-#'  nrow = 3,
-#'  ncol = 1
+#'   data = datasets::iris,
+#'   grouping.var = Species,
+#'   cor.vars = Sepal.Length:Petal.Width,
+#'   output = "plot",
+#'   nrow = 3,
+#'   ncol = 1
 #' )
-#'
+#' 
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
-#'  data = datasets::iris,
-#'  grouping.var = Species,
-#'  cor.vars = Sepal.Length:Petal.Width,
-#'  output = "correlations"
+#'   data = datasets::iris,
+#'   grouping.var = Species,
+#'   cor.vars = Sepal.Length:Petal.Width,
+#'   output = "correlations"
 #' )
-#'
 #' @export
 #'
 

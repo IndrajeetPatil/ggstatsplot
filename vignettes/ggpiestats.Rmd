@@ -334,11 +334,33 @@ reveal that all fish are not equally likely to be caught at this location.
 
 ## Within-subjects designs
 
-Variant of this function for within-subjects designs, which will display results
-from McNemar test, is currently under work. You *can* still use this function
-just to prepare the **plot** for exploratory data analysis, but the statistical
-details displayed in the subtitle will be incorrect. You can remove them by
-adding `+ ggplot2::labs(subtitle = NULL)`.
+In case of within-subjects designs, you can set `paired = TRUE`, which will
+display results from McNemar test in the subtitle.
+
+```{r ggpiestats9, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
+# seed for reproducibility
+set.seed(123)
+
+# data
+clinical_trial <- 
+  tibble::tribble(
+    ~Control,	~Case,	~pairs,
+    "No",	"Yes",	25,
+    "Yes",	"No",	4,
+    "Yes",	"Yes",	13,
+    "No",	"No",	92
+  )
+
+# plot
+ggstatsplot::ggpiestats(data = clinical_trial,
+                        condition = Control,
+                        main = Case,
+                        counts = pairs,
+                        paired = TRUE,
+                        stat.title = "McNemar test: ",
+                        title = "Results from case-control study",
+                        palette = "Accent") 
+```
 
 ## Suggestions
 

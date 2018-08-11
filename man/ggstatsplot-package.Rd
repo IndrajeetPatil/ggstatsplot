@@ -10,7 +10,7 @@ graphics with details from statistical tests included in the plots
 themselves and targeted primarily at behavioral sciences community to
 provide a one-line code to produce information-rich plots. Currently, it
 supports only the most common types of statistical tests (parametric,
-nonparametric, and robust versions of t-tets/anova, correlation, and
+nonparametric, and robust versions of t-test/anova, correlation, and
 contingency tables analyses).
 }
 \details{

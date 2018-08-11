@@ -19,26 +19,26 @@ tz_labeller <- function(tidy_df, glance_df, statistic, k) {
   # if the statistic is t-value
   if (statistic == "t") {
     if ("df.residual" %in% names(glance_df)) {
-    tidy_df %<>%
-      purrrlyr::by_row(
-        .d = .,
-        ..f = ~paste(
-          "list(~italic(beta)==",
-          ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-          ", ~italic(t)",
-          "(",
-          glance_df$df.residual,
-          ")==",
-          .$statistic,
-          ", ~italic(p)",
-          .$p.value.formatted2,
-          ")",
-          sep = ""
-        ),
-        .collate = "rows",
-        .to = "label",
-        .labels = TRUE
-      )
+      tidy_df %<>%
+        purrrlyr::by_row(
+          .d = .,
+          ..f = ~paste(
+            "list(~italic(beta)==",
+            ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
+            ", ~italic(t)",
+            "(",
+            glance_df$df.residual,
+            ")==",
+            .$statistic,
+            ", ~italic(p)",
+            .$p.value.formatted2,
+            ")",
+            sep = ""
+          ),
+          .collate = "rows",
+          .to = "label",
+          .labels = TRUE
+        )
     } else {
       # for objects like rlm there will be no parameter
       tidy_df %<>%

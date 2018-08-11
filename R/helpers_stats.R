@@ -283,7 +283,6 @@ check_outlier <- function(var, coef) {
 #'
 #' @examples
 #' # untable(data = tibble::as_data_frame(datasets::Titanic), counts = n)
-#'
 #' @keywords internal
 #'
 

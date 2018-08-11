@@ -5,7 +5,7 @@
 \title{Grouped pie charts with statistical tests}
 \usage{
 grouped_ggpiestats(data, main, condition = NULL, counts = NULL,
-  grouping.var, title.prefix = "Group", ratio = NULL,
+  grouping.var, title.prefix = "Group", ratio = NULL, paired = FALSE,
   factor.levels = NULL, stat.title = NULL, sample.size.label = TRUE,
   caption = NULL, nboot = 25, palette = "Dark2",
   legend.title = NULL, facet.wrap.name = NULL, k = 3,
@@ -33,6 +33,11 @@ title (name of each factor level) (Default: \code{"Group"}).}
 
 \item{ratio}{A vector of numbers: the expected proportions for the proportion
 test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
+
+\item{paired}{A logical indicating whether to consider the values as paired.
+If \code{paired = FALSE} (default), details from Pearson's chi-square test of independence
+will be displayed. If \code{paired = TRUE}, details from McNemar's test will be
+displayed.}
 
 \item{factor.levels}{A character vector with labels for factor levels of
 \code{main} variable.}

@@ -376,6 +376,32 @@ ggstatsplot::ggpiestats(
 ) 
 ```
 
+In case of within-subjects designs, setting `paired = TRUE` will produce results from McNemar test-
+
+```{r ggpiestats4, message = FALSE, warning = FALSE}
+# for reproducibility
+set.seed(123)
+
+# data
+survey.data <- data.frame(
+  `1st survey` = c('Approve', 'Approve', 'Disapprove', 'Disapprove'),
+  `2nd survey` = c('Approve', 'Disapprove', 'Approve', 'Disapprove'),
+  `Counts` = c(794, 150, 86, 570),
+  check.names = FALSE
+)
+
+# plot
+ggstatsplot::ggpiestats(
+  data = survey.data,
+  main = `1st survey`,
+  condition = `2nd survey`,
+  counts = Counts,
+  paired = TRUE,                      # within-subjects design
+  stat.title = "McNemar Test: ",
+  palette = "Set1"
+)
+```
+
 For more, including information about the variant of this function
 `grouped_ggpiestats`, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html>

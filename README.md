@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--09-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--11-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -207,7 +207,7 @@ ggstatsplot::theme_mprl
 #>       )
 #>     )
 #> }
-#> <bytecode: 0x0000000026ecb790>
+#> <bytecode: 0x00000000275205d8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -455,6 +455,35 @@ ggstatsplot::ggpiestats(
 ```
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />
+
+In case of within-subjects designs, setting `paired = TRUE` will produce
+results from McNemar test-
+
+``` r
+# for reproducibility
+set.seed(123)
+
+# data
+survey.data <- data.frame(
+  `1st survey` = c('Approve', 'Approve', 'Disapprove', 'Disapprove'),
+  `2nd survey` = c('Approve', 'Disapprove', 'Approve', 'Disapprove'),
+  `Counts` = c(794, 150, 86, 570),
+  check.names = FALSE
+)
+
+# plot
+ggstatsplot::ggpiestats(
+  data = survey.data,
+  main = `1st survey`,
+  condition = `2nd survey`,
+  counts = Counts,
+  paired = TRUE,                      # within-subjects design
+  stat.title = "McNemar Test: ",
+  palette = "Set1"
+)
+```
+
+<img src="man/figures/README-ggpiestats4-1.png" width="100%" />
 
 For more, including information about the variant of this function
 `grouped_ggpiestats`, see the `ggpiestats` vignette:

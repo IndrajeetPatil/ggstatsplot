@@ -7,7 +7,7 @@
 chi_subtitle <- function(jmv_chi,
                          cramer_ci,
                          effect = NULL,
-                         k) {
+                         k = 3) {
 
   # preparing the subtitle
   base::substitute(
@@ -51,7 +51,7 @@ chi_subtitle <- function(jmv_chi,
       cramer = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$nom)[[4]], k),
       LL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.low[[1]], k),
       UL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.high[[1]], k),
-      n = nrow(x = data)
+      n = as.data.frame(jmv_chi$chiSq)$`value[N]`[[1]]
     )
   )
 }
@@ -64,13 +64,13 @@ chi_subtitle <- function(jmv_chi,
 
 mcnemar_subtitle <- function(jmv_chi,
                              effect = NULL,
-                             k) {
+                             k = 3) {
   # preparing the subtitle
   base::substitute(
     expr =
       paste(
         y,
-        italic(chi) ^ 2,
+        italic(chi)^2,
         "(",
         df,
         ") = ",

@@ -35,16 +35,15 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}
 #'
 #' @examples
-#'
+#' 
 #' ggstatsplot::grouped_gghistostats(
-#' data = iris,
-#' x = Sepal.Length,
-#' test.value = 5,
-#' grouping.var = Species,
-#' nrow = 1,
-#' messages = FALSE
+#'   data = iris,
+#'   x = Sepal.Length,
+#'   test.value = 5,
+#'   grouping.var = Species,
+#'   nrow = 1,
+#'   messages = FALSE
 #' )
-#'
 #' @export
 #'
 

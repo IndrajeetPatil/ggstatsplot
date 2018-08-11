@@ -129,10 +129,9 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html}
 #'
 #' @examples
-#'
+#' 
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
-#'
 #' @export
 #'
 
@@ -310,7 +309,7 @@ ggcoefstats <- function(x,
     tidy_df <-
       broom::tidy(x = x)
     # ===================================== tidying everything else =======================================================================
-  }  else {
+  } else {
     tidy_df <-
       broom::tidy(
         x = x,
@@ -367,9 +366,11 @@ ggcoefstats <- function(x,
   if (!"conf.low" %in% names(tidy_df)) {
     # add NAs so that only dots will be shown
     tidy_df %<>%
-      dplyr::mutate(.data = .,
-                    conf.low = NA_character_,
-                    conf.high = NA_character_)
+      dplyr::mutate(
+        .data = .,
+        conf.low = NA_character_,
+        conf.high = NA_character_
+      )
 
     # stop displaying whiskers
     conf.int <- FALSE
