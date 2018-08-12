@@ -64,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.5</span>
       </span>
     </div>
 
@@ -365,14 +365,14 @@ setting <code>legend.title.margin = FALSE</code>.</p>
     <pre class="examples"><div class='input'>
 <span class='co'># to get the correlalogram</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat'>ggcorrmat</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-<span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>)
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>)
 )</div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlation matrix</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat'>ggcorrmat</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-<span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>),
-<span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>),
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
 )</div><div class='output co'>#&gt; # A tibble: 4 x 5
 #&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
@@ -384,14 +384,13 @@ setting <code>legend.title.margin = FALSE</code>.</p>
 
 <span class='co'># modifying few elements of the correlation matrix by changing function defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat'>ggcorrmat</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-<span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='no'>Petal.Length</span>, <span class='no'>Petal.Width</span>),
-<span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
-<span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>,
-<span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"lower"</span>, <span class='kw'>outline.col</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dataset: Iris"</span>
-)</div><div class='img'><img src='ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='no'>Petal.Length</span>, <span class='no'>Petal.Width</span>),
+  <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>,
+  <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"lower"</span>, <span class='kw'>outline.col</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dataset: Iris"</span>
+)</div><div class='img'><img src='ggcorrmat-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -184,7 +184,6 @@ caption.
 
 set.seed(123)
 ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html}

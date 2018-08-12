@@ -112,12 +112,11 @@ set.seed(123)
 
 # simple function call with the defaults
 ggstatsplot::ggscatterstats(
-data = datasets::mtcars,
-x = wt,
-y = mpg,
-type = "np"
+  data = datasets::mtcars,
+  x = wt,
+  y = mpg,
+  type = "np"
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html}

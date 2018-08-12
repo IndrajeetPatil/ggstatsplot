@@ -175,6 +175,5 @@ set.seed(123)
 # x = Sepal.Width,
 # y = Sepal.Length
 # )
-
 }
 \keyword{internal}

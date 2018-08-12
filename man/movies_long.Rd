@@ -41,6 +41,5 @@ rated by at least one imdb user.
 \examples{
 dim(movies_long)
 head(movies_long)
-
 }
 \keyword{datasets}

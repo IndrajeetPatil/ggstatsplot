@@ -163,13 +163,13 @@ measure for chi-squared test of association (Contingency Tables analyses, i.e.).
 # basic call
 
 # important for reproducibility
-#set.seed(123)
+# set.seed(123)
 
-#chisq_v_ci(
-#data = mtcars,
-#rows = am,
-#cols = cyl,
-#conf.type = "norm"
-
+# chisq_v_ci(
+# data = mtcars,
+# rows = am,
+# cols = cyl,
+# conf.type = "norm"
+#  #)
 }
 \keyword{internal}

@@ -95,14 +95,14 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' ggstatsplot::gghistostats(
 #'   data = datasets::ToothGrowth,
 #'   x = len,
 #'   xlab = "Tooth length"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
@@ -213,7 +213,7 @@ gghistostats <-
         students = TRUE,
         bf = TRUE,
         bfPrior = bf.prior,
-        mann = TRUE,
+        wilcoxon = TRUE,
         # Mann-Whitney U test
         testValue = test.value,
         hypothesis = "dt",
@@ -311,13 +311,13 @@ gghistostats <-
               n
             ),
           env = base::list(
-            estimate = as.data.frame(jmv_os$ttest)$`stat[mann]`,
+            estimate = as.data.frame(jmv_os$ttest)$`stat[wilc]`,
             pvalue = ggstatsplot::specify_decimal_p(
-              x = as.data.frame(jmv_os$ttest)$`p[mann]`,
+              x = as.data.frame(jmv_os$ttest)$`p[wilc]`,
               k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[mann]`, k),
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[wilc]`, k),
             n = nrow(x = data)
           )
         )

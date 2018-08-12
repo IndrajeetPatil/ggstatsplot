@@ -62,7 +62,7 @@ in the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.5</span>
       </span>
     </div>
 
@@ -345,22 +345,22 @@ chunk is executed, this behavior can be turned off by setting
     <pre class="examples"><div class='input'>
 <span class='co'># most basic function call with the defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats'>gghistostats</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/ToothGrowth'>ToothGrowth</a></span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>len</span>,
-<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for len : p-value =  0.109</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/ToothGrowth'>ToothGrowth</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>len</span>,
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for len : p-value =  0.109</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># a detailed function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats'>gghistostats</a></span>(
-<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bf"</span>,
-<span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-<span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-<span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-<span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-<span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bf"</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>
 )</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note:  Prior width used to compute Bayes Factor: 0.8 
-#&gt; Evidence in favor of the null hypothesis (H0): 1.43971963628525e-81</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+#&gt; Evidence in favor of the null hypothesis (H0): 1.43971963628525e-81</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

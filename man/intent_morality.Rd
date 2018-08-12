@@ -44,6 +44,5 @@ items. Each of the item had a different type of harm.
 \examples{
 dim(intent_morality)
 head(intent_morality)
-
 }
 \keyword{datasets}

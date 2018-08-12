@@ -1,5 +1,6 @@
+# ggstatsplot 0.0.5.9000
 
-# ggstatsplot 0.0.4.9000
+# ggstatsplot 0.0.5
 
 MAJOR CHANGES
   - For the sake of consistency, `theme_mprl` is now called `theme_ggstatsplot`.

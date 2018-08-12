@@ -190,7 +190,6 @@ measure for parametric or non-parametric correlation coefficient.
 # x = Sepal.Width,
 # y = Sepal.Length,
 # conf.type = "norm"
-#)
-
+# )
 }
 \keyword{internal}

@@ -221,22 +221,21 @@ setting \code{legend.title.margin = FALSE}.
 
 # for getting correlations
 ggstatsplot::grouped_ggcorrmat(
- data = datasets::iris,
- grouping.var = Species,
- cor.vars = Sepal.Length:Petal.Width,
- output = "plot",
- nrow = 3,
- ncol = 1
+  data = datasets::iris,
+  grouping.var = Species,
+  cor.vars = Sepal.Length:Petal.Width,
+  output = "plot",
+  nrow = 3,
+  ncol = 1
 )
 
 # for getting correlations
 ggstatsplot::grouped_ggcorrmat(
- data = datasets::iris,
- grouping.var = Species,
- cor.vars = Sepal.Length:Petal.Width,
- output = "correlations"
+  data = datasets::iris,
+  grouping.var = Species,
+  cor.vars = Sepal.Length:Petal.Width,
+  output = "correlations"
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html}

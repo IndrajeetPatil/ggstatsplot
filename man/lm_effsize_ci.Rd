@@ -44,7 +44,6 @@ eta-squared effect size and its confidence interval.
 # lm_effsize_ci(object = stats::aov(formula = wt ~ am * cyl, data = mtcars),
 # effsize = "eta",
 # partial = FALSE)
-
 }
 \author{
 Indrajeet Patil

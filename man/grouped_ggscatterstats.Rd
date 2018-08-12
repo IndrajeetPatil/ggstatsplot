@@ -171,13 +171,12 @@ set.seed(123)
 
 # basic functio call
 ggstatsplot::grouped_ggscatterstats(
- data = datasets::iris,
- x = Sepal.Length,
- y = Sepal.Width,
- grouping.var = Species,
- messages = FALSE
+  data = datasets::iris,
+  x = Sepal.Length,
+  y = Sepal.Width,
+  grouping.var = Species,
+  messages = FALSE
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html}

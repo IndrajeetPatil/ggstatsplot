@@ -134,22 +134,22 @@ chunk is executed, this behavior can be turned off by setting
 
 # most basic function call with the defaults
 ggstatsplot::gghistostats(
-data = datasets::ToothGrowth,
-x = len,
-xlab = "Tooth length")
+  data = datasets::ToothGrowth,
+  x = len,
+  xlab = "Tooth length"
+)
 
 # a detailed function call
 ggstatsplot::gghistostats(
-data = datasets::iris,
-x = Sepal.Length,
-type = "bf",
-bf.prior = 0.8,
-test.value = 3,
-centrality.para = "mean",
-test.value.line = TRUE,
-binwidth = 0.10
+  data = datasets::iris,
+  x = Sepal.Length,
+  type = "bf",
+  bf.prior = 0.8,
+  test.value = 3,
+  centrality.para = "mean",
+  test.value.line = TRUE,
+  binwidth = 0.10
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}

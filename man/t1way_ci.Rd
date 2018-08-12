@@ -176,7 +176,6 @@ measure for robust ANOVA.
 # x = Species,
 # y = Sepal.Length,
 # conf.type = "norm"
-#)
-
+# )
 }
 \keyword{internal}

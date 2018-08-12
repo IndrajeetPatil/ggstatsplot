@@ -65,7 +65,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.5</span>
       </span>
     </div>
 
@@ -455,19 +455,19 @@ setting <code>legend.title.margin = FALSE</code>.</p>
     <pre class="examples"><div class='input'>
 <span class='co'># for getting correlations</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggcorrmat'>grouped_ggcorrmat</a></span>(
- <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
- <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
- <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
- <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
- <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>,
- <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>1</span>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
+  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting correlations</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggcorrmat'>grouped_ggcorrmat</a></span>(
- <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
- <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
- <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
- <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
 )</div><div class='output co'>#&gt; # A tibble: 12 x 6
 #&gt;    Group      variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;    &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
@@ -482,8 +482,7 @@ setting <code>legend.title.margin = FALSE</code>.</p>
 #&gt;  9 virginica  Sepal.Length         1           0.46         0.86        0.28
 #&gt; 10 virginica  Sepal.Width          0.46        1            0.4         0.54
 #&gt; 11 virginica  Petal.Length         0.86        0.4          1           0.32
-#&gt; 12 virginica  Petal.Width          0.28        0.54         0.32        1   </div><div class='input'>
-</div></pre>
+#&gt; 12 virginica  Petal.Width          0.28        0.54         0.32        1   </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

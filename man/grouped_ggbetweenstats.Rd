@@ -215,12 +215,11 @@ set.seed(123)
 
 # the most basic function call
 ggstatsplot::grouped_ggbetweenstats(
-data = mtcars,
-x = cyl,
-y = wt,
-grouping.var = am
+  data = mtcars,
+  x = cyl,
+  y = wt,
+  grouping.var = am
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}

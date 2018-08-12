@@ -135,11 +135,10 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 
 # grouped one-sample proportion tests
 ggstatsplot::grouped_ggpiestats(
-data = mtcars,
-grouping.var = am,
-main = cyl
+  data = mtcars,
+  grouping.var = am,
+  main = cyl
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}
