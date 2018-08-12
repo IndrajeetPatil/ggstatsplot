@@ -95,14 +95,14 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#'
+#' 
 #' # most basic function call with the defaults
 #' ggstatsplot::gghistostats(
 #'   data = datasets::ToothGrowth,
 #'   x = len,
 #'   xlab = "Tooth length"
 #' )
-#'
+#' 
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
