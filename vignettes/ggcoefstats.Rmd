@@ -246,7 +246,7 @@ ggstatsplot::combine_plots(
       data = ggstatsplot::movies_long,
       control = lme4::lmerControl(calc.derivs = FALSE)
     ),
-    p.kr = FALSE,                                   # don't use Kenward-Roger approximation to compute p-values
+    p.kr = TRUE,                                    # use Kenward-Roger approximation to compute p-values (fast)
     title = "linear mixed-effects model",
     exclude.intercept = FALSE                       # show the intercept
   ) +
@@ -526,7 +526,7 @@ plotlist <- ggstatsplot::intent_morality %>%
         link = "logit",
         data = .,
         control = ordinal::clm.control(
-          maxIter = 1000,
+          maxIter = 50,
           convergence = "silent"
         ),
       ),
@@ -568,8 +568,8 @@ ggstatsplot::ggcoefstats(
     data = ggstatsplot::intent_morality,
     control = ordinal::clmm.control(
       method = "nlminb",
-      maxIter = 1000,
-      gradTol = 1e-5,
+      maxIter = 50,
+      gradTol = 1e-4,
       innerCtrl = "noWarn"
     )
   ),
@@ -600,8 +600,8 @@ ggstatsplot::ggcoefstats(
     link = "logit",
     data = ggstatsplot::intent_morality,
     control = ordinal::clmm.control(
-      maxIter = 1000,
-      gradTol = 1e-5,
+      maxIter = 50,
+      gradTol = 1e-4,
       innerCtrl = "noWarn"
     )
   ),
