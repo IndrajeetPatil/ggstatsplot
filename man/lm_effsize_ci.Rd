@@ -33,18 +33,6 @@ This function will convert a linear model object to a dataframe
 containing statistical details for all effects along with partial
 eta-squared effect size and its confidence interval.
 }
-\examples{
-
-# lm object
-# lm_effsize_ci(object = stats::lm(formula = wt ~ am * cyl, data = mtcars),
-# effsize = "omega",
-# partial = TRUE)
-
-# aov object
-# lm_effsize_ci(object = stats::aov(formula = wt ~ am * cyl, data = mtcars),
-# effsize = "eta",
-# partial = FALSE)
-}
 \author{
 Indrajeet Patil
 }

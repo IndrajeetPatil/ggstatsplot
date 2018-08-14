@@ -165,15 +165,4 @@ bending constant, no. of bootstrap samples, etc.
 Custom function to get confidence intervals for robust
 correlation coefficient.
 }
-\examples{
-
-# for reproducibility
-set.seed(123)
-
-# robcor_ci(
-# data = iris,
-# x = Sepal.Width,
-# y = Sepal.Length
-# )
-}
 \keyword{internal}

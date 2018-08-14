@@ -178,18 +178,4 @@ intervals required. The value should be any subset of the values \code{"norm"},
 Custom function to get confidence intervals for effect size
 measure for parametric or non-parametric correlation coefficient.
 }
-\examples{
-
-# basic call
-
-# important for reproducibility
-# set.seed(123)
-
-# cor_test_ci(
-# data = iris,
-# x = Sepal.Width,
-# y = Sepal.Length,
-# conf.type = "norm"
-# )
-}
 \keyword{internal}

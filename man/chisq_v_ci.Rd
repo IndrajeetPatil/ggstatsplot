@@ -158,18 +158,4 @@ intervals required. The value should be any subset of the values \code{"norm"},
 Custom function to get confidence intervals for effect size
 measure for chi-squared test of association (Contingency Tables analyses, i.e.).
 }
-\examples{
-
-# basic call
-
-# important for reproducibility
-# set.seed(123)
-
-# chisq_v_ci(
-# data = mtcars,
-# rows = am,
-# cols = cyl,
-# conf.type = "norm"
-#  #)
-}
 \keyword{internal}

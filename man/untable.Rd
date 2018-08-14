@@ -15,7 +15,4 @@ untable(data, counts)
 Given a tabulated dataset, this will untabulate it by repeating
 each row by the number of times it was repeated.
 }
-\examples{
-# untable(data = tibble::as_data_frame(datasets::Titanic), counts = n)
-}
 \keyword{internal}

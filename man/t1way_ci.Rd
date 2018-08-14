@@ -164,18 +164,4 @@ intervals required. The value should be any subset of the values \code{"norm"},
 Custom function to get confidence intervals for effect size
 measure for robust ANOVA.
 }
-\examples{
-
-# basic call
-
-# important for reproducibility
-# set.seed(123)
-
-# t1way_ci(
-# data = iris,
-# x = Species,
-# y = Sepal.Length,
-# conf.type = "norm"
-# )
-}
 \keyword{internal}

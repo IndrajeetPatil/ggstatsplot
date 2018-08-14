@@ -33,19 +33,6 @@
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
 #'
-#' @examples
-#' 
-#' # basic call
-#' 
-#' # important for reproducibility
-#' # set.seed(123)
-#' 
-#' # t1way_ci(
-#' # data = iris,
-#' # x = Species,
-#' # y = Sepal.Length,
-#' # conf.type = "norm"
-#' # )
 #' @keywords internal
 #'
 
@@ -192,19 +179,6 @@ t1way_ci <- function(data,
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
 #'
-#' @examples
-#' 
-#' # basic call
-#' 
-#' # important for reproducibility
-#' # set.seed(123)
-#' 
-#' # cor_test_ci(
-#' # data = iris,
-#' # x = Sepal.Width,
-#' # y = Sepal.Length,
-#' # conf.type = "norm"
-#' # )
 #' @keywords internal
 #'
 
@@ -375,19 +349,6 @@ cor_tets_ci <- function(data,
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
 #'
-#' @examples
-#' 
-#' # basic call
-#' 
-#' # important for reproducibility
-#' # set.seed(123)
-#' 
-#' # chisq_v_ci(
-#' # data = mtcars,
-#' # rows = am,
-#' # cols = cyl,
-#' # conf.type = "norm"
-#' #  #)
 #' @keywords internal
 #'
 
@@ -542,16 +503,6 @@ chisq_v_ci <- function(data,
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
 #'
-#' @examples
-#' 
-#' # for reproducibility
-#' set.seed(123)
-#' 
-#' # robcor_ci(
-#' # data = iris,
-#' # x = Sepal.Width,
-#' # y = Sepal.Length
-#' # )
 #' @keywords internal
 #'
 
@@ -699,17 +650,6 @@ robcor_ci <- function(data,
 #' @importFrom tibble as_data_frame
 #' @importFrom broom tidy
 #'
-#' @examples
-#' 
-#' # lm object
-#' # lm_effsize_ci(object = stats::lm(formula = wt ~ am * cyl, data = mtcars),
-#' # effsize = "omega",
-#' # partial = TRUE)
-#' 
-#' # aov object
-#' # lm_effsize_ci(object = stats::aov(formula = wt ~ am * cyl, data = mtcars),
-#' # effsize = "eta",
-#' # partial = FALSE)
 #' @keywords internal
 #'
 

@@ -96,7 +96,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-13</h4>
+            <h4 class="date">2018-08-14</h4>
       
       
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -542,31 +542,32 @@ ggstatsplot::ggcoefstats(
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">library</span>(glue)</a>
 <a class="sourceLine" id="cb10-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co"># running the function for each type of harm and creating a list of plots</span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">plotlist &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>intent_morality <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">plot.title =</span> harm) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>harm) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(</a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">    <span class="dt">.x =</span> .,</a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">    <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb10-12" data-line-number="12">      <span class="dt">x =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clm">clm</a></span>(</a>
-<a class="sourceLine" id="cb10-13" data-line-number="13">        <span class="dt">formula =</span> <span class="kw">as.factor</span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome,</a>
-<a class="sourceLine" id="cb10-14" data-line-number="14">        <span class="dt">link =</span> <span class="st">"logit"</span>,</a>
-<a class="sourceLine" id="cb10-15" data-line-number="15">        <span class="dt">data =</span> .,</a>
-<a class="sourceLine" id="cb10-16" data-line-number="16">        <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clm.control">clm.control</a></span>(</a>
-<a class="sourceLine" id="cb10-17" data-line-number="17">          <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb10-18" data-line-number="18">          <span class="dt">convergence =</span> <span class="st">"silent"</span></a>
-<a class="sourceLine" id="cb10-19" data-line-number="19">        ),</a>
-<a class="sourceLine" id="cb10-20" data-line-number="20">      ),</a>
-<a class="sourceLine" id="cb10-21" data-line-number="21">      <span class="dt">title =</span> glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(<span class="st">"Type of harm: {.$plot.title}"</span>),</a>
-<a class="sourceLine" id="cb10-22" data-line-number="22">      <span class="dt">caption.summary =</span> <span class="ot">FALSE</span>                            <span class="co"># suppress model diagnostics</span></a>
-<a class="sourceLine" id="cb10-23" data-line-number="23">    ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="st">      </span><span class="co">#ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +</span></a>
-<a class="sourceLine" id="cb10-25" data-line-number="25"><span class="st">      </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
-<a class="sourceLine" id="cb10-26" data-line-number="26">                    <span class="dt">y =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb10-27" data-line-number="27">  )</a>
-<a class="sourceLine" id="cb10-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb10-29" data-line-number="29"><span class="co"># combining the plots</span></a>
-<a class="sourceLine" id="cb10-30" data-line-number="30">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(<span class="dt">plotlist =</span> plotlist)</a></code></pre></div>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co"># to speed up calculations, we will use just half of the dataset</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">plotlist &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>intent_morality, id <span class="op">&lt;=</span><span class="st"> </span><span class="dv">250</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">plot.title =</span> harm) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>harm) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">    <span class="dt">.x =</span> .,</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">    <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">      <span class="dt">x =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clm">clm</a></span>(</a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">        <span class="dt">formula =</span> <span class="kw">as.factor</span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome,</a>
+<a class="sourceLine" id="cb10-15" data-line-number="15">        <span class="dt">link =</span> <span class="st">"logit"</span>,</a>
+<a class="sourceLine" id="cb10-16" data-line-number="16">        <span class="dt">data =</span> .,</a>
+<a class="sourceLine" id="cb10-17" data-line-number="17">        <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clm.control">clm.control</a></span>(</a>
+<a class="sourceLine" id="cb10-18" data-line-number="18">          <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19">          <span class="dt">convergence =</span> <span class="st">"silent"</span></a>
+<a class="sourceLine" id="cb10-20" data-line-number="20">        ),</a>
+<a class="sourceLine" id="cb10-21" data-line-number="21">      ),</a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">      <span class="dt">title =</span> glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(<span class="st">"Type of harm: {.$plot.title}"</span>),</a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">      <span class="dt">caption.summary =</span> <span class="ot">FALSE</span>                            <span class="co"># suppress model diagnostics</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">    ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"><span class="st">      </span><span class="co">#ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +</span></a>
+<a class="sourceLine" id="cb10-26" data-line-number="26"><span class="st">      </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">                    <span class="dt">y =</span> <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb10-28" data-line-number="28">  )</a>
+<a class="sourceLine" id="cb10-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb10-30" data-line-number="30"><span class="co"># combining the plots</span></a>
+<a class="sourceLine" id="cb10-31" data-line-number="31">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(<span class="dt">plotlist =</span> plotlist)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/clm-1.png" width="1152"></p>
 <p>As can be seen from this plot, across all four types of harm, the actors who had malicious intent are judged to be worse than actors who had neutral intent, and actors who cause harm are judged to more harshly than actors who don’t. But how intent and outcome information interact with each other depends on the type of harm.</p>
 </div>
@@ -580,41 +581,43 @@ ggstatsplot::ggcoefstats(
 <a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="dt">x =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm">clmm</a></span>(</a>
 <a class="sourceLine" id="cb11-5" data-line-number="5">    <span class="dt">formula =</span> <span class="kw">as.factor</span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>(belief <span class="op">+</span><span class="st"> </span>outcome <span class="op">|</span></a>
 <a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">                                                        </span>harm),</a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>intent_morality,</a>
-<a class="sourceLine" id="cb11-8" data-line-number="8">    <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm.control">clmm.control</a></span>(</a>
-<a class="sourceLine" id="cb11-9" data-line-number="9">      <span class="dt">method =</span> <span class="st">"nlminb"</span>,</a>
-<a class="sourceLine" id="cb11-10" data-line-number="10">      <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb11-11" data-line-number="11">      <span class="dt">gradTol =</span> <span class="fl">1e-4</span>,</a>
-<a class="sourceLine" id="cb11-12" data-line-number="12">      <span class="dt">innerCtrl =</span> <span class="st">"noWarn"</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13">    )</a>
-<a class="sourceLine" id="cb11-14" data-line-number="14">  ),</a>
-<a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="co"># suppress model diagnostics</span></a>
-<a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">caption.summary =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">  </span><span class="co">#ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +</span></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
-<a class="sourceLine" id="cb11-20" data-line-number="20">                <span class="dt">y =</span> <span class="st">"fixed effects"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb11-7" data-line-number="7">    <span class="co"># to speed up calculations, we will use just half of the dataset</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>intent_morality, id <span class="op">&lt;=</span><span class="st"> </span><span class="dv">250</span>),</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">    <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm.control">clmm.control</a></span>(</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">      <span class="dt">method =</span> <span class="st">"nlminb"</span>,</a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">      <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">      <span class="dt">gradTol =</span> <span class="fl">1e-4</span>,</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13">      <span class="dt">innerCtrl =</span> <span class="st">"noWarn"</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">    )</a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">  ),</a>
+<a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="co"># suppress model diagnostics</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17">  <span class="dt">caption.summary =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="st">  </span><span class="co">#ggplot2::scale_y_discrete(labels = c("belief (neutral)", "interaction", "outcome (neutral)")) +</span></a>
+<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
+<a class="sourceLine" id="cb11-21" data-line-number="21">                <span class="dt">y =</span> <span class="st">"fixed effects"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/clmm-1.png" width="576"></p>
 <p>As we had premeditated from the item-level analysis, mixed effects regression didn’t reveal any interaction effect. That is, most of the variance was accounted for by the information about whether there was harmful intent and whether there was harm, at least this is the effect we found with these four types of (minor) harms.</p>
 <p>Note that, by default, <code>beta</code> parameters are shown for <code>clm</code> and <code>clmm</code> models, but you can also plot either just <code>alpha</code> or <code>both</code> using <code>ggcoefstats</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="dt">x =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm">clmm</a></span>(</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">    <span class="dt">formula =</span> <span class="kw">as.factor</span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>(belief <span class="op">+</span><span class="st"> </span>outcome <span class="op">|</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">                                                        </span>harm),</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7">    <span class="dt">link =</span> <span class="st">"logit"</span>,</a>
-<a class="sourceLine" id="cb12-8" data-line-number="8">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>intent_morality,</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">    <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm.control">clmm.control</a></span>(</a>
-<a class="sourceLine" id="cb12-10" data-line-number="10">      <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb12-11" data-line-number="11">      <span class="dt">gradTol =</span> <span class="fl">1e-4</span>,</a>
-<a class="sourceLine" id="cb12-12" data-line-number="12">      <span class="dt">innerCtrl =</span> <span class="st">"noWarn"</span></a>
-<a class="sourceLine" id="cb12-13" data-line-number="13">    )</a>
-<a class="sourceLine" id="cb12-14" data-line-number="14">  ),</a>
-<a class="sourceLine" id="cb12-15" data-line-number="15">  <span class="dt">coefficient.type =</span> <span class="st">"alpha"</span></a>
-<a class="sourceLine" id="cb12-16" data-line-number="16">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
-<a class="sourceLine" id="cb12-18" data-line-number="18">                <span class="dt">y =</span> <span class="st">"threshold parameters"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co"># to speed up calculations, we will use just half of the dataset</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">  <span class="dt">x =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm">clmm</a></span>(</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">    <span class="dt">formula =</span> <span class="kw">as.factor</span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>(belief <span class="op">+</span><span class="st"> </span>outcome <span class="op">|</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="st">                                                        </span>harm),</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">    <span class="dt">link =</span> <span class="st">"logit"</span>,</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>intent_morality, id <span class="op">&lt;=</span><span class="st"> </span><span class="dv">250</span>),</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">    <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm.control">clmm.control</a></span>(</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">      <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">      <span class="dt">gradTol =</span> <span class="fl">1e-4</span>,</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13">      <span class="dt">innerCtrl =</span> <span class="st">"noWarn"</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14">    )</a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">  ),</a>
+<a class="sourceLine" id="cb12-16" data-line-number="16">  <span class="dt">coefficient.type =</span> <span class="st">"alpha"</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
+<a class="sourceLine" id="cb12-19" data-line-number="19">                <span class="dt">y =</span> <span class="st">"threshold parameters"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/clmm1-1.png" width="576"></p>
 </div>
 <div id="repeated-measures-anova-aovlist" class="section level2">

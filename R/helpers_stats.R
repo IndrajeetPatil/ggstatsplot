@@ -281,8 +281,6 @@ check_outlier <- function(var, coef) {
 #' @importFrom tibble rowid_to_column
 #' @importFrom rlang enquo
 #'
-#' @examples
-#' # untable(data = tibble::as_data_frame(datasets::Titanic), counts = n)
 #' @keywords internal
 #'
 
