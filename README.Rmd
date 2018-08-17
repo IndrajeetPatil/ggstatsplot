@@ -636,3 +636,14 @@ All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`, which is
 also called as `theme_mprl` (both of which are identical functions with
 different names). For more on how to modify it, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
+
+## Contributing
+
+I'm happy to receive bug reports, suggestions, questions, and (most of all)
+contributions to fix problems and add features. I personally prefer using the
+Github issues system over trying to reach out to me in other ways (personal
+e-mail, Twitter, etc.). Pull requests for contributions are encouraged.
+
+Please note that this project is released with a 
+[Contributor Code of Conduct](CONDUCT.md). By participating in this project
+you agree to abide by its terms.

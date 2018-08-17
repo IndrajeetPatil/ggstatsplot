@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--14-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--16-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -170,44 +170,27 @@ just type the name of the function without the paranetheses:
 
 ``` r
 ggstatsplot::theme_mprl
-#> function(ggtheme = ggplot2::theme_bw()) {
-#>   ggtheme +
-#>     ggplot2::theme(
-#>       axis.title.x = ggplot2::element_text(size = 12, face = "bold"),
-#>       strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
-#>       strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
-#>       strip.text = ggplot2::element_text(size = 12, face = "bold"),
-#>       axis.title.y = ggplot2::element_text(size = 12, face = "bold"),
-#>       axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
-#>       axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
-#>       axis.line = ggplot2::element_line(),
-#>       legend.text = ggplot2::element_text(size = 12),
-#>       legend.title = ggplot2::element_text(size = 12, face = "bold"),
-#>       legend.title.align = 0.5,
-#>       legend.text.align = 0.5,
-#>       legend.key.height = grid::unit(x = 1, units = "line"),
-#>       legend.key.width = grid::unit(x = 1, units = "line"),
-#>       plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),
-#>       panel.border = ggplot2::element_rect(
-#>         color = "black",
-#>         fill = NA,
-#>         size = 1
-#>       ),
-#>       plot.title = ggplot2::element_text(
-#>         color = "black",
-#>         size = 13,
-#>         face = "bold",
-#>         hjust = 0.5
-#>       ),
-#>       plot.subtitle = ggplot2::element_text(
-#>         color = "black",
-#>         size = 11,
-#>         face = "bold",
-#>         hjust = 0.5
-#>       )
-#>     )
+#> function (ggtheme = ggplot2::theme_bw()) 
+#> {
+#>     ggtheme + ggplot2::theme(axis.title.x = ggplot2::element_text(size = 12, 
+#>         face = "bold"), strip.text.x = ggplot2::element_text(size = 12, 
+#>         face = "bold"), strip.text.y = ggplot2::element_text(size = 12, 
+#>         face = "bold"), strip.text = ggplot2::element_text(size = 12, 
+#>         face = "bold"), axis.title.y = ggplot2::element_text(size = 12, 
+#>         face = "bold"), axis.text.x = ggplot2::element_text(size = 12, 
+#>         face = "bold"), axis.text.y = ggplot2::element_text(size = 12, 
+#>         face = "bold"), axis.line = ggplot2::element_line(), 
+#>         legend.text = ggplot2::element_text(size = 12), legend.title = ggplot2::element_text(size = 12, 
+#>             face = "bold"), legend.title.align = 0.5, legend.text.align = 0.5, 
+#>         legend.key.height = grid::unit(x = 1, units = "line"), 
+#>         legend.key.width = grid::unit(x = 1, units = "line"), 
+#>         plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"), 
+#>         panel.border = ggplot2::element_rect(color = "black", 
+#>             fill = NA, size = 1), plot.title = ggplot2::element_text(color = "black", 
+#>             size = 13, face = "bold", hjust = 0.5), plot.subtitle = ggplot2::element_text(color = "black", 
+#>             size = 11, face = "bold", hjust = 0.5))
 #> }
-#> <bytecode: 0x0000000027502e00>
+#> <bytecode: 0x000000002b3c41d0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -750,3 +733,15 @@ which is also called as `theme_mprl` (both of which are identical
 functions with different names). For more on how to modify it, see the
 associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
+
+## Contributing
+
+I’m happy to receive bug reports, suggestions, questions, and (most of
+all) contributions to fix problems and add features. I personally prefer
+using the Github issues system over trying to reach out to me in other
+ways (personal e-mail, Twitter, etc.). Pull requests for contributions
+are encouraged.
+
+Please note that this project is released with a [Contributor Code of
+Conduct](CONDUCT.md). By participating in this project you agree to
+abide by its terms.

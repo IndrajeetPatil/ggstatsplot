@@ -95,14 +95,14 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' ggstatsplot::gghistostats(
 #'   data = datasets::ToothGrowth,
 #'   x = len,
 #'   xlab = "Tooth length"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
@@ -203,6 +203,7 @@ gghistostats <-
       data <-
         base::cbind.data.frame(x = x)
     }
+
     # ========================================== stats ==================================================================
 
     if (isTRUE(results.subtitle)) {
@@ -361,7 +362,7 @@ gghistostats <-
               k,
               p.value = TRUE
             ),
-            n = nrow(x = data)
+            n = rob_os$n[[1]]
           )
         )
         # ========================================== bayes ==================================================================
@@ -431,8 +432,8 @@ gghistostats <-
     }
     # ========================================== plot ===================================================================
 
-
     # preparing the basic layout of the plot based on whether counts or density information is needed
+    # only counts
     if (bar.measure == "count") {
       plot <- ggplot2::ggplot(
         data = data,
@@ -454,7 +455,8 @@ gghistostats <-
           high = high.color
         )
     } else if (bar.measure == "proportion") {
-      plot <- ggplot2::ggplot(
+    # only proportion
+        plot <- ggplot2::ggplot(
         data = data,
         mapping = ggplot2::aes(x = x)
       ) +
@@ -477,6 +479,7 @@ gghistostats <-
         ggplot2::scale_y_continuous(labels = scales::percent) +
         ggplot2::ylab("relative frequencies")
     } else if (bar.measure == "density") {
+    # only density
       plot <- ggplot2::ggplot(
         data = data,
         mapping = ggplot2::aes(x = x)
@@ -497,6 +500,39 @@ gghistostats <-
           high = high.color
         )
     }
+    # else if (bar.measure == "all") {
+    #
+    #   # denominator for computing proportions later
+    #   total_obs <- nrow(x = data)
+    #
+    #   # all things combined
+    #   plot <- ggplot2::ggplot(
+    #     data = data,
+    #     mapping = ggplot2::aes(x = x)
+    #   ) +
+    #     ggplot2::stat_bin(
+    #       col = "black",
+    #       alpha = 0.7,
+    #       binwidth = binwidth,
+    #       na.rm = TRUE,
+    #       mapping = ggplot2::aes(
+    #         y = ..count..,
+    #         fill = ..count..
+    #       )
+    #     ) +
+    #     ggplot2::scale_fill_gradient(
+    #       name = "count",
+    #       low = "white",
+    #       high = "white"
+    #     ) +
+    #     ggplot2::scale_y_continuous(
+    #       sec.axis = ggplot2::sec_axis(trans = ~ . / total_obs,
+    #                                    labels = scales::percent,
+    #                                    name = "proportion (in %)")
+    #     ) +
+    #     ggplot2::ylab("count") +
+    #     ggplot2::guides(fill = FALSE)
+    # }
 
     # adding the theme and labels
     plot <- plot +
