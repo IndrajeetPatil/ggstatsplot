@@ -182,7 +182,7 @@ gghistostats <-
 
     # ========================================== dataframe ==============================================================
     # preparing a dataframe out of provided inputs
-    if (!is.null(data) || !base::missing(data)) {
+    if (!is.null(data)) {
       # preparing labels from given dataframe
       lab.df <- colnames(dplyr::select(
         .data = data,

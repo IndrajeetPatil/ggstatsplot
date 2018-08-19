@@ -637,6 +637,12 @@ also called as `theme_mprl` (both of which are identical functions with
 different names). For more on how to modify it, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
 
+## Plot design
+
+In the following vignette, I have outlined what thought went into designing
+plots in a certain way:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/graphics_design.html>
+
 ## Contributing
 
 I'm happy to receive bug reports, suggestions, questions, and (most of all)

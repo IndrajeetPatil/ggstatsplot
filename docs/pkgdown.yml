@@ -9,5 +9,6 @@ articles:
   gghistostats: gghistostats.html
   ggpiestats: ggpiestats.html
   ggscatterstats: ggscatterstats.html
+  graphics_design: graphics_design.html
   theme_ggstatsplot: theme_ggstatsplot.html
 

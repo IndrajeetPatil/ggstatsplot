@@ -1,0 +1,63 @@
+---
+title: "graphics design"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{graphics design}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `ggstatsplot` package is an opinionated collection of plots made with
+`ggplot2` and is designed for exploratory data analysis or for producing
+publication-ready. All plots share an underlying principle of displaying
+information-rich plots with all necessary statistical details included in the
+plots themselves. Although the plots produced by `ggstatsplot` are still
+`ggplot` objects and can thus be further modified using `ggplot2` commands,
+there is a limit to how many such modifications can be made. That is, it is less
+flexible than `ggplot2`, but that's a feature and not a bug. The original intent
+behind this package is to offload struggles associated with *constructing* the
+plot and focus more on the *interpretation* of that data displayed in the plot.
+
+## Clear vision
+
+## Clean design
+
+* All plots are designed to have no **chartjunk** (like moiré vibrations, fake
+perspective, dark grid lines, etc.) (Tufte, 2011, Chapter 5).
+
+## Understanding
+
+## Statistical details
+
+* As Lilienfeld and colleagues report (Lilienfeld et al., 2015):
+
+> **p = 0.000**. Even though this statistical expression, used in over 97,000
+manuscripts according to Google Scholar, makes regular cameo appearances in our
+computer printouts, we should assiduously avoid inserting it in our Results
+sections. This expression implies erroneously that there is a zero probability
+that the investigators have committed a Type I error, that is, a false rejection
+of a true null hypothesis.
+
+All p-values displayed in `ggstatsplot` plots avoid this mistake. Anything less
+  than `p < 0.001` is displayed as such. The package doesn't care how
+  infinitesimally small the *p*-values are. Instead, the emphasis is put more on
+  the effect size magnitudes and their 95% CIs.
+  
+* Item 2
+
