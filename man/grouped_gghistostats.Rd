@@ -5,11 +5,11 @@
 \title{Grouped histograms for distribution of a numeric variable}
 \usage{
 grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
-  binwidth = NULL, bar.measure = "mix", xlab = NULL, title = NULL,
-  subtitle = NULL, caption = NULL, type = "parametric",
-  test.value = 0, bf.prior = 0.707, bf.message = TRUE,
-  robust.estimator = "onestep", nboot = 500, k = 3,
-  ggtheme = ggplot2::theme_bw(), fill.gradient = FALSE,
+  binwidth = NULL, bar.measure = "count", xlab = NULL,
+  title = NULL, subtitle = NULL, caption = NULL,
+  type = "parametric", test.value = 0, bf.prior = 0.707,
+  bf.message = TRUE, robust.estimator = "onestep", nboot = 500,
+  k = 3, ggtheme = ggplot2::theme_bw(), fill.gradient = FALSE,
   low.color = "#0072B2", high.color = "#D55E00", bar.fill = "white",
   results.subtitle = TRUE, centrality.para = NULL,
   centrality.color = "blue", centrality.size = 1.2,
@@ -42,7 +42,7 @@ height in the bar chart. This can either be \code{"count"}, which shows number
 of points in bin, or \code{"density"}, which density of points in bin, scaled to
 integrate to 1, or "\code{proportion}", which shows relative frequencies of
 observations in each bin, or "\code{mix}", which shows both count and proportion
-in the same plot.}
+in the same plot (only available from \code{ggplot2 3.1.0} onward).}
 
 \item{xlab}{Label for \code{x} axis variable.}
 

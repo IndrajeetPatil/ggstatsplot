@@ -166,56 +166,6 @@
 <p><img src="gghistostats_files/figure-html/age_distribution2-1.png" width="700"></p>
 <p>So far we have been showing both the count and proportion information with the bar chart: showing <code>count</code> gives an idea about <em>raw</em> counts, while <code>proportion</code> gives information about <em>proportional</em> prevalence of values in a certain range.</p>
 <p>Other possible options are: (only) <code>"count"</code>, (only) <code>"proportion"</code>, or <code>"density"</code> information.</p>
-<!--
-For example,
-
-```r
-gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
-  dplyr::mutate(.data = ., pop_log = log10(pop)) %>%    # creating new population variable
-  ggstatsplot::gghistostats(
-    data = .,                                           # data from which variable is to be taken
-    x = pop_log,                                        # numeric variable
-    bar.measure = "density",                            # bar height measure
-    results.subtitle = FALSE,                           # don't run statistical tests
-    messages = FALSE,                                   # turn off messages
-    xlab = "Population (logarithmic)",                  # x-axis label
-    title = "Distribution of population worldwide",     # title for the plot
-    subtitle = "Year: 2007",                            # subtitle for the plot
-    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    binwidth = 1,                                       # new binwidth
-    low.color = "#009E73",                              # color for the lower end of the colorbar
-    high.color = "#F0E442"                              # color for the upper end of the colorbar
-  )
-```
-
-<img src="gghistostats_files/figure-html/age_distribution3-1.png" width="700" />
-
-And yet another option is to show relative frequencies that denote percentage
-`"proportion"` of the total observations that fall in a given bin.
-
-
-```r
-gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%            
-  ggstatsplot::gghistostats(
-    data = .,                                           # data from which variable is to be taken
-    x = lifeExp,                                        # numeric variable
-    bar.measure = "proportion",                         # bar height measure
-    results.subtitle = FALSE,                           # don't run statistical tests
-    messages = FALSE,                                   # turn off messages
-    xlab = "Life expectancy",                           # x-axis label
-    title = "Distribution of life expectancy",          # title for the plot
-    subtitle = "Year: 2007",                            # subtitle for the plot
-    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    binwidth = 5,                                       # new binwidth
-    low.color = "#009E73",                              # color for the lower end of the colorbar
-    high.color = "#F0E442"                              # color for the upper end of the colorbar
-  )
-```
-
-<img src="gghistostats_files/figure-html/age_distribution4-1.png" width="700" />
--->
 <p>This shows the utility of <code>gghistostats</code> in case of data exploration.</p>
 </div>
 <div id="statistical-analysis-with-gghistostats" class="section level2">
@@ -340,7 +290,7 @@ gapminder::gapminder %>%
 <a class="sourceLine" id="cb7-36" data-line-number="36">      <span class="st">"Continent: Europe"</span>,</a>
 <a class="sourceLine" id="cb7-37" data-line-number="37">      <span class="st">"Continent: Oceania"</span></a>
 <a class="sourceLine" id="cb7-38" data-line-number="38">    ),</a>
-<a class="sourceLine" id="cb7-39" data-line-number="39">    <span class="dt">bar.measure =</span> <span class="kw">list</span>(<span class="st">"mix"</span>, <span class="st">"count"</span>, <span class="st">"proportion"</span>, <span class="st">"density"</span>, <span class="st">"mix"</span>),</a>
+<a class="sourceLine" id="cb7-39" data-line-number="39">    <span class="dt">bar.measure =</span> <span class="kw">list</span>(<span class="st">"proportion"</span>, <span class="st">"count"</span>, <span class="st">"proportion"</span>, <span class="st">"density"</span>, <span class="st">"count"</span>),</a>
 <a class="sourceLine" id="cb7-40" data-line-number="40">    <span class="dt">fill.gradient =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb7-41" data-line-number="41">    <span class="dt">low.color =</span> <span class="kw">list</span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#999999"</span>, <span class="st">"#009E73"</span>, <span class="st">"black"</span>),</a>
 <a class="sourceLine" id="cb7-42" data-line-number="42">    <span class="dt">high.color =</span> <span class="kw">list</span>(<span class="st">"#D55E00"</span>, <span class="st">"white"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#F0E442"</span>, <span class="st">"black"</span>),</a>

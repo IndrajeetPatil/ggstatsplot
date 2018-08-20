@@ -4,7 +4,7 @@
 \alias{gghistostats}
 \title{Histogram for distribution of a numeric variable}
 \usage{
-gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "mix",
+gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
   xlab = NULL, title = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = TRUE, robust.estimator = "onestep", nboot = 500,
@@ -36,7 +36,7 @@ height in the bar chart. This can either be \code{"count"}, which shows number
 of points in bin, or \code{"density"}, which density of points in bin, scaled to
 integrate to 1, or "\code{proportion}", which shows relative frequencies of
 observations in each bin, or "\code{mix}", which shows both count and proportion
-in the same plot.}
+in the same plot (only available from \code{ggplot2 3.1.0} onward).}
 
 \item{xlab}{Label for \code{x} axis variable.}
 

@@ -14,7 +14,7 @@
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
 #'   integrate to 1, or "`proportion`", which shows relative frequencies of
 #'   observations in each bin, or "`mix`", which shows both count and proportion
-#'   in the same plot.
+#'   in the same plot (only available from `ggplot2 3.1.0` onward).
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle *if* you don't want results
@@ -138,7 +138,7 @@ gghistostats <-
   function(data = NULL,
              x,
              binwidth = NULL,
-             bar.measure = "mix",
+             bar.measure = "count",
              xlab = NULL,
              title = NULL,
              subtitle = NULL,

@@ -276,7 +276,7 @@ plot_list <- purrr::pmap(
       "Continent: Europe",
       "Continent: Oceania"
     ),
-    bar.measure = list("mix", "count", "proportion", "density", "mix"),
+    bar.measure = list("proportion", "count", "proportion", "density", "count"),
     fill.gradient = list(TRUE, FALSE, FALSE, TRUE, TRUE),
     low.color = list("#56B4E9", "white", "#999999", "#009E73", "black"),
     high.color = list("#D55E00", "white", "#F0E442", "#F0E442", "black"),
