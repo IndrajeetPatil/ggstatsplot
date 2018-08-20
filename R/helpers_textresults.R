@@ -10,7 +10,7 @@ chi_subtitle <- function(jmv_chi,
                          k = 3) {
 
   # preparing the subtitle
-  base::substitute(
+ results_subtitle <- base::substitute(
     expr =
       paste(
         y,
@@ -54,6 +54,9 @@ chi_subtitle <- function(jmv_chi,
       n = as.data.frame(jmv_chi$chiSq)$`value[N]`[[1]]
     )
   )
+
+ # return the subtitle
+ return(results_subtitle)
 }
 
 
@@ -66,7 +69,7 @@ mcnemar_subtitle <- function(jmv_chi,
                              effect = NULL,
                              k = 3) {
   # preparing the subtitle
-  base::substitute(
+  results_subtitle <- base::substitute(
     expr =
       paste(
         y,
@@ -97,4 +100,8 @@ mcnemar_subtitle <- function(jmv_chi,
       n = as.data.frame(jmv_chi$test)$`value[n]`[[1]]
     )
   )
+
+  # return the subtitle
+  return(results_subtitle)
+
 }

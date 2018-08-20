@@ -13,7 +13,8 @@
 #'   height in the bar chart. This can either be `"count"`, which shows number
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
 #'   integrate to 1, or "`proportion`", which shows relative frequencies of
-#'   observations in each bin.
+#'   observations in each bin, or "`mix`", which shows both count and proportion
+#'   in the same plot.
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle *if* you don't want results
@@ -37,8 +38,14 @@
 #'   `?WRS2::onesampb`.
 #' @param nboot Number of bootstrap samples for robust one-sample location test.
 #' @param k Number of decimal places expected for results.
+#' @param fill.gradient Logical decides whether color fill gradient is to be
+#'   displayed (Default: `FALSE`). If `FALSE`, the legend and the color gradient
+#'   will also be removed. The default is set to `FALSE` because the gradient
+#'   provides redundant information in light of y-axis labels.
 #' @param low.color,high.color Colors for low and high ends of the gradient.
 #'   Defaults are colorblind-friendly.
+#' @param bar.fill If `fill.gradient = FALSE`, then `bar.fill` decides which
+#'   color will uniformly fill all the bars in the histogram (Default: `"white"`).
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
 #'   `FALSE`, no statistical tests will be run.
@@ -67,8 +74,6 @@
 #'   bins that cover the range of the data. You should always override this
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
-#' @param fill.gradient Logical decides whether color fill gradient is to be
-#'   displayed (Default: `TRUE`). If `FALSE`, the legend will also be removed.
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
 #'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
 #'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
@@ -107,12 +112,14 @@
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
 #'   x = Sepal.Length,
+#'   bar.measure = "count",
 #'   type = "bf",
 #'   bf.prior = 0.8,
 #'   test.value = 3,
 #'   centrality.para = "mean",
 #'   test.value.line = TRUE,
-#'   binwidth = 0.10
+#'   binwidth = 0.10,
+#'   bar.fill = "grey50
 #' )
 #' @note If you are using R Notebook and see a blank image being inserted when a
 #'   chunk is executed, this behavior can be turned off by setting
@@ -131,7 +138,7 @@ gghistostats <-
   function(data = NULL,
              x,
              binwidth = NULL,
-             bar.measure = "count",
+             bar.measure = "mix",
              xlab = NULL,
              title = NULL,
              subtitle = NULL,
@@ -143,12 +150,12 @@ gghistostats <-
              robust.estimator = "onestep",
              nboot = 500,
              k = 3,
+             ggtheme = ggplot2::theme_bw(),
+             fill.gradient = FALSE,
              low.color = "#0072B2",
              high.color = "#D55E00",
+           bar.fill = "white",
              results.subtitle = TRUE,
-             legend.title.margin = FALSE,
-             t.margin = unit(0, "mm"),
-             b.margin = unit(3, "mm"),
              centrality.para = NULL,
              centrality.color = "blue",
              centrality.size = 1.2,
@@ -159,8 +166,9 @@ gghistostats <-
              test.value.linetype = "dashed",
              line.labeller = FALSE,
              line.labeller.y = -2,
-             ggtheme = ggplot2::theme_bw(),
-             fill.gradient = TRUE,
+             legend.title.margin = FALSE,
+             t.margin = unit(0, "mm"),
+             b.margin = unit(3, "mm"),
              messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
@@ -176,8 +184,8 @@ gghistostats <-
 
     # if no color fill is to be displayed, set low and high color to white
     if (!isTRUE(fill.gradient)) {
-      low.color <- "white"
-      high.color <- "white"
+      low.color <- bar.fill
+      high.color <- bar.fill
     }
 
     # ========================================== dataframe ==============================================================
@@ -199,7 +207,6 @@ gghistostats <-
           .data = data,
           x = !!rlang::enquo(x)
         )
-
     } else {
       # if vectors are provided
       data <-
@@ -460,10 +467,9 @@ gghistostats <-
           low = low.color,
           high = high.color
         )
-
     } else if (bar.measure == "proportion") {
-    # only proportion
-        plot <- ggplot2::ggplot(
+      # only proportion
+      plot <- ggplot2::ggplot(
         data = data,
         mapping = ggplot2::aes(x = x)
       ) +
@@ -484,10 +490,9 @@ gghistostats <-
           labels = percent
         ) +
         ggplot2::scale_y_continuous(labels = scales::percent) +
-        ggplot2::ylab("relative frequencies")
-
+        ggplot2::ylab("proportion")
     } else if (bar.measure == "density") {
-    # only density
+      # only density
       plot <- ggplot2::ggplot(
         data = data,
         mapping = ggplot2::aes(x = x)
@@ -507,7 +512,7 @@ gghistostats <-
           low = low.color,
           high = high.color
         )
-    } else if (bar.measure == "all") {
+    } else if (bar.measure == "mix") {
 
       # this works only with the development version of ggplot2
       # all things combined
@@ -527,13 +532,15 @@ gghistostats <-
         ) +
         ggplot2::scale_fill_gradient(
           name = "count",
-          low = "white",
-          high = "white"
+          low = low.color,
+          high = high.color
         ) +
         ggplot2::scale_y_continuous(
-          sec.axis = ggplot2::sec_axis(trans = ~ . / nrow(x = data),
-                                       labels = scales::percent,
-                                       name = "proportion")
+          sec.axis = ggplot2::sec_axis(
+            trans = ~. / nrow(x = data),
+            labels = scales::percent,
+            name = "proportion"
+          )
         ) +
         ggplot2::ylab("count") +
         ggplot2::guides(fill = FALSE)
@@ -661,7 +668,8 @@ gghistostats <-
     # ========================================== messages ==================================================================
     if (isTRUE(messages)) {
       # display normality test result as a message
-      normality_message(x = data$x, lab = lab.df[1], k = k)
+      normality_message <- normality_message(x = data$x, lab = lab.df[1], k = k)
+      print(normality_message)
     }
 
     # return the final plot

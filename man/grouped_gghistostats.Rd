@@ -5,19 +5,19 @@
 \title{Grouped histograms for distribution of a numeric variable}
 \usage{
 grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
-  bar.measure = "count", xlab = NULL, subtitle = NULL,
-  caption = NULL, type = "parametric", test.value = 0,
-  bf.prior = 0.707, bf.message = TRUE, robust.estimator = "onestep",
-  nboot = 500, k = 3, low.color = "#0072B2",
-  high.color = "#D55E00", results.subtitle = TRUE,
-  legend.title.margin = FALSE, t.margin = unit(0, "mm"),
-  b.margin = unit(3, "mm"), centrality.para = NULL,
+  binwidth = NULL, bar.measure = "mix", xlab = NULL, title = NULL,
+  subtitle = NULL, caption = NULL, type = "parametric",
+  test.value = 0, bf.prior = 0.707, bf.message = TRUE,
+  robust.estimator = "onestep", nboot = 500, k = 3,
+  ggtheme = ggplot2::theme_bw(), fill.gradient = FALSE,
+  low.color = "#0072B2", high.color = "#D55E00", bar.fill = "white",
+  results.subtitle = TRUE, centrality.para = NULL,
   centrality.color = "blue", centrality.size = 1.2,
   centrality.linetype = "dashed", test.value.line = FALSE,
   test.value.color = "black", test.value.size = 1.2,
   test.value.linetype = "dashed", line.labeller = FALSE,
-  line.labeller.y = -2, binwidth = NULL,
-  ggtheme = ggplot2::theme_bw(), fill.gradient = TRUE,
+  line.labeller.y = -2, legend.title.margin = FALSE,
+  t.margin = unit(0, "mm"), b.margin = unit(3, "mm"),
   messages = TRUE, ...)
 }
 \arguments{
@@ -31,13 +31,22 @@ taken. This argument is optional.}
 \item{title.prefix}{Character specifying the prefix text for the fixed plot
 title (name of each factor level) (Default: \code{"Group"}).}
 
+\item{binwidth}{The width of the bins. Can be specified as a numeric value,
+or a function that calculates width from \code{x}. The default is to use bins
+bins that cover the range of the data. You should always override this
+value, exploring multiple widths to find the best to illustrate the stories
+in your data.}
+
 \item{bar.measure}{Character describing what value needs to be represented as
 height in the bar chart. This can either be \code{"count"}, which shows number
 of points in bin, or \code{"density"}, which density of points in bin, scaled to
 integrate to 1, or "\code{proportion}", which shows relative frequencies of
-observations in each bin.}
+observations in each bin, or "\code{mix}", which shows both count and proportion
+in the same plot.}
 
 \item{xlab}{Label for \code{x} axis variable.}
+
+\item{title}{The text for the plot title.}
 
 \item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
 from one sample test to be displayed.}
@@ -65,24 +74,28 @@ rejected (Default: \code{bf.message = TRUE}).}
 
 \item{k}{Number of decimal places expected for results.}
 
+\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
+\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
+including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
+\code{theme_void()}, etc.}
+
+\item{fill.gradient}{Logical decides whether color fill gradient is to be
+displayed (Default: \code{FALSE}). If \code{FALSE}, the legend and the color gradient
+will also be removed. The default is set to \code{FALSE} because the gradient
+provides redundant information in light of y-axis labels.}
+
 \item{low.color}{Colors for low and high ends of the gradient.
 Defaults are colorblind-friendly.}
 
 \item{high.color}{Colors for low and high ends of the gradient.
 Defaults are colorblind-friendly.}
 
+\item{bar.fill}{If \code{fill.gradient = FALSE}, then \code{bar.fill} decides which
+color will uniformly fill all the bars in the histogram (Default: \code{"white"}).}
+
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
 \code{FALSE}, no statistical tests will be run.}
-
-\item{legend.title.margin}{Adjusting the margin between legend title and the
-colorbar (Default: \code{FALSE}).}
-
-\item{t.margin}{Margins in grid units. For more details, see
-\code{?grid::unit()}.}
-
-\item{b.margin}{Margins in grid units. For more details, see
-\code{?grid::unit()}.}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as a vertical line.}
@@ -114,19 +127,14 @@ displayed (Default: \code{FALSE}).}
 \item{line.labeller.y}{A numeric denoting the y-coordinate for displaying
 line labels (Default: \code{-2}).}
 
-\item{binwidth}{The width of the bins. Can be specified as a numeric value,
-or a function that calculates width from \code{x}. The default is to use bins
-bins that cover the range of the data. You should always override this
-value, exploring multiple widths to find the best to illustrate the stories
-in your data.}
+\item{legend.title.margin}{Adjusting the margin between legend title and the
+colorbar (Default: \code{FALSE}).}
 
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
-\code{theme_void()}, etc.}
+\item{t.margin}{Margins in grid units. For more details, see
+\code{?grid::unit()}.}
 
-\item{fill.gradient}{Logical decides whether color fill gradient is to be
-displayed (Default: \code{TRUE}). If \code{FALSE}, the legend will also be removed.}
+\item{b.margin}{Margins in grid units. For more details, see
+\code{?grid::unit()}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
@@ -192,9 +200,11 @@ ggstatsplot::grouped_gghistostats(
   x = Sepal.Length,
   test.value = 5,
   grouping.var = Species,
+  bar.fill = "orange",
   nrow = 1,
   messages = FALSE
 )
+
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}

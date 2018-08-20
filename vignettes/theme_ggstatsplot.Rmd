@@ -67,13 +67,15 @@ ggstatsplot::ggbetweenstats(
 )
 ```
 
-Another example with `ggscatterstats`:
+Another example with `ggscatterstats` (note that the theme is now taken from
+`ggthemes` package):
+
 ```{r theme2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 ggstatsplot::ggscatterstats(
   data = datasets::iris,
   x = Sepal.Width,
   y = Sepal.Length,
-  ggtheme = ggplot2::theme_dark()          # selected ggplot2 theme
+  ggtheme = ggthemes::theme_tufte()       # selected theme
 )
 ```
 

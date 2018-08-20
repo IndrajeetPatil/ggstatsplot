@@ -98,53 +98,12 @@ gapminder::gapminder %>%
   )
 ```
 
-So far we have been showing the count information with the bar chart. Another
-option included is `density`. Showing `count` gives an idea about *raw* counts,
-while `density` gives information about *proportional* prevalence of values in a
-certain range.
+So far we have been showing both the count and proportion information with the
+bar chart: showing `count` gives an idea about *raw* counts, while `proportion`
+gives information about *proportional* prevalence of values in a certain range.
 
-For example,
-```{r age_distribution3, warning = FALSE, message = FALSE, fig.height = 6}
-gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
-  dplyr::mutate(.data = ., pop_log = log10(pop)) %>%    # creating new population variable
-  ggstatsplot::gghistostats(
-    data = .,                                           # data from which variable is to be taken
-    x = pop_log,                                        # numeric variable
-    bar.measure = "density",                            # bar height measure
-    results.subtitle = FALSE,                           # don't run statistical tests
-    messages = FALSE,                                   # turn off messages
-    xlab = "Population (logarithmic)",                  # x-axis label
-    title = "Distribution of population worldwide",     # title for the plot
-    subtitle = "Year: 2007",                            # subtitle for the plot
-    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    binwidth = 1,                                       # new binwidth
-    low.color = "#009E73",                              # color for the lower end of the colorbar
-    high.color = "#F0E442"                              # color for the upper end of the colorbar
-  )
-```
-
-And yet another option is to show relative frequencies that denote percentage
-`"proportion"` of the total observations that fall in a given bin.
-
-```{r age_distribution4, warning = FALSE, message = FALSE, fig.height = 6}
-gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%            
-  ggstatsplot::gghistostats(
-    data = .,                                           # data from which variable is to be taken
-    x = lifeExp,                                        # numeric variable
-    bar.measure = "proportion",                         # bar height measure
-    results.subtitle = FALSE,                           # don't run statistical tests
-    messages = FALSE,                                   # turn off messages
-    xlab = "Life expectancy",                           # x-axis label
-    title = "Distribution of life expectancy",          # title for the plot
-    subtitle = "Year: 2007",                            # subtitle for the plot
-    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    binwidth = 5,                                       # new binwidth
-    low.color = "#009E73",                              # color for the lower end of the colorbar
-    high.color = "#F0E442"                              # color for the upper end of the colorbar
-  )
-```
+Other possible options are: (only) `"count"`, (only) `"proportion"`, or
+`"density"` information.
 
 This shows the utility of `gghistostats` in case of data exploration.
 
@@ -193,6 +152,8 @@ gapminder::gapminder %>%
     x = lifeExp,                                           # numeric variable
     messages = FALSE,                                      # turn off messages
     type = "bf",                                           # bayesian one sample t-test
+    fill.gradient = FALSE,                                 # no color gradient (default)
+    bar.fill = "#CC79A7",                                  # uniform fill color
     test.value = 48,                                       # test value 
     xlab = "Life expectancy",                              # x-axis label
     title = "Life expectancy worldwide",                   # title for the plot
@@ -231,14 +192,16 @@ ggstatsplot::grouped_gghistostats(
   data = .,                                     # `.` is placeholder for data plugged by %>%
   x = lifeExp,
   xlab = "Life expectancy",
+  grouping.var = continent,                     # grouping variable with multiple levels
   title.prefix = "Continent",                   # prefix for the fixed title
   type = "robust",                              # robust test: one-sample percentile bootstrap
   robust.estimator = "mom",                     # the modified one-step M-estimator of location
   test.value = 48,                              # test value against which sample mean is to be compared
   test.value.line = TRUE,                       # show a vertical line at `test.value`
+  bar.fill = "grey50",                          # uniform color fill for the bars
   messages = FALSE,                             # turn off messages
   centrality.para = "mean",                     # plotting centrality parameter (mean)
-  grouping.var = continent,                     # grouping variable with multiple levels
+
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Life expectancy change in different continents since 1950",
   caption.text = "Note: black line - 1950; blue line - 2007",
@@ -272,10 +235,17 @@ continent-specific life expectancy from 1957
 the group). This is not possible `grouped_gghistostats` function, but can be
 easily achieved with `purrr` package from tidyverse.
 
-**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
-will need to *quote* the arguments.
+**Note before**:
+* Unlike the function call so far, while using `purrr::pmap`, we will need to *quote* the arguments.
+* You can use `ggplot2` themes from extension packages (like `ggthemes`).  
 
 ```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 12}
+# for reproducibility
+set.seed(123)
+
+# libraries needed
+library(ggthemes)
+
 # let's split the dataframe and create a list by continent
 continent_list <- gapminder::gapminder %>%
   dplyr::filter(.data = ., year == 2007) %>%
@@ -306,20 +276,23 @@ plot_list <- purrr::pmap(
       "Continent: Europe",
       "Continent: Oceania"
     ),
-    messages = FALSE,
+    bar.measure = list("mix", "count", "proportion", "density", "mix"),
+    fill.gradient = list(TRUE, FALSE, FALSE, TRUE, TRUE),
+    low.color = list("#56B4E9", "white", "#999999", "#009E73", "black"),
+    high.color = list("#D55E00", "white", "#F0E442", "#F0E442", "black"),
+    bar.fill = list("white", "red", "orange", "blue", "white"),
     test.value.line = TRUE,
     test.value.color = "black",
     centrality.para = "mean",
     centrality.color = "blue",
-    low.color = list("#56B4E9", "#009E73", "#999999", "#0072B2", "#D55E00"),
-    high.color = list("#D55E00", "#CC79A7", "#F0E442", "#D55E00", "#56B4E9"),
     ggtheme = list(
-      ggplot2::theme_grey(),
       ggplot2::theme_classic(),
-      ggplot2::theme_light(),
+      ggthemes::theme_fivethirtyeight(),
       ggplot2::theme_minimal(),
-      ggplot2::theme_bw()
-    )
+      ggthemes::theme_few(),
+      ggthemes::theme_gdocs()
+    ),
+    messages = FALSE
   ),
   .f = ggstatsplot::gghistostats
 )

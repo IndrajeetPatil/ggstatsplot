@@ -106,7 +106,7 @@ in the plot as a subtitle." />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/graphics_design.html">Graphics design</a>
+      <a href="../articles/graphics_design.html">graphics design</a>
     </li>
     <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
@@ -144,19 +144,19 @@ in the plot as a subtitle.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>gghistostats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"count"</span>,
+    <pre class="usage"><span class='fu'>gghistostats</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"mix"</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>, <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>,
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend.title.margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>fill.gradient</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>, <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
+  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1.2</span>,
+  <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1.2</span>,
+  <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>line.labeller</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>line.labeller.y</span> <span class='kw'>=</span> -<span class='fl'>2</span>, <span class='kw'>legend.title.margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>t.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0</span>, <span class='st'>"mm"</span>), <span class='kw'>b.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>3</span>, <span class='st'>"mm"</span>),
-  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-  <span class='kw'>line.labeller</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>line.labeller.y</span> <span class='kw'>=</span> -<span class='fl'>2</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>fill.gradient</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -185,7 +185,8 @@ in your data.</p></td>
 height in the bar chart. This can either be <code>"count"</code>, which shows number
 of points in bin, or <code>"density"</code>, which density of points in bin, scaled to
 integrate to 1, or "<code>proportion</code>", which shows relative frequencies of
-observations in each bin.</p></td>
+observations in each bin, or "<code>mix</code>", which shows both count and proportion
+in the same plot.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -240,25 +241,34 @@ rejected (Default: <code>bf.message = TRUE</code>).</p></td>
       <td><p>Number of decimal places expected for results.</p></td>
     </tr>
     <tr>
+      <th>ggtheme</th>
+      <td><p>A function, <code>ggplot2</code> theme name. Default value is
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
+including <code>theme_grey()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
+<code>theme_void()</code>, etc.</p></td>
+    </tr>
+    <tr>
+      <th>fill.gradient</th>
+      <td><p>Logical decides whether color fill gradient is to be
+displayed (Default: <code>FALSE</code>). If <code>FALSE</code>, the legend and the color gradient
+will also be removed. The default is set to <code>FALSE</code> because the gradient
+provides redundant information in light of y-axis labels.</p></td>
+    </tr>
+    <tr>
       <th>low.color, high.color</th>
       <td><p>Colors for low and high ends of the gradient.
 Defaults are colorblind-friendly.</p></td>
+    </tr>
+    <tr>
+      <th>bar.fill</th>
+      <td><p>If <code>fill.gradient = FALSE</code>, then <code>bar.fill</code> decides which
+color will uniformly fill all the bars in the histogram (Default: <code>"white"</code>).</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
       <td><p>Decides whether the results of statistical tests are
 to be displayed as subtitle (Default: <code>results.subtitle = TRUE</code>). If set to
 <code>FALSE</code>, no statistical tests will be run.</p></td>
-    </tr>
-    <tr>
-      <th>legend.title.margin</th>
-      <td><p>Adjusting the margin between legend title and the
-colorbar (Default: <code>FALSE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>t.margin, b.margin</th>
-      <td><p>Margins in grid units. For more details, see
-<code>?grid::unit()</code>.</p></td>
     </tr>
     <tr>
       <th>centrality.para</th>
@@ -311,16 +321,14 @@ displayed (Default: <code>FALSE</code>).</p></td>
 line labels (Default: <code>-2</code>).</p></td>
     </tr>
     <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
-including <code>theme_grey()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
-<code>theme_void()</code>, etc.</p></td>
+      <th>legend.title.margin</th>
+      <td><p>Adjusting the margin between legend title and the
+colorbar (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
-      <th>fill.gradient</th>
-      <td><p>Logical decides whether color fill gradient is to be
-displayed (Default: <code>TRUE</code>). If <code>FALSE</code>, the legend will also be removed.</p></td>
+      <th>t.margin, b.margin</th>
+      <td><p>Margins in grid units. For more details, see
+<code>?grid::unit()</code>.</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -344,26 +352,6 @@ chunk is executed, this behavior can be turned off by setting
     <div class='dont-index'><p><code><a href='grouped_gghistostats.html'>grouped_gghistostats</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># most basic function call with the defaults</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats'>gghistostats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/ToothGrowth'>ToothGrowth</a></span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>len</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for len : p-value =  0.109</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># a detailed function call</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats'>gghistostats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bf"</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note:  Prior width used to compute Bayes Factor: 0.8 
-#&gt; Evidence in favor of the null hypothesis (H0): 1.43971963628525e-81</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -375,9 +363,7 @@ chunk is executed, this behavior can be turned off by setting
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
     <h2>Author</h2>
     

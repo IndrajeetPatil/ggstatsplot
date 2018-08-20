@@ -79,6 +79,8 @@ theme_mprl <- function(ggtheme = ggplot2::theme_bw()) {
 #' @export
 #'
 
-theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw()) {
-  theme_mprl(ggtheme = ggtheme)
-}
+# theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw()) {
+#   theme_mprl(ggtheme = ggtheme)
+# }
+
+theme_ggstatsplot <- theme_mprl

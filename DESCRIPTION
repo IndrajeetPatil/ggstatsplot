@@ -47,6 +47,7 @@ Imports:
     WRS2 (>= 0.10-0)
 Suggests:
     ggplot2movies,
+    ggthemes (>= 4.0.0),
     gapminder (>= 0.3.0),
     knitr,
     lme4 (>= 1.1-17),

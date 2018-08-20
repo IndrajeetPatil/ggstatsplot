@@ -35,15 +35,17 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}
 #'
 #' @examples
-#' 
+#'
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
 #'   test.value = 5,
 #'   grouping.var = Species,
+#'   bar.fill = "orange",
 #'   nrow = 1,
 #'   messages = FALSE
 #' )
+#'
 #' @export
 #'
 
@@ -52,8 +54,10 @@ grouped_gghistostats <- function(data,
                                  x,
                                  grouping.var,
                                  title.prefix = "Group",
-                                 bar.measure = "count",
+                                 binwidth = NULL,
+                                 bar.measure = "mix",
                                  xlab = NULL,
+                                 title = NULL,
                                  subtitle = NULL,
                                  caption = NULL,
                                  type = "parametric",
@@ -63,12 +67,12 @@ grouped_gghistostats <- function(data,
                                  robust.estimator = "onestep",
                                  nboot = 500,
                                  k = 3,
+                                 ggtheme = ggplot2::theme_bw(),
+                                 fill.gradient = FALSE,
                                  low.color = "#0072B2",
                                  high.color = "#D55E00",
+                                 bar.fill = "white",
                                  results.subtitle = TRUE,
-                                 legend.title.margin = FALSE,
-                                 t.margin = unit(0, "mm"),
-                                 b.margin = unit(3, "mm"),
                                  centrality.para = NULL,
                                  centrality.color = "blue",
                                  centrality.size = 1.2,
@@ -79,9 +83,9 @@ grouped_gghistostats <- function(data,
                                  test.value.linetype = "dashed",
                                  line.labeller = FALSE,
                                  line.labeller.y = -2,
-                                 binwidth = NULL,
-                                 ggtheme = ggplot2::theme_bw(),
-                                 fill.gradient = TRUE,
+                                 legend.title.margin = FALSE,
+                                 t.margin = unit(0, "mm"),
+                                 b.margin = unit(3, "mm"),
                                  messages = TRUE,
                                  ...) {
   # ================== preparing dataframe ==================
@@ -137,6 +141,7 @@ grouped_gghistostats <- function(data,
             nboot = nboot,
             low.color = low.color,
             high.color = high.color,
+            bar.fill = bar.fill,
             k = k,
             results.subtitle = results.subtitle,
             centrality.para = centrality.para,

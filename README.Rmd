@@ -416,9 +416,9 @@ function will let you do that.
 library(datasets)
 
 ggstatsplot::gghistostats(
-  data = datasets::iris,
-  x = Sepal.Length,
-  title = "Distribution of Iris sepal length",
+  data = datasets::iris,                         # dataframe from which variable is to be taken
+  x = Sepal.Length,                              # numeric variable whose distribution is of interest
+  title = "Distribution of Iris sepal length",   # title for the plot
   type = "parametric",                           # one sample t-test
   test.value = 3,                                # default value is 0
   centrality.para = "mean",                      # which measure of central tendency is to be plotted
@@ -433,10 +433,11 @@ The `type` (of test) argument also accepts the following abbreviations: `"p"` (f
 
 ```{r gghistostats2, message = FALSE, warning = FALSE}
 ggstatsplot::gghistostats(
-  data = NULL,
-  title = "Distribution of variable x",
-  x = stats::rnorm(n = 1000, mean = 0, sd = 1),
-  test.value = 1,
+  data = datasets::ToothGrowth,
+  title = "Distribution of Sepal.Length",
+  x = len,
+  fill.gradient = TRUE,                          # use color gradient
+  test.value = 10,
   test.value.line = TRUE,
   test.value.color = "black",
   centrality.para = "mean",

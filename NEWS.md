@@ -1,5 +1,11 @@
 # ggstatsplot 0.0.5.9000
 
+MAJOR CHANGES
+  - `gghistostats` now defaults to not showing (redundant) color gradient
+  (`fill.gradient = FALSE`) and shows both `"count"` and `"proportion"` data. It
+  also gains a new argument `bar.fill` that can be used to fill bars with a
+  uniform color.
+
 # ggstatsplot 0.0.5
 
 MAJOR CHANGES

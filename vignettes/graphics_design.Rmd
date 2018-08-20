@@ -59,5 +59,4 @@ All p-values displayed in `ggstatsplot` plots avoid this mistake. Anything less
   infinitesimally small the *p*-values are. Instead, the emphasis is put more on
   the effect size magnitudes and their 95% CIs.
   
-* Item 2
 

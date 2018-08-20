@@ -73,7 +73,7 @@
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/graphics_design.html">Graphics design</a>
+      <a href="../articles/graphics_design.html">graphics design</a>
     </li>
     <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
@@ -99,7 +99,7 @@
       <h1>ggstatsplot theme</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-19</h4>
+            <h4 class="date">2018-08-20</h4>
       
       
       <div class="hidden name"><code>theme_ggstatsplot.Rmd</code></div>
@@ -142,12 +142,12 @@
 <a class="sourceLine" id="cb3-6" data-line-number="6">)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  &lt; 0.001</span></a></code></pre></div>
 <p><img src="theme_ggstatsplot_files/figure-html/theme1-1.png" width="100%"></p>
-<p>Another example with <code>ggscatterstats</code>:</p>
+<p>Another example with <code>ggscatterstats</code> (note that the theme is now taken from <code>ggthemes</code> package):</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">x =</span> Sepal.Width,</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">y =</span> Sepal.Length,</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_dark</a></span>()          <span class="co"># selected ggplot2 theme</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>()       <span class="co"># selected theme</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6">)</a>
 <a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; Warning: This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions.</span></a></code></pre></div>
 <p><img src="theme_ggstatsplot_files/figure-html/theme2-1.png" width="100%"></p>

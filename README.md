@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--19-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--20-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -207,7 +207,7 @@ ggstatsplot::theme_mprl
 #>       )
 #>     )
 #> }
-#> <bytecode: 0x000000002b536bf0>
+#> <bytecode: 0x000000002b536bc0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -499,9 +499,9 @@ sample test, this function will let you do that.
 library(datasets)
 
 ggstatsplot::gghistostats(
-  data = datasets::iris,
-  x = Sepal.Length,
-  title = "Distribution of Iris sepal length",
+  data = datasets::iris,                         # dataframe from which variable is to be taken
+  x = Sepal.Length,                              # numeric variable whose distribution is of interest
+  title = "Distribution of Iris sepal length",   # title for the plot
   type = "parametric",                           # one sample t-test
   test.value = 3,                                # default value is 0
   centrality.para = "mean",                      # which measure of central tendency is to be plotted
@@ -519,10 +519,11 @@ The `type` (of test) argument also accepts the following abbreviations:
 
 ``` r
 ggstatsplot::gghistostats(
-  data = NULL,
-  title = "Distribution of variable x",
-  x = stats::rnorm(n = 1000, mean = 0, sd = 1),
-  test.value = 1,
+  data = datasets::ToothGrowth,
+  title = "Distribution of Sepal.Length",
+  x = len,
+  fill.gradient = TRUE,                          # use color gradient
+  test.value = 10,
   test.value.line = TRUE,
   test.value.color = "black",
   centrality.para = "mean",
