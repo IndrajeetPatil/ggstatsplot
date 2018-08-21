@@ -233,7 +233,7 @@
 <a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt;       )</span></a>
 <a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt;     )</span></a>
 <a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; &lt;bytecode: 0x00000000293c1120&gt;</span></a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; &lt;bytecode: 0x0000000028cf1bb0&gt;</span></a>
 <a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -470,7 +470,26 @@
 <a class="sourceLine" id="cb18-15" data-line-number="15">  )</a>
 <a class="sourceLine" id="cb18-16" data-line-number="16">)</a></code></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
-<p>As seen here, by default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is displayed).</p>
+<p>As seen here, by default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., <code>BF10</code> is displayed). Natural logarithms are shown because BF values can be pretty large. This also makes it easy to compare evidence in favor alternative (<code>BF10</code>) versus null (<code>BF01</code>) hypotheses (since <code>log(BF10) = - log(BF01)</code>).</p>
+<p>In case of a parametric t-test, setting <code>bf.message = TRUE</code> will also attach results from Bayesian one-sample t-test. That way, if the null hypothesis can’t be rejected with the NHST approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., BF01).</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>ToothGrowth,</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="dt">title =</span> <span class="st">"Distribution of Sepal.Length"</span>,</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="dt">x =</span> len,</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">  <span class="dt">fill.gradient =</span> <span class="ot">TRUE</span>,                          </a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">  <span class="dt">test.value =</span> <span class="dv">20</span>,                               <span class="co"># different test value</span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">  <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
+<a class="sourceLine" id="cb19-10" data-line-number="10">  <span class="dt">type =</span> <span class="st">"parametric"</span>,</a>
+<a class="sourceLine" id="cb19-11" data-line-number="11">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb19-12" data-line-number="12">  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb19-13" data-line-number="13">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb19-14" data-line-number="14">  <span class="dt">caption =</span> <span class="kw">expression</span>(                              </a>
+<a class="sourceLine" id="cb19-15" data-line-number="15">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": black line - test value; blue line - observed mean"</span>, <span class="dt">sep =</span> <span class="st">""</span>)</a>
+<a class="sourceLine" id="cb19-16" data-line-number="16">  )</a>
+<a class="sourceLine" id="cb19-17" data-line-number="17">)</a></code></pre></div>
+<p><img src="reference/figures/README-gghistostats3-1.png" width="100%"></p>
 <p>For more, including information about the variant of this function <code>grouped_gghistostats</code>, see the <code>gghistostats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html</a></p>
 </div>
 <div id="ggcorrmat" class="section level2">
@@ -478,57 +497,57 @@
 <a href="#ggcorrmat" class="anchor"></a><code>ggcorrmat</code>
 </h2>
 <p><code>ggcorrmat</code> makes correlalograms with minimal amount of code. Just sticking to the defaults itself produces publication-ready correlation matrices. (Wrapper around <a href="https://github.com/kassambara/ggcorrplot"><code>ggcorrplot</code></a>)</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># as a default this function outputs a correlalogram plot</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="dt">corr.method =</span> <span class="st">"spearman"</span>,                <span class="co"># correlation method</span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5">  <span class="dt">sig.level =</span> <span class="fl">0.005</span>,                       <span class="co"># threshold of significance</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,     <span class="co"># a range of variables can be selected  </span></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">  <span class="dt">cor.vars.names =</span> <span class="kw">c</span>(<span class="st">"Sepal Length"</span>, <span class="st">"Sepal Width"</span>, <span class="st">"Petal Length"</span>, <span class="st">"Petal Width"</span>),</a>
-<a class="sourceLine" id="cb19-8" data-line-number="8">  <span class="dt">title =</span> <span class="st">"Correlalogram for length measures for Iris species"</span>,</a>
-<a class="sourceLine" id="cb19-9" data-line-number="9">  <span class="dt">subtitle =</span> <span class="st">"Iris dataset by Anderson"</span>,</a>
-<a class="sourceLine" id="cb19-10" data-line-number="10">  <span class="dt">caption =</span> <span class="kw">expression</span>(</a>
-<a class="sourceLine" id="cb19-11" data-line-number="11">    <span class="kw">paste</span>(</a>
-<a class="sourceLine" id="cb19-12" data-line-number="12">      <span class="kw">italic</span>(<span class="st">"Note"</span>),</a>
-<a class="sourceLine" id="cb19-13" data-line-number="13">      <span class="st">": X denotes correlation non-significant at "</span>,</a>
-<a class="sourceLine" id="cb19-14" data-line-number="14">      <span class="kw">italic</span>(<span class="st">"p "</span>),</a>
-<a class="sourceLine" id="cb19-15" data-line-number="15">      <span class="st">"&lt; 0.005; adjusted alpha"</span></a>
-<a class="sourceLine" id="cb19-16" data-line-number="16">    )</a>
-<a class="sourceLine" id="cb19-17" data-line-number="17">  )</a>
-<a class="sourceLine" id="cb19-18" data-line-number="18">)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># as a default this function outputs a correlalogram plot</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">  <span class="dt">corr.method =</span> <span class="st">"spearman"</span>,                <span class="co"># correlation method</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">  <span class="dt">sig.level =</span> <span class="fl">0.005</span>,                       <span class="co"># threshold of significance</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,     <span class="co"># a range of variables can be selected  </span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">  <span class="dt">cor.vars.names =</span> <span class="kw">c</span>(<span class="st">"Sepal Length"</span>, <span class="st">"Sepal Width"</span>, <span class="st">"Petal Length"</span>, <span class="st">"Petal Width"</span>),</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">  <span class="dt">title =</span> <span class="st">"Correlalogram for length measures for Iris species"</span>,</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">  <span class="dt">subtitle =</span> <span class="st">"Iris dataset by Anderson"</span>,</a>
+<a class="sourceLine" id="cb20-10" data-line-number="10">  <span class="dt">caption =</span> <span class="kw">expression</span>(</a>
+<a class="sourceLine" id="cb20-11" data-line-number="11">    <span class="kw">paste</span>(</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12">      <span class="kw">italic</span>(<span class="st">"Note"</span>),</a>
+<a class="sourceLine" id="cb20-13" data-line-number="13">      <span class="st">": X denotes correlation non-significant at "</span>,</a>
+<a class="sourceLine" id="cb20-14" data-line-number="14">      <span class="kw">italic</span>(<span class="st">"p "</span>),</a>
+<a class="sourceLine" id="cb20-15" data-line-number="15">      <span class="st">"&lt; 0.005; adjusted alpha"</span></a>
+<a class="sourceLine" id="cb20-16" data-line-number="16">    )</a>
+<a class="sourceLine" id="cb20-17" data-line-number="17">  )</a>
+<a class="sourceLine" id="cb20-18" data-line-number="18">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat1-1.png" width="100%"></p>
 <p>Multiple arguments can be modified to change the appearance of the correlation matrix.</p>
 <p>Alternatively, you can use it just to get the correlation matrices and their corresponding <em>p</em>-values (in a <a href="http://tibble.tidyverse.org/">tibble</a> format). This is especially useful for robust correlation coefficient, which is not currently supported in <code>ggcorrmat</code> plot.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># getting the correlation coefficient matrix</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,</a>
-<a class="sourceLine" id="cb20-5" data-line-number="5">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
-<a class="sourceLine" id="cb20-6" data-line-number="6">  <span class="dt">output =</span> <span class="st">"correlations"</span>,             <span class="co"># specifying the needed output</span></a>
-<a class="sourceLine" id="cb20-7" data-line-number="7">  <span class="dt">digits =</span> <span class="dv">3</span>                           <span class="co"># number of digits to be dispayed for correlation coefficient</span></a>
-<a class="sourceLine" id="cb20-8" data-line-number="8">)</a>
-<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
-<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="co">#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width</span></a>
-<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb20-12" data-line-number="12"><span class="co">#&gt; 1 Sepal.Length        1          -0.143        0.878       0.837</span></a>
-<a class="sourceLine" id="cb20-13" data-line-number="13"><span class="co">#&gt; 2 Sepal.Width        -0.143       1           -0.426      -0.373</span></a>
-<a class="sourceLine" id="cb20-14" data-line-number="14"><span class="co">#&gt; 3 Petal.Length        0.878      -0.426        1           0.966</span></a>
-<a class="sourceLine" id="cb20-15" data-line-number="15"><span class="co">#&gt; 4 Petal.Width         0.837      -0.373        0.966       1</span></a>
-<a class="sourceLine" id="cb20-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb20-17" data-line-number="17"><span class="co"># getting the p-value matrix</span></a>
-<a class="sourceLine" id="cb20-18" data-line-number="18">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb20-19" data-line-number="19">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb20-20" data-line-number="20">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,</a>
-<a class="sourceLine" id="cb20-21" data-line-number="21">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
-<a class="sourceLine" id="cb20-22" data-line-number="22">  <span class="dt">output =</span> <span class="st">"p-values"</span></a>
-<a class="sourceLine" id="cb20-23" data-line-number="23">)</a>
-<a class="sourceLine" id="cb20-24" data-line-number="24"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
-<a class="sourceLine" id="cb20-25" data-line-number="25"><span class="co">#&gt;   variable     Sepal.Length  Sepal.Width Petal.Length Petal.Width</span></a>
-<a class="sourceLine" id="cb20-26" data-line-number="26"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb20-27" data-line-number="27"><span class="co">#&gt; 1 Sepal.Length       0      0.0818       0             0         </span></a>
-<a class="sourceLine" id="cb20-28" data-line-number="28"><span class="co">#&gt; 2 Sepal.Width        0.0818 0            0.0000000529  0.00000252</span></a>
-<a class="sourceLine" id="cb20-29" data-line-number="29"><span class="co">#&gt; 3 Petal.Length       0      0.0000000529 0             0         </span></a>
-<a class="sourceLine" id="cb20-30" data-line-number="30"><span class="co">#&gt; 4 Petal.Width        0      0.00000252   0             0</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># getting the correlation coefficient matrix</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">  <span class="dt">output =</span> <span class="st">"correlations"</span>,             <span class="co"># specifying the needed output</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">  <span class="dt">digits =</span> <span class="dv">3</span>                           <span class="co"># number of digits to be dispayed for correlation coefficient</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="co">#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width</span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb21-12" data-line-number="12"><span class="co">#&gt; 1 Sepal.Length        1          -0.143        0.878       0.837</span></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="co">#&gt; 2 Sepal.Width        -0.143       1           -0.426      -0.373</span></a>
+<a class="sourceLine" id="cb21-14" data-line-number="14"><span class="co">#&gt; 3 Petal.Length        0.878      -0.426        1           0.966</span></a>
+<a class="sourceLine" id="cb21-15" data-line-number="15"><span class="co">#&gt; 4 Petal.Width         0.837      -0.373        0.966       1</span></a>
+<a class="sourceLine" id="cb21-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb21-17" data-line-number="17"><span class="co"># getting the p-value matrix</span></a>
+<a class="sourceLine" id="cb21-18" data-line-number="18">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb21-19" data-line-number="19">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
+<a class="sourceLine" id="cb21-20" data-line-number="20">  <span class="dt">cor.vars =</span> Sepal.Length<span class="op">:</span>Petal.Width,</a>
+<a class="sourceLine" id="cb21-21" data-line-number="21">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
+<a class="sourceLine" id="cb21-22" data-line-number="22">  <span class="dt">output =</span> <span class="st">"p-values"</span></a>
+<a class="sourceLine" id="cb21-23" data-line-number="23">)</a>
+<a class="sourceLine" id="cb21-24" data-line-number="24"><span class="co">#&gt; # A tibble: 4 x 5</span></a>
+<a class="sourceLine" id="cb21-25" data-line-number="25"><span class="co">#&gt;   variable     Sepal.Length  Sepal.Width Petal.Length Petal.Width</span></a>
+<a class="sourceLine" id="cb21-26" data-line-number="26"><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb21-27" data-line-number="27"><span class="co">#&gt; 1 Sepal.Length       0      0.0818       0             0         </span></a>
+<a class="sourceLine" id="cb21-28" data-line-number="28"><span class="co">#&gt; 2 Sepal.Width        0.0818 0            0.0000000529  0.00000252</span></a>
+<a class="sourceLine" id="cb21-29" data-line-number="29"><span class="co">#&gt; 3 Petal.Length       0      0.0000000529 0             0         </span></a>
+<a class="sourceLine" id="cb21-30" data-line-number="30"><span class="co">#&gt; 4 Petal.Width        0      0.00000252   0             0</span></a></code></pre></div>
 <p>For examples and more information, see the <code>ggcorrmat</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html</a></p>
 </div>
 <div id="ggcoefstats" class="section level2">
@@ -536,85 +555,85 @@
 <a href="#ggcoefstats" class="anchor"></a><code>ggcoefstats</code>
 </h2>
 <p><code>ggcoefstats</code> creates a lot with the regression coefficients’ point estimates as dots with confidence interval whiskers. This is a wrapper function around <code><a href="http://www.rdocumentation.org/packages/GGally/topics/ggcoef">GGally::ggcoef</a></code>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(<span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">                                       <span class="dt">data =</span> datasets<span class="op">::</span>mtcars)) </a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(<span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">                                       <span class="dt">data =</span> datasets<span class="op">::</span>mtcars)) </a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="80%"></p>
 <p>The basic can be further modified to one’s liking with additional arguments:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">  <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">                <span class="dt">data =</span> datasets<span class="op">::</span>mtcars),</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4">  <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">  <span class="dt">vline.color =</span> <span class="st">"#CC79A7"</span>,</a>
-<a class="sourceLine" id="cb22-6" data-line-number="6">  <span class="dt">vline.linetype =</span> <span class="st">"dotdash"</span>,</a>
-<a class="sourceLine" id="cb22-7" data-line-number="7">  <span class="dt">stats.label.size =</span> <span class="fl">3.5</span>,</a>
-<a class="sourceLine" id="cb22-8" data-line-number="8">  <span class="dt">stats.label.color =</span> <span class="kw">c</span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</a>
-<a class="sourceLine" id="cb22-9" data-line-number="9">  <span class="dt">title =</span> <span class="st">"Car performance predicted by transmission and cylinder count"</span>,</a>
-<a class="sourceLine" id="cb22-10" data-line-number="10">  <span class="dt">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span></a>
-<a class="sourceLine" id="cb22-11" data-line-number="11">) <span class="op">+</span><span class="st">                                    </span></a>
-<a class="sourceLine" id="cb22-12" data-line-number="12"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
-<a class="sourceLine" id="cb22-13" data-line-number="13"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb22-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-15" data-line-number="15"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
-<a class="sourceLine" id="cb22-16" data-line-number="16">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">  <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">                <span class="dt">data =</span> datasets<span class="op">::</span>mtcars),</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">  <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">  <span class="dt">vline.color =</span> <span class="st">"#CC79A7"</span>,</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">  <span class="dt">vline.linetype =</span> <span class="st">"dotdash"</span>,</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">  <span class="dt">stats.label.size =</span> <span class="fl">3.5</span>,</a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">  <span class="dt">stats.label.color =</span> <span class="kw">c</span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9">  <span class="dt">title =</span> <span class="st">"Car performance predicted by transmission and cylinder count"</span>,</a>
+<a class="sourceLine" id="cb23-10" data-line-number="10">  <span class="dt">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span></a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">) <span class="op">+</span><span class="st">                                    </span></a>
+<a class="sourceLine" id="cb23-12" data-line-number="12"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
+<a class="sourceLine" id="cb23-13" data-line-number="13"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
+<a class="sourceLine" id="cb23-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-15" data-line-number="15"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb23-16" data-line-number="16">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="80%"></p>
 <p>All the regression model classes that are supported in the <code>broom</code> package with <code>tidy</code> and <code>glance</code> methods (<a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a>) are also supported by <code>ggcoefstats</code>. Let’s see few examples:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">library</span>(lme4)</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">200</span>)</a>
-<a class="sourceLine" id="cb23-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="co"># creating dataframe needed for one of the analyses below</span></a>
-<a class="sourceLine" id="cb23-8" data-line-number="8">d &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(Titanic)</a>
-<a class="sourceLine" id="cb23-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="co"># combining plots together</span></a>
-<a class="sourceLine" id="cb23-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb23-12" data-line-number="12">  <span class="co"># generalized linear model</span></a>
-<a class="sourceLine" id="cb23-13" data-line-number="13">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb23-14" data-line-number="14">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(</a>
-<a class="sourceLine" id="cb23-15" data-line-number="15">      <span class="dt">formula =</span> Survived <span class="op">~</span><span class="st"> </span>Sex <span class="op">+</span><span class="st"> </span>Age,</a>
-<a class="sourceLine" id="cb23-16" data-line-number="16">      <span class="dt">data =</span> d,</a>
-<a class="sourceLine" id="cb23-17" data-line-number="17">      <span class="dt">weights =</span> d<span class="op">$</span>Freq,</a>
-<a class="sourceLine" id="cb23-18" data-line-number="18">      <span class="dt">family =</span> <span class="st">"binomial"</span></a>
-<a class="sourceLine" id="cb23-19" data-line-number="19">    ),</a>
-<a class="sourceLine" id="cb23-20" data-line-number="20">    <span class="dt">exponentiate =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb23-21" data-line-number="21">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb23-22" data-line-number="22">    <span class="dt">title =</span> <span class="st">"generalized linear model"</span></a>
-<a class="sourceLine" id="cb23-23" data-line-number="23">  ),</a>
-<a class="sourceLine" id="cb23-24" data-line-number="24">  <span class="co"># nonlinear least squares</span></a>
-<a class="sourceLine" id="cb23-25" data-line-number="25">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb23-26" data-line-number="26">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/nls">nls</a></span>(</a>
-<a class="sourceLine" id="cb23-27" data-line-number="27">      <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>k <span class="op">/</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>b,</a>
-<a class="sourceLine" id="cb23-28" data-line-number="28">      <span class="dt">data =</span> datasets<span class="op">::</span>mtcars,</a>
-<a class="sourceLine" id="cb23-29" data-line-number="29">      <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb23-30" data-line-number="30">    ),</a>
-<a class="sourceLine" id="cb23-31" data-line-number="31">    <span class="dt">point.color =</span> <span class="st">"darkgreen"</span>,</a>
-<a class="sourceLine" id="cb23-32" data-line-number="32">    <span class="dt">title =</span> <span class="st">"non-linear least squares"</span></a>
-<a class="sourceLine" id="cb23-33" data-line-number="33">  ),</a>
-<a class="sourceLine" id="cb23-34" data-line-number="34">  <span class="co"># linear mmodel</span></a>
-<a class="sourceLine" id="cb23-35" data-line-number="35">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb23-36" data-line-number="36">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
-<a class="sourceLine" id="cb23-37" data-line-number="37">      <span class="dt">formula =</span> Reaction <span class="op">~</span><span class="st"> </span>Days <span class="op">+</span><span class="st"> </span>(Days <span class="op">|</span><span class="st"> </span>Subject),</a>
-<a class="sourceLine" id="cb23-38" data-line-number="38">      <span class="dt">data =</span> lme4<span class="op">::</span>sleepstudy</a>
-<a class="sourceLine" id="cb23-39" data-line-number="39">    ),</a>
-<a class="sourceLine" id="cb23-40" data-line-number="40">    <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb23-41" data-line-number="41">    <span class="dt">exclude.intercept =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb23-42" data-line-number="42">    <span class="dt">title =</span> <span class="st">"linear mixed-effects model"</span></a>
-<a class="sourceLine" id="cb23-43" data-line-number="43">  ),</a>
-<a class="sourceLine" id="cb23-44" data-line-number="44">  <span class="co"># generalized linear mixed-effects model</span></a>
-<a class="sourceLine" id="cb23-45" data-line-number="45">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb23-46" data-line-number="46">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(</a>
-<a class="sourceLine" id="cb23-47" data-line-number="47">      <span class="dt">formula =</span> <span class="kw">cbind</span>(incidence, size <span class="op">-</span><span class="st"> </span>incidence) <span class="op">~</span><span class="st"> </span>period <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>herd),</a>
-<a class="sourceLine" id="cb23-48" data-line-number="48">      <span class="dt">data =</span> lme4<span class="op">::</span>cbpp,</a>
-<a class="sourceLine" id="cb23-49" data-line-number="49">      <span class="dt">family =</span> binomial</a>
-<a class="sourceLine" id="cb23-50" data-line-number="50">    ),</a>
-<a class="sourceLine" id="cb23-51" data-line-number="51">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb23-52" data-line-number="52">    <span class="dt">title =</span> <span class="st">"generalized linear mixed-effects model"</span></a>
-<a class="sourceLine" id="cb23-53" data-line-number="53">  ),</a>
-<a class="sourceLine" id="cb23-54" data-line-number="54">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
-<a class="sourceLine" id="cb23-55" data-line-number="55">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb23-56" data-line-number="56">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb23-57" data-line-number="57">)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">library</span>(lme4)</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb24-7" data-line-number="7"><span class="co"># creating dataframe needed for one of the analyses below</span></a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">d &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(Titanic)</a>
+<a class="sourceLine" id="cb24-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb24-10" data-line-number="10"><span class="co"># combining plots together</span></a>
+<a class="sourceLine" id="cb24-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb24-12" data-line-number="12">  <span class="co"># generalized linear model</span></a>
+<a class="sourceLine" id="cb24-13" data-line-number="13">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb24-14" data-line-number="14">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(</a>
+<a class="sourceLine" id="cb24-15" data-line-number="15">      <span class="dt">formula =</span> Survived <span class="op">~</span><span class="st"> </span>Sex <span class="op">+</span><span class="st"> </span>Age,</a>
+<a class="sourceLine" id="cb24-16" data-line-number="16">      <span class="dt">data =</span> d,</a>
+<a class="sourceLine" id="cb24-17" data-line-number="17">      <span class="dt">weights =</span> d<span class="op">$</span>Freq,</a>
+<a class="sourceLine" id="cb24-18" data-line-number="18">      <span class="dt">family =</span> <span class="st">"binomial"</span></a>
+<a class="sourceLine" id="cb24-19" data-line-number="19">    ),</a>
+<a class="sourceLine" id="cb24-20" data-line-number="20">    <span class="dt">exponentiate =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb24-21" data-line-number="21">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb24-22" data-line-number="22">    <span class="dt">title =</span> <span class="st">"generalized linear model"</span></a>
+<a class="sourceLine" id="cb24-23" data-line-number="23">  ),</a>
+<a class="sourceLine" id="cb24-24" data-line-number="24">  <span class="co"># nonlinear least squares</span></a>
+<a class="sourceLine" id="cb24-25" data-line-number="25">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb24-26" data-line-number="26">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/nls">nls</a></span>(</a>
+<a class="sourceLine" id="cb24-27" data-line-number="27">      <span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>k <span class="op">/</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>b,</a>
+<a class="sourceLine" id="cb24-28" data-line-number="28">      <span class="dt">data =</span> datasets<span class="op">::</span>mtcars,</a>
+<a class="sourceLine" id="cb24-29" data-line-number="29">      <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">k =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb24-30" data-line-number="30">    ),</a>
+<a class="sourceLine" id="cb24-31" data-line-number="31">    <span class="dt">point.color =</span> <span class="st">"darkgreen"</span>,</a>
+<a class="sourceLine" id="cb24-32" data-line-number="32">    <span class="dt">title =</span> <span class="st">"non-linear least squares"</span></a>
+<a class="sourceLine" id="cb24-33" data-line-number="33">  ),</a>
+<a class="sourceLine" id="cb24-34" data-line-number="34">  <span class="co"># linear mmodel</span></a>
+<a class="sourceLine" id="cb24-35" data-line-number="35">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb24-36" data-line-number="36">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
+<a class="sourceLine" id="cb24-37" data-line-number="37">      <span class="dt">formula =</span> Reaction <span class="op">~</span><span class="st"> </span>Days <span class="op">+</span><span class="st"> </span>(Days <span class="op">|</span><span class="st"> </span>Subject),</a>
+<a class="sourceLine" id="cb24-38" data-line-number="38">      <span class="dt">data =</span> lme4<span class="op">::</span>sleepstudy</a>
+<a class="sourceLine" id="cb24-39" data-line-number="39">    ),</a>
+<a class="sourceLine" id="cb24-40" data-line-number="40">    <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb24-41" data-line-number="41">    <span class="dt">exclude.intercept =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb24-42" data-line-number="42">    <span class="dt">title =</span> <span class="st">"linear mixed-effects model"</span></a>
+<a class="sourceLine" id="cb24-43" data-line-number="43">  ),</a>
+<a class="sourceLine" id="cb24-44" data-line-number="44">  <span class="co"># generalized linear mixed-effects model</span></a>
+<a class="sourceLine" id="cb24-45" data-line-number="45">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb24-46" data-line-number="46">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(</a>
+<a class="sourceLine" id="cb24-47" data-line-number="47">      <span class="dt">formula =</span> <span class="kw">cbind</span>(incidence, size <span class="op">-</span><span class="st"> </span>incidence) <span class="op">~</span><span class="st"> </span>period <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>herd),</a>
+<a class="sourceLine" id="cb24-48" data-line-number="48">      <span class="dt">data =</span> lme4<span class="op">::</span>cbpp,</a>
+<a class="sourceLine" id="cb24-49" data-line-number="49">      <span class="dt">family =</span> binomial</a>
+<a class="sourceLine" id="cb24-50" data-line-number="50">    ),</a>
+<a class="sourceLine" id="cb24-51" data-line-number="51">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb24-52" data-line-number="52">    <span class="dt">title =</span> <span class="st">"generalized linear mixed-effects model"</span></a>
+<a class="sourceLine" id="cb24-53" data-line-number="53">  ),</a>
+<a class="sourceLine" id="cb24-54" data-line-number="54">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
+<a class="sourceLine" id="cb24-55" data-line-number="55">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb24-56" data-line-number="56">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb24-57" data-line-number="57">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats3-1.png" width="100%"></p>
 <p>This is by no means an exhaustive list of models supported by <code>ggcoefstats</code>. For more, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html</a></p>
 </div>

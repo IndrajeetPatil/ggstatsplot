@@ -14,7 +14,7 @@
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
 #'   integrate to 1, or "`proportion`", which shows relative frequencies of
 #'   observations in each bin, or "`mix`", which shows both count and proportion
-#'   in the same plot (only available from `ggplot2 3.1.0` onward).
+#'   in the same plot (only available from `ggplot2 3.0.1` onward).
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle *if* you don't want results
@@ -28,11 +28,11 @@
 #'   (Default: `1.2`).
 #' @param test.value.linetype Decides linetype for the vertical line for test
 #'   value (Default: `"dashed"`).
-#' @param bf.prior A number between 0.5 and 2 (default 0.707), the prior width
+#' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
-#'   of null hypothesis for parametric test if the null hypothesis can't be
-#'   rejected (Default: `bf.message = TRUE`).
+#'   of *null* hypothesis **for parametric test** (Default: `bf.message = FALSE`).
+#'   This will work only if `results.subtitle = TRUE`.
 #' @param robust.estimator If `test = "robust"` robust estimator to be used
 #'   (`"onestep"` (Default), `"mom"`, or `"median"`). For more, see
 #'   `?WRS2::onesampb`.
@@ -119,7 +119,7 @@
 #'   centrality.para = "mean",
 #'   test.value.line = TRUE,
 #'   binwidth = 0.10,
-#'   bar.fill = "grey50
+#'   bar.fill = "grey50"
 #' )
 #' @note If you are using R Notebook and see a blank image being inserted when a
 #'   chunk is executed, this behavior can be turned off by setting
@@ -146,7 +146,7 @@ gghistostats <-
              type = "parametric",
              test.value = 0,
              bf.prior = 0.707,
-             bf.message = TRUE,
+             bf.message = FALSE,
              robust.estimator = "onestep",
              nboot = 500,
              k = 3,
@@ -154,7 +154,7 @@ gghistostats <-
              fill.gradient = FALSE,
              low.color = "#0072B2",
              high.color = "#D55E00",
-           bar.fill = "white",
+             bar.fill = "white",
              results.subtitle = TRUE,
              centrality.para = NULL,
              centrality.color = "blue",
@@ -173,13 +173,6 @@ gghistostats <-
     # if data is not available then don't display any messages
     if (is.null(data)) {
       messages <- FALSE
-    }
-
-    # save the value of caption in another variable because caption is going to be modified in the function body
-    if (is.null(caption)) {
-      bf.caption <- caption
-    } else {
-      bf.caption <- NULL
     }
 
     # if no color fill is to be displayed, set low and high color to white
@@ -237,6 +230,30 @@ gghistostats <-
         # excludes a row from all analyses if one of its entries is missing
       )
 
+      # preparing the BF message for NULL
+      if (isTRUE(bf.message)) {
+        bf.caption.text <-
+          base::substitute(
+            expr =
+              paste(
+                "In favor of null: ",
+                "log"["e"],
+                "(BF"["\\01"],
+                ") = ",
+                bf,
+                ", log"["e"],
+                "(error) = ",
+                bf_error,
+                "%, Prior width = ",
+                bf_prior
+              ),
+            env = base::list(
+              bf = ggstatsplot::specify_decimal_p(x = log(x = (1 / as.data.frame(jmv_os$ttest)$`stat[bf]`), base = exp(1)), k = 1),
+              bf_error = ggstatsplot::specify_decimal_p(x = log(x = (1 / as.data.frame(jmv_os$ttest)$`err[bf]`), base = exp(1)), k = 1),
+              bf_prior = ggstatsplot::specify_decimal_p(x = bf.prior, k = 3)
+            )
+          )
+      }
       # ========================================== parametric ==================================================================
       if (type == "parametric" || type == "p") {
         # preparing the subtitle
@@ -275,32 +292,6 @@ gghistostats <-
           )
         )
 
-        # if effect is not significant, display Bayes Factor in favor of the NULL
-        # save it as text if bf.message has not been disabled
-        if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
-          if (isTRUE(bf.message)) {
-            bf.caption.text <-
-              paste(
-                "Note: Evidence in favor of the null hypothesis:",
-                ggstatsplot::specify_decimal_p(x = 1 / as.data.frame(jmv_os$ttest)$`stat[bf]`, k),
-                "with prior width =",
-                ggstatsplot::specify_decimal_p(x = bf.prior, k)
-              )
-          } else {
-            # display a note about prior used to compute Bayes Factor
-            if (isTRUE(messages)) {
-              base::message(cat(
-                crayon::green("Note: "),
-                crayon::blue(
-                  "Prior width used to compute Bayes Factor:",
-                  crayon::yellow(bf.prior)
-                ),
-                crayon::blue("\nEvidence in favor of the null hypothesis (H0):"),
-                crayon::yellow(1 / as.data.frame(jmv_os$ttest)$`stat[bf]`)
-              ))
-            }
-          }
-        }
 
         # ========================================== non-parametric =====================================================
       } else if (type == "nonparametric" || type == "np") {
@@ -389,13 +380,14 @@ gghistostats <-
               df,
               ") = ",
               estimate,
-              ", ",
-              "log(BF"[10],
+              ", log"["e"],
+              "(BF"["10"],
               ") = ",
               bf,
-              ", log(error) = ",
+              ", log"["e"],
+              "(error) = ",
               bf_error,
-              ", ",
+              "% , ",
               italic("d"),
               " = ",
               effsize,
@@ -408,46 +400,21 @@ gghistostats <-
             # df is integer value for Student's t-test
             df = as.data.frame(jmv_os$ttest)$`df[stud]`,
             estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`stat[stud]`, k),
-            bf = ggstatsplot::specify_decimal_p(x = log10(x = as.data.frame(jmv_os$ttest)$`stat[bf]`), k = 0),
-            bf_error = ggstatsplot::specify_decimal_p(x = log10(x = as.data.frame(jmv_os$ttest)$`err[bf]`), k = 0),
+            bf = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_os$ttest)$`stat[bf]`, base = exp(1)), k = 1),
+            bf_error = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_os$ttest)$`err[bf]`, base = exp(1)), k = 1),
             effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k),
             n = nrow(x = data)
           )
         )
-
-        # display a note about prior used to compute Bayes Factor
-        if (isTRUE(messages)) {
-          base::message(cat(
-            crayon::green("Note: "),
-            crayon::blue(
-              "Prior width used to compute Bayes Factor:",
-              crayon::yellow(bf.prior)
-            ),
-            crayon::blue("\nEvidence in favor of the null hypothesis (H0):"),
-            crayon::yellow(1 / as.data.frame(jmv_os$ttest)$`stat[bf]`)
-          ))
-        }
-      } else {
-        subtitle <- subtitle
-      }
-
-      # preparing caption
-      # if caption is not provided, then use bf.caption.text as caption
-      if (type == "parametric") {
-        if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
-          if (isTRUE(bf.message)) {
-            if (is.null(caption)) {
-              caption <- bf.caption.text
-            }
-          }
-        }
       }
     }
     # ========================================== plot ===================================================================
 
     # preparing the basic layout of the plot based on whether counts or density information is needed
-    # only counts
+
     if (bar.measure == "count") {
+
+      # only counts
       plot <- ggplot2::ggplot(
         data = data,
         mapping = ggplot2::aes(x = x)
@@ -468,6 +435,7 @@ gghistostats <-
           high = high.color
         )
     } else if (bar.measure == "proportion") {
+
       # only proportion
       plot <- ggplot2::ggplot(
         data = data,
@@ -492,6 +460,7 @@ gghistostats <-
         ggplot2::scale_y_continuous(labels = scales::percent) +
         ggplot2::ylab("proportion")
     } else if (bar.measure == "density") {
+
       # only density
       plot <- ggplot2::ggplot(
         data = data,
@@ -633,22 +602,6 @@ gghistostats <-
         }
       }
     }
-    # if caption is provided then use combine_plots function later on to add this caption
-    # add caption with bayes factor
-    if (isTRUE(results.subtitle)) {
-      if (type == "parametric") {
-        if (as.data.frame(jmv_os$ttest)$`p[stud]` > 0.05) {
-          if (isTRUE(bf.message)) {
-            if (!is.null(bf.caption)) {
-              plot <-
-                ggstatsplot::combine_plots(plot,
-                  caption.text = bf.caption.text
-                )
-            }
-          }
-        }
-      }
-    }
 
     # creating proper spacing between the legend.title and the colorbar
     if (isTRUE(legend.title.margin)) {
@@ -665,11 +618,24 @@ gghistostats <-
         ggplot2::theme(legend.position = "none")
     }
 
+    # if caption is provided then use combine_plots function later on to add this caption
+    # add caption with bayes factor
+    if (isTRUE(results.subtitle)) {
+      if (type %in% c("parametric", "p")) {
+        if (isTRUE(bf.message)) {
+          plot <-
+            ggstatsplot::combine_plots(plot,
+              caption.text = bf.caption.text
+            )
+        }
+      }
+    }
+
     # ========================================== messages ==================================================================
+    #
+    # display normality test result as a message
     if (isTRUE(messages)) {
-      # display normality test result as a message
-      normality_message <- normality_message(x = data$x, lab = lab.df[1], k = k)
-      print(normality_message)
+      normality_message(x = data$x, lab = lab.df[1], k = k)
     }
 
     # return the final plot

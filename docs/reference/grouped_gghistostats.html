@@ -150,7 +150,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"count"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>fill.gradient</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>, <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -198,7 +198,7 @@ height in the bar chart. This can either be <code>"count"</code>, which shows nu
 of points in bin, or <code>"density"</code>, which density of points in bin, scaled to
 integrate to 1, or "<code>proportion</code>", which shows relative frequencies of
 observations in each bin, or "<code>mix</code>", which shows both count and proportion
-in the same plot (only available from <code>ggplot2 3.1.0</code> onward).</p></td>
+in the same plot (only available from <code>ggplot2 3.0.1</code> onward).</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -229,14 +229,14 @@ or <code>"robust"</code> or <code>"bayes"</code>). Abbreviations accepted are <c
     </tr>
     <tr>
       <th>bf.prior</th>
-      <td><p>A number between 0.5 and 2 (default 0.707), the prior width
+      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
 to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
       <td><p>Logical. Decides whether to display Bayes Factor in favor
-of null hypothesis for parametric test if the null hypothesis can't be
-rejected (Default: <code>bf.message = TRUE</code>).</p></td>
+of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>bf.message = FALSE</code>).
+This will work only if <code>results.subtitle = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>robust.estimator</th>
@@ -428,8 +428,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
   <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

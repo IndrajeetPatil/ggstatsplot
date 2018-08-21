@@ -268,7 +268,8 @@ plot_list <- purrr::pmap(
     x = "lifeExp",
     xlab = "Life expectancy",
     test.value = list(35.6, 58.4, 41.6, 64.7, 63.4),
-    type = list("p", "np", "r", "np", "p"),
+    type = list("p", "np", "r", "bf", "p"),
+    bf.message = list(TRUE, FALSE, FALSE, FALSE, TRUE),
     title = list(
       "Continent: Africa",
       "Continent: Americas",

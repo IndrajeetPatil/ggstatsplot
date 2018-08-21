@@ -35,7 +35,7 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}
 #'
 #' @examples
-#'
+#' 
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
@@ -45,7 +45,6 @@
 #'   nrow = 1,
 #'   messages = FALSE
 #' )
-#'
 #' @export
 #'
 
@@ -63,7 +62,7 @@ grouped_gghistostats <- function(data,
                                  type = "parametric",
                                  test.value = 0,
                                  bf.prior = 0.707,
-                                 bf.message = TRUE,
+                                 bf.message = FALSE,
                                  robust.estimator = "onestep",
                                  nboot = 500,
                                  k = 3,

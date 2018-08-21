@@ -45,6 +45,7 @@ utils::globalVariables(
     "sd",
     "bf",
     "bf_error",
+    "bf_prior",
     "Df",
     "F value",
     "F.value",

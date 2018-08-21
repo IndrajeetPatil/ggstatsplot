@@ -8,7 +8,7 @@ grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
   binwidth = NULL, bar.measure = "count", xlab = NULL,
   title = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = TRUE, robust.estimator = "onestep", nboot = 500,
+  bf.message = FALSE, robust.estimator = "onestep", nboot = 500,
   k = 3, ggtheme = ggplot2::theme_bw(), fill.gradient = FALSE,
   low.color = "#0072B2", high.color = "#D55E00", bar.fill = "white",
   results.subtitle = TRUE, centrality.para = NULL,
@@ -42,7 +42,7 @@ height in the bar chart. This can either be \code{"count"}, which shows number
 of points in bin, or \code{"density"}, which density of points in bin, scaled to
 integrate to 1, or "\code{proportion}", which shows relative frequencies of
 observations in each bin, or "\code{mix}", which shows both count and proportion
-in the same plot (only available from \code{ggplot2 3.1.0} onward).}
+in the same plot (only available from \code{ggplot2 3.0.1} onward).}
 
 \item{xlab}{Label for \code{x} axis variable.}
 
@@ -59,12 +59,12 @@ or \code{"robust"} or \code{"bayes"}). Abbreviations accepted are \code{"p"} or 
 
 \item{test.value}{A number specifying the value of the null hypothesis.}
 
-\item{bf.prior}{A number between 0.5 and 2 (default 0.707), the prior width
+\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
-of null hypothesis for parametric test if the null hypothesis can't be
-rejected (Default: \code{bf.message = TRUE}).}
+of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}).
+This will work only if \code{results.subtitle = TRUE}.}
 
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
@@ -204,7 +204,6 @@ ggstatsplot::grouped_gghistostats(
   nrow = 1,
   messages = FALSE
 )
-
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}

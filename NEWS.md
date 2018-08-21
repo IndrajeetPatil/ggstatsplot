@@ -6,6 +6,10 @@ MAJOR CHANGES
   also gains a new argument `bar.fill` that can be used to fill bars with a
   uniform color.
 
+MINOR CHANGES
+  - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes
+  Factors is displayed, and not base 10 logarithm.
+  
 # ggstatsplot 0.0.5
 
 MAJOR CHANGES
