@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--20-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--21-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -207,7 +207,7 @@ ggstatsplot::theme_mprl
 #>       )
 #>     )
 #> }
-#> <bytecode: 0x000000002b536bc0>
+#> <bytecode: 0x000000002ae6ef90>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -539,8 +539,39 @@ ggstatsplot::gghistostats(
 <img src="man/figures/README-gghistostats2-1.png" width="100%" />
 
 As seen here, by default, Bayes Factor quantifies the support for the
-alternative hypothesis (H1) over the null hypothesis (H0) (i.e., BF10 is
-displayed).
+alternative hypothesis (H1) over the null hypothesis (H0) (i.e., `BF10`
+is displayed). Natural logarithms are shown because BF values can be
+pretty large. This also makes it easy to compare evidence in favor
+alternative (`BF10`) versus null (`BF01`) hypotheses (since `log(BF10) =
+- log(BF01)`).
+
+In case of a parametric t-test, setting `bf.message = TRUE` will also
+attach results from Bayesian one-sample t-test. That way, if the null
+hypothesis can’t be rejected with the NHST approach, the Bayesian
+approach can help index evidence in favor of the null hypothesis (i.e.,
+BF01).
+
+``` r
+ggstatsplot::gghistostats(
+  data = datasets::ToothGrowth,
+  title = "Distribution of Sepal.Length",
+  x = len,
+  fill.gradient = TRUE,                          
+  test.value = 20,                               # different test value
+  test.value.line = TRUE,
+  test.value.color = "black",
+  centrality.para = "mean",
+  type = "parametric",
+  bf.message = TRUE,                             # display bayes factor for null over alternative
+  bf.prior = 0.8,
+  messages = FALSE,
+  caption = expression(                              
+    paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
+  )
+)
+```
+
+<img src="man/figures/README-gghistostats3-1.png" width="100%" />
 
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:

@@ -34,12 +34,47 @@ flexible than `ggplot2`, but that's a feature and not a bug. The original intent
 behind this package is to offload struggles associated with *constructing* the
 plot and focus more on the *interpretation* of that data displayed in the plot.
 
-## Clear vision
-
 ## Clean design
 
+```{r example1, fig.height = 8, fig.width = 7}
+ggstatsplot::ggbetweenstats(
+  data = ggplot2::mpg,
+  x = cyl,
+  y = cty,
+  title = "Figure-1: Fuel efficiency by type of cylinder",
+  xlab = "number of cylinders",
+  ylab = "city miles per gallon",
+  outlier.tagging = TRUE,
+  outlier.label = manufacturer,
+  messages = FALSE
+)
+```
+
+* The package follows two principles for graphical integrity (Tufte, 2001, Chapter 2):
+
+  + The physical representation of numbers is proportional to the numerical
+  quantities they represent (e.g., Figure-1 and Figure-2 show how means (in
+  `ggbetweenstats`) or percentages (`ggpiestats`) are proportional to the
+  vertical distance or the area, respectively).
+  
+  + All important events in the data have clear, detailed, and thorough labeling
+  (e.g., Figure-1 plot shows how `ggbetweenstats` labels means, sample size
+  information, and outliers; same can be appreciated for `ggpiestats` in
+  Figure-2).
+
 * All plots are designed to have no **chartjunk** (like moiré vibrations, fake
-perspective, dark grid lines, etc.) (Tufte, 2011, Chapter 5).
+perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
+
+```{r example2, fig.height = 5, fig.width = 5}
+ggstatsplot::ggpiestats(
+  data = ggplot2::mpg,
+  main = drv,
+  title = "Figure-2: Distribution of layouts",
+  legend.title = "layout",
+  caption = "f = front-wheel drive, r = rear wheel drive, 4 = 4wd",
+  messages = FALSE
+)
+```
 
 ## Understanding
 

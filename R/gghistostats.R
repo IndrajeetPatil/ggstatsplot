@@ -238,7 +238,7 @@ gghistostats <-
               paste(
                 "In favor of null: ",
                 "log"["e"],
-                "(BF"["\\01"],
+                "(BF"["01"],
                 ") = ",
                 bf,
                 ", log"["e"],
