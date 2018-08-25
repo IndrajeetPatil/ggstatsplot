@@ -33,16 +33,18 @@
 #' @param xsize,ysize Size for the marginal distribution boundaries (Default: `0.7`).
 #' @param type Type of association between paired samples required
 #'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
-#'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: Robust regression using
-#'   an M estimator"). Corresponding abbreviations are also accepted: `"p"` (for
-#'   parametric/pearson's), `"np"` (nonparametric/spearman), `"r"` (robust),
-#'   resp.
+#'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: percentage bend
+#'   correlation coefficient"). Corresponding abbreviations are also accepted:
+#'   `"p"` (for parametric/pearson's), `"np"` (nonparametric/spearman), `"r"`
+#'   (robust), resp.
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle.
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
 #'   or `"median"`) is to be displayed as vertical (for `x`) and horizontal (for
 #'   `y`) lines.
 #' @param title The text for the plot title.
+#' @param subtitle The text for the plot subtitle. Will work only if
+#'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption.
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `100`).
@@ -60,6 +62,7 @@
 #'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @inheritParams ggplot2::geom_smooth
 #'
 #' @import ggplot2
 #'
@@ -91,10 +94,10 @@
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = datasets::mtcars,
@@ -112,6 +115,9 @@ ggscatterstats <-
              y,
              xlab = NULL,
              ylab = NULL,
+             method = "lm",
+             method.args = list(),
+             formula = y ~ x,
              line.size = 1.5,
              line.color = "blue",
              marginal = TRUE,
@@ -128,8 +134,9 @@ ggscatterstats <-
              ysize = 0.7,
              centrality.para = NULL,
              type = "pearson",
-             results.subtitle = NULL,
+             results.subtitle = TRUE,
              title = NULL,
+             subtitle = NULL,
              caption = NULL,
              nboot = 100,
              beta = 0.1,
@@ -162,13 +169,9 @@ ggscatterstats <-
 
     ######################################## statistical labels ######################################################
 
-    # if results.subtitle argument is not specified, default to showing the results
-    if (is.null(results.subtitle)) {
-      results.subtitle <- TRUE
-    }
     # if results.subtitle argument is set to FALSE then subtitle should be set to NULL
-    if (results.subtitle != TRUE) {
-      stats_subtitle <- NULL
+    if (!isTRUE(results.subtitle)) {
+      stats_subtitle <- subtitle
     }
 
     if (results.subtitle == TRUE) {
@@ -366,11 +369,14 @@ ggscatterstats <-
         na.rm = TRUE
       ) +
       ggplot2::geom_smooth(
-        method = "lm",
+        method = method,
+        method.args = method.args,
+        formula = formula,
         se = TRUE,
         size = line.size,
         color = line.color,
-        na.rm = TRUE
+        na.rm = TRUE,
+        level = 0.95
       ) +
       ggstatsplot::theme_mprl(ggtheme = ggtheme) +
       ggplot2::labs(
@@ -453,11 +459,10 @@ ggscatterstats <-
         )
     }
 
-    ################################################### messages ##########################################################
-
-    # display warning that this doesn't produce a ggplot2 object
-    if (isTRUE(messages) &&
-      isTRUE(marginal)) {
+    # ========================================== messages ==================================================================
+    #
+    # display warning that this function doesn't produce a ggplot2 object
+    if (isTRUE(marginal)) {
       base::message(cat(
         crayon::red("Warning:"),
         crayon::blue(

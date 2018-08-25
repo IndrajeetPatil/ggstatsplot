@@ -469,7 +469,8 @@ class.
 ggstatsplot::ggcoefstats(
   x = lme4::glmer(
     formula = Survived ~ Sex + Age + (Sex + Age | Class),
-    data = ggstatsplot::Titanic_full,
+    # select half of the sample to reduce the time of execution
+    data = dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.5),
     family = stats::binomial(link = "logit"),
     control = lme4::glmerControl(
       optimizer = "Nelder_Mead",
@@ -516,7 +517,7 @@ library(glue)
 
 # running the function for each type of harm and creating a list of plots
 # to speed up calculations, we will use just half of the dataset
-plotlist <- dplyr::filter(.data = ggstatsplot::intent_morality, id <= 250) %>%
+plotlist <- dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.5) %>%
   dplyr::mutate(.data = ., plot.title = harm) %>%
   base::split(x = ., f = .$harm) %>%
   purrr::map(
@@ -601,7 +602,7 @@ ggstatsplot::ggcoefstats(
     formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
                                                         harm),
     link = "logit",
-    data = dplyr::filter(.data = ggstatsplot::intent_morality, id <= 250),
+    data = dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.5),
     control = ordinal::clmm.control(
       maxIter = 50,
       gradTol = 1e-4,

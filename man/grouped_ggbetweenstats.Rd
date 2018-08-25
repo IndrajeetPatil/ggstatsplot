@@ -7,8 +7,9 @@ designs repeated across all levels of a grouping variable.}
 \usage{
 grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   plot.type = "boxviolin", type = "parametric",
-  effsize.type = "unbiased", effsize.noncentral = FALSE, xlab = NULL,
-  ylab = NULL, caption = NULL, sample.size.label = TRUE, k = 3,
+  effsize.type = "unbiased", effsize.noncentral = FALSE,
+  bf.prior = 0.707, bf.message = FALSE, xlab = NULL, ylab = NULL,
+  caption = NULL, sample.size.label = TRUE, k = 3,
   var.equal = FALSE, nboot = 100, tr = 0.1, conf.level = 0.95,
   conf.type = "norm", mean.label.size = 3,
   mean.label.fontface = "bold", mean.label.color = "black",
@@ -39,8 +40,9 @@ plots are \code{"box"} (for pure boxplots), \code{"violin"} (for pure violin plo
 and \code{"boxviolin"} (for a mix of box and violin plots; default).}
 
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
-or \code{"robust"}).Corresponding abbreviations are also accepted: \code{"p"} (for
-parametric), \code{"np"} (nonparametric), \code{"r"} (robust), resp.}
+or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
+\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
+\code{"bf"}resp.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests
 (\code{"biased"} (Cohen's \emph{d} for \strong{t-test}; partial eta-squared for \strong{anova})
@@ -50,6 +52,12 @@ or \code{"unbiased"} (Hedge's \emph{g} for \strong{t-test}; partial omega-square
 \item{effsize.noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the 95% confidence interval for Cohen's \emph{d}
 or Hedge's \emph{g} (Default: \code{FALSE}).}
+
+\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
+to use in calculating Bayes factors.}
+
+\item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
+of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}).}
 
 \item{xlab}{Label for \code{x} axis variable.}
 
@@ -216,9 +224,10 @@ set.seed(123)
 # the most basic function call
 ggstatsplot::grouped_ggbetweenstats(
   data = mtcars,
-  x = cyl,
+  x = am,
   y = wt,
-  grouping.var = am
+  grouping.var = cyl,
+  bf.message = TRUE
 )
 }
 \references{

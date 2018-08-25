@@ -149,8 +149,9 @@ grouping variable.</p>
 
     <pre class="usage"><span class='fu'>grouped_ggbetweenstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>,
   <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"boxviolin"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
@@ -197,8 +198,9 @@ and <code>"boxviolin"</code> (for a mix of box and violin plots; default).</p></
     <tr>
       <th>type</th>
       <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
-or <code>"robust"</code>).Corresponding abbreviations are also accepted: <code>"p"</code> (for
-parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), resp.</p></td>
+or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
+<code>"bf"</code>resp.</p></td>
     </tr>
     <tr>
       <th>effsize.type</th>
@@ -212,6 +214,16 @@ or <code>"unbiased"</code> (Hedge's <em>g</em> for <strong>t-test</strong>; part
       <td><p>Logical indicating whether to use non-central
 <em>t</em>-distributions for computing the 95<!-- % confidence interval for Cohen's \emph{d} -->
 or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>bf.prior</th>
+      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
+to use in calculating Bayes factors.</p></td>
+    </tr>
+    <tr>
+      <th>bf.message</th>
+      <td><p>Logical. Decides whether to display Bayes Factor in favor
+of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>bf.message = FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -448,10 +460,11 @@ combining (plot, caption).</p></dd>
 <span class='co'># the most basic function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggbetweenstats'>grouped_ggbetweenstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>am</span>
-)</div><div class='output co'>#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor cyl : p-value =  0.022</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.909</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor cyl : p-value =  0.337</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; Reference:  Welch's t-test is used as a default. (Delacre, Lakens, &amp; Leys, International Review of Social Psychology, 2017).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.570</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.994</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Reference:  Welch's t-test is used as a default. (Delacre, Lakens, &amp; Leys, International Review of Social Psychology, 2017).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.131</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.890</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Reference:  Welch's t-test is used as a default. (Delacre, Lakens, &amp; Leys, International Review of Social Psychology, 2017).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.364</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

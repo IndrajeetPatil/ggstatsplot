@@ -100,14 +100,14 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#'
+#' 
 #' # most basic function call with the defaults
 #' ggstatsplot::gghistostats(
 #'   data = datasets::ToothGrowth,
 #'   x = len,
 #'   xlab = "Tooth length"
 #' )
-#'
+#' 
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
@@ -214,7 +214,7 @@ gghistostats <-
 
     if (isTRUE(results.subtitle)) {
       # model
-      jmv_os <- jmv::ttestOneS(
+      jmv_results <- jmv::ttestOneS(
         data = data,
         vars = "x",
         students = TRUE,
@@ -233,26 +233,7 @@ gghistostats <-
       # preparing the BF message for NULL
       if (isTRUE(bf.message)) {
         bf.caption.text <-
-          base::substitute(
-            expr =
-              paste(
-                "In favor of null: ",
-                "log"["e"],
-                "(BF"["01"],
-                ") = ",
-                bf,
-                ", log"["e"],
-                "(error) = ",
-                bf_error,
-                "%, Prior width = ",
-                bf_prior
-              ),
-            env = base::list(
-              bf = ggstatsplot::specify_decimal_p(x = log(x = (1 / as.data.frame(jmv_os$ttest)$`stat[bf]`), base = exp(1)), k = 1),
-              bf_error = ggstatsplot::specify_decimal_p(x = log(x = (1 / as.data.frame(jmv_os$ttest)$`err[bf]`), base = exp(1)), k = 1),
-              bf_prior = ggstatsplot::specify_decimal_p(x = bf.prior, k = 3)
-            )
-          )
+          bf_message_ttest(jmv_results = jmv_results, bf.prior = bf.prior, caption = caption)
       }
       # ========================================== parametric ==================================================================
       if (type == "parametric" || type == "p") {
@@ -279,15 +260,15 @@ gghistostats <-
               n
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`stat[stud]`, k),
+            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
             # df is integer value for Student's t-test
-            df = as.data.frame(jmv_os$ttest)$`df[stud]`,
+            df = as.data.frame(jmv_results$ttest)$`df[stud]`,
             pvalue = ggstatsplot::specify_decimal_p(
-              x = as.data.frame(jmv_os$ttest)$`p[stud]`,
+              x = as.data.frame(jmv_results$ttest)$`p[stud]`,
               k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k),
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
             n = nrow(x = data)
           )
         )
@@ -316,13 +297,13 @@ gghistostats <-
               n
             ),
           env = base::list(
-            estimate = as.data.frame(jmv_os$ttest)$`stat[wilc]`,
+            estimate = as.data.frame(jmv_results$ttest)$`stat[wilc]`,
             pvalue = ggstatsplot::specify_decimal_p(
-              x = as.data.frame(jmv_os$ttest)$`p[wilc]`,
+              x = as.data.frame(jmv_results$ttest)$`p[wilc]`,
               k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[wilc]`, k),
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[wilc]`, k),
             n = nrow(x = data)
           )
         )
@@ -398,11 +379,11 @@ gghistostats <-
             ),
           env = base::list(
             # df is integer value for Student's t-test
-            df = as.data.frame(jmv_os$ttest)$`df[stud]`,
-            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`stat[stud]`, k),
-            bf = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_os$ttest)$`stat[bf]`, base = exp(1)), k = 1),
-            bf_error = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_os$ttest)$`err[bf]`, base = exp(1)), k = 1),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_os$ttest)$`es[stud]`, k),
+            df = as.data.frame(jmv_results$ttest)$`df[stud]`,
+            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
+            bf = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`stat[bf]`, base = exp(1)), k = 1),
+            bf_error = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`err[bf]`, base = exp(1)), k = 1),
+            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
             n = nrow(x = data)
           )
         )
@@ -515,6 +496,15 @@ gghistostats <-
         ggplot2::guides(fill = FALSE)
     }
 
+    # add message with bayes factor
+    if (isTRUE(results.subtitle)) {
+      if (type %in% c("parametric", "p")) {
+        if (isTRUE(bf.message)) {
+          caption <- bf.caption.text
+        }
+      }
+    }
+
     # adding the theme and labels
     plot <- plot +
       ggstatsplot::theme_mprl(ggtheme = ggtheme) +
@@ -618,18 +608,7 @@ gghistostats <-
         ggplot2::theme(legend.position = "none")
     }
 
-    # if caption is provided then use combine_plots function later on to add this caption
-    # add caption with bayes factor
-    if (isTRUE(results.subtitle)) {
-      if (type %in% c("parametric", "p")) {
-        if (isTRUE(bf.message)) {
-          plot <-
-            ggstatsplot::combine_plots(plot,
-              caption.text = bf.caption.text
-            )
-        }
-      }
-    }
+
 
     # ========================================== messages ==================================================================
     #

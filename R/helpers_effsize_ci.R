@@ -472,12 +472,12 @@ chisq_v_ci <- function(data,
 #'
 #' @title Robust correlation coefficient and its confidence interval
 #' @name robcor_ci
-#' @description Custom function to get confidence intervals for robust
+#' @description Custom function to get confidence intervals for percentage bend
 #'   correlation coefficient.
-#' @return A tibble with correlation coefficient, along with its confidence
-#'   intervals, and the number of bootstrap samples used to generate confidence
-#'   intervals. Additionally, it also includes information about sample size,
-#'   bending constant, no. of bootstrap samples, etc.
+#' @return A tibble with percentage bend correlation coefficient, along with its
+#'   confidence intervals, and the number of bootstrap samples used to generate
+#'   confidence intervals. Additionally, it also includes information about
+#'   sample size, bending constant, no. of bootstrap samples, etc.
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.

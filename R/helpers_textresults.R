@@ -104,3 +104,46 @@ mcnemar_subtitle <- function(jmv_chi,
   # return the subtitle
   return(results_subtitle)
 }
+
+
+# adding bayes factor message for null hypothesis for t-test (one-sample,
+# independent, or paired)
+
+bf_message_ttest <- function(jmv_results, bf.prior, caption) {
+  if (!is.null(caption)) {
+    caption <- paste(caption, "; \n", sep = "")
+  }
+
+  # prepare the bayes factor message
+  bf_message <- base::substitute(
+    expr =
+      paste(
+        y,
+        "In favor of null: ",
+        "log"["e"],
+        "(BF"["01"],
+        ") = ",
+        bf,
+        ", log"["e"],
+        "(error) = ",
+        bf_error,
+        "%, Prior width = ",
+        bf_prior
+      ),
+    env = base::list(
+      y = caption,
+      bf = ggstatsplot::specify_decimal_p(x = log(
+        x = (1 / as.data.frame(jmv_results$ttest)$`stat[bf]`),
+        base = exp(1)
+      ), k = 1),
+      bf_error = ggstatsplot::specify_decimal_p(x = log(
+        x = (1 / as.data.frame(jmv_results$ttest)$`err[bf]`),
+        base = exp(1)
+      ), k = 1),
+      bf_prior = ggstatsplot::specify_decimal_p(x = bf.prior, k = 3)
+    )
+  )
+
+  # return the message
+  return(bf_message)
+}

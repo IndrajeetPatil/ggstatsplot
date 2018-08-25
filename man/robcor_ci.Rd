@@ -156,13 +156,13 @@ intervals required. The value should be any subset of the values \code{"norm"},
 }}
 }
 \value{
-A tibble with correlation coefficient, along with its confidence
-intervals, and the number of bootstrap samples used to generate confidence
-intervals. Additionally, it also includes information about sample size,
-bending constant, no. of bootstrap samples, etc.
+A tibble with percentage bend correlation coefficient, along with its
+confidence intervals, and the number of bootstrap samples used to generate
+confidence intervals. Additionally, it also includes information about
+sample size, bending constant, no. of bootstrap samples, etc.
 }
 \description{
-Custom function to get confidence intervals for robust
+Custom function to get confidence intervals for percentage bend
 correlation coefficient.
 }
 \keyword{internal}

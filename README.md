@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--21-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--25-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -73,7 +73,7 @@ utils::install.packages(pkgs = "ggstatsplot")
 ```
 
 You can get the **development** version of the package from GitHub
-(`0.0.4.9000`). To see what new changes (and bug fixes) have been made
+(`0.0.5.9000`). To see what new changes (and bug fixes) have been made
 to the package since the last release on `CRAN`, you can check the
 detailed log of changes here:
 <https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
@@ -154,13 +154,14 @@ For example-
 
 ``` r
 args(name = ggstatsplot::ggscatterstats)
-#> function (data, x, y, xlab = NULL, ylab = NULL, line.size = 1.5, 
-#>     line.color = "blue", marginal = TRUE, marginal.type = "histogram", 
-#>     marginal.size = 5, margins = c("both", "x", "y"), width.jitter = NULL, 
-#>     height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00", 
-#>     xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL, 
-#>     type = "pearson", results.subtitle = NULL, title = NULL, 
-#>     caption = NULL, nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE, 
+#> function (data, x, y, xlab = NULL, ylab = NULL, method = "lm", 
+#>     method.args = list(), formula = y ~ x, line.size = 1.5, line.color = "blue", 
+#>     marginal = TRUE, marginal.type = "histogram", marginal.size = 5, 
+#>     margins = c("both", "x", "y"), width.jitter = NULL, height.jitter = NULL, 
+#>     xfill = "#009E73", yfill = "#D55E00", xalpha = 1, yalpha = 1, 
+#>     xsize = 0.7, ysize = 0.7, centrality.para = NULL, type = "pearson", 
+#>     results.subtitle = TRUE, title = NULL, subtitle = NULL, caption = NULL, 
+#>     nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE, 
 #>     ggtheme = ggplot2::theme_bw(), messages = TRUE) 
 #> NULL
 ```
@@ -207,7 +208,7 @@ ggstatsplot::theme_mprl
 #>       )
 #>     )
 #> }
-#> <bytecode: 0x000000002ae6ef90>
+#> <bytecode: 0x000000002aee63c0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -256,15 +257,24 @@ ggstatsplot::ggbetweenstats(
   x = Species, 
   y = Sepal.Length,
   messages = FALSE
-)
+) +                                               # further modification outside of ggstatsplot
+  ggplot2::coord_cartesian(ylim = c(3, 8)) + 
+  ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
 ```
 
 <img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />
 
+Note that this function returns a `ggplot2` object and thus any of the
+graphics layers can be further modified.
+
+The `type` (of test) argument also accepts the following abbreviations:
+`"p"` (for *parametric*) or `"np"` (for *nonparametric*) or `"r"` (for
+*robust*) or `"bf"` (for *Bayes Factor*). Additionally, the type of plot
+to be displayed can also be modified (`"box"`, `"violin"`, or
+`"boxviolin"`).
+
 A number of other arguments can be specified to make this plot even more
-informative or change some of the default options. Additionally, this
-function returns a `ggplot2` object and thus any of the graphics layers
-can be further modified:
+informative or change some of the default options.
 
 ``` r
 library(ggplot2)
@@ -290,7 +300,8 @@ ggstatsplot::ggbetweenstats(
   mean.plotting = TRUE,                           # whether mean for each group is to be displayed 
   mean.ci = TRUE,                                 # whether to display confidence interval for means
   mean.label.size = 2.5,                          # size of the label for mean
-  type = "parametric",                            # which type of test is to be run
+  type = "p",                                     # which type of test is to be run
+  bf.message = TRUE,                              # add a message with bayes factor in favor of the null
   k = 2,                                          # number of decimal places for statistical results
   outlier.tagging = TRUE,                         # whether outliers need to be tagged
   outlier.label = Sepal.Width,                    # variable to be used for the outlier tag
@@ -298,23 +309,26 @@ ggstatsplot::ggbetweenstats(
   xlab = "Type of Species",                       # label for the x-axis variable
   ylab = "Attribute: Sepal Length",               # label for the y-axis variable
   title = "Dataset: Iris flower data set",        # title text for the plot
-  caption = expression(                           # caption text for the plot 
-    paste(italic("Note"), ": this is a demo")
-  ),
   ggtheme = ggplot2::theme_grey(),                # choosing a different theme
   palette = "Set1",                               # choosing a different color palette
   messages = FALSE
-) +                                               # further modification outside of ggstatsplot
-  ggplot2::coord_cartesian(ylim = c(3, 8)) + 
-  ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
+) 
 ```
 
 <img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
 
-The `type` (of test) argument also accepts the following abbreviations:
-`"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"` (for
-*robust*). Additionally, the type of plot to be displayed can also be
-modified (`"box"`, `"violin"`, or `"boxviolin"`).
+In case of a parametric t-test, setting `bf.message = TRUE` will also
+attach results from Bayesian Student’s *t*-test. That way, if the null
+hypothesis can’t be rejected with the NHST approach, the Bayesian
+approach can help index evidence in favor of the null hypothesis (i.e.,
+`BF01`).
+
+By default, Bayes Factor quantifies the support for the alternative
+hypothesis (H1) over the null hypothesis (H0) (i.e., `BF10` is
+displayed). Natural logarithms are shown because BF values can be pretty
+large. This also makes it easy to compare evidence in favor alternative
+(`BF10`) versus null (`BF01`) hypotheses (since `log(BF10) = -
+log(BF01)`).
 
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
@@ -514,8 +528,8 @@ ggstatsplot::gghistostats(
 <img src="man/figures/README-gghistostats1-1.png" width="100%" />
 
 The `type` (of test) argument also accepts the following abbreviations:
-`"p"` (for *parametric*) or `"np"` (for *nonparametric*) or `"bf"` (for
-*Bayes Factor*).
+`"p"` (for *parametric*) or `"np"` (for *nonparametric*) or `"r"` (for
+*robust*) or `"bf"` (for *Bayes Factor*).
 
 ``` r
 ggstatsplot::gghistostats(
@@ -538,25 +552,16 @@ ggstatsplot::gghistostats(
 
 <img src="man/figures/README-gghistostats2-1.png" width="100%" />
 
-As seen here, by default, Bayes Factor quantifies the support for the
-alternative hypothesis (H1) over the null hypothesis (H0) (i.e., `BF10`
-is displayed). Natural logarithms are shown because BF values can be
-pretty large. This also makes it easy to compare evidence in favor
-alternative (`BF10`) versus null (`BF01`) hypotheses (since `log(BF10) =
-- log(BF01)`).
-
-In case of a parametric t-test, setting `bf.message = TRUE` will also
-attach results from Bayesian one-sample t-test. That way, if the null
-hypothesis can’t be rejected with the NHST approach, the Bayesian
-approach can help index evidence in favor of the null hypothesis (i.e.,
-BF01).
+Again, bayes factor can be attached to assess evidence in favor of the
+null hypothesis:
 
 ``` r
 ggstatsplot::gghistostats(
   data = datasets::ToothGrowth,
   title = "Distribution of Sepal.Length",
   x = len,
-  fill.gradient = TRUE,                          
+  fill.gradient = FALSE,                         # turn off color gradient                          
+  bar.fill = "grey50",                           # a uniform color fill for the bars
   test.value = 20,                               # different test value
   test.value.line = TRUE,
   test.value.color = "black",

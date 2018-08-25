@@ -164,8 +164,10 @@ gapminder::gapminder %>%
   )
 ```
 
-As this analysis shows, Bayes Factor value provides [**conclusive** evidence](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794) in favor of
-the alternative hypothesis: Life expectancy worldwide has improved significantly since 1957.
+Observed Bayes Factor value provides
+[**conclusive**](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794)
+evidence in favor of the alternative hypothesis: Life expectancy worldwide has
+improved significantly since 1957.
 
 ## Grouped analysis with `grouped_gghistostats`
 
@@ -236,8 +238,8 @@ the group). This is not possible `grouped_gghistostats` function, but can be
 easily achieved with `purrr` package from tidyverse.
 
 **Note before**:
-* Unlike the function call so far, while using `purrr::pmap`, we will need to *quote* the arguments.
-* You can use `ggplot2` themes from extension packages (like `ggthemes`).  
+  * Unlike the function call so far, while using `purrr::pmap`, we will need to *quote* the arguments.
+  * You can use `ggplot2` themes from extension packages (like `ggthemes`).  
 
 ```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 12}
 # for reproducibility

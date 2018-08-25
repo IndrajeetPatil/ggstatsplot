@@ -99,7 +99,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-21</h4>
+            <h4 class="date">2018-08-25</h4>
       
       
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -522,16 +522,17 @@ ggstatsplot::ggcoefstats(
 <a class="sourceLine" id="cb9-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">    <span class="dt">formula =</span> Survived <span class="op">~</span><span class="st"> </span>Sex <span class="op">+</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>(Sex <span class="op">+</span><span class="st"> </span>Age <span class="op">|</span><span class="st"> </span>Class),</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">    <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"logit"</span>),</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">    <span class="dt">control =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmerControl">glmerControl</a></span>(</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8">      <span class="dt">optimizer =</span> <span class="st">"Nelder_Mead"</span>,</a>
-<a class="sourceLine" id="cb9-9" data-line-number="9">      <span class="dt">calc.derivs =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb9-10" data-line-number="10">      <span class="dt">boundary.tol =</span> <span class="fl">1e-7</span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11">    )</a>
-<a class="sourceLine" id="cb9-12" data-line-number="12">  ),</a>
-<a class="sourceLine" id="cb9-13" data-line-number="13">  <span class="dt">exponentiate =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb9-14" data-line-number="14">)</a></code></pre></div>
+<a class="sourceLine" id="cb9-5" data-line-number="5">    <span class="co"># select half of the sample to reduce the time of execution</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">    <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"logit"</span>),</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">    <span class="dt">control =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmerControl">glmerControl</a></span>(</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9">      <span class="dt">optimizer =</span> <span class="st">"Nelder_Mead"</span>,</a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">      <span class="dt">calc.derivs =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb9-11" data-line-number="11">      <span class="dt">boundary.tol =</span> <span class="fl">1e-7</span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12">    )</a>
+<a class="sourceLine" id="cb9-13" data-line-number="13">  ),</a>
+<a class="sourceLine" id="cb9-14" data-line-number="14">  <span class="dt">exponentiate =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb9-15" data-line-number="15">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glmer-1.png" width="576"></p>
 <p>As we had expected, once we take into account the differential relationship that might exist between survival and predictors across different passenger classes, only the sex factor remain a significant predictor (also see the <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html"><code>ggspiestats</code></a> vignette where we had explored this dataset). In other words, being a female was the strongest predictor of whether someone survived the tragedy that befell the Titanic.</p>
 </div>
@@ -546,7 +547,7 @@ ggstatsplot::ggcoefstats(
 <a class="sourceLine" id="cb10-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co"># running the function for each type of harm and creating a list of plots</span></a>
 <a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co"># to speed up calculations, we will use just half of the dataset</span></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">plotlist &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>intent_morality, id <span class="op">&lt;=</span><span class="st"> </span><span class="dv">250</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">plotlist &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>intent_morality, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">plot.title =</span> harm) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>harm) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-10" data-line-number="10"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(</a>
@@ -610,7 +611,7 @@ ggstatsplot::ggcoefstats(
 <a class="sourceLine" id="cb12-6" data-line-number="6">    <span class="dt">formula =</span> <span class="kw">as.factor</span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>(belief <span class="op">+</span><span class="st"> </span>outcome <span class="op">|</span></a>
 <a class="sourceLine" id="cb12-7" data-line-number="7"><span class="st">                                                        </span>harm),</a>
 <a class="sourceLine" id="cb12-8" data-line-number="8">    <span class="dt">link =</span> <span class="st">"logit"</span>,</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>intent_morality, id <span class="op">&lt;=</span><span class="st"> </span><span class="dv">250</span>),</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>intent_morality, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
 <a class="sourceLine" id="cb12-10" data-line-number="10">    <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ordinal/topics/clmm.control">clmm.control</a></span>(</a>
 <a class="sourceLine" id="cb12-11" data-line-number="11">      <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
 <a class="sourceLine" id="cb12-12" data-line-number="12">      <span class="dt">gradTol =</span> <span class="fl">1e-4</span>,</a>

@@ -63,25 +63,43 @@ ggstatsplot::ggbetweenstats(
   data = datasets::iris,
   x = Species,
   y = Sepal.Length,
+  messages = FALSE,
   ggtheme = ggplot2::theme_grey()          # selected ggplot2 theme
 )
 ```
 
-Another example with `ggscatterstats` (note that the theme is now taken from
-`ggthemes` package):
+Let's see another example with `ggscatterstats`, and note that the theme is now
+taken from the `ggthemes` package:
 
 ```{r theme2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 ggstatsplot::ggscatterstats(
   data = datasets::iris,
   x = Sepal.Width,
   y = Sepal.Length,
+  messages = FALSE,
   ggtheme = ggthemes::theme_tufte()       # selected theme
+)
+```
+
+Yet another example with `gghistostats`, and note that the theme is now taken from
+the `hrbrthemes` package:
+
+```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+ggstatsplot::gghistostats(
+  data = datasets::iris,
+  x = Sepal.Width,
+  messages = FALSE,
+  title = "Distribution of Sepal Width",
+  bf.message = TRUE,
+  test.value = 5,
+  bar.fill = "#D55E00",
+  ggtheme = hrbrthemes::theme_ipsum()
 )
 ```
 
 The only exception for how `ggtheme` argument is to be entered is `ggcorrmat`
 function where the theme should **not** be entered as a function.
-```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+```{r theme4, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),

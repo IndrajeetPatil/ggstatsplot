@@ -18,8 +18,9 @@
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
-#'   or `"robust"`).Corresponding abbreviations are also accepted: `"p"` (for
-#'   parametric), `"np"` (nonparametric), `"r"` (robust), resp.
+#'   or `"robust"` or `"bayes"`).Corresponding abbreviations are also accepted:
+#'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
+#'   `"bf"`resp.
 #' @param effsize.type Type of effect size needed for *parametric* tests
 #'   (`"biased"` (Cohen's *d* for **t-test**; partial eta-squared for **anova**)
 #'   or `"unbiased"` (Hedge's *g* for **t-test**; partial omega-squared for
@@ -27,6 +28,10 @@
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the 95% confidence interval for Cohen's *d*
 #'   or Hedge's *g* (Default: `FALSE`).
+#' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
+#'   to use in calculating Bayes factors.
+#' @param bf.message Logical. Decides whether to display Bayes Factor in favor
+#'   of *null* hypothesis **for parametric test** (Default: `bf.message = FALSE`).
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param sample.size.label Logical that decides whether sample size information
@@ -173,6 +178,8 @@ ggbetweenstats <- function(data,
                            type = "parametric",
                            effsize.type = "unbiased",
                            effsize.noncentral = FALSE,
+                           bf.prior = 0.707,
+                           bf.message = FALSE,
                            xlab = NULL,
                            ylab = NULL,
                            caption = NULL,
@@ -335,23 +342,6 @@ ggbetweenstats <- function(data,
         na.rm = TRUE
       )
   }
-  # specifying theme and labels for the final plot
-  plot <- plot +
-    ggstatsplot::theme_mprl(ggtheme = ggtheme) +
-    ggplot2::theme(legend.position = "none") +
-    ggplot2::labs(
-      x = xlab,
-      y = ylab,
-      title = title,
-      caption = caption
-    ) +
-    ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-    ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
-
-  # choosing palette
-  plot <- plot +
-    ggplot2::scale_fill_brewer(palette = palette) +
-    ggplot2::scale_color_brewer(palette = palette)
 
   ################################################  preparing stats subtitles #########################################
 
@@ -650,9 +640,24 @@ ggbetweenstats <- function(data,
         ggplot2::labs(subtitle = rsubtitle_robaov)
     }
   } else if (test == "t-test") {
-    # if type of test is not specified, then use the default, which is parametric test
-    if (is.null(type)) {
-      type <- "parametric"
+
+    # running bayesian analysis
+    jmv_results <- jmv::ttestIS(
+      data = data,
+      vars = "y",
+      group = "x",
+      students = TRUE,
+      effectSize = TRUE,
+      bf = TRUE,
+      bfPrior = bf.prior,
+      hypothesis = "different",
+      miss = "listwise"
+    )
+
+    # preparing the BF message for NULL
+    if (isTRUE(bf.message)) {
+      bf.caption.text <-
+        bf_message_ttest(jmv_results = jmv_results, bf.prior = bf.prior, caption = caption)
     }
 
     ##################################### parametric t-test ############################################################
@@ -942,8 +947,77 @@ ggbetweenstats <- function(data,
           t_robust_stat = t_robust_stat,
           t_robust_effsize = t_robust_effsize
         ))
+    } else if (type == "bayes" || type == "bf") {
+      ######################################### bayes factor ############################################################
+      # preparing the subtitle
+      bf_subtitle <- base::substitute(
+        expr =
+          paste(
+            italic("t"),
+            "(",
+            df,
+            ") = ",
+            estimate,
+            ", log"["e"],
+            "(BF"["10"],
+            ") = ",
+            bf,
+            ", log"["e"],
+            "(error) = ",
+            bf_error,
+            "% , ",
+            italic("d"),
+            " = ",
+            effsize,
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          # df is integer value for Student's t-test
+          df = as.data.frame(jmv_results$ttest)$`df[stud]`,
+          estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
+          bf = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`stat[bf]`, base = exp(1)), k = 1),
+          bf_error = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`err[bf]`, base = exp(1)), k = 1),
+          effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
+          n = nrow(x = data)
+        )
+      )
+
+      # adding subtitle to the plot
+      plot <-
+        plot +
+        ggplot2::labs(subtitle = bf_subtitle)
     }
   }
+
+  # add message with bayes factor
+  if (test == "t-test") {
+    if (type %in% c("parametric", "p")) {
+      if (isTRUE(bf.message)) {
+        caption <- bf.caption.text
+      }
+    }
+  }
+
+  # specifying theme and labels for the final plot
+  plot <- plot +
+    ggplot2::labs(
+      x = xlab,
+      y = ylab,
+      title = title,
+      caption = caption
+    ) +
+    ggstatsplot::theme_mprl(ggtheme = ggtheme) +
+    ggplot2::theme(legend.position = "none") +
+    ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
+    ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+
+  # choosing palette
+  plot <- plot +
+    ggplot2::scale_fill_brewer(palette = palette) +
+    ggplot2::scale_color_brewer(palette = palette)
 
   ########################################### outlier tagging #########################################################
 

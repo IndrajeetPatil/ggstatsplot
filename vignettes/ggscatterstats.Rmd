@@ -97,7 +97,7 @@ ratings is explained by budget.
 
 The `type` (of test) argument also accepts the following abbreviations: `"p"`
 (for *parametric*/pearson's), `"np"` (for *nonparametric*/spearman), `"r"` (for
-*robust*).
+*robust*). 
 
 **Important**: 
 In contrast to all other functions in this package, the
@@ -201,7 +201,7 @@ names(mpaa_list)
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to
 # specify it just once
-plot_list <- purrr::pmap(
+plot_list1 <- purrr::pmap(
   .l = list(
     data = mpaa_list,
     x = "budget",
@@ -215,6 +215,7 @@ plot_list <- purrr::pmap(
       "MPAA Rating: R"
     ),
     type = list("r", "np", "np", "np"),
+    method = list(MASS::rlm, "lm", "lm", "lm"),
     marginal.type = list("histogram", "boxplot", "density", "violin"),
     centrality.para = "mean",
     xfill = list("#56B4E9", "#009E73", "#999999", "#0072B2"),
@@ -232,7 +233,7 @@ plot_list <- purrr::pmap(
   
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
-  plotlist = plot_list,
+  plotlist = plot_list1,
   title.text = "Relationship between movie budget and IMDB rating",
   caption.text = "Source: www.imdb.com",
   caption.size = 16,
@@ -241,6 +242,57 @@ ggstatsplot::combine_plots(
   nrow = 4,
   ncol = 1,
   labels = c("(a)","(b)","(c)","(d)")
+)
+```
+
+Additionally, different smoothing methods can be specified. For example, if a
+robust correlation (percentage bend correlation coefficient) is used, we can use
+a robust smoothing function (`MASS::rlm`). Additionally, we can also specify
+different formulas to use for smoothing function. It is **important** that you
+set `results.subtitle = FALSE` since the results will no longer be relevant for
+the smoothing function used. Below, four different examples are given for how to
+use different smoothing functions.
+
+```{r grouped3, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 12}
+# for reproducibility
+set.seed(123)
+
+# creating a list of plots with different smoothing functions
+plot_list2 <- purrr::pmap(
+  .l = list(
+    data = list(dplyr::sample_frac(tbl = ggstatsplot::movies_wide, size = 0.10)),
+    x = "budget",
+    y = "rating",
+    title = list(
+      "Robust linear model using an M estimator (rlm)",
+      "Generalized additive model (GAM) with a penalized smoother",
+      "Local Polynomial Regression Fitting",
+      "Quadratic fit"
+    ),
+    method = list(MASS::rlm, 
+                  "gam", 
+                  "loess", 
+                  "lm"),
+    formula = list(y ~ x, 
+                   y ~ mgcv::s(x, k = 3), 
+                   y ~ x, 
+                   y ~ x + I(x ^ 2)),
+    line.color = list("#009E73", "#F0E442", "#0072B2", "#D55E00"),
+    marginal = FALSE,
+    results.subtitle = FALSE,
+    messages = FALSE
+  ),
+  .f = ggstatsplot::ggscatterstats
+)
+
+# combining all individual plots from the list into a single plot using combine_plots function
+ggstatsplot::combine_plots(
+  plotlist = plot_list2,
+  title.text = "Trying out different smoothing functions with ggscatterstats",
+  caption.text = "Source: www.imdb.com",
+  nrow = 2,
+  ncol = 2,
+  labels = c("(a)", "(b)", "(c)", "(d)")
 )
 ```
 

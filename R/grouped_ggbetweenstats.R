@@ -45,9 +45,10 @@
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = mtcars,
-#'   x = cyl,
+#'   x = am,
 #'   y = wt,
-#'   grouping.var = am
+#'   grouping.var = cyl,
+#'   bf.message = TRUE
 #' )
 #' @export
 #'
@@ -62,6 +63,8 @@ grouped_ggbetweenstats <- function(data,
                                    type = "parametric",
                                    effsize.type = "unbiased",
                                    effsize.noncentral = FALSE,
+                                   bf.prior = 0.707,
+                                   bf.message = FALSE,
                                    xlab = NULL,
                                    ylab = NULL,
                                    caption = NULL,
@@ -157,6 +160,8 @@ grouped_ggbetweenstats <- function(data,
               type = type,
               effsize.type = effsize.type,
               effsize.noncentral = effsize.noncentral,
+              bf.prior = bf.prior,
+              bf.message = bf.message,
               xlab = xlab,
               ylab = ylab,
               caption = caption,
@@ -209,6 +214,8 @@ grouped_ggbetweenstats <- function(data,
               type = type,
               effsize.type = effsize.type,
               effsize.noncentral = effsize.noncentral,
+              bf.prior = bf.prior,
+              bf.message = bf.message,
               xlab = xlab,
               ylab = ylab,
               caption = caption,

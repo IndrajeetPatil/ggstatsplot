@@ -99,7 +99,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-21</h4>
+            <h4 class="date">2018-08-25</h4>
       
       
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -278,7 +278,7 @@
 <a href="#grouped-analysis-with-ggbetweenstats-purrr" class="anchor"></a>Grouped analysis with <code>ggbetweenstats</code> + <code>purrr</code>
 </h2>
 <p>Although this grouping function provides a quick way to explore the data, it leaves much to be desired. For example, the same type of plot and test is applied for all years, but maybe we want to change this for different years, or maybe we want to gave different effect sizes for different years. This type of customization for different levels of a grouping variable is not possible with <code>grouped_ggbetweenstats</code>, but we will see how this can be easily achieved using the <code>purrr</code> package.</p>
-<p><strong>Note before</strong>: Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments.</p>
+<p><strong>Note before</strong>: * Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments. * You can use <code>ggplot2</code> themes from extension packages (like <code>ggthemes</code>).</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"></a>
@@ -348,10 +348,10 @@
 <a class="sourceLine" id="cb6-67" data-line-number="67">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
 <a class="sourceLine" id="cb6-68" data-line-number="68">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
 <a class="sourceLine" id="cb6-69" data-line-number="69">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb6-70" data-line-number="70">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),</a>
+<a class="sourceLine" id="cb6-70" data-line-number="70">      ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
 <a class="sourceLine" id="cb6-71" data-line-number="71">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
-<a class="sourceLine" id="cb6-72" data-line-number="72">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>(),</a>
-<a class="sourceLine" id="cb6-73" data-line-number="73">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_void</a></span>()</a>
+<a class="sourceLine" id="cb6-72" data-line-number="72">      ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_wsj">theme_wsj</a></span>(),</a>
+<a class="sourceLine" id="cb6-73" data-line-number="73">      ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_calc">theme_calc</a></span>()</a>
 <a class="sourceLine" id="cb6-74" data-line-number="74">    ),</a>
 <a class="sourceLine" id="cb6-75" data-line-number="75">    <span class="dt">sample.size.label =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb6-76" data-line-number="76">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
@@ -368,7 +368,7 @@
 <a class="sourceLine" id="cb6-87" data-line-number="87">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb6-88" data-line-number="88">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
 <a class="sourceLine" id="cb6-89" data-line-number="89">)</a></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/grouped2-1.png" width="672"></p>
+<p><img src="ggbetweenstats_files/figure-html/grouped2-1.png" width="768"></p>
 </div>
 <div id="within-subjects-designs" class="section level2">
 <h2 class="hasAnchor">

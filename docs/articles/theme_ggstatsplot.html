@@ -99,7 +99,7 @@
       <h1>ggstatsplot theme</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-21</h4>
+            <h4 class="date">2018-08-25</h4>
       
       
       <div class="hidden name"><code>theme_ggstatsplot.Rmd</code></div>
@@ -138,27 +138,39 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">x =</span> Species,</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">y =</span> Sepal.Length,</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>()          <span class="co"># selected ggplot2 theme</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; Reference:  Welch's ANOVA is used as a default. (Delacre, Leys, Mora, &amp; Lakens, PsyArXiv, 2018).Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  &lt; 0.001</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>()          <span class="co"># selected ggplot2 theme</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">)</a></code></pre></div>
 <p><img src="theme_ggstatsplot_files/figure-html/theme1-1.png" width="100%"></p>
-<p>Another example with <code>ggscatterstats</code> (note that the theme is now taken from <code>ggthemes</code> package):</p>
+<p>Let’s see another example with <code>ggscatterstats</code>, and note that the theme is now taken from the <code>ggthemes</code> package:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">x =</span> Sepal.Width,</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">y =</span> Sepal.Length,</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>()       <span class="co"># selected theme</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; Warning: This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions.</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>()       <span class="co"># selected theme</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">)</a></code></pre></div>
 <p><img src="theme_ggstatsplot_files/figure-html/theme2-1.png" width="100%"></p>
-<p>The only exception for how <code>ggtheme</code> argument is to be entered is <code>ggcorrmat</code> function where the theme should <strong>not</strong> be entered as a function.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
+<p>Yet another example with <code>gghistostats</code>, and note that the theme is now taken from the <code>hrbrthemes</code> package:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(Sepal.Length<span class="op">:</span>Petal.Width),</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">type =</span> <span class="st">"upper"</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span>theme_dark            <span class="co"># selected ggplot2 theme</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">)</a></code></pre></div>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">x =</span> Sepal.Width,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">title =</span> <span class="st">"Distribution of Sepal Width"</span>,</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="dt">test.value =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">bar.fill =</span> <span class="st">"#D55E00"</span>,</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum">theme_ipsum</a></span>()</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">)</a></code></pre></div>
 <p><img src="theme_ggstatsplot_files/figure-html/theme3-1.png" width="100%"></p>
+<p>The only exception for how <code>ggtheme</code> argument is to be entered is <code>ggcorrmat</code> function where the theme should <strong>not</strong> be entered as a function.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(Sepal.Length<span class="op">:</span>Petal.Width),</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="dt">type =</span> <span class="st">"upper"</span>,</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span>theme_dark            <span class="co"># selected ggplot2 theme</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">)</a></code></pre></div>
+<p><img src="theme_ggstatsplot_files/figure-html/theme4-1.png" width="100%"></p>
 </div>
 <div id="suggestions" class="section level2">
 <h2 class="hasAnchor">

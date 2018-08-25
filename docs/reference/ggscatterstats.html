@@ -146,15 +146,17 @@ subtitle.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
+    <pre class="usage"><span class='fu'>ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
+  <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
   <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
   <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>),
   <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>,
   <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>yalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xsize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
   <span class='kw'>ysize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,6 +181,31 @@ taken.</p></td>
     <tr>
       <th>ylab</th>
       <td><p>Label for <code>y</code> axis variable.</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>Smoothing method (function) to use, accepts either a character vector,
+e.g. <code>"auto"</code>, <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code> or a function, e.g.
+<code><a href='http://www.rdocumentation.org/packages/MASS/topics/rlm'>MASS::rlm</a></code> or <code><a href='http://www.rdocumentation.org/packages/mgcv/topics/gam'>mgcv::gam</a></code>, <code>base::lm</code>, or <code>base::loess</code>.</p>
+<p>For <code>method = "auto"</code> the smoothing method is chosen based on the
+size of the largest group (across all panels). <code>loess()</code> is
+used for less than 1,000 observations; otherwise <code><a href='http://www.rdocumentation.org/packages/mgcv/topics/gam'>mgcv::gam()</a></code> is
+used with <code>formula = y ~ s(x, bs = "cs")</code>. Somewhat anecdotally,
+<code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
+so does not work for larger datasets.</p>
+<p>If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
+model that <code>method = "auto"</code> would use, then set
+<code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></td>
+    </tr>
+    <tr>
+      <th>method.args</th>
+      <td><p>List of additional arguments passed on to the modelling
+function defined by <code>method</code>.</p></td>
+    </tr>
+    <tr>
+      <th>formula</th>
+      <td><p>Formula to use in smoothing function, eg. <code>y ~ x</code>,
+<code>y ~ poly(x, 2)</code>, <code>y ~ log(x)</code></p></td>
     </tr>
     <tr>
       <th>line.size</th>
@@ -245,10 +272,10 @@ or <code>"median"</code>) is to be displayed as vertical (for <code>x</code>) an
       <th>type</th>
       <td><p>Type of association between paired samples required
 ("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
-"<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: Robust regression using
-an M estimator"). Corresponding abbreviations are also accepted: <code>"p"</code> (for
-parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
-resp.</p></td>
+"<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
+correlation coefficient"). Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</code>
+(robust), resp.</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
@@ -258,6 +285,11 @@ to be displayed as subtitle.</p></td>
     <tr>
       <th>title</th>
       <td><p>The text for the plot title.</p></td>
+    </tr>
+    <tr>
+      <th>subtitle</th>
+      <td><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>

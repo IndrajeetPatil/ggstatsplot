@@ -4,15 +4,17 @@
 \alias{ggscatterstats}
 \title{Scatterplot with marginal distributions}
 \usage{
-ggscatterstats(data, x, y, xlab = NULL, ylab = NULL, line.size = 1.5,
+ggscatterstats(data, x, y, xlab = NULL, ylab = NULL, method = "lm",
+  method.args = list(), formula = y ~ x, line.size = 1.5,
   line.color = "blue", marginal = TRUE, marginal.type = "histogram",
   marginal.size = 5, margins = c("both", "x", "y"),
   width.jitter = NULL, height.jitter = NULL, xfill = "#009E73",
   yfill = "#D55E00", xalpha = 1, yalpha = 1, xsize = 0.7,
   ysize = 0.7, centrality.para = NULL, type = "pearson",
-  results.subtitle = NULL, title = NULL, caption = NULL,
-  nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE,
-  ggtheme = ggplot2::theme_bw(), messages = TRUE)
+  results.subtitle = TRUE, title = NULL, subtitle = NULL,
+  caption = NULL, nboot = 100, beta = 0.1, k = 3,
+  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -25,6 +27,27 @@ taken.}
 \item{xlab}{Label for \code{x} axis variable.}
 
 \item{ylab}{Label for \code{y} axis variable.}
+
+\item{method}{Smoothing method (function) to use, accepts either a character vector,
+e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
+\code{MASS::rlm} or \code{mgcv::gam}, \code{base::lm}, or \code{base::loess}.
+
+For \code{method = "auto"} the smoothing method is chosen based on the
+size of the largest group (across all panels). \code{\link[=loess]{loess()}} is
+used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
+used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
+\code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
+so does not work for larger datasets.
+
+If you have fewer than 1,000 observations but want to use the same \code{gam()}
+model that \code{method = "auto"} would use, then set
+\code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
+
+\item{method.args}{List of additional arguments passed on to the modelling
+function defined by \code{method}.}
+
+\item{formula}{Formula to use in smoothing function, eg. \code{y ~ x},
+\code{y ~ poly(x, 2)}, \code{y ~ log(x)}}
 
 \item{line.size}{Size for the regression line.}
 
@@ -65,15 +88,18 @@ or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
-"\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: Robust regression using
-an M estimator"). Corresponding abbreviations are also accepted: \code{"p"} (for
-parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
-resp.}
+"\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
+correlation coefficient"). Corresponding abbreviations are also accepted:
+\code{"p"} (for parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"}
+(robust), resp.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle.}
 
 \item{title}{The text for the plot title.}
+
+\item{subtitle}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption.}
 

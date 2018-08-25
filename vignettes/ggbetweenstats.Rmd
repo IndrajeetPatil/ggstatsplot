@@ -252,11 +252,12 @@ customization for different levels of a grouping variable is not possible with
 `grouped_ggbetweenstats`, but we will see how this can be easily achieved using
 the `purrr` package.
 
-**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
-will need to *quote* the arguments.
+**Note before**:
+  * Unlike the function call so far, while using `purrr::pmap`, we will need to *quote* the arguments.
+  * You can use `ggplot2` themes from extension packages (like `ggthemes`).
 
 
-```{r grouped2, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 7}
+```{r grouped2, warning = FALSE, message = FALSE, fig.height = 24, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
@@ -324,10 +325,10 @@ plot_list <- purrr::pmap(
     ggtheme = list(
       ggplot2::theme_grey(),
       ggplot2::theme_classic(),
-      ggplot2::theme_light(),
+      ggthemes::theme_fivethirtyeight(),
       ggplot2::theme_minimal(),
-      ggplot2::theme_bw(),
-      ggplot2::theme_void()
+      ggthemes::theme_wsj(),
+      ggthemes::theme_calc()
     ),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE),
     messages = FALSE
