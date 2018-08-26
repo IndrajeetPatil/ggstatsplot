@@ -5,6 +5,12 @@ MAJOR CHANGES
   (`fill.gradient = FALSE`) and shows both `"count"` and `"proportion"` data. It
   also gains a new argument `bar.fill` that can be used to fill bars with a
   uniform color.
+  - `ggbetweenstats` and `ggpiestats` now support all palettes contained in the
+  `paletteer` package. This helps avoid situations where people had large number
+  of groups (> 12) and there were not enough colors in any of the `RColorBrewer`
+  palettes.
+  - `ggbetweenstats` gains `bf.message` argument to display bayes factors in
+  favor of the null (currently works only for parametric t-test).
 
 MINOR CHANGES
   - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes

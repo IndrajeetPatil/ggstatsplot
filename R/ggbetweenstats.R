@@ -100,6 +100,7 @@
 #'   direction. Defaults to `0.60`.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @inheritParams paletteer::scale_color_paletteer_d
 #'
 #' @import ggplot2
 #'
@@ -140,6 +141,8 @@
 #' @importFrom crayon blue
 #' @importFrom crayon yellow
 #' @importFrom crayon red
+#' @importFrom paletteer scale_color_paletteer_d
+#' @importFrom paletteer scale_fill_paletteer_d
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}
 #'
@@ -207,7 +210,9 @@ ggbetweenstats <- function(data,
                            mean.size = 5,
                            mean.color = "darkred",
                            ggtheme = ggplot2::theme_bw(),
+                           package = "RColorBrewer",
                            palette = "Dark2",
+                           direction = 1,
                            point.jitter.width = NULL,
                            point.jitter.height = 0.1,
                            point.dodge.width = 0.60,
@@ -1026,8 +1031,16 @@ ggbetweenstats <- function(data,
 
   # choosing palette
   plot <- plot +
-    ggplot2::scale_fill_brewer(palette = palette) +
-    ggplot2::scale_color_brewer(palette = palette)
+    paletteer::scale_color_paletteer_d(
+      package = !!package,
+      palette = !!palette,
+      direction = direction
+    ) +
+    paletteer::scale_fill_paletteer_d(
+      package = !!package,
+      palette = !!palette,
+      direction = direction
+    )
 
   ########################################### outlier tagging #########################################################
 

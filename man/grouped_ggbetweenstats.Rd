@@ -19,8 +19,8 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
   point.jitter.height = 0.2, point.dodge.width = 0.75,
-  ggtheme = ggplot2::theme_bw(), palette = "Dark2", messages = TRUE,
-  ...)
+  ggtheme = ggplot2::theme_bw(), package = "RColorBrewer",
+  palette = "Dark2", direction = 1, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -156,9 +156,14 @@ direction. Defaults to \code{0.60}.}
 including \code{ggplot2::theme_grey()}, \code{ggplot2::theme_minimal()},
 \code{ggplot2::theme_classic()}, \code{ggplot2::theme_void()}, etc.}
 
+\item{package}{Name of package from which the palette is desired as string
+or symbol.}
+
 \item{palette}{If a character string (e.g., \code{"Set1"}), will use that named
 palette. If a number, will index into the list of palettes of appropriate
 type. Default palette is \code{"Dark2"}.}
+
+\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

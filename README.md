@@ -208,7 +208,7 @@ ggstatsplot::theme_mprl
 #>       )
 #>     )
 #> }
-#> <bytecode: 0x000000002aec2f48>
+#> <bytecode: 0x000000002af89ea0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -310,7 +310,8 @@ ggstatsplot::ggbetweenstats(
   ylab = "Attribute: Sepal Length",               # label for the y-axis variable
   title = "Dataset: Iris flower data set",        # title text for the plot
   ggtheme = ggplot2::theme_grey(),                # choosing a different theme
-  palette = "Set1",                               # choosing a different color palette
+  package = "wesanderson",                        # package from which color palette is to be taken
+  palette = "Darjeeling1",                        # choosing a different color palette
   messages = FALSE
 ) 
 ```
@@ -463,6 +464,8 @@ ggstatsplot::ggpiestats(
   factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names for 'main' variable 
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
   facet.proptest = FALSE,                             # turning of facetted proportion test results
+  package = "ggsci",                                  # package from which color palette is to be taken
+  palette = "default_jama",                           # choosing a different color palette 
   caption = expression(                               # text for the caption
     paste(italic("Note"), ": this is a demo")
   ),
@@ -495,7 +498,8 @@ ggstatsplot::ggpiestats(
   counts = Counts,
   paired = TRUE,                      # within-subjects design
   stat.title = "McNemar Test: ",
-  palette = "Set1"
+  package = "wesanderson",
+  palette = "Royal1"
 )
 ```
 
@@ -561,9 +565,9 @@ null hypothesis:
 ggstatsplot::gghistostats(
   data = datasets::ToothGrowth,
   title = "Distribution of Sepal.Length",
-  # caption = expression(                              
-  #   paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
-  # ),
+  caption = expression(
+    paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
+  ),
   x = len,
   fill.gradient = FALSE,                         # turn off color gradient                          
   bar.fill = "grey50",                           # a uniform color fill for the bars
@@ -576,6 +580,8 @@ ggstatsplot::gghistostats(
   bf.prior = 0.8,
   messages = FALSE
 )
+#> Warning: You are simultaneously setting `bf.message = TRUE` and using a `caption`. 
+#> This produces a fixed plot whose *internal* elements can no longer be modified with `ggplot2` functions.
 ```
 
 <img src="man/figures/README-gghistostats3-1.png" width="100%" />

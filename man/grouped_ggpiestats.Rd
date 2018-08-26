@@ -7,10 +7,10 @@
 grouped_ggpiestats(data, main, condition = NULL, counts = NULL,
   grouping.var, title.prefix = "Group", ratio = NULL, paired = FALSE,
   factor.levels = NULL, stat.title = NULL, sample.size.label = TRUE,
-  caption = NULL, nboot = 25, palette = "Dark2",
-  legend.title = NULL, facet.wrap.name = NULL, k = 3,
-  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
-  messages = TRUE, ...)
+  caption = NULL, nboot = 25, legend.title = NULL,
+  facet.wrap.name = NULL, k = 3, facet.proptest = TRUE,
+  ggtheme = ggplot2::theme_bw(), package = "RColorBrewer",
+  palette = "Dark2", direction = 1, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -56,10 +56,6 @@ should be displayed for each level of the grouping variable \code{condition} (De
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{25}).}
 
-\item{palette}{If a character string (e.g., \code{"Set1"}), will use that named
-palette. If a number, will index into the list of palettes of appropriate
-type. Default palette is \code{"Dark2"}}
-
 \item{legend.title}{Title of legend.}
 
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
@@ -73,6 +69,15 @@ to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
 \code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
 including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
 \code{theme_void()}, etc.}
+
+\item{package}{Name of package from which the palette is desired as string
+or symbol.}
+
+\item{palette}{If a character string (e.g., \code{"Set1"}), will use that named
+palette. If a number, will index into the list of palettes of appropriate
+type. Default palette is \code{"Dark2"}}
+
+\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

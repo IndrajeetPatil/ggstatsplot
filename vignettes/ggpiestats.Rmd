@@ -103,8 +103,9 @@ ggstatsplot::ggpiestats(
   facet.wrap.name = "Gender",                   # changing the facet wrap title
   facet.proptest = TRUE,                        # proportion test for each facet
   stat.title = "survival x gender: ",           # title for statistical test
-  palette = "Set1",                             # changing the color palette
-  ggtheme = ggplot2::theme_classic()            # changing plot theme 
+  ggtheme = ggplot2::theme_grey(),              # changing plot theme 
+  package = "yarrr",                            # package from which color palette is to be taken
+  palette = "southpark"                         # choosing a different color palette
 ) +                                             # further modification with ggplot2 commands
   ggplot2::theme(plot.subtitle = ggplot2::element_text(
     color = "black",
@@ -127,7 +128,9 @@ there were equal proportions of different age groups.
 ```{r ggpiestats3, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
 ggstatsplot::ggpiestats(
   data = ggstatsplot::Titanic_full,                          
-  main = Age
+  main = Age,
+  package = "wesanderson",
+  palette = "IsleofDogs1"
 )
 ```
 
@@ -180,7 +183,10 @@ ggstatsplot::grouped_ggpiestats(
   data = ggstatsplot::Titanic_full,
   main = Age,
   grouping.var = Class,
-  title.prefix = "Passenger Class"
+  title.prefix = "Passenger Class",
+  package = "ggsci",
+  palette = "category10_d3",
+  direction = -1
 ) 
 ```
 
@@ -228,11 +234,12 @@ plot_list <- purrr::pmap(
       "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
       "Not available"
     ),
-    palette = list("Accent", "Paired", "Pastel1", "Set2"),
+    package = list("RColorBrewer", "ghibli", "palettetown", "yarrr"),
+    palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
     ggtheme = list(
       ggplot2::theme_grey(),
       ggplot2::theme_classic(),
-      ggplot2::theme_light(),
+      ggthemes::theme_fivethirtyeight(),
       ggplot2::theme_minimal()
     ),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
@@ -305,7 +312,9 @@ ggstatsplot::ggpiestats(
   data = fishing,
   main = Fish,
   condition = Month,
-  counts = SumOfCaught
+  counts = SumOfCaught,
+  package = "ggsci",
+  palette = "default_jama"
 )
 
 ```
@@ -359,7 +368,9 @@ ggstatsplot::ggpiestats(data = clinical_trial,
                         paired = TRUE,
                         stat.title = "McNemar test: ",
                         title = "Results from case-control study",
-                        palette = "Accent") 
+                        package = "ggsci",
+                        palette = "default_ucscgb",
+                        direction = -1) 
 ```
 
 ## Suggestions

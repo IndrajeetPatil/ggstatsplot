@@ -234,7 +234,7 @@
 <a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt;       )</span></a>
 <a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt;     )</span></a>
 <a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; &lt;bytecode: 0x0000000028c72470&gt;</span></a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; &lt;bytecode: 0x0000000028ce0e38&gt;</span></a>
 <a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -303,9 +303,10 @@
 <a class="sourceLine" id="cb10-31" data-line-number="31">  <span class="dt">ylab =</span> <span class="st">"Attribute: Sepal Length"</span>,               <span class="co"># label for the y-axis variable</span></a>
 <a class="sourceLine" id="cb10-32" data-line-number="32">  <span class="dt">title =</span> <span class="st">"Dataset: Iris flower data set"</span>,        <span class="co"># title text for the plot</span></a>
 <a class="sourceLine" id="cb10-33" data-line-number="33">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),                <span class="co"># choosing a different theme</span></a>
-<a class="sourceLine" id="cb10-34" data-line-number="34">  <span class="dt">palette =</span> <span class="st">"Set1"</span>,                               <span class="co"># choosing a different color palette</span></a>
-<a class="sourceLine" id="cb10-35" data-line-number="35">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb10-36" data-line-number="36">) </a></code></pre></div>
+<a class="sourceLine" id="cb10-34" data-line-number="34">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,                        <span class="co"># package from which color palette is to be taken</span></a>
+<a class="sourceLine" id="cb10-35" data-line-number="35">  <span class="dt">palette =</span> <span class="st">"Darjeeling1"</span>,                        <span class="co"># choosing a different color palette</span></a>
+<a class="sourceLine" id="cb10-36" data-line-number="36">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb10-37" data-line-number="37">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
 <p>In case of a parametric t-test, setting <code>bf.message = TRUE</code> will also attach results from Bayesian Student’s <em>t</em>-test. That way, if the null hypothesis can’t be rejected with the NHST approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <code>BF01</code>).</p>
 <p>By default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., <code>BF10</code> is displayed). Natural logarithms are shown because BF values can be pretty large. This also makes it easy to compare evidence in favor alternative (<code>BF10</code>) versus null (<code>BF01</code>) hypotheses (since <code>log(BF10) = - log(BF01)</code>).</p>
@@ -406,11 +407,13 @@
 <a class="sourceLine" id="cb15-12" data-line-number="12">  <span class="dt">factor.levels =</span> <span class="kw">c</span>(<span class="st">"1 = manual"</span>, <span class="st">"0 = automatic"</span>),   <span class="co"># renaming the factor level names for 'main' variable </span></a>
 <a class="sourceLine" id="cb15-13" data-line-number="13">  <span class="dt">facet.wrap.name =</span> <span class="st">"No. of cylinders"</span>,               <span class="co"># name for the facetting variable</span></a>
 <a class="sourceLine" id="cb15-14" data-line-number="14">  <span class="dt">facet.proptest =</span> <span class="ot">FALSE</span>,                             <span class="co"># turning of facetted proportion test results</span></a>
-<a class="sourceLine" id="cb15-15" data-line-number="15">  <span class="dt">caption =</span> <span class="kw">expression</span>(                               <span class="co"># text for the caption</span></a>
-<a class="sourceLine" id="cb15-16" data-line-number="16">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": this is a demo"</span>)</a>
-<a class="sourceLine" id="cb15-17" data-line-number="17">  ),</a>
-<a class="sourceLine" id="cb15-18" data-line-number="18">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
-<a class="sourceLine" id="cb15-19" data-line-number="19">) </a></code></pre></div>
+<a class="sourceLine" id="cb15-15" data-line-number="15">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                  <span class="co"># package from which color palette is to be taken</span></a>
+<a class="sourceLine" id="cb15-16" data-line-number="16">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,                           <span class="co"># choosing a different color palette </span></a>
+<a class="sourceLine" id="cb15-17" data-line-number="17">  <span class="dt">caption =</span> <span class="kw">expression</span>(                               <span class="co"># text for the caption</span></a>
+<a class="sourceLine" id="cb15-18" data-line-number="18">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": this is a demo"</span>)</a>
+<a class="sourceLine" id="cb15-19" data-line-number="19">  ),</a>
+<a class="sourceLine" id="cb15-20" data-line-number="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
+<a class="sourceLine" id="cb15-21" data-line-number="21">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
 <p>In case of within-subjects designs, setting <code>paired = TRUE</code> will produce results from McNemar test-</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
@@ -432,8 +435,9 @@
 <a class="sourceLine" id="cb16-17" data-line-number="17">  <span class="dt">counts =</span> Counts,</a>
 <a class="sourceLine" id="cb16-18" data-line-number="18">  <span class="dt">paired =</span> <span class="ot">TRUE</span>,                      <span class="co"># within-subjects design</span></a>
 <a class="sourceLine" id="cb16-19" data-line-number="19">  <span class="dt">stat.title =</span> <span class="st">"McNemar Test: "</span>,</a>
-<a class="sourceLine" id="cb16-20" data-line-number="20">  <span class="dt">palette =</span> <span class="st">"Set1"</span></a>
-<a class="sourceLine" id="cb16-21" data-line-number="21">)</a></code></pre></div>
+<a class="sourceLine" id="cb16-20" data-line-number="20">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</a>
+<a class="sourceLine" id="cb16-21" data-line-number="21">  <span class="dt">palette =</span> <span class="st">"Royal1"</span></a>
+<a class="sourceLine" id="cb16-22" data-line-number="22">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats4-1.png" width="100%"></p>
 <p>For more, including information about the variant of this function <code>grouped_ggpiestats</code>, see the <code>ggpiestats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html</a></p>
 </div>
@@ -478,9 +482,9 @@
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>ToothGrowth,</a>
 <a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="dt">title =</span> <span class="st">"Distribution of Sepal.Length"</span>,</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="co"># caption = expression(                              </span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5">  <span class="co">#   paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6">  <span class="co"># ),</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="dt">caption =</span> <span class="kw">expression</span>(</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": black line - test value; blue line - observed mean"</span>, <span class="dt">sep =</span> <span class="st">""</span>)</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">  ),</a>
 <a class="sourceLine" id="cb19-7" data-line-number="7">  <span class="dt">x =</span> len,</a>
 <a class="sourceLine" id="cb19-8" data-line-number="8">  <span class="dt">fill.gradient =</span> <span class="ot">FALSE</span>,                         <span class="co"># turn off color gradient                          </span></a>
 <a class="sourceLine" id="cb19-9" data-line-number="9">  <span class="dt">bar.fill =</span> <span class="st">"grey50"</span>,                           <span class="co"># a uniform color fill for the bars</span></a>
@@ -492,7 +496,9 @@
 <a class="sourceLine" id="cb19-15" data-line-number="15">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                             <span class="co"># display bayes factor for null over alternative</span></a>
 <a class="sourceLine" id="cb19-16" data-line-number="16">  <span class="dt">bf.prior =</span> <span class="fl">0.8</span>,</a>
 <a class="sourceLine" id="cb19-17" data-line-number="17">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb19-18" data-line-number="18">)</a></code></pre></div>
+<a class="sourceLine" id="cb19-18" data-line-number="18">)</a>
+<a class="sourceLine" id="cb19-19" data-line-number="19"><span class="co">#&gt; Warning: You are simultaneously setting `bf.message = TRUE` and using a `caption`. </span></a>
+<a class="sourceLine" id="cb19-20" data-line-number="20"><span class="co">#&gt; This produces a fixed plot whose *internal* elements can no longer be modified with `ggplot2` functions.</span></a></code></pre></div>
 <p><img src="reference/figures/README-gghistostats3-1.png" width="100%"></p>
 <p>For more, including information about the variant of this function <code>grouped_gghistostats</code>, see the <code>gghistostats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html</a></p>
 </div>

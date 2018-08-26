@@ -17,9 +17,10 @@ ggbetweenstats(data, x, y, plot.type = "boxviolin",
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred",
-  ggtheme = ggplot2::theme_bw(), palette = "Dark2",
-  point.jitter.width = NULL, point.jitter.height = 0.1,
-  point.dodge.width = 0.6, messages = TRUE)
+  ggtheme = ggplot2::theme_bw(), package = "RColorBrewer",
+  palette = "Dark2", direction = 1, point.jitter.width = NULL,
+  point.jitter.height = 0.1, point.dodge.width = 0.6,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -137,9 +138,14 @@ is to be displayed (Default: \code{FALSE}).}
 including \code{ggplot2::theme_grey()}, \code{ggplot2::theme_minimal()},
 \code{ggplot2::theme_classic()}, \code{ggplot2::theme_void()}, etc.}
 
+\item{package}{Name of package from which the palette is desired as string
+or symbol.}
+
 \item{palette}{If a character string (e.g., \code{"Set1"}), will use that named
 palette. If a number, will index into the list of palettes of appropriate
 type. Default palette is \code{"Dark2"}.}
+
+\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
 \item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
 direction. Defaults to \code{40\%} of the resolution of the data.}

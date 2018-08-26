@@ -49,6 +49,7 @@
 #'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @inheritParams paletteer::scale_fill_paletteer_d
 #'
 #' @import ggplot2
 #'
@@ -70,6 +71,7 @@
 #' @importFrom jmv propTestN
 #' @importFrom jmv contTables
 #' @importFrom jmv contTablesPaired
+#' @importFrom paletteer scale_fill_paletteer_d
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}
@@ -109,12 +111,14 @@ ggpiestats <-
              title = NULL,
              caption = NULL,
              nboot = 25,
-             palette = "Dark2",
              legend.title = NULL,
              facet.wrap.name = NULL,
              k = 3,
              facet.proptest = TRUE,
              ggtheme = ggplot2::theme_bw(),
+             package = "RColorBrewer",
+             palette = "Dark2",
+             direction = 1,
              messages = TRUE) {
     # ================================= extracting column names as labels  =======================================================
 
@@ -350,10 +354,17 @@ ggpiestats <-
     # formatting
     p <- p +
       ggplot2::scale_y_continuous(breaks = NULL) +
-      ggplot2::scale_fill_brewer(
+      # ggplot2::scale_fill_brewer(
+      #   name = "",
+      #   labels = unique(legend.labels),
+      #   palette = palette
+      # ) +
+      paletteer::scale_fill_paletteer_d(
+        package = !!package,
+        palette = !!palette,
+        direction = direction,
         name = "",
-        labels = unique(legend.labels),
-        palette = palette
+        labels = unique(legend.labels)
       ) +
       theme_pie(ggtheme = ggtheme) +
       ggplot2::guides(fill = guide_legend(override.aes = list(color = NA))) # remove black diagonal line from legend
