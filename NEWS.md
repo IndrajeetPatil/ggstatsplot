@@ -9,6 +9,8 @@ MAJOR CHANGES
 MINOR CHANGES
   - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes
   Factors is displayed, and not base 10 logarithm.
+  - `ggscatterstats` gains `method` and `formula` arguments to modify smoothing
+  functions.
   
 # ggstatsplot 0.0.5
 

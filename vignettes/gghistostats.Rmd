@@ -197,6 +197,7 @@ ggstatsplot::grouped_gghistostats(
   grouping.var = continent,                     # grouping variable with multiple levels
   title.prefix = "Continent",                   # prefix for the fixed title
   type = "robust",                              # robust test: one-sample percentile bootstrap
+  k = 2,                                        # number of decimal places in results
   robust.estimator = "mom",                     # the modified one-step M-estimator of location
   test.value = 48,                              # test value against which sample mean is to be compared
   test.value.line = TRUE,                       # show a vertical line at `test.value`

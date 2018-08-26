@@ -133,17 +133,20 @@ data points for the continent of Oceania, let's leave out this continent from
 our analysis.
 
 For example,
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
+```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
 library(ggstatsplot)
 library(gapminder)
+
+# selecting subset of the data
+df_year <- dplyr::filter(.data = gapminder::gapminder, year == 2007 | year == 1957)
 
 # for reproducibility
 set.seed(123)
 
 # parametric ANOVA and box plot
 p1 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007, continent != "Oceania"),
-  x = continent,
+  data = df_year,
+  x = year,
   y = lifeExp,
   plot.type = "box",
   type = "p",
@@ -153,8 +156,8 @@ p1 <- ggstatsplot::ggbetweenstats(
 
 # Kruskal-Wallis test (nonparametric ANOVA) and violin plot
 p2 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 1997, continent != "Oceania"),
-  x = continent,
+  data = df_year,
+  x = year,
   y = lifeExp,
   plot.type = "violin",
   type = "np",
@@ -164,8 +167,8 @@ p2 <- ggstatsplot::ggbetweenstats(
 
 # robust ANOVA and boxviolin plot
 p3 <- ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 1987, continent != "Oceania"),
-  x = continent,
+  data = df_year,
+  x = year,
   y = lifeExp,
   plot.type = "boxviolin",
   type = "r",
@@ -174,14 +177,24 @@ p3 <- ggstatsplot::ggbetweenstats(
   messages = FALSE
 )
 
+# robust ANOVA and boxviolin plot
+p4 <- ggstatsplot::ggbetweenstats(
+  data = df_year,
+  x = year,
+  y = lifeExp,
+  type = "bf",
+  title = "bayesian test",
+  messages = FALSE
+)
+
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
-  p1, p2, p3, 
-  nrow = 3, 
-  ncol = 1, 
+  p1, p2, p3, p4, 
+  nrow = 2, 
+  ncol = 2, 
   labels = c("(a)", "(b)", "(c)"),
   title.text = "Comparison of life expectancy across continents (1987-2007)",
-  caption.text = "Note: Comparing results from parametric, non-parametric, and robust tests",
+  caption.text = "Note: Comparing results from parametric, non-parametric, robust, and bayesian tests",
   title.size = 14,
   caption.size = 12
 )
@@ -222,6 +235,8 @@ ggstatsplot::grouped_ggbetweenstats(
   ),
   x = continent,
   y = lifeExp,
+  # number of decimal places in results
+  k = 2,                                        
   outlier.tagging = TRUE,
   outlier.label = country,
   grouping.var = year,

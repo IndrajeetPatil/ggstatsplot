@@ -156,6 +156,8 @@ ggstatsplot::grouped_ggscatterstats(
   y = rating,
   grouping.var = mpaa,
   marginal.type = "boxplot",
+  # number of decimal places in results
+  k = 2,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Relationship between movie budget and IMDB rating",
   caption.text = "Source: www.imdb.com",

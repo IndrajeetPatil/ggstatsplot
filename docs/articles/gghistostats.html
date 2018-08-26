@@ -99,7 +99,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-25</h4>
+            <h4 class="date">2018-08-26</h4>
       
       
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -228,20 +228,21 @@
 <a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">grouping.var =</span> continent,                     <span class="co"># grouping variable with multiple levels</span></a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">  <span class="dt">title.prefix =</span> <span class="st">"Continent"</span>,                   <span class="co"># prefix for the fixed title</span></a>
 <a class="sourceLine" id="cb6-10" data-line-number="10">  <span class="dt">type =</span> <span class="st">"robust"</span>,                              <span class="co"># robust test: one-sample percentile bootstrap</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">  <span class="dt">robust.estimator =</span> <span class="st">"mom"</span>,                     <span class="co"># the modified one-step M-estimator of location</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">  <span class="dt">bar.fill =</span> <span class="st">"grey50"</span>,                          <span class="co"># uniform color fill for the bars</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                     <span class="co"># plotting centrality parameter (mean)</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
-<a class="sourceLine" id="cb6-20" data-line-number="20">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb6-21" data-line-number="21">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb6-22" data-line-number="22">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-23" data-line-number="23">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
-<a class="sourceLine" id="cb6-24" data-line-number="24">)</a></code></pre></div>
+<a class="sourceLine" id="cb6-11" data-line-number="11">  <span class="dt">k =</span> <span class="dv">2</span>,                                        <span class="co"># number of decimal places in results</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">  <span class="dt">robust.estimator =</span> <span class="st">"mom"</span>,                     <span class="co"># the modified one-step M-estimator of location</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">  <span class="dt">bar.fill =</span> <span class="st">"grey50"</span>,                          <span class="co"># uniform color fill for the bars</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                     <span class="co"># plotting centrality parameter (mean)</span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb6-23" data-line-number="23">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb6-24" data-line-number="24">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25">)</a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="1152"></p>
 <p>As can be seen from these plots, life expectancy has improved in all continents in 2007 as compared to the global average of 1950. Additionally, we see the benefits of plotting this data separately for each continent. If we look at the standardized effect sizes (Cohen’s <em>d</em>), it is apparent that the biggest improvements in life expectancy outcomes were seen on the continents of Europe, Americas, and Oceania (just one data point is available here), while Asia and Africa exhibit the lowest improvements.</p>
 <p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each continent, this is not possible with <code>grouped_gghistostats</code>. For cases like these, it would be better to use  (e.g.).</p>

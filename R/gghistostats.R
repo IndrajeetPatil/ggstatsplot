@@ -233,7 +233,11 @@ gghistostats <-
       # preparing the BF message for NULL
       if (isTRUE(bf.message)) {
         bf.caption.text <-
-          bf_message_ttest(jmv_results = jmv_results, bf.prior = bf.prior, caption = caption)
+          bf_message_ttest(
+            jmv_results = jmv_results,
+            # caption = caption,
+            bf.prior = bf.prior
+          )
       }
       # ========================================== parametric ==================================================================
       if (type == "parametric" || type == "p") {
@@ -500,9 +504,19 @@ gghistostats <-
     if (isTRUE(results.subtitle)) {
       if (type %in% c("parametric", "p")) {
         if (isTRUE(bf.message)) {
-          caption <- bf.caption.text
+          if (is.null(caption)) {
+            caption.text <- bf.caption.text
+          } else {
+            caption.text <- caption
+          }
+        } else {
+          caption.text <- caption
         }
+      } else {
+        caption.text <- caption
       }
+    } else {
+      caption.text <- caption
     }
 
     # adding the theme and labels
@@ -512,7 +526,7 @@ gghistostats <-
         x = xlab,
         title = title,
         subtitle = subtitle,
-        caption = caption
+        caption = caption.text
       )
 
     # if central tendency parameter is to be added
@@ -608,7 +622,29 @@ gghistostats <-
         ggplot2::theme(legend.position = "none")
     }
 
+    # if caption is provided then use combine_plots function later on to add this caption
+    # add caption with bayes factor
+    if (isTRUE(results.subtitle)) {
+      if (type %in% c("parametric", "p")) {
+        if (isTRUE(bf.message)) {
+          if (!is.null(caption)) {
+            # adding bayes factor result
+            plot <-
+              ggstatsplot::combine_plots(plot,
+                caption.text = bf.caption.text
+              )
 
+            # producing warning
+            base::message(cat(
+              crayon::red("Warning:"),
+              crayon::blue(
+                "You are simultaneously setting `bf.message = TRUE` and using a `caption`. \nThis produces a fixed plot whose *internal* elements can no longer be modified with `ggplot2` functions."
+              )
+            ))
+          }
+        }
+      }
+    }
 
     # ========================================== messages ==================================================================
     #

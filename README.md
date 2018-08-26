@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--25-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--26-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -208,7 +208,7 @@ ggstatsplot::theme_mprl
 #>       )
 #>     )
 #> }
-#> <bytecode: 0x000000002aee63c0>
+#> <bytecode: 0x000000002aec2f48>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -355,6 +355,7 @@ ggstatsplot::ggscatterstats(
   title = "Dataset: Iris flower data set",
   messages = FALSE
 )
+#> Warning: This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions.
 ```
 
 <img src="man/figures/README-ggscatterstats1-1.png" width="100%" />
@@ -390,6 +391,7 @@ ggstatsplot::ggscatterstats(
   height.jitter = 0.4,                           # amount of vertical jitter for data points
   messages = FALSE                               # turn off messages and notes
 ) 
+#> Warning: This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions.
 ```
 
 <img src="man/figures/README-ggscatterstats2-1.png" width="100%" />
@@ -559,6 +561,9 @@ null hypothesis:
 ggstatsplot::gghistostats(
   data = datasets::ToothGrowth,
   title = "Distribution of Sepal.Length",
+  # caption = expression(                              
+  #   paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
+  # ),
   x = len,
   fill.gradient = FALSE,                         # turn off color gradient                          
   bar.fill = "grey50",                           # a uniform color fill for the bars
@@ -569,10 +574,7 @@ ggstatsplot::gghistostats(
   type = "parametric",
   bf.message = TRUE,                             # display bayes factor for null over alternative
   bf.prior = 0.8,
-  messages = FALSE,
-  caption = expression(                              
-    paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
-  )
+  messages = FALSE
 )
 ```
 

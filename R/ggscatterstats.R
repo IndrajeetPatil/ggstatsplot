@@ -94,10 +94,10 @@
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = datasets::mtcars,

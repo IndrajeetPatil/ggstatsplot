@@ -657,7 +657,7 @@ ggbetweenstats <- function(data,
     # preparing the BF message for NULL
     if (isTRUE(bf.message)) {
       bf.caption.text <-
-        bf_message_ttest(jmv_results = jmv_results, bf.prior = bf.prior, caption = caption)
+        bf_message_ttest(jmv_results = jmv_results, bf.prior = bf.prior)
     }
 
     ##################################### parametric t-test ############################################################
@@ -996,9 +996,19 @@ ggbetweenstats <- function(data,
   if (test == "t-test") {
     if (type %in% c("parametric", "p")) {
       if (isTRUE(bf.message)) {
-        caption <- bf.caption.text
+        if (is.null(caption)) {
+          caption.text <- bf.caption.text
+        } else {
+          caption.text <- caption
+        }
+      } else {
+        caption.text <- caption
       }
+    } else {
+      caption.text <- caption
     }
+  } else {
+    caption.text <- caption
   }
 
   # specifying theme and labels for the final plot
@@ -1007,7 +1017,7 @@ ggbetweenstats <- function(data,
       x = xlab,
       y = ylab,
       title = title,
-      caption = caption
+      caption = caption.text
     ) +
     ggstatsplot::theme_mprl(ggtheme = ggtheme) +
     ggplot2::theme(legend.position = "none") +
@@ -1201,6 +1211,30 @@ ggbetweenstats <- function(data,
     # adding new labels to the plot
     plot <- plot +
       ggplot2::scale_x_discrete(labels = c(unique(data_label$label)))
+  }
+
+  # if caption is provided then use combine_plots function later on to add this caption
+  # add caption with bayes factor
+  if (test == "t-test") {
+    if (type %in% c("parametric", "p")) {
+      if (isTRUE(bf.message)) {
+        if (!is.null(caption)) {
+          # adding bayes factor result
+          plot <-
+            ggstatsplot::combine_plots(plot,
+              caption.text = bf.caption.text
+            )
+
+          # producing warning
+          base::message(cat(
+            crayon::red("Warning:"),
+            crayon::blue(
+              "You are simultaneously setting `bf.message = TRUE` and using a `caption`. \nThis produces a fixed plot whose *internal* elements can no longer be modified with `ggplot2` functions."
+            )
+          ))
+        }
+      }
+    }
   }
 
   # ============================================= messages ===================================================
