@@ -10,15 +10,14 @@ grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = FALSE, robust.estimator = "onestep", nboot = 500,
   k = 3, ggtheme = ggplot2::theme_bw(), fill.gradient = FALSE,
-  low.color = "#0072B2", high.color = "#D55E00", bar.fill = "white",
-  results.subtitle = TRUE, centrality.para = NULL,
+  low.color = "#0072B2", high.color = "#D55E00", bar.fill = "grey50",
+  results.subtitle = TRUE, centrality.para = "mean",
   centrality.color = "blue", centrality.size = 1.2,
-  centrality.linetype = "dashed", test.value.line = FALSE,
+  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
+  centrality.k = 2, test.value.line = FALSE,
   test.value.color = "black", test.value.size = 1.2,
-  test.value.linetype = "dashed", line.labeller = FALSE,
-  line.labeller.y = -2, legend.title.margin = FALSE,
-  t.margin = unit(0, "mm"), b.margin = unit(3, "mm"),
-  messages = TRUE, ...)
+  test.value.linetype = "dashed", test.line.labeller = TRUE,
+  test.k = 0, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -91,7 +90,7 @@ Defaults are colorblind-friendly.}
 Defaults are colorblind-friendly.}
 
 \item{bar.fill}{If \code{fill.gradient = FALSE}, then \code{bar.fill} decides which
-color will uniformly fill all the bars in the histogram (Default: \code{"white"}).}
+color will uniformly fill all the bars in the histogram (Default: \code{"grey50"}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
@@ -109,6 +108,13 @@ parameter (Default: \code{1.2}).}
 \item{centrality.linetype}{Decides linetype for the vertical line for
 centrality parameter (Default: \code{"dashed"}).}
 
+\item{centrality.line.labeller}{A logical that decides
+whether line labels should be displayed (Default: \code{TRUE}).}
+
+\item{centrality.k}{Integer denoting the number of decimal places
+expected for test and centrality parameters. (Default: \code{0} and \code{2},
+respectively).}
+
 \item{test.value.line}{Decides whether test value is to be displayed as a
 vertical line (Default: \code{FALSE}).}
 
@@ -121,20 +127,12 @@ value (Default: \code{"black"}).}
 \item{test.value.linetype}{Decides linetype for the vertical line for test
 value (Default: \code{"dashed"}).}
 
-\item{line.labeller}{A logical that decides whether line labels should be
-displayed (Default: \code{FALSE}).}
+\item{test.line.labeller}{A logical that decides
+whether line labels should be displayed (Default: \code{TRUE}).}
 
-\item{line.labeller.y}{A numeric denoting the y-coordinate for displaying
-line labels (Default: \code{-2}).}
-
-\item{legend.title.margin}{Adjusting the margin between legend title and the
-colorbar (Default: \code{FALSE}).}
-
-\item{t.margin}{Margins in grid units. For more details, see
-\code{?grid::unit()}.}
-
-\item{b.margin}{Margins in grid units. For more details, see
-\code{?grid::unit()}.}
+\item{test.k}{Integer denoting the number of decimal places
+expected for test and centrality parameters. (Default: \code{0} and \code{2},
+respectively).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

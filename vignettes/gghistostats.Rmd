@@ -72,7 +72,8 @@ gapminder::gapminder %>%
     xlab = "Population",                                # x-axis label
     title = "Distribution of population worldwide",     # title for the plot
     subtitle = "Year: 2007",                            # subtitle for the plot
-    caption = "Data courtesy of: Gapminder Foundation"  # caption for the plot
+    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
+    centrality.k = 0                                    # show 0 decimal places for centrality label
   )
 ```
 
@@ -126,8 +127,8 @@ gapminder::gapminder %>%
     title = "Life expectancy worldwide",                # title for the plot
     subtitle = "Year: 2007",                            # subtitle for the plot
     caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    centrality.para = "mean",                           # plotting centrality parameter (mean)
-    ggtheme = ggplot2::theme_grey(),                    # change the default theme
+    centrality.para = "mean",                           # plotting centrality parameter
+    ggtheme = ggthemes::theme_wsj(),                    # change the default theme
     fill.gradient = FALSE                               # turn off color fill gradient
   )
 ```
@@ -152,15 +153,15 @@ gapminder::gapminder %>%
     x = lifeExp,                                           # numeric variable
     messages = FALSE,                                      # turn off messages
     type = "bf",                                           # bayesian one sample t-test
+    ggtheme = ggplot2::theme_gray(),                       # changing default theme
     fill.gradient = FALSE,                                 # no color gradient (default)
-    bar.fill = "#CC79A7",                                  # uniform fill color
+    bar.fill = "#D55E00",                                  # uniform fill color
     test.value = 48,                                       # test value 
     xlab = "Life expectancy",                              # x-axis label
     title = "Life expectancy worldwide",                   # title for the plot
     subtitle = "Year: 2007",                               # subtitle for the plot
     caption = "Note: black line - 1950; blue line - 2007", # caption for the plot
-    test.value.line = TRUE,                                # show a vertical line at `test.value`
-    centrality.para = "mean"                               # plotting centrality parameter (mean)
+    test.value.line = TRUE                                 # show a vertical line at `test.value`
   )
 ```
 
@@ -201,13 +202,14 @@ ggstatsplot::grouped_gghistostats(
   robust.estimator = "mom",                     # the modified one-step M-estimator of location
   test.value = 48,                              # test value against which sample mean is to be compared
   test.value.line = TRUE,                       # show a vertical line at `test.value`
-  bar.fill = "grey50",                          # uniform color fill for the bars
+  centrality.para = "mean",                     # plotting centrality parameter
+  centrality.color = "#D55E00",                  # color for centrality line and label
+  test.value.color = "#009E73",                 # color for test line and label
   messages = FALSE,                             # turn off messages
-  centrality.para = "mean",                     # plotting centrality parameter (mean)
-
+  ggtheme = ggplot2::theme_gray(),              # changing default theme
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Life expectancy change in different continents since 1950",
-  caption.text = "Note: black line - 1950; blue line - 2007",
+  caption.text = "Note: green line - 1950; orange line - 2007",
   nrow = 3,
   ncol = 2,
   labels = c("(a)","(b)","(c)","(d)","(e)")
@@ -239,7 +241,8 @@ the group). This is not possible `grouped_gghistostats` function, but can be
 easily achieved with `purrr` package from tidyverse.
 
 **Note before**:
-  * Unlike the function call so far, while using `purrr::pmap`, we will need to *quote* the arguments.
+  * Unlike the function call so far, while using `purrr::pmap`, we will need to
+  *quote* the arguments.
   * You can use `ggplot2` themes from extension packages (like `ggthemes`).  
 
 ```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 12}
@@ -285,10 +288,10 @@ plot_list <- purrr::pmap(
     low.color = list("#56B4E9", "white", "#999999", "#009E73", "black"),
     high.color = list("#D55E00", "white", "#F0E442", "#F0E442", "black"),
     bar.fill = list("white", "red", "orange", "blue", "white"),
+    centrality.color = "black",
     test.value.line = TRUE,
     test.value.color = "black",
     centrality.para = "mean",
-    centrality.color = "blue",
     ggtheme = list(
       ggplot2::theme_classic(),
       ggthemes::theme_fivethirtyeight(),

@@ -428,8 +428,6 @@ is significantly different from a specified value with a one sample test, this
 function will let you do that.
 
 ```{r gghistostats1, message = FALSE, warning = FALSE}
-library(datasets)
-
 ggstatsplot::gghistostats(
   data = datasets::iris,                         # dataframe from which variable is to be taken
   x = Sepal.Length,                              # numeric variable whose distribution is of interest
@@ -459,10 +457,7 @@ ggstatsplot::gghistostats(
   centrality.para = "mean",
   type = "bf",
   bf.prior = 0.8,
-  messages = FALSE,
-  caption = expression(                              
-    paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
-  )
+  messages = FALSE
 )
 ```
 
@@ -473,19 +468,14 @@ hypothesis:
 ggstatsplot::gghistostats(
   data = datasets::ToothGrowth,
   title = "Distribution of Sepal.Length",
-  caption = expression(
-    paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
-  ),
   x = len,
   fill.gradient = FALSE,                         # turn off color gradient                          
   bar.fill = "grey50",                           # a uniform color fill for the bars
   test.value = 20,                               # different test value
-  test.value.line = TRUE,
-  test.value.color = "black",
-  centrality.para = "mean",
-  type = "parametric",
+  test.value.line = TRUE,                        # display a vertical line at test value
+  test.value.color = "darkgreen",                # color for the test line
   bf.message = TRUE,                             # display bayes factor for null over alternative
-  bf.prior = 0.8,
+  bf.prior = 0.8,                                # prior width for computing bayes factor
   messages = FALSE
 )
 ```
@@ -554,8 +544,7 @@ For examples and more information, see the `ggcorrmat` vignette:
 ## `ggcoefstats`
 
 `ggcoefstats` creates a lot with the regression coefficients' point estimates as
-dots with confidence interval whiskers. This is a wrapper function around
-`GGally::ggcoef`.
+dots with confidence interval whiskers. 
 
 ```{r ggcoefstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8, out.width = "80%"}
 ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,

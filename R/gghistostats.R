@@ -45,14 +45,10 @@
 #' @param low.color,high.color Colors for low and high ends of the gradient.
 #'   Defaults are colorblind-friendly.
 #' @param bar.fill If `fill.gradient = FALSE`, then `bar.fill` decides which
-#'   color will uniformly fill all the bars in the histogram (Default: `"white"`).
+#'   color will uniformly fill all the bars in the histogram (Default: `"grey50"`).
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
 #'   `FALSE`, no statistical tests will be run.
-#' @param legend.title.margin Adjusting the margin between legend title and the
-#'   colorbar (Default: `FALSE`).
-#' @param t.margin,b.margin Margins in grid units. For more details, see
-#'   `?grid::unit()`.
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
 #'   or `"median"`) is to be displayed as a vertical line.
 #' @param centrality.color Decides color for the vertical line for centrality
@@ -65,10 +61,11 @@
 #'   vertical line (Default: `FALSE`).
 #' @param test.value.color Decides color for the vertical line denoting test
 #'   value (Default: `"black"`).
-#' @param line.labeller A logical that decides whether line labels should be
-#'   displayed (Default: `FALSE`).
-#' @param line.labeller.y A numeric denoting the y-coordinate for displaying
-#'   line labels (Default: `-2`).
+#' @param test.line.labeller,centrality.line.labeller A logical that decides
+#'   whether line labels should be displayed (Default: `TRUE`).
+#' @param test.k,centrality.k Integer denoting the number of decimal places
+#'   expected for test and centrality parameters. (Default: `0` and `2`,
+#'   respectively).
 #' @param binwidth The width of the bins. Can be specified as a numeric value,
 #'   or a function that calculates width from `x`. The default is to use bins
 #'   bins that cover the range of the data. You should always override this
@@ -121,10 +118,6 @@
 #'   binwidth = 0.10,
 #'   bar.fill = "grey50"
 #' )
-#' @note If you are using R Notebook and see a blank image being inserted when a
-#'   chunk is executed, this behavior can be turned off by setting
-#'   `legend.title.margin = FALSE`.
-#'
 #' @seealso \code{\link{grouped_gghistostats}}
 #'
 #' @references
@@ -154,21 +147,20 @@ gghistostats <-
              fill.gradient = FALSE,
              low.color = "#0072B2",
              high.color = "#D55E00",
-             bar.fill = "white",
+             bar.fill = "grey50",
              results.subtitle = TRUE,
-             centrality.para = NULL,
+             centrality.para = "mean",
              centrality.color = "blue",
              centrality.size = 1.2,
              centrality.linetype = "dashed",
+             centrality.line.labeller = TRUE,
+             centrality.k = 2,
              test.value.line = FALSE,
              test.value.color = "black",
              test.value.size = 1.2,
              test.value.linetype = "dashed",
-             line.labeller = FALSE,
-             line.labeller.y = -2,
-             legend.title.margin = FALSE,
-             t.margin = unit(0, "mm"),
-             b.margin = unit(3, "mm"),
+             test.line.labeller = TRUE,
+             test.k = 0,
              messages = TRUE) {
     # if data is not available then don't display any messages
     if (is.null(data)) {
@@ -529,6 +521,45 @@ gghistostats <-
         caption = caption.text
       )
 
+    # ========================================== line and label ===================================================================
+
+    # computing summary statistics needed for displaying labels
+    x_mean <- mean(x = data$x, na.rm = TRUE)
+    x_median <- median(x = data$x, na.rm = TRUE)
+    y_label_median <- median(x = ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
+
+    # if test value is to be added
+    if (isTRUE(test.value.line)) {
+      plot <- plot +
+        ggplot2::geom_vline(
+          xintercept = test.value,
+          linetype = test.value.linetype,
+          color = test.value.color,
+          size = test.value.size,
+          na.rm = TRUE
+        )
+
+      if (isTRUE(test.line.labeller)) {
+        # adding a text label with test value
+        plot <-
+          plot +
+          ggplot2::geom_label(
+            mapping = ggplot2::aes(
+              label = list(bquote(
+                "test" == .(ggstatsplot::specify_decimal_p(
+                  x = test.value, k = test.k
+                ))
+              )),
+              x = test.value,
+              y = y_label_median * (1 - 0.25)
+            ),
+            show.legend = FALSE,
+            parse = TRUE,
+            color = test.value.color
+          )
+      }
+    }
+
     # if central tendency parameter is to be added
     if (!is.null(centrality.para)) {
       if (isTRUE(centrality.para) || centrality.para == "mean") {
@@ -541,18 +572,23 @@ gghistostats <-
             na.rm = TRUE
           )
 
-        if (isTRUE(line.labeller)) {
-          # this can be used to label the vertical lines, but leave it out since it makes for an ugly plot
-          plot <- plot +
-            ggplot2::geom_text(
+        if (isTRUE(centrality.line.labeller)) {
+          # adding a text label with mean value
+          plot <-
+            plot +
+            ggplot2::geom_label(
               mapping = ggplot2::aes(
-                x = mean(x = data$x, na.rm = TRUE),
-                label = "mean",
-                y = line.labeller.y
+                label = list(bquote(
+                  "mean" == .(ggstatsplot::specify_decimal_p(
+                    x = x_mean, k = centrality.k
+                  ))
+                )),
+                x = x_mean,
+                y = y_label_median * (1 + 0.25)
               ),
-              color = centrality.color,
-              angle = 0,
-              size = 6
+              show.legend = FALSE,
+              parse = TRUE,
+              color = centrality.color
             )
         }
       } else if (centrality.para == "median") {
@@ -564,57 +600,29 @@ gghistostats <-
             size = centrality.size,
             na.rm = TRUE
           )
-        # this can be used to label the vertical lines, but makes for an ugly plot
-        if (isTRUE(line.labeller)) {
-          plot <- plot +
-            ggplot2::geom_text(
-              mapping = ggplot2::aes(
-                x = median(x = data$x, na.rm = TRUE),
-                label = "median",
-                y = line.labeller.y
-              ),
-              color = centrality.color,
-              angle = 0,
-              size = 6
-            )
-        }
-      }
 
-      # if central tendency parameter is to be added
-      if (isTRUE(test.value.line)) {
-        plot <- plot +
-          ggplot2::geom_vline(
-            xintercept = test.value,
-            linetype = test.value.linetype,
-            color = test.value.color,
-            size = test.value.size,
-            na.rm = TRUE
-          )
-        # if a text label is to be attached the line
-        if (isTRUE(line.labeller)) {
-          plot <- plot +
-            ggplot2::geom_text(
+        # adding a text label with median value
+        if (isTRUE(centrality.line.labeller)) {
+          plot <-
+            plot +
+            ggplot2::geom_label(
               mapping = ggplot2::aes(
-                x = test.value,
-                label = "test",
-                y = line.labeller.y
+                label = list(bquote(
+                  "median" == .(ggstatsplot::specify_decimal_p(
+                    x = x_median, k = centrality.k
+                  ))
+                )),
+                x = x_median,
+                y = y_label_median * (1 + 0.25)
               ),
-              color = "black",
-              angle = 0,
-              size = 6
+              show.legend = FALSE,
+              parse = TRUE,
+              color = centrality.color
             )
         }
       }
     }
 
-    # creating proper spacing between the legend.title and the colorbar
-    if (isTRUE(legend.title.margin)) {
-      plot <- legend_title_margin(
-        plot = plot,
-        t.margin = t.margin,
-        b.margin = b.margin
-      )
-    }
 
     # if no color fill gradient is used, then remove the legend
     if (!isTRUE(fill.gradient)) {
