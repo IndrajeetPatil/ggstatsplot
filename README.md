@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--26-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--29-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -57,9 +57,9 @@ analyses:
   - **histograms** (for hypothesis about distributions), and
   - **dot-and-whisker plots** (for regression models).
 
-In addition to these basic plots, `ggstatsplot` also provides `grouped_`
-versions of all functions that makes it easy to repeat the same anlysis
-for any grouping variable.
+In addition to these basic plots, `ggstatsplot` also provides
+**`grouped_`** versions of all functions that makes it easy to repeat
+the same anlysis for any grouping variable.
 
 Future versions will include other types of statistical analyses and
 plots as well.
@@ -162,7 +162,8 @@ args(name = ggstatsplot::ggscatterstats)
 #>     xsize = 0.7, ysize = 0.7, centrality.para = NULL, type = "pearson", 
 #>     results.subtitle = TRUE, title = NULL, subtitle = NULL, caption = NULL, 
 #>     nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE, 
-#>     ggtheme = ggplot2::theme_bw(), messages = TRUE) 
+#>     ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE, 
+#>     messages = TRUE) 
 #> NULL
 ```
 
@@ -171,27 +172,48 @@ just type the name of the function without the paranetheses:
 
 ``` r
 ggstatsplot::theme_mprl
-#> function (ggtheme = ggplot2::theme_bw()) 
-#> {
-#>     ggtheme + ggplot2::theme(axis.title.x = ggplot2::element_text(size = 12, 
-#>         face = "bold"), strip.text.x = ggplot2::element_text(size = 12, 
-#>         face = "bold"), strip.text.y = ggplot2::element_text(size = 12, 
-#>         face = "bold"), strip.text = ggplot2::element_text(size = 12, 
-#>         face = "bold"), axis.title.y = ggplot2::element_text(size = 12, 
-#>         face = "bold"), axis.text.x = ggplot2::element_text(size = 12, 
-#>         face = "bold"), axis.text.y = ggplot2::element_text(size = 12, 
-#>         face = "bold"), axis.line = ggplot2::element_line(), 
-#>         legend.text = ggplot2::element_text(size = 12), legend.title = ggplot2::element_text(size = 12, 
-#>             face = "bold"), legend.title.align = 0.5, legend.text.align = 0.5, 
-#>         legend.key.height = grid::unit(x = 1, units = "line"), 
-#>         legend.key.width = grid::unit(x = 1, units = "line"), 
-#>         plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"), 
-#>         panel.border = ggplot2::element_rect(color = "black", 
-#>             fill = NA, size = 1), plot.title = ggplot2::element_text(color = "black", 
-#>             size = 13, face = "bold", hjust = 0.5), plot.subtitle = ggplot2::element_text(color = "black", 
-#>             size = 11, face = "bold", hjust = 0.5))
+#> function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
+#>   if (isTRUE(ggstatsplot.layer)) {
+#>     ggtheme +
+#>       ggplot2::theme(
+#>         axis.title.x = ggplot2::element_text(size = 12, face = "bold"),
+#>         strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
+#>         strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
+#>         strip.text = ggplot2::element_text(size = 12, face = "bold"),
+#>         axis.title.y = ggplot2::element_text(size = 12, face = "bold"),
+#>         axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
+#>         axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
+#>         axis.line = ggplot2::element_line(),
+#>         legend.text = ggplot2::element_text(size = 12),
+#>         legend.title = ggplot2::element_text(size = 12, face = "bold"),
+#>         legend.title.align = 0.5,
+#>         legend.text.align = 0.5,
+#>         legend.key.height = grid::unit(x = 1, units = "line"),
+#>         legend.key.width = grid::unit(x = 1, units = "line"),
+#>         plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),
+#>         panel.border = ggplot2::element_rect(
+#>           color = "black",
+#>           fill = NA,
+#>           size = 1
+#>         ),
+#>         plot.title = ggplot2::element_text(
+#>           color = "black",
+#>           size = 13,
+#>           face = "bold",
+#>           hjust = 0.5
+#>         ),
+#>         plot.subtitle = ggplot2::element_text(
+#>           color = "black",
+#>           size = 11,
+#>           face = "bold",
+#>           hjust = 0.5
+#>         )
+#>       )
+#>   } else {
+#>     ggtheme
+#>   }
 #> }
-#> <bytecode: 0x000000002ae7a690>
+#> <bytecode: 0x000000002aef4800>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -217,10 +239,11 @@ cluttered with such messages, they can be turned off by setting argument
 `messages = FALSE` in the function call.
 
 Here are examples of the main functions currently supported in
-`ggstatsplot`. **Note**: The documentation below is for the
-**development** version of the package. So you may see some features
-available here that are not currently present in the stable version of
-this package on **CRAN**:
+`ggstatsplot`.
+
+**Note**: The documentation below is for the **development** version of
+the package. So you may see some features available here that are not
+currently present in the stable version of this package on **CRAN**:
 <https://cran.r-project.org/web/packages/ggstatsplot/index.html>
 
 ## `ggbetweenstats`
@@ -292,7 +315,8 @@ ggstatsplot::ggbetweenstats(
   xlab = "Type of Species",                       # label for the x-axis variable
   ylab = "Attribute: Sepal Length",               # label for the y-axis variable
   title = "Dataset: Iris flower data set",        # title text for the plot
-  ggtheme = ggplot2::theme_grey(),                # choosing a different theme
+  ggtheme = ggthemes::theme_fivethirtyeight(),    # choosing a different theme
+  ggstatsplot.layer = FALSE,                      # turn off ggstatsplot theme layer
   package = "wesanderson",                        # package from which color palette is to be taken
   palette = "Darjeeling1",                        # choosing a different color palette
   messages = FALSE
@@ -365,6 +389,8 @@ ggstatsplot::ggscatterstats(
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
   ),
+  ggtheme = hrbrthemes::theme_ipsum_ps(),        # choosing a different theme
+  ggstatsplot.layer = FALSE,                     # turn off ggstatsplot theme layer
   marginal.type = "density",                     # type of marginal distribution to be displayed
   xfill = "blue",                                # color fill for x-axis marginal distribution 
   yfill = "red",                                 # color fill for y-axis marginal distribution
@@ -421,10 +447,10 @@ ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = cyl,
   condition = am,
+  ggtheme = ggthemes::theme_tufte(),                 # choosing a different theme
   title = "Dataset: Motor Trend Car Road Tests",      
   messages = FALSE
-) + # further modification outside of ggstatsplot to change the default palette as an example 
-  ggplot2::scale_fill_brewer(palette = "Set1")     
+)     
 ```
 
 <img src="man/figures/README-ggpiestats2-1.png" width="100%" />
@@ -499,8 +525,7 @@ if it is significantly different from a specified value with a one
 sample test, this function will let you do that.
 
 ``` r
-library(datasets)
-
+# plot
 ggstatsplot::gghistostats(
   data = datasets::iris,                         # dataframe from which variable is to be taken
   x = Sepal.Length,                              # numeric variable whose distribution is of interest
@@ -510,7 +535,9 @@ ggstatsplot::gghistostats(
   centrality.para = "mean",                      # which measure of central tendency is to be plotted
   centrality.color = "darkred",                  # decides color of vertical line representing central tendency
   binwidth = 0.10,                               # binwidth value (experiment until you find the best one)
-  messages = FALSE                               # turn off the messages
+  messages = FALSE,                              # turn off the messages
+  ggtheme = hrbrthemes::theme_ipsum_tw(),        # choosing a different theme
+  ggstatsplot.layer = FALSE                      # turn off ggstatsplot theme layer
 ) 
 ```
 
@@ -532,10 +559,7 @@ ggstatsplot::gghistostats(
   centrality.para = "mean",
   type = "bf",
   bf.prior = 0.8,
-  messages = FALSE,
-  caption = expression(                              
-    paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
-  )
+  messages = FALSE
 )
 ```
 
@@ -548,23 +572,16 @@ null hypothesis:
 ggstatsplot::gghistostats(
   data = datasets::ToothGrowth,
   title = "Distribution of Sepal.Length",
-  caption = expression(
-    paste(italic("Note"), ": black line - test value; blue line - observed mean", sep = "")
-  ),
   x = len,
   fill.gradient = FALSE,                         # turn off color gradient                          
   bar.fill = "grey50",                           # a uniform color fill for the bars
   test.value = 20,                               # different test value
-  test.value.line = TRUE,
-  test.value.color = "black",
-  centrality.para = "mean",
-  type = "parametric",
+  test.value.line = TRUE,                        # display a vertical line at test value
+  test.value.color = "darkgreen",                # color for the test line
   bf.message = TRUE,                             # display bayes factor for null over alternative
-  bf.prior = 0.8,
+  bf.prior = 0.8,                                # prior width for computing bayes factor
   messages = FALSE
 )
-#> Warning: You are simultaneously setting `bf.message = TRUE` and using a `caption`. 
-#> This produces a fixed plot whose *internal* elements can no longer be modified with `ggplot2` functions.
 ```
 
 <img src="man/figures/README-gghistostats3-1.png" width="100%" />
@@ -667,13 +684,16 @@ arguments:
 ggstatsplot::ggcoefstats(
   x = stats::lm(formula = mpg ~ am * cyl,
                 data = datasets::mtcars),
-  point.color = "red",
+  point.color = "red",                
+  point.shape = 15,
   vline.color = "#CC79A7",
   vline.linetype = "dotdash",
   stats.label.size = 3.5,
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission and cylinder count",
-  subtitle = "Source: 1974 Motor Trend US magazine"
+  subtitle = "Source: 1974 Motor Trend US magazine",
+  ggtheme = ggthemes::theme_stata(),
+  ggstatsplot.layer = FALSE
 ) +                                    
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
@@ -752,7 +772,8 @@ ggstatsplot::combine_plots(
 <img src="man/figures/README-ggcoefstats3-1.png" width="100%" />
 
 This is by no means an exhaustive list of models supported by
-`ggcoefstats`. For more, see the associated vignette-
+`ggcoefstats`. For a more thorough discussion about all regression
+models supported, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html>
 
 ## `combine_plots`

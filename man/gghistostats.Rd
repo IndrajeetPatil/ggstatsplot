@@ -154,7 +154,7 @@ ggstatsplot::gghistostats(
 )
 }
 \references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html}
+\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/gghistostats.html}
 }
 \seealso{
 \code{\link{grouped_gghistostats}}

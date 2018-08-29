@@ -21,6 +21,10 @@ BREAKING CHANGES
   (`legend.title.margin`, `t.margin`, `b.margin`).
   - The argument `ggstatsplot.theme` has been changed to `ggstatsplot.layer` for
   `ggcorrmat` function to be consistent across functions.
+  - For consistency, `conf.level` and `conf.type` arguments for `ggbetweenstats`
+  have been deprecated. No other functions in the package allow changing
+  confidence interval or their type for effect size estimates. These arguments
+  were relevant only for `robust` tests anyway.
 
 MINOR CHANGES
   - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes

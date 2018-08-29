@@ -84,17 +84,17 @@
 #' @seealso \code{\link{grouped_ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
 #'
 #' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html}
+#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggscatterstats.html}
 #'
 #' @note `marginal.type = "densigram"` will work only with the development
 #'   version of `ggExtra` that you can download from `GitHub`:
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = datasets::mtcars,

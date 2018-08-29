@@ -32,10 +32,10 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}
+#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,

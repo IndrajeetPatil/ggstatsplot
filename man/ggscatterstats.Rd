@@ -149,7 +149,7 @@ ggstatsplot::ggscatterstats(
 )
 }
 \references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html}
+\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggscatterstats.html}
 }
 \seealso{
 \code{\link{grouped_ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}

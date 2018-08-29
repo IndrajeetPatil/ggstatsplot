@@ -202,62 +202,63 @@
 <a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">y =</span> lifeExp,</a>
 <a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
 <a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">type =</span> <span class="st">"p"</span>,</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"parametric test"</span>,</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">palette =</span> <span class="st">"nrc_npg"</span>,</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">)</a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-27" data-line-number="27">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
-<a class="sourceLine" id="cb4-29" data-line-number="29">  <span class="dt">type =</span> <span class="st">"np"</span>,</a>
-<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">title =</span> <span class="st">"non-parametric test"</span>,</a>
-<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">palette =</span> <span class="st">"uniform_startrek"</span>,</a>
-<a class="sourceLine" id="cb4-33" data-line-number="33">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-34" data-line-number="34">)</a>
-<a class="sourceLine" id="cb4-35" data-line-number="35"></a>
-<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co"># robust ANOVA and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-37" data-line-number="37">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-39" data-line-number="39">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-40" data-line-number="40">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-41" data-line-number="41">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
-<a class="sourceLine" id="cb4-42" data-line-number="42">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
-<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">title =</span> <span class="st">"robust test"</span>,</a>
-<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
-<a class="sourceLine" id="cb4-45" data-line-number="45">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</a>
-<a class="sourceLine" id="cb4-46" data-line-number="46">  <span class="dt">palette =</span> <span class="st">"Royal2"</span>,</a>
-<a class="sourceLine" id="cb4-47" data-line-number="47">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-48" data-line-number="48">)</a>
-<a class="sourceLine" id="cb4-49" data-line-number="49"></a>
-<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co"># robust ANOVA and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-51" data-line-number="51">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-52" data-line-number="52">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-53" data-line-number="53">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-54" data-line-number="54">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-55" data-line-number="55">  <span class="dt">type =</span> <span class="st">"bf"</span>,</a>
-<a class="sourceLine" id="cb4-56" data-line-number="56">  <span class="dt">title =</span> <span class="st">"bayesian test"</span>,</a>
-<a class="sourceLine" id="cb4-57" data-line-number="57">  <span class="dt">package =</span> <span class="st">"palettetown"</span>,</a>
-<a class="sourceLine" id="cb4-58" data-line-number="58">  <span class="dt">palette =</span> <span class="st">"natu"</span>,</a>
-<a class="sourceLine" id="cb4-59" data-line-number="59">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-60" data-line-number="60">)</a>
-<a class="sourceLine" id="cb4-61" data-line-number="61"></a>
-<a class="sourceLine" id="cb4-62" data-line-number="62"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-63" data-line-number="63">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb4-64" data-line-number="64">  p1, p2, p3, p4, </a>
-<a class="sourceLine" id="cb4-65" data-line-number="65">  <span class="dt">nrow =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb4-66" data-line-number="66">  <span class="dt">ncol =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb4-67" data-line-number="67">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
-<a class="sourceLine" id="cb4-68" data-line-number="68">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,</a>
-<a class="sourceLine" id="cb4-69" data-line-number="69">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, robust, and bayesian tests"</span>,</a>
-<a class="sourceLine" id="cb4-70" data-line-number="70">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb4-71" data-line-number="71">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb4-72" data-line-number="72">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">effsize.type =</span> <span class="st">"d"</span>,</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">title =</span> <span class="st">"parametric test"</span>,</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">palette =</span> <span class="st">"nrc_npg"</span>,</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">)</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">type =</span> <span class="st">"np"</span>,</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">title =</span> <span class="st">"non-parametric test"</span>,</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">  <span class="dt">palette =</span> <span class="st">"uniform_startrek"</span>,</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">)</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co"># robust ANOVA and boxviolin plot</span></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">title =</span> <span class="st">"robust test"</span>,</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
+<a class="sourceLine" id="cb4-46" data-line-number="46">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</a>
+<a class="sourceLine" id="cb4-47" data-line-number="47">  <span class="dt">palette =</span> <span class="st">"Royal2"</span>,</a>
+<a class="sourceLine" id="cb4-48" data-line-number="48">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-49" data-line-number="49">)</a>
+<a class="sourceLine" id="cb4-50" data-line-number="50"></a>
+<a class="sourceLine" id="cb4-51" data-line-number="51"><span class="co"># robust ANOVA and boxviolin plot</span></a>
+<a class="sourceLine" id="cb4-52" data-line-number="52">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-53" data-line-number="53">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-54" data-line-number="54">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-55" data-line-number="55">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-56" data-line-number="56">  <span class="dt">type =</span> <span class="st">"bf"</span>,</a>
+<a class="sourceLine" id="cb4-57" data-line-number="57">  <span class="dt">title =</span> <span class="st">"bayesian test"</span>,</a>
+<a class="sourceLine" id="cb4-58" data-line-number="58">  <span class="dt">package =</span> <span class="st">"palettetown"</span>,</a>
+<a class="sourceLine" id="cb4-59" data-line-number="59">  <span class="dt">palette =</span> <span class="st">"natu"</span>,</a>
+<a class="sourceLine" id="cb4-60" data-line-number="60">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-61" data-line-number="61">)</a>
+<a class="sourceLine" id="cb4-62" data-line-number="62"></a>
+<a class="sourceLine" id="cb4-63" data-line-number="63"><span class="co"># combining the individual plots into a single plot</span></a>
+<a class="sourceLine" id="cb4-64" data-line-number="64">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-65" data-line-number="65">  p1, p2, p3, p4, </a>
+<a class="sourceLine" id="cb4-66" data-line-number="66">  <span class="dt">nrow =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb4-67" data-line-number="67">  <span class="dt">ncol =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb4-68" data-line-number="68">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
+<a class="sourceLine" id="cb4-69" data-line-number="69">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,</a>
+<a class="sourceLine" id="cb4-70" data-line-number="70">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, robust, and bayesian tests"</span>,</a>
+<a class="sourceLine" id="cb4-71" data-line-number="71">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb4-72" data-line-number="72">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb4-73" data-line-number="73">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="1152"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level2">

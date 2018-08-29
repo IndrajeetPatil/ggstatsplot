@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Creating a new character type column with significance labels — signif_column • ggstatsplot</title>
+<title>Making text subtitle for the t-test (between-/within-subjects designs). — subtitle_ggbetween_t_parametric • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Creating a new character type column with significance labels — signif_column" />
+<meta property="og:title" content="Making text subtitle for the t-test (between-/within-subjects designs). — subtitle_ggbetween_t_parametric" />
 
-<meta property="og:description" content="This function will add a new column to a dataframe containing
-p-values" />
+<meta property="og:description" content="Making text subtitle for the t-test (between-/within-subjects designs)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -132,45 +131,70 @@ p-values" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Creating a new character type column with significance labels</h1>
+    <h1>Making text subtitle for the t-test (between-/within-subjects designs).</h1>
     
-    <div class="hidden name"><code>signif_column.Rd</code></div>
+    <div class="hidden name"><code>subtitle_ggbetween_t_parametric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function will add a new column to a dataframe containing
-<em>p</em>-values</p>
+    <p>Making text subtitle for the t-test (between-/within-subjects designs).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>signif_column</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>p</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_ggbetween_t_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"biased"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Data frame from which variables specified are preferentially to
-be taken.</p></td>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken.</p></td>
     </tr>
     <tr>
-      <th>p</th>
-      <td><p>The column containing p-values.</p></td>
+      <th>x</th>
+      <td><p>The grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>paired</th>
+      <td><p>a logical indicating whether you want a paired
+    t-test.</p></td>
+    </tr>
+    <tr>
+      <th>effsize.type</th>
+      <td><p>Type of effect size needed for <em>parametric</em> tests. The
+argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em> for <strong>t-test</strong>;
+<code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or <code>"unbiased"</code>
+(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>; <code>"partial_omega"</code> for partial
+omega-squared for <strong>anova</strong>)).</p></td>
+    </tr>
+    <tr>
+      <th>effsize.noncentral</th>
+      <td><p>Logical indicating whether to use non-central
+<em>t</em>-distributions for computing the 95<!-- % confidence interval for Cohen's \emph{d} -->
+or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>var.equal</th>
+      <td><p>a logical variable indicating whether to treat the
+    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Returns the originally entered object (either a vector or a
-dataframe) in tibble format with an additional column corresponding to
-statistical significance.</p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>This is a helper function used internally in the package and not
-exported. In case you want to use it, you can do so by
-<code>ggstatsplot:::signif_column</code>. Note that it is <code>:::</code> and not <code>::</code>.</p>
     
 
   </div>
@@ -178,11 +202,7 @@ exported. In case you want to use it, you can do so by
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
-          </ul>
+                </ul>
 
     <h2>Author</h2>
     

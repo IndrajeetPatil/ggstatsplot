@@ -152,6 +152,7 @@
 <li>
 <code>legend.title.margin</code> function has been depcrecated since <code>ggplot2 3.0.0</code> has improved on the margin issues from previous versions. All functions that wrapped around this function now lose the relevant arguments (<code>legend.title.margin</code>, <code>t.margin</code>, <code>b.margin</code>).</li>
 <li>The argument <code>ggstatsplot.theme</code> has been changed to <code>ggstatsplot.layer</code> for <code>ggcorrmat</code> function to be consistent across functions.</li>
+<li>For consistency, <code>conf.level</code> and <code>conf.type</code> arguments for <code>ggbetweenstats</code> have been deprecated. No other functions in the package allow changing confidence interval or their type for effect size estimates. These arguments were relevant only for <code>robust</code> tests anyway.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

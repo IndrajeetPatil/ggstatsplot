@@ -432,6 +432,7 @@ is significantly different from a specified value with a one sample test, this
 function will let you do that.
 
 ```{r gghistostats1, message = FALSE, warning = FALSE}
+# plot
 ggstatsplot::gghistostats(
   data = datasets::iris,                         # dataframe from which variable is to be taken
   x = Sepal.Length,                              # numeric variable whose distribution is of interest

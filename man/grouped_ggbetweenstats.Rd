@@ -10,8 +10,7 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   effsize.type = "unbiased", effsize.noncentral = FALSE,
   bf.prior = 0.707, bf.message = FALSE, xlab = NULL, ylab = NULL,
   caption = NULL, sample.size.label = TRUE, k = 3,
-  var.equal = FALSE, nboot = 100, tr = 0.1, conf.level = 0.95,
-  conf.type = "norm", mean.label.size = 3,
+  var.equal = FALSE, nboot = 100, tr = 0.1, mean.label.size = 3,
   mean.label.fontface = "bold", mean.label.color = "black",
   notch = FALSE, notchwidth = 0.5, linetype = "solid",
   outlier.tagging = NULL, outlier.label = NULL,
@@ -88,14 +87,6 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
-
-\item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return
-\code{95\%} lower and upper confidence intervals (\code{0.95}).}
-
-\item{conf.type}{A vector of character strings representing the type of
-confidence intervals required from bootstrapping for partial eta- and
-omega-squared. The value should be any subset of the values \code{"norm"},
-\code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
 
 \item{mean.label.size}{Aesthetics for
 the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
@@ -246,7 +237,7 @@ ggstatsplot::grouped_ggbetweenstats(
 )
 }
 \references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}
+\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html}
 }
 \seealso{
 \code{\link{ggbetweenstats}}

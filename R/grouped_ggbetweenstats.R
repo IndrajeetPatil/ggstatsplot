@@ -35,13 +35,13 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}
+#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = mtcars,
@@ -73,8 +73,6 @@ grouped_ggbetweenstats <- function(data,
                                    var.equal = FALSE,
                                    nboot = 100,
                                    tr = 0.1,
-                                   conf.level = 0.95,
-                                   conf.type = "norm",
                                    mean.label.size = 3,
                                    mean.label.fontface = "bold",
                                    mean.label.color = "black",
@@ -173,8 +171,6 @@ grouped_ggbetweenstats <- function(data,
               var.equal = var.equal,
               nboot = nboot,
               tr = tr,
-              conf.level = conf.level,
-              conf.type = conf.type,
               mean.label.size = mean.label.size,
               mean.label.fontface = mean.label.fontface,
               mean.label.color = mean.label.color,
@@ -230,8 +226,6 @@ grouped_ggbetweenstats <- function(data,
               var.equal = var.equal,
               nboot = nboot,
               tr = tr,
-              conf.level = conf.level,
-              conf.type = conf.type,
               mean.label.size = mean.label.size,
               mean.label.fontface = mean.label.fontface,
               mean.label.color = mean.label.color,

@@ -119,7 +119,8 @@ grouped_proptest <- function(data,
     ) %>%
     dplyr::select(.data = ., -data, -chi_sq) %>%
     tidyr::unnest(data = .) %>%
-    signif_column(data = ., p = `p-value`)
+    signif_column(data = ., p = `p-value`) %>%
+    dplyr::mutate_if(.tbl = ., .predicate = purrr::is_bare_character, .funs = ~dplyr::if_else(condition = is.na(.), true = "0%", false = .))
 
   # for every level of grouping.vars, it is going to throw following errors
   # Warning in bind_rows_(x, .id) :
@@ -144,7 +145,7 @@ grouped_proptest <- function(data,
 #' @aliases signif_column
 #' @author Indrajeet Patil
 #' @description This function will add a new column to a dataframe containing
-#'   p-values
+#'   *p*-values
 #' @return Returns the originally entered object (either a vector or a
 #'   dataframe) in tibble format with an additional column corresponding to
 #'   statistical significance.
@@ -300,7 +301,8 @@ untable <- function(data, counts) {
   }
 
   # converting dataframe to full length based on count information
-  data %<>% tibble::as_data_frame(.) %>%
+  data %<>%
+    tibble::as_data_frame(.) %>%
     tibble::rowid_to_column(df = ., var = "id") %>%
     dplyr::mutate_at(
       .tbl = .,

@@ -123,10 +123,10 @@
 #' @importFrom tibble as_data_frame
 #'
 #' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html}
+#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#' 
+#'
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export

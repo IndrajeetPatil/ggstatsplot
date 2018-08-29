@@ -152,8 +152,7 @@ grouping variable.</p>
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -270,18 +269,6 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of <code>tr</code>, which is by default set to
 <code>0.1</code>. Lowering the value might help.</p></td>
-    </tr>
-    <tr>
-      <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If <code>NULL</code>, the defaults return
-<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>conf.type</th>
-      <td><p>A vector of character strings representing the type of
-confidence intervals required from bootstrapping for partial eta- and
-omega-squared. The value should be any subset of the values <code>"norm"</code>,
-<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
     </tr>
     <tr>
       <th>mean.label.size</th>
@@ -466,7 +453,7 @@ combining (plot, caption).</p></dd>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html</a></p>
+    <p><a href='https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html'>https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -485,7 +472,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.570</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.994</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.131</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.890</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.364</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.570</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.994</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.131</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.890</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.364</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='error'>Error in grid.Call(C_convert, x, as.integer(whatfrom), as.integer(whatto),     valid.units(unitTo)): Viewport has zero dimension(s)</span></div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

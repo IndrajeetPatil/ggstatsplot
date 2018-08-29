@@ -19,7 +19,7 @@ statistical significance.
 }
 \description{
 This function will add a new column to a dataframe containing
-p-values
+\emph{p}-values
 }
 \note{
 This is a helper function used internally in the package and not

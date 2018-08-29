@@ -21,9 +21,6 @@
 #'   or `"robust"` or `"bayes"`).Corresponding abbreviations are also accepted:
 #'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
 #'   `"bf"`resp.
-#' @param effsize.noncentral Logical indicating whether to use non-central
-#'   *t*-distributions for computing the 95% confidence interval for Cohen's *d*
-#'   or Hedge's *g* (Default: `FALSE`).
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
@@ -38,14 +35,8 @@
 #'   variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 #'   try to play around with the value of `tr`, which is by default set to
 #'   `0.1`. Lowering the value might help.
-#' @param conf.type A vector of character strings representing the type of
-#'   confidence intervals required from bootstrapping for partial eta- and
-#'   omega-squared. The value should be any subset of the values `"norm"`,
-#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
 #' @param mean.label.size,mean.label.fontface,mean.label.color Aesthetics for
 #'   the label displaying mean. Defaults: `3`, `"bold"`,`"black"`, respectively.
-#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return
-#'   `95%` lower and upper confidence intervals (`0.95`).
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
 #'   compare groups; if the notches of two boxes do not overlap, this suggests
@@ -90,6 +81,7 @@
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams subtitle_ggbetween_anova_parametric
+#' @inheritParams subtitle_ggbetween_t_parametric
 #'
 #' @import ggplot2
 #'
@@ -110,14 +102,12 @@
 #' @importFrom effsize cohen.d
 #' @importFrom sjstats eta_sq
 #' @importFrom sjstats omega_sq
-#' @importFrom stats aov
 #' @importFrom stats sd
 #' @importFrom stats na.omit
 #' @importFrom stats t.test
 #' @importFrom stats var.test
 #' @importFrom stats bartlett.test
 #' @importFrom stats kruskal.test
-#' @importFrom stats aov
 #' @importFrom stats quantile
 #' @importFrom stats oneway.test
 #' @importFrom stats qt
@@ -147,20 +137,20 @@
 #' incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
 #'
 #' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}
+#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::iris,
 #'   x = Species,
 #'   y = Sepal.Length
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::ToothGrowth,
@@ -192,8 +182,6 @@ ggbetweenstats <- function(data,
                            var.equal = FALSE,
                            nboot = 100,
                            tr = 0.1,
-                           conf.level = 0.95,
-                           conf.type = "norm",
                            mean.label.size = 3,
                            mean.label.fontface = "bold",
                            mean.label.color = "black",
@@ -355,7 +343,7 @@ ggbetweenstats <- function(data,
       )
   }
 
-  ################################################  preparing stats subtitles #########################################
+  #------------------------------------------------ subtitle preparation -------------------------------------------------------------------
 
   # figure out which test to run based on the number of levels of the independent variables
   if (length(levels(as.factor(data$x))) < 3) {
@@ -364,10 +352,10 @@ ggbetweenstats <- function(data,
     test <- "anova"
   }
 
+  #------------------------------------------------------ anova -----------------------------------------------------------------------------
+
   # running anova
   if (test == "anova") {
-    ##################################### parametric ANOVA ############################################################
-
     # running parametric ANOVA
     if (type == "parametric" || type == "p") {
       # Welch's ANOVA run by default
@@ -380,8 +368,11 @@ ggbetweenstats <- function(data,
         var.equal = var.equal,
         k = k
       )
+
+      #--------------------------------------------- Kruskal-Wallis (nonparametric ANOVA) --------------------------------------------------
+
     } else if (type == "nonparametric" || type == "np") {
-      ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
+
       # setting up the anova model and getting its summary
       kw_stat <- stats::kruskal.test(
         formula = y ~ x,
@@ -432,8 +423,10 @@ ggbetweenstats <- function(data,
           )
         ))
       }
+
+      #---------------------------------------------------------- robust ANOVA --------------------------------------------------------
+
     } else if (type == "robust" || type == "r") {
-      ######################################### robust ANOVA ############################################################
 
       # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
       robust_aov_stat <- t1way_ci(
@@ -442,8 +435,8 @@ ggbetweenstats <- function(data,
         y = y,
         tr = tr,
         nboot = nboot,
-        conf.level = conf.level,
-        conf.type = conf.type
+        conf.level = 0.95,
+        conf.type = "norm"
       )
 
       # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
@@ -528,127 +521,25 @@ ggbetweenstats <- function(data,
         bf_message_ttest(jmv_results = jmv_results, bf.prior = bf.prior)
     }
 
-    ##################################### parametric t-test ############################################################
+    #------------------------------------------------- parametric t-test ------------------------------------------------------------
 
     if (type == "parametric" || type == "p") {
-      # setting up the anova model and getting its summary and effect size
-      t_stat <-
-        stats::t.test(
-          formula = y ~ x,
-          data = data,
-          alternative = "two.sided",
-          var.equal = var.equal,
-          na.action = na.omit
-        )
+      # Welch's t-test run by default
+      subtitle <- subtitle_ggbetween_t_parametric(
+        data = data,
+        x = x,
+        y = y,
+        paired = FALSE,
+        effsize.type = effsize.type,
+        effsize.noncentral = effsize.noncentral,
+        var.equal = var.equal,
+        k = k
+      )
 
-      if (effsize.type == "unbiased") {
+      #------------------------------------------------- Mann-Whitney U test ------------------------------------------------------------
 
-        # Hedge's g is an unbiased estimate of the effect size
-        t_effsize <-
-          effsize::cohen.d(
-            formula = y ~ x,
-            data = data,
-            hedges.correction = TRUE,
-            na.rm = TRUE,
-            conf.level = 0.95,
-            noncentral = effsize.noncentral
-          )
+    } else if (type == "nonparametric" || type == "np") {
 
-        # t_stat input represents the t-test object summary derived from stats library
-        subtitle <-
-          # extracting the elements of the statistical object
-          base::substitute(
-            expr =
-              paste(
-                italic("t"),
-                "(",
-                df,
-                ") = ",
-                estimate,
-                ", ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", ",
-                italic("g"),
-                " = ",
-                effsize,
-                ", 95% CI [",
-                LL,
-                ", ",
-                UL,
-                "]",
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
-              df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
-              LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
-              n = nrow(x = data)
-            )
-          )
-      } else if (effsize.type == "biased") {
-
-        # Cohen's d is a biased estimate of the effect size
-        t_effsize <-
-          effsize::cohen.d(
-            formula = y ~ x,
-            data = data,
-            hedges.correction = FALSE,
-            na.rm = TRUE,
-            conf.level = 0.95,
-            noncentral = effsize.noncentral
-          )
-
-        # t_stat input represents the t-test object summary derived from stats library
-        subtitle <-
-          # extracting the elements of the statistical object
-          base::substitute(
-            expr =
-              paste(
-                italic("t"),
-                "(",
-                df,
-                ") = ",
-                estimate,
-                ", ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", ",
-                italic("d"),
-                " = ",
-                effsize,
-                ", 95% CI [",
-                LL,
-                ", ",
-                UL,
-                "]",
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
-              df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
-              LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
-              n = nrow(x = data)
-            )
-          )
-      }
-    }
-    else if (type == "nonparametric" || type == "np") {
-      ######################################### Mann-Whitney U test ######################################################
       # setting up the Mann-Whitney U-test and getting its summary
       mann_stat <- stats::wilcox.test(
         formula = y ~ x,
@@ -711,10 +602,13 @@ ggbetweenstats <- function(data,
             n = nrow(x = data)
           )
         )
-    } else if (type == "robust" || type == "r") {
-      ######################################### robust t-test ############################################################
 
-      # setting up the independent samples t-tests on robust location measures (without bootstraps)
+      #------------------------------------------------- robust t-test ------------------------------------------------------------
+
+    } else if (type == "robust" || type == "r") {
+
+      # setting up the independent samples t-tests on robust location measures
+      # (without bootstrap)
       t_robust_stat <-
         WRS2::yuen(
           formula = y ~ x,
@@ -770,8 +664,11 @@ ggbetweenstats <- function(data,
             n = nrow(x = data)
           )
         )
+
+      #------------------------------------------------- bayesian t-test ------------------------------------------------------------
+
     } else if (type == "bayes" || type == "bf") {
-      ######################################### bayes factor ############################################################
+
       # preparing the subtitle
       subtitle <- base::substitute(
         expr =
@@ -857,12 +754,13 @@ ggbetweenstats <- function(data,
       direction = direction
     )
 
-  ########################################### outlier tagging #########################################################
+  #------------------------------------------------- outlier tagging ------------------------------------------------------------
 
   # if outlier.tagging is set to TRUE, first figure out what labels need to be
   # attached to the outlier if outlier label is not provided, outlier labels
   # will just be values of the y vector if the outlier tag has been provided,
   # just use the dataframe already created
+
   if (isTRUE(outlier.tagging)) {
     # finding and tagging the outliers
     data_df <- data %>%
@@ -934,7 +832,7 @@ ggbetweenstats <- function(data,
     }
   }
 
-  ####################################################### mean plotting ################################################
+  #------------------------------------------------- labels with mean values ------------------------------------------------------------
 
   # highlight the mean of each group
   if (isTRUE(mean.plotting)) {
@@ -987,6 +885,7 @@ ggbetweenstats <- function(data,
         )) # format the values for printing
       )
 
+    # adding confidence intervals to the label for mean
     if (isTRUE(mean.ci)) {
       mean_dat %<>%
         purrrlyr::by_row(
@@ -1007,7 +906,7 @@ ggbetweenstats <- function(data,
         dplyr::rename(.data = ., y = mean.y)
     }
 
-    # attach the labels to the plot
+    # attach the labels with means to the plot
     plot <- plot +
       ggrepel::geom_label_repel(
         data = mean_dat,
@@ -1025,7 +924,7 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # ============================================= sample sizes ================================================
+  #------------------------------------------------- sample size labels ------------------------------------------------------------
 
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
@@ -1065,9 +964,10 @@ ggbetweenstats <- function(data,
     }
   }
 
-  # ============================================= messages ===================================================
+  #------------------------------------------------- messages -------------------------------------------------------------------
 
   if (isTRUE(messages)) {
+
     # display normality test result as a message
     normality_message(
       x = data$y,
@@ -1075,6 +975,7 @@ ggbetweenstats <- function(data,
       k = k,
       output = "message"
     )
+
     # display homogeneity of variance test as a message
     bartlett_message(
       data = data,

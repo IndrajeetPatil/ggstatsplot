@@ -156,6 +156,7 @@ p1 <- ggstatsplot::ggbetweenstats(
   y = lifeExp,
   plot.type = "box",
   type = "p",
+  effsize.type = "d",
   title = "parametric test",
   package = "ggsci",
   palette = "nrc_npg",
