@@ -153,14 +153,13 @@
   <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>,
   <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>),
   <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>,
-  <span class='kw'>ggstatsplot.theme</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>lab.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>,
-  <span class='kw'>axis.text.x.margin.t</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.r</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>axis.text.x.margin.b</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.l</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>legend.title.margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>t.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>0</span>, <span class='st'>"mm"</span>),
-  <span class='kw'>b.margin</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>3</span>, <span class='st'>"mm"</span>), <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>axis.text.x.margin.l</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.t</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>axis.text.x.margin.r</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.b</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -265,10 +264,10 @@ displayed in the plot.</p></td>
 including <code>theme_grey</code>, <code>theme_minimal</code>, <code>theme_classic</code>, <code>theme_void</code>, etc.</p></td>
     </tr>
     <tr>
-      <th>ggstatsplot.theme</th>
+      <th>ggstatsplot.layer</th>
       <td><p>A logical. Decides whether default theme for
 <code>ggstatsplot</code>, which is <code>theme_mprl</code>, is to be overlaid on the entered
-theme (Default: <code>ggstatsplot.theme = TRUE</code>).</p></td>
+theme (Default: <code>ggstatsplot.layer = TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -307,8 +306,9 @@ corresponding glyphs will be removed; if "pch" is used, characters (see
     </tr>
     <tr>
       <th>pch</th>
-      <td><p>Decides the glyphs (read point shapes) to be used for insignificant correlation
-coefficients (only valid when <code>insig = "pch"</code>). Default value is <code>pch = 4</code>.</p></td>
+      <td><p>Decides the glyphs (read point shapes) to be used for
+insignificant correlation coefficients (only valid when <code>insig = "pch"</code>).
+Default value is <code>pch = 4</code>.</p></td>
     </tr>
     <tr>
       <th>pch.col, pch.cex</th>
@@ -323,18 +323,8 @@ text label (variable names, i.e.).</p></td>
     <tr>
       <th>axis.text.x.margin.t, axis.text.x.margin.r, axis.text.x.margin.b, axis.text.x.margin.l</th>
       <td><p>Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
-between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
-    </tr>
-    <tr>
-      <th>legend.title.margin</th>
-      <td><p>Logical indicating whether to adjust the margin between legend title and the
-colorbar (Default: <code>FALSE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>t.margin, b.margin</th>
-      <td><p>Margins in grid units. For more details, see
-<code>?grid::unit()</code>.</p></td>
+bottom, l:left), especially useful in case the names are slanted, i.e. when
+the tl.srt is between <code>45</code> and <code>75</code> (Defaults: <code>0</code>, <code>0</code>, <code>0</code>, <code>0</code>, resp.).</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -347,12 +337,6 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     <p>Correlation matrix plot or correlation coefficient matrix or matrix
 of p-values.</p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>If you are using R Notebook or Markdown and see a blank image being
-inserted when a chunk is executed, this behavior can be turned off by
-setting <code>legend.title.margin = FALSE</code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -401,8 +385,6 @@ setting <code>legend.title.margin = FALSE</code>.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
 
       <li><a href="#references">References</a></li>
 

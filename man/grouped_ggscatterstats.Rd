@@ -15,7 +15,7 @@ grouped_ggscatterstats(data, x, y, grouping.var, title.prefix = "Group",
   centrality.para = NULL, type = "pearson", results.subtitle = TRUE,
   caption = NULL, subtitle = NULL, nboot = 100, beta = 0.1,
   k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
-  messages = TRUE, ...)
+  ggstatsplot.layer = TRUE, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -128,9 +128,13 @@ to be displayed as subtitle.}
 ranges to min and max values of the \code{x} and \code{y} variables (Default: \code{FALSE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
-\code{theme_void()}, etc.}
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
+\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}).}
+
+\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

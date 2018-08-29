@@ -17,10 +17,10 @@ ggbetweenstats(data, x, y, plot.type = "boxviolin",
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred",
-  ggtheme = ggplot2::theme_bw(), package = "RColorBrewer",
-  palette = "Dark2", direction = 1, point.jitter.width = NULL,
-  point.jitter.height = 0.1, point.dodge.width = 0.6,
-  messages = TRUE)
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  package = "RColorBrewer", palette = "Dark2", direction = 1,
+  point.jitter.width = NULL, point.jitter.height = 0.1,
+  point.dodge.width = 0.6, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -134,9 +134,13 @@ is to be displayed (Default: \code{FALSE}).}
 \code{"darkred"}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
-including \code{ggplot2::theme_grey()}, \code{ggplot2::theme_minimal()},
-\code{ggplot2::theme_classic()}, \code{ggplot2::theme_void()}, etc.}
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
+\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}).}
+
+\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}).}
 
 \item{package}{Name of package from which the palette is desired as string
 or symbol.}

@@ -99,7 +99,7 @@
       <h1>graphics design</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-26</h4>
+            <h4 class="date">2018-08-28</h4>
       
       
       <div class="hidden name"><code>graphics_design.Rmd</code></div>
@@ -109,6 +109,7 @@
     
     
 <p>The <code>ggstatsplot</code> package is an opinionated collection of plots made with <code>ggplot2</code> and is designed for exploratory data analysis or for producing publication-ready. All plots share an underlying principle of displaying information-rich plots with all necessary statistical details included in the plots themselves. Although the plots produced by <code>ggstatsplot</code> are still <code>ggplot</code> objects and can thus be further modified using <code>ggplot2</code> commands, there is a limit to how many such modifications can be made. That is, it is less flexible than <code>ggplot2</code>, but that’s a feature and not a bug. The original intent behind this package is to offload struggles associated with <em>constructing</em> the plot and focus more on the <em>interpretation</em> of that data displayed in the plot.</p>
+<p>(<strong>This vignette is still a work in progress</strong>)</p>
 <div id="clean-design" class="section level2">
 <h2 class="hasAnchor">
 <a href="#clean-design" class="anchor"></a>Clean design</h2>
@@ -144,9 +145,11 @@
 <a class="sourceLine" id="cb2-8" data-line-number="8">)</a></code></pre></div>
 <p><img src="graphics_design_files/figure-html/example2-1.png" width="480"></p>
 </div>
-<div id="understanding" class="section level2">
+<div id="graphical-perception" class="section level2">
 <h2 class="hasAnchor">
-<a href="#understanding" class="anchor"></a>Understanding</h2>
+<a href="#graphical-perception" class="anchor"></a>Graphical perception</h2>
+<p>Graphical perception involves visual decoding the encoded information in graphs. <code>ggstatsplot</code> incorporates the paradigm proposed in Cleveland (1985, Chapter 4) to facilitate making visual judgments about quantitative information effortless and almost instantaneous.</p>
+<p>There are few instances where <code>ggstatsplot</code> diverges from recommendations made in Cleveland’s paradigm: *</p>
 </div>
 <div id="statistical-details" class="section level2">
 <h2 class="hasAnchor">
@@ -167,7 +170,7 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#clean-design">Clean design</a></li>
-      <li><a href="#understanding">Understanding</a></li>
+      <li><a href="#graphical-perception">Graphical perception</a></li>
       <li><a href="#statistical-details">Statistical details</a></li>
       </ul>
 </div>

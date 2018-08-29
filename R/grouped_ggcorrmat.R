@@ -36,9 +36,6 @@
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html}
 #'
-#' @note If you are using R Notebook or Markdown and see a blank image being
-#'   inserted when a chunk is executed, this behavior can be turned off by
-#'   setting `legend.title.margin = FALSE`.
 #'
 #' @examples
 #' 
@@ -83,7 +80,7 @@ grouped_ggcorrmat <- function(data,
                               colors = c("#E69F00", "white", "#009E73"),
                               outline.color = "black",
                               ggtheme = ggplot2::theme_bw,
-                              ggstatsplot.theme = TRUE,
+                              ggstatsplot.layer = TRUE,
                               subtitle = NULL,
                               caption = NULL,
                               caption.default = TRUE,
@@ -100,9 +97,6 @@ grouped_ggcorrmat <- function(data,
                               axis.text.x.margin.r = 0,
                               axis.text.x.margin.b = 0,
                               axis.text.x.margin.l = 0,
-                              legend.title.margin = FALSE,
-                              t.margin = unit(0, "mm"),
-                              b.margin = unit(3, "mm"),
                               messages = TRUE,
                               ...) {
   # ========================================= preparing dataframe ==================================================
@@ -166,7 +160,7 @@ grouped_ggcorrmat <- function(data,
               colors = colors,
               outline.color = outline.color,
               ggtheme = ggtheme,
-              ggstatsplot.theme = ggstatsplot.theme,
+              ggstatsplot.layer = ggstatsplot.layer,
               subtitle = subtitle,
               caption = caption,
               caption.default = caption.default,
@@ -183,9 +177,6 @@ grouped_ggcorrmat <- function(data,
               axis.text.x.margin.r = axis.text.x.margin.r,
               axis.text.x.margin.b = axis.text.x.margin.b,
               axis.text.x.margin.l = axis.text.x.margin.l,
-              legend.title.margin = legend.title.margin,
-              t.margin = t.margin,
-              b.margin = b.margin,
               messages = messages
             )
           )

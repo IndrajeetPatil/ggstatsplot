@@ -24,7 +24,8 @@ ggcoefstats(x, output = "plot", scales = NULL, conf.method = "Wald",
   label.min.segment.length = 0.5, label.force = 1,
   label.max.iter = 2000, label.nudge.x = 0, label.nudge.y = 0,
   label.xlim = c(NA, NA), label.ylim = c(NA, NA),
-  label.direction = "y", ggtheme = ggplot2::theme_bw(), ...)
+  label.direction = "y", ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, ...)
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}.}
@@ -166,9 +167,13 @@ entire plot area. Defaults to \code{c(NA, NA)}.}
 which to adjust position of labels (Default: \code{"y"}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_bw()}, \code{theme_minimal()}, \code{theme_classic()},
-\code{theme_void()}, etc.}
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
+\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}).}
+
+\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}).}
 
 \item{\dots}{Extra arguments to pass to \code{\link[broom]{tidy}}.}
 }

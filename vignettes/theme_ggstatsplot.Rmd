@@ -33,24 +33,27 @@ theme with few aesthetic modifications overlaid on top, that can be used with an
 
 Here is a simple example:
 
-```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 4}
+```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 4, fig.width = 8}
 library(ggplot2)
 
-# Basic scatter plot
-ggplot2::ggplot(
-  data = datasets::mtcars, 
-  mapping = ggplot2::aes(x = wt, y = mpg)
-) + 
-  ggplot2::geom_point() +
-  ggplot2::theme_bw()
-
-# Basic scatter plot with theme_ggstatsplot() added
-ggplot2::ggplot(
-  data = datasets::mtcars, 
-  mapping = ggplot2::aes(x = wt, y = mpg)
-) + 
-  ggplot2::geom_point() + 
-  ggstatsplot::theme_ggstatsplot(ggtheme = ggplot2::theme_bw())
+ggstatsplot::combine_plots(
+  # basic scatter plot
+  ggplot2::ggplot(
+    data = datasets::mtcars,
+    mapping = ggplot2::aes(x = wt, y = mpg)
+  ) +
+    ggplot2::geom_point(),
+  # basic scatter plot with theme_ggstatsplot() added
+  ggplot2::ggplot(
+    data = datasets::mtcars,
+    mapping = ggplot2::aes(x = wt, y = mpg)
+  ) +
+    ggplot2::geom_point() +
+    ggstatsplot::theme_ggstatsplot(),
+  labels = c("(i)", "(ii)"),
+  nrow = 1,
+  title.text = "Plot with and without ggstatsplot theme"
+)
 ```
 
 All plots in this package have `theme_bw()` by default as the base on which
@@ -81,30 +84,50 @@ ggstatsplot::ggscatterstats(
 )
 ```
 
-Yet another example with `gghistostats`, and note that the theme is now taken from
-the `hrbrthemes` package:
+It is important to note that irrespective of which `ggplot` theme you choose,
+`ggstatsplot` in the backdrop adds a new layer with its idiosyncratic theme
+settings, chosen to make the graphs more readable or aesthetically pleasing.
+Let's see an example with `gghistostats` and see how a certain theme from
+`hrbrthemes` package looks with and without the `ggstatsplot` layer.
 
-```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
-ggstatsplot::gghistostats(
-  data = datasets::iris,
-  x = Sepal.Width,
-  messages = FALSE,
-  title = "Distribution of Sepal Width",
-  bf.message = TRUE,
-  test.value = 5,
-  bar.fill = "#D55E00",
-  ggtheme = hrbrthemes::theme_ipsum()
+```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
+ggstatsplot::combine_plots(
+  # with the ggstatsplot layer
+  ggstatsplot::gghistostats(
+    data = datasets::iris,
+    x = Sepal.Width,
+    messages = FALSE,
+    title = "Distribution of Sepal Width",
+    test.value = 5,
+    ggtheme = hrbrthemes::theme_ipsum(),
+    ggstatsplot.layer = TRUE
+  ),
+  # without the ggstatsplot layer
+  ggstatsplot::gghistostats(
+    data = datasets::iris,
+    x = Sepal.Width,
+    messages = FALSE,
+    title = "Distribution of Sepal Width",
+    test.value = 5,
+    ggtheme = hrbrthemes::theme_ipsum_ps(),
+    ggstatsplot.layer = FALSE
+  ),
+  nrow = 1,
+  labels = c("(a)", "(b)"),
+  title.text = "Behavior of ggstatsplot theme layer with chosen ggtheme"
 )
 ```
 
 The only exception for how `ggtheme` argument is to be entered is `ggcorrmat`
 function where the theme should **not** be entered as a function.
+
 ```{r theme4, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),
   type = "upper",
-  ggtheme = ggplot2::theme_dark            # selected ggplot2 theme
+  ggtheme = ggthemes::theme_fivethirtyeight,            # selected ggplot2 theme
+  ggstatsplot.layer = FALSE
 )
 ```
 

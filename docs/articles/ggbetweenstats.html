@@ -99,7 +99,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-26</h4>
+            <h4 class="date">2018-08-28</h4>
       
       
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -285,19 +285,21 @@
 <a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">y =</span> lifeExp,</a>
 <a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="co"># number of decimal places in results</span></a>
 <a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">palette =</span> <span class="st">"default_jco"</span>,</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="dt">outlier.label =</span> country,</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">grouping.var =</span> year,</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb5-27" data-line-number="27">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
-<a class="sourceLine" id="cb5-28" data-line-number="28">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb5-29" data-line-number="29">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb5-30" data-line-number="30">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
-<a class="sourceLine" id="cb5-31" data-line-number="31">)</a></code></pre></div>
+<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">palette =</span> <span class="st">"default_jco"</span>,</a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">outlier.label =</span> country,</a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">grouping.var =</span> year,</a>
+<a class="sourceLine" id="cb5-26" data-line-number="26">  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb5-28" data-line-number="28">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb5-29" data-line-number="29">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
+<a class="sourceLine" id="cb5-30" data-line-number="30">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb5-31" data-line-number="31">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb5-32" data-line-number="32">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
+<a class="sourceLine" id="cb5-33" data-line-number="33">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1957 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
 </div>
@@ -371,9 +373,9 @@
 <a class="sourceLine" id="cb6-62" data-line-number="62">      <span class="st">"unbiased"</span></a>
 <a class="sourceLine" id="cb6-63" data-line-number="63">    ),</a>
 <a class="sourceLine" id="cb6-64" data-line-number="64">    <span class="dt">plot.type =</span> <span class="kw">list</span>(<span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"box"</span>, <span class="st">"violin"</span>),</a>
-<a class="sourceLine" id="cb6-65" data-line-number="65">    <span class="dt">mean.ci =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb6-66" data-line-number="66">    <span class="dt">package =</span> <span class="kw">list</span>(<span class="st">"nord"</span>, <span class="st">"ochRe"</span>, <span class="st">"palettetown"</span>, <span class="st">"ggsci"</span>, <span class="st">"yarrr"</span>, <span class="st">"RColorBrewer"</span>),</a>
-<a class="sourceLine" id="cb6-67" data-line-number="67">    <span class="dt">palette =</span> <span class="kw">list</span>(<span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"butterfree"</span>, <span class="st">"default_nejm"</span>, <span class="st">"basel"</span>, <span class="st">"Set1"</span>),</a>
+<a class="sourceLine" id="cb6-65" data-line-number="65">    <span class="dt">mean.ci =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb6-66" data-line-number="66">    <span class="dt">package =</span> <span class="kw">list</span>(<span class="st">"nord"</span>, <span class="st">"ochRe"</span>, <span class="st">"awtools"</span>, <span class="st">"ggsci"</span>, <span class="st">"yarrr"</span>, <span class="st">"RColorBrewer"</span>),</a>
+<a class="sourceLine" id="cb6-67" data-line-number="67">    <span class="dt">palette =</span> <span class="kw">list</span>(<span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"ppalette"</span>, <span class="st">"default_nejm"</span>, <span class="st">"basel"</span>, <span class="st">"Set1"</span>),</a>
 <a class="sourceLine" id="cb6-68" data-line-number="68">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
 <a class="sourceLine" id="cb6-69" data-line-number="69">      hrbrthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_tw">theme_ipsum_tw</a></span>(),</a>
 <a class="sourceLine" id="cb6-70" data-line-number="70">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
@@ -382,21 +384,22 @@
 <a class="sourceLine" id="cb6-73" data-line-number="73">      ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_wsj">theme_wsj</a></span>(),</a>
 <a class="sourceLine" id="cb6-74" data-line-number="74">      ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_calc">theme_calc</a></span>()</a>
 <a class="sourceLine" id="cb6-75" data-line-number="75">    ),</a>
-<a class="sourceLine" id="cb6-76" data-line-number="76">    <span class="dt">sample.size.label =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb6-77" data-line-number="77">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb6-78" data-line-number="78">  ),</a>
-<a class="sourceLine" id="cb6-79" data-line-number="79">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
-<a class="sourceLine" id="cb6-80" data-line-number="80">)</a>
-<a class="sourceLine" id="cb6-81" data-line-number="81">  </a>
-<a class="sourceLine" id="cb6-82" data-line-number="82"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb6-83" data-line-number="83">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb6-84" data-line-number="84">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb6-85" data-line-number="85">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
-<a class="sourceLine" id="cb6-86" data-line-number="86">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb6-87" data-line-number="87">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb6-88" data-line-number="88">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-89" data-line-number="89">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
-<a class="sourceLine" id="cb6-90" data-line-number="90">)</a></code></pre></div>
+<a class="sourceLine" id="cb6-76" data-line-number="76">    <span class="dt">ggstatsplot.layer =</span> <span class="kw">list</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb6-77" data-line-number="77">    <span class="dt">sample.size.label =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb6-78" data-line-number="78">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb6-79" data-line-number="79">  ),</a>
+<a class="sourceLine" id="cb6-80" data-line-number="80">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
+<a class="sourceLine" id="cb6-81" data-line-number="81">)</a>
+<a class="sourceLine" id="cb6-82" data-line-number="82">  </a>
+<a class="sourceLine" id="cb6-83" data-line-number="83"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb6-84" data-line-number="84">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb6-85" data-line-number="85">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb6-86" data-line-number="86">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
+<a class="sourceLine" id="cb6-87" data-line-number="87">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb6-88" data-line-number="88">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb6-89" data-line-number="89">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-90" data-line-number="90">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
+<a class="sourceLine" id="cb6-91" data-line-number="91">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped2-1.png" width="768"></p>
 </div>
 <div id="within-subjects-designs" class="section level2">

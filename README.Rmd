@@ -55,7 +55,7 @@ It, therefore, produces a limited kinds of plots for the supported analyses:
   - **histograms** (for hypothesis about distributions), and
   - **dot-and-whisker plots** (for regression models).
 
-In addition to these basic plots, `ggstatsplot` also provides `grouped_`
+In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
 versions of all functions that makes it easy to repeat the same anlysis for any
 grouping variable.
 
@@ -169,6 +169,7 @@ messages, they can be turned off by setting argument `messages = FALSE` in the
 function call.
 
 Here are examples of the main functions currently supported in `ggstatsplot`.
+
 **Note**: The documentation below is for the **development** version of the package.
 So you may see some features available here that are not currently present in the
 stable version of this package on **CRAN**:
@@ -240,7 +241,8 @@ ggstatsplot::ggbetweenstats(
   xlab = "Type of Species",                       # label for the x-axis variable
   ylab = "Attribute: Sepal Length",               # label for the y-axis variable
   title = "Dataset: Iris flower data set",        # title text for the plot
-  ggtheme = ggplot2::theme_grey(),                # choosing a different theme
+  ggtheme = ggthemes::theme_fivethirtyeight(),    # choosing a different theme
+  ggstatsplot.layer = FALSE,                      # turn off ggstatsplot theme layer
   package = "wesanderson",                        # package from which color palette is to be taken
   palette = "Darjeeling1",                        # choosing a different color palette
   messages = FALSE
@@ -306,6 +308,8 @@ ggstatsplot::ggscatterstats(
   caption = expression(                          # caption text for the plot
     paste(italic("Note"), ": this is a demo")
   ),
+  ggtheme = hrbrthemes::theme_ipsum_ps(),        # choosing a different theme
+  ggstatsplot.layer = FALSE,                     # turn off ggstatsplot theme layer
   marginal.type = "density",                     # type of marginal distribution to be displayed
   xfill = "blue",                                # color fill for x-axis marginal distribution 
   yfill = "red",                                 # color fill for y-axis marginal distribution
@@ -357,10 +361,10 @@ ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = cyl,
   condition = am,
+  ggtheme = ggthemes::theme_tufte(),                 # choosing a different theme
   title = "Dataset: Motor Trend Car Road Tests",      
   messages = FALSE
-) + # further modification outside of ggstatsplot to change the default palette as an example 
-  ggplot2::scale_fill_brewer(palette = "Set1")     
+)     
 ```
 
 As with the other functions, this basic plot can further be modified with
@@ -437,7 +441,9 @@ ggstatsplot::gghistostats(
   centrality.para = "mean",                      # which measure of central tendency is to be plotted
   centrality.color = "darkred",                  # decides color of vertical line representing central tendency
   binwidth = 0.10,                               # binwidth value (experiment until you find the best one)
-  messages = FALSE                               # turn off the messages
+  messages = FALSE,                              # turn off the messages
+  ggtheme = hrbrthemes::theme_ipsum_tw(),        # choosing a different theme
+  ggstatsplot.layer = FALSE                      # turn off ggstatsplot theme layer
 ) 
 ```
 
@@ -556,13 +562,16 @@ The basic can be further modified to one's liking with additional arguments:
 ggstatsplot::ggcoefstats(
   x = stats::lm(formula = mpg ~ am * cyl,
                 data = datasets::mtcars),
-  point.color = "red",
+  point.color = "red",                
+  point.shape = 15,
   vline.color = "#CC79A7",
   vline.linetype = "dotdash",
   stats.label.size = 3.5,
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission and cylinder count",
-  subtitle = "Source: 1974 Motor Trend US magazine"
+  subtitle = "Source: 1974 Motor Trend US magazine",
+  ggtheme = ggthemes::theme_stata(),
+  ggstatsplot.layer = FALSE
 ) +                                    
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
@@ -637,7 +646,8 @@ ggstatsplot::combine_plots(
 ```
 
 This is by no means an exhaustive list of models supported by `ggcoefstats`. For
-more, see the associated vignette-
+a more thorough discussion about all regression models supported, see the
+associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html>
 
 

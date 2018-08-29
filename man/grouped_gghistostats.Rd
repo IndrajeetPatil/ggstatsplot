@@ -9,8 +9,9 @@ grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
   title = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = FALSE, robust.estimator = "onestep", nboot = 500,
-  k = 3, ggtheme = ggplot2::theme_bw(), fill.gradient = FALSE,
-  low.color = "#0072B2", high.color = "#D55E00", bar.fill = "grey50",
+  k = 3, ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  fill.gradient = FALSE, low.color = "#0072B2",
+  high.color = "#D55E00", bar.fill = "grey50",
   results.subtitle = TRUE, centrality.para = "mean",
   centrality.color = "blue", centrality.size = 1.2,
   centrality.linetype = "dashed", centrality.line.labeller = TRUE,
@@ -74,9 +75,13 @@ This will work only if \code{results.subtitle = TRUE}.}
 \item{k}{Number of decimal places expected for results.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
-\code{theme_void()}, etc.}
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
+\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}).}
+
+\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}).}
 
 \item{fill.gradient}{Logical decides whether color fill gradient is to be
 displayed (Default: \code{FALSE}). If \code{FALSE}, the legend and the color gradient

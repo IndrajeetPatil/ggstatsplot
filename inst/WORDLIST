@@ -4,7 +4,6 @@ ascender
 binwidth
 cex
 chartjunk
-colorbar
 correlalogram
 cowplot
 Cramer's
@@ -65,7 +64,6 @@ Rmarkdown
 sdcor
 spearman
 srt
-stackoverflow
 stype
 th
 tibble

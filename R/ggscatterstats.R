@@ -56,13 +56,10 @@
 #'   the resolution of the data.
 #' @param axes.range.restrict Logical decides whether to restrict the axes values
 #'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
-#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams ggplot2::geom_smooth
+#' @inheritParams theme_ggstatsplot
 #'
 #' @import ggplot2
 #'
@@ -143,6 +140,7 @@ ggscatterstats <-
              k = 3,
              axes.range.restrict = FALSE,
              ggtheme = ggplot2::theme_bw(),
+             ggstatsplot.layer = TRUE,
              messages = TRUE) {
     ################################################### dataframe ####################################################
 
@@ -378,7 +376,7 @@ ggscatterstats <-
         na.rm = TRUE,
         level = 0.95
       ) +
-      ggstatsplot::theme_mprl(ggtheme = ggtheme) +
+      ggstatsplot::theme_mprl(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
       ggplot2::labs(
         x = xlab,
         y = ylab,

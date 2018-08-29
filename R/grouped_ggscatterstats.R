@@ -86,6 +86,7 @@ grouped_ggscatterstats <- function(data,
                                    k = 3,
                                    axes.range.restrict = FALSE,
                                    ggtheme = ggplot2::theme_bw(),
+                                   ggstatsplot.layer = TRUE,
                                    messages = TRUE,
                                    ...) {
   # ========================================= preparing dataframe =======================================================
@@ -160,6 +161,7 @@ grouped_ggscatterstats <- function(data,
             k = k,
             axes.range.restrict = axes.range.restrict,
             ggtheme = ggtheme,
+            ggstatsplot.layer = ggstatsplot.layer,
             messages = messages
           )
         )

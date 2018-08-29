@@ -11,12 +11,16 @@ MAJOR CHANGES
   palettes.
   - `ggbetweenstats` gains `bf.message` argument to display bayes factors in
   favor of the null (currently works only for parametric t-test).
+  - `gghistostats` function no longer has `line.labeller.y` argument; this
+  position is automatically determined now.
+
+BREAKING CHANGES
   - `legend.title.margin` function has been depcrecated since `ggplot2 3.0.0` has
   improved on the margin issues from previous versions. All functions that
   wrapped around this function now lose the relevant arguments
   (`legend.title.margin`, `t.margin`, `b.margin`).
-  - `gghistostats` function no longer has `line.labeller.y` argument; this
-  position is automatically determined now.
+  - The argument `ggstatsplot.theme` has been changed to `ggstatsplot.layer` for
+  `ggcorrmat` function to be consistent across functions.
 
 MINOR CHANGES
   - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes

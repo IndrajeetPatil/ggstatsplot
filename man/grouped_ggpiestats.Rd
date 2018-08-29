@@ -9,8 +9,9 @@ grouped_ggpiestats(data, main, condition = NULL, counts = NULL,
   factor.levels = NULL, stat.title = NULL, sample.size.label = TRUE,
   caption = NULL, nboot = 25, legend.title = NULL,
   facet.wrap.name = NULL, k = 3, facet.proptest = TRUE,
-  ggtheme = ggplot2::theme_bw(), package = "RColorBrewer",
-  palette = "Dark2", direction = 1, messages = TRUE, ...)
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  package = "RColorBrewer", palette = "Dark2", direction = 1,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -66,9 +67,13 @@ should be displayed for each level of the grouping variable \code{condition} (De
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Allowed values are the official \code{ggplot2} themes,
-including \code{theme_grey()}, \code{theme_minimal()}, \code{theme_classic()},
-\code{theme_void()}, etc.}
+\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
+extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
+\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}).}
+
+\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
+theme elements are to be displayed along with the selected \code{ggtheme}
+(Default: \code{TRUE}).}
 
 \item{package}{Name of package from which the palette is desired as string
 or symbol.}

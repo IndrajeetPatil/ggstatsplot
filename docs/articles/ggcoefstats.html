@@ -99,7 +99,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-26</h4>
+            <h4 class="date">2018-08-28</h4>
       
       
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -678,14 +678,15 @@ ggstatsplot::ggcoefstats(
 <a class="sourceLine" id="cb13-48" data-line-number="48">  <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(<span class="dt">formula =</span> value <span class="op">~</span><span class="st"> </span>attribute <span class="op">*</span><span class="st"> </span>measure <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(id <span class="op">/</span><span class="st"> </span>(attribute <span class="op">*</span><span class="st"> </span>measure)),</a>
 <a class="sourceLine" id="cb13-49" data-line-number="49">             <span class="dt">data =</span> iris_long),</a>
 <a class="sourceLine" id="cb13-50" data-line-number="50">  <span class="dt">effsize =</span> <span class="st">"omega"</span>,</a>
-<a class="sourceLine" id="cb13-51" data-line-number="51">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb13-52" data-line-number="52">  <span class="dt">stats.label.color =</span> <span class="kw">c</span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</a>
-<a class="sourceLine" id="cb13-53" data-line-number="53">  <span class="dt">title =</span> <span class="st">"Variation in measurements for Iris species"</span>,</a>
-<a class="sourceLine" id="cb13-54" data-line-number="54">  <span class="dt">subtitle =</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span></a>
-<a class="sourceLine" id="cb13-55" data-line-number="55">) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-56" data-line-number="56"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-57" data-line-number="57"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
-<a class="sourceLine" id="cb13-58" data-line-number="58"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist . Future release might support this.</span></a></code></pre></div>
+<a class="sourceLine" id="cb13-51" data-line-number="51">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
+<a class="sourceLine" id="cb13-52" data-line-number="52">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb13-53" data-line-number="53">  <span class="dt">stats.label.color =</span> <span class="kw">c</span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</a>
+<a class="sourceLine" id="cb13-54" data-line-number="54">  <span class="dt">title =</span> <span class="st">"Variation in measurements for Iris species"</span>,</a>
+<a class="sourceLine" id="cb13-55" data-line-number="55">  <span class="dt">subtitle =</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span></a>
+<a class="sourceLine" id="cb13-56" data-line-number="56">) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-57" data-line-number="57"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-58" data-line-number="58"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
+<a class="sourceLine" id="cb13-59" data-line-number="59"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist . Future release might support this.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist-1.png" width="768"></p>
 <p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
 </div>

@@ -203,10 +203,11 @@ ggstatsplot::grouped_gghistostats(
   test.value = 48,                              # test value against which sample mean is to be compared
   test.value.line = TRUE,                       # show a vertical line at `test.value`
   centrality.para = "mean",                     # plotting centrality parameter
-  centrality.color = "#D55E00",                  # color for centrality line and label
+  centrality.color = "#D55E00",                 # color for centrality line and label
   test.value.color = "#009E73",                 # color for test line and label
   messages = FALSE,                             # turn off messages
-  ggtheme = ggplot2::theme_gray(),              # changing default theme
+  ggtheme = ggthemes::theme_stata(),            # changing default theme
+  ggstatsplot.layer = FALSE,                    # turn off ggstatsplot theme layer
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Life expectancy change in different continents since 1950",
   caption.text = "Note: green line - 1950; orange line - 2007",

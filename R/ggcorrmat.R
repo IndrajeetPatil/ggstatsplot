@@ -52,9 +52,9 @@
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
 #'   `ggplot2::theme_bw`. Allowed values are the official `ggplot2` themes,
 #'   including `theme_grey`, `theme_minimal`, `theme_classic`, `theme_void`, etc.
-#' @param ggstatsplot.theme A logical. Decides whether default theme for
+#' @param ggstatsplot.layer A logical. Decides whether default theme for
 #'   `ggstatsplot`, which is `theme_mprl`, is to be overlaid on the entered
-#'   theme (Default: `ggstatsplot.theme = TRUE`).
+#'   theme (Default: `ggstatsplot.layer = TRUE`).
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
 #' @param caption The text for the plot caption. If not specified (if it is
@@ -66,25 +66,23 @@
 #' @param lab.size Size to be used for the correlation coefficient labels
 #'   (applicable only when `lab = TRUE`).
 #' @param axis.text.x.margin.t,axis.text.x.margin.r,axis.text.x.margin.b,axis.text.x.margin.l
-#'   Margins between x-axis and the variable name texts (t: top, r: right, b:
-#'   bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
-#'   between `45` and `75` (Defaults: `0`, `0`, `0`, `0`, resp.).
+#'    Margins between x-axis and the variable name texts (t: top, r: right, b:
+#'   bottom, l:left), especially useful in case the names are slanted, i.e. when
+#'   the tl.srt is between `45` and `75` (Defaults: `0`, `0`, `0`, `0`, resp.).
 #' @param insig Character used to show specialized insignificant correlation
 #'   coefficients (`"pch"` (default) or `"blank"`). If `"blank"`, the
 #'   corresponding glyphs will be removed; if "pch" is used, characters (see
 #'   `?pch` for details) will be added on the corresponding glyphs.
-#' @param pch Decides the glyphs (read point shapes) to be used for insignificant correlation
-#'   coefficients (only valid when `insig = "pch"`). Default value is `pch = 4`.
+#' @param pch Decides the glyphs (read point shapes) to be used for
+#'   insignificant correlation coefficients (only valid when `insig = "pch"`).
+#'   Default value is `pch = 4`.
 #' @param pch.col,pch.cex The color and the cex (size) of `pch` (only valid when
 #'   `insig = "pch"`). Defaults are `pch.col = "#F0E442"` and `pch.cex = 10`.
 #' @param tl.cex,tl.col,tl.srt The size, the color, and the string rotation of
 #'   text label (variable names, i.e.).
-#' @param legend.title.margin Logical indicating whether to adjust the margin between legend title and the
-#'   colorbar (Default: `FALSE`).
-#' @param t.margin,b.margin Margins in grid units. For more details, see
-#'   `?grid::unit()`.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @inheritParams theme_ggstatsplot
 #'
 #' @import ggplot2
 #'
@@ -145,10 +143,6 @@
 #'   hc.order = TRUE, type = "lower", outline.col = "white",
 #'   title = "Dataset: Iris"
 #' )
-#' @note If you are using R Notebook or Markdown and see a blank image being
-#'   inserted when a chunk is executed, this behavior can be turned off by
-#'   setting `legend.title.margin = FALSE`.
-#'
 #' @export
 #'
 
@@ -172,7 +166,7 @@ ggcorrmat <-
              colors = c("#E69F00", "white", "#009E73"),
              outline.color = "black",
              ggtheme = ggplot2::theme_bw,
-             ggstatsplot.theme = TRUE,
+             ggstatsplot.layer = TRUE,
              title = NULL,
              subtitle = NULL,
              caption = NULL,
@@ -186,13 +180,10 @@ ggcorrmat <-
              tl.cex = 12,
              tl.col = "black",
              tl.srt = 45,
+             axis.text.x.margin.l = 0,
              axis.text.x.margin.t = 0,
              axis.text.x.margin.r = 0,
              axis.text.x.margin.b = 0,
-             axis.text.x.margin.l = 0,
-             legend.title.margin = FALSE,
-             t.margin = unit(0, "mm"),
-             b.margin = unit(3, "mm"),
              messages = TRUE) {
     # ========================================== dataframe ==============================================================
     #
@@ -325,7 +316,7 @@ ggcorrmat <-
         }
 
         # adding ggstatsplot theme for correlation matrix
-        if (isTRUE(ggstatsplot.theme)) {
+        if (isTRUE(ggstatsplot.layer)) {
           plot <- plot +
             theme_corrmat()
         }
@@ -342,15 +333,6 @@ ggcorrmat <-
               unit = "pt"
             )
           ))
-
-        # creating proper spacing between the legend.title and the colorbar
-        if (isTRUE(legend.title.margin)) {
-          plot <- legend_title_margin(
-            plot = plot,
-            t.margin = t.margin,
-            b.margin = b.margin
-          )
-        }
       } else if (corr.method == "robust") {
         base::message(cat(
           crayon::red("Error:"),

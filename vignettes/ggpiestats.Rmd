@@ -240,7 +240,7 @@ plot_list <- purrr::pmap(
       ggplot2::theme_grey(),
       ggplot2::theme_classic(),
       ggthemes::theme_fivethirtyeight(),
-      ggplot2::theme_minimal()
+      hrbrthemes::theme_ipsum_rc()
     ),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
     messages = FALSE

@@ -85,10 +85,6 @@
 #'   `"darkred"`).
 #' @param mean.size Point size for the data point corresponding to mean
 #'   (Default: `5`).
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
-#'   including `ggplot2::theme_grey()`, `ggplot2::theme_minimal()`,
-#' `ggplot2::theme_classic()`, `ggplot2::theme_void()`, etc.
 #' @param palette If a character string (e.g., `"Set1"`), will use that named
 #'   palette. If a number, will index into the list of palettes of appropriate
 #'   type. Default palette is `"Dark2"`.
@@ -101,6 +97,7 @@
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams paletteer::scale_color_paletteer_d
+#' @inheritParams theme_ggstatsplot
 #'
 #' @import ggplot2
 #'
@@ -210,6 +207,7 @@ ggbetweenstats <- function(data,
                            mean.size = 5,
                            mean.color = "darkred",
                            ggtheme = ggplot2::theme_bw(),
+                           ggstatsplot.layer = TRUE,
                            package = "RColorBrewer",
                            palette = "Dark2",
                            direction = 1,
@@ -1022,9 +1020,10 @@ ggbetweenstats <- function(data,
       x = xlab,
       y = ylab,
       title = title,
-      caption = caption.text
+      caption = caption.text,
+      color = lab.df[1]
     ) +
-    ggstatsplot::theme_mprl(ggtheme = ggtheme) +
+    ggstatsplot::theme_mprl(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
     ggplot2::theme(legend.position = "none") +
     ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
     ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))

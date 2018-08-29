@@ -34,6 +34,8 @@ flexible than `ggplot2`, but that's a feature and not a bug. The original intent
 behind this package is to offload struggles associated with *constructing* the
 plot and focus more on the *interpretation* of that data displayed in the plot.
 
+(**This vignette is still a work in progress**)
+
 ## Clean design
 
 ```{r example1, fig.height = 8, fig.width = 7}
@@ -76,7 +78,15 @@ ggstatsplot::ggpiestats(
 )
 ```
 
-## Understanding
+## Graphical perception
+
+Graphical perception involves visual decoding the encoded information in graphs.
+`ggstatsplot` incorporates the paradigm proposed in Cleveland (1985, Chapter 4) to
+facilitate making visual judgments about quantitative information effortless and
+almost instantaneous.
+
+There are few instances where `ggstatsplot` diverges from recommendations made in Cleveland's paradigm:
+*  
 
 ## Statistical details
 

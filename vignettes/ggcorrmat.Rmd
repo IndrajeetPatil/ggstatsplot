@@ -90,7 +90,7 @@ ggstatsplot::ggcorrmat(
   corr.method = "kendall",                    # which correlation coefficient is to be computed
   lab.col = "red",                            # label color
   ggtheme = ggplot2::theme_light,             # selected ggplot2 theme
-  ggstatsplot.theme = FALSE,                  # turn off default ggestatsplot theme overlay
+  ggstatsplot.layer = FALSE,                  # turn off default ggestatsplot theme overlay
   type = "lower",                             # type of correlation matrix
   colors = c("green", "white", "yellow"),     # selecting color combination
   title = "Gapminder correlation matrix",     # custom title
@@ -305,7 +305,7 @@ plot_list <- purrr::pmap(
       c("#56B4E9", "white", "#D55E00"),
       c("#999999", "white", "#0072B2")
     ),
-    ggstatsplot.theme = list(FALSE),
+    ggstatsplot.layer = list(FALSE),
     ggtheme = list(
       ggplot2::theme_grey,
       ggplot2::theme_classic,

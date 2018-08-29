@@ -11,14 +11,13 @@ grouped_ggcorrmat(data, cor.vars, cor.vars.names = NULL, grouping.var,
   continuity = TRUE, beta = 0.1, digits = 2, sig.level = 0.05,
   hc.order = FALSE, hc.method = "complete", lab = TRUE,
   colors = c("#E69F00", "white", "#009E73"), outline.color = "black",
-  ggtheme = ggplot2::theme_bw, ggstatsplot.theme = TRUE,
+  ggtheme = ggplot2::theme_bw, ggstatsplot.layer = TRUE,
   subtitle = NULL, caption = NULL, caption.default = TRUE,
   lab.col = "black", lab.size = 5, insig = "pch", pch = 4,
   pch.col = "black", pch.cex = 11, tl.cex = 12, tl.col = "black",
   tl.srt = 45, axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
   axis.text.x.margin.b = 0, axis.text.x.margin.l = 0,
-  legend.title.margin = FALSE, t.margin = unit(0, "mm"),
-  b.margin = unit(3, "mm"), messages = TRUE, ...)
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -89,9 +88,9 @@ displayed in the plot.}
 \code{ggplot2::theme_bw}. Allowed values are the official \code{ggplot2} themes,
 including \code{theme_grey}, \code{theme_minimal}, \code{theme_classic}, \code{theme_void}, etc.}
 
-\item{ggstatsplot.theme}{A logical. Decides whether default theme for
+\item{ggstatsplot.layer}{A logical. Decides whether default theme for
 \code{ggstatsplot}, which is \code{theme_mprl}, is to be overlaid on the entered
-theme (Default: \code{ggstatsplot.theme = TRUE}).}
+theme (Default: \code{ggstatsplot.layer = TRUE}).}
 
 \item{subtitle}{The text for the plot subtitle.}
 
@@ -112,8 +111,9 @@ coefficients (\code{"pch"} (default) or \code{"blank"}). If \code{"blank"}, the
 corresponding glyphs will be removed; if "pch" is used, characters (see
 \code{?pch} for details) will be added on the corresponding glyphs.}
 
-\item{pch}{Decides the glyphs (read point shapes) to be used for insignificant correlation
-coefficients (only valid when \code{insig = "pch"}). Default value is \code{pch = 4}.}
+\item{pch}{Decides the glyphs (read point shapes) to be used for
+insignificant correlation coefficients (only valid when \code{insig = "pch"}).
+Default value is \code{pch = 4}.}
 
 \item{pch.col}{The color and the cex (size) of \code{pch} (only valid when
 \code{insig = "pch"}). Defaults are \code{pch.col = "#F0E442"} and \code{pch.cex = 10}.}
@@ -131,29 +131,20 @@ text label (variable names, i.e.).}
 text label (variable names, i.e.).}
 
 \item{axis.text.x.margin.t}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
-between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
+bottom, l:left), especially useful in case the names are slanted, i.e. when
+the tl.srt is between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
 
 \item{axis.text.x.margin.r}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
-between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
+bottom, l:left), especially useful in case the names are slanted, i.e. when
+the tl.srt is between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
 
 \item{axis.text.x.margin.b}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
-between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
+bottom, l:left), especially useful in case the names are slanted, i.e. when
+the tl.srt is between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
 
 \item{axis.text.x.margin.l}{Margins between x-axis and the variable name texts (t: top, r: right, b:
-bottom, l:left), especially useful in case the names are slanted, i.e. when the tl.srt is
-between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
-
-\item{legend.title.margin}{Logical indicating whether to adjust the margin between legend title and the
-colorbar (Default: \code{FALSE}).}
-
-\item{t.margin}{Margins in grid units. For more details, see
-\code{?grid::unit()}.}
-
-\item{b.margin}{Margins in grid units. For more details, see
-\code{?grid::unit()}.}
+bottom, l:left), especially useful in case the names are slanted, i.e. when
+the tl.srt is between \code{45} and \code{75} (Defaults: \code{0}, \code{0}, \code{0}, \code{0}, resp.).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
@@ -211,11 +202,6 @@ combining (plot, caption).}
 Helper function for \code{ggstatsplot::ggcorrmat} to apply this
 function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
-}
-\note{
-If you are using R Notebook or Markdown and see a blank image being
-inserted when a chunk is executed, this behavior can be turned off by
-setting \code{legend.title.margin = FALSE}.
 }
 \examples{
 

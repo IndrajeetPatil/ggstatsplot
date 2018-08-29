@@ -43,13 +43,10 @@
 #' @param facet.wrap.name The text for the facet_wrap variable label.
 #' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
-#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams paletteer::scale_fill_paletteer_d
+#' @inheritParams theme_ggstatsplot
 #'
 #' @import ggplot2
 #'
@@ -116,6 +113,7 @@ ggpiestats <-
              k = 3,
              facet.proptest = TRUE,
              ggtheme = ggplot2::theme_bw(),
+             ggstatsplot.layer = TRUE,
              package = "RColorBrewer",
              palette = "Dark2",
              direction = 1,
@@ -354,11 +352,6 @@ ggpiestats <-
     # formatting
     p <- p +
       ggplot2::scale_y_continuous(breaks = NULL) +
-      # ggplot2::scale_fill_brewer(
-      #   name = "",
-      #   labels = unique(legend.labels),
-      #   palette = palette
-      # ) +
       paletteer::scale_fill_paletteer_d(
         package = !!package,
         palette = !!palette,
@@ -366,7 +359,7 @@ ggpiestats <-
         name = "",
         labels = unique(legend.labels)
       ) +
-      theme_pie(ggtheme = ggtheme) +
+      theme_pie(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
       ggplot2::guides(fill = guide_legend(override.aes = list(color = NA))) # remove black diagonal line from legend
 
     # ===================================== chi-square test (either Pearson or McNemar) =====================================

@@ -92,13 +92,10 @@
 #'   entire plot area. Defaults to `c(NA, NA)`.
 #' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
 #'   which to adjust position of labels (Default: `"y"`).
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_bw()`, `theme_minimal()`, `theme_classic()`,
-#'   `theme_void()`, etc.
 #' @inheritParams lm_effsize_ci
 #' @inheritParams broom::tidy.merMod
 #' @inheritParams broom::tidy.clm
+#' @inheritParams theme_ggstatsplot
 #' @param \dots Extra arguments to pass to \code{\link[broom]{tidy}}.
 #'
 #' @import ggplot2
@@ -188,6 +185,7 @@ ggcoefstats <- function(x,
                         label.ylim = c(NA, NA),
                         label.direction = "y",
                         ggtheme = ggplot2::theme_bw(),
+                        ggstatsplot.layer = TRUE,
                         ...) {
   # ================================== list of objects (for tidy and glance) ==========================================================
 
@@ -760,7 +758,7 @@ ggcoefstats <- function(x,
       subtitle = subtitle,
       title = title
     ) +
-    ggstatsplot::theme_mprl(ggtheme = ggtheme) +
+    ggstatsplot::theme_mprl(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
     ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
 
   # ================================================== output ===========================================================

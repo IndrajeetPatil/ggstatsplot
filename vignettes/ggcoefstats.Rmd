@@ -664,7 +664,8 @@ ggstatsplot::ggcoefstats(
   x = stats::aov(formula = value ~ attribute * measure + Error(id / (attribute * measure)),
              data = iris_long),
   effsize = "omega",
-  ggtheme = ggplot2::theme_grey(),
+  ggtheme = ggthemes::theme_fivethirtyeight(),
+  ggstatsplot.layer = FALSE,
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Variation in measurements for Iris species",
   subtitle = "Source: Iris data set (by Fisher or Anderson)"

@@ -71,12 +71,9 @@
 #'   bins that cover the range of the data. You should always override this
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_bw()`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_grey()`, `theme_minimal()`, `theme_classic()`,
-#'   `theme_void()`, etc.
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @inheritParams theme_ggstatsplot
 #'
 #' @import ggplot2
 #'
@@ -144,6 +141,7 @@ gghistostats <-
              nboot = 500,
              k = 3,
              ggtheme = ggplot2::theme_bw(),
+             ggstatsplot.layer = TRUE,
              fill.gradient = FALSE,
              low.color = "#0072B2",
              high.color = "#D55E00",
@@ -513,7 +511,7 @@ gghistostats <-
 
     # adding the theme and labels
     plot <- plot +
-      ggstatsplot::theme_mprl(ggtheme = ggtheme) +
+      ggstatsplot::theme_mprl(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
       ggplot2::labs(
         x = xlab,
         title = title,

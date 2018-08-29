@@ -166,7 +166,8 @@ caption.</p>
   <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
-  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='no'>...</span>)</pre>
+  <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -406,9 +407,15 @@ which to adjust position of labels (Default: <code>"y"</code>).</p></td>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
-including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
-<code>theme_void()</code>, etc.</p></td>
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
+<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>ggstatsplot.layer</th>
+      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
+theme elements are to be displayed along with the selected <code>ggtheme</code>
+(Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>&#8230;</th>

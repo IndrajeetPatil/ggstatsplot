@@ -146,7 +146,7 @@ user/reader.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_mprl</span>(<span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>())</pre>
+    <pre class="usage"><span class='fu'>theme_mprl</span>(<span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,15 +154,17 @@ user/reader.</p>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Allowed values are the official <code>ggplot2</code> themes,
-including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_classic()</code>,
-<code>theme_void()</code>, etc.</p></td>
+<code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
+<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>ggstatsplot.layer</th>
+      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
+theme elements are to be displayed along with the selected <code>ggtheme</code>
+(Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>ggplot2</code> object with the <code>theme_mprl</code> theme.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -179,8 +181,6 @@ including <code>theme_bw()</code>, <code>theme_minimal()</code>, <code>theme_cla
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#note">Note</a></li>
 
       <li><a href="#references">References</a></li>

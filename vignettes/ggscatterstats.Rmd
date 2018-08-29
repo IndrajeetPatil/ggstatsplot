@@ -156,6 +156,8 @@ ggstatsplot::grouped_ggscatterstats(
   y = rating,
   grouping.var = mpaa,
   marginal.type = "boxplot",
+  ggtheme = ggthemes::theme_tufte(),
+  ggstatsplot.layer = FALSE,
   # number of decimal places in results
   k = 2,
   # arguments relevant for ggstatsplot::combine_plots
@@ -247,6 +249,8 @@ ggstatsplot::combine_plots(
 )
 ```
 
+## Different smoothing methods
+
 Additionally, different smoothing methods can be specified. For example, if a
 robust correlation (percentage bend correlation coefficient) is used, we can use
 a robust smoothing function (`MASS::rlm`). Additionally, we can also specify
@@ -256,6 +260,8 @@ the smoothing function used. Below, four different examples are given for how to
 use different smoothing functions.
 
 ```{r grouped3, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 12}
+library(mgcv)
+
 # for reproducibility
 set.seed(123)
 
@@ -276,7 +282,7 @@ plot_list2 <- purrr::pmap(
                   "loess", 
                   "lm"),
     formula = list(y ~ x, 
-                   y ~ mgcv::s(x, k = 3), 
+                   y ~ s(x, k = 3), 
                    y ~ x, 
                    y ~ x + I(x ^ 2)),
     line.color = list("#009E73", "#F0E442", "#0072B2", "#D55E00"),

@@ -251,9 +251,11 @@ ggstatsplot::grouped_ggbetweenstats(
   y = lifeExp,
   # number of decimal places in results
   k = 2,
+  ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
   outlier.tagging = TRUE,
+  ggstatsplot.layer = FALSE,
   outlier.label = country,
   grouping.var = year,
   title.prefix = "Year",
@@ -351,9 +353,9 @@ plot_list <- purrr::pmap(
       "unbiased"
     ),
     plot.type = list("box", "boxviolin", "box", "boxviolin", "box", "violin"),
-    mean.ci = list(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE),
-    package = list("nord", "ochRe", "palettetown", "ggsci", "yarrr", "RColorBrewer"),
-    palette = list("aurora", "parliament", "butterfree", "default_nejm", "basel", "Set1"),
+    mean.ci = list(TRUE, FALSE, FALSE, FALSE, TRUE, TRUE),
+    package = list("nord", "ochRe", "awtools", "ggsci", "yarrr", "RColorBrewer"),
+    palette = list("aurora", "parliament", "ppalette", "default_nejm", "basel", "Set1"),
     ggtheme = list(
       hrbrthemes::theme_ipsum_tw(),
       ggplot2::theme_classic(),
@@ -362,6 +364,7 @@ plot_list <- purrr::pmap(
       ggthemes::theme_wsj(),
       ggthemes::theme_calc()
     ),
+    ggstatsplot.layer = list(FALSE, FALSE, FALSE, FALSE, TRUE, FALSE),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE),
     messages = FALSE
   ),
