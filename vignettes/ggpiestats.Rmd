@@ -232,16 +232,17 @@ plot_list <- purrr::pmap(
       "Total: 319, Died: 120, Survived: 199, % Survived: 62%",
       "Total: 272, Died: 155, Survived: 117, % Survived: 43%",
       "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
-      "Not available"
+      "Data not available for crew passengers"
     ),
     package = list("RColorBrewer", "ghibli", "palettetown", "yarrr"),
     palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
     ggtheme = list(
       ggplot2::theme_grey(),
       ggplot2::theme_classic(),
-      ggthemes::theme_fivethirtyeight(),
-      hrbrthemes::theme_ipsum_rc()
+      ggthemes::theme_tufte(),
+      ggthemes::theme_economist()
     ),
+    ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
     messages = FALSE
   ),

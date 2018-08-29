@@ -205,10 +205,11 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     </tr>
     <tr>
       <th>effsize.type</th>
-      <td><p>Type of effect size needed for <em>parametric</em> tests
-(<code>"biased"</code> (Cohen's <em>d</em> for <strong>t-test</strong>; partial eta-squared for <strong>anova</strong>)
-or <code>"unbiased"</code> (Hedge's <em>g</em> for <strong>t-test</strong>; partial omega-squared for
-<strong>anova</strong>)).</p></td>
+      <td><p>Type of effect size needed for <em>parametric</em> tests. The
+argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em> for <strong>t-test</strong>;
+<code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or <code>"unbiased"</code>
+(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>; <code>"partial_omega"</code> for partial
+omega-squared for <strong>anova</strong>)).</p></td>
     </tr>
     <tr>
       <th>effsize.noncentral</th>
@@ -246,12 +247,16 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Number of decimal places expected for results.</p></td>
+      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
     </tr>
     <tr>
       <th>var.equal</th>
-      <td><p>A logical variable indicating whether to treat the two
-variances as being equal (Default: <code>FALSE</code>).</p></td>
+      <td><p>a logical variable indicating whether to treat the
+    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -480,7 +485,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; Reference:  Welch's t-test is used as a default. (Delacre, Lakens, &amp; Leys, International Review of Social Psychology, 2017).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.570</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.994</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Reference:  Welch's t-test is used as a default. (Delacre, Lakens, &amp; Leys, International Review of Social Psychology, 2017).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.131</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.890</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Reference:  Welch's t-test is used as a default. (Delacre, Lakens, &amp; Leys, International Review of Social Psychology, 2017).</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.364</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.570</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.994</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.131</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.890</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.364</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

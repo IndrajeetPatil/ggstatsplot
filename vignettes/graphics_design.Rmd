@@ -46,6 +46,8 @@ ggstatsplot::ggbetweenstats(
   title = "Figure-1: Fuel efficiency by type of cylinder",
   xlab = "number of cylinders",
   ylab = "city miles per gallon",
+  ggtheme = ggthemes::theme_fivethirtyeight(),
+  ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
   outlier.label = manufacturer,
   messages = FALSE
@@ -67,25 +69,36 @@ ggstatsplot::ggbetweenstats(
 * All plots are designed to have no **chartjunk** (like moiré vibrations, fake
 perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
 
-```{r example2, fig.height = 5, fig.width = 5}
+```{r example2, fig.height = 6, fig.width = 10}
 ggstatsplot::ggpiestats(
-  data = ggplot2::mpg,
-  main = drv,
-  title = "Figure-2: Distribution of layouts",
+  data = ggstatsplot::movies_long,
+  main = genre,
+  condition = mpaa,
+  title = "Figure-2: Distribution of MPAA ratings by film genre",
   legend.title = "layout",
-  caption = "f = front-wheel drive, r = rear wheel drive, 4 = 4wd",
+  caption = "MPAA: Motion Picture Association of America",
+  package = "ggsci",
+  palette = "default_jama",
   messages = FALSE
 )
 ```
 
 ## Graphical perception
 
-Graphical perception involves visual decoding the encoded information in graphs.
-`ggstatsplot` incorporates the paradigm proposed in Cleveland (1985, Chapter 4) to
-facilitate making visual judgments about quantitative information effortless and
-almost instantaneous.
-
-There are few instances where `ggstatsplot` diverges from recommendations made in Cleveland's paradigm:
+Graphical perception involves visual decoding of the encoded information in
+graphs. `ggstatsplot` incorporates the paradigm proposed in Cleveland (1985,
+Chapter 4) to facilitate making visual judgments about quantitative information
+effortless and almost instantaneous. Based on experiments, Cleveland proposes
+that there are ten elementary graphical-perception tasks that we perform to
+visually decode quantitative information in graphs (organized from most to least
+accurate [^1])
+ 
+ [^1]: "The ordering is based on the theory of visual perception, on experiments
+ in graphical perception, and on informal experimentation." (Cleveland, 1985,
+ p.254)
+ 
+There are few instances where `ggstatsplot` diverges from recommendations made
+in Cleveland's paradigm:
 *  
 
 ## Statistical details
@@ -104,4 +117,4 @@ All p-values displayed in `ggstatsplot` plots avoid this mistake. Anything less
   infinitesimally small the *p*-values are. Instead, the emphasis is put more on
   the effect size magnitudes and their 95% CIs.
   
-
+## References

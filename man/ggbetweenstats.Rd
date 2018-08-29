@@ -39,10 +39,11 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
 \code{"bf"}resp.}
 
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests
-(\code{"biased"} (Cohen's \emph{d} for \strong{t-test}; partial eta-squared for \strong{anova})
-or \code{"unbiased"} (Hedge's \emph{g} for \strong{t-test}; partial omega-squared for
-\strong{anova})).}
+\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
+argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-test};
+\code{"partial_eta"} for partial eta-squared for \strong{anova}) or \code{"unbiased"}
+(\code{"g"} Hedge's \emph{g} for \strong{t-test}; \code{"partial_omega"} for partial
+omega-squared for \strong{anova})).}
 
 \item{effsize.noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the 95% confidence interval for Cohen's \emph{d}
@@ -66,10 +67,14 @@ of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.messag
 should be displayed for each level of the grouping variable \code{x} (Default:
 \code{TRUE}).}
 
-\item{k}{Number of decimal places expected for results.}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
-\item{var.equal}{A logical variable indicating whether to treat the two
-variances as being equal (Default: \code{FALSE}).}
+\item{var.equal}{a logical variable indicating whether to treat the
+    variances in the samples as equal.  If \code{TRUE}, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If \code{FALSE}, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}
@@ -167,6 +172,18 @@ to be displayed (Default: \code{TRUE}).}
 A combination of box and violin plots along with jittered data
 points for between-subjects designs with statistical details included in
 the plot as a subtitle.
+}
+\details{
+Welch's ANOVA/t-test is used as a default. References:
+\itemize{
+\item ANOVA: Delacre, Leys, Mora, & Lakens, \emph{PsyArXiv}, 2018
+\item t-test: Delacre, Lakens, & Leys, \emph{International Review of Social Psychology}, 2017
+}
+
+Variant of this function \code{ggwithinstats} is currently under work. You \emph{can}
+still use this function just to prepare the \strong{plot} for exploratory data
+analysis, but the statistical details displayed in the subtitle will be
+incorrect. You can remove them by adding \code{+ ggplot2::labs(subtitle = NULL)}.
 }
 \examples{
 

@@ -99,7 +99,7 @@
       <h1>graphics design</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-28</h4>
+            <h4 class="date">2018-08-29</h4>
       
       
       <div class="hidden name"><code>graphics_design.Rmd</code></div>
@@ -120,10 +120,12 @@
 <a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">title =</span> <span class="st">"Figure-1: Fuel efficiency by type of cylinder"</span>,</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">xlab =</span> <span class="st">"number of cylinders"</span>,</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="dt">ylab =</span> <span class="st">"city miles per gallon"</span>,</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">outlier.label =</span> manufacturer,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">)</a></code></pre></div>
+<a class="sourceLine" id="cb1-8" data-line-number="8">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">  <span class="dt">outlier.label =</span> manufacturer,</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">)</a></code></pre></div>
 <p><img src="graphics_design_files/figure-html/example1-1.png" width="672"></p>
 <ul>
 <li>
@@ -136,19 +138,22 @@
 <li><p>All plots are designed to have no <strong>chartjunk</strong> (like moiré vibrations, fake perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">data =</span> ggplot2<span class="op">::</span>mpg,</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">main =</span> drv,</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">title =</span> <span class="st">"Figure-2: Distribution of layouts"</span>,</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="dt">legend.title =</span> <span class="st">"layout"</span>,</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="dt">caption =</span> <span class="st">"f = front-wheel drive, r = rear wheel drive, 4 = 4wd"</span>,</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">)</a></code></pre></div>
-<p><img src="graphics_design_files/figure-html/example2-1.png" width="480"></p>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">main =</span> genre,</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">condition =</span> mpaa,</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="dt">title =</span> <span class="st">"Figure-2: Distribution of MPAA ratings by film genre"</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="dt">legend.title =</span> <span class="st">"layout"</span>,</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="dt">caption =</span> <span class="st">"MPAA: Motion Picture Association of America"</span>,</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">)</a></code></pre></div>
+<p><img src="graphics_design_files/figure-html/example2-1.png" width="960"></p>
 </div>
 <div id="graphical-perception" class="section level2">
 <h2 class="hasAnchor">
 <a href="#graphical-perception" class="anchor"></a>Graphical perception</h2>
-<p>Graphical perception involves visual decoding the encoded information in graphs. <code>ggstatsplot</code> incorporates the paradigm proposed in Cleveland (1985, Chapter 4) to facilitate making visual judgments about quantitative information effortless and almost instantaneous.</p>
+<p>Graphical perception involves visual decoding of the encoded information in graphs. <code>ggstatsplot</code> incorporates the paradigm proposed in Cleveland (1985, Chapter 4) to facilitate making visual judgments about quantitative information effortless and almost instantaneous. Based on experiments, Cleveland proposes that there are ten elementary graphical-perception tasks that we perform to visually decode quantitative information in graphs (organized from most to least accurate <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>)</p>
 <p>There are few instances where <code>ggstatsplot</code> diverges from recommendations made in Cleveland’s paradigm: *</p>
 </div>
 <div id="statistical-details" class="section level2">
@@ -162,6 +167,16 @@
 </blockquote>
 <p>All p-values displayed in <code>ggstatsplot</code> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such. The package doesn’t care how infinitesimally small the <em>p</em>-values are. Instead, the emphasis is put more on the effect size magnitudes and their 95% CIs.</p>
 </div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+</div>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>“The ordering is based on the theory of visual perception, on experiments in graphical perception, and on informal experimentation.” (Cleveland, 1985, p.254)<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -172,6 +187,7 @@
 <li><a href="#clean-design">Clean design</a></li>
       <li><a href="#graphical-perception">Graphical perception</a></li>
       <li><a href="#statistical-details">Statistical details</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>

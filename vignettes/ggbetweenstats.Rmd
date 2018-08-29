@@ -315,7 +315,7 @@ year_list <- gapminder::gapminder %>%
 length(year_list)
 names(year_list)
 
-# running function on every element of this list note that if you want the same
+# running function on every element of this list; note that if you want the same
 # value for a given argument across all elements of the list, you need to
 # specify it just once
 plot_list <- purrr::pmap(
@@ -345,12 +345,12 @@ plot_list <- purrr::pmap(
     type = list("r", "p", "np", "p", "p", "r"),
     k = list(1, 2, 3, 3, 2, 1),
     effsize.type = list(
-      "biased",
-      "unbiased",
-      "biased",
-      "unbiased",
-      "biased",
-      "unbiased"
+      NULL,
+      "partial_omega",
+      NULL,
+      "partial_omega",
+      "partial_eta",
+      NULL
     ),
     plot.type = list("box", "boxviolin", "box", "boxviolin", "box", "violin"),
     mean.ci = list(TRUE, FALSE, FALSE, FALSE, TRUE, TRUE),

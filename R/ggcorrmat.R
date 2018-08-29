@@ -49,12 +49,6 @@
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
 #' @param outline.color The outline color of square or circle. Default value is
 #'   `"gray"`.
-#' @param ggtheme A function, `ggplot2` theme name. Default value is
-#'   `ggplot2::theme_bw`. Allowed values are the official `ggplot2` themes,
-#'   including `theme_grey`, `theme_minimal`, `theme_classic`, `theme_void`, etc.
-#' @param ggstatsplot.layer A logical. Decides whether default theme for
-#'   `ggstatsplot`, which is `theme_mprl`, is to be overlaid on the entered
-#'   theme (Default: `ggstatsplot.layer = TRUE`).
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
 #' @param caption The text for the plot caption. If not specified (if it is

@@ -99,7 +99,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-28</h4>
+            <h4 class="date">2018-08-29</h4>
       
       
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -335,7 +335,7 @@
 <a class="sourceLine" id="cb6-24" data-line-number="24"><span class="kw">names</span>(year_list)</a>
 <a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt; [1] "1957" "1967" "1977" "1987" "1997" "2007"</span></a>
 <a class="sourceLine" id="cb6-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co"># running function on every element of this list note that if you want the same</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co"># running function on every element of this list; note that if you want the same</span></a>
 <a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co"># value for a given argument across all elements of the list, you need to</span></a>
 <a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co"># specify it just once</span></a>
 <a class="sourceLine" id="cb6-30" data-line-number="30">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(</a>
@@ -365,12 +365,12 @@
 <a class="sourceLine" id="cb6-54" data-line-number="54">    <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">"r"</span>, <span class="st">"p"</span>, <span class="st">"np"</span>, <span class="st">"p"</span>, <span class="st">"p"</span>, <span class="st">"r"</span>),</a>
 <a class="sourceLine" id="cb6-55" data-line-number="55">    <span class="dt">k =</span> <span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>),</a>
 <a class="sourceLine" id="cb6-56" data-line-number="56">    <span class="dt">effsize.type =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb6-57" data-line-number="57">      <span class="st">"biased"</span>,</a>
-<a class="sourceLine" id="cb6-58" data-line-number="58">      <span class="st">"unbiased"</span>,</a>
-<a class="sourceLine" id="cb6-59" data-line-number="59">      <span class="st">"biased"</span>,</a>
-<a class="sourceLine" id="cb6-60" data-line-number="60">      <span class="st">"unbiased"</span>,</a>
-<a class="sourceLine" id="cb6-61" data-line-number="61">      <span class="st">"biased"</span>,</a>
-<a class="sourceLine" id="cb6-62" data-line-number="62">      <span class="st">"unbiased"</span></a>
+<a class="sourceLine" id="cb6-57" data-line-number="57">      <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb6-58" data-line-number="58">      <span class="st">"partial_omega"</span>,</a>
+<a class="sourceLine" id="cb6-59" data-line-number="59">      <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb6-60" data-line-number="60">      <span class="st">"partial_omega"</span>,</a>
+<a class="sourceLine" id="cb6-61" data-line-number="61">      <span class="st">"partial_eta"</span>,</a>
+<a class="sourceLine" id="cb6-62" data-line-number="62">      <span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb6-63" data-line-number="63">    ),</a>
 <a class="sourceLine" id="cb6-64" data-line-number="64">    <span class="dt">plot.type =</span> <span class="kw">list</span>(<span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"box"</span>, <span class="st">"violin"</span>),</a>
 <a class="sourceLine" id="cb6-65" data-line-number="65">    <span class="dt">mean.ci =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>),</a>

@@ -74,10 +74,10 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -85,7 +85,7 @@
 #'   condition = cyl,
 #'   nboot = 10
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = iris,
@@ -552,6 +552,8 @@ ggpiestats <-
     p <-
       p +
       ggplot2::labs(
+        x = NULL,
+        y = NULL,
         title = title,
         caption = caption
       ) +

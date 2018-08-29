@@ -21,10 +21,6 @@
 #'   or `"robust"` or `"bayes"`).Corresponding abbreviations are also accepted:
 #'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
 #'   `"bf"`resp.
-#' @param effsize.type Type of effect size needed for *parametric* tests
-#'   (`"biased"` (Cohen's *d* for **t-test**; partial eta-squared for **anova**)
-#'   or `"unbiased"` (Hedge's *g* for **t-test**; partial omega-squared for
-#'   **anova**)).
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the 95% confidence interval for Cohen's *d*
 #'   or Hedge's *g* (Default: `FALSE`).
@@ -37,11 +33,6 @@
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `x` (Default:
 #'   `TRUE`).
-#' @param k Number of decimal places expected for results.
-#' @param var.equal A logical variable indicating whether to treat the two
-#'   variances as being equal (Default: `FALSE`).
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `100`).
 #' @param tr Trim level for the mean when carrying out `robust` tests. If you
 #'   get error stating "Standard error cannot be computed because of Winsorized
 #'   variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
@@ -98,6 +89,7 @@
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
+#' @inheritParams subtitle_ggbetween_anova_parametric
 #'
 #' @import ggplot2
 #'
@@ -142,6 +134,17 @@
 #' @importFrom paletteer scale_fill_paletteer_d
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}
+#'
+#' @details Welch's ANOVA/t-test is used as a default. References:
+#' \itemize{
+#'  \item ANOVA: Delacre, Leys, Mora, & Lakens, *PsyArXiv*, 2018
+#'  \item t-test: Delacre, Lakens, & Leys, *International Review of Social Psychology*, 2017
+#'  }
+#'
+#' Variant of this function `ggwithinstats` is currently under work. You *can*
+#' still use this function just to prepare the **plot** for exploratory data
+#' analysis, but the statistical details displayed in the subtitle will be
+#' incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html}
@@ -215,24 +218,31 @@ ggbetweenstats <- function(data,
                            point.jitter.height = 0.1,
                            point.dodge.width = 0.60,
                            messages = TRUE) {
-  ####################################### creating a dataframe #################################################
+  #
+  #------------------------------------------------------ variable names ---------------------------------------------------------------
 
-  # preparing labels from given dataframe
-  lab.df <- colnames(dplyr::select(
+  # preparing a dataframe with variable names
+  lab.df <- colnames(x = dplyr::select(
     .data = data,
     !!rlang::enquo(x),
     !!rlang::enquo(y)
   ))
-  # if xlab is not provided, use the variable x name
+
+  # if `xlab` is not provided, use the variable `x` name
   if (is.null(xlab)) {
     xlab <- lab.df[1]
   }
-  # if ylab is not provided, use the variable y name
+
+  # if `ylab` is not provided, use the variable `y` name
   if (is.null(ylab)) {
     ylab <- lab.df[2]
   }
+
+  #------------------------------------------------------ data --------------------------------------------------------------------------
+
   # if outlier label is provided then include it in the dataframe
   if (base::missing(outlier.label)) {
+
     # if outlier label is not provided then only include the two arguments provided
     data <-
       dplyr::select(
@@ -245,6 +255,7 @@ ggbetweenstats <- function(data,
         outlier.label = y
       )
   } else {
+
     # if outlier label is provided then include it to make a dataframe
     data <-
       dplyr::select(
@@ -255,9 +266,7 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # it is possible that sometimes the variable hasn't been converted to factor
-  # class and this will produce an error unused levels of the factor need to be
-  # dropped otherwise anova will be run instead of a t-test
+  # convert the grouping variable to factor and drop unused levels
   data %<>%
     dplyr::mutate_at(
       .tbl = .,
@@ -265,7 +274,7 @@ ggbetweenstats <- function(data,
       .funs = ~base::droplevels(x = base::as.factor(x = .))
     )
 
-  ################################################### plot ##############################################################
+  #------------------------------------------------------ plot ---------------------------------------------------------------
 
   # create the basic plot
   plot <-
@@ -362,148 +371,15 @@ ggbetweenstats <- function(data,
     # running parametric ANOVA
     if (type == "parametric" || type == "p") {
       # Welch's ANOVA run by default
-      aov_stat <-
-        stats::oneway.test(
-          formula = y ~ x,
-          data = data,
-          subset = NULL,
-          na.action = na.omit,
-          var.equal = var.equal
-        )
-
-      # preparing the subtitles with appropriate effect sizes
-      if (effsize.type == "unbiased") {
-        # partial omega-squared is the biased estimate of effect size for parametric ANOVA
-        aov_effsize_ci <- sjstats::omega_sq(
-          model = stats::lm(
-            formula = y ~ x,
-            data = data,
-            na.action = na.omit
-          ),
-          partial = TRUE,
-          ci.lvl = 0.95,
-          n = nboot
-        )
-
-        # aov_stat input represents the anova object summary derived from car library
-        rsubtitle_omega <-
-          # extracting the elements of the statistical object
-          base::substitute(
-            expr =
-              paste(
-                italic("F"),
-                "(",
-                df1,
-                ",",
-                df2,
-                ") = ",
-                estimate,
-                ", ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", p",
-                omega^2,
-                " = ",
-                effsize,
-                ", 95% CI [",
-                LL,
-                ", ",
-                UL,
-                "]",
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
-              df1 = aov_stat$parameter[[1]],
-              # numerator degrees of freedom are always integer
-              df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.omegasq[[1]], k),
-              LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k),
-              n = nrow(x = data)
-            )
-          )
-
-        # adding the subtitle to the plot
-        plot <-
-          plot +
-          ggplot2::labs(subtitle = rsubtitle_omega)
-      } else if (effsize.type == "biased") {
-
-        # getting confidence interval for partial eta-squared
-        aov_effsize_ci <- sjstats::eta_sq(
-          model = stats::lm(
-            formula = y ~ x,
-            data = data,
-            na.action = na.omit
-          ),
-          partial = TRUE,
-          ci.lvl = 0.95,
-          n = nboot
-        )
-        # aov_stat input represents the anova object summary derived from car library
-        rsubtitle_peta <-
-          # extracting the elements of the statistical object
-          base::substitute(
-            expr =
-              paste(
-                italic("F"),
-                "(",
-                df1,
-                ",",
-                df2,
-                ") = ",
-                estimate,
-                ", ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", p",
-                eta^2,
-                " = ",
-                effsize,
-                ", 95% CI [",
-                LL,
-                ", ",
-                UL,
-                "]",
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
-              df1 = aov_stat$parameter[[1]],
-              # numerator degrees of freedom are always integer
-              df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
-              effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.etasq[[1]], k),
-              LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k),
-              n = nrow(x = data)
-            )
-          )
-
-        # adding the subtitle to the plot
-        plot <-
-          plot +
-          ggplot2::labs(subtitle = rsubtitle_peta)
-      }
-
-      # displaying the details of the test that was run
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Reference: "),
-          crayon::blue("Welch's ANOVA is used as a default."),
-          crayon::yellow("(Delacre, Leys, Mora, & Lakens, PsyArXiv, 2018).")
-        ))
-      }
+      subtitle <- subtitle_ggbetween_anova_parametric(
+        data = data,
+        x = x,
+        y = y,
+        effsize.type = effsize.type,
+        nboot = nboot,
+        var.equal = var.equal,
+        k = k
+      )
     } else if (type == "nonparametric" || type == "np") {
       ############################ Kruskal-Wallis (nonparametric ANOVA) #################################################
       # setting up the anova model and getting its summary
@@ -514,7 +390,7 @@ ggbetweenstats <- function(data,
       )
 
       # aov_stat input represents the anova object summary derived from car library
-      rsubtitle_kw <- function(kw_stat) {
+      subtitle <-
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -546,12 +422,6 @@ ggbetweenstats <- function(data,
             n = nrow(x = data)
           )
         )
-      }
-
-      # adding the subtitle to the plot
-      plot <-
-        plot +
-        ggplot2::labs(subtitle = rsubtitle_kw(kw_stat = kw_stat))
 
       # letting the user know that this test doesn't have agreed upon effect size
       if (isTRUE(messages)) {
@@ -577,7 +447,7 @@ ggbetweenstats <- function(data,
       )
 
       # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
-      rsubtitle_robaov <-
+      subtitle <-
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -636,11 +506,6 @@ ggbetweenstats <- function(data,
           )
         ))
       }
-
-      # adding the label to the plot
-      plot <-
-        plot +
-        ggplot2::labs(subtitle = rsubtitle_robaov)
     }
   } else if (test == "t-test") {
 
@@ -677,8 +542,20 @@ ggbetweenstats <- function(data,
         )
 
       if (effsize.type == "unbiased") {
+
+        # Hedge's g is an unbiased estimate of the effect size
+        t_effsize <-
+          effsize::cohen.d(
+            formula = y ~ x,
+            data = data,
+            hedges.correction = TRUE,
+            na.rm = TRUE,
+            conf.level = 0.95,
+            noncentral = effsize.noncentral
+          )
+
         # t_stat input represents the t-test object summary derived from stats library
-        rsubtitle_g <- function(t_stat, t_effsize) {
+        subtitle <-
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -716,29 +593,21 @@ ggbetweenstats <- function(data,
               n = nrow(x = data)
             )
           )
-        }
+      } else if (effsize.type == "biased") {
 
-        # Hedge's g is an unbiased estimate of the effect size
+        # Cohen's d is a biased estimate of the effect size
         t_effsize <-
           effsize::cohen.d(
             formula = y ~ x,
             data = data,
-            hedges.correction = TRUE,
+            hedges.correction = FALSE,
             na.rm = TRUE,
             conf.level = 0.95,
             noncentral = effsize.noncentral
           )
 
-        # adding subtitle to the plot
-        plot <-
-          plot +
-          ggplot2::labs(subtitle = rsubtitle_g(
-            t_stat = t_stat,
-            t_effsize = t_effsize
-          ))
-      } else if (effsize.type == "biased") {
         # t_stat input represents the t-test object summary derived from stats library
-        rsubtitle_d <- function(t_stat, t_effsize) {
+        subtitle <-
           # extracting the elements of the statistical object
           base::substitute(
             expr =
@@ -776,37 +645,6 @@ ggbetweenstats <- function(data,
               n = nrow(x = data)
             )
           )
-        }
-
-        # Cohen's d is a biased estimate of the effect size
-        t_effsize <-
-          effsize::cohen.d(
-            formula = y ~ x,
-            data = data,
-            hedges.correction = FALSE,
-            na.rm = TRUE,
-            conf.level = 0.95,
-            noncentral = effsize.noncentral
-          )
-
-        # adding subtitle to the plot
-        plot <-
-          plot +
-          ggplot2::labs(subtitle = rsubtitle_d(
-            t_stat = t_stat,
-            t_effsize = t_effsize
-          ))
-      }
-
-      # displaying the details of the test that was run
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Reference: "),
-          crayon::blue("Welch's t-test is used as a default."),
-          crayon::yellow(
-            "(Delacre, Lakens, & Leys, International Review of Social Psychology, 2017)."
-          )
-        ))
       }
     }
     else if (type == "nonparametric" || type == "np") {
@@ -836,7 +674,7 @@ ggbetweenstats <- function(data,
 
       # mann_stat input represents the U-test summary derived from stats library, while Z is
       # from Exact Wilcoxon-Pratt Signed-Rank Test from coin library
-      rsubtitle_mann <- function(mann_stat, z_stat) {
+      subtitle <-
         # extracting the elements of the statistical object
         base::substitute(
           expr =
@@ -873,62 +711,8 @@ ggbetweenstats <- function(data,
             n = nrow(x = data)
           )
         )
-      }
-      # adding subtitle to the plot
-      plot <-
-        plot +
-        ggplot2::labs(subtitle = rsubtitle_mann(
-          mann_stat = mann_stat,
-          z_stat = z_stat
-        ))
     } else if (type == "robust" || type == "r") {
       ######################################### robust t-test ############################################################
-
-      # t_robust_stat input represents the t-test object summary derived from WRS2 library
-      rsubtitle_rob <-
-        function(t_robust_stat, t_robust_effsize) {
-          # extracting the elements of the statistical object
-          base::substitute(
-            expr =
-              paste(
-                italic("t"),
-                "(",
-                df,
-                ") = ",
-                estimate,
-                ", ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", ",
-                italic(xi),
-                " = ",
-                effsize,
-                ", 95% CI [",
-                LL,
-                ", ",
-                UL,
-                "]",
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test[[1]], k),
-              df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df[[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(
-                x = t_robust_stat$p.value[[1]],
-                k,
-                p.value = TRUE
-              ),
-              effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize[[1]], k),
-              LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]][[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]][[1]], k),
-              n = nrow(x = data)
-            )
-          )
-        }
 
       # setting up the independent samples t-tests on robust location measures (without bootstraps)
       t_robust_stat <-
@@ -943,17 +727,53 @@ ggbetweenstats <- function(data,
           data = data
         )
 
-      # adding the label to the plot
-      plot <-
-        plot +
-        ggplot2::labs(subtitle = rsubtitle_rob(
-          t_robust_stat = t_robust_stat,
-          t_robust_effsize = t_robust_effsize
-        ))
+      # t_robust_stat input represents the t-test object summary derived from WRS2 library
+      subtitle <-
+        # extracting the elements of the statistical object
+        base::substitute(
+          expr =
+            paste(
+              italic("t"),
+              "(",
+              df,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue,
+              ", ",
+              italic(xi),
+              " = ",
+              effsize,
+              ", 95% CI [",
+              LL,
+              ", ",
+              UL,
+              "]",
+              ", ",
+              italic("n"),
+              " = ",
+              n
+            ),
+          env = base::list(
+            estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test[[1]], k),
+            df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df[[1]], k),
+            pvalue = ggstatsplot::specify_decimal_p(
+              x = t_robust_stat$p.value[[1]],
+              k,
+              p.value = TRUE
+            ),
+            effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize[[1]], k),
+            LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]][[1]], k),
+            UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]][[1]], k),
+            n = nrow(x = data)
+          )
+        )
     } else if (type == "bayes" || type == "bf") {
       ######################################### bayes factor ############################################################
       # preparing the subtitle
-      bf_subtitle <- base::substitute(
+      subtitle <- base::substitute(
         expr =
           paste(
             italic("t"),
@@ -987,11 +807,6 @@ ggbetweenstats <- function(data,
           n = nrow(x = data)
         )
       )
-
-      # adding subtitle to the plot
-      plot <-
-        plot +
-        ggplot2::labs(subtitle = bf_subtitle)
     }
   }
 
@@ -1020,6 +835,7 @@ ggbetweenstats <- function(data,
       x = xlab,
       y = ylab,
       title = title,
+      subtitle = subtitle,
       caption = caption.text,
       color = lab.df[1]
     ) +

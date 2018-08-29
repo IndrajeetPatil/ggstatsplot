@@ -99,7 +99,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-28</h4>
+            <h4 class="date">2018-08-29</h4>
       
       
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -267,31 +267,32 @@
 <a class="sourceLine" id="cb8-31" data-line-number="31">      <span class="st">"Total: 319, Died: 120, Survived: 199, % Survived: 62%"</span>,</a>
 <a class="sourceLine" id="cb8-32" data-line-number="32">      <span class="st">"Total: 272, Died: 155, Survived: 117, % Survived: 43%"</span>,</a>
 <a class="sourceLine" id="cb8-33" data-line-number="33">      <span class="st">"Total: 709, Died: 537, Survived: 172, % Survived: 25%"</span>,</a>
-<a class="sourceLine" id="cb8-34" data-line-number="34">      <span class="st">"Not available"</span></a>
+<a class="sourceLine" id="cb8-34" data-line-number="34">      <span class="st">"Data not available for crew passengers"</span></a>
 <a class="sourceLine" id="cb8-35" data-line-number="35">    ),</a>
 <a class="sourceLine" id="cb8-36" data-line-number="36">    <span class="dt">package =</span> <span class="kw">list</span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</a>
 <a class="sourceLine" id="cb8-37" data-line-number="37">    <span class="dt">palette =</span> <span class="kw">list</span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</a>
 <a class="sourceLine" id="cb8-38" data-line-number="38">    <span class="dt">ggtheme =</span> <span class="kw">list</span>(</a>
 <a class="sourceLine" id="cb8-39" data-line-number="39">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
 <a class="sourceLine" id="cb8-40" data-line-number="40">      ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb8-41" data-line-number="41">      ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
-<a class="sourceLine" id="cb8-42" data-line-number="42">      hrbrthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_rc">theme_ipsum_rc</a></span>()</a>
+<a class="sourceLine" id="cb8-41" data-line-number="41">      ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
+<a class="sourceLine" id="cb8-42" data-line-number="42">      ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist">theme_economist</a></span>()</a>
 <a class="sourceLine" id="cb8-43" data-line-number="43">    ),</a>
-<a class="sourceLine" id="cb8-44" data-line-number="44">    <span class="dt">sample.size.label =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb8-45" data-line-number="45">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb8-46" data-line-number="46">  ),</a>
-<a class="sourceLine" id="cb8-47" data-line-number="47">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</a>
-<a class="sourceLine" id="cb8-48" data-line-number="48">)</a>
-<a class="sourceLine" id="cb8-49" data-line-number="49">  </a>
-<a class="sourceLine" id="cb8-50" data-line-number="50"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb8-51" data-line-number="51">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb8-52" data-line-number="52">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb8-53" data-line-number="53">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
-<a class="sourceLine" id="cb8-54" data-line-number="54">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; ***: p &lt; 0.001, ns: non-significant"</span>,</a>
-<a class="sourceLine" id="cb8-55" data-line-number="55">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb8-56" data-line-number="56">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb8-57" data-line-number="57">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
-<a class="sourceLine" id="cb8-58" data-line-number="58">)</a></code></pre></div>
+<a class="sourceLine" id="cb8-44" data-line-number="44">    <span class="dt">ggstatsplot.layer =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb8-45" data-line-number="45">    <span class="dt">sample.size.label =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb8-46" data-line-number="46">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb8-47" data-line-number="47">  ),</a>
+<a class="sourceLine" id="cb8-48" data-line-number="48">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggpiestats</a>
+<a class="sourceLine" id="cb8-49" data-line-number="49">)</a>
+<a class="sourceLine" id="cb8-50" data-line-number="50">  </a>
+<a class="sourceLine" id="cb8-51" data-line-number="51"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb8-52" data-line-number="52">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb8-53" data-line-number="53">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb8-54" data-line-number="54">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
+<a class="sourceLine" id="cb8-55" data-line-number="55">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; ***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb8-56" data-line-number="56">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb8-57" data-line-number="57">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb8-58" data-line-number="58">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
+<a class="sourceLine" id="cb8-59" data-line-number="59">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats6-1.png" width="864"></p>
 <p>As can be appreciated from this example, although <code>grouped_ggpiestats</code> provides a quick way to explore data, <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code> lets us utilize the full functionality of this function and <code>ggplot2</code>.</p>
 </div>
