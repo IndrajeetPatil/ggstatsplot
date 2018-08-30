@@ -26,7 +26,8 @@
 #'   `"spearman"`). `"robust"` can also be entered but only if `output` argument
 #'   is set to either `"correlations"` or `"p-values"`. The robust correlation
 #'   used is percentage bend correlation (see `?WRS2::pball`). Abbreviations
-#'   will **not** work.
+#'   will also work: `"p"` (for parametric/Pearson's *r*), `"np"`
+#'   (nonparametric/Spearman's *rho*), `"r"` (robust).
 #' @param exact A logical indicating whether an exact *p*-value should be
 #'   computed. Used for Kendall's *tau* and Spearman's *rho*. For more details,
 #'   see `?stats::cor.test`.
@@ -35,8 +36,8 @@
 #'   `TRUE`).
 #' @param beta A numeric bending constant for robust correlation coefficient
 #'   (Default: `0.1`).
-#' @param digits Decides the number of decimal digits to be added into the plot
-#'   (Default: `2`).
+#' @param digits Decides the number of decimal digits to be displayed (Default:
+#'   `2`).
 #' @param sig.level Significance level (Default: `0.05`). If the p-value in
 #'   p-mat (p-value matrix) is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant.
@@ -112,22 +113,22 @@
 #' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get the correlalogram
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
 #'   cor.vars = c(Sepal.Length:Petal.Width)
 #' )
-#' 
+#'
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
 #'   cor.vars = c(Sepal.Length:Petal.Width),
 #'   output = "correlations"
 #' )
-#' 
+#'
 #' # setting output = "p-values" will return the p-value matrix
-#' 
+#'
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
@@ -203,11 +204,20 @@ ggcorrmat <-
       }
     }
 
-    # ========================================== statistics ==============================================================
+    # ========================================== checking corr.method ==============================================================
+
+    # if any of the abbreviations have been entered, change them
+    if (corr.method == "p") {
+      corr.method <- "pearson"
+    } else if (corr.method == "np") {
+      corr.method <- "spearman"
+    }  else if (corr.method == "r") {
+      corr.method <- "robust"
+    }
+
+    # ========================================== statistics =======================================================================
     #
-    if (corr.method == "pearson" ||
-      corr.method == "spearman" ||
-      corr.method == "kendall") {
+    if (corr.method %in% c("pearson", "spearman", "kendall")) {
       # computing correlations on all included variables
       corr.mat <-
         base::round(
@@ -232,29 +242,20 @@ ggcorrmat <-
           continuity = continuity
         )
     } else if (corr.method == "robust") {
+
       # computing the percentage bend correlation matrix
       rob_cor <- WRS2::pball(x = df, beta = beta)
       rob_cor$p.values[is.na(rob_cor$p.values)] <- 0
-
-      # assigning correlations of all included variables to a matrix
-      corr.mat <-
-        tibble::as_data_frame(rob_cor$pbcorm, rownames = "variable") %>%
-        dplyr::mutate_if(
-          .tbl = .,
-          .predicate = purrr::is_bare_double,
-          .funs = ~base::round(x = ., digits = digits)
-        )
+      corr.mat <- base::round(x = rob_cor$pbcorm, digits = digits)
 
       # creating a correlation matrix of p-values
-      p.mat <-
-        tibble::as_data_frame(rob_cor$p.values, rownames = "variable")
-    }
+      p.mat <- base::round(x = rob_cor$pbcorm, digits = digits)
+
+     }
 
     # ========================================== plot ==============================================================
     if (output == "plot") {
-      if (corr.method == "pearson" ||
-        corr.method == "spearman" ||
-        corr.method == "kendall") {
+      if (corr.method %in% c("pearson", "spearman", "kendall", "robust")) {
         # plotting the correlalogram
         plot <- ggcorrplot::ggcorrplot(
           corr = corr.mat,
@@ -327,48 +328,35 @@ ggcorrmat <-
               unit = "pt"
             )
           ))
-      } else if (corr.method == "robust") {
-        base::message(cat(
-          crayon::red("Error:"),
-          crayon::blue(
-            "Robust correlation matrix plot is currently not supported, only correlations and p-values are."
-          )
-        ))
       }
     }
     # ========================================== output ==============================================================
 
     # return the desired result
     if (output == "correlations") {
-      if (corr.method == "pearson" ||
-        corr.method == "spearman" ||
-        corr.method == "kendall") {
+
         # correlation matrix
         corr.mat %<>%
           base::as.data.frame(x = .) %>%
           tibble::rownames_to_column(., var = "variable") %>%
           tibble::as_data_frame(x = .)
-      }
+
       # return the tibble
       return(corr.mat)
+
     } else if (output == "p-values") {
-      if (corr.method == "pearson" ||
-        corr.method == "spearman" ||
-        corr.method == "kendall") {
+
         # p-value matrix
         p.mat %<>%
           base::as.data.frame(x = .) %>%
           tibble::rownames_to_column(., var = "variable") %>%
           tibble::as_data_frame(x = .)
-      }
+
       # return the final tibble
       return(p.mat)
+
     } else if (output == "plot") {
-      if (corr.method == "pearson" ||
-        corr.method == "spearman" ||
-        corr.method == "kendall") {
         # correlalogram plot
         return(plot)
-      }
     }
   }

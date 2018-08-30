@@ -50,7 +50,8 @@ coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
 \code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
 is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation
 used is percentage bend correlation (see \code{?WRS2::pball}). Abbreviations
-will \strong{not} work.}
+will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
+(nonparametric/Spearman's \emph{rho}), \code{"r"} (robust).}
 
 \item{exact}{A logical indicating whether an exact \emph{p}-value should be
 computed. Used for Kendall's \emph{tau} and Spearman's \emph{rho}. For more details,
@@ -63,8 +64,8 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \item{beta}{A numeric bending constant for robust correlation coefficient
 (Default: \code{0.1}).}
 
-\item{digits}{Decides the number of decimal digits to be added into the plot
-(Default: \code{2}).}
+\item{digits}{Decides the number of decimal digits to be displayed (Default:
+\code{2}).}
 
 \item{sig.level}{Significance level (Default: \code{0.05}). If the p-value in
 p-mat (p-value matrix) is bigger than \code{sig.level}, then the corresponding

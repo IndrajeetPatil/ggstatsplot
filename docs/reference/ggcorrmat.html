@@ -203,7 +203,8 @@ coefficient is to be computed (<code>"pearson"</code> (default) or <code>"kendal
 <code>"spearman"</code>). <code>"robust"</code> can also be entered but only if <code>output</code> argument
 is set to either <code>"correlations"</code> or <code>"p-values"</code>. The robust correlation
 used is percentage bend correlation (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/pbcor'>?WRS2::pball</a></code>). Abbreviations
-will <strong>not</strong> work.</p></td>
+will also work: <code>"p"</code> (for parametric/Pearson's <em>r</em>), <code>"np"</code>
+(nonparametric/Spearman's <em>rho</em>), <code>"r"</code> (robust).</p></td>
     </tr>
     <tr>
       <th>exact</th>
@@ -224,8 +225,8 @@ Kendall's <em>tau</em> and Spearman's <em>rho</em> when not computed exactly (De
     </tr>
     <tr>
       <th>digits</th>
-      <td><p>Decides the number of decimal digits to be added into the plot
-(Default: <code>2</code>).</p></td>
+      <td><p>Decides the number of decimal digits to be displayed (Default:
+<code>2</code>).</p></td>
     </tr>
     <tr>
       <th>sig.level</th>

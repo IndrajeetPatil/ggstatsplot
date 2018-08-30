@@ -523,8 +523,6 @@ matrix.
 
 Alternatively, you can use it just to get the correlation matrices and their
 corresponding *p*-values (in a [tibble](http://tibble.tidyverse.org/) format).
-This is especially useful for robust correlation coefficient, which is not
-currently supported in `ggcorrmat` plot.
 
 ```{r ggcorrmat3, message = FALSE, warning = FALSE}
 # getting the correlation coefficient matrix

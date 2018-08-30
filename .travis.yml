@@ -28,6 +28,7 @@ matrix:
         - bindrcpp
         - RcppEigen
         - openssl
+        - oompaBase
         - rlang
         - utf8
         - gss

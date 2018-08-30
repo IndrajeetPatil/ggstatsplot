@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--29-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--30-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -213,7 +213,7 @@ ggstatsplot::theme_mprl
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002aef4800>
+#> <bytecode: 0x000000002a71de30>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -625,9 +625,7 @@ correlation matrix.
 
 Alternatively, you can use it just to get the correlation matrices and
 their corresponding *p*-values (in a
-[tibble](http://tibble.tidyverse.org/) format). This is especially
-useful for robust correlation coefficient, which is not currently
-supported in `ggcorrmat` plot.
+[tibble](http://tibble.tidyverse.org/) format).
 
 ``` r
 # getting the correlation coefficient matrix
@@ -654,12 +652,12 @@ ggstatsplot::ggcorrmat(
   output = "p-values"
 )
 #> # A tibble: 4 x 5
-#>   variable     Sepal.Length  Sepal.Width Petal.Length Petal.Width
-#>   <chr>               <dbl>        <dbl>        <dbl>       <dbl>
-#> 1 Sepal.Length       0      0.0818       0             0         
-#> 2 Sepal.Width        0.0818 0            0.0000000529  0.00000252
-#> 3 Petal.Length       0      0.0000000529 0             0         
-#> 4 Petal.Width        0      0.00000252   0             0
+#>   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
+#>   <chr>               <dbl>       <dbl>        <dbl>       <dbl>
+#> 1 Sepal.Length         1          -0.14         0.88        0.84
+#> 2 Sepal.Width         -0.14        1           -0.43       -0.37
+#> 3 Petal.Length         0.88       -0.43         1           0.97
+#> 4 Petal.Width          0.84       -0.37         0.97        1
 ```
 
 For examples and more information, see the `ggcorrmat` vignette:
