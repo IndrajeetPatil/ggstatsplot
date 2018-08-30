@@ -35,7 +35,7 @@
 #' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/gghistostats.html}
 #'
 #' @examples
-#'
+#' 
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,

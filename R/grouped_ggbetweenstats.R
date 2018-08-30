@@ -38,10 +38,10 @@
 #' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = mtcars,

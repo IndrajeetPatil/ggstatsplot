@@ -30,11 +30,6 @@
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `x` (Default:
 #'   `TRUE`).
-#' @param tr Trim level for the mean when carrying out `robust` tests. If you
-#'   get error stating "Standard error cannot be computed because of Winsorized
-#'   variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-#'   try to play around with the value of `tr`, which is by default set to
-#'   `0.1`. Lowering the value might help.
 #' @param mean.label.size,mean.label.fontface,mean.label.color Aesthetics for
 #'   the label displaying mean. Defaults: `3`, `"bold"`,`"black"`, respectively.
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
@@ -82,6 +77,7 @@
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams subtitle_ggbetween_anova_parametric
 #' @inheritParams subtitle_ggbetween_t_parametric
+#' @inheritParams t1way_ci
 #'
 #' @import ggplot2
 #'
@@ -352,13 +348,12 @@ ggbetweenstats <- function(data,
     test <- "anova"
   }
 
-  #------------------------------------------------------ anova -----------------------------------------------------------------------------
+  #---------------------------------------------- parametric anova -----------------------------------------------------------------------------
 
   # running anova
   if (test == "anova") {
     # running parametric ANOVA
     if (type == "parametric" || type == "p") {
-      # Welch's ANOVA run by default
       subtitle <- subtitle_ggbetween_anova_parametric(
         data = data,
         x = x,
@@ -370,135 +365,26 @@ ggbetweenstats <- function(data,
       )
 
       #--------------------------------------------- Kruskal-Wallis (nonparametric ANOVA) --------------------------------------------------
-
     } else if (type == "nonparametric" || type == "np") {
-
-      # setting up the anova model and getting its summary
-      kw_stat <- stats::kruskal.test(
-        formula = y ~ x,
-        data = data,
-        na.action = na.omit
-      )
-
-      # aov_stat input represents the anova object summary derived from car library
-      subtitle <-
-        # extracting the elements of the statistical object
-        base::substitute(
-          expr =
-            paste(
-              "Kruskal-Wallis: ",
-              italic(chi)^2,
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = kw_stat$statistic[[1]], k),
-            df = kw_stat$parameter[[1]],
-            # degrees of freedom are always integer
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = kw_stat$p.value[[1]],
-              k,
-              p.value = TRUE
-            ),
-            n = nrow(x = data)
-          )
-        )
-
-      # letting the user know that this test doesn't have agreed upon effect size
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::red("Note: "),
-          crayon::blue(
-            "No effect size available for Kruskal-Wallis Rank Sum Test."
-          )
-        ))
-      }
-
-      #---------------------------------------------------------- robust ANOVA --------------------------------------------------------
-
-    } else if (type == "robust" || type == "r") {
-
-      # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
-      robust_aov_stat <- t1way_ci(
+      subtitle <- subtitle_ggbetween_kw_nonparametric(
         data = data,
         x = x,
         y = y,
-        tr = tr,
-        nboot = nboot,
-        conf.level = 0.95,
-        conf.type = "norm"
+        k = k,
+        messages = messages
       )
 
-      # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
-      subtitle <-
-        # extracting the elements of the statistical object
-        base::substitute(
-          expr =
-            paste(
-              italic("F"),
-              "(",
-              df1,
-              ",",
-              df2,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic(xi),
-              " = ",
-              effsize,
-              ", 95% CI [",
-              LL,
-              ", ",
-              UL,
-              "]",
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$`F-value`[[1]], k),
-            df1 = robust_aov_stat$df1[[1]],
-            # degrees of freedom are always integer
-            df2 = ggstatsplot::specify_decimal_p(x = robust_aov_stat$df2[[1]], k),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = robust_aov_stat$`p-value`[[1]],
-              k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$xi[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.low[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.high[[1]], k),
-            n = nrow(x = data)
-          )
-        )
-
-      # displaying the details of the test that was run
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Note:"),
-          crayon::blue(
-            "In case of error, try reducing the trimming level",
-            crayon::yellow(tr),
-            "and/or increasing the number of bootstrap samples",
-            crayon::yellow(nboot)
-          )
-        ))
-      }
+      #---------------------------------------------------------- robust ANOVA --------------------------------------------------------
+    } else if (type == "robust" || type == "r") {
+      subtitle <- subtitle_ggbetween_rob_anova(
+        data = data,
+        x = x,
+        y = y,
+        k = k,
+        messages = messages,
+        tr = tr,
+        nboot = nboot
+      )
     }
   } else if (test == "t-test") {
 
@@ -537,175 +423,41 @@ ggbetweenstats <- function(data,
       )
 
       #------------------------------------------------- Mann-Whitney U test ------------------------------------------------------------
-
     } else if (type == "nonparametric" || type == "np") {
-
-      # setting up the Mann-Whitney U-test and getting its summary
-      mann_stat <- stats::wilcox.test(
-        formula = y ~ x,
+      subtitle <- subtitle_ggbetween_mann_nonparametric(
         data = data,
+        x = x,
+        y = y,
         paired = FALSE,
-        alternative = "two.sided",
-        na.action = na.omit,
-        exact = FALSE,
-        # asymptotic
-        correct = TRUE,
-        conf.int = TRUE,
-        conf.level = 0.95
+        k = k
       )
-
-      # computing Z score
-      z_stat <- coin::wilcox_test(
-        formula = y ~ x,
-        data = data,
-        distribution = "asymptotic",
-        alternative = "two.sided",
-        conf.int = TRUE
-      )
-
-      # mann_stat input represents the U-test summary derived from stats library, while Z is
-      # from Exact Wilcoxon-Pratt Signed-Rank Test from coin library
-      subtitle <-
-        # extracting the elements of the statistical object
-        base::substitute(
-          expr =
-            paste(
-              "Mann-Whitney: ",
-              italic(U),
-              " = ",
-              estimate,
-              ", ",
-              italic(Z),
-              " = ",
-              z_value,
-              ", ",
-              italic(" p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("r"),
-              " = ",
-              r,
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = mann_stat$statistic[[1]], k),
-            z_value = ggstatsplot::specify_decimal_p(x = coin::statistic(z_stat)[[1]], k),
-            pvalue = ggstatsplot::specify_decimal_p(x = mann_stat$p.value[[1]], k, p.value = TRUE),
-            # effect size is r = z/sqrt(n)
-            r = ggstatsplot::specify_decimal_p(x = (
-              coin::statistic(z_stat)[[1]] / sqrt(length(data$y))
-            ), k),
-            n = nrow(x = data)
-          )
-        )
 
       #------------------------------------------------- robust t-test ------------------------------------------------------------
 
     } else if (type == "robust" || type == "r") {
 
-      # setting up the independent samples t-tests on robust location measures
-      # (without bootstrap)
-      t_robust_stat <-
-        WRS2::yuen(
-          formula = y ~ x,
-          data = data
-        )
-      # computing effect sizes
-      t_robust_effsize <-
-        WRS2::yuen.effect.ci(
-          formula = y ~ x,
-          data = data
-        )
-
-      # t_robust_stat input represents the t-test object summary derived from WRS2 library
-      subtitle <-
-        # extracting the elements of the statistical object
-        base::substitute(
-          expr =
-            paste(
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic(xi),
-              " = ",
-              effsize,
-              ", 95% CI [",
-              LL,
-              ", ",
-              UL,
-              "]",
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test[[1]], k),
-            df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df[[1]], k),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = t_robust_stat$p.value[[1]],
-              k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]][[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]][[1]], k),
-            n = nrow(x = data)
-          )
-        )
+      subtitle <- subtitle_ggbetween_t_rob(
+        data = data,
+        x = x,
+        y = y,
+        k = k,
+        tr = tr,
+        nboot = nboot
+      )
 
       #------------------------------------------------- bayesian t-test ------------------------------------------------------------
-
     } else if (type == "bayes" || type == "bf") {
-
-      # preparing the subtitle
-      subtitle <- base::substitute(
-        expr =
-          paste(
-            italic("t"),
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", log"["e"],
-            "(BF"["10"],
-            ") = ",
-            bf,
-            ", log"["e"],
-            "(error) = ",
-            bf_error,
-            "% , ",
-            italic("d"),
-            " = ",
-            effsize,
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          # df is integer value for Student's t-test
-          df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-          estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
-          bf = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`stat[bf]`, base = exp(1)), k = 1),
-          bf_error = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`err[bf]`, base = exp(1)), k = 1),
-          effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
-          n = nrow(x = data)
-        )
+      subtitle <- subtitle_ggbetween_t_bayes(
+        data = data,
+        x = x,
+        y = y,
+        bf.prior = bf.prior,
+        k = k
       )
     }
   }
+
+  #------------------------------------------------- annotations and themes ------------------------------------------------------------
 
   # add message with bayes factor
   if (test == "t-test") {
@@ -779,6 +531,7 @@ ggbetweenstats <- function(data,
 
     # converting outlier column to a numeric value that can be attached to
     data_df$outlier[which(is.na(data_df$outlier))] <- NA
+
     # if outlier.label is in character format, convert it to factor
     if (is.character(data_df$outlier.label)) {
       data_df$outlier.label <- as.factor(data_df$outlier.label)

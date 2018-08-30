@@ -36,10 +36,10 @@
 #' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggscatterstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to ensure reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # basic functio call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = datasets::iris,

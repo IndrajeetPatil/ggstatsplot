@@ -35,7 +35,7 @@
 #' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#'
+#' 
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
