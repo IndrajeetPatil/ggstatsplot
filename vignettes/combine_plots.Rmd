@@ -26,9 +26,9 @@ knitr::opts_chunk$set(
 ## Combining plots with `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
-multiple plots. This is a wrapper around \code{\link[cowplot]{plot_grid}} 
-and lets you combine multiple plots and add combination of title, caption, and
-annotation texts with suitable default parameters. This is also the 
+multiple plots. This is a wrapper around `cowplot::plot_grid()` and it helps you
+combine multiple plots and add combination of title, caption, and annotation
+texts with suitable default parameters. Let's see some examples below.
 
 **Note before**: The codes below illustrates the utility of `combine_plots` for
 combining multiple plots created with `ggstatsplot` functions. But, if you have
@@ -41,7 +41,7 @@ function behind the curtains.
 ## Combining plots: Examples with `purrr`
 
 The full power of `ggstatsplot` can be leveraged with a functional programming
-package like [`purrr`](http://purrr.tidyverse.org/) that replaces many for loops
+package like [`purrr`](http://purrr.tidyverse.org/) that replaces many `for` loops
 with code that is both more succinct and easier to read and, therefore, `purrr`
 should be preferrred.
 
@@ -66,6 +66,10 @@ plots <- datasets::iris %>%
           data = .,
           x = Sepal.Length,
           y = Sepal.Width,
+          xfill = "#0072B2",
+          yfill = "#009E73",
+          ggtheme = ggthemes::theme_fivethirtyeight(),
+          ggstatsplot.layer = FALSE,
           messages = FALSE,                        # turns off all the warnings, notes, and reference messages   
           marginal.type = "boxplot",
           title =
@@ -80,7 +84,6 @@ plots
 ### creating a grid with cowplot
 ggstatsplot::combine_plots(
   plotlist = plots$plot,                           # list column containing all ggstatsplot objects
-  labels = c("(a)", "(b)", "(c)"),
   nrow = 3,
   ncol = 1,
   title.text = "Relationship between sepal length and width for all Iris species",
@@ -98,14 +101,15 @@ ggstatsplot::combine_plots(
 
 Here is another example with `ggbetweenstats`-
 
-```{r ggbetweenstats_purrr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
+```{r ggbetweenstats_purrr, message = FALSE, warning = FALSE, fig.height = 13, fig.width = 6.5}
 library(dplyr)
 library(glue)
 
 ### creating a list column with `ggstatsplot` plots
-plots <- datasets::mtcars %>%
+plots <- ggplot2::mpg %>%
+  dplyr::filter(.data = ., cyl != 5) %>%          # there are just 4 observations so leave this one out
   dplyr::mutate(.data = ., cyl2 = cyl) %>%        # just creates a copy of this variable
-  dplyr::group_by(.data = ., cyl) %>%             # 
+  dplyr::group_by(.data = ., cyl) %>%              
   tidyr::nest(data = .) %>%                       # creates a nested dataframe with list column called `data`
   dplyr::mutate(                                  # creating a new list column of ggstatsplot outputs
     .data = .,
@@ -114,12 +118,16 @@ plots <- datasets::mtcars %>%
         .x = .,
         .f = ~ ggstatsplot::ggbetweenstats(
           data = .,
-          x = am,
-          y = mpg,
-          plot.type = "box",                      # type of plot needed
+          x = year,
+          y = hwy,
+          ggtheme = hrbrthemes::theme_ipsum(),
+          ggstatsplot.layer = FALSE,
+          type = "robust",
+          package = "yarrr",
+          palette = "xmen",
           messages = FALSE,                       # turns off all the warnings, notes, and reference messages
-          xlab = "Transmission",
-          ylab = "Miles/(US) gallon",
+          xlab = "Type of car",
+          ylab = "Highway miles/(US) gallon",
           title = glue::glue(
             "Number of cylinders: {.$cyl2}"       # this is where the duplicated cyl2 column is useful
             ) 
@@ -132,17 +140,17 @@ plots
 
 ### creating a grid with cowplot
 ggstatsplot::combine_plots(
-  plotlist = plots$plot,       # list column containing all ggstatsplot objects
+  plotlist = plots$plot,                           # list column containing all ggstatsplot objects
   nrow = 3,
   ncol = 1,
-  labels = c("(a)","(b)","(c)"),
-  title.text = "MPG and car transmission relationship (for each cylinder count)",
+  labels = c("(a)","(b)","(c)", "(d)"),
+  title.text = "Fuel efficiency differences between 1999 and 2008",
   title.size = 13,
-  title.color = "blue",
+  title.color = "#0072B2",
   caption.text = expression(
     paste(
-      italic("Transmission"),
-      ": 0 = automatic, 1 = manual",
+      italic("Dataset"),
+      ": Fuel economy data from 1999 and 2008 for 38 popular models of car",
       sep = ""
     ),
     caption.size = 10,
