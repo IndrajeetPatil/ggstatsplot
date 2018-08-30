@@ -213,7 +213,7 @@ ggstatsplot::theme_mprl
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002a71de30>
+#> <bytecode: 0x000000002aec84c0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -266,6 +266,7 @@ ggstatsplot::ggbetweenstats(
 ) +                                               # further modification outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
+#> Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.
 ```
 
 <img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />

@@ -389,9 +389,13 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Welch's ANOVA/t-test is used as a default. References:</p><ul>
+    <p>For parametric tests, Welch's ANOVA/t-test are used as a default. References:</p><ul>
 <li><p>ANOVA: Delacre, Leys, Mora, &amp; Lakens, <em>PsyArXiv</em>, 2018</p></li>
 <li><p>t-test: Delacre, Lakens, &amp; Leys, <em>International Review of Social Psychology</em>, 2017</p></li>
+</ul>
+    <p>If robust tests are selected, following tests are used is .</p><ul>
+<li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/t1way'>?WRS2::t1way</a></code>)</p></li>
+<li><p>t-test: Yuen's test for trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
 </ul>
     <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em>
 still use this function just to prepare the <strong>plot</strong> for exploratory data
@@ -417,7 +421,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>
-)</div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  &lt; 0.001</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  &lt; 0.001</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># more detailed function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats'>ggbetweenstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/ToothGrowth'>ToothGrowth</a></span>,

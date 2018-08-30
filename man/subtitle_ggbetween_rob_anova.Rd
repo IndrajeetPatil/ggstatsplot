@@ -5,8 +5,8 @@
 \title{Making text subtitle for the robust ANOVA
 (between-subjects designs).}
 \usage{
-subtitle_ggbetween_rob_anova(data, x, y, tr, nboot, messages = TRUE,
-  k = 3)
+subtitle_ggbetween_rob_anova(data, x, y, tr, nboot = 100,
+  messages = TRUE, k = 3)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be

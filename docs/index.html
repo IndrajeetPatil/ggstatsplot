@@ -239,7 +239,7 @@
 <a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; &lt;bytecode: 0x000000001811e158&gt;</span></a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; &lt;bytecode: 0x00000000293ca9c8&gt;</span></a>
 <a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -271,7 +271,8 @@
 <a class="sourceLine" id="cb9-9" data-line-number="9">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb9-10" data-line-number="10">) <span class="op">+</span><span class="st">                                               </span><span class="co"># further modification outside of ggstatsplot</span></a>
 <a class="sourceLine" id="cb9-11" data-line-number="11"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_cartesian">coord_cartesian</a></span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a></code></pre></div>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</span></a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>Note that this function returns a <code>ggplot2</code> object and thus any of the graphics layers can be further modified.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>).</p>

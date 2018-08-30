@@ -51,6 +51,8 @@ bf_message_ttest <- function(jmv_results,
 #'   `"partial_eta"` for partial eta-squared for **anova**) or `"unbiased"`
 #'   (`"g"` Hedge's *g* for **t-test**; `"partial_omega"` for partial
 #'   omega-squared for **anova**)).
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritParams stats::oneway.test
 #' @inheritParams specify_decimal_p
 #'
@@ -70,7 +72,8 @@ subtitle_ggbetween_anova_parametric <-
              effsize.type = "biased",
              nboot = 100,
              var.equal = FALSE,
-             k = 3) {
+             k = 3,
+             messages = TRUE) {
     # creating a dataframe
     data <-
       dplyr::select(
@@ -102,6 +105,18 @@ subtitle_ggbetween_anova_parametric <-
         ci.lvl = 0.95,
         n = nboot
       )
+
+      # displaying message about bootstrap
+      if (isTRUE(messages)) {
+        base::message(cat(
+          crayon::green("Note:"),
+          crayon::blue(
+            "95% CI for partial omega-squared was computed with",
+            crayon::yellow(nboot),
+            "bootstrap samples."
+          )
+        ))
+      }
 
       # aov_stat input represents the anova object summary derived from car library
       subtitle <-
@@ -158,6 +173,18 @@ subtitle_ggbetween_anova_parametric <-
         ci.lvl = 0.95,
         n = nboot
       )
+
+      # displaying message about bootstrap
+      if (isTRUE(messages)) {
+        base::message(cat(
+          crayon::green("Note:"),
+          crayon::blue(
+            "95% CI for partial eta-squared was computed with",
+            crayon::yellow(nboot),
+            "bootstrap samples."
+          )
+        ))
+      }
 
       # aov_stat input represents the anova object summary derived from car library
       subtitle <-
@@ -480,6 +507,8 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @name subtitle_ggbetween_t_rob
 #' @author Indrajeet Patil
 #'
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritParams subtitle_ggbetween_t_parametric
 #' @inheritParams specify_decimal_p
 #' @inheritParams t1way_ci
@@ -500,7 +529,8 @@ subtitle_ggbetween_t_rob <-
              y,
              tr = 0.1,
              nboot = 100,
-             k = 3) {
+             k = 3,
+             messages = TRUE) {
 
     # creating a dataframe
     data <-
@@ -510,8 +540,7 @@ subtitle_ggbetween_t_rob <-
         y = !!rlang::enquo(y)
       )
 
-    # setting up the independent samples t-tests on robust location measures
-    # (without bootstrap)
+    # Yuen's test for trimmed means
     t_robust_stat <-
       WRS2::yuen(
         formula = y ~ x,
@@ -528,6 +557,18 @@ subtitle_ggbetween_t_rob <-
         nboot = nboot,
         alpha = 0.05
       )
+
+    # displaying message about bootstrap
+    if (isTRUE(messages)) {
+      base::message(cat(
+        crayon::green("Note:"),
+        crayon::blue(
+          "95% CI for explanatory measure of effect size was computed with",
+          crayon::yellow(nboot),
+          "bootstrap samples."
+        )
+      ))
+    }
 
     # t_robust_stat input represents the t-test object summary derived from WRS2 library
     subtitle <-
@@ -773,7 +814,7 @@ subtitle_ggbetween_rob_anova <-
              x,
              y,
              tr,
-             nboot,
+             nboot = 100,
              messages = TRUE,
              k = 3) {
 
@@ -795,6 +836,18 @@ subtitle_ggbetween_rob_anova <-
       conf.level = 0.95,
       conf.type = "norm"
     )
+
+    # displaying message about bootstrap
+    if (isTRUE(messages)) {
+      base::message(cat(
+        crayon::green("Note:"),
+        crayon::blue(
+          "95% CI for explanatory measure of effect size was computed with",
+          crayon::yellow(nboot),
+          "bootstrap samples."
+        )
+      ))
+    }
 
     # robust_aov_stat input represents the robust anova object summary derived from WRS2 library
     subtitle <-

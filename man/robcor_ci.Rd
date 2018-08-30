@@ -4,7 +4,7 @@
 \alias{robcor_ci}
 \title{Robust correlation coefficient and its confidence interval}
 \usage{
-robcor_ci(data, x, y, beta = 0.1, nboot = 500, conf.level = 0.95,
+robcor_ci(data, x, y, beta = 0.1, nboot = 100, conf.level = 0.95,
   conf.type = "norm", ...)
 }
 \arguments{
@@ -18,7 +18,7 @@ taken.}
 \item{beta}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{500}).}
+\code{100}).}
 
 \item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return 95%
 lower and upper confidence intervals (\code{0.95}).}

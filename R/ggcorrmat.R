@@ -113,22 +113,22 @@
 #' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get the correlalogram
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
 #'   cor.vars = c(Sepal.Length:Petal.Width)
 #' )
-#'
+#' 
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
 #'   cor.vars = c(Sepal.Length:Petal.Width),
 #'   output = "correlations"
 #' )
-#'
+#' 
 #' # setting output = "p-values" will return the p-value matrix
-#'
+#' 
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
@@ -211,7 +211,7 @@ ggcorrmat <-
       corr.method <- "pearson"
     } else if (corr.method == "np") {
       corr.method <- "spearman"
-    }  else if (corr.method == "r") {
+    } else if (corr.method == "r") {
       corr.method <- "robust"
     }
 
@@ -250,8 +250,7 @@ ggcorrmat <-
 
       # creating a correlation matrix of p-values
       p.mat <- base::round(x = rob_cor$pbcorm, digits = digits)
-
-     }
+    }
 
     # ========================================== plot ==============================================================
     if (output == "plot") {
@@ -335,28 +334,26 @@ ggcorrmat <-
     # return the desired result
     if (output == "correlations") {
 
-        # correlation matrix
-        corr.mat %<>%
-          base::as.data.frame(x = .) %>%
-          tibble::rownames_to_column(., var = "variable") %>%
-          tibble::as_data_frame(x = .)
+      # correlation matrix
+      corr.mat %<>%
+        base::as.data.frame(x = .) %>%
+        tibble::rownames_to_column(., var = "variable") %>%
+        tibble::as_data_frame(x = .)
 
       # return the tibble
       return(corr.mat)
-
     } else if (output == "p-values") {
 
-        # p-value matrix
-        p.mat %<>%
-          base::as.data.frame(x = .) %>%
-          tibble::rownames_to_column(., var = "variable") %>%
-          tibble::as_data_frame(x = .)
+      # p-value matrix
+      p.mat %<>%
+        base::as.data.frame(x = .) %>%
+        tibble::rownames_to_column(., var = "variable") %>%
+        tibble::as_data_frame(x = .)
 
       # return the final tibble
       return(p.mat)
-
     } else if (output == "plot") {
-        # correlalogram plot
-        return(plot)
+      # correlalogram plot
+      return(plot)
     }
   }

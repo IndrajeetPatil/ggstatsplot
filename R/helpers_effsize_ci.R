@@ -484,7 +484,7 @@ chisq_v_ci <- function(data,
 #' @param x A vector containing the explanatory variable.
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `500`).
+#'   `100`).
 #' @param beta bending constant (Default: `0.1`). For more, see `?WRS2::pbcor`.
 #' @param conf.type A vector of character strings representing the type of
 #'   intervals required. The value should be any subset of the values `"norm"`,
@@ -510,7 +510,7 @@ robcor_ci <- function(data,
                       x,
                       y,
                       beta = 0.1,
-                      nboot = 500,
+                      nboot = 100,
                       conf.level = 0.95,
                       conf.type = "norm",
                       ...) {

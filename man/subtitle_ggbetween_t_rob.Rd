@@ -5,7 +5,8 @@
 \title{Making text subtitle for the robust t-test
 (between-subjects designs).}
 \usage{
-subtitle_ggbetween_t_rob(data, x, y, tr = 0.1, nboot = 100, k = 3)
+subtitle_ggbetween_t_rob(data, x, y, tr = 0.1, nboot = 100, k = 3,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -25,6 +26,9 @@ try to play around with the value of \code{tr}, which is by default set to
 \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Making text subtitle for the robust t-test

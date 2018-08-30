@@ -5,7 +5,7 @@
 \title{Making text subtitle for the between-subject anova designs.}
 \usage{
 subtitle_ggbetween_anova_parametric(data, x, y, effsize.type = "biased",
-  nboot = 100, var.equal = FALSE, k = 3)
+  nboot = 100, var.equal = FALSE, k = 3, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -32,6 +32,9 @@ omega-squared for \strong{anova})).}
     the case of arbitrarily many samples.}
 
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Making text subtitle for the between-subject anova designs.

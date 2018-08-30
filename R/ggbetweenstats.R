@@ -121,10 +121,18 @@
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}
 #'
-#' @details Welch's ANOVA/t-test is used as a default. References:
+#' @details
+#'
+#' For parametric tests, Welch's ANOVA/t-test are used as a default. References:
 #' \itemize{
 #'  \item ANOVA: Delacre, Leys, Mora, & Lakens, *PsyArXiv*, 2018
 #'  \item t-test: Delacre, Lakens, & Leys, *International Review of Social Psychology*, 2017
+#'  }
+#'
+#'  If robust tests are selected, following tests are used is .
+#' \itemize{
+#'  \item ANOVA: one-way ANOVA on trimmed means (see `?WRS2::t1way`)
+#'  \item t-test: Yuen's test for trimmed means (see `?WRS2::yuen`)
 #'  }
 #'
 #' Variant of this function `ggwithinstats` is currently under work. You *can*
@@ -433,9 +441,7 @@ ggbetweenstats <- function(data,
       )
 
       #------------------------------------------------- robust t-test ------------------------------------------------------------
-
     } else if (type == "robust" || type == "r") {
-
       subtitle <- subtitle_ggbetween_t_rob(
         data = data,
         x = x,

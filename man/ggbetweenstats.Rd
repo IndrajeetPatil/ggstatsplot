@@ -165,10 +165,16 @@ points for between-subjects designs with statistical details included in
 the plot as a subtitle.
 }
 \details{
-Welch's ANOVA/t-test is used as a default. References:
+For parametric tests, Welch's ANOVA/t-test are used as a default. References:
 \itemize{
 \item ANOVA: Delacre, Leys, Mora, & Lakens, \emph{PsyArXiv}, 2018
 \item t-test: Delacre, Lakens, & Leys, \emph{International Review of Social Psychology}, 2017
+}
+
+If robust tests are selected, following tests are used is .
+\itemize{
+\item ANOVA: one-way ANOVA on trimmed means (see \code{?WRS2::t1way})
+\item t-test: Yuen's test for trimmed means (see \code{?WRS2::yuen})
 }
 
 Variant of this function \code{ggwithinstats} is currently under work. You \emph{can}

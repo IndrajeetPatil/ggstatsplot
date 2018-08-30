@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for the robust t-test
-(between-subjects designs). — subtitle_ggbetween_t_rob • ggstatsplot</title>
+<title>Making text subtitle for the correlation test. — subtitle_ggscatterstats • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,11 +30,9 @@
 
 
 
-<meta property="og:title" content="Making text subtitle for the robust t-test
-(between-subjects designs). — subtitle_ggbetween_t_rob" />
+<meta property="og:title" content="Making text subtitle for the correlation test. — subtitle_ggscatterstats" />
 
-<meta property="og:description" content="Making text subtitle for the robust t-test
-(between-subjects designs)." />
+<meta property="og:description" content="Making text subtitle for the correlation test." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,21 +131,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for the robust t-test
-(between-subjects designs).</h1>
+    <h1>Making text subtitle for the correlation test.</h1>
     
-    <div class="hidden name"><code>subtitle_ggbetween_t_rob.Rd</code></div>
+    <div class="hidden name"><code>subtitle_ggscatterstats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for the robust t-test
-(between-subjects designs).</p>
+    <p>Making text subtitle for the correlation test.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_ggbetween_t_rob</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,19 +156,11 @@ taken.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping variable.</p></td>
+      <td><p>A vector containing the explanatory variable.</p></td>
     </tr>
     <tr>
       <th>y</th>
       <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tr</th>
-      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
-<code>0.1</code>. Lowering the value might help.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -180,13 +168,37 @@ try to play around with the value of <code>tr</code>, which is by default set to
 <code>100</code>).</p></td>
     </tr>
     <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
+      <th>beta</th>
+      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/pbcor'>?WRS2::pbcor</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of association between paired samples required
+("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
+"<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
+correlation coefficient"). Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric/pearson's), <code>"np"</code> (nonparametric/spearman), <code>"r"</code>
+(robust), resp.</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If <code>NULL</code>, the defaults return 95<!-- % -->
+lower and upper confidence intervals (<code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>conf.type</th>
+      <td><p>A vector of character strings representing the type of
+intervals required. The value should be any subset of the values <code>"norm"</code>,
+<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
     </tr>
     <tr>
       <th>messages</th>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
     </tr>
     </table>
     

@@ -31,6 +31,8 @@ MINOR CHANGES
   Factors is displayed, and not base 10 logarithm.
   - `ggscatterstats` gains `method` and `formula` arguments to modify smoothing
   functions.
+  - `ggcorrmat` can now show `robust` correlation coefficients in the matrix
+  plot.
   
 # ggstatsplot 0.0.5
 

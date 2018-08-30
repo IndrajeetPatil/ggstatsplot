@@ -31,12 +31,6 @@
 #'   distributions. Any numbers from `0` (transparent) to `1` (opaque). The
 #'   default is `1` for both axes.
 #' @param xsize,ysize Size for the marginal distribution boundaries (Default: `0.7`).
-#' @param type Type of association between paired samples required
-#'   ("`"parametric"`: Pearson's product moment correlation coefficient" or
-#'   "`"nonparametric"`: Spearman's rho" or "`"robust"`: percentage bend
-#'   correlation coefficient"). Corresponding abbreviations are also accepted:
-#'   `"p"` (for parametric/pearson's), `"np"` (nonparametric/spearman), `"r"`
-#'   (robust), resp.
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle.
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
@@ -46,9 +40,6 @@
 #' @param subtitle The text for the plot subtitle. Will work only if
 #'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption.
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `100`).
-#' @param beta bending constant (Default: `0.1`). For more, see `?WRS2::pbcor`.
 #' @param k Number of decimal places expected for results.
 #' @param width.jitter Degree of jitter in `x` direction. Defaults to 40\% of
 #'   the resolution of the data.
@@ -56,8 +47,7 @@
 #'   the resolution of the data.
 #' @param axes.range.restrict Logical decides whether to restrict the axes values
 #'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
+#' @inheritParams subtitle_ggscatterstats
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
 #'
@@ -91,10 +81,10 @@
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = datasets::mtcars,
@@ -142,21 +132,28 @@ ggscatterstats <-
              ggtheme = ggplot2::theme_bw(),
              ggstatsplot.layer = TRUE,
              messages = TRUE) {
-    ################################################### dataframe ####################################################
 
+    #--------------------------------- variable names ----------------------------------------------------------
+
+    # preparing a dataframe with variable names
     lab.df <- colnames(dplyr::select(
       .data = data,
       !!rlang::enquo(x),
       !!rlang::enquo(y)
     ))
-    # if xlab is not provided, use the variable x name
+
+    # if `xlab` is not provided, use the variable `x` name
     if (is.null(xlab)) {
       xlab <- lab.df[1]
     }
-    # if ylab is not provided, use the variable y name
+
+    # if `ylab` is not provided, use the variable `y` name
     if (is.null(ylab)) {
       ylab <- lab.df[2]
     }
+
+    #--------------------------------- dataframe ----------------------------------------------------------
+
     # if dataframe is provided
     data <-
       dplyr::select(
@@ -165,188 +162,27 @@ ggscatterstats <-
         y = !!rlang::enquo(y)
       )
 
-    ######################################## statistical labels ######################################################
+    #--------------------------------- creating results subtitle ----------------------------------------------------------
 
-    # if results.subtitle argument is set to FALSE then subtitle should be set to NULL
-    if (!isTRUE(results.subtitle)) {
-      stats_subtitle <- subtitle
-    }
-
+    # adding a subtitle with statistical results
     if (results.subtitle == TRUE) {
-      # running the correlation test and preparing the subtitle text
-      if (type == "pearson" || type == "p") {
-        ################################################### Pearson's r ##################################################
 
-        c <-
-          stats::cor.test(
-            formula = ~x + y,
-            data = data,
-            method = "pearson",
-            alternative = "two.sided",
-            exact = FALSE,
-            na.action = na.omit
-          )
+      subtitle <- subtitle_ggscatterstats(
+        data = data,
+        x = x,
+        y = y,
+        nboot = nboot,
+        beta = beta,
+        type = type,
+        conf.level = 0.95,
+        conf.type = "norm",
+        messages = messages,
+        k = k
+      )
 
-        # preparing the label
-        stats_subtitle <-
-          base::substitute(
-            expr =
-              paste(
-                "Pearson's ",
-                italic("r"),
-                "(",
-                df,
-                ")",
-                " = ",
-                estimate,
-                ", 95% CI [",
-                LL,
-                ", ",
-                UL,
-                "], ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(
-              # degrees of freedom are always integer
-              df = c$parameter[[1]],
-              t = ggstatsplot::specify_decimal_p(x = c$statistic[[1]], k),
-              estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
-              LL = ggstatsplot::specify_decimal_p(x = c$conf.int[1][[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = c$conf.int[2][[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(x = c$p.value[[1]], k, p.value = TRUE),
-              n = nrow(x = data)
-            )
-          )
-      } else if (type == "spearman" || type == "np") {
-        ################################################### Spearnman's rho ##################################################
-        # running the correlation test and preparing the subtitle text
-        # note that stats::cor.test doesn't give degress of freedom; it's calculated as df = (no. of pairs - 2)
-        c <-
-          stats::cor.test(
-            formula = ~x + y,
-            data = data,
-            method = "spearman",
-            alternative = "two.sided",
-            exact = FALSE,
-            na.action = na.omit
-          )
-
-        # getting confidence interval for rho using broom bootstrap
-        c_ci <- cor_tets_ci(
-          data = data,
-          x = x,
-          y = y,
-          nboot = nboot
-        )
-
-        # preparing the label
-        stats_subtitle <-
-          base::substitute(
-            expr =
-              paste(
-                "Spearman's ",
-                italic(rho),
-                "(",
-                df,
-                ")",
-                " = ",
-                estimate,
-                ", 95% CI [",
-                LL,
-                ", ",
-                UL,
-                "], ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(
-              df = (length(data$x) - 2),
-              # degrees of freedom are always integer
-              estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
-              LL = ggstatsplot::specify_decimal_p(x = c_ci$conf.low[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = c_ci$conf.high[[1]], k),
-              pvalue = ggstatsplot::specify_decimal_p(
-                x = c$p.value[[1]],
-                k,
-                p.value = TRUE
-              ),
-              n = nrow(x = data)
-            )
-          )
-        ################################################### robust ##################################################
-      } else if (type == "robust" || type == "r") {
-        # running robust correlation
-        rob_res <- robcor_ci(
-          data = data,
-          x = x,
-          y = y,
-          beta = beta,
-          nboot = nboot,
-          conf.level = 0.95,
-          conf.type = "norm"
-        )
-
-        # preparing the subtitle
-        stats_subtitle <-
-          base::substitute(
-            expr =
-              paste(
-                "robust ",
-                italic(r),
-                " = ",
-                estimate,
-                ", 95% CI [",
-                LL,
-                ", ",
-                UL,
-                "], ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = rob_res$r[[1]], k),
-              LL = ggstatsplot::specify_decimal_p(x = rob_res$conf.low[[1]], k),
-              UL = ggstatsplot::specify_decimal_p(x = rob_res$conf.high[[1]], k),
-              # degrees of freedom are always integer
-              pvalue = ggstatsplot::specify_decimal_p(rob_res$`p-value`[[1]],
-                k,
-                p.value = TRUE
-              ),
-              n = rob_res$n[[1]]
-            )
-          )
-
-        # displaying message about what correlation was used
-        if (isTRUE(messages)) {
-          base::message(cat(
-            crayon::green("Note:"),
-            crayon::blue(
-              "Percentage bend correlation with",
-              crayon::yellow(nboot),
-              "bootstrap samples was run."
-            )
-          ))
-        }
-      }
     }
-    ################################################### plot ################################################################
+
+    #---------------------------------------------------- basic plot ----------------------------------------------------------
 
     # preparing the scatterplotplot
     plot <-
@@ -381,7 +217,7 @@ ggscatterstats <-
         x = xlab,
         y = ylab,
         title = title,
-        subtitle = stats_subtitle,
+        subtitle = subtitle,
         caption = caption
       )
 
@@ -391,7 +227,8 @@ ggscatterstats <-
         ggplot2::coord_cartesian(xlim = c(min(data$x), max(data$x))) +
         ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y)))
     }
-    ################################################ centrality.para ##################################################
+
+    #--------------------------------- adding centrality parameters ----------------------------------------------------------
 
     # by default, if the input is NULL, then no centrality.para lines will be plotted
 
@@ -432,10 +269,11 @@ ggscatterstats <-
         )
     }
 
-    #################################################### ggMarginal ######################################################
+    #-------------------------------------------------- ggMarginal  ----------------------------------------------------------
 
+    # creating the ggMarginal plot of a given marginal.type
     if (isTRUE(marginal)) {
-      # creating the ggMarginal plot of a given marginal.type
+
       plot <-
         ggExtra::ggMarginal(
           p = plot,
@@ -455,16 +293,17 @@ ggscatterstats <-
             col = "black"
           )
         )
+
     }
 
-    # ========================================== messages ==================================================================
+    #-------------------------------------------------- messages  ----------------------------------------------------------
     #
     # display warning that this function doesn't produce a ggplot2 object
     if (isTRUE(marginal)) {
       base::message(cat(
         crayon::red("Warning:"),
         crayon::blue(
-          "This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions."
+          "The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions."
         )
       ))
     }
