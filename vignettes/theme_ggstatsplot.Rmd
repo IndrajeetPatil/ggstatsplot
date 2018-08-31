@@ -90,7 +90,13 @@ settings, chosen to make the graphs more readable or aesthetically pleasing.
 Let's see an example with `gghistostats` and see how a certain theme from
 `hrbrthemes` package looks with and without the `ggstatsplot` layer.
 
-```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
+```{r theme3, , eval = FALSE, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
+# to use hrbrthemes themes, first make sure you have all the necessary fonts
+library(hrbrthemes)
+# extrafont::ttf_import()
+# extrafont::font_import()
+
+# try this yourself
 ggstatsplot::combine_plots(
   # with the ggstatsplot layer
   ggstatsplot::gghistostats(

@@ -93,6 +93,7 @@ library(ggplot2)
 # for reproducibility
 set.seed(123)
 
+# plot
 ggstatsplot::ggpiestats(
   data = ggstatsplot::Titanic_full,             # dataframe (matrix or table will not be accepted)
   main = Survived,                              # rows in the contingency table

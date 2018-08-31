@@ -348,7 +348,7 @@ plot_list <- purrr::pmap(
       ggplot2::theme_classic,
       ggthemes::theme_fivethirtyeight,
       ggplot2::theme_bw,
-      hrbrthemes::theme_ipsum_rc
+      ggthemes::theme_tufte
     )
   ),
   .f = ggstatsplot::ggcorrmat

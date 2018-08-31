@@ -11,6 +11,9 @@
 #'   taken.
 #' @param x A vector containing the explanatory variable.
 #' @param y The response - a vector of length the number of rows of `x`.
+#' @param label.var Variable to use for points labels.
+#' @param label.expression An expression evaluating to a logical vector that
+#'   determines the subset of data points to label.
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param line.color color for the regression line.
@@ -70,6 +73,7 @@
 #' @importFrom stats cor.test
 #' @importFrom stats na.omit
 #' @importFrom stats confint.default
+#' @importFrom ggrepel geom_label_repel
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
 #'
@@ -85,12 +89,19 @@
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #'
+#' # creating dataframe
+#' mtcars_new <- mtcars %>%
+#'   tibble::rownames_to_column(., var = "car") %>%
+#'   tibble::as_data_frame(x = .)
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
-#'   data = datasets::mtcars,
+#'   data = mtcars_new,
 #'   x = wt,
 #'   y = mpg,
-#'   type = "np"
+#'   type = "np",
+#'   label.var = car,
+#'   label.expression = wt < 4 & mpg < 20
 #' )
 #' @export
 #'
@@ -100,6 +111,8 @@ ggscatterstats <-
   function(data,
              x,
              y,
+             label.var = NULL,
+             label.expression = NULL,
              xlab = NULL,
              ylab = NULL,
              method = "lm",
@@ -133,6 +146,7 @@ ggscatterstats <-
              ggstatsplot.layer = TRUE,
              messages = TRUE) {
 
+
     #--------------------------------- variable names ----------------------------------------------------------
 
     # preparing a dataframe with variable names
@@ -154,19 +168,58 @@ ggscatterstats <-
 
     #--------------------------------- dataframe ----------------------------------------------------------
 
-    # if dataframe is provided
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      )
+    # preparing the dataframe
+    data <- dplyr::full_join(
+      # dataframe where x and y are named "x" and "y"
+      x = data %>%
+        dplyr::select(
+          .data = .,
+          x = !!rlang::enquo(x),
+          y = !!rlang::enquo(y)
+        ) %>%
+        tibble::rowid_to_column(., var = "rowid"),
+      # dataframe where x and y retain their original names
+      y = data %>%
+        dplyr::select(
+          .data = .,
+          !!rlang::enquo(x),
+          !!rlang::enquo(y),
+          dplyr::everything()
+        ) %>%
+        tibble::rowid_to_column(., var = "rowid"),
+      by = "rowid"
+    ) %>%
+      dplyr::select(.data = ., -rowid) %>%
+      tibble::as_data_frame(x = .)
+
+    #--------------------------------- user expression ----------------------------------------------------------
+
+    # create a list of function call to check for label.expression
+    param_list <- base::as.list(base::match.call())
+
+    # check labeling variable has been entered
+    if ("label.var" %in% names(param_list)) {
+      point.labelling <- TRUE
+    } else {
+      point.labelling <- FALSE
+    }
+
+    # creating a new dataframe for showing labels
+    label_data <-
+      data %>%
+      {
+        if ("label.expression" %in% names(param_list)) {
+          dplyr::filter(.data = ., !!rlang::enquo(label.expression))
+        }
+        else {
+          (.)
+        }
+      }
 
     #--------------------------------- creating results subtitle ----------------------------------------------------------
 
     # adding a subtitle with statistical results
     if (results.subtitle == TRUE) {
-
       subtitle <- subtitle_ggscatterstats(
         data = data,
         x = x,
@@ -179,7 +232,6 @@ ggscatterstats <-
         messages = messages,
         k = k
       )
-
     }
 
     #---------------------------------------------------- basic plot ----------------------------------------------------------
@@ -196,7 +248,7 @@ ggscatterstats <-
       ggplot2::geom_point(
         size = 3,
         alpha = 0.5,
-        position = position_jitter(
+        position = ggplot2::position_jitter(
           width = width.jitter,
           height = height.jitter
         ),
@@ -269,11 +321,32 @@ ggscatterstats <-
         )
     }
 
+    #--------------------------------- adding point labels ----------------------------------------------------------
+
+    if (isTRUE(point.labelling)) {
+      # using geom_repel_label
+      plot <-
+        plot +
+        ggrepel::geom_label_repel(
+          data = label_data,
+          mapping = aes(
+            label = !!rlang::enquo(label.var)
+          ),
+          fontface = "bold",
+          color = "black",
+          max.iter = 3e2,
+          box.padding = 0.35,
+          point.padding = 0.5,
+          segment.color = "black",
+          force = 2,
+          seed = 123,
+          na.rm = TRUE
+        )
+    }
     #-------------------------------------------------- ggMarginal  ----------------------------------------------------------
 
     # creating the ggMarginal plot of a given marginal.type
     if (isTRUE(marginal)) {
-
       plot <-
         ggExtra::ggMarginal(
           p = plot,
@@ -293,7 +366,6 @@ ggscatterstats <-
             col = "black"
           )
         )
-
     }
 
     #-------------------------------------------------- messages  ----------------------------------------------------------

@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--30-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--31-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -154,10 +154,11 @@ For example-
 
 ``` r
 args(name = ggstatsplot::ggscatterstats)
-#> function (data, x, y, xlab = NULL, ylab = NULL, method = "lm", 
-#>     method.args = list(), formula = y ~ x, line.size = 1.5, line.color = "blue", 
-#>     marginal = TRUE, marginal.type = "histogram", marginal.size = 5, 
-#>     margins = c("both", "x", "y"), width.jitter = NULL, height.jitter = NULL, 
+#> function (data, x, y, label.var = NULL, label.expression = NULL, 
+#>     xlab = NULL, ylab = NULL, method = "lm", method.args = list(), 
+#>     formula = y ~ x, line.size = 1.5, line.color = "blue", marginal = TRUE, 
+#>     marginal.type = "histogram", marginal.size = 5, margins = c("both", 
+#>         "x", "y"), width.jitter = NULL, height.jitter = NULL, 
 #>     xfill = "#009E73", yfill = "#D55E00", xalpha = 1, yalpha = 1, 
 #>     xsize = 0.7, ysize = 0.7, centrality.para = NULL, type = "pearson", 
 #>     results.subtitle = TRUE, title = NULL, subtitle = NULL, caption = NULL, 
@@ -213,7 +214,7 @@ ggstatsplot::theme_mprl
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002aec84c0>
+#> <bytecode: 0x000000002af07190>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -364,7 +365,7 @@ ggstatsplot::ggscatterstats(
   title = "Dataset: Iris flower data set",
   messages = FALSE
 )
-#> Warning: This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions.
+#> Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.
 ```
 
 <img src="man/figures/README-ggscatterstats1-1.png" width="100%" />
@@ -402,7 +403,7 @@ ggstatsplot::ggscatterstats(
   height.jitter = 0.4,                           # amount of vertical jitter for data points
   messages = FALSE                               # turn off messages and notes
 ) 
-#> Warning: This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions.
+#> Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.
 ```
 
 <img src="man/figures/README-ggscatterstats2-1.png" width="100%" />

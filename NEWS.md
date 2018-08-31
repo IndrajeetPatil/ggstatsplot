@@ -1,6 +1,8 @@
 # ggstatsplot 0.0.5.9000
 
 MAJOR CHANGES
+  - `ggscatterstats` gains `label.var` and `label.expression` arguments to
+  attach labels to points.
   - `gghistostats` now defaults to not showing (redundant) color gradient
   (`fill.gradient = FALSE`) and shows both `"count"` and `"proportion"` data. It
   also gains a new argument `bar.fill` that can be used to fill bars with a

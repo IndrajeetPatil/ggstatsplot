@@ -358,7 +358,7 @@ plot_list <- purrr::pmap(
     package = list("nord", "ochRe", "awtools", "ggsci", "yarrr", "RColorBrewer"),
     palette = list("aurora", "parliament", "ppalette", "default_nejm", "basel", "Set1"),
     ggtheme = list(
-      hrbrthemes::theme_ipsum_tw(),
+      ggthemes::theme_stata(),
       ggplot2::theme_classic(),
       ggthemes::theme_fivethirtyeight(),
       ggplot2::theme_minimal(),

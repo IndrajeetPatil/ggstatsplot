@@ -4,17 +4,18 @@
 \alias{ggscatterstats}
 \title{Scatterplot with marginal distributions}
 \usage{
-ggscatterstats(data, x, y, xlab = NULL, ylab = NULL, method = "lm",
-  method.args = list(), formula = y ~ x, line.size = 1.5,
-  line.color = "blue", marginal = TRUE, marginal.type = "histogram",
-  marginal.size = 5, margins = c("both", "x", "y"),
-  width.jitter = NULL, height.jitter = NULL, xfill = "#009E73",
-  yfill = "#D55E00", xalpha = 1, yalpha = 1, xsize = 0.7,
-  ysize = 0.7, centrality.para = NULL, type = "pearson",
-  results.subtitle = TRUE, title = NULL, subtitle = NULL,
-  caption = NULL, nboot = 100, beta = 0.1, k = 3,
-  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, messages = TRUE)
+ggscatterstats(data, x, y, label.var = NULL, label.expression = NULL,
+  xlab = NULL, ylab = NULL, method = "lm", method.args = list(),
+  formula = y ~ x, line.size = 1.5, line.color = "blue",
+  marginal = TRUE, marginal.type = "histogram", marginal.size = 5,
+  margins = c("both", "x", "y"), width.jitter = NULL,
+  height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00",
+  xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7,
+  centrality.para = NULL, type = "pearson", results.subtitle = TRUE,
+  title = NULL, subtitle = NULL, caption = NULL, nboot = 100,
+  beta = 0.1, k = 3, axes.range.restrict = FALSE,
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -23,6 +24,11 @@ taken.}
 \item{x}{A vector containing the explanatory variable.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
+
+\item{label.var}{Variable to use for points labels.}
+
+\item{label.expression}{An expression evaluating to a logical vector that
+determines the subset of data points to label.}
 
 \item{xlab}{Label for \code{x} axis variable.}
 
@@ -140,12 +146,19 @@ version of \code{ggExtra} that you can download from \code{GitHub}:
 # to get reproducible results from bootstrapping
 set.seed(123)
 
+# creating dataframe
+mtcars_new <- mtcars \%>\%
+  tibble::rownames_to_column(., var = "car") \%>\%
+  tibble::as_data_frame(x = .)
+
 # simple function call with the defaults
 ggstatsplot::ggscatterstats(
-  data = datasets::mtcars,
+  data = mtcars_new,
   x = wt,
   y = mpg,
-  type = "np"
+  type = "np",
+  label.var = car,
+  label.expression = wt < 4 & mpg < 20
 )
 }
 \references{

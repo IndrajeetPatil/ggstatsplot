@@ -5,7 +5,8 @@
 \title{Scatterplot with marginal distributions for all levels of a grouping
 variable}
 \usage{
-grouped_ggscatterstats(data, x, y, grouping.var, title.prefix = "Group",
+grouped_ggscatterstats(data, x, y, label.var = NULL,
+  label.expression = NULL, grouping.var, title.prefix = "Group",
   xlab = NULL, ylab = NULL, method = "lm", method.args = list(),
   formula = y ~ x, line.size = 1.5, line.color = "blue",
   marginal = TRUE, marginal.type = "histogram", marginal.size = 5,
@@ -24,6 +25,11 @@ taken.}
 \item{x}{A vector containing the explanatory variable.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
+
+\item{label.var}{Variable to use for points labels.}
+
+\item{label.expression}{An expression evaluating to a logical vector that
+determines the subset of data points to label.}
 
 \item{grouping.var}{Grouping variable.}
 
@@ -200,10 +206,14 @@ set.seed(123)
 
 # basic functio call
 ggstatsplot::grouped_ggscatterstats(
-  data = datasets::iris,
-  x = Sepal.Length,
-  y = Sepal.Width,
-  grouping.var = Species,
+  data = dplyr::filter(ggplot2::mpg, cyl != 5),
+  x = displ,
+  y = hwy,
+  grouping.var = cyl,
+  title.prefix = "Cylinder count",
+  type = "robust",
+  label.var = manufacturer,
+  label.expression = hwy > 25 & displ > 2.5,
   messages = FALSE
 )
 }

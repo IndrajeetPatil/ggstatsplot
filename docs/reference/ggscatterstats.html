@@ -146,17 +146,18 @@ subtitle.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
-  <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>,
-  <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>),
-  <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>,
-  <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>yalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xsize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
-  <span class='kw'>ysize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
-  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>, <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'>list</span>(),
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>, <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>,
+  <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>yalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xsize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>ysize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,6 +174,15 @@ taken.</p></td>
     <tr>
       <th>y</th>
       <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.var</th>
+      <td><p>Variable to use for points labels.</p></td>
+    </tr>
+    <tr>
+      <th>label.expression</th>
+      <td><p>An expression evaluating to a logical vector that
+determines the subset of data points to label.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -353,13 +363,20 @@ version of <code>ggExtra</code> that you can download from <code>GitHub</code>:
 <span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'>set.seed</span>(<span class='fl'>123</span>)
 
+<span class='co'># creating dataframe</span>
+<span class='no'>mtcars_new</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/rownames'>rownames_to_column</a></span>(<span class='no'>.</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"car"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_data_frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span>)
+
 <span class='co'># simple function call with the defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats'>ggscatterstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/mtcars'>mtcars</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars_new</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>
-)</div><div class='output co'>#&gt; Note: 95% CI for Spearman's rho was computed with  100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: This function doesn't return a `ggplot2` object and is not further modifiable with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div></pre>
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
+  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='no'>car</span>,
+  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='no'>wt</span> <span class='kw'>&lt;</span> <span class='fl'>4</span> <span class='kw'>&amp;</span> <span class='no'>mpg</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>
+)</div><div class='output co'>#&gt; Note: 95% CI for Spearman's rho was computed with  100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

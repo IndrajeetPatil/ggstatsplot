@@ -66,6 +66,8 @@ plots <- datasets::iris %>%
           data = .,
           x = Sepal.Length,
           y = Sepal.Width,
+          label.var = Species2,
+          label.expression = Sepal.Length > 7,
           xfill = "#0072B2",
           yfill = "#009E73",
           ggtheme = ggthemes::theme_fivethirtyeight(),
@@ -120,7 +122,7 @@ plots <- ggplot2::mpg %>%
           data = .,
           x = year,
           y = hwy,
-          ggtheme = hrbrthemes::theme_ipsum(),
+          ggtheme = ggthemes::theme_stata(),
           ggstatsplot.layer = FALSE,
           type = "robust",
           package = "yarrr",
@@ -208,6 +210,48 @@ As can be seen from these plots, our hunch was correct: all ratings are not
 equally likely for any of the genres, for example Dramas and Documentary genre
 movies most frequently R-rating, while Animations genre movies overwhelmingly
 get PG rating.
+
+Let's see another example on how to use `plyr` to conveniently to repeat the
+same operation and then use `combine_plots`. Here we will investigate how Gross
+Domestic Product (per capita) of a country is related to the life expectancy of
+her citizens in 2007. We will also see which countries still have very low life
+expectancy across different continents.
+
+```{r ggscatterstats_plyr2, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+library(plyr)
+library(gapminder)
+
+# for reproducibility
+set.seed(123)
+
+# let's have a look at the structure of the data
+dplyr::glimpse(x = gapminder::gapminder)
+
+# creating a list of plots
+plots <- plyr::dlply(
+  .data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
+  .variables = .(continent),
+  .fun = function(data)
+    ggstatsplot::ggscatterstats(
+      data = data,
+      x = gdpPercap,
+      y = lifeExp,
+      xfill = "#0072B2",
+      yfill = "#009E73",
+      label.var = country,
+      label.expression = lifeExp < 45,
+      title = glue::glue("Continent: {data$continent}"),
+      marginal = FALSE
+    ) +
+    ggplot2::scale_x_continuous(labels = scales::comma)
+)
+
+# combining individual plots
+ggstatsplot::combine_plots(plotlist = plots, 
+                           title.text = "Relationship between GDP (per capita) and life expectancy",
+                           nrow = 2,
+                           ncol = 2)
+```
 
 ## Combining plot with additional text 
 
