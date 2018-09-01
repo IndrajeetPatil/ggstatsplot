@@ -73,7 +73,7 @@
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/graphics_design.html">graphics design</a>
+      <a href="../articles/plot_design.html">plot design</a>
     </li>
     <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
@@ -99,7 +99,7 @@
       <h1>ggstatsplot theme</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-08-31</h4>
+            <h4 class="date">2018-09-01</h4>
       
       
       <div class="hidden name"><code>theme_ggstatsplot.Rmd</code></div>
@@ -155,47 +155,15 @@
 <a class="sourceLine" id="cb3-7" data-line-number="7">)</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</span></a></code></pre></div>
 <p><img src="theme_ggstatsplot_files/figure-html/theme2-1.png" width="100%"></p>
-<p>It is important to note that irrespective of which <code>ggplot</code> theme you choose, <code>ggstatsplot</code> in the backdrop adds a new layer with its idiosyncratic theme settings, chosen to make the graphs more readable or aesthetically pleasing. Let’s see an example with <code>gghistostats</code> and see how a certain theme from <code>hrbrthemes</code> package looks with and without the <code>ggstatsplot</code> layer.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># to use hrbrthemes themes, first make sure you have all the necessary fonts</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(hrbrthemes)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># extrafont::ttf_import()</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># extrafont::font_import()</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># try this yourself</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="co"># with the ggstatsplot layer</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">    <span class="dt">x =</span> Sepal.Width,</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">    <span class="dt">title =</span> <span class="st">"Distribution of Sepal Width"</span>,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">    <span class="dt">test.value =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">    <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum">theme_ipsum</a></span>(),</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">    <span class="dt">ggstatsplot.layer =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">  ),</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="co"># without the ggstatsplot layer</span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">    <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">    <span class="dt">x =</span> Sepal.Width,</a>
-<a class="sourceLine" id="cb4-22" data-line-number="22">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">    <span class="dt">title =</span> <span class="st">"Distribution of Sepal Width"</span>,</a>
-<a class="sourceLine" id="cb4-24" data-line-number="24">    <span class="dt">test.value =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">    <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps">theme_ipsum_ps</a></span>(),</a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-27" data-line-number="27">  ),</a>
-<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">nrow =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb4-29" data-line-number="29">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
-<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">title.text =</span> <span class="st">"Behavior of ggstatsplot theme layer with chosen ggtheme"</span></a>
-<a class="sourceLine" id="cb4-31" data-line-number="31">)</a></code></pre></div>
 <p>The only exception for how <code>ggtheme</code> argument is to be entered is <code>ggcorrmat</code> function where the theme should <strong>not</strong> be entered as a function.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(Sepal.Length<span class="op">:</span>Petal.Width),</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">type =</span> <span class="st">"upper"</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span>theme_fivethirtyeight,            <span class="co"># selected ggplot2 theme</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">)</a></code></pre></div>
-<p><img src="theme_ggstatsplot_files/figure-html/theme4-1.png" width="100%"></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(Sepal.Length<span class="op">:</span>Petal.Width),</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">type =</span> <span class="st">"upper"</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span>theme_fivethirtyeight,            <span class="co"># selected ggplot2 theme</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">)</a></code></pre></div>
+<p><img src="theme_ggstatsplot_files/figure-html/theme3-1.png" width="100%"></p>
 </div>
 <div id="suggestions" class="section level2">
 <h2 class="hasAnchor">

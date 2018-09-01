@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--31-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--01-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -214,7 +214,7 @@ ggstatsplot::theme_mprl
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002a6f2d00>
+#> <bytecode: 0x000000002af04278>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -380,28 +380,30 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggscatterstats(
-  data = subset(datasets::iris, iris$Species == "setosa"),
-  x = Sepal.Length,
-  y = Petal.Length,
-  type = "robust",                               # type of test that needs to be run
-  xlab = "Attribute: Sepal Length",              # label for x axis
-  ylab = "Attribute: Petal Length",              # label for y axis 
-  line.color = "black",                          # changing regression line color line
-  title = "Dataset: Iris flower data set",       # title text for the plot
-  caption = expression(                          # caption text for the plot
-    paste(italic("Note"), ": this is a demo")
+  data = dplyr::filter(.data = ggstatsplot::movies_long, genre == "Action"),
+  x = budget,
+  y = rating,
+  type = "robust",                                # type of test that needs to be run
+  xlab = "Movie budget (in million/ US$)",        # label for x axis
+  ylab = "IMDB rating",                           # label for y axis 
+  label.var = title,                              # variable for labeling data points
+  label.expression = rating < 5 & budget > 150,   # expression that decides which points to label
+  line.color = "yellow",                          # changing regression line color line
+  title = "Movie budget and IMDB rating (action)",# title text for the plot
+  caption = expression(                           # caption text for the plot
+    paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")
   ),
-  ggtheme = hrbrthemes::theme_ipsum_ps(),        # choosing a different theme
-  ggstatsplot.layer = FALSE,                     # turn off ggstatsplot theme layer
-  marginal.type = "density",                     # type of marginal distribution to be displayed
-  xfill = "blue",                                # color fill for x-axis marginal distribution 
-  yfill = "red",                                 # color fill for y-axis marginal distribution
-  xalpha = 0.5,                                  # transparency for x-axis marginal distribution
-  yalpha = 0.5,                                  # transparency for y-axis marginal distribution
-  centrality.para = "median",                    # which type of central tendency lines are to be displayed  
-  width.jitter = 0.2,                            # amount of horizontal jitter for data points
-  height.jitter = 0.4,                           # amount of vertical jitter for data points
-  messages = FALSE                               # turn off messages and notes
+  ggtheme = hrbrthemes::theme_ipsum_ps(),         # choosing a different theme
+  ggstatsplot.layer = FALSE,                      # turn off ggstatsplot theme layer
+  marginal.type = "density",                      # type of marginal distribution to be displayed
+  xfill = "blue",                                 # color fill for x-axis marginal distribution 
+  yfill = "red",                                  # color fill for y-axis marginal distribution
+  xalpha = 0.5,                                   # transparency for x-axis marginal distribution
+  yalpha = 0.5,                                   # transparency for y-axis marginal distribution
+  centrality.para = "median",                     # which type of central tendency lines are to be displayed  
+  width.jitter = 0.2,                             # amount of horizontal jitter for data points
+  height.jitter = 0.4,                            # amount of vertical jitter for data points
+  messages = FALSE                                # turn off messages and notes
 ) 
 #> Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.
 ```
@@ -413,10 +415,12 @@ For more, see the `ggscatterstats` vignette:
 
 ## `ggpiestats`
 
-This function creates a pie chart for categorical variables with results
-from contingency table analysis included in the subtitle of the plot. If
-only one categorical variable is entered, results from one-sample
-**proportion test** will be displayed as a subtitle.
+This function creates a pie chart for categorical or nominal variables
+with results from contingency table analysis (Pearson’s chi-squared test
+for between-subjects design and McNemar’s test for within-subjects
+design) included in the subtitle of the plot. If only one categorical
+variable is entered, results from one-sample **proportion test** will be
+displayed as a subtitle.
 
 ``` r
 # for reproducibility
@@ -433,32 +437,9 @@ ggstatsplot::ggpiestats(
 <img src="man/figures/README-ggpiestats1-1.png" width="100%" />
 
 This function can also be used to study an interaction between two
-categorical variables. Additionally, as with the other functions in
-`ggstatsplot`, this function returns a `ggplot2` object and can further
-be modified with `ggplot2` syntax (e.g., we can change the color palette
-\*after\#\# `ggstatsplot` has produced the plot)-
-
-``` r
-library(ggplot2)
-
-# for reproducibility
-set.seed(123)
-
-# plot
-ggstatsplot::ggpiestats(
-  data = datasets::mtcars,
-  main = cyl,
-  condition = am,
-  ggtheme = ggthemes::theme_tufte(),                 # choosing a different theme
-  title = "Dataset: Motor Trend Car Road Tests",      
-  messages = FALSE
-)     
-```
-
-<img src="man/figures/README-ggpiestats2-1.png" width="100%" />
-
-As with the other functions, this basic plot can further be modified
-with additional arguments:
+categorical variables. Additionally, this basic plot can further be
+modified with additional arguments and the function returns a `ggplot2`
+object that can further be modified with `ggplot2` syntax:
 
 ``` r
 # for reproducibility
@@ -484,7 +465,7 @@ ggstatsplot::ggpiestats(
 ) 
 ```
 
-<img src="man/figures/README-ggpiestats3-1.png" width="100%" />
+<img src="man/figures/README-ggpiestats2-1.png" width="100%" />
 
 In case of within-subjects designs, setting `paired = TRUE` will produce
 results from McNemar test-
@@ -514,7 +495,7 @@ ggstatsplot::ggpiestats(
 )
 ```
 
-<img src="man/figures/README-ggpiestats4-1.png" width="100%" />
+<img src="man/figures/README-ggpiestats3-1.png" width="100%" />
 
 For more, including information about the variant of this function
 `grouped_ggpiestats`, see the `ggpiestats` vignette:
@@ -793,10 +774,51 @@ For more, see the associated vignette-
 
 ## `theme_ggstatsplot`
 
-All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`,
-which is also called as `theme_mprl` (both of which are identical
-functions with different names). For more on how to modify it, see the
-associated vignette-
+All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`.
+You can change this theme by using the argument `ggtheme` for all
+functions. It is important to note that irrespective of which `ggplot`
+theme you choose, `ggstatsplot` in the backdrop adds a new layer with
+its idiosyncratic theme settings, chosen to make the graphs more
+readable or aesthetically pleasing. Let’s see an example with
+`gghistostats` and see how a certain theme from `hrbrthemes` package
+looks with and without the `ggstatsplot`
+layer.
+
+``` r
+# to use hrbrthemes themes, first make sure you have all the necessary fonts
+library(hrbrthemes)
+# extrafont::ttf_import()
+# extrafont::font_import()
+
+# try this yourself
+ggstatsplot::combine_plots(
+  # with the ggstatsplot layer
+  ggstatsplot::gghistostats(
+    data = datasets::iris,
+    x = Sepal.Width,
+    messages = FALSE,
+    title = "Distribution of Sepal Width",
+    test.value = 5,
+    ggtheme = hrbrthemes::theme_ipsum(),
+    ggstatsplot.layer = TRUE
+  ),
+  # without the ggstatsplot layer
+  ggstatsplot::gghistostats(
+    data = datasets::iris,
+    x = Sepal.Width,
+    messages = FALSE,
+    title = "Distribution of Sepal Width",
+    test.value = 5,
+    ggtheme = hrbrthemes::theme_ipsum_ps(),
+    ggstatsplot.layer = FALSE
+  ),
+  nrow = 1,
+  labels = c("(a)", "(b)"),
+  title.text = "Behavior of ggstatsplot theme layer with chosen ggtheme"
+)
+```
+
+For more on how to modify it, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
 
 ## Plot design
@@ -812,30 +834,6 @@ functions involved:
 
 ``` r
 covr::package_coverage(type = "all")
-#> 
-#> files differ in number of lines:
-#> ggstatsplot Coverage: 89.80%
-#> R/grouped_ggscatterstats.R: 45.79%
-#> R/grouped_ggpiestats.R: 79.06%
-#> R/helpers_effsize_ci.R: 81.89%
-#> R/gghistostats.R: 82.22%
-#> R/ggscatterstats.R: 89.20%
-#> R/helpers_messages.R: 90.48%
-#> R/combine_plots.R: 90.62%
-#> R/ggcoefstats.R: 91.22%
-#> R/ggbetweenstats.R: 93.75%
-#> R/ggcorrmat.R: 94.87%
-#> R/helpers_ggscatterstats_subtitles.R: 95.18%
-#> R/helpers_ggbetween_subtitles.R: 96.06%
-#> R/ggpiestats.R: 96.63%
-#> R/helpers_stats.R: 97.01%
-#> R/grouped_ggbetweenstats.R: 100.00%
-#> R/grouped_ggcorrmat.R: 100.00%
-#> R/grouped_gghistostats.R: 100.00%
-#> R/helpers_labeller.R: 100.00%
-#> R/helpers_textresults.R: 100.00%
-#> R/specify_decimal_p.R: 100.00%
-#> R/theme_ggstatsplot.R: 100.00%
 ```
 
 ## Contributing

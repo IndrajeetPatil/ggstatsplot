@@ -1,0 +1,188 @@
+---
+title: "plot design"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    toc: true
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{plot design}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `ggstatsplot` package is an opinionated collection of plots made with
+`ggplot2` and is designed for exploratory data analysis or for producing
+publication-ready. All plots share an underlying principle of displaying
+information-rich plots with all necessary statistical details included in the
+plots themselves. Although the plots produced by `ggstatsplot` are still
+`ggplot` objects and can thus be further modified using `ggplot2` commands,
+there is a limit to how many such modifications can be made. That is, it is less
+flexible than `ggplot2`, but that's a feature and not a bug. The original intent
+behind this package is to offload struggles associated with *constructing* the
+plot and focus more on the *interpretation* of that data displayed in the plot.
+
+(**This vignette is still a work in progress**)
+
+
+# Clean design
+
+
+
+* The package follows two principles for **graphical integrity** (as proposed in
+Tufte, 2001, Chapter 2):
+
+  + The physical representation of numbers is proportional to the numerical
+  quantities they represent (e.g., Figure-1 and Figure-2 show how means (in
+  `ggbetweenstats`) or percentages (`ggpiestats`) are proportional to the
+  vertical distance or the area, respectively).
+  
+  + All important events in the data have clear, detailed, and thorough labeling
+  (e.g., Figure-1 plot shows how `ggbetweenstats` labels means, sample size
+  information, and outliers; same can be appreciated for `ggpiestats` in
+  Figure-2).
+
+* All plots are designed to have no **chartjunk** (like moiré vibrations, fake
+perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
+
+```{r example1, fig.height = 8, fig.width = 7, fig.cap = "**Figure-1**. Note that assessing differences in mean values between groups has been made easier with the help of position of data points along a common scale (the Y-axis) and labels."}
+ggstatsplot::ggbetweenstats(
+  data = ggplot2::mpg,
+  x = cyl,
+  y = cty,
+  title = "Figure-1: Fuel efficiency by type of cylinder",
+  xlab = "number of cylinders",
+  ylab = "city miles per gallon",
+  ggtheme = ggthemes::theme_fivethirtyeight(),
+  ggstatsplot.layer = FALSE,
+  outlier.tagging = TRUE,
+  outlier.label = manufacturer,
+  messages = FALSE
+)
+```
+
+
+# Graphical perception
+
+Graphical perception involves visual decoding of the encoded information in
+graphs. `ggstatsplot` incorporates the paradigm proposed in Cleveland (1985,
+Chapter 4) to facilitate making visual judgments about quantitative information
+effortless and almost instantaneous. Based on experiments, Cleveland proposes
+that there are ten elementary graphical-perception tasks that we perform to
+visually decode quantitative information in graphs (organized from most to least
+accurate [^1])-
+ 
+ [^1]: "The ordering is based on the theory of visual perception, on experiments
+ in graphical perception, and on informal experimentation." (Cleveland, 1985,
+ p.254)
+
+* Position along a common scale
+* Position along identical, non-aligned scales
+* Length
+* Angle (Slope)
+* Area
+* Volume
+* Color hue - Color saturation - Density
+
+So the key principle of Cleveland's paradigm for data display is- 
+
+> "We should encode data on a graph so that the visual decoding involves
+[graphical-perception] tasks as high in the ordering as possible."
+
+There are few instances where `ggstatsplot` diverges from recommendations made
+in Cleveland's paradigm:
+
+* For the categorical/nominal data, `ggstatsplot` uses pie charts (see Figure-2)
+which rely on *angle* judgments, which are less accurate (as compared to bar
+graphs, e.g., which require *position* judgments). This shortcoming is assuaged
+to some degree by using plenty of labels that describe percentages for all
+slices. This makes angle judgment unnecessary and pre-vacates any concerns about
+inaccurate judgments about percentages.
+
+```{r example2, fig.height = 6, fig.width = 10, fig.cap = "Figure-2. Pie charts don't follow Cleveland's paradigm to data display because they rely on less accurate angle judgments. `ggstatsplot` sidesteps this issue by always labelling percentages for pie slices, which makes angle judgments unnecessary."}
+ggstatsplot::ggpiestats(
+  data = ggstatsplot::movies_long,
+  main = genre,
+  condition = mpaa,
+  title = "Figure-2: Distribution of MPAA ratings by film genre",
+  legend.title = "layout",
+  caption = "MPAA: Motion Picture Association of America",
+  package = "ggsci",
+  palette = "default_jama",
+  messages = FALSE
+)
+```
+
+* Cleveland's paradigm also emphasizes that *superposition* of data is better
+than *juxtaposition* (Cleveland, 1985, p.201) because this allows for a more
+incisive comparison of the values from different parts of the dataset. This
+recommendation is violated in all `grouped_` variants of the function (see
+Figure-3). 
+
+```{r example3, fig.height = 12, fig.width = 10, fig.cap = "Figure-3."}
+ggstatsplot::combine_plots(
+  # plot 1: juxtaposition
+  ggstatsplot::grouped_ggscatterstats(
+    data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
+                           genre == "Drama"),
+    x = length,
+    y = rating,
+    grouping.var = genre,
+    marginal = FALSE,
+    title.prefix = "Genre",
+    title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
+    title.size = 12
+  ),
+  # plot2: superposition
+  ggplot2::ggplot(
+    data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
+                           genre == "Drama"),
+    mapping = ggplot2::aes(x = length,
+                           y = rating,
+                           color = genre)
+  ) +
+    ggplot2::geom_jitter(size = 3, alpha = 0.5) +
+    ggplot2::geom_smooth(method = "lm") +
+    ggplot2::labs(title = "superposition (recommended in Cleveland's paradigm)") +
+    ggstatsplot::theme_ggstatsplot(),
+  # combine for comparison
+  title.text = "Two ways to compare different aspects of data",
+  nrow = 2,
+  labels = c("(a)", "(b)")
+)
+```
+
+# Statistical details
+
+## Statistical variation
+
+## p-values
+
+* As Lilienfeld and colleagues report (Lilienfeld et al., 2015):
+
+> **p = 0.000**. Even though this statistical expression, used in over 97,000
+manuscripts according to Google Scholar, makes regular cameo appearances in our
+computer printouts, we should assiduously avoid inserting it in our Results
+sections. This expression implies erroneously that there is a zero probability
+that the investigators have committed a Type I error, that is, a false rejection
+of a true null hypothesis.
+
+All p-values displayed in `ggstatsplot` plots avoid this mistake. Anything less
+  than `p < 0.001` is displayed as such. The package doesn't care how
+  infinitesimally small the *p*-values are. Instead, the emphasis is put more on
+  the effect size magnitudes and their 95% CIs.
+  
+# References

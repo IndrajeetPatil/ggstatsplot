@@ -38,7 +38,7 @@
 #'
 #'
 #' @examples
-#'
+#' 
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = datasets::iris,
@@ -48,7 +48,7 @@
 #'   nrow = 3,
 #'   ncol = 1
 #' )
-#'
+#' 
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = datasets::iris,

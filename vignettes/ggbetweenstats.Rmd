@@ -8,6 +8,7 @@ output:
     fig.align: 'center'
     fig.asp: 0.618
     dpi: 300
+    toc: true
     warning: FALSE
     message: FALSE
 vignette: >
@@ -31,7 +32,7 @@ of how to use this function in this vignette.
 To begin with, here are some instances where you would want to use
 `ggbetweenstats`-
 
-  - to check if a continuous variable differs between two groups or conditions
+  - to check if a continuous variable differs between multiple groups/conditions
   - to check for outliers
 
 **Note before**: The following demo uses the pipe operator (`%>%`), so in case

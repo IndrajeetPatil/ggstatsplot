@@ -204,7 +204,18 @@ subtitle.
 # to ensure reproducibility
 set.seed(123)
 
-# basic functio call
+# basic function call
+ggstatsplot::grouped_ggscatterstats(
+  data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
+    genre == "Drama"),
+  x = length,
+  y = rating,
+  method = "lm",
+  formula = y ~ x + I(x ^ 3),
+  grouping.var = genre
+)
+
+# using labeling
 ggstatsplot::grouped_ggscatterstats(
   data = dplyr::filter(ggplot2::mpg, cyl != 5),
   x = displ,

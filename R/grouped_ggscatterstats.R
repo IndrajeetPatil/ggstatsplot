@@ -40,7 +40,18 @@
 #' # to ensure reproducibility
 #' set.seed(123)
 #'
-#' # basic functio call
+#' # basic function call
+#' ggstatsplot::grouped_ggscatterstats(
+#'   data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
+#'     genre == "Drama"),
+#'   x = length,
+#'   y = rating,
+#'   method = "lm",
+#'   formula = y ~ x + I(x ^ 3),
+#'   grouping.var = genre
+#' )
+#'
+#' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
 #'   x = displ,
@@ -100,15 +111,17 @@ grouped_ggscatterstats <- function(data,
   param_list <- base::as.list(base::match.call())
 
   # check that label.var and grouping.var are different
-  if (as.character(param_list$label.var) == as.character(param_list$grouping.var)) {
-    base::message(cat(
-      crayon::red("Error:"),
-      crayon::blue(
-        "Identical variable (",
-        crayon::yellow(param_list$label.var),
-        ") was used for both grouping and labeling, which is not allowed."
-      )
-    ))
+  if ("label.var" %in% names(param_list) && "grouping.var" %in% names(param_list)) {
+    if (as.character(param_list$label.var) == as.character(param_list$grouping.var)) {
+      base::message(cat(
+        crayon::red("Error:"),
+        crayon::blue(
+          "Identical variable (",
+          crayon::yellow(param_list$label.var),
+          ") was used for both grouping and labeling, which is not allowed."
+        )
+      ))
+    }
   }
 
   # check labeling variable has been entered

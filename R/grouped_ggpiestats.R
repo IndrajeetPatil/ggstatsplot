@@ -35,7 +35,7 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#'
+#' 
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,

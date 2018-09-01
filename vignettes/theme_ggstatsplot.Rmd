@@ -8,6 +8,7 @@ output:
     fig.align: 'center'
     fig.asp: 0.618
     dpi: 300
+    toc: true
     warning: FALSE
     message: FALSE
 vignette: >
@@ -84,50 +85,10 @@ ggstatsplot::ggscatterstats(
 )
 ```
 
-It is important to note that irrespective of which `ggplot` theme you choose,
-`ggstatsplot` in the backdrop adds a new layer with its idiosyncratic theme
-settings, chosen to make the graphs more readable or aesthetically pleasing.
-Let's see an example with `gghistostats` and see how a certain theme from
-`hrbrthemes` package looks with and without the `ggstatsplot` layer.
-
-```{r theme3, , eval = FALSE, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
-# to use hrbrthemes themes, first make sure you have all the necessary fonts
-library(hrbrthemes)
-# extrafont::ttf_import()
-# extrafont::font_import()
-
-# try this yourself
-ggstatsplot::combine_plots(
-  # with the ggstatsplot layer
-  ggstatsplot::gghistostats(
-    data = datasets::iris,
-    x = Sepal.Width,
-    messages = FALSE,
-    title = "Distribution of Sepal Width",
-    test.value = 5,
-    ggtheme = hrbrthemes::theme_ipsum(),
-    ggstatsplot.layer = TRUE
-  ),
-  # without the ggstatsplot layer
-  ggstatsplot::gghistostats(
-    data = datasets::iris,
-    x = Sepal.Width,
-    messages = FALSE,
-    title = "Distribution of Sepal Width",
-    test.value = 5,
-    ggtheme = hrbrthemes::theme_ipsum_ps(),
-    ggstatsplot.layer = FALSE
-  ),
-  nrow = 1,
-  labels = c("(a)", "(b)"),
-  title.text = "Behavior of ggstatsplot theme layer with chosen ggtheme"
-)
-```
-
 The only exception for how `ggtheme` argument is to be entered is `ggcorrmat`
 function where the theme should **not** be entered as a function.
 
-```{r theme4, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),
