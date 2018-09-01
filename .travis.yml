@@ -1,9 +1,11 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: R
+language: r
 cache: packages
 latex: false
 fortran: true
+warnings_are_errors: true
+#r_check_revdep: true
 
 # Note: http test servers are flaky and we want to minimze false positives
 # so we skip examples and vignettes (but not unit tests) on OS X.
@@ -77,11 +79,8 @@ repos:
   ropensci: http://packages.ropensci.org
 
 # work around temporary travis + R 3.5 bug
-r_packages: #devtools
+r_packages:
     - covr
-
-warnings_are_errors: true
-#r_check_revdep: true
 
 notifications:
   email:
@@ -89,4 +88,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::codecov(type = "all")'

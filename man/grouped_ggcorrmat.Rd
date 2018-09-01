@@ -200,6 +200,10 @@ combining (title, plot).}
 combining (plot, caption).}
 }}
 }
+\value{
+Correlation matrix plot or correlation coefficient matrix or matrix
+of p-values.
+}
 \description{
 Helper function for \code{ggstatsplot::ggcorrmat} to apply this
 function across multiple levels of a given factor and combining the
@@ -226,7 +230,7 @@ ggstatsplot::grouped_ggcorrmat(
 )
 }
 \references{
-\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggcorrmat.html}
+\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 }
 \seealso{
 \code{\link{ggcorrmat}} \code{\link{ggscatterstats}}

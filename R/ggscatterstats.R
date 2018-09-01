@@ -78,7 +78,7 @@
 #' @seealso \code{\link{grouped_ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
 #'
 #' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggscatterstats.html}
+#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggscatterstats.html}
 #'
 #' @note `marginal.type = "densigram"` will work only with the development
 #'   version of `ggExtra` that you can download from `GitHub`:

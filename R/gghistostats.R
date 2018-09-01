@@ -94,14 +94,14 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' ggstatsplot::gghistostats(
 #'   data = datasets::ToothGrowth,
 #'   x = len,
 #'   xlab = "Tooth length"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
@@ -118,7 +118,7 @@
 #' @seealso \code{\link{grouped_gghistostats}}
 #'
 #' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/gghistostats.html}
+#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/gghistostats.html}
 #'
 #' @export
 #'

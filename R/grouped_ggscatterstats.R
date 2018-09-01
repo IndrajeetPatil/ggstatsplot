@@ -32,8 +32,8 @@
 #'
 #' @seealso \code{\link{ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
 #'
-#' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggscatterstats.html}
+#' @inherit ggscatterstats return references
+#' @inherit ggscatterstats return details
 #'
 #' @examples
 #'

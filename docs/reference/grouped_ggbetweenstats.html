@@ -451,9 +451,24 @@ combining (plot, caption).</p></dd>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>For parametric tests, Welch's ANOVA/t-test are used as a default. References:</p><ul>
+<li><p>ANOVA: Delacre, Leys, Mora, &amp; Lakens, <em>PsyArXiv</em>, 2018</p></li>
+<li><p>t-test: Delacre, Lakens, &amp; Leys, <em>International Review of Social Psychology</em>, 2017</p></li>
+</ul>
+    <p>If robust tests are selected, following tests are used is .</p><ul>
+<li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/t1way'>?WRS2::t1way</a></code>)</p></li>
+<li><p>t-test: Yuen's test for trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
+</ul>
+    <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em>
+still use this function just to prepare the <strong>plot</strong> for exploratory data
+analysis, but the statistical details displayed in the subtitle will be
+incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code>.</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html'>https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html</a></p>
+    <p><a href='https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html'>https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -472,13 +487,15 @@ combining (plot, caption).</p></dd>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.570</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.994</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.131</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.890</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.364</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.570</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.994</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.131</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.890</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for wt : p-value =  0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.364</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='error'>Error in grid.Call(C_convert, x, as.integer(whatfrom), as.integer(whatto),     valid.units(unitTo)): Viewport has zero dimension(s)</span></div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>

@@ -222,6 +222,24 @@ combining (plot, caption).}
 A combined plot of comparison plot created for levels of a
 grouping variable.
 }
+\details{
+For parametric tests, Welch's ANOVA/t-test are used as a default. References:
+\itemize{
+\item ANOVA: Delacre, Leys, Mora, & Lakens, \emph{PsyArXiv}, 2018
+\item t-test: Delacre, Lakens, & Leys, \emph{International Review of Social Psychology}, 2017
+}
+
+If robust tests are selected, following tests are used is .
+\itemize{
+\item ANOVA: one-way ANOVA on trimmed means (see \code{?WRS2::t1way})
+\item t-test: Yuen's test for trimmed means (see \code{?WRS2::yuen})
+}
+
+Variant of this function \code{ggwithinstats} is currently under work. You \emph{can}
+still use this function just to prepare the \strong{plot} for exploratory data
+analysis, but the statistical details displayed in the subtitle will be
+incorrect. You can remove them by adding \code{+ ggplot2::labs(subtitle = NULL)}.
+}
 \examples{
 
 # to get reproducible results from bootstrapping
@@ -237,7 +255,7 @@ ggstatsplot::grouped_ggbetweenstats(
 )
 }
 \references{
-\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html}
+\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 }
 \seealso{
 \code{\link{ggbetweenstats}}

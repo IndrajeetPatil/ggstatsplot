@@ -214,7 +214,7 @@ ggstatsplot::theme_mprl
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002af07190>
+#> <bytecode: 0x000000002a6f2d00>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -804,6 +804,39 @@ associated vignette-
 In the following vignette, I have outlined what thought went into
 designing plots in a certain way:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/graphics_design.html>
+
+## Current code coverage
+
+As the code stands right now, here is the code coverage for all primary
+functions involved:
+
+``` r
+covr::package_coverage(type = "all")
+#> 
+#> files differ in number of lines:
+#> ggstatsplot Coverage: 89.80%
+#> R/grouped_ggscatterstats.R: 45.79%
+#> R/grouped_ggpiestats.R: 79.06%
+#> R/helpers_effsize_ci.R: 81.89%
+#> R/gghistostats.R: 82.22%
+#> R/ggscatterstats.R: 89.20%
+#> R/helpers_messages.R: 90.48%
+#> R/combine_plots.R: 90.62%
+#> R/ggcoefstats.R: 91.22%
+#> R/ggbetweenstats.R: 93.75%
+#> R/ggcorrmat.R: 94.87%
+#> R/helpers_ggscatterstats_subtitles.R: 95.18%
+#> R/helpers_ggbetween_subtitles.R: 96.06%
+#> R/ggpiestats.R: 96.63%
+#> R/helpers_stats.R: 97.01%
+#> R/grouped_ggbetweenstats.R: 100.00%
+#> R/grouped_ggcorrmat.R: 100.00%
+#> R/grouped_gghistostats.R: 100.00%
+#> R/helpers_labeller.R: 100.00%
+#> R/helpers_textresults.R: 100.00%
+#> R/specify_decimal_p.R: 100.00%
+#> R/theme_ggstatsplot.R: 100.00%
+```
 
 ## Contributing
 

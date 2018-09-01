@@ -240,7 +240,7 @@
 <a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; &lt;bytecode: 0x0000000028c225c8&gt;</span></a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; &lt;bytecode: 0x0000000028f492c8&gt;</span></a>
 <a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -670,6 +670,34 @@
 <h2 class="hasAnchor">
 <a href="#plot-design" class="anchor"></a>Plot design</h2>
 <p>In the following vignette, I have outlined what thought went into designing plots in a certain way: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/graphics_design.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/graphics_design.html</a></p>
+</div>
+<div id="current-code-coverage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#current-code-coverage" class="anchor"></a>Current code coverage</h2>
+<p>As the code stands right now, here is the code coverage for all primary functions involved:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">covr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/covr/topics/package_coverage">package_coverage</a></span>(<span class="dt">type =</span> <span class="st">"all"</span>)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="co">#&gt; ggstatsplot Coverage: 89.80%</span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co">#&gt; R/grouped_ggscatterstats.R: 45.79%</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co">#&gt; R/grouped_ggpiestats.R: 79.06%</span></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="co">#&gt; R/helpers_effsize_ci.R: 81.89%</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="co">#&gt; R/gghistostats.R: 82.22%</span></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="co">#&gt; R/ggscatterstats.R: 89.20%</span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="co">#&gt; R/helpers_messages.R: 90.48%</span></a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="co">#&gt; R/combine_plots.R: 90.62%</span></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="co">#&gt; R/ggcoefstats.R: 91.22%</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="co">#&gt; R/ggbetweenstats.R: 93.75%</span></a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="co">#&gt; R/ggcorrmat.R: 94.87%</span></a>
+<a class="sourceLine" id="cb25-13" data-line-number="13"><span class="co">#&gt; R/helpers_ggscatterstats_subtitles.R: 95.18%</span></a>
+<a class="sourceLine" id="cb25-14" data-line-number="14"><span class="co">#&gt; R/helpers_ggbetween_subtitles.R: 96.06%</span></a>
+<a class="sourceLine" id="cb25-15" data-line-number="15"><span class="co">#&gt; R/ggpiestats.R: 96.63%</span></a>
+<a class="sourceLine" id="cb25-16" data-line-number="16"><span class="co">#&gt; R/helpers_stats.R: 97.01%</span></a>
+<a class="sourceLine" id="cb25-17" data-line-number="17"><span class="co">#&gt; R/grouped_ggbetweenstats.R: 100.00%</span></a>
+<a class="sourceLine" id="cb25-18" data-line-number="18"><span class="co">#&gt; R/grouped_ggcorrmat.R: 100.00%</span></a>
+<a class="sourceLine" id="cb25-19" data-line-number="19"><span class="co">#&gt; R/grouped_gghistostats.R: 100.00%</span></a>
+<a class="sourceLine" id="cb25-20" data-line-number="20"><span class="co">#&gt; R/helpers_labeller.R: 100.00%</span></a>
+<a class="sourceLine" id="cb25-21" data-line-number="21"><span class="co">#&gt; R/helpers_textresults.R: 100.00%</span></a>
+<a class="sourceLine" id="cb25-22" data-line-number="22"><span class="co">#&gt; R/specify_decimal_p.R: 100.00%</span></a>
+<a class="sourceLine" id="cb25-23" data-line-number="23"><span class="co">#&gt; R/theme_ggstatsplot.R: 100.00%</span></a></code></pre></div>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">

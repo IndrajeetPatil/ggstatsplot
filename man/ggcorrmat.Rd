@@ -163,7 +163,7 @@ ggstatsplot::ggcorrmat(
 )
 }
 \references{
-\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggcorrmat.html}
+\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 }
 \seealso{
 \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}

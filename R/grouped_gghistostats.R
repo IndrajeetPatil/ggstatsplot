@@ -31,11 +31,11 @@
 #'
 #' @seealso \code{\link{gghistostats}}
 #'
-#' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/gghistostats.html}
+#' @inherit gghistostats return references
+#' @inherit gghistostats return details
 #'
 #' @examples
-#' 
+#'
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,

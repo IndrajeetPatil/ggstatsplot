@@ -205,7 +205,7 @@ ggstatsplot::ggbetweenstats(
 )
 }
 \references{
-\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html}
+\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 }
 \seealso{
 \code{\link{grouped_ggbetweenstats}}

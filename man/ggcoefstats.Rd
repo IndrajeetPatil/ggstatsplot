@@ -191,7 +191,7 @@ set.seed(123)
 ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 }
 \references{
-\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggcoefstats.html}
+\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 }
 \author{
 Indrajeet Patil

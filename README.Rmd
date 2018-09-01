@@ -678,6 +678,16 @@ In the following vignette, I have outlined what thought went into designing
 plots in a certain way:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/graphics_design.html>
 
+## Current code coverage
+
+As the code stands right now, here is the code coverage for all primary
+functions involved:
+
+```{r code_cov}
+covr::package_coverage(type = "all")
+```
+
+
 ## Contributing
 
 I'm happy to receive bug reports, suggestions, questions, and (most of all)

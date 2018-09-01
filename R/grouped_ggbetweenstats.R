@@ -34,14 +34,14 @@
 #'
 #' @seealso \code{\link{ggbetweenstats}}
 #'
-#' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html}
+#' @inherit ggbetweenstats return references
+#' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = mtcars,

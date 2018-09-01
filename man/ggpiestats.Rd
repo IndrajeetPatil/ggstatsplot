@@ -107,7 +107,7 @@ ggstatsplot::ggpiestats(
 )
 }
 \references{
-\url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggpiestats.html}
+\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 }
 \author{
 Indrajeet Patil

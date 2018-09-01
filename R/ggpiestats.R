@@ -71,13 +71,13 @@
 #' @importFrom paletteer scale_fill_paletteer_d
 #'
 #' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggpiestats.html}
+#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -85,7 +85,7 @@
 #'   condition = cyl,
 #'   nboot = 10
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = iris,

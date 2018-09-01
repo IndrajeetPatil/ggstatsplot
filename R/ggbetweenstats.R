@@ -141,20 +141,20 @@
 #' incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
 #'
 #' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggbetweenstats.html}
+#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::iris,
 #'   x = Species,
 #'   y = Sepal.Length
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::ToothGrowth,

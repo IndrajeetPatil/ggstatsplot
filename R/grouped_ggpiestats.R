@@ -31,11 +31,11 @@
 #'
 #' @seealso \code{\link{ggpiestats}}
 #'
-#' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggpiestats.html}
+#' @inherit ggpiestats return references
+#' @inherit ggpiestats return details
 #'
 #' @examples
-#' 
+#'
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,

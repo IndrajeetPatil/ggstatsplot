@@ -33,12 +33,12 @@
 #' @seealso \code{\link{ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
 #'
-#' @references
-#' \url{https://cran.r-project.org/web/packages/ggstatsplot/vignettes/ggcorrmat.html}
+#' @inherit ggcorrmat return references
+#' @inherit ggcorrmat return details
 #'
 #'
 #' @examples
-#' 
+#'
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = datasets::iris,
@@ -48,7 +48,7 @@
 #'   nrow = 3,
 #'   ncol = 1
 #' )
-#' 
+#'
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = datasets::iris,
