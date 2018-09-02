@@ -196,12 +196,16 @@ ggstatsplot::ggbetweenstats(
 
 # more detailed function call
 ggstatsplot::ggbetweenstats(
-  data = datasets::ToothGrowth,
-  x = supp,
-  y = len,
+  data = datasets::morley,
+  x = Expt,
+  y = Speed,
   plot.type = "box",
-  xlab = "Supplement type",
-  ylab = "Tooth length"
+  xlab = "The experiment number",
+  ylab = "Speed-of-light measurement",
+  outlier.tagging = TRUE,
+  outlier.label = Run,
+  ggtheme = ggthemes::theme_few(),
+  ggstatsplot.layer = FALSE
 )
 }
 \references{

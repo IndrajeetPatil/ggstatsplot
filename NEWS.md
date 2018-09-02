@@ -24,8 +24,8 @@ BREAKING CHANGES
   - The argument `ggstatsplot.theme` has been changed to `ggstatsplot.layer` for
   `ggcorrmat` function to be consistent across functions.
   - For consistency, `conf.level` and `conf.type` arguments for `ggbetweenstats`
-  have been deprecated. No other functions in the package allow changing
-  confidence interval or their type for effect size estimates. These arguments
+  have been deprecated. No other function in the package allowed changing
+  confidence interval or their type for effect size estimation. These arguments
   were relevant only for `robust` tests anyway.
 
 MINOR CHANGES
@@ -35,6 +35,10 @@ MINOR CHANGES
   functions.
   - `ggcorrmat` can now show `robust` correlation coefficients in the matrix
   plot.
+
+BUG FIXES
+  - `grouped_ggpiestats` wasn't working when only `main` variable was provided
+  with `counts` data. Fixed that.
   
 # ggstatsplot 0.0.5
 

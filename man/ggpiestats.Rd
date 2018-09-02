@@ -100,10 +100,13 @@ ggstatsplot::ggpiestats(
   nboot = 10
 )
 
-# simple function call with the defaults (without condition)
+# simple function call with the defaults (without condition; with count data)
+library(jmv)
+
 ggstatsplot::ggpiestats(
-  data = iris,
-  main = Species
+  data = as.data.frame(HairEyeColor),
+  main = Eye,
+  counts = Freq
 )
 }
 \references{

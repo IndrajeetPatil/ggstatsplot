@@ -15,4 +15,15 @@ untable(data, counts)
 Given a tabulated dataset, this will untabulate it by repeating
 each row by the number of times it was repeated.
 }
-\keyword{internal}
+\examples{
+
+# have a look at the Titanic_full dataset first
+Titanic_full <- untable(data = as.data.frame(Titanic), counts = Freq)
+dplyr::glimpse(Titanic_full)
+}
+\seealso{
+Other helper_stats: \code{\link{check_outlier}},
+  \code{\link{grouped_proptest}},
+  \code{\link{signif_column}}
+}
+\concept{helper_stats}

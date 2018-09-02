@@ -21,12 +21,26 @@ statistical significance.
 This function will add a new column to a dataframe containing
 \emph{p}-values
 }
-\note{
-This is a helper function used internally in the package and not
-exported. In case you want to use it, you can do so by
-\code{ggstatsplot:::signif_column}. Note that it is \code{:::} and not \code{::}.
+\examples{
+
+# vector as input
+signif_column(p = c(0.05, 0.1, 1, 0.00001, 0.001, 0.01))
+
+# dataframe as input
+# preparing a newdataframe
+df <- tibble(
+  x = 1:5,
+  y = 1,
+  p.value = c(0.1, 0.5, 0.00001, 0.05, 0.01)
+)
+
+signif_column(data = df, p = p.value)
+}
+\seealso{
+Other helper_stats: \code{\link{check_outlier}},
+  \code{\link{grouped_proptest}}, \code{\link{untable}}
 }
 \author{
 Indrajeet Patil
 }
-\keyword{internal}
+\concept{helper_stats}

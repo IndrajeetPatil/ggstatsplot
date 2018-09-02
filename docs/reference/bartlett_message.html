@@ -144,7 +144,7 @@ default linear model.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bartlett_message</span>(<span class='no'>data</span>, <span class='no'>lab</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>)</pre>
+    <pre class="usage"><span class='fu'>bartlett_message</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,12 +155,21 @@ default linear model.</p>
 taken.</p></td>
     </tr>
     <tr>
+      <th>x</th>
+      <td><p>The grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+    </tr>
+    <tr>
       <th>lab</th>
-      <td><p>A character describing label for the variable.</p></td>
+      <td><p>A character describing label for the variable. If <code>NULL</code>, variable
+name will be used.</p></td>
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Number of decimal places expected for results (Default: <code>3</code>).</p></td>
+      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
     </tr>
     <tr>
       <th>output</th>
@@ -168,28 +177,63 @@ taken.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>This is a helper function used internally in the package and not
-exported. In case you want to use it, you can do so by
-<code>ggstatsplot:::bartlett_message</code>. Note that it is <code>:::</code> and not <code>::</code>.</p>
+    <p>A list of class <code>"htest"</code> containing the following components:</p>
+<dt>statistic</dt><dd><p>Bartlett's K-squared test statistic.</p></dd>
+  <dt>parameter</dt><dd><p>the degrees of freedom of the approximate chi-squared
+    distribution of the test statistic.</p></dd>
+  <dt>p.value</dt><dd><p>the p-value of the test.</p></dd>
+  <dt>method</dt><dd><p>the character string
+    <code>"Bartlett test of homogeneity of variances"</code>.</p></dd>
+  <dt>data.name</dt><dd><p>a character string giving the names of the data.</p></dd>
+
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other helper_messages: <code><a href='normality_message.html'>normality_message</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># getting message</span>
+<span class='fu'>bartlett_message</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+  <span class='kw'>lab</span> <span class='kw'>=</span> <span class='st'>"Type of Species"</span>
+)</div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor Type of Species : p-value =  &lt; 0.001</div><div class='output co'>#&gt; </div><div class='input'>
+<span class='co'># getting results from the test</span>
+<span class='fu'>bartlett_message</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"stats"</span>
+)</div><div class='output co'>#&gt; 
+#&gt; 	Bartlett test of homogeneity of variances
+#&gt; 
+#&gt; data:  y by x
+#&gt; Bartlett's K-squared = 0.71483, df = 1, p-value = 0.3978
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#note">Note</a></li>
-          </ul>
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Indrajeet Patil.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">

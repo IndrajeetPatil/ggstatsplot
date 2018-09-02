@@ -149,6 +149,16 @@ ggstatsplot::grouped_ggpiestats(
   grouping.var = am,
   main = cyl
 )
+
+#' without condition and with count data
+library(jmv)
+
+ggstatsplot::grouped_ggpiestats(
+  data = as.data.frame(HairEyeColor),
+  main = Hair,
+  counts = Freq,
+  grouping.var = Sex
+)
 }
 \references{
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}

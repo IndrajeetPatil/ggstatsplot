@@ -433,12 +433,15 @@ combining (plot, caption).</p></dd>
 
 <span class='co'># basic function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggscatterstats'>grouped_ggscatterstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/movies_long'>movies_long</a></span>, <span class='no'>genre</span> <span class='kw'>==</span> <span class='st'>"Comedy"</span> <span class='kw'>|</span>
-    <span class='no'>genre</span> <span class='kw'>==</span> <span class='st'>"Drama"</span>),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+    <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/movies_long'>movies_long</a></span>,
+    <span class='no'>genre</span> <span class='kw'>==</span> <span class='st'>"Comedy"</span> <span class='kw'>|</span>
+      <span class='no'>genre</span> <span class='kw'>==</span> <span class='st'>"Drama"</span>
+  ),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>length</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span> + <span class='fu'>I</span>(<span class='no'>x</span> ^ <span class='fl'>3</span>),
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span> + <span class='fu'>I</span>(<span class='no'>x</span>^<span class='fl'>3</span>),
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>
 )</div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># using labeling</span>
@@ -452,7 +455,23 @@ combining (plot, caption).</p></dd>
   <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='no'>manufacturer</span>,
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='no'>hwy</span> <span class='kw'>&gt;</span> <span class='fl'>25</span> <span class='kw'>&amp;</span> <span class='no'>displ</span> <span class='kw'>&gt;</span> <span class='fl'>2.5</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># labeling without expression</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggscatterstats'>grouped_ggscatterstats</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+    <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/movies_long'>movies_long</a></span>,
+    <span class='no'>rating</span> <span class='kw'>==</span> <span class='fl'>8</span>,
+    <span class='no'>genre</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"Drama"</span>, <span class='st'>"Comedy"</span>)
+  ),
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>budget</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>length</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>,
+  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='no'>title</span>,
+  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Genre"</span>,
+  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"All movies have IMDB rating greater than 8."</span>
+)</div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -475,7 +494,7 @@ Indrajeet Patil
 
       <footer>
       <div class="copyright">
-  <p>Developed by Indrajeet Patil.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -158,7 +158,9 @@ ggstatsplot::ggscatterstats(
   y = mpg,
   type = "np",
   label.var = car,
-  label.expression = wt < 4 & mpg < 20
+  label.expression = wt < 4 & mpg < 20,
+  axes.range.restrict = TRUE,
+  centrality.para = "median"
 )
 }
 \references{

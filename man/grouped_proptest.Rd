@@ -26,7 +26,12 @@ This is a helper function used internally in the package and not
 exported. In case you want to use it, you can do so by
 \code{ggstatsplot:::grouped_proptest}. Note that it is \code{:::} and not \code{::}.
 }
+\seealso{
+Other helper_stats: \code{\link{check_outlier}},
+  \code{\link{signif_column}}, \code{\link{untable}}
+}
 \author{
 Indrajeet Patil
 }
+\concept{helper_stats}
 \keyword{internal}

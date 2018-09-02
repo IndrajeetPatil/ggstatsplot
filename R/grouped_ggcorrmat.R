@@ -1,6 +1,6 @@
 #'
-#' @title Visualization of a correlalogram (or correlation matrix) using
-#'   'ggplot2'/'ggcorrplot' for all levels of a grouping variable
+#' @title Visualization of a correlalogram (or correlation matrix) for all
+#'   levels of a grouping variable
 #' @name grouped_ggcorrmat
 #' @aliases grouped_ggcorrmat
 #' @description Helper function for `ggstatsplot::ggcorrmat` to apply this

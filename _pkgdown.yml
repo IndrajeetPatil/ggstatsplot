@@ -1,3 +1,21 @@
+url: https://indrajeetpatil.github.io/ggstatsplot/
+
 template:
   params:
     bootswatch: lumen
+
+authors:
+  Indrajeet Patil:
+    href: https://sites.google.com/site/indrajeetspatilmorality/
+
+#reference:
+#  - title: Helper functions (statistics)
+#    desc:  Some useful functions used internally for carrying out smaller statistical operations.
+#    contents:
+#      - signif_column
+#      - specify_decimal_p
+#  - title: Helper functions (messages)
+#    desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests. .
+#    contents:
+#      - normality_message
+#      - bartlett_message

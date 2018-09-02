@@ -4,25 +4,56 @@
 \alias{bartlett_message}
 \title{Display homogeneity of variance test as a message}
 \usage{
-bartlett_message(data, lab, k = 3, output = "message")
+bartlett_message(data, x, y, lab = NULL, k = 3, output = "message")
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
 
-\item{lab}{A character describing label for the variable.}
+\item{x}{The grouping variable.}
 
-\item{k}{Number of decimal places expected for results (Default: \code{3}).}
+\item{y}{The response - a vector of length the number of rows of \code{x}.}
+
+\item{lab}{A character describing label for the variable. If \code{NULL}, variable
+name will be used.}
+
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{output}{What output is desired: \code{"message"} (default) or \code{"stats"} objects.}
+}
+\value{
+A list of class \code{"htest"} containing the following components:
+  \item{statistic}{Bartlett's K-squared test statistic.}
+  \item{parameter}{the degrees of freedom of the approximate chi-squared
+    distribution of the test statistic.}
+  \item{p.value}{the p-value of the test.}
+  \item{method}{the character string
+    \code{"Bartlett test of homogeneity of variances"}.}
+  \item{data.name}{a character string giving the names of the data.}
 }
 \description{
 A note to the user about the validity of assumptions for the
 default linear model.
 }
-\note{
-This is a helper function used internally in the package and not
-exported. In case you want to use it, you can do so by
-\code{ggstatsplot:::bartlett_message}. Note that it is \code{:::} and not \code{::}.
+\examples{
+
+# getting message
+bartlett_message(
+  data = iris,
+  x = Species,
+  y = Sepal.Length,
+  lab = "Type of Species"
+)
+
+# getting results from the test
+bartlett_message(
+  data = mtcars,
+  x = am,
+  y = wt,
+  output = "stats"
+)
 }
-\keyword{internal}
+\seealso{
+Other helper_messages: \code{\link{normality_message}}
+}
+\concept{helper_messages}

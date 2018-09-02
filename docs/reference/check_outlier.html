@@ -142,7 +142,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>check_outlier</span>(<span class='no'>var</span>, <span class='no'>coef</span>)</pre>
+    <pre class="usage"><span class='fu'>check_outlier</span>(<span class='no'>var</span>, <span class='kw'>coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,9 +155,14 @@
       <th>coef</th>
       <td><p>Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) <code>coef</code> times the Inter-Quartile Range (IQR).</p></td>
+Quartile) <code>coef</code> times the Inter-Quartile Range (IQR) (Default: <code>1.5</code>).</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other helper_stats: <code><a href='grouped_proptest.html'>grouped_proptest</a></code>,
+  <code><a href='signif_column.html'>signif_column</a></code>, <code><a href='untable.html'>untable</a></code></p></div>
     
 
   </div>
@@ -165,7 +170,9 @@ Quartile) <code>coef</code> times the Inter-Quartile Range (IQR).</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
     <h2>Author</h2>
     
@@ -176,7 +183,7 @@ Indrajeet Patil
 
       <footer>
       <div class="copyright">
-  <p>Developed by Indrajeet Patil.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">

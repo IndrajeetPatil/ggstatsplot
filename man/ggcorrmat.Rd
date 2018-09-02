@@ -2,8 +2,7 @@
 % Please edit documentation in R/ggcorrmat.R
 \name{ggcorrmat}
 \alias{ggcorrmat}
-\title{Visualization of a correlalogram (or correlation matrix) using
-'ggplot2'/'ggcorrplot'}
+\title{Visualization of a correlalogram (or correlation matrix)}
 \usage{
 ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   type = "full", method = "square", corr.method = "pearson",
@@ -132,8 +131,7 @@ Correlation matrix plot or correlation coefficient matrix or matrix
 of p-values.
 }
 \description{
-Visualization of a correlalogram (or correlation matrix) using
-'ggplot2'/'ggcorrplot'
+Visualization of a correlalogram (or correlation matrix)
 }
 \examples{
 

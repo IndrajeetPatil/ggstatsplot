@@ -144,7 +144,7 @@ default linear model.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>normality_message</span>(<span class='no'>x</span>, <span class='no'>lab</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>)</pre>
+    <pre class="usage"><span class='fu'>normality_message</span>(<span class='no'>x</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,7 +155,8 @@ default linear model.</p>
     </tr>
     <tr>
       <th>lab</th>
-      <td><p>A character describing label for the variable.</p></td>
+      <td><p>A character describing label for the variable. If <code>NULL</code>, a
+generic <code>"x"</code> label will be used.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -167,28 +168,54 @@ default linear model.</p>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>This is a helper function used internally in the package and not
-exported. In case you want to use it, you can do so by
-<code>ggstatsplot:::normality_message</code>. Note that it is <code>:::</code> and not <code>::</code>.</p>
+    <p>A list with class <code>"htest"</code> containing the following components:</p>
+<dt>statistic</dt><dd><p>the value of the Shapiro-Wilk statistic.</p></dd>
+  <dt>p.value</dt><dd><p>an approximate p-value for the test.  This is
+    said in Royston (1995) to be adequate for <code>p.value &lt; 0.1</code>.</p></dd>
+  <dt>method</dt><dd><p>the character string <code>"Shapiro-Wilk normality test"</code>.</p></dd>
+  <dt>data.name</dt><dd><p>a character string giving the name(s) of the data.</p></dd>
+
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other helper_messages: <code><a href='bartlett_message.html'>bartlett_message</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># message</span>
+<span class='fu'>normality_message</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/anscombe'>anscombe</a></span>$<span class='no'>x1</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='st'>"x1"</span>)</div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for x1 : p-value =  0.870</div><div class='output co'>#&gt; </div><div class='input'>
+<span class='co'># statistical test object</span>
+<span class='fu'>normality_message</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/anscombe'>anscombe</a></span>$<span class='no'>x2</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"stats"</span>
+)</div><div class='output co'>#&gt; 
+#&gt; 	Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  x
+#&gt; W = 0.96839, p-value = 0.8698
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#note">Note</a></li>
-          </ul>
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Indrajeet Patil.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">

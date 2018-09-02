@@ -133,10 +133,11 @@ in the plot as a subtitle.
 \examples{
 
 # most basic function call with the defaults
+# this is the only function where data argument can be `NULL`.
 ggstatsplot::gghistostats(
-  data = datasets::ToothGrowth,
-  x = len,
-  xlab = "Tooth length"
+  x = datasets::ToothGrowth$len,
+  xlab = "Tooth length",
+  centrality.para = "median"
 )
 
 # a detailed function call
@@ -144,7 +145,9 @@ ggstatsplot::gghistostats(
   data = datasets::iris,
   x = Sepal.Length,
   bar.measure = "count",
-  type = "bf",
+  type = "p",
+  bf.message = TRUE,
+  caption = "Displaying results from both parametric and bayesian tests.",
   bf.prior = 0.8,
   test.value = 3,
   centrality.para = "mean",

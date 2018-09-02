@@ -2,8 +2,8 @@
 % Please edit documentation in R/grouped_ggcorrmat.R
 \name{grouped_ggcorrmat}
 \alias{grouped_ggcorrmat}
-\title{Visualization of a correlalogram (or correlation matrix) using
-'ggplot2'/'ggcorrplot' for all levels of a grouping variable}
+\title{Visualization of a correlalogram (or correlation matrix) for all
+levels of a grouping variable}
 \usage{
 grouped_ggcorrmat(data, cor.vars, cor.vars.names = NULL, grouping.var,
   title.prefix = "Group", output = "plot", type = "full",

@@ -30,6 +30,8 @@
 #' @importFrom tidyr unnest
 #' @importFrom tidyr spread
 #'
+#' @family helper_stats
+#'
 #' @keywords internal
 #'
 #' @note This is a helper function used internally in the package and not
@@ -170,21 +172,37 @@ grouped_proptest <- function(data,
 #' @importFrom stats lm
 #' @importFrom tibble as_data_frame
 #'
-#' @keywords internal
+#' @family helper_stats
 #'
-#' @note This is a helper function used internally in the package and not
-#' exported. In case you want to use it, you can do so by
-#' `ggstatsplot:::signif_column`. Note that it is `:::` and not `::`.
+#' @examples
+#' 
+#' # vector as input
+#' signif_column(p = c(0.05, 0.1, 1, 0.00001, 0.001, 0.01))
+#' 
+#' # dataframe as input
+#' # preparing a newdataframe
+#' df <- tibble(
+#'   x = 1:5,
+#'   y = 1,
+#'   p.value = c(0.1, 0.5, 0.00001, 0.05, 0.01)
+#' )
+#' 
+#' signif_column(data = df, p = p.value)
+#' @export
 #'
 
 signif_column <- function(data = NULL, p) {
-  # storing variable name to be assigned later
-  p_lab <- colnames(dplyr::select(
-    .data = data,
-    !!rlang::enquo(p)
-  ))
+
   # if dataframe is provided
   if (!is.null(data)) {
+
+    # storing variable name to be assigned later
+    p_lab <- colnames(dplyr::select(
+      .data = data,
+      !!rlang::enquo(p)
+    ))
+
+    # preparing dataframe
     df <-
       dplyr::select(
         .data = data,
@@ -193,17 +211,20 @@ signif_column <- function(data = NULL, p) {
         dplyr::everything()
       )
   } else {
+
     # if only vector is provided
     df <-
-      base::cbind.data.frame(p = p) # column corresponding to p-values
+      base::cbind.data.frame(p = p)
   }
 
-  # make sure the p-value column is numeric; if not, convert it to numeric and give a warning to the user
+  # make sure the p-value column is numeric; if not, convert it to numeric
   if (!is.numeric(df$p)) {
     df$p <- as.numeric(as.character(df$p))
   }
-  # add new significance column based on standard APA guidelines for describing different levels of significance
-  df <- df %>%
+
+  # add new significance column based on standard APA guidelines for describing
+  # different levels of significance
+  df %<>%
     dplyr::mutate(
       .data = .,
       significance = dplyr::case_when(
@@ -220,14 +241,18 @@ signif_column <- function(data = NULL, p) {
       )
     ) %>%
     tibble::as_data_frame(x = .) # convert to tibble dataframe
+
   # change back from the generic p-value to the original name that was provided by the user for the p-value
   if (!is.null(data)) {
+
     # reordering the dataframe
-    df <- df %>%
+    df %<>%
       dplyr::select(.data = ., -p, -significance, dplyr::everything())
+
     # renaming the p-value variable with the name provided by the user
     colnames(df)[which(names(df) == "p")] <- p_lab
   }
+
   # return the final tibble dataframe
   return(df)
 }
@@ -241,15 +266,17 @@ signif_column <- function(data = NULL, p) {
 #' @param var A numeric vector.
 #' @param coef Coefficient for outlier detection using Tukey's method.
 #'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
-#'   Quartile) `coef` times the Inter-Quartile Range (IQR).
+#'   Quartile) `coef` times the Inter-Quartile Range (IQR) (Default: `1.5`).
 #'
 #' @importFrom stats quantile
+#'
+#' @family helper_stats
 #'
 #' @keywords internal
 #'
 
 # defining function to detect outliers
-check_outlier <- function(var, coef) {
+check_outlier <- function(var, coef = 1.5) {
   # compute the quantiles
   quantiles <- stats::quantile(
     x = var,
@@ -276,13 +303,22 @@ check_outlier <- function(var, coef) {
 #' @param data A data.frame to untable.
 #' @param counts A column containing counts.
 #'
+#' @importFrom magrittr "%<>%"
+#' @importFrom magrittr "%>%"
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr everything
 #' @importFrom tibble rowid_to_column
 #' @importFrom rlang enquo
 #'
-#' @keywords internal
+#' @family helper_stats
+#'
+#' @examples
+#' 
+#' # have a look at the Titanic_full dataset first
+#' Titanic_full <- untable(data = as.data.frame(Titanic), counts = Freq)
+#' dplyr::glimpse(Titanic_full)
+#' @export
 #'
 
 untable <- function(data, counts) {

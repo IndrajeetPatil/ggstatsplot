@@ -157,12 +157,16 @@
 #' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
-#'   data = datasets::ToothGrowth,
-#'   x = supp,
-#'   y = len,
+#'   data = datasets::morley,
+#'   x = Expt,
+#'   y = Speed,
 #'   plot.type = "box",
-#'   xlab = "Supplement type",
-#'   ylab = "Tooth length"
+#'   xlab = "The experiment number",
+#'   ylab = "Speed-of-light measurement",
+#'   outlier.tagging = TRUE,
+#'   outlier.label = Run,
+#'   ggtheme = ggthemes::theme_few(),
+#'   ggstatsplot.layer = FALSE
 #' )
 #' @export
 #'
@@ -573,6 +577,7 @@ ggbetweenstats <- function(data,
           na.rm = TRUE
         )
     } else {
+
       # if the value for outliers are to be displated, no need to convert outlier labels to character vector
       # applying the labels to tagged outliers with ggrepel
       plot <-
@@ -738,6 +743,8 @@ ggbetweenstats <- function(data,
     # display homogeneity of variance test as a message
     bartlett_message(
       data = data,
+      x = x,
+      y = y,
       lab = lab.df[1],
       k = k,
       output = "message"

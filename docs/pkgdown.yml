@@ -11,4 +11,7 @@ articles:
   ggscatterstats: ggscatterstats.html
   plot_design: plot_design.html
   theme_ggstatsplot: theme_ggstatsplot.html
+urls:
+  reference: https://indrajeetpatil.github.io/ggstatsplot//reference
+  article: https://indrajeetpatil.github.io/ggstatsplot//articles
 

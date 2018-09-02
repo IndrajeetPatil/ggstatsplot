@@ -1,6 +1,5 @@
 #'
-#' @title Visualization of a correlalogram (or correlation matrix) using
-#'   'ggplot2'/'ggcorrplot'
+#' @title Visualization of a correlalogram (or correlation matrix)
 #' @name ggcorrmat
 #' @aliases ggcorrmat
 #' @author Indrajeet Patil

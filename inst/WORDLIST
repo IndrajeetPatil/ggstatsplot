@@ -18,11 +18,11 @@ generalizability
 ggbetweenstats
 ggcoefstats
 ggcorrmat
-ggcorrplot
 gghistostats
 ggpiestats
 ggplot
 ggscatterstats
+ggsci
 github
 glyphs
 hc
@@ -35,9 +35,11 @@ indrajeetpatil
 IndrajeetPatil
 intentionality
 io
+jama
 jitter
 Kenward
 knitr
+labelling
 Lakens
 Leys
 Likert
@@ -59,6 +61,7 @@ pearson's
 plotgrid
 plotmath
 pmap
+pre
 preferrred
 priori
 PsyArXiv
@@ -66,6 +69,7 @@ purrr
 Quartile
 rmarkdown
 Rmarkdown
+Royston
 sdcor
 spearman
 srt
@@ -76,6 +80,7 @@ tibbles
 tidiers
 tidyverse
 tl
+toc
 Tufte
 untable
 Untable
@@ -87,5 +92,6 @@ VignetteIndexEntry
 vjust
 Welch
 Welch's
+Wilk
 Winsorized
 Yuen's

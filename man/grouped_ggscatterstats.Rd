@@ -206,12 +206,15 @@ set.seed(123)
 
 # basic function call
 ggstatsplot::grouped_ggscatterstats(
-  data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
-    genre == "Drama"),
+  data = dplyr::filter(
+    ggstatsplot::movies_long,
+    genre == "Comedy" |
+      genre == "Drama"
+  ),
   x = length,
   y = rating,
   method = "lm",
-  formula = y ~ x + I(x ^ 3),
+  formula = y ~ x + I(x^3),
   grouping.var = genre
 )
 
@@ -226,6 +229,23 @@ ggstatsplot::grouped_ggscatterstats(
   label.var = manufacturer,
   label.expression = hwy > 25 & displ > 2.5,
   messages = FALSE
+)
+
+# labeling without expression
+ggstatsplot::grouped_ggscatterstats(
+  data = dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    rating == 8,
+    genre \%in\% c("Drama", "Comedy")
+  ),
+  x = budget,
+  y = length,
+  grouping.var = genre,
+  label.var = title,
+  results.subtitle = FALSE,
+  marginal = FALSE,
+  title.prefix = "Genre",
+  caption.text = "All movies have IMDB rating greater than 8."
 )
 }
 \references{

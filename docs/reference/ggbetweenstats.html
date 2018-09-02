@@ -424,13 +424,17 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 )</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  &lt; 0.001</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># more detailed function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats'>ggbetweenstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/ToothGrowth'>ToothGrowth</a></span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>supp</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>len</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/morley'>morley</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Expt</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Speed</span>,
   <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"box"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Supplement type"</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>
-)</div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for len : p-value =  0.109</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor supp : p-value =  0.233</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"The experiment number"</span>,
+  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Speed-of-light measurement"</span>,
+  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Run</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for Speed : p-value =  0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor Expt : p-value =  0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -455,7 +459,7 @@ Indrajeet Patil
 
       <footer>
       <div class="copyright">
-  <p>Developed by Indrajeet Patil.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
