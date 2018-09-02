@@ -99,7 +99,7 @@
       <h1>plot design</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-01</h4>
+            <h4 class="date">2018-09-02</h4>
       
       
       <div class="hidden name"><code>plot_design.Rmd</code></div>
@@ -110,40 +110,6 @@
     
 <p>The <code>ggstatsplot</code> package is an opinionated collection of plots made with <code>ggplot2</code> and is designed for exploratory data analysis or for producing publication-ready. All plots share an underlying principle of displaying information-rich plots with all necessary statistical details included in the plots themselves. Although the plots produced by <code>ggstatsplot</code> are still <code>ggplot</code> objects and can thus be further modified using <code>ggplot2</code> commands, there is a limit to how many such modifications can be made. That is, it is less flexible than <code>ggplot2</code>, but that’s a feature and not a bug. The original intent behind this package is to offload struggles associated with <em>constructing</em> the plot and focus more on the <em>interpretation</em> of that data displayed in the plot.</p>
 <p>(<strong>This vignette is still a work in progress</strong>)</p>
-<div id="clean-design" class="section level1">
-<h1 class="hasAnchor">
-<a href="#clean-design" class="anchor"></a>Clean design</h1>
-<ul>
-<li>
-<p>The package follows two principles for <strong>graphical integrity</strong> (as proposed in Tufte, 2001, Chapter 2):</p>
-<ul>
-<li><p>The physical representation of numbers is proportional to the numerical quantities they represent (e.g., Figure-1 and Figure-2 show how means (in <code>ggbetweenstats</code>) or percentages (<code>ggpiestats</code>) are proportional to the vertical distance or the area, respectively).</p></li>
-<li><p>All important events in the data have clear, detailed, and thorough labeling (e.g., Figure-1 plot shows how <code>ggbetweenstats</code> labels means, sample size information, and outliers; same can be appreciated for <code>ggpiestats</code> in Figure-2).</p></li>
-</ul>
-</li>
-<li><p>All plots are designed to have no <strong>chartjunk</strong> (like moiré vibrations, fake perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).</p></li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="dt">data =</span> ggplot2<span class="op">::</span>mpg,</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="dt">x =</span> cyl,</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">y =</span> cty,</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">title =</span> <span class="st">"Figure-1: Fuel efficiency by type of cylinder"</span>,</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">xlab =</span> <span class="st">"number of cylinders"</span>,</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="dt">ylab =</span> <span class="st">"city miles per gallon"</span>,</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">  <span class="dt">outlier.label =</span> manufacturer,</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">)</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; </span></a></code></pre></div>
-<div class="figure">
-<img src="plot_design_files/figure-html/example1-1.png" alt="**Figure-1**. Note that assessing differences in mean values between groups has been made easier with the help of position of data points along a common scale (the Y-axis) and labels." width="672"><p class="caption">
-<strong>Figure-1</strong>. Note that assessing differences in mean values between groups has been made easier with the help of position of data points along a common scale (the Y-axis) and labels.
-</p>
-</div>
-</div>
 <div id="graphical-perception" class="section level1">
 <h1 class="hasAnchor">
 <a href="#graphical-perception" class="anchor"></a>Graphical perception</h1>
@@ -161,11 +127,32 @@
 <blockquote>
 <p>“We should encode data on a graph so that the visual decoding involves [graphical-perception] tasks as high in the ordering as possible.”</p>
 </blockquote>
+<p>For example, decoding the data point values in <code>ggbetweenstats</code> requires position judgments along a common scale (Figure-1):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="dt">data =</span> ggplot2<span class="op">::</span>mpg,</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="dt">x =</span> cyl,</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">y =</span> cty,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">title =</span> <span class="st">"Figure-1: Fuel efficiency by type of cylinder"</span>,</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">xlab =</span> <span class="st">"number of cylinders"</span>,</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="dt">ylab =</span> <span class="st">"city miles per gallon"</span>,</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">  <span class="dt">outlier.label =</span> manufacturer,</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; </span></a></code></pre></div>
+<div class="figure">
+<img src="plot_design_files/figure-html/example1-1.png" alt="**Figure-1**. Note that assessing differences in mean values between groups has been made easier with the help of *position* of data points along a common scale (the Y-axis) and labels." width="672"><p class="caption">
+<strong>Figure-1</strong>. Note that assessing differences in mean values between groups has been made easier with the help of <em>position</em> of data points along a common scale (the Y-axis) and labels.
+</p>
+</div>
 <p>There are few instances where <code>ggstatsplot</code> diverges from recommendations made in Cleveland’s paradigm:</p>
 <ul>
 <li>For the categorical/nominal data, <code>ggstatsplot</code> uses pie charts (see Figure-2) which rely on <em>angle</em> judgments, which are less accurate (as compared to bar graphs, e.g., which require <em>position</em> judgments). This shortcoming is assuaged to some degree by using plenty of labels that describe percentages for all slices. This makes angle judgment unnecessary and pre-vacates any concerns about inaccurate judgments about percentages.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">main =</span> genre,</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">condition =</span> mpaa,</a>
@@ -182,11 +169,11 @@ Figure-2. Pie charts don’t follow Cleveland’s paradigm to data display becau
 </p>
 </div>
 <ul>
-<li>Cleveland’s paradigm also emphasizes that <em>superposition</em> of data is better than <em>juxtaposition</em> (Cleveland, 1985, p.201) because this allows for a more incisive comparison of the values from different parts of the dataset. This recommendation is violated in all <code>grouped_</code> variants of the function (see Figure-3).</li>
+<li>Cleveland’s paradigm also emphasizes that <em>superposition</em> of data is better than <em>juxtaposition</em> (Cleveland, 1985, p.201) because this allows for a more incisive comparison of the values from different parts of the dataset. This recommendation is violated in all <code>grouped_</code> variants of the function (see Figure-3). Note that the range for Y-axes are no longer the same across juxtaposed subplots and so visually comparing the data becomes difficult. On the other hand, in the superposed plot, all data have the same range and coloring different parts makes the visual discrimination of different components of the data, and their comparison, even easier. But the goal of <code>grouped_</code> variants of functions is to not only show different aspects of the data but also to run statistical tests and showing detailed results for all aspects of the data in a superposed plot is difficult.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="co"># plot 1: juxtaposition</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggscatterstats">grouped_ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">                           </span>genre <span class="op">==</span><span class="st"> "Drama"</span>),</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">x =</span> length,</a>
@@ -208,17 +195,29 @@ Figure-2. Pie charts don’t follow Cleveland’s paradigm to data display becau
 <a class="sourceLine" id="cb3-22" data-line-number="22"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_jitter">geom_jitter</a></span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb3-23" data-line-number="23"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_smooth">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/theme_ggstatsplot">theme_ggstatsplot</a></span>(),</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),</a>
 <a class="sourceLine" id="cb3-26" data-line-number="26">  <span class="co"># combine for comparison</span></a>
 <a class="sourceLine" id="cb3-27" data-line-number="27">  <span class="dt">title.text =</span> <span class="st">"Two ways to compare different aspects of data"</span>,</a>
 <a class="sourceLine" id="cb3-28" data-line-number="28">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb3-29" data-line-number="29">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>)</a>
 <a class="sourceLine" id="cb3-30" data-line-number="30">)</a></code></pre></div>
 <div class="figure">
-<img src="plot_design_files/figure-html/example3-1.png" alt="Figure-3." width="960"><p class="caption">
-Figure-3.
+<img src="plot_design_files/figure-html/example3-1.png" alt="Figure-3. Comparing different aspects of data is much more accurate in a superposed plot (b), which is recommended in Cleveland's paradigm, than in a juxtaposed plot, which is how it's implemented in `ggstatsplot` because displaying detailed results from statistical tests would be difficult otherwise." width="960"><p class="caption">
+Figure-3. Comparing different aspects of data is much more accurate in a superposed plot (b), which is recommended in Cleveland’s paradigm, than in a juxtaposed plot, which is how it’s implemented in <code>ggstatsplot</code> because displaying detailed results from statistical tests would be difficult otherwise.
 </p>
 </div>
+</div>
+<div id="graphical-integrity-and-clean-design" class="section level1">
+<h1 class="hasAnchor">
+<a href="#graphical-integrity-and-clean-design" class="anchor"></a>Graphical integrity (and clean design)</h1>
+<p>The package follows the principles for <strong>graphical integrity</strong> (as outlined in Tufte, 2001):</p>
+<ul>
+<li><p>The physical representation of numbers is proportional to the numerical quantities they represent (e.g., Figure-1 and Figure-2 show how means (in <code>ggbetweenstats</code>) or percentages (<code>ggpiestats</code>) are proportional to the vertical distance or the area, respectively).</p></li>
+<li><p>All important events in the data have clear, detailed, and thorough labeling (e.g., Figure-1 plot shows how <code>ggbetweenstats</code> labels means, sample size information, and outliers; same can be appreciated for <code>ggpiestats</code> in Figure-2).</p></li>
+<li><p>None of the plots have <em>design</em> variation (e.g., abrupt change in scales) over the surface of a same graphic because this can lead to a false impression about variation in <em>data</em>.</p></li>
+<li><p>The number of information-carrying dimensions never exceed the number of dimensions in the data (e.g., using area to show one-dimensional data).</p></li>
+<li><p>All plots are designed to have no <strong>chartjunk</strong> (like moiré vibrations, fake perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).</p></li>
+</ul>
 </div>
 <div id="statistical-details" class="section level1">
 <h1 class="hasAnchor">
@@ -256,8 +255,8 @@ Figure-3.
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#clean-design">Clean design</a></li>
-      <li><a href="#graphical-perception">Graphical perception</a></li>
+<li><a href="#graphical-perception">Graphical perception</a></li>
+      <li><a href="#graphical-integrity-and-clean-design">Graphical integrity (and clean design)</a></li>
       <li>
 <a href="#statistical-details">Statistical details</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#statistical-variation">Statistical variation</a></li>

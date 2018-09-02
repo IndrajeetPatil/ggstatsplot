@@ -24,6 +24,9 @@ r_binary_packages:
  - pals
  - scico
  - viridisLite
+ - paletteer
+ - pkgs
+ - git2r
  - rlang
  - testthat
  - ggplot2
