@@ -16,6 +16,20 @@ r:
   - release
   - devel
 
+r_binary_packages:
+ - ggthemes
+ - jcolors
+ - oompaBase
+ - palr
+ - pals
+ - scico
+ - viridisLite
+ - rlang
+ - testthat
+ - ggplot2
+ - covr
+
+
 addons:
   apt:
     packages:
@@ -26,9 +40,6 @@ addons:
 repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
-
-r_packages:
-    - covr
 
 notifications:
   email:
