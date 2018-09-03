@@ -8,14 +8,46 @@ authors:
   Indrajeet Patil:
     href: https://sites.google.com/site/indrajeetspatilmorality/
 
-#reference:
-#  - title: Helper functions (statistics)
-#    desc:  Some useful functions used internally for carrying out smaller statistical operations.
-#    contents:
-#      - signif_column
-#      - specify_decimal_p
-#  - title: Helper functions (messages)
-#    desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests. .
-#    contents:
-#      - normality_message
-#      - bartlett_message
+reference:
+  - title: Primary functions
+    desc:  Main functions to use from `ggstatsplot`.
+    contents:
+      - ggbetweenstats
+      - ggcoefstats
+      - ggcorrmat
+      - gghistostats
+      - ggpiestats
+      - ggscatterstats
+      - combine_plots
+      - theme_ggstatsplot
+      - theme_mprl
+  - title: Grouped variants of primary functions
+    desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable.
+    contents:
+      - grouped_ggbetweenstats
+      - grouped_ggcorrmat
+      - grouped_gghistostats
+      - grouped_ggpiestats
+      - grouped_ggscatterstats
+  - title: Helper functions (statistics)
+    desc:  Some useful functions used internally for carrying out smaller statistical operations.
+    contents:
+      - signif_column
+      - specify_decimal_p
+      - untable
+  - title: Helper functions (messages)
+    desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests.
+    contents:
+      - normality_message
+      - bartlett_message
+  - title: Data
+    desc:  Datasets included in the package.
+    contents:
+      - movies_wide
+      - movies_long
+      - Titanic_full
+      - intent_morality
+  - title: Utilities
+    desc:  Miscellaneous bag of utility functions.
+    contens:
+      - ggstatsplot-package

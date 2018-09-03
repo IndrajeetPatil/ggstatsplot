@@ -99,7 +99,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-01</h4>
+            <h4 class="date">2018-09-02</h4>
       
       
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -150,9 +150,10 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># set seed for reproducibility</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(<span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(<span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">                        <span class="dt">condition =</span> Sex,</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">                        <span class="dt">main =</span> Survived) </a></code></pre></div>
+<a class="sourceLine" id="cb3-7" data-line-number="7">                        <span class="dt">main =</span> Survived) </a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.</span></a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="768"></p>
 <p>A number of arguments can be modified to change the appearance of this plot:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
@@ -161,7 +162,7 @@
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,             <span class="co"># dataframe (matrix or table will not be accepted)</span></a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">main =</span> Survived,                              <span class="co"># rows in the contingency table</span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">condition =</span> Sex,                              <span class="co"># columns in the contingecy table</span></a>
@@ -171,20 +172,21 @@
 <a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">facet.wrap.name =</span> <span class="st">"Gender"</span>,                   <span class="co"># changing the facet wrap title</span></a>
 <a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">facet.proptest =</span> <span class="ot">TRUE</span>,                        <span class="co"># proportion test for each facet</span></a>
 <a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">stat.title =</span> <span class="st">"survival x gender: "</span>,           <span class="co"># title for statistical test</span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),              <span class="co"># changing plot theme </span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">package =</span> <span class="st">"yarrr"</span>,                            <span class="co"># package from which color palette is to be taken</span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">palette =</span> <span class="st">"southpark"</span>                         <span class="co"># choosing a different color palette</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">) <span class="op">+</span><span class="st">                                             </span><span class="co"># further modification with ggplot2 commands</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(</a>
-<a class="sourceLine" id="cb4-22" data-line-number="22">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">    <span class="dt">size =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb4-24" data-line-number="24">    <span class="dt">face =</span> <span class="st">"bold"</span>,</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">k =</span> <span class="dv">2</span>,                                        <span class="co"># no. of decimal places for results</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),              <span class="co"># changing plot theme </span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">package =</span> <span class="st">"yarrr"</span>,                            <span class="co"># package from which color palette is to be taken</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">palette =</span> <span class="st">"southpark"</span>                         <span class="co"># choosing a different color palette</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">) <span class="op">+</span><span class="st">                                             </span><span class="co"># further modification with ggplot2 commands</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">    <span class="dt">size =</span> <span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb4-25" data-line-number="25">    <span class="dt">hjust =</span> <span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">  ))</a></code></pre></div>
+<a class="sourceLine" id="cb4-26" data-line-number="26">  ))</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.</span></a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats2-1.png" width="768"></p>
 <p>As seen from this plot, the Pearson’s chi-square test of independence shows that the distribution of survival was different across males and females. Additionally, among both males and females, the proportion of survival was not equally likely (at 50%, i.e.), as shown by significant results (<code>***</code>) from one-sample proportion tests for each facet.</p>
 <p>In case the <code>condition</code> argument is not specified, instead of chi-square test of independence, a proportion test will be carried out. For example, let’s see if there were equal proportions of different age groups.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,                          </a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">main =</span> Age,</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</a>
@@ -199,7 +201,7 @@
 </h2>
 <p>What if we want to do the same analysis separately for the four different Class on the Titanic (1st, 2nd, 3rd, Crew), i.e. checking how the survival-by-gender interaction changes by the passenger class in which the people were traveling? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, both of which are time consuming and can be a bit of a struggle.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="dt">grouping.var =</span> Class,</a>
@@ -213,11 +215,12 @@
 <a class="sourceLine" id="cb6-12" data-line-number="12">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
 <a class="sourceLine" id="cb6-13" data-line-number="13">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb6-14" data-line-number="14">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">)</a></code></pre></div>
+<a class="sourceLine" id="cb6-15" data-line-number="15">)</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.</span></a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="864"></p>
 <p>As seen from this quick exploratory analysis, across all passenger classes, the proportion of survived to non-survived individuals differed across genders: Men were more likely to perish than survive, whereas women were more likely to survive than perish. The only exception was the 3rd Class passengers where women were as likely to survive as to perish.</p>
 <p>This will work even if the condition argument is not specified:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">main =</span> Age,</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">grouping.var =</span> Class,</a>
@@ -286,7 +289,7 @@
 <a class="sourceLine" id="cb8-49" data-line-number="49">)</a>
 <a class="sourceLine" id="cb8-50" data-line-number="50">  </a>
 <a class="sourceLine" id="cb8-51" data-line-number="51"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb8-52" data-line-number="52">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb8-52" data-line-number="52">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb8-53" data-line-number="53">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb8-54" data-line-number="54">  <span class="dt">title.text =</span> <span class="st">"Survival in Titanic disaster by gender for all passenger classes"</span>,</a>
 <a class="sourceLine" id="cb8-55" data-line-number="55">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; ***: p &lt; 0.001, ns: non-significant"</span>,</a>
@@ -353,18 +356,19 @@
 <a class="sourceLine" id="cb9-50" data-line-number="50"><span class="co">#&gt; 16 B     March    Catfish          20</span></a>
 <a class="sourceLine" id="cb9-51" data-line-number="51"></a>
 <a class="sourceLine" id="cb9-52" data-line-number="52"><span class="co"># running `ggpiestats` with counts information</span></a>
-<a class="sourceLine" id="cb9-53" data-line-number="53">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb9-53" data-line-number="53">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb9-54" data-line-number="54">  <span class="dt">data =</span> fishing,</a>
 <a class="sourceLine" id="cb9-55" data-line-number="55">  <span class="dt">main =</span> Fish,</a>
 <a class="sourceLine" id="cb9-56" data-line-number="56">  <span class="dt">condition =</span> Month,</a>
 <a class="sourceLine" id="cb9-57" data-line-number="57">  <span class="dt">counts =</span> SumOfCaught,</a>
 <a class="sourceLine" id="cb9-58" data-line-number="58">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
 <a class="sourceLine" id="cb9-59" data-line-number="59">  <span class="dt">palette =</span> <span class="st">"default_jama"</span></a>
-<a class="sourceLine" id="cb9-60" data-line-number="60">)</a></code></pre></div>
+<a class="sourceLine" id="cb9-60" data-line-number="60">)</a>
+<a class="sourceLine" id="cb9-61" data-line-number="61"><span class="co">#&gt; Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.</span></a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats7-1.png" width="864"></p>
 <p>We just verified that the frequency of different types of fish caught differs across the two months, but what if we further want to know if this difference is present for both boats (since they are fishing in different parts of the sea)? For this, we can again utilize <code>grouped_ggpiestats</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># running the grouped variant of the function</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="dt">data =</span> fishing,</a>
 <a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">main =</span> Fish,</a>
 <a class="sourceLine" id="cb10-5" data-line-number="5">  <span class="dt">condition =</span> Month,</a>
@@ -372,7 +376,8 @@
 <a class="sourceLine" id="cb10-7" data-line-number="7">  <span class="dt">grouping.var =</span> Boat,</a>
 <a class="sourceLine" id="cb10-8" data-line-number="8">  <span class="dt">title.prefix =</span> <span class="st">"Boat"</span>,</a>
 <a class="sourceLine" id="cb10-9" data-line-number="9">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">)</a></code></pre></div>
+<a class="sourceLine" id="cb10-10" data-line-number="10">)</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt; Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.Note: 95% CI for Cramer's V was computed with  25 bootstrap samples.</span></a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" width="768"></p>
 <p>As seen from these charts, this difference is found only for the location in which the boat <code>B</code> has been fishing. Additionally, faceted proportion tests also reveal that all fish are not equally likely to be caught at this location.</p>
 </div>
@@ -394,7 +399,7 @@
 <a class="sourceLine" id="cb11-12" data-line-number="12">  )</a>
 <a class="sourceLine" id="cb11-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(<span class="dt">data =</span> clinical_trial,</a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(<span class="dt">data =</span> clinical_trial,</a>
 <a class="sourceLine" id="cb11-16" data-line-number="16">                        <span class="dt">condition =</span> Control,</a>
 <a class="sourceLine" id="cb11-17" data-line-number="17">                        <span class="dt">main =</span> Case,</a>
 <a class="sourceLine" id="cb11-18" data-line-number="18">                        <span class="dt">counts =</span> pairs,</a>

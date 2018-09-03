@@ -708,9 +708,7 @@ plots in a certain way:
 As the code stands right now, here is the code coverage for all primary
 functions involved:
 
-```{r code_cov, eval = FALSE}
-covr::package_coverage(type = "all")
-```
+https://codecov.io/gh/IndrajeetPatil/ggstatsplot/tree/master/R
 
 
 ## Contributing

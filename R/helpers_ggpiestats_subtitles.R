@@ -1,0 +1,222 @@
+#'
+#' @title Making text subtitle for contingency analysis (Pearson's chi-square
+#'   test for independence for between-subjects design or McNemar's test for
+#'   within-subjects design)
+#' @name subtitle_contigency_tab
+#' @author Indrajeet Patil
+#' @param data The data as a data frame (matrix or tables will not be accepted).
+#' @param main The variable to use as the **rows** in the
+#'   contingency table.
+#' @param condition The variable to use as the **columns** in the contingency
+#'   table.
+#' @param counts A string naming a variable in data containing counts, or `NULL`
+#'   if each row represents a single observation (Default).
+#' @param paired Logical indicating whether data came from a within-subjects
+#'   design study (Default: `FALSE`). If `TRUE`, McNemar test subtitle will be
+#'   returned. IF `FALSE`, Pearson's chi-square test will be returned.
+#' @param stat.title Title for the effect being investigated with the chi-square
+#'   test. The default is `NULL`, i.e. no title will be added to describe the
+#'   effect being shown. An example of a `stat.title` argument will be something
+#'   like `"main x condition"` or `"interaction"`.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
+#' @inheritParams chisq_v_ci
+#' @inheritParams specify_decimal_p
+#'
+#' @importFrom tibble tribble
+#'
+#' @examples
+#'
+#' library(jmv)
+#' library(dplyr)
+#' dat <- as.data.frame(HairEyeColor) %>%
+#' dplyr::filter(.data = ., Sex == "Male")
+#' subtitle_contigency_tab(dat,  'Hair',  'Sex')
+#'
+#' @keywords internal
+#'
+
+subtitle_contigency_tab <- function(data,
+                                    main,
+                                    condition,
+                                    counts = NULL,
+                                    nboot = 25,
+                                    paired = FALSE,
+                                    stat.title = NULL,
+                                    conf.level = 0.95,
+                                    conf.type = "norm",
+                                    messages = TRUE,
+                                    k = 3) {
+
+  # ================================= dataframe ================================================================================
+
+  # creating a dataframe based on which variables are provided
+  if (base::missing(counts)) {
+    data <-
+      dplyr::select(
+        .data = data,
+        main = !!rlang::enquo(main),
+        condition = !!rlang::quo_name(rlang::enquo(condition))
+      ) %>%
+      tibble::as_data_frame(x = .)
+  } else {
+    data <-
+      dplyr::select(
+        .data = data,
+        main = !!rlang::enquo(main),
+        condition = !!rlang::quo_name(rlang::enquo(condition)),
+        counts = !!rlang::quo_name(rlang::enquo(counts))
+      ) %>%
+      tibble::as_data_frame(x = .)
+  }
+
+  # ======================================================== converting counts ========================================================
+
+  # untable the dataframe based on the count for each obervation
+  if (!base::missing(counts)) {
+    data %<>%
+      untable(data = ., counts = counts) %>%
+      dplyr::select(.data = ., -counts)
+  }
+
+  # ================================= Pearson's chi-square ================================================================================
+
+  # running Pearson's Chi-square test of independence using jmv::contTables
+  if (!isTRUE(paired)) {
+    jmv_chi <- jmv::contTables(
+      data = data,
+      rows = "condition",
+      cols = "main",
+      phiCra = TRUE # provides Phi and Cramer's V, the latter will be displayed
+    )
+
+    # preparing Cramer's V object depending on whether V is NaN or not
+    # it will be NaN in cases where there are no values of one categorial variable for level of another categorial variable
+    if (is.nan(as.data.frame(jmv_chi$nom)[[4]])) {
+      # NaN list in case Cramer's V is also NaN
+      #cramer_ci <- c(NaN, NaN, NaN)
+      cramer_ci <- tibble::tribble(~ estimate, ~ conf.low, ~ conf.high,
+                                   NaN, NaN, NaN)
+    } else {
+      # results for confidence interval of Cramer's V
+      cramer_ci <- chisq_v_ci(
+        data = data,
+        rows = main,
+        cols = condition,
+        nboot = nboot,
+        conf.level = conf.level,
+        conf.type = conf.type
+      )
+
+      # displaying message about bootstrap
+      if (isTRUE(messages)) {
+        base::message(cat(
+          crayon::green("Note:"),
+          crayon::blue(
+            "95% CI for Cramer's V was computed with ",
+            crayon::yellow(nboot),
+            "bootstrap samples."
+          )
+        ))
+      }
+
+    }
+
+    # preparing the subtitle
+    subtitle <- base::substitute(
+      expr =
+        paste(
+          y,
+          italic(chi)^2,
+          "(",
+          df,
+          ") = ",
+          estimate,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue,
+          ", ",
+          italic(V),
+          " = ",
+          cramer,
+          ", 95% CI [",
+          LL,
+          ", ",
+          UL,
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          n
+        ),
+      env = base::list(
+        y = stat.title,
+        estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$chiSq)[[2]], k),
+        df = as.data.frame(jmv_chi$chiSq)[[3]],
+        # df always an integer
+        pvalue = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_chi$chiSq)[[4]],
+          k,
+          p.value = TRUE
+        ),
+        # select Cramer's V as effect size
+        cramer = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$nom)[[4]], k),
+        LL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.low[[1]], k),
+        UL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.high[[1]], k),
+        n = as.data.frame(jmv_chi$chiSq)$`value[N]`[[1]]
+      )
+    )
+
+    # ================================= McNemar's test ================================================================================
+  } else if (isTRUE(paired)) {
+    # carrying out McNemar's test
+    jmv_chi <- jmv::contTablesPaired(
+      data = data,
+      rows = "condition",
+      cols = "main",
+      counts = NULL,
+      chiSq = TRUE,
+      chiSqCorr = FALSE,
+      exact = FALSE,
+      pcRow = FALSE,
+      pcCol = FALSE
+    )
+
+    # preparing the subtitle
+    subtitle <- base::substitute(
+      expr =
+        paste(
+          y,
+          italic(chi)^2,
+          "(",
+          df,
+          ") = ",
+          estimate,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue,
+          ", ",
+          italic("n"),
+          " = ",
+          n
+        ),
+      env = base::list(
+        y = stat.title,
+        estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$test)$`value[mcn]`[[1]], k),
+        df = as.data.frame(jmv_chi$test)$`df[mcn]`[[1]],
+        # df always an integer
+        pvalue = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_chi$test)$`p[mcn]`[[1]],
+          k,
+          p.value = TRUE
+        ),
+        n = as.data.frame(jmv_chi$test)$`value[n]`[[1]]
+      )
+    )
+  }
+
+  # return the subtitle
+  return(subtitle)
+}

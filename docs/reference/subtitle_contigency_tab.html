@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggstatsplot: 'ggplot2' Based Plots with Statistical Details — ggstatsplot-package • ggstatsplot</title>
+<title>Making text subtitle for contingency analyis (Pearson's chi-square
+test for independence for between-subjects design or McNemar's test for
+within-subjects design) — subtitle_contigency_tab • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,15 +32,13 @@
 
 
 
-<meta property="og:title" content="ggstatsplot: 'ggplot2' Based Plots with Statistical Details — ggstatsplot-package" />
+<meta property="og:title" content="Making text subtitle for contingency analyis (Pearson's chi-square
+test for independence for between-subjects design or McNemar's test for
+within-subjects design) — subtitle_contigency_tab" />
 
-<meta property="og:description" content="ggstatsplot is an extension of ggplot2 package for creating
-graphics with details from statistical tests included in the plots
-themselves and targeted primarily at behavioral sciences community to
-provide a one-line code to produce information-rich plots. Currently, it
-supports only the most common types of statistical tests (parametric,
-nonparametric, and robust versions of t-test/anova, correlation, and
-contingency tables analyses)." />
+<meta property="og:description" content="Making text subtitle for contingency analyis (Pearson's chi-square
+test for independence for between-subjects design or McNemar's test for
+within-subjects design)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,62 +137,98 @@ contingency tables analyses)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ggstatsplot: 'ggplot2' Based Plots with Statistical Details</h1>
+    <h1>Making text subtitle for contingency analyis (Pearson's chi-square
+test for independence for between-subjects design or McNemar's test for
+within-subjects design)</h1>
     
-    <div class="hidden name"><code>ggstatsplot-package.Rd</code></div>
+    <div class="hidden name"><code>subtitle_contigency_tab.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>ggstatsplot is an extension of ggplot2 package for creating
-graphics with details from statistical tests included in the plots
-themselves and targeted primarily at behavioral sciences community to
-provide a one-line code to produce information-rich plots. Currently, it
-supports only the most common types of statistical tests (parametric,
-nonparametric, and robust versions of t-test/anova, correlation, and
-contingency tables analyses).</p>
+    <p>Making text subtitle for contingency analyis (Pearson's chi-square
+test for independence for between-subjects design or McNemar's test for
+within-subjects design)</p>
     
     </div>
 
-        
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>ggstatsplot</code></p>
-<p>The main functions are-</p><ul>
-<li><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code> function to produce
-information-rich comparison plot between different groups or conditions
-with <code>ggplot2</code> and details from the statistical tests in the subtitle</p></li>
-<li><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code> function to produce <code>ggplot2</code>
-scatterplots along with a marginal histograms/boxplots/density plots from
-<code>ggExtra</code> and details from the statistical tests in the subtitle</p></li>
-<li><p><code><a href='ggpiestats.html'>ggpiestats</a></code> function to produce pie chart with
-details from the statistical tests in the subtitle</p></li>
-<li><p><code><a href='gghistostats.html'>gghistostats</a></code> function to produce histogram for a
-single variable with results from one sample test displayed in the subtitle</p></li>
-<li><p><code><a href='ggcorrmat.html'>ggcorrmat</a></code> function to visualize
-correlation matrix</p></li>
-<li><p><code><a href='combine_plots.html'>combine_plots</a></code> helper
-function to combine multiple <code>ggstatsplot</code> plots using
-<code><a href='http://www.rdocumentation.org/packages/cowplot/topics/plot_grid'>cowplot::plot_grid()</a></code> with a combination of title, caption, and annotation
-label</p></li>
-<li><p><code><a href='ggcoefstats.html'>ggcoefstats</a></code> function to visualize
-results from regression analyses</p></li>
-<li><p><code><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></code> default theme used for this
-package</p></li>
-<li><p><code><a href='specify_decimal_p.html'>specify_decimal_p</a></code> helper function
-to format results for pretty printing</p></li>
-</ul>
-    <p>For more documentation, see the dedicated
-<a href='https://indrajeetpatil.github.io/ggstatsplot/'>Website</a>.</p>
+    <pre class="usage"><span class='fu'>subtitle_contigency_tab</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='no'>condition</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>The data as a data frame (matrix or tables will not be accepted).</p></td>
+    </tr>
+    <tr>
+      <th>main</th>
+      <td><p>The variable to use as the <strong>rows</strong> in the
+contingency table.</p></td>
+    </tr>
+    <tr>
+      <th>condition</th>
+      <td><p>The variable to use as the <strong>columns</strong> in the contingency
+table.</p></td>
+    </tr>
+    <tr>
+      <th>counts</th>
+      <td><p>A string naming a variable in data containing counts, or <code>NULL</code>
+if each row represents a single observation (Default).</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for computing effect size (Default:
+<code>25</code>).</p></td>
+    </tr>
+    <tr>
+      <th>paired</th>
+      <td><p>Logical indicating whether data came from a within-subjects
+design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar test subtitle will be
+returned. IF <code>FALSE</code>, Pearson's chi-square test will be returned.</p></td>
+    </tr>
+    <tr>
+      <th>stat.title</th>
+      <td><p>Title for the effect being investigated with the chi-square
+test. The default is <code>NULL</code>, i.e. no title will be added to describe the
+effect being shown. An example of a <code>stat.title</code> argument will be something
+like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If <code>NULL</code>, the defaults return 95<!-- % -->
+lower and upper confidence intervals (<code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>conf.type</th>
+      <td><p>A vector of character strings representing the type of
+intervals required. The value should be any subset of the values <code>"norm"</code>,
+<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
+    </tr>
+    </table>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#details">Details</a></li>
-          </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
+
+    <h2>Author</h2>
+    
+Indrajeet Patil
 
   </div>
 </div>

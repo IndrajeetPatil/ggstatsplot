@@ -3,7 +3,7 @@
 \docType{package}
 \name{ggstatsplot-package}
 \alias{ggstatsplot-package}
-\title{\code{ggstatsplot}}
+\title{ggstatsplot: 'ggplot2' Based Plots with Statistical Details}
 \description{
 ggstatsplot is an extension of ggplot2 package for creating
 graphics with details from statistical tests included in the plots
@@ -14,6 +14,8 @@ nonparametric, and robust versions of t-test/anova, correlation, and
 contingency tables analyses).
 }
 \details{
+\code{ggstatsplot}
+
 The main functions are- \itemize{ \item
 \code{\link[ggstatsplot]{ggbetweenstats}} function to produce
 information-rich comparison plot between different groups or conditions

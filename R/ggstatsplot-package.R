@@ -1,5 +1,7 @@
 #' \code{ggstatsplot}
 #'
+#' @title ggstatsplot: 'ggplot2' Based Plots with Statistical Details
+#'
 #' @description ggstatsplot is an extension of ggplot2 package for creating
 #'   graphics with details from statistical tests included in the plots
 #'   themselves and targeted primarily at behavioral sciences community to

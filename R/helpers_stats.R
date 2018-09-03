@@ -43,7 +43,8 @@
 grouped_proptest <- function(data,
                              grouping.vars,
                              measure) {
-  # turn off warning messages because there are going to be many of them for tidyr::unnest
+  # turn off warning messages because there are going to be many of them for
+  # tidyr::unnest
   options(warn = -1)
   # check how many variables were entered for this grouping variable
   grouping.vars <-
@@ -73,23 +74,24 @@ grouped_proptest <- function(data,
   df_results <- df_nest %>%
     dplyr::mutate(
       .data = .,
-      percentage = data %>% purrr::map(
-        .x = .,
-        .f = ~dplyr::group_by(.data = ., measure) %>%
-          dplyr::summarize(.data = ., counts = length(measure)) %>%
-          dplyr::mutate(
-            .data = .,
-            perc = paste0(ggstatsplot::specify_decimal_p(
-              x = (counts / sum(counts)) * 100, k = 2
-            ), "%", sep = "")
-          ) %>%
-          dplyr::select(.data = ., -counts) %>%
-          tidyr::spread(
-            data = .,
-            key = measure,
-            value = perc
-          )
-      )
+      percentage = data %>%
+        purrr::map(
+          .x = .,
+          .f = ~dplyr::group_by(.data = ., measure) %>%
+            dplyr::summarize(.data = ., counts = length(measure)) %>%
+            dplyr::mutate(
+              .data = .,
+              perc = paste0(ggstatsplot::specify_decimal_p(
+                x = (counts / sum(counts)) * 100, k = 2
+              ), "%", sep = "")
+            ) %>%
+            dplyr::select(.data = ., -counts) %>%
+            tidyr::spread(
+              data = .,
+              key = measure,
+              value = perc
+            )
+        )
     ) %>%
     dplyr::mutate(
       .data = .,
@@ -100,7 +102,8 @@ grouped_proptest <- function(data,
     ) %>%
     dplyr::mutate(
       .data = .,
-      results = chi_sq %>% purrr::map(
+      results = chi_sq %>%
+        purrr::map(
         .x = .,
         .f = ~
         base::cbind.data.frame(
@@ -122,7 +125,11 @@ grouped_proptest <- function(data,
     dplyr::select(.data = ., -data, -chi_sq) %>%
     tidyr::unnest(data = .) %>%
     signif_column(data = ., p = `p-value`) %>%
-    dplyr::mutate_if(.tbl = ., .predicate = purrr::is_bare_character, .funs = ~dplyr::if_else(condition = is.na(.), true = "0%", false = .))
+    dplyr::mutate_if(
+      .tbl = .,
+      .predicate = purrr::is_bare_character,
+      .funs = ~dplyr::if_else(condition = is.na(.), true = "0%", false = .)
+    )
 
   # for every level of grouping.vars, it is going to throw following errors
   # Warning in bind_rows_(x, .id) :
@@ -175,10 +182,10 @@ grouped_proptest <- function(data,
 #' @family helper_stats
 #'
 #' @examples
-#' 
+#'
 #' # vector as input
 #' signif_column(p = c(0.05, 0.1, 1, 0.00001, 0.001, 0.01))
-#' 
+#'
 #' # dataframe as input
 #' # preparing a newdataframe
 #' df <- tibble(
@@ -186,7 +193,7 @@ grouped_proptest <- function(data,
 #'   y = 1,
 #'   p.value = c(0.1, 0.5, 0.00001, 0.05, 0.01)
 #' )
-#' 
+#'
 #' signif_column(data = df, p = p.value)
 #' @export
 #'
@@ -314,7 +321,7 @@ check_outlier <- function(var, coef = 1.5) {
 #' @family helper_stats
 #'
 #' @examples
-#' 
+#'
 #' # have a look at the Titanic_full dataset first
 #' Titanic_full <- untable(data = as.data.frame(Titanic), counts = Freq)
 #' dplyr::glimpse(Titanic_full)

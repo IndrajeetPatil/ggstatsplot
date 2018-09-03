@@ -19,9 +19,7 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
 contingency table.}
 
 \item{condition}{The variable to use as the \strong{columns} in the contingency
-table. This argument is optional (Default: \code{NULL}). If this argument is
-provided, then Pearson's chi-square test of independence will be run. If
-not, a goodness of fit test will be run on the \code{main} variable.}
+table.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
@@ -29,10 +27,9 @@ if each row represents a single observation (Default).}
 \item{ratio}{A vector of numbers: the expected proportions for the proportion
 test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
 
-\item{paired}{A logical indicating whether to consider the values as paired.
-If \code{paired = FALSE} (default), details from Pearson's chi-square test of independence
-will be displayed. If \code{paired = TRUE}, details from McNemar's test will be
-displayed.}
+\item{paired}{Logical indicating whether data came from a within-subjects
+design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
+returned. IF \code{FALSE}, Pearson's chi-square test will be returned.}
 
 \item{factor.levels}{A character vector with labels for factor levels of
 \code{main} variable.}
@@ -57,7 +54,7 @@ should be displayed for each level of the grouping variable \code{condition} (De
 
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
 
-\item{k}{Number of decimal places expected for results.}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{facet.proptest}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
@@ -76,7 +73,7 @@ or symbol.}
 
 \item{palette}{If a character string (e.g., \code{"Set1"}), will use that named
 palette. If a number, will index into the list of palettes of appropriate
-type. Default palette is \code{"Dark2"}}
+type. Default palette is \code{"Dark2"}.}
 
 \item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 

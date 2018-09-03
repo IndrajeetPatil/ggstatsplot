@@ -6,45 +6,24 @@
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data The data as a data frame (matrix or tables will not be accepted).
-#' @param main The variable to use as the **rows** in the
-#'   contingency table.
-#' @param condition The variable to use as the **columns** in the contingency
-#'   table. This argument is optional (Default: `NULL`). If this argument is
-#'   provided, then Pearson's chi-square test of independence will be run. If
-#'   not, a goodness of fit test will be run on the `main` variable.
-#' @param counts A string naming a variable in data containing counts, or `NULL`
-#'   if each row represents a single observation (Default).
 #' @param ratio A vector of numbers: the expected proportions for the proportion
 #'   test. Default is `NULL`, which means if there are two levels `ratio =
 #'   c(1,1)`, etc.
-#' @param paired A logical indicating whether to consider the values as paired.
-#'   If `paired = FALSE` (default), details from Pearson's chi-square test of independence
-#'   will be displayed. If `paired = TRUE`, details from McNemar's test will be
-#'   displayed.
 #' @param factor.levels A character vector with labels for factor levels of
 #'   `main` variable.
-#' @param stat.title Title for the effect being investigated with the chi-square
-#'   test. The default is `NULL`, i.e. no title will be added to describe the
-#'   effect being shown. An example of a `stat.title` argument will be something
-#'   like `"main x condition"` or `"interaction"`.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `condition` (Default:
 #'   `TRUE`).
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `25`).
 #' @param palette If a character string (e.g., `"Set1"`), will use that named
 #'   palette. If a number, will index into the list of palettes of appropriate
-#'   type. Default palette is `"Dark2"`
-#' @param k Number of decimal places expected for results.
+#'   type. Default palette is `"Dark2"`.
 #' @param legend.title Title of legend.
 #' @param facet.wrap.name The text for the facet_wrap variable label.
 #' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
+#' @inheritParams subtitle_contigency_tab
 #' @inheritParams paletteer::scale_fill_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #'
@@ -74,10 +53,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -85,10 +64,10 @@
 #'   condition = cyl,
 #'   nboot = 10
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -194,7 +173,8 @@ ggpiestats <-
 
     # untable the dataframe based on the count for each obervation
     if (!base::missing(counts)) {
-      data %<>% untable(data = ., counts = counts) %>%
+      data %<>%
+        untable(data = ., counts = counts) %>%
         dplyr::select(.data = ., -counts)
     }
 
@@ -252,7 +232,7 @@ ggpiestats <-
             dplyr::group_by(.data = ., condition) %>%
             dplyr::summarize(.data = ., total_n = sum(counts)) %>%
             dplyr::ungroup(x = .) %>%
-            dplyr::mutate(condition_n_label = paste("(n = ", total_n, ")", sep = "")) %>% # changing character variables into factors
+            dplyr::mutate(.data = ., condition_n_label = paste("(n = ", total_n, ")", sep = "")) %>% # changing character variables into factors
             dplyr::mutate_if(
               .tbl = .,
               .predicate = purrr::is_bare_character,
@@ -393,42 +373,32 @@ ggpiestats <-
       }
 
       # running Pearson's Chi-square test of independence using jmv::contTables
-      if (!isTRUE(paired)) {
-        jmv_chi <- jmv::contTables(
-          data = data,
-          rows = "condition",
-          cols = "main",
-          phiCra = TRUE # provides Phi and Cramer's V, the latter will be displayed
-        )
-
-        # preparing Cramer's V object depending on whether V is NaN or not
-        # it will be NaN in cases where there are no values of one categorial variable for level of another categorial variable
-        if (is.nan(as.data.frame(jmv_chi$nom)[[4]])) {
-          # NaN list in case Cramer's V is also NaN
-          cramer_ci <- c(NaN, NaN, NaN)
-        } else {
-          # results for confidence interval of Cramer's V
-          cramer_ci <- chisq_v_ci(
-            data = data,
-            rows = main,
-            cols = condition,
-            nboot = nboot,
-            conf.level = 0.95
-          )
-        }
-      } else if (isTRUE(paired)) {
-        # carrying out McNemar's test
-        jmv_chi <- jmv::contTablesPaired(
-          data = data,
-          rows = "condition",
-          cols = "main",
-          counts = NULL,
-          chiSq = TRUE,
-          chiSqCorr = FALSE,
-          exact = FALSE,
-          pcRow = FALSE,
-          pcCol = FALSE
-        )
+       if (!isTRUE(paired)) {
+         subtitle <- subtitle_contigency_tab(
+           data = data,
+           main = main,
+           condition = condition,
+           nboot = nboot,
+           paired = FALSE,
+           stat.title = stat.title,
+           conf.level = 0.95,
+           conf.type = "norm",
+           messages = messages,
+           k = k
+         )
+       } else if (isTRUE(paired)) {
+         subtitle <- subtitle_contigency_tab(
+           data = data,
+           main = main,
+           condition = condition,
+           nboot = nboot,
+           paired = TRUE,
+           stat.title = stat.title,
+           conf.level = 0.95,
+           conf.type = "norm",
+           messages = messages,
+           k = k
+         )
       }
 
       # ========================================================== proportion test ============================================
@@ -459,26 +429,6 @@ ggpiestats <-
           )
       }
 
-      # adding chi-square results to the plot subtitle
-      if (!isTRUE(paired)) {
-        p <-
-          p + ggplot2::labs(subtitle = chi_subtitle(
-            # results from Pearson's chi-square test
-            jmv_chi = jmv_chi,
-            # effect size (Cramer's V and it's confidence interval)
-            cramer_ci = cramer_ci,
-            effect = stat.title,
-            k = k
-          ))
-      } else if (isTRUE(paired)) {
-        p <-
-          p + ggplot2::labs(subtitle = mcnemar_subtitle(
-            # results from McNemar test
-            jmv_chi = jmv_chi,
-            effect = stat.title,
-            k = k
-          ))
-      }
     } else {
       # conducting proportion test with jmv::propTestN()
       jmv_prop <- jmv::propTestN(
@@ -489,7 +439,7 @@ ggpiestats <-
       # if there is no value corresponding to one of the levels of the 'main'
       # variable, then no subtitle is needed
       if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
-        proptest_subtitle <-
+        subtitle <-
           base::substitute(
             expr =
               paste(
@@ -508,7 +458,7 @@ ggpiestats <-
         ))
       } else {
         # preparing proportion test subtitle for the plot
-        proptest_subtitle <-
+        subtitle <-
           base::substitute(
             expr =
               paste(
@@ -539,24 +489,17 @@ ggpiestats <-
             )
           )
       }
-      # adding proportion test subtitle to the plot
-      p <-
-        p +
-        ggplot2::labs(subtitle = proptest_subtitle)
     }
 
     #################################### putting all together ############################################
 
-    # if legend title has not been provided, use the name of the variable corresponding to main
-    if (is.null(legend.title)) {
-      legend.title <- as.character(df$main)
-    }
     # preparing the plot
     p <-
       p +
       ggplot2::labs(
         x = NULL,
         y = NULL,
+        subtitle = subtitle,
         title = title,
         caption = caption
       ) +

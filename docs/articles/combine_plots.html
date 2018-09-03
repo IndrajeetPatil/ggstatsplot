@@ -99,7 +99,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-01</h4>
+            <h4 class="date">2018-09-02</h4>
       
       
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -135,7 +135,7 @@
 <a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="dt">plot =</span> data <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-13" data-line-number="13"><span class="st">      </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(</a>
 <a class="sourceLine" id="cb1-14" data-line-number="14">        <span class="dt">.x =</span> .,</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb1-16" data-line-number="16">          <span class="dt">data =</span> .,</a>
 <a class="sourceLine" id="cb1-17" data-line-number="17">          <span class="dt">x =</span> Sepal.Length,</a>
 <a class="sourceLine" id="cb1-18" data-line-number="18">          <span class="dt">y =</span> Sepal.Width,</a>
@@ -164,7 +164,7 @@
 <a class="sourceLine" id="cb1-41" data-line-number="41"><span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;S3: ggExtraPlot&gt;</span></a>
 <a class="sourceLine" id="cb1-42" data-line-number="42"></a>
 <a class="sourceLine" id="cb1-43" data-line-number="43"><span class="co">### creating a grid with cowplot</span></a>
-<a class="sourceLine" id="cb1-44" data-line-number="44">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb1-44" data-line-number="44">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb1-45" data-line-number="45">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,                           <span class="co"># list column containing all ggstatsplot objects</span></a>
 <a class="sourceLine" id="cb1-46" data-line-number="46">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb1-47" data-line-number="47">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
@@ -195,7 +195,7 @@
 <a class="sourceLine" id="cb2-12" data-line-number="12">    <span class="dt">plot =</span> data <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="st">      </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(</a>
 <a class="sourceLine" id="cb2-14" data-line-number="14">        <span class="dt">.x =</span> .,</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb2-16" data-line-number="16">          <span class="dt">data =</span> .,</a>
 <a class="sourceLine" id="cb2-17" data-line-number="17">          <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb2-18" data-line-number="18">          <span class="dt">y =</span> hwy,</a>
@@ -225,7 +225,7 @@
 <a class="sourceLine" id="cb2-42" data-line-number="42"><span class="co">#&gt; 3     8 &lt;tibble [70 x 11]&gt; &lt;S3: gg&gt;</span></a>
 <a class="sourceLine" id="cb2-43" data-line-number="43"></a>
 <a class="sourceLine" id="cb2-44" data-line-number="44"><span class="co">### creating a grid with cowplot</span></a>
-<a class="sourceLine" id="cb2-45" data-line-number="45">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb2-46" data-line-number="46">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,                           <span class="co"># list column containing all ggstatsplot objects</span></a>
 <a class="sourceLine" id="cb2-47" data-line-number="47">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb2-48" data-line-number="48">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
@@ -275,7 +275,7 @@
 <a class="sourceLine" id="cb3-22" data-line-number="22">  <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb3-23" data-line-number="23">  <span class="dt">.variables =</span> .(genre),</a>
 <a class="sourceLine" id="cb3-24" data-line-number="24">  <span class="dt">.fun =</span> <span class="cf">function</span>(data)</a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">    ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">    ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb3-26" data-line-number="26">      <span class="dt">data =</span> data,</a>
 <a class="sourceLine" id="cb3-27" data-line-number="27">      <span class="dt">main =</span> mpaa,</a>
 <a class="sourceLine" id="cb3-28" data-line-number="28">      <span class="dt">title =</span> glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(<span class="st">"Genre: {data$genre}"</span>)</a>
@@ -283,7 +283,7 @@
 <a class="sourceLine" id="cb3-30" data-line-number="30">)</a>
 <a class="sourceLine" id="cb3-31" data-line-number="31"></a>
 <a class="sourceLine" id="cb3-32" data-line-number="32"><span class="co"># combining individual plots</span></a>
-<a class="sourceLine" id="cb3-33" data-line-number="33">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(<span class="dt">plotlist =</span> plots, </a>
+<a class="sourceLine" id="cb3-33" data-line-number="33">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(<span class="dt">plotlist =</span> plots, </a>
 <a class="sourceLine" id="cb3-34" data-line-number="34">                           <span class="dt">title.text =</span> <span class="st">"Differences in MPAA ratings by movie genre"</span>,</a>
 <a class="sourceLine" id="cb3-35" data-line-number="35">                           <span class="dt">title.color =</span> <span class="st">"darkgreen"</span>,</a>
 <a class="sourceLine" id="cb3-36" data-line-number="36">                           <span class="dt">caption.text =</span> <span class="st">"MPAA: Motion Picture Association of America"</span>,</a>
@@ -315,7 +315,7 @@
 <a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">.data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(gapminder<span class="op">::</span>gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
 <a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">.variables =</span> .(continent),</a>
 <a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">.fun =</span> <span class="cf">function</span>(data)</a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">    ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">    ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb4-24" data-line-number="24">      <span class="dt">data =</span> data,</a>
 <a class="sourceLine" id="cb4-25" data-line-number="25">      <span class="dt">x =</span> gdpPercap,</a>
 <a class="sourceLine" id="cb4-26" data-line-number="26">      <span class="dt">y =</span> lifeExp,</a>
@@ -330,7 +330,7 @@
 <a class="sourceLine" id="cb4-35" data-line-number="35">)</a>
 <a class="sourceLine" id="cb4-36" data-line-number="36"></a>
 <a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co"># combining individual plots</span></a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(<span class="dt">plotlist =</span> plots, </a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(<span class="dt">plotlist =</span> plots, </a>
 <a class="sourceLine" id="cb4-39" data-line-number="39">                           <span class="dt">title.text =</span> <span class="st">"Relationship between GDP (per capita) and life expectancy"</span>,</a>
 <a class="sourceLine" id="cb4-40" data-line-number="40">                           <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb4-41" data-line-number="41">                           <span class="dt">ncol =</span> <span class="dv">2</span>)</a></code></pre></div>
@@ -342,9 +342,9 @@
 <p>This function can also be useful adding some additional text information that can’t be contained in either title, subtitle, or caption. Here is an example: We want to run a polynomial regression and want to annotate the formula.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="co"># preparing the plot with ggstatsplot function</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">      <span class="dt">formula =</span> rating <span class="op">~</span><span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/poly">poly</a></span>(budget, <span class="dt">degree =</span> <span class="dv">3</span>),</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">      <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>

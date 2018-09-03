@@ -99,7 +99,7 @@
       <h1>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-01</h4>
+            <h4 class="date">2018-09-02</h4>
       
       
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -176,7 +176,7 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_wide,                             <span class="co"># dataframe from which variables are to be taken</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">x =</span> budget,                                                  <span class="co"># predictor/independent variable </span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">y =</span> rating,                                                  <span class="co"># dependent variable</span></a>
@@ -209,7 +209,7 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># include the following code in your code chunk inside R Notebook or Markdown</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">grid<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/grid.newpage">grid.newpage</a></span>()</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">grid<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/grid.draw">grid.draw</a></span>(</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">  ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_wide,</a>
 <a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="dt">x =</span> budget,</a>
 <a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="dt">y =</span> rating,</a>
@@ -225,7 +225,7 @@
 <p>What if we want to do the same analysis do the same analysis for movies with different MPAA (Motion Picture Association of America) film ratings (NC-17, PG, PG-13, R)? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggstatsplot</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggstatsplot</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>ggscatterstats</code> for all MPAA ratings. We will be running parametric tests (Pearson’s <em>r</em>, i.e.). If you set <code>type = "np"</code> or <code>type = "r"</code>, results from non-parametric or robust test will be displayed.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggscatterstats">grouped_ggscatterstats</a></span>(</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="co"># arguments relevant for ggstatsplot::ggscatterstats</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_wide,</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">title.prefix =</span> <span class="st">"MPAA Rating"</span>,</a>
@@ -318,7 +318,7 @@
 <a class="sourceLine" id="cb6-59" data-line-number="59"><span class="co">#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</span></a>
 <a class="sourceLine" id="cb6-60" data-line-number="60">  </a>
 <a class="sourceLine" id="cb6-61" data-line-number="61"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb6-62" data-line-number="62">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb6-62" data-line-number="62">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb6-63" data-line-number="63">  <span class="dt">plotlist =</span> plot_list1,</a>
 <a class="sourceLine" id="cb6-64" data-line-number="64">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</a>
 <a class="sourceLine" id="cb6-65" data-line-number="65">  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</a>
@@ -369,7 +369,7 @@
 <a class="sourceLine" id="cb7-32" data-line-number="32">)</a>
 <a class="sourceLine" id="cb7-33" data-line-number="33"></a>
 <a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb7-35" data-line-number="35">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb7-35" data-line-number="35">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb7-36" data-line-number="36">  <span class="dt">plotlist =</span> plot_list2,</a>
 <a class="sourceLine" id="cb7-37" data-line-number="37">  <span class="dt">title.text =</span> <span class="st">"Trying out different smoothing functions with ggscatterstats"</span>,</a>
 <a class="sourceLine" id="cb7-38" data-line-number="38">  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</a>

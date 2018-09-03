@@ -167,9 +167,7 @@ contingency table.</p></td>
     <tr>
       <th>condition</th>
       <td><p>The variable to use as the <strong>columns</strong> in the contingency
-table. This argument is optional (Default: <code>NULL</code>). If this argument is
-provided, then Pearson's chi-square test of independence will be run. If
-not, a goodness of fit test will be run on the <code>main</code> variable.</p></td>
+table.</p></td>
     </tr>
     <tr>
       <th>counts</th>
@@ -183,10 +181,9 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
     </tr>
     <tr>
       <th>paired</th>
-      <td><p>A logical indicating whether to consider the values as paired.
-If <code>paired = FALSE</code> (default), details from Pearson's chi-square test of independence
-will be displayed. If <code>paired = TRUE</code>, details from McNemar's test will be
-displayed.</p></td>
+      <td><p>Logical indicating whether data came from a within-subjects
+design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar test subtitle will be
+returned. IF <code>FALSE</code>, Pearson's chi-square test will be returned.</p></td>
     </tr>
     <tr>
       <th>factor.levels</th>
@@ -229,7 +226,7 @@ should be displayed for each level of the grouping variable <code>condition</cod
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Number of decimal places expected for results.</p></td>
+      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
     </tr>
     <tr>
       <th>facet.proptest</th>
@@ -258,7 +255,7 @@ or symbol.</p></td>
       <th>palette</th>
       <td><p>If a character string (e.g., <code>"Set1"</code>), will use that named
 palette. If a number, will index into the list of palettes of appropriate
-type. Default palette is <code>"Dark2"</code></p></td>
+type. Default palette is <code>"Dark2"</code>.</p></td>
     </tr>
     <tr>
       <th>direction</th>
@@ -282,18 +279,18 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='fu'>set.seed</span>(<span class='fl'>123</span>)
 
 <span class='co'># simple function call with the defaults (with condition)</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats'>ggpiestats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/mtcars'>mtcars</a></span>,
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)</div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; Note: 95% CI for Cramer's V was computed with  10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># simple function call with the defaults (without condition; with count data)</span>
 <span class='fu'>library</span>(<span class='no'>jmv</span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: 'jmv'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:stats':</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    anova</span></div><div class='input'>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats'>ggpiestats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>

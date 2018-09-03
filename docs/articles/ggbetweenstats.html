@@ -99,7 +99,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-01</h4>
+            <h4 class="date">2018-09-02</h4>
       
       
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -143,7 +143,7 @@
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co"># function call</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),</a>
 <a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="dt">x =</span> continent,</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13">  <span class="dt">y =</span> lifeExp,</a>
@@ -159,7 +159,7 @@
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),      <span class="co"># dataframe</span></a>
 <a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="dt">x =</span> continent,                                              <span class="co"># grouping/independent variable</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">y =</span> lifeExp,                                                <span class="co"># dependent variables</span></a>
@@ -198,7 +198,7 @@
 <a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co"># parametric ANOVA and box plot</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">data =</span> df_year,</a>
 <a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">y =</span> lifeExp,</a>
@@ -212,7 +212,7 @@
 <a class="sourceLine" id="cb4-22" data-line-number="22">)</a>
 <a class="sourceLine" id="cb4-23" data-line-number="23"></a>
 <a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb4-26" data-line-number="26">  <span class="dt">data =</span> df_year,</a>
 <a class="sourceLine" id="cb4-27" data-line-number="27">  <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">y =</span> lifeExp,</a>
@@ -225,7 +225,7 @@
 <a class="sourceLine" id="cb4-35" data-line-number="35">)</a>
 <a class="sourceLine" id="cb4-36" data-line-number="36"></a>
 <a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co"># robust ANOVA and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb4-39" data-line-number="39">  <span class="dt">data =</span> df_year,</a>
 <a class="sourceLine" id="cb4-40" data-line-number="40">  <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb4-41" data-line-number="41">  <span class="dt">y =</span> lifeExp,</a>
@@ -240,7 +240,7 @@
 <a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co">#&gt; Note: 95% CI for explanatory measure of effect size was computed with 100 bootstrap samples.</span></a>
 <a class="sourceLine" id="cb4-51" data-line-number="51"></a>
 <a class="sourceLine" id="cb4-52" data-line-number="52"><span class="co"># robust ANOVA and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-53" data-line-number="53">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-53" data-line-number="53">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb4-54" data-line-number="54">  <span class="dt">data =</span> df_year,</a>
 <a class="sourceLine" id="cb4-55" data-line-number="55">  <span class="dt">x =</span> year,</a>
 <a class="sourceLine" id="cb4-56" data-line-number="56">  <span class="dt">y =</span> lifeExp,</a>
@@ -252,7 +252,7 @@
 <a class="sourceLine" id="cb4-62" data-line-number="62">)</a>
 <a class="sourceLine" id="cb4-63" data-line-number="63"></a>
 <a class="sourceLine" id="cb4-64" data-line-number="64"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-65" data-line-number="65">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-65" data-line-number="65">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb4-66" data-line-number="66">  p1, p2, p3, p4, </a>
 <a class="sourceLine" id="cb4-67" data-line-number="67">  <span class="dt">nrow =</span> <span class="dv">2</span>, </a>
 <a class="sourceLine" id="cb4-68" data-line-number="68">  <span class="dt">ncol =</span> <span class="dv">2</span>, </a>
@@ -274,7 +274,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggbetweenstats">grouped_ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder,</a>
@@ -398,7 +398,7 @@
 <a class="sourceLine" id="cb6-82" data-line-number="82"><span class="co">#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note: 95% CI for partial eta-squared was computed with 100 bootstrap samples.</span></a>
 <a class="sourceLine" id="cb6-83" data-line-number="83">  </a>
 <a class="sourceLine" id="cb6-84" data-line-number="84"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb6-85" data-line-number="85">ggstatsplot<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb6-85" data-line-number="85">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb6-86" data-line-number="86">  <span class="dt">plotlist =</span> plot_list,</a>
 <a class="sourceLine" id="cb6-87" data-line-number="87">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
 <a class="sourceLine" id="cb6-88" data-line-number="88">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>

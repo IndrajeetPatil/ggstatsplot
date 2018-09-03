@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--01-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--02-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -218,7 +218,7 @@ ggstatsplot::theme_mprl
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002af14ac8>
+#> <bytecode: 0x000000002af53cb8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -579,10 +579,9 @@ For more, including information about the variant of this function
 
 ## `ggcorrmat`
 
-`ggcorrmat` makes correlalograms with minimal amount of code. Just
-sticking to the defaults itself produces publication-ready correlation
-matrices. (Wrapper around
-[`ggcorrplot`](https://github.com/kassambara/ggcorrplot))
+`ggcorrmat` makes correlalograms (a matrix of correlation coefficients)
+with minimal amount of code. Just sticking to the defaults itself
+produces publication-ready correlation matrices.
 
 ``` r
 # as a default this function outputs a correlalogram plot
@@ -834,11 +833,10 @@ designing plots in a certain way:
 ## Current code coverage
 
 As the code stands right now, here is the code coverage for all primary
-functions involved:
+functions
+involved:
 
-``` r
-covr::package_coverage(type = "all")
-```
+<https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graphs/tree.svg>
 
 ## Contributing
 
