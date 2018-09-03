@@ -35,7 +35,7 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 
 \item{paired}{Logical indicating whether data came from a within-subjects
 design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
-returned. IF \code{FALSE}, Pearson's chi-square test will be returned.}
+returned. If \code{FALSE}, Pearson's chi-square test will be returned.}
 
 \item{factor.levels}{A character vector with labels for factor levels of
 \code{main} variable.}
@@ -54,7 +54,7 @@ should be displayed for each level of the grouping variable \code{condition} (De
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{25}).}
 
-\item{legend.title}{Title of legend.}
+\item{legend.title}{Title text for the legend.}
 
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
 

@@ -4,6 +4,7 @@
 #'   within-subjects design)
 #' @name subtitle_contigency_tab
 #' @author Indrajeet Patil
+#'
 #' @param data The data as a data frame (matrix or tables will not be accepted).
 #' @param main The variable to use as the **rows** in the
 #'   contingency table.
@@ -13,7 +14,7 @@
 #'   if each row represents a single observation (Default).
 #' @param paired Logical indicating whether data came from a within-subjects
 #'   design study (Default: `FALSE`). If `TRUE`, McNemar test subtitle will be
-#'   returned. IF `FALSE`, Pearson's chi-square test will be returned.
+#'   returned. If `FALSE`, Pearson's chi-square test will be returned.
 #' @param stat.title Title for the effect being investigated with the chi-square
 #'   test. The default is `NULL`, i.e. no title will be added to describe the
 #'   effect being shown. An example of a `stat.title` argument will be something
@@ -27,12 +28,11 @@
 #'
 #' @examples
 #'
-#' library(jmv)
-#' library(dplyr)
-#' dat <- as.data.frame(HairEyeColor) %>%
-#' dplyr::filter(.data = ., Sex == "Male")
-#' subtitle_contigency_tab(dat,  'Hair',  'Sex')
-#'
+#' #library(jmv)
+#' #library(dplyr)
+#' #dat <- as.data.frame(HairEyeColor) %>%
+#'  # dplyr::filter(.data = ., Sex == "Male")
+#' #subtitle_contigency_tab(dat, "Hair", "Sex")
 #' @keywords internal
 #'
 
@@ -94,9 +94,11 @@ subtitle_contigency_tab <- function(data,
     # it will be NaN in cases where there are no values of one categorial variable for level of another categorial variable
     if (is.nan(as.data.frame(jmv_chi$nom)[[4]])) {
       # NaN list in case Cramer's V is also NaN
-      #cramer_ci <- c(NaN, NaN, NaN)
-      cramer_ci <- tibble::tribble(~ estimate, ~ conf.low, ~ conf.high,
-                                   NaN, NaN, NaN)
+      # cramer_ci <- c(NaN, NaN, NaN)
+      cramer_ci <- tibble::tribble(
+        ~estimate, ~conf.low, ~conf.high,
+        NaN, NaN, NaN
+      )
     } else {
       # results for confidence interval of Cramer's V
       cramer_ci <- chisq_v_ci(
@@ -119,7 +121,6 @@ subtitle_contigency_tab <- function(data,
           )
         ))
       }
-
     }
 
     # preparing the subtitle
@@ -220,3 +221,136 @@ subtitle_contigency_tab <- function(data,
   # return the subtitle
   return(subtitle)
 }
+
+
+#'
+#' @title Making text subtitle for Proportion Test (N Outcomes), a chi-squared
+#'   Goodness of fit test.
+#' @name subtitle_onesample_proptest
+#' @author Indrajeet Patil
+#'
+#' @param ratio A vector of numbers: the expected proportions for the proportion
+#'   test. Default is `NULL`, which means if there are two levels `ratio =
+#'   c(1,1)`, etc.
+#' @param legend.title Title text for the legend.
+#' @inheritParams specify_decimal_p
+#' @inheritParams subtitle_contigency_tab
+#'
+#' @keywords internal
+#'
+
+# defining the function
+subtitle_onesample_proptest <-
+  function(data,
+             main,
+             counts = NULL,
+             ratio = NULL,
+           legend.title = NULL,
+             k = 3) {
+
+    # saving the column label for the 'main' variables
+    if (is.null(legend.title)) {
+      legend.title <-
+        colnames(dplyr::select(
+          .data = data,
+          !!rlang::enquo(main)
+        ))[1]
+    }
+
+    # ================================= dataframe ================================================================================
+
+    if (base::missing(counts)) {
+      data <-
+        dplyr::select(
+          .data = data,
+          main = !!rlang::enquo(main)
+        ) %>%
+        tibble::as_data_frame(x = .)
+    } else {
+      data <-
+        dplyr::select(
+          .data = data,
+          main = !!rlang::enquo(main),
+          counts = !!rlang::enquo(counts)
+        ) %>%
+        tibble::as_data_frame(x = .)
+    }
+
+    # ======================================================== converting counts ========================================================
+
+    # untable the dataframe based on the count for each obervation
+    if (!base::missing(counts)) {
+      data %<>%
+        untable(data = ., counts = counts) %>%
+        dplyr::select(.data = ., -counts)
+    }
+
+    # ======================================================== statistical test ========================================================
+
+    # conducting proportion test with jmv::propTestN()
+    jmv_prop <- jmv::propTestN(
+      data = data,
+      var = "main",
+      ratio = ratio
+    )
+
+    # if there is no value corresponding to one of the levels of the 'main'
+    # variable, then no subtitle is needed
+    if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
+      subtitle <-
+        base::substitute(
+          expr =
+            paste(
+              italic("n"),
+              " = ",
+              n
+            ),
+          env = base::list(n = nrow(x = data))
+        )
+
+      # display message
+      base::message(cat(
+        crayon::red("Warning: "),
+        crayon::blue("Proportion test will not be run because it requires"),
+        crayon::yellow(legend.title),
+        crayon::blue("to have at least 2 levels with non-zero frequencies.")
+      ))
+
+    } else {
+      # preparing proportion test subtitle for the plot
+      subtitle <-
+        base::substitute(
+          expr =
+            paste(
+              italic(chi)^2,
+              "(",
+              df,
+              ") = ",
+              estimate,
+              ", ",
+              italic("p"),
+              " = ",
+              pvalue,
+              ", ",
+              italic("n"),
+              " = ",
+              n
+            ),
+          env = base::list(
+            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
+            df = base::as.data.frame(jmv_prop$tests)[[2]],
+            # df is always an integer
+            pvalue = ggstatsplot::specify_decimal_p(
+              x = as.data.frame(jmv_prop$tests)[[3]],
+              k,
+              p.value = TRUE
+            ),
+            n = nrow(x = data)
+          )
+        )
+    }
+
+    # return the subtitle text
+   return(subtitle)
+
+  }

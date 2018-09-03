@@ -6,9 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for contingency analysis (Pearson's chi-square
-test for independence for between-subjects design or McNemar's test for
-within-subjects design) — subtitle_contigency_tab • ggstatsplot</title>
+<title>Making text subtitle for Proportion Test (N Outcomes), a chi-squared
+Goodness of fit test. — subtitle_onesample_proptest • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,13 +31,11 @@ within-subjects design) — subtitle_contigency_tab • ggstatsplot</title>
 
 
 
-<meta property="og:title" content="Making text subtitle for contingency analysis (Pearson's chi-square
-test for independence for between-subjects design or McNemar's test for
-within-subjects design) — subtitle_contigency_tab" />
+<meta property="og:title" content="Making text subtitle for Proportion Test (N Outcomes), a chi-squared
+Goodness of fit test. — subtitle_onesample_proptest" />
 
-<meta property="og:description" content="Making text subtitle for contingency analysis (Pearson's chi-square
-test for independence for between-subjects design or McNemar's test for
-within-subjects design)" />
+<meta property="og:description" content="Making text subtitle for Proportion Test (N Outcomes), a chi-squared
+Goodness of fit test." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,24 +134,21 @@ within-subjects design)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for contingency analysis (Pearson's chi-square
-test for independence for between-subjects design or McNemar's test for
-within-subjects design)</h1>
+    <h1>Making text subtitle for Proportion Test (N Outcomes), a chi-squared
+Goodness of fit test.</h1>
     
-    <div class="hidden name"><code>subtitle_contigency_tab.Rd</code></div>
+    <div class="hidden name"><code>subtitle_onesample_proptest.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for contingency analysis (Pearson's chi-square
-test for independence for between-subjects design or McNemar's test for
-within-subjects design)</p>
+    <p>Making text subtitle for Proportion Test (N Outcomes), a chi-squared
+Goodness of fit test.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_contigency_tab</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='no'>condition</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_onesample_proptest</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,48 +163,18 @@ within-subjects design)</p>
 contingency table.</p></td>
     </tr>
     <tr>
-      <th>condition</th>
-      <td><p>The variable to use as the <strong>columns</strong> in the contingency
-table.</p></td>
-    </tr>
-    <tr>
       <th>counts</th>
       <td><p>A string naming a variable in data containing counts, or <code>NULL</code>
 if each row represents a single observation (Default).</p></td>
     </tr>
     <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing effect size (Default:
-<code>25</code>).</p></td>
+      <th>ratio</th>
+      <td><p>A vector of numbers: the expected proportions for the proportion
+test. Default is <code>NULL</code>, which means if there are two levels <code>ratio = c(1,1)</code>, etc.</p></td>
     </tr>
     <tr>
-      <th>paired</th>
-      <td><p>Logical indicating whether data came from a within-subjects
-design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar test subtitle will be
-returned. If <code>FALSE</code>, Pearson's chi-square test will be returned.</p></td>
-    </tr>
-    <tr>
-      <th>stat.title</th>
-      <td><p>Title for the effect being investigated with the chi-square
-test. The default is <code>NULL</code>, i.e. no title will be added to describe the
-effect being shown. An example of a <code>stat.title</code> argument will be something
-like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If <code>NULL</code>, the defaults return 95<!-- % -->
-lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>conf.type</th>
-      <td><p>A vector of character strings representing the type of
-intervals required. The value should be any subset of the values <code>"norm"</code>,
-<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
+      <th>legend.title</th>
+      <td><p>Title text for the legend.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -219,27 +183,12 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>library</span>(<span class='no'>jmv</span>)
-<span class='fu'>library</span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'dplyr'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>as.data.frame</span>(<span class='no'>HairEyeColor</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>Sex</span> <span class='kw'>==</span> <span class='st'>"Male"</span>)
-<span class='fu'>subtitle_contigency_tab</span>(<span class='no'>dat</span>, <span class='st'>"Hair"</span>, <span class='st'>"Sex"</span>)</div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", 3L, ") = ", "NaN", ", ", italic("p"), 
-#&gt;     " = ", "NaN", ", ", italic(V), " = ", "NaN", ", 95% CI [", 
-#&gt;     "NaN", ", ", "NaN", "]", ", ", italic("n"), " = ", 16)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
     <h2>Author</h2>
     

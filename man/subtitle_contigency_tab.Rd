@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggpiestats_subtitles.R
 \name{subtitle_contigency_tab}
 \alias{subtitle_contigency_tab}
-\title{Making text subtitle for contingency analyis (Pearson's chi-square
+\title{Making text subtitle for contingency analysis (Pearson's chi-square
 test for independence for between-subjects design or McNemar's test for
 within-subjects design)}
 \usage{
@@ -27,7 +27,7 @@ if each row represents a single observation (Default).}
 
 \item{paired}{Logical indicating whether data came from a within-subjects
 design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
-returned. IF \code{FALSE}, Pearson's chi-square test will be returned.}
+returned. If \code{FALSE}, Pearson's chi-square test will be returned.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test. The default is \code{NULL}, i.e. no title will be added to describe the
@@ -47,9 +47,17 @@ to be displayed (Default: \code{TRUE}).}
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 }
 \description{
-Making text subtitle for contingency analyis (Pearson's chi-square
+Making text subtitle for contingency analysis (Pearson's chi-square
 test for independence for between-subjects design or McNemar's test for
 within-subjects design)
+}
+\examples{
+
+library(jmv)
+library(dplyr)
+dat <- as.data.frame(HairEyeColor) \%>\%
+  dplyr::filter(.data = ., Sex == "Male")
+subtitle_contigency_tab(dat, "Hair", "Sex")
 }
 \author{
 Indrajeet Patil

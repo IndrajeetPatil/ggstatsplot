@@ -6,9 +6,6 @@
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param ratio A vector of numbers: the expected proportions for the proportion
-#'   test. Default is `NULL`, which means if there are two levels `ratio =
-#'   c(1,1)`, etc.
 #' @param factor.levels A character vector with labels for factor levels of
 #'   `main` variable.
 #' @param title The text for the plot title.
@@ -19,11 +16,11 @@
 #' @param palette If a character string (e.g., `"Set1"`), will use that named
 #'   palette. If a number, will index into the list of palettes of appropriate
 #'   type. Default palette is `"Dark2"`.
-#' @param legend.title Title of legend.
 #' @param facet.wrap.name The text for the facet_wrap variable label.
 #' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
 #' @inheritParams subtitle_contigency_tab
+#' @inheritParams subtitle_onesample_proptest
 #' @inheritParams paletteer::scale_fill_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #'
@@ -373,35 +370,35 @@ ggpiestats <-
       }
 
       # running Pearson's Chi-square test of independence using jmv::contTables
-       if (!isTRUE(paired)) {
-         subtitle <- subtitle_contigency_tab(
-           data = data,
-           main = main,
-           condition = condition,
-           nboot = nboot,
-           paired = FALSE,
-           stat.title = stat.title,
-           conf.level = 0.95,
-           conf.type = "norm",
-           messages = messages,
-           k = k
-         )
-       } else if (isTRUE(paired)) {
-         subtitle <- subtitle_contigency_tab(
-           data = data,
-           main = main,
-           condition = condition,
-           nboot = nboot,
-           paired = TRUE,
-           stat.title = stat.title,
-           conf.level = 0.95,
-           conf.type = "norm",
-           messages = messages,
-           k = k
-         )
+      if (!isTRUE(paired)) {
+        subtitle <- subtitle_contigency_tab(
+          data = data,
+          main = main,
+          condition = condition,
+          nboot = nboot,
+          paired = FALSE,
+          stat.title = stat.title,
+          conf.level = 0.95,
+          conf.type = "norm",
+          messages = messages,
+          k = k
+        )
+      } else if (isTRUE(paired)) {
+        subtitle <- subtitle_contigency_tab(
+          data = data,
+          main = main,
+          condition = condition,
+          nboot = nboot,
+          paired = TRUE,
+          stat.title = stat.title,
+          conf.level = 0.95,
+          conf.type = "norm",
+          messages = messages,
+          k = k
+        )
       }
 
-      # ========================================================== proportion test ============================================
+      # ========================================================== facetted proportion test ============================================
 
       # adding significance labels to pie charts for grouped proportion tests, if expected
       if (isTRUE(facet.proptest)) {
@@ -428,67 +425,15 @@ ggpiestats <-
             na.rm = TRUE
           )
       }
-
     } else {
       # conducting proportion test with jmv::propTestN()
-      jmv_prop <- jmv::propTestN(
+      subtitle <- subtitle_onesample_proptest(
         data = data,
-        var = "main",
-        ratio = ratio
+        main = main,
+        ratio = ratio,
+        legend.title = legend.title,
+        k = k
       )
-      # if there is no value corresponding to one of the levels of the 'main'
-      # variable, then no subtitle is needed
-      if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
-        subtitle <-
-          base::substitute(
-            expr =
-              paste(
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(n = nrow(x = data))
-          )
-        # display message
-        base::message(cat(
-          crayon::red("Warning: "),
-          crayon::blue("Proportion test will not be run because it requires"),
-          crayon::yellow(legend.title),
-          crayon::blue("to have at least 2 levels with non-zero frequencies.")
-        ))
-      } else {
-        # preparing proportion test subtitle for the plot
-        subtitle <-
-          base::substitute(
-            expr =
-              paste(
-                italic(chi)^2,
-                "(",
-                df,
-                ") = ",
-                estimate,
-                ", ",
-                italic("p"),
-                " = ",
-                pvalue,
-                ", ",
-                italic("n"),
-                " = ",
-                n
-              ),
-            env = base::list(
-              estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
-              df = base::as.data.frame(jmv_prop$tests)[[2]],
-              # df is always an integer
-              pvalue = ggstatsplot::specify_decimal_p(
-                x = as.data.frame(jmv_prop$tests)[[3]],
-                k,
-                p.value = TRUE
-              ),
-              n = nrow(x = data)
-            )
-          )
-      }
     }
 
     #################################### putting all together ############################################
