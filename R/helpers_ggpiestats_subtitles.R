@@ -27,12 +27,12 @@
 #' @importFrom tibble tribble
 #'
 #' @examples
-#'
-#' #library(jmv)
-#' #library(dplyr)
-#' #dat <- as.data.frame(HairEyeColor) %>%
-#'  # dplyr::filter(.data = ., Sex == "Male")
-#' #subtitle_contigency_tab(dat, "Hair", "Sex")
+#' 
+#' # library(jmv)
+#' # library(dplyr)
+#' # dat <- as.data.frame(HairEyeColor) %>%
+#' # dplyr::filter(.data = ., Sex == "Male")
+#' # subtitle_contigency_tab(dat, "Hair", "Sex")
 #' @keywords internal
 #'
 
@@ -245,7 +245,7 @@ subtitle_onesample_proptest <-
              main,
              counts = NULL,
              ratio = NULL,
-           legend.title = NULL,
+             legend.title = NULL,
              k = 3) {
 
     # saving the column label for the 'main' variables
@@ -315,7 +315,6 @@ subtitle_onesample_proptest <-
         crayon::yellow(legend.title),
         crayon::blue("to have at least 2 levels with non-zero frequencies.")
       ))
-
     } else {
       # preparing proportion test subtitle for the plot
       subtitle <-
@@ -351,6 +350,5 @@ subtitle_onesample_proptest <-
     }
 
     # return the subtitle text
-   return(subtitle)
-
+    return(subtitle)
   }

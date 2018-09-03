@@ -53,11 +53,11 @@ within-subjects design)
 }
 \examples{
 
-library(jmv)
-library(dplyr)
-dat <- as.data.frame(HairEyeColor) \%>\%
-  dplyr::filter(.data = ., Sex == "Male")
-subtitle_contigency_tab(dat, "Hair", "Sex")
+# library(jmv)
+# library(dplyr)
+# dat <- as.data.frame(HairEyeColor) \%>\%
+# dplyr::filter(.data = ., Sex == "Male")
+# subtitle_contigency_tab(dat, "Hair", "Sex")
 }
 \author{
 Indrajeet Patil

@@ -104,23 +104,23 @@ grouped_proptest <- function(data,
       .data = .,
       results = chi_sq %>%
         purrr::map(
-        .x = .,
-        .f = ~
-        base::cbind.data.frame(
-          "Chi-squared" = as.numeric(as.character(
-            ggstatsplot::specify_decimal_p(x = .$statistic, k = 3)
-          )),
-          "df" = as.numeric(as.character(
-            ggstatsplot::specify_decimal_p(x = .$parameter, k = 0)
-          )),
-          "p-value" = as.numeric(as.character(
-            ggstatsplot::specify_decimal_p(
-              x = .$p.value,
-              k = 3
-            )
-          ))
+          .x = .,
+          .f = ~
+          base::cbind.data.frame(
+            "Chi-squared" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(x = .$statistic, k = 3)
+            )),
+            "df" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(x = .$parameter, k = 0)
+            )),
+            "p-value" = as.numeric(as.character(
+              ggstatsplot::specify_decimal_p(
+                x = .$p.value,
+                k = 3
+              )
+            ))
+          )
         )
-      )
     ) %>%
     dplyr::select(.data = ., -data, -chi_sq) %>%
     tidyr::unnest(data = .) %>%
@@ -182,10 +182,10 @@ grouped_proptest <- function(data,
 #' @family helper_stats
 #'
 #' @examples
-#'
+#' 
 #' # vector as input
 #' signif_column(p = c(0.05, 0.1, 1, 0.00001, 0.001, 0.01))
-#'
+#' 
 #' # dataframe as input
 #' # preparing a newdataframe
 #' df <- tibble(
@@ -193,7 +193,7 @@ grouped_proptest <- function(data,
 #'   y = 1,
 #'   p.value = c(0.1, 0.5, 0.00001, 0.05, 0.01)
 #' )
-#'
+#' 
 #' signif_column(data = df, p = p.value)
 #' @export
 #'
@@ -321,7 +321,7 @@ check_outlier <- function(var, coef = 1.5) {
 #' @family helper_stats
 #'
 #' @examples
-#'
+#' 
 #' # have a look at the Titanic_full dataset first
 #' Titanic_full <- untable(data = as.data.frame(Titanic), counts = Freq)
 #' dplyr::glimpse(Titanic_full)
