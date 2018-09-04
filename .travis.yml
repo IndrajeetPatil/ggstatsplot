@@ -32,13 +32,13 @@ r_binary_packages:
  - covr
 
 
-addons:
-  apt:
-    packages:
-    - libcurl4-openssl-dev
-    - libxml2-dev
-    - libgsl0-dev
-    - libgit2
+#addons:
+#  apt:
+#    packages:
+#    - libcurl4-openssl-dev
+#    - libxml2-dev
+#    - libgsl0-dev
+#    - libgit2
 
 repos:
   CRAN: https://cloud.r-project.org
