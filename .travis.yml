@@ -38,6 +38,9 @@ addons:
     - libcurl4-openssl-dev
     - libxml2-dev
     - libgsl0-dev
+    - libgit2-dev   # (package on e.g. Debian and Ubuntu)
+    - libgit2-devel # (package on e.g. Fedora, CentOS and RHEL)
+    - libgit2
 
 repos:
   CRAN: https://cloud.r-project.org

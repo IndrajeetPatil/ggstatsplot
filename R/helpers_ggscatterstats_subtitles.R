@@ -21,7 +21,7 @@
 #' @importFrom rlang enquo
 #' @importFrom stats cor.test
 #'
-#' @keywords internal
+#' @export
 #'
 
 subtitle_ggscatterstats <-

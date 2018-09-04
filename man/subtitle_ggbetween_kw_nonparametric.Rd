@@ -27,4 +27,3 @@ Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

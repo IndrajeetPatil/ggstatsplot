@@ -53,13 +53,27 @@ within-subjects design)
 }
 \examples{
 
-# library(jmv)
-# library(dplyr)
-# dat <- as.data.frame(HairEyeColor) \%>\%
-# dplyr::filter(.data = ., Sex == "Male")
-# subtitle_contigency_tab(dat, "Hair", "Sex")
+# without counts data
+subtitle_contigency_tab(
+  data = mtcars,
+  main = am,
+  condition = cyl
+)
+
+# with counts data
+# in case of no variation, NaN will be shown for results
+library(jmv)
+
+dat <- as.data.frame(HairEyeColor) \%>\%
+  dplyr::filter(.data = ., Sex == "Male")
+
+subtitle_contigency_tab(
+  data = dat,
+  main = Hair,
+  condition = Sex,
+  counts = Freq
+)
 }
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

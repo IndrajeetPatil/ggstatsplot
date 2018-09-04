@@ -252,7 +252,7 @@ plot_list1 <- purrr::pmap(
       ggplot2::theme_light(),
       ggplot2::theme_minimal()
     ),
-    messages = FALSE
+    messages = TRUE
   ),
   .f = ggstatsplot::ggscatterstats
 )

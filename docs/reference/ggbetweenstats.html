@@ -418,10 +418,14 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 
 <span class='co'># simple function call with the defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html'>ggbetweenstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>
-)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for Sepal.Length : p-value =  0.010</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor Species : p-value =  &lt; 0.001</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Fuel efficiency by type of car transmission"</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Transmission (0 = automatic, 1 = manual)"</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; Warning: You are simultaneously setting `bf.message = TRUE` and using a `caption`. 
+#&gt; This produces a fixed plot whose *internal* elements can no longer be modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Shapiro-Wilk Normality Test for mpg : p-value =  0.123</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note:  Bartlett's test for homogeneity of variances for factor am : p-value =  0.072</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># more detailed function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html'>ggbetweenstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/morley'>morley</a></span>,

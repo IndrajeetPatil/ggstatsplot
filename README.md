@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--03-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--04-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -35,7 +35,6 @@ Pull-Requests](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pull
 Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
 
 <!--
-[![Open issues](http://img.shields.io/github/issues/badges/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues/)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
 -->
 
@@ -224,7 +223,7 @@ ggstatsplot::theme_mprl
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002af34908>
+#> <bytecode: 0x000000002af57e08>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -254,8 +253,9 @@ Here are examples of the main functions currently supported in
 
 **Note**: The documentation below is for the **development** version of
 the package. So you may see some features available here that are not
-currently present in the stable version of this package on **CRAN**:
-<https://cran.r-project.org/web/packages/ggstatsplot/index.html>
+currently present in the stable version of this package on **CRAN**. For
+documentation relevant for the CRAN version, see the vignettes on the
+site: <https://cran.r-project.org/web/packages/ggstatsplot/vignettes/>
 
 ## `ggbetweenstats`
 

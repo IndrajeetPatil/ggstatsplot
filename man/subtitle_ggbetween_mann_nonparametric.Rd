@@ -28,4 +28,3 @@ Making text subtitle for the Mann-Whitney U-test
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

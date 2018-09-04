@@ -25,4 +25,3 @@ Making text subtitle for the between-subject bayesian t-test.
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

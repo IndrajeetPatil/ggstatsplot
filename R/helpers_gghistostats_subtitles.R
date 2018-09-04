@@ -25,9 +25,8 @@
 #' @inheritParams specify_decimal_p
 #'
 #' @examples
-#'
+#' 
 #' subtitle_onesample(x = iris$Sepal.Length, type = "r")
-#'
 #' @export
 #'
 
@@ -63,7 +62,7 @@ subtitle_onesample <- function(data = NULL,
 
   # ========================================== stats ==================================================================
 
-    # common test
+  # common test
   jmv_results <- jmv::ttestOneS(
     data = data,
     vars = "x",
@@ -153,8 +152,7 @@ subtitle_onesample <- function(data = NULL,
     )
 
     # ========================================== robust ===============================================
-
-    } else if (type == "robust" || type == "r") {
+  } else if (type == "robust" || type == "r") {
 
     # running one-sample percentile bootstrap
     rob_os <- WRS2::onesampb(
@@ -263,5 +261,4 @@ subtitle_onesample <- function(data = NULL,
 
   # return the subtitle
   return(subtitle)
-
 }

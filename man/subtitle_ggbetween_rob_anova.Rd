@@ -37,4 +37,3 @@ Making text subtitle for the robust ANOVA
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

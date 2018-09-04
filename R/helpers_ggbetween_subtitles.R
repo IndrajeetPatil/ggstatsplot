@@ -62,7 +62,7 @@ bf_message_ttest <- function(jmv_results,
 #' @importFrom rlang enquo
 #' @importFrom stats lm
 #'
-#' @keywords internal
+#' @export
 #'
 
 subtitle_ggbetween_anova_parametric <-
@@ -255,7 +255,7 @@ subtitle_ggbetween_anova_parametric <-
 #' @importFrom stats t.test
 #' @importFrom effsize cohen.d
 #'
-#' @keywords internal
+#' @export
 #'
 
 subtitle_ggbetween_t_parametric <-
@@ -416,7 +416,7 @@ subtitle_ggbetween_t_parametric <-
 #' @importFrom stats wilcox.test
 #' @importFrom coin wilcox_test
 #'
-#' @keywords internal
+#' @export
 #'
 
 subtitle_ggbetween_mann_nonparametric <-
@@ -520,7 +520,7 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @importFrom WRS2 yuen
 #' @importFrom WRS2 yuen.effect.ci
 #'
-#' @keywords internal
+#' @export
 #'
 
 subtitle_ggbetween_t_rob <-
@@ -629,7 +629,7 @@ subtitle_ggbetween_t_rob <-
 #'
 #' @importFrom jmv ttestIS
 #'
-#' @keywords internal
+#' @export
 #'
 subtitle_ggbetween_t_bayes <- function(data,
                                        x,
@@ -716,7 +716,7 @@ subtitle_ggbetween_t_bayes <- function(data,
 #' @importFrom rlang enquo
 #' @importFrom stats kruskal.test
 #'
-#' @keywords internal
+#' @export
 #'
 
 subtitle_ggbetween_kw_nonparametric <-
@@ -806,7 +806,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #'
-#' @keywords internal
+#' @export
 #'
 
 subtitle_ggbetween_rob_anova <-

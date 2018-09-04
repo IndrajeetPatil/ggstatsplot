@@ -44,4 +44,3 @@ Making text subtitle for the t-test (between-/within-subjects designs).
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

@@ -183,12 +183,30 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># with counts</span>
+<span class='fu'>library</span>(<span class='no'>jmv</span>)
+
+<span class='fu'>subtitle_onesample_proptest</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>HairEyeColor</span>),
+  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
+  <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
+)</div><div class='output co'>#&gt; paste(italic(chi)^2, "(", 3, ") = ", "133.473", ", ", italic("p"), 
+#&gt;     " = ", "&lt; 0.001", ", ", italic("n"), " = ", 592L)</div><div class='input'>
+<span class='co'># in case no variation, only sample size will be shown</span>
+<span class='fu'>subtitle_onesample_proptest</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>cbind.data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='st'>"a"</span>, <span class='fl'>10</span>)),
+  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>x</span>
+)</div><div class='output co'>#&gt; Warning:  Proportion test will not be run because it requires x to have at least 2 levels with non-zero frequencies.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("n"), " = ", 10L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     

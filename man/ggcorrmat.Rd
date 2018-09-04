@@ -136,14 +136,17 @@ Visualization of a correlalogram (or correlation matrix)
 \examples{
 
 # to get the correlalogram
+# note that the function will run even if the vector with variable names is
+# not of same length as the number of variables
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  cor.vars = c(Sepal.Length:Petal.Width)
+  data = iris,
+  cor.vars = c(Sepal.Length:Petal.Width),
+  cor.vars.names = c("Sepal.Length", "Petal.Width")
 )
 
 # to get the correlation matrix
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,
+  data = iris,
   cor.vars = c(Sepal.Length:Petal.Width),
   output = "correlations"
 )

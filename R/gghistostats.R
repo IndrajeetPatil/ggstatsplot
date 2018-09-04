@@ -81,7 +81,7 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#'
+#' 
 #' # most basic function call with the defaults
 #' # this is the only function where data argument can be `NULL`.
 #' ggstatsplot::gghistostats(
@@ -89,7 +89,7 @@
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
-#'
+#' 
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
@@ -221,15 +221,16 @@ gghistostats <-
       }
 
       # preparing the subtitle with statistical results
-      subtitle <- subtitle_onesample(data = data,
-                                     x = x,
-                                     type = type,
-                                     test.value = test.value,
-                                     bf.prior = bf.prior,
-                                     robust.estimator = robust.estimator,
-                                     nboot = nboot,
-                                     k = k)
-
+      subtitle <- subtitle_onesample(
+        data = data,
+        x = x,
+        type = type,
+        test.value = test.value,
+        bf.prior = bf.prior,
+        robust.estimator = robust.estimator,
+        nboot = nboot,
+        k = k
+      )
     }
     # ========================================== plot ===================================================================
 

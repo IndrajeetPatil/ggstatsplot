@@ -37,4 +37,3 @@ Making text subtitle for the robust t-test
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

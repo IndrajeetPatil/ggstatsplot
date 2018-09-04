@@ -1,6 +1,10 @@
 # ggstatsplot 0.0.5.9000
 
 MAJOR CHANGES
+  - The package now exports all functions used to create text expressions with
+  results. This makes it easy for people to use these results in their own plots
+  at any location they want (and not just in `subtitle`, the current default for
+  `ggstatsplot`).
   - `ggscatterstats` gains `label.var` and `label.expression` arguments to
   attach labels to points.
   - `gghistostats` now defaults to not showing (redundant) color gradient

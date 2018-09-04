@@ -150,9 +150,12 @@
 #' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
-#'   data = datasets::iris,
-#'   x = Species,
-#'   y = Sepal.Length
+#'   data = mtcars,
+#'   x = am,
+#'   y = mpg,
+#'   title = "Fuel efficiency by type of car transmission",
+#'   caption = "Transmission (0 = automatic, 1 = manual)",
+#'   bf.message = TRUE
 #' )
 #' 
 #' # more detailed function call

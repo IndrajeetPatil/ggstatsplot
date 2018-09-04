@@ -27,13 +27,28 @@
 #' @importFrom tibble tribble
 #'
 #' @examples
-#'
-#' # library(jmv)
-#' # library(dplyr)
-#' # dat <- as.data.frame(HairEyeColor) %>%
-#' # dplyr::filter(.data = ., Sex == "Male")
-#' # subtitle_contigency_tab(dat, "Hair", "Sex")
-#' @keywords internal
+#' 
+#' # without counts data
+#' subtitle_contigency_tab(
+#'   data = mtcars,
+#'   main = am,
+#'   condition = cyl
+#' )
+#' 
+#' # with counts data
+#' # in case of no variation, NaN will be shown for results
+#' library(jmv)
+#' 
+#' dat <- as.data.frame(HairEyeColor) %>%
+#'   dplyr::filter(.data = ., Sex == "Male")
+#' 
+#' subtitle_contigency_tab(
+#'   data = dat,
+#'   main = Hair,
+#'   condition = Sex,
+#'   counts = Freq
+#' )
+#' @export
 #'
 
 subtitle_contigency_tab <- function(data,
@@ -93,13 +108,14 @@ subtitle_contigency_tab <- function(data,
     # preparing Cramer's V object depending on whether V is NaN or not
     # it will be NaN in cases where there are no values of one categorial variable for level of another categorial variable
     if (is.nan(as.data.frame(jmv_chi$nom)[[4]])) {
-      # NaN list in case Cramer's V is also NaN
-      # cramer_ci <- c(NaN, NaN, NaN)
+
+      # in case Cramer's V is aNaN
       cramer_ci <- tibble::tribble(
         ~estimate, ~conf.low, ~conf.high,
         NaN, NaN, NaN
       )
     } else {
+
       # results for confidence interval of Cramer's V
       cramer_ci <- chisq_v_ci(
         data = data,
@@ -121,7 +137,6 @@ subtitle_contigency_tab <- function(data,
           )
         ))
       }
-
     }
 
     # preparing the subtitle
@@ -237,7 +252,23 @@ subtitle_contigency_tab <- function(data,
 #' @inheritParams specify_decimal_p
 #' @inheritParams subtitle_contigency_tab
 #'
-#' @keywords internal
+#' @examples
+#' 
+#' # with counts
+#' library(jmv)
+#' 
+#' subtitle_onesample_proptest(
+#'   data = as.data.frame(HairEyeColor),
+#'   main = Eye,
+#'   counts = Freq
+#' )
+#' 
+#' # in case no variation, only sample size will be shown
+#' subtitle_onesample_proptest(
+#'   data = cbind.data.frame(x = rep("a", 10)),
+#'   main = x
+#' )
+#' @export
 #'
 
 # defining the function

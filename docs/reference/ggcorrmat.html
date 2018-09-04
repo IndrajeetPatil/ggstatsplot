@@ -348,13 +348,16 @@ of p-values.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># to get the correlalogram</span>
+<span class='co'># note that the function will run even if the vector with variable names is</span>
+<span class='co'># not of same length as the number of variables</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>)
-)</div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>),
+  <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Sepal.Length"</span>, <span class='st'>"Petal.Width"</span>)
+)</div><div class='output co'>#&gt; Warning:  The number of variable names does not equal the number of variables.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlation matrix</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>),
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
 )</div><div class='output co'>#&gt; # A tibble: 4 x 5

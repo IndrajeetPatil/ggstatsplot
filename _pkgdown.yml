@@ -35,6 +35,16 @@ reference:
     desc: Functions used to create statistical subtitles that can be used outside of `ggstatsplot` package.
     contents:
       - subtitle_onesample
+      - subtitle_ggbetween_t_parametric
+      - subtitle_ggbetween_anova_parametric
+      - subtitle_ggbetween_mann_nonparametric
+      - subtitle_ggbetween_t_rob
+      - subtitle_ggbetween_t_bayes
+      - subtitle_ggbetween_kw_nonparametric
+      - subtitle_ggbetween_rob_anova
+      - subtitle_contigency_tab
+      - subtitle_onesample_proptest
+      - subtitle_ggscatterstats
 
   - title: Helper functions (statistics)
     desc:  Some useful functions used internally for carrying out smaller statistical operations.

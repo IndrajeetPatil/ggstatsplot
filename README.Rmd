@@ -34,7 +34,6 @@ knitr::opts_chunk$set(
 [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
 
 <!--
-[![Open issues](http://img.shields.io/github/issues/badges/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues/)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
 -->
 
@@ -178,10 +177,11 @@ function call.
 
 Here are examples of the main functions currently supported in `ggstatsplot`.
 
-**Note**: The documentation below is for the **development** version of the package.
-So you may see some features available here that are not currently present in the
-stable version of this package on **CRAN**:
-<https://cran.r-project.org/web/packages/ggstatsplot/index.html>
+**Note**: The documentation below is for the **development** version of the
+package. So you may see some features available here that are not currently
+present in the stable version of this package on **CRAN**. For documentation
+relevant for the CRAN version, see the vignettes on the site:
+<https://cran.r-project.org/web/packages/ggstatsplot/vignettes/>
 
 ## `ggbetweenstats`
 

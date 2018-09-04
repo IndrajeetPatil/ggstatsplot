@@ -46,4 +46,3 @@ Making text subtitle for the correlation test.
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

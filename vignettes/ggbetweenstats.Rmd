@@ -368,7 +368,7 @@ plot_list <- purrr::pmap(
     ),
     ggstatsplot.layer = list(FALSE, FALSE, FALSE, FALSE, TRUE, FALSE),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE),
-    messages = FALSE
+    messages = TRUE
   ),
   .f = ggstatsplot::ggbetweenstats
 )

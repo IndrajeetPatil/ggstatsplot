@@ -42,4 +42,3 @@ Making text subtitle for the between-subject anova designs.
 \author{
 Indrajeet Patil
 }
-\keyword{internal}
