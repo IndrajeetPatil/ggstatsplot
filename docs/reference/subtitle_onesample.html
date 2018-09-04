@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Creating a new character type column with significance labels — signif_column • ggstatsplot</title>
+<title>Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents. — subtitle_onesample • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +31,11 @@
 
 
 
-<meta property="og:title" content="Creating a new character type column with significance labels — signif_column" />
+<meta property="og:title" content="Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents. — subtitle_onesample" />
 
-<meta property="og:description" content="This function will add a new column to a dataframe containing
-p-values" />
+<meta property="og:description" content="Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -132,94 +134,86 @@ p-values" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Creating a new character type column with significance labels</h1>
+    <h1>Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents.</h1>
     
-    <div class="hidden name"><code>signif_column.Rd</code></div>
+    <div class="hidden name"><code>subtitle_onesample.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function will add a new column to a dataframe containing
-<em>p</em>-values</p>
+    <p>Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>signif_column</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>p</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_onesample</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Data frame from which variables specified are preferentially to
-be taken.</p></td>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken. This argument is optional.</p></td>
     </tr>
     <tr>
-      <th>p</th>
-      <td><p>The column containing p-values.</p></td>
+      <th>x</th>
+      <td><p>A numeric variable.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"robust"</code> or <code>"bayes"</code>). Abbreviations accepted are <code>"p"</code> or <code>"np"</code> or
+<code>"r"</code> or <code>"bf"</code>, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>test.value</th>
+      <td><p>A number specifying the value of the null hypothesis
+(Default: <code>0</code>).</p></td>
+    </tr>
+    <tr>
+      <th>bf.prior</th>
+      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
+to use in calculating Bayes factors.</p></td>
+    </tr>
+    <tr>
+      <th>robust.estimator</th>
+      <td><p>If <code>test = "robust"</code> robust estimator to be used
+(<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
+<code><a href='http://www.rdocumentation.org/packages/WRS2/topics/onesampb'>?WRS2::onesampb</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for robust one-sample location test
+(Default: <code>100</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Returns the originally entered object (either a vector or a
-dataframe) in tibble format with an additional column corresponding to
-statistical significance.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other helper_stats: <code><a href='check_outlier.html'>check_outlier</a></code>,
-  <code><a href='grouped_proptest.html'>grouped_proptest</a></code>, <code><a href='untable.html'>untable</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># vector as input</span>
-<span class='fu'>signif_column</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='fl'>1</span>, <span class='fl'>0.00001</span>, <span class='fl'>0.001</span>, <span class='fl'>0.01</span>))</div><div class='output co'>#&gt; # A tibble: 6 x 2
-#&gt;         p significance
-#&gt;     &lt;dbl&gt; &lt;chr&gt;       
-#&gt; 1 0.05    ns          
-#&gt; 2 0.1     ns          
-#&gt; 3 1       ns          
-#&gt; 4 0.00001 ***         
-#&gt; 5 0.001   **          
-#&gt; 6 0.01    *           </div><div class='input'>
-<span class='co'># dataframe as input</span>
-<span class='co'># preparing a newdataframe</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tibble.html'>tibble</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>p.value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>, <span class='fl'>0.00001</span>, <span class='fl'>0.05</span>, <span class='fl'>0.01</span>)
-)
-
-<span class='fu'>signif_column</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='no'>p.value</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 4
-#&gt;       x     y p.value significance
-#&gt;   &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
-#&gt; 1     1     1 0.1     ns          
-#&gt; 2     2     1 0.5     ns          
-#&gt; 3     3     1 0.00001 ***         
-#&gt; 4     4     1 0.05    ns          
-#&gt; 5     5     1 0.01    *           </div><div class='input'>
-<span class='co'># numbers entered as characters are also tolerated</span>
-<span class='fu'>signif_column</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"0.1"</span>, <span class='st'>"0.0002"</span>, <span class='st'>"0.03"</span>, <span class='st'>"0.65"</span>))</div><div class='output co'>#&gt; Note: The entered vector is of class factor ; attempting to convert it to numeric.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 5 x 2
-#&gt;        p significance
-#&gt;    &lt;dbl&gt; &lt;chr&gt;       
-#&gt; 1 1      ns          
-#&gt; 2 0.1    ns          
-#&gt; 3 0.0002 ***         
-#&gt; 4 0.03   *           
-#&gt; 5 0.65   ns          </div><div class='input'>
+<span class='fu'>subtitle_onesample</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note: 95% CI for robsut location measure median, Huber Psi computed with  100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste("M"[robust], " = ", "5.820", ", 95% CI [", "5.693", ", ", 
+#&gt;     "5.988", "], ", italic("p"), " = ", "&lt; 0.001", ", ", italic("n"), 
+#&gt;     " = ", 150L)</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

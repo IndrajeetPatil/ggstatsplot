@@ -25,7 +25,6 @@ r_binary_packages:
  - scico
  - viridisLite
  - paletteer
- - pkgs
  - git2r
  - rlang
  - testthat

@@ -50,21 +50,23 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
-#'   main = am,
+#'   main = vs,
 #'   condition = cyl,
-#'   nboot = 10
+#'   nboot = 10,
+#'   factor.levels = c("0 = V-shaped", "1 = straight"),
+#'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -185,7 +187,7 @@ ggpiestats <-
       dplyr::mutate_at(
         .tbl = .,
         .vars = "main",
-        .funs = ~base::droplevels(x = base::as.factor(x = .))
+        .funs = ~base::as.factor(x = .)
       )
 
     # condition
@@ -203,6 +205,9 @@ ggpiestats <-
       df <-
         data %>%
         dplyr::group_by(.data = ., main) %>%
+        # this makes sure that even if there is not single instance for one of
+        # the factor levels, there will still be 0 corresponding to that value
+        tidyr::complete(data = ., main) %>%
         dplyr::summarize(.data = ., counts = n()) %>%
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
         dplyr::ungroup(x = .) %>%

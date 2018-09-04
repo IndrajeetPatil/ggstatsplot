@@ -27,7 +27,7 @@
 #' @importFrom tibble tribble
 #'
 #' @examples
-#' 
+#'
 #' # library(jmv)
 #' # library(dplyr)
 #' # dat <- as.data.frame(HairEyeColor) %>%
@@ -121,6 +121,7 @@ subtitle_contigency_tab <- function(data,
           )
         ))
       }
+
     }
 
     # preparing the subtitle

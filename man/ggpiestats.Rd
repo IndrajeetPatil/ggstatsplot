@@ -92,9 +92,11 @@ set.seed(123)
 # simple function call with the defaults (with condition)
 ggstatsplot::ggpiestats(
   data = datasets::mtcars,
-  main = am,
+  main = vs,
   condition = cyl,
-  nboot = 10
+  nboot = 10,
+  factor.levels = c("0 = V-shaped", "1 = straight"),
+  legend.title = "Engine"
 )
 
 # simple function call with the defaults (without condition; with count data)

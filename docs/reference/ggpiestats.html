@@ -281,9 +281,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='co'># simple function call with the defaults (with condition)</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/mtcars'>mtcars</a></span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>vs</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"0 = V-shaped"</span>, <span class='st'>"1 = straight"</span>),
+  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
 )</div><div class='output co'>#&gt; Note: 95% CI for Cramer's V was computed with  10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># simple function call with the defaults (without condition; with count data)</span>
 <span class='fu'>library</span>(<span class='no'>jmv</span>)</div><div class='output co'>#&gt; <span class='message'></span>

@@ -57,7 +57,8 @@ from one sample test to be displayed.}
 or \code{"robust"} or \code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or
 \code{"r"} or \code{"bf"}, respectively.}
 
-\item{test.value}{A number specifying the value of the null hypothesis.}
+\item{test.value}{A number specifying the value of the null hypothesis
+(Default: \code{0}).}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
@@ -70,9 +71,10 @@ This will work only if \code{results.subtitle = TRUE}.}
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
 
-\item{nboot}{Number of bootstrap samples for robust one-sample location test.}
+\item{nboot}{Number of bootstrap samples for robust one-sample location test
+(Default: \code{100}).}
 
-\item{k}{Number of decimal places expected for results.}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

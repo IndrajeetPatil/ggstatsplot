@@ -6,9 +6,6 @@
 #'   in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken. This argument is optional.
-#' @param x A numeric variable.
 #' @param bar.measure Character describing what value needs to be represented as
 #'   height in the bar chart. This can either be `"count"`, which shows number
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
@@ -20,10 +17,6 @@
 #' @param subtitle The text for the plot subtitle *if* you don't want results
 #'   from one sample test to be displayed.
 #' @param caption The text for the plot caption.
-#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
-#'   or `"robust"` or `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or
-#'   `"r"` or `"bf"`, respectively.
-#' @param test.value A number specifying the value of the null hypothesis.
 #' @param test.value.size Decides size for the vertical line for test value
 #'   (Default: `1.2`).
 #' @param test.value.linetype Decides linetype for the vertical line for test
@@ -33,11 +26,6 @@
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
 #'   of *null* hypothesis **for parametric test** (Default: `bf.message = FALSE`).
 #'   This will work only if `results.subtitle = TRUE`.
-#' @param robust.estimator If `test = "robust"` robust estimator to be used
-#'   (`"onestep"` (Default), `"mom"`, or `"median"`). For more, see
-#'   `?WRS2::onesampb`.
-#' @param nboot Number of bootstrap samples for robust one-sample location test.
-#' @param k Number of decimal places expected for results.
 #' @param fill.gradient Logical decides whether color fill gradient is to be
 #'   displayed (Default: `FALSE`). If `FALSE`, the legend and the color gradient
 #'   will also be removed. The default is set to `FALSE` because the gradient
@@ -71,9 +59,8 @@
 #'   bins that cover the range of the data. You should always override this
 #'   value, exploring multiple widths to find the best to illustrate the stories
 #'   in your data.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
 #' @inheritParams theme_ggstatsplot
+#' @inheritParams subtitle_onesample
 #'
 #' @import ggplot2
 #'
@@ -94,15 +81,15 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' # this is the only function where data argument can be `NULL`.
 #' ggstatsplot::gghistostats(
-#'   x = datasets::ToothGrowth$len,
+#'   x = ToothGrowth$len,
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
@@ -141,7 +128,7 @@ gghistostats <-
              bf.prior = 0.707,
              bf.message = FALSE,
              robust.estimator = "onestep",
-             nboot = 500,
+             nboot = 100,
              k = 3,
              ggtheme = ggplot2::theme_bw(),
              ggstatsplot.layer = TRUE,
@@ -232,159 +219,17 @@ gghistostats <-
             bf.prior = bf.prior
           )
       }
-      # ========================================== parametric ==================================================================
-      if (type == "parametric" || type == "p") {
-        # preparing the subtitle
-        subtitle <- base::substitute(
-          expr =
-            paste(
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("d"),
-              " = ",
-              effsize,
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
-            # df is integer value for Student's t-test
-            df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = as.data.frame(jmv_results$ttest)$`p[stud]`,
-              k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
-            n = nrow(x = data)
-          )
-        )
 
+      # preparing the subtitle with statistical results
+      subtitle <- subtitle_onesample(data = data,
+                                     x = x,
+                                     type = type,
+                                     test.value = test.value,
+                                     bf.prior = bf.prior,
+                                     robust.estimator = robust.estimator,
+                                     nboot = nboot,
+                                     k = k)
 
-        # ========================================== non-parametric =====================================================
-      } else if (type == "nonparametric" || type == "np") {
-        # preparing the subtitle
-        subtitle <- base::substitute(
-          expr =
-            paste(
-              italic("U"),
-              " = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("d"),
-              " = ",
-              effsize,
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = as.data.frame(jmv_results$ttest)$`stat[wilc]`,
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = as.data.frame(jmv_results$ttest)$`p[wilc]`,
-              k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[wilc]`, k),
-            n = nrow(x = data)
-          )
-        )
-        # ========================================== robust ==================================================================
-      } else if (type == "robust" || type == "r") {
-
-        # running one-sample percentile bootstrap
-        rob_os <- WRS2::onesampb(
-          x = data$x,
-          est = robust.estimator,
-          nboot = nboot,
-          nv = test.value
-        )
-
-        # preparing the subtitle
-        subtitle <- base::substitute(
-          expr =
-            paste(
-              "M"[robust],
-              " = ",
-              estimate,
-              ", 95% CI [",
-              LL,
-              ", ",
-              UL,
-              "], ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = rob_os$estimate[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = rob_os$ci[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = rob_os$ci[[2]], k),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = rob_os$p.value[[1]],
-              k,
-              p.value = TRUE
-            ),
-            n = rob_os$n[[1]]
-          )
-        )
-        # ========================================== bayes ==================================================================
-      } else if (type == "bayes" || type == "bf") {
-        # preparing the subtitle
-        subtitle <- base::substitute(
-          expr =
-            paste(
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", log"["e"],
-              "(BF"["10"],
-              ") = ",
-              bf,
-              ", log"["e"],
-              "(error) = ",
-              bf_error,
-              "% , ",
-              italic("d"),
-              " = ",
-              effsize,
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            # df is integer value for Student's t-test
-            df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
-            bf = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`stat[bf]`, base = exp(1)), k = 1),
-            bf_error = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`err[bf]`, base = exp(1)), k = 1),
-            effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
-            n = nrow(x = data)
-          )
-        )
-      }
     }
     # ========================================== plot ===================================================================
 

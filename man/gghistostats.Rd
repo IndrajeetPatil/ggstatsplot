@@ -7,7 +7,7 @@
 gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
   xlab = NULL, title = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = FALSE, robust.estimator = "onestep", nboot = 500,
+  bf.message = FALSE, robust.estimator = "onestep", nboot = 100,
   k = 3, ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   fill.gradient = FALSE, low.color = "#0072B2",
   high.color = "#D55E00", bar.fill = "grey50",
@@ -51,7 +51,8 @@ from one sample test to be displayed.}
 or \code{"robust"} or \code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or
 \code{"r"} or \code{"bf"}, respectively.}
 
-\item{test.value}{A number specifying the value of the null hypothesis.}
+\item{test.value}{A number specifying the value of the null hypothesis
+(Default: \code{0}).}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
@@ -64,9 +65,10 @@ This will work only if \code{results.subtitle = TRUE}.}
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
 
-\item{nboot}{Number of bootstrap samples for robust one-sample location test.}
+\item{nboot}{Number of bootstrap samples for robust one-sample location test
+(Default: \code{100}).}
 
-\item{k}{Number of decimal places expected for results.}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -135,7 +137,7 @@ in the plot as a subtitle.
 # most basic function call with the defaults
 # this is the only function where data argument can be `NULL`.
 ggstatsplot::gghistostats(
-  x = datasets::ToothGrowth$len,
+  x = ToothGrowth$len,
   xlab = "Tooth length",
   centrality.para = "median"
 )
