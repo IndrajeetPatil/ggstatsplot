@@ -25,7 +25,7 @@ r_binary_packages:
  - scico
  - viridisLite
  - paletteer
- - git2r
+ #- git2r
  - rlang
  - testthat
  - ggplot2
@@ -40,9 +40,9 @@ r_binary_packages:
 #    - libgsl0-dev
 #    - libgit2
 
-repos:
-  CRAN: https://cloud.r-project.org
-  ropensci: http://packages.ropensci.org
+#repos:
+#  CRAN: https://cloud.r-project.org
+#  ropensci: http://packages.ropensci.org
 
 notifications:
   email:
