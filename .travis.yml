@@ -1,48 +1,76 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
-sudo: false
 cache: packages
 latex: false
 fortran: true
 warnings_are_errors: true
-
-os:
-  - linux
-  - osx
 
 r:
   - oldrel
   - release
   - devel
 
-r_binary_packages:
- - ggthemes
- - jcolors
- - oompaBase
- - palr
- - pals
- - scico
- - viridisLite
- - paletteer
- #- git2r
- - rlang
- - testthat
- - ggplot2
- - covr
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+
+      r_binary_packages:
+        - stringi
+        - magrittr
+        - curl
+        - jsonlite
+        - Rcpp
+        - bindrcpp
+        - RcppEigen
+        - openssl
+        - oompaBase
+        - rlang
+        - utf8
+        - gss
+        - haven
+        - data.table
+        - dplyr
+        - purrr
+        - tidyr
+        - readr
+        - minqa
+        - mvtnorm
+        - nloptr
+        - SparseM
+        - lme4
+        - httpuv
+        - markdown
+        - sem
+        - readxl
+        - openxlsx
+        - pander
+
+    - os: osx
+      osx_image: xcode9.3beta
+    - os: osx
+      osx_image: xcode9.2
+      before_install:
+        - brew install curl
+        - brew link --force curl
+#    - os: osx
+#      osx_image: xcode7.3
+#      r_build_args: '--no-build-vignettes'
+#      r_check_args: '--ignore-vignettes --no-examples'
 
 
-#addons:
-#  apt:
-#    packages:
-#    - libcurl4-openssl-dev
-#    - libxml2-dev
-#    - libgsl0-dev
-#    - libgit2
+addons:
+  apt:
+    packages:
+    - libcurl4-openssl-dev
+    - libxml2-dev
+    - libgsl0-dev
 
-#repos:
-#  CRAN: https://cloud.r-project.org
-#  ropensci: http://packages.ropensci.org
+repos:
+  CRAN: https://cloud.r-project.org
+  ropensci: http://packages.ropensci.org
 
 notifications:
   email:

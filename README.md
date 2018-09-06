@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--04-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--06-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -181,7 +181,7 @@ In case you want to look at the function body for any of the functions,
 just type the name of the function without the paranetheses:
 
 ``` r
-ggstatsplot::theme_mprl
+ggstatsplot::theme_ggstatsplot
 #> function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
 #>   if (isTRUE(ggstatsplot.layer)) {
 #>     ggtheme +
@@ -223,7 +223,7 @@ ggstatsplot::theme_mprl
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002af57e08>
+#> <bytecode: 0x000000002a730b48>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -364,8 +364,9 @@ ggplot2::labs(subtitle = NULL)`.
 ## `ggscatterstats`
 
 This function creates a scatterplot with marginal
-histograms/boxplots/density/violin/densigram plots from  and results
-from statistical tests in the subtitle:
+histograms/boxplots/density/violin/densigram plots from
+`ggExtra::ggMarginal` and results from statistical tests in the
+subtitle:
 
 ``` r
 ggstatsplot::ggscatterstats(

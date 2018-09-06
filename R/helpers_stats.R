@@ -182,10 +182,10 @@ grouped_proptest <- function(data,
 #' @family helper_stats
 #'
 #' @examples
-#' 
+#'
 #' # vector as input
 #' signif_column(p = c(0.05, 0.1, 1, 0.00001, 0.001, 0.01))
-#' 
+#'
 #' # dataframe as input
 #' # preparing a newdataframe
 #' df <- tibble(
@@ -193,9 +193,9 @@ grouped_proptest <- function(data,
 #'   y = 1,
 #'   p.value = c(0.1, 0.5, 0.00001, 0.05, 0.01)
 #' )
-#' 
+#'
 #' signif_column(data = df, p = p.value)
-#' 
+#'
 #' # numbers entered as characters are also tolerated
 #' signif_column(p = c("1", "0.1", "0.0002", "0.03", "0.65"))
 #' @export
@@ -336,7 +336,7 @@ check_outlier <- function(var, coef = 1.5) {
 #' @family helper_stats
 #'
 #' @examples
-#' 
+#'
 #' # have a look at the Titanic_full dataset first
 #' Titanic_full <- untable(data = as.data.frame(Titanic), counts = Freq)
 #' dplyr::glimpse(Titanic_full)
@@ -373,3 +373,14 @@ untable <- function(data, counts) {
   # returned the expanded dataset
   return(data)
 }
+
+
+#
+# @examples
+# a <- NULL
+# b <- "y"
+#
+# purrr::`%||%`(a,b)
+#
+
+

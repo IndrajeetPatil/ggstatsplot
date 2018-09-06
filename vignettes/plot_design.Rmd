@@ -175,16 +175,62 @@ Tufte, 2001):
   * The number of information-carrying dimensions never exceed the number of
   dimensions in the data (e.g., using area to show one-dimensional data).
 
-* All plots are designed to have no **chartjunk** (like moiré vibrations, fake
-perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
-
-
+  * All plots are designed to have no **chartjunk** (like moiré vibrations, fake
+  perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
 
 # Statistical details
 
+
+## Types of tests supported in each function
+
+Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
+------- | ------------------ | ---- | ----- | ----| ----- 
+`ggbetweenstats` | Between group/condition comparisons | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
+`gghistostats` | Distribution of a variable | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
+`ggcorrmat` | Correlation matrix | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
+`ggscatterstats` | Correlation between two variables | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
+`ggpiestats` | Association between two categorical variables | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font>
+`ggcoefstats` | Regression model coefficients | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>| <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
+
 ## Statistical variation
 
+One of the important functions of a plot is to show the variation in the data,
+which comes in two forms:
 
+* *Measurement noise*: In `ggstatsplot`, the actual variation in measurements is
+shown by plotting a combination of (jittered) raw data points with a boxplot
+laid on top (Figure-1) or a histogram (Figure-4). None of the plots, where
+empirical distribution of the data is concerned, show the sample standard
+deviation because they are poor at conveying information about limits of the
+sample and presence of outliers (Cleveland, 1985, p.220).
+
+```{r example4, fig.height = 6, fig.width = 8, fig.cap = "**Figure-4**. Distribution of a variable shown using `gghistostats`."}
+ggstatsplot::gghistostats(
+  data = morley,
+  x = Speed,
+  test.value = 792,
+  test.value.line = TRUE,
+  xlab = "Speed of light (km/sec, with 299000 subtracted)",
+  title = "Figure-4: Distribution of Speed of light",
+  caption = "Note: Data collected across 5 different experiments (20 measurements per study)",
+  messages = FALSE
+)
+```
+
+* *Sample-to-sample statistic variation*: Although, traditionally, this
+variation has been shown using the standard error of the mean (SEM) of the
+statistic, `ggstatsplot` plots instead use 95% confidence intervals (e.g,
+Figure-5). This is because the interval formed by error bars correspond to a 68%
+confidence interval, which is not a particularly interesting interval
+(Cleveland, 1985, p.222-225).
+
+```{r example5, fig.height = 5, fig.width = 5, fig.cap = "**Figure-5**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`."}
+ggstatsplot::ggcoefstats(x = lme4::lmer(
+  total.fruits ~ nutrient + rack + (nutrient |
+                               popu / gen),
+  data = lme4::Arabidopsis
+))
+```
 
 ## p-values
 

@@ -44,7 +44,6 @@ robust equivalents.
 \examples{
 
 subtitle_onesample(x = iris$Sepal.Length, type = "r")
-
 }
 \author{
 Indrajeet Patil

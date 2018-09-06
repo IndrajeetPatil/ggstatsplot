@@ -38,7 +38,6 @@ signif_column(data = df, p = p.value)
 
 # numbers entered as characters are also tolerated
 signif_column(p = c("1", "0.1", "0.0002", "0.03", "0.65"))
-
 }
 \seealso{
 Other helper_stats: \code{\link{check_outlier}},

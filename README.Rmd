@@ -155,7 +155,7 @@ args(name = ggstatsplot::ggscatterstats)
 In case you want to look at the function body for any of the functions, just
 type the name of the function without the paranetheses:
 ```{r funbody}
-ggstatsplot::theme_mprl
+ggstatsplot::theme_ggstatsplot
 ```
 
 If you are not familiar either with what the namespace `::` does or how to use pipe
@@ -282,7 +282,7 @@ incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
 
 This function creates a scatterplot with marginal
 histograms/boxplots/density/violin/densigram plots from
-\code{\link[ggExtra]{ggMarginal}} and results from statistical tests in the
+`ggExtra::ggMarginal` and results from statistical tests in the
 subtitle:
 
 ```{r ggscatterstats1, message = FALSE, warning = FALSE}
