@@ -3,14 +3,17 @@
 language: r
 cache: packages
 latex: false
-#fortran: true
+fortran: true
 warnings_are_errors: true
-use_bioc: true
+#r_check_revdep: true
 
-r:
-  - oldrel
-  - release
-  - devel
+# Note: http test servers are flaky and we want to minimze false positives
+# so we skip examples and vignettes (but not unit tests) on OS X.
+
+#r:
+#- oldrel
+#- release
+#- devel
 
 matrix:
   include:
@@ -27,6 +30,7 @@ matrix:
         - bindrcpp
         - RcppEigen
         - openssl
+        - oompaBase
         - rlang
         - utf8
         - gss
@@ -48,28 +52,20 @@ matrix:
         - openxlsx
         - pander
 
-    - r: release
-      os: osx
-      osx_image: xcode9.3beta
+        # "These installs will be faster than source installs, but may not always be the most recent version"
+        # https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
 
-    - r: release
-      os: osx
+    - os: osx
+      osx_image: xcode9.3beta
+    - os: osx
       osx_image: xcode9.2
       before_install:
         - brew install curl
         - brew link --force curl
-
-    - r: release
-      os: osx
-      osx_image: xcode7.3 # CRAN: El Capitan
-      pandoc: false
-      before_install:
-        - curl -fLo /tmp/pandoc-1.12-1.dmg https://github.com/jgm/pandoc/releases/download/1.12/pandoc-1.12-1.dmg
-        - sudo hdiutil attach /tmp/pandoc-1.12-1.dmg -mountpoint /Volumes/pandoc
-        - sudo installer -pkg "/Volumes/pandoc/pandoc-1.12.pkg" -allowUntrusted -target /
-        - sudo hdiutil detach /Volumes/pandoc
-      env: PANDOC='mac-cran'
-
+    - os: osx
+      osx_image: xcode7.3
+      r_build_args: '--no-build-vignettes'
+      r_check_args: '--ignore-vignettes --no-examples'
 
 addons:
   apt:
@@ -81,6 +77,10 @@ addons:
 repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
+
+# work around temporary travis + R 3.5 bug
+r_packages:
+    - covr
 
 notifications:
   email:

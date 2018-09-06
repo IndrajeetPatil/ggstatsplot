@@ -99,7 +99,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-04</h4>
+            <h4 class="date">2018-09-06</h4>
       
       
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -391,11 +391,11 @@
 <a class="sourceLine" id="cb6-75" data-line-number="75">    ),</a>
 <a class="sourceLine" id="cb6-76" data-line-number="76">    <span class="dt">ggstatsplot.layer =</span> <span class="kw">list</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
 <a class="sourceLine" id="cb6-77" data-line-number="77">    <span class="dt">sample.size.label =</span> <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb6-78" data-line-number="78">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb6-78" data-line-number="78">    <span class="dt">messages =</span> <span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb6-79" data-line-number="79">  ),</a>
 <a class="sourceLine" id="cb6-80" data-line-number="80">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
 <a class="sourceLine" id="cb6-81" data-line-number="81">)</a>
-<a class="sourceLine" id="cb6-82" data-line-number="82"><span class="co">#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note: 95% CI for partial eta-squared was computed with 100 bootstrap samples.</span></a>
+<a class="sourceLine" id="cb6-82" data-line-number="82"><span class="co">#&gt; Note: 95% CI for explanatory measure of effect size was computed with 100 bootstrap samples.Note: In case of error, try reducing the trimming level 0.1 and/or increasing the number of bootstrap samples 100Note:  Shapiro-Wilk Normality Test for lifeExp : p-value =  &lt; 0.001Note:  Bartlett's test for homogeneity of variances for factor continent : p-value =  &lt; 0.001Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note:  Shapiro-Wilk Normality Test for lifeExp : p-value =  &lt; 0.001Note:  Bartlett's test for homogeneity of variances for factor continent : p-value =  &lt; 0.001Note:  No effect size available for Kruskal-Wallis Rank Sum Test.Note:  Shapiro-Wilk Normality Test for lifeExp : p-value =  &lt; 0.001Note:  Bartlett's test for homogeneity of variances for factor continent : p-value =  &lt; 0.001Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note:  Shapiro-Wilk Normality Test for lifeExp : p-value =  &lt; 0.001Note:  Bartlett's test for homogeneity of variances for factor continent : p-value =  &lt; 0.001Note: 95% CI for partial eta-squared was computed with 100 bootstrap samples.Note:  Shapiro-Wilk Normality Test for lifeExp : p-value =  &lt; 0.001Note:  Bartlett's test for homogeneity of variances for factor continent : p-value =  &lt; 0.001Note: 95% CI for explanatory measure of effect size was computed with 100 bootstrap samples.Note: In case of error, try reducing the trimming level 0.1 and/or increasing the number of bootstrap samples 100Note:  Shapiro-Wilk Normality Test for lifeExp : p-value =  &lt; 0.001Note:  Bartlett's test for homogeneity of variances for factor continent : p-value =  &lt; 0.001</span></a>
 <a class="sourceLine" id="cb6-83" data-line-number="83">  </a>
 <a class="sourceLine" id="cb6-84" data-line-number="84"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
 <a class="sourceLine" id="cb6-85" data-line-number="85">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>

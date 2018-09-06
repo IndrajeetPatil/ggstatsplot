@@ -24,6 +24,23 @@
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams specify_decimal_p
 #'
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr n
+#' @importFrom dplyr arrange
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr mutate_if
+#' @importFrom jmv ttestOneS
+#' @importFrom WRS2 onesampb
+#' @importFrom scales percent
+#' @importFrom crayon green
+#' @importFrom crayon blue
+#' @importFrom crayon yellow
+#' @importFrom crayon red
+#' @importFrom psych cohen.d.ci
+#'
 #' @examples
 #' 
 #' subtitle_onesample(x = iris$Sepal.Length, type = "r")
@@ -81,6 +98,15 @@ subtitle_onesample <- function(data = NULL,
 
   # =================================== parametric =====================================================
   if (type == "parametric" || type == "p") {
+
+    # confidence intervals for Cohen's d
+    ci_df <- psych::cohen.d.ci(
+      d = as.data.frame(jmv_results$ttest)$`es[stud]`,
+      n1 = length(data$x),
+      alpha = .05
+    ) %>%
+      tibble::as_data_frame(x = .)
+
     # preparing the subtitle
     subtitle <- base::substitute(
       expr =
@@ -98,6 +124,11 @@ subtitle_onesample <- function(data = NULL,
           italic("d"),
           " = ",
           effsize,
+          ", 95% CI [",
+          LL,
+          ", ",
+          UL,
+          "]",
           ", ",
           italic("n"),
           " = ",
@@ -113,6 +144,8 @@ subtitle_onesample <- function(data = NULL,
           p.value = TRUE
         ),
         effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
+        LL = ggstatsplot::specify_decimal_p(x = ci_df$lower[[1]], k),
+        UL = ggstatsplot::specify_decimal_p(x = ci_df$upper[[1]], k),
         n = nrow(x = data)
       )
     )

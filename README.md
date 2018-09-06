@@ -223,7 +223,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002a730b48>
+#> <bytecode: 0x000000002abf1a78>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -518,14 +518,44 @@ In case you would like to see the distribution of one variable and check
 if it is significantly different from a specified value with a one
 sample test, this function will let you do that.
 
+The `type` (of test) argument also accepts the following abbreviations:
+`"p"` (for *parametric*) or `"np"` (for *nonparametric*) or `"r"` (for
+*robust*) or `"bf"` (for *Bayes Factor*).
+
 ``` r
+ggstatsplot::gghistostats(
+  data = datasets::ToothGrowth,             # dataframe from which variable is to be taken
+  x = len,                                  # numeric variable whose distribution is of interest
+  title = "Distribution of Sepal.Length",   # title for the plot
+  fill.gradient = TRUE,                     # use color gradient
+  test.value = 10,                          # the comparison value for t-test
+  test.value.line = TRUE,                   # display a vertical line at test value
+  type = "bf",                              # bayes factor for one sample t-test
+  bf.prior = 0.8,                           # prior width for calculating the bayes factor
+  messages = FALSE                          # turn off the messages
+)
+```
+
+<img src="man/figures/README-gghistostats1-1.png" width="100%" />
+
+The aesthetic defaults can be easily
+modified-
+
+``` r
+# to use `bar.measure = "mix"` option, you will need to get the development
+# version of `ggplot2` from GitHub 
+# devtools::install_github(repo = "tidyverse/ggplot2", dependencies = FALSE)
+
 # plot
 ggstatsplot::gghistostats(
   data = datasets::iris,                         # dataframe from which variable is to be taken
   x = Sepal.Length,                              # numeric variable whose distribution is of interest
   title = "Distribution of Iris sepal length",   # title for the plot
   type = "parametric",                           # one sample t-test
-  test.value = 3,                                # default value is 0
+  bar.measure = "mix",                           # what does the bar length denote
+  test.value = 5,                                # default value is 0
+  test.value.line = TRUE,                        # display a vertical line at test value
+  test.value.color = "#0072B2",                  # color for the line for test value
   centrality.para = "mean",                      # which measure of central tendency is to be plotted
   centrality.color = "darkred",                  # decides color of vertical line representing central tendency
   binwidth = 0.10,                               # binwidth value (experiment until you find the best one)
@@ -533,28 +563,6 @@ ggstatsplot::gghistostats(
   ggtheme = hrbrthemes::theme_ipsum_tw(),        # choosing a different theme
   ggstatsplot.layer = FALSE                      # turn off ggstatsplot theme layer
 ) 
-```
-
-<img src="man/figures/README-gghistostats1-1.png" width="100%" />
-
-The `type` (of test) argument also accepts the following abbreviations:
-`"p"` (for *parametric*) or `"np"` (for *nonparametric*) or `"r"` (for
-*robust*) or `"bf"` (for *Bayes Factor*).
-
-``` r
-ggstatsplot::gghistostats(
-  data = datasets::ToothGrowth,
-  title = "Distribution of Sepal.Length",
-  x = len,
-  fill.gradient = TRUE,                          # use color gradient
-  test.value = 10,
-  test.value.line = TRUE,
-  test.value.color = "black",
-  centrality.para = "mean",
-  type = "bf",
-  bf.prior = 0.8,
-  messages = FALSE
-)
 ```
 
 <img src="man/figures/README-gghistostats2-1.png" width="100%" />
