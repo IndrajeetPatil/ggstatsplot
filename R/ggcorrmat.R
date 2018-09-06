@@ -104,6 +104,7 @@
 #' @importFrom crayon yellow
 #' @importFrom crayon red
 #' @importFrom WRS2 pball
+#' @importFrom psych corr.test
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
@@ -220,29 +221,23 @@ ggcorrmat <-
     # ========================================== statistics =======================================================================
     #
     if (corr.method %in% c("pearson", "spearman", "kendall")) {
+
+      # computing correlations using `psych` package
+      corr_df <- psych::corr.test(
+        x = base::as.data.frame(df),
+        y = NULL,
+        use = "pairwise",
+        method = corr.method,
+        adjust = "none",
+        alpha = .05,
+        ci = TRUE
+      )
+
       # computing correlations on all included variables
-      corr.mat <-
-        base::round(
-          x =
-            stats::cor(
-              x = base::as.data.frame(df),
-              method = corr.method,
-              use = "everything"
-            ),
-          digits = digits
-        )
+      corr.mat <- corr_df$r
 
       # compute a correlation matrix of p-values
-      p.mat <-
-        ggcorrplot::cor_pmat(
-          x = df,
-          alternative = "two.sided",
-          method = corr.method,
-          na.action = na.omit,
-          conf.level = 0.95,
-          exact = exact,
-          continuity = continuity
-        )
+      p.mat <- corr_df$p
     } else if (corr.method == "robust") {
 
       # computing the percentage bend correlation matrix
@@ -251,7 +246,7 @@ ggcorrmat <-
       corr.mat <- base::round(x = rob_cor$pbcorm, digits = digits)
 
       # creating a correlation matrix of p-values
-      p.mat <- base::round(x = rob_cor$pbcorm, digits = digits)
+      p.mat <- base::round(x = rob_cor$p.values, digits = digits)
     }
 
     # ========================================== plot ==============================================================

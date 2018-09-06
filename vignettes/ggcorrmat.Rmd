@@ -124,9 +124,9 @@ the price.
 # for reproducibility
 set.seed(123)
 
-# let's use just 30% of the data to speed it up
+# let's use just 15% of the data to speed it up
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.3),             
+  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),             
   cor.vars = c(carat, depth:z),        # note how the variables are getting selected
   cor.vars.names = c(
     "carat",
@@ -154,9 +154,9 @@ entered is in sync. Otherwise, wrong column labels will be displayed.
 # for reproducibility
 set.seed(123)
 
-# let's use just 30% of the data to speed it up
+# let's use just 15% of the data to speed it up
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.3),             
+  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),             
   cor.vars = c(price, carat, depth:table, x:z),    # note how the variables are getting selected
   cor.vars.names = c(
     "price",
@@ -199,7 +199,7 @@ set.seed(123)
 
 # to get correlations
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.3),             
+  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),             
   cor.vars = c(price, carat, depth:table, x:z),
   output = "correlations",
   corr.method = "robust",
@@ -208,7 +208,7 @@ ggstatsplot::ggcorrmat(
 
 # to get p-values
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.3),             
+  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),             
   cor.vars = c(price, carat, depth:table, x:z),
   output = "p-values",
   corr.method = "robust",
@@ -234,10 +234,10 @@ in a given study, groups in a study sample, different studies, etc.
 # for reproducibility
 set.seed(123)
 
-# let's use just 30% of the data to speed it up
+# let's use just 15% of the data to speed it up
 ggstatsplot::grouped_ggcorrmat(
   # arguments relevant for ggstatsplot::ggcorrmat
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.3),
+  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),
   corr.method = "r",                  # percentage bend correlation coefficient
   beta = 0.2,                         # bending constant
   grouping.var = cut,
@@ -275,9 +275,9 @@ can do the following-
 # for reproducibility
 set.seed(123)
 
-# let's use just 30% of the data to speed it up
+# let's use just 15% of the data to speed it up
 ggstatsplot::grouped_ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.3),
+  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),
   grouping.var = cut,
   cor.vars = c(price, carat, depth:table, x:z),
   output = "correlations",
@@ -303,9 +303,9 @@ will need to *quote* the arguments.
 
 ```{r ggcorrmat8, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
 # splitting the dataframe by cut and creting a list
-# also, to make this fast, let's only use 30% of the sample
+# also, to make this fast, let's only use 15% of the sample
 cut_list <- ggplot2::diamonds %>%
-  dplyr::sample_frac(tbl = ., size = 0.3) %>%
+  dplyr::sample_frac(tbl = ., size = 0.15) %>%
   base::split(x = ., f = .$cut, drop = TRUE)
 
 # this created a list with 5 elements, one for each quality of cut

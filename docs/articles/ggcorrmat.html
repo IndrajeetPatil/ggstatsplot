@@ -186,9 +186,9 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># let's use just 30% of the data to speed it up</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># let's use just 15% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.3</span>),             </a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),             </a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(carat, depth<span class="op">:</span>z),        <span class="co"># note how the variables are getting selected</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">cor.vars.names =</span> <span class="kw">c</span>(</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="st">"carat"</span>,</a>
@@ -206,9 +206,9 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># let's use just 30% of the data to speed it up</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># let's use just 15% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.3</span>),             </a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),             </a>
 <a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),    <span class="co"># note how the variables are getting selected</span></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">cor.vars.names =</span> <span class="kw">c</span>(</a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="st">"price"</span>,</a>
@@ -247,7 +247,7 @@
 <a class="sourceLine" id="cb7-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co"># to get correlations</span></a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.3</span>),             </a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),             </a>
 <a class="sourceLine" id="cb7-7" data-line-number="7">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
 <a class="sourceLine" id="cb7-8" data-line-number="8">  <span class="dt">output =</span> <span class="st">"correlations"</span>,</a>
 <a class="sourceLine" id="cb7-9" data-line-number="9">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
@@ -256,32 +256,32 @@
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; # A tibble: 7 x 8</span></a>
 <a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;   variable  price carat  depth  table      x      y     z</span></a>
 <a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; 1 price     1     0.936 -0.001  0.143  0.903  0.904 0.899</span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; 2 carat     0.936 1      0.032  0.194  0.984  0.983 0.982</span></a>
-<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; 3 depth    -0.001 0.032  1     -0.28  -0.013 -0.015 0.095</span></a>
-<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; 4 table     0.143 0.194 -0.28   1      0.2    0.195 0.166</span></a>
-<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; 5 x         0.903 0.984 -0.013  0.2    1      0.998 0.992</span></a>
-<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt; 6 y         0.904 0.983 -0.015  0.195  0.998  1     0.991</span></a>
-<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt; 7 z         0.899 0.982  0.095  0.166  0.992  0.991 1</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; 1 price     1     0.937 -0.002  0.147  0.903  0.904 0.898</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; 2 carat     0.937 1      0.034  0.203  0.983  0.983 0.981</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; 3 depth    -0.002 0.034  1     -0.273 -0.011 -0.013 0.098</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; 4 table     0.147 0.203 -0.273  1      0.208  0.203 0.175</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; 5 x         0.903 0.983 -0.011  0.208  1      0.999 0.991</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt; 6 y         0.904 0.983 -0.013  0.203  0.999  1     0.991</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt; 7 z         0.898 0.981  0.098  0.175  0.991  0.991 1</span></a>
 <a class="sourceLine" id="cb7-22" data-line-number="22"></a>
 <a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co"># to get p-values</span></a>
 <a class="sourceLine" id="cb7-24" data-line-number="24">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb7-25" data-line-number="25">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.3</span>),             </a>
+<a class="sourceLine" id="cb7-25" data-line-number="25">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),             </a>
 <a class="sourceLine" id="cb7-26" data-line-number="26">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
 <a class="sourceLine" id="cb7-27" data-line-number="27">  <span class="dt">output =</span> <span class="st">"p-values"</span>,</a>
 <a class="sourceLine" id="cb7-28" data-line-number="28">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,</a>
 <a class="sourceLine" id="cb7-29" data-line-number="29">  <span class="dt">digits =</span> <span class="dv">3</span></a>
 <a class="sourceLine" id="cb7-30" data-line-number="30">)</a>
 <a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt; # A tibble: 7 x 8</span></a>
-<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt;   variable price carat  depth  table      x      y     z</span></a>
-<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt; 1 price    1     0.935  0.003  0.142  0.901  0.903 0.898</span></a>
-<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt; 2 carat    0.935 1      0.038  0.19   0.983  0.983 0.982</span></a>
-<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt; 3 depth    0.003 0.038  1     -0.277 -0.008 -0.011 0.099</span></a>
-<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt; 4 table    0.142 0.19  -0.277  1      0.196  0.191 0.161</span></a>
-<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; 5 x        0.901 0.983 -0.008  0.196  1      0.999 0.992</span></a>
-<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; 6 y        0.903 0.983 -0.011  0.191  0.999  1     0.991</span></a>
-<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; 7 z        0.898 0.982  0.099  0.161  0.992  0.991 1</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt;   variable price carat depth table     x     y     z</span></a>
+<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt; 1 price    0         0 0.185     0 0     0         0</span></a>
+<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt; 2 carat    0         0 0         0 0     0         0</span></a>
+<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt; 3 depth    0.185     0 0         0 0.885 0.696     0</span></a>
+<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt; 4 table    0         0 0         0 0     0         0</span></a>
+<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; 5 x        0         0 0.885     0 0     0         0</span></a>
+<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; 6 y        0         0 0.696     0 0     0         0</span></a>
+<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; 7 z        0         0 0         0 0     0         0</span></a></code></pre></div>
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level2">
 <h2 class="hasAnchor">
@@ -292,10 +292,10 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># let's use just 30% of the data to speed it up</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># let's use just 15% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb8-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="co"># arguments relevant for ggstatsplot::ggcorrmat</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.3</span>),</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),</a>
 <a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="dt">corr.method =</span> <span class="st">"r"</span>,                  <span class="co"># percentage bend correlation coefficient</span></a>
 <a class="sourceLine" id="cb8-9" data-line-number="9">  <span class="dt">beta =</span> <span class="fl">0.2</span>,                         <span class="co"># bending constant</span></a>
 <a class="sourceLine" id="cb8-10" data-line-number="10">  <span class="dt">grouping.var =</span> cut,</a>
@@ -327,9 +327,9 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># let's use just 30% of the data to speed it up</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># let's use just 15% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.3</span>),</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),</a>
 <a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="dt">grouping.var =</span> cut,</a>
 <a class="sourceLine" id="cb9-8" data-line-number="8">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
 <a class="sourceLine" id="cb9-9" data-line-number="9">  <span class="dt">output =</span> <span class="st">"correlations"</span>,</a>
@@ -339,16 +339,16 @@
 <a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt; # A tibble: 35 x 9</span></a>
 <a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#&gt;    Group variable  price  carat  depth  table      x      y      z</span></a>
 <a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt;  1 Fair  price     1      0.905  0.036 -0.049  0.886  0.891  0.856</span></a>
-<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#&gt;  2 Fair  carat     0.905  1      0.151 -0.104  0.969  0.968  0.965</span></a>
-<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt;  3 Fair  depth     0.036  0.151  1     -0.563  0.027  0.02   0.33 </span></a>
-<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#&gt;  4 Fair  table    -0.049 -0.104 -0.563  1     -0.034 -0.041 -0.206</span></a>
-<a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt;  5 Fair  x         0.886  0.969  0.027 -0.034  1      0.998  0.946</span></a>
-<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt;  6 Fair  y         0.891  0.968  0.02  -0.041  0.998  1      0.943</span></a>
-<a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt;  7 Fair  z         0.856  0.965  0.33  -0.206  0.946  0.943  1    </span></a>
-<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="co">#&gt;  8 Good  price     1      0.938 -0.027  0.16   0.915  0.918  0.915</span></a>
-<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt;  9 Good  carat     0.938  1     -0.027  0.195  0.987  0.986  0.985</span></a>
-<a class="sourceLine" id="cb9-25" data-line-number="25"><span class="co">#&gt; 10 Good  depth    -0.027 -0.027  1     -0.525 -0.113 -0.116  0.075</span></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt;  1 Fair  price     1      0.905  0.007 -0.03   0.87   0.877  0.845</span></a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#&gt;  2 Fair  carat     0.905  1      0.099 -0.058  0.969  0.967  0.958</span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt;  3 Fair  depth     0.007  0.099  1     -0.577 -0.01  -0.014  0.301</span></a>
+<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#&gt;  4 Fair  table    -0.03  -0.058 -0.577  1     -0.01  -0.021 -0.186</span></a>
+<a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt;  5 Fair  x         0.87   0.969 -0.01  -0.01   1      0.998  0.944</span></a>
+<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt;  6 Fair  y         0.877  0.967 -0.014 -0.021  0.998  1      0.943</span></a>
+<a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt;  7 Fair  z         0.845  0.958  0.301 -0.186  0.944  0.943  1    </span></a>
+<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="co">#&gt;  8 Good  price     1      0.94  -0.028  0.144  0.922  0.925  0.918</span></a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt;  9 Good  carat     0.94   1     -0.009  0.185  0.989  0.988  0.987</span></a>
+<a class="sourceLine" id="cb9-25" data-line-number="25"><span class="co">#&gt; 10 Good  depth    -0.028 -0.009  1     -0.493 -0.095 -0.098  0.098</span></a>
 <a class="sourceLine" id="cb9-26" data-line-number="26"><span class="co">#&gt; # ... with 25 more rows</span></a></code></pre></div>
 <p>As this example illustrates, there is a minimal coding overhead to explore correlations in your dataset with the <code>grouped_ggcorrmat</code> function.</p>
 </div>
@@ -359,9 +359,9 @@
 <p>Although <code>grouped_</code> function is good for quickly exploring the data, it reduces the flexibility with which this function can be used. This is the because the common parameters used are applied to plots corresponding to all levels of the grouping variable and there is no way to adapt them based on the level of the grouping variable. We will see how this can be done using the <code>purrr</code> package from tidyverse.</p>
 <p><strong>Note before</strong>: Unlike the function call so far, while using <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">purrr::pmap</a></code>, we will need to <em>quote</em> the arguments.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># splitting the dataframe by cut and creting a list</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co"># also, to make this fast, let's only use 30% of the sample</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co"># also, to make this fast, let's only use 15% of the sample</span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">cut_list &lt;-<span class="st"> </span>ggplot2<span class="op">::</span>diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.15</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>cut, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb10-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># this created a list with 5 elements, one for each quality of cut</span></a>
