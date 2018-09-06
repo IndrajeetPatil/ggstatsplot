@@ -3,8 +3,9 @@
 language: r
 cache: packages
 latex: false
-fortran: true
+#fortran: true
 warnings_are_errors: true
+use_bioc: true
 
 r:
   - oldrel
@@ -26,7 +27,6 @@ matrix:
         - bindrcpp
         - RcppEigen
         - openssl
-        - oompaBase
         - rlang
         - utf8
         - gss
@@ -48,17 +48,27 @@ matrix:
         - openxlsx
         - pander
 
-    - os: osx
-      osx_image: xcode9.3beta
-    - os: osx
-      osx_image: xcode9.2
-      before_install:
-        - brew install curl
-        - brew link --force curl
-#    - os: osx
-#      osx_image: xcode7.3
-#      r_build_args: '--no-build-vignettes'
-#      r_check_args: '--ignore-vignettes --no-examples'
+  - r: release
+    os: osx
+    osx_image: xcode9.3beta
+
+  - r: release
+    os: osx
+    osx_image: xcode9.2
+    before_install:
+      - brew install curl
+      - brew link --force curl
+
+  - r: release
+    os: osx
+    osx_image: xcode7.3 # CRAN: El Capitan
+    pandoc: false
+    before_install:
+      - curl -fLo /tmp/pandoc-1.12-1.dmg https://github.com/jgm/pandoc/releases/download/1.12/pandoc-1.12-1.dmg
+      - sudo hdiutil attach /tmp/pandoc-1.12-1.dmg -mountpoint /Volumes/pandoc
+      - sudo installer -pkg "/Volumes/pandoc/pandoc-1.12.pkg" -allowUntrusted -target /
+      - sudo hdiutil detach /Volumes/pandoc
+    env: PANDOC='mac-cran'
 
 
 addons:
