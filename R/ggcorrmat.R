@@ -12,9 +12,11 @@
 #'   computed and visualized.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
-#' @param output Expected output from this function: `"plot"` (visualization
-#'   matrix) or `"correlations"` (correlation matrix) or `"p-values"` (matrix of
-#'   p-values).
+#' @param output Character that decides expected output from this function:
+#'   `"plot"` (for visualization matrix) or `"correlations"` (or `"corr"` or
+#'   `"r"`; for correlation matrix) or `"p-values"` (or `"p.values"` or `"p"`;
+#'   for a matrix of *p*-values) or `"ci"` (for a tibble with confidence
+#'   intervals for unique correlation pairs).
 #' @param type Character, `"full"` (default), `"upper"` or `"lower"`, display
 #'   full matrix, lower triangular or upper triangular matrix.
 #' @param method Character argument that decides the visualization method of
@@ -37,8 +39,8 @@
 #'   (Default: `0.1`).
 #' @param digits Decides the number of decimal digits to be displayed (Default:
 #'   `2`).
-#' @param sig.level Significance level (Default: `0.05`). If the p-value in
-#'   p-mat (p-value matrix) is bigger than `sig.level`, then the corresponding
+#' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
+#'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant.
 #' @param hc.order Logical value. If `TRUE`, correlation matrix will be
 #'   hc.ordered using `hclust` function (Default is `FALSE`).
@@ -113,7 +115,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
@@ -122,23 +124,38 @@
 #'   cor.vars = c(Sepal.Length:Petal.Width),
 #'   cor.vars.names = c("Sepal.Length", "Petal.Width")
 #' )
-#' 
+#'
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = iris,
 #'   cor.vars = c(Sepal.Length:Petal.Width),
-#'   output = "correlations"
+#'   output = "r"
 #' )
-#' 
-#' # setting output = "p-values" will return the p-value matrix
-#' 
+#'
+#' # setting output = "p-values" (or "p") will return the p-value matrix
+#' ggstatsplot::ggcorrmat(
+#'   data = iris,
+#'   cor.vars = c(Sepal.Length:Petal.Width),
+#'   output = "p"
+#' )
+#'
+#' # setting output = "ci" will return the confidence intervals for unique
+#' # correlation pairs
+#' ggstatsplot::ggcorrmat(
+#'   data = iris,
+#'   cor.vars = c(Sepal.Length:Petal.Width),
+#'   output = "ci"
+#' )
+#'
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
 #'   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
 #'   sig.level = 0.01,
 #'   ggtheme = ggplot2::theme_bw,
-#'   hc.order = TRUE, type = "lower", outline.col = "white",
+#'   hc.order = TRUE,
+#'   type = "lower",
+#'   outline.col = "white",
 #'   title = "Dataset: Iris"
 #' )
 #' @export
@@ -329,7 +346,7 @@ ggcorrmat <-
     # ========================================== output ==============================================================
 
     # return the desired result
-    if (output == "correlations") {
+    if (output %in% c("correlations", "corr", "r")) {
 
       # correlation matrix
       corr.mat %<>%
@@ -339,7 +356,7 @@ ggcorrmat <-
 
       # return the tibble
       return(corr.mat)
-    } else if (output == "p-values") {
+    } else if (output %in% c("p-values", "p.values", "p")) {
 
       # p-value matrix
       p.mat %<>%
@@ -349,6 +366,29 @@ ggcorrmat <-
 
       # return the final tibble
       return(p.mat)
+    } else if (output == "ci") {
+      if (corr.method %in% c("pearson", "spearman", "kendall")) {
+        # compute confidence intervals
+        ci.mat <- dplyr::full_join(
+          x = tibble::as_tibble(corr_df$ci) %>%
+            tibble::rownames_to_column(., "pair") %>%
+            tibble::rowid_to_column(.),
+          y = tibble::as_tibble(corr_df$ci.adj) %>%
+            tibble::rowid_to_column(.),
+          by = "rowid"
+        ) %>%
+          dplyr::select(.data = ., pair, r, dplyr::everything(), -rowid)
+
+        # return a tible with CIs
+        return(ci.mat)
+      } else {
+        base::message(cat(
+          crayon::red("Warning:"),
+          crayon::blue(
+            "Confidence intervals for correlations are currently not available for robust correlation."
+          )
+        ))
+      }
     } else if (output == "plot") {
       # correlalogram plot
       return(plot)

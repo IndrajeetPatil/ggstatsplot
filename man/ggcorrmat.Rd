@@ -28,9 +28,11 @@ computed and visualized.}
 \item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
 
-\item{output}{Expected output from this function: \code{"plot"} (visualization
-matrix) or \code{"correlations"} (correlation matrix) or \code{"p-values"} (matrix of
-p-values).}
+\item{output}{Character that decides expected output from this function:
+\code{"plot"} (for visualization matrix) or \code{"correlations"} (or \code{"corr"} or
+\code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"} or \code{"p"};
+for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
+intervals for unique correlation pairs).}
 
 \item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
 full matrix, lower triangular or upper triangular matrix.}
@@ -61,8 +63,8 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \item{digits}{Decides the number of decimal digits to be displayed (Default:
 \code{2}).}
 
-\item{sig.level}{Significance level (Default: \code{0.05}). If the p-value in
-p-mat (p-value matrix) is bigger than \code{sig.level}, then the corresponding
+\item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
+\emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant.}
 
 \item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be
@@ -148,10 +150,23 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = iris,
   cor.vars = c(Sepal.Length:Petal.Width),
-  output = "correlations"
+  output = "r"
 )
 
-# setting output = "p-values" will return the p-value matrix
+# setting output = "p-values" (or "p") will return the p-value matrix
+ggstatsplot::ggcorrmat(
+  data = iris,
+  cor.vars = c(Sepal.Length:Petal.Width),
+  output = "p"
+)
+
+# setting output = "ci" will return the confidence intervals for unique
+# correlation pairs
+ggstatsplot::ggcorrmat(
+  data = iris,
+  cor.vars = c(Sepal.Length:Petal.Width),
+  output = "ci"
+)
 
 # modifying few elements of the correlation matrix by changing function defaults
 ggstatsplot::ggcorrmat(
@@ -159,7 +174,9 @@ ggstatsplot::ggcorrmat(
   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
   sig.level = 0.01,
   ggtheme = ggplot2::theme_bw,
-  hc.order = TRUE, type = "lower", outline.col = "white",
+  hc.order = TRUE,
+  type = "lower",
+  outline.col = "white",
   title = "Dataset: Iris"
 )
 }

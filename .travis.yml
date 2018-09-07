@@ -30,7 +30,6 @@ matrix:
         - bindrcpp
         - RcppEigen
         - openssl
-        #- oompaBase
         - rlang
         - utf8
         - gss
@@ -81,6 +80,7 @@ repos:
 # work around temporary travis + R 3.5 bug
 r_packages:
     - covr
+    - oompaBase
 
 notifications:
   email:

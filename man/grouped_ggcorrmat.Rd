@@ -34,9 +34,11 @@ names should be entered in the same order.}
 \item{title.prefix}{Character specifying the prefix text for the fixed plot
 title (name of each factor level) (Default: \code{"Group"}).}
 
-\item{output}{Expected output from this function: \code{"plot"} (visualization
-matrix) or \code{"correlations"} (correlation matrix) or \code{"p-values"} (matrix of
-p-values).}
+\item{output}{Character that decides expected output from this function:
+\code{"plot"} (for visualization matrix) or \code{"correlations"} (or \code{"corr"} or
+\code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"} or \code{"p"};
+for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
+intervals for unique correlation pairs).}
 
 \item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
 full matrix, lower triangular or upper triangular matrix.}
@@ -67,8 +69,8 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \item{digits}{Decides the number of decimal digits to be displayed (Default:
 \code{2}).}
 
-\item{sig.level}{Significance level (Default: \code{0.05}). If the p-value in
-p-mat (p-value matrix) is bigger than \code{sig.level}, then the corresponding
+\item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
+\emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant.}
 
 \item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be

@@ -268,6 +268,29 @@ displayed). Natural logarithms are shown because BF values can be pretty large.
 This also makes it easy to compare evidence in favor alternative (`BF10`) versus
 null (`BF01`) hypotheses (since `log(BF10) = - log(BF01)`).
 
+Additionally, there is also a `grouped_` variant of this function that makes it
+easy to repeat the same operation across a **single** grouping variable:
+
+```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::grouped_ggbetweenstats(
+  data = ggstatsplot::movies_long, 
+  x = mpaa, 
+  y = length,
+  grouping.var = genre,            # grouping variable
+  title.prefix = "Movie genre",
+  palette = "default_jama",
+  package = "ggsci",
+  messages = FALSE,
+  nrow = 2,
+  ncol = 2,
+  title.text = "Differences in movie length by mpaa ratings for different genres"
+)
+```
+
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
@@ -276,7 +299,8 @@ For more, see the `ggbetweenstats` vignette:
 Variant of this function `ggwithinstats` is currently under work. You *can*
 still use this function just to prepare the **plot** for exploratory data
 analysis, but the statistical details displayed in the subtitle will be
-incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
+incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)` to
+your function call.
 
 ## `ggscatterstats`
 
@@ -330,6 +354,31 @@ ggstatsplot::ggscatterstats(
   height.jitter = 0.4,                            # amount of vertical jitter for data points
   messages = FALSE                                # turn off messages and notes
 ) 
+```
+
+Additionally, there is also a `grouped_` variant of this function that makes it
+easy to repeat the same operation across a **single** grouping variable:
+
+```{r ggscatterstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::grouped_ggscatterstats(
+  data = ggstatsplot::movies_long, 
+  x = rating, 
+  y = length,
+  xfill = "#E69F00", 
+  yfill = "#8b3058",
+  xlab = "IMDB rating",
+  grouping.var = genre,            # grouping variable
+  title.prefix = "Movie genre",
+  ggtheme = ggplot2::theme_grey(),
+  messages = FALSE,
+  nrow = 2,
+  ncol = 2,
+  title.text = "Relationship between movie length by IMDB ratings for different genres"
+)
 ```
 
 For more, see the `ggscatterstats` vignette:
@@ -412,6 +461,28 @@ ggstatsplot::ggpiestats(
 )
 ```
 
+Additionally, there is also a `grouped_` variant of this function that makes it
+easy to repeat the same operation across a **single** grouping variable:
+
+```{r ggpiestats4, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 8}
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::grouped_ggpiestats(
+  data = ggstatsplot::movies_long, 
+  main = mpaa,
+  grouping.var = genre,            # grouping variable
+  title.prefix = "Movie genre",
+  palette = "BrightPastel",
+  package = "quickpalette",
+  messages = FALSE,
+  nrow = 2,
+  ncol = 2,
+  title.text = "Composition of MPAA ratings for different genres"
+)
+```
+
 For more, including information about the variant of this function
 `grouped_ggpiestats`, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html>
@@ -485,6 +556,28 @@ ggstatsplot::gghistostats(
 )
 ```
 
+Additionally, there is also a `grouped_` variant of this function that makes it
+easy to repeat the same operation across a **single** grouping variable:
+
+```{r gghistostats4, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::grouped_gghistostats(
+  data = ggstatsplot::movies_long, 
+  x = budget,
+  xlab = "Movies budget (in million US$)",
+  grouping.var = genre,            # grouping variable
+  title.prefix = "Movie genre",
+  ggtheme = ggthemes::theme_tufte(),
+  messages = FALSE,
+  nrow = 2,
+  ncol = 2,
+  title.text = "Movies budgets for different genres"
+)
+```
+
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html>
@@ -520,7 +613,7 @@ Multiple arguments can be modified to change the appearance of the correlation
 matrix. 
 
 Alternatively, you can use it just to get the correlation matrices and their
-corresponding *p*-values (in a [tibble](http://tibble.tidyverse.org/) format).
+corresponding *p*-values (in a `tibble` format).
 
 ```{r ggcorrmat2, message = FALSE, warning = FALSE}
 # getting the correlation coefficient matrix
@@ -528,7 +621,7 @@ ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = Sepal.Length:Petal.Width,
   corr.method = "robust",
-  output = "correlations",             # specifying the needed output
+  output = "correlations",             # specifying the needed output ("r" or "corr" will also work)
   digits = 3                           # number of digits to be dispayed for correlation coefficient
 )
 
@@ -537,7 +630,29 @@ ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = Sepal.Length:Petal.Width,
   corr.method = "robust",
-  output = "p-values"
+  output = "p.values"                  # only "p" or "p-values" will also work
+)
+```
+
+
+Additionally, there is also a `grouped_` variant of this function that makes it
+easy to repeat the same operation across a **single** grouping variable:
+
+```{r ggcorrmat3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::grouped_ggcorrmat(
+  data = ggstatsplot::movies_long,
+  cor.vars = length:votes,
+  corr.method = "r",
+  colors = c("#cbac43", "white", "#550000"),
+  grouping.var = genre,                      # grouping variable
+  title.prefix = "Movie genre",
+  messages = FALSE,
+  nrow = 2,
+  ncol = 2
 )
 ```
 
@@ -667,13 +782,14 @@ For more, see the associated vignette-
 
 All plots from `ggstatsplot` have a default theme: `theme_ggstatsplot`. You can
 change this theme by using the argument `ggtheme` for all functions.
+
 It is important to note that irrespective of which `ggplot` theme you choose,
 `ggstatsplot` in the backdrop adds a new layer with its idiosyncratic theme
 settings, chosen to make the graphs more readable or aesthetically pleasing.
 Let's see an example with `gghistostats` and see how a certain theme from
 `hrbrthemes` package looks with and without the `ggstatsplot` layer.
 
-```{r theme_ggstatsplot, , eval = FALSE, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
+```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
 # to use hrbrthemes themes, first make sure you have all the necessary fonts
 library(hrbrthemes)
 # extrafont::ttf_import()

@@ -192,9 +192,11 @@ title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>Expected output from this function: <code>"plot"</code> (visualization
-matrix) or <code>"correlations"</code> (correlation matrix) or <code>"p-values"</code> (matrix of
-p-values).</p></td>
+      <td><p>Character that decides expected output from this function:
+<code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or <code>"corr"</code> or
+<code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code> or <code>"p"</code>;
+for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with confidence
+intervals for unique correlation pairs).</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -241,8 +243,8 @@ Kendall's <em>tau</em> and Spearman's <em>rho</em> when not computed exactly (De
     </tr>
     <tr>
       <th>sig.level</th>
-      <td><p>Significance level (Default: <code>0.05</code>). If the p-value in
-p-mat (p-value matrix) is bigger than <code>sig.level</code>, then the corresponding
+      <td><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
+<em>p</em>-value matrix is bigger than <code>sig.level</code>, then the corresponding
 correlation coefficient is regarded as insignificant.</p></td>
     </tr>
     <tr>
@@ -460,18 +462,18 @@ of p-values.</p>
 )</div><div class='output co'>#&gt; # A tibble: 12 x 6
 #&gt;    Group      variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;    &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-#&gt;  1 setosa     Sepal.Length         1           0.74         0.27        0.28
-#&gt;  2 setosa     Sepal.Width          0.74        1            0.18        0.23
-#&gt;  3 setosa     Petal.Length         0.27        0.18         1           0.33
-#&gt;  4 setosa     Petal.Width          0.28        0.23         0.33        1   
-#&gt;  5 versicolor Sepal.Length         1           0.53         0.75        0.55
-#&gt;  6 versicolor Sepal.Width          0.53        1            0.56        0.66
-#&gt;  7 versicolor Petal.Length         0.75        0.56         1           0.79
-#&gt;  8 versicolor Petal.Width          0.55        0.66         0.79        1   
-#&gt;  9 virginica  Sepal.Length         1           0.46         0.86        0.28
-#&gt; 10 virginica  Sepal.Width          0.46        1            0.4         0.54
-#&gt; 11 virginica  Petal.Length         0.86        0.4          1           0.32
-#&gt; 12 virginica  Petal.Width          0.28        0.54         0.32        1   </div></pre>
+#&gt;  1 setosa     Sepal.Length        1           0.743        0.267       0.278
+#&gt;  2 setosa     Sepal.Width         0.743       1            0.178       0.233
+#&gt;  3 setosa     Petal.Length        0.267       0.178        1           0.332
+#&gt;  4 setosa     Petal.Width         0.278       0.233        0.332       1    
+#&gt;  5 versicolor Sepal.Length        1           0.526        0.754       0.546
+#&gt;  6 versicolor Sepal.Width         0.526       1            0.561       0.664
+#&gt;  7 versicolor Petal.Length        0.754       0.561        1           0.787
+#&gt;  8 versicolor Petal.Width         0.546       0.664        0.787       1    
+#&gt;  9 virginica  Sepal.Length        1           0.457        0.864       0.281
+#&gt; 10 virginica  Sepal.Width         0.457       1            0.401       0.538
+#&gt; 11 virginica  Petal.Length        0.864       0.401        1           0.322
+#&gt; 12 virginica  Petal.Width         0.281       0.538        0.322       1    </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

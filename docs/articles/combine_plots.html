@@ -99,7 +99,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-06</h4>
+            <h4 class="date">2018-09-07</h4>
       
       
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -152,33 +152,32 @@
 <a class="sourceLine" id="cb1-29" data-line-number="29">        )</a>
 <a class="sourceLine" id="cb1-30" data-line-number="30">      )</a>
 <a class="sourceLine" id="cb1-31" data-line-number="31">  )</a>
-<a class="sourceLine" id="cb1-32" data-line-number="32"><span class="co">#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</span></a>
-<a class="sourceLine" id="cb1-33" data-line-number="33"></a>
-<a class="sourceLine" id="cb1-34" data-line-number="34"><span class="co">### display the new object (notice that the class of the `plot` list column is S3: gg)</span></a>
-<a class="sourceLine" id="cb1-35" data-line-number="35">plots</a>
-<a class="sourceLine" id="cb1-36" data-line-number="36"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
-<a class="sourceLine" id="cb1-37" data-line-number="37"><span class="co">#&gt;   Species    data              plot             </span></a>
-<a class="sourceLine" id="cb1-38" data-line-number="38"><span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;            &lt;list&gt;           </span></a>
-<a class="sourceLine" id="cb1-39" data-line-number="39"><span class="co">#&gt; 1 setosa     &lt;tibble [50 x 5]&gt; &lt;S3: ggExtraPlot&gt;</span></a>
-<a class="sourceLine" id="cb1-40" data-line-number="40"><span class="co">#&gt; 2 versicolor &lt;tibble [50 x 5]&gt; &lt;S3: ggExtraPlot&gt;</span></a>
-<a class="sourceLine" id="cb1-41" data-line-number="41"><span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;S3: ggExtraPlot&gt;</span></a>
-<a class="sourceLine" id="cb1-42" data-line-number="42"></a>
-<a class="sourceLine" id="cb1-43" data-line-number="43"><span class="co">### creating a grid with cowplot</span></a>
-<a class="sourceLine" id="cb1-44" data-line-number="44">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb1-45" data-line-number="45">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,                           <span class="co"># list column containing all ggstatsplot objects</span></a>
-<a class="sourceLine" id="cb1-46" data-line-number="46">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb1-47" data-line-number="47">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb1-48" data-line-number="48">  <span class="dt">title.text =</span> <span class="st">"Relationship between sepal length and width for all Iris species"</span>,</a>
-<a class="sourceLine" id="cb1-49" data-line-number="49">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb1-50" data-line-number="50">  <span class="dt">caption.text =</span> <span class="kw">expression</span>(</a>
-<a class="sourceLine" id="cb1-51" data-line-number="51">    <span class="kw">paste</span>(</a>
-<a class="sourceLine" id="cb1-52" data-line-number="52">      <span class="kw">italic</span>(<span class="st">"Note"</span>),</a>
-<a class="sourceLine" id="cb1-53" data-line-number="53">      <span class="st">": Iris flower dataset was collected by Edgar Anderson."</span>,</a>
-<a class="sourceLine" id="cb1-54" data-line-number="54">      <span class="dt">sep =</span> <span class="st">""</span></a>
-<a class="sourceLine" id="cb1-55" data-line-number="55">    ),</a>
-<a class="sourceLine" id="cb1-56" data-line-number="56">    <span class="dt">caption.size =</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-57" data-line-number="57">  )</a>
-<a class="sourceLine" id="cb1-58" data-line-number="58">)</a></code></pre></div>
+<a class="sourceLine" id="cb1-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb1-33" data-line-number="33"><span class="co">### display the new object (notice that the class of the `plot` list column is S3: gg)</span></a>
+<a class="sourceLine" id="cb1-34" data-line-number="34">plots</a>
+<a class="sourceLine" id="cb1-35" data-line-number="35"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
+<a class="sourceLine" id="cb1-36" data-line-number="36"><span class="co">#&gt;   Species    data              plot             </span></a>
+<a class="sourceLine" id="cb1-37" data-line-number="37"><span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;            &lt;list&gt;           </span></a>
+<a class="sourceLine" id="cb1-38" data-line-number="38"><span class="co">#&gt; 1 setosa     &lt;tibble [50 x 5]&gt; &lt;S3: ggExtraPlot&gt;</span></a>
+<a class="sourceLine" id="cb1-39" data-line-number="39"><span class="co">#&gt; 2 versicolor &lt;tibble [50 x 5]&gt; &lt;S3: ggExtraPlot&gt;</span></a>
+<a class="sourceLine" id="cb1-40" data-line-number="40"><span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;S3: ggExtraPlot&gt;</span></a>
+<a class="sourceLine" id="cb1-41" data-line-number="41"></a>
+<a class="sourceLine" id="cb1-42" data-line-number="42"><span class="co">### creating a grid with cowplot</span></a>
+<a class="sourceLine" id="cb1-43" data-line-number="43">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb1-44" data-line-number="44">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,                           <span class="co"># list column containing all ggstatsplot objects</span></a>
+<a class="sourceLine" id="cb1-45" data-line-number="45">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb1-46" data-line-number="46">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb1-47" data-line-number="47">  <span class="dt">title.text =</span> <span class="st">"Relationship between sepal length and width for all Iris species"</span>,</a>
+<a class="sourceLine" id="cb1-48" data-line-number="48">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb1-49" data-line-number="49">  <span class="dt">caption.text =</span> <span class="kw">expression</span>(</a>
+<a class="sourceLine" id="cb1-50" data-line-number="50">    <span class="kw">paste</span>(</a>
+<a class="sourceLine" id="cb1-51" data-line-number="51">      <span class="kw">italic</span>(<span class="st">"Note"</span>),</a>
+<a class="sourceLine" id="cb1-52" data-line-number="52">      <span class="st">": Iris flower dataset was collected by Edgar Anderson."</span>,</a>
+<a class="sourceLine" id="cb1-53" data-line-number="53">      <span class="dt">sep =</span> <span class="st">""</span></a>
+<a class="sourceLine" id="cb1-54" data-line-number="54">    ),</a>
+<a class="sourceLine" id="cb1-55" data-line-number="55">    <span class="dt">caption.size =</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb1-56" data-line-number="56">  )</a>
+<a class="sourceLine" id="cb1-57" data-line-number="57">)</a></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_purrr-1.png" width="768"></p>
 <p>Here is another example with <code>ggbetweenstats</code>-</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
