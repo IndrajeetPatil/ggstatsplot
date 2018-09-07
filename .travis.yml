@@ -53,13 +53,6 @@ r_binary_packages:
 #  - tidyr
 #  - dplyr
 #  - readr
-  - ggthemes
-  - jcolors
-  - oompaBase
-  - palr
-  - pals
-  - scico
-  - viridisLite
 
 r_packages:
   - rlang
@@ -69,6 +62,13 @@ r_packages:
   - dplyr
   - readr
   - covr
+  - ggthemes
+  - jcolors
+  - oompaBase
+  - palr
+  - pals
+  - scico
+  - viridisLite
 
 after_success:
   - Rscript -e 'covr::codecov(type = "all")'
