@@ -1,91 +1,74 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+# documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
-cache: packages
-latex: false
-fortran: true
-warnings_are_errors: true
-#r_check_revdep: true
-
-# Note: http test servers are flaky and we want to minimze false positives
-# so we skip examples and vignettes (but not unit tests) on OS X.
-
 r:
+  - 3.1
+  - 3.2
+  - 3.3
   - oldrel
   - release
   - devel
 
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: required
+sudo: required
+cache: packages
+bioc_required: true
+warnings_are_errors: false
 
-      r_binary_packages:
-        - stringi
-        - magrittr
-        - curl
-        - jsonlite
-        - Rcpp
-        - bindrcpp
-        - RcppEigen
-        - openssl
-        - rlang
-        - utf8
-        - gss
-        - haven
-        - data.table
-        - dplyr
-        - purrr
-        - tidyr
-        - readr
-        - minqa
-        - mvtnorm
-        - nloptr
-        - SparseM
-        - lme4
-        - httpuv
-        - markdown
-        - sem
-        - readxl
-        - openxlsx
-        - pander
+env:
+  global:
+    - R_MAX_NUM_DLLS=999
+    - _R_CHECK_FORCE_SUGGESTS_=FALSE
 
-        # "These installs will be faster than source installs, but may not always be the most recent version"
-        # https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
+#r_build_args: "--no-build-vignettes"
+#r_check_args: "--no-build-vignettes --as-cran"
 
-    - os: osx
-      osx_image: xcode9.3beta
-    - os: osx
-      osx_image: xcode9.2
-      before_install:
-        - brew install curl
-        - brew link --force curl
-    - os: osx
-      osx_image: xcode7.3
-      r_build_args: '--no-build-vignettes'
-      r_check_args: '--ignore-vignettes --no-examples'
+r_binary_packages:
+  - stringi
+  - magrittr
+  - curl
+  - jsonlite
+  - Rcpp
+  - RcppEigen
+  - openssl
+  - utf8
+  - gss
+  - haven
+  - minqa
+  - mvtnorm
+  - nloptr
+  - SparseM
+  - httpuv
+  - markdown
+  - sem
+  - readxl
+  - openxlsx
+  - pander
+  - lme4
+  - psych
+  - git2r
+  - data.table
+#  - rlang
+#  - bindrcpp
+#  - purrr
+#  - tidyr
+#  - dplyr
+#  - readr
+  - ggthemes
+  - jcolors
+  - oompaBase
+  - palr
+  - pals
+  - scico
+  - viridisLite
 
-addons:
-  apt:
-    packages:
-    - libcurl4-openssl-dev
-    - libxml2-dev
-    - libgsl0-dev
-
-repos:
-  CRAN: https://cloud.r-project.org
-  ropensci: http://packages.ropensci.org
-
-# work around temporary travis + R 3.5 bug
 r_packages:
-    - covr
-    - oompaBase
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
+  - rlang
+  - bindrcpp
+  - purrr
+  - tidyr
+  - dplyr
+  - readr
+  - covr
 
 after_success:
   - Rscript -e 'covr::codecov(type = "all")'

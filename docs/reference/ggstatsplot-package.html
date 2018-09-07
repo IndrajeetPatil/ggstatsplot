@@ -29,6 +29,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
 <meta property="og:title" content="ggstatsplot: 'ggplot2' Based Plots with Statistical Details — ggstatsplot-package" />
 
@@ -67,7 +73,7 @@ contingency tables analyses)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.5.9000</span>
       </span>
     </div>
 
@@ -124,8 +130,19 @@ contingency tables analyses)." />
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
+      
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -138,7 +155,7 @@ contingency tables analyses)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>ggstatsplot: 'ggplot2' Based Plots with Statistical Details</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggstatsplot-package.R'><code>R/ggstatsplot-package.R</code></a></small>
     <div class="hidden name"><code>ggstatsplot-package.Rd</code></div>
     </div>
 
@@ -161,29 +178,37 @@ contingency tables analyses).</p>
 <p>The main functions are-</p><ul>
 <li><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code> function to produce
 information-rich comparison plot between different groups or conditions
-with <code>ggplot2</code> and details from the statistical tests in the subtitle</p></li>
+with <code>ggplot2</code> and details from the statistical tests in the subtitle.</p></li>
 <li><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code> function to produce <code>ggplot2</code>
 scatterplots along with a marginal histograms/boxplots/density plots from
-<code>ggExtra</code> and details from the statistical tests in the subtitle</p></li>
+<code>ggExtra</code> and details from the statistical tests in the subtitle.</p></li>
 <li><p><code><a href='ggpiestats.html'>ggpiestats</a></code> function to produce pie chart with
-details from the statistical tests in the subtitle</p></li>
+details from the statistical tests in the subtitle.</p></li>
 <li><p><code><a href='gghistostats.html'>gghistostats</a></code> function to produce histogram for a
-single variable with results from one sample test displayed in the subtitle</p></li>
+single variable with results from one sample test displayed in the subtitle.</p></li>
 <li><p><code><a href='ggcorrmat.html'>ggcorrmat</a></code> function to visualize
-correlation matrix</p></li>
+correlation matrix.</p></li>
 <li><p><code><a href='combine_plots.html'>combine_plots</a></code> helper
 function to combine multiple <code>ggstatsplot</code> plots using
 <code><a href='http://www.rdocumentation.org/packages/cowplot/topics/plot_grid'>cowplot::plot_grid()</a></code> with a combination of title, caption, and annotation
-label</p></li>
+label.</p></li>
 <li><p><code><a href='ggcoefstats.html'>ggcoefstats</a></code> function to visualize
-results from regression analyses</p></li>
+results from regression analyses.</p></li>
 <li><p><code><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></code> default theme used for this
-package</p></li>
+package.</p></li>
 <li><p><code><a href='specify_decimal_p.html'>specify_decimal_p</a></code> helper function
-to format results for pretty printing</p></li>
+to format results for pretty printing.</p></li>
 </ul>
     <p>For more documentation, see the dedicated
 <a href='https://indrajeetpatil.github.io/ggstatsplot/'>Website</a>.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://indrajeetpatil.github.io/ggstatsplot/'>https://indrajeetpatil.github.io/ggstatsplot/</a></p></li>
+<li><p><a href='https://github.com/IndrajeetPatil/ggstatsplot'>https://github.com/IndrajeetPatil/ggstatsplot</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/IndrajeetPatil/ggstatsplot/issues'>https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p></li>
+</ul></div>
     
 
   </div>
@@ -192,7 +217,14 @@ to format results for pretty printing</p></li>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
+
+    <h2>Author</h2>
+    
+<strong>Maintainer</strong>: Indrajeet Patil <a href='mailto:patilindrajeet.science@gmail.com'>patilindrajeet.science@gmail.com</a> (0000-0003-1995-6531)
+
 
   </div>
 </div>
@@ -210,6 +242,23 @@ to format results for pretty printing</p></li>
    </div>
 
   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '44345fbe359c5496fbc3955c513333d1',
+    indexName: 'ggstatsplot',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
   </body>
 </html>

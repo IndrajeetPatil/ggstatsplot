@@ -2,6 +2,7 @@
 % Please edit documentation in R/ggstatsplot-package.R
 \docType{package}
 \name{ggstatsplot-package}
+\alias{ggstatsplot}
 \alias{ggstatsplot-package}
 \title{ggstatsplot: 'ggplot2' Based Plots with Statistical Details}
 \description{
@@ -16,27 +17,45 @@ contingency tables analyses).
 \details{
 \code{ggstatsplot}
 
-The main functions are- \itemize{ \item
-\code{\link[ggstatsplot]{ggbetweenstats}} function to produce
+The main functions are-
+\itemize{
+\item \code{\link[ggstatsplot]{ggbetweenstats}} function to produce
 information-rich comparison plot between different groups or conditions
-with \code{ggplot2} and details from the statistical tests in the subtitle \item
-\code{\link[ggstatsplot]{ggscatterstats}} function to produce \code{ggplot2}
+with \code{ggplot2} and details from the statistical tests in the subtitle.
+\item \code{\link[ggstatsplot]{ggscatterstats}} function to produce \code{ggplot2}
 scatterplots along with a marginal histograms/boxplots/density plots from
-\code{ggExtra} and details from the statistical tests in the subtitle \item
-\code{\link[ggstatsplot]{ggpiestats}} function to produce pie chart with
-details from the statistical tests in the subtitle \item
-\code{\link[ggstatsplot]{gghistostats}} function to produce histogram for a
-single variable with results from one sample test displayed in the subtitle
+\code{ggExtra} and details from the statistical tests in the subtitle.
+\item \code{\link[ggstatsplot]{ggpiestats}} function to produce pie chart with
+details from the statistical tests in the subtitle.
+\item \code{\link[ggstatsplot]{gghistostats}} function to produce histogram for a
+single variable with results from one sample test displayed in the subtitle.
 \item \code{\link[ggstatsplot]{ggcorrmat}} function to visualize
-correlation matrix \item \code{\link[ggstatsplot]{combine_plots}} helper
+correlation matrix.
+\item \code{\link[ggstatsplot]{combine_plots}} helper
 function to combine multiple \code{ggstatsplot} plots using
 \code{cowplot::plot_grid()} with a combination of title, caption, and annotation
-label \item \code{\link[ggstatsplot]{ggcoefstats}} function to visualize
-results from regression analyses \item
-\code{\link[ggstatsplot]{theme_ggstatsplot}} default theme used for this
-package \item \code{\link[ggstatsplot]{specify_decimal_p}} helper function
-to format results for pretty printing }
+label.
+\item \code{\link[ggstatsplot]{ggcoefstats}} function to visualize
+results from regression analyses.
+\item \code{\link[ggstatsplot]{theme_ggstatsplot}} default theme used for this
+package.
+\item \code{\link[ggstatsplot]{specify_decimal_p}} helper function
+to format results for pretty printing.
+}
 
 For more documentation, see the dedicated
 \href{https://indrajeetpatil.github.io/ggstatsplot/}{Website}.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://indrajeetpatil.github.io/ggstatsplot/}
+  \item \url{https://github.com/IndrajeetPatil/ggstatsplot}
+  \item Report bugs at \url{https://github.com/IndrajeetPatil/ggstatsplot/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Indrajeet Patil \email{patilindrajeet.science@gmail.com} (0000-0003-1995-6531)
+
 }

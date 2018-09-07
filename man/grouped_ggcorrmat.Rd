@@ -241,7 +241,6 @@ ggstatsplot::grouped_ggcorrmat(
   cor.vars = Sepal.Length:Petal.Width,
   output = "ci"
 )
-
 }
 \references{
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
