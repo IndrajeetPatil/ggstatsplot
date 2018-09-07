@@ -2,7 +2,13 @@ url: https://indrajeetpatil.github.io/ggstatsplot/
 
 template:
   params:
+    docsearch:
+      api_key: 44345fbe359c5496fbc3955c513333d1
+      index_name: ggstatsplot
     bootswatch: lumen
+
+development:
+  mode: unreleased
 
 authors:
   Indrajeet Patil:
@@ -12,12 +18,7 @@ reference:
   - title: Primary functions
     desc:  Main functions to use from `ggstatsplot`.
     contents:
-      - ggbetweenstats
-      - ggcoefstats
-      - ggcorrmat
-      - gghistostats
-      - ggpiestats
-      - ggscatterstats
+      - starts_with("gg")
       - combine_plots
       - theme_ggstatsplot
       - theme_mprl
@@ -25,26 +26,12 @@ reference:
   - title: Grouped variants of primary functions
     desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable.
     contents:
-      - grouped_ggbetweenstats
-      - grouped_ggcorrmat
-      - grouped_gghistostats
-      - grouped_ggpiestats
-      - grouped_ggscatterstats
+      - starts_with("grouped_")
 
   - title: Helper functions (statistics subtitles)
     desc: Functions used to create statistical subtitles that can be used outside of `ggstatsplot` package.
     contents:
-      - subtitle_onesample
-      - subtitle_ggbetween_t_parametric
-      - subtitle_ggbetween_anova_parametric
-      - subtitle_ggbetween_mann_nonparametric
-      - subtitle_ggbetween_t_rob
-      - subtitle_ggbetween_t_bayes
-      - subtitle_ggbetween_kw_nonparametric
-      - subtitle_ggbetween_rob_anova
-      - subtitle_contigency_tab
-      - subtitle_onesample_proptest
-      - subtitle_ggscatterstats
+      - starts_with("subtitle_")
 
   - title: Helper functions (statistics)
     desc:  Some useful functions used internally for carrying out smaller statistical operations.
@@ -56,14 +43,7 @@ reference:
   - title: Helper functions (messages)
     desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests.
     contents:
-      - normality_message
-      - bartlett_message
-
-  - title: Miscellaneous
-    desc:  Mixed bag of utility functions.
-    contens:
-      - ggstatsplot-package
-
+      - ends_with("_message")
 
   - title: Data
     desc:  Datasets included in the package.

@@ -789,7 +789,7 @@ settings, chosen to make the graphs more readable or aesthetically pleasing.
 Let's see an example with `gghistostats` and see how a certain theme from
 `hrbrthemes` package looks with and without the `ggstatsplot` layer.
 
-```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
+```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 12}
 # to use hrbrthemes themes, first make sure you have all the necessary fonts
 library(hrbrthemes)
 # extrafont::ttf_import()
@@ -839,6 +839,17 @@ functions involved:
 
 https://codecov.io/gh/IndrajeetPatil/ggstatsplot/tree/master/R
 
+
+## Dependencies
+
+Given that `ggstatsplot` combines data visualization with statistical analysis,
+it sits at the intersection of a big network of R packages from each domain.
+
+```{r dependency_plot, echo = FALSE, fig.width = 10, fig.height = 10, message = FALSE, warning = FALSE}
+source("https://gist.githubusercontent.com/crsh/c906e93c260488e7363ea606243057c2/raw/f6f0fce38bc274446d205854ea35cfa03b9b1f7a/plot_dependencies.R")
+
+plot_dependencies()
+```
 
 ## Contributing
 

@@ -223,7 +223,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002ac24bb8>
+#> <bytecode: 0x000000002ac2ec18>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -981,6 +981,14 @@ As the code stands right now, here is the code coverage for all primary
 functions involved:
 
 <https://codecov.io/gh/IndrajeetPatil/ggstatsplot/tree/master/R>
+
+## Dependencies
+
+Given that `ggstatsplot` combines data visualization with statistical
+analysis, it sits at the intersection of a big network of R packages
+from each domain.
+
+<img src="man/figures/README-dependency_plot-1.png" width="100%" />
 
 ## Contributing
 

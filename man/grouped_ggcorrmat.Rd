@@ -38,7 +38,7 @@ title (name of each factor level) (Default: \code{"Group"}).}
 \code{"plot"} (for visualization matrix) or \code{"correlations"} (or \code{"corr"} or
 \code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"} or \code{"p"};
 for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
-intervals for unique correlation pairs).}
+intervals for unique correlation pairs; not available for robust correlation).}
 
 \item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
 full matrix, lower triangular or upper triangular matrix.}
@@ -230,6 +230,18 @@ ggstatsplot::grouped_ggcorrmat(
   cor.vars = Sepal.Length:Petal.Width,
   output = "correlations"
 )
+
+# for getting confidence intervals
+# if robust correlation is selected, confidence intervals will not be
+# available
+ggstatsplot::grouped_ggcorrmat(
+  data = datasets::iris,
+  grouping.var = Species,
+  corr.method = "r",
+  cor.vars = Sepal.Length:Petal.Width,
+  output = "ci"
+)
+
 }
 \references{
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}

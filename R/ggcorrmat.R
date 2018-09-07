@@ -16,7 +16,7 @@
 #'   `"plot"` (for visualization matrix) or `"correlations"` (or `"corr"` or
 #'   `"r"`; for correlation matrix) or `"p-values"` (or `"p.values"` or `"p"`;
 #'   for a matrix of *p*-values) or `"ci"` (for a tibble with confidence
-#'   intervals for unique correlation pairs).
+#'   intervals for unique correlation pairs; not available for robust correlation).
 #' @param type Character, `"full"` (default), `"upper"` or `"lower"`, display
 #'   full matrix, lower triangular or upper triangular matrix.
 #' @param method Character argument that decides the visualization method of
@@ -115,7 +115,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
@@ -124,21 +124,21 @@
 #'   cor.vars = c(Sepal.Length:Petal.Width),
 #'   cor.vars.names = c("Sepal.Length", "Petal.Width")
 #' )
-#'
+#' 
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = iris,
 #'   cor.vars = c(Sepal.Length:Petal.Width),
 #'   output = "r"
 #' )
-#'
+#' 
 #' # setting output = "p-values" (or "p") will return the p-value matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = iris,
 #'   cor.vars = c(Sepal.Length:Petal.Width),
 #'   output = "p"
 #' )
-#'
+#' 
 #' # setting output = "ci" will return the confidence intervals for unique
 #' # correlation pairs
 #' ggstatsplot::ggcorrmat(
@@ -146,7 +146,7 @@
 #'   cor.vars = c(Sepal.Length:Petal.Width),
 #'   output = "ci"
 #' )
-#'
+#' 
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,

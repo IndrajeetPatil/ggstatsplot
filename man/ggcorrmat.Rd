@@ -32,7 +32,7 @@ names should be entered in the same order.}
 \code{"plot"} (for visualization matrix) or \code{"correlations"} (or \code{"corr"} or
 \code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"} or \code{"p"};
 for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
-intervals for unique correlation pairs).}
+intervals for unique correlation pairs; not available for robust correlation).}
 
 \item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
 full matrix, lower triangular or upper triangular matrix.}

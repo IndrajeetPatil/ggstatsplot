@@ -30,6 +30,12 @@ levels of a grouping variable — grouped_ggcorrmat • ggstatsplot</title>
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
 <meta property="og:title" content="Visualization of a correlalogram (or correlation matrix) for all
 levels of a grouping variable — grouped_ggcorrmat" />
@@ -65,7 +71,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.5.9000</span>
       </span>
     </div>
 
@@ -122,8 +128,19 @@ resulting plots using ggstatsplot::combine_plots." />
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
+      
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -137,7 +154,7 @@ resulting plots using ggstatsplot::combine_plots." />
     <div class="page-header">
     <h1>Visualization of a correlalogram (or correlation matrix) for all
 levels of a grouping variable</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/grouped_ggcorrmat.R'><code>R/grouped_ggcorrmat.R</code></a></small>
     <div class="hidden name"><code>grouped_ggcorrmat.Rd</code></div>
     </div>
 
@@ -196,7 +213,7 @@ title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
 <code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or <code>"corr"</code> or
 <code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code> or <code>"p"</code>;
 for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with confidence
-intervals for unique correlation pairs).</p></td>
+intervals for unique correlation pairs; not available for robust correlation).</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -473,7 +490,19 @@ of p-values.</p>
 #&gt;  9 virginica  Sepal.Length        1           0.457        0.864       0.281
 #&gt; 10 virginica  Sepal.Width         0.457       1            0.401       0.538
 #&gt; 11 virginica  Petal.Length        0.864       0.401        1           0.322
-#&gt; 12 virginica  Petal.Width         0.281       0.538        0.322       1    </div></pre>
+#&gt; 12 virginica  Petal.Width         0.281       0.538        0.322       1    </div><div class='input'>
+<span class='co'># for getting confidence intervals</span>
+<span class='co'># if robust correlation is selected, confidence intervals will not be</span>
+<span class='co'># available</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+  <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
+)</div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 0 x 1
+#&gt; # ... with 1 variable: Group &lt;chr&gt;</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -509,6 +538,23 @@ Indrajeet Patil
    </div>
 
   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '44345fbe359c5496fbc3955c513333d1',
+    indexName: 'ggstatsplot',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
   </body>
 </html>

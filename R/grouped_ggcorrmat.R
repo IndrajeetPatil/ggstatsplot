@@ -56,6 +56,17 @@
 #'   cor.vars = Sepal.Length:Petal.Width,
 #'   output = "correlations"
 #' )
+#' 
+#' # for getting confidence intervals
+#' # if robust correlation is selected, confidence intervals will not be
+#' # available
+#' ggstatsplot::grouped_ggcorrmat(
+#'   data = datasets::iris,
+#'   grouping.var = Species,
+#'   corr.method = "r",
+#'   cor.vars = Sepal.Length:Petal.Width,
+#'   output = "ci"
+#' )
 #' @export
 #'
 
