@@ -24,6 +24,11 @@ knitr::opts_chunk$set(
 )
 ```
 
+> "What is to be sought in designs for the display of information is the clear
+portrayal of complexity. Not the complication of the simple; rather ... the
+revelation of the complex." - Edward R. Tufte
+
+
 The `ggstatsplot` package is an opinionated collection of plots made with
 `ggplot2` and is designed for exploratory data analysis or for producing
 publication-ready. All plots share an underlying principle of displaying
@@ -67,18 +72,18 @@ So the key principle of Cleveland's paradigm for data display is-
 For example, decoding the data point values in `ggbetweenstats` requires
 position judgments along a common scale (Figure-1):
 
-```{r example1, fig.height = 8, fig.width = 7, fig.cap = "**Figure-1**. Note that assessing differences in mean values between groups has been made easier with the help of *position* of data points along a common scale (the Y-axis) and labels."}
+```{r example1, fig.height = 8, fig.width = 10, fig.cap = "**Figure-1**. Note that assessing differences in mean values between groups has been made easier with the help of *position* of data points along a common scale (the Y-axis) and labels."}
 ggstatsplot::ggbetweenstats(
-  data = ggplot2::mpg,
-  x = cyl,
-  y = cty,
-  title = "Figure-1: Fuel efficiency by type of cylinder",
-  xlab = "number of cylinders",
-  ylab = "city miles per gallon",
+  data = dplyr::sample_frac(ggstatsplot::movies_long, size = 0.5),
+  x = genre,
+  y = rating,
+  title = "Figure-1: IMDB rating by film genre",
+  xlab = "Genre",
+  ylab = "IMDB rating (average)",
   ggtheme = ggthemes::theme_fivethirtyeight(),
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
-  outlier.label = manufacturer,
+  outlier.label = title,
   messages = FALSE
 )
 ```
@@ -115,10 +120,18 @@ Figure-3). Note that the range for Y-axes are no longer the same across
 juxtaposed subplots and so visually comparing the data becomes difficult. On the
 other hand, in the superposed plot, all data have the same range and coloring
 different parts makes the visual discrimination of different components of the
-data, and their comparison, even easier. But the goal of `grouped_` variants of
+data, and their comparison, easier. But the goal of `grouped_` variants of
 functions is to not only show different aspects of the data but also to run
-statistical tests and showing detailed results for all aspects of the data in
-a superposed plot is difficult.
+statistical tests and showing detailed results for all aspects of the data in a
+superposed plot is difficult. Therefore, this is a compromise `ggstatsplot` is
+comfortable with, at least to produce plots for quick exploration of different
+aspects of the data. The combined plots that `grouped_` functions output follow the *Shrink
+Principle* (Tufte, 2001, p.166-7) for high-information graphics, which dictates
+that the data density and the size of the data matrix can be maximized to
+exploit maximum resolution of the available data-display technology. Given the
+large maximum resolution afforded by most computer monitors today, saving
+`grouped_` plots with appropriate resolution ensures no loss in legibility with
+reduced graphics area.
 
 ```{r example3, fig.height = 12, fig.width = 10, fig.cap = "Figure-3. Comparing different aspects of data is much more accurate in a superposed plot (b), which is recommended in Cleveland's paradigm, than in a juxtaposed plot, which is how it's implemented in `ggstatsplot` because displaying detailed results from statistical tests would be difficult otherwise."}
 ggstatsplot::combine_plots(
@@ -155,8 +168,10 @@ ggstatsplot::combine_plots(
 
 # Graphical integrity (and clean design)
 
-The package follows the principles for **graphical integrity** (as outlined in
-Tufte, 2001):
+Graphical excellence consists of communicating complex ideas with clarity and in a
+way that the viewer understands the greatest number of ideas in a short amount
+of time all the while not quoting the data out of context. The package follows
+the principles for **graphical integrity** (as outlined in Tufte, 2001):
 
   * The physical representation of numbers is proportional to the numerical
   quantities they represent (e.g., Figure-1 and Figure-2 show how means (in
@@ -177,6 +192,31 @@ Tufte, 2001):
 
   * All plots are designed to have no **chartjunk** (like moiré vibrations, fake
   perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
+
+There are some instances where `ggstatsplot` graphs don't follow principles of
+clean graphics, as formulated in the Tufte theory of data graphics (Tufte, 2001,
+Chapter 4). The theory has four key principles:
+
+  1. Above all else show the data.
+  2. Maximize the data-ink ratio.
+  3. Erase non-data-ink.
+  4. Erase redundant data-ink, within reason.
+
+In particular, default plots in `ggstatsplot` can sometimes violate one of the
+principles from 2-4. According to these principles, every bit of ink should have
+reason for its inclusion in the graphic and should convery some new information
+to the viewer. If not, such ink should be removed. One instance of this is
+bilteral symmetry of data measures. For example, in Figure-1, we can see that
+both the box and violin plots are mirrored, which consumes twice the space in
+the graphic without adding any new information. But this redundancy is tolerated
+for the sake of beauty that such symmetrical shapes can bring to the graphic.
+Even Tufte admits that efficiency is but one consideration in the design of
+statistical graphics (Tufte, 2001, p. 137). Additionally, these principles were
+formulated in an era in which computer graphics had yet to revolutionze the ease
+with which graphics could be produced and thus some of the concerns about
+minimizing data-ink for easier production of graphics are not as relevant as
+they were.
+
 
 # Statistical details
 

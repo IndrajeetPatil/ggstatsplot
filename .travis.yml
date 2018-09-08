@@ -2,7 +2,6 @@
 
 language: r
 r:
-  - 3.3
   - oldrel
   - release
   - devel
