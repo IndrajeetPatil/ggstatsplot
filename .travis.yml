@@ -68,35 +68,8 @@ r_packages:
   - jmv
   - sjstats
   - WRS2
-#  - pals
   - scico
   - viridisLite
-
-# "These installs will be faster than source installs, but may not always be the most recent version"
-# https://docs.travis-ci.com/user/languages/r/#Additional-Dependency-Fields
-
-- os: osx
-  osx_image: xcode9.3beta
-- os: osx
-  osx_image: xcode9.2
-  before_install:
-    - brew install curl
-    - brew link --force curl
-- os: osx
-  osx_image: xcode7.3
-  #r_build_args: '--no-build-vignettes'
-  #r_check_args: '--ignore-vignettes --no-examples'
-
- addons:
-   apt:
-     packages:
-     - libcurl4-openssl-dev
-     - libxml2-dev
-     - libgsl0-dev
-
- repos:
-   CRAN: https://cloud.r-project.org
-   ropensci: http://packages.ropensci.org
 
 notifications:
   email:
