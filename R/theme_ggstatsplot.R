@@ -30,16 +30,16 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
   if (isTRUE(ggstatsplot.layer)) {
     ggtheme +
       ggplot2::theme(
-        axis.title.x = ggplot2::element_text(size = 12, face = "bold"),
-        strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
-        strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
-        strip.text = ggplot2::element_text(size = 12, face = "bold"),
-        axis.title.y = ggplot2::element_text(size = 12, face = "bold"),
-        axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
-        axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
+        axis.title.x = ggplot2::element_text(size = 10, face = "bold"),
+        strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
+        strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
+        strip.text = ggplot2::element_text(size = 10, face = "bold"),
+        axis.title.y = ggplot2::element_text(size = 10, face = "bold"),
+        axis.text.x = ggplot2::element_text(size = 10, face = "bold"),
+        axis.text.y = ggplot2::element_text(size = 10, face = "bold"),
         axis.line = ggplot2::element_line(),
-        legend.text = ggplot2::element_text(size = 12),
-        legend.title = ggplot2::element_text(size = 12, face = "bold"),
+        legend.text = ggplot2::element_text(size = 10),
+        legend.title = ggplot2::element_text(size = 10, face = "bold"),
         legend.title.align = 0.5,
         legend.text.align = 0.5,
         legend.key.height = grid::unit(x = 1, units = "line"),
@@ -58,7 +58,7 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
         ),
         plot.subtitle = ggplot2::element_text(
           color = "black",
-          size = 11,
+          size = 10,
           face = "bold",
           hjust = 0.5
         )
@@ -117,11 +117,11 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
         axis.title = ggplot2::element_blank(),
         axis.text.x = ggplot2::element_blank(),
         axis.text.y = ggplot2::element_blank(),
-        strip.text.x = ggplot2::element_text(size = 14, face = "bold"),
-        strip.text.y = ggplot2::element_text(size = 14, face = "bold"),
-        strip.text = ggplot2::element_text(size = 14, face = "bold"),
-        legend.text = ggplot2::element_text(size = 14),
-        legend.title = ggplot2::element_text(size = 14, face = "bold"),
+        strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
+        strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
+        strip.text = ggplot2::element_text(size = 10, face = "bold"),
+        legend.text = ggplot2::element_text(size = 10),
+        legend.title = ggplot2::element_text(size = 10, face = "bold"),
         legend.title.align = 0.5,
         legend.text.align = 0.5,
         legend.direction = "horizontal",
@@ -149,12 +149,12 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
         ),
         plot.subtitle = ggplot2::element_text(
           color = "black",
-          size = 11,
+          size = 10,
           hjust = 0.5
         ),
         plot.title = ggplot2::element_text(
           color = "black",
-          size = 14,
+          size = 10,
           face = "bold",
           hjust = 0.5
         )
@@ -185,15 +185,15 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
 theme_corrmat <- function() {
   ggplot2::theme(
     axis.title.x = ggplot2::element_blank(),
-    strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
-    strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
-    strip.text = ggplot2::element_text(size = 12, face = "bold"),
+    strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
+    strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
+    strip.text = ggplot2::element_text(size = 10, face = "bold"),
     axis.title.y = ggplot2::element_blank(),
-    axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
-    axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
+    axis.text.x = ggplot2::element_text(size = 10, face = "bold"),
+    axis.text.y = ggplot2::element_text(size = 10, face = "bold"),
     axis.line = ggplot2::element_line(),
-    legend.text = ggplot2::element_text(size = 12),
-    legend.title = ggplot2::element_text(size = 11, face = "bold"),
+    legend.text = ggplot2::element_text(size = 10),
+    legend.title = ggplot2::element_text(size = 10, face = "bold"),
     legend.title.align = 0.5,
     legend.text.align = 0.5,
     legend.key.height = grid::unit(x = 1, units = "line"),
@@ -206,13 +206,13 @@ theme_corrmat <- function() {
     ),
     plot.title = ggplot2::element_text(
       color = "black",
-      size = 14,
+      size = 10,
       face = "bold",
       hjust = 0.5
     ),
     plot.subtitle = ggplot2::element_text(
       color = "black",
-      size = 11,
+      size = 10,
       face = "bold",
       hjust = 0.5
     )

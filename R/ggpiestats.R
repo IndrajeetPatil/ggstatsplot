@@ -26,6 +26,7 @@
 #'
 #' @import ggplot2
 #'
+#' @importFrom tidyr complete
 #' @importFrom dplyr select
 #' @importFrom dplyr group_by
 #' @importFrom dplyr summarize
@@ -50,10 +51,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -63,10 +64,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -298,7 +299,7 @@ ggpiestats <-
           ),
           position = position_fill(vjust = 0.5),
           color = "black",
-          size = 5,
+          size = 4,
           show.legend = FALSE
         ) +
         ggplot2::coord_polar(theta = "y") # convert to polar coordinates
@@ -328,7 +329,7 @@ ggpiestats <-
           ggplot2::aes(label = paste0(round(perc), "%"), group = factor(get("main"))),
           position = position_fill(vjust = 0.5),
           color = "black",
-          size = 5,
+          size = 4,
           show.legend = FALSE
         ) +
         ggplot2::coord_polar(theta = "y") # convert to polar coordinates
@@ -413,7 +414,7 @@ ggpiestats <-
             data = df2,
             mapping = ggplot2::aes(label = significance, x = 1.65),
             position = ggplot2::position_fill(vjust = 1),
-            size = 6,
+            size = 5,
             na.rm = TRUE
           )
       }
@@ -426,7 +427,7 @@ ggpiestats <-
             data = df_n_label,
             mapping = ggplot2::aes(label = condition_n_label, x = 1.65),
             position = ggplot2::position_fill(vjust = 0.5),
-            size = 5,
+            size = 4,
             na.rm = TRUE
           )
       }
