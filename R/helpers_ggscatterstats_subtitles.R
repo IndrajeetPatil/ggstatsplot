@@ -41,7 +41,8 @@ subtitle_ggscatterstats <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      stats::na.omit(.)
 
     #-------------------------------------------------- Pearson's r -----------------------------------------------------
     #

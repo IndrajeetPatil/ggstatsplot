@@ -240,6 +240,7 @@ ggstatsplot::grouped_ggcorrmat(
   data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.15),
   corr.method = "r",                  # percentage bend correlation coefficient
   beta = 0.2,                         # bending constant
+  p.adjust.method = "holm",           # method to adjust p-values for multiple comparisons
   grouping.var = cut,
   title.prefix = "Quality of cut",
   cor.vars = c(carat, depth:z),
@@ -334,6 +335,10 @@ plot_list <- purrr::pmap(
       "depth (in mm)"
     )),
     corr.method = list("pearson", "np", "robust", "p", "kendall"),
+    # note that we are changing both p-value adjustment method *and*
+    # significance level to display the significant correlations in the
+    # visualization matrix
+    p.adjust.method = list("none", "hommel", "fdr", "BY", "hochberg"),
     sig.level = list(0.05, 0.001, 0.01, 0.05, 0.003),
     lab.size = 3.5,
     colors = list(

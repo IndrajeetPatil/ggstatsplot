@@ -185,6 +185,7 @@ grouped_ggscatterstats <- function(data,
       .predicate = is.factor,
       .funs = ~base::droplevels(.)
     ) %>%
+    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)

@@ -80,7 +80,8 @@ subtitle_ggbetween_anova_parametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      stats::na.omit(.)
 
     # Welch's ANOVA run by default
     aov_stat <-
@@ -274,7 +275,8 @@ subtitle_ggbetween_t_parametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      stats::na.omit(.)
 
     # setting up the anova model and getting its summary and effect size
     t_stat <-
@@ -432,7 +434,8 @@ subtitle_ggbetween_mann_nonparametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      stats::na.omit(.)
 
     # setting up the Mann-Whitney U-test and getting its summary
     mann_stat <- stats::wilcox.test(
@@ -538,7 +541,8 @@ subtitle_ggbetween_t_rob <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      stats::na.omit(.)
 
     # Yuen's test for trimmed means
     t_robust_stat <-
@@ -643,7 +647,8 @@ subtitle_ggbetween_t_bayes <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
+    ) %>%
+    stats::na.omit(.)
 
   # running bayesian analysis
   jmv_results <- jmv::ttestIS(
@@ -732,7 +737,8 @@ subtitle_ggbetween_kw_nonparametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      stats::na.omit(.)
 
     # setting up the anova model and getting its summary
     kw_stat <- stats::kruskal.test(
@@ -824,7 +830,8 @@ subtitle_ggbetween_rob_anova <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      stats::na.omit(.)
 
     # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
     robust_aov_stat <- t1way_ci(

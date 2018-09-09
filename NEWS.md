@@ -5,6 +5,8 @@ MAJOR CHANGES
   results. This makes it easy for people to use these results in their own plots
   at any location they want (and not just in `subtitle`, the current default for
   `ggstatsplot`).
+  - `ggcorrmat` gains `p.adjust.method` argument which allows *p*-values for
+  correlations to be corrected for multiple comparisons.
   - `ggscatterstats` gains `label.var` and `label.expression` arguments to
   attach labels to points.
   - `gghistostats` now defaults to not showing (redundant) color gradient

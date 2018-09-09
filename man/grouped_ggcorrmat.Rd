@@ -9,13 +9,14 @@ grouped_ggcorrmat(data, cor.vars, cor.vars.names = NULL, grouping.var,
   title.prefix = "Group", output = "plot", type = "full",
   method = "square", corr.method = "pearson", exact = FALSE,
   continuity = TRUE, beta = 0.1, digits = 2, sig.level = 0.05,
-  hc.order = FALSE, hc.method = "complete", lab = TRUE,
-  colors = c("#E69F00", "white", "#009E73"), outline.color = "black",
-  ggtheme = ggplot2::theme_bw, ggstatsplot.layer = TRUE,
-  subtitle = NULL, caption = NULL, caption.default = TRUE,
-  lab.col = "black", lab.size = 5, insig = "pch", pch = 4,
-  pch.col = "black", pch.cex = 11, tl.cex = 12, tl.col = "black",
-  tl.srt = 45, axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
+  p.adjust.method = "none", hc.order = FALSE, hc.method = "complete",
+  lab = TRUE, colors = c("#E69F00", "white", "#009E73"),
+  outline.color = "black", ggtheme = ggplot2::theme_bw,
+  ggstatsplot.layer = TRUE, subtitle = NULL, caption = NULL,
+  caption.default = TRUE, lab.col = "black", lab.size = 5,
+  insig = "pch", pch = 4, pch.col = "black", pch.cex = 11,
+  tl.cex = 12, tl.col = "black", tl.srt = 45,
+  axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
   axis.text.x.margin.b = 0, axis.text.x.margin.l = 0,
   messages = TRUE, ...)
 }
@@ -71,7 +72,17 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 
 \item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
-correlation coefficient is regarded as insignificant.}
+correlation coefficient is regarded as insignificant and flagged as such in
+the plot. This argument is relevant only when \code{output = "plot"}.}
+
+\item{p.adjust.method}{What adjustment for multiple tests should be used?
+(\code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"},
+\code{"fdr"}, \code{"none"}). See \code{stats::p.adjust} for details about why to use
+\code{"holm"} rather than \code{"bonferroni"}). Default is \code{"none"}. If adjusted
+\emph{p}-values are displayed in the visualization of correlation matrix, the
+\strong{adjusted} \emph{p}-values will be used for the \strong{upper} triangle, while
+\strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
+matrix.}
 
 \item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be
 hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
@@ -213,21 +224,22 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 
-# for getting correlations
+# for getting plot
 ggstatsplot::grouped_ggcorrmat(
-  data = datasets::iris,
-  grouping.var = Species,
-  cor.vars = Sepal.Length:Petal.Width,
-  output = "plot",
-  nrow = 3,
-  ncol = 1
+  data = ggplot2::msleep,
+  grouping.var = vore,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "r",
+  p.adjust.method = "holm",
+  nrow = 2,
+  ncol = 2
 )
 
 # for getting correlations
 ggstatsplot::grouped_ggcorrmat(
-  data = datasets::iris,
-  grouping.var = Species,
-  cor.vars = Sepal.Length:Petal.Width,
+  data = ggplot2::msleep,
+  grouping.var = vore,
+  cor.vars = sleep_total:bodywt,
   output = "correlations"
 )
 
@@ -238,6 +250,7 @@ ggstatsplot::grouped_ggcorrmat(
   data = datasets::iris,
   grouping.var = Species,
   corr.method = "r",
+  p.adjust.method = "holm",
   cor.vars = Sepal.Length:Petal.Width,
   output = "ci"
 )

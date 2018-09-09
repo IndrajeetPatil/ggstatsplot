@@ -170,13 +170,14 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"square"</span>, <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>continuity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>), <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>, <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>lab.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>, <span class='kw'>axis.text.x.margin.t</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.r</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>,
+  <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>),
+  <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>,
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>lab.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>insig</span> <span class='kw'>=</span> <span class='st'>"pch"</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>pch.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>pch.cex</span> <span class='kw'>=</span> <span class='fl'>11</span>,
+  <span class='kw'>tl.cex</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>tl.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tl.srt</span> <span class='kw'>=</span> <span class='fl'>45</span>,
+  <span class='kw'>axis.text.x.margin.t</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.r</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>axis.text.x.margin.b</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>axis.text.x.margin.l</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
@@ -262,7 +263,19 @@ Kendall's <em>tau</em> and Spearman's <em>rho</em> when not computed exactly (De
       <th>sig.level</th>
       <td><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
 <em>p</em>-value matrix is bigger than <code>sig.level</code>, then the corresponding
-correlation coefficient is regarded as insignificant.</p></td>
+correlation coefficient is regarded as insignificant and flagged as such in
+the plot. This argument is relevant only when <code>output = "plot"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>p.adjust.method</th>
+      <td><p>What adjustment for multiple tests should be used?
+(<code>"holm"</code>, <code>"hochberg"</code>, <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>,
+<code>"fdr"</code>, <code>"none"</code>). See <code><a href='http://www.rdocumentation.org/packages/stats/topics/p.adjust'>stats::p.adjust</a></code> for details about why to use
+<code>"holm"</code> rather than <code>"bonferroni"</code>). Default is <code>"none"</code>. If adjusted
+<em>p</em>-values are displayed in the visualization of correlation matrix, the
+<strong>adjusted</strong> <em>p</em>-values will be used for the <strong>upper</strong> triangle, while
+<strong>unadjusted</strong> <em>p</em>-values will be used for the <strong>lower</strong> triangle of the
+matrix.</p></td>
     </tr>
     <tr>
       <th>hc.order</th>
@@ -461,36 +474,36 @@ of p-values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='co'># for getting plot</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/msleep'>msleep</a></span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
+  <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
+  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
+  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>
+)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Number of subjects must be greater than 3 to find confidence intervals.</span></div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting correlations</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>1</span>
-)</div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># for getting correlations</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/msleep'>msleep</a></span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"correlations"</span>
-)</div><div class='output co'>#&gt; # A tibble: 12 x 6
-#&gt;    Group      variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt;    &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-#&gt;  1 setosa     Sepal.Length        1           0.743        0.267       0.278
-#&gt;  2 setosa     Sepal.Width         0.743       1            0.178       0.233
-#&gt;  3 setosa     Petal.Length        0.267       0.178        1           0.332
-#&gt;  4 setosa     Petal.Width         0.278       0.233        0.332       1    
-#&gt;  5 versicolor Sepal.Length        1           0.526        0.754       0.546
-#&gt;  6 versicolor Sepal.Width         0.526       1            0.561       0.664
-#&gt;  7 versicolor Petal.Length        0.754       0.561        1           0.787
-#&gt;  8 versicolor Petal.Width         0.546       0.664        0.787       1    
-#&gt;  9 virginica  Sepal.Length        1           0.457        0.864       0.281
-#&gt; 10 virginica  Sepal.Width         0.457       1            0.401       0.538
-#&gt; 11 virginica  Petal.Length        0.864       0.401        1           0.322
-#&gt; 12 virginica  Petal.Width         0.281       0.538        0.322       1    </div><div class='input'>
+)</div><div class='output co'>#&gt; # A tibble: 24 x 8
+#&gt;    Group variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
+#&gt;    &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+#&gt;  1 carni sleep_total        1         0.92        0.38 -1      -0.52  -0.44
+#&gt;  2 carni sleep_rem          0.92      1           0.12 -0.92   -0.5   -0.48
+#&gt;  3 carni sleep_cycle        0.38      0.12        1    -0.38   -0.81  -0.27
+#&gt;  4 carni awake             -1        -0.92       -0.38  1       0.52   0.44
+#&gt;  5 carni brainwt           -0.52     -0.5        -0.81  0.52    1      0.86
+#&gt;  6 carni bodywt            -0.44     -0.48       -0.27  0.44    0.86   1   
+#&gt;  7 herbi sleep_total        1         0.86       -0.71 -1      -0.39  -0.38
+#&gt;  8 herbi sleep_rem          0.86      1          -0.41 -0.86   -0.43  -0.4 
+#&gt;  9 herbi sleep_cycle       -0.71     -0.41        1     0.71    0.85   0.71
+#&gt; 10 herbi awake             -1        -0.86        0.71  1       0.39   0.38
+#&gt; # ... with 14 more rows</div><div class='input'>
 <span class='co'># for getting confidence intervals</span>
 <span class='co'># if robust correlation is selected, confidence intervals will not be</span>
 <span class='co'># available</span>
@@ -498,6 +511,7 @@ of p-values.</p>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
+  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
 )</div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 0 x 1

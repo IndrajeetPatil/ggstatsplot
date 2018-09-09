@@ -41,7 +41,16 @@
 #'   `2`).
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
-#'   correlation coefficient is regarded as insignificant.
+#'   correlation coefficient is regarded as insignificant and flagged as such in
+#'   the plot. This argument is relevant only when `output = "plot"`.
+#' @param p.adjust.method What adjustment for multiple tests should be used?
+#'   (`"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`,
+#'   `"fdr"`, `"none"`). See `stats::p.adjust` for details about why to use
+#'   `"holm"` rather than `"bonferroni"`). Default is `"none"`. If adjusted
+#'   *p*-values are displayed in the visualization of correlation matrix, the
+#'   **adjusted** *p*-values will be used for the **upper** triangle, while
+#'   **unadjusted** *p*-values will be used for the **lower** triangle of the
+#'   matrix.
 #' @param hc.order Logical value. If `TRUE`, correlation matrix will be
 #'   hc.ordered using `hclust` function (Default is `FALSE`).
 #' @param hc.method The agglomeration method to be used in `hclust` (see
@@ -107,6 +116,7 @@
 #' @importFrom crayon red
 #' @importFrom WRS2 pball
 #' @importFrom psych corr.test
+#' @importFrom psych corr.p
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
@@ -120,30 +130,32 @@
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
 #' ggstatsplot::ggcorrmat(
-#'   data = iris,
-#'   cor.vars = c(Sepal.Length:Petal.Width),
-#'   cor.vars.names = c("Sepal.Length", "Petal.Width")
+#'   data = ggplot2::msleep,
+#'   cor.vars = sleep_total:bodywt,
+#'   cor.vars.names = c("total sleep", "REM sleep")
 #' )
 #' 
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
-#'   data = iris,
-#'   cor.vars = c(Sepal.Length:Petal.Width),
+#'   data = ggplot2::msleep,
+#'   cor.vars = sleep_total:bodywt,
 #'   output = "r"
 #' )
 #' 
 #' # setting output = "p-values" (or "p") will return the p-value matrix
 #' ggstatsplot::ggcorrmat(
-#'   data = iris,
-#'   cor.vars = c(Sepal.Length:Petal.Width),
+#'   data = ggplot2::msleep,
+#'   cor.vars = sleep_total:bodywt,
+#'   corr.method = "r",
+#'   p.adjust.method = "fdr",
 #'   output = "p"
 #' )
 #' 
 #' # setting output = "ci" will return the confidence intervals for unique
 #' # correlation pairs
 #' ggstatsplot::ggcorrmat(
-#'   data = iris,
-#'   cor.vars = c(Sepal.Length:Petal.Width),
+#'   data = ggplot2::msleep,
+#'   cor.vars = sleep_total:bodywt,
 #'   output = "ci"
 #' )
 #' 
@@ -175,6 +187,7 @@ ggcorrmat <-
              beta = 0.1,
              digits = 2,
              sig.level = 0.05,
+             p.adjust.method = "none",
              hc.order = FALSE,
              hc.method = "complete",
              lab = TRUE,
@@ -204,8 +217,7 @@ ggcorrmat <-
     #
     # creating a dataframe out of the entered variables
     df <- data %>%
-      dplyr::select(.data = ., !!rlang::enquo(cor.vars)) %>%
-      stats::na.omit(.)
+      dplyr::select(.data = ., !!rlang::enquo(cor.vars))
 
     # renaming the columns if so desired (must be equal to the number of number of cor.vars)
     if (!is.null(cor.vars.names)) {
@@ -238,6 +250,11 @@ ggcorrmat <-
     # ========================================== statistics =======================================================================
     #
     if (corr.method %in% c("pearson", "spearman", "kendall")) {
+      if (output == "ci") {
+        ci <- TRUE
+      } else {
+        ci <- FALSE
+      }
 
       # computing correlations using `psych` package
       corr_df <- psych::corr.test(
@@ -245,25 +262,51 @@ ggcorrmat <-
         y = NULL,
         use = "pairwise",
         method = corr.method,
-        adjust = "none",
+        adjust = p.adjust.method,
         alpha = .05,
-        ci = TRUE
+        ci = ci
       )
 
       # computing correlations on all included variables
-      corr.mat <- corr_df$r
+      corr.mat <- base::round(x = corr_df$r, digits = digits)
 
       # compute a correlation matrix of p-values
       p.mat <- corr_df$p
     } else if (corr.method == "robust") {
 
+      # this is just get a matrix of samples sizes to be used `n` argument in
+      # corr.p function
+      n_df <- psych::corr.test(
+        x = base::as.data.frame(df),
+        y = NULL,
+        use = "pairwise",
+        adjust = "none",
+        alpha = .05,
+        ci = FALSE
+      )
+
       # computing the percentage bend correlation matrix
       rob_cor <- WRS2::pball(x = df, beta = beta)
-      rob_cor$p.values[is.na(rob_cor$p.values)] <- 0
+
+      # extracting the correlations and formatting them
       corr.mat <- base::round(x = rob_cor$pbcorm, digits = digits)
 
-      # creating a correlation matrix of p-values
-      p.mat <- base::round(x = rob_cor$p.values, digits = digits)
+      # converting NAs to 1's
+      rob_cor$p.values[is.na(rob_cor$p.values)] <- 0
+
+      # adjusting for multiple comparisons (if needed)
+      if (p.adjust.method != "none") {
+        p.mat <-
+          psych::corr.p(
+            r = corr.mat,
+            n = n_df$n,
+            adjust = p.adjust.method,
+            alpha = 0.05
+          )$p
+      } else {
+        # creating a correlation matrix of p-values
+        p.mat <- rob_cor$p.values
+      }
     }
 
     # ========================================== plot ==============================================================
@@ -294,8 +337,25 @@ ggcorrmat <-
           tl.srt = tl.srt
         )
 
-        # ========================================== labels ==============================================================
-        #
+        # ========================================== labels =======================================================================
+
+        # preparing text for which p-value adjustment method was used
+        p.adjust.method.description <- function(p.adjust.method) {
+          switch(p.adjust.method,
+            none = "None",
+            bonferroni = "Bonferroni",
+            holm = "Holm",
+            hochberg = "Hochberg",
+            hommel = "Hommel",
+            BH = "Benjamini & Hochberg",
+            fdr = "Benjamini & Hochberg",
+            BY = "Benjamini & Yekutieli"
+          )
+        }
+
+        # p value adjustment method description
+        p.adjust.method.text <- p.adjust.method.description(p.adjust.method = p.adjust.method)
+
         # if caption is not specified, use the generic version only if caption.default is TRUE
         if (is.null(caption) &&
           pch == 4 && isTRUE(caption.default)) {
@@ -304,9 +364,22 @@ ggcorrmat <-
             ggplot2::labs(
               title = title,
               subtitle = subtitle,
-              caption = paste(
-                "Note: X denotes correlation non-significant at p <",
-                sig.level
+              caption = base::substitute(
+                expr = paste(
+                  bold("X"),
+                  " = correlation non-significant at ",
+                  italic("p"),
+                  " < ",
+                  sig.level,
+                  " (Adjustment: ",
+                  p.adjust.method.text,
+                  ")",
+                  sep = ""
+                ),
+                env = list(
+                  sig.level = sig.level,
+                  p.adjust.method.text = p.adjust.method.text
+                )
               ),
               xlab = NULL,
               ylab = NULL
@@ -358,6 +431,16 @@ ggcorrmat <-
       return(corr.mat)
     } else if (output %in% c("p-values", "p.values", "p")) {
 
+      # if p-values were adjusted, notify how they are going to be displayed
+      if (p.adjust.method != "none") {
+        base::message(cat(
+          crayon::green("Note:"),
+          crayon::blue(
+            "In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values."
+          )
+        ))
+      }
+
       # p-value matrix
       p.mat %<>%
         base::as.data.frame(x = .) %>%
@@ -390,6 +473,17 @@ ggcorrmat <-
         ))
       }
     } else if (output == "plot") {
+
+      # if p-values were adjusted, notify how they are going to be displayed
+      if (p.adjust.method != "none") {
+        base::message(cat(
+          crayon::green("Note:"),
+          crayon::blue(
+            "In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values."
+          )
+        ))
+      }
+
       # correlalogram plot
       return(plot)
     }

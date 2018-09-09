@@ -593,19 +593,11 @@ publication-ready correlation matrices.
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   corr.method = "spearman",                # correlation method
-  sig.level = 0.005,                       # threshold of significance
+  p.adjust.method = "holm",                # p-value adjustment method for multiple comparisons
   cor.vars = Sepal.Length:Petal.Width,     # a range of variables can be selected  
   cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
   title = "Correlalogram for length measures for Iris species",
-  subtitle = "Iris dataset by Anderson",
-  caption = expression(
-    paste(
-      italic("Note"),
-      ": X denotes correlation non-significant at ",
-      italic("p "),
-      "< 0.005; adjusted alpha"
-    )
-  )
+  subtitle = "Iris dataset by Anderson"
 )
 ```
 
@@ -616,6 +608,8 @@ Alternatively, you can use it just to get the correlation matrices and their
 corresponding *p*-values (in a `tibble` format).
 
 ```{r ggcorrmat2, message = FALSE, warning = FALSE}
+options(pillar.sigfig = 4)
+
 # getting the correlation coefficient matrix
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
@@ -627,13 +621,13 @@ ggstatsplot::ggcorrmat(
 
 # getting the p-value matrix
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  cor.vars = Sepal.Length:Petal.Width,
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
   corr.method = "robust",
-  output = "p.values"                  # only "p" or "p-values" will also work
+  output = "p.values",                  # only "p" or "p-values" will also work
+  p.adjust.method = "holm"
 )
 ```
-
 
 Additionally, there is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
@@ -646,7 +640,7 @@ set.seed(123)
 ggstatsplot::grouped_ggcorrmat(
   data = ggstatsplot::movies_long,
   cor.vars = length:votes,
-  corr.method = "r",
+  corr.method = "np",
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre,                      # grouping variable
   title.prefix = "Movie genre",

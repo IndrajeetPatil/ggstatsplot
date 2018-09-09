@@ -39,21 +39,22 @@
 #'
 #' @examples
 #' 
-#' # for getting correlations
+#' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
-#'   data = datasets::iris,
-#'   grouping.var = Species,
-#'   cor.vars = Sepal.Length:Petal.Width,
-#'   output = "plot",
-#'   nrow = 3,
-#'   ncol = 1
+#'   data = ggplot2::msleep,
+#'   grouping.var = vore,
+#'   cor.vars = sleep_total:bodywt,
+#'   corr.method = "r",
+#'   p.adjust.method = "holm",
+#'   nrow = 2,
+#'   ncol = 2
 #' )
 #' 
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
-#'   data = datasets::iris,
-#'   grouping.var = Species,
-#'   cor.vars = Sepal.Length:Petal.Width,
+#'   data = ggplot2::msleep,
+#'   grouping.var = vore,
+#'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
 #' 
@@ -64,6 +65,7 @@
 #'   data = datasets::iris,
 #'   grouping.var = Species,
 #'   corr.method = "r",
+#'   p.adjust.method = "holm",
 #'   cor.vars = Sepal.Length:Petal.Width,
 #'   output = "ci"
 #' )
@@ -85,6 +87,7 @@ grouped_ggcorrmat <- function(data,
                               beta = 0.1,
                               digits = 2,
                               sig.level = 0.05,
+                              p.adjust.method = "none",
                               hc.order = FALSE,
                               hc.method = "complete",
                               lab = TRUE,
@@ -121,8 +124,7 @@ grouped_ggcorrmat <- function(data,
     dplyr::mutate(
       .data = .,
       title.text = !!rlang::enquo(grouping.var)
-    ) %>%
-    stats::na.omit(object = .)
+    )
 
   # creating a nested dataframe
   df %<>%
@@ -136,6 +138,7 @@ grouped_ggcorrmat <- function(data,
       .predicate = is.factor,
       .funs = ~base::droplevels(.)
     ) %>%
+    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
@@ -165,6 +168,7 @@ grouped_ggcorrmat <- function(data,
               beta = beta,
               digits = digits,
               sig.level = sig.level,
+              p.adjust.method = p.adjust.method,
               hc.order = hc.order,
               hc.method = hc.method,
               lab = lab,
@@ -221,6 +225,7 @@ grouped_ggcorrmat <- function(data,
               type = type,
               method = method,
               corr.method = corr.method,
+              p.adjust.method = p.adjust.method,
               exact = exact,
               continuity = continuity,
               beta = beta,

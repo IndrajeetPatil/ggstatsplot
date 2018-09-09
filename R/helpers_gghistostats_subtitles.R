@@ -75,6 +75,7 @@ subtitle_onesample <- function(data = NULL,
 
   # convert to a tibble
   data %<>%
+    stats::na.omit(.) %>%
     tibble::as_data_frame(x = .)
 
   # ========================================== stats ==================================================================

@@ -73,6 +73,7 @@ subtitle_contigency_tab <- function(data,
         main = !!rlang::enquo(main),
         condition = !!rlang::quo_name(rlang::enquo(condition))
       ) %>%
+      stats::na.omit(.) %>%
       tibble::as_data_frame(x = .)
   } else {
     data <-
@@ -82,6 +83,7 @@ subtitle_contigency_tab <- function(data,
         condition = !!rlang::quo_name(rlang::enquo(condition)),
         counts = !!rlang::quo_name(rlang::enquo(counts))
       ) %>%
+      stats::na.omit(.) %>%
       tibble::as_data_frame(x = .)
   }
 

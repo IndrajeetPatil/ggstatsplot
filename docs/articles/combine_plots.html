@@ -9,7 +9,9 @@
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="combine_plots">
+<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="combine_plots">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -29,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.5.9000</span>
       </span>
     </div>
 
@@ -84,8 +86,21 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+<form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
+      </form>
+      
+    </div>
 <!--/.nav-collapse -->
   </div>
 <!--/.container -->
@@ -99,9 +114,9 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-07</h4>
+            <h4 class="date">2018-09-08</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/combine_plots.Rmd"><code>vignettes/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
 
     </div>
@@ -212,36 +227,35 @@
 <a class="sourceLine" id="cb2-30" data-line-number="30">        )</a>
 <a class="sourceLine" id="cb2-31" data-line-number="31">      )</a>
 <a class="sourceLine" id="cb2-32" data-line-number="32">  )</a>
-<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">#&gt; Note: 95% CI for explanatory measure of effect size was computed with 100 bootstrap samples.Note: 95% CI for explanatory measure of effect size was computed with 100 bootstrap samples.Note: 95% CI for explanatory measure of effect size was computed with 100 bootstrap samples.</span></a>
-<a class="sourceLine" id="cb2-34" data-line-number="34"></a>
-<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">### display the new object (notice that the class of the `plot` list column is S3: gg)</span></a>
-<a class="sourceLine" id="cb2-36" data-line-number="36">plots</a>
-<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
-<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt;     cyl data               plot    </span></a>
-<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt;   &lt;int&gt; &lt;list&gt;             &lt;list&gt;  </span></a>
-<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="co">#&gt; 1     4 &lt;tibble [81 x 11]&gt; &lt;S3: gg&gt;</span></a>
-<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="co">#&gt; 2     6 &lt;tibble [79 x 11]&gt; &lt;S3: gg&gt;</span></a>
-<a class="sourceLine" id="cb2-42" data-line-number="42"><span class="co">#&gt; 3     8 &lt;tibble [70 x 11]&gt; &lt;S3: gg&gt;</span></a>
-<a class="sourceLine" id="cb2-43" data-line-number="43"></a>
-<a class="sourceLine" id="cb2-44" data-line-number="44"><span class="co">### creating a grid with cowplot</span></a>
-<a class="sourceLine" id="cb2-45" data-line-number="45">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb2-46" data-line-number="46">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,                           <span class="co"># list column containing all ggstatsplot objects</span></a>
-<a class="sourceLine" id="cb2-47" data-line-number="47">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb2-48" data-line-number="48">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb2-49" data-line-number="49">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
-<a class="sourceLine" id="cb2-50" data-line-number="50">  <span class="dt">title.text =</span> <span class="st">"Fuel efficiency differences between 1999 and 2008"</span>,</a>
-<a class="sourceLine" id="cb2-51" data-line-number="51">  <span class="dt">title.size =</span> <span class="dv">13</span>,</a>
-<a class="sourceLine" id="cb2-52" data-line-number="52">  <span class="dt">title.color =</span> <span class="st">"#0072B2"</span>,</a>
-<a class="sourceLine" id="cb2-53" data-line-number="53">  <span class="dt">caption.text =</span> <span class="kw">expression</span>(</a>
-<a class="sourceLine" id="cb2-54" data-line-number="54">    <span class="kw">paste</span>(</a>
-<a class="sourceLine" id="cb2-55" data-line-number="55">      <span class="kw">italic</span>(<span class="st">"Dataset"</span>),</a>
-<a class="sourceLine" id="cb2-56" data-line-number="56">      <span class="st">": Fuel economy data from 1999 and 2008 for 38 popular models of car"</span>,</a>
-<a class="sourceLine" id="cb2-57" data-line-number="57">      <span class="dt">sep =</span> <span class="st">""</span></a>
-<a class="sourceLine" id="cb2-58" data-line-number="58">    ),</a>
-<a class="sourceLine" id="cb2-59" data-line-number="59">    <span class="dt">caption.size =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb2-60" data-line-number="60">    <span class="dt">caption.color =</span> <span class="st">"red"</span></a>
-<a class="sourceLine" id="cb2-61" data-line-number="61">  )</a>
-<a class="sourceLine" id="cb2-62" data-line-number="62">)</a></code></pre></div>
+<a class="sourceLine" id="cb2-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">### display the new object (notice that the class of the `plot` list column is S3: gg)</span></a>
+<a class="sourceLine" id="cb2-35" data-line-number="35">plots</a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt;     cyl data               plot    </span></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt;   &lt;int&gt; &lt;list&gt;             &lt;list&gt;  </span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt; 1     4 &lt;tibble [81 x 11]&gt; &lt;S3: gg&gt;</span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="co">#&gt; 2     6 &lt;tibble [79 x 11]&gt; &lt;S3: gg&gt;</span></a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="co">#&gt; 3     8 &lt;tibble [70 x 11]&gt; &lt;S3: gg&gt;</span></a>
+<a class="sourceLine" id="cb2-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="co">### creating a grid with cowplot</span></a>
+<a class="sourceLine" id="cb2-44" data-line-number="44">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">  <span class="dt">plotlist =</span> plots<span class="op">$</span>plot,                           <span class="co"># list column containing all ggstatsplot objects</span></a>
+<a class="sourceLine" id="cb2-46" data-line-number="46">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb2-47" data-line-number="47">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb2-48" data-line-number="48">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>),</a>
+<a class="sourceLine" id="cb2-49" data-line-number="49">  <span class="dt">title.text =</span> <span class="st">"Fuel efficiency differences between 1999 and 2008"</span>,</a>
+<a class="sourceLine" id="cb2-50" data-line-number="50">  <span class="dt">title.size =</span> <span class="dv">13</span>,</a>
+<a class="sourceLine" id="cb2-51" data-line-number="51">  <span class="dt">title.color =</span> <span class="st">"#0072B2"</span>,</a>
+<a class="sourceLine" id="cb2-52" data-line-number="52">  <span class="dt">caption.text =</span> <span class="kw">expression</span>(</a>
+<a class="sourceLine" id="cb2-53" data-line-number="53">    <span class="kw">paste</span>(</a>
+<a class="sourceLine" id="cb2-54" data-line-number="54">      <span class="kw">italic</span>(<span class="st">"Dataset"</span>),</a>
+<a class="sourceLine" id="cb2-55" data-line-number="55">      <span class="st">": Fuel economy data from 1999 and 2008 for 38 popular models of car"</span>,</a>
+<a class="sourceLine" id="cb2-56" data-line-number="56">      <span class="dt">sep =</span> <span class="st">""</span></a>
+<a class="sourceLine" id="cb2-57" data-line-number="57">    ),</a>
+<a class="sourceLine" id="cb2-58" data-line-number="58">    <span class="dt">caption.size =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb2-59" data-line-number="59">    <span class="dt">caption.color =</span> <span class="st">"red"</span></a>
+<a class="sourceLine" id="cb2-60" data-line-number="60">  )</a>
+<a class="sourceLine" id="cb2-61" data-line-number="61">)</a></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggbetweenstats_purrr-1.png" width="624"></p>
 </div>
 <div id="combining-plots-examples-with-plyr" class="section level2">
@@ -415,6 +429,20 @@
 </div>
 
   
-
-  </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+  docsearch({
+    
+    
+    apiKey: '44345fbe359c5496fbc3955c513333d1',
+    indexName: 'ggstatsplot',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+</body>
 </html>

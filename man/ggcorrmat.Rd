@@ -7,9 +7,9 @@
 ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
   type = "full", method = "square", corr.method = "pearson",
   exact = FALSE, continuity = TRUE, beta = 0.1, digits = 2,
-  sig.level = 0.05, hc.order = FALSE, hc.method = "complete",
-  lab = TRUE, colors = c("#E69F00", "white", "#009E73"),
-  outline.color = "black", ggtheme = ggplot2::theme_bw,
+  sig.level = 0.05, p.adjust.method = "none", hc.order = FALSE,
+  hc.method = "complete", lab = TRUE, colors = c("#E69F00", "white",
+  "#009E73"), outline.color = "black", ggtheme = ggplot2::theme_bw,
   ggstatsplot.layer = TRUE, title = NULL, subtitle = NULL,
   caption = NULL, caption.default = TRUE, lab.col = "black",
   lab.size = 5, insig = "pch", pch = 4, pch.col = "black",
@@ -65,7 +65,17 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 
 \item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
-correlation coefficient is regarded as insignificant.}
+correlation coefficient is regarded as insignificant and flagged as such in
+the plot. This argument is relevant only when \code{output = "plot"}.}
+
+\item{p.adjust.method}{What adjustment for multiple tests should be used?
+(\code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"},
+\code{"fdr"}, \code{"none"}). See \code{stats::p.adjust} for details about why to use
+\code{"holm"} rather than \code{"bonferroni"}). Default is \code{"none"}. If adjusted
+\emph{p}-values are displayed in the visualization of correlation matrix, the
+\strong{adjusted} \emph{p}-values will be used for the \strong{upper} triangle, while
+\strong{unadjusted} \emph{p}-values will be used for the \strong{lower} triangle of the
+matrix.}
 
 \item{hc.order}{Logical value. If \code{TRUE}, correlation matrix will be
 hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
@@ -141,30 +151,32 @@ Visualization of a correlalogram (or correlation matrix)
 # note that the function will run even if the vector with variable names is
 # not of same length as the number of variables
 ggstatsplot::ggcorrmat(
-  data = iris,
-  cor.vars = c(Sepal.Length:Petal.Width),
-  cor.vars.names = c("Sepal.Length", "Petal.Width")
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  cor.vars.names = c("total sleep", "REM sleep")
 )
 
 # to get the correlation matrix
 ggstatsplot::ggcorrmat(
-  data = iris,
-  cor.vars = c(Sepal.Length:Petal.Width),
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
   output = "r"
 )
 
 # setting output = "p-values" (or "p") will return the p-value matrix
 ggstatsplot::ggcorrmat(
-  data = iris,
-  cor.vars = c(Sepal.Length:Petal.Width),
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "r",
+  p.adjust.method = "fdr",
   output = "p"
 )
 
 # setting output = "ci" will return the confidence intervals for unique
 # correlation pairs
 ggstatsplot::ggcorrmat(
-  data = iris,
-  cor.vars = c(Sepal.Length:Petal.Width),
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
   output = "ci"
 )
 

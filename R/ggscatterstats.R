@@ -148,7 +148,6 @@ ggscatterstats <-
              ggstatsplot.layer = TRUE,
              messages = TRUE) {
 
-
     #--------------------------------- variable names ----------------------------------------------------------
 
     # preparing a dataframe with variable names
@@ -192,6 +191,7 @@ ggscatterstats <-
       by = "rowid"
     ) %>%
       dplyr::select(.data = ., -rowid) %>%
+      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
       tibble::as_data_frame(x = .)
 
     #--------------------------------- user expression ----------------------------------------------------------
