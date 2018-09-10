@@ -12,10 +12,10 @@ gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
   fill.gradient = FALSE, low.color = "#0072B2",
   high.color = "#D55E00", bar.fill = "grey50",
   results.subtitle = TRUE, centrality.para = "mean",
-  centrality.color = "blue", centrality.size = 1.2,
+  centrality.color = "blue", centrality.size = 1,
   centrality.linetype = "dashed", centrality.line.labeller = TRUE,
   centrality.k = 2, test.value.line = FALSE,
-  test.value.color = "black", test.value.size = 1.2,
+  test.value.color = "black", test.value.size = 1,
   test.value.linetype = "dashed", test.line.labeller = TRUE,
   test.k = 0, messages = TRUE)
 }

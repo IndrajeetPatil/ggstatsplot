@@ -35,7 +35,7 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
-#' 
+#'
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
@@ -75,13 +75,13 @@ grouped_gghistostats <- function(data,
                                  results.subtitle = TRUE,
                                  centrality.para = "mean",
                                  centrality.color = "blue",
-                                 centrality.size = 1.2,
+                                 centrality.size = 1.0,
                                  centrality.linetype = "dashed",
                                  centrality.line.labeller = TRUE,
                                  centrality.k = 2,
                                  test.value.line = FALSE,
                                  test.value.color = "black",
-                                 test.value.size = 1.2,
+                                 test.value.size = 1.0,
                                  test.value.linetype = "dashed",
                                  test.line.labeller = TRUE,
                                  test.k = 0,

@@ -81,7 +81,7 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' # this is the only function where data argument can be `NULL`.
 #' ggstatsplot::gghistostats(
@@ -89,7 +89,7 @@
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
@@ -139,13 +139,13 @@ gghistostats <-
              results.subtitle = TRUE,
              centrality.para = "mean",
              centrality.color = "blue",
-             centrality.size = 1.2,
+             centrality.size = 1.0,
              centrality.linetype = "dashed",
              centrality.line.labeller = TRUE,
              centrality.k = 2,
              test.value.line = FALSE,
              test.value.color = "black",
-             test.value.size = 1.2,
+             test.value.size = 1.0,
              test.value.linetype = "dashed",
              test.line.labeller = TRUE,
              test.k = 0,
@@ -373,7 +373,7 @@ gghistostats <-
     # computing summary statistics needed for displaying labels
     x_mean <- mean(x = data$x, na.rm = TRUE)
     x_median <- median(x = data$x, na.rm = TRUE)
-    y_label_median <- median(x = ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
+    y_label_pos <- median(x = ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
 
     # if test value is to be added
     if (isTRUE(test.value.line)) {
@@ -398,7 +398,7 @@ gghistostats <-
                 ))
               )),
               x = test.value,
-              y = y_label_median * (1 - 0.25)
+              y = y_label_pos * (1 - 0.25)
             ),
             show.legend = FALSE,
             parse = TRUE,
@@ -431,7 +431,7 @@ gghistostats <-
                   ))
                 )),
                 x = x_mean,
-                y = y_label_median * (1 + 0.25)
+                y = y_label_pos * (1 + 0.25)
               ),
               show.legend = FALSE,
               parse = TRUE,
@@ -460,7 +460,7 @@ gghistostats <-
                   ))
                 )),
                 x = x_median,
-                y = y_label_median * (1 + 0.25)
+                y = y_label_pos * (1 + 0.25)
               ),
               show.legend = FALSE,
               parse = TRUE,

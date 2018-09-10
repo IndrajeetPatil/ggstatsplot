@@ -38,10 +38,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = mtcars,
@@ -112,7 +112,8 @@ grouped_ggbetweenstats <- function(data,
       dplyr::mutate(
         .data = .,
         title.text = !!rlang::enquo(grouping.var)
-      )
+      ) %>%
+      stats::na.omit(.)
   } else {
     # getting the dataframe ready
     df <- dplyr::select(
@@ -124,7 +125,8 @@ grouped_ggbetweenstats <- function(data,
       dplyr::mutate(
         .data = .,
         title.text = !!rlang::enquo(grouping.var)
-      )
+      ) %>%
+      stats::na.omit(.)
   }
 
   # creating a nested dataframe

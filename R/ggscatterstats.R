@@ -85,15 +85,15 @@
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -275,52 +275,134 @@ ggscatterstats <-
         caption = caption
       )
 
+    #--------------------------------- adding centrality parameters ----------------------------------------------------------
+
+    # by default, if the input is NULL, then no centrality.para lines will be plotted
+
+    # computing summary statistics needed for displaying labels
+    x_mean <- mean(x = data$x, na.rm = TRUE)
+    x_median <- median(x = data$x, na.rm = TRUE)
+    y_mean <- mean(x = data$y, na.rm = TRUE)
+    y_median <- median(x = data$y, na.rm = TRUE)
+    x_label_pos <- median(x = ggplot2::layer_scales(plot)$x$range$range, na.rm = TRUE)
+    y_label_pos <- median(x = ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
+
+    # adding vertical and horizontal lines and attaching labels
+    if (is.null(centrality.para)) {
+      plot <- plot
+    } else if (isTRUE(centrality.para) ||
+      centrality.para == "mean") {
+
+      plot <-
+        plot +
+        # vertical line
+        ggplot2::geom_vline(
+          xintercept = x_mean,
+          linetype = "dashed",
+          color = xfill,
+          size = 1.0,
+          na.rm = TRUE
+        ) +
+        # horizontal line
+        ggplot2::geom_hline(
+          yintercept = y_mean,
+          linetype = "dashed",
+          color = yfill,
+          size = 1.0,
+          na.rm = TRUE
+        ) +
+        # label for vertical line
+        ggplot2::geom_label(
+          mapping = ggplot2::aes(
+            label = list(bquote(
+              "mean" == .(ggstatsplot::specify_decimal_p(
+                x = x_mean, k = 2
+              ))
+            )),
+            x = x_mean,
+            y = y_label_pos * (1 + 0.25)
+          ),
+          alpha = 0.5,
+          show.legend = FALSE,
+          parse = TRUE,
+          color = xfill
+        ) +
+        # label for horizontal line
+        ggplot2::geom_label(
+          mapping = ggplot2::aes(
+            label = list(bquote(
+              "mean" == .(ggstatsplot::specify_decimal_p(
+                x = y_mean, k = 2
+              ))
+            )),
+            x = x_label_pos * (1 + 0.25),
+            y = y_mean
+          ),
+          alpha = 0.5,
+          show.legend = FALSE,
+          parse = TRUE,
+          color = yfill
+        )
+    } else if (centrality.para == "median") {
+      plot <-
+        plot +
+        # vertical line
+        ggplot2::geom_vline(
+          xintercept = x_median,
+          linetype = "dashed",
+          color = xfill,
+          size = 1.0,
+          na.rm = TRUE
+        ) +
+        # horizontal line
+        ggplot2::geom_hline(
+          yintercept = y_median,
+          linetype = "dashed",
+          color = yfill,
+          size = 1.0,
+          na.rm = TRUE
+        ) +
+        # label for vertical line
+        ggplot2::geom_label(
+          mapping = ggplot2::aes(
+            label = list(bquote(
+              "median" == .(ggstatsplot::specify_decimal_p(
+                x = x_median, k = 2
+              ))
+            )),
+            x = x_median,
+            y = y_label_pos * (1 + 0.25)
+          ),
+          alpha = 0.5,
+          show.legend = FALSE,
+          parse = TRUE,
+          color = xfill
+        ) +
+        # label for horizontal line
+        ggplot2::geom_label(
+          mapping = ggplot2::aes(
+            label = list(bquote(
+              "median" == .(ggstatsplot::specify_decimal_p(
+                x = y_median, k = 2
+              ))
+            )),
+            x = x_label_pos * (1 + 0.25),
+            y = y_median
+          ),
+          alpha = 0.5,
+          show.legend = FALSE,
+          parse = TRUE,
+          color = yfill
+        )
+    }
+
+    #--------------------------------- range restriction -------------------------------------------------------------
+
     # forcing the plots to get cut off at min and max values of the variable
     if (isTRUE(axes.range.restrict)) {
       plot <- plot +
         ggplot2::coord_cartesian(xlim = c(min(data$x), max(data$x))) +
         ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y)))
-    }
-
-    #--------------------------------- adding centrality parameters ----------------------------------------------------------
-
-    # by default, if the input is NULL, then no centrality.para lines will be plotted
-
-    if (is.null(centrality.para)) {
-      plot <- plot
-    } else if (isTRUE(centrality.para) ||
-      centrality.para == "mean") {
-      plot <- plot +
-        ggplot2::geom_vline(
-          xintercept = mean(x = data$x, na.rm = TRUE),
-          linetype = "dashed",
-          color = xfill,
-          size = 1.2,
-          na.rm = TRUE
-        ) +
-        ggplot2::geom_hline(
-          yintercept = mean(x = data$y, na.rm = TRUE),
-          linetype = "dashed",
-          color = yfill,
-          size = 1.2,
-          na.rm = TRUE
-        )
-    } else if (centrality.para == "median") {
-      plot <- plot +
-        ggplot2::geom_vline(
-          xintercept = median(x = data$x, na.rm = TRUE),
-          linetype = "dashed",
-          color = xfill,
-          size = 1.2,
-          na.rm = TRUE
-        ) +
-        ggplot2::geom_hline(
-          yintercept = median(x = data$y, na.rm = TRUE),
-          linetype = "dashed",
-          color = yfill,
-          size = 1.2,
-          na.rm = TRUE
-        )
     }
 
     #--------------------------------- adding point labels ----------------------------------------------------------

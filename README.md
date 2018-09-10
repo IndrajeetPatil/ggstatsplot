@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--07-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--09-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -186,16 +186,16 @@ ggstatsplot::theme_ggstatsplot
 #>   if (isTRUE(ggstatsplot.layer)) {
 #>     ggtheme +
 #>       ggplot2::theme(
-#>         axis.title.x = ggplot2::element_text(size = 12, face = "bold"),
-#>         strip.text.x = ggplot2::element_text(size = 12, face = "bold"),
-#>         strip.text.y = ggplot2::element_text(size = 12, face = "bold"),
-#>         strip.text = ggplot2::element_text(size = 12, face = "bold"),
-#>         axis.title.y = ggplot2::element_text(size = 12, face = "bold"),
-#>         axis.text.x = ggplot2::element_text(size = 12, face = "bold"),
-#>         axis.text.y = ggplot2::element_text(size = 12, face = "bold"),
+#>         axis.title.x = ggplot2::element_text(size = 10, face = "bold"),
+#>         strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
+#>         strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
+#>         strip.text = ggplot2::element_text(size = 10, face = "bold"),
+#>         axis.title.y = ggplot2::element_text(size = 10, face = "bold"),
+#>         axis.text.x = ggplot2::element_text(size = 10, face = "bold"),
+#>         axis.text.y = ggplot2::element_text(size = 10, face = "bold"),
 #>         axis.line = ggplot2::element_line(),
-#>         legend.text = ggplot2::element_text(size = 12),
-#>         legend.title = ggplot2::element_text(size = 12, face = "bold"),
+#>         legend.text = ggplot2::element_text(size = 10),
+#>         legend.title = ggplot2::element_text(size = 10, face = "bold"),
 #>         legend.title.align = 0.5,
 #>         legend.text.align = 0.5,
 #>         legend.key.height = grid::unit(x = 1, units = "line"),
@@ -214,7 +214,7 @@ ggstatsplot::theme_ggstatsplot
 #>         ),
 #>         plot.subtitle = ggplot2::element_text(
 #>           color = "black",
-#>           size = 11,
+#>           size = 10,
 #>           face = "bold",
 #>           hjust = 0.5
 #>         )
@@ -223,7 +223,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002ac2ec18>
+#> <bytecode: 0x000000002ac92988>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -277,7 +277,6 @@ ggstatsplot::ggbetweenstats(
 ) +                                               # further modification outside of ggstatsplot
   ggplot2::coord_cartesian(ylim = c(3, 8)) + 
   ggplot2::scale_y_continuous(breaks = seq(3, 8, by = 1)) 
-#> Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.
 ```
 
 <img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />
@@ -372,7 +371,6 @@ ggstatsplot::grouped_ggbetweenstats(
   ncol = 2,
   title.text = "Differences in movie length by mpaa ratings for different genres"
 )
-#> Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.
 ```
 
 <img src="man/figures/README-ggbetweenstats3-1.png" width="100%" />
@@ -397,10 +395,12 @@ subtitle:
 
 ``` r
 ggstatsplot::ggscatterstats(
-  data = datasets::iris, 
-  x = Sepal.Length, 
-  y = Petal.Length,
-  title = "Dataset: Iris flower data set",
+  data = ggplot2::msleep, 
+  x = sleep_rem, 
+  y = awake,
+  xlab = "REM sleep (in hours)",
+  ylab = "Amount of time spent awake (in hours)",
+  title = "Understanding mammalian sleep",
   messages = FALSE
 )
 ```
@@ -433,10 +433,10 @@ ggstatsplot::ggscatterstats(
   ggtheme = hrbrthemes::theme_ipsum_ps(),         # choosing a different theme
   ggstatsplot.layer = FALSE,                      # turn off ggstatsplot theme layer
   marginal.type = "density",                      # type of marginal distribution to be displayed
-  xfill = "blue",                                 # color fill for x-axis marginal distribution 
-  yfill = "red",                                  # color fill for y-axis marginal distribution
-  xalpha = 0.5,                                   # transparency for x-axis marginal distribution
-  yalpha = 0.5,                                   # transparency for y-axis marginal distribution
+  xfill = "#0072B2",                              # color fill for x-axis marginal distribution 
+  yfill = "#009E73",                              # color fill for y-axis marginal distribution
+  xalpha = 0.6,                                   # transparency for x-axis marginal distribution
+  yalpha = 0.6,                                   # transparency for y-axis marginal distribution
   centrality.para = "median",                     # which type of central tendency lines are to be displayed  
   width.jitter = 0.2,                             # amount of horizontal jitter for data points
   height.jitter = 0.4,                            # amount of vertical jitter for data points
@@ -706,20 +706,13 @@ produces publication-ready correlation matrices.
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   corr.method = "spearman",                # correlation method
-  sig.level = 0.005,                       # threshold of significance
+  p.adjust.method = "holm",                # p-value adjustment method for multiple comparisons
   cor.vars = Sepal.Length:Petal.Width,     # a range of variables can be selected  
   cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
   title = "Correlalogram for length measures for Iris species",
-  subtitle = "Iris dataset by Anderson",
-  caption = expression(
-    paste(
-      italic("Note"),
-      ": X denotes correlation non-significant at ",
-      italic("p "),
-      "< 0.005; adjusted alpha"
-    )
-  )
+  subtitle = "Iris dataset by Anderson"
 )
+#> Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.
 ```
 
 <img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
@@ -731,6 +724,8 @@ Alternatively, you can use it just to get the correlation matrices and
 their corresponding *p*-values (in a `tibble` format).
 
 ``` r
+options(pillar.sigfig = 4)
+
 # getting the correlation coefficient matrix
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
@@ -749,18 +744,22 @@ ggstatsplot::ggcorrmat(
 
 # getting the p-value matrix
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  cor.vars = Sepal.Length:Petal.Width,
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
   corr.method = "robust",
-  output = "p.values"                  # only "p" or "p-values" will also work
+  output = "p.values",                  # only "p" or "p-values" will also work
+  p.adjust.method = "holm"
 )
-#> # A tibble: 4 x 5
-#>   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
-#>   <chr>               <dbl>       <dbl>        <dbl>       <dbl>
-#> 1 Sepal.Length         0           0.08            0           0
-#> 2 Sepal.Width          0.08        0               0           0
-#> 3 Petal.Length         0           0               0           0
-#> 4 Petal.Width          0           0               0           0
+#> Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.
+#> # A tibble: 6 x 7
+#>   variable sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt
+#>   <chr>          <dbl>     <dbl>       <dbl>     <dbl>     <dbl>     <dbl>
+#> 1 sleep_t~   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6
+#> 2 sleep_r~   4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3
+#> 3 sleep_c~   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5
+#> 4 awake      0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6
+#> 5 brainwt    4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17
+#> 6 bodywt     2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.
 ```
 
 Additionally, there is also a `grouped_` variant of this function that
@@ -775,7 +774,7 @@ set.seed(123)
 ggstatsplot::grouped_ggcorrmat(
   data = ggstatsplot::movies_long,
   cor.vars = length:votes,
-  corr.method = "r",
+  corr.method = "np",
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre,                      # grouping variable
   title.prefix = "Movie genre",
