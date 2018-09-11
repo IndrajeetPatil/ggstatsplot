@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--09-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--11-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -45,14 +45,23 @@ extension of [`ggplot2`](https://github.com/tidyverse/ggplot2) package
 for creating graphics with details from statistical tests included in
 the plots themselves and targeted primarily at behavioral sciences
 community to provide a one-line code to produce information-rich plots.
+In a typical exploratory data analysis workflow, data visualization and
+statistical modelling are two different phases: visualization informs
+modelling, and modelling in its turn can suggest a different
+visualization method, and so on and so forth. The central idea of
+*ggstatsplot* is simple: combine these two phases into one in the form
+of graphics with statistical details, which makes data exploration
+simpler and faster.
+
 Currently, it supports only the most common types of statistical tests
 (**parametric**, **nonparametric**, and **robust** versions of
-**t-tets/anova**, **correlation**, and **contingency tables** analyses).
+**t-test**, **anova**, and **correlation** analyses, **contingency
+table** analysis, and **regression** analyses).
 
 It, therefore, produces a limited kinds of plots for the supported
 analyses:
 
-  - **violin plots** (for comparisons between groups or conditions),
+  - **violin plots** (for comparisons *between* groups or conditions),
   - **pie charts** (for categorical data),
   - **scatterplots** (for correlations between two variables),
   - **correlation matrices** (for correlations between multiple
@@ -61,7 +70,7 @@ analyses:
   - **dot-and-whisker plots** (for regression models).
 
 In addition to these basic plots, `ggstatsplot` also provides
-**`grouped_`** versions of all functions that makes it easy to repeat
+**`grouped_`** versions for most functions that makes it easy to repeat
 the same anlysis for any grouping variable.
 
 Future versions will include other types of statistical analyses and
@@ -223,7 +232,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002ac92988>
+#> <bytecode: 0x000000002b47ae50>
 #> <environment: namespace:ggstatsplot>
 ```
 
