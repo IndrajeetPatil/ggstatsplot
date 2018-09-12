@@ -81,7 +81,7 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#'
+#' 
 #' # most basic function call with the defaults
 #' # this is the only function where data argument can be `NULL`.
 #' ggstatsplot::gghistostats(
@@ -89,7 +89,7 @@
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
-#'
+#' 
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,

@@ -91,7 +91,6 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom ggcorrplot cor_pmat
 #' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select
 #' @importFrom dplyr group_by
@@ -164,7 +163,7 @@
 #'   data = datasets::iris,
 #'   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
 #'   sig.level = 0.01,
-#'   ggtheme = ggplot2::theme_bw,
+#'   ggtheme = ggplot2::theme_bw(),
 #'   hc.order = TRUE,
 #'   type = "lower",
 #'   outline.col = "white",
@@ -193,7 +192,7 @@ ggcorrmat <-
              lab = TRUE,
              colors = c("#E69F00", "white", "#009E73"),
              outline.color = "black",
-             ggtheme = ggplot2::theme_bw,
+             ggtheme = ggplot2::theme_bw(),
              ggstatsplot.layer = TRUE,
              title = NULL,
              subtitle = NULL,
@@ -405,15 +404,17 @@ ggcorrmat <-
         # even if ggstatsplot theme is not overlaid, still make sure there is
         # enough distance between the axis and the label
         plot <- plot +
-          ggplot2::theme(axis.text.x = ggplot2::element_text(
-            margin = ggplot2::margin(
-              t = axis.text.x.margin.t,
-              r = axis.text.x.margin.r,
-              b = axis.text.x.margin.b,
-              l = axis.text.x.margin.l,
-              unit = "pt"
+          ggplot2::theme(
+            axis.text.x = ggplot2::element_text(
+              margin = ggplot2::margin(
+                t = axis.text.x.margin.t,
+                r = axis.text.x.margin.r,
+                b = axis.text.x.margin.b,
+                l = axis.text.x.margin.l,
+                unit = "pt"
+              )
             )
-          ))
+          )
       }
     }
     # ========================================== output ==============================================================

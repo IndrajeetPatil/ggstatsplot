@@ -1,6 +1,6 @@
-context('anova')
+context("anova")
 
-test_that('anova works', {
+test_that("anova works", {
   # the expected result
   r <-
     broom::tidy(
@@ -55,5 +55,4 @@ test_that('anova works', {
     object = subtitle_vec$value[[4]],
     tolerance = 1e-3
   )
-
 })

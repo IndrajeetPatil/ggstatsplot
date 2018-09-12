@@ -330,3 +330,13 @@ ggstatsplot::combine_plots(
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Session Information
+
+Summarizing session information for reproducibility.
+
+```{r session_info}
+options(width = 200)
+devtools::session_info()
+```
+

@@ -261,7 +261,7 @@
 <a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; &lt;bytecode: 0x00000000291dd1d0&gt;</span></a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; &lt;bytecode: 0x00000000290c2d00&gt;</span></a>
 <a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -444,10 +444,11 @@
 <a class="sourceLine" id="cb15-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb15-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7">  <span class="dt">main =</span> Species,</a>
-<a class="sourceLine" id="cb15-8" data-line-number="8">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb15-9" data-line-number="9">)</a></code></pre></div>
+<a class="sourceLine" id="cb15-6" data-line-number="6">  <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">  <span class="dt">main =</span> vore,</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">  <span class="dt">title =</span> <span class="st">"Composition of vore types among mammals"</span>,</a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats1-1.png" width="100%"></p>
 <p>This function can also be used to study an interaction between two categorical variables. Additionally, this basic plot can further be modified with additional arguments and the function returns a <code>ggplot2</code> object that can further be modified with <code>ggplot2</code> syntax:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
@@ -674,9 +675,9 @@
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
 <a class="sourceLine" id="cb26-2" data-line-number="2">                                       <span class="dt">data =</span> datasets<span class="op">::</span>mtcars)) </a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="80%"></p>
-<p>The basic can be further modified to one’s liking with additional arguments:</p>
+<p>The basic can be further modified to one’s liking with additional arguments (also, let’s use a robust linear model instead of a simple linear model now):</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">  <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">  <span class="dt">x =</span> MASS<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/MASS/topics/rlm">rlm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">                <span class="dt">data =</span> datasets<span class="op">::</span>mtcars),</a>
 <a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="dt">point.color =</span> <span class="st">"red"</span>,                </a>
 <a class="sourceLine" id="cb27-5" data-line-number="5">  <span class="dt">point.shape =</span> <span class="dv">15</span>,</a>

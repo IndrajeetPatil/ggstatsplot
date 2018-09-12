@@ -85,21 +85,30 @@ ggstatsplot::ggscatterstats(
 )
 ```
 
-The only exception for how `ggtheme` argument is to be entered is `ggcorrmat`
-function where the theme should **not** be entered as a function.
+Here is another example with the `ggcorrmat` function-
 
 ```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),
   type = "upper",
-  ggtheme = ggthemes::theme_fivethirtyeight,            # selected ggplot2 theme
+  ggtheme = ggthemes::theme_fivethirtyeight(),            # selected ggplot2 theme
   ggstatsplot.layer = FALSE
 )
 ```
-
 
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+
+## Session Information
+
+Summarizing session information for reproducibility.
+
+```{r session_info}
+options(width = 200)
+devtools::session_info()
+```
+

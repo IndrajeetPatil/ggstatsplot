@@ -85,15 +85,15 @@
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -292,7 +292,6 @@ ggscatterstats <-
       plot <- plot
     } else if (isTRUE(centrality.para) ||
       centrality.para == "mean") {
-
       plot <-
         plot +
         # vertical line

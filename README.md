@@ -232,7 +232,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002b47ae50>
+#> <bytecode: 0x000000002ac665d0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -501,8 +501,9 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggpiestats(
-  data = datasets::iris,
-  main = Species,
+  data = ggplot2::msleep,
+  main = vore,
+  title = "Composition of vore types among mammals",
   messages = FALSE
 )
 ```
@@ -811,11 +812,12 @@ ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
 <img src="man/figures/README-ggcoefstats1-1.png" width="80%" />
 
 The basic can be further modified to one’s liking with additional
-arguments:
+arguments (also, let’s use a robust linear model instead of a simple
+linear model now):
 
 ``` r
 ggstatsplot::ggcoefstats(
-  x = stats::lm(formula = mpg ~ am * cyl,
+  x = MASS::rlm(formula = mpg ~ am * cyl,
                 data = datasets::mtcars),
   point.color = "red",                
   point.shape = 15,
