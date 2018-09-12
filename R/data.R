@@ -1,4 +1,3 @@
-#'
 #' @title Movie information and user ratings from IMDB.com (wide format).
 #' @name movies_wide
 #' @details Modified dataset from `ggplot2movies` package.
@@ -34,8 +33,6 @@
 #' head(movies_wide)
 "movies_wide"
 
-
-#'
 #' @title Movie information and user ratings from IMDB.com (long format).
 #' @name movies_long
 #' @details Modified dataset from `ggplot2movies` package.
@@ -94,8 +91,6 @@
 #' head(Titanic_full)
 "Titanic_full"
 
-
-#'
 #' @title Moral judgments about third-party moral behavior.
 #' @name intent_morality
 #' @details This dataset contains data from a recent study about how people
