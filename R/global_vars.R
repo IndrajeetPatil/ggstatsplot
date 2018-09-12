@@ -109,7 +109,9 @@ utils::globalVariables(
     "se.y",
     "std.error",
     "pair",
-    "bold"
+    "bold",
+    "x...internal",
+    "y...internal"
   ),
   package = "ggstatsplot",
   add = FALSE

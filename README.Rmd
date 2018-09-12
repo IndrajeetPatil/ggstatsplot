@@ -525,9 +525,11 @@ ggstatsplot::gghistostats(
 
 The aesthetic defaults can be easily modified-
 
+**Note**: To use `bar.measure = "mix"` option, you will need to get the
+development version of `ggplot2` from GitHub.
+
 ```{r gghistostats2, message = FALSE, warning = FALSE}
-# to use `bar.measure = "mix"` option, you will need to get the development
-# version of `ggplot2` from GitHub 
+# getting development version of ggplot2
 # devtools::install_github(repo = "tidyverse/ggplot2", dependencies = FALSE)
 
 # plot

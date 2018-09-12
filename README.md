@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--11-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--12-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -232,7 +232,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002ac665d0>
+#> <bytecode: 0x000000002ac476a0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -626,12 +626,13 @@ ggstatsplot::gghistostats(
 
 <img src="man/figures/README-gghistostats1-1.png" width="100%" />
 
-The aesthetic defaults can be easily
-modified-
+The aesthetic defaults can be easily modified-
+
+**Note**: To use `bar.measure = "mix"` option, you will need to get the
+development version of `ggplot2` from GitHub.
 
 ``` r
-# to use `bar.measure = "mix"` option, you will need to get the development
-# version of `ggplot2` from GitHub 
+# getting development version of ggplot2
 # devtools::install_github(repo = "tidyverse/ggplot2", dependencies = FALSE)
 
 # plot

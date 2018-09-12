@@ -85,15 +85,15 @@
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -171,12 +171,15 @@ ggscatterstats <-
 
     # preparing the dataframe
     data <- dplyr::full_join(
-      # dataframe where x and y are named "x" and "y"
+      # dataframe where x and y are named "x...internal" and "y...internal"
+      # these bizarre names are used to protect against the possibility
+      # that user has already used "x" and "y" as variable names, in which case the
+      # full_join() will create variable names that will create problems
       x = data %>%
         dplyr::select(
           .data = .,
-          x = !!rlang::enquo(x),
-          y = !!rlang::enquo(y)
+          x...internal = !!rlang::enquo(x),
+          y...internal = !!rlang::enquo(y)
         ) %>%
         tibble::rowid_to_column(., var = "rowid"),
       # dataframe where x and y retain their original names
@@ -191,7 +194,7 @@ ggscatterstats <-
       by = "rowid"
     ) %>%
       dplyr::select(.data = ., -rowid) %>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+      dplyr::filter(.data = ., !is.na(x...internal), !is.na(y...internal)) %>%
       tibble::as_data_frame(x = .)
 
     #--------------------------------- user expression ----------------------------------------------------------
@@ -224,8 +227,8 @@ ggscatterstats <-
     if (results.subtitle == TRUE) {
       subtitle <- subtitle_ggscatterstats(
         data = data,
-        x = x,
-        y = y,
+        x = x...internal,
+        y = y...internal,
         nboot = nboot,
         beta = beta,
         type = type,
@@ -243,8 +246,8 @@ ggscatterstats <-
       ggplot2::ggplot(
         data = data,
         mapping = ggplot2::aes(
-          x = x,
-          y = y
+          x = x...internal,
+          y = y...internal
         )
       ) +
       ggplot2::geom_point(
@@ -280,10 +283,10 @@ ggscatterstats <-
     # by default, if the input is NULL, then no centrality.para lines will be plotted
 
     # computing summary statistics needed for displaying labels
-    x_mean <- mean(x = data$x, na.rm = TRUE)
-    x_median <- median(x = data$x, na.rm = TRUE)
-    y_mean <- mean(x = data$y, na.rm = TRUE)
-    y_median <- median(x = data$y, na.rm = TRUE)
+    x_mean <- mean(x = data$x...internal, na.rm = TRUE)
+    x_median <- median(x = data$x...internal, na.rm = TRUE)
+    y_mean <- mean(x = data$y...internal, na.rm = TRUE)
+    y_median <- median(x = data$y...internal, na.rm = TRUE)
     x_label_pos <- median(x = ggplot2::layer_scales(plot)$x$range$range, na.rm = TRUE)
     y_label_pos <- median(x = ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
 
@@ -400,8 +403,8 @@ ggscatterstats <-
     # forcing the plots to get cut off at min and max values of the variable
     if (isTRUE(axes.range.restrict)) {
       plot <- plot +
-        ggplot2::coord_cartesian(xlim = c(min(data$x), max(data$x))) +
-        ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y)))
+        ggplot2::coord_cartesian(xlim = c(min(data$x...internal), max(data$x...internal))) +
+        ggplot2::coord_cartesian(ylim = c(min(data$y...internal), max(data$y...internal)))
     }
 
     #--------------------------------- adding point labels ----------------------------------------------------------

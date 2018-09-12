@@ -47,6 +47,7 @@ Imports:
     tidyr (>= 0.8.1),
     WRS2 (>= 0.10-0)
 Suggests:
+    devtools,
     ggplot2movies,
     ggthemes (>= 4.0.0),
     gapminder (>= 0.3.0),
@@ -56,8 +57,8 @@ Suggests:
     mgcv,
     MASS,
     ordinal (>= 2018.4-19),
-    robust (>= 0.4-18),
     plyr (>= 1.8.4),
+    robust (>= 0.4-18),
     rmarkdown,
     spelling,
     stringr (>= 1.3.1),
