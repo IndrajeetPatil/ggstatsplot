@@ -87,7 +87,7 @@ grouped_gghistostats <- function(data,
                                  messages = TRUE,
                                  ...) {
   # ================== preparing dataframe ==================
-
+#  return(data$x)
   # getting the dataframe ready
   df <- dplyr::select(
     .data = data,
@@ -98,6 +98,25 @@ grouped_gghistostats <- function(data,
       .data = .,
       title.text = !!rlang::enquo(grouping.var)
     )
+
+  xxx <- dplyr::select(
+    .data = data,
+    !!rlang::enquo(x)
+  ) %>% max
+
+  yyy <- dplyr::select(
+    .data = data,
+    !!rlang::enquo(x)
+  ) %>% min
+
+  zzz <- as.integer(data %>% dplyr::count())
+
+  # Adding some binwidth sanity checking
+  if (is.null(binwidth)) {
+    binwidth <- (xxx - yyy)/sqrt(zzz)
+#    return((xxx - yyy)/sqrt(zzz))
+  }
+
 
   # creating a nested dataframe
   df %<>%
@@ -156,6 +175,7 @@ grouped_gghistostats <- function(data,
             test.line.labeller = test.line.labeller,
             test.k = test.k,
             binwidth = binwidth,
+#            binwidth = 0.2939388,
             ggtheme = ggtheme,
             ggstatsplot.layer = ggstatsplot.layer,
             fill.gradient = fill.gradient,
@@ -173,4 +193,5 @@ grouped_gghistostats <- function(data,
 
   # return the combined plot
   return(combined_plot)
+#  return(df)
 }

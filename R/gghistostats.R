@@ -189,6 +189,12 @@ gghistostats <-
     data %<>%
       tibble::as_data_frame(x = .)
 
+    # Adding some binwidth sanity checking
+        if (is.null(binwidth)) {
+          binwidth <- (max(data$x) - min(data$x))/sqrt(length(data$x))
+        }
+
+
     # ========================================== stats ==================================================================
 
     if (isTRUE(results.subtitle)) {
@@ -232,10 +238,6 @@ gghistostats <-
       )
     }
     # ========================================== plot ===================================================================
-    # Adding some binwidth sanity checking
-    if (is.null(binwidth)) {
-      binwidth <- round((max(data$x) - min(data$x))/sqrt(length(data$x)))
-    }
 
     # preparing the basic layout of the plot based on whether counts or density information is needed
 
