@@ -1,4 +1,3 @@
-#'
 #' @title Grouped histograms for distribution of a numeric variable
 #' @name grouped_gghistostats
 #' @aliases grouped_gghistostats

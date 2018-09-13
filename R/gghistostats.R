@@ -1,4 +1,3 @@
-#'
 #' @title Histogram for distribution of a numeric variable
 #' @name gghistostats
 #' @aliases gghistostats
@@ -233,6 +232,10 @@ gghistostats <-
       )
     }
     # ========================================== plot ===================================================================
+    # Adding some binwidth sanity checking
+    if (is.null(binwidth)) {
+      binwidth <- round((max(data$x) - min(data$x))/sqrt(length(data$x)))
+    }
 
     # preparing the basic layout of the plot based on whether counts or density information is needed
 

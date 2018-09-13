@@ -1,4 +1,3 @@
-#'
 #' @title Pie charts with statistical tests
 #' @name ggpiestats
 #' @aliases ggpiestats

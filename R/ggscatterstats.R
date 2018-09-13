@@ -1,4 +1,3 @@
-#'
 #' @title Scatterplot with marginal distributions
 #' @name ggscatterstats
 #' @aliases ggscatterstats
