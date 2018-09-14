@@ -1,4 +1,3 @@
-#'
 #' @title Violin plots for group or condition comparisons in between-subjects
 #'   designs repeated across all levels of a grouping variable.
 #' @name grouped_ggbetweenstats

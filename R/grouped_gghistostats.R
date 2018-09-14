@@ -1,4 +1,3 @@
-#'
 #' @title Grouped histograms for distribution of a numeric variable
 #' @name grouped_gghistostats
 #' @aliases grouped_gghistostats
@@ -88,7 +87,6 @@ grouped_gghistostats <- function(data,
                                  messages = TRUE,
                                  ...) {
   # ================== preparing dataframe ==================
-
   # getting the dataframe ready
   df <- dplyr::select(
     .data = data,
@@ -99,6 +97,24 @@ grouped_gghistostats <- function(data,
       .data = .,
       title.text = !!rlang::enquo(grouping.var)
     )
+
+  binmax <- dplyr::select(
+    .data = data,
+    !!rlang::enquo(x)
+  ) %>% max
+
+  binmin <- dplyr::select(
+    .data = data,
+    !!rlang::enquo(x)
+  ) %>% min
+
+  bincount <- as.integer(data %>% dplyr::count())
+
+  # Adding some binwidth sanity checking
+  if (is.null(binwidth)) {
+    binwidth <- (binmax - binmin)/sqrt(bincount)
+  }
+
 
   # creating a nested dataframe
   df %<>%

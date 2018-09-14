@@ -1,4 +1,3 @@
-#'
 #' @title A heteroscedastic one-way ANOVA for trimmed means with confidence
 #'   interval for effect size.
 #' @name t1way_ci
@@ -469,7 +468,6 @@ chisq_v_ci <- function(data,
 }
 
 
-#'
 #' @title Robust correlation coefficient and its confidence interval
 #' @name robcor_ci
 #' @description Custom function to get confidence intervals for percentage bend
@@ -620,7 +618,6 @@ robcor_ci <- function(data,
   return(results_df)
 }
 
-#'
 #' @title Confidence intervals for partial eta-squared and omega-squared for
 #'   linear models.
 #' @name lm_effsize_ci

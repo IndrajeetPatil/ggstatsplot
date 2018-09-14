@@ -1,4 +1,3 @@
-#'
 #' @title Default theme used in all `ggstatsplot` package plots
 #' @name theme_ggstatsplot
 #' @author Indrajeet Patil
@@ -68,7 +67,6 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
   }
 }
 
-#'
 #' @title Default theme used in all `ggstatsplot` package plots
 #' @name theme_mprl
 #' @author Indrajeet Patil
