@@ -53,11 +53,11 @@
 #' @param test.k,centrality.k Integer denoting the number of decimal places
 #'   expected for test and centrality parameters. (Default: `0` and `2`,
 #'   respectively).
-#' @param binwidth The width of the bins. Can be specified as a numeric value,
-#'   or a function that calculates width from `x`. The default is to use bins
-#'   bins that cover the range of the data. You should always override this
-#'   value, exploring multiple widths to find the best to illustrate the stories
-#'   in your data.
+#' @param binwidth The width of the histogram bins. Can be specified as a numeric
+#'   value, or a function that calculates width from `x`. The default is to use the
+#'   `max(x) - min(x) / sqrt(N)`. You should always check this value and explore
+#'   multiple widths to find the best to illustrate the stories in your data.
+#'
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams subtitle_onesample
 #'
