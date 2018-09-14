@@ -40,18 +40,19 @@ title (name of each factor level) (Default: \code{"Group"}).}
 
 \item{ylab}{Label for \code{y} axis variable.}
 
-\item{method}{Smoothing method (function) to use, eg. \code{lm}, \code{glm},
-\code{gam}, \code{loess}, \code{MASS::rlm}.
+\item{method}{Smoothing method (function) to use, accepts either a character vector,
+e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
+\code{MASS::rlm} or \code{mgcv::gam}, \code{base::lm}, or \code{base::loess}.
 
 For \code{method = "auto"} the smoothing method is chosen based on the
 size of the largest group (across all panels). \code{\link[=loess]{loess()}} is
 used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
 used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
-\code{loess} gives a better appearance, but is O(n^2) in memory, so does
-not work for larger datasets.
+\code{loess} gives a better appearance, but is \eqn{O(N^{2})}{O(N^2)} in memory,
+so does not work for larger datasets.
 
-If you have fewer than 1,000 observations but want to use the same \code{gam}
-model that \code{method = "auto"} would use then set
+If you have fewer than 1,000 observations but want to use the same \code{gam()}
+model that \code{method = "auto"} would use, then set
 \code{method = "gam", formula = y ~ s(x, bs = "cs")}.}
 
 \item{method.args}{List of additional arguments passed on to the modelling
