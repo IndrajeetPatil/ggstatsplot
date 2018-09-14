@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-11 September, 2018 00:21:32
+13 September, 2018 17:45:25
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -45,20 +45,20 @@ Unit Test summary is created using the
 [testthat](https://github.com/r-lib/testthat)
 package.
 
-|                        | file                                                     | n | time | error | failed | skipped | warning |
-| ---------------------- | :------------------------------------------------------- | -: | ---: | ----: | -----: | ------: | ------: |
-| test\_anova.R          | [test\_anova.R](testthat/test_anova.R)                   | 4 | 0.03 |     0 |      0 |       0 |       0 |
-| test\_ggbetweenstats.R | [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R) | 1 | 1.93 |     0 |      0 |       1 |       0 |
+|                          | file                                                        | n | time | error | failed | skipped | warning |
+| ------------------------ | :---------------------------------------------------------- | -: | ---: | ----: | -----: | ------: | ------: |
+| test\_anova\_subtitles.R | [test\_anova\_subtitles.R](testthat/test_anova_subtitles.R) | 4 | 3.77 |     0 |      0 |       0 |       0 |
+| test\_ggbetweenstats.R   | [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R)    | 1 | 2.78 |     0 |      0 |       1 |       0 |
 
 <details open>
 
 <summary> Show Detailed Test Results
 </summary>
 
-| file                                                             | context        | test                              | status  | n | time |
-| :--------------------------------------------------------------- | :------------- | :-------------------------------- | :------ | -: | ---: |
-| [test\_anova.R](testthat/test_anova.R#L36)                       | anova          | anova works                       | PASS    | 4 | 0.03 |
-| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L16_L17) | ggbetweenstats | ggbetweenstats working correctly? | SKIPPED | 1 | 1.93 |
+| file                                                             | context          | test                              | status  | n | time |
+| :--------------------------------------------------------------- | :--------------- | :-------------------------------- | :------ | -: | ---: |
+| [test\_anova\_subtitles.R](testthat/test_anova_subtitles.R#L36)  | anova\_subtitles | anova subtitles work              | PASS    | 4 | 3.77 |
+| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L17_L20) | ggbetweenstats   | ggbetweenstats working correctly? | SKIPPED | 1 | 2.78 |
 
 </details>
 

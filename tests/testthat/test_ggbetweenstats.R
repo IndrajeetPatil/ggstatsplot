@@ -20,3 +20,13 @@ testthat::test_that(
     )
   }
 )
+
+# this shouldn't work (Cohen's d or g are for anova designs)
+testthat::expect_error(
+  ggstatsplot::ggbetweenstats(
+    data = iris,
+    x = Species,
+    y = Sepal.Length,
+    effsize.type = "d"
+  )
+)

@@ -1,6 +1,6 @@
-context("anova")
+context("anova_subtitles")
 
-test_that("anova works", {
+test_that("anova subtitles work", {
   # the expected result
   r <-
     broom::tidy(
