@@ -25,11 +25,10 @@ taken. This argument is optional.}
 
 \item{x}{A numeric variable.}
 
-\item{binwidth}{The width of the bins. Can be specified as a numeric value,
-or a function that calculates width from \code{x}. The default is to use bins
-bins that cover the range of the data. You should always override this
-value, exploring multiple widths to find the best to illustrate the stories
-in your data.}
+\item{binwidth}{The width of the histogram bins. Can be specified as a numeric
+value, or a function that calculates width from \code{x}. The default is to use the
+\code{max(x) - min(x) / sqrt(N)}. You should always check this value and explore
+multiple widths to find the best to illustrate the stories in your data.}
 
 \item{bar.measure}{Character describing what value needs to be represented as
 height in the bar chart. This can either be \code{"count"}, which shows number
