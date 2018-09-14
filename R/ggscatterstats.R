@@ -84,15 +84,15 @@
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -402,8 +402,8 @@ ggscatterstats <-
     # forcing the plots to get cut off at min and max values of the variable
     if (isTRUE(axes.range.restrict)) {
       plot <- plot +
-        ggplot2::coord_cartesian(xlim = c(min(data$x...internal), max(data$x...internal))) +
-        ggplot2::coord_cartesian(ylim = c(min(data$y...internal), max(data$y...internal)))
+        ggplot2::coord_cartesian(xlim = c(min(data$x...internal, na.rm = TRUE), max(data$x...internal, na.rm = TRUE))) +
+        ggplot2::coord_cartesian(ylim = c(min(data$y...internal, na.rm = TRUE), max(data$y...internal, na.rm = TRUE)))
     }
 
     #--------------------------------- adding point labels ----------------------------------------------------------

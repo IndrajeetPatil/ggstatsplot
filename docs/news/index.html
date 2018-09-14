@@ -184,6 +184,7 @@
 <code>ggscatterstats</code> gains <code>method</code> and <code>formula</code> arguments to modify smoothing functions.</li>
 <li>
 <code>ggcorrmat</code> can now show <code>robust</code> correlation coefficients in the matrix plot.</li>
+<li>For <code>gghistostats</code>, <code>binwidth</code> value, if not specified, is computed with <code>(max-min)/sqrt(n)</code>. This is basically to get rid of the warnings ggplot2 produces. Thanks to Chuck Powell’s PR (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/43'>#43</a>).</li>
 </ul>
 <p>BUG FIXES</p>
 <ul>

@@ -190,9 +190,9 @@ gghistostats <-
       tibble::as_data_frame(x = .)
 
     # Adding some binwidth sanity checking
-        if (is.null(binwidth)) {
-          binwidth <- (max(data$x) - min(data$x))/sqrt(length(data$x))
-        }
+    if (is.null(binwidth)) {
+      binwidth <- (max(data$x) - min(data$x)) / sqrt(length(data$x))
+    }
 
 
     # ========================================== stats ==================================================================

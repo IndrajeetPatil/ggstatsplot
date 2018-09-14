@@ -41,6 +41,9 @@ MINOR CHANGES
   functions.
   - `ggcorrmat` can now show `robust` correlation coefficients in the matrix
   plot.
+  - For `gghistostats`, `binwidth` value, if not specified, is computed with
+  `(max-min)/sqrt(n)`. This is basically to get rid of the warnings ggplot2
+  produces. Thanks to Chuck Powell's PR (#43).
 
 BUG FIXES
   - `grouped_ggpiestats` wasn't working when only `main` variable was provided

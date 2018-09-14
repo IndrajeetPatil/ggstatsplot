@@ -37,7 +37,7 @@
 #'
 #'
 #' @examples
-#'
+#' 
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -48,7 +48,7 @@
 #'   nrow = 2,
 #'   ncol = 2
 #' )
-#'
+#' 
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -56,7 +56,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#'
+#' 
 #' # for getting confidence intervals
 #' # if robust correlation is selected, confidence intervals will not be
 #' # available
