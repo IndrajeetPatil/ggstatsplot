@@ -57,7 +57,8 @@ MAJOR CHANGES
     so feel free to use either or both of them since they are identical.
   - `ggcoefstats` no longer has arguments `effects` and `ran_params` because
     only fixed effects are shown for mixed-effects models.
-  - `ggpiestats` can now handle within-subjects designs (McNemar test).
+  - `ggpiestats` can now handle within-subjects designs (McNemar test results
+  will be displayed).
      
 BUG FIXES
   - `ggbetweenstats` was producing wrong axes labels when `sample.size.label`

@@ -25,23 +25,24 @@
 #' @inheritParams specify_decimal_p
 #'
 #' @importFrom tibble tribble
+#' @importFrom exact2x2 exact2x2
 #'
 #' @examples
-#' 
+#'
 #' # without counts data
 #' subtitle_contigency_tab(
 #'   data = mtcars,
 #'   main = am,
 #'   condition = cyl
 #' )
-#' 
+#'
 #' # with counts data
 #' # in case of no variation, NaN will be shown for results
 #' library(jmv)
-#' 
+#'
 #' dat <- as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male")
-#' 
+#'
 #' subtitle_contigency_tab(
 #'   data = dat,
 #'   main = Hair,
@@ -202,6 +203,22 @@ subtitle_contigency_tab <- function(data,
       pcCol = FALSE
     )
 
+    # computing exact odds ratio as effect size and their confidence interval
+    or_df <- exact2x2::exact2x2(
+      x = data$main,
+      y = data$condition,
+      or = 1,
+      alternative = "two.sided",
+      tsmethod = NULL,
+      conf.int = TRUE,
+      conf.level = 0.95,
+      tol = 0.00001,
+      conditional = TRUE,
+      paired = TRUE,
+      plot = FALSE,
+      midp = FALSE
+    )
+
     # preparing the subtitle
     subtitle <- base::substitute(
       expr =
@@ -217,6 +234,15 @@ subtitle_contigency_tab <- function(data,
           " = ",
           pvalue,
           ", ",
+          "log"["e"],
+          "(OR) = ",
+          or,
+          ", 95% CI [",
+          LL,
+          ", ",
+          UL,
+          "]",
+          ", ",
           italic("n"),
           " = ",
           n
@@ -231,6 +257,10 @@ subtitle_contigency_tab <- function(data,
           k,
           p.value = TRUE
         ),
+        # select odds ratio as effect size
+        or = ggstatsplot::specify_decimal_p(x = log(x = or_df$estimate, base = exp(1)), k),
+        LL = ggstatsplot::specify_decimal_p(x = log(x = or_df$conf.int[1], base = exp(1)), k),
+        UL = ggstatsplot::specify_decimal_p(x = log(x = or_df$conf.int[2], base = exp(1)), k),
         n = as.data.frame(jmv_chi$test)$`value[n]`[[1]]
       )
     )
@@ -255,16 +285,16 @@ subtitle_contigency_tab <- function(data,
 #' @inheritParams subtitle_contigency_tab
 #'
 #' @examples
-#' 
+#'
 #' # with counts
 #' library(jmv)
-#' 
+#'
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#' 
+#'
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),
