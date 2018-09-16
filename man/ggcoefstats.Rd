@@ -8,22 +8,22 @@ caption.}
 ggcoefstats(x, output = "plot", scales = NULL, conf.method = "Wald",
   p.kr = TRUE, coefficient.type = "beta", effsize = "eta",
   nboot = 1000, point.color = "blue", point.size = 3,
-  point.shape = 16, conf.int = TRUE, conf.level = 0.95, k = 3,
-  k.caption.summary = 0, exclude.intercept = TRUE,
-  exponentiate = FALSE, errorbar.color = "black",
-  errorbar.height = 0, errorbar.linetype = "solid",
-  errorbar.size = 0.5, vline = TRUE, vline.color = "black",
-  vline.linetype = "dashed", vline.size = 1, sort = "none",
-  xlab = "regression coefficient", ylab = "term", title = NULL,
-  subtitle = NULL, stats.labels = TRUE, caption.summary = TRUE,
-  stats.label.size = 3, stats.label.fontface = "bold",
-  stats.label.color = "black", label.r = 0.15, label.size = 0.25,
-  label.box.padding = 1, label.label.padding = 0.25,
-  label.point.padding = 0.5, label.segment.color = "grey50",
-  label.segment.size = 0.5, label.segment.alpha = NULL,
-  label.min.segment.length = 0.5, label.force = 1,
-  label.max.iter = 2000, label.nudge.x = 0, label.nudge.y = 0,
-  label.xlim = c(NA, NA), label.ylim = c(NA, NA),
+  point.shape = 16, conf.int = TRUE, conf.level = 0.95,
+  se.type = "nid", k = 3, k.caption.summary = 0,
+  exclude.intercept = TRUE, exponentiate = FALSE,
+  errorbar.color = "black", errorbar.height = 0,
+  errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
+  vline.color = "black", vline.linetype = "dashed", vline.size = 1,
+  sort = "none", xlab = "regression coefficient", ylab = "term",
+  title = NULL, subtitle = NULL, stats.labels = TRUE,
+  caption.summary = TRUE, stats.label.size = 3,
+  stats.label.fontface = "bold", stats.label.color = "black",
+  label.r = 0.15, label.size = 0.25, label.box.padding = 1,
+  label.label.padding = 0.25, label.point.padding = 0.5,
+  label.segment.color = "grey50", label.segment.size = 0.5,
+  label.segment.alpha = NULL, label.min.segment.length = 0.5,
+  label.force = 1, label.max.iter = 2000, label.nudge.x = 0,
+  label.nudge.y = 0, label.xlim = c(NA, NA), label.ylim = c(NA, NA),
   label.direction = "y", ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, ...)
 }
@@ -69,6 +69,10 @@ error bars (Default: \code{TRUE}).}
 
 \item{conf.level}{Numeric deciding level of confidence intervals (Default:
 \code{0.95}).}
+
+\item{se.type}{Character specifying the method used to compute standard
+standard errors for quantile regression (Default: \code{"nid"}). To see all
+available methods, see \code{quantreg::summary.rq()}.}
 
 \item{k}{Number of decimal places expected for results displayed in labels.}
 

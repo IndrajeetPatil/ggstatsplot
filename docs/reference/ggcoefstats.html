@@ -167,22 +167,22 @@ caption.</p>
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>,
   <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='st'>"beta"</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>stats.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>label.box.padding</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>label.segment.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.segment.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>se.type</span> <span class='kw'>=</span> <span class='st'>"nid"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>stats.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.box.padding</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>label.segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>, <span class='kw'>label.segment.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>label.segment.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
   <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
@@ -256,6 +256,12 @@ error bars (Default: <code>TRUE</code>).</p></td>
       <th>conf.level</th>
       <td><p>Numeric deciding level of confidence intervals (Default:
 <code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>se.type</th>
+      <td><p>Character specifying the method used to compute standard
+standard errors for quantile regression (Default: <code>"nid"</code>). To see all
+available methods, see <code><a href='http://www.rdocumentation.org/packages/quantreg/topics/summary.rq'>quantreg::summary.rq()</a></code>.</p></td>
     </tr>
     <tr>
       <th>k</th>

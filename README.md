@@ -232,7 +232,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002ae11eb8>
+#> <bytecode: 0x000000002adcf698>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -848,27 +848,27 @@ supported by `ggcoefstats`. Let’s see few examples:
 ``` r
 library(dplyr)
 library(lme4)
+library(quantreg)
 
 # for reproducibility
 set.seed(200)
 
 # creating dataframe needed for one of the analyses below
 d <- as.data.frame(Titanic)
+data(stackloss)
 
 # combining plots together
 ggstatsplot::combine_plots(
-  # generalized linear model
-  ggstatsplot::ggcoefstats(
-    x = stats::glm(
-      formula = Survived ~ Sex + Age,
-      data = d,
-      weights = d$Freq,
-      family = "binomial"
-    ),
-    exponentiate = TRUE,
-    exclude.intercept = FALSE,
-    title = "generalized linear model"
+  # quantile regression
+ggstatsplot::ggcoefstats(
+  x = quantreg::rq(
+    formula = stack.loss ~ stack.x,
+    data = stackloss,
+    method = "br"
   ),
+  se.type = "iid",
+  title = "quantile regression"
+),
   # nonlinear least squares
   ggstatsplot::ggcoefstats(
     x = stats::nls(

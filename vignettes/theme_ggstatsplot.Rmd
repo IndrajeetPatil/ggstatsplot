@@ -58,36 +58,10 @@ ggstatsplot::combine_plots(
 ```
 
 All plots in this package have `theme_bw()` by default as the base on which
-`theme_ggstatsplot()` is built, but this can be modified using the `ggtheme` argument
-provided for all functions. For example, for the `ggbetweenstats` function the
-default theme can be changed to, for example, `theme_grey()`:
+`theme_ggstatsplot()` is built, but this can be modified using the `ggtheme`
+argument. Let's see an example with `ggcorrmat` function.
 
-```{r theme1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
-ggstatsplot::ggbetweenstats(
-  data = datasets::iris,
-  x = Species,
-  y = Sepal.Length,
-  messages = FALSE,
-  ggtheme = ggplot2::theme_grey()          # selected ggplot2 theme
-)
-```
-
-Let's see another example with `ggscatterstats`, and note that the theme is now
-taken from the `ggthemes` package:
-
-```{r theme2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
-ggstatsplot::ggscatterstats(
-  data = datasets::iris,
-  x = Sepal.Width,
-  y = Sepal.Length,
-  messages = FALSE,
-  ggtheme = ggthemes::theme_tufte()       # selected theme
-)
-```
-
-Here is another example with the `ggcorrmat` function-
-
-```{r theme3, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+```{r theme1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),
@@ -96,6 +70,9 @@ ggstatsplot::ggcorrmat(
   ggstatsplot.layer = FALSE
 )
 ```
+
+Try modifying the theme for other functions (use themes from `ggplot2`,
+`ggthemes`, `hrbrthemes`, etc.)!
 
 ## Suggestions
 

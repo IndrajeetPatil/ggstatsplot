@@ -35,17 +35,17 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#' 
+#'
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   main = cyl
 #' )
-#' 
+#'
 #' #' without condition and with count data
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
@@ -302,6 +302,12 @@ grouped_ggpiestats <- function(data,
       plotlist = plotlist_purrr$plots,
       ...
     )
+
+  # show the note about grouped_ variant producing object which is not of
+  # class ggplot
+  if (isTRUE(messages)) {
+    grouped_message()
+  }
 
   # return the combined plot
   return(combined_plot)

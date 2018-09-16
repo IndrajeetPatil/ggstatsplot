@@ -34,7 +34,7 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
-#' 
+#'
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
@@ -193,6 +193,12 @@ grouped_gghistostats <- function(data,
       plotlist = plotlist_purrr$plots,
       ...
     )
+
+  # show the note about grouped_ variant producing object which is not of
+  # class ggplot
+  if (isTRUE(messages)) {
+    grouped_message()
+  }
 
   # return the combined plot
   return(combined_plot)

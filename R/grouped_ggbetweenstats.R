@@ -37,10 +37,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = mtcars,
@@ -262,6 +262,12 @@ grouped_ggbetweenstats <- function(data,
       plotlist = plotlist_purrr$plots,
       ...
     )
+
+  # show the note about grouped_ variant producing object which is not of
+  # class ggplot
+  if (isTRUE(messages)) {
+    grouped_message()
+  }
 
   # return the combined plot
   return(combined_plot)

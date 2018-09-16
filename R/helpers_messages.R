@@ -2,6 +2,7 @@
 #' @title Display normality test result as a message.
 #' @name normality_message
 #' @aliases normality_message
+#'
 #' @param x A numeric vector.
 #' @param lab A character describing label for the variable. If `NULL`, a
 #'   generic `"x"` label will be used.
@@ -21,10 +22,10 @@
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # message
 #' normality_message(x = datasets::anscombe$x1, lab = "x1")
-#' 
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -97,7 +98,7 @@ normality_message <- function(x, lab = NULL, k = 3, output = "message") {
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -105,7 +106,7 @@ normality_message <- function(x, lab = NULL, k = 3, output = "message") {
 #'   y = Sepal.Length,
 #'   lab = "Type of Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,
@@ -177,4 +178,19 @@ bartlett_message <- function(data,
   } else if (output == "stats") {
     return(bartlett)
   }
+}
+
+#' @title grouped_message
+#' @description A note to the user about the class of the output object.
+#'
+#' @keywords internal
+#'
+
+grouped_message <- function() {
+  base::message(cat(
+    crayon::red("Warning:"),
+    crayon::blue(
+      "The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions."
+    )
+  ))
 }

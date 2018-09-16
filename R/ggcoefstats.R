@@ -33,6 +33,9 @@
 #'   display in the plot. By default only `"beta"` (a vector of regression
 #'   parameters) parameters will be show. Other options are `"alpha"` (a vector
 #'   of threshold parameters) or `"both"`.
+#' @param se.type Character specifying the method used to compute standard
+#'   standard errors for quantile regression (Default: `"nid"`). To see all
+#'   available methods, see `quantreg::summary.rq()`.
 #' @param k Number of decimal places expected for results displayed in labels.
 #' @param k.caption.summary Number of decimal places expected for results
 #'   displayed in captions.
@@ -125,7 +128,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#' 
+#'
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -145,6 +148,7 @@ ggcoefstats <- function(x,
                         point.shape = 16,
                         conf.int = TRUE,
                         conf.level = 0.95,
+                        se.type = "nid",
                         k = 3,
                         k.caption.summary = 0,
                         exclude.intercept = TRUE,
@@ -193,7 +197,7 @@ ggcoefstats <- function(x,
   lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod")
 
   # models which are currently not supported
-  unsupported.mods <- c("glht", "kmeans", "rq")
+  unsupported.mods <- c("glht", "kmeans")
 
   # models for which glance is not supported
   noglance.mods <- c("aovlist")
@@ -289,7 +293,8 @@ ggcoefstats <- function(x,
         conf.int = TRUE,
         conf.level = conf.level,
         quick = FALSE,
-        conf.type = "Wald"
+        conf.type = "Wald",
+        ...
       )
 
     # selecting which coeffiecients to display
@@ -304,14 +309,26 @@ ggcoefstats <- function(x,
     # ===================================== tidying robust models =======================================================================
   } else if (class(x)[[1]] == "lmRob" || class(x)[[1]] == "glmRob") {
     tidy_df <-
-      broom::tidy(x = x)
+      broom::tidy(x = x,
+                  ...)
+    # ===================================== quantile regression ==========================================================================
+  } else if (class(x)[[1]] == "rq" || class(x)[[1]] == "rqs") {
+    tidy_df <-
+      broom::tidy(
+        x = x,
+        conf.int = TRUE,
+        conf.level = conf.level,
+        se.type = se.type,
+        ...
+      )
     # ===================================== tidying everything else =======================================================================
   } else {
     tidy_df <-
       broom::tidy(
         x = x,
         conf.int = TRUE,
-        conf.level = conf.level
+        conf.level = conf.level,
+        ...
       )
   }
 
@@ -609,7 +626,7 @@ ggcoefstats <- function(x,
     if (!(class(x)[[1]] %in% noglance.mods) && !(class(x)[[1]] %in% nodiagnostics.mods)) {
       if (!is.na(glance_df$AIC[[1]])) {
         # preparing caption with model diagnostics
-        caption.text <-
+        caption <-
           base::substitute(
             expr =
               paste(
@@ -627,13 +644,13 @@ ggcoefstats <- function(x,
             )
           )
       } else {
-        caption.text <- NULL
+        caption <- NULL
       }
     } else {
-      caption.text <- NULL
+      caption <- NULL
     }
   } else {
-    caption.text <- NULL
+    caption <- NULL
   }
   # ================================================== basic plot ===========================================================
 
@@ -753,7 +770,7 @@ ggcoefstats <- function(x,
     ggplot2::labs(
       x = xlab,
       y = ylab,
-      caption = caption.text,
+      caption = caption,
       subtitle = subtitle,
       title = title
     ) +

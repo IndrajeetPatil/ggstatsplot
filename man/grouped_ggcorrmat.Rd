@@ -231,8 +231,7 @@ ggstatsplot::grouped_ggcorrmat(
   cor.vars = sleep_total:bodywt,
   corr.method = "r",
   p.adjust.method = "holm",
-  nrow = 2,
-  ncol = 2
+  nrow = 2
 )
 
 # for getting correlations
