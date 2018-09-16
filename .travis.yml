@@ -10,7 +10,7 @@ sudo: required
 cache: packages
 bioc_required: true
 warnings_are_errors: false
-install: travis_wait 30 mvn install
+#install: travis_wait 30 mvn install
 
 env:
   global:
