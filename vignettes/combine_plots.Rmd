@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Combining plots with `combine_plots`
+# Combining plots with `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
 multiple plots. This is a wrapper around `cowplot::plot_grid()` and it helps you
@@ -161,10 +161,11 @@ library(ggstatsplot)
 
 ggstatsplot::combine_plots(
   # preparing the plot with ggstatsplot function
+  # let's use only 20% of data to speed up the process
   ggstatsplot::ggcoefstats(
     x = stats::lm(
       formula = rating ~ stats::poly(budget, degree = 3),
-      data = ggstatsplot::movies_long,
+      data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.2),
       na.action = na.omit
     ),
     exclude.intercept = FALSE,
@@ -197,7 +198,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Suggestions
+# Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
