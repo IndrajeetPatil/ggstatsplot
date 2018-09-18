@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:700");
+@import url("https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/fira_code.css");
+
+body {
+  font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+  font-family: Lato, "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+pre, code {
+  font-family: "Fira Code", Consolas, Inconsolata, monospace;
+}
+
+.navbar-default {
+  background-color: #f3f3f3;
+    border-color: #eee;
+}
