@@ -17,14 +17,15 @@ ggcoefstats(x, output = "plot", scales = NULL, conf.method = "Wald",
   sort = "none", xlab = "regression coefficient", ylab = "term",
   title = NULL, subtitle = NULL, stats.labels = TRUE,
   caption.summary = TRUE, stats.label.size = 3,
-  stats.label.fontface = "bold", stats.label.color = "black",
+  stats.label.fontface = "bold", stats.label.color = NULL,
   label.r = 0.15, label.size = 0.25, label.box.padding = 1,
   label.label.padding = 0.25, label.point.padding = 0.5,
   label.segment.color = "grey50", label.segment.size = 0.5,
   label.segment.alpha = NULL, label.min.segment.length = 0.5,
   label.force = 1, label.max.iter = 2000, label.nudge.x = 0,
   label.nudge.y = 0, label.xlim = c(NA, NA), label.ylim = c(NA, NA),
-  label.direction = "y", ggtheme = ggplot2::theme_bw(),
+  label.direction = "y", package = "RColorBrewer", palette = "Dark2",
+  direction = 1, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, ...)
 }
 \arguments{
@@ -127,7 +128,9 @@ displayed as a cation to the plot (Default: \code{TRUE}). Color of the line
 segment. Defaults to the same color as the text.}
 
 \item{stats.label.size, stats.label.fontface, stats.label.color}{Aesthetics for
-the labels. Defaults: \code{3}, \code{"bold"},\code{"black"}, resp.}
+the labels. Defaults: \code{3}, \code{"bold"},\code{NULL}, resp. If \code{stats.label.color} is
+\code{NULL}, colors will be chosen from the specified \code{package} (Default:
+\code{"RColorBrewer"}) and \code{palette} (Default: \code{"Dark2"}).}
 
 \item{label.r, }{Radius of rounded corners, as unit or number. Defaults to
 \code{0.15}. (Default unit is lines).}
@@ -169,6 +172,13 @@ entire plot area. Defaults to \code{c(NA, NA)}.}
 
 \item{label.direction}{Character (\code{"both"}, \code{"x"}, or \code{"y"}) -- direction in
 which to adjust position of labels (Default: \code{"y"}).}
+
+\item{package}{Name of package from which the palette is desired as string
+or symbol.}
+
+\item{palette}{Name of palette as string or symbol.}
+
+\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

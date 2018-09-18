@@ -84,7 +84,7 @@ GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 Summarizing session information for reproducibility.
 
-```{r session_info}
+```{r session_info, eval = FALSE}
 options(width = 200)
 devtools::session_info()
 ```

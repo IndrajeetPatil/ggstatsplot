@@ -66,7 +66,9 @@
 #'   displayed as a cation to the plot (Default: `TRUE`). Color of the line
 #'   segment. Defaults to the same color as the text.
 #' @param stats.label.size,stats.label.fontface,stats.label.color Aesthetics for
-#'   the labels. Defaults: `3`, `"bold"`,`"black"`, resp.
+#'   the labels. Defaults: `3`, `"bold"`,`NULL`, resp. If `stats.label.color` is
+#'   `NULL`, colors will be chosen from the specified `package` (Default:
+#'   `"RColorBrewer"`) and `palette` (Default: `"Dark2"`).
 #' @param label.r, Radius of rounded corners, as unit or number. Defaults to
 #'   `0.15`. (Default unit is lines).
 #' @param label.size Size of label border, in mm. Defaults to `0.25`.
@@ -98,6 +100,7 @@
 #' @inheritParams broom::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams theme_ggstatsplot
+#' @inheritParams paletteer::paletteer_d
 #' @param \dots Extra arguments to pass to \code{\link[broom]{tidy}}.
 #'
 #' @import ggplot2
@@ -128,7 +131,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#'
+#' 
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -170,7 +173,7 @@ ggcoefstats <- function(x,
                         caption.summary = TRUE,
                         stats.label.size = 3,
                         stats.label.fontface = "bold",
-                        stats.label.color = "black",
+                        stats.label.color = NULL,
                         label.r = 0.15,
                         label.size = 0.25,
                         label.box.padding = 1,
@@ -187,6 +190,9 @@ ggcoefstats <- function(x,
                         label.xlim = c(NA, NA),
                         label.ylim = c(NA, NA),
                         label.direction = "y",
+                        package = "RColorBrewer",
+                        palette = "Dark2",
+                        direction = 1,
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
                         ...) {
@@ -309,8 +315,10 @@ ggcoefstats <- function(x,
     # ===================================== tidying robust models =======================================================================
   } else if (class(x)[[1]] == "lmRob" || class(x)[[1]] == "glmRob") {
     tidy_df <-
-      broom::tidy(x = x,
-                  ...)
+      broom::tidy(
+        x = x,
+        ...
+      )
     # ===================================== quantile regression ==========================================================================
   } else if (class(x)[[1]] == "rq" || class(x)[[1]] == "rqs") {
     tidy_df <-
@@ -676,6 +684,9 @@ ggcoefstats <- function(x,
     tidy_df %<>% dplyr::select(.data = ., -rowid)
   }
 
+  # counting the number of terms in the tidy dataframe
+  count_term <- length(tidy_df$term)
+
   # setting up the basic architecture
   plot <-
     ggplot2::ggplot(
@@ -731,8 +742,19 @@ ggcoefstats <- function(x,
 
   # ================================================== ggrepel labels ===========================================================
 
+  # if user has not specified colors, then use a color palette
+  if (is.null(stats.label.color)) {
+    stats.label.color <- paletteer::paletteer_d(
+      package = !!package,
+      palette = !!palette,
+      n = count_term,
+      direction = direction,
+      type = "discrete"
+    )
+  }
+
+  # adding the labels
   if (isTRUE(stats.labels)) {
-    # adding the labels
     plot <- plot +
       ggrepel::geom_label_repel(
         data = tidy_df,

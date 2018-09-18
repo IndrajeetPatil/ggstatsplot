@@ -335,7 +335,7 @@ If you find any bugs or have any suggestions/remarks, please file an issue on Gi
 
 Summarizing session information for reproducibility.
 
-```{r session_info}
+```{r session_info, eval = FALSE}
 options(width = 200)
 devtools::session_info()
 ```
