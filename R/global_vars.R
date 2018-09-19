@@ -112,7 +112,8 @@ utils::globalVariables(
     "bold",
     "x...internal",
     "y...internal",
-    "or"
+    "or",
+    "atop"
   ),
   package = "ggstatsplot",
   add = FALSE

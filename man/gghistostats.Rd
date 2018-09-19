@@ -42,7 +42,8 @@ in the same plot (only available from \code{ggplot2 3.0.1} onward).}
 \item{title}{The text for the plot title.}
 
 \item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
-from one sample test to be displayed.}
+from one sample test to be displayed (i.e. \code{results.subtitle} should be set
+to \code{FALSE}).}
 
 \item{caption}{The text for the plot caption.}
 
@@ -148,10 +149,9 @@ ggstatsplot::gghistostats(
   bar.measure = "count",
   type = "p",
   bf.message = TRUE,
-  caption = "Displaying results from both parametric and bayesian tests.",
+  caption = substitute(paste(italic("Note"), ": Iris dataset by Fisher.")),
   bf.prior = 0.8,
   test.value = 3,
-  centrality.para = "mean",
   test.value.line = TRUE,
   binwidth = 0.10,
   bar.fill = "grey50"

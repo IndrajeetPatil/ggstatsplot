@@ -14,7 +14,8 @@
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle *if* you don't want results
-#'   from one sample test to be displayed.
+#'   from one sample test to be displayed (i.e. `results.subtitle` should be set
+#'   to `FALSE`).
 #' @param caption The text for the plot caption.
 #' @param test.value.size Decides size for the vertical line for test value
 #'   (Default: `1.2`).
@@ -96,10 +97,9 @@
 #'   bar.measure = "count",
 #'   type = "p",
 #'   bf.message = TRUE,
-#'   caption = "Displaying results from both parametric and bayesian tests.",
+#'   caption = substitute(paste(italic("Note"), ": Iris dataset by Fisher.")),
 #'   bf.prior = 0.8,
 #'   test.value = 3,
-#'   centrality.para = "mean",
 #'   test.value.line = TRUE,
 #'   binwidth = 0.10,
 #'   bar.fill = "grey50"
@@ -220,7 +220,7 @@ gghistostats <-
         bf.caption.text <-
           bf_message_ttest(
             jmv_results = jmv_results,
-            # caption = caption,
+            caption = caption,
             bf.prior = bf.prior
           )
       }
@@ -237,6 +237,7 @@ gghistostats <-
         k = k
       )
     }
+
     # ========================================== plot ===================================================================
 
     # preparing the basic layout of the plot based on whether counts or density information is needed
@@ -344,33 +345,22 @@ gghistostats <-
         ggplot2::guides(fill = FALSE)
     }
 
-    # add message with bayes factor
-    if (isTRUE(results.subtitle)) {
-      if (type %in% c("parametric", "p")) {
-        if (isTRUE(bf.message)) {
-          if (is.null(caption)) {
-            caption.text <- bf.caption.text
-          } else {
-            caption.text <- caption
-          }
-        } else {
-          caption.text <- caption
-        }
-      } else {
-        caption.text <- caption
-      }
-    } else {
-      caption.text <- caption
+    # if bayes factor message needs to be displayed
+    if (isTRUE(results.subtitle) && type %in% c("parametric", "p") && isTRUE(bf.message)) {
+      caption <- bf.caption.text
     }
 
     # adding the theme and labels
     plot <- plot +
-      ggstatsplot::theme_mprl(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+      ggstatsplot::theme_mprl(
+        ggtheme = ggtheme,
+        ggstatsplot.layer = ggstatsplot.layer
+      ) +
       ggplot2::labs(
         x = xlab,
         title = title,
         subtitle = subtitle,
-        caption = caption.text
+        caption = caption
       )
 
     # ========================================== line and label ===================================================================
@@ -482,35 +472,16 @@ gghistostats <-
         ggplot2::theme(legend.position = "none")
     }
 
-    # if caption is provided then use combine_plots function later on to add this caption
-    # add caption with bayes factor
-    if (isTRUE(results.subtitle)) {
-      if (type %in% c("parametric", "p")) {
-        if (isTRUE(bf.message)) {
-          if (!is.null(caption)) {
-            # adding bayes factor result
-            plot <-
-              ggstatsplot::combine_plots(plot,
-                caption.text = bf.caption.text
-              )
-
-            # producing warning
-            base::message(cat(
-              crayon::red("Warning:"),
-              crayon::blue(
-                "You are simultaneously setting `bf.message = TRUE` and using a `caption`. \nThis produces a fixed plot whose *internal* elements can no longer be modified with `ggplot2` functions."
-              )
-            ))
-          }
-        }
-      }
-    }
-
     # ========================================== messages ==================================================================
     #
     # display normality test result as a message
     if (isTRUE(messages)) {
-      normality_message(x = data$x, lab = lab.df[1], k = k)
+      normality_message(
+        x = data$x,
+        lab = lab.df[1],
+        k = k,
+        output = "message"
+      )
     }
 
     # return the final plot

@@ -25,7 +25,7 @@ test_that("anova subtitles work", {
   subtitle_vec <-
     stringr::str_extract(string = as.character(subtitle), pattern = "\\-*\\d+\\.*\\d*") %>%
     tibble::as.tibble() %>%
-    stats::na.omit()
+    stats::na.omit(.)
 
   # converting to numeric
   subtitle_vec$value <- as.numeric(as.character(subtitle_vec$value))

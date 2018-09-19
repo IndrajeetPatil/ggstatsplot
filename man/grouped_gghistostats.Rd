@@ -48,7 +48,8 @@ in the same plot (only available from \code{ggplot2 3.0.1} onward).}
 \item{title}{The text for the plot title.}
 
 \item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
-from one sample test to be displayed.}
+from one sample test to be displayed (i.e. \code{results.subtitle} should be set
+to \code{FALSE}).}
 
 \item{caption}{The text for the plot caption.}
 
@@ -203,6 +204,7 @@ ggstatsplot::grouped_gghistostats(
   data = iris,
   x = Sepal.Length,
   test.value = 5,
+  bf.message = TRUE,
   grouping.var = Species,
   bar.fill = "orange",
   nrow = 1,

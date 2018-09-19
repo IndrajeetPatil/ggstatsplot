@@ -230,7 +230,8 @@ in the same plot (only available from <code>ggplot2 3.0.1</code> onward).</p></t
     <tr>
       <th>subtitle</th>
       <td><p>The text for the plot subtitle <em>if</em> you don't want results
-from one sample test to be displayed.</p></td>
+from one sample test to be displayed (i.e. <code>results.subtitle</code> should be set
+to <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>caption</th>
@@ -448,6 +449,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
   <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
   <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>,

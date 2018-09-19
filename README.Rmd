@@ -324,9 +324,8 @@ your function call.
 ## `ggscatterstats`
 
 This function creates a scatterplot with marginal
-histograms/boxplots/density/violin/densigram plots from
-`ggExtra::ggMarginal` and results from statistical tests in the
-subtitle:
+histograms/boxplots/density/violin/densigram plots from `ggExtra::ggMarginal`
+and results from statistical tests in the subtitle:
 
 ```{r ggscatterstats1, message = FALSE, warning = FALSE}
 ggstatsplot::ggscatterstats(

@@ -2,9 +2,10 @@
 % Please edit documentation in R/helpers_ggbetween_subtitles.R
 \name{subtitle_ggbetween_t_bayes}
 \alias{subtitle_ggbetween_t_bayes}
-\title{Making text subtitle for the between-subject bayesian t-test.}
+\title{Making text subtitle for the bayesian t-test.}
 \usage{
-subtitle_ggbetween_t_bayes(data, x, y, bf.prior = 0.707, k = 3)
+subtitle_ggbetween_t_bayes(data, x, y, bf.prior = 0.707,
+  paired = FALSE, k = 3)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -17,10 +18,37 @@ taken.}
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
 
+\item{paired}{a logical indicating whether you want a paired
+    t-test.}
+
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 }
 \description{
-Making text subtitle for the between-subject bayesian t-test.
+Making text subtitle for the bayesian t-test.
+}
+\examples{
+
+# between-subjects design
+
+subtitle_ggbetween_t_bayes(
+  data = mtcars,
+  x = am,
+  y = wt,
+  paired = FALSE
+)
+
+# within-subjects design
+
+subtitle_ggbetween_t_bayes(
+  data = dplyr::filter(
+    ggstatsplot::intent_morality,
+    condition \%in\% c("accidental", "attempted"),
+    harm == "Burn"
+  ),
+  x = condition,
+  y = rating,
+  paired = TRUE
+)
 }
 \author{
 Indrajeet Patil

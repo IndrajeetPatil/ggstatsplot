@@ -16,6 +16,7 @@ JOSS/*
 ^_pkgdown\.yml$
 ^appveyor\.yml$
 ^data-raw$
+^pkgdown$
 ^\.httr-oauth$
 ^CRAN-RELEASE$
 tests\^spelling

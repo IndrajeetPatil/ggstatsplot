@@ -39,6 +39,7 @@
 #'   data = iris,
 #'   x = Sepal.Length,
 #'   test.value = 5,
+#'   bf.message = TRUE,
 #'   grouping.var = Species,
 #'   bar.fill = "orange",
 #'   nrow = 1,
