@@ -25,7 +25,7 @@ ggstatsplot::ggscatterstats(
 
 # too many rows for debugging makes it slow.  Let's sample
 movies_short <- ggstatsplot::movies_wide %>% group_by(mpaa) %>% sample_n(7) %>% ungroup
-
+str(movies_short)
 
 # let's split the dataframe and create a list by mpaa rating
 mpaa_list <- movies_short %>%
