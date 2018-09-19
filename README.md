@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--11-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--17-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -232,7 +232,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002b47ae50>
+#> <bytecode: 0x000000002aafbbe0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -501,8 +501,9 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggpiestats(
-  data = datasets::iris,
-  main = Species,
+  data = ggplot2::msleep,
+  main = vore,
+  title = "Composition of vore types among mammals",
   messages = FALSE
 )
 ```
@@ -625,12 +626,13 @@ ggstatsplot::gghistostats(
 
 <img src="man/figures/README-gghistostats1-1.png" width="100%" />
 
-The aesthetic defaults can be easily
-modified-
+The aesthetic defaults can be easily modified-
+
+**Note**: To use `bar.measure = "mix"` option, you will need to get the
+development version of `ggplot2` from GitHub.
 
 ``` r
-# to use `bar.measure = "mix"` option, you will need to get the development
-# version of `ggplot2` from GitHub 
+# getting development version of ggplot2
 # devtools::install_github(repo = "tidyverse/ggplot2", dependencies = FALSE)
 
 # plot
@@ -811,11 +813,12 @@ ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
 <img src="man/figures/README-ggcoefstats1-1.png" width="80%" />
 
 The basic can be further modified to one’s liking with additional
-arguments:
+arguments (also, let’s use a robust linear model instead of a simple
+linear model now):
 
 ``` r
 ggstatsplot::ggcoefstats(
-  x = stats::lm(formula = mpg ~ am * cyl,
+  x = MASS::rlm(formula = mpg ~ am * cyl,
                 data = datasets::mtcars),
   point.color = "red",                
   point.shape = 15,
@@ -823,7 +826,7 @@ ggstatsplot::ggcoefstats(
   vline.linetype = "dotdash",
   stats.label.size = 3.5,
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
-  title = "Car performance predicted by transmission and cylinder count",
+  title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",
   ggtheme = ggthemes::theme_stata(),
   ggstatsplot.layer = FALSE
@@ -840,32 +843,35 @@ ggstatsplot::ggcoefstats(
 All the regression model classes that are supported in the `broom`
 package with `tidy` and `glance` methods
 (<https://broom.tidyverse.org/articles/available-methods.html>) are also
-supported by `ggcoefstats`. Let’s see few examples:
+supported by `ggcoefstats`. Additionally, we can make a number of
+aesthetic modifications by changing the defaults for theme and palette.
+
+Let’s see few examples:
 
 ``` r
 library(dplyr)
 library(lme4)
+library(quantreg)
 
 # for reproducibility
 set.seed(200)
 
 # creating dataframe needed for one of the analyses below
 d <- as.data.frame(Titanic)
+data(stackloss)
 
 # combining plots together
 ggstatsplot::combine_plots(
-  # generalized linear model
-  ggstatsplot::ggcoefstats(
-    x = stats::glm(
-      formula = Survived ~ Sex + Age,
-      data = d,
-      weights = d$Freq,
-      family = "binomial"
-    ),
-    exponentiate = TRUE,
-    exclude.intercept = FALSE,
-    title = "generalized linear model"
+  # quantile regression
+ggstatsplot::ggcoefstats(
+  x = quantreg::rq(
+    formula = stack.loss ~ stack.x,
+    data = stackloss,
+    method = "br"
   ),
+  se.type = "iid",
+  title = "quantile regression"
+),
   # nonlinear least squares
   ggstatsplot::ggcoefstats(
     x = stats::nls(
@@ -874,7 +880,10 @@ ggstatsplot::combine_plots(
       start = list(k = 1, b = 0)
     ),
     point.color = "darkgreen",
-    title = "non-linear least squares"
+    title = "non-linear least squares",
+    ggtheme = ggplot2::theme_grey(),
+    package = "wesanderson",
+    palette = "Darjeeling1"
   ),
   # linear mmodel
   ggstatsplot::ggcoefstats(
@@ -883,6 +892,9 @@ ggstatsplot::combine_plots(
       data = lme4::sleepstudy
     ),
     point.color = "red",
+    stats.label.color = "black",
+    ggtheme = hrbrthemes::theme_ipsum_ps(),
+    ggstatsplot.layer = FALSE,
     exclude.intercept = TRUE,
     title = "linear mixed-effects model"
   ),
@@ -894,7 +906,10 @@ ggstatsplot::combine_plots(
       family = binomial
     ),
     exclude.intercept = FALSE,
-    title = "generalized linear mixed-effects model"
+    title = "generalized linear mixed-effects model",
+    ggtheme = ggthemes::theme_fivethirtyeight(),
+    package = "yarrr",
+    palette = "xmen"
   ),
   labels = c("(a)", "(b)", "(c)", "(d)"),
   nrow = 2,
@@ -912,16 +927,17 @@ models supported, see the associated vignette-
 ## `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
-multiple plots. This is a wrapper around  and lets you combine multiple
-plots and add combination of title, caption, and annotation texts with
-suitable default parameters.
+multiple plots. This is a wrapper around `cowplot::plot_grid` and lets
+you combine multiple plots and add a combination of title, caption, and
+annotation texts with suitable default parameters.
 
 The full power of `ggstatsplot` can be leveraged with a functional
 programming package like [`purrr`](http://purrr.tidyverse.org/) that
-replaces many for loops with code that is both more succinct and easier
-to read and, therefore, `purrr` should be preferrred.
+replaces `for` loops with code that is both more succinct and easier to
+read and, therefore, `purrr` should be preferrred 😻. The `combine_plots`
+function is useful for combining a list of plots produced with `purrr`.
 
-For more, see the associated vignette-
+For examples, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html>
 
 ## `theme_ggstatsplot`
@@ -977,20 +993,20 @@ ggstatsplot::combine_plots(
 For more on how to modify it, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
 
-## Plot design
+# Plot design
 
 In the following vignette, I have outlined what thought went into
 designing plots in a certain way:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/graphics_design.html>
 
-## Current code coverage
+# Current code coverage
 
 As the code stands right now, here is the code coverage for all primary
 functions involved:
 
 <https://codecov.io/gh/IndrajeetPatil/ggstatsplot/tree/master/R>
 
-## Dependencies
+# Dependencies
 
 Given that `ggstatsplot` combines data visualization with statistical
 analysis, it sits at the intersection of a big network of R packages
@@ -998,7 +1014,7 @@ from each domain.
 
 <img src="man/figures/README-dependency_plot-1.png" width="100%" />
 
-## Contributing
+# Contributing
 
 I’m happy to receive bug reports, suggestions, questions, and (most of
 all) contributions to fix problems and add features. I personally prefer

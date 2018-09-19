@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Combining plots with `combine_plots`
+# Combining plots with `combine_plots`
 
 `ggstatsplot` also contains a helper function `combine_plots` to combine
 multiple plots. This is a wrapper around `cowplot::plot_grid()` and it helps you
@@ -102,115 +102,11 @@ ggstatsplot::combine_plots(
 )
 ```
 
-Here is another example with `ggbetweenstats`-
-
-```{r ggbetweenstats_purrr, message = FALSE, warning = FALSE, fig.height = 13, fig.width = 6.5}
-library(dplyr)
-library(glue)
-
-### creating a list column with `ggstatsplot` plots
-plots <- ggplot2::mpg %>%
-  dplyr::filter(.data = ., cyl != 5) %>%          # there are just 4 observations so leave this one out
-  dplyr::mutate(.data = ., cyl2 = cyl) %>%        # just creates a copy of this variable
-  dplyr::group_by(.data = ., cyl) %>%              
-  tidyr::nest(data = .) %>%                       # creates a nested dataframe with list column called `data`
-  dplyr::mutate(                                  # creating a new list column of ggstatsplot outputs
-    .data = .,
-    plot = data %>%
-      purrr::map(
-        .x = .,
-        .f = ~ ggstatsplot::ggbetweenstats(
-          data = .,
-          x = year,
-          y = hwy,
-          ggtheme = ggthemes::theme_stata(),
-          ggstatsplot.layer = FALSE,
-          type = "robust",
-          package = "yarrr",
-          palette = "xmen",
-          messages = FALSE,                       # turns off all the warnings, notes, and reference messages
-          xlab = "Type of car",
-          ylab = "Highway miles/(US) gallon",
-          title = glue::glue(
-            "Number of cylinders: {.$cyl2}"       # this is where the duplicated cyl2 column is useful
-            ) 
-        )
-      )
-  )
-
-### display the new object (notice that the class of the `plot` list column is S3: gg)
-plots
-
-### creating a grid with cowplot
-ggstatsplot::combine_plots(
-  plotlist = plots$plot,                           # list column containing all ggstatsplot objects
-  nrow = 3,
-  ncol = 1,
-  labels = c("(a)","(b)","(c)", "(d)"),
-  title.text = "Fuel efficiency differences between 1999 and 2008",
-  title.size = 13,
-  title.color = "#0072B2",
-  caption.text = expression(
-    paste(
-      italic("Dataset"),
-      ": Fuel economy data from 1999 and 2008 for 38 popular models of car",
-      sep = ""
-    ),
-    caption.size = 10,
-    caption.color = "red"
-  )
-)
-```
-
-## Combining plots: Examples with `plyr`
+## Combining plots: Example with `plyr`
 
 Another popular package for handling big datasets is `plyr`, where we can
 repeatedly apply a common function on smaller pieces and then combine the
 results.
-
-We'll use the `ggpiestats` function as an example function and the `movies_long`
-dataset from `ggstatsplot` package. This dataset provides information about
-movies scraped from [IMDB](https://www.imdb.com/). Let's say we are interested
-in figuring out whether the proportion of different types of MPAA ratings a
-given genre gets differs across genres (for example, Action movie are more
-likely to get R-rating, while animated movies to get PG rating?).
-
-```{r ggbetweenstats_plyr1, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
-library(plyr)
-library(ggstatsplot)
-
-# for reproducibility
-set.seed(123)
-
-# let's have a look at the structure of the data
-dplyr::glimpse(x = ggstatsplot::movies_long)
-
-# creating a list of plots
-plots <- plyr::dlply(
-  .data = ggstatsplot::movies_long,
-  .variables = .(genre),
-  .fun = function(data)
-    ggstatsplot::ggpiestats(
-      data = data,
-      main = mpaa,
-      title = glue::glue("Genre: {data$genre}")
-    )
-)
-
-# combining individual plots
-ggstatsplot::combine_plots(plotlist = plots, 
-                           title.text = "Differences in MPAA ratings by movie genre",
-                           title.color = "darkgreen",
-                           caption.text = "MPAA: Motion Picture Association of America",
-                           caption.color = "orange",
-                           nrow = 3,
-                           ncol = 2)
-```
-
-As can be seen from these plots, our hunch was correct: all ratings are not
-equally likely for any of the genres, for example Dramas and Documentary genre
-movies most frequently R-rating, while Animations genre movies overwhelmingly
-get PG rating.
 
 Let's see another example on how to use `plyr` to conveniently to repeat the
 same operation and then use `combine_plots`. Here we will investigate how Gross
@@ -218,7 +114,7 @@ Domestic Product (per capita) of a country is related to the life expectancy of
 her citizens in 2007. We will also see which countries still have very low life
 expectancy across different continents.
 
-```{r ggscatterstats_plyr2, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+```{r ggscatterstats_plyr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
 library(plyr)
 library(gapminder)
 
@@ -265,10 +161,11 @@ library(ggstatsplot)
 
 ggstatsplot::combine_plots(
   # preparing the plot with ggstatsplot function
+  # let's use only 20% of data to speed up the process
   ggstatsplot::ggcoefstats(
     x = stats::lm(
       formula = rating ~ stats::poly(budget, degree = 3),
-      data = ggstatsplot::movies_long,
+      data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.2),
       na.action = na.omit
     ),
     exclude.intercept = FALSE,
@@ -301,7 +198,16 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Suggestions
+# Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+If you find any bugs or have any suggestions/remarks, please file an issue on `GitHub`: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+# Session Information
+
+Summarizing session information for reproducibility.
+
+```{r session_info, eval = FALSE}
+options(width = 200)
+devtools::session_info()
+```

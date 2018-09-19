@@ -35,10 +35,10 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#'
+#' 
 #' # to ensure reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -52,7 +52,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#'
+#' 
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -65,7 +65,7 @@
 #'   label.expression = hwy > 25 & displ > 2.5,
 #'   messages = FALSE
 #' )
-#'
+#' 
 #' # labeling without expression
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -345,6 +345,12 @@ grouped_ggscatterstats <- function(data,
       plotlist = plotlist_purrr$plots,
       ...
     )
+
+  # show the note about grouped_ variant producing object which is not of
+  # class ggplot
+  if (isTRUE(messages)) {
+    grouped_message()
+  }
 
   # return the combined plot
   return(combined_plot)

@@ -25,11 +25,10 @@ taken. This argument is optional.}
 
 \item{x}{A numeric variable.}
 
-\item{binwidth}{The width of the bins. Can be specified as a numeric value,
-or a function that calculates width from \code{x}. The default is to use bins
-bins that cover the range of the data. You should always override this
-value, exploring multiple widths to find the best to illustrate the stories
-in your data.}
+\item{binwidth}{The width of the histogram bins. Can be specified as a numeric
+value, or a function that calculates width from \code{x}. The default is to use the
+\code{max(x) - min(x) / sqrt(N)}. You should always check this value and explore
+multiple widths to find the best to illustrate the stories in your data.}
 
 \item{bar.measure}{Character describing what value needs to be represented as
 height in the bar chart. This can either be \code{"count"}, which shows number
@@ -43,7 +42,8 @@ in the same plot (only available from \code{ggplot2 3.0.1} onward).}
 \item{title}{The text for the plot title.}
 
 \item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
-from one sample test to be displayed.}
+from one sample test to be displayed (i.e. \code{results.subtitle} should be set
+to \code{FALSE}).}
 
 \item{caption}{The text for the plot caption.}
 
@@ -149,10 +149,9 @@ ggstatsplot::gghistostats(
   bar.measure = "count",
   type = "p",
   bf.message = TRUE,
-  caption = "Displaying results from both parametric and bayesian tests.",
+  caption = substitute(paste(italic("Note"), ": Iris dataset by Fisher.")),
   bf.prior = 0.8,
   test.value = 3,
-  centrality.para = "mean",
   test.value.line = TRUE,
   binwidth = 0.10,
   bar.fill = "grey50"

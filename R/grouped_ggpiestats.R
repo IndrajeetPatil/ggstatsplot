@@ -303,6 +303,12 @@ grouped_ggpiestats <- function(data,
       ...
     )
 
+  # show the note about grouped_ variant producing object which is not of
+  # class ggplot
+  if (isTRUE(messages)) {
+    grouped_message()
+  }
+
   # return the combined plot
   return(combined_plot)
 }

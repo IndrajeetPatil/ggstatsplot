@@ -34,11 +34,12 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
-#'
+#' 
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
 #'   test.value = 5,
+#'   bf.message = TRUE,
 #'   grouping.var = Species,
 #'   bar.fill = "orange",
 #'   nrow = 1,
@@ -86,7 +87,9 @@ grouped_gghistostats <- function(data,
                                  test.k = 0,
                                  messages = TRUE,
                                  ...) {
-  # ================== preparing dataframe ==================
+
+  # ============================================= preparing dataframe =====================================================
+
   # getting the dataframe ready
   df <- dplyr::select(
     .data = data,
@@ -98,23 +101,27 @@ grouped_gghistostats <- function(data,
       title.text = !!rlang::enquo(grouping.var)
     )
 
+  # maximum value for x
   binmax <- dplyr::select(
     .data = data,
     !!rlang::enquo(x)
-  ) %>% max
+  ) %>%
+    max(x = ., na.rm = TRUE)
 
+  # minimum value for x
   binmin <- dplyr::select(
     .data = data,
     !!rlang::enquo(x)
-  ) %>% min
+  ) %>%
+    min(x = ., na.rm = TRUE)
 
-  bincount <- as.integer(data %>% dplyr::count())
+  # number of datapoints
+  bincount <- as.integer(data %>% dplyr::count(x = .))
 
-  # Adding some binwidth sanity checking
+  # adding some binwidth sanity checking
   if (is.null(binwidth)) {
-    binwidth <- (binmax - binmin)/sqrt(bincount)
+    binwidth <- (binmax - binmin) / sqrt(bincount)
   }
-
 
   # creating a nested dataframe
   df %<>%
@@ -187,6 +194,12 @@ grouped_gghistostats <- function(data,
       plotlist = plotlist_purrr$plots,
       ...
     )
+
+  # show the note about grouped_ variant producing object which is not of
+  # class ggplot
+  if (isTRUE(messages)) {
+    grouped_message()
+  }
 
   # return the combined plot
   return(combined_plot)

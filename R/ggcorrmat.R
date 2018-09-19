@@ -90,7 +90,6 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom ggcorrplot cor_pmat
 #' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select
 #' @importFrom dplyr group_by
@@ -124,7 +123,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
@@ -133,14 +132,14 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   cor.vars.names = c("total sleep", "REM sleep")
 #' )
-#'
+#' 
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "r"
 #' )
-#'
+#' 
 #' # setting output = "p-values" (or "p") will return the p-value matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -149,7 +148,7 @@
 #'   p.adjust.method = "fdr",
 #'   output = "p"
 #' )
-#'
+#' 
 #' # setting output = "ci" will return the confidence intervals for unique
 #' # correlation pairs
 #' ggstatsplot::ggcorrmat(
@@ -157,13 +156,13 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "ci"
 #' )
-#'
+#' 
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
 #'   cor.vars = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
 #'   sig.level = 0.01,
-#'   ggtheme = ggplot2::theme_bw,
+#'   ggtheme = ggplot2::theme_bw(),
 #'   hc.order = TRUE,
 #'   type = "lower",
 #'   outline.col = "white",
@@ -192,7 +191,7 @@ ggcorrmat <-
              lab = TRUE,
              colors = c("#E69F00", "white", "#009E73"),
              outline.color = "black",
-             ggtheme = ggplot2::theme_bw,
+             ggtheme = ggplot2::theme_bw(),
              ggstatsplot.layer = TRUE,
              title = NULL,
              subtitle = NULL,
@@ -404,15 +403,17 @@ ggcorrmat <-
         # even if ggstatsplot theme is not overlaid, still make sure there is
         # enough distance between the axis and the label
         plot <- plot +
-          ggplot2::theme(axis.text.x = ggplot2::element_text(
-            margin = ggplot2::margin(
-              t = axis.text.x.margin.t,
-              r = axis.text.x.margin.r,
-              b = axis.text.x.margin.b,
-              l = axis.text.x.margin.l,
-              unit = "pt"
+          ggplot2::theme(
+            axis.text.x = ggplot2::element_text(
+              margin = ggplot2::margin(
+                t = axis.text.x.margin.t,
+                r = axis.text.x.margin.r,
+                b = axis.text.x.margin.b,
+                l = axis.text.x.margin.l,
+                unit = "pt"
+              )
             )
-          ))
+          )
       }
     }
     # ========================================== output ==============================================================

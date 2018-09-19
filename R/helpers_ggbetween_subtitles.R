@@ -2,24 +2,28 @@
 # independent, or paired)
 
 bf_message_ttest <- function(jmv_results,
-                             bf.prior) {
+                             bf.prior,
+                             caption) {
 
   # prepare the bayes factor message
   bf_message <- base::substitute(
-    expr =
-      paste(
-        "In favor of null: ",
-        "log"["e"],
-        "(BF"["01"],
-        ") = ",
-        bf,
-        ", log"["e"],
-        "(error) = ",
-        bf_error,
-        "%, Prior width = ",
-        bf_prior
-      ),
+    atop(y,
+      expr =
+        paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          bf,
+          ", log"["e"],
+          "(error) = ",
+          bf_error,
+          "%, Prior width = ",
+          bf_prior
+        )
+    ),
     env = base::list(
+      y = caption,
       bf = ggstatsplot::specify_decimal_p(x = log(
         x = (1 / as.data.frame(jmv_results$ttest)$`stat[bf]`),
         base = exp(1)
@@ -81,7 +85,8 @@ subtitle_ggbetween_anova_parametric <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      stats::na.omit(.)
+      stats::na.omit(.) %>%
+      tibble::as.tibble(x = .)
 
     # Welch's ANOVA run by default
     aov_stat <-
@@ -276,7 +281,8 @@ subtitle_ggbetween_t_parametric <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      stats::na.omit(.)
+      stats::na.omit(.) %>%
+      tibble::as.tibble(x = .)
 
     # setting up the anova model and getting its summary and effect size
     t_stat <-
@@ -435,7 +441,8 @@ subtitle_ggbetween_mann_nonparametric <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      stats::na.omit(.)
+      stats::na.omit(.) %>%
+      tibble::as.tibble(x = .)
 
     # setting up the Mann-Whitney U-test and getting its summary
     mann_stat <- stats::wilcox.test(
@@ -542,7 +549,8 @@ subtitle_ggbetween_t_rob <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      stats::na.omit(.)
+      stats::na.omit(.) %>%
+      tibble::as.tibble(x = .)
 
     # Yuen's test for trimmed means
     t_robust_stat <-
@@ -623,7 +631,7 @@ subtitle_ggbetween_t_rob <-
   }
 
 #'
-#' @title Making text subtitle for the between-subject bayesian t-test.
+#' @title Making text subtitle for the bayesian t-test.
 #' @name subtitle_ggbetween_t_bayes
 #' @author Indrajeet Patil
 #'
@@ -632,13 +640,38 @@ subtitle_ggbetween_t_rob <-
 #' @inheritParams subtitle_ggbetween_t_parametric
 #'
 #' @importFrom jmv ttestIS
+#' @importFrom jmv ttestPS
 #'
+#' @examples
+#' 
+#' # between-subjects design
+#' 
+#' subtitle_ggbetween_t_bayes(
+#'   data = mtcars,
+#'   x = am,
+#'   y = wt,
+#'   paired = FALSE
+#' )
+#' 
+#' # within-subjects design
+#' 
+#' subtitle_ggbetween_t_bayes(
+#'   data = dplyr::filter(
+#'     ggstatsplot::intent_morality,
+#'     condition %in% c("accidental", "attempted"),
+#'     harm == "Burn"
+#'   ),
+#'   x = condition,
+#'   y = rating,
+#'   paired = TRUE
+#' )
 #' @export
 #'
 subtitle_ggbetween_t_bayes <- function(data,
                                        x,
                                        y,
                                        bf.prior = 0.707,
+                                       paired = FALSE,
                                        k = 3) {
 
   # creating a dataframe
@@ -648,20 +681,56 @@ subtitle_ggbetween_t_bayes <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    stats::na.omit(.)
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    tibble::as_data_frame(x = .)
 
   # running bayesian analysis
-  jmv_results <- jmv::ttestIS(
-    data = data,
-    vars = "y",
-    group = "x",
-    students = TRUE,
-    effectSize = TRUE,
-    bf = TRUE,
-    bfPrior = bf.prior,
-    hypothesis = "different",
-    miss = "listwise"
-  )
+  if (!isTRUE(paired)) {
+    # independent samples design
+    jmv_results <- jmv::ttestIS(
+      data = data,
+      vars = "y",
+      group = "x",
+      students = TRUE,
+      effectSize = TRUE,
+      bf = TRUE,
+      bfPrior = bf.prior,
+      hypothesis = "different",
+      miss = "listwise"
+    )
+
+    # sample size
+    sample_size <- nrow(data)
+  } else if (isTRUE(paired)) {
+
+    # jamovi needs data to be wide format and not long format
+    data_wide <- data %>%
+      dplyr::group_by(.data = ., x) %>%
+      dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
+      dplyr::ungroup(x = .) %>%
+      # dplyr::group_by(.data = ., rowid) %>%
+      #   dplyr::mutate(.data = ., n = dplyr::n()) %>%
+      #   dplyr::ungroup(x = .) %>%
+      #   dplyr::filter(.data = ., n == 2) %>%
+      dplyr::select(.data = ., x, y, rowid) %>%
+      tidyr::spread(data = ., key = x, value = y, convert = TRUE) %>%
+      stats::na.omit(.)
+
+    # dependent samples design
+    jmv_results <- jmv::ttestPS(
+      data = na.omit(data_wide),
+      pairs = list(list(i1 = colnames(data_wide)[[3]], i2 = colnames(data_wide)[[2]])),
+      students = TRUE,
+      effectSize = TRUE,
+      bf = TRUE,
+      bfPrior = bf.prior,
+      hypothesis = "different",
+      miss = "listwise"
+    )
+
+    # sample size
+    sample_size <- nrow(data_wide)
+  }
 
   # preparing the subtitle
   subtitle <- base::substitute(
@@ -695,7 +764,7 @@ subtitle_ggbetween_t_bayes <- function(data,
       bf = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`stat[bf]`, base = exp(1)), k = 1),
       bf_error = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`err[bf]`, base = exp(1)), k = 1),
       effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
-      n = nrow(x = data)
+      n = sample_size
     )
   )
 
@@ -738,7 +807,8 @@ subtitle_ggbetween_kw_nonparametric <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      stats::na.omit(.)
+      stats::na.omit(.) %>%
+      tibble::as.tibble(x = .)
 
     # setting up the anova model and getting its summary
     kw_stat <- stats::kruskal.test(
@@ -831,7 +901,8 @@ subtitle_ggbetween_rob_anova <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      stats::na.omit(.)
+      stats::na.omit(.) %>%
+      tibble::as.tibble(x = .)
 
     # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
     robust_aov_stat <- t1way_ci(

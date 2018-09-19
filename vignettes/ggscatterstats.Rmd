@@ -326,7 +326,17 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Suggestions
+# Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+# Session Information
+
+Summarizing session information for reproducibility.
+
+```{r session_info, eval = FALSE}
+options(width = 200)
+devtools::session_info()
+```
+

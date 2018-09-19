@@ -33,6 +33,9 @@
 #'   display in the plot. By default only `"beta"` (a vector of regression
 #'   parameters) parameters will be show. Other options are `"alpha"` (a vector
 #'   of threshold parameters) or `"both"`.
+#' @param se.type Character specifying the method used to compute standard
+#'   standard errors for quantile regression (Default: `"nid"`). To see all
+#'   available methods, see `quantreg::summary.rq()`.
 #' @param k Number of decimal places expected for results displayed in labels.
 #' @param k.caption.summary Number of decimal places expected for results
 #'   displayed in captions.
@@ -63,7 +66,9 @@
 #'   displayed as a cation to the plot (Default: `TRUE`). Color of the line
 #'   segment. Defaults to the same color as the text.
 #' @param stats.label.size,stats.label.fontface,stats.label.color Aesthetics for
-#'   the labels. Defaults: `3`, `"bold"`,`"black"`, resp.
+#'   the labels. Defaults: `3`, `"bold"`,`NULL`, resp. If `stats.label.color` is
+#'   `NULL`, colors will be chosen from the specified `package` (Default:
+#'   `"RColorBrewer"`) and `palette` (Default: `"Dark2"`).
 #' @param label.r, Radius of rounded corners, as unit or number. Defaults to
 #'   `0.15`. (Default unit is lines).
 #' @param label.size Size of label border, in mm. Defaults to `0.25`.
@@ -95,6 +100,7 @@
 #' @inheritParams broom::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams theme_ggstatsplot
+#' @inheritParams paletteer::paletteer_d
 #' @param \dots Extra arguments to pass to \code{\link[broom]{tidy}}.
 #'
 #' @import ggplot2
@@ -125,7 +131,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#'
+#' 
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -145,6 +151,7 @@ ggcoefstats <- function(x,
                         point.shape = 16,
                         conf.int = TRUE,
                         conf.level = 0.95,
+                        se.type = "nid",
                         k = 3,
                         k.caption.summary = 0,
                         exclude.intercept = TRUE,
@@ -166,7 +173,7 @@ ggcoefstats <- function(x,
                         caption.summary = TRUE,
                         stats.label.size = 3,
                         stats.label.fontface = "bold",
-                        stats.label.color = "black",
+                        stats.label.color = NULL,
                         label.r = 0.15,
                         label.size = 0.25,
                         label.box.padding = 1,
@@ -183,6 +190,9 @@ ggcoefstats <- function(x,
                         label.xlim = c(NA, NA),
                         label.ylim = c(NA, NA),
                         label.direction = "y",
+                        package = "RColorBrewer",
+                        palette = "Dark2",
+                        direction = 1,
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
                         ...) {
@@ -193,7 +203,7 @@ ggcoefstats <- function(x,
   lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod")
 
   # models which are currently not supported
-  unsupported.mods <- c("glht", "kmeans", "rq")
+  unsupported.mods <- c("glht", "kmeans")
 
   # models for which glance is not supported
   noglance.mods <- c("aovlist")
@@ -289,7 +299,8 @@ ggcoefstats <- function(x,
         conf.int = TRUE,
         conf.level = conf.level,
         quick = FALSE,
-        conf.type = "Wald"
+        conf.type = "Wald",
+        ...
       )
 
     # selecting which coeffiecients to display
@@ -304,14 +315,28 @@ ggcoefstats <- function(x,
     # ===================================== tidying robust models =======================================================================
   } else if (class(x)[[1]] == "lmRob" || class(x)[[1]] == "glmRob") {
     tidy_df <-
-      broom::tidy(x = x)
+      broom::tidy(
+        x = x,
+        ...
+      )
+    # ===================================== quantile regression ==========================================================================
+  } else if (class(x)[[1]] == "rq" || class(x)[[1]] == "rqs") {
+    tidy_df <-
+      broom::tidy(
+        x = x,
+        conf.int = TRUE,
+        conf.level = conf.level,
+        se.type = se.type,
+        ...
+      )
     # ===================================== tidying everything else =======================================================================
   } else {
     tidy_df <-
       broom::tidy(
         x = x,
         conf.int = TRUE,
-        conf.level = conf.level
+        conf.level = conf.level,
+        ...
       )
   }
 
@@ -609,7 +634,7 @@ ggcoefstats <- function(x,
     if (!(class(x)[[1]] %in% noglance.mods) && !(class(x)[[1]] %in% nodiagnostics.mods)) {
       if (!is.na(glance_df$AIC[[1]])) {
         # preparing caption with model diagnostics
-        caption.text <-
+        caption <-
           base::substitute(
             expr =
               paste(
@@ -627,13 +652,13 @@ ggcoefstats <- function(x,
             )
           )
       } else {
-        caption.text <- NULL
+        caption <- NULL
       }
     } else {
-      caption.text <- NULL
+      caption <- NULL
     }
   } else {
-    caption.text <- NULL
+    caption <- NULL
   }
   # ================================================== basic plot ===========================================================
 
@@ -658,6 +683,9 @@ ggcoefstats <- function(x,
       base::factor(x = tidy_df$term, levels = tidy_df$term[new_order])
     tidy_df %<>% dplyr::select(.data = ., -rowid)
   }
+
+  # counting the number of terms in the tidy dataframe
+  count_term <- length(tidy_df$term)
 
   # setting up the basic architecture
   plot <-
@@ -714,8 +742,19 @@ ggcoefstats <- function(x,
 
   # ================================================== ggrepel labels ===========================================================
 
+  # if user has not specified colors, then use a color palette
+  if (is.null(stats.label.color)) {
+    stats.label.color <- paletteer::paletteer_d(
+      package = !!package,
+      palette = !!palette,
+      n = count_term,
+      direction = direction,
+      type = "discrete"
+    )
+  }
+
+  # adding the labels
   if (isTRUE(stats.labels)) {
-    # adding the labels
     plot <- plot +
       ggrepel::geom_label_repel(
         data = tidy_df,
@@ -753,7 +792,7 @@ ggcoefstats <- function(x,
     ggplot2::labs(
       x = xlab,
       y = ylab,
-      caption = caption.text,
+      caption = caption,
       subtitle = subtitle,
       title = title
     ) +

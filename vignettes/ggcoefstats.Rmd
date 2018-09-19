@@ -38,8 +38,8 @@ analyses and, therefore, we will use various datasets to explore data-specific
 hypotheses using regression models.
 
 **Note before**: The following demo uses the pipe operator (`%>%`), so in case
-you are not familiar with this operator, here is a good explanation:
-<http://r4ds.had.co.nz/pipes.html>
+  you are not familiar with this operator, here is a good explanation:
+  <http://r4ds.had.co.nz/pipes.html>
 
 ## General structure of the plots
 
@@ -47,20 +47,20 @@ Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are few aspects of the plot that will
 be invariant across models:
 
-  - The dot-whisker plot contains a dot representing the **estimate** and their
-    **confidence intervals** (`95%` is the default). The estimate can either be
-    effect sizes (for tests that depend on the `F` statistic) or regression
-    coefficients (for tests with `t` and `z` statistic), etc. The function will,
-    by default, display a helpful x-axis label that should clear up what
-    estimates are being displayed. The confidence intervals can sometimes be
-    asymmetric if bootstrapping was used.
-  - The caption will always contain diagnostic information, if available, about
-    models that can be useful for model selection: The smaller the Akaike's
-    Information Criterion (**AIC**) and the Bayesian Information Criterion
-    (**BIC**) values, the "better" the model is. Additionally, the higher the
-    **log-likelihood** value the "better" is the model fit.
-  - The output of this function will be a `ggplot2` object and, thus, it can be
-    further modified (e.g., change themes, etc.) with `ggplot2` functions.
+- The dot-whisker plot contains a dot representing the **estimate** and their
+**confidence intervals** (`95%` is the default). The estimate can either be
+  effect sizes (for tests that depend on the `F` statistic) or regression
+  coefficients (for tests with `t` and `z` statistic), etc. The function will, by
+  default, display a helpful x-axis label that should clear up what estimates are
+  being displayed. The confidence intervals can sometimes be asymmetric if
+  bootstrapping was used.
+- The caption will always contain diagnostic information, if available, about
+  models that can be useful for model selection: The smaller the Akaike's
+  Information Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**)
+  values, the "better" the model is. Additionally, the higher the
+**log-likelihood** value the "better" is the model fit.
+- The output of this function will be a `ggplot2` object and, thus, it can be
+  further modified (e.g., change themes, etc.) with `ggplot2` functions.
 
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
@@ -82,17 +82,22 @@ set.seed(123)
 # looking at the data
 dplyr::glimpse(x = ggstatsplot::movies_long)
 
+# to speed up the calculation, let's use only 30% of the data
+movies_30 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.3)
+  
 # plot
 ggstatsplot::ggcoefstats(
   x = stats::aov(
     formula = rating ~ mpaa * genre,
-    data = ggstatsplot::movies_long
+    data = movies_30
   ),
   effsize = "omega",                        # changing the effect size estimate being displayed
   point.color = "red",                      # changing the point color
   point.size = 4,                           # changing the point size
   point.shape = 15,                         # changing the point shape
-  title = "omnibus ANOVA"
+  package = ,                               # package from which color paletter is to be taken
+  palette = ,                               # color palette for labels
+  title = "omnibus ANOVA"                   # title for the plot
 ) +                                    
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
@@ -101,13 +106,16 @@ ggstatsplot::ggcoefstats(
                 y = NULL)
 ```
 
-As this plot shows, there is no interaction effect between these two factors. 
+As this plot shows, there is no interaction effect between these two factors.
 
 Note that we can also use this function for model selection. Let's try out
 different models and see how the AIC, BIC, and log-likelihood values change.
 
 ```{r aov2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
 library(ggstatsplot)
+
+# to speed up the calculation, let's use only 30% of the data
+movies_30 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.3)
 
 # for reproducibility
 set.seed(123)
@@ -116,23 +124,35 @@ set.seed(123)
 ggstatsplot::combine_plots(
   # model 1
   ggstatsplot::ggcoefstats(
-    x = stats::aov(formula = rating ~ mpaa,
-                   data = ggstatsplot::movies_long),
+    x = stats::aov(
+      formula = rating ~ mpaa,
+      data = movies_30
+    ),
+    stats.label.color = "black",
     title = "1. Only MPAA ratings"
   ),
   ggstatsplot::ggcoefstats(
-    x = stats::aov(formula = rating ~ genre,
-                   data = ggstatsplot::movies_long),
+    x = stats::aov(
+      formula = rating ~ genre,
+      data = movies_30
+    ),
+    stats.label.color = "black",
     title = "2. Only genre"
   ),
   ggstatsplot::ggcoefstats(
-    x = stats::aov(formula = rating ~ mpaa + genre,
-                   data = ggstatsplot::movies_long),
+    x = stats::aov(
+      formula = rating ~ mpaa + genre,
+      data = movies_30
+    ),
+    stats.label.color = "black",
     title = "3. Additive effect of MPAA and genre"
   ),
   ggstatsplot::ggcoefstats(
-    x = stats::aov(formula = rating ~ mpaa * genre,
-                   data = ggstatsplot::movies_long),
+    x = stats::aov(
+      formula = rating ~ mpaa * genre,
+      data = movies_30
+    ),
+    stats.label.color = "black",
     title = "4. Multiplicative effect of MPAA and genre"
   ),
   title.text = "Model selection using ggcoefstats",
@@ -151,19 +171,22 @@ for the largest variance.
 
 ## linear model (`lm`)
 
-Now that we have figured out that the movie `genre` best explains a fair deal of variation in
-how good people rate the movie to be on IMDB. Let's run a linear regression model to see
-how different types of genres compare with each other-
+Now that we have figured out that the movie `genre` best explains a fair deal of
+variation in how good people rate the movie to be on IMDB. Let's run a linear
+regression model to see how different types of genres compare with each other-
 
 ```{r lm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
 # let's check all the levels for the genre variable
 levels(ggstatsplot::movies_long$genre)
 
+# to speed up the calculation, let's use only 30% of the data
+movies_30 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.3)
+
 # plot
 ggstatsplot::ggcoefstats(
   x = stats::lm(
     formula = rating ~ genre,
-    data = ggstatsplot::movies_long
+    data = movies_30
   ),
   conf.level = 0.99,                      # changing the confidence levels for confidence intervals
   sort = "ascending",                     # sorting the terms of the model based on estimate values
@@ -184,31 +207,6 @@ As can be seen from the regression coefficients, compared to the action movies,
 only romantic movies, animated movies, and dramas fare better with the
 audiences.
 
-<!-- 
-## robust linear model (`rlm`)
-
-A linear model by robust regression using an M estimator, as implemented in `MASS::rlm` is also supported.
-
-```{r rlm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
-ggstatsplot::ggcoefstats(
-  x = MASS::rlm(
-    formula = rating ~ genre,
-    data = ggstatsplot::movies_long
-  ),
-  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
-  sort = "ascending",                     # sorting the terms of the model based on estimate values
-  label.direction = "both",               # direction in which to adjust position of labels (both x and y)
-  ggtheme = ggplot2::theme_gray(),        # changing the default theme
-  stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "black", "red"),
-  title = "Movie ratings by their genre",
-  subtitle = "Source: www.imdb.com"
-) +                                    
-  ggplot2::scale_y_discrete(labels = c("Comedy", "Romance", "Documentary", "Animation", "Drama")) +
-  ggplot2::labs(y = "genre (comparison level: Action)") + 
-  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
-```
--->
-
 ## linear mixed-effects model (`lmer`)
 
 Now let's say we want to see how movie's budget relates to how good the movie is
@@ -220,13 +218,16 @@ better visual effects and animations, but this may not be true for dramas; also
 see the
 [`ggscatterstats`](https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html)
 vignette), so we don't want to use `stats::lm`. In this case, therefore, we will
-be running a linear mixed-effects model (using `lme4::lmer` and p-values
-generated using the `sjstats::p_values` function) with a random slope for the genre
-variable.
+be running a linear mixed-effects model (using `lme4::lmer` and *p*-values
+generated using the `sjstats::p_values` function) with a random slope for the
+genre variable.
 
 ```{r lmer, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
 library(lme4)
 library(ggstatsplot)
+
+# to speed up the calculation, let's use only 30% of the data
+movies_30 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.3)
 
 # combining the two different plots
 ggstatsplot::combine_plots(
@@ -234,9 +235,10 @@ ggstatsplot::combine_plots(
   ggstatsplot::ggcoefstats(
     x = stats::lm(
       formula = scale(rating) ~ scale(budget),
-      data = ggstatsplot::movies_long
+      data = movies_30
     ),
     title = "linear model",
+    stats.label.color = "black",
     exclude.intercept = FALSE                       # show the intercept
   ) +
     ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)")),
@@ -244,11 +246,12 @@ ggstatsplot::combine_plots(
   ggstatsplot::ggcoefstats(
     x = lme4::lmer(
       formula = rating ~ budget + (budget | genre),
-      data = ggstatsplot::movies_long,
+      data = movies_30,
       control = lme4::lmerControl(calc.derivs = FALSE)
     ),
     p.kr = TRUE,                                    # use Kenward-Roger approximation to compute p-values (fast)
     title = "linear mixed-effects model",
+    stats.label.color = "black",
     exclude.intercept = FALSE                       # show the intercept
   ) +
     ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)"), 
@@ -270,10 +273,16 @@ dot-and-whisker plots. In case, you would like to see these terms, you can enter
 the same object you entered as `x` argument to `ggcoefstats` in `broom::tidy`:
 
 ```{r lmer2, warning = FALSE, message = FALSE}
+library(ggstatsplot)
+
+# to speed up the calculation, let's use only 30% of the data
+movies_30 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.3)
+
+# tidy output
 broom::tidy(
   x = lme4::lmer(
     formula = rating ~ budget + (budget | genre),
-    data = ggstatsplot::movies_long,
+    data = movies_30,
     control = lme4::lmerControl(calc.derivs = FALSE)
   ),
   conf.int = TRUE,
@@ -293,11 +302,14 @@ out other non-linear functions, e.g. `Y ~ k * exp(-b*c)`).
 ```{r nls, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 library(ggstatsplot)
 
+# to speed up the calculation, let's use only 30% of the data
+movies_30 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.3)
+
 # plot
 ggstatsplot::ggcoefstats(
     x = stats::nls(
       formula = rating ~ k / budget + c,                # try toying around with the form of non-linear function
-      data = ggstatsplot::movies_long,
+      data = movies_30,
       start = list(k = 1, c = 0)
     ),
     title = "Non-linear relationship between budget and rating",
@@ -306,15 +318,15 @@ ggstatsplot::ggcoefstats(
 ```
 
 This analysis shows that there is indeed a possible non-linear association
-between rating and budget (non-linear regression term `k` is significant), at least with
-the particular non-linear function we used.
+between rating and budget (non-linear regression term `k` is significant), at
+least with the particular non-linear function we used.
 
 ## generalized linear model (`glm`)
 
 In all the analyses carried out thus far, the outcome variable (`y` in `y ~ x`)
 has been continuous. In case the outcome variable is nominal/categorical/factor,
 we can use the **generalized** form of linear model that works even if the
-response is a numeric vector or a factor vector, etc. 
+response is a numeric vector or a factor vector, etc.
 
 To explore this model, we will use the Titanic dataset, which tabulates
 information on the fate of passengers on the fatal maiden voyage of the ocean
@@ -406,7 +418,8 @@ ggstatsplot::combine_plots(
       data = df.counts,
       family = stats::poisson(link = "log")
     ),
-    title = "Family: Poisson"
+    title = "Family: Poisson",
+    stats.label.color = "black"
   ),
   ggstatsplot::ggcoefstats(
     x = stats::glm(
@@ -414,7 +427,8 @@ ggstatsplot::combine_plots(
       data = df.clotting,
       family = stats::Gamma(link = "inverse")
     ),
-    title = "Family: Gamma"
+    title = "Family: Gamma",
+    stats.label.color = "black"
   ),
   ggstatsplot::ggcoefstats(
     x = stats::glm(
@@ -422,7 +436,8 @@ ggstatsplot::combine_plots(
       family = quasi(variance = "mu", link = "log"),
       data = df.3
     ),
-    title = "Family: Quasi"
+    title = "Family: Quasi",
+    stats.label.color = "black"
   ),
   ggstatsplot::ggcoefstats(
     x = stats::glm(
@@ -430,7 +445,8 @@ ggstatsplot::combine_plots(
       family = stats::quasibinomial(link = "logit"),
       data = df.4
     ),
-    title = "Family: Quasibinomial"
+    title = "Family: Quasibinomial",
+    stats.label.color = "black"
   ),
     ggstatsplot::ggcoefstats(
     x = stats::glm(
@@ -438,7 +454,8 @@ ggstatsplot::combine_plots(
       family = stats::quasipoisson(link = "log"),
       data = df.4
     ),
-    title = "Family: Quasipoisson"
+    title = "Family: Quasipoisson",
+    stats.label.color = "black"
   ),
     ggstatsplot::ggcoefstats(
     x = stats::glm(
@@ -446,7 +463,8 @@ ggstatsplot::combine_plots(
       family = stats::gaussian(link = "identity"),
       data = iris
     ),
-    title = "Family: Gaussian"
+    title = "Family: Gaussian",
+    stats.label.color = "black"
   ),
   labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)"),
   ncol = 2,
@@ -479,7 +497,8 @@ ggstatsplot::ggcoefstats(
       boundary.tol = 1e-7
     )
   ),
-  exponentiate = TRUE
+  exponentiate = TRUE,
+  stats.label.color = "black"
 )
 ```
 
@@ -504,7 +523,7 @@ third-party actors who harmed someone. There are four different conditions
 formed out of belief (neutral, negative) and outcome (neutral, negative) for
 four different vignettes, each featuring a different type of harm. The question
 we are interested in is what explains variation in participants' rating:
-information about intentionality, consequences, or their interaction? 
+information about intentionality, consequences, or their interaction?
 
 We will carry out this analysis for each type of harm because we might expect
 that people might rely on intent information for some types of harm, but not
@@ -533,6 +552,7 @@ plotlist <- dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.5) %
           convergence = "silent"
         ),
       ),
+      stats.label.color = "black",
       title = glue::glue("Type of harm: {.$plot.title}"),
       caption.summary = FALSE                            # suppress model diagnostics
     ) +
@@ -569,7 +589,7 @@ ggstatsplot::ggcoefstats(
     formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
                                                         harm),
     # to speed up calculations, we will use just half of the dataset
-    data = dplyr::filter(.data = ggstatsplot::intent_morality, id <= 250),
+    data = dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.5),
     control = ordinal::clmm.control(
       method = "nlminb",
       maxIter = 50,
@@ -592,7 +612,7 @@ whether there was harm, at least this is the effect we found with these four
 types of (minor) harms.
 
 Note that, by default, `beta` parameters are shown for `clm` and `clmm` models,
-but you can also plot either just `alpha` or `both` using `ggcoefstats`. 
+but you can also plot either just `alpha` or `both` using `ggcoefstats`.
 
 ```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 library(ggstatsplot)
@@ -680,7 +700,6 @@ most of the variance is explained by the `attribute`, with the next important
 explanatory factor being the `measure` used. A very little amount of variation
 in measurement is accounted for by the interaction between these two factors.
 
-
 ## Robust regression (`lmRob`, `glmRob`)
 
 The robust regression models, as implemented in robust package are also
@@ -695,11 +714,21 @@ ggstatsplot::combine_plots(
       data = ggstatsplot::Titanic_full,
       family = stats::binomial(link = "logit")
     ),
-    title = "generalized robust linear model"
+    title = "generalized robust linear model",
+    # arguments relevant for aesthetic modification
+    package = "dichromat",
+    palette = "BrowntoBlue.10",
+    ggtheme = ggthemes::theme_fivethirtyeight(),
+    ggstatsplot.layer = FALSE
   ),
   ggstatsplot::ggcoefstats(
     x = robust::lmRob(formula = Sepal.Length ~ Sepal.Width * Species, data = iris),
-    title = "robust linear model"
+    title = "robust linear model",
+    # arguments relevant for aesthetic modification
+    package = "awtools",
+    palette = "a_palette",
+    ggtheme = ggthemes::theme_tufte(),
+    ggstatsplot.layer = FALSE
   ),
   labels = c("(a)", "(b)"),
   title.text = "Robust variants of lm and glm",
@@ -719,7 +748,17 @@ Note that not **all** models supported by `broom` will be supported by
 `ggcoefstats`. In particular, classes of objects for which there is no estimates
 present (e.g., `kmeans`) are not supported.
 
-## Suggestions
+# Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
-<https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on
+GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+# Session Information
+
+Summarizing session information for reproducibility.
+
+```{r session_info, eval = FALSE}
+options(width = 200)
+devtools::session_info()
+```
+

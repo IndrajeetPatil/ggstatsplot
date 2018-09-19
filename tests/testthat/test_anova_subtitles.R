@@ -1,6 +1,6 @@
-context('anova')
+context("anova_subtitles")
 
-test_that('anova works', {
+test_that("anova subtitles work", {
   # the expected result
   r <-
     broom::tidy(
@@ -25,7 +25,7 @@ test_that('anova works', {
   subtitle_vec <-
     stringr::str_extract(string = as.character(subtitle), pattern = "\\-*\\d+\\.*\\d*") %>%
     tibble::as.tibble() %>%
-    stats::na.omit()
+    stats::na.omit(.)
 
   # converting to numeric
   subtitle_vec$value <- as.numeric(as.character(subtitle_vec$value))
@@ -55,5 +55,4 @@ test_that('anova works', {
     object = subtitle_vec$value[[4]],
     tolerance = 1e-3
   )
-
 })

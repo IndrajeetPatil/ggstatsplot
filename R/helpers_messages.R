@@ -2,6 +2,7 @@
 #' @title Display normality test result as a message.
 #' @name normality_message
 #' @aliases normality_message
+#'
 #' @param x A numeric vector.
 #' @param lab A character describing label for the variable. If `NULL`, a
 #'   generic `"x"` label will be used.
@@ -177,4 +178,19 @@ bartlett_message <- function(data,
   } else if (output == "stats") {
     return(bartlett)
   }
+}
+
+#' @title grouped_message
+#' @description A note to the user about the class of the output object.
+#'
+#' @keywords internal
+#'
+
+grouped_message <- function() {
+  base::message(cat(
+    crayon::red("Warning:"),
+    crayon::blue(
+      "The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions."
+    )
+  ))
 }

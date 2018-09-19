@@ -37,7 +37,7 @@
 #'
 #'
 #' @examples
-#'
+#' 
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -45,10 +45,9 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   corr.method = "r",
 #'   p.adjust.method = "holm",
-#'   nrow = 2,
-#'   ncol = 2
+#'   nrow = 2
 #' )
-#'
+#' 
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -56,7 +55,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#'
+#' 
 #' # for getting confidence intervals
 #' # if robust correlation is selected, confidence intervals will not be
 #' # available
@@ -92,7 +91,7 @@ grouped_ggcorrmat <- function(data,
                               lab = TRUE,
                               colors = c("#E69F00", "white", "#009E73"),
                               outline.color = "black",
-                              ggtheme = ggplot2::theme_bw,
+                              ggtheme = ggplot2::theme_bw(),
                               ggstatsplot.layer = TRUE,
                               subtitle = NULL,
                               caption = NULL,
@@ -202,6 +201,12 @@ grouped_ggcorrmat <- function(data,
         plotlist = plotlist_purrr$plots,
         ...
       )
+
+    # show the note about grouped_ variant producing object which is not of
+    # class ggplot
+    if (isTRUE(messages)) {
+      grouped_message()
+    }
 
     # return the combined plot
     return(combined_plot)

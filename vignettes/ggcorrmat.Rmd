@@ -90,7 +90,7 @@ ggstatsplot::ggcorrmat(
                      "GDP (per capita)"),
   corr.method = "kendall",                    # which correlation coefficient is to be computed
   lab.col = "red",                            # label color
-  ggtheme = ggplot2::theme_light,             # selected ggplot2 theme
+  ggtheme = ggplot2::theme_light(),           # selected ggplot2 theme
   ggstatsplot.layer = FALSE,                  # turn off default ggestatsplot theme overlay
   type = "lower",                             # type of correlation matrix
   colors = c("green", "white", "yellow"),     # selecting color combination
@@ -350,11 +350,11 @@ plot_list <- purrr::pmap(
     ),
     ggstatsplot.layer = list(FALSE),
     ggtheme = list(
-      ggplot2::theme_grey,
-      ggplot2::theme_classic,
-      ggthemes::theme_fivethirtyeight,
-      ggplot2::theme_bw,
-      ggthemes::theme_tufte
+      ggplot2::theme_grey(),
+      ggplot2::theme_classic(),
+      ggthemes::theme_fivethirtyeight(),
+      ggplot2::theme_bw(),
+      ggthemes::theme_tufte()
     )
   ),
   .f = ggstatsplot::ggcorrmat
@@ -379,7 +379,17 @@ As can be seen from this example, combination of `purrr` and `ggstatsplot` much
 more flexibility in analyzing the data and preparing a combined plot across
 studies or conditions.
 
-## Suggestions
+# Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+# Session Information
+
+Summarizing session information for reproducibility.
+
+```{r session_info, eval = FALSE}
+options(width = 200)
+devtools::session_info()
+```
+
