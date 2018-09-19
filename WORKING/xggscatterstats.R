@@ -37,9 +37,7 @@ str(mpaa_list)
 
 # checking the length and names of each element
 length(mpaa_list)
-#> [1] 4
 names(mpaa_list)
-#> [1] "NC-17" "PG"    "PG-13" "R"
 
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to
@@ -59,6 +57,8 @@ plot_list1 <- purrr::pmap(
     ),
 #    label.var = list("title", "year", "votes", "genre"),
 # genre doesn't exist!
+# Tried lots of permutations can only get it to work with some good old
+# fashioned quotes
     label.var = list("title", "year", "votes", "length"),
     label.expression = list(
       ("rating > 6 & budget < 50"),
@@ -66,9 +66,6 @@ plot_list1 <- purrr::pmap(
       ("rating > 6 & budget < 50"),
       ("rating > 6 & budget < 10")
     ),
-# Tried lots of permutations but failed
-# It works hard coded as you can see in the code
-#    label.expression = list("rating > 6","rating > 6","rating > 6","rating > 6"),
     type = list("r", "np", "p", "np"),
     method = list(MASS::rlm, "lm", "lm", "lm"),
     marginal.type = list("histogram", "boxplot", "density", "violin"),
