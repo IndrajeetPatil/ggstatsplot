@@ -210,13 +210,19 @@ ggscatterstats <-
       data %>%
       {
         if ("label.expression" %in% names(param_list)) {
-          dplyr::filter(.data = ., !!rlang::enquo(label.expression))
+#          dplyr::filter(.data = ., !!rlang::enquo(label.expression))
+          dplyr::filter(.data = ., rating > 6.5)
+#          dplyr::filter(.data = ., !!rlang::sym(label.expression))
+#          dplyr::filter(.data = ., !!label.expression)
         }
         else {
           (.)
         }
       }
-
+# wtf <- !!rlang::enquo(label.expression)
+# return(wtf)
+return(rlang::sym(label.expression))
+# return(label_data)
     #--------------------------------- creating results subtitle ----------------------------------------------------------
 
     # adding a subtitle with statistical results
@@ -412,8 +418,9 @@ ggscatterstats <-
         plot +
         ggrepel::geom_label_repel(
           data = label_data,
-          mapping = aes(
-            label = !!rlang::enquo(label.var)
+          mapping = aes_string(
+#            label = !!rlang::enquo(label.var)
+            label = label.var
           ),
           fontface = "bold",
           color = "black",
