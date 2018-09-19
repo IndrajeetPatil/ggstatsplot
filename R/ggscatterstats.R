@@ -84,15 +84,15 @@
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -207,6 +207,7 @@ ggscatterstats <-
     } else {
       point.labelling <- FALSE
     }
+#          return(data)
 
     # creating a new dataframe for showing labels
     label_data <-
@@ -214,17 +215,20 @@ ggscatterstats <-
       {
         if ("label.expression" %in% names(param_list)) {
 #          dplyr::filter(.data = ., !!rlang::enquo(label.expression))
-          dplyr::filter(.data = ., rating > 6.5)
+          dplyr::filter(.data = ., !!rlang::parse_expr(label.expression))
+#          dplyr::filter(.data = ., label.expression)
+# this works         dplyr::filter(.data = ., rating > 6.5)
 #          dplyr::filter(.data = ., !!rlang::sym(label.expression))
 #          dplyr::filter(.data = ., !!label.expression)
+#          dplyr::filter(.data = ., UQ(sym(label.expression)) )
         }
         else {
           (.)
         }
       }
 # wtf <- !!rlang::enquo(label.expression)
-# return(wtf)
-return(rlang::sym(label.expression))
+# return(label.expression)
+# return(rlang::sym(label.expression))
 # return(label_data)
     #--------------------------------- creating results subtitle ----------------------------------------------------------
 

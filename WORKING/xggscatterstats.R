@@ -17,7 +17,7 @@ ggstatsplot::ggscatterstats(
   type = "np",
   # have to quote car variable now
   label.var = "car",
-  label.expression = wt < 4 & mpg < 20,
+  label.expression = "wt < 4 & mpg < 20",
   axes.range.restrict = TRUE,
   centrality.para = "median"
 )
@@ -60,14 +60,15 @@ plot_list1 <- purrr::pmap(
 #    label.var = list("title", "year", "votes", "genre"),
 # genre doesn't exist!
     label.var = list("title", "year", "votes", "length"),
-#    label.expression = list(
-#      ("rating" > 8.5 &
-#         "budget" < 50),
-#      ("rating" > 8.5 &
-#         "budget" < 100),
-#      ("rating" > 8 & "budget" < 50),
-#      ("rating" > 9 & "budget" < 10)
-#    ),
+    label.expression = list(
+      ("rating > 6 & budget < 50"),
+      ("rating > 6 & budget < 100"),
+      ("rating > 6 & budget < 50"),
+      ("rating > 6 & budget < 10")
+    ),
+# Tried lots of permutations but failed
+# It works hard coded as you can see in the code
+#    label.expression = list("rating > 6","rating > 6","rating > 6","rating > 6"),
     type = list("r", "np", "p", "np"),
     method = list(MASS::rlm, "lm", "lm", "lm"),
     marginal.type = list("histogram", "boxplot", "density", "violin"),
