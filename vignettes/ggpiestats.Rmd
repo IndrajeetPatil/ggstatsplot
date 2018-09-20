@@ -197,74 +197,9 @@ ggstatsplot::grouped_ggpiestats(
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, we may want to add different captions,
 titles, themes, or palettes for each level of the grouping variable, etc. For
-cases like these, it would be better to use \code{\link[purrr]{pmap}} (e.g.).
-
-**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
-will need to *quote* the arguments.
-
-```{r ggpiestats6, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
-# let's split the dataframe and create a list by passenger class
-class_list <- ggstatsplot::Titanic_full %>%
-  base::split(x = ., f = .$Class, drop = TRUE)
-
-# this created a list with 4 elements, one for each class
-# you can check the structure of the file for yourself
-# str(class_list)
-
-# checking the length and names of each element
-length(class_list)
-names(class_list)
-
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list <- purrr::pmap(
-  .l = list(
-    data = class_list,
-    main = "Survived",
-    condition = "Sex",
-    facet.wrap.name = "Gender",
-    title = list(
-      "Passenger class: 1st",
-      "Passenger class: 2nd",
-      "Passenger class: 3rd",
-      "Passenger class: Crew"
-    ),
-    caption = list(
-      "Total: 319, Died: 120, Survived: 199, % Survived: 62%",
-      "Total: 272, Died: 155, Survived: 117, % Survived: 43%",
-      "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
-      "Data not available for crew passengers"
-    ),
-    package = list("RColorBrewer", "ghibli", "palettetown", "yarrr"),
-    palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
-    ggtheme = list(
-      ggplot2::theme_grey(),
-      ggplot2::theme_classic(),
-      ggthemes::theme_tufte(),
-      ggthemes::theme_economist()
-    ),
-    ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
-    sample.size.label = list(TRUE, FALSE, TRUE, FALSE),
-    messages = FALSE
-  ),
-  .f = ggstatsplot::ggpiestats
-)
-  
-# combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
-  plotlist = plot_list,
-  title.text = "Survival in Titanic disaster by gender for all passenger classes",
-  caption.text = "Asterisks denote results from proportion tests; ***: p < 0.001, ns: non-significant",
-  nrow = 4,
-  ncol = 1,
-  labels = c("(a)","(b)","(c)", "(d)")
-)
-``` 
-
-As can be appreciated from this example, although `grouped_ggpiestats` provides
-a quick way to explore data, `purrr::pmap` lets us utilize the full
-functionality of this function and `ggplot2`.
+cases like these, it would be better to use `purrr` package. See the associated
+vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
 
 ## Working with `counts` data
 

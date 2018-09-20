@@ -43,7 +43,7 @@ subtitle_ggbetween_t_bayes(
   data = dplyr::filter(
     ggstatsplot::intent_morality,
     condition \%in\% c("accidental", "attempted"),
-    harm == "Burn"
+    harm == "Poisoning"
   ),
   x = condition,
   y = rating,

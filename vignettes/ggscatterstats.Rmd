@@ -184,92 +184,16 @@ relationship we found between budget and IMDB rating holds only for PG-13 and
 R-rated movies. Indeed, the relationship even reverses for non-rated or NC-17
 rated films.
 
+## Grouped analysis with `ggscatterstats` + `purrr`
+
 Although this is a quick and dirty way to explore large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
 For example, if we wanted to add, let's say, a separate type of marginal
 distribution plot for each MPAA rating or if we wanted to use different types of
 correlations across different levels of MPAA ratings (NC-17 has only 6 movies,
 so a robust correlation would be a good idea), this is not possible. But this
-can be easily done using `purrr`.
-
-## Grouped analysis with `ggscatterstats` + `purrr`
-
-Let's run the same analysis using `purrr::pmap`.
-
-**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
-will need to *quote* the arguments.
-
-```{r grouped2, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 8}
-# for reproducibility
-set.seed(123)
-
-# let's split the dataframe and create a list by mpaa rating
-mpaa_list <- ggstatsplot::movies_wide %>%
-  base::split(x = ., f = .$mpaa, drop = TRUE)
-
-# this created a list with 4 elements, one for each mpaa rating
-# you can check the structure of the file for yourself
-# str(mpaa_list)
-
-# checking the length and names of each element
-length(mpaa_list)
-names(mpaa_list)
-
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list1 <- purrr::pmap(
-  .l = list(
-    data = mpaa_list,
-    x = "budget",
-    y = "rating",
-    xlab = "Budget (in millions of US dollars)",
-    ylab = "Rating on IMDB",
-    title = list(
-      "MPAA Rating: NC-17",
-      "MPAA Rating: PG",
-      "MPAA Rating: PG-13",
-      "MPAA Rating: R"
-    ),
-    # label.var = list("title", "year", "votes", "genre"),
-    # label.expression = list(
-    #   ("rating" > 8.5 &
-    #     "budget" < 50),
-    #   ("rating" > 8.5 &
-    #     "budget" < 100),
-    #   ("rating" > 8 & "budget" < 50),
-    #   ("rating" > 9 & "budget" < 10)
-    # ),
-    type = list("r", "np", "p", "np"),
-    method = list(MASS::rlm, "lm", "lm", "lm"),
-    marginal.type = list("histogram", "boxplot", "density", "violin"),
-    centrality.para = "mean",
-    xfill = list("#56B4E9", "#009E73", "#999999", "#0072B2"),
-    yfill = list("#D55E00", "#CC79A7", "#F0E442", "#D55E00"),
-    ggtheme = list(
-      ggplot2::theme_grey(),
-      ggplot2::theme_classic(),
-      ggplot2::theme_light(),
-      ggplot2::theme_minimal()
-    ),
-    messages = TRUE
-  ),
-  .f = ggstatsplot::ggscatterstats
-)
-  
-# combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
-  plotlist = plot_list1,
-  title.text = "Relationship between movie budget and IMDB rating",
-  caption.text = "Source: www.imdb.com",
-  caption.size = 16,
-  title.color = "red",
-  caption.color = "blue",
-  nrow = 4,
-  ncol = 1,
-  labels = c("(a)","(b)","(c)","(d)")
-)
-```
+can be easily done using `purrr`. See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
 
 ## Different smoothing methods
 

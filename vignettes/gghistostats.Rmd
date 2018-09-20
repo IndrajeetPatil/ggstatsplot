@@ -240,98 +240,15 @@ continent-specific life expectancy from 1957
 (<https://ourworldindata.org/life-expectancy>), or run separate kinds of tests
 (robust for some, parametric for other, while Bayesian for some other levels of
 the group). This is not possible `grouped_gghistostats` function, but can be
-easily achieved with `purrr` package from tidyverse.
+easily achieved with `purrr` package from tidyverse. See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
 
-**Note before**:
-  * Unlike the function call so far, while using `purrr::pmap`, we will need to
-  *quote* the arguments.
-  * You can use `ggplot2` themes from extension packages (like `ggthemes`).  
-
-```{r grouped2, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 12}
-# for reproducibility
-set.seed(123)
-
-# libraries needed
-library(ggthemes)
-
-# let's split the dataframe and create a list by continent
-continent_list <- gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%
-  base::split(x = ., f = .$continent, drop = TRUE)
-
-# this created a list with 5 elements, one for each continent
-# you can check the structure of the file for yourself
-# str(continent_list)
-
-# checking the length and names of each element
-length(continent_list)
-names(continent_list)
-
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list <- purrr::pmap(
-  .l = list(
-    data = continent_list,
-    x = "lifeExp",
-    xlab = "Life expectancy",
-    test.value = list(35.6, 58.4, 41.6, 64.7, 63.4),
-    type = list("p", "np", "r", "bf", "p"),
-    bf.message = list(TRUE, FALSE, FALSE, FALSE, TRUE),
-    title = list(
-      "Continent: Africa",
-      "Continent: Americas",
-      "Continent: Asia",
-      "Continent: Europe",
-      "Continent: Oceania"
-    ),
-    bar.measure = list("proportion", "count", "proportion", "density", "count"),
-    fill.gradient = list(TRUE, FALSE, FALSE, TRUE, TRUE),
-    low.color = list("#56B4E9", "white", "#999999", "#009E73", "black"),
-    high.color = list("#D55E00", "white", "#F0E442", "#F0E442", "black"),
-    bar.fill = list("white", "red", "orange", "blue", "white"),
-    centrality.color = "black",
-    test.value.line = TRUE,
-    test.value.color = "black",
-    centrality.para = "mean",
-    ggtheme = list(
-      ggplot2::theme_classic(),
-      ggthemes::theme_fivethirtyeight(),
-      ggplot2::theme_minimal(),
-      ggthemes::theme_few(),
-      ggthemes::theme_gdocs()
-    ),
-    messages = FALSE
-  ),
-  .f = ggstatsplot::gghistostats
-)
-  
-# combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
-  plotlist = plot_list,
-  title.text = "Improvement in life expectancy worldwide since 1950",
-  caption.text = "Note: black line - 1950; blue line - 2007",
-  nrow = 3,
-  ncol = 2,
-  labels = c("(a)", "(b)", "(c)", "(d)", "(e)")
-)
-```  
-
-This shows a much more detailed account of changes in life expectancy as
-compared to the previous plot. Compared to their respective average life
-expectancies in 1950's, the continent that has had the highest improvement is
-Oceania (Australia and New Zealand), while the continent with the least
-improvement is Africa (as seen by Cohen's *d* values). This again shows the ease
-with which publication-ready plots or plots for exploratory data analysis can be
-prepared if `ggstatsplot` is coupled with a functional programming package like
-`purrr`.
-
-## Suggestions
+# Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
-## Session Information
+# Session Information
 
 Summarizing session information for reproducibility.
 

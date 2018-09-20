@@ -643,23 +643,23 @@ subtitle_ggbetween_t_rob <-
 #' @importFrom jmv ttestPS
 #'
 #' @examples
-#' 
+#'
 #' # between-subjects design
-#' 
+#'
 #' subtitle_ggbetween_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#' 
+#'
 #' # within-subjects design
-#' 
+#'
 #' subtitle_ggbetween_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
 #'     condition %in% c("accidental", "attempted"),
-#'     harm == "Burn"
+#'     harm == "Poisoning"
 #'   ),
 #'   x = condition,
 #'   y = rating,
@@ -681,8 +681,9 @@ subtitle_ggbetween_t_bayes <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
     tibble::as_data_frame(x = .)
+
+  ##---------------------------- between-subjects design ---------------------------
 
   # running bayesian analysis
   if (!isTRUE(paired)) {
@@ -701,20 +702,29 @@ subtitle_ggbetween_t_bayes <- function(data,
 
     # sample size
     sample_size <- nrow(data)
+
+    ##---------------------------- within-subjects design ---------------------------
+
   } else if (isTRUE(paired)) {
 
     # jamovi needs data to be wide format and not long format
-    data_wide <- data %>%
+    data_wide <-
+      data %>%
       dplyr::group_by(.data = ., x) %>%
       dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
       dplyr::ungroup(x = .) %>%
-      # dplyr::group_by(.data = ., rowid) %>%
-      #   dplyr::mutate(.data = ., n = dplyr::n()) %>%
-      #   dplyr::ungroup(x = .) %>%
-      #   dplyr::filter(.data = ., n == 2) %>%
+      stats::na.omit(.) %>%
+      dplyr::group_by(.data = ., rowid) %>%
+      dplyr::mutate(.data = ., n = dplyr::n()) %>%
+      dplyr::ungroup(x = .) %>%
+      dplyr::filter(.data = ., n == 2) %>%
       dplyr::select(.data = ., x, y, rowid) %>%
-      tidyr::spread(data = ., key = x, value = y, convert = TRUE) %>%
-      stats::na.omit(.)
+      tidyr::spread(
+        data = .,
+        key = x,
+        value = y,
+        convert = TRUE
+      )
 
     # dependent samples design
     jmv_results <- jmv::ttestPS(

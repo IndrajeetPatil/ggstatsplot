@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for the between-subject bayesian t-test. — subtitle_ggbetween_t_bayes • ggstatsplot</title>
+<title>Making text subtitle for the bayesian t-test. — subtitle_ggbetween_t_bayes • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -38,9 +38,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for the between-subject bayesian t-test. — subtitle_ggbetween_t_bayes" />
+<meta property="og:title" content="Making text subtitle for the bayesian t-test. — subtitle_ggbetween_t_bayes" />
 
-<meta property="og:description" content="Making text subtitle for the between-subject bayesian t-test." />
+<meta property="og:description" content="Making text subtitle for the bayesian t-test." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,6 +117,9 @@
       <a href="../articles/plot_design.html">plot design</a>
     </li>
     <li>
+      <a href="../articles/purrr_examples.html">using `ggstatsplot` with `purrr` package</a>
+    </li>
+    <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
@@ -151,14 +154,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for the between-subject bayesian t-test.</h1>
+    <h1>Making text subtitle for the bayesian t-test.</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_subtitles.R'><code>R/helpers_ggbetween_subtitles.R</code></a></small>
     <div class="hidden name"><code>subtitle_ggbetween_t_bayes.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for the between-subject bayesian t-test.</p>
+    <p>Making text subtitle for the bayesian t-test.</p>
     
     </div>
 
@@ -202,10 +205,12 @@ to use in calculating Bayes factors.</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># between-subjects design</span>
 
-<span class='fu'>subtitle_ggbetween_t_bayes</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
-<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
-<span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; paste(italic("t"), "(", 30, ") = ", "5.258", ", log"["e"], "(BF"["10"], 
+<span class='fu'>subtitle_ggbetween_t_bayes</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; paste(italic("t"), "(", 30, ") = ", "5.258", ", log"["e"], "(BF"["10"], 
 #&gt;     ") = ", "7.2", ", log"["e"], "(error) = ", "-19.5", "% , ", 
 #&gt;     italic("d"), " = ", "1.892", ", ", italic("n"), " = ", 32L)</div><div class='input'>
 <span class='co'># within-subjects design</span>
@@ -214,24 +219,15 @@ to use in calculating Bayes factors.</p></td>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
     <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
     <span class='no'>condition</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"accidental"</span>, <span class='st'>"attempted"</span>),
-    <span class='no'>harm</span> <span class='kw'>==</span> <span class='st'>"Burn"</span>
+    <span class='no'>harm</span> <span class='kw'>==</span> <span class='st'>"Poisoning"</span>
   ),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; # A tibble: 6 x 3
-#&gt;   rowid accidental attempted
-#&gt;   &lt;int&gt;      &lt;int&gt;     &lt;int&gt;
-#&gt; 1     1          2         3
-#&gt; 2     2          1         4
-#&gt; 3     3          4         1
-#&gt; 4     4          2         2
-#&gt; 5     5          2         1
-#&gt; 6     6          1         7</div><div class='output co'>#&gt; paste(italic("t"), "(", 249, ") = ", "-5.542", ", log"["e"], 
-#&gt;     "(BF"["10"], ") = ", "11.7", ", log"["e"], "(error) = ", 
-#&gt;     "-24.2", "% , ", italic("d"), " = ", "-0.350", ", ", italic("n"), 
-#&gt;     " = ", 502L)</div><div class='input'>
-</div></pre>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; paste(italic("t"), "(", 249, ") = ", "23.345", ", log"["e"], 
+#&gt;     "(BF"["10"], ") = ", "140.6", ", log"["e"], "(error) = ", 
+#&gt;     "-158.7", "% , ", italic("d"), " = ", "1.476", ", ", italic("n"), 
+#&gt;     " = ", 250L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
