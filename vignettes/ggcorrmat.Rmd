@@ -295,94 +295,15 @@ correlations in your dataset with the `grouped_ggcorrmat` function.
 Although `grouped_` function is good for quickly exploring the data, it reduces
 the flexibility with which this function can be used. This is the because the
 common parameters used are applied to plots corresponding to all levels of the
-grouping variable and there is no way to adapt them based on the level of the
-grouping variable. We will see how this can be done using the `purrr` package
-from tidyverse. 
-
-**Note before**: Unlike the function call so far, while using `purrr::pmap`, we
-will need to *quote* the arguments.
-
-```{r ggcorrmat8, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
-# splitting the dataframe by cut and creting a list
-# also, to make this fast, let's only use 15% of the sample
-cut_list <- ggplot2::diamonds %>%
-  dplyr::sample_frac(tbl = ., size = 0.15) %>%
-  base::split(x = ., f = .$cut, drop = TRUE)
-
-# this created a list with 5 elements, one for each quality of cut
-# you can check the structure of the file for yourself
-# str(cut_list)
-
-# checking the length and names of each element
-length(cut_list)
-names(cut_list)
-
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
-plot_list <- purrr::pmap(
-  .l = list(
-    data = cut_list,
-    cor.vars = list(c("carat", "depth", "table",
-                 "price", "x", "y", "z")),
-    cor.vars.names = list(c(
-      "carat",
-      "total depth",
-      "table",
-      "price",
-      "length (in mm)",
-      "width (in mm)",
-      "depth (in mm)"
-    )),
-    corr.method = list("pearson", "np", "robust", "p", "kendall"),
-    # note that we are changing both p-value adjustment method *and*
-    # significance level to display the significant correlations in the
-    # visualization matrix
-    p.adjust.method = list("none", "hommel", "fdr", "BY", "hochberg"),
-    sig.level = list(0.05, 0.001, 0.01, 0.05, 0.003),
-    lab.size = 3.5,
-    colors = list(
-      c("#56B4E9", "white", "#999999"),
-      c("#0072B2", "white", "#D55E00"),
-      c("#CC79A7", "white", "#F0E442"),
-      c("#56B4E9", "white", "#D55E00"),
-      c("#999999", "white", "#0072B2")
-    ),
-    ggstatsplot.layer = list(FALSE),
-    ggtheme = list(
-      ggplot2::theme_grey(),
-      ggplot2::theme_classic(),
-      ggthemes::theme_fivethirtyeight(),
-      ggplot2::theme_bw(),
-      ggthemes::theme_tufte()
-    )
-  ),
-  .f = ggstatsplot::ggcorrmat
-)
-
-# combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
-  plotlist = plot_list,
-  title.text = "Relationship between diamond attributes and price across cut",
-  title.size = 16,
-  title.color = "red",
-  caption.text = "Dataset: Diamonds from ggplot2 package",
-  caption.size = 14,
-  caption.color = "blue",
-  labels = c("(a)", "(b)", "(c)", "(d)", "(e)"),
-  nrow = 3,
-  ncol = 2
-)
-```
-
-As can be seen from this example, combination of `purrr` and `ggstatsplot` much
-more flexibility in analyzing the data and preparing a combined plot across
-studies or conditions.
+grouping variable and there is no way to customize the arguments for different
+levels of the grouping variable. We will see how this can be done using the
+`purrr` package in the associated vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
 
 # Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
-<https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on
+`GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 
