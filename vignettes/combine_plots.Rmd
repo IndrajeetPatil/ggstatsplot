@@ -67,8 +67,8 @@ plots <- datasets::iris %>%
           data = .,
           x = Sepal.Length,
           y = Sepal.Width,
-          label.var = Species2,
-          label.expression = Sepal.Length > 7,
+          label.var = "Species2",
+          label.expression = "Sepal.Length > 7",
           xfill = "#0072B2",
           yfill = "#009E73",
           ggtheme = ggthemes::theme_fivethirtyeight(),
@@ -135,8 +135,8 @@ plots <- plyr::dlply(
       y = lifeExp,
       xfill = "#0072B2",
       yfill = "#009E73",
-      label.var = country,
-      label.expression = lifeExp < 45,
+      label.var = "country",
+      label.expression = "lifeExp < 45",
       title = glue::glue("Continent: {data$continent}"),
       marginal = FALSE
     ) +
