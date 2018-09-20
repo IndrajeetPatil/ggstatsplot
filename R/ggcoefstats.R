@@ -108,6 +108,9 @@
 #' @importFrom broom glance
 #' @importFrom broom tidy
 #' @importFrom broom augment
+#' @importFrom broom.mixed glance
+#' @importFrom broom.mixed tidy
+#' @importFrom broom.mixed augment
 #' @importFrom dplyr select
 #' @importFrom dplyr filter
 #' @importFrom dplyr mutate_at
@@ -131,7 +134,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#' 
+#'
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -242,8 +245,13 @@ ggcoefstats <- function(x,
 
   # glance object from broom
   if (!(class(x)[[1]] %in% noglance.mods)) {
-    glance_df <- broom::glance(x = x) %>%
-      tibble::as_data_frame(x = .)
+    if (class(x)[[1]] %in% lmm.mods) {
+      glance_df <- broom.mixed::glance(x = x) %>%
+        tibble::as_data_frame(x = .)
+    } else {
+      glance_df <- broom::glance(x = x) %>%
+        tibble::as_data_frame(x = .)
+    }
   } else {
     base::message(cat(
       crayon::green("Note:"),
@@ -259,7 +267,7 @@ ggcoefstats <- function(x,
   # ===================================== lmm tidying =======================================================================
   if (class(x)[[1]] %in% lmm.mods) {
     tidy_df <-
-      broom::tidy(
+      broom.mixed::tidy(
         x = x,
         conf.int = TRUE,
         conf.level = conf.level,
@@ -810,7 +818,12 @@ ggcoefstats <- function(x,
   } else if (output == "glance") {
     return(glance_df)
   } else if (output == "augment") {
-    return(broom::augment(x = x) %>%
-      tibble::as_data_frame(x = .))
+    if (class(x)[[1]] %in% lmm.mods) {
+      return(broom::augment(x = x) %>%
+        tibble::as_data_frame(x = .))
+    } else {
+      return(broom.mixed::augment(x = x) %>%
+        tibble::as_data_frame(x = .))
+    }
   }
 }

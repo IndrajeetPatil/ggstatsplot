@@ -330,15 +330,15 @@
 <a class="sourceLine" id="cb5-13" data-line-number="13">  <span class="dt">conf.int =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb5-14" data-line-number="14">  <span class="dt">conf.level =</span> <span class="fl">0.95</span></a>
 <a class="sourceLine" id="cb5-15" data-line-number="15">)</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; # A tibble: 6 x 7</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;   term              estimate std.error statistic conf.low conf.high group </span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; </span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 1 (Intercept)        5.81      0.170       34.2   5.48      6.15    fixed </span></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 2 budget             0.00508   0.00194      2.62  0.00129   0.00888 fixed </span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 3 sd_(Intercept).g~  0.340    NA           NA    NA        NA       genre </span></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; 4 sd_budget.genre    0.00240  NA           NA    NA        NA       genre </span></a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; 5 cor_(Intercept).~ -0.391    NA           NA    NA        NA       genre </span></a>
-<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; 6 sd_Observation.R~  1.18     NA           NA    NA        NA       Resid~</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; # A tibble: 6 x 8</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;   effect  group  term      estimate std.error statistic conf.low conf.high</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 1 fixed   &lt;NA&gt;   (Interce~  5.81      0.170       34.2   5.48      6.15   </span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 2 fixed   &lt;NA&gt;   budget     0.00508   0.00194      2.62  0.00129   0.00888</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 3 ran_pa~ genre  sd__(Int~  0.340    NA           NA    NA        NA      </span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; 4 ran_pa~ genre  sd__budg~  0.00240  NA           NA    NA        NA      </span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; 5 ran_pa~ genre  cor__(In~ -0.391    NA           NA    NA        NA      </span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; 6 ran_pa~ Resid~ sd__Obse~  1.18     NA           NA    NA        NA</span></a></code></pre></div>
 </div>
 <div id="non-linear-least-squares-model-nls" class="section level2">
 <h2 class="hasAnchor">
