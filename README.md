@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--17-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--20-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -138,10 +138,21 @@ utils::citation(package = "ggstatsplot")
 There is currently a publication in preparation corresponding this
 package and the citation will be updated once it’s published.
 
-## Help
+## Documentation and Examples
 
-There is a dedicated website to `ggstatplot`, which is updated after
-every new commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
+To see the detailed documentation for each function in the stable
+**CRAN** version of the package, see:
+
+  - README:
+    <https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html>
+  - Vignettes:
+    <https://cran.r-project.org/web/packages/ggstatsplot/vignettes/>
+
+To see the documentation relevant for the **development** version of the
+package, see the dedicated website for `ggstatplot`, which is updated
+after every new commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
+
+## Help
 
 In `R`, documentation for any function can be accessed with the standard
 `help` command-
@@ -232,7 +243,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002aafbbe0>
+#> <bytecode: 0x000000002b2ca5b0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -432,8 +443,8 @@ ggstatsplot::ggscatterstats(
   type = "robust",                                # type of test that needs to be run
   xlab = "Movie budget (in million/ US$)",        # label for x axis
   ylab = "IMDB rating",                           # label for y axis 
-  label.var = title,                              # variable for labeling data points
-  label.expression = rating < 5 & budget > 150,   # expression that decides which points to label
+  label.var = "title",                            # variable for labeling data points
+  label.expression = "rating < 5 & budget > 150", # expression that decides which points to label
   line.color = "yellow",                          # changing regression line color line
   title = "Movie budget and IMDB rating (action)",# title text for the plot
   caption = expression(                           # caption text for the plot
@@ -926,18 +937,21 @@ models supported, see the associated vignette-
 
 ## `combine_plots`
 
-`ggstatsplot` also contains a helper function `combine_plots` to combine
-multiple plots. This is a wrapper around `cowplot::plot_grid` and lets
-you combine multiple plots and add a combination of title, caption, and
-annotation texts with suitable default parameters.
-
 The full power of `ggstatsplot` can be leveraged with a functional
 programming package like [`purrr`](http://purrr.tidyverse.org/) that
 replaces `for` loops with code that is both more succinct and easier to
-read and, therefore, `purrr` should be preferrred 😻. The `combine_plots`
-function is useful for combining a list of plots produced with `purrr`.
+read and, therefore, `purrr` should be preferrred 😻. (Another old school
+option to do this effectively is using the `plyr` package.)
 
-For examples, see the associated vignette-
+In such cases, `ggstatsplot` contains a helper function `combine_plots`
+to combine multiple plots, which can be useful for combining a list of
+plots produced with `purrr`. This is a wrapper around
+`cowplot::plot_grid` and lets you combine multiple plots and add a
+combination of title, caption, and annotation texts with suitable
+defaults.
+
+For examples (both with `plyr` and `purrr`), see the associated
+vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html>
 
 ## `theme_ggstatsplot`

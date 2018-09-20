@@ -643,18 +643,18 @@ subtitle_ggbetween_t_rob <-
 #' @importFrom jmv ttestPS
 #'
 #' @examples
-#'
+#' 
 #' # between-subjects design
-#'
+#' 
 #' subtitle_ggbetween_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#'
+#' 
 #' # within-subjects design
-#'
+#' 
 #' subtitle_ggbetween_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -683,7 +683,7 @@ subtitle_ggbetween_t_bayes <- function(data,
     ) %>%
     tibble::as_data_frame(x = .)
 
-  ##---------------------------- between-subjects design ---------------------------
+  ## ---------------------------- between-subjects design ---------------------------
 
   # running bayesian analysis
   if (!isTRUE(paired)) {
@@ -703,8 +703,7 @@ subtitle_ggbetween_t_bayes <- function(data,
     # sample size
     sample_size <- nrow(data)
 
-    ##---------------------------- within-subjects design ---------------------------
-
+    ## ---------------------------- within-subjects design ---------------------------
   } else if (isTRUE(paired)) {
 
     # jamovi needs data to be wide format and not long format

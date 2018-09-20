@@ -25,10 +25,12 @@ taken.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
 
-\item{label.var}{Variable to use for points labels.}
+\item{label.var}{Variable to use for points labels. \strong{Must} be entered as a
+character string e.g. \code{"y"}}
 
 \item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label.}
+determines the subset of data points to label. \strong{Must} be entered as a
+character string e.g. \code{"y < 4 & z < 20"}.}
 
 \item{xlab}{Label for \code{x} axis variable.}
 
@@ -140,6 +142,10 @@ subtitle.
 \code{marginal.type = "densigram"} will work only with the development
 version of \code{ggExtra} that you can download from \code{GitHub}:
 \code{devtools::install_github("daattali/ggExtra")}
+
+the plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels from
+over-lapping to the largest degree possible.  As a consequence plot times will slow down
+massively (and the plot file will grow in size) if you have a lot of labels that overlap.
 }
 \examples{
 
@@ -157,8 +163,8 @@ ggstatsplot::ggscatterstats(
   x = wt,
   y = mpg,
   type = "np",
-  label.var = car,
-  label.expression = wt < 4 & mpg < 20,
+  label.var = "car",
+  label.expression = "wt < 4 & mpg < 20",
   axes.range.restrict = TRUE,
   centrality.para = "median"
 )

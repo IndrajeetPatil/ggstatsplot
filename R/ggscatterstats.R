@@ -10,11 +10,11 @@
 #'   taken.
 #' @param x A vector containing the explanatory variable.
 #' @param y The response - a vector of length the number of rows of `x`.
-#' @param label.var Variable to use for points labels. Must be entered as a string e.g.
-#'   `"hp"`
+#' @param label.var Variable to use for points labels. **Must** be entered as a
+#'   character string e.g. `"y"`
 #' @param label.expression An expression evaluating to a logical vector that
-#'   determines the subset of data points to label. Must be entered as a string e.g.
-#'   `"wt < 4 & mpg < 20"`
+#'   determines the subset of data points to label. **Must** be entered as a
+#'   character string e.g. `"y < 4 & z < 20"`.
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param line.color color for the regression line.
@@ -92,15 +92,15 @@
 #'   massively (and the plot file will grow in size) if you have a lot of labels that overlap.
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -221,7 +221,7 @@ ggscatterstats <-
       data %>%
       {
         if ("label.expression" %in% names(param_list)) {
-#          dplyr::filter(.data = ., !!rlang::enquo(label.expression))  # original
+          #          dplyr::filter(.data = ., !!rlang::enquo(label.expression))  # original
           dplyr::filter(.data = ., !!rlang::parse_expr(label.expression))
         }
         else {
@@ -423,7 +423,7 @@ ggscatterstats <-
         ggrepel::geom_label_repel(
           data = label_data,
           mapping = aes_string(
-#            label = !!rlang::enquo(label.var) # original
+            #            label = !!rlang::enquo(label.var) # original
             label = label.var
           ),
           fontface = "bold",

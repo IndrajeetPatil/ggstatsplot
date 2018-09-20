@@ -26,10 +26,12 @@ taken.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
 
-\item{label.var}{Variable to use for points labels.}
+\item{label.var}{Variable to use for points labels. \strong{Must} be entered as a
+character string e.g. \code{"y"}}
 
 \item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label.}
+determines the subset of data points to label. \strong{Must} be entered as a
+character string e.g. \code{"y < 4 & z < 20"}.}
 
 \item{grouping.var}{Grouping variable.}
 
@@ -226,8 +228,8 @@ ggstatsplot::grouped_ggscatterstats(
   grouping.var = cyl,
   title.prefix = "Cylinder count",
   type = "robust",
-  label.var = manufacturer,
-  label.expression = hwy > 25 & displ > 2.5,
+  label.var = "manufacturer",
+  label.expression = "hwy > 25 & displ > 2.5",
   messages = FALSE
 )
 
@@ -241,7 +243,7 @@ ggstatsplot::grouped_ggscatterstats(
   x = budget,
   y = length,
   grouping.var = genre,
-  label.var = title,
+  label.var = "title",
   results.subtitle = FALSE,
   marginal = FALSE,
   title.prefix = "Genre",

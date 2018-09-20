@@ -355,8 +355,8 @@ ggstatsplot::ggscatterstats(
   type = "robust",                                # type of test that needs to be run
   xlab = "Movie budget (in million/ US$)",        # label for x axis
   ylab = "IMDB rating",                           # label for y axis 
-  label.var = title,                              # variable for labeling data points
-  label.expression = rating < 5 & budget > 150,   # expression that decides which points to label
+  label.var = "title",                            # variable for labeling data points
+  label.expression = "rating < 5 & budget > 150", # expression that decides which points to label
   line.color = "yellow",                          # changing regression line color line
   title = "Movie budget and IMDB rating (action)",# title text for the plot
   caption = expression(                           # caption text for the plot

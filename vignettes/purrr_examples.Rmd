@@ -154,6 +154,7 @@ ggstatsplot::combine_plots(
 set.seed(123)
 
 # let's split the dataframe and create a list by mpaa rating
+# let's use only
 mpaa_list <- ggstatsplot::movies_wide %>%
   base::split(x = ., f = .$mpaa, drop = TRUE)
 
@@ -168,7 +169,7 @@ names(mpaa_list)
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to
 # specify it just once
-plot_list1 <- purrr::pmap(
+plot_list <- purrr::pmap(
   .l = list(
     data = mpaa_list,
     x = "budget",
@@ -181,15 +182,15 @@ plot_list1 <- purrr::pmap(
       "MPAA Rating: PG-13",
       "MPAA Rating: R"
     ),
-    # label.var = list("title", "year", "votes", "genre"),
-    # label.expression = list(
-    #   ("rating" > 8.5 &
-    #     "budget" < 50),
-    #   ("rating" > 8.5 &
-    #     "budget" < 100),
-    #   ("rating" > 8 & "budget" < 50),
-    #   ("rating" > 9 & "budget" < 10)
-    # ),
+    label.var = list("title", "year", "votes", "length"),
+    label.expression = list(
+       "rating > 8.5 &
+         budget < 50",
+       "rating > 8.5 &
+         budget < 100",
+       "rating > 8 & budget < 50",
+       "rating > 9 & budget < 10"
+     ),
     type = list("r", "np", "p", "np"),
     method = list(MASS::rlm, "lm", "lm", "lm"),
     marginal.type = list("histogram", "boxplot", "density", "violin"),
@@ -209,7 +210,7 @@ plot_list1 <- purrr::pmap(
   
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
-  plotlist = plot_list1,
+  plotlist = plot_list,
   title.text = "Relationship between movie budget and IMDB rating",
   caption.text = "Source: www.imdb.com",
   caption.size = 16,
