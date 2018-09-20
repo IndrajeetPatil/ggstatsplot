@@ -10,9 +10,11 @@
 #'   taken.
 #' @param x A vector containing the explanatory variable.
 #' @param y The response - a vector of length the number of rows of `x`.
-#' @param label.var Variable to use for points labels.
+#' @param label.var Variable to use for points labels. Must be entered as a string e.g.
+#'   `"hp"`
 #' @param label.expression An expression evaluating to a logical vector that
-#'   determines the subset of data points to label.
+#'   determines the subset of data points to label. Must be entered as a string e.g.
+#'   `"wt < 4 & mpg < 20"`
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param line.color color for the regression line.
@@ -63,10 +65,12 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
+#' @importFrom dplyr filter
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
+#' @importFrom rlang parse_expr
 #' @importFrom broom tidy
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
@@ -83,24 +87,28 @@
 #'   version of `ggExtra` that you can download from `GitHub`:
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
+#' @note the plot uses `ggrepel::geom_label_repel` to attempt to keep labels from
+#'   over-lapping to the largest degree possible.  As a consequence plot times will slow down
+#'   massively (and the plot file will grow in size) if you have a lot of labels that overlap.
+#'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
 #'   x = wt,
 #'   y = mpg,
 #'   type = "np",
-#'   label.var = car,
-#'   label.expression = wt < 4 & mpg < 20,
+#'   label.var = "car",
+#'   label.expression = "wt < 4 & mpg < 20",
 #'   axes.range.restrict = TRUE,
 #'   centrality.para = "median"
 #' )
@@ -213,13 +221,13 @@ ggscatterstats <-
       data %>%
       {
         if ("label.expression" %in% names(param_list)) {
-          dplyr::filter(.data = ., !!rlang::enquo(label.expression))
+#          dplyr::filter(.data = ., !!rlang::enquo(label.expression))  # original
+          dplyr::filter(.data = ., !!rlang::parse_expr(label.expression))
         }
         else {
           (.)
         }
       }
-
     #--------------------------------- creating results subtitle ----------------------------------------------------------
 
     # adding a subtitle with statistical results
@@ -414,8 +422,9 @@ ggscatterstats <-
         plot +
         ggrepel::geom_label_repel(
           data = label_data,
-          mapping = aes(
-            label = !!rlang::enquo(label.var)
+          mapping = aes_string(
+#            label = !!rlang::enquo(label.var) # original
+            label = label.var
           ),
           fontface = "bold",
           color = "black",

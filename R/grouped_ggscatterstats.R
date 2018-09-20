@@ -35,10 +35,10 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -52,7 +52,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -61,11 +61,11 @@
 #'   grouping.var = cyl,
 #'   title.prefix = "Cylinder count",
 #'   type = "robust",
-#'   label.var = manufacturer,
-#'   label.expression = hwy > 25 & displ > 2.5,
+#'   label.var = "manufacturer",
+#'   label.expression = "hwy > 25 & displ > 2.5",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -76,7 +76,7 @@
 #'   x = budget,
 #'   y = length,
 #'   grouping.var = genre,
-#'   label.var = title,
+#'   label.var = "title",
 #'   results.subtitle = FALSE,
 #'   marginal = FALSE,
 #'   title.prefix = "Genre",

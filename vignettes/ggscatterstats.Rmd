@@ -79,8 +79,8 @@ ggstatsplot::ggscatterstats(
   y = rating,                                                  # dependent variable
   xlab = "Budget (in millions of US dollars)",                 # label for the x-axis
   ylab = "Rating on IMDB",                                     # label for the y-axis
-  label.var = title,                                           # variable to use for labeling data points
-  label.expression = rating < 5 & budget > 100,                # expression for deciding which points to label
+  label.var = "title",                                           # variable to use for labeling data points
+  label.expression = "rating < 5 & budget > 100",                # expression for deciding which points to label
   marginal = TRUE,                                             # show marginal distribution 
   marginal.type = "density",                                   # type of plot for marginal distribution
   centrality.para = "mean",                                    # if and which type of centrality parameter to be plotted
@@ -163,8 +163,8 @@ ggstatsplot::grouped_ggscatterstats(
   x = budget,
   y = rating,
   grouping.var = mpaa,
-  label.var = title,
-  label.expression = rating < 5 & budget > 100,
+  label.var = "title",
+  label.expression = "rating < 5 & budget > 100",
   marginal.type = "boxplot",
   ggtheme = ggthemes::theme_tufte(),
   ggstatsplot.layer = FALSE,
