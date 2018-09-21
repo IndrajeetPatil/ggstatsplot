@@ -1,4 +1,3 @@
-#'
 #' @title Making text subtitle for the correlation test.
 #' @name subtitle_ggscatterstats
 #' @author Indrajeet Patil

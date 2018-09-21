@@ -1,5 +1,3 @@
-
-#'
 #' @title Making text subtitle for one sample t-test and its nonparametric and
 #'   robust equivalents.
 #' @name subtitle_onesample
@@ -42,7 +40,7 @@
 #' @importFrom psych cohen.d.ci
 #'
 #' @examples
-#' 
+#'
 #' subtitle_onesample(x = iris$Sepal.Length, type = "r")
 #' @export
 #'

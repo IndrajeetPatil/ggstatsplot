@@ -1,4 +1,3 @@
-#'
 #' @title Custom function for getting specified number of decimal places in
 #'   results for p-value
 #' @name specify_decimal_p
