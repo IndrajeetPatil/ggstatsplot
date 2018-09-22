@@ -85,7 +85,6 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
 
 theme_mprl <- theme_ggstatsplot
 
-#'
 #' @title Default theme used for pie chart
 #' @name theme_pie
 #' @author Indrajeet Patil
@@ -163,7 +162,6 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
 }
 
 
-#'
 #' @title Default theme used for correlation matrix
 #' @name theme_corrmat
 #' @author Indrajeet Patil

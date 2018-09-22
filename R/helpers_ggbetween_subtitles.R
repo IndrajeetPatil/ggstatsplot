@@ -242,7 +242,6 @@ subtitle_ggbetween_anova_parametric <-
   }
 
 
-#'
 #' @title Making text subtitle for the t-test (between-/within-subjects designs).
 #' @name subtitle_ggbetween_t_parametric
 #' @author Indrajeet Patil
@@ -408,7 +407,6 @@ subtitle_ggbetween_t_parametric <-
   }
 
 
-#'
 #' @title Making text subtitle for the Mann-Whitney U-test
 #'   (between-/within-subjects designs).
 #' @name subtitle_ggbetween_mann_nonparametric
@@ -511,7 +509,6 @@ subtitle_ggbetween_mann_nonparametric <-
     return(subtitle)
   }
 
-#'
 #' @title Making text subtitle for the robust t-test
 #'   (between-subjects designs).
 #' @name subtitle_ggbetween_t_rob
@@ -630,7 +627,6 @@ subtitle_ggbetween_t_rob <-
     return(subtitle)
   }
 
-#'
 #' @title Making text subtitle for the bayesian t-test.
 #' @name subtitle_ggbetween_t_bayes
 #' @author Indrajeet Patil
@@ -643,18 +639,18 @@ subtitle_ggbetween_t_rob <-
 #' @importFrom jmv ttestPS
 #'
 #' @examples
-#' 
+#'
 #' # between-subjects design
-#' 
+#'
 #' subtitle_ggbetween_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#' 
+#'
 #' # within-subjects design
-#' 
+#'
 #' subtitle_ggbetween_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -782,7 +778,6 @@ subtitle_ggbetween_t_bayes <- function(data,
 }
 
 
-#'
 #' @title Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 #'   (between-subjects designs).
 #' @name subtitle_ggbetween_kw_nonparametric
@@ -874,7 +869,6 @@ subtitle_ggbetween_kw_nonparametric <-
     return(subtitle)
   }
 
-#'
 #' @title Making text subtitle for the robust ANOVA
 #'   (between-subjects designs).
 #' @name subtitle_ggbetween_rob_anova
