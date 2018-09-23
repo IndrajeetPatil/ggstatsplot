@@ -26,32 +26,32 @@ knitr::opts_chunk$set(
 
 # Combining plots with `combine_plots`
 
-`ggstatsplot` also contains a helper function `combine_plots` to combine
-multiple plots. This is a wrapper around `cowplot::plot_grid()` and it helps you
-combine multiple plots and add combination of title, caption, and annotation
-texts with suitable default parameters. Let's see some examples below.
+`ggstatsplot` contains a "helper" function named `combine_plots` to help you
+combine several plots into one plot or add a combination of title, caption, and annotation
+texts with suitable default parameters. It is a wrapper around `cowplot::plot_grid()`.  
+Some examples below.
 
-**Note before**: The codes below illustrates the utility of `combine_plots` for
-combining multiple plots created with `ggstatsplot` functions. But, if you have
-just one grouping variable, it's not even necessary to use `purrr` or `plyr`
-since the `grouped_` variants
-(<https://indrajeetpatil.github.io/ggstatsplot/reference/index.html>) of all
-functions will take care of this for you and rely on the `combine_plots`
-function behind the curtains.
+**Note (or did you mean NB?)**: If you have just one grouping variable and you'd like a plot for each `factor` of this variable the `grouped_` variants
+(<https://indrajeetpatil.github.io/ggstatsplot/reference/index.html>) of all `ggstatsplot`
+functions will allow you do to this. They specifically use the `combine_plots`
+function under the covers.
 
-## Combining plots: Examples with `purrr`
+## Combining multiple plots: Example #1 using `purrr`
 
 The full power of `ggstatsplot` can be leveraged with a functional programming
-package like [`purrr`](http://purrr.tidyverse.org/) that replaces many `for` loops
-with code that is both more succinct and easier to read and, therefore, `purrr`
-should be preferrred.
+package like [`purrr`](http://purrr.tidyverse.org/) which can replace many `for` loops, 
+is more succinct, and easier to read. Consider `purrr` as your first choice for combining
+multiple plots.
 
-An example is provided below. 
+An example using the `iris` dataset is provided below.  Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot.  Rather than call `ggscatterstats` three times and gluing the results or using `cowplot` directly, we'll create a `tibble` called `plots` using `purrr::map` then feed that to `combine_plots` to get our combined plot.
 
 ```{r ggscatterstats_purrr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(glue)
 library(dplyr)
 library(ggplot2)
+
+# for reproducibility
+set.seed(123)
 
 ### creating a list column with `ggstatsplot` plots
 plots <- datasets::iris %>%
@@ -89,7 +89,7 @@ ggstatsplot::combine_plots(
   plotlist = plots$plot,                           # list column containing all ggstatsplot objects
   nrow = 3,
   ncol = 1,
-  title.text = "Relationship between sepal length and width for all Iris species",
+  title.text = "Relationship between sepal length and width for each Iris species",
   title.size = 14,
   caption.text = expression(
     paste(
@@ -102,17 +102,17 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Combining plots: Example with `plyr`
+## Combining multiple plots: Example #2 with `plyr`
 
-Another popular package for handling big datasets is `plyr`, where we can
+Another popular package for handling big datasets is `plyr`, which allows us to
 repeatedly apply a common function on smaller pieces and then combine the
-results.
+results into a larger whole.
 
-Let's see another example on how to use `plyr` to conveniently to repeat the
-same operation and then use `combine_plots`. Here we will investigate how Gross
-Domestic Product (per capita) of a country is related to the life expectancy of
-her citizens in 2007. We will also see which countries still have very low life
-expectancy across different continents.
+In this example we'll start with the `gapminder` dataset.  We're interested in the linear
+relationship between Gross Domestic Product (per capita) and life expectancy in the year 2007,
+for all the continents except Oceania. We'll use `dplyr` to filter to the right rows then use
+`plyr` to repeat the `ggscatterstats` function across each of the 4 continents remaining.  The result is of that is a list of plots called `plots`.  We then feed `plots` to the `combine_plots` 
+function to merge them into one plot. We will call attention to the countries which have very low life expectancy (< 45 years) by labeling those countries when they occur.
 
 ```{r ggscatterstats_plyr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
 library(plyr)
@@ -150,11 +150,12 @@ ggstatsplot::combine_plots(plotlist = plots,
                            ncol = 2)
 ```
 
-## Combining plot with additional text 
+## Adding additional textual information: Example #3 
 
-This function can also be useful adding some additional text information that
-can't be contained in either title, subtitle, or caption. Here is an example:
-We want to run a polynomial regression and want to annotate the formula.
+The `combine_plots` function can also be useful for adding additional textual information that
+can not be added by making a single call to a `ggstatsplot` function via the title, subtitle, or caption options. For this example let's assume we want to assess the relationship between a movie's rating and its budget from the **Internet Movie Database** using polynomial regression.
+
+`ggcoefstats` will do most of the work, including the title, subtitle, and caption. But we want to add at the bottom an annotation to show the formula we are using for our regression.  `combine_plots` allows us to add `sub.text =` to accomplish that task as shown in the resulting plot.
 
 ```{r ggbetweenstats_subtext, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 8}
 library(ggstatsplot)
@@ -207,7 +208,7 @@ If you find any bugs or have any suggestions/remarks, please file an issue on `G
 
 Summarizing session information for reproducibility.
 
-```{r session_info, eval = FALSE}
+```{r session_info, eval = TRUE, echo= FALSE}
 options(width = 200)
-devtools::session_info()
+devtools::session_info()$platform
 ```
