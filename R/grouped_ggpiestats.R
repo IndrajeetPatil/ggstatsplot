@@ -34,17 +34,17 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#'
+#' 
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   main = cyl
 #' )
-#'
+#' 
 #' #' without condition and with count data
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,

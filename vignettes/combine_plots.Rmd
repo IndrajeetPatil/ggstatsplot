@@ -27,23 +27,30 @@ knitr::opts_chunk$set(
 # Combining plots with `combine_plots`
 
 `ggstatsplot` contains a "helper" function named `combine_plots` to help you
-combine several plots into one plot or add a combination of title, caption, and annotation
-texts with suitable default parameters. It is a wrapper around `cowplot::plot_grid()`.  
-Some examples below.
+combine several plots into one plot or add a combination of title, caption, and
+annotation texts with suitable default parameters. It is a wrapper around
+`cowplot::plot_grid()`. Some examples below.
 
-**Note (or did you mean NB?)**: If you have just one grouping variable and you'd like a plot for each `factor` of this variable the `grouped_` variants
-(<https://indrajeetpatil.github.io/ggstatsplot/reference/index.html>) of all `ggstatsplot`
-functions will allow you do to this. They specifically use the `combine_plots`
-function under the covers.
+**Note Before**: If you have just one grouping variable and you'd like a plot
+for each `factor` of this variable the `grouped_` variants
+(<https://indrajeetpatil.github.io/ggstatsplot/reference/index.html>) of all
+`ggstatsplot` functions will allow you do to this. They specifically use the
+`combine_plots` function under the covers.
 
 ## Combining multiple plots: Example #1 using `purrr`
 
 The full power of `ggstatsplot` can be leveraged with a functional programming
-package like [`purrr`](http://purrr.tidyverse.org/) which can replace many `for` loops, 
-is more succinct, and easier to read. Consider `purrr` as your first choice for combining
-multiple plots.
+package like [`purrr`](http://purrr.tidyverse.org/) which can replace many `for`
+loops, is more succinct, and easier to read. Consider `purrr` as your first
+choice for combining multiple plots.
 
-An example using the `iris` dataset is provided below.  Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot.  Rather than call `ggscatterstats` three times and gluing the results or using `cowplot` directly, we'll create a `tibble` called `plots` using `purrr::map` then feed that to `combine_plots` to get our combined plot.
+An example using the `iris` dataset is provided below.  Imagine that we want to
+separately plot the linear relationship between sepal length and sepal width for
+each of the three species but combine them into one consistent plot with common
+labeling and as one plot.  Rather than call `ggscatterstats` three times and
+gluing the results or using `cowplot` directly, we'll create a `tibble` called
+`plots` using `purrr::map` then feed that to `combine_plots` to get our combined
+plot.
 
 ```{r ggscatterstats_purrr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
 library(glue)
@@ -108,11 +115,15 @@ Another popular package for handling big datasets is `plyr`, which allows us to
 repeatedly apply a common function on smaller pieces and then combine the
 results into a larger whole.
 
-In this example we'll start with the `gapminder` dataset.  We're interested in the linear
-relationship between Gross Domestic Product (per capita) and life expectancy in the year 2007,
-for all the continents except Oceania. We'll use `dplyr` to filter to the right rows then use
-`plyr` to repeat the `ggscatterstats` function across each of the 4 continents remaining.  The result is of that is a list of plots called `plots`.  We then feed `plots` to the `combine_plots` 
-function to merge them into one plot. We will call attention to the countries which have very low life expectancy (< 45 years) by labeling those countries when they occur.
+In this example we'll start with the `gapminder` dataset.  We're interested in
+the linear relationship between Gross Domestic Product (per capita) and life
+expectancy in the year 2007, for all the continents except Oceania. We'll use
+`dplyr` to filter to the right rows then use `plyr` to repeat the
+`ggscatterstats` function across each of the 4 continents remaining.  The result
+is of that is a list of plots called `plots`.  We then feed `plots` to the
+`combine_plots` function to merge them into one plot. We will call attention to
+the countries which have very low life expectancy (< 45 years) by labeling those
+countries when they occur.
 
 ```{r ggscatterstats_plyr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
 library(plyr)
@@ -152,10 +163,16 @@ ggstatsplot::combine_plots(plotlist = plots,
 
 ## Adding additional textual information: Example #3 
 
-The `combine_plots` function can also be useful for adding additional textual information that
-can not be added by making a single call to a `ggstatsplot` function via the title, subtitle, or caption options. For this example let's assume we want to assess the relationship between a movie's rating and its budget from the **Internet Movie Database** using polynomial regression.
+The `combine_plots` function can also be useful for adding additional textual
+information that can not be added by making a single call to a `ggstatsplot`
+function via the title, subtitle, or caption options. For this example let's
+assume we want to assess the relationship between a movie's rating and its
+budget from the **Internet Movie Database** using polynomial regression.
 
-`ggcoefstats` will do most of the work, including the title, subtitle, and caption. But we want to add at the bottom an annotation to show the formula we are using for our regression.  `combine_plots` allows us to add `sub.text =` to accomplish that task as shown in the resulting plot.
+`ggcoefstats` will do most of the work, including the title, subtitle, and
+caption. But we want to add at the bottom an annotation to show the formula we
+are using for our regression.  `combine_plots` allows us to add `sub.text =` to
+accomplish that task as shown in the resulting plot.
 
 ```{r ggbetweenstats_subtext, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 8}
 library(ggstatsplot)

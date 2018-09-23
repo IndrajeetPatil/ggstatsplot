@@ -40,7 +40,7 @@
 #' @importFrom psych cohen.d.ci
 #'
 #' @examples
-#'
+#' 
 #' subtitle_onesample(x = iris$Sepal.Length, type = "r")
 #' @export
 #'

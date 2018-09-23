@@ -639,18 +639,18 @@ subtitle_ggbetween_t_rob <-
 #' @importFrom jmv ttestPS
 #'
 #' @examples
-#'
+#' 
 #' # between-subjects design
-#'
+#' 
 #' subtitle_ggbetween_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#'
+#' 
 #' # within-subjects design
-#'
+#' 
 #' subtitle_ggbetween_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
