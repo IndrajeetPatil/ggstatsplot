@@ -6,7 +6,7 @@
 linear models.}
 \usage{
 lm_effsize_ci(object, effsize = "eta", partial = TRUE,
-  conf.level = 0.95, nboot = 1000)
+  conf.level = 0.95, nboot = 500)
 }
 \arguments{
 \item{object}{The linear model object (can be of class \code{lm}, \code{aov}, or
@@ -22,7 +22,7 @@ are returned (Default: \code{TRUE}).}
 interval (Default: \code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for confidence intervals for partial
-eta-squared and omega-squared (Default: \code{1000}).}
+eta-squared and omega-squared (Default: \code{500}).}
 }
 \value{
 A dataframe with results from \code{stats::lm()} with partial eta-squared,

@@ -49,6 +49,7 @@ Imports:
     tidyr (>= 0.8.1),
     WRS2 (>= 0.10-0)
 Suggests:
+    car (>= 3.0-2),
     devtools,
     ggplot2movies,
     ggthemes (>= 4.0.0),

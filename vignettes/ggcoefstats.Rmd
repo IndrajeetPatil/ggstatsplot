@@ -66,7 +66,7 @@ In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
 itself.
 
-## omnibus ANOVA (`aov`)
+## omnibus ANOVA (`aov`/ `anova`)
 
 For this analysis, let's use the `movies_long` dataset, which provides
 information about IMDB ratings, budget, length, MPAA ratings (e.g., R-rated,
@@ -168,6 +168,22 @@ convincing enough (e.g., AIC improves by a mere `0.09%`) for us to abandon a
 simpler model. This insight can also be garnered by just looking at the effect
 sizes, which also tell us that which genre the movie belongs to seems to account
 for the largest variance.
+
+You can also use `car` package to run omnibus ANOVA:
+
+```{r aov3, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+library(car)
+
+# creating a model
+mod <- stats::lm(
+  formula = conformity ~ fcategory * partner.status,
+  data = Moore,
+  contrasts = list(fcategory = contr.sum, partner.status = contr.sum)
+)
+
+# plotting estimates
+ggstatsplot::ggcoefstats(x = car::Anova(mod, type = "III"))
+```
 
 ## linear model (`lm`)
 
@@ -681,9 +697,10 @@ iris_long <- datasets::iris %>%
 dplyr::glimpse(x = iris_long)
 
 # specifying the model (note the error structure)
+# let's use 50% of the sample to speed up the analysis
 ggstatsplot::ggcoefstats(
   x = stats::aov(formula = value ~ attribute * measure + Error(id / (attribute * measure)),
-             data = iris_long),
+             data = dplyr::sample_frac(tbl = iris_long, size = 0.5)),
   effsize = "omega",
   ggtheme = ggthemes::theme_fivethirtyeight(),
   ggstatsplot.layer = FALSE,

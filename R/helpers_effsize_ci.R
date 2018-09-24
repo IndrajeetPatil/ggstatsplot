@@ -637,7 +637,7 @@ robcor_ci <- function(data,
 #' @param conf.level Numeric specifying Level of confidence for the confidence
 #'   interval (Default: `0.95`).
 #' @param nboot Number of bootstrap samples for confidence intervals for partial
-#'   eta-squared and omega-squared (Default: `1000`).
+#'   eta-squared and omega-squared (Default: `500`).
 #'
 #' @importFrom sjstats eta_sq
 #' @importFrom sjstats omega_sq
@@ -656,12 +656,13 @@ lm_effsize_ci <-
              effsize = "eta",
              partial = TRUE,
              conf.level = 0.95,
-             nboot = 1000) {
+             nboot = 500) {
+
     # based on the class, get the tidy output using broom
     if (class(object)[[1]] == "lm") {
       aov_df <-
         broom::tidy(stats::anova(object = object))
-    } else if (class(object)[[1]] == "aov") {
+    } else if (class(object)[[1]] %in% c("aov", "anova")) {
       aov_df <- broom::tidy(x = object)
     } else if (class(object)[[1]] == "aovlist") {
       aov_df <- broom::tidy(x = object) %>%

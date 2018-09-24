@@ -134,7 +134,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#' 
+#'
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -148,7 +148,7 @@ ggcoefstats <- function(x,
                         p.kr = TRUE,
                         coefficient.type = "beta",
                         effsize = "eta",
-                        nboot = 1000,
+                        nboot = 500,
                         point.color = "blue",
                         point.size = 3,
                         point.shape = 16,
@@ -209,7 +209,7 @@ ggcoefstats <- function(x,
   unsupported.mods <- c("glht", "kmeans")
 
   # models for which glance is not supported
-  noglance.mods <- c("aovlist")
+  noglance.mods <- c("aovlist", "anova")
 
   # models for which the diagnostics is not available (AIC, BIC, loglik)
   nodiagnostics.mods <- c("lmRob", "glmRob")
@@ -223,7 +223,7 @@ ggcoefstats <- function(x,
   z.mods <- c("clm", "clmm")
 
   # models for which statistic is F-value
-  f.mods <- c("aov", "aovlist")
+  f.mods <- c("aov", "aovlist", "anova")
 
   # models for which there is no clear t-or z-statistic
   # which statistic to use will be decided based on the family used
