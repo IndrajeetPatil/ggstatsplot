@@ -24,23 +24,73 @@ knitr::opts_chunk$set(
 )
 ```
 
-The function `ggstatsplot::gghistostats` can be used during **data exploration**
-phase and is also meant to provide an easy way to make **publication-ready
-histogram** with all statistical details included in the plot itself. We will
-see examples of how to use this function in this vignette with the `gapminder`
-dataset.
+The function `ggstatsplot::gghistostats` can be used for **data exploration**
+and to provide an easy way to make **publication-ready histograms** with appropriate
+and selected statistical details embedded in the plot itself. In this vignette we will explore
+several examples of how to use it.
 
-To begin with, here are some instances where you would want to use
-`gghistostats`-
+Some instances where you would want to use `gghistostats`-
 
-  - to check distribution of a continuous variable
-  - to check if the mean of variable is different from a specified value
+  - to inspect distribution of a continuous variable
+  - to test if the mean of a sample variable is different from a specified value (population parameter)
 
-**Note before**: The following demo uses the pipe operator (`%>%`), so in case
-you are not familiar with this operator, here is a good explanation:
-<http://r4ds.had.co.nz/pipes.html>
+**Note before**: The examples make extensive use of the pipe operator (`%>%`), if you need a 
+review, here is a good explanation: <http://r4ds.had.co.nz/pipes.html>
 
-## Distribution with `gghistostats`
+## Distribution of a sample with `gghistostats`
+
+Let's begin with a very simple example from the `psych` package a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests ([psych](https://CRAN.R-project.org/package=gapminder) on CRAN). ACT composite scores may range from 1 - 36. National norms have a mean of 20.
+
+```{r psychact, warning = FALSE, message = FALSE}
+library(psych)
+library(dplyr)
+dplyr::glimpse(x = psych::sat.act)
+```
+
+To get a simple histogram with no statistics and no special information. `gghistostats` will by default choose a binwidth `max(x) - min(x) / sqrt(N)`. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.
+
+```{r psychact2, warning = FALSE, message = FALSE}
+library(ggstatsplot)
+ggstatsplot::gghistostats(
+    data = psych::sat.act,                              # data from which variable is to be taken
+    x = ACT,                                            # numeric variable
+    results.subtitle = FALSE,                           # don't run statistical tests
+    messages = FALSE,                                   # turn off messages
+    xlab = "ACT Score",                                 # x-axis label
+    title = "Distribution of ACT Scores",               # title for the plot
+    subtitle = "N = 700",                               # subtitle for the plot
+    caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
+    centrality.k = 1                                    # show 1 decimal places for centrality label
+  )
+```
+
+The authors note that "the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores."  Let's display the national norms and test the hypothesis that our sample mean is the same as our national population mean of 20. 
+
+```{r psychact3, warning = FALSE, message = FALSE}
+library(ggstatsplot)
+ggstatsplot::gghistostats(
+    data = psych::sat.act,                              # data from which variable is to be taken
+    x = ACT,                                            # numeric variable
+    results.subtitle = TRUE,                            # Run statistical tests
+    messages = TRUE,                                    # turn on messages
+    bar.measure = "mix",                                # counts and proportions
+    xlab = "ACT Score",                                 # x-axis label
+    title = "Distribution of ACT Scores",               # title for the plot
+    subtitle = "N = 700",                               # subtitle for the plot
+    type = "p",                                         # one sample t-test
+    bf.message = TRUE,
+    ggtheme = ggplot2::theme_gray(),                       # changing default theme
+    bar.fill = "#D55E00",                                  # uniform fill color
+    test.value = 20,                                       # test value 
+    test.value.line = TRUE,                                 # show a vertical line at `test.value`
+    caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
+    centrality.k = 1                                    # show 1 decimal places for centrality label
+  )
+```
+
+
+
+
 
 To illustrate how this function can be used, we will use the `gapminder`
 dataset. This dataset (available in eponymous
