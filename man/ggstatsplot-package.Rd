@@ -58,4 +58,9 @@ Useful links:
 \author{
 \strong{Maintainer}: Indrajeet Patil \email{patilindrajeet.science@gmail.com} (0000-0003-1995-6531)
 
+Other contributors:
+\itemize{
+  \item Chuck Powell \email{ibecav@gmail.com} (0000-0002-3606-2188) [contributor]
+}
+
 }
