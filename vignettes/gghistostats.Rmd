@@ -34,14 +34,12 @@ Some instances where you would want to use `gghistostats`-
   - to inspect distribution of a continuous variable
   - to test if the mean of a sample variable is different from a specified value (population parameter)
 
-**Note before**: The examples make extensive use of the pipe operator (`%>%`), if you need a 
-review, here is a good explanation: <http://r4ds.had.co.nz/pipes.html>
-
 ## Distribution of a sample with `gghistostats`
 
-Let's begin with a very simple example from the `psych` package a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests ([psych](https://CRAN.R-project.org/package=gapminder) on CRAN). ACT composite scores may range from 1 - 36. National norms have a mean of 20.
+Let's begin with a very simple example from the `psych` package, a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests ([psych](https://CRAN.R-project.org/package=psych) on CRAN). ACT composite scores may range from 1 - 36. National norms have a mean of 20.
 
 ```{r psychact, warning = FALSE, message = FALSE}
+library(ggstatsplot)
 library(psych)
 library(dplyr)
 dplyr::glimpse(x = psych::sat.act)
@@ -50,7 +48,6 @@ dplyr::glimpse(x = psych::sat.act)
 To get a simple histogram with no statistics and no special information. `gghistostats` will by default choose a binwidth `max(x) - min(x) / sqrt(N)`. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.
 
 ```{r psychact2, warning = FALSE, message = FALSE}
-library(ggstatsplot)
 ggstatsplot::gghistostats(
     data = psych::sat.act,                              # data from which variable is to be taken
     x = ACT,                                            # numeric variable
@@ -64,10 +61,17 @@ ggstatsplot::gghistostats(
   )
 ```
 
-The authors note that "the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores."  Let's display the national norms and test the hypothesis that our sample mean is the same as our national population mean of 20. 
+## Statistical analysis with `gghistostats`
+
+The authors note that "the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores."  Let's display the national norms (labeled as "Test") and test (using `results.subtitle = TRUE`) the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample t test (`type = "p"`).  To demonstrate some of the options available we'll also:
+
+1.  Change the overall theme with `ggtheme = ggplot2::theme_gray()`
+2.  Make the histogram bars a different color with `bar.fill = "#D55E00"`
+3.  Plot both proportions and counts on the two y axes with `bar.measure = "mix"`
+4.  Turn messages on to receive additional diagnostic information with `messages = TRUE`
+5.  Compute information about the Bayes Factor (`bf.message = TRUE`) see below
 
 ```{r psychact3, warning = FALSE, message = FALSE}
-library(ggstatsplot)
 ggstatsplot::gghistostats(
     data = psych::sat.act,                              # data from which variable is to be taken
     x = ACT,                                            # numeric variable
@@ -78,219 +82,73 @@ ggstatsplot::gghistostats(
     title = "Distribution of ACT Scores",               # title for the plot
     subtitle = "N = 700",                               # subtitle for the plot
     type = "p",                                         # one sample t-test
-    bf.message = TRUE,
-    ggtheme = ggplot2::theme_gray(),                       # changing default theme
-    bar.fill = "#D55E00",                                  # uniform fill color
-    test.value = 20,                                       # test value 
-    test.value.line = TRUE,                                 # show a vertical line at `test.value`
+    bf.message = TRUE,                                  # display Bayes method results
+    ggtheme = ggplot2::theme_gray(),                    # changing default theme
+    bar.fill = "#D55E00",                               # change fill color
+    test.value = 20,                                    # test value 
+    test.value.line = TRUE,                             # show a vertical line at `test.value`
     caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
     centrality.k = 1                                    # show 1 decimal places for centrality label
   )
 ```
 
-
-
-
-
-To illustrate how this function can be used, we will use the `gapminder`
-dataset. This dataset (available in eponymous
-[package](https://CRAN.R-project.org/package=gapminder) on CRAN) provides values
-for life expectancy, GDP per capita, and population, every five years, from 1952
-to 2007, for each of 142 countries and was collected by the Gapminder
-Foundation. Let's have a look at the data-
-
-```{r gapminder, warning = FALSE, message = FALSE}
-library(gapminder)
-library(dplyr)
-
-dplyr::glimpse(x = gapminder::gapminder)
-```
-
-Suppose the first thing we want to check is the distribution of population
-worldwide in 2007. In this case, we are not interested in any statistics and,
-therefore, can set the `results.subtitle` argument to `FALSE`.
-
-```{r age_distribution1, warning = FALSE, message = FALSE, fig.height = 6}
-library(ggstatsplot)
-
-gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
-  ggstatsplot::gghistostats(
-    data = .,                                           # data from which variable is to be taken
-    x = pop,                                            # numeric variable
-    results.subtitle = FALSE,                           # don't run statistical tests
-    messages = FALSE,                                   # turn off messages
-    xlab = "Population",                                # x-axis label
-    title = "Distribution of population worldwide",     # title for the plot
-    subtitle = "Year: 2007",                            # subtitle for the plot
-    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    centrality.k = 0                                    # show 0 decimal places for centrality label
-  )
-```
-
-Although this plot is useful, it is still not satisfactory as most of the mass
-seems to be concentrated at 0 due to the large range of numbers. We can remedy
-this by converting population to logarithmic scale. We can additionally adjust
-binwidth so that we have bins for every increase in order of magnitude.
-
-```{r age_distribution2, warning = FALSE, message = FALSE, fig.height = 6}
-gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
-  dplyr::mutate(.data = ., pop_log = log10(pop)) %>%    # creating new population variable
-  ggstatsplot::gghistostats(
-    data = .,                                           # data from which variable is to be taken
-    x = pop_log,                                        # numeric variable
-    results.subtitle = FALSE,                           # don't run statistical tests
-    messages = FALSE,                                   # turn off messages
-    xlab = "Population (logarithmic)",                  # x-axis label
-    title = "Distribution of population worldwide",     # title for the plot
-    subtitle = "Year: 2007",                            # subtitle for the plot
-    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    binwidth = 1                                        # new binwidth
-  )
-```
-
-So far we have been showing both the count and proportion information with the
-bar chart: showing `count` gives an idea about *raw* counts, while `proportion`
-gives information about *proportional* prevalence of values in a certain range.
-
-Other possible options are: (only) `"count"`, (only) `"proportion"`, or
-`"density"` information.
-
-This shows the utility of `gghistostats` in case of data exploration.
-
-## Statistical analysis with `gghistostats`
-
-Let's say we are now interested in investigating whether the mean life
-expectancy in 2007 across the world has improved during the 20th-Century.
-In 1950, it was [48](https://ourworldindata.org/life-expectancy), so this is the
-`test.value` we are going to use.
-
-```{r stats1, warning = FALSE, message = FALSE, fig.height = 6}
-gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%            # select data only from the year 2007
-  ggstatsplot::gghistostats(
-    data = .,                                           # data from which variable is to be taken
-    x = lifeExp,                                        # numeric variable
-    messages = FALSE,                                   # turn off messages
-    test.value = 48,                                    # test value against which sample mean is to be compared
-    xlab = "Life expectancy",                           # x-axis label
-    title = "Life expectancy worldwide",                # title for the plot
-    subtitle = "Year: 2007",                            # subtitle for the plot
-    caption = "Data courtesy of: Gapminder Foundation", # caption for the plot
-    centrality.para = "mean",                           # plotting centrality parameter
-    ggtheme = ggthemes::theme_wsj(),                    # change the default theme
-    fill.gradient = FALSE                               # turn off color fill gradient
-  )
-```
-
-Although there are still some countries where the life expectancy is low, on
-average, the life expectancy worldwide has improved compared to what it was
-in 1950.
-
-`gghistostats` also provides the opportunity to compute Bayes Factors to
-quantify evidence in favor of the **alternative** (BF10) or the **null**
-hypothesis (BF01). In practice, you need to compute only one and the other will
-just be the inverse. In the current example, let's say we want to quantify
-evidence in favor of the alternative hypothesis (H1) that the life expectancy
-in 2007 has improved significantly worldwide since 1957. The
-null, in this case, will of course be that there is no improvement. 
-
-```{r stats_bf, warning = FALSE, message = FALSE, fig.height = 6}
-gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%
-  ggstatsplot::gghistostats(
-    data = .,                                              # data from which variable is to be taken
-    x = lifeExp,                                           # numeric variable
-    messages = FALSE,                                      # turn off messages
-    type = "bf",                                           # bayesian one sample t-test
-    ggtheme = ggplot2::theme_gray(),                       # changing default theme
-    fill.gradient = FALSE,                                 # no color gradient (default)
-    bar.fill = "#D55E00",                                  # uniform fill color
-    test.value = 48,                                       # test value 
-    xlab = "Life expectancy",                              # x-axis label
-    title = "Life expectancy worldwide",                   # title for the plot
-    subtitle = "Year: 2007",                               # subtitle for the plot
-    caption = "Note: black line - 1950; blue line - 2007", # caption for the plot
-    test.value.line = TRUE                                 # show a vertical line at `test.value`
-  )
-```
-
-Observed Bayes Factor value provides
-[**conclusive**](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794)
-evidence in favor of the alternative hypothesis: Life expectancy worldwide has
-improved significantly since 1957.
+`gghistostats` computed Bayes Factors to quantify the likelihood of the **research** (BF10) and
+the **null** hypothesis (BF01). In our current example, the Bayes Factor value provides
+[**very strong evidence** (Kass and Rafferty, 1995)](https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf)
+in favor of the research hypothesis: these ACT scores are much higher than the national average.  The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.
 
 ## Grouped analysis with `grouped_gghistostats`
 
-What if we want to do the same analysis separately for all five continents? In
+What if we want to do the same analysis separately for each gender? In
 that case, we will have to either write a `for` loop or use `purrr`, none of
 which seem like an exciting prospect.
 
 `ggstatsplot` provides a special helper function for such instances:
 `grouped_gghistostats`. This is merely a wrapper function around
 `ggstatsplot::combine_plots`. It applies `gghistostats` across all **levels** of
-a specified **grouping variable** and then combines list of individual plots
+a specified **grouping variable** and then combines the individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
-Let's see how we can use this function to apply `gghistostats` for all five
-continents. We will be running parametric tests (one sample t-test, i.e.). If
-you set `type = "np"`, results from non-parametric test will be displayed.
+Let's see how we can use this function to apply `gghistostats` to accomplish our task. 
+We will be running non-parametric tests with `type = "np"`, results from this non-parametric test will be displayed.
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 12}
-gapminder::gapminder %>%                        # select data only for the year 2007
-  dplyr::filter(.data = ., year == 2007) %>%
+```{r grouped1, warning = FALSE, message = FALSE, fig.height=10, fig.width=6}
 ggstatsplot::grouped_gghistostats(
   # arguments relevant for ggstatsplot::gghistostats
-  data = .,                                     # `.` is placeholder for data plugged by %>%
-  x = lifeExp,
-  xlab = "Life expectancy",
-  grouping.var = continent,                     # grouping variable with multiple levels
-  title.prefix = "Continent",                   # prefix for the fixed title
-  type = "robust",                              # robust test: one-sample percentile bootstrap
-  k = 2,                                        # number of decimal places in results
-  robust.estimator = "mom",                     # the modified one-step M-estimator of location
-  test.value = 48,                              # test value against which sample mean is to be compared
+  data = psych::sat.act,                        # same dataset
+  x = ACT,                                      # same outcome variable
+  xlab = "ACT Score",
+  grouping.var = gender,                        # grouping variable males = 1, females = 2
+  title.prefix = "Gender",                      # prefix for the fixed title
+  type = "np",                                  # robust test: one-sample percentile bootstrap
+  k = 1,                                        # number of decimal places in results
+  test.value = 20,                              # test value against which sample mean is to be compared
   test.value.line = TRUE,                       # show a vertical line at `test.value`
-  centrality.para = "mean",                     # plotting centrality parameter
+  bar.measure = "density",                      # density
+  centrality.para = "median",                   # plotting centrality parameter
   centrality.color = "#D55E00",                 # color for centrality line and label
   test.value.color = "#009E73",                 # color for test line and label
   messages = FALSE,                             # turn off messages
   ggtheme = ggthemes::theme_stata(),            # changing default theme
   ggstatsplot.layer = FALSE,                    # turn off ggstatsplot theme layer
   # arguments relevant for ggstatsplot::combine_plots
-  title.text = "Life expectancy change in different continents since 1950",
-  caption.text = "Note: green line - 1950; orange line - 2007",
-  nrow = 3,
-  ncol = 2,
-  labels = c("(a)","(b)","(c)","(d)","(e)")
+  title.text = "Distribution of ACT scores across genders",
+  caption.text = "Data courtesy of: SAPA project (https://sapa-project.org)",
+  nrow = 2,
+  ncol = 1,
+  labels = c("Male","Female")
 )
 ```
 
-As can be seen from these plots, life expectancy has improved in all continents
-in 2007 as compared to the global average of 1950. Additionally, we see the
-benefits of plotting this data separately for each continent. If we look at the
-standardized effect sizes (Cohen's *d*), it is apparent that the biggest
-improvements in life expectancy outcomes were seen on the continents of Europe,
-Americas, and Oceania (just one data point is available here), while Asia and
-Africa exhibit the lowest improvements.
+As can be seen from these plots, the median value for both genders is much higher than the national norm. Additionally, we see the benefits of plotting this data separately for each gender. 
+We can "see" the differences in distributions and in the standardized effect sizes (Cohen's *d*).
 
-Although this is a quick and dirty way to explore large amount of data with
+Although this is a quick and dirty way to explore a large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
 For example, if we wanted to add, let's say, a separate `test.value` argument
-for each continent, this is not possible with `grouped_gghistostats`. For cases
-like these, it would be better to use \code{\link[purrr]{pmap}} (e.g.).
-
-## Grouped analysis with `gghistostats` + `purrr`
-
-So far we have been comparing life expectancy in 2007 for a particular continent
-to the global average from 1957. But what if we want to compare to
-continent-specific life expectancy from 1957
-(<https://ourworldindata.org/life-expectancy>), or run separate kinds of tests
-(robust for some, parametric for other, while Bayesian for some other levels of
-the group). This is not possible `grouped_gghistostats` function, but can be
-easily achieved with `purrr` package from tidyverse. See the associated vignette here:
+for each gender, this is not possible with `grouped_gghistostats`. For cases
+like these, or to run separate  kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group) it would be better to use `purrr` \code{\link[purrr]{pmap}}.  See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
 
 # Suggestions
