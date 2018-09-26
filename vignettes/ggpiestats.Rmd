@@ -106,6 +106,7 @@ ggstatsplot::ggpiestats(
   facet.proptest = TRUE,                        # proportion test for each facet
   stat.title = "survival x gender: ",           # title for statistical test
   k = 2,                                        # no. of decimal places for results
+  messages = FALSE,                             # turn off messages
   ggtheme = ggplot2::theme_grey(),              # changing plot theme 
   package = "yarrr",                            # package from which color palette is to be taken
   palette = "southpark"                         # choosing a different color palette
@@ -132,7 +133,8 @@ ggstatsplot::ggpiestats(
   data = ggstatsplot::Titanic_full,                          
   main = Age,
   package = "wesanderson",
-  palette = "IsleofDogs1"
+  palette = "IsleofDogs1",
+  messages = FALSE
 )
 ```
 
@@ -163,6 +165,7 @@ ggstatsplot::grouped_ggpiestats(
   stat.title = "survival x gender: ",
   main = Survived,
   condition = Sex,
+  messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Survival in Titanic disaster by gender for all passenger classes",
   caption.text = "Asterisks denote results from proportion tests; ***: p < 0.001, ns: non-significant",
@@ -188,7 +191,8 @@ ggstatsplot::grouped_ggpiestats(
   title.prefix = "Passenger Class",
   package = "ggsci",
   palette = "category10_d3",
-  direction = -1
+  direction = -1,
+  messages = FALSE
 ) 
 ```
 
@@ -252,7 +256,8 @@ ggstatsplot::ggpiestats(
   condition = Month,
   counts = SumOfCaught,
   package = "ggsci",
-  palette = "default_jama"
+  palette = "default_jama",
+  messages = FALSE
 )
 
 ```
@@ -271,7 +276,8 @@ ggstatsplot::grouped_ggpiestats(
   counts = SumOfCaught,
   grouping.var = Boat,
   title.prefix = "Boat",
-  nrow = 2
+  nrow = 2,
+  messages = FALSE
 )
 ```
 
@@ -308,7 +314,8 @@ ggstatsplot::ggpiestats(data = clinical_trial,
                         title = "Results from case-control study",
                         package = "ggsci",
                         palette = "default_ucscgb",
-                        direction = -1) 
+                        direction = -1,
+                        messages = FALSE) 
 ```
 
 # Suggestions
@@ -320,7 +327,7 @@ If you find any bugs or have any suggestions/remarks, please file an issue on Gi
 
 Summarizing session information for reproducibility.
 
-```{r session_info, eval = FALSE}
+```{r session_info}
 options(width = 200)
 devtools::session_info()
 ```

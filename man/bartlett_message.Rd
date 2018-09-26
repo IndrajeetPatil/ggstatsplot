@@ -42,7 +42,7 @@ bartlett_message(
   data = iris,
   x = Species,
   y = Sepal.Length,
-  lab = "Type of Species"
+  lab = "Iris Species"
 )
 
 # getting results from the test

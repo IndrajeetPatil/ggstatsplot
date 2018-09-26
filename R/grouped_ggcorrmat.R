@@ -37,7 +37,7 @@
 #'
 #'
 #' @examples
-#' 
+#'
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -47,7 +47,7 @@
 #'   p.adjust.method = "holm",
 #'   nrow = 2
 #' )
-#' 
+#'
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -55,7 +55,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#' 
+#'
 #' # for getting confidence intervals
 #' # if robust correlation is selected, confidence intervals will not be
 #' # available
@@ -77,7 +77,7 @@ grouped_ggcorrmat <- function(data,
                               grouping.var,
                               title.prefix = "Group",
                               output = "plot",
-                              type = "full",
+                              matrix.type = "full",
                               method = "square",
                               corr.method = "pearson",
                               exact = FALSE,
@@ -158,7 +158,7 @@ grouped_ggcorrmat <- function(data,
               cor.vars = !!rlang::enquo(cor.vars),
               cor.vars.names = cor.vars.names,
               output = output,
-              type = type,
+              matrix.type = matrix.type,
               method = method,
               corr.method = corr.method,
               exact = exact,
@@ -226,7 +226,7 @@ grouped_ggcorrmat <- function(data,
               cor.vars = !!rlang::enquo(cor.vars),
               cor.vars.names = cor.vars.names,
               output = output,
-              type = type,
+              matrix.type = matrix.type,
               method = method,
               corr.method = corr.method,
               p.adjust.method = p.adjust.method,

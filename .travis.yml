@@ -17,8 +17,8 @@ env:
     - R_MAX_NUM_DLLS=999
     - _R_CHECK_FORCE_SUGGESTS_=FALSE
 
-r_build_args: "--no-build-vignettes"
-r_check_args: "--no-build-vignettes --as-cran"
+#r_build_args: "--no-build-vignettes"
+#r_check_args: "--no-build-vignettes --as-cran"
 
 r_binary_packages:
   - stringi
@@ -45,12 +45,6 @@ r_binary_packages:
   - psych
   - git2r
   - data.table
-#  - rlang
-#  - bindrcpp
-#  - purrr
-#  - tidyr
-#  - dplyr
-#  - readr
 
 r_packages:
   - rlang

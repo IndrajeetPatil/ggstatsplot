@@ -65,7 +65,7 @@ argument. Let's see an example with `ggcorrmat` function.
 ggstatsplot::ggcorrmat(
   data = datasets::iris,
   cor.vars = c(Sepal.Length:Petal.Width),
-  type = "upper",
+  matrix.type = "upper",
   ggtheme = ggthemes::theme_fivethirtyeight(),            # selected ggplot2 theme
   ggstatsplot.layer = FALSE
 )
@@ -74,17 +74,16 @@ ggstatsplot::ggcorrmat(
 Try modifying the theme for other functions (use themes from `ggplot2`,
 `ggthemes`, `hrbrthemes`, etc.)!
 
-## Suggestions
+# Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
-
-## Session Information
+# Session Information
 
 Summarizing session information for reproducibility.
 
-```{r session_info, eval = FALSE}
+```{r session_info}
 options(width = 200)
 devtools::session_info()
 ```

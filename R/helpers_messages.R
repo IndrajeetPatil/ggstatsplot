@@ -21,10 +21,10 @@
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # message
-#' normality_message(x = datasets::anscombe$x1, lab = "x1")
-#' 
+#' normality_message(x = datasets::anscombe$x1)
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -96,15 +96,15 @@ normality_message <- function(x, lab = NULL, k = 3, output = "message") {
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
 #'   x = Species,
 #'   y = Sepal.Length,
-#'   lab = "Type of Species"
+#'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,

@@ -33,6 +33,10 @@ BREAKING CHANGES
   have been deprecated. No other function in the package allowed changing
   confidence interval or their type for effect size estimation. These arguments
   were relevant only for `robust` tests anyway.
+  - `ggocorrmat` argument `type` has been changed to `matrix.type` because for
+  all other functions `type` argument specifies the type of the test, while for
+  this function it specified the display of the virsualization matrix. This will
+  make the syntax more consistent across functions.
 
 MINOR CHANGES
   - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes

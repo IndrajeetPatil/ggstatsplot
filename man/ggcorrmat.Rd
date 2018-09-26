@@ -5,7 +5,7 @@
 \title{Visualization of a correlalogram (or correlation matrix)}
 \usage{
 ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
-  type = "full", method = "square", corr.method = "pearson",
+  matrix.type = "full", method = "square", corr.method = "pearson",
   exact = FALSE, continuity = TRUE, beta = 0.1, digits = 2,
   sig.level = 0.05, p.adjust.method = "none", hc.order = FALSE,
   hc.method = "complete", lab = TRUE, colors = c("#E69F00", "white",
@@ -34,7 +34,7 @@ names should be entered in the same order.}
 for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
 intervals for unique correlation pairs; not available for robust correlation).}
 
-\item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
+\item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
 full matrix, lower triangular or upper triangular matrix.}
 
 \item{method}{Character argument that decides the visualization method of
@@ -168,7 +168,7 @@ ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
   corr.method = "r",
-  p.adjust.method = "fdr",
+  p.adjust.method = "bonferroni",
   output = "p"
 )
 
@@ -177,6 +177,7 @@ ggstatsplot::ggcorrmat(
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
+  p.adjust.method = "BH",
   output = "ci"
 )
 
@@ -187,7 +188,7 @@ ggstatsplot::ggcorrmat(
   sig.level = 0.01,
   ggtheme = ggplot2::theme_bw(),
   hc.order = TRUE,
-  type = "lower",
+  matrix.type = "lower",
   outline.col = "white",
   title = "Dataset: Iris"
 )

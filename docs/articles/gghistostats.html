@@ -119,7 +119,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-24</h4>
+            <h4 class="date">2018-09-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/gghistostats.Rmd"><code>vignettes/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -128,154 +128,125 @@
 
     
     
-<p>The function <code><a href="../reference/gghistostats.html">ggstatsplot::gghistostats</a></code> can be used during <strong>data exploration</strong> phase and is also meant to provide an easy way to make <strong>publication-ready histogram</strong> with all statistical details included in the plot itself. We will see examples of how to use this function in this vignette with the <code>gapminder</code> dataset.</p>
-<p>To begin with, here are some instances where you would want to use <code>gghistostats</code>-</p>
+<p>The function <code><a href="../reference/gghistostats.html">ggstatsplot::gghistostats</a></code> can be used for <strong>data exploration</strong> and to provide an easy way to make <strong>publication-ready histograms</strong> with appropriate and selected statistical details embedded in the plot itself. In this vignette we will explore several examples of how to use it.</p>
+<p>Some instances where you would want to use <code>gghistostats</code>-</p>
 <ul>
-<li>to check distribution of a continuous variable</li>
-<li>to check if the mean of variable is different from a specified value</li>
+<li>to inspect distribution of a continuous variable</li>
+<li>to test if the mean of a sample variable is different from a specified value (population parameter)</li>
 </ul>
-<p><strong>Note before</strong>: The following demo uses the pipe operator (<code>%&gt;%</code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
-<div id="distribution-with-gghistostats" class="section level2">
+<div id="distribution-of-a-sample-with-gghistostats" class="section level2">
 <h2 class="hasAnchor">
-<a href="#distribution-with-gghistostats" class="anchor"></a>Distribution with <code>gghistostats</code>
+<a href="#distribution-of-a-sample-with-gghistostats" class="anchor"></a>Distribution of a sample with <code>gghistostats</code>
 </h2>
-<p>To illustrate how this function can be used, we will use the <code>gapminder</code> dataset. This dataset (available in eponymous <a href="https://CRAN.R-project.org/package=gapminder">package</a> on CRAN) provides values for life expectancy, GDP per capita, and population, every five years, from 1952 to 2007, for each of 142 countries and was collected by the Gapminder Foundation. Let’s have a look at the data-</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(gapminder)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; Observations: 1,704</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; Variables: 6</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, ...</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia...</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992...</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.8...</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 1488...</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 78...</span></a></code></pre></div>
-<p>Suppose the first thing we want to check is the distribution of population worldwide in 2007. In this case, we are not interested in any statistics and, therefore, can set the <code>results.subtitle</code> argument to <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># select data only from the year 2007</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="dt">data =</span> .,                                           <span class="co"># data from which variable is to be taken</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="dt">x =</span> pop,                                            <span class="co"># numeric variable</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,                           <span class="co"># don't run statistical tests</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">    <span class="dt">xlab =</span> <span class="st">"Population"</span>,                                <span class="co"># x-axis label</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="dt">title =</span> <span class="st">"Distribution of population worldwide"</span>,     <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                            <span class="co"># subtitle for the plot</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: Gapminder Foundation"</span>, <span class="co"># caption for the plot</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="dt">centrality.k =</span> <span class="dv">0</span>                                    <span class="co"># show 0 decimal places for centrality label</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">  )</a></code></pre></div>
-<p><img src="gghistostats_files/figure-html/age_distribution1-1.png" width="700"></p>
-<p>Although this plot is useful, it is still not satisfactory as most of the mass seems to be concentrated at 0 due to the large range of numbers. We can remedy this by converting population to logarithmic scale. We can additionally adjust binwidth so that we have bins for every increase in order of magnitude.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># select data only from the year 2007</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">pop_log =</span> <span class="kw">log10</span>(pop)) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># creating new population variable</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">data =</span> .,                                           <span class="co"># data from which variable is to be taken</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">x =</span> pop_log,                                        <span class="co"># numeric variable</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,                           <span class="co"># don't run statistical tests</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="dt">xlab =</span> <span class="st">"Population (logarithmic)"</span>,                  <span class="co"># x-axis label</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="dt">title =</span> <span class="st">"Distribution of population worldwide"</span>,     <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                            <span class="co"># subtitle for the plot</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: Gapminder Foundation"</span>, <span class="co"># caption for the plot</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="dt">binwidth =</span> <span class="dv">1</span>                                        <span class="co"># new binwidth</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">  )</a></code></pre></div>
-<p><img src="gghistostats_files/figure-html/age_distribution2-1.png" width="700"></p>
-<p>So far we have been showing both the count and proportion information with the bar chart: showing <code>count</code> gives an idea about <em>raw</em> counts, while <code>proportion</code> gives information about <em>proportional</em> prevalence of values in a certain range.</p>
-<p>Other possible options are: (only) <code>"count"</code>, (only) <code>"proportion"</code>, or <code>"density"</code> information.</p>
-<p>This shows the utility of <code>gghistostats</code> in case of data exploration.</p>
+<p>Let’s begin with a very simple example from the <code>psych</code> package (<code><a href="http://www.rdocumentation.org/packages/psych/topics/sat.act">psych::sat.act</a></code>), a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National norms have a mean of 20.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># loading needed libraries</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(psych)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># looking at the structure of the data using glimpse</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> psych<span class="op">::</span>sat.act)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; Observations: 700</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; Variables: 6</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; $ gender    &lt;int&gt; 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2...</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; $ education &lt;int&gt; 3, 3, 3, 4, 2, 5, 5, 3, 4, 5, 3, 4, 4, 4, 3, 4, 3, 4...</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt; $ age       &lt;int&gt; 19, 23, 20, 27, 33, 26, 30, 19, 23, 40, 23, 34, 32, ...</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; $ ACT       &lt;int&gt; 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, ...</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 76...</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 71...</span></a></code></pre></div>
+<p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="dt">x =</span> ACT,                                            <span class="co"># numeric variable</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,                           <span class="co"># don't run statistical tests</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="dt">xlab =</span> <span class="st">"ACT Score"</span>,                                 <span class="co"># x-axis label</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="dt">title =</span> <span class="st">"Distribution of ACT Scores"</span>,               <span class="co"># title for the plot</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="dt">subtitle =</span> <span class="st">"N = 700"</span>,                               <span class="co"># subtitle for the plot</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">    <span class="dt">centrality.k =</span> <span class="dv">1</span>                                    <span class="co"># show 1 decimal places for centrality label</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">  )</a></code></pre></div>
+<p><img src="gghistostats_files/figure-html/psychact2-1.png" width="672"></p>
 </div>
 <div id="statistical-analysis-with-gghistostats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#statistical-analysis-with-gghistostats" class="anchor"></a>Statistical analysis with <code>gghistostats</code>
 </h2>
-<p>Let’s say we are now interested in investigating whether the mean life expectancy in 2007 across the world has improved during the 20th-Century. In 1950, it was <a href="https://ourworldindata.org/life-expectancy">48</a>, so this is the <code>test.value</code> we are going to use.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># select data only from the year 2007</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="dt">data =</span> .,                                           <span class="co"># data from which variable is to be taken</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                        <span class="co"># numeric variable</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                   <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                    <span class="co"># test value against which sample mean is to be compared</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                           <span class="co"># x-axis label</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                            <span class="co"># subtitle for the plot</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: Gapminder Foundation"</span>, <span class="co"># caption for the plot</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                           <span class="co"># plotting centrality parameter</span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">    <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_wsj">theme_wsj</a></span>(),                    <span class="co"># change the default theme</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">    <span class="dt">fill.gradient =</span> <span class="ot">FALSE</span>                               <span class="co"># turn off color fill gradient</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">  )</a></code></pre></div>
-<p><img src="gghistostats_files/figure-html/stats1-1.png" width="700"></p>
-<p>Although there are still some countries where the life expectancy is low, on average, the life expectancy worldwide has improved compared to what it was in 1950.</p>
-<p><code>gghistostats</code> also provides the opportunity to compute Bayes Factors to quantify evidence in favor of the <strong>alternative</strong> (BF10) or the <strong>null</strong> hypothesis (BF01). In practice, you need to compute only one and the other will just be the inverse. In the current example, let’s say we want to quantify evidence in favor of the alternative hypothesis (H1) that the life expectancy in 2007 has improved significantly worldwide since 1957. The null, in this case, will of course be that there is no improvement.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="dt">data =</span> .,                                              <span class="co"># data from which variable is to be taken</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="dt">x =</span> lifeExp,                                           <span class="co"># numeric variable</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                      <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="dt">type =</span> <span class="st">"bf"</span>,                                           <span class="co"># bayesian one sample t-test</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_gray</a></span>(),                       <span class="co"># changing default theme</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="dt">fill.gradient =</span> <span class="ot">FALSE</span>,                                 <span class="co"># no color gradient (default)</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="dt">bar.fill =</span> <span class="st">"#D55E00"</span>,                                  <span class="co"># uniform fill color</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">    <span class="dt">test.value =</span> <span class="dv">48</span>,                                       <span class="co"># test value </span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">    <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,                              <span class="co"># x-axis label</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">    <span class="dt">title =</span> <span class="st">"Life expectancy worldwide"</span>,                   <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">    <span class="dt">subtitle =</span> <span class="st">"Year: 2007"</span>,                               <span class="co"># subtitle for the plot</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">    <span class="dt">caption =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>, <span class="co"># caption for the plot</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>                                 <span class="co"># show a vertical line at `test.value`</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">  )</a></code></pre></div>
-<p><img src="gghistostats_files/figure-html/stats_bf-1.png" width="700"></p>
-<p>Observed Bayes Factor value provides <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149794"><strong>conclusive</strong></a> evidence in favor of the alternative hypothesis: Life expectancy worldwide has improved significantly since 1957.</p>
+<p>The authors note that “the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores.” Let’s display the national norms (labeled as “Test”) and test (using <code>results.subtitle = TRUE</code>) the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample t-test (<code>type = "p"</code>). To demonstrate some of the options available we’ll also:</p>
+<ol style="list-style-type: decimal">
+<li>Change the overall theme with <code>ggtheme = ggthemes::theme_tufte()</code>
+</li>
+<li>Make the histogram bars a different color with <code>bar.fill = "#D55E00"</code>
+</li>
+<li>Plot proportions on the y axes with <code>bar.measure = "proportion"</code>
+</li>
+<li>Turn messages on to receive additional diagnostic information with <code>messages = TRUE</code>
+</li>
+<li>Compute information about the Bayes Factor (<code>bf.message = TRUE</code>, see below)</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="dt">x =</span> ACT,                                            <span class="co"># numeric variable</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="dt">results.subtitle =</span> <span class="ot">TRUE</span>,                            <span class="co"># run statistical tests</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">messages =</span> <span class="ot">TRUE</span>,                                    <span class="co"># turn on messages</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">bar.measure =</span> <span class="st">"proportion"</span>,                         <span class="co"># proportions</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="dt">xlab =</span> <span class="st">"ACT Score"</span>,                                 <span class="co"># x-axis label</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="dt">title =</span> <span class="st">"Distribution of ACT Scores"</span>,               <span class="co"># title for the plot</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="dt">type =</span> <span class="st">"p"</span>,                                         <span class="co"># one sample t-test</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                  <span class="co"># display Bayes method results</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),                  <span class="co"># changing default theme</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">    <span class="dt">bar.fill =</span> <span class="st">"#D55E00"</span>,                               <span class="co"># change fill color</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="dt">test.value =</span> <span class="dv">20</span>,                                    <span class="co"># test value </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                             <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">    <span class="dt">centrality.k =</span> <span class="dv">1</span>                                    <span class="co"># show 1 decimal places for centrality label</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  )</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; Note:  Shapiro-Wilk Normality Test for ACT : p-value =  &lt; 0.001</span></a></code></pre></div>
+<p><img src="gghistostats_files/figure-html/psychact3-1.png" width="672"></p>
+<p><code>gghistostats</code> computed Bayes Factors to quantify the likelihood of the <strong>research</strong> (BF10) and the <strong>null</strong> hypothesis (BF01). In our current example, the Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf">(Kass and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT scores are much higher than the national average. The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.</p>
 </div>
 <div id="grouped-analysis-with-grouped_gghistostats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#grouped-analysis-with-grouped_gghistostats" class="anchor"></a>Grouped analysis with <code>grouped_gghistostats</code>
 </h2>
-<p>What if we want to do the same analysis separately for all five continents? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
-<p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<p>Let’s see how we can use this function to apply <code>gghistostats</code> for all five continents. We will be running parametric tests (one sample t-test, i.e.). If you set <code>type = "np"</code>, results from non-parametric test will be displayed.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># select data only for the year 2007</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">data =</span> .,                                     <span class="co"># `.` is placeholder for data plugged by %&gt;%</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">x =</span> lifeExp,</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="dt">xlab =</span> <span class="st">"Life expectancy"</span>,</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">grouping.var =</span> continent,                     <span class="co"># grouping variable with multiple levels</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">  <span class="dt">title.prefix =</span> <span class="st">"Continent"</span>,                   <span class="co"># prefix for the fixed title</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">  <span class="dt">type =</span> <span class="st">"robust"</span>,                              <span class="co"># robust test: one-sample percentile bootstrap</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">  <span class="dt">k =</span> <span class="dv">2</span>,                                        <span class="co"># number of decimal places in results</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">  <span class="dt">robust.estimator =</span> <span class="st">"mom"</span>,                     <span class="co"># the modified one-step M-estimator of location</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">  <span class="dt">test.value =</span> <span class="dv">48</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">  <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,                     <span class="co"># plotting centrality parameter</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16">  <span class="dt">centrality.color =</span> <span class="st">"#D55E00"</span>,                 <span class="co"># color for centrality line and label</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17">  <span class="dt">test.value.color =</span> <span class="st">"#009E73"</span>,                 <span class="co"># color for test line and label</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_stata">theme_stata</a></span>(),            <span class="co"># changing default theme</span></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,                    <span class="co"># turn off ggstatsplot theme layer</span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22">  <span class="dt">title.text =</span> <span class="st">"Life expectancy change in different continents since 1950"</span>,</a>
-<a class="sourceLine" id="cb6-23" data-line-number="23">  <span class="dt">caption.text =</span> <span class="st">"Note: green line - 1950; orange line - 2007"</span>,</a>
-<a class="sourceLine" id="cb6-24" data-line-number="24">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb6-25" data-line-number="25">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-26" data-line-number="26">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>,<span class="st">"(d)"</span>,<span class="st">"(e)"</span>)</a>
-<a class="sourceLine" id="cb6-27" data-line-number="27">)</a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt; Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.</span></a></code></pre></div>
-<p><img src="gghistostats_files/figure-html/grouped1-1.png" width="1152"></p>
-<p>As can be seen from these plots, life expectancy has improved in all continents in 2007 as compared to the global average of 1950. Additionally, we see the benefits of plotting this data separately for each continent. If we look at the standardized effect sizes (Cohen’s <em>d</em>), it is apparent that the biggest improvements in life expectancy outcomes were seen on the continents of Europe, Americas, and Oceania (just one data point is available here), while Asia and Africa exhibit the lowest improvements.</p>
-<p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each continent, this is not possible with <code>grouped_gghistostats</code>. For cases like these, it would be better to use  (e.g.).</p>
+<p>What if we want to do the same analysis separately for each gender? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, none of which seem like an exciting prospect.</p>
+<p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
+<p>Let’s see how we can use this function to apply <code>gghistostats</code> to accomplish our task.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                        <span class="co"># same dataset</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">x =</span> ACT,                                      <span class="co"># same outcome variable</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">xlab =</span> <span class="st">"ACT Score"</span>,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">grouping.var =</span> gender,                        <span class="co"># grouping variable males = 1, females = 2</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">title.prefix =</span> <span class="st">"Gender"</span>,                      <span class="co"># prefix for the fixed title</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">k =</span> <span class="dv">1</span>,                                        <span class="co"># number of decimal places in results</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">type =</span> <span class="st">"r"</span>,                                   <span class="co"># robust test: one-sample percentile bootstrap</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">robust.estimator =</span> <span class="st">"mom"</span>,                     <span class="co"># changing the robust estimator used</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">test.value =</span> <span class="dv">20</span>,                              <span class="co"># test value against which sample mean is to be compared</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                       <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">bar.measure =</span> <span class="st">"density"</span>,                      <span class="co"># density</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">centrality.para =</span> <span class="st">"median"</span>,                   <span class="co"># plotting centrality parameter</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">centrality.color =</span> <span class="st">"#D55E00"</span>,                 <span class="co"># color for centrality line and label</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">test.value.color =</span> <span class="st">"#009E73"</span>,                 <span class="co"># color for test line and label</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                             <span class="co"># turn off messages</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_stata">theme_stata</a></span>(),            <span class="co"># changing default theme</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,                    <span class="co"># turn off ggstatsplot theme layer</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">title.text =</span> <span class="st">"Distribution of ACT scores across genders"</span>,</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">caption.text =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"Male"</span>,<span class="st">"Female"</span>)</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">)</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.</span></a></code></pre></div>
+<p><img src="gghistostats_files/figure-html/grouped1-1.png" width="672"></p>
+<p>As can be seen from these plots, the mean value is much higher than the national norm. Additionally, we see the benefits of plotting this data separately for each gender. We can <em>see</em> the differences in distributions.</p>
 </div>
-<div id="grouped-analysis-with-gghistostats-purrr" class="section level2">
+<div id="grouped-analysis-with-purrr" class="section level2">
 <h2 class="hasAnchor">
-<a href="#grouped-analysis-with-gghistostats-purrr" class="anchor"></a>Grouped analysis with <code>gghistostats</code> + <code>purrr</code>
+<a href="#grouped-analysis-with-purrr" class="anchor"></a>Grouped analysis with <code>purrr</code>
 </h2>
-<p>So far we have been comparing life expectancy in 2007 for a particular continent to the global average from 1957. But what if we want to compare to continent-specific life expectancy from 1957 (<a href="https://ourworldindata.org/life-expectancy" class="uri">https://ourworldindata.org/life-expectancy</a>), or run separate kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group). This is not possible <code>grouped_gghistostats</code> function, but can be easily achieved with <code>purrr</code> package from tidyverse. See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html</a></p>
+<p>Although this is a quick and dirty way to explore a large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each gender, this is not possible with <code>grouped_gghistostats</code>. For cases like these, or to run separate kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group) it would be better to use <code>purrr</code>. See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html</a></p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
@@ -286,8 +257,156 @@
 <h1 class="hasAnchor">
 <a href="#session-information" class="anchor"></a>Session Information</h1>
 <p>Summarizing session information for reproducibility.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">session_info</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">session_info</a></span>()</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; - Session info ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;  setting  value                       </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;  version  R version 3.5.1 (2018-07-02)</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;  os       Windows 10 x64              </span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;  system   x86_64, mingw32             </span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;  ui       RTerm                       </span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;  language (EN)                        </span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York            </span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-25                  </span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;  package      * version     date       lib source                              </span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;  assertthat     0.2.0       2017-04-11 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;  backports      1.1.2       2017-12-13 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt;  base64enc      0.1-3       2015-07-28 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt;  BayesFactor    0.9.12-4.2  2018-05-19 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt;  bayesplot      1.6.0       2018-08-02 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt;  bindr          0.1.1       2018-03-13 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt;  bindrcpp     * 0.2.2       2018-03-29 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt;  boot           1.3-20      2017-08-06 [2] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt;  broom          0.5.0.9001  2018-09-16 [1] Github (tidyverse/broom@1e65668)    </span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt;  broom.mixed    0.2.2       2018-09-19 [1] Github (bbolker/broom.mixed@2ec8394)</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt;  callr          3.0.0       2018-08-24 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt;  cli            1.0.1       2018-09-25 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt;  coda           0.19-1      2016-12-08 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt;  codetools      0.2-15      2016-10-05 [2] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="co">#&gt;  coin           1.2-2       2017-11-28 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt;  colorspace     1.3-2       2016-12-14 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt;  commonmark     1.5         2018-04-28 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt;  cowplot        0.9.99      2018-08-23 [1] Github (wilkelab/cowplot@374c3e9)   </span></a>
+<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt;  crayon         1.3.4       2017-09-16 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt;  data.table     1.11.6      2018-09-19 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt;  debugme        1.1.0       2017-10-22 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt;  desc           1.2.0       2018-05-01 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt;  devtools       1.13.6.9000 2018-09-23 [1] Github (r-lib/devtools@74df201)     </span></a>
+<a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt;  digest         0.6.17      2018-09-12 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt;  dplyr        * 0.7.6       2018-06-29 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-42" data-line-number="42"><span class="co">#&gt;  effsize        0.7.1       2017-03-21 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-43" data-line-number="43"><span class="co">#&gt;  emmeans        1.2.4       2018-09-22 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-44" data-line-number="44"><span class="co">#&gt;  estimability   1.3         2018-02-11 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="co">#&gt;  evaluate       0.11        2018-07-17 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-46" data-line-number="46"><span class="co">#&gt;  exact2x2       1.6.3       2018-07-27 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="co">#&gt;  exactci        1.3-3       2017-10-02 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-48" data-line-number="48"><span class="co">#&gt;  forcats        0.3.0       2018-02-19 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-49" data-line-number="49"><span class="co">#&gt;  foreign        0.8-70      2017-11-28 [2] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">#&gt;  fs             1.2.6       2018-08-23 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-51" data-line-number="51"><span class="co">#&gt;  generics       0.0.1.9000  2018-09-16 [1] Github (r-lib/generics@aaa6122)     </span></a>
+<a class="sourceLine" id="cb5-52" data-line-number="52"><span class="co">#&gt;  ggcorrplot     0.1.2       2018-09-11 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-53" data-line-number="53"><span class="co">#&gt;  ggExtra        0.8         2018-08-14 [1] Github (daattali/ggExtra@76d1618)   </span></a>
+<a class="sourceLine" id="cb5-54" data-line-number="54"><span class="co">#&gt;  ggplot2        3.0.0.9000  2018-09-05 [1] Github (tidyverse/ggplot2@f636f34)  </span></a>
+<a class="sourceLine" id="cb5-55" data-line-number="55"><span class="co">#&gt;  ggrepel        0.8.0.9000  2018-09-09 [1] Github (slowkow/ggrepel@91877ca)    </span></a>
+<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt;  ggridges       0.5.0       2018-04-05 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt;  ggstatsplot  * 0.0.5.9000  2018-09-26 [1] local                               </span></a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt;  ggthemes       4.0.1       2018-08-24 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt;  glmmTMB        0.2.2.0     2018-07-03 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt;  glue           1.3.0       2018-09-17 [1] Github (tidyverse/glue@4e74901)     </span></a>
+<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt;  gtable         0.2.0       2016-02-26 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt;  gtools         3.8.1       2018-06-26 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt;  haven          1.1.2       2018-06-27 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt;  hms            0.4.2       2018-03-10 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt;  htmldeps       0.1.1       2018-09-17 [1] Github (rstudio/htmldeps@c1023e0)   </span></a>
+<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co">#&gt;  htmltools      0.3.6       2017-04-28 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="co">#&gt;  httpuv         1.4.5       2018-07-19 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-68" data-line-number="68"><span class="co">#&gt;  jmv            0.9.4       2018-09-18 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-69" data-line-number="69"><span class="co">#&gt;  jmvcore        0.9.4       2018-09-17 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-70" data-line-number="70"><span class="co">#&gt;  knitr          1.20.12     2018-08-13 [1] local                               </span></a>
+<a class="sourceLine" id="cb5-71" data-line-number="71"><span class="co">#&gt;  labeling       0.3         2014-08-23 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-72" data-line-number="72"><span class="co">#&gt;  later          0.7.5       2018-09-18 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-73" data-line-number="73"><span class="co">#&gt;  lattice        0.20-35     2017-03-25 [2] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-74" data-line-number="74"><span class="co">#&gt;  lazyeval       0.2.1       2017-10-29 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-75" data-line-number="75"><span class="co">#&gt;  lme4           1.1-18-1    2018-08-17 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-76" data-line-number="76"><span class="co">#&gt;  magrittr       1.5         2014-11-22 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-77" data-line-number="77"><span class="co">#&gt;  MASS           7.3-50      2018-04-30 [2] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-78" data-line-number="78"><span class="co">#&gt;  Matrix         1.2-14      2018-04-13 [2] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-79" data-line-number="79"><span class="co">#&gt;  MatrixModels   0.4-1       2015-08-22 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-80" data-line-number="80"><span class="co">#&gt;  mc2d           0.1-18      2017-03-06 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-81" data-line-number="81"><span class="co">#&gt;  memoise        1.1.0       2017-04-21 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-82" data-line-number="82"><span class="co">#&gt;  mime           0.5         2016-07-07 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-83" data-line-number="83"><span class="co">#&gt;  miniUI         0.1.1.1     2018-05-18 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-84" data-line-number="84"><span class="co">#&gt;  minqa          1.2.4       2014-10-09 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-85" data-line-number="85"><span class="co">#&gt;  mnormt         1.5-5       2016-10-15 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-86" data-line-number="86"><span class="co">#&gt;  modelr         0.1.2       2018-05-11 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-87" data-line-number="87"><span class="co">#&gt;  modeltools     0.2-22      2018-07-16 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-88" data-line-number="88"><span class="co">#&gt;  multcomp       1.4-8       2017-11-08 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-89" data-line-number="89"><span class="co">#&gt;  munsell        0.5.0       2018-06-12 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-90" data-line-number="90"><span class="co">#&gt;  mvtnorm        1.0-8       2018-05-31 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-91" data-line-number="91"><span class="co">#&gt;  nlme           3.1-137     2018-04-07 [2] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-92" data-line-number="92"><span class="co">#&gt;  nloptr         1.0.4       2017-08-22 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-93" data-line-number="93"><span class="co">#&gt;  paletteer      0.1.0       2018-07-10 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-94" data-line-number="94"><span class="co">#&gt;  pbapply        1.3-4       2018-01-10 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-95" data-line-number="95"><span class="co">#&gt;  pillar         1.3.0.9000  2018-09-21 [1] Github (r-lib/pillar@ccbdef4)       </span></a>
+<a class="sourceLine" id="cb5-96" data-line-number="96"><span class="co">#&gt;  pkgbuild       1.0.1.9000  2018-09-23 [1] Github (r-lib/pkgbuild@3919d9c)     </span></a>
+<a class="sourceLine" id="cb5-97" data-line-number="97"><span class="co">#&gt;  pkgconfig      2.0.2       2018-08-16 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-98" data-line-number="98"><span class="co">#&gt;  pkgdown        1.1.0.9000  2018-09-23 [1] Github (r-lib/pkgdown@b62fef5)      </span></a>
+<a class="sourceLine" id="cb5-99" data-line-number="99"><span class="co">#&gt;  pkgload        1.0.0       2018-09-17 [1] Github (r-lib/pkgload@7771d78)      </span></a>
+<a class="sourceLine" id="cb5-100" data-line-number="100"><span class="co">#&gt;  plyr           1.8.4       2016-06-08 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-101" data-line-number="101"><span class="co">#&gt;  prediction     0.3.6       2018-05-22 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-102" data-line-number="102"><span class="co">#&gt;  prettyunits    1.0.2       2015-07-13 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-103" data-line-number="103"><span class="co">#&gt;  processx       3.2.0       2018-08-16 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-104" data-line-number="104"><span class="co">#&gt;  promises       1.0.1       2018-04-13 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-105" data-line-number="105"><span class="co">#&gt;  ps             1.1.0       2018-08-10 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-106" data-line-number="106"><span class="co">#&gt;  psych        * 1.8.4       2018-05-06 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-107" data-line-number="107"><span class="co">#&gt;  purrr          0.2.5       2018-05-29 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-108" data-line-number="108"><span class="co">#&gt;  purrrlyr       0.0.3       2018-05-29 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-109" data-line-number="109"><span class="co">#&gt;  pwr            1.2-2       2018-03-03 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-110" data-line-number="110"><span class="co">#&gt;  R6             2.2.2       2017-06-17 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-111" data-line-number="111"><span class="co">#&gt;  Rcpp           0.12.18     2018-07-23 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-112" data-line-number="112"><span class="co">#&gt;  remotes        1.1.1.9000  2018-09-23 [1] Github (r-lib/remotes@5a07ad2)      </span></a>
+<a class="sourceLine" id="cb5-113" data-line-number="113"><span class="co">#&gt;  reshape        0.8.7       2017-08-06 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-114" data-line-number="114"><span class="co">#&gt;  reshape2       1.4.3       2017-12-11 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-115" data-line-number="115"><span class="co">#&gt;  rjson          0.2.20      2018-06-08 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-116" data-line-number="116"><span class="co">#&gt;  rlang          0.2.2       2018-08-16 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-117" data-line-number="117"><span class="co">#&gt;  rmarkdown      1.10.13     2018-09-17 [1] Github (rstudio/rmarkdown@df4ec91)  </span></a>
+<a class="sourceLine" id="cb5-118" data-line-number="118"><span class="co">#&gt;  roxygen2       6.1.0.9000  2018-09-13 [1] Github (klutometis/roxygen@cc34200) </span></a>
+<a class="sourceLine" id="cb5-119" data-line-number="119"><span class="co">#&gt;  rprojroot      1.3-2       2018-01-03 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-120" data-line-number="120"><span class="co">#&gt;  rstudioapi     0.7         2017-09-07 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-121" data-line-number="121"><span class="co">#&gt;  sandwich       2.5-0       2018-08-17 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-122" data-line-number="122"><span class="co">#&gt;  scales         1.0.0       2018-08-09 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-123" data-line-number="123"><span class="co">#&gt;  sessioninfo    1.1.0       2018-09-25 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-124" data-line-number="124"><span class="co">#&gt;  shiny          1.1.0       2018-05-17 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-125" data-line-number="125"><span class="co">#&gt;  sjlabelled     1.0.14      2018-09-12 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-126" data-line-number="126"><span class="co">#&gt;  sjmisc         2.7.5       2018-09-13 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-127" data-line-number="127"><span class="co">#&gt;  sjstats        0.17.0      2018-08-20 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-128" data-line-number="128"><span class="co">#&gt;  snakecase      0.9.2       2018-08-14 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-129" data-line-number="129"><span class="co">#&gt;  ssanv          1.1         2015-06-23 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-130" data-line-number="130"><span class="co">#&gt;  stringdist     0.9.5.1     2018-06-08 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-131" data-line-number="131"><span class="co">#&gt;  stringi        1.2.4       2018-07-20 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-132" data-line-number="132"><span class="co">#&gt;  stringr        1.3.1       2018-05-10 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-133" data-line-number="133"><span class="co">#&gt;  survival       2.42-3      2018-04-16 [2] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-134" data-line-number="134"><span class="co">#&gt;  testthat       2.0.0       2017-12-13 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-135" data-line-number="135"><span class="co">#&gt;  TH.data        1.0-9       2018-07-10 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-136" data-line-number="136"><span class="co">#&gt;  tibble         1.4.2       2018-01-22 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-137" data-line-number="137"><span class="co">#&gt;  tidyr          0.8.1       2018-05-18 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-138" data-line-number="138"><span class="co">#&gt;  tidyselect     0.2.4       2018-02-26 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-139" data-line-number="139"><span class="co">#&gt;  TMB            1.7.14      2018-06-23 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-140" data-line-number="140"><span class="co">#&gt;  usethis        1.4.0.9000  2018-09-23 [1] Github (r-lib/usethis@1e3c6a6)      </span></a>
+<a class="sourceLine" id="cb5-141" data-line-number="141"><span class="co">#&gt;  withr          2.1.2       2018-03-15 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-142" data-line-number="142"><span class="co">#&gt;  WRS2           0.10-0      2018-06-15 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-143" data-line-number="143"><span class="co">#&gt;  xfun           0.3         2018-07-06 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-144" data-line-number="144"><span class="co">#&gt;  xml2           1.2.0       2018-01-24 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb5-145" data-line-number="145"><span class="co">#&gt;  xtable         1.8-3       2018-08-29 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-146" data-line-number="146"><span class="co">#&gt;  yaml           2.2.0       2018-07-25 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-147" data-line-number="147"><span class="co">#&gt;  zoo            1.8-4       2018-09-19 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb5-148" data-line-number="148"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-149" data-line-number="149"><span class="co">#&gt; [1] C:/Users/inp099/Documents/R/win-library/3.5</span></a>
+<a class="sourceLine" id="cb5-150" data-line-number="150"><span class="co">#&gt; [2] C:/Program Files/R/R-3.5.1/library</span></a></code></pre></div>
 </div>
   </div>
 
@@ -296,10 +415,10 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#distribution-with-gghistostats">Distribution with <code>gghistostats</code></a></li>
+<li><a href="#distribution-of-a-sample-with-gghistostats">Distribution of a sample with <code>gghistostats</code></a></li>
       <li><a href="#statistical-analysis-with-gghistostats">Statistical analysis with <code>gghistostats</code></a></li>
       <li><a href="#grouped-analysis-with-grouped_gghistostats">Grouped analysis with <code>grouped_gghistostats</code></a></li>
-      <li><a href="#grouped-analysis-with-gghistostats-purrr">Grouped analysis with <code>gghistostats</code> + <code>purrr</code></a></li>
+      <li><a href="#grouped-analysis-with-purrr">Grouped analysis with <code>purrr</code></a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       <li><a href="#session-information">Session Information</a></li>
       </ul>

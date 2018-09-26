@@ -6,7 +6,7 @@
 levels of a grouping variable}
 \usage{
 grouped_ggcorrmat(data, cor.vars, cor.vars.names = NULL, grouping.var,
-  title.prefix = "Group", output = "plot", type = "full",
+  title.prefix = "Group", output = "plot", matrix.type = "full",
   method = "square", corr.method = "pearson", exact = FALSE,
   continuity = TRUE, beta = 0.1, digits = 2, sig.level = 0.05,
   p.adjust.method = "none", hc.order = FALSE, hc.method = "complete",
@@ -41,7 +41,7 @@ title (name of each factor level) (Default: \code{"Group"}).}
 for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
 intervals for unique correlation pairs; not available for robust correlation).}
 
-\item{type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
+\item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
 full matrix, lower triangular or upper triangular matrix.}
 
 \item{method}{Character argument that decides the visualization method of

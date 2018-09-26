@@ -92,7 +92,7 @@ ggstatsplot::ggcorrmat(
   lab.col = "red",                            # label color
   ggtheme = ggplot2::theme_light(),           # selected ggplot2 theme
   ggstatsplot.layer = FALSE,                  # turn off default ggestatsplot theme overlay
-  type = "lower",                             # type of correlation matrix
+  matrix.type = "lower",                      # correlation matrix structure
   colors = c("green", "white", "yellow"),     # selecting color combination
   title = "Gapminder correlation matrix",     # custom title
   subtitle = "Source: Gapminder Foundation"   # custom subtitle
@@ -169,7 +169,7 @@ ggstatsplot::ggcorrmat(
   ), 
   corr.method = "spearman",
   sig.level = 0.008,
-  type = "lower",
+  matrix.type = "lower",
   title = "Relationship between diamond attributes and price",
   subtitle = "Dataset: Diamonds from ggplot2 package",
   colors = c("#0072B2", "#D55E00", "#CC79A7"),
@@ -218,8 +218,8 @@ ggstatsplot::ggcorrmat(
 
 ## Grouped analysis with `grouped_ggcorrmat`
 
-What if we want to do the same analysis separately for each type of quality of
-the diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? In that case, we will
+What if we want to do the same analysis separately for each quality of the
+diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? In that case, we will
 have to either write a `for` loop or use `purrr`, none of which seem like an
 exciting prospect.
 
@@ -309,7 +309,7 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 Summarizing session information for reproducibility.
 
-```{r session_info, eval = FALSE}
+```{r session_info}
 options(width = 200)
 devtools::session_info()
 ```

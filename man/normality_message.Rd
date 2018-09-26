@@ -31,7 +31,7 @@ default linear model.
 \examples{
 
 # message
-normality_message(x = datasets::anscombe$x1, lab = "x1")
+normality_message(x = datasets::anscombe$x1)
 
 # statistical test object
 normality_message(

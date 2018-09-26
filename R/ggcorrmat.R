@@ -16,7 +16,7 @@
 #'   `"r"`; for correlation matrix) or `"p-values"` (or `"p.values"` or `"p"`;
 #'   for a matrix of *p*-values) or `"ci"` (for a tibble with confidence
 #'   intervals for unique correlation pairs; not available for robust correlation).
-#' @param type Character, `"full"` (default), `"upper"` or `"lower"`, display
+#' @param matrix.type Character, `"full"` (default), `"upper"` or `"lower"`, display
 #'   full matrix, lower triangular or upper triangular matrix.
 #' @param method Character argument that decides the visualization method of
 #'   correlation matrix to be used. Allowed values are `"square"` (default),
@@ -123,7 +123,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
@@ -132,31 +132,32 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   cor.vars.names = c("total sleep", "REM sleep")
 #' )
-#' 
+#'
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "r"
 #' )
-#' 
+#'
 #' # setting output = "p-values" (or "p") will return the p-value matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   corr.method = "r",
-#'   p.adjust.method = "fdr",
+#'   p.adjust.method = "bonferroni",
 #'   output = "p"
 #' )
-#' 
+#'
 #' # setting output = "ci" will return the confidence intervals for unique
 #' # correlation pairs
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
+#'   p.adjust.method = "BH",
 #'   output = "ci"
 #' )
-#' 
+#'
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
@@ -164,7 +165,7 @@
 #'   sig.level = 0.01,
 #'   ggtheme = ggplot2::theme_bw(),
 #'   hc.order = TRUE,
-#'   type = "lower",
+#'   matrix.type = "lower",
 #'   outline.col = "white",
 #'   title = "Dataset: Iris"
 #' )
@@ -177,7 +178,7 @@ ggcorrmat <-
              cor.vars,
              cor.vars.names = NULL,
              output = "plot",
-             type = "full",
+             matrix.type = "full",
              method = "square",
              corr.method = "pearson",
              exact = FALSE,
@@ -316,7 +317,7 @@ ggcorrmat <-
           method = method,
           p.mat = p.mat,
           sig.level = sig.level,
-          type = type,
+          type = matrix.type,
           hc.method = hc.method,
           hc.order = hc.order,
           lab = lab,
