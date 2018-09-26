@@ -48,7 +48,9 @@ t1way_ci <- function(data,
     .data = data,
     x = !!rlang::enquo(x),
     y = !!rlang::enquo(y)
-  )
+  ) %>%
+    stats::na.omit(.) %>%
+    tibble::as.tibble(x = .)
 
   # running robust one-way anova
   fit <-
@@ -59,7 +61,7 @@ t1way_ci <- function(data,
     )
 
   # function to obtain 95% CI for xi
-  xici <- function(formula, data, tr = tr, indices) {
+  xici <- function(formula, data, tr, indices) {
     # allows boot to select sample
     d <- data[indices, ]
     # running the function
@@ -197,7 +199,9 @@ cor_tets_ci <- function(data,
     .data = data,
     x = !!rlang::enquo(x),
     y = !!rlang::enquo(y)
-  )
+  ) %>%
+    stats::na.omit(.) %>%
+    tibble::as.tibble(x = .)
 
   # running correlation and creating a tidy dataframe
   tidy_df <- broom::tidy(
@@ -363,7 +367,9 @@ chisq_v_ci <- function(data,
     .data = data,
     rows = !!rlang::enquo(rows),
     cols = !!rlang::enquo(cols)
-  )
+  ) %>%
+    stats::na.omit(.) %>%
+    tibble::as.tibble(x = .)
 
   # results from jamovi
   jmv_df <- jmv::contTables(
@@ -518,7 +524,8 @@ robcor_ci <- function(data,
     x = !!rlang::enquo(x),
     y = !!rlang::enquo(y)
   ) %>%
-    stats::na.omit(object = .)
+    stats::na.omit(.) %>%
+    tibble::as.tibble(x = .)
 
   # getting the p-value for the correlation coefficient
   fit <-

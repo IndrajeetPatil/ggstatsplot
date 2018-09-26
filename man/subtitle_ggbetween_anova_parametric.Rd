@@ -4,8 +4,9 @@
 \alias{subtitle_ggbetween_anova_parametric}
 \title{Making text subtitle for the between-subject anova designs.}
 \usage{
-subtitle_ggbetween_anova_parametric(data, x, y, effsize.type = "biased",
-  nboot = 100, var.equal = FALSE, k = 3, messages = TRUE)
+subtitle_ggbetween_anova_parametric(data, x, y,
+  effsize.type = "partial_omega", nboot = 100, var.equal = FALSE,
+  k = 3, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -38,6 +39,25 @@ to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Making text subtitle for the between-subject anova designs.
+}
+\examples{
+# with defaults
+subtitle_ggbetween_anova_parametric(
+  data = ggplot2::msleep,
+  x = vore,
+  y = sleep_rem
+)
+
+# modifying the defaults
+subtitle_ggbetween_anova_parametric(
+  data = ggplot2::msleep,
+  x = vore,
+  y = sleep_rem,
+  effsize.type = "partial_eta",
+  k = 2,
+  var.equal = TRUE,
+  nboot = 10
+)
 }
 \author{
 Indrajeet Patil

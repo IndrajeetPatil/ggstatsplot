@@ -5,7 +5,7 @@
 \title{Making text subtitle for the robust ANOVA
 (between-subjects designs).}
 \usage{
-subtitle_ggbetween_rob_anova(data, x, y, tr, nboot = 100,
+subtitle_ggbetween_rob_anova(data, x, y, tr = 0.1, nboot = 100,
   messages = TRUE, k = 3)
 }
 \arguments{
@@ -33,6 +33,24 @@ to be displayed (Default: \code{TRUE}).}
 \description{
 Making text subtitle for the robust ANOVA
 (between-subjects designs).
+}
+\examples{
+
+# going with the defaults
+subtitle_ggbetween_rob_anova(
+  data = ggplot2::midwest,
+  x = state,
+  y = percbelowpoverty
+)
+
+# changing defaults
+subtitle_ggbetween_rob_anova(
+  data = ggplot2::midwest,
+  x = state,
+  y = percollege,
+  tr = 0.2,
+  nboot = 10
+)
 }
 \author{
 Indrajeet Patil

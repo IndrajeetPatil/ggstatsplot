@@ -34,6 +34,25 @@ to be displayed (Default: \code{TRUE}).}
 Making text subtitle for the robust t-test
 (between-subjects designs).
 }
+\examples{
+
+# with defaults
+subtitle_ggbetween_t_rob(
+  data = sleep,
+  x = group,
+  y = extra
+)
+
+# changing defaults
+subtitle_ggbetween_t_rob(
+  data = ToothGrowth,
+  x = supp,
+  y = len,
+  nboot = 10,
+  k = 1,
+  tr = 0.2
+)
+}
 \author{
 Indrajeet Patil
 }

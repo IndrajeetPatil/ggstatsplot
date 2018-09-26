@@ -25,6 +25,13 @@ taken.}
 Making text subtitle for the Mann-Whitney U-test
 (between-/within-subjects designs).
 }
+\examples{
+subtitle_ggbetween_mann_nonparametric(
+  data = sleep,
+  x = group,
+  y = extra
+)
+}
 \author{
 Indrajeet Patil
 }

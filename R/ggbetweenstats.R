@@ -288,8 +288,9 @@ ggbetweenstats <- function(data,
         dodge.width = point.dodge.width,
         jitter.height = point.jitter.height
       ),
-      alpha = 0.5,
+      alpha = 0.4,
       size = 3,
+      stroke = 0,
       na.rm = TRUE,
       ggplot2::aes(color = factor(x))
     )

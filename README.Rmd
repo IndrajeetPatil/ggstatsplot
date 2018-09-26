@@ -859,6 +859,42 @@ ggstatsplot::combine_plots(
 For more on how to modify it, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
 
+# Using `ggstatsplot` helpers to display text results on plots
+
+Sometimes you may not like the default plot produced by `ggstatsplot`. In such
+cases, you can use other custom plots (from `ggplot2` or other plotting
+packages) and still use `ggstatsplot` (subtitle) helper functions to display
+results from relevant statistical test. For example, in the following chunk, we
+will use pirateplot from `yarrr` package and use `ggstatsplot` helper function
+to display the results.
+
+```{r pirateplot, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+
+# for reproducibility
+set.seed(123)
+
+# loading the needed libraries
+library(yarrr)
+library(ggstatsplot)
+
+# using `ggstatsplot` to prepare text with statistical results
+stats_results <-
+  ggstatsplot::subtitle_ggbetween_anova_parametric(
+    data = ChickWeight,
+    x = Time,
+    y = weight,
+    messages = FALSE
+  )
+
+# using `yarrr` to create plot
+yarrr::pirateplot(
+  formula = weight ~ Time,
+  data = ChickWeight,
+  theme = 1,
+  main = stats_results
+)
+```
+
 # Plot design
 
 In the following vignette, I have outlined what thought went into designing

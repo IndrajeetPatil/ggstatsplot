@@ -5,8 +5,8 @@
 \title{Making text subtitle for the t-test (between-/within-subjects designs).}
 \usage{
 subtitle_ggbetween_t_parametric(data, x, y, paired = FALSE,
-  effsize.type = "biased", effsize.noncentral = FALSE,
-  var.equal = FALSE, k = 3)
+  effsize.type = "g", effsize.noncentral = FALSE, var.equal = FALSE,
+  k = 3)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -40,6 +40,29 @@ or Hedge's \emph{g} (Default: \code{FALSE}).}
 }
 \description{
 Making text subtitle for the t-test (between-/within-subjects designs).
+}
+\examples{
+
+# creating a smaller dataset
+msleep_short <- dplyr::filter(ggplot2::msleep, vore \%in\% c("carni", "herbi"))
+
+# with defaults
+subtitle_ggbetween_t_parametric(
+  data = msleep_short,
+  x = vore,
+  y = sleep_rem
+)
+
+# changing defaults
+subtitle_ggbetween_t_parametric(
+  data = msleep_short,
+  x = vore,
+  y = sleep_rem,
+  var.equal = TRUE,
+  k = 2,
+  effsize.type = "d"
+)
+
 }
 \author{
 Indrajeet Patil

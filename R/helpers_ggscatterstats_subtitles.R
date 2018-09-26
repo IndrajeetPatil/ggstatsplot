@@ -20,8 +20,14 @@
 #' @importFrom rlang enquo
 #' @importFrom stats cor.test
 #'
+#' @examples
+#' 
+#' subtitle_ggscatterstats(
+#'   data = ggplot2::midwest,
+#'   x = area,
+#'   y = percblack
+#' )
 #' @export
-#'
 
 subtitle_ggscatterstats <-
   function(data,

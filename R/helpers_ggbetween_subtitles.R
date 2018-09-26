@@ -66,14 +66,32 @@ bf_message_ttest <- function(jmv_results,
 #' @importFrom rlang enquo
 #' @importFrom stats lm
 #'
-#' @export
+#' @examples
+#' # with defaults
+#' subtitle_ggbetween_anova_parametric(
+#'   data = ggplot2::msleep,
+#'   x = vore,
+#'   y = sleep_rem
+#' )
 #'
+#' # modifying the defaults
+#' subtitle_ggbetween_anova_parametric(
+#'   data = ggplot2::msleep,
+#'   x = vore,
+#'   y = sleep_rem,
+#'   effsize.type = "partial_eta",
+#'   k = 2,
+#'   var.equal = TRUE,
+#'   nboot = 10
+#' )
+#' @export
 
+# function body
 subtitle_ggbetween_anova_parametric <-
   function(data,
              x,
              y,
-             effsize.type = "biased",
+             effsize.type = "partial_omega",
              nboot = 100,
              var.equal = FALSE,
              k = 3,
@@ -84,9 +102,16 @@ subtitle_ggbetween_anova_parametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      ) %>%
+      )
+
+    # convert the grouping variable to factor and drop unused levels
+    data %<>%
       stats::na.omit(.) %>%
-      tibble::as.tibble(x = .)
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~base::droplevels(x = base::as.factor(x = .))
+      )
 
     # Welch's ANOVA run by default
     aov_stat <-
@@ -260,15 +285,37 @@ subtitle_ggbetween_anova_parametric <-
 #' @importFrom stats t.test
 #' @importFrom effsize cohen.d
 #'
-#' @export
+#' @examples
 #'
+#' # creating a smaller dataset
+#' msleep_short <- dplyr::filter(ggplot2::msleep, vore %in% c("carni", "herbi"))
+#'
+#' # with defaults
+#' subtitle_ggbetween_t_parametric(
+#'   data = msleep_short,
+#'   x = vore,
+#'   y = sleep_rem
+#' )
+#'
+#' # changing defaults
+#' subtitle_ggbetween_t_parametric(
+#'   data = msleep_short,
+#'   x = vore,
+#'   y = sleep_rem,
+#'   var.equal = TRUE,
+#'   k = 2,
+#'   effsize.type = "d"
+#' )
+#'
+#' @export
 
+# function body
 subtitle_ggbetween_t_parametric <-
   function(data,
              x,
              y,
              paired = FALSE,
-             effsize.type = "biased",
+             effsize.type = "g",
              effsize.noncentral = FALSE,
              var.equal = FALSE,
              k = 3) {
@@ -279,9 +326,19 @@ subtitle_ggbetween_t_parametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      ) %>%
+      )
+
+    # convert the grouping variable to factor and drop unused levels
+    data %<>%
       stats::na.omit(.) %>%
-      tibble::as.tibble(x = .)
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~base::droplevels(x = base::as.factor(x = .))
+      )
+
+    # sample size
+    sample_size <- nrow(data)
 
     # setting up the anova model and getting its summary and effect size
     t_stat <-
@@ -344,7 +401,7 @@ subtitle_ggbetween_t_parametric <-
             effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
             LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
             UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
-            n = nrow(x = data)
+            n = sample_size
           )
         )
     } else if (effsize.type == "biased" || effsize.type == "d") {
@@ -397,7 +454,7 @@ subtitle_ggbetween_t_parametric <-
             effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
             LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
             UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
-            n = nrow(x = data)
+            n = sample_size
           )
         )
     }
@@ -422,9 +479,15 @@ subtitle_ggbetween_t_parametric <-
 #' @importFrom stats wilcox.test
 #' @importFrom coin wilcox_test
 #'
+#' @examples
+#' subtitle_ggbetween_mann_nonparametric(
+#'   data = sleep,
+#'   x = group,
+#'   y = extra
+#' )
 #' @export
-#'
 
+# function body
 subtitle_ggbetween_mann_nonparametric <-
   function(data,
              x,
@@ -438,9 +501,19 @@ subtitle_ggbetween_mann_nonparametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      ) %>%
+      )
+
+    # convert the grouping variable to factor and drop unused levels
+    data %<>%
       stats::na.omit(.) %>%
-      tibble::as.tibble(x = .)
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~base::droplevels(x = base::as.factor(x = .))
+      )
+
+    # sample size
+    sample_size <- nrow(data)
 
     # setting up the Mann-Whitney U-test and getting its summary
     mann_stat <- stats::wilcox.test(
@@ -501,7 +574,7 @@ subtitle_ggbetween_mann_nonparametric <-
           r = ggstatsplot::specify_decimal_p(x = (
             coin::statistic(z_stat)[[1]] / sqrt(length(data$y))
           ), k),
-          n = nrow(x = data)
+          n = sample_size
         )
       )
 
@@ -527,9 +600,27 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @importFrom WRS2 yuen
 #' @importFrom WRS2 yuen.effect.ci
 #'
-#' @export
+#' @examples
 #'
+#' # with defaults
+#' subtitle_ggbetween_t_rob(
+#'   data = sleep,
+#'   x = group,
+#'   y = extra
+#' )
+#'
+#' # changing defaults
+#' subtitle_ggbetween_t_rob(
+#'   data = ToothGrowth,
+#'   x = supp,
+#'   y = len,
+#'   nboot = 10,
+#'   k = 1,
+#'   tr = 0.2
+#' )
+#' @export
 
+# function body
 subtitle_ggbetween_t_rob <-
   function(data,
              x,
@@ -545,9 +636,19 @@ subtitle_ggbetween_t_rob <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      ) %>%
+      )
+
+    # convert the grouping variable to factor and drop unused levels
+    data %<>%
       stats::na.omit(.) %>%
-      tibble::as.tibble(x = .)
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~base::droplevels(x = base::as.factor(x = .))
+      )
+
+    # sample size
+    sample_size <- nrow(data)
 
     # Yuen's test for trimmed means
     t_robust_stat <-
@@ -619,7 +720,7 @@ subtitle_ggbetween_t_rob <-
           effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize[[1]], k),
           LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]][[1]], k),
           UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]][[1]], k),
-          n = nrow(x = data)
+          n = sample_size
         )
       )
 
@@ -639,18 +740,18 @@ subtitle_ggbetween_t_rob <-
 #' @importFrom jmv ttestPS
 #'
 #' @examples
-#' 
+#'
 #' # between-subjects design
-#' 
+#'
 #' subtitle_ggbetween_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#' 
+#'
 #' # within-subjects design
-#' 
+#'
 #' subtitle_ggbetween_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -662,7 +763,8 @@ subtitle_ggbetween_t_rob <-
 #'   paired = TRUE
 #' )
 #' @export
-#'
+
+# function body
 subtitle_ggbetween_t_bayes <- function(data,
                                        x,
                                        y,
@@ -676,13 +778,27 @@ subtitle_ggbetween_t_bayes <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    ) %>%
-    tibble::as_data_frame(x = .)
+    )
+
+  # convert the grouping variable to factor and drop unused levels
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~base::droplevels(x = base::as.factor(x = .))
+    )
 
   ## ---------------------------- between-subjects design ---------------------------
 
   # running bayesian analysis
   if (!isTRUE(paired)) {
+
+    # removing NAs
+    data %<>% stats::na.omit(.)
+
+    # sample size
+    sample_size <- nrow(data)
+
     # independent samples design
     jmv_results <- jmv::ttestIS(
       data = data,
@@ -695,9 +811,6 @@ subtitle_ggbetween_t_bayes <- function(data,
       hypothesis = "different",
       miss = "listwise"
     )
-
-    # sample size
-    sample_size <- nrow(data)
 
     ## ---------------------------- within-subjects design ---------------------------
   } else if (isTRUE(paired)) {
@@ -724,7 +837,9 @@ subtitle_ggbetween_t_bayes <- function(data,
     # dependent samples design
     jmv_results <- jmv::ttestPS(
       data = na.omit(data_wide),
-      pairs = list(list(i1 = colnames(data_wide)[[3]], i2 = colnames(data_wide)[[2]])),
+      pairs = list(list(
+        i1 = colnames(data_wide)[[3]], i2 = colnames(data_wide)[[2]]
+      )),
       students = TRUE,
       effectSize = TRUE,
       bf = TRUE,
@@ -766,8 +881,20 @@ subtitle_ggbetween_t_bayes <- function(data,
       # df is integer value for Student's t-test
       df = as.data.frame(jmv_results$ttest)$`df[stud]`,
       estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
-      bf = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`stat[bf]`, base = exp(1)), k = 1),
-      bf_error = ggstatsplot::specify_decimal_p(x = log(x = as.data.frame(jmv_results$ttest)$`err[bf]`, base = exp(1)), k = 1),
+      bf = ggstatsplot::specify_decimal_p(
+        x = log(
+          x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
+          base = exp(1)
+        ),
+        k = 1
+      ),
+      bf_error = ggstatsplot::specify_decimal_p(
+        x = log(
+          x = as.data.frame(jmv_results$ttest)$`err[bf]`,
+          base = exp(1)
+        ),
+        k = 1
+      ),
       effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
       n = sample_size
     )
@@ -794,9 +921,15 @@ subtitle_ggbetween_t_bayes <- function(data,
 #' @importFrom rlang enquo
 #' @importFrom stats kruskal.test
 #'
+#' @examples
+#' subtitle_ggbetween_kw_nonparametric(
+#'   data = ggplot2::msleep,
+#'   x = vore,
+#'   y = sleep_rem
+#' )
 #' @export
-#'
 
+# function body
 subtitle_ggbetween_kw_nonparametric <-
   function(data,
              x,
@@ -810,9 +943,19 @@ subtitle_ggbetween_kw_nonparametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      ) %>%
+      )
+
+    # convert the grouping variable to factor and drop unused levels
+    data %<>%
       stats::na.omit(.) %>%
-      tibble::as.tibble(x = .)
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~base::droplevels(x = base::as.factor(x = .))
+      )
+
+    # sample size
+    sample_size <- nrow(data)
 
     # setting up the anova model and getting its summary
     kw_stat <- stats::kruskal.test(
@@ -851,7 +994,7 @@ subtitle_ggbetween_kw_nonparametric <-
             k,
             p.value = TRUE
           ),
-          n = nrow(x = data)
+          n = sample_size
         )
       )
 
@@ -885,14 +1028,31 @@ subtitle_ggbetween_kw_nonparametric <-
 #' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #'
-#' @export
+#' @examples
 #'
+#' # going with the defaults
+#' subtitle_ggbetween_rob_anova(
+#'   data = ggplot2::midwest,
+#'   x = state,
+#'   y = percbelowpoverty
+#' )
+#'
+#' # changing defaults
+#' subtitle_ggbetween_rob_anova(
+#'   data = ggplot2::midwest,
+#'   x = state,
+#'   y = percollege,
+#'   tr = 0.2,
+#'   nboot = 10
+#' )
+#' @export
 
+# function body
 subtitle_ggbetween_rob_anova <-
   function(data,
              x,
              y,
-             tr,
+             tr = 0.1,
              nboot = 100,
              messages = TRUE,
              k = 3) {
@@ -903,9 +1063,19 @@ subtitle_ggbetween_rob_anova <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      ) %>%
+      )
+
+    # convert the grouping variable to factor and drop unused levels
+    data %<>%
       stats::na.omit(.) %>%
-      tibble::as.tibble(x = .)
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~base::droplevels(x = base::as.factor(x = .))
+      )
+
+    # sample size
+    sample_size <- nrow(data)
 
     # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for trimmed means
     robust_aov_stat <- t1way_ci(
@@ -974,7 +1144,7 @@ subtitle_ggbetween_rob_anova <-
           effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$xi[[1]], k),
           LL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.low[[1]], k),
           UL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.high[[1]], k),
-          n = nrow(x = data)
+          n = sample_size
         )
       )
 

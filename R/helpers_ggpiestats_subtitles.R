@@ -299,7 +299,6 @@ subtitle_contigency_tab <- function(data,
 #'   main = x
 #' )
 #' @export
-#'
 
 # defining the function
 subtitle_onesample_proptest <-

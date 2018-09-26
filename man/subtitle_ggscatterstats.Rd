@@ -43,6 +43,14 @@ to be displayed (Default: \code{TRUE}).}
 \description{
 Making text subtitle for the correlation test.
 }
+\examples{
+
+subtitle_ggscatterstats(
+  data = ggplot2::midwest,
+  x = area,
+  y = percblack
+)
+}
 \author{
 Indrajeet Patil
 }

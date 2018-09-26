@@ -259,7 +259,8 @@ ggscatterstats <-
       ) +
       ggplot2::geom_point(
         size = 3,
-        alpha = 0.5,
+        alpha = 0.4,
+        stroke = 0,
         position = ggplot2::position_jitter(
           width = width.jitter,
           height = height.jitter

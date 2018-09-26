@@ -24,6 +24,13 @@ to be displayed (Default: \code{TRUE}).}
 Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 (between-subjects designs).
 }
+\examples{
+subtitle_ggbetween_kw_nonparametric(
+  data = ggplot2::msleep,
+  x = vore,
+  y = sleep_rem
+)
+}
 \author{
 Indrajeet Patil
 }

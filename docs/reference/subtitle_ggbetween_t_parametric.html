@@ -166,8 +166,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_ggbetween_t_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"biased"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -220,12 +220,41 @@ or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># creating a smaller dataset</span>
+<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/msleep'>msleep</a></span>, <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>))
+
+<span class='co'># with defaults</span>
+<span class='fu'>subtitle_ggbetween_t_parametric</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
+)</div><div class='output co'>#&gt; paste(italic("t"), "(", c(df = "10.888"), ") = ", c(t = "1.494"), 
+#&gt;     ", ", italic("p"), " = ", "0.164", ", ", italic("g"), " = ", 
+#&gt;     c(carni = "-0.545"), ", 95% CI [", "-1.324", ", ", "0.233", 
+#&gt;     "]", ", ", italic("n"), " = ", 34L)</div><div class='input'>
+<span class='co'># changing defaults</span>
+<span class='fu'>subtitle_ggbetween_t_parametric</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
+  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"d"</span>
+)</div><div class='output co'>#&gt; paste(italic("t"), "(", c(df = "32.00"), ") = ", c(t = "1.95"), 
+#&gt;     ", ", italic("p"), " = ", "0.06", ", ", italic("d"), " = ", 
+#&gt;     c(carni = "-0.56"), ", 95% CI [", "-1.34", ", ", "0.22", 
+#&gt;     "]", ", ", italic("n"), " = ", 34L)</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     
