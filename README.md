@@ -6,7 +6,7 @@
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![CRAN
 Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.5.9000-orange.svg?style=flat-square)](commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.6-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Daily downloads
@@ -243,7 +243,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x00000000290eb3b0>
+#> <bytecode: 0x00000000290ea050>
 #> <environment: namespace:ggstatsplot>
 ```
 

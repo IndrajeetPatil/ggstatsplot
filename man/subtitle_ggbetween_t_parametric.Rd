@@ -62,7 +62,6 @@ subtitle_ggbetween_t_parametric(
   k = 2,
   effsize.type = "d"
 )
-
 }
 \author{
 Indrajeet Patil
