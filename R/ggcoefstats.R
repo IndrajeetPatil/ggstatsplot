@@ -292,21 +292,25 @@ ggcoefstats <- function(x,
 
     # renaming the effect size to estimate
     if (effsize == "eta") {
+      # partial eta-squared
       if (isTRUE(partial)) {
         tidy_df %<>%
           dplyr::rename(.data = ., estimate = partial.etasq)
         xlab <- "partial eta-squared"
       } else {
+        # eta-squared
         tidy_df %<>%
           dplyr::rename(.data = ., estimate = etasq)
         xlab <- "eta-squared"
       }
     } else if (effsize == "omega") {
+      # partial omega-squared
       if (isTRUE(partial)) {
         tidy_df %<>%
           dplyr::rename(.data = ., estimate = partial.omegasq)
         xlab <- "partial omega-squared"
       } else {
+        # omega-squared
         tidy_df %<>%
           dplyr::rename(.data = ., estimate = omegasq)
         xlab <- "omega-squared"

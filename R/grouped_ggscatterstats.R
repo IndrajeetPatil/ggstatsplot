@@ -29,7 +29,7 @@
 #' @importFrom rlang quo_name
 #' @importFrom purrr set_names
 #'
-#' @seealso \code{\link{ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
+#' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}}, \code{\link{grouped_ggcorrmat}}
 #'
 #' @inherit ggscatterstats return references
 #' @inherit ggscatterstats return details
@@ -67,6 +67,7 @@
 #' )
 #' 
 #' # labeling without expression
+#' \dontrun{
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::movies_long,
@@ -82,8 +83,8 @@
 #'   title.prefix = "Genre",
 #'   caption.text = "All movies have IMDB rating greater than 8."
 #' )
+#' }
 #' @export
-#'
 
 # defining the function
 grouped_ggscatterstats <- function(data,
@@ -130,15 +131,16 @@ grouped_ggscatterstats <- function(data,
   param_list <- base::as.list(base::match.call())
 
   # check that label.var and grouping.var are different
-  if ("label.var" %in% names(param_list) && "grouping.var" %in% names(param_list)) {
+  if (("label.var" %in% names(param_list)) && ("grouping.var" %in% names(param_list))) {
     if (as.character(param_list$label.var) == as.character(param_list$grouping.var)) {
       base::message(cat(
-        crayon::red("Error:"),
+        crayon::red("Error: "),
         crayon::blue(
           "Identical variable (",
           crayon::yellow(param_list$label.var),
           ") was used for both grouping and labeling, which is not allowed."
-        )
+        ),
+        sep = ""
       ))
     }
   }
@@ -236,6 +238,8 @@ grouped_ggscatterstats <- function(data,
                 axes.range.restrict = axes.range.restrict,
                 ggtheme = ggtheme,
                 ggstatsplot.layer = ggstatsplot.layer,
+                # there is already grouped_message() being displayed, which says
+                # the same thing
                 messages = messages
               )
             )
@@ -285,6 +289,8 @@ grouped_ggscatterstats <- function(data,
                 axes.range.restrict = axes.range.restrict,
                 ggtheme = ggtheme,
                 ggstatsplot.layer = ggstatsplot.layer,
+                # there is already grouped_message() being displayed, which says
+                # the same thing
                 messages = messages
               )
             )
@@ -334,6 +340,8 @@ grouped_ggscatterstats <- function(data,
               axes.range.restrict = axes.range.restrict,
               ggtheme = ggtheme,
               ggstatsplot.layer = ggstatsplot.layer,
+              # there is already grouped_message() being displayed, which says
+              # the same thing
               messages = messages
             )
           )

@@ -113,7 +113,6 @@
 #'   centrality.para = "median"
 #' )
 #' @export
-#'
 
 # defining the function
 ggscatterstats <-
@@ -468,10 +467,11 @@ ggscatterstats <-
     # display warning that this function doesn't produce a ggplot2 object
     if (isTRUE(marginal) && isTRUE(messages)) {
       base::message(cat(
-        crayon::red("Warning:"),
+        crayon::red("Warning: "),
         crayon::blue(
           "The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions."
-        )
+        ),
+        sep = ""
       ))
     }
 

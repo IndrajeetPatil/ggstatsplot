@@ -43,7 +43,16 @@ robust equivalents.
 }
 \examples{
 
-subtitle_onesample(x = iris$Sepal.Length, type = "r")
+# for reproducibility
+set.seed(123)
+
+subtitle_onesample(
+  x = iris$Sepal.Length,
+  type = "r"
+)
+}
+\seealso{
+\code{\link{gghistostats}}
 }
 \author{
 Indrajeet Patil

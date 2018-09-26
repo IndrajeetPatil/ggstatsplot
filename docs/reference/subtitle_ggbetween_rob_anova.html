@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -216,6 +216,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+# the following examples are not run in the manual because bootstrapping is taking too much
+# time
+</div><div class='input'><span class='co'># for reproducibility</span>
+<span class='fu'>set.seed</span>(<span class='fl'>123</span>)
+
 <span class='co'># going with the defaults</span>
 <span class='fu'>subtitle_ggbetween_rob_anova</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/midwest'>midwest</a></span>,
@@ -224,7 +229,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; Note: 95% CI for explanatory measure of effect size was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In case of error, try reducing the trimming level 0.1 and/or increasing the number of bootstrap samples 10</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 4, ",", "169.734", ") = ", "11.428", 
 #&gt;     ", ", italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", 
-#&gt;     "0.334", ", 95% CI [", "0.226", ", ", "0.383", "]", ", ", 
+#&gt;     "0.332", ", 95% CI [", "0.187", ", ", "0.402", "]", ", ", 
 #&gt;     italic("n"), " = ", 437L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_ggbetween_rob_anova</span>(
@@ -234,8 +239,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; Note: 95% CI for explanatory measure of effect size was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In case of error, try reducing the trimming level 0.2 and/or increasing the number of bootstrap samples 10</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 4, ",", "127.021", ") = ", "7.669", ", ", 
-#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.317", 
-#&gt;     ", 95% CI [", "0.239", ", ", "0.363", "]", ", ", italic("n"), 
+#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.310", 
+#&gt;     ", 95% CI [", "0.145", ", ", "0.422", "]", ", ", italic("n"), 
 #&gt;     " = ", 437L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

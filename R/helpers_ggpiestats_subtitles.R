@@ -26,6 +26,8 @@
 #' @importFrom tibble tribble
 #' @importFrom exact2x2 exact2x2
 #'
+#' @seealso \code{\link{ggpiestats}}
+#'
 #' @examples
 #' 
 #' # without counts data
@@ -49,8 +51,8 @@
 #'   counts = Freq
 #' )
 #' @export
-#'
 
+# function body
 subtitle_contigency_tab <- function(data,
                                     main,
                                     condition,
@@ -63,7 +65,7 @@ subtitle_contigency_tab <- function(data,
                                     messages = TRUE,
                                     k = 3) {
 
-  # ================================= dataframe ================================================================================
+  # ================================= dataframe ================================
 
   # creating a dataframe based on which variables are provided
   if (base::missing(counts)) {
@@ -87,7 +89,7 @@ subtitle_contigency_tab <- function(data,
       tibble::as_data_frame(x = .)
   }
 
-  # ======================================================== converting counts ========================================================
+  # ============================== converting counts ===========================
 
   # untable the dataframe based on the count for each obervation
   if (!base::missing(counts)) {
@@ -96,7 +98,7 @@ subtitle_contigency_tab <- function(data,
       dplyr::select(.data = ., -counts)
   }
 
-  # ================================= Pearson's chi-square ================================================================================
+  # ================================= Pearson's chi-square =====================
 
   # running Pearson's Chi-square test of independence using jmv::contTables
   if (!isTRUE(paired)) {
@@ -131,12 +133,13 @@ subtitle_contigency_tab <- function(data,
       # displaying message about bootstrap
       if (isTRUE(messages)) {
         base::message(cat(
-          crayon::green("Note:"),
+          crayon::green("Note: "),
           crayon::blue(
-            "95% CI for Cramer's V was computed with ",
+            "95% CI for Cramer's V was computed with",
             crayon::yellow(nboot),
             "bootstrap samples."
-          )
+          ),
+          sep = ""
         ))
       }
     }
@@ -374,7 +377,8 @@ subtitle_onesample_proptest <-
         crayon::red("Warning: "),
         crayon::blue("Proportion test will not be run because it requires"),
         crayon::yellow(legend.title),
-        crayon::blue("to have at least 2 levels with non-zero frequencies.")
+        crayon::blue("to have at least 2 levels with non-zero frequencies."),
+        sep = ""
       ))
     } else {
       # preparing proportion test subtitle for the plot

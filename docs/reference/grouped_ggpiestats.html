@@ -72,7 +72,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -365,8 +365,8 @@ combining (plot, caption).</p></dd>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>cyl</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; [31mWarning:[39m [34mThe output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.[39m</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>#' without condition and with count data</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># without condition and with count data</span>
 <span class='fu'>library</span>(<span class='no'>jmv</span>)
 
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html'>grouped_ggpiestats</a></span>(
@@ -374,7 +374,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Sex</span>
-)</div><div class='output co'>#&gt; [31mWarning:[39m [34mThe output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.[39m</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggpiestats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

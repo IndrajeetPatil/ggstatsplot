@@ -141,12 +141,13 @@ subtitle_ggscatterstats <-
       # displaying message about bootstrap
       if (isTRUE(messages)) {
         base::message(cat(
-          crayon::green("Note:"),
+          crayon::green("Note: "),
           crayon::blue(
             "95% CI for Spearman's rho was computed with ",
             crayon::yellow(nboot),
             "bootstrap samples."
-          )
+          ),
+          sep = ""
         ))
       }
 
@@ -242,12 +243,13 @@ subtitle_ggscatterstats <-
       # displaying message about bootstrap
       if (isTRUE(messages)) {
         base::message(cat(
-          crayon::green("Note:"),
+          crayon::green("Note: "),
           crayon::blue(
             "95% CI for percentage bend correlation was computed with",
             crayon::yellow(nboot),
             "bootstrap samples."
-          )
+          ),
+          sep = ""
         ))
       }
     }

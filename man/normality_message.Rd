@@ -40,6 +40,8 @@ normality_message(
 )
 }
 \seealso{
+\code{\link{ggbetweenstats}}
+
 Other helper_messages: \code{\link{bartlett_message}}
 }
 \concept{helper_messages}

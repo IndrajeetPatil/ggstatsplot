@@ -29,7 +29,7 @@
 #' @importFrom purrr map
 #' @importFrom tidyr nest
 #'
-#' @seealso \code{\link{ggcorrmat}} \code{\link{ggscatterstats}}
+#' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}
 #'
 #' @inherit ggcorrmat return references

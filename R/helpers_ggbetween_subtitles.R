@@ -140,12 +140,13 @@ subtitle_ggbetween_anova_parametric <-
       # displaying message about bootstrap
       if (isTRUE(messages)) {
         base::message(cat(
-          crayon::green("Note:"),
+          crayon::green("Note: "),
           crayon::blue(
             "95% CI for partial omega-squared was computed with",
             crayon::yellow(nboot),
             "bootstrap samples."
-          )
+          ),
+          sep = ""
         ))
       }
 
@@ -208,12 +209,13 @@ subtitle_ggbetween_anova_parametric <-
       # displaying message about bootstrap
       if (isTRUE(messages)) {
         base::message(cat(
-          crayon::green("Note:"),
+          crayon::green("Note: "),
           crayon::blue(
             "95% CI for partial eta-squared was computed with",
             crayon::yellow(nboot),
             "bootstrap samples."
-          )
+          ),
+          sep = ""
         ))
       }
 
@@ -670,12 +672,13 @@ subtitle_ggbetween_t_rob <-
     # displaying message about bootstrap
     if (isTRUE(messages)) {
       base::message(cat(
-        crayon::green("Note:"),
+        crayon::green("Note: "),
         crayon::blue(
           "95% CI for explanatory measure of effect size was computed with",
           crayon::yellow(nboot),
           "bootstrap samples."
-        )
+        ),
+        sep = ""
       ))
     }
 
@@ -1003,7 +1006,8 @@ subtitle_ggbetween_kw_nonparametric <-
         crayon::red("Note: "),
         crayon::blue(
           "No effect size available for Kruskal-Wallis Rank Sum Test."
-        )
+        ),
+        sep = ""
       ))
     }
 
@@ -1029,6 +1033,12 @@ subtitle_ggbetween_kw_nonparametric <-
 #'
 #' @examples
 #' 
+#' # the following examples are not run in the manual because bootstrapping is taking too much
+#' # time
+#' \dontrun{
+#' # for reproducibility
+#' set.seed(123)
+#' 
 #' # going with the defaults
 #' subtitle_ggbetween_rob_anova(
 #'   data = ggplot2::midwest,
@@ -1045,6 +1055,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #'   tr = 0.2,
 #'   nboot = 10
 #' )
+#' }
 #' @export
 
 # function body
@@ -1091,12 +1102,13 @@ subtitle_ggbetween_rob_anova <-
     # displaying message about bootstrap
     if (isTRUE(messages)) {
       base::message(cat(
-        crayon::green("Note:"),
+        crayon::green("Note: "),
         crayon::blue(
           "95% CI for explanatory measure of effect size was computed with",
           crayon::yellow(nboot),
           "bootstrap samples."
-        )
+        ),
+        sep = ""
       ))
     }
 
@@ -1151,13 +1163,14 @@ subtitle_ggbetween_rob_anova <-
     # displaying the details of the test that was run
     if (isTRUE(messages)) {
       base::message(cat(
-        crayon::green("Note:"),
+        crayon::green("Note: "),
         crayon::blue(
           "In case of error, try reducing the trimming level",
           crayon::yellow(tr),
           "and/or increasing the number of bootstrap samples",
           crayon::yellow(nboot)
-        )
+        ),
+        sep = ""
       ))
     }
 

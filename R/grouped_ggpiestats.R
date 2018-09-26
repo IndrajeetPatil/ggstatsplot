@@ -42,7 +42,7 @@
 #'   main = cyl
 #' )
 #' 
-#' #' without condition and with count data
+#' # without condition and with count data
 #' library(jmv)
 #' 
 #' ggstatsplot::grouped_ggpiestats(
@@ -52,7 +52,6 @@
 #'   grouping.var = Sex
 #' )
 #' @export
-#'
 
 # defining the function
 grouped_ggpiestats <- function(data,

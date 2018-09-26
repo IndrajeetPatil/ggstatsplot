@@ -73,7 +73,6 @@
 #'   counts = Freq
 #' )
 #' @export
-#'
 
 # defining the function
 ggpiestats <-
@@ -235,7 +234,11 @@ ggpiestats <-
             dplyr::group_by(.data = ., condition) %>%
             dplyr::summarize(.data = ., total_n = sum(counts)) %>%
             dplyr::ungroup(x = .) %>%
-            dplyr::mutate(.data = ., condition_n_label = paste("(n = ", total_n, ")", sep = "")) %>% # changing character variables into factors
+            dplyr::mutate(
+              .data = .,
+              condition_n_label = paste("(n = ", total_n, ")", sep = "")
+            ) %>%
+            # changing character variables into factors
             dplyr::mutate_if(
               .tbl = .,
               .predicate = purrr::is_bare_character,

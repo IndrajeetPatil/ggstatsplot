@@ -234,6 +234,7 @@ ggstatsplot::grouped_ggscatterstats(
 )
 
 # labeling without expression
+\dontrun{
 ggstatsplot::grouped_ggscatterstats(
   data = dplyr::filter(
     .data = ggstatsplot::movies_long,
@@ -250,11 +251,12 @@ ggstatsplot::grouped_ggscatterstats(
   caption.text = "All movies have IMDB rating greater than 8."
 )
 }
+}
 \references{
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggscatterstats.html}
 }
 \seealso{
-\code{\link{ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
+\code{\link{ggscatterstats}}, \code{\link{ggcorrmat}}, \code{\link{grouped_ggcorrmat}}
 }
 \author{
 Indrajeet Patil

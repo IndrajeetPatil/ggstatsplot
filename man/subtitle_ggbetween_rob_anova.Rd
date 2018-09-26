@@ -36,6 +36,12 @@ Making text subtitle for the robust ANOVA
 }
 \examples{
 
+# the following examples are not run in the manual because bootstrapping is taking too much
+# time
+\dontrun{
+# for reproducibility
+set.seed(123)
+
 # going with the defaults
 subtitle_ggbetween_rob_anova(
   data = ggplot2::midwest,
@@ -52,6 +58,7 @@ subtitle_ggbetween_rob_anova(
   tr = 0.2,
   nboot = 10
 )
+}
 }
 \author{
 Indrajeet Patil

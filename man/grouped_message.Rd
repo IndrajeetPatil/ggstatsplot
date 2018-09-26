@@ -9,4 +9,8 @@ grouped_message()
 \description{
 A note to the user about the class of the output object.
 }
+\seealso{
+\code{\link{grouped_ggbetweenstats}}, \code{\link{grouped_gghistostats}},
+\code{\link{grouped_ggscatterstats}}, \code{\link{grouped_ggpiestats}}, \code{\link{grouped_ggcorrmat}}
+}
 \keyword{internal}

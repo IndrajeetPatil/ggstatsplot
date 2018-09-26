@@ -274,7 +274,7 @@ ggbetweenstats <- function(data,
       .funs = ~base::droplevels(x = base::as.factor(x = .))
     )
 
-  #------------------------------------------------------ plot ---------------------------------------------------------------
+  #--------------------- plot ---------------------------------------------------
 
   # create the basic plot
   plot <-
@@ -356,7 +356,7 @@ ggbetweenstats <- function(data,
       )
   }
 
-  #------------------------------------------------ subtitle preparation -------------------------------------------------------------------
+  #--------------------- subtitle preparation ----------------------------------
 
   # figure out which test to run based on the number of levels of the independent variables
   if (length(levels(as.factor(data$x))) < 3) {
@@ -365,7 +365,7 @@ ggbetweenstats <- function(data,
     test <- "anova"
   }
 
-  #---------------------------------------------- parametric anova -------------------------------------------------------------------
+  #---------------------------- parametric anova -------------------------------
   # running anova
   if (test == "anova") {
     # running parametric ANOVA
@@ -391,7 +391,7 @@ ggbetweenstats <- function(data,
         messages = messages
       )
 
-      #---------------------------------------------------------- robust ANOVA --------------------------------------------------------
+      #---------------------- robust ANOVA -------------------------------------
     } else if (type == "robust" || type == "r") {
       subtitle <- subtitle_ggbetween_rob_anova(
         data = data,
@@ -428,7 +428,7 @@ ggbetweenstats <- function(data,
         )
     }
 
-    #------------------------------------------------- parametric t-test ------------------------------------------------------------
+    #-------------------------------- parametric t-test -------------------------
 
     if (type == "parametric" || type == "p") {
       # Welch's t-test run by default
@@ -443,7 +443,7 @@ ggbetweenstats <- function(data,
         k = k
       )
 
-      #------------------------------------------------- Mann-Whitney U test ------------------------------------------------------------
+      #--------------------------------- Mann-Whitney U test ---------------------------
     } else if (type == "nonparametric" || type == "np") {
       subtitle <- subtitle_ggbetween_mann_nonparametric(
         data = data,
@@ -453,7 +453,7 @@ ggbetweenstats <- function(data,
         k = k
       )
 
-      #------------------------------------------------- robust t-test ------------------------------------------------------------
+      #------------------------- robust t-test --------------------------------
     } else if (type == "robust" || type == "r") {
       subtitle <- subtitle_ggbetween_t_rob(
         data = data,
@@ -465,7 +465,7 @@ ggbetweenstats <- function(data,
         messages = messages
       )
 
-      #------------------------------------------------- bayesian t-test ------------------------------------------------------------
+      #--------------------------- bayesian t-test -----------------------------
     } else if (type == "bayes" || type == "bf") {
       subtitle <- subtitle_ggbetween_t_bayes(
         data = data,
@@ -478,7 +478,7 @@ ggbetweenstats <- function(data,
     }
   }
 
-  #------------------------------------------------- annotations and themes ------------------------------------------------------------
+  #------------------------------ annotations and themes -----------------------
 
   # if bayes factor message needs to be displayed
   if (test == "t-test" &&
@@ -514,7 +514,7 @@ ggbetweenstats <- function(data,
       direction = direction
     )
 
-  #------------------------------------------------- outlier tagging ------------------------------------------------------------
+  #--------------------------- outlier tagging ---------------------------------
 
   # if outlier.tagging is set to TRUE, first figure out what labels need to be
   # attached to the outlier. If outlier label is not provided, outlier labels
@@ -594,7 +594,7 @@ ggbetweenstats <- function(data,
     }
   }
 
-  #------------------------------------------------- labels with mean values ------------------------------------------------------------
+  #------------------------ labels with mean values ------------------------------
 
   # highlight the mean of each group
   if (isTRUE(mean.plotting)) {

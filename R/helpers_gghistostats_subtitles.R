@@ -39,11 +39,18 @@
 #' @importFrom crayon red
 #' @importFrom psych cohen.d.ci
 #'
+#' @seealso \code{\link{gghistostats}}
+#'
 #' @examples
 #' 
-#' subtitle_onesample(x = iris$Sepal.Length, type = "r")
+#' # for reproducibility
+#' set.seed(123)
+#' 
+#' subtitle_onesample(
+#'   x = iris$Sepal.Length,
+#'   type = "r"
+#' )
 #' @export
-#'
 
 subtitle_onesample <- function(data = NULL,
                                x,
@@ -197,14 +204,15 @@ subtitle_onesample <- function(data = NULL,
     # displaying message about bootstrap
     if (isTRUE(messages)) {
       base::message(cat(
-        crayon::green("Note:"),
+        crayon::green("Note: "),
         crayon::blue(
           "95% CI for robsut location measure",
           crayon::yellow("median, Huber Psi"),
           "computed with ",
           crayon::yellow(nboot),
           "bootstrap samples."
-        )
+        ),
+        sep = ""
       ))
     }
 

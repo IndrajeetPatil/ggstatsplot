@@ -73,7 +73,7 @@ robust equivalents." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -224,18 +224,30 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='gghistostats.html'>gghistostats</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>subtitle_onesample</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; [32mNote:[39m [34m95% CI for robsut location measure [33mmedian, Huber Psi[34m computed with  [33m100[34m bootstrap samples.[39m</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste("M"[robust], " = ", "5.820", ", 95% CI [", "5.683", ", ", 
-#&gt;     "5.976", "], ", italic("p"), " = ", "&lt; 0.001", ", ", italic("n"), 
+<span class='co'># for reproducibility</span>
+<span class='fu'>set.seed</span>(<span class='fl'>123</span>)
+
+<span class='fu'>subtitle_onesample</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note: 95% CI for robsut location measure median, Huber Psi computed with  100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste("M"[robust], " = ", "5.820", ", 95% CI [", "5.693", ", ", 
+#&gt;     "5.988", "], ", italic("p"), " = ", "&lt; 0.001", ", ", italic("n"), 
 #&gt;     " = ", 150L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

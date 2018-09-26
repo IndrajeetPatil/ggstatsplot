@@ -227,7 +227,8 @@ ggcorrmat <-
           crayon::red("Warning: "),
           crayon::blue(
             "The number of variable names does not equal the number of variables."
-          )
+          ),
+          sep = ""
         ))
       } else {
         # otherwise rename the columns with the new names
@@ -435,10 +436,11 @@ ggcorrmat <-
       # if p-values were adjusted, notify how they are going to be displayed
       if (p.adjust.method != "none") {
         base::message(cat(
-          crayon::green("Note:"),
+          crayon::green("Note: "),
           crayon::blue(
             "In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values."
-          )
+          ),
+          sep = ""
         ))
       }
 
@@ -467,10 +469,11 @@ ggcorrmat <-
         return(ci.mat)
       } else {
         base::message(cat(
-          crayon::red("Warning:"),
+          crayon::red("Warning: "),
           crayon::blue(
             "Confidence intervals for correlations are currently not available for robust correlation."
-          )
+          ),
+          sep = ""
         ))
       }
     } else if (output == "plot") {
@@ -478,10 +481,11 @@ ggcorrmat <-
       # if p-values were adjusted, notify how they are going to be displayed
       if (p.adjust.method != "none") {
         base::message(cat(
-          crayon::green("Note:"),
+          crayon::green("Note: "),
           crayon::blue(
             "In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values."
-          )
+          ),
+          sep = ""
         ))
       }
 

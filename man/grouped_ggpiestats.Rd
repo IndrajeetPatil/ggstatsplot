@@ -147,7 +147,7 @@ ggstatsplot::grouped_ggpiestats(
   main = cyl
 )
 
-#' without condition and with count data
+# without condition and with count data
 library(jmv)
 
 ggstatsplot::grouped_ggpiestats(

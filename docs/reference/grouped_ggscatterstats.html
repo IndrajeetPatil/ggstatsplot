@@ -74,7 +74,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -448,7 +448,7 @@ combining (plot, caption).</p></dd>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code> <code><a href='ggcorrmat.html'>ggcorrmat</a></code> <code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
+    <div class='dont-index'><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code>, <code><a href='ggcorrmat.html'>ggcorrmat</a></code>, <code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -468,7 +468,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span> + <span class='fu'>I</span>(<span class='no'>x</span>^<span class='fl'>3</span>),
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>
-)</div><div class='output co'>#&gt; [31mWarning:[39m [34mThe plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.[39m</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; [31mWarning:[39m [34mThe plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.[39m</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; [31mWarning:[39m [34mThe output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.[39m</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># using labeling</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/mpg'>mpg</a></span>, <span class='no'>cyl</span> <span class='kw'>!=</span> <span class='fl'>5</span>),
@@ -481,8 +481,8 @@ combining (plot, caption).</p></dd>
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='st'>"hwy &gt; 25 &amp; displ &gt; 2.5"</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># labeling without expression</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
+# labeling without expression
+</div><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
     <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/movies_long.html'>movies_long</a></span>,
     <span class='no'>rating</span> <span class='kw'>==</span> <span class='fl'>8</span>,
@@ -496,7 +496,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Genre"</span>,
   <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"All movies have IMDB rating greater than 8."</span>
-)</div><div class='output co'>#&gt; [31mWarning:[39m [34mThe output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.[39m</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

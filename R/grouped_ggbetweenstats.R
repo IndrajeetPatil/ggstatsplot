@@ -50,7 +50,6 @@
 #'   bf.message = TRUE
 #' )
 #' @export
-#'
 
 # defining the function
 grouped_ggbetweenstats <- function(data,

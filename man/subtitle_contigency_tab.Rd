@@ -74,6 +74,9 @@ subtitle_contigency_tab(
   counts = Freq
 )
 }
+\seealso{
+\code{\link{ggpiestats}}
+}
 \author{
 Indrajeet Patil
 }

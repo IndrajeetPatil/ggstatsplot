@@ -258,7 +258,7 @@ ggstatsplot::grouped_ggcorrmat(
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 }
 \seealso{
-\code{\link{ggcorrmat}} \code{\link{ggscatterstats}}
+\code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 \code{\link{grouped_ggscatterstats}}
 }
 \author{
