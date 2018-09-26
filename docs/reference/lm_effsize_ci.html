@@ -180,7 +180,7 @@ eta-squared effect size and its confidence interval.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>The linear model object (can be of class <code>lm</code>, <code>aov</code>, or
+      <td><p>The linear model object (can be of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
 <code>aovlist</code>).</p></td>
     </tr>
     <tr>
@@ -191,7 +191,9 @@ eta-squared effect size and its confidence interval.</p>
     <tr>
       <th>partial</th>
       <td><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>).</p></td>
+are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
+will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+<code>aovlist</code>.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>

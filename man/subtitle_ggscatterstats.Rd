@@ -45,10 +45,22 @@ Making text subtitle for the correlation test.
 }
 \examples{
 
+# without changing defaults
 subtitle_ggscatterstats(
   data = ggplot2::midwest,
   x = area,
   y = percblack
+)
+
+# changing defaults
+subtitle_ggscatterstats(
+  data = ggplot2::midwest,
+  x = area,
+  y = percblack,
+  nboot = 25,
+  beta = 0.2,
+  type = "r",
+  k = 1
 )
 }
 \author{

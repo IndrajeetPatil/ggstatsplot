@@ -40,7 +40,8 @@ Making text subtitle for the robust ANOVA
 subtitle_ggbetween_rob_anova(
   data = ggplot2::midwest,
   x = state,
-  y = percbelowpoverty
+  y = percbelowpoverty,
+  nboot = 10
 )
 
 # changing defaults

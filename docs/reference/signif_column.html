@@ -198,15 +198,15 @@ statistical significance.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># vector as input</span>
-<span class='fu'>signif_column</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='fl'>1</span>, <span class='fl'>0.00001</span>, <span class='fl'>0.001</span>, <span class='fl'>0.01</span>))</div><div class='output co'>#&gt; [90m# A tibble: 6 x 2[39m
+<span class='fu'>signif_column</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='fl'>1</span>, <span class='fl'>0.00001</span>, <span class='fl'>0.001</span>, <span class='fl'>0.01</span>))</div><div class='output co'>#&gt; [38;5;246m# A tibble: 6 x 2[39m
 #&gt;         p significance
-#&gt;     [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m       
-#&gt; [90m1[39m 0.05    ns          
-#&gt; [90m2[39m 0.1     ns          
-#&gt; [90m3[39m 1       ns          
-#&gt; [90m4[39m 0.000[4m0[24m[4m1[24m ***         
-#&gt; [90m5[39m 0.001   **          
-#&gt; [90m6[39m 0.01    *           </div><div class='input'>
+#&gt;     [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m       
+#&gt; [38;5;250m1[39m 0.05    ns          
+#&gt; [38;5;250m2[39m 0.1     ns          
+#&gt; [38;5;250m3[39m 1       ns          
+#&gt; [38;5;250m4[39m 0.000[4m0[24m[4m1[24m ***         
+#&gt; [38;5;250m5[39m 0.001   **          
+#&gt; [38;5;250m6[39m 0.01    *           </div><div class='input'>
 <span class='co'># dataframe as input</span>
 <span class='co'># preparing a newdataframe</span>
 <span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tibble.html'>tibble</a></span>(
@@ -215,23 +215,23 @@ statistical significance.</p>
   <span class='kw'>p.value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>, <span class='fl'>0.00001</span>, <span class='fl'>0.05</span>, <span class='fl'>0.01</span>)
 )
 
-<span class='fu'>signif_column</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='no'>p.value</span>)</div><div class='output co'>#&gt; [90m# A tibble: 5 x 4[39m
+<span class='fu'>signif_column</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='no'>p.value</span>)</div><div class='output co'>#&gt; [38;5;246m# A tibble: 5 x 4[39m
 #&gt;       x     y p.value significance
-#&gt;   [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m       
-#&gt; [90m1[39m     1     1 0.1     ns          
-#&gt; [90m2[39m     2     1 0.5     ns          
-#&gt; [90m3[39m     3     1 0.000[4m0[24m[4m1[24m ***         
-#&gt; [90m4[39m     4     1 0.05    ns          
-#&gt; [90m5[39m     5     1 0.01    *           </div><div class='input'>
+#&gt;   [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m       
+#&gt; [38;5;250m1[39m     1     1 0.1     ns          
+#&gt; [38;5;250m2[39m     2     1 0.5     ns          
+#&gt; [38;5;250m3[39m     3     1 0.000[4m0[24m[4m1[24m ***         
+#&gt; [38;5;250m4[39m     4     1 0.05    ns          
+#&gt; [38;5;250m5[39m     5     1 0.01    *           </div><div class='input'>
 <span class='co'># numbers entered as characters are also tolerated</span>
-<span class='fu'>signif_column</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"0.1"</span>, <span class='st'>"0.0002"</span>, <span class='st'>"0.03"</span>, <span class='st'>"0.65"</span>))</div><div class='output co'>#&gt; [32mNote:[39m [34mThe entered vector is of class [33mfactor[34m ; attempting to convert it to numeric.[39m</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; [90m# A tibble: 5 x 2[39m
+<span class='fu'>signif_column</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"0.1"</span>, <span class='st'>"0.0002"</span>, <span class='st'>"0.03"</span>, <span class='st'>"0.65"</span>))</div><div class='output co'>#&gt; [32mNote:[39m [34mThe entered vector is of class [33mfactor[34m ; attempting to convert it to numeric.[39m</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; [38;5;246m# A tibble: 5 x 2[39m
 #&gt;        p significance
-#&gt;    [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m       
-#&gt; [90m1[39m 1      ns          
-#&gt; [90m2[39m 0.1    ns          
-#&gt; [90m3[39m 0.000[4m2[24m ***         
-#&gt; [90m4[39m 0.03   *           
-#&gt; [90m5[39m 0.65   ns          </div></pre>
+#&gt;    [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m       
+#&gt; [38;5;250m1[39m 1      ns          
+#&gt; [38;5;250m2[39m 0.1    ns          
+#&gt; [38;5;250m3[39m 0.000[4m2[24m ***         
+#&gt; [38;5;250m4[39m 0.03   *           
+#&gt; [38;5;250m5[39m 0.65   ns          </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

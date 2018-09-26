@@ -7,9 +7,9 @@ caption.}
 \usage{
 ggcoefstats(x, output = "plot", scales = NULL, conf.method = "Wald",
   p.kr = TRUE, coefficient.type = "beta", effsize = "eta",
-  nboot = 500, point.color = "blue", point.size = 3,
-  point.shape = 16, conf.int = TRUE, conf.level = 0.95,
-  se.type = "nid", k = 3, k.caption.summary = 0,
+  partial = TRUE, nboot = 500, point.color = "blue",
+  point.size = 3, point.shape = 16, conf.int = TRUE,
+  conf.level = 0.95, se.type = "nid", k = 3, k.caption.summary = 0,
   exclude.intercept = TRUE, exponentiate = FALSE,
   errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
@@ -53,6 +53,11 @@ of threshold parameters) or \code{"both"}.}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}.}
+
+\item{partial}{Logical that decides if partial eta-squared or omega-squared
+are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
+will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
+\code{aovlist}.}
 
 \item{nboot}{Number of bootstrap samples for confidence intervals for partial
 eta-squared and omega-squared (Default: \code{500}).}

@@ -17,6 +17,8 @@ utils::globalVariables(
     "estimate",
     "eta",
     "omega",
+    "etasq",
+    "omegasq",
     "perc",
     "cramer",
     "cramer_ci",

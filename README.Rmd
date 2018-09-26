@@ -859,7 +859,7 @@ ggstatsplot::combine_plots(
 For more on how to modify it, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
 
-# Using `ggstatsplot` helpers to display text results on plots
+## Using `ggstatsplot` helpers to display text results
 
 Sometimes you may not like the default plot produced by `ggstatsplot`. In such
 cases, you can use other custom plots (from `ggplot2` or other plotting

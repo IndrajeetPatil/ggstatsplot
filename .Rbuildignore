@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
+^Rplots.pdf$
 ^README-.*\.png$
 ^CONDUCT\.md$
 ^cran-comments\.md$

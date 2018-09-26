@@ -193,6 +193,8 @@
 <li>
 <code>ggcorrmat</code> can now show <code>robust</code> correlation coefficients in the matrix plot.</li>
 <li>For <code>gghistostats</code>, <code>binwidth</code> value, if not specified, is computed with <code>(max-min)/sqrt(n)</code>. This is basically to get rid of the warnings ggplot2 produces. Thanks to Chuck Powell’s PR (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/43'>#43</a>).</li>
+<li>
+<code>ggcoefstats</code> gains a new argument <code>partial</code> and can display eta-squared and omega-squared effect sizes for anovas, in addition to the prior partial variants of these effect sizes.</li>
 </ul>
 <p>BUG FIXES</p>
 <ul>

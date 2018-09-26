@@ -48,6 +48,9 @@ MINOR CHANGES
   - For `gghistostats`, `binwidth` value, if not specified, is computed with
   `(max-min)/sqrt(n)`. This is basically to get rid of the warnings ggplot2
   produces. Thanks to Chuck Powell's PR (#43).
+  - `ggcoefstats` gains a new argument `partial` and can display eta-squared and
+  omega-squared effect sizes for anovas, in addition to the prior partial
+  variants of these effect sizes.
 
 BUG FIXES
   - `grouped_ggpiestats` wasn't working when only `main` variable was provided

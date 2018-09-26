@@ -228,13 +228,26 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='co'># without changing defaults</span>
 <span class='fu'>subtitle_ggscatterstats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/midwest'>midwest</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>area</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percblack</span>
 )</div><div class='output co'>#&gt; paste("Pearson's ", italic("r"), "(", 435L, ")", " = ", "-0.046", 
 #&gt;     ", 95% CI [", "-0.140", ", ", "0.048", "], ", italic("p"), 
-#&gt;     " = ", "0.332", ", ", italic("n"), " = ", 437L)</div></pre>
+#&gt;     " = ", "0.332", ", ", italic("n"), " = ", 437L)</div><div class='input'>
+<span class='co'># changing defaults</span>
+<span class='fu'>subtitle_ggscatterstats</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/midwest'>midwest</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>area</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percblack</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>,
+  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>1</span>
+)</div><div class='output co'>#&gt; [32mNote:[39m [34m95% CI for percentage bend correlation was computed with [33m25[34m bootstrap samples.[39m</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste("robust ", italic(r), " = ", "0.0", ", 95% CI [", "-0.1", 
+#&gt;     ", ", "0.1", "], ", italic("p"), " = ", "1.0", ", ", italic("n"), 
+#&gt;     " = ", 437L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

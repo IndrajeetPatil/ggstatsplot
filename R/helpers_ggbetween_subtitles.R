@@ -1034,7 +1034,8 @@ subtitle_ggbetween_kw_nonparametric <-
 #' subtitle_ggbetween_rob_anova(
 #'   data = ggplot2::midwest,
 #'   x = state,
-#'   y = percbelowpoverty
+#'   y = percbelowpoverty,
+#'   nboot = 10
 #' )
 #'
 #' # changing defaults

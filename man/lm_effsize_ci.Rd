@@ -9,14 +9,16 @@ lm_effsize_ci(object, effsize = "eta", partial = TRUE,
   conf.level = 0.95, nboot = 500)
 }
 \arguments{
-\item{object}{The linear model object (can be of class \code{lm}, \code{aov}, or
+\item{object}{The linear model object (can be of class \code{lm}, \code{aov}, \code{anova}, or
 \code{aovlist}).}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}.}
 
 \item{partial}{Logical that decides if partial eta-squared or omega-squared
-are returned (Default: \code{TRUE}).}
+are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
+will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
+\code{aovlist}.}
 
 \item{conf.level}{Numeric specifying Level of confidence for the confidence
 interval (Default: \code{0.95}).}

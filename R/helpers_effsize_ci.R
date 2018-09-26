@@ -635,12 +635,14 @@ robcor_ci <- function(data,
 #' @return A dataframe with results from `stats::lm()` with partial eta-squared,
 #'   omega-squared, and bootstrapped confidence interval for the same.
 #'
-#' @param object The linear model object (can be of class `lm`, `aov`, or
+#' @param object The linear model object (can be of class `lm`, `aov`, `anova`, or
 #'   `aovlist`).
 #' @param effsize Character describing the effect size to be displayed: `"eta"`
 #'   (default) or `"omega"`.
 #' @param partial Logical that decides if partial eta-squared or omega-squared
-#'   are returned (Default: `TRUE`).
+#'   are returned (Default: `TRUE`). If `FALSE`, eta-squared or omega-squared
+#'   will be returned. Valid only for objects of class `lm`, `aov`, `anova`, or
+#'   `aovlist`.
 #' @param conf.level Numeric specifying Level of confidence for the confidence
 #'   interval (Default: `0.95`).
 #' @param nboot Number of bootstrap samples for confidence intervals for partial

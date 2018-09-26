@@ -397,15 +397,15 @@ of p-values.</p>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/msleep'>msleep</a></span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"r"</span>
-)</div><div class='output co'>#&gt; [90m# A tibble: 6 x 7[39m
+)</div><div class='output co'>#&gt; [38;5;246m# A tibble: 6 x 7[39m
 #&gt;   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
-#&gt;   [3m[90m&lt;chr&gt;[39m[23m             [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m       [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
-#&gt; [90m1[39m sleep_total        1         0.75       -[31m0[39m[31m.[39m[31m47[39m -[31m1[39m      -[31m0[39m[31m.[39m[31m36[39m  -[31m0[39m[31m.[39m[31m31[39m
-#&gt; [90m2[39m sleep_rem          0.75      1          -[31m0[39m[31m.[39m[31m34[39m -[31m0[39m[31m.[39m[31m75[39m   -[31m0[39m[31m.[39m[31m22[39m  -[31m0[39m[31m.[39m[31m33[39m
-#&gt; [90m3[39m sleep_cycle       -[31m0[39m[31m.[39m[31m47[39m     -[31m0[39m[31m.[39m[31m34[39m        1     0.47    0.85   0.42
-#&gt; [90m4[39m awake             -[31m1[39m        -[31m0[39m[31m.[39m[31m75[39m        0.47  1       0.36   0.31
-#&gt; [90m5[39m brainwt           -[31m0[39m[31m.[39m[31m36[39m     -[31m0[39m[31m.[39m[31m22[39m        0.85  0.36    1      0.93
-#&gt; [90m6[39m bodywt            -[31m0[39m[31m.[39m[31m31[39m     -[31m0[39m[31m.[39m[31m33[39m        0.42  0.31    0.93   1   </div><div class='input'>
+#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m             [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m       [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;dbl&gt;[39m[23m
+#&gt; [38;5;250m1[39m sleep_total        1         0.75       -[31m0[39m[31m.[39m[31m47[39m -[31m1[39m      -[31m0[39m[31m.[39m[31m36[39m  -[31m0[39m[31m.[39m[31m31[39m
+#&gt; [38;5;250m2[39m sleep_rem          0.75      1          -[31m0[39m[31m.[39m[31m34[39m -[31m0[39m[31m.[39m[31m75[39m   -[31m0[39m[31m.[39m[31m22[39m  -[31m0[39m[31m.[39m[31m33[39m
+#&gt; [38;5;250m3[39m sleep_cycle       -[31m0[39m[31m.[39m[31m47[39m     -[31m0[39m[31m.[39m[31m34[39m        1     0.47    0.85   0.42
+#&gt; [38;5;250m4[39m awake             -[31m1[39m        -[31m0[39m[31m.[39m[31m75[39m        0.47  1       0.36   0.31
+#&gt; [38;5;250m5[39m brainwt           -[31m0[39m[31m.[39m[31m36[39m     -[31m0[39m[31m.[39m[31m22[39m        0.85  0.36    1      0.93
+#&gt; [38;5;250m6[39m bodywt            -[31m0[39m[31m.[39m[31m31[39m     -[31m0[39m[31m.[39m[31m33[39m        0.42  0.31    0.93   1   </div><div class='input'>
 <span class='co'># setting output = "p-values" (or "p") will return the p-value matrix</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/msleep'>msleep</a></span>,
@@ -413,15 +413,15 @@ of p-values.</p>
   <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"p"</span>
-)</div><div class='output co'>#&gt; [32mNote:[39m [34mIn the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.[39m</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; [90m# A tibble: 6 x 7[39m
+)</div><div class='output co'>#&gt; [32mNote:[39m [34mIn the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.[39m</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; [38;5;246m# A tibble: 6 x 7[39m
 #&gt;   variable    sleep_total sleep_rem sleep_cycle    awake  brainwt   bodywt
-#&gt;   [3m[90m&lt;chr&gt;[39m[23m             [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m       [3m[90m&lt;dbl&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m
-#&gt; [90m1[39m sleep_total    0.  [90m [39m     6.11[90me[39m[31m-12[39m    3.43[90me[39m[31m- 2[39m 0.  [90m [39m    6.79[90me[39m[31m- 5[39m 3.85[90me[39m[31m- 6[39m
-#&gt; [90m2[39m sleep_rem      4.07[90me[39m[31m-13[39m  0.  [90m [39m       2.97[90me[39m[31m- 1[39m 6.11[90me[39m[31m-12[39m 7.27[90me[39m[31m- 2[39m 1.13[90me[39m[31m- 2[39m
-#&gt; [90m3[39m sleep_cycle    2.28[90me[39m[31m- 3[39m  1.98[90me[39m[31m- 2[39m    0.  [90m [39m    3.43[90me[39m[31m- 2[39m 2.23[90me[39m[31m- 9[39m 3.18[90me[39m[31m- 5[39m
-#&gt; [90m4[39m awake          0.  [90m [39m     4.07[90me[39m[31m-13[39m    2.28[90me[39m[31m- 3[39m 0.  [90m [39m    6.79[90me[39m[31m- 5[39m 3.85[90me[39m[31m- 6[39m
-#&gt; [90m5[39m brainwt        4.53[90me[39m[31m- 6[39m  4.85[90me[39m[31m- 3[39m    1.49[90me[39m[31m-10[39m 4.53[90me[39m[31m- 6[39m 0.  [90m [39m    4.83[90me[39m[31m-17[39m
-#&gt; [90m6[39m bodywt         2.57[90me[39m[31m- 7[39m  7.52[90me[39m[31m- 4[39m    2.12[90me[39m[31m- 6[39m 2.57[90me[39m[31m- 7[39m 3.22[90me[39m[31m-18[39m 0.  [90m [39m   </div><div class='input'>
+#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m             [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m       [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m
+#&gt; [38;5;250m1[39m sleep_total    0.  [38;5;246m [39m     6.11[38;5;246me[39m[31m-12[39m    3.43[38;5;246me[39m[31m- 2[39m 0.  [38;5;246m [39m    6.79[38;5;246me[39m[31m- 5[39m 3.85[38;5;246me[39m[31m- 6[39m
+#&gt; [38;5;250m2[39m sleep_rem      4.07[38;5;246me[39m[31m-13[39m  0.  [38;5;246m [39m       2.97[38;5;246me[39m[31m- 1[39m 6.11[38;5;246me[39m[31m-12[39m 7.27[38;5;246me[39m[31m- 2[39m 1.13[38;5;246me[39m[31m- 2[39m
+#&gt; [38;5;250m3[39m sleep_cycle    2.28[38;5;246me[39m[31m- 3[39m  1.98[38;5;246me[39m[31m- 2[39m    0.  [38;5;246m [39m    3.43[38;5;246me[39m[31m- 2[39m 2.23[38;5;246me[39m[31m- 9[39m 3.18[38;5;246me[39m[31m- 5[39m
+#&gt; [38;5;250m4[39m awake          0.  [38;5;246m [39m     4.07[38;5;246me[39m[31m-13[39m    2.28[38;5;246me[39m[31m- 3[39m 0.  [38;5;246m [39m    6.79[38;5;246me[39m[31m- 5[39m 3.85[38;5;246me[39m[31m- 6[39m
+#&gt; [38;5;250m5[39m brainwt        4.53[38;5;246me[39m[31m- 6[39m  4.85[38;5;246me[39m[31m- 3[39m    1.49[38;5;246me[39m[31m-10[39m 4.53[38;5;246me[39m[31m- 6[39m 0.  [38;5;246m [39m    4.83[38;5;246me[39m[31m-17[39m
+#&gt; [38;5;250m6[39m bodywt         2.57[38;5;246me[39m[31m- 7[39m  7.52[38;5;246me[39m[31m- 4[39m    2.12[38;5;246me[39m[31m- 6[39m 2.57[38;5;246me[39m[31m- 7[39m 3.22[38;5;246me[39m[31m-18[39m 0.  [38;5;246m [39m   </div><div class='input'>
 <span class='co'># setting output = "ci" will return the confidence intervals for unique</span>
 <span class='co'># correlation pairs</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(
@@ -429,24 +429,24 @@ of p-values.</p>
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"BH"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
-)</div><div class='output co'>#&gt; [90m# A tibble: 15 x 7[39m
+)</div><div class='output co'>#&gt; [38;5;246m# A tibble: 15 x 7[39m
 #&gt;    pair             r   lower   upper         p lower.adj upper.adj
-#&gt;    [3m[90m&lt;chr&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m
-#&gt; [90m 1[39m slp_t-slp_r  0.752  0.617   0.844  2.92[90me[39m[31m- 12[39m   0.531     0.877  
-#&gt; [90m 2[39m slp_t-slp_c -[31m0[39m[31m.[39m[31m474[39m -[31m0[39m[31m.[39m[31m706[39m  -[31m0[39m[31m.[39m[31m150[39m  6.17[90me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m786[39m     0.030[4m2[24m 
-#&gt; [90m 3[39m slp_t-awake -[31m1[39m[31m.[39m[31m000[39m -[31m1[39m[31m.[39m[31m000[39m  -[31m1[39m[31m.[39m[31m000[39m  2.42[90me[39m[31m-226[39m  -[31m1[39m[31m.[39m[31m000[39m    -[31m1[39m[31m.[39m[31m000[39m  
-#&gt; [90m 4[39m slp_t-brnwt -[31m0[39m[31m.[39m[31m360[39m -[31m0[39m[31m.[39m[31m569[39m  -[31m0[39m[31m.[39m[31m108[39m  6.35[90me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m653[39m     0.025[4m7[24m 
-#&gt; [90m 5[39m slp_t-bdywt -[31m0[39m[31m.[39m[31m312[39m -[31m0[39m[31m.[39m[31m494[39m  -[31m0[39m[31m.[39m[31m103[39m  4.09[90me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m572[39m     0.005[4m3[24m[4m9[24m
-#&gt; [90m 6[39m slp_r-slp_c -[31m0[39m[31m.[39m[31m338[39m -[31m0[39m[31m.[39m[31m614[39m   0.012[4m0[24m 5.84[90me[39m[31m-  2[39m  -[31m0[39m[31m.[39m[31m715[39m     0.191  
-#&gt; [90m 7[39m slp_r-awake -[31m0[39m[31m.[39m[31m752[39m -[31m0[39m[31m.[39m[31m844[39m  -[31m0[39m[31m.[39m[31m617[39m  2.91[90me[39m[31m- 12[39m  -[31m0[39m[31m.[39m[31m877[39m    -[31m0[39m[31m.[39m[31m531[39m  
-#&gt; [90m 8[39m slp_r-brnwt -[31m0[39m[31m.[39m[31m221[39m -[31m0[39m[31m.[39m[31m476[39m   0.067[4m0[24m 1.31[90me[39m[31m-  1[39m  -[31m0[39m[31m.[39m[31m580[39m     0.209  
-#&gt; [90m 9[39m slp_r-bdywt -[31m0[39m[31m.[39m[31m328[39m -[31m0[39m[31m.[39m[31m535[39m  -[31m0[39m[31m.[39m[31m0[39m[31m82[4m6[24m[39m 9.95[90me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m620[39m     0.045[4m2[24m 
-#&gt; [90m10[39m slp_c-awake  0.474  0.150   0.706  6.17[90me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m0[39m[31m30[4m2[24m[39m    0.786  
-#&gt; [90m11[39m slp_c-brnwt  0.852  0.709   0.927  2.42[90me[39m[31m-  9[39m   0.603     0.950  
-#&gt; [90m12[39m slp_c-bdywt  0.418  0.080[4m9[24m  0.669  1.73[90me[39m[31m-  2[39m  -[31m0[39m[31m.[39m[31m0[39m[31m99[4m7[24m[39m    0.757  
-#&gt; [90m13[39m awake-brnwt  0.360  0.108   0.569  6.35[90me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m0[39m[31m25[4m7[24m[39m    0.653  
-#&gt; [90m14[39m awake-bdywt  0.312  0.103   0.494  4.09[90me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m00[39m[31m5[4m4[24m[4m3[24m[39m   0.572  
-#&gt; [90m15[39m brnwt-bdywt  0.934  0.889   0.961  9.16[90me[39m[31m- 26[39m   0.858     0.970  </div><div class='input'>
+#&gt;    [3m[38;5;246m&lt;chr&gt;[39m[23m        [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m
+#&gt; [38;5;250m 1[39m slp_t-slp_r  0.752  0.617   0.844  2.92[38;5;246me[39m[31m- 12[39m   0.531     0.877  
+#&gt; [38;5;250m 2[39m slp_t-slp_c -[31m0[39m[31m.[39m[31m474[39m -[31m0[39m[31m.[39m[31m706[39m  -[31m0[39m[31m.[39m[31m150[39m  6.17[38;5;246me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m786[39m     0.030[4m2[24m 
+#&gt; [38;5;250m 3[39m slp_t-awake -[31m1[39m[31m.[39m[31m000[39m -[31m1[39m[31m.[39m[31m000[39m  -[31m1[39m[31m.[39m[31m000[39m  2.42[38;5;246me[39m[31m-226[39m  -[31m1[39m[31m.[39m[31m000[39m    -[31m1[39m[31m.[39m[31m000[39m  
+#&gt; [38;5;250m 4[39m slp_t-brnwt -[31m0[39m[31m.[39m[31m360[39m -[31m0[39m[31m.[39m[31m569[39m  -[31m0[39m[31m.[39m[31m108[39m  6.35[38;5;246me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m653[39m     0.025[4m7[24m 
+#&gt; [38;5;250m 5[39m slp_t-bdywt -[31m0[39m[31m.[39m[31m312[39m -[31m0[39m[31m.[39m[31m494[39m  -[31m0[39m[31m.[39m[31m103[39m  4.09[38;5;246me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m572[39m     0.005[4m3[24m[4m9[24m
+#&gt; [38;5;250m 6[39m slp_r-slp_c -[31m0[39m[31m.[39m[31m338[39m -[31m0[39m[31m.[39m[31m614[39m   0.012[4m0[24m 5.84[38;5;246me[39m[31m-  2[39m  -[31m0[39m[31m.[39m[31m715[39m     0.191  
+#&gt; [38;5;250m 7[39m slp_r-awake -[31m0[39m[31m.[39m[31m752[39m -[31m0[39m[31m.[39m[31m844[39m  -[31m0[39m[31m.[39m[31m617[39m  2.91[38;5;246me[39m[31m- 12[39m  -[31m0[39m[31m.[39m[31m877[39m    -[31m0[39m[31m.[39m[31m531[39m  
+#&gt; [38;5;250m 8[39m slp_r-brnwt -[31m0[39m[31m.[39m[31m221[39m -[31m0[39m[31m.[39m[31m476[39m   0.067[4m0[24m 1.31[38;5;246me[39m[31m-  1[39m  -[31m0[39m[31m.[39m[31m580[39m     0.209  
+#&gt; [38;5;250m 9[39m slp_r-bdywt -[31m0[39m[31m.[39m[31m328[39m -[31m0[39m[31m.[39m[31m535[39m  -[31m0[39m[31m.[39m[31m0[39m[31m82[4m6[24m[39m 9.95[38;5;246me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m620[39m     0.045[4m2[24m 
+#&gt; [38;5;250m10[39m slp_c-awake  0.474  0.150   0.706  6.17[38;5;246me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m0[39m[31m30[4m2[24m[39m    0.786  
+#&gt; [38;5;250m11[39m slp_c-brnwt  0.852  0.709   0.927  2.42[38;5;246me[39m[31m-  9[39m   0.603     0.950  
+#&gt; [38;5;250m12[39m slp_c-bdywt  0.418  0.080[4m9[24m  0.669  1.73[38;5;246me[39m[31m-  2[39m  -[31m0[39m[31m.[39m[31m0[39m[31m99[4m7[24m[39m    0.757  
+#&gt; [38;5;250m13[39m awake-brnwt  0.360  0.108   0.569  6.35[38;5;246me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m0[39m[31m25[4m7[24m[39m    0.653  
+#&gt; [38;5;250m14[39m awake-bdywt  0.312  0.103   0.494  4.09[38;5;246me[39m[31m-  3[39m  -[31m0[39m[31m.[39m[31m00[39m[31m5[4m4[24m[4m3[24m[39m   0.572  
+#&gt; [38;5;250m15[39m brnwt-bdywt  0.934  0.889   0.961  9.16[38;5;246me[39m[31m- 26[39m   0.858     0.970  </div><div class='input'>
 <span class='co'># modifying few elements of the correlation matrix by changing function defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,

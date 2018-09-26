@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--25-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--26-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -243,7 +243,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x00000000289013f8>
+#> <bytecode: 0x00000000290eb3b0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -1006,6 +1006,44 @@ ggstatsplot::combine_plots(
 
 For more on how to modify it, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
+
+## Using `ggstatsplot` helpers to display text results
+
+Sometimes you may not like the default plot produced by `ggstatsplot`.
+In such cases, you can use other custom plots (from `ggplot2` or other
+plotting packages) and still use `ggstatsplot` (subtitle) helper
+functions to display results from relevant statistical test. For
+example, in the following chunk, we will use pirateplot from `yarrr`
+package and use `ggstatsplot` helper function to display the results.
+
+``` r
+
+# for reproducibility
+set.seed(123)
+
+# loading the needed libraries
+library(yarrr)
+library(ggstatsplot)
+
+# using `ggstatsplot` to prepare text with statistical results
+stats_results <-
+  ggstatsplot::subtitle_ggbetween_anova_parametric(
+    data = ChickWeight,
+    x = Time,
+    y = weight,
+    messages = FALSE
+  )
+
+# using `yarrr` to create plot
+yarrr::pirateplot(
+  formula = weight ~ Time,
+  data = ChickWeight,
+  theme = 1,
+  main = stats_results
+)
+```
+
+<img src="man/figures/README-pirateplot-1.png" width="100%" />
 
 # Plot design
 
