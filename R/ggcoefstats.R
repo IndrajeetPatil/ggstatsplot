@@ -134,7 +134,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#'
+#' 
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -293,20 +293,19 @@ ggcoefstats <- function(x,
     # renaming the effect size to estimate
     if (effsize == "eta") {
       if (isTRUE(partial)) {
-      tidy_df %<>%
-        dplyr::rename(.data = ., estimate = partial.etasq)
+        tidy_df %<>%
+          dplyr::rename(.data = ., estimate = partial.etasq)
         xlab <- "partial eta-squared"
       } else {
         tidy_df %<>%
           dplyr::rename(.data = ., estimate = etasq)
         xlab <- "eta-squared"
       }
-
     } else if (effsize == "omega") {
       if (isTRUE(partial)) {
-      tidy_df %<>%
-        dplyr::rename(.data = ., estimate = partial.omegasq)
-      xlab <- "partial omega-squared"
+        tidy_df %<>%
+          dplyr::rename(.data = ., estimate = partial.omegasq)
+        xlab <- "partial omega-squared"
       } else {
         tidy_df %<>%
           dplyr::rename(.data = ., estimate = omegasq)
@@ -601,28 +600,28 @@ ggcoefstats <- function(x,
       # which effect size is needed?
       if (effsize == "eta") {
         if (isTRUE(partial)) {
-        tidy_df %<>%
-          purrrlyr::by_row(
-            .d = .,
-            ..f = ~paste(
-              "list(~italic(F)",
-              "(",
-              .$df1,
-              ",",
-              .$df2,
-              ")==",
-              .$statistic,
-              ", ~italic(p)",
-              .$p.value.formatted2,
-              ", ~italic(eta)[p]^2==",
-              ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-              ")",
-              sep = ""
-            ),
-            .collate = "rows",
-            .to = "label",
-            .labels = TRUE
-          )
+          tidy_df %<>%
+            purrrlyr::by_row(
+              .d = .,
+              ..f = ~paste(
+                "list(~italic(F)",
+                "(",
+                .$df1,
+                ",",
+                .$df2,
+                ")==",
+                .$statistic,
+                ", ~italic(p)",
+                .$p.value.formatted2,
+                ", ~italic(eta)[p]^2==",
+                ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
+                ")",
+                sep = ""
+              ),
+              .collate = "rows",
+              .to = "label",
+              .labels = TRUE
+            )
         } else {
           tidy_df %<>%
             purrrlyr::by_row(
@@ -649,28 +648,28 @@ ggcoefstats <- function(x,
         }
       } else if (effsize == "omega") {
         if (isTRUE(partial)) {
-        tidy_df %<>%
-          purrrlyr::by_row(
-            .d = .,
-            ..f = ~paste(
-              "list(~italic(F)",
-              "(",
-              .$df1,
-              ",",
-              .$df2,
-              ")==",
-              .$statistic,
-              ", ~italic(p)",
-              .$p.value.formatted2,
-              ", ~italic(omega)[p]^2==",
-              ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-              ")",
-              sep = ""
-            ),
-            .collate = "rows",
-            .to = "label",
-            .labels = TRUE
-          )
+          tidy_df %<>%
+            purrrlyr::by_row(
+              .d = .,
+              ..f = ~paste(
+                "list(~italic(F)",
+                "(",
+                .$df1,
+                ",",
+                .$df2,
+                ")==",
+                .$statistic,
+                ", ~italic(p)",
+                .$p.value.formatted2,
+                ", ~italic(omega)[p]^2==",
+                ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
+                ")",
+                sep = ""
+              ),
+              .collate = "rows",
+              .to = "label",
+              .labels = TRUE
+            )
         } else {
           tidy_df %<>%
             purrrlyr::by_row(
