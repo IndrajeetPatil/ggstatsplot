@@ -123,16 +123,14 @@ Additionally, for both females and males, the survival rates were significantly 
 
 ## Grouped analysis with `grouped_ggpiestats`
 
-What if we want to do the same analysis separately for the four different Class
-on the Titanic (1st, 2nd, 3rd, Crew), i.e. checking how the survival-by-gender
-interaction changes by the passenger class in which the people were traveling?
-In that case, we will have to either write a `for` loop or use `purrr`, both of
-which are time consuming and can be a bit of a struggle.
-
+What if we want to do the same analysis of gender but also factor in the passenger's age (Age)? We have information that classifies the passengers as Child or Adult, perhaps that makes a difference
+to their survival rate?  We could write a `for` loop or use `purrr`, but
 `ggstatsplot` provides a special helper function for such instances:
-`grouped_ggpiestats`. This is merely a wrapper function around
+`grouped_ggpiestats`. 
+
+It is a convenient wrapper function around
 `ggstatsplot::combine_plots`. It applies `ggpiestats` across all **levels** of
-a specified **grouping variable** and then combines list of individual plots
+a specified **grouping variable** and then combines the list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
