@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.6
+Version: 0.0.5.9000
 Authors@R: c(
   person(given = "Indrajeet", 
   family = "Patil", 
@@ -69,6 +69,7 @@ Suggests:
     ordinal (>= 2018.4-19),
     plyr (>= 1.8.4),
     quantreg(>= 5.36), 
+    readr (>= 1.1.1),
     robust (>= 0.4-18),
     rmarkdown,
     spelling,

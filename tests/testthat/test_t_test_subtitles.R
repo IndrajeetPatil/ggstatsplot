@@ -30,20 +30,14 @@ test_that("t-test subtitles work", {
     )
 
   # extracting only the numbers and creating a tibble
-  subtitle_vec <-
-    stringr::str_extract(string = as.character(subtitle), pattern = "\\-*\\d+\\.*\\d*") %>%
-    tibble::as.tibble() %>%
-    stats::na.omit(.)
-
-  # converting to numeric
-  subtitle_vec$value <- as.numeric(as.character(subtitle_vec$value))
+  subtitle_vec <- num_parser(ggstats.obj = subtitle)
 
   # testing values
 
   # t-value from student's t-test
   testthat::expect_equal(
     expected = as.data.frame(jmv_df$ttest)$`stat[stud]`,
-    object = subtitle_vec$value[[2]],
+    object = subtitle_vec[[2]],
     tolerance = 1e-3
   )
 })

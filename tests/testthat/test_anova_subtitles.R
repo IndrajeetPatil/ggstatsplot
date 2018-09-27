@@ -22,37 +22,34 @@ test_that("anova subtitles work", {
     )
 
   # extracting only the numbers and creating a tibble
-  subtitle_vec <-
-    stringr::str_extract(string = as.character(subtitle), pattern = "\\-*\\d+\\.*\\d*") %>%
-    tibble::as.tibble() %>%
-    stats::na.omit(.)
-
-  # converting to numeric
-  subtitle_vec$value <- as.numeric(as.character(subtitle_vec$value))
+  subtitle_vec <- num_parser(ggstats.obj = subtitle)
 
   # testing values
 
   # numerator degress of freedom
-  testthat::expect_equal(expected = r$`num df`[[1]], object = subtitle_vec$value[[1]])
+  testthat::expect_equal(
+    expected = r$`num df`[[1]],
+    object = subtitle_vec[[1]]
+  )
 
   # denominator degress of freedom
   testthat::expect_equal(
     expected = r$`denom df`[[1]],
-    object = subtitle_vec$value[[2]],
+    object = subtitle_vec[[2]],
     tolerance = 1e-3
   )
 
   # F-value
   testthat::expect_equal(
     expected = r$statistic[[1]],
-    object = subtitle_vec$value[[3]],
+    object = subtitle_vec[[3]],
     tolerance = 1e-3
   )
 
   # p-value
   testthat::expect_equal(
     expected = r$p.value[[1]],
-    object = subtitle_vec$value[[4]],
+    object = subtitle_vec[[4]],
     tolerance = 1e-3
   )
 })

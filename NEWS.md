@@ -1,4 +1,4 @@
-# ggstatsplot 0.0.6
+# ggstatsplot 0.0.5.9000
 
 MAJOR CHANGES
   - The package now exports all functions used to create text expressions with

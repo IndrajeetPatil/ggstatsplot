@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.6-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.5.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
 [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
@@ -73,13 +73,13 @@ Future versions will include other types of statistical analyses and plots as we
 
 ## Installation
 
-To get the latest, stable CRAN release (`0.0.6`):
+To get the latest, stable CRAN release (`0.0.5`):
 ```{r installationCRAN, eval = FALSE}
 utils::install.packages(pkgs = "ggstatsplot")
 ```
 
 You can get the **development** version of the package from GitHub
-(`0.0.6.9000`). To see what new changes (and bug fixes) have been made to the
+(`0.0.5.9000`). To see what new changes (and bug fixes) have been made to the
 package since the last release on `CRAN`, you can check the detailed log of
 changes here: <https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
 
