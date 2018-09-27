@@ -201,14 +201,15 @@ rated by at least one imdb user.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>dim</span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; [1] 1813   14</div><div class='input'><span class='fu'>head</span>(<span class='no'>movies_wide</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 14
-#&gt;   title                       year length budget rating votes mpaa  Action Animation Comedy Drama Documentary Romance Short
-#&gt;   &lt;fct&gt;                      &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;  &lt;int&gt;     &lt;int&gt;  &lt;int&gt; &lt;int&gt;       &lt;int&gt;   &lt;int&gt; &lt;int&gt;
-#&gt; 1 'Til There Was You          1997    113   23      4.8   799 PG-13      0         0      1     0           0       1     0
-#&gt; 2 10 Things I Hate About You  1999     97   16      6.7 19095 PG-13      0         0      1     0           0       1     0
-#&gt; 3 100 Mile Rule               2002     98    1.1    5.6   181 R          0         0      1     0           0       0     0
-#&gt; 4 13 Going On 30              2004     98   37      6.4  7859 PG-13      0         0      1     1           0       1     0
-#&gt; 5 13th Warrior, The           1999    102   85      6.1 14344 R          1         0      0     0           0       0     0
-#&gt; 6 15 Minutes                  2001    120   42      6.1 10866 R          0         0      0     1           0       0     0</div></pre>
+#&gt;   title  year length budget rating votes mpaa  Action Animation Comedy Drama
+#&gt;   &lt;fct&gt; &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;  &lt;int&gt;     &lt;int&gt;  &lt;int&gt; &lt;int&gt;
+#&gt; 1 'Til~  1997    113   23      4.8   799 PG-13      0         0      1     0
+#&gt; 2 10 T~  1999     97   16      6.7 19095 PG-13      0         0      1     0
+#&gt; 3 100 ~  2002     98    1.1    5.6   181 R          0         0      1     0
+#&gt; 4 13 G~  2004     98   37      6.4  7859 PG-13      0         0      1     1
+#&gt; 5 13th~  1999    102   85      6.1 14344 R          1         0      0     0
+#&gt; 6 15 M~  2001    120   42      6.1 10866 R          0         0      0     1
+#&gt; # ... with 3 more variables: Documentary &lt;int&gt;, Romance &lt;int&gt;, Short &lt;int&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
