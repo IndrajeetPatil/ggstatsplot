@@ -30,116 +30,96 @@ function in this vignette.
 
 To begin with, here are some instances where you would want to use `ggpiestats`-
 
+  - to check if the proportion of observations matches our hypothesized proportion,
+    this is typically known as a "Goodness of Fit" test
   - to see if the frequency distribution of two categorical variables are
     independent of each other using the contingency table analysis
   - to check if the proportion of observations at each level of a categorical
     variable is equal
 
-**Note before**: The following demo uses the pipe operator (`%>%`), so in case
+**Note before**: The following demo uses the pipe operator (`%>%`), if 
 you are not familiar with this operator, here is a good explanation:
-<http://r4ds.had.co.nz/pipes.html>
+<http://r4ds.had.co.nz/pipes.html>.
 
-## Statistical independence of categorical variables with `ggpiestats`
-
-To demonstrate how `ggpiestats` can be used to we will be using the `Titanic`
-dataset that is included in the `datasets` library. Titanic Passenger Survival
-Data Set provides information "on the fate of passengers on the fatal maiden
-voyage of the ocean liner *Titanic*, summarized according to economic status
+To demonstrate how `ggpiestats` can be used with categorical or nominal data 
+we will be using both the original `Titanic` dataset that is included in the 
+`datasets` library as well as a modified version of it included in the `ggstatsplot`
+package called `Titanic_full`. `ggpiestats` **can** handle table structures with counts
+as well as dataframes with one row per observation (see examples below).
+Both the Titanic Passenger Survival Data Sets provides information "on the fate of 
+passengers on the fatal maiden voyage of the ocean liner *Titanic*, including economic status
 (class), sex, age, and survival."
 
-Let's have a look at the structure of this table and also convert it into a
-tibble while we are at it.
+Let's have a look at the structure of both.
 
 ```{r titanic1, warning = FALSE, message = FALSE}
 library(datasets)
 library(dplyr)
-
-# looking at the table
-dplyr::glimpse(x = Titanic)
-```
-
-Note that the last column in this dataframe contains count information, which
-means we will have to modify it to reflect this count structure. This has
-already been carried out and the final dataset is included in the `ggstatsplot`
-package in `Titanic_full`. This is not necessary as `ggpiestats` **can** handle
-table structures as well (see examples below).
-
-Let's have a look at this dataset.
-
-```{r titanic2, warning = FALSE, message = FALSE}
 library(ggstatsplot)
 
-# looking at the final dataset
-dplyr::glimpse(ggstatsplot::Titanic_full)
+# looking at the original data in tabular format
+dplyr::glimpse(x = Titanic)
+# looking at the dataset as a tibble or dataframe
+dplyr::glimpse(x = ggstatsplot::Titanic_full)
 ```
 
-First, let's see if the proportion of people who survived was different between
-sexes using `ggpiestats`.
+## Goodness of Fit with `ggpiestats`
+
+The simplest use case for `ggpiestats` is that we want to display information about **one** categorical or nominal variable.  As part of that display or plot we may also choose to execute a chi squared goodness of fit test to see whether the proportions (or percentages) in categories of the single variable appear to line up with our hypothesis or model. To keep very simple and then expand, let's say that we'd like to display a piechart with the perecntages of passengers who did or did not survive. Our initial hypothesis is that it was no different than flipping a coin.  People had a 50/50 chance of surviving.
+
+```{r ggpiestats3, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+ggstatsplot::ggpiestats(
+  data = ggstatsplot::Titanic_full,                          
+  main = Survived,
+  title = "Passenger survival on the Titanic",       # title for the entire plot
+  caption = "Source: Titanic survival dataset",      # caption for the entire plot
+  legend.title = "Survived?",                        # legend title
+  messages = FALSE
+)
+```
+
+**Note:** equal proportions per category are the default eg 50/50, but you can specify any hypothesized ratio you like with `ratio` so if our hypothesis was that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we entered the code.
+
+Let's move on to a more complex example statistically and interms of the features we will use in `ggpiestats`
+
+## Independence (or association) with `ggpiestats`
+
+Let's next investigate whether the passenger's gender was indpeendent or associated with gender. The test is whether the proportion of people who survived was different between the sexes using `ggpiestats`.
+
+We'll modify a number of arguments to change the appearance of this plot and showcase the flexibility of `ggpiestats`. We will:
+
+1.  Change the plot theme to `ggplot2::theme_grey()`
+2.  Change our color palette to `category10_d3` from `ggsci`
+3.  We'll customize the subtitle by being more precise about which chi squared test this is `stat.title = "chi squared test of independence: "`
+4.  Finally, we'll make a call to `ggplot2` to modify the size of our plot title and to make it right justified
 
 ```{r ggpiestats1, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
 # since effect size confidence intervals are computed using bootstrapping, let's
 # set seed for reproducibility
 set.seed(123)
 
-ggstatsplot::ggpiestats(data = ggstatsplot::Titanic_full,
-                        condition = Sex,
-                        main = Survived) 
-```
-
-A number of arguments can be modified to change the appearance of this plot:
-
-```{r ggpiestats2, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
-library(ggplot2)
-
-# for reproducibility
-set.seed(123)
-
-# plot
 ggstatsplot::ggpiestats(
-  data = ggstatsplot::Titanic_full,             # dataframe (matrix or table will not be accepted)
-  main = Survived,                              # rows in the contingency table
-  condition = Sex,                              # columns in the contingecy table
-  title = "Passengar survival by gender",       # title for the entire plot
-  caption = "Source: Titanic survival dataset", # caption for the entire plot
-  legend.title = "Survived?",                   # legend title
-  facet.wrap.name = "Gender",                   # changing the facet wrap title
-  facet.proptest = TRUE,                        # proportion test for each facet
-  stat.title = "survival x gender: ",           # title for statistical test
-  k = 2,                                        # no. of decimal places for results
-  messages = FALSE,                             # turn off messages
-  ggtheme = ggplot2::theme_grey(),              # changing plot theme 
-  package = "yarrr",                            # package from which color palette is to be taken
-  palette = "southpark"                         # choosing a different color palette
-) +                                             # further modification with ggplot2 commands
-  ggplot2::theme(plot.subtitle = ggplot2::element_text(
+  data = ggstatsplot::Titanic_full,
+  main = Survived,
+  condition = Sex,
+  title = "Passenger survival on the Titanic by gender",       # title for the entire plot
+  caption = "Source: Titanic survival dataset",                # caption for the entire plot
+  legend.title = "Survived?",                                  # legend title
+  ggtheme = ggplot2::theme_grey(),                             # changing plot theme 
+  package = "ggsci",                                           # package from which color palette is to be taken
+  palette = "category10_d3",                                   # choosing a different color palette
+  stat.title = "chi squared test of independence: ",           # title for statistical test
+  messages = FALSE
+)  +                                                           # further modification with ggplot2 commands
+  ggplot2::theme(plot.title = ggplot2::element_text(
     color = "black",
-    size = 10,
-    hjust = 0.5
+    size = 14,
+    hjust = 1
   ))
 ```
 
-As seen from this plot, the Pearson's chi-square test of independence shows that
-the distribution of survival was different across males and females.
-Additionally, among both males and females, the proportion of survival was not
-equally likely (at 50%, i.e.), as shown by significant results (`***`) from one-sample
-proportion tests for each facet.
-
-In case the `condition` argument is not specified, instead of chi-square test of
-independence, a proportion test will be carried out. For example, let's see if
-there were equal proportions of different age groups.
-
-```{r ggpiestats3, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
-ggstatsplot::ggpiestats(
-  data = ggstatsplot::Titanic_full,                          
-  main = Age,
-  package = "wesanderson",
-  palette = "IsleofDogs1",
-  messages = FALSE
-)
-```
-
-As this plot shows there were overwhelmingly more number of adults than children
-on the boat and the proportion test attests to this.
+The plot clearly shows that survival rates were very different between males and females. The Pearson's chi-square test of independence is significant given our large sample size.
+Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by the `***` which is equivalent to a goodness of fit test for each gender.
 
 ## Grouped analysis with `grouped_ggpiestats`
 
@@ -156,22 +136,21 @@ a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
-```{r ggpiestats4, warning = FALSE, message = FALSE, fig.height = 20, fig.width = 9}
+```{r ggpiestats4, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 8}
 ggstatsplot::grouped_ggpiestats(
   # arguments relevant for ggstatsplot::gghistostats
   data = ggstatsplot::Titanic_full,
-  grouping.var = Class,
-  title.prefix = "Passenger class",
-  stat.title = "survival x gender: ",
+  grouping.var = Age,
+  title.prefix = "Child or Adult?: ",
+  stat.title = "chi squared test of independence: ",
   main = Survived,
   condition = Sex,
   messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
-  title.text = "Survival in Titanic disaster by gender for all passenger classes",
+  title.text = "Passenger survival on the Titanic by gender and age",
   caption.text = "Asterisks denote results from proportion tests; ***: p < 0.001, ns: non-significant",
-  nrow = 4,
-  ncol = 1,
-  labels = c("(a)","(b)","(c)", "(d)")
+  nrow = 2,
+  ncol = 1
 )
 ```
 
@@ -180,21 +159,6 @@ proportion of survived to non-survived individuals differed across genders: Men
 were more likely to perish than survive, whereas women were more likely to
 survive than perish. The only exception was the 3rd Class passengers where women
 were as likely to survive as to perish.
-
-This will work even if the condition argument is not specified:
-
-```{r ggpiestats5, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
-ggstatsplot::grouped_ggpiestats(
-  data = ggstatsplot::Titanic_full,
-  main = Age,
-  grouping.var = Class,
-  title.prefix = "Passenger Class",
-  package = "ggsci",
-  palette = "category10_d3",
-  direction = -1,
-  messages = FALSE
-) 
-```
 
 ## Grouped analysis with `ggpiestats` + `purrr` 
 
@@ -266,24 +230,6 @@ We just verified that the frequency of different types of fish caught differs
 across the two months, but what if we further want to know if this difference is
 present for both boats (since they are fishing in different parts of the sea)?
 For this, we can again utilize `grouped_ggpiestats`:
-
-```{r ggpiestats8, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
-# running the grouped variant of the function
-ggstatsplot::grouped_ggpiestats(
-  data = fishing,
-  main = Fish,
-  condition = Month,
-  counts = SumOfCaught,
-  grouping.var = Boat,
-  title.prefix = "Boat",
-  nrow = 2,
-  messages = FALSE
-)
-```
-
-As seen from these charts, this difference is found only for the location in
-which the boat `B` has been fishing. Additionally, faceted proportion tests also
-reveal that all fish are not equally likely to be caught at this location.
 
 ## Within-subjects designs
 
