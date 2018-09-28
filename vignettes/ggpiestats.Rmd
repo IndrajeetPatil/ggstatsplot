@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 
 The function `ggstatsplot::ggpiestats` can be used for quick **data
 exploration** and/or to prepare **publication-ready pie charts** to summarize
-the statistical relationship(s) amongst one or more categorical variables. We
+the statistical relationship(s) among one or more categorical variables. We
 will see examples of how to use this function in this vignette.
 
 To begin with, here are some instances where you would want to use
@@ -48,12 +48,12 @@ not familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>.
 
 `ggpiestats` **only** works with data organized in dataframes or tibbles. It
-will not work with other data structures like tables or matrices. It can operate
+will not work with other data structures like base R tables or matrices. It can operate
 on dataframes that are organized with one row per observation or dataframes that
 have one column containing counts. This vignette provides examples of both (see
 examples below).
 
-To help demonstrate how `ggpiestats` can be used with categorical or nominal
+To help demonstrate how `ggpiestats` can be used with categorical (also known as nominal)
 data a modified version of the original `Titanic` dataset that is included in
 the `datasets` library has been provided in the `ggstatsplot` package with the
 name `Titanic_full`. The Titanic Passenger Survival Dataset provides information
@@ -79,8 +79,8 @@ The simplest use case for `ggpiestats` is that we want to display information
 about **one** categorical or nominal variable. As part of that display or plot
 we may also choose to execute a chi squared goodness of fit test to see whether
 the proportions (or percentages) in categories of the single variable appear to
-line up with our hypothesis or model. To keep very simple and then expand, let's
-say that we'd like to display a piechart with the perecntages of passengers who
+line up with our hypothesis or model. To start simple and then expand, let's
+say that we'd like to display a piechart with the percentages of passengers who
 did or did not survive. Our initial hypothesis is that it was no different than
 flipping a coin. People had a 50/50 chance of surviving.
 
@@ -95,17 +95,17 @@ ggstatsplot::ggpiestats(
 )
 ```
 
-**Note:** equal proportions per category are the default eg 50/50, but you can
+**Note:** equal proportions per category are the default, e.g. 50/50, but you can
 specify any hypothesized ratio you like with `ratio` so if our hypothesis was
 that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we entered
 the code.
 
-Let's move on to a more complex example statistically and interms of the
+Let's move on to a more complex example statistically and in terms of the
 features we will use in `ggpiestats`
 
 ## Independence (or association) with `ggpiestats`
 
-Let's next investigate whether the passenger's gender was indpeendent or
+Let's next investigate whether the passenger's gender was independent or
 associated with gender. The test is whether the proportion of people who
 survived was different between the sexes using `ggpiestats`.
 
