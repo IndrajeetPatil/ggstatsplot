@@ -121,12 +121,12 @@ ggstatsplot::ggbetweenstats(
   ggplot2::scale_y_continuous(limits = c(35,85), breaks = seq(from = 35, to = 85, by = 5))
 ```
 
-As can be appreciated from the effect size (partial eta squared) of 0.635, there are large differences
-in the mean life expectancy across continents. Importantly, this plot also
-helps us appreciate the distributions within any given continent. For example,
-although Asian countries are doing much better than African countries, on
-average, Afghanistan has a particularly grim average for the Asian continent,
-possibly reflecting the war and the political turmoil.
+As can be appreciated from the effect size (partial eta squared) of 0.635, there
+are large differences in the mean life expectancy across continents.
+Importantly, this plot also helps us appreciate the distributions within any
+given continent. For example, although Asian countries are doing much better
+than African countries, on average, Afghanistan has a particularly grim average
+for the Asian continent, possibly reflecting the war and the political turmoil.
 
 Out of curiosity, we can repeat the same analysis with other available feature
 of `ggstatsplot`:
@@ -140,9 +140,7 @@ or `"boxviolin"`). Let's produce all of these variations in the plot below.
  - The color palettes can be modified.
 
 Let's try out both of these features by plotting continent-level differences for
-three different years, separated by a decade. Also, since there are just two
-data points for the continent of Oceania, let's leave out this continent from
-our analysis.
+three different years, separated by a decade. 
 
 For example,
 
