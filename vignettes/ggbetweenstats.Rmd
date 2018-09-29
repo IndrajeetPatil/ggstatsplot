@@ -32,18 +32,21 @@ of how to use this function in this vignette.
 To begin with, here are some instances where you would want to use
 `ggbetweenstats`-
 
-  - to check if a continuous variable differs across multiple groups/conditions
-  - to compare distributions visually and check for outliers
+ - to check if a continuous variable differs across multiple groups/conditions
 
-**Note: **: The following demo uses the pipe operator (`%>%`), so in case
-you are not familiar with this operator, here is a good explanation:
+ - to compare distributions visually and check for outliers
+
+**Note: **: The following demo uses the pipe operator (`%>%`), so in case you
+are not familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
 ## Comparisons between groups with `ggbetweenstats`
 
-To illustrate how this function can be used, we will use the `gapminder` dataset throughout this vignette. This dataset provides values for life expectancy, GDP per capita, and
-population, every five years, from 1952 to 2007, for each of 142 countries and
-was collected by the Gapminder Foundation. Let's have a look at the data-
+To illustrate how this function can be used, we will use the `gapminder` dataset
+throughout this vignette. This dataset provides values for life expectancy, GDP
+per capita, and population, every five years, from 1952 to 2007, for each of 142
+countries and was collected by the Gapminder Foundation. Let's have a look at
+the data-
 
 ```{r gapminder, warning = FALSE, message = FALSE}
 library(gapminder)
@@ -51,13 +54,16 @@ library(dplyr)
 dplyr::glimpse(x = gapminder::gapminder)
 ```
 
-**Note: ** for the remainder of the vignette we're going to exclude *Oceania* from the analysis simply because there are so few observations (countries).
+**Note: ** for the remainder of the vignette we're going to exclude *Oceania*
+from the analysis simply because there are so few observations (countries).
 
-Suppose the first thing we want to inspect is the distribution of life expectancy
-for the countries of a continent in 2007. We also want to know if the
-mean differences in life expectancy between the continents is statistically significant.
+Suppose the first thing we want to inspect is the distribution of life
+expectancy for the countries of a continent in 2007. We also want to know if the
+mean differences in life expectancy between the continents is statistically
+significant.
 
 The simplest form of the function call is-
+
 ```{r ggbetweenstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 # since the confidence intervals for the effect sizes are computed using
 # bootstrapping, important to set a seed for reproducibility
@@ -72,10 +78,16 @@ ggstatsplot::ggbetweenstats(
 )
 ```
 
-**Note: ** that the function automatically decides whether an independent samples t-test is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups) based on the number of levels in the grouping variable. The output of the function is a `ggplot` object which means that it can be further modified.
+**Note: ** that the function automatically decides whether an independent
+samples t-test is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups)
+based on the number of levels in the grouping variable. The output of the
+function is a `ggplot` object which means that it can be further modified.
 
-We can make the output much more aesthetically pleasing as well as informative by
-making use of the many optional parameters in `ggbetweenstats`. We'll add a title & caption, better x and y axis labels, and tag and label the outliers in the data. We can and will change the overall theme as well as the color palette in use.
+We can make the output much more aesthetically pleasing as well as informative
+by making use of the many optional parameters in `ggbetweenstats`. We'll add a
+title & caption, better x and y axis labels, and tag and label the outliers in
+the data. We can and will change the overall theme as well as the color palette
+in use.
 
 ```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 library(ggstatsplot)
@@ -109,22 +121,23 @@ ggstatsplot::ggbetweenstats(
   ggplot2::scale_y_continuous(limits = c(35,85), breaks = seq(from = 35, to = 85, by = 5))
 ```
 
-As can be appreciated from the effect size of 0.635, there are big differences
-in the observed life expectancy across continents. Importantly, this plot also
-helps us appreciate the differences within any given continent. For example,
+As can be appreciated from the effect size (partial eta squared) of 0.635, there are large differences
+in the mean life expectancy across continents. Importantly, this plot also
+helps us appreciate the distributions within any given continent. For example,
 although Asian countries are doing much better than African countries, on
 average, Afghanistan has a particularly grim average for the Asian continent,
 possibly reflecting the war and the political turmoil.
 
-Out of curiosity, we can repeat the same analysis with other available feature of
-`ggstatsplot`:
-  - The `type` (of test) argument also accepts the following
-abbreviations: `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"`
-(for *robust*). 
-  - The type of plot to be displayed can also be
-modified (`"box"`, `"violin"`, or `"boxviolin"`). Let's produce all of these
-variations in the plot below.
-  - The color palettes can be modified.
+Out of curiosity, we can repeat the same analysis with other available feature
+of `ggstatsplot`:
+
+ - The `type` (of test) argument also accepts the following abbreviations: `"p"`
+(for *parametric*), `"np"` (for *nonparametric*), `"r"` (for *robust*).
+
+ - The type of plot to be displayed can also be modified (`"box"`, `"violin"`,
+or `"boxviolin"`). Let's produce all of these variations in the plot below.
+
+ - The color palettes can be modified.
 
 Let's try out both of these features by plotting continent-level differences for
 three different years, separated by a decade. Also, since there are just two
@@ -132,6 +145,7 @@ data points for the continent of Oceania, let's leave out this continent from
 our analysis.
 
 For example,
+
 ```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
 library(ggstatsplot)
 library(gapminder)
@@ -218,13 +232,13 @@ consuming and can be a bit of a struggle.
 
 `ggstatsplot` provides a special helper function for such instances:
 `grouped_ggbetweenstats`. This is merely a wrapper function around
-`ggstatsplot::combine_plots`. It applies `ggbetweenstats` across all **levels** of
-a specified **grouping variable** and then combines list of individual plots
+`ggstatsplot::combine_plots`. It applies `ggbetweenstats` across all **levels**
+of a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
-in a given study, groups in a study sample, different studies, etc. 
+in a given study, groups in a study sample, different studies, etc.
 
-Let's focus on the following years to see these changes for every 10
-years: 1957, 1967, 1977, 1987, 1997, 2007. 
+Let's focus on the following years to see these changes for every 10 years:
+1957, 1967, 1977, 1987, 1997, 2007.
 
 ```{r grouped1, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 7}
 # for reproducibility
@@ -289,8 +303,8 @@ incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
 
 # Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
-<https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on
+GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 
@@ -300,3 +314,4 @@ Summarizing session information for reproducibility.
 options(width = 200)
 devtools::session_info()
 ```
+
