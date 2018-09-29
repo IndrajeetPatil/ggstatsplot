@@ -116,7 +116,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-28</h4>
+            <h4 class="date">2018-09-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggcorrmat.Rmd"><code>vignettes/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -176,10 +176,12 @@
 <a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),           <span class="co"># selected ggplot2 theme</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,                  <span class="co"># turn off default ggestatsplot theme overlay</span></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">matrix.type =</span> <span class="st">"lower"</span>,                      <span class="co"># correlation matrix structure</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">"green"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span>),     <span class="co"># selecting color combination</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">title =</span> <span class="st">"Gapminder correlation matrix"</span>,     <span class="co"># custom title</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder Foundation"</span>   <span class="co"># custom subtitle</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">)</a></code></pre></div>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">colors =</span> <span class="ot">NULL</span>,                              <span class="co"># turning off manual specification of colors</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                  <span class="co"># choosing a color palette</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                          <span class="co"># package to which color palette belongs</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">  <span class="dt">title =</span> <span class="st">"Gapminder correlation matrix"</span>,     <span class="co"># custom title</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder Foundation"</span>   <span class="co"># custom subtitle</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">)</a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="576"></p>
 <p>As seen from this correlation matrix, although there is no relationship between population and life expectancy worldwide, at least in 2007, there is a strong positive relationship between GDP, a well-established indicator of a country’s economic performance.</p>
 <p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <code>ggplot2</code> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
@@ -403,7 +405,7 @@
 <a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
 <a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
 <a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York            </span></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-28                  </span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-29                  </span></a>
 <a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#&gt;  package      * version     date       lib source                              </span></a>
@@ -457,7 +459,7 @@
 <a class="sourceLine" id="cb10-64" data-line-number="64"><span class="co">#&gt;  htmldeps       0.1.1       2018-09-17 [1] Github (rstudio/htmldeps@c1023e0)   </span></a>
 <a class="sourceLine" id="cb10-65" data-line-number="65"><span class="co">#&gt;  htmltools      0.3.6       2017-04-28 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb10-66" data-line-number="66"><span class="co">#&gt;  httpuv         1.4.5       2018-07-19 [1] CRAN (R 3.5.1)                      </span></a>
-<a class="sourceLine" id="cb10-67" data-line-number="67"><span class="co">#&gt;  jmv            0.9.4       2018-09-18 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb10-67" data-line-number="67"><span class="co">#&gt;  jmv            0.9.4       2018-09-29 [1] Github (jamovi/jmv@7dac133)         </span></a>
 <a class="sourceLine" id="cb10-68" data-line-number="68"><span class="co">#&gt;  jmvcore        0.9.4       2018-09-17 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb10-69" data-line-number="69"><span class="co">#&gt;  knitr          1.20.12     2018-08-13 [1] local                               </span></a>
 <a class="sourceLine" id="cb10-70" data-line-number="70"><span class="co">#&gt;  labeling       0.3         2014-08-23 [1] CRAN (R 3.5.0)                      </span></a>

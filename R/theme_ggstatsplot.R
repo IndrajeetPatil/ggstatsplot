@@ -8,7 +8,7 @@
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
 #'   `ggplot2::theme_bw()`. Any of the `ggplot2` themes, or themes from
 #'   extension packages are allowed (e.g., `ggthemes::theme_economist()`,
-#'   `hrbrthemes::theme_ipsum_ps()`, `ggthemes::theme_fivethirtyeight()`).
+#'   `hrbrthemes::theme_ipsum_ps()`, `ggthemes::theme_fivethirtyeight()`, etc.).
 #' @param ggstatsplot.layer Logical that decides whether `theme_ggstatsplot`
 #'   theme elements are to be displayed along with the selected `ggtheme`
 #'   (Default: `TRUE`).
@@ -25,7 +25,8 @@
 #' @export
 #'
 
-theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
+theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(),
+                              ggstatsplot.layer = TRUE) {
   if (isTRUE(ggstatsplot.layer)) {
     ggtheme +
       ggplot2::theme(
@@ -81,7 +82,6 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer =
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html}
 #'
 #' @export
-#'
 
 theme_mprl <- theme_ggstatsplot
 
@@ -97,12 +97,11 @@ theme_mprl <- theme_ggstatsplot
 #'
 #' @importFrom grid unit
 #'
-#' @keywords internal
-#'
 #' @note This is a helper function used internally in the package and not
 #' exported. In case you want to use it, you can do so by
 #' `ggstatsplot:::theme_pie`. Note that it is `:::` and not `::`.
 #'
+#' @keywords internal
 
 theme_pie <- function(ggtheme = ggplot2::theme_bw(),
                       ggstatsplot.layer = TRUE) {
@@ -171,12 +170,11 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
 #'
 #' @importFrom grid unit
 #'
-#' @keywords internal
-#'
 #' @note This is a helper function used internally in the package and not
 #' exported. In case you want to use it, you can do so by
 #' `ggstatsplot:::theme_corrmat`. Note that it is `:::` and not `::`.
 #'
+#' @keywords internal
 
 theme_corrmat <- function() {
   ggplot2::theme(

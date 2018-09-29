@@ -8,7 +8,7 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   paired = FALSE, factor.levels = NULL, stat.title = NULL,
   sample.size.label = TRUE, title = NULL, caption = NULL,
   nboot = 25, legend.title = NULL, facet.wrap.name = NULL, k = 3,
-  facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
+  perc.k = 0, facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, package = "RColorBrewer",
   palette = "Dark2", direction = 1, messages = TRUE)
 }
@@ -56,13 +56,16 @@ should be displayed for each level of the grouping variable \code{condition} (De
 
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
+\item{perc.k}{Numeric that decides number of decimal places for percentage
+labels (Default: \code{0}).}
+
 \item{facet.proptest}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
-\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}).}
+\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}, etc.).}
 
 \item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
 theme elements are to be displayed along with the selected \code{ggtheme}
@@ -88,6 +91,14 @@ included in the plot as a subtitle.
 
 # for reproducibility
 set.seed(123)
+
+# simple function call with the defaults (without condition)
+ggstatsplot::ggpiestats(
+  data = ggplot2::msleep,
+  main = vore,
+  perc.k = 1,
+  k = 2
+)
 
 # simple function call with the defaults (with condition)
 ggstatsplot::ggpiestats(

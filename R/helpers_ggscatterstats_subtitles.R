@@ -21,14 +21,14 @@
 #' @importFrom stats cor.test
 #'
 #' @examples
-#' 
+#'
 #' # without changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
 #'   x = area,
 #'   y = percblack
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
@@ -143,7 +143,7 @@ subtitle_ggscatterstats <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "95% CI for Spearman's rho was computed with ",
+            "95% CI for Spearman's rho was computed with",
             crayon::yellow(nboot),
             "bootstrap samples.\n"
           ),

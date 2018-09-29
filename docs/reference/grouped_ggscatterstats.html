@@ -176,7 +176,8 @@ subtitle.</p>
   <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>point.height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>,
-  <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>, <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wesanderson"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Royal1"</span>,
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>, <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>yalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xsize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>ysize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
@@ -273,13 +274,13 @@ function defined by <code>method</code>.</p></td>
     </tr>
     <tr>
       <th>point.width.jitter</th>
-      <td><p>Degree of jitter in <code>x</code> direction. Defaults to 40% of
-the resolution of the data.</p></td>
+      <td><p>Degree of jitter in <code>x</code> direction. Defaults to 40%
+of the resolution of the data.</p></td>
     </tr>
     <tr>
       <th>point.height.jitter</th>
-      <td><p>Degree of jitter in <code>y</code> direction. Defaults to 40% of
-the resolution of the data.</p></td>
+      <td><p>Degree of jitter in <code>y</code> direction. Defaults to
+40% of the resolution of the data.</p></td>
     </tr>
     <tr>
       <th>line.color</th>
@@ -307,16 +308,31 @@ plots compared to the main plot. A size of <code>5</code> means that the main pl
 Any of the following arguments are accepted: <code>"both"</code>, <code>"x"</code>, <code>"y"</code>.</p></td>
     </tr>
     <tr>
+      <th>package</th>
+      <td><p>Name of package from which the palette is desired as string
+or symbol.</p></td>
+    </tr>
+    <tr>
+      <th>palette</th>
+      <td><p>Name of palette as string or symbol.</p></td>
+    </tr>
+    <tr>
+      <th>direction</th>
+      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
+    </tr>
+    <tr>
       <th>xfill</th>
       <td><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)).</p></td>
+<code>y</code>)). If set to <code>NULL</code>, manual specification of colors will be turned off
+and 2 colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></td>
     </tr>
     <tr>
       <th>yfill</th>
       <td><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)).</p></td>
+<code>y</code>)). If set to <code>NULL</code>, manual specification of colors will be turned off
+and 2 colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></td>
     </tr>
     <tr>
       <th>xalpha</th>
@@ -332,11 +348,13 @@ default is <code>1</code> for both axes.</p></td>
     </tr>
     <tr>
       <th>xsize</th>
-      <td><p>Size for the marginal distribution boundaries (Default: <code>0.7</code>).</p></td>
+      <td><p>Size for the marginal distribution boundaries (Default:
+<code>0.7</code>).</p></td>
     </tr>
     <tr>
       <th>ysize</th>
-      <td><p>Size for the marginal distribution boundaries (Default: <code>0.7</code>).</p></td>
+      <td><p>Size for the marginal distribution boundaries (Default:
+<code>0.7</code>).</p></td>
     </tr>
     <tr>
       <th>centrality.para</th>
@@ -382,8 +400,9 @@ to be displayed as subtitle.</p></td>
     </tr>
     <tr>
       <th>axes.range.restrict</th>
-      <td><p>Logical decides whether to restrict the axes values
-ranges to min and max values of the <code>x</code> and <code>y</code> variables (Default: <code>FALSE</code>).</p></td>
+      <td><p>Logical decides whether to restrict the axes
+values ranges to min and max values of the <code>x</code> and <code>y</code> variables (Default:
+<code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
@@ -461,7 +480,8 @@ combining (plot, caption).</p></dd>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code>, <code><a href='ggcorrmat.html'>ggcorrmat</a></code>, <code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
+    <div class='dont-index'><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code>, <code><a href='ggcorrmat.html'>ggcorrmat</a></code>,
+<code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -492,6 +512,9 @@ combining (plot, caption).</p></dd>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"robust"</span>,
   <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='st'>"manufacturer"</span>,
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='st'>"hwy &gt; 25 &amp; displ &gt; 2.5"</span>,
+  <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"yarrr"</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"appletv"</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</div><div class='img'><img src='grouped_ggscatterstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 # labeling without expression

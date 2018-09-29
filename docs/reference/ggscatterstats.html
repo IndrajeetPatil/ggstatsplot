@@ -172,7 +172,8 @@ subtitle.</p>
   <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>point.height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
   <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>,
+  <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"both"</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wesanderson"</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Royal1"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>,
   <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>yalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xsize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
   <span class='kw'>ysize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -247,13 +248,13 @@ function defined by <code>method</code>.</p></td>
     </tr>
     <tr>
       <th>point.width.jitter</th>
-      <td><p>Degree of jitter in <code>x</code> direction. Defaults to 40% of
-the resolution of the data.</p></td>
+      <td><p>Degree of jitter in <code>x</code> direction. Defaults to 40%
+of the resolution of the data.</p></td>
     </tr>
     <tr>
       <th>point.height.jitter</th>
-      <td><p>Degree of jitter in <code>y</code> direction. Defaults to 40% of
-the resolution of the data.</p></td>
+      <td><p>Degree of jitter in <code>y</code> direction. Defaults to
+40% of the resolution of the data.</p></td>
     </tr>
     <tr>
       <th>line.size</th>
@@ -285,10 +286,24 @@ plots compared to the main plot. A size of <code>5</code> means that the main pl
 Any of the following arguments are accepted: <code>"both"</code>, <code>"x"</code>, <code>"y"</code>.</p></td>
     </tr>
     <tr>
+      <th>package</th>
+      <td><p>Name of package from which the palette is desired as string
+or symbol.</p></td>
+    </tr>
+    <tr>
+      <th>palette</th>
+      <td><p>Name of palette as string or symbol.</p></td>
+    </tr>
+    <tr>
+      <th>direction</th>
+      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
+    </tr>
+    <tr>
       <th>xfill, yfill</th>
       <td><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)).</p></td>
+<code>y</code>)). If set to <code>NULL</code>, manual specification of colors will be turned off
+and 2 colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></td>
     </tr>
     <tr>
       <th>xalpha, yalpha</th>
@@ -298,7 +313,8 @@ default is <code>1</code> for both axes.</p></td>
     </tr>
     <tr>
       <th>xsize, ysize</th>
-      <td><p>Size for the marginal distribution boundaries (Default: <code>0.7</code>).</p></td>
+      <td><p>Size for the marginal distribution boundaries (Default:
+<code>0.7</code>).</p></td>
     </tr>
     <tr>
       <th>centrality.para</th>
@@ -348,8 +364,9 @@ to be displayed as subtitle.</p></td>
     </tr>
     <tr>
       <th>axes.range.restrict</th>
-      <td><p>Logical decides whether to restrict the axes values
-ranges to min and max values of the <code>x</code> and <code>y</code> variables (Default: <code>FALSE</code>).</p></td>
+      <td><p>Logical decides whether to restrict the axes
+values ranges to min and max values of the <code>x</code> and <code>y</code> variables (Default:
+<code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
@@ -373,12 +390,15 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p><code>marginal.type = "densigram"</code> will work only with the development
+    <ul>
+<li><p><code>marginal.type = "densigram"</code> will work only with the development
 version of <code>ggExtra</code> that you can download from <code>GitHub</code>:
-<code><a href='http://www.rdocumentation.org/packages/devtools/topics/reexports'>devtools::install_github("daattali/ggExtra")</a></code></p>
-<p>the plot uses <code><a href='http://www.rdocumentation.org/packages/ggrepel/topics/geom_text_repel'>ggrepel::geom_label_repel</a></code> to attempt to keep labels from
-over-lapping to the largest degree possible.  As a consequence plot times will slow down
-massively (and the plot file will grow in size) if you have a lot of labels that overlap.</p>
+<code><a href='http://www.rdocumentation.org/packages/devtools/topics/reexports'>devtools::install_github("daattali/ggExtra")</a></code></p></li>
+<li><p>The plot uses <code><a href='http://www.rdocumentation.org/packages/ggrepel/topics/geom_text_repel'>ggrepel::geom_label_repel</a></code> to attempt to keep labels
+from over-lapping to the largest degree possible.  As a consequence plot
+times will slow down massively (and the plot file will grow in size) if you
+have a lot of labels that overlap.</p></li>
+</ul>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -409,8 +429,9 @@ massively (and the plot file will grow in size) if you have a lot of labels that
   <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='st'>"car"</span>,
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='st'>"wt &lt; 4 &amp; mpg &lt; 20"</span>,
   <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"median"</span>
-)</div><div class='output co'>#&gt; Note: 95% CI for Spearman's rho was computed with  100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div></pre>
+  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"median"</span>,
+  <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</div><div class='output co'>#&gt; Note: 95% CI for Spearman's rho was computed with 100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; Warning: The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -145,7 +145,9 @@ commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
 
 ## Help
 
-In `R`, documentation for any function can be accessed with the standard `help` command-
+In `R`, documentation for any function can be accessed with the standard `help`
+command-
+
 ```{r help, eval = FALSE}
 # primary functions
 ?ggbetweenstats
@@ -169,12 +171,14 @@ In `R`, documentation for any function can be accessed with the standard `help` 
 
 Another handy tool to see arguments to any of the functions is `args`. For
 example-
+
 ```{r args}
 args(name = ggstatsplot::ggscatterstats)
 ```
 
 In case you want to look at the function body for any of the functions, just
 type the name of the function without the parentheses:
+
 ```{r funbody}
 ggstatsplot::theme_ggstatsplot
 ```
@@ -799,11 +803,11 @@ with code that is both more succinct and easier to read and, therefore, `purrr`
 should be preferrred `r emo::ji("heart_eyes_cat")`. (Another old school option
 to do this effectively is using the `plyr` package.)
 
-In such cases, `ggstatsplot` contains a helper function `combine_plots` to combine
-multiple plots, which can be useful for combining a list of plots produced with
-`purrr`. This is a wrapper around `cowplot::plot_grid` and lets you combine
-multiple plots and add a combination of title, caption, and annotation texts
-with suitable defaults.
+In such cases, `ggstatsplot` contains a helper function `combine_plots` to
+combine multiple plots, which can be useful for combining a list of plots
+produced with `purrr`. This is a wrapper around `cowplot::plot_grid` and lets
+you combine multiple plots and add a combination of title, caption, and
+annotation texts with suitable defaults.
 
 For examples (both with `plyr` and `purrr`), see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html>

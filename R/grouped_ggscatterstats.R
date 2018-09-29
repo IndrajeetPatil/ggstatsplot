@@ -29,7 +29,8 @@
 #' @importFrom rlang quo_name
 #' @importFrom purrr set_names
 #'
-#' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}}, \code{\link{grouped_ggcorrmat}}
+#' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
+#' \code{\link{grouped_ggcorrmat}}
 #'
 #' @inherit ggscatterstats return references
 #' @inherit ggscatterstats return details
@@ -63,6 +64,9 @@
 #'   type = "robust",
 #'   label.var = "manufacturer",
 #'   label.expression = "hwy > 25 & displ > 2.5",
+#'   xfill = NULL,
+#'   package = "yarrr",
+#'   palette = "appletv",
 #'   messages = FALSE
 #' )
 #'
@@ -110,6 +114,9 @@ grouped_ggscatterstats <- function(data,
                                    marginal.type = "histogram",
                                    marginal.size = 5,
                                    margins = c("both", "x", "y"),
+                                   package = "wesanderson",
+                                   palette = "Royal1",
+                                   direction = 1,
                                    xfill = "#009E73",
                                    yfill = "#D55E00",
                                    xalpha = 1,
@@ -227,6 +234,9 @@ grouped_ggscatterstats <- function(data,
                 marginal.type = marginal.type,
                 marginal.size = marginal.size,
                 margins = margins,
+                package = package,
+                palette = palette,
+                direction = direction,
                 xfill = xfill,
                 yfill = yfill,
                 xalpha = xalpha,
@@ -281,6 +291,9 @@ grouped_ggscatterstats <- function(data,
                 marginal.type = marginal.type,
                 marginal.size = marginal.size,
                 margins = margins,
+                package = package,
+                palette = palette,
+                direction = direction,
                 xfill = xfill,
                 yfill = yfill,
                 xalpha = xalpha,
@@ -335,6 +348,9 @@ grouped_ggscatterstats <- function(data,
               marginal.type = marginal.type,
               marginal.size = marginal.size,
               margins = margins,
+              package = package,
+              palette = palette,
+              direction = direction,
               xfill = xfill,
               yfill = yfill,
               xalpha = xalpha,

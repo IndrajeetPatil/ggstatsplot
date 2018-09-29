@@ -32,11 +32,13 @@
 #'   Any of the following arguments are accepted: `"both"`, `"x"`, `"y"`.
 #' @param xfill,yfill Character describing color fill for `x` and `y` axes
 #'   marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
-#'   `y`)).
+#'   `y`)). If set to `NULL`, manual specification of colors will be turned off
+#'   and 2 colors from the specified `palette` from `package` will be selected.
 #' @param xalpha,yalpha Numeric deciding transparency levels for the marginal
 #'   distributions. Any numbers from `0` (transparent) to `1` (opaque). The
 #'   default is `1` for both axes.
-#' @param xsize,ysize Size for the marginal distribution boundaries (Default: `0.7`).
+#' @param xsize,ysize Size for the marginal distribution boundaries (Default:
+#'   `0.7`).
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle.
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
@@ -47,15 +49,17 @@
 #'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption.
 #' @param k Number of decimal places expected for results.
-#' @param point.width.jitter Degree of jitter in `x` direction. Defaults to 40\% of
-#'   the resolution of the data.
-#' @param point.height.jitter Degree of jitter in `y` direction. Defaults to 40\% of
-#'   the resolution of the data.
-#' @param axes.range.restrict Logical decides whether to restrict the axes values
-#'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
+#' @param point.width.jitter Degree of jitter in `x` direction. Defaults to 40\%
+#'   of the resolution of the data.
+#' @param point.height.jitter Degree of jitter in `y` direction. Defaults to
+#'   40\% of the resolution of the data.
+#' @param axes.range.restrict Logical decides whether to restrict the axes
+#'   values ranges to min and max values of the `x` and `y` variables (Default:
+#'   `FALSE`).
 #' @inheritParams subtitle_ggscatterstats
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
+#' @inheritParams paletteer::paletteer_d
 #'
 #' @import ggplot2
 #'
@@ -73,11 +77,9 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
 #' @importFrom rlang parse_expr
-#' @importFrom broom tidy
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
 #' @importFrom stats na.omit
-#' @importFrom stats confint.default
 #' @importFrom ggrepel geom_label_repel
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
@@ -86,13 +88,17 @@
 #' @references
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggscatterstats.html}
 #'
-#' @note `marginal.type = "densigram"` will work only with the development
+#' @note
+#' \itemize{
+#' \item `marginal.type = "densigram"` will work only with the development
 #'   version of `ggExtra` that you can download from `GitHub`:
 #'   `devtools::install_github("daattali/ggExtra")`
 #'
-#' @note the plot uses `ggrepel::geom_label_repel` to attempt to keep labels from
-#'   over-lapping to the largest degree possible.  As a consequence plot times will slow down
-#'   massively (and the plot file will grow in size) if you have a lot of labels that overlap.
+#' \item The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
+#'   from over-lapping to the largest degree possible.  As a consequence plot
+#'   times will slow down massively (and the plot file will grow in size) if you
+#'   have a lot of labels that overlap.
+#' }
 #'
 #' @examples
 #'
@@ -113,7 +119,8 @@
 #'   label.var = "car",
 #'   label.expression = "wt < 4 & mpg < 20",
 #'   axes.range.restrict = TRUE,
-#'   centrality.para = "median"
+#'   centrality.para = "median",
+#'   xfill = NULL
 #' )
 #' @export
 
@@ -132,14 +139,17 @@ ggscatterstats <-
              point.color = "black",
              point.size = 3,
              point.alpha = 0.4,
-           point.width.jitter = NULL,
-           point.height.jitter = NULL,
+             point.width.jitter = NULL,
+             point.height.jitter = NULL,
              line.size = 1.5,
              line.color = "blue",
              marginal = TRUE,
              marginal.type = "histogram",
              marginal.size = 5,
              margins = c("both", "x", "y"),
+             package = "wesanderson",
+             palette = "Royal1",
+             direction = 1,
              xfill = "#009E73",
              yfill = "#D55E00",
              xalpha = 1,
@@ -252,6 +262,21 @@ ggscatterstats <-
     }
 
     #------------------------------------ basic plot -----------------------------
+
+    # if user has not specified colors, then use a color palette
+    if (is.null(xfill) || is.null(yfill)) {
+      colors <- paletteer::paletteer_d(
+        package = !!package,
+        palette = !!palette,
+        n = 2,
+        direction = direction,
+        type = "discrete"
+      )
+
+      # assigning selected colors
+      xfill <- colors[1]
+      yfill <- colors[2]
+    }
 
     # preparing the scatterplotplot
     plot <-
@@ -430,7 +455,7 @@ ggscatterstats <-
         ))
     }
 
-    #--------------------------------- adding point labels -----------------------------------
+    #--------------------------------- adding point labels --------------------------
 
     if (isTRUE(point.labelling)) {
       # using geom_repel_label
@@ -439,7 +464,6 @@ ggscatterstats <-
         ggrepel::geom_label_repel(
           data = label_data,
           mapping = aes_string(
-            #            label = !!rlang::enquo(label.var) # original
             label = label.var
           ),
           fontface = "bold",
@@ -457,6 +481,8 @@ ggscatterstats <-
 
     # creating the ggMarginal plot of a given marginal.type
     if (isTRUE(marginal)) {
+
+      # adding marginals to plot
       plot <-
         ggExtra::ggMarginal(
           p = plot,

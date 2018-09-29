@@ -13,10 +13,10 @@ MAJOR CHANGES
   (`fill.gradient = FALSE`) and shows both `"count"` and `"proportion"` data. It
   also gains a new argument `bar.fill` that can be used to fill bars with a
   uniform color.
-  - `ggbetweenstats`,  `ggcoefstats`, and `ggpiestats` now support all palettes
-  contained in the `paletteer` package. This helps avoid situations where people
-  had large number of groups (> 12) and there were not enough colors in any of
-  the `RColorBrewer` palettes.
+  - `ggbetweenstats`,  `ggcoefstats`, `ggcorrmat`, `ggscatterstats`, and
+  `ggpiestats` now support all palettes contained in the `paletteer` package.
+  This helps avoid situations where people had large number of groups (> 12) and
+  there were not enough colors in any of the `RColorBrewer` palettes.
   - `ggbetweenstats` gains `bf.message` argument to display bayes factors in
   favor of the null (currently works only for parametric t-test).
   - `gghistostats` function no longer has `line.labeller.y` argument; this
@@ -55,6 +55,8 @@ MINOR CHANGES
   - `ggcoefstats` gains a new argument `partial` and can display eta-squared and
   omega-squared effect sizes for anovas, in addition to the prior partial
   variants of these effect sizes.
+  - `ggpiestats` gains `perc.k` argument to show desired number of decimal
+  places in percentage labels.
 
 BUG FIXES
   - `grouped_ggpiestats` wasn't working when only `main` variable was provided

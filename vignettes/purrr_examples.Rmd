@@ -53,7 +53,7 @@ are encouraged to execute the other examples.
 
 # `ggbetweenstats`
 
-```{r purrr_ggbetweenstats, warning = FALSE, message = FALSE, fig.height = 18, fig.width = 8}
+```{r purrr_ggbetweenstats, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 library(ggstatsplot)
 
 # for reproducibility
@@ -63,16 +63,14 @@ set.seed(123)
 year_list <- gapminder::gapminder %>%
   dplyr::filter(
     .data = .,
-    year == 1957 |
     year == 1967 |
-    year == 1977 |
     year == 1987 |
-    year == 1997 |
-    year == 2007, continent != "Oceania"
+    year == 2007, 
+    continent != "Oceania"
   ) %>%
   base::split(x = ., f = .$year, drop = TRUE)
 
-# this created a list with 4 elements, one for each mpaa rating
+# this created a list with 3 elements, one for each mpaa rating
 # you can check the structure of the file for yourself
 # str(year_list)
 
@@ -92,46 +90,34 @@ plot_list <- purrr::pmap(
     outlier.label.color = list(
       "#56B4E9",
       "#009E73",
-      "#F0E442",
-      "#0072B2",
-      "#D55E00",
-      "#CC79A7"
+      "#F0E442"
     ),
     xlab = "Continent",
     ylab = "Life expectancy",
     title = list(
-      "Year: 1957",
       "Year: 1967",
-      "Year: 1977",
       "Year: 1987",
-      "Year: 1997",
       "Year: 2007"
     ),
-    type = list("r", "p", "np", "p", "p", "r"),
+    type = list("r", "p", "np"),
     nboot = 25,
-    k = list(1, 2, 3, 3, 2, 1),
+    k = list(1, 2, 3),
     effsize.type = list(
       NULL,
       "partial_omega",
-      NULL,
-      "partial_omega",
-      "partial_eta",
-      NULL
+       "partial_eta"
     ),
-    plot.type = list("box", "boxviolin", "box", "boxviolin", "box", "violin"),
-    mean.ci = list(TRUE, FALSE, FALSE, FALSE, TRUE, TRUE),
-    package = list("nord", "ochRe", "awtools", "ggsci", "yarrr", "RColorBrewer"),
-    palette = list("aurora", "parliament", "ppalette", "default_nejm", "basel", "Set1"),
+    plot.type = list("box", "boxviolin", "violin"),
+    mean.ci = list(TRUE, FALSE, FALSE),
+    package = list("nord", "ochRe", "awtools"),
+    palette = list("aurora", "parliament", "ppalette"),
     ggtheme = list(
       ggthemes::theme_stata(),
       ggplot2::theme_classic(),
-      ggthemes::theme_fivethirtyeight(),
-      ggplot2::theme_minimal(),
-      ggthemes::theme_wsj(),
-      ggthemes::theme_calc()
+      ggthemes::theme_fivethirtyeight()
     ),
-    ggstatsplot.layer = list(FALSE, FALSE, FALSE, FALSE, TRUE, FALSE),
-    sample.size.label = list(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE),
+    ggstatsplot.layer = list(FALSE, FALSE, FALSE),
+    sample.size.label = list(TRUE, FALSE, TRUE),
     messages = FALSE
   ),
   .f = ggstatsplot::ggbetweenstats
@@ -140,17 +126,16 @@ plot_list <- purrr::pmap(
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Changes in life expectancy across continents (1957-2007)",
+  title.text = "Changes in life expectancy across continents (1967-2007)",
   title.color = "red",
-  nrow = 6,
-  ncol = 1,
-  labels = c("(a)","(b)","(c)","(d)", "(e)", "(f)")
+  nrow = 3,
+  ncol = 1
 )
 ```
 
 # `ggscatterstats`
 
-```{r purrr_ggscatterstats, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
+```{r purrr_ggscatterstats, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
 # for reproducibility
 set.seed(123)
 
@@ -228,9 +213,9 @@ ggstatsplot::combine_plots(
 
 ```{r purrr_ggcorrmat, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 8}
 # splitting the dataframe by cut and creting a list
-# also, to make this fast, let's only use 10% of the sample
+# also, to make this fast, let's only use 5% of the sample
 cut_list <- ggplot2::diamonds %>%
-  dplyr::sample_frac(tbl = ., size = 0.10) %>%
+  dplyr::sample_frac(tbl = ., size = 0.05) %>%
   base::split(x = ., f = .$cut, drop = TRUE)
 
 # this created a list with 5 elements, one for each quality of cut
@@ -298,7 +283,7 @@ ggstatsplot::combine_plots(
 
 # `gghistostats`
 
-```{r purrr_gghistostats, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
+```{r purrr_gghistostats, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -361,8 +346,8 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Improvement in life expectancy worldwide since 1950",
   caption.text = "Note: black line - 1950; blue line - 2007",
-  nrow = 2,
-  ncol = 2,
+  nrow = 4,
+  ncol = 1,
   labels = c("(a)", "(b)", "(c)", "(d)")
 )
 ```  

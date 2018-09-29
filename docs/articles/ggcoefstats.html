@@ -116,7 +116,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-28</h4>
+            <h4 class="date">2018-09-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggcoefstats.Rmd"><code>vignettes/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -248,7 +248,7 @@
 <a class="sourceLine" id="cb3-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co"># plotting estimates</span></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> car<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/car/topics/Anova">Anova</a></span>(mod, <span class="dt">type =</span> <span class="st">"III"</span>))</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; Note: No model diagnostics information available for the object of class anova . Future release might support this.</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; Note: No model diagnostics information available for the object of class  anova . Future release might support this.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/anova1-1.png" width="768"></p>
 </div>
 <div id="linear-model-lm" class="section level2">
@@ -749,7 +749,7 @@
 <a class="sourceLine" id="cb14-61" data-line-number="61">) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb14-62" data-line-number="62"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb14-63" data-line-number="63"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
-<a class="sourceLine" id="cb14-64" data-line-number="64"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist . Future release might support this.</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-64" data-line-number="64"><span class="co">#&gt; Note: No model diagnostics information available for the object of class  aovlist . Future release might support this.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
 <p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
 </div>
@@ -787,7 +787,8 @@
 <a class="sourceLine" id="cb15-28" data-line-number="28">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb15-29" data-line-number="29">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
 <a class="sourceLine" id="cb15-30" data-line-number="30">)</a>
-<a class="sourceLine" id="cb15-31" data-line-number="31"><span class="co">#&gt; Note: No 95% confidence intervals available for regression coefficients from glmRob object, so skipping whiskers in the plot.Note: No 95% confidence intervals available for regression coefficients from lmRob object, so skipping whiskers in the plot.</span></a></code></pre></div>
+<a class="sourceLine" id="cb15-31" data-line-number="31"><span class="co">#&gt; Note: No 95% confidence intervals available for regression coefficients from  glmRob  object, so skipping whiskers in the plot.</span></a>
+<a class="sourceLine" id="cb15-32" data-line-number="32"><span class="co">#&gt; Note: No 95% confidence intervals available for regression coefficients from  lmRob  object, so skipping whiskers in the plot.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/robust-1.png" width="768"></p>
 </div>
 <div id="and-much-more" class="section level2">
@@ -817,7 +818,7 @@
 <a class="sourceLine" id="cb16-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
 <a class="sourceLine" id="cb16-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
 <a class="sourceLine" id="cb16-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York            </span></a>
-<a class="sourceLine" id="cb16-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-28                  </span></a>
+<a class="sourceLine" id="cb16-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-29                  </span></a>
 <a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb16-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb16-16" data-line-number="16"><span class="co">#&gt;  package      * version     date       lib source                              </span></a>
@@ -879,7 +880,7 @@
 <a class="sourceLine" id="cb16-72" data-line-number="72"><span class="co">#&gt;  htmldeps       0.1.1       2018-09-17 [1] Github (rstudio/htmldeps@c1023e0)   </span></a>
 <a class="sourceLine" id="cb16-73" data-line-number="73"><span class="co">#&gt;  htmltools      0.3.6       2017-04-28 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb16-74" data-line-number="74"><span class="co">#&gt;  httpuv         1.4.5       2018-07-19 [1] CRAN (R 3.5.1)                      </span></a>
-<a class="sourceLine" id="cb16-75" data-line-number="75"><span class="co">#&gt;  jmv            0.9.4       2018-09-18 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb16-75" data-line-number="75"><span class="co">#&gt;  jmv            0.9.4       2018-09-29 [1] Github (jamovi/jmv@7dac133)         </span></a>
 <a class="sourceLine" id="cb16-76" data-line-number="76"><span class="co">#&gt;  jmvcore        0.9.4       2018-09-17 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb16-77" data-line-number="77"><span class="co">#&gt;  knitr          1.20.12     2018-08-13 [1] local                               </span></a>
 <a class="sourceLine" id="cb16-78" data-line-number="78"><span class="co">#&gt;  labeling       0.3         2014-08-23 [1] CRAN (R 3.5.0)                      </span></a>

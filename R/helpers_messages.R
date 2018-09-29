@@ -23,10 +23,10 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#'
+#' 
 #' # message
 #' normality_message(x = datasets::anscombe$x1)
-#'
+#' 
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -107,7 +107,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#'
+#' 
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -115,7 +115,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#'
+#' 
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,

@@ -57,6 +57,8 @@
 #' @param lab Logical value. If `TRUE`, correlation coefficient values will be
 #'   displayed in the plot.
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
+#'   If set to `NULL`, manual specification of colors will be turned off and 3
+#'   colors from the specified `palette` from `package` will be selected.
 #' @param outline.color The outline color of square or circle. Default value is
 #'   `"gray"`.
 #' @param title The text for the plot title.
@@ -87,6 +89,7 @@
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams theme_ggstatsplot
+#' @inheritParams paletteer::paletteer_d
 #'
 #' @import ggplot2
 #'
@@ -123,7 +126,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
@@ -132,14 +135,14 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   cor.vars.names = c("total sleep", "REM sleep")
 #' )
-#'
+#' 
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "r"
 #' )
-#'
+#' 
 #' # setting output = "p-values" (or "p") will return the p-value matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -148,7 +151,7 @@
 #'   p.adjust.method = "bonferroni",
 #'   output = "p"
 #' )
-#'
+#' 
 #' # setting output = "ci" will return the confidence intervals for unique
 #' # correlation pairs
 #' ggstatsplot::ggcorrmat(
@@ -157,7 +160,7 @@
 #'   p.adjust.method = "BH",
 #'   output = "ci"
 #' )
-#'
+#' 
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
@@ -190,6 +193,9 @@ ggcorrmat <-
              hc.order = FALSE,
              hc.method = "complete",
              lab = TRUE,
+             package = "RColorBrewer",
+             palette = "Dark2",
+             direction = 1,
              colors = c("#E69F00", "white", "#009E73"),
              outline.color = "black",
              ggtheme = ggplot2::theme_bw(),
@@ -310,6 +316,19 @@ ggcorrmat <-
     }
 
     # ========================== plot =======================================
+
+    # if user has not specified colors, then use a color palette
+    if (is.null(colors)) {
+      colors <- paletteer::paletteer_d(
+        package = !!package,
+        palette = !!palette,
+        n = 3,
+        direction = direction,
+        type = "discrete"
+      )
+    }
+
+    # creating the basic plot
     if (output == "plot") {
       if (corr.method %in% c("pearson", "spearman", "kendall", "robust")) {
         # plotting the correlalogram
@@ -352,7 +371,6 @@ ggcorrmat <-
             BY = "Benjamini & Yekutieli"
           )
         }
-
 
         # p value adjustment method description
         p.adjust.method.text <-
