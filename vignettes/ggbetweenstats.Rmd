@@ -128,23 +128,19 @@ given continent. For example, although Asian countries are doing much better
 than African countries, on average, Afghanistan has a particularly grim average
 for the Asian continent, possibly reflecting the war and the political turmoil.
 
-Out of curiosity, we can repeat the same analysis with other available feature
-of `ggstatsplot`:
+## Combining plots with `combine_plots` and `ggbetweenstats`
 
- - The `type` (of test) argument also accepts the following abbreviations: `"p"`
-(for *parametric*), `"np"` (for *nonparametric*), `"r"` (for *robust*).
+So far we have only used the classic parametric test. The `type` (of test)
+argument accepts the following abbreviations: `"p"` (for *parametric*), `"np"`
+(for *nonparametric*), `"r"` (for *robust*) and `"bf"` for Bayesian. Let's run
+tests with the 3 variants we haven't used so far. 
 
- - The type of plot to be displayed can also be modified (`"box"`, `"violin"`,
-or `"boxviolin"`). Let's produce all of these variations in the plot below.
+The type of plot to be displayed can also be modified (`"box"`, `"violin"`, or
+`"boxviolin"`). Let's produce all of these variations. 
 
- - The color palettes can be modified.
+Let's use the `combine_plots` function to make one plot from three separate plots that demonstrates all of these options. Let's compare life expectancy for all countries for the first and last year of available data 1957 and 2007. We will generate the plots one by one and then use `combine_plots` to merge them into one plot with some common labelling.  It is possible but not necessarily recommend to make each plot have different colors or themes.
 
-Let's try out both of these features by plotting continent-level differences for
-three different years, separated by a decade. 
-
-For example,
-
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 6}
 library(ggstatsplot)
 library(gapminder)
 
@@ -153,20 +149,6 @@ df_year <- dplyr::filter(.data = gapminder::gapminder, year == 2007 | year == 19
 
 # for reproducibility
 set.seed(123)
-
-# parametric ANOVA and box plot
-p1 <- ggstatsplot::ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  plot.type = "box",
-  type = "p",
-  effsize.type = "d",
-  title = "parametric test",
-  package = "ggsci",
-  palette = "nrc_npg",
-  messages = FALSE
-)
 
 # Kruskal-Wallis test (nonparametric ANOVA) and violin plot
 p2 <- ggstatsplot::ggbetweenstats(
@@ -177,7 +159,7 @@ p2 <- ggstatsplot::ggbetweenstats(
   type = "np",
   title = "non-parametric test",
   package = "ggsci",
-  palette = "uniform_startrek",
+  palette = "nrc_npg",
   messages = FALSE
 )
 
@@ -190,8 +172,8 @@ p3 <- ggstatsplot::ggbetweenstats(
   type = "r",
   title = "robust test",
   tr = 0.005,
-  package = "wesanderson",
-  palette = "Royal2",
+  package = "ggsci",
+  palette = "nrc_npg",
   messages = FALSE
 )
 
@@ -201,20 +183,21 @@ p4 <- ggstatsplot::ggbetweenstats(
   x = year,
   y = lifeExp,
   type = "bf",
+  plot.type = "box",
   title = "bayesian test",
-  package = "palettetown",
-  palette = "natu",
+  package = "ggsci",
+  palette = "nrc_npg",
   messages = FALSE
 )
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
-  p1, p2, p3, p4, 
-  nrow = 2, 
-  ncol = 2, 
-  labels = c("(a)", "(b)", "(c)"),
+  p2, p3, p4, 
+  nrow = 3, 
+  ncol = 1, 
+#  labels = c("(a)", "(b)", "(c)"),
   title.text = "Comparison of life expectancy between 1957 and 2007",
-  caption.text = "Note: Comparing results from parametric, non-parametric, robust, and bayesian tests",
+  caption.text = "Source: Gapminder Foundation",
   title.size = 14,
   caption.size = 12
 )
