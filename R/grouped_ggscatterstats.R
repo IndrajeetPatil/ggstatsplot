@@ -35,10 +35,10 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -52,7 +52,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -65,7 +65,7 @@
 #'   label.expression = "hwy > 25 & displ > 2.5",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
 #' \dontrun{
 #' ggstatsplot::grouped_ggscatterstats(
@@ -99,14 +99,17 @@ grouped_ggscatterstats <- function(data,
                                    method = "lm",
                                    method.args = list(),
                                    formula = y ~ x,
+                                   point.color = "black",
+                                   point.size = 3,
+                                   point.alpha = 0.4,
                                    line.size = 1.5,
+                                   point.width.jitter = NULL,
+                                   point.height.jitter = NULL,
                                    line.color = "blue",
                                    marginal = TRUE,
                                    marginal.type = "histogram",
                                    marginal.size = 5,
                                    margins = c("both", "x", "y"),
-                                   width.jitter = NULL,
-                                   height.jitter = NULL,
                                    xfill = "#009E73",
                                    yfill = "#D55E00",
                                    xalpha = 1,
@@ -213,14 +216,17 @@ grouped_ggscatterstats <- function(data,
                 method = method,
                 method.args = method.args,
                 formula = formula,
+                point.color = point.color,
+                point.size = point.size,
+                point.alpha = point.alpha,
+                point.width.jitter = point.width.jitter,
+                point.height.jitter = point.height.jitter,
                 line.size = line.size,
                 line.color = line.color,
                 marginal = marginal,
                 marginal.type = marginal.type,
                 marginal.size = marginal.size,
                 margins = margins,
-                width.jitter = width.jitter,
-                height.jitter = height.jitter,
                 xfill = xfill,
                 yfill = yfill,
                 xalpha = xalpha,
@@ -264,14 +270,17 @@ grouped_ggscatterstats <- function(data,
                 method = method,
                 method.args = method.args,
                 formula = formula,
+                point.color = point.color,
+                point.size = point.size,
+                point.alpha = point.alpha,
+                point.width.jitter = point.width.jitter,
+                point.height.jitter = point.height.jitter,
                 line.size = line.size,
                 line.color = line.color,
                 marginal = marginal,
                 marginal.type = marginal.type,
                 marginal.size = marginal.size,
                 margins = margins,
-                width.jitter = width.jitter,
-                height.jitter = height.jitter,
                 xfill = xfill,
                 yfill = yfill,
                 xalpha = xalpha,
@@ -315,14 +324,17 @@ grouped_ggscatterstats <- function(data,
               method = method,
               method.args = method.args,
               formula = formula,
+              point.color = point.color,
+              point.size = point.size,
+              point.alpha = point.alpha,
+              point.width.jitter = point.width.jitter,
+              point.height.jitter = point.height.jitter,
               line.size = line.size,
               line.color = line.color,
               marginal = marginal,
               marginal.type = marginal.type,
               marginal.size = marginal.size,
               margins = margins,
-              width.jitter = width.jitter,
-              height.jitter = height.jitter,
               xfill = xfill,
               yfill = yfill,
               xalpha = xalpha,

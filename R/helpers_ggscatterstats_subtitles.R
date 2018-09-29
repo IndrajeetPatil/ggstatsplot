@@ -145,7 +145,7 @@ subtitle_ggscatterstats <-
           crayon::blue(
             "95% CI for Spearman's rho was computed with ",
             crayon::yellow(nboot),
-            "bootstrap samples."
+            "bootstrap samples.\n"
           ),
           sep = ""
         ))
@@ -247,7 +247,7 @@ subtitle_ggscatterstats <-
           crayon::blue(
             "95% CI for percentage bend correlation was computed with",
             crayon::yellow(nboot),
-            "bootstrap samples."
+            "bootstrap samples.\n"
           ),
           sep = ""
         ))

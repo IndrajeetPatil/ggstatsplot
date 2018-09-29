@@ -8,14 +8,15 @@ variable}
 grouped_ggscatterstats(data, x, y, label.var = NULL,
   label.expression = NULL, grouping.var, title.prefix = "Group",
   xlab = NULL, ylab = NULL, method = "lm", method.args = list(),
-  formula = y ~ x, line.size = 1.5, line.color = "blue",
-  marginal = TRUE, marginal.type = "histogram", marginal.size = 5,
-  margins = c("both", "x", "y"), width.jitter = NULL,
-  height.jitter = NULL, xfill = "#009E73", yfill = "#D55E00",
-  xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7,
-  centrality.para = NULL, type = "pearson", results.subtitle = TRUE,
-  caption = NULL, subtitle = NULL, nboot = 100, beta = 0.1,
-  k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
+  formula = y ~ x, point.color = "black", point.size = 3,
+  point.alpha = 0.4, line.size = 1.5, point.width.jitter = NULL,
+  point.height.jitter = NULL, line.color = "blue", marginal = TRUE,
+  marginal.type = "histogram", marginal.size = 5, margins = c("both",
+  "x", "y"), xfill = "#009E73", yfill = "#D55E00", xalpha = 1,
+  yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL,
+  type = "pearson", results.subtitle = TRUE, caption = NULL,
+  subtitle = NULL, nboot = 100, beta = 0.1, k = 3,
+  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, messages = TRUE, ...)
 }
 \arguments{
@@ -63,7 +64,22 @@ function defined by \code{method}.}
 \item{formula}{Formula to use in smoothing function, eg. \code{y ~ x},
 \code{y ~ poly(x, 2)}, \code{y ~ log(x)}}
 
+\item{point.color}{Aesthetics specifying geom point
+(defaults: \code{point.color = "black"}, \code{point.size = 3},\code{point.alpha = 0.4}).}
+
+\item{point.size}{Aesthetics specifying geom point
+(defaults: \code{point.color = "black"}, \code{point.size = 3},\code{point.alpha = 0.4}).}
+
+\item{point.alpha}{Aesthetics specifying geom point
+(defaults: \code{point.color = "black"}, \code{point.size = 3},\code{point.alpha = 0.4}).}
+
 \item{line.size}{Size for the regression line.}
+
+\item{point.width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\% of
+the resolution of the data.}
+
+\item{point.height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
+the resolution of the data.}
 
 \item{line.color}{color for the regression line.}
 
@@ -79,12 +95,6 @@ plots compared to the main plot. A size of \code{5} means that the main plot is
 
 \item{margins}{Character describing along which margins to show the plots.
 Any of the following arguments are accepted: \code{"both"}, \code{"x"}, \code{"y"}.}
-
-\item{width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\% of
-the resolution of the data.}
-
-\item{height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
-the resolution of the data.}
 
 \item{xfill}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for

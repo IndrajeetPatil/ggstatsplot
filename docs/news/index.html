@@ -111,9 +111,6 @@
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/plot_design.html">plot design</a>
-    </li>
-    <li>
       <a href="../articles/purrr_examples.html">using `ggstatsplot` with `purrr` package</a>
     </li>
     <li>
@@ -183,6 +180,8 @@
 <li>For consistency, <code>conf.level</code> and <code>conf.type</code> arguments for <code>ggbetweenstats</code> have been deprecated. No other function in the package allowed changing confidence interval or their type for effect size estimation. These arguments were relevant only for <code>robust</code> tests anyway.</li>
 <li>
 <code>ggocorrmat</code> argument <code>type</code> has been changed to <code>matrix.type</code> because for all other functions <code>type</code> argument specifies the type of the test, while for this function it specified the display of the virsualization matrix. This will make the syntax more consistent across functions.</li>
+<li>
+<code>ggscatterstats</code> gains new arguments to specify aesthetics for geom point (<code>point.color</code>, <code>point.size</code>, <code>point.alpha</code>). To be consistent with this naming schema, the <code>width.jitter</code> and <code>height.jitter</code> arguments have been renamed to <code>point.width.jitter</code> and <code>point.height.jitter</code>, resp.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

@@ -144,7 +144,7 @@ subtitle_ggbetween_anova_parametric <-
           crayon::blue(
             "95% CI for partial omega-squared was computed with",
             crayon::yellow(nboot),
-            "bootstrap samples."
+            "bootstrap samples.\n"
           ),
           sep = ""
         ))
@@ -213,7 +213,7 @@ subtitle_ggbetween_anova_parametric <-
           crayon::blue(
             "95% CI for partial eta-squared was computed with",
             crayon::yellow(nboot),
-            "bootstrap samples."
+            "bootstrap samples.\n"
           ),
           sep = ""
         ))
@@ -676,7 +676,7 @@ subtitle_ggbetween_t_rob <-
         crayon::blue(
           "95% CI for explanatory measure of effect size was computed with",
           crayon::yellow(nboot),
-          "bootstrap samples."
+          "bootstrap samples.\n"
         ),
         sep = ""
       ))
@@ -1106,7 +1106,7 @@ subtitle_ggbetween_rob_anova <-
         crayon::blue(
           "95% CI for explanatory measure of effect size was computed with",
           crayon::yellow(nboot),
-          "bootstrap samples."
+          "bootstrap samples.\n"
         ),
         sep = ""
       ))

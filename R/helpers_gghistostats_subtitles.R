@@ -210,7 +210,7 @@ subtitle_onesample <- function(data = NULL,
           crayon::yellow("median, Huber Psi"),
           "computed with ",
           crayon::yellow(nboot),
-          "bootstrap samples."
+          "bootstrap samples.\n"
         ),
         sep = ""
       ))

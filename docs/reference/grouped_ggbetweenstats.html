@@ -117,9 +117,6 @@ grouping variable." />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/plot_design.html">plot design</a>
-    </li>
-    <li>
       <a href="../articles/purrr_examples.html">using `ggstatsplot` with `purrr` package</a>
     </li>
     <li>
@@ -505,12 +502,12 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 
 <span class='co'># the most basic function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
-  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/mpg'>mpg</a></span>, <span class='no'>drv</span> <span class='kw'>!=</span> <span class='st'>"4"</span>),
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>hwy</span>,
+  <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>drv</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for wt : p-value =0.570</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor am : p-value =0.994</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for wt : p-value =0.131</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor am : p-value =0.890</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for wt : p-value =0.003</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor am : p-value =0.364</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='error'>Error in grid.Call(C_convert, x, as.integer(whatfrom), as.integer(whatto),     valid.units(unitTo)): Viewport has zero dimension(s)</span></div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for hwy : p-value = &lt; 0.001</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor year : p-value =0.144</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for hwy : p-value = 0.033</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor year : p-value =0.682</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

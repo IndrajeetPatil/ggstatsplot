@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 300
+    dpi: 200
     toc: true
     warning: FALSE
     message: FALSE
@@ -59,7 +59,7 @@ questions. For example, let's see if the average IMDB rating for a movie has any
 relationship to its budget. Additionally, let's also see which movies had a high
 budget but low IMDB rating by labeling those data points. 
 
-To reduce the processing time, let's only work with 30% of the datset.
+To reduce the processing time, let's only work with 30% of the dataset.
 
 ```{r ggscatterstats1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 # for reproducibility
@@ -77,6 +77,9 @@ ggstatsplot::ggscatterstats(
   ylab = "Rating on IMDB",                                     # label for the y-axis
   label.var = "title",                                         # variable to use for labeling data points
   label.expression = "rating < 5 & budget > 100",              # expression for deciding which points to label
+  point.alpha = 0.7,
+  point.size = 4,
+  point.color = "grey50",
   marginal = TRUE,                                             # show marginal distribution 
   marginal.type = "density",                                   # type of plot for marginal distribution
   centrality.para = "mean",                                    # which type of centrality parameter to be plotted
@@ -94,12 +97,13 @@ ggstatsplot::ggscatterstats(
 )
 ```
 
-There is indeed a smal,l but significant, positive correlation between the amount of money
-studio invests in a movie and the ratings given by the audiences. 
+There is indeed a small, but significant, positive correlation between the
+amount of money studio invests in a movie and the ratings given by the
+audiences.
 
 The `type` (of test) argument also accepts the following abbreviations: `"p"`
 (for *parametric*/pearson's), `"np"` (for *nonparametric*/spearman), `"r"` (for
-*robust*). 
+*robust*).
 
 **Important**: 
 In contrast to all other functions in this package, the

@@ -29,21 +29,21 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#' 
+#'
 #' # without counts data
 #' subtitle_contigency_tab(
 #'   data = mtcars,
 #'   main = am,
 #'   condition = cyl
 #' )
-#' 
+#'
 #' # with counts data
 #' # in case of no variation, NaN will be shown for results
 #' library(jmv)
-#' 
+#'
 #' dat <- as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male")
-#' 
+#'
 #' subtitle_contigency_tab(
 #'   data = dat,
 #'   main = Hair,
@@ -137,7 +137,7 @@ subtitle_contigency_tab <- function(data,
           crayon::blue(
             "95% CI for Cramer's V was computed with",
             crayon::yellow(nboot),
-            "bootstrap samples."
+            "bootstrap samples.\n"
           ),
           sep = ""
         ))
@@ -286,16 +286,16 @@ subtitle_contigency_tab <- function(data,
 #' @inheritParams subtitle_contigency_tab
 #'
 #' @examples
-#' 
+#'
 #' # with counts
 #' library(jmv)
-#' 
+#'
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#' 
+#'
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),
@@ -375,9 +375,9 @@ subtitle_onesample_proptest <-
       # display message
       base::message(cat(
         crayon::red("Warning: "),
-        crayon::blue("Proportion test will not be run because it requires"),
+        crayon::blue("Proportion test will not be run because it requires "),
         crayon::yellow(legend.title),
-        crayon::blue("to have at least 2 levels with non-zero frequencies."),
+        crayon::blue(" to have at least \n2 levels with non-zero frequencies.\n"),
         sep = ""
       ))
     } else {

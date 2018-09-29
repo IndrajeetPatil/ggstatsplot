@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 300
+    dpi: 200
     toc: true
     eval: FALSE
     warning: FALSE
@@ -53,7 +53,7 @@ are encouraged to execute the other examples.
 
 # `ggbetweenstats`
 
-```{r purrr_ggbetweenstats, warning = FALSE, message = FALSE, fig.height = 24, fig.width = 8}
+```{r purrr_ggbetweenstats, warning = FALSE, message = FALSE, fig.height = 18, fig.width = 8}
 library(ggstatsplot)
 
 # for reproducibility
@@ -108,6 +108,7 @@ plot_list <- purrr::pmap(
       "Year: 2007"
     ),
     type = list("r", "p", "np", "p", "p", "r"),
+    nboot = 25,
     k = list(1, 2, 3, 3, 2, 1),
     effsize.type = list(
       NULL,
@@ -131,7 +132,7 @@ plot_list <- purrr::pmap(
     ),
     ggstatsplot.layer = list(FALSE, FALSE, FALSE, FALSE, TRUE, FALSE),
     sample.size.label = list(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE),
-    messages = TRUE
+    messages = FALSE
   ),
   .f = ggstatsplot::ggbetweenstats
 )
@@ -149,16 +150,16 @@ ggstatsplot::combine_plots(
 
 # `ggscatterstats`
 
-```{r purrr_ggscatterstats, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
+```{r purrr_ggscatterstats, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
 # let's split the dataframe and create a list by mpaa rating
-# let's use only 30% of the data
+# let's use only 25% of the data
 # also let's leave out movies with NC-17 rating because there are so few of them
 mpaa_list <- ggstatsplot::movies_wide %>%
   dplyr::filter(.data = ., mpaa != "NC-17") %>%
-  dplyr::sample_frac(tbl = ., size = 0.3) %>%
+  dplyr::sample_frac(tbl = ., size = 0.25) %>%
   base::split(x = ., f = .$mpaa, drop = TRUE)
 
 # this created a list with 3 elements, one for each mpaa rating
@@ -193,6 +194,7 @@ plot_list <- purrr::pmap(
      ),
     type = list("r", "np", "p"),
     method = list(MASS::rlm, "lm", "lm"),
+    nboot = 25,
     marginal.type = list("boxplot", "density", "violin"),
     centrality.para = list("mean", "median", "mean"),
     xfill = list("#009E73", "#999999", "#0072B2"),
@@ -224,7 +226,7 @@ ggstatsplot::combine_plots(
 
 # `ggcorrmat`
 
-```{r purrr_ggcorrmat, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 10}
+```{r purrr_ggcorrmat, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 8}
 # splitting the dataframe by cut and creting a list
 # also, to make this fast, let's only use 10% of the sample
 cut_list <- ggplot2::diamonds %>%
@@ -245,16 +247,12 @@ names(cut_list)
 plot_list <- purrr::pmap(
   .l = list(
     data = cut_list,
-    cor.vars = list(c("carat", "depth", "table",
-                 "price", "x", "y", "z")),
+    cor.vars = list(c("carat", "depth", "table", "price")),
     cor.vars.names = list(c(
       "carat",
       "total depth",
       "table",
-      "price",
-      "length (in mm)",
-      "width (in mm)",
-      "depth (in mm)"
+      "price"
     )),
     corr.method = list("pearson", "np", "robust", "p", "kendall"),
     # note that we are changing both p-value adjustment method *and*
@@ -300,7 +298,7 @@ ggstatsplot::combine_plots(
 
 # `gghistostats`
 
-```{r purrr_gghistostats, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 12}
+```{r purrr_gghistostats, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
 # for reproducibility
 set.seed(123)
 
@@ -308,11 +306,12 @@ set.seed(123)
 library(ggthemes)
 
 # let's split the dataframe and create a list by continent
+# let's leave out Oceania because it has just two data points
 continent_list <- gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007) %>%
+  dplyr::filter(.data = ., year == 2007, continent != "Oceania") %>%
   base::split(x = ., f = .$continent, drop = TRUE)
 
-# this created a list with 5 elements, one for each continent
+# this created a list with 4 elements, one for each continent
 # you can check the structure of the file for yourself
 # str(continent_list)
 
@@ -328,21 +327,20 @@ plot_list <- purrr::pmap(
     data = continent_list,
     x = "lifeExp",
     xlab = "Life expectancy",
-    test.value = list(35.6, 58.4, 41.6, 64.7, 63.4),
-    type = list("p", "np", "r", "bf", "p"),
-    bf.message = list(TRUE, FALSE, FALSE, FALSE, TRUE),
+    test.value = list(35.6, 58.4, 41.6, 64.7),
+    type = list("p", "np", "r", "bf"),
+    bf.message = list(TRUE, FALSE, FALSE, FALSE),
     title = list(
       "Continent: Africa",
       "Continent: Americas",
       "Continent: Asia",
-      "Continent: Europe",
-      "Continent: Oceania"
+      "Continent: Europe"
     ),
-    bar.measure = list("proportion", "count", "proportion", "density", "count"),
-    fill.gradient = list(TRUE, FALSE, FALSE, TRUE, TRUE),
-    low.color = list("#56B4E9", "white", "#999999", "#009E73", "black"),
-    high.color = list("#D55E00", "white", "#F0E442", "#F0E442", "black"),
-    bar.fill = list("white", "red", "orange", "blue", "white"),
+    bar.measure = list("proportion", "count", "proportion", "density"),
+    fill.gradient = list(TRUE, FALSE, FALSE, TRUE),
+    low.color = list("#56B4E9", "white", "#999999", "#009E73"),
+    high.color = list("#D55E00", "white", "#F0E442", "#F0E442"),
+    bar.fill = list("white", "red", "orange", "blue"),
     centrality.color = "black",
     test.value.line = TRUE,
     test.value.color = "black",
@@ -351,8 +349,7 @@ plot_list <- purrr::pmap(
       ggplot2::theme_classic(),
       ggthemes::theme_fivethirtyeight(),
       ggplot2::theme_minimal(),
-      ggthemes::theme_few(),
-      ggthemes::theme_gdocs()
+      ggthemes::theme_few()
     ),
     messages = FALSE
   ),
@@ -364,9 +361,9 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Improvement in life expectancy worldwide since 1950",
   caption.text = "Note: black line - 1950; blue line - 2007",
-  nrow = 3,
+  nrow = 2,
   ncol = 2,
-  labels = c("(a)", "(b)", "(c)", "(d)", "(e)")
+  labels = c("(a)", "(b)", "(c)", "(d)")
 )
 ```  
 
@@ -393,6 +390,7 @@ plot_list <- purrr::pmap(
     data = class_list,
     main = "Survived",
     condition = "Sex",
+    nboot = 10,
     facet.wrap.name = "Gender",
     title = list(
       "Passenger class: 1st",
@@ -410,7 +408,7 @@ plot_list <- purrr::pmap(
     palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
     ggtheme = list(
       ggplot2::theme_grey(),
-      ggplot2::theme_classic(),
+      ggplot2::theme_bw(),
       ggthemes::theme_tufte(),
       ggthemes::theme_economist()
     ),
@@ -425,7 +423,7 @@ plot_list <- purrr::pmap(
 ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Survival in Titanic disaster by gender for all passenger classes",
-  caption.text = "Asterisks denote results from proportion tests; ***: p < 0.001, ns: non-significant",
+  caption.text = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant",
   nrow = 4,
   ncol = 1,
   labels = c("(a)","(b)","(c)", "(d)")

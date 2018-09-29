@@ -123,7 +123,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
@@ -132,14 +132,14 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   cor.vars.names = c("total sleep", "REM sleep")
 #' )
-#' 
+#'
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "r"
 #' )
-#' 
+#'
 #' # setting output = "p-values" (or "p") will return the p-value matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -148,7 +148,7 @@
 #'   p.adjust.method = "bonferroni",
 #'   output = "p"
 #' )
-#' 
+#'
 #' # setting output = "ci" will return the confidence intervals for unique
 #' # correlation pairs
 #' ggstatsplot::ggcorrmat(
@@ -157,7 +157,7 @@
 #'   p.adjust.method = "BH",
 #'   output = "ci"
 #' )
-#' 
+#'
 #' # modifying few elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
@@ -212,7 +212,7 @@ ggcorrmat <-
              axis.text.x.margin.r = 0,
              axis.text.x.margin.b = 0,
              messages = TRUE) {
-    # ========================================== dataframe ==============================================================
+    # ======================= dataframe =======================================
     #
     # creating a dataframe out of the entered variables
     df <- data %>%
@@ -226,7 +226,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::red("Warning: "),
           crayon::blue(
-            "The number of variable names does not equal the number of variables."
+            "The number of variable names does not equal the number of variables.\n"
           ),
           sep = ""
         ))
@@ -236,7 +236,7 @@ ggcorrmat <-
       }
     }
 
-    # ========================================== checking corr.method ==============================================================
+    # ============================= checking corr.method ==========================
 
     # if any of the abbreviations have been entered, change them
     if (corr.method == "p") {
@@ -247,7 +247,7 @@ ggcorrmat <-
       corr.method <- "robust"
     }
 
-    # ========================================== statistics =======================================================================
+    # ===================== statistics ===========================================
     #
     if (corr.method %in% c("pearson", "spearman", "kendall")) {
       if (output == "ci") {
@@ -309,7 +309,7 @@ ggcorrmat <-
       }
     }
 
-    # ========================================== plot ==============================================================
+    # ========================== plot =======================================
     if (output == "plot") {
       if (corr.method %in% c("pearson", "spearman", "kendall", "robust")) {
         # plotting the correlalogram
@@ -337,7 +337,7 @@ ggcorrmat <-
           tl.srt = tl.srt
         )
 
-        # ========================================== labels =======================================================================
+        # ============================ labels ==================================
 
         # preparing text for which p-value adjustment method was used
         p.adjust.method.description <- function(p.adjust.method) {
@@ -353,34 +353,40 @@ ggcorrmat <-
           )
         }
 
+
         # p value adjustment method description
-        p.adjust.method.text <- p.adjust.method.description(p.adjust.method = p.adjust.method)
+        p.adjust.method.text <-
+          p.adjust.method.description(p.adjust.method = p.adjust.method)
 
         # if caption is not specified, use the generic version only if caption.default is TRUE
         if (is.null(caption) &&
           pch == 4 && isTRUE(caption.default)) {
+
+          # preparing the caption
+          caption <- base::substitute(
+            expr = paste(
+              bold("X"),
+              " = correlation non-significant at ",
+              italic("p"),
+              " < ",
+              sig.level,
+              " (Adjustment: ",
+              p.adjust.method.text,
+              ")",
+              sep = ""
+            ),
+            env = list(
+              sig.level = sig.level,
+              p.adjust.method.text = p.adjust.method.text
+            )
+          )
+
           # adding text details to the plot
           plot <- plot +
             ggplot2::labs(
               title = title,
               subtitle = subtitle,
-              caption = base::substitute(
-                expr = paste(
-                  bold("X"),
-                  " = correlation non-significant at ",
-                  italic("p"),
-                  " < ",
-                  sig.level,
-                  " (Adjustment: ",
-                  p.adjust.method.text,
-                  ")",
-                  sep = ""
-                ),
-                env = list(
-                  sig.level = sig.level,
-                  p.adjust.method.text = p.adjust.method.text
-                )
-              ),
+              caption = caption,
               xlab = NULL,
               ylab = NULL
             )
@@ -438,7 +444,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values."
+            "In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.\n"
           ),
           sep = ""
         ))
@@ -471,7 +477,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::red("Warning: "),
           crayon::blue(
-            "Confidence intervals for correlations are currently not available for robust correlation."
+            "Confidence intervals for correlations are currently not available for robust correlation.\n"
           ),
           sep = ""
         ))
@@ -483,7 +489,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values."
+            "In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.\n"
           ),
           sep = ""
         ))

@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--27-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--28-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -38,7 +38,7 @@ Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
 -->
 
-## Overview
+# Overview
 
 [`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an
 extension of [`ggplot2`](https://github.com/tidyverse/ggplot2) package
@@ -71,12 +71,12 @@ analyses:
 
 In addition to these basic plots, `ggstatsplot` also provides
 **`grouped_`** versions for most functions that makes it easy to repeat
-the same anlysis for any grouping variable.
+the same analysis for any grouping variable.
 
 Future versions will include other types of statistical analyses and
 plots as well.
 
-## Installation
+# Installation
 
 To get the latest, stable CRAN release (`0.0.5`):
 
@@ -126,7 +126,7 @@ rmarkdown::pandoc_available()
 #> [1] TRUE
 ```
 
-## Citation
+# Citation
 
 If you want to cite this package in a scientific journal or in any other
 context, run the following code in your `R` console:
@@ -138,7 +138,7 @@ utils::citation(package = "ggstatsplot")
 There is currently a publication in preparation corresponding this
 package and the citation will be updated once it’s published.
 
-## Documentation and Examples
+# Documentation and Examples
 
 To see the detailed documentation for each function in the stable
 **CRAN** version of the package, see:
@@ -185,20 +185,20 @@ For example-
 args(name = ggstatsplot::ggscatterstats)
 #> function (data, x, y, label.var = NULL, label.expression = NULL, 
 #>     xlab = NULL, ylab = NULL, method = "lm", method.args = list(), 
-#>     formula = y ~ x, line.size = 1.5, line.color = "blue", marginal = TRUE, 
-#>     marginal.type = "histogram", marginal.size = 5, margins = c("both", 
-#>         "x", "y"), width.jitter = NULL, height.jitter = NULL, 
-#>     xfill = "#009E73", yfill = "#D55E00", xalpha = 1, yalpha = 1, 
-#>     xsize = 0.7, ysize = 0.7, centrality.para = NULL, type = "pearson", 
-#>     results.subtitle = TRUE, title = NULL, subtitle = NULL, caption = NULL, 
-#>     nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE, 
-#>     ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE, 
-#>     messages = TRUE) 
+#>     formula = y ~ x, point.color = "black", point.size = 3, point.alpha = 0.4, 
+#>     point.width.jitter = NULL, point.height.jitter = NULL, line.size = 1.5, 
+#>     line.color = "blue", marginal = TRUE, marginal.type = "histogram", 
+#>     marginal.size = 5, margins = c("both", "x", "y"), xfill = "#009E73", 
+#>     yfill = "#D55E00", xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7, 
+#>     centrality.para = NULL, type = "pearson", results.subtitle = TRUE, 
+#>     title = NULL, subtitle = NULL, caption = NULL, nboot = 100, 
+#>     beta = 0.1, k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(), 
+#>     ggstatsplot.layer = TRUE, messages = TRUE) 
 #> NULL
 ```
 
 In case you want to look at the function body for any of the functions,
-just type the name of the function without the paranetheses:
+just type the name of the function without the parentheses:
 
 ``` r
 ggstatsplot::theme_ggstatsplot
@@ -243,7 +243,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x00000000290ea768>
+#> <bytecode: 0x00000000289cc5d0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -285,6 +285,9 @@ from statistical tests in the subtitle. The simplest function call looks
 like this-
 
 ``` r
+# loading needed libraries
+library(ggstatsplot)
+
 # for reproducibility
 set.seed(123)
 
@@ -406,6 +409,38 @@ exploratory data analysis, but the statistical details displayed in the
 subtitle will be incorrect. You can remove them by adding `+
 ggplot2::labs(subtitle = NULL)` to your function call.
 
+As a **temporary solution**, you can use the helper function from
+`ggstatsplot` to display results from within-subjects version of the
+test in question. Here is an example-
+
+``` r
+# for reproducibility
+set.seed(123)
+
+# creating a smaller dataframe
+intent_short <- ggstatsplot::intent_morality %>%
+  dplyr::filter(.data = ., condition %in% c("accidental", "attempted")) 
+
+# getting text results using with a helper function
+results_subtitle <- ggstatsplot::subtitle_ggbetween_t_parametric(
+  data = intent_short,
+  x = condition,
+  y = rating,
+  paired = TRUE
+)
+
+# displaying the subtitle on the plot
+ggstatsplot::ggbetweenstats(
+  data = intent_short,
+  x = condition,
+  y = rating,
+  messages = FALSE
+) +
+  ggplot2::labs(subtitle = results_subtitle)
+```
+
+<img src="man/figures/README-ggbetweenstats4-1.png" width="100%" />
+
 ## `ggscatterstats`
 
 This function creates a scatterplot with marginal
@@ -458,8 +493,8 @@ ggstatsplot::ggscatterstats(
   xalpha = 0.6,                                   # transparency for x-axis marginal distribution
   yalpha = 0.6,                                   # transparency for y-axis marginal distribution
   centrality.para = "median",                     # which type of central tendency lines are to be displayed  
-  width.jitter = 0.2,                             # amount of horizontal jitter for data points
-  height.jitter = 0.4,                            # amount of vertical jitter for data points
+  point.width.jitter = 0.2,                       # amount of horizontal jitter for data points
+  point.height.jitter = 0.4,                      # amount of vertical jitter for data points
   messages = FALSE                                # turn off messages and notes
 ) 
 ```
@@ -659,6 +694,8 @@ ggstatsplot::gghistostats(
   centrality.para = "mean",                      # which measure of central tendency is to be plotted
   centrality.color = "darkred",                  # decides color of vertical line representing central tendency
   binwidth = 0.10,                               # binwidth value (experiment until you find the best one)
+  bf.message = TRUE,                             # display bayes factor for null over alternative
+  bf.prior = 0.8,                                # prior width for computing bayes factor
   messages = FALSE,                              # turn off the messages
   ggtheme = hrbrthemes::theme_ipsum_tw(),        # choosing a different theme
   ggstatsplot.layer = FALSE                      # turn off ggstatsplot theme layer
@@ -667,26 +704,8 @@ ggstatsplot::gghistostats(
 
 <img src="man/figures/README-gghistostats2-1.png" width="100%" />
 
-Again, bayes factor can be attached to assess evidence in favor of the
-null hypothesis:
-
-``` r
-ggstatsplot::gghistostats(
-  data = datasets::ToothGrowth,
-  title = "Distribution of Sepal.Length",
-  x = len,
-  fill.gradient = FALSE,                         # turn off color gradient                          
-  bar.fill = "grey50",                           # a uniform color fill for the bars
-  test.value = 20,                               # different test value
-  test.value.line = TRUE,                        # display a vertical line at test value
-  test.value.color = "darkgreen",                # color for the test line
-  bf.message = TRUE,                             # display bayes factor for null over alternative
-  bf.prior = 0.8,                                # prior width for computing bayes factor
-  messages = FALSE
-)
-```
-
-<img src="man/figures/README-gghistostats3-1.png" width="100%" />
+As can be seen from the plot, bayes factor can be attached (using
+`bf.message = TRUE`) to assess evidence in favor of the null hypothesis.
 
 Additionally, there is also a `grouped_` variant of this function that
 makes it easy to repeat the same operation across a **single** grouping
@@ -719,7 +738,7 @@ For more, including information about the variant of this function
 
 ## `ggcorrmat`
 
-`ggcorrmat` makes correlalograms (a matrix of correlation coefficients)
+`ggcorrmat` makes a correlalogram (a matrix of correlation coefficients)
 with minimal amount of code. Just sticking to the defaults itself
 produces publication-ready correlation matrices.
 
@@ -857,7 +876,7 @@ package with `tidy` and `glance` methods
 supported by `ggcoefstats`. Additionally, we can make a number of
 aesthetic modifications by changing the defaults for theme and palette.
 
-Let’s see few examples:
+Let’s see a couple more examples:
 
 ``` r
 library(dplyr)
@@ -883,19 +902,6 @@ ggstatsplot::ggcoefstats(
   se.type = "iid",
   title = "quantile regression"
 ),
-  # nonlinear least squares
-  ggstatsplot::ggcoefstats(
-    x = stats::nls(
-      formula = mpg ~ k / wt + b,
-      data = datasets::mtcars,
-      start = list(k = 1, b = 0)
-    ),
-    point.color = "darkgreen",
-    title = "non-linear least squares",
-    ggtheme = ggplot2::theme_grey(),
-    package = "wesanderson",
-    palette = "Darjeeling1"
-  ),
   # linear mmodel
   ggstatsplot::ggcoefstats(
     x = lme4::lmer(
@@ -906,25 +912,12 @@ ggstatsplot::ggcoefstats(
     stats.label.color = "black",
     ggtheme = hrbrthemes::theme_ipsum_ps(),
     ggstatsplot.layer = FALSE,
-    exclude.intercept = TRUE,
+    exclude.intercept = FALSE,
     title = "linear mixed-effects model"
   ),
-  # generalized linear mixed-effects model
-  ggstatsplot::ggcoefstats(
-    x = lme4::glmer(
-      formula = cbind(incidence, size - incidence) ~ period + (1 | herd),
-      data = lme4::cbpp,
-      family = binomial
-    ),
-    exclude.intercept = FALSE,
-    title = "generalized linear mixed-effects model",
-    ggtheme = ggthemes::theme_fivethirtyeight(),
-    package = "yarrr",
-    palette = "xmen"
-  ),
-  labels = c("(a)", "(b)", "(c)", "(d)"),
+  labels = c("(a)", "(b)"),
   nrow = 2,
-  ncol = 2
+  ncol = 1
 )
 ```
 
@@ -1045,26 +1038,11 @@ yarrr::pirateplot(
 
 <img src="man/figures/README-pirateplot-1.png" width="100%" />
 
-# Plot design
-
-In the following vignette, I have outlined what thought went into
-designing plots in a certain way:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/graphics_design.html>
-
-# Current code coverage
+# Code coverage
 
 As the code stands right now, here is the code coverage for all primary
 functions involved:
-
 <https://codecov.io/gh/IndrajeetPatil/ggstatsplot/tree/master/R>
-
-# Dependencies
-
-Given that `ggstatsplot` combines data visualization with statistical
-analysis, it sits at the intersection of a big network of R packages
-from each domain.
-
-<img src="man/figures/README-dependency_plot-1.png" width="100%" />
 
 # Contributing
 

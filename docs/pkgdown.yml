@@ -1,6 +1,6 @@
 pandoc: 2.2.3.2
 pkgdown: 1.1.0.9000
-pkgdown_sha: adc3d90c53ae1c7336dfeb0b140ef9a47bc6e220
+pkgdown_sha: c3aafc1fdc5bfc4d15a5509a9e3c5fc228dbf580
 articles:
   combine_plots: combine_plots.html
   ggbetweenstats: ggbetweenstats.html
@@ -9,7 +9,6 @@ articles:
   gghistostats: gghistostats.html
   ggpiestats: ggpiestats.html
   ggscatterstats: ggscatterstats.html
-  plot_design: plot_design.html
   purrr_examples: purrr_examples.html
   theme_ggstatsplot: theme_ggstatsplot.html
 urls:

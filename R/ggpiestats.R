@@ -98,7 +98,7 @@ ggpiestats <-
              palette = "Dark2",
              direction = 1,
              messages = TRUE) {
-    # ================================= extracting column names as labels  =======================================================
+    # ================= extracting column names as labels  =====================
 
     if (base::missing(condition)) {
       # saving the column label for the 'main' variables
@@ -126,7 +126,7 @@ ggpiestats <-
       }
     }
 
-    # ================================= dataframe ================================================================================
+    # =============================== dataframe =================================
 
     # creating a dataframe based on which variables are provided
     if (base::missing(condition)) {
@@ -167,7 +167,7 @@ ggpiestats <-
       }
     }
 
-    # ======================================================== converting counts ========================================================
+    # =========================== converting counts =============================
 
     # untable the dataframe based on the count for each obervation
     if (!base::missing(counts)) {
@@ -176,7 +176,7 @@ ggpiestats <-
         dplyr::select(.data = ., -counts)
     }
 
-    # ======================================================== percentage dataframe ======================================================
+    # ============================ percentage dataframe =========================
     #
     # main and condition need to be a factor for this analysis
     # also drop the unused levels of the factors
@@ -222,7 +222,7 @@ ggpiestats <-
         dplyr::arrange(.data = ., dplyr::desc(x = main))
     }
 
-    # ======================================================== sample size label ======================================================
+    # ============================ sample size label ====================================
 
     # if sample size labels are to be displayed at the bottom of the pie charts
     # for each facet
@@ -258,7 +258,7 @@ ggpiestats <-
       }
     }
 
-    # ========================================= preparing names for legend and facet_wrap =============================
+    # ================= preparing names for legend and facet_wrap ==================
 
     # reorder the category factor levels to order the legend
     df$main <- factor(
@@ -281,7 +281,7 @@ ggpiestats <-
       return(lab)
     }
 
-    # ======================================================= plot =====================================================
+    # =================================== plot =======================================
 
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
@@ -348,10 +348,14 @@ ggpiestats <-
         name = "",
         labels = unique(legend.labels)
       ) +
-      theme_pie(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
-      ggplot2::guides(fill = guide_legend(override.aes = list(color = NA))) # remove black diagonal line from legend
+      theme_pie(
+        ggtheme = ggtheme,
+        ggstatsplot.layer = ggstatsplot.layer
+      ) +
+      # remove black diagonal line from legend
+      ggplot2::guides(fill = guide_legend(override.aes = list(color = NA)))
 
-    # ===================================== chi-square test (either Pearson or McNemar) =====================================
+    # ================ chi-square test (either Pearson or McNemar) ============
 
     # if facetting by condition is happening
     if (!base::missing(condition)) {

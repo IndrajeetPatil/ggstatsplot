@@ -37,6 +37,10 @@ BREAKING CHANGES
   all other functions `type` argument specifies the type of the test, while for
   this function it specified the display of the virsualization matrix. This will
   make the syntax more consistent across functions.
+  - `ggscatterstats` gains new arguments to specify aesthetics for geom point
+  (`point.color`, `point.size`, `point.alpha`). To be consistent with this
+  naming schema, the `width.jitter` and `height.jitter` arguments have been
+  renamed to `point.width.jitter` and `point.height.jitter`, resp.
 
 MINOR CHANGES
   - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes

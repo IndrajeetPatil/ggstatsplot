@@ -247,10 +247,10 @@ set.seed(123)
 
 # the most basic function call
 ggstatsplot::grouped_ggbetweenstats(
-  data = mtcars,
-  x = am,
-  y = wt,
-  grouping.var = cyl,
+  data = dplyr::filter(ggplot2::mpg, drv != "4"),
+  x = year,
+  y = hwy,
+  grouping.var = drv,
   bf.message = TRUE
 )
 }

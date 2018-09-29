@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 300
+    dpi: 200
     toc: true
     warning: FALSE
     message: FALSE
@@ -43,7 +43,7 @@ independent of each other using the contingency table analysis
  - to check if the proportion of observations at each level of a categorical
 variable is equal
 
-**Note: ** The following demo uses the pipe operator (`%>%`), if you are not
+**Note:** The following demo uses the pipe operator (`%>%`), if you are not
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>.
 
@@ -54,12 +54,11 @@ dataframes that have one column containing counts. This vignette provides
 examples of both (see examples below).
 
 To help demonstrate how `ggpiestats` can be used with categorical (also known as
-nominal) data a modified version of the original `Titanic` dataset that is
-included in the `datasets` library has been provided in the `ggstatsplot`
-package with the name `Titanic_full`. The Titanic Passenger Survival Dataset
-provides information "on the fate of passengers on the fatal maiden voyage of
-the ocean liner *Titanic*, including economic status(class), sex, age, and
-survival."
+nominal) data, a modified version of the original `Titanic` dataset (from the
+`datasets` library) has been provided in the `ggstatsplot` package with the name
+`Titanic_full`. The Titanic Passenger Survival Dataset provides information "on
+the fate of passengers on the fatal maiden voyage of the ocean liner *Titanic*,
+including economic status (class), sex, age, and survival."
 
 Let's have a look at the structure of both.
 
@@ -70,6 +69,7 @@ library(ggstatsplot)
 
 # looking at the original data in tabular format
 dplyr::glimpse(x = Titanic)
+
 # looking at the dataset as a tibble or dataframe
 dplyr::glimpse(x = ggstatsplot::Titanic_full)
 ```
@@ -77,8 +77,8 @@ dplyr::glimpse(x = ggstatsplot::Titanic_full)
 ## Goodness of Fit with `ggpiestats`
 
 The simplest use case for `ggpiestats` is that we want to display information
-about **one** categorical or nominal variable. As part of that display or plot
-we may also choose to execute a chi squared goodness of fit test to see whether
+about **one** categorical or nominal variable. As part of that display or plot,
+we may also choose to execute a chi-squared goodness of fit test to see whether
 the proportions (or percentages) in categories of the single variable appear to
 line up with our hypothesis or model. To start simple and then expand, let's say
 that we'd like to display a piechart with the percentages of passengers who did
@@ -86,13 +86,21 @@ or did not survive. Our initial hypothesis is that it was no different than
 flipping a coin. People had a 50/50 chance of surviving.
 
 ```{r ggpiestats3, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+# since effect size confidence intervals are computed using bootstrapping, let's
+# set seed for reproducibility
+set.seed(123)
+
+# to speed up the process, let's use only half of the dataset
+Titanic_full_50 <- dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.5)
+
+# plot
 ggstatsplot::ggpiestats(
-  data = ggstatsplot::Titanic_full,                          
+  data = Titanic_full_50,                          
   main = Survived,
   title = "Passenger survival on the Titanic",       # title for the entire plot
   caption = "Source: Titanic survival dataset",      # caption for the entire plot
   legend.title = "Survived?",                        # legend title
-  messages = FALSE
+  messages = FALSE                                   # turn off messages
 )
 ```
 
@@ -115,7 +123,7 @@ showcase the flexibility of `ggpiestats`. We will:
 
 1. Change the plot theme to `ggplot2::theme_grey()` 
 
-2. Change our color palette to `category10_d3` from `ggsci` 
+2. Change our color palette to `category10_d3` from `ggsci` package
 
 3. We'll customize the subtitle by being more precise about which chi 
   squared test this is `stat.title = "chi squared test of independence: "` 
@@ -128,8 +136,12 @@ showcase the flexibility of `ggpiestats`. We will:
 # set seed for reproducibility
 set.seed(123)
 
+# to speed up the process, let's use only half of the dataset
+Titanic_full_50 <- dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.5)
+
+# plot
 ggstatsplot::ggpiestats(
-  data = ggstatsplot::Titanic_full,
+  data = Titanic_full_50,
   main = Survived,
   condition = Sex,
   title = "Passenger survival on the Titanic by gender",       # title for the entire plot
@@ -139,12 +151,13 @@ ggstatsplot::ggpiestats(
   package = "ggsci",                                           # package from which color palette is to be taken
   palette = "category10_d3",                                   # choosing a different color palette
   stat.title = "chi squared test of independence: ",           # title for statistical test
+  nboot = 10,                                                  # no. of bootstrap sample for effect size CI
   messages = FALSE
 )  +                                                           # further modification with ggplot2 commands
   ggplot2::theme(plot.title = ggplot2::element_text(
     color = "black",
     size = 14,
-    hjust = 1
+    hjust = 0
   ))
 ```
 
@@ -169,6 +182,11 @@ grouping variable can be anything: conditions in a given study, groups in a
 study sample, different studies, etc.
 
 ```{r ggpiestats4, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 8}
+# since effect size confidence intervals are computed using bootstrapping, let's
+# set seed for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::grouped_ggpiestats(
   # arguments relevant for ggstatsplot::gghistostats
   data = ggstatsplot::Titanic_full,
@@ -177,10 +195,13 @@ ggstatsplot::grouped_ggpiestats(
   stat.title = "chi squared test of independence: ",
   main = Survived,
   condition = Sex,
+  nboot = 15,
+  package = "ggsci",
+  palette = "category10_d3",
   messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Passenger survival on the Titanic by gender and age",
-  caption.text = "Asterisks denote results from proportion tests; ***: p < 0.001, ns: non-significant",
+  caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
   nrow = 2,
   ncol = 1
 )
@@ -243,9 +264,9 @@ set.seed(123)
 )
 ```
 
-When the data is organized this way we make a slightly different call to the
-`ggpiestats` function, we use the `counts` argument. If we want to investigate
-the relationship of type of fish by month (a test of independence) our command
+When the data is organized this way, we make a slightly different call to the
+`ggpiestats` function: we use the `counts` argument. If we want to investigate
+the relationship of type of fish by month (a test of independence), our command
 would be:
 
 ```{r ggpiestats8, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 8}
@@ -279,8 +300,9 @@ All of them receive our treatment or intervention. Then we check back in a month
 to see if they are healthy or sick. A classic pre/post experimental design.
 We're interested in seeing the change in both groupings. In the case of
 within-subjects designs, you can set `paired = TRUE`, which will display results
-from McNemar test in the subtitle. **Note: ** if you fail to set `paired = TRUE`
-you'll get results but they will be inaccurate.
+from **McNemar test** in the subtitle. 
+(**Note:** If you forget to set `paired = TRUE`, the results you get will be
+inaccurate.)
 
 ```{r ggpiestats9, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8}
 # seed for reproducibility
@@ -295,21 +317,28 @@ clinical_trial <-
     "Yes",	"Yes",	13,
     "No",	"No",	92
   )
+
 # display it as a simple table
-xtabs(Counts ~ SickBefore + SickAfter, clinical_trial)
+stats::xtabs(
+  formula = Counts ~ SickBefore + SickAfter,
+  subset = NULL,
+  data = clinical_trial
+)
 
 # plot
-ggstatsplot::ggpiestats(data = clinical_trial,
-                        condition = SickBefore,
-                        main = SickAfter,
-                        counts = Counts,
-                        paired = TRUE,
-                        stat.title = "McNemar test: ",
-                        title = "Results from imaginary clinical trial",
-                        package = "ggsci",
-                        palette = "default_ucscgb",
-                        direction = -1,
-                        messages = FALSE) 
+ggstatsplot::ggpiestats(
+  data = clinical_trial,
+  condition = SickBefore,
+  main = SickAfter,
+  counts = Counts,
+  paired = TRUE,
+  stat.title = "McNemar test: ",
+  title = "Results from imaginary clinical trial",
+  package = "ggsci",
+  palette = "default_ucscgb",
+  direction = -1,
+  messages = FALSE
+) 
 ```
 
 The results bode well for our experimental wonder drug. Of the 96 who started

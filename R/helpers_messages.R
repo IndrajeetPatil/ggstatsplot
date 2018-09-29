@@ -23,10 +23,10 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#' 
+#'
 #' # message
 #' normality_message(x = datasets::anscombe$x1)
-#' 
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -61,7 +61,7 @@ normality_message <- function(x,
           "Shapiro-Wilk Normality Test for",
           crayon::yellow(lab),
           # entered y argument
-          ": p-value ="
+          ": p-value = "
         ),
         crayon::yellow(
           ggstatsplot::specify_decimal_p(
@@ -70,6 +70,7 @@ normality_message <- function(x,
             p.value = TRUE
           )
         ),
+        "\n",
         sep = ""
       ))
     } else if (output == "stats") {
@@ -106,7 +107,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -114,7 +115,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,
@@ -192,6 +193,7 @@ bartlett_message <- function(data,
           p.value = TRUE
         )
       ),
+      "\n",
       sep = ""
     ))
   } else if (output == "stats") {
@@ -213,7 +215,7 @@ grouped_message <- function() {
   base::message(cat(
     crayon::red("Warning: "),
     crayon::blue(
-      "The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions."
+      "The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.\n"
     ),
     sep = ""
   ))

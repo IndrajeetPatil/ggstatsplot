@@ -19,6 +19,8 @@
 #' @param ylab Label for `y` axis variable.
 #' @param line.color color for the regression line.
 #' @param line.size Size for the regression line.
+#' @param point.color,point.size,point.alpha Aesthetics specifying geom point
+#'   (defaults: `point.color = "black"`, `point.size = 3`,`point.alpha = 0.4`).
 #' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be
 #'   displayed; the default is `TRUE`.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
@@ -45,9 +47,9 @@
 #'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption.
 #' @param k Number of decimal places expected for results.
-#' @param width.jitter Degree of jitter in `x` direction. Defaults to 40\% of
+#' @param point.width.jitter Degree of jitter in `x` direction. Defaults to 40\% of
 #'   the resolution of the data.
-#' @param height.jitter Degree of jitter in `y` direction. Defaults to 40\% of
+#' @param point.height.jitter Degree of jitter in `y` direction. Defaults to 40\% of
 #'   the resolution of the data.
 #' @param axes.range.restrict Logical decides whether to restrict the axes values
 #'   ranges to min and max values of the `x` and `y` variables (Default: `FALSE`).
@@ -78,7 +80,8 @@
 #' @importFrom stats confint.default
 #' @importFrom ggrepel geom_label_repel
 #'
-#' @seealso \code{\link{grouped_ggscatterstats}} \code{\link{ggcorrmat}} \code{\link{grouped_ggcorrmat}}
+#' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
+#' \code{\link{grouped_ggcorrmat}}
 #'
 #' @references
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggscatterstats.html}
@@ -92,15 +95,15 @@
 #'   massively (and the plot file will grow in size) if you have a lot of labels that overlap.
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -126,14 +129,17 @@ ggscatterstats <-
              method = "lm",
              method.args = list(),
              formula = y ~ x,
+             point.color = "black",
+             point.size = 3,
+             point.alpha = 0.4,
+           point.width.jitter = NULL,
+           point.height.jitter = NULL,
              line.size = 1.5,
              line.color = "blue",
              marginal = TRUE,
              marginal.type = "histogram",
              marginal.size = 5,
              margins = c("both", "x", "y"),
-             width.jitter = NULL,
-             height.jitter = NULL,
              xfill = "#009E73",
              yfill = "#D55E00",
              xalpha = 1,
@@ -227,8 +233,8 @@ ggscatterstats <-
           (.)
         }
       }
-    #--------------------------------- creating results subtitle ----------------------------------------------------------
-
+    #--------------------------------- creating results subtitle --------------------------------------
+    #
     # adding a subtitle with statistical results
     if (results.subtitle == TRUE) {
       subtitle <- subtitle_ggscatterstats(
@@ -245,7 +251,7 @@ ggscatterstats <-
       )
     }
 
-    #---------------------------------------------------- basic plot ----------------------------------------------------------
+    #------------------------------------ basic plot -----------------------------
 
     # preparing the scatterplotplot
     plot <-
@@ -257,12 +263,13 @@ ggscatterstats <-
         )
       ) +
       ggplot2::geom_point(
-        size = 3,
-        alpha = 0.4,
+        color = point.color,
+        size = point.size,
+        alpha = point.alpha,
         stroke = 0,
         position = ggplot2::position_jitter(
-          width = width.jitter,
-          height = height.jitter
+          width = point.width.jitter,
+          height = point.height.jitter
         ),
         na.rm = TRUE
       ) +
@@ -276,7 +283,10 @@ ggscatterstats <-
         na.rm = TRUE,
         level = 0.95
       ) +
-      ggstatsplot::theme_mprl(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+      ggstatsplot::theme_mprl(
+        ggtheme = ggtheme,
+        ggstatsplot.layer = ggstatsplot.layer
+      ) +
       ggplot2::labs(
         x = xlab,
         y = ylab,
@@ -285,7 +295,7 @@ ggscatterstats <-
         caption = caption
       )
 
-    #--------------------------------- adding centrality parameters ----------------------------------------------------------
+    #--------------------------------- adding centrality parameters ----------------------------------
 
     # by default, if the input is NULL, then no centrality.para lines will be plotted
 
@@ -405,16 +415,22 @@ ggscatterstats <-
         )
     }
 
-    #--------------------------------- range restriction -------------------------------------------------------------
+    #--------------------------------- range restriction -------------------------------------
 
     # forcing the plots to get cut off at min and max values of the variable
     if (isTRUE(axes.range.restrict)) {
       plot <- plot +
-        ggplot2::coord_cartesian(xlim = c(min(data$x...internal, na.rm = TRUE), max(data$x...internal, na.rm = TRUE))) +
-        ggplot2::coord_cartesian(ylim = c(min(data$y...internal, na.rm = TRUE), max(data$y...internal, na.rm = TRUE)))
+        ggplot2::coord_cartesian(xlim = c(
+          min(data$x...internal, na.rm = TRUE),
+          max(data$x...internal, na.rm = TRUE)
+        )) +
+        ggplot2::coord_cartesian(ylim = c(
+          min(data$y...internal, na.rm = TRUE),
+          max(data$y...internal, na.rm = TRUE)
+        ))
     }
 
-    #--------------------------------- adding point labels ----------------------------------------------------------
+    #--------------------------------- adding point labels -----------------------------------
 
     if (isTRUE(point.labelling)) {
       # using geom_repel_label
@@ -437,7 +453,7 @@ ggscatterstats <-
           na.rm = TRUE
         )
     }
-    #-------------------------------------------------- ggMarginal  ----------------------------------------------------------
+    #-------------------------------------- ggMarginal  ----------------------------
 
     # creating the ggMarginal plot of a given marginal.type
     if (isTRUE(marginal)) {
@@ -462,14 +478,14 @@ ggscatterstats <-
         )
     }
 
-    #-------------------------------------------------- messages  ----------------------------------------------------------
+    #---------------------------- messages  ------------------------------------
     #
     # display warning that this function doesn't produce a ggplot2 object
     if (isTRUE(marginal) && isTRUE(messages)) {
       base::message(cat(
         crayon::red("Warning: "),
         crayon::blue(
-          "The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions."
+          "The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.\n"
         ),
         sep = ""
       ))

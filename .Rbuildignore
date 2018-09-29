@@ -11,7 +11,7 @@
 ^NEWS$
 ^docs$
 ^revdep$
-JOSS/*
+publication/*
 ^codecov\.yml$
 ^\.travis\.yml$
 ^_pkgdown\.yml$
