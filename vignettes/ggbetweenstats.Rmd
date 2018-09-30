@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 200
+    dpi: 150
     toc: true
     warning: FALSE
     message: FALSE
@@ -109,8 +109,8 @@ ggstatsplot::ggbetweenstats(
   mean.color = "darkblue",                                    # color for mean
   messages = FALSE,                                           # turn off messages
   ggtheme = ggthemes::theme_economist(),                      # a different theme
-  package = "yarrr",                                          # package from which color palette is to be taken
-  palette = "info2",                                          # choosing a different color palette
+  package = "yarrr",                                          # package for a color palette
+  palette = "info2",                                          # choosing a color palette
   title = "Comparison of life expectancy across continents (Year: 2007)",
   caption = "Source: Gapminder Foundation"
 ) +                                                           # modifying the plot further
@@ -124,28 +124,31 @@ although Asian countries are doing much better than African countries, on
 average, Afghanistan has a particularly grim average for the Asian continent,
 possibly reflecting the war and the political turmoil.
 
-Out of curiosity, we can repeat the same analysis with other available feature of
-`ggstatsplot`:
+Out of curiosity, we can repeat the same analysis with other available feature
+of `ggstatsplot`:
+
   - The `type` (of test) argument also accepts the following
-abbreviations: `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"`
-(for *robust*). 
-  - The type of plot to be displayed can also be
-modified (`"box"`, `"violin"`, or `"boxviolin"`). Let's produce all of these
-variations in the plot below.
+abbreviations:   
+`"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"` (for *robust*). 
+
+  - The type of plot to be displayed can also be modified (`"box"`, `"violin"`,
+  or `"boxviolin"`).
+
   - The color palettes can be modified.
 
 Let's try out both of these features by plotting continent-level differences for
-three different years, separated by a decade. Also, since there are just two
+two different years, separated by 50 years. Also, since there are just two
 data points for the continent of Oceania, let's leave out this continent from
 our analysis.
 
 For example,
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
 library(ggstatsplot)
 library(gapminder)
 
 # selecting subset of the data
-df_year <- dplyr::filter(.data = gapminder::gapminder, year == 2007 | year == 1957)
+df_year <- dplyr::filter(.data = gapminder::gapminder, 
+                         year == 2007 | year == 1957)
 
 # for reproducibility
 set.seed(123)
@@ -161,6 +164,7 @@ p1 <- ggstatsplot::ggbetweenstats(
   title = "parametric test",
   package = "ggsci",
   palette = "nrc_npg",
+  k = 2,
   messages = FALSE
 )
 
@@ -174,6 +178,7 @@ p2 <- ggstatsplot::ggbetweenstats(
   title = "non-parametric test",
   package = "ggsci",
   palette = "uniform_startrek",
+  k = 2,
   messages = FALSE
 )
 
@@ -188,6 +193,8 @@ p3 <- ggstatsplot::ggbetweenstats(
   tr = 0.005,
   package = "wesanderson",
   palette = "Royal2",
+  nboot = 15,
+  k = 2,
   messages = FALSE
 )
 
@@ -200,6 +207,7 @@ p4 <- ggstatsplot::ggbetweenstats(
   title = "bayesian test",
   package = "palettetown",
   palette = "natu",
+  k = 2,
   messages = FALSE
 )
 
@@ -231,10 +239,10 @@ a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
-Let's focus on the following years to see these changes for every 10
-years: 1957, 1967, 1977, 1987, 1997, 2007. 
+Let's focus on the following years to see these changes for every 20
+years: 1967, 1987, 2007. 
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 22, fig.width = 7}
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 15, fig.width = 7}
 # for reproducibility
 set.seed(123)
 
@@ -242,17 +250,16 @@ ggstatsplot::grouped_ggbetweenstats(
   # arguments relevant for ggstatsplot::ggbetweenstats
   data = dplyr::filter(
     .data = gapminder::gapminder,
-    year == 1957 |
     year == 1967 |
-    year == 1977 |
     year == 1987 |
-    year == 1997 |
-    year == 2007, continent != "Oceania"
+    year == 2007, 
+    continent != "Oceania"
   ),
   x = continent,
   y = lifeExp,
   # number of decimal places in results
   k = 2,
+  nboot = 10,
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
@@ -263,15 +270,15 @@ ggstatsplot::grouped_ggbetweenstats(
   title.prefix = "Year",
   messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
-  title.text = "Changes in life expectancy across continents (1957-2007)",
-  nrow = 6,
+  title.text = "Changes in life expectancy across continents (1967-2007)",
+  nrow = 3,
   ncol = 1,
-  labels = c("(a)","(b)","(c)", "(d)", "(e)", "(f)")
+  labels = c("(a)","(b)","(c)")
 )
 ```
 
 As seen from the plot, although the life expectancy has been improving steadily
-across all continents as we go from 1957 to 2007, this improvement has not been
+across all continents as we go from 1967 to 2007, this improvement has not been
 happening at the same rate for all continents. Additionally, irrespective of
 which year we look at, we still find significant differences in life expectancy
 across continents which have been surprisingly consistent across five decades

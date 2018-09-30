@@ -115,7 +115,9 @@ utils::globalVariables(
     "x...internal",
     "y...internal",
     "or",
-    "atop"
+    "atop",
+    "top.text",
+    "bottom.text"
   ),
   package = "ggstatsplot",
   add = FALSE

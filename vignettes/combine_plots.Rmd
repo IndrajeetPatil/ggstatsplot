@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 300
+    dpi: 150
     toc: true
     warning: FALSE
     message: FALSE
@@ -60,11 +60,11 @@ library(ggplot2)
 # for reproducibility
 set.seed(123)
 
-### creating a list column with `ggstatsplot` plots
+# creating a list column with `ggstatsplot` plots
 plots <- datasets::iris %>%
   dplyr::mutate(.data = ., Species2 = Species) %>% # just creates a copy of this variable
   dplyr::group_by(.data = ., Species) %>%                
-  tidyr::nest(data = .) %>%                        # creates a nested dataframe with list column called `data`
+  tidyr::nest(data = .) %>%                        # a nested dataframe with list column called `data`
   dplyr::mutate(                                   # creating a new list column of ggstatsplot outputs
     .data = .,
     plot = data %>%
@@ -74,13 +74,11 @@ plots <- datasets::iris %>%
           data = .,
           x = Sepal.Length,
           y = Sepal.Width,
-          label.var = "Species2",
-          label.expression = "Sepal.Length > 7",
           xfill = "#0072B2",
           yfill = "#009E73",
           ggtheme = ggthemes::theme_fivethirtyeight(),
           ggstatsplot.layer = FALSE,
-          messages = FALSE,                        # turns off all the warnings, notes, and reference messages   
+          messages = FALSE,                        # turns off warnings and notes messages   
           marginal.type = "boxplot",
           title =
             glue::glue("Species: {.$Species2} (n = {length(.$Sepal.Length)})")
@@ -88,10 +86,11 @@ plots <- datasets::iris %>%
       )
   )
 
-### display the new object (notice that the class of the `plot` list column is S3: gg)
+# display the new object (notice that the class of the `plot` list column is
+# S3: ggExtraPlot)
 plots
 
-### creating a grid with cowplot
+# creating a grid with cowplot
 ggstatsplot::combine_plots(
   plotlist = plots$plot,                           # list column containing all ggstatsplot objects
   nrow = 3,
@@ -137,7 +136,8 @@ dplyr::glimpse(x = gapminder::gapminder)
 
 # creating a list of plots
 plots <- plyr::dlply(
-  .data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
+  .data = dplyr::filter(gapminder::gapminder, 
+                        year == 2007, continent != "Oceania"),
   .variables = .(continent),
   .fun = function(data)
     ggstatsplot::ggscatterstats(
@@ -155,10 +155,12 @@ plots <- plyr::dlply(
 )
 
 # combining individual plots
-ggstatsplot::combine_plots(plotlist = plots, 
-                           title.text = "Relationship between GDP (per capita) and life expectancy",
-                           nrow = 2,
-                           ncol = 2)
+ggstatsplot::combine_plots(
+  plotlist = plots,
+  title.text = "Relationship between GDP (per capita) and life expectancy",
+  nrow = 2,
+  ncol = 2
+)
 ```
 
 ## Adding additional textual information: Example #3 
@@ -225,7 +227,7 @@ If you find any bugs or have any suggestions/remarks, please file an issue on `G
 
 Summarizing session information for reproducibility.
 
-```{r session_info, eval = TRUE, echo= FALSE}
+```{r session_info, eval = TRUE}
 options(width = 200)
-devtools::session_info()$platform
+devtools::session_info()
 ```

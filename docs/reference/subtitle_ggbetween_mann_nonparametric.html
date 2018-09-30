@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -168,7 +168,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_ggbetween_mann_nonparametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -195,6 +195,11 @@ taken.</p></td>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
     </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
     </table>
     
 
@@ -203,9 +208,9 @@ taken.</p></td>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleep</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>group</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>extra</span>
-)</div><div class='output co'>#&gt; paste("Mann-Whitney: ", italic(U), " = ", "25.500", ", ", italic(Z), 
-#&gt;     " = ", "-1.854", ", ", italic(" p"), " = ", "0.069", ", ", 
-#&gt;     italic("r"), " = ", "-0.415", ", ", italic("n"), " = ", 20L)</div></pre>
+)</div><div class='output co'>#&gt; Note: Two-sample Wilcoxon test, also known as Mann-Whitney test, was run.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic(U), " = ", "25.500", ", ", italic(Z), " = ", "-1.854", 
+#&gt;     ", ", italic(" p"), " = ", "0.069", ", ", italic("r"), " = ", 
+#&gt;     "-0.415", ", ", italic("n"), " = ", 20L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

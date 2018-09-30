@@ -173,7 +173,7 @@
 #'   title = "Dataset: Iris"
 #' )
 #' @export
-#'
+
 
 # defining the function
 ggcorrmat <-
@@ -358,44 +358,49 @@ ggcorrmat <-
 
         # ============================ labels ==================================
 
-        # preparing text for which p-value adjustment method was used
-        p.adjust.method.description <- function(p.adjust.method) {
-          switch(p.adjust.method,
-            none = "None",
-            bonferroni = "Bonferroni",
-            holm = "Holm",
-            hochberg = "Hochberg",
-            hommel = "Hommel",
-            BH = "Benjamini & Hochberg",
-            fdr = "Benjamini & Hochberg",
-            BY = "Benjamini & Yekutieli"
-          )
-        }
-
-        # p value adjustment method description
-        p.adjust.method.text <-
-          p.adjust.method.description(p.adjust.method = p.adjust.method)
-
         # if caption is not specified, use the generic version only if caption.default is TRUE
         if (is.null(caption) &&
           pch == 4 && isTRUE(caption.default)) {
 
-          # preparing the caption
-          caption <- base::substitute(
-            expr = paste(
-              bold("X"),
-              " = correlation non-significant at ",
-              italic("p"),
-              " < ",
-              sig.level,
+          # preparing text for which p-value adjustment method was used
+          p.adjust.method.description <- function(p.adjust.method) {
+            switch(p.adjust.method,
+              none = "None",
+              bonferroni = "Bonferroni",
+              holm = "Holm",
+              hochberg = "Hochberg",
+              hommel = "Hommel",
+              BH = "Benjamini & Hochberg",
+              fdr = "Benjamini & Hochberg",
+              BY = "Benjamini & Yekutieli"
+            )
+          }
+
+          # p value adjustment method description
+          p.adjust.method.text <-
+            paste(
               " (Adjustment: ",
-              p.adjust.method.text,
+              p.adjust.method.description(p.adjust.method = p.adjust.method),
               ")",
               sep = ""
+            )
+
+          # preparing the caption
+          caption <- base::substitute(
+            atop(
+              expr = paste(
+                bold("X"),
+                " = correlation non-significant at ",
+                italic("p"),
+                " < ",
+                sig.level,
+                sep = ""
+              ),
+              bottom.text
             ),
             env = list(
               sig.level = sig.level,
-              p.adjust.method.text = p.adjust.method.text
+              bottom.text = p.adjust.method.text
             )
           )
 

@@ -7,7 +7,7 @@
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  dpi = 200,
+  dpi = 150,
   out.width = "100%",
   comment = "#>",
   fig.path = "man/figures/README-"
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.5.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.6.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
 [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
@@ -74,13 +74,13 @@ Future versions will include other types of statistical analyses and plots as we
 
 # Installation
 
-To get the latest, stable CRAN release (`0.0.5`):
+To get the latest, stable CRAN release (`0.0.6`):
 ```{r installationCRAN, eval = FALSE}
 utils::install.packages(pkgs = "ggstatsplot")
 ```
 
 You can get the **development** version of the package from GitHub
-(`0.0.5.9000`). To see what new changes (and bug fixes) have been made to the
+(`0.0.6.9000`). To see what new changes (and bug fixes) have been made to the
 package since the last release on `CRAN`, you can check the detailed log of
 changes here: <https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
 
@@ -638,16 +638,22 @@ For more, including information about the variant of this function
 minimal amount of code. Just sticking to the defaults itself produces
 publication-ready correlation matrices.
 
-```{r ggcorrmat1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 6}
+```{r ggcorrmat1, message = FALSE, warning = FALSE}
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  corr.method = "spearman",                # correlation method
-  p.adjust.method = "holm",                # p-value adjustment method for multiple comparisons
-  cor.vars = Sepal.Length:Petal.Width,     # a range of variables can be selected  
-  cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
-  title = "Correlalogram for length measures for Iris species",
-  subtitle = "Iris dataset by Anderson"
+  data = ggplot2::msleep,
+  corr.method = "robust",                    # correlation method
+  sig.level = 0.001,                         # threshold of significance
+  p.adjust.method = "holm",                  # p-value adjustment method for multiple comparisons
+  cor.vars = c(sleep_rem, awake:bodywt),     # a range of variables can be selected  
+  cor.vars.names = c("REM sleep",            # variable names
+                     "time awake", 
+                     "brain weight", 
+                     "body weight"), 
+  matrix.type = "upper",                     # type of visualization matrix
+  colors = c("#B2182B", "white", "#4D4D4D"), 
+  title = "Correlalogram for mammals sleep dataset",
+  subtitle = "sleep units: hours; weight units: kilograms"
 )
 ```
 
@@ -658,6 +664,7 @@ Alternatively, you can use it just to get the correlation matrices and their
 corresponding *p*-values (in a `tibble` format).
 
 ```{r ggcorrmat2, message = FALSE, warning = FALSE}
+# show four digits in a tibble
 options(pillar.sigfig = 4)
 
 # getting the correlation coefficient matrix

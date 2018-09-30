@@ -6,7 +6,7 @@
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![CRAN
 Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.5.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.6.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Daily downloads
@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--28-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--30-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -78,14 +78,14 @@ plots as well.
 
 # Installation
 
-To get the latest, stable CRAN release (`0.0.5`):
+To get the latest, stable CRAN release (`0.0.6`):
 
 ``` r
 utils::install.packages(pkgs = "ggstatsplot")
 ```
 
 You can get the **development** version of the package from GitHub
-(`0.0.5.9000`). To see what new changes (and bug fixes) have been made
+(`0.0.6.9000`). To see what new changes (and bug fixes) have been made
 to the package since the last release on `CRAN`, you can check the
 detailed log of changes here:
 <https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
@@ -188,11 +188,12 @@ args(name = ggstatsplot::ggscatterstats)
 #>     formula = y ~ x, point.color = "black", point.size = 3, point.alpha = 0.4, 
 #>     point.width.jitter = NULL, point.height.jitter = NULL, line.size = 1.5, 
 #>     line.color = "blue", marginal = TRUE, marginal.type = "histogram", 
-#>     marginal.size = 5, margins = c("both", "x", "y"), xfill = "#009E73", 
-#>     yfill = "#D55E00", xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7, 
-#>     centrality.para = NULL, type = "pearson", results.subtitle = TRUE, 
-#>     title = NULL, subtitle = NULL, caption = NULL, nboot = 100, 
-#>     beta = 0.1, k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(), 
+#>     marginal.size = 5, margins = c("both", "x", "y"), package = "wesanderson", 
+#>     palette = "Royal1", direction = 1, xfill = "#009E73", yfill = "#D55E00", 
+#>     xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL, 
+#>     type = "pearson", results.subtitle = TRUE, title = NULL, 
+#>     subtitle = NULL, caption = NULL, nboot = 100, beta = 0.1, 
+#>     k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(), 
 #>     ggstatsplot.layer = TRUE, messages = TRUE) 
 #> NULL
 ```
@@ -202,7 +203,8 @@ just type the name of the function without the parentheses:
 
 ``` r
 ggstatsplot::theme_ggstatsplot
-#> function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
+#> function(ggtheme = ggplot2::theme_bw(),
+#>                               ggstatsplot.layer = TRUE) {
 #>   if (isTRUE(ggstatsplot.layer)) {
 #>     ggtheme +
 #>       ggplot2::theme(
@@ -243,7 +245,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x00000000289cc5d0>
+#> <bytecode: 0x0000000028988910>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -745,13 +747,19 @@ produces publication-ready correlation matrices.
 ``` r
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  corr.method = "spearman",                # correlation method
-  p.adjust.method = "holm",                # p-value adjustment method for multiple comparisons
-  cor.vars = Sepal.Length:Petal.Width,     # a range of variables can be selected  
-  cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
-  title = "Correlalogram for length measures for Iris species",
-  subtitle = "Iris dataset by Anderson"
+  data = ggplot2::msleep,
+  corr.method = "robust",                    # correlation method
+  sig.level = 0.001,                         # threshold of significance
+  p.adjust.method = "holm",                  # p-value adjustment method for multiple comparisons
+  cor.vars = c(sleep_rem, awake:bodywt),     # a range of variables can be selected  
+  cor.vars.names = c("REM sleep",            # variable names
+                     "time awake", 
+                     "brain weight", 
+                     "body weight"), 
+  matrix.type = "upper",                     # type of visualization matrix
+  colors = c("#B2182B", "white", "#4D4D4D"), 
+  title = "Correlalogram for mammals sleep dataset",
+  subtitle = "sleep units: hours; weight units: kilograms"
 )
 #> Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.
 ```
@@ -765,6 +773,7 @@ Alternatively, you can use it just to get the correlation matrices and
 their corresponding *p*-values (in a `tibble` format).
 
 ``` r
+# show four digits in a tibble
 options(pillar.sigfig = 4)
 
 # getting the correlation coefficient matrix

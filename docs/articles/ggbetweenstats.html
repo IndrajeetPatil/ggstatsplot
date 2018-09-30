@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -116,7 +116,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-29</h4>
+            <h4 class="date">2018-09-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggbetweenstats.Rmd"><code>vignettes/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -192,91 +192,102 @@
 <a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">mean.color =</span> <span class="st">"darkblue"</span>,                                    <span class="co"># color for mean</span></a>
 <a class="sourceLine" id="cb3-22" data-line-number="22">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,                                           <span class="co"># turn off messages</span></a>
 <a class="sourceLine" id="cb3-23" data-line-number="23">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist">theme_economist</a></span>(),                      <span class="co"># a different theme</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">  <span class="dt">package =</span> <span class="st">"yarrr"</span>,                                          <span class="co"># package from which color palette is to be taken</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">  <span class="dt">palette =</span> <span class="st">"info2"</span>,                                          <span class="co"># choosing a different color palette</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">  <span class="dt">package =</span> <span class="st">"yarrr"</span>,                                          <span class="co"># package for a color palette</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">  <span class="dt">palette =</span> <span class="st">"info2"</span>,                                          <span class="co"># choosing a color palette</span></a>
 <a class="sourceLine" id="cb3-26" data-line-number="26">  <span class="dt">title =</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,</a>
 <a class="sourceLine" id="cb3-27" data-line-number="27">  <span class="dt">caption =</span> <span class="st">"Source: Gapminder Foundation"</span></a>
 <a class="sourceLine" id="cb3-28" data-line-number="28">) <span class="op">+</span><span class="st">                                                           </span><span class="co"># modifying the plot further</span></a>
 <a class="sourceLine" id="cb3-29" data-line-number="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">85</span>), <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">35</span>, <span class="dt">to =</span> <span class="dv">85</span>, <span class="dt">by =</span> <span class="dv">5</span>))</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" width="768"></p>
 <p>As can be appreciated from the effect size of 0.635, there are big differences in the observed life expectancy across continents. Importantly, this plot also helps us appreciate the differences within any given continent. For example, although Asian countries are doing much better than African countries, on average, Afghanistan has a particularly grim average for the Asian continent, possibly reflecting the war and the political turmoil.</p>
-<p>Out of curiosity, we can repeat the same analysis with other available feature of <code>ggstatsplot</code>: - The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>). - The type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>). Let’s produce all of these variations in the plot below. - The color palettes can be modified.</p>
-<p>Let’s try out both of these features by plotting continent-level differences for three different years, separated by a decade. Also, since there are just two data points for the continent of Oceania, let’s leave out this continent from our analysis.</p>
+<p>Out of curiosity, we can repeat the same analysis with other available feature of <code>ggstatsplot</code>:</p>
+<ul>
+<li><p>The <code>type</code> (of test) argument also accepts the following abbreviations:<br><code>"p"</code> (for <em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>).</p></li>
+<li><p>The type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>).</p></li>
+<li><p>The color palettes can be modified.</p></li>
+</ul>
+<p>Let’s try out both of these features by plotting continent-level differences for two different years, separated by 50 years. Also, since there are just two data points for the continent of Oceania, let’s leave out this continent from our analysis.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(gapminder)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># selecting subset of the data</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">df_year &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span> <span class="op">|</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1957</span>)</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co"># parametric ANOVA and box plot</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">type =</span> <span class="st">"p"</span>,</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">effsize.type =</span> <span class="st">"d"</span>,</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">title =</span> <span class="st">"parametric test"</span>,</a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">palette =</span> <span class="st">"nrc_npg"</span>,</a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22">)</a>
-<a class="sourceLine" id="cb4-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-27" data-line-number="27">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-29" data-line-number="29">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
-<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">type =</span> <span class="st">"np"</span>,</a>
-<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">title =</span> <span class="st">"non-parametric test"</span>,</a>
-<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb4-33" data-line-number="33">  <span class="dt">palette =</span> <span class="st">"uniform_startrek"</span>,</a>
-<a class="sourceLine" id="cb4-34" data-line-number="34">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-35" data-line-number="35">)</a>
-<a class="sourceLine" id="cb4-36" data-line-number="36"></a>
-<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co"># robust ANOVA and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-39" data-line-number="39">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-40" data-line-number="40">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-41" data-line-number="41">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-42" data-line-number="42">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
-<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
-<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">title =</span> <span class="st">"robust test"</span>,</a>
-<a class="sourceLine" id="cb4-45" data-line-number="45">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
-<a class="sourceLine" id="cb4-46" data-line-number="46">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</a>
-<a class="sourceLine" id="cb4-47" data-line-number="47">  <span class="dt">palette =</span> <span class="st">"Royal2"</span>,</a>
-<a class="sourceLine" id="cb4-48" data-line-number="48">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-49" data-line-number="49">)</a>
-<a class="sourceLine" id="cb4-50" data-line-number="50"></a>
-<a class="sourceLine" id="cb4-51" data-line-number="51"><span class="co"># robust ANOVA and boxviolin plot</span></a>
-<a class="sourceLine" id="cb4-52" data-line-number="52">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb4-53" data-line-number="53">  <span class="dt">data =</span> df_year,</a>
-<a class="sourceLine" id="cb4-54" data-line-number="54">  <span class="dt">x =</span> year,</a>
-<a class="sourceLine" id="cb4-55" data-line-number="55">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb4-56" data-line-number="56">  <span class="dt">type =</span> <span class="st">"bf"</span>,</a>
-<a class="sourceLine" id="cb4-57" data-line-number="57">  <span class="dt">title =</span> <span class="st">"bayesian test"</span>,</a>
-<a class="sourceLine" id="cb4-58" data-line-number="58">  <span class="dt">package =</span> <span class="st">"palettetown"</span>,</a>
-<a class="sourceLine" id="cb4-59" data-line-number="59">  <span class="dt">palette =</span> <span class="st">"natu"</span>,</a>
-<a class="sourceLine" id="cb4-60" data-line-number="60">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-61" data-line-number="61">)</a>
-<a class="sourceLine" id="cb4-62" data-line-number="62"></a>
-<a class="sourceLine" id="cb4-63" data-line-number="63"><span class="co"># combining the individual plots into a single plot</span></a>
-<a class="sourceLine" id="cb4-64" data-line-number="64">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb4-65" data-line-number="65">  p1, p2, p3, p4, </a>
-<a class="sourceLine" id="cb4-66" data-line-number="66">  <span class="dt">nrow =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb4-67" data-line-number="67">  <span class="dt">ncol =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb4-68" data-line-number="68">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
-<a class="sourceLine" id="cb4-69" data-line-number="69">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,</a>
-<a class="sourceLine" id="cb4-70" data-line-number="70">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, robust, and bayesian tests"</span>,</a>
-<a class="sourceLine" id="cb4-71" data-line-number="71">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb4-72" data-line-number="72">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb4-73" data-line-number="73">)</a></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="1152"></p>
+<a class="sourceLine" id="cb4-5" data-line-number="5">df_year &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, </a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">                         year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span> <span class="op">|</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1957</span>)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co"># parametric ANOVA and box plot</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">p1 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">plot.type =</span> <span class="st">"box"</span>,</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">type =</span> <span class="st">"p"</span>,</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">effsize.type =</span> <span class="st">"d"</span>,</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">title =</span> <span class="st">"parametric test"</span>,</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">palette =</span> <span class="st">"nrc_npg"</span>,</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">)</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co"># Kruskal-Wallis test (nonparametric ANOVA) and violin plot</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">p2 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">  <span class="dt">plot.type =</span> <span class="st">"violin"</span>,</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">  <span class="dt">type =</span> <span class="st">"np"</span>,</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">  <span class="dt">title =</span> <span class="st">"non-parametric test"</span>,</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">  <span class="dt">palette =</span> <span class="st">"uniform_startrek"</span>,</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">)</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co"># robust ANOVA and boxviolin plot</span></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">p3 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">  <span class="dt">plot.type =</span> <span class="st">"boxviolin"</span>,</a>
+<a class="sourceLine" id="cb4-46" data-line-number="46">  <span class="dt">type =</span> <span class="st">"r"</span>,</a>
+<a class="sourceLine" id="cb4-47" data-line-number="47">  <span class="dt">title =</span> <span class="st">"robust test"</span>,</a>
+<a class="sourceLine" id="cb4-48" data-line-number="48">  <span class="dt">tr =</span> <span class="fl">0.005</span>,</a>
+<a class="sourceLine" id="cb4-49" data-line-number="49">  <span class="dt">package =</span> <span class="st">"wesanderson"</span>,</a>
+<a class="sourceLine" id="cb4-50" data-line-number="50">  <span class="dt">palette =</span> <span class="st">"Royal2"</span>,</a>
+<a class="sourceLine" id="cb4-51" data-line-number="51">  <span class="dt">nboot =</span> <span class="dv">15</span>,</a>
+<a class="sourceLine" id="cb4-52" data-line-number="52">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-53" data-line-number="53">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-54" data-line-number="54">)</a>
+<a class="sourceLine" id="cb4-55" data-line-number="55"></a>
+<a class="sourceLine" id="cb4-56" data-line-number="56"><span class="co"># robust ANOVA and boxviolin plot</span></a>
+<a class="sourceLine" id="cb4-57" data-line-number="57">p4 &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb4-58" data-line-number="58">  <span class="dt">data =</span> df_year,</a>
+<a class="sourceLine" id="cb4-59" data-line-number="59">  <span class="dt">x =</span> year,</a>
+<a class="sourceLine" id="cb4-60" data-line-number="60">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb4-61" data-line-number="61">  <span class="dt">type =</span> <span class="st">"bf"</span>,</a>
+<a class="sourceLine" id="cb4-62" data-line-number="62">  <span class="dt">title =</span> <span class="st">"bayesian test"</span>,</a>
+<a class="sourceLine" id="cb4-63" data-line-number="63">  <span class="dt">package =</span> <span class="st">"palettetown"</span>,</a>
+<a class="sourceLine" id="cb4-64" data-line-number="64">  <span class="dt">palette =</span> <span class="st">"natu"</span>,</a>
+<a class="sourceLine" id="cb4-65" data-line-number="65">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-66" data-line-number="66">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-67" data-line-number="67">)</a>
+<a class="sourceLine" id="cb4-68" data-line-number="68"></a>
+<a class="sourceLine" id="cb4-69" data-line-number="69"><span class="co"># combining the individual plots into a single plot</span></a>
+<a class="sourceLine" id="cb4-70" data-line-number="70">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-71" data-line-number="71">  p1, p2, p3, p4, </a>
+<a class="sourceLine" id="cb4-72" data-line-number="72">  <span class="dt">nrow =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb4-73" data-line-number="73">  <span class="dt">ncol =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb4-74" data-line-number="74">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>),</a>
+<a class="sourceLine" id="cb4-75" data-line-number="75">  <span class="dt">title.text =</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,</a>
+<a class="sourceLine" id="cb4-76" data-line-number="76">  <span class="dt">caption.text =</span> <span class="st">"Note: Comparing results from parametric, non-parametric, robust, and bayesian tests"</span>,</a>
+<a class="sourceLine" id="cb4-77" data-line-number="77">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb4-78" data-line-number="78">  <span class="dt">caption.size =</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb4-79" data-line-number="79">)</a></code></pre></div>
+<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="960"></p>
 </div>
 <div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level2">
 <h2 class="hasAnchor">
@@ -284,7 +295,7 @@
 </h2>
 <p>What if we want to do the same analysis separately for each year for which the data is available, i.e. checking how the differences in life expectancy have changed since this data collection started in 1952 until 2007? In that case, we will have to either write a <code>for</code> loop or use <code>purrr</code>, both of which are time consuming and can be a bit of a struggle.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggbetweenstats</code>. This is merely a wrapper function around <code><a href="../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggbetweenstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<p>Let’s focus on the following years to see these changes for every 10 years: 1957, 1967, 1977, 1987, 1997, 2007.</p>
+<p>Let’s focus on the following years to see these changes for every 20 years: 1967, 1987, 2007.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"></a>
@@ -292,34 +303,33 @@
 <a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder,</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">    year <span class="op">==</span><span class="st"> </span><span class="dv">1957</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1977</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1997</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">  ),</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">  <span class="dt">x =</span> continent,</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">y =</span> lifeExp,</a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="co"># number of decimal places in results</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">palette =</span> <span class="st">"default_jco"</span>,</a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">outlier.label =</span> country,</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">grouping.var =</span> year,</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</a>
-<a class="sourceLine" id="cb5-27" data-line-number="27">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb5-28" data-line-number="28">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb5-29" data-line-number="29">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1957-2007)"</span>,</a>
-<a class="sourceLine" id="cb5-30" data-line-number="30">  <span class="dt">nrow =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb5-31" data-line-number="31">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb5-32" data-line-number="32">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span>, <span class="st">"(f)"</span>)</a>
-<a class="sourceLine" id="cb5-33" data-line-number="33">)</a></code></pre></div>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, </a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">    continent <span class="op">!=</span><span class="st"> "Oceania"</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">  ),</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">  <span class="dt">x =</span> continent,</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">  <span class="dt">y =</span> lifeExp,</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">  <span class="co"># number of decimal places in results</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">palette =</span> <span class="st">"default_jco"</span>,</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">outlier.label =</span> country,</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">grouping.var =</span> year,</a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</a>
+<a class="sourceLine" id="cb5-26" data-line-number="26">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,</a>
+<a class="sourceLine" id="cb5-29" data-line-number="29">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb5-30" data-line-number="30">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb5-31" data-line-number="31">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>)</a>
+<a class="sourceLine" id="cb5-32" data-line-number="32">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="672"></p>
-<p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1957 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
+<p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1967 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
 </div>
 <div id="grouped-analysis-with-ggbetweenstats-purrr" class="section level2">
 <h2 class="hasAnchor">

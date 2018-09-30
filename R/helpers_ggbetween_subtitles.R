@@ -7,7 +7,7 @@ bf_message_ttest <- function(jmv_results,
 
   # prepare the bayes factor message
   bf_message <- base::substitute(
-    atop(y,
+    atop(top.text,
       expr =
         paste(
           "In favor of null: ",
@@ -23,7 +23,7 @@ bf_message_ttest <- function(jmv_results,
         )
     ),
     env = base::list(
-      y = caption,
+      top.text = caption,
       bf = ggstatsplot::specify_decimal_p(x = log(
         x = (1 / as.data.frame(jmv_results$ttest)$`stat[bf]`),
         base = exp(1)
@@ -73,7 +73,7 @@ bf_message_ttest <- function(jmv_results,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#' 
+#'
 #' # modifying the defaults
 #' subtitle_ggbetween_anova_parametric(
 #'   data = ggplot2::msleep,
@@ -255,7 +255,9 @@ subtitle_ggbetween_anova_parametric <-
             df1 = aov_stat$parameter[[1]],
             # numerator degrees of freedom are always integer
             df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
-            pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
+            pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]],
+                                                    k,
+                                                    p.value = TRUE),
             effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.etasq[[1]], k),
             LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
             UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k),
@@ -288,17 +290,17 @@ subtitle_ggbetween_anova_parametric <-
 #' @importFrom effsize cohen.d
 #'
 #' @examples
-#' 
+#'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(ggplot2::msleep, vore %in% c("carni", "herbi"))
-#' 
+#'
 #' # with defaults
 #' subtitle_ggbetween_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_ggbetween_t_parametric(
 #'   data = msleep_short,
@@ -366,7 +368,8 @@ subtitle_ggbetween_t_parametric <-
           noncentral = effsize.noncentral
         )
 
-      # t_stat input represents the t-test object summary derived from stats library
+      # t_stat input represents the t-test object summary derived from `stats`
+      # library
       subtitle <-
         # extracting the elements of the statistical object
         base::substitute(
@@ -398,7 +401,9 @@ subtitle_ggbetween_t_parametric <-
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
             df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
-            pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
+            pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]],
+                                                    k,
+                                                    p.value = TRUE),
             effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
             LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
             UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
@@ -419,7 +424,8 @@ subtitle_ggbetween_t_parametric <-
           noncentral = effsize.noncentral
         )
 
-      # t_stat input represents the t-test object summary derived from stats library
+      # t_stat input represents the t-test object summary derived from `stats`
+      # library
       subtitle <-
         # extracting the elements of the statistical object
         base::substitute(
@@ -451,7 +457,9 @@ subtitle_ggbetween_t_parametric <-
           env = base::list(
             estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
             df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k),
-            pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]], k, p.value = TRUE),
+            pvalue = ggstatsplot::specify_decimal_p(x = t_stat[[3]],
+                                                    k,
+                                                    p.value = TRUE),
             effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
             LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
             UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
@@ -470,6 +478,8 @@ subtitle_ggbetween_t_parametric <-
 #' @name subtitle_ggbetween_mann_nonparametric
 #' @author Indrajeet Patil
 #'
+#'@param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritParams subtitle_ggbetween_t_parametric
 #' @inheritParams specify_decimal_p
 #'
@@ -494,7 +504,8 @@ subtitle_ggbetween_mann_nonparametric <-
              x,
              y,
              paired = FALSE,
-             k = 3) {
+             k = 3,
+           messages = TRUE) {
 
     # creating a dataframe
     data <-
@@ -536,17 +547,30 @@ subtitle_ggbetween_mann_nonparametric <-
       data = data,
       distribution = "asymptotic",
       alternative = "two.sided",
-      conf.int = TRUE
+      conf.int = TRUE,
+      conf.level = 0.95
     )
 
-    # mann_stat input represents the U-test summary derived from stats library, while Z is
-    # from Exact Wilcoxon-Pratt Signed-Rank Test from coin library
+    # displaying message about which test was run
+    if (isTRUE(messages)) {
+      base::message(cat(
+        crayon::green("Note: "),
+        crayon::blue(
+          "Two-sample Wilcoxon test, also known as Mann-Whitney test, was run.\n"
+        ),
+        sep = ""
+      ))
+    }
+
+    # mann_stat input represents the U-test summary derived from `stats`
+    # library, while Z is from Exact `Wilcoxon-Pratt Signed-Rank Test` from
+    # `coin` library
     subtitle <-
       # extracting the elements of the statistical object
       base::substitute(
         expr =
           paste(
-            "Mann-Whitney: ",
+            # "Mann-Whitney: ",
             italic(U),
             " = ",
             estimate,
@@ -602,14 +626,14 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @importFrom WRS2 yuen.effect.ci
 #'
 #' @examples
-#' 
+#'
 #' # with defaults
 #' subtitle_ggbetween_t_rob(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_ggbetween_t_rob(
 #'   data = ToothGrowth,
@@ -742,18 +766,18 @@ subtitle_ggbetween_t_rob <-
 #' @importFrom jmv ttestPS
 #'
 #' @examples
-#' 
+#'
 #' # between-subjects design
-#' 
+#'
 #' subtitle_ggbetween_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#' 
+#'
 #' # within-subjects design
-#' 
+#'
 #' subtitle_ggbetween_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -1032,13 +1056,13 @@ subtitle_ggbetween_kw_nonparametric <-
 #' @importFrom rlang enquo
 #'
 #' @examples
-#' 
+#'
 #' # the following examples are not run in the manual because bootstrapping is taking too much
 #' # time
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # going with the defaults
 #' subtitle_ggbetween_rob_anova(
 #'   data = ggplot2::midwest,
@@ -1046,7 +1070,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #'   y = percbelowpoverty,
 #'   nboot = 10
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_ggbetween_rob_anova(
 #'   data = ggplot2::midwest,
