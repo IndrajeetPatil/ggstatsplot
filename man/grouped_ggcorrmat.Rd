@@ -40,7 +40,9 @@ title (name of each factor level) (Default: \code{"Group"}).}
 \code{"plot"} (for visualization matrix) or \code{"correlations"} (or \code{"corr"} or
 \code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"} or \code{"p"};
 for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
-intervals for unique correlation pairs; not available for robust correlation).}
+intervals for unique correlation pairs; not available for robust
+correlation) or \code{"n"} (or \code{"sample.size"} for a tibble with sample sizes
+for each correlation pair).}
 
 \item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
 full matrix, lower triangular or upper triangular matrix.}

@@ -201,7 +201,9 @@ names should be entered in the same order.</p></td>
 <code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or <code>"corr"</code> or
 <code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code> or <code>"p"</code>;
 for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with confidence
-intervals for unique correlation pairs; not available for robust correlation).</p></td>
+intervals for unique correlation pairs; not available for robust
+correlation) or <code>"n"</code> (or <code>"sample.size"</code> for a tibble with sample sizes
+for each correlation pair).</p></td>
     </tr>
     <tr>
       <th>matrix.type</th>
@@ -426,7 +428,8 @@ of p-values.</p>
   <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"p"</span>
-)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
+)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons,
+#&gt; while the lower triangle denotes unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
 #&gt;   variable    sleep_total sleep_rem sleep_cycle    awake  brainwt   bodywt
 #&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
 #&gt; 1 sleep_total    0.        6.11e-12    3.43e- 2 0.       6.79e- 5 3.85e- 6

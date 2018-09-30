@@ -15,7 +15,9 @@
 #'   `"plot"` (for visualization matrix) or `"correlations"` (or `"corr"` or
 #'   `"r"`; for correlation matrix) or `"p-values"` (or `"p.values"` or `"p"`;
 #'   for a matrix of *p*-values) or `"ci"` (for a tibble with confidence
-#'   intervals for unique correlation pairs; not available for robust correlation).
+#'   intervals for unique correlation pairs; not available for robust
+#'   correlation) or `"n"` (or `"sample.size"` for a tibble with sample sizes
+#'   for each correlation pair).
 #' @param matrix.type Character, `"full"` (default), `"upper"` or `"lower"`, display
 #'   full matrix, lower triangular or upper triangular matrix.
 #' @param method Character argument that decides the visualization method of
@@ -118,6 +120,7 @@
 #' @importFrom WRS2 pball
 #' @importFrom psych corr.test
 #' @importFrom psych corr.p
+#' @importFrom purrr flatten_dbl
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
@@ -224,6 +227,12 @@ ggcorrmat <-
     df <- data %>%
       dplyr::select(.data = ., !!rlang::enquo(cor.vars))
 
+    # counting number of NAs present in the dataframe
+    na_total <- df %>%
+      purrr::map_df(.x = ., .f = ~sum(is.na(.))) %>%
+      purrr::flatten_dbl(.x = .) %>%
+      sum(., na.rm = TRUE)
+
     # renaming the columns if so desired (must be equal to the number of number of cor.vars)
     if (!is.null(cor.vars.names)) {
       # check if number of cor.vars is equal to the number of names entered
@@ -278,6 +287,13 @@ ggcorrmat <-
 
       # compute a correlation matrix of p-values
       p.mat <- corr_df$p
+
+      # in case of NAs, compute minimum and maximum sample sizes of pairs
+      if (na_total != 0) {
+
+        # dataframe with minimum, median, and maximum sample sizes
+        n_summary <- numdf_n_summary(df = corr_df$n)
+      }
     } else if (corr.method == "robust") {
 
       # this is just get a matrix of samples sizes to be used `n` argument in
@@ -290,6 +306,14 @@ ggcorrmat <-
         alpha = .05,
         ci = FALSE
       )
+
+      # in case of NAs, compute minimum, median, and maximum sample sizes of
+      # pairs
+      if (na_total != 0) {
+
+        # dataframe with minimum, median, and maximum sample sizes
+        n_summary <- numdf_n_summary(df = n_df$n)
+      }
 
       # computing the percentage bend correlation matrix
       rob_cor <- WRS2::pball(x = df, beta = beta)
@@ -331,6 +355,41 @@ ggcorrmat <-
     # creating the basic plot
     if (output == "plot") {
       if (corr.method %in% c("pearson", "spearman", "kendall", "robust")) {
+
+        # legend title with information about correlation type and sample
+        if (na_total == 0) {
+          legend.title.text <-
+            bquote(atop(
+              atop(
+                bold("sample size:"),
+                italic(n) ~ "=" ~ .(nrow(x = data))
+              ),
+              atop(
+                bold("correlation:"),
+                .(corr.method)
+              )
+            ))
+        } else {
+          legend.title.text <-
+            bquote(atop(
+              atop(
+                atop(
+                  bold("sample size:"),
+                  italic(n)[min] ~ "=" ~ .(n_summary$n_min[[1]])
+                ),
+                atop(
+                  italic(n)[median] ~ "=" ~ .(n_summary$n_median[[1]]),
+                  italic(n)[max] ~ "=" ~ .(n_summary$n_max[[1]])
+                )
+              ),
+              atop(
+                bold("correlation:"),
+                .(corr.method)
+              )
+            ))
+        }
+
+
         # plotting the correlalogram
         plot <- ggcorrplot::ggcorrplot(
           corr = corr.mat,
@@ -344,7 +403,7 @@ ggcorrmat <-
           outline.color = outline.color,
           ggtheme = ggtheme,
           colors = colors,
-          legend.title = paste("n = ", nrow(x = data), "\n", corr.method, sep = ""),
+          legend.title = legend.title.text,
           lab_col = lab.col,
           lab_size = lab.size,
           insig = insig,
@@ -460,6 +519,24 @@ ggcorrmat <-
 
       # return the tibble
       return(corr.mat)
+    } else if (output %in% c("n", "sample.size")) {
+      if (corr.method %in% c("pearson", "spearman", "kendall")) {
+        # sample size matrix
+        sample_size_df <- corr_df$n %>%
+          base::as.data.frame(x = .) %>%
+          tibble::rownames_to_column(., var = "variable") %>%
+          tibble::as_data_frame(x = .)
+
+        return(sample_size_df)
+      } else {
+        # sample size matrix
+        sample_size_df <- n_df$n %>%
+          base::as.data.frame(x = .) %>%
+          tibble::rownames_to_column(., var = "variable") %>%
+          tibble::as_data_frame(x = .)
+
+        return(sample_size_df)
+      }
     } else if (output %in% c("p-values", "p.values", "p")) {
 
       # if p-values were adjusted, notify how they are going to be displayed
@@ -467,7 +544,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.\n"
+            "In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons,\nwhile the lower triangle denotes unadjusted p-values.\n"
           ),
           sep = ""
         ))
@@ -500,7 +577,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::red("Warning: "),
           crayon::blue(
-            "Confidence intervals for correlations are currently not available for robust correlation.\n"
+            "Confidence intervals are currently not available for robust correlations.\n"
           ),
           sep = ""
         ))
@@ -512,7 +589,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.\n"
+            "In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,\nwhile the lower triangle is based on unadjusted p-values.\n"
           ),
           sep = ""
         ))

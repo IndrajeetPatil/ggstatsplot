@@ -218,7 +218,9 @@ title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
 <code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or <code>"corr"</code> or
 <code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code> or <code>"p"</code>;
 for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with confidence
-intervals for unique correlation pairs; not available for robust correlation).</p></td>
+intervals for unique correlation pairs; not available for robust
+correlation) or <code>"n"</code> (or <code>"sample.size"</code> for a tibble with sample sizes
+for each correlation pair).</p></td>
     </tr>
     <tr>
       <th>matrix.type</th>
@@ -504,7 +506,11 @@ of p-values.</p>
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wesanderson"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"BottleRocket2"</span>,
   <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>
-)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Number of subjects must be greater than 3 to find confidence intervals.</span></div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
+#&gt; while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
+#&gt; while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Number of subjects must be greater than 3 to find confidence intervals.</span></div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
+#&gt; while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
+#&gt; while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting correlations</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/msleep'>msleep</a></span>,
@@ -536,7 +542,7 @@ of p-values.</p>
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
-)</div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals for correlations are currently not available for robust correlation.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 0 x 1
+)</div><div class='output co'>#&gt; Warning: Confidence intervals are currently not available for robust correlations.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals are currently not available for robust correlations.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals are currently not available for robust correlations.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 0 x 1
 #&gt; # ... with 1 variable: Group &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

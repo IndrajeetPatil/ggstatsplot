@@ -31,12 +31,11 @@
 #'
 #' @family helper_stats
 #'
-#' @keywords internal
-#'
 #' @note This is a helper function used internally in the package and not
 #' exported. In case you want to use it, you can do so by
 #' `ggstatsplot:::grouped_proptest`. Note that it is `:::` and not `::`.
 #'
+#' @keywords internal
 
 # function body
 grouped_proptest <- function(data,
@@ -198,8 +197,8 @@ grouped_proptest <- function(data,
 #' # numbers entered as characters are also tolerated
 #' signif_column(p = c("1", "0.1", "0.0002", "0.03", "0.65"))
 #' @export
-#'
 
+# function body
 signif_column <- function(data = NULL, p) {
 
   # if dataframe is provided
@@ -294,7 +293,6 @@ signif_column <- function(data = NULL, p) {
 #' @family helper_stats
 #'
 #' @keywords internal
-#'
 
 # defining function to detect outliers
 check_outlier <- function(var, coef = 1.5) {
@@ -340,7 +338,7 @@ check_outlier <- function(var, coef = 1.5) {
 #' Titanic_full <- untable(data = as.data.frame(Titanic), counts = Freq)
 #' dplyr::glimpse(Titanic_full)
 #' @export
-#'
+
 
 untable <- function(data, counts) {
   # creating a dataframe

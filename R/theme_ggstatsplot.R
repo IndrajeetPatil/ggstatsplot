@@ -23,7 +23,6 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html}
 #'
 #' @export
-#'
 
 theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(),
                               ggstatsplot.layer = TRUE) {
@@ -146,6 +145,7 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
         plot.subtitle = ggplot2::element_text(
           color = "black",
           size = 10,
+          face = "plain",
           hjust = 0.5
         ),
         plot.title = ggplot2::element_text(
@@ -186,8 +186,8 @@ theme_corrmat <- function() {
     axis.text.x = ggplot2::element_text(size = 10, face = "bold"),
     axis.text.y = ggplot2::element_text(size = 10, face = "bold"),
     axis.line = ggplot2::element_line(),
-    legend.text = ggplot2::element_text(size = 10),
-    legend.title = ggplot2::element_text(size = 10, face = "bold"),
+    legend.text = ggplot2::element_text(size = 12),
+    legend.title = ggplot2::element_text(size = 12, face = "plain"),
     legend.title.align = 0.5,
     legend.text.align = 0.5,
     legend.key.height = grid::unit(x = 1, units = "line"),
@@ -207,7 +207,7 @@ theme_corrmat <- function() {
     plot.subtitle = ggplot2::element_text(
       color = "black",
       size = 10,
-      face = "bold",
+      face = "plain",
       hjust = 0.5
     )
   )

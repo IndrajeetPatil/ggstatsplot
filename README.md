@@ -237,7 +237,7 @@ ggstatsplot::theme_ggstatsplot
 #>         plot.subtitle = ggplot2::element_text(
 #>           color = "black",
 #>           size = 10,
-#>           face = "bold",
+#>           face = "plain",
 #>           hjust = 0.5
 #>         )
 #>       )
@@ -245,7 +245,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x0000000028988910>
+#> <bytecode: 0x000000002915e4f0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -742,7 +742,8 @@ For more, including information about the variant of this function
 
 `ggcorrmat` makes a correlalogram (a matrix of correlation coefficients)
 with minimal amount of code. Just sticking to the defaults itself
-produces publication-ready correlation matrices.
+produces publication-ready correlation matrices. But, for the sake of
+exploring the available options, let’s change some of the defaults.
 
 ``` r
 # as a default this function outputs a correlalogram plot
@@ -761,13 +762,18 @@ ggstatsplot::ggcorrmat(
   title = "Correlalogram for mammals sleep dataset",
   subtitle = "sleep units: hours; weight units: kilograms"
 )
-#> Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.
+#> Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
+#> while the lower triangle is based on unadjusted p-values.
 ```
 
 <img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
 
-Multiple arguments can be modified to change the appearance of the
-correlation matrix.
+Note that if there are `NA`s present in the selected dataframe, the
+legend will display minimum and maximum number of pairs used for
+correlation matrices.
+
+Multiple aesthetics-related arguments can be modified to change the
+appearance of the correlation matrix.
 
 Alternatively, you can use it just to get the correlation matrices and
 their corresponding *p*-values (in a `tibble` format).
@@ -800,7 +806,8 @@ ggstatsplot::ggcorrmat(
   output = "p.values",                  # only "p" or "p-values" will also work
   p.adjust.method = "holm"
 )
-#> Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.
+#> Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons,
+#> while the lower triangle denotes unadjusted p-values.
 #> # A tibble: 6 x 7
 #>   variable sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt
 #>   <chr>          <dbl>     <dbl>       <dbl>     <dbl>     <dbl>     <dbl>
@@ -810,6 +817,23 @@ ggstatsplot::ggcorrmat(
 #> 4 awake      0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6
 #> 5 brainwt    4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17
 #> 6 bodywt     2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.
+
+# getting the sample sizes for all pairs
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "robust",
+  output = "n"
+)
+#> # A tibble: 6 x 7
+#>   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
+#>   <chr>             <dbl>     <dbl>       <dbl> <dbl>   <dbl>  <dbl>
+#> 1 sleep_total          83        61          32    83      56     83
+#> 2 sleep_rem            61        61          32    61      48     61
+#> 3 sleep_cycle          32        32          32    32      30     32
+#> 4 awake                83        61          32    83      56     83
+#> 5 brainwt              56        48          30    56      56     56
+#> 6 bodywt               83        61          32    83      56     83
 ```
 
 Additionally, there is also a `grouped_` variant of this function that
@@ -821,8 +845,9 @@ variable:
 set.seed(123)
 
 # plot
+# let's use only 50% of the data to speed up the process
 ggstatsplot::grouped_ggcorrmat(
-  data = ggstatsplot::movies_long,
+  data = dplyr::sample_frac(ggstatsplot::movies_long, size = 0.5),
   cor.vars = length:votes,
   corr.method = "np",
   colors = c("#cbac43", "white", "#550000"),

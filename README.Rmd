@@ -636,7 +636,8 @@ For more, including information about the variant of this function
 
 `ggcorrmat` makes a correlalogram (a matrix of correlation coefficients) with
 minimal amount of code. Just sticking to the defaults itself produces
-publication-ready correlation matrices.
+publication-ready correlation matrices. But, for the sake of exploring the
+available options, let's change some of the defaults.
 
 ```{r ggcorrmat1, message = FALSE, warning = FALSE}
 # as a default this function outputs a correlalogram plot
@@ -657,8 +658,12 @@ ggstatsplot::ggcorrmat(
 )
 ```
 
-Multiple arguments can be modified to change the appearance of the correlation
-matrix. 
+Note that if there are `NA`s present in the selected dataframe, the legend will
+display minimum, median, and maximum number of pairs used for correlation
+matrices.
+
+Multiple aesthetics-related arguments can be modified to change the appearance
+of the correlation matrix.
 
 Alternatively, you can use it just to get the correlation matrices and their
 corresponding *p*-values (in a `tibble` format).
@@ -684,6 +689,14 @@ ggstatsplot::ggcorrmat(
   output = "p.values",                  # only "p" or "p-values" will also work
   p.adjust.method = "holm"
 )
+
+# getting the sample sizes for all pairs
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "robust",
+  output = "n"
+)
 ```
 
 Additionally, there is also a `grouped_` variant of this function that makes it
@@ -694,8 +707,9 @@ easy to repeat the same operation across a **single** grouping variable:
 set.seed(123)
 
 # plot
+# let's use only 50% of the data to speed up the process
 ggstatsplot::grouped_ggcorrmat(
-  data = ggstatsplot::movies_long,
+  data = dplyr::sample_frac(ggstatsplot::movies_long, size = 0.5),
   cor.vars = length:votes,
   corr.method = "np",
   colors = c("#cbac43", "white", "#550000"),
