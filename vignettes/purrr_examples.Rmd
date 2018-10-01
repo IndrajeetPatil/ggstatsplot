@@ -88,6 +88,9 @@ entries in the list.
 
 Following our methodology above let's start with ``ggebtweenstats`. We'll use the `gapminder` dataset. We'll make a 3 item named `list` called `data_list` using `dplyr::filter` and `base::split`.
 
+.l
+A list of lists. The length of .l determines the number of arguments that .f will be called with. List names will be used if present.
+
 ```{r purrr_ggbetweenstats, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 library(ggstatsplot)
 
