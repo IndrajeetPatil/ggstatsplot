@@ -28,8 +28,8 @@ knitr::opts_chunk$set(
 # Why `purrr`?
 
 Most of `ggstatsplot` functions have `grouped_` variants, which are designed to
-quickly run the same `ggstatsplot` function across multiple levels of a single
-grouping variable. Although this function has its utility for quick data
+quickly run the same `ggstatsplot` function across multiple levels of a **single**
+grouping variable. Although this function is useful for data
 exploration, it has two strong weaknesses-
 
   * The arguments applied to `grouped_` function call are applied uniformly to
