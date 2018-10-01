@@ -1,5 +1,5 @@
 ---
-title: "using `ggstatsplot` with `purrr` package"
+title: "using `ggstatsplot` with the `purrr` package"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -28,30 +28,65 @@ knitr::opts_chunk$set(
 # Why `purrr`?
 
 Most of `ggstatsplot` functions have `grouped_` variants, which are designed to
-quickly run the same `ggstatsplot` function across multiple levels of a **single**
-grouping variable. Although this function is useful for data
+quickly run the same `ggstatsplot` function across multiple levels of a
+**single** grouping variable. Although this function is useful for data
 exploration, it has two strong weaknesses-
 
-  * The arguments applied to `grouped_` function call are applied uniformly to
-  all levels of the grouping variable when we might want to customize them for
-  different levels of the grouping variable.
-  
-  * Only one grouping variable can be used to repeat the analysis when in
-  reality there can be a combination of grouping variables and the operation
-  needs to be repeated for all resulting combinations.
+ * The arguments applied to `grouped_` function call are applied uniformly to
+all levels of the grouping variable when we might want to customize them for
+different levels of the grouping variable.
+
+ * Only one grouping variable can be used to repeat the analysis when in reality
+there can be a combination of grouping variables and the operation needs to be
+repeated for all resulting combinations.
 
 We will see how to overcome this limitation by combining `ggstatsplot` with the
-`purrr` package. Although output from only one example is shown here, the users
-are encouraged to execute the other examples.
+`purrr` package. ~~Although output from only one example is shown here, the
+users are encouraged to execute the other examples.(this is inaccurate?)~~
 
-**Note before**:
+**Note: **
 
-  * Unlike the typical function call for `ggstatsplot` functions where arguments
-  can be quoted (`"x"`) or unquoted (`x`), while using `purrr::pmap`, we **must**
-  *quote* the arguments.
-  * You can use `ggplot2` themes from extension packages (like `ggthemes`).
+ * Unlike the typical function call for `ggstatsplot` functions where arguments
+can be quoted (`"x"`) or unquoted (`x`), while using `purrr::pmap`, we **must**
+*quote* the arguments.
 
-# `ggbetweenstats`
+ * You can use `ggplot2` themes from extension packages (like `ggthemes`).
+
+ * If you'd like some more background or an introdcution to the (purrr packages
+please see)[https://jennybc.github.io/purrr-tutorial/] this tutorial.
+
+# Introduction and methodology
+
+For all the examples in this vignette we are going to build `list`s of things
+that we will pass along to `purrr` which will in turn return a list of plots
+that will be passed to `combine_plots`. As the name implies `combine_plots`
+merges the individual plots into one bigger plot with common labeling and
+aesthetics.
+
+What are these `lists` that we are building? The lists correspond to the
+parameters in our `ggstatsplot` function like `ggbetweenstats`. If you look at
+the help file for `?ggbetweenstats` for example the very first parameter it
+wants is the `data` file we'll be using. We can also pass it different `titles`
+of even `ggtheme`s.
+
+You can pass:
+
+ * A single a `chr` string such as `xlab = "Continent"` in which case it will be
+reused/recycled as many times as needed.
+
+ * A vector of values such as mean.label.size = c(3, 4, 5) in which case it will
+be coerced to a list and checked for the right class (in this case `int`) and
+the right quantity of entries in the vector i.e., mean.label.size = c(3, 4) will
+fail if we're trying to make three plots.
+
+ * A list; either named `data = year_list` or created as you go
+`outlier.label.color = list("#56B4E9", "#009E73", "#F0E442")`. Any list will be
+checked for the right class (in this case `chr`) and the right quantity of
+entries in the list.
+
+# `ggbetweenstats` and `purrr`
+
+Following our methodology above let's start with ``ggebtweenstats`. We'll use the `gapminder` dataset. We'll make a 3 item named `list` called `data_list` using `dplyr::filter` and `base::split`.
 
 ```{r purrr_ggbetweenstats, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 library(ggstatsplot)
@@ -70,9 +105,9 @@ year_list <- gapminder::gapminder %>%
   ) %>%
   base::split(x = ., f = .$year, drop = TRUE)
 
-# this created a list with 3 elements, one for each mpaa rating
+# this created a list with 3 elements, one for each year we want
 # you can check the structure of the file for yourself
-# str(year_list)
+str(year_list[1])
 
 # checking the length and names of each element
 length(year_list)
@@ -101,6 +136,7 @@ plot_list <- purrr::pmap(
     ),
     type = list("r", "p", "np"),
     nboot = 25,
+    mean.label.size = c(3, 4, 5),
     k = list(1, 2, 3),
     effsize.type = list(
       NULL,
@@ -122,7 +158,7 @@ plot_list <- purrr::pmap(
   ),
   .f = ggstatsplot::ggbetweenstats
 )
-  
+
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
@@ -280,7 +316,6 @@ ggstatsplot::combine_plots(
 )
 ```
 
-
 # `gghistostats`
 
 ```{r purrr_gghistostats, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 6}
@@ -417,8 +452,8 @@ ggstatsplot::combine_plots(
 
 # Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
-<https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on
+GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 
@@ -428,3 +463,4 @@ Summarizing session information for reproducibility.
 options(width = 200)
 devtools::session_info()
 ```
+
