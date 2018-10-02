@@ -74,7 +74,7 @@ the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -455,9 +455,10 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Speed-of-light measurement"</span>,
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Run</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value =0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value =0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

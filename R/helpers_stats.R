@@ -339,7 +339,7 @@ check_outlier <- function(var, coef = 1.5) {
 #' dplyr::glimpse(Titanic_full)
 #' @export
 
-
+# function body
 untable <- function(data, counts) {
   # creating a dataframe
   data <-

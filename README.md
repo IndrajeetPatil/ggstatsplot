@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--30-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--02-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -245,7 +245,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002915e4f0>
+#> <bytecode: 0x00000000291eee88>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -769,8 +769,8 @@ ggstatsplot::ggcorrmat(
 <img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
 
 Note that if there are `NA`s present in the selected dataframe, the
-legend will display minimum and maximum number of pairs used for
-correlation matrices.
+legend will display minimum, median, and maximum number of pairs used
+for correlation matrices.
 
 Multiple aesthetics-related arguments can be modified to change the
 appearance of the correlation matrix.

@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 150
+    dpi: 100
     toc: true
     eval: FALSE
     warning: FALSE
@@ -27,8 +27,8 @@ knitr::opts_chunk$set(
 
 # Why `purrr`?
 
-Most of the `ggstatsplot` functions have `grouped_` variants, which are designed to
-quickly run the same `ggstatsplot` function across multiple levels of a
+Most of the `ggstatsplot` functions have `grouped_` variants, which are designed
+to quickly run the same `ggstatsplot` function across multiple levels of a
 **single** grouping variable. Although this function is useful for data
 exploration, it has two strong weaknesses-
 
@@ -51,8 +51,8 @@ can be quoted (`"x"`) or unquoted (`x`), while using `purrr::pmap`, we **must**
 
  * You can use `ggplot2` themes from extension packages (like `ggthemes`).
 
- * If you'd like some more background or an introduction to the purrr package
-please see (this tutorial)[https://jennybc.github.io/purrr-tutorial/] .
+ * If you'd like some more background or an introduction to the purrr package,
+please see [this tutorial](https://jennybc.github.io/purrr-tutorial/).
 
 # Introduction and methodology
 
@@ -70,7 +70,8 @@ of even `ggtheme`s.
 
 You can pass:
 
- * A single `chr` string such as `xlab = "Continent"` or numeric such as `nboot = 25` in which case it will be reused/recycled as many times as needed.
+ * A single `chr` string such as `xlab = "Continent"` or numeric such as `nboot = 25` 
+ in which case it will be reused/recycled as many times as needed.
 
  * A vector of values such as mean.label.size = c(3, 4, 5) in which case it will
 be coerced to a list and checked for the right class (in this case `int`) and
@@ -84,7 +85,9 @@ entries in the list.
 
 # `ggbetweenstats` and `purrr`
 
-Following our methodology above let's start with `ggebtweenstats`. We'll use the `gapminder` dataset. We'll make a 3 item named `list` called `data_list` using `dplyr::filter` and `base::split`.
+Following our methodology above let's start with `ggebtweenstats`. We'll use the
+`gapminder` dataset. We'll make a 3 item named `list` called `data_list` using
+`dplyr::filter` and `base::split`.
 
 ```{r purrr_ggbetweenstats1, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 library(ggstatsplot)
@@ -112,7 +115,12 @@ length(year_list)
 names(year_list)
 ```
 
-Now that we have the data divided into the three relevant years in a list we'll turn to `purrr::pmap` to create a list of ggplot objects that we'll make use of stored in `plot_list`. When you look at the documentation for `?pmap` it will accept `.l` which is a list of lists. The length of .l determines the number of arguments that `.f` will be called with. List names will be used if present. `.f` is the function we want to apply.  In our case `.f = ggstatsplot::ggbetweenstats`.
+Now that we have the data divided into the three relevant years in a list we'll
+turn to `purrr::pmap` to create a list of ggplot objects that we'll make use of
+stored in `plot_list`. When you look at the documentation for `?pmap` it will
+accept `.l` which is a list of lists. The length of .l determines the number of
+arguments that `.f` will be called with. List names will be used if present.
+`.f` is the function we want to apply.  In our case `.f = ggstatsplot::ggbetweenstats`.
 
 So let's keep building `.l`.First is `data = year_list`, the x & y axes are constant in all three plots so we pass the variable name as a string `x = "continent"`. Same with the label we'll use for outliers where needed. For demonstration purposes let's assume we want the outliers on each plot to be a different color.  Not actually recommending it just demonstrating what's possible. We build a list on the fly with `outlier.label.color = list("#56B4E9", "#009E73", "#F0E442")`.  The rest of the code shows you a wide variety of possibilities and we won't catalog them here.
 
@@ -161,7 +169,10 @@ plot_list <- purrr::pmap(
 )
 ```
 
-The final step is to pass the `plot_list` object we just created to the `combine_plots` function.  While each of the 3 plots already has labeling information `combine_plots` gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.
+The final step is to pass the `plot_list` object we just created to the
+`combine_plots` function.  While each of the 3 plots already has labeling
+information `combine_plots` gives us an opportunity to add additional details to
+the merged plots and specify the layout in rows and columns.
 
 ```{r purrr_ggbetweenstats3, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 # combining all individual plots from the list into a single plot using combine_plots function
@@ -176,9 +187,15 @@ ggstatsplot::combine_plots(
 
 # `ggscatterstats`
 
-For the next example lets use the same methodology on different data and using `ggscatterstats` to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle.
+For the next example lets use the same methodology on different data and using
+`ggscatterstats` to produce scatterplots combined with marginal
+histograms/boxplots/density plots with statistical details added as a subtitle.
 
-For data we'll use `movies_wide` which is from IMDB and part of the `ggstatsplot` package. Since it's a large dataset with some relatively small categories like **NC-17** we'll sample only one quarter of the data and completely drop NC-17 using `dplyr`.  Once again we'll feed `purrr::pmap` a list of lists via `.l` and for `.f` we'll specify `.f = ggstatsplot::ggscatterstats`.
+For data we'll use `movies_wide` which is from IMDB and part of the
+`ggstatsplot` package. Since it's a large dataset with some relatively small
+categories like **NC-17** we'll sample only one quarter of the data and
+completely drop NC-17 using `dplyr`.  Once again we'll feed `purrr::pmap` a list
+of lists via `.l` and for `.f` we'll specify `.f = ggstatsplot::ggscatterstats`.
 
 This time we'll put all the code in one block...
 
@@ -242,7 +259,8 @@ ggstatsplot::combine_plots(
 )
 ```
 
-** The remainder of the examples vary in content but follow the exact same methodology as the earlier examples **
+The remainder of the examples vary in content but follow the exact same
+methodology as the earlier examples.
 
 # `ggcorrmat`
 

@@ -168,6 +168,7 @@
 #'   ylab = "Speed-of-light measurement",
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Run,
+#'   nboot = 10,
 #'   ggtheme = ggthemes::theme_few(),
 #'   ggstatsplot.layer = FALSE
 #' )

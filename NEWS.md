@@ -3,6 +3,7 @@
 # ggstatsplot 0.0.6
 
 MAJOR CHANGES
+
   - The package now exports all functions used to create text expressions with
   results. This makes it easy for people to use these results in their own plots
   at any location they want (and not just in `subtitle`, the current default for
@@ -25,6 +26,7 @@ MAJOR CHANGES
   position is automatically determined now.
 
 BREAKING CHANGES
+
   - `legend.title.margin` function has been depcrecated since `ggplot2 3.0.0` has
   improved on the margin issues from previous versions. All functions that
   wrapped around this function now lose the relevant arguments
@@ -45,6 +47,7 @@ BREAKING CHANGES
   renamed to `point.width.jitter` and `point.height.jitter`, resp.
 
 MINOR CHANGES
+
   - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes
   Factors is displayed, and not base 10 logarithm.
   - `ggscatterstats` gains `method` and `formula` arguments to modify smoothing
@@ -61,21 +64,24 @@ MINOR CHANGES
   places in percentage labels.
 
 BUG FIXES
+
   - `grouped_ggpiestats` wasn't working when only `main` variable was provided
   with `counts` data. Fixed that.
   
 # ggstatsplot 0.0.5
 
 MAJOR CHANGES
+
   - For the sake of consistency, `theme_mprl` is now called `theme_ggstatsplot`.
     The `theme_mprl` function will still be around and will **not** be deprecated,
     so feel free to use either or both of them since they are identical.
   - `ggcoefstats` no longer has arguments `effects` and `ran_params` because
     only fixed effects are shown for mixed-effects models.
   - `ggpiestats` can now handle within-subjects designs (McNemar test results
-  will be displayed).
+    will be displayed).
      
 BUG FIXES
+
   - `ggbetweenstats` was producing wrong axes labels when `sample.size.label`
     was set to `TRUE` and user had reordered factor levels before using this
     function. The new version fixes this.
@@ -83,6 +89,7 @@ BUG FIXES
     Fixed that with new version of `sjstats`.
 
 MINOR CHANGES
+
   - Removed the trailing comma from the robust correlation analyses.
   - `gghistostats` has a new argument to remove color fill gradient.
   - `ggbetweenstats` takes new argument `mean.ci` to show confidence intervals
@@ -94,7 +101,7 @@ MINOR CHANGES
     `MBESS` are removed from dependencies.
   - `ggscatterstats` supports `densigram` with the development version of
     `ggExtra`. It additionally gains few extra arguments to change aesthetics of
-    marginals (alpha, size, etc.).
+     marginals (alpha, size, etc.).
 
 # ggstatsplot 0.0.4
 
