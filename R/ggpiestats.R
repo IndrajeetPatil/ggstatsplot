@@ -18,6 +18,8 @@
 #' @param facet.wrap.name The text for the facet_wrap variable label.
 #' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
+#' @param perc.k Numeric that decides number of decimal places for percentage
+#'   labels (Default: `0`).
 #' @inheritParams subtitle_contigency_tab
 #' @inheritParams subtitle_onesample_proptest
 #' @inheritParams paletteer::scale_fill_paletteer_d
@@ -53,6 +55,14 @@
 #' 
 #' # for reproducibility
 #' set.seed(123)
+#' 
+#' # simple function call with the defaults (without condition)
+#' ggstatsplot::ggpiestats(
+#'   data = ggplot2::msleep,
+#'   main = vore,
+#'   perc.k = 1,
+#'   k = 2
+#' )
 #' 
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
@@ -91,6 +101,7 @@ ggpiestats <-
              legend.title = NULL,
              facet.wrap.name = NULL,
              k = 3,
+             perc.k = 0,
              facet.proptest = TRUE,
              ggtheme = ggplot2::theme_bw(),
              ggstatsplot.layer = TRUE,
@@ -104,7 +115,7 @@ ggpiestats <-
       # saving the column label for the 'main' variables
       if (is.null(legend.title)) {
         legend.title <-
-          colnames(dplyr::select(
+          colnames(x = dplyr::select(
             .data = data,
             !!rlang::enquo(main)
           ))[1]
@@ -249,7 +260,7 @@ ggpiestats <-
           dplyr::mutate(
             .data = .,
             condition_n_label = dplyr::if_else(
-              condition = duplicated(condition),
+              condition = base::duplicated(condition),
               true = NA_character_,
               false = as.character(condition_n_label)
             )
@@ -273,9 +284,10 @@ ggpiestats <-
       legend.labels <- factor.levels
     }
 
-    # custom labeller function to use if the user wants a different name for facet_wrap variable
+    # custom labeller function to use if the user wants a different name for
+    # facet_wrap variable
     label_facet <- function(original_var, custom_name) {
-      lev <- levels(as.factor(original_var))
+      lev <- levels(x = as.factor(original_var))
       lab <- paste0(custom_name, ": ", lev)
       names(lab) <- lev
       return(lab)
@@ -297,7 +309,7 @@ ggpiestats <-
         ) +
         ggplot2::geom_label(
           ggplot2::aes(
-            label = paste0(round(perc), "%"),
+            label = paste0(round(x = perc, digits = perc.k), "%"),
             group = factor(get("main"))
           ),
           position = position_fill(vjust = 0.5),
@@ -329,13 +341,17 @@ ggpiestats <-
           )
         ) +
         ggplot2::geom_label(
-          ggplot2::aes(label = paste0(round(perc), "%"), group = factor(get("main"))),
+          ggplot2::aes(
+            label = paste0(round(x = perc, digits = perc.k), "%"),
+            group = factor(get("main"))
+          ),
           position = position_fill(vjust = 0.5),
           color = "black",
           size = 4,
           show.legend = FALSE
         ) +
-        ggplot2::coord_polar(theta = "y") # convert to polar coordinates
+        # convert to polar coordinates
+        ggplot2::coord_polar(theta = "y")
     }
 
     # formatting
@@ -355,7 +371,7 @@ ggpiestats <-
       # remove black diagonal line from legend
       ggplot2::guides(fill = guide_legend(override.aes = list(color = NA)))
 
-    # ================ chi-square test (either Pearson or McNemar) ============
+    # ================ chi-square test (either Pearson or McNemar) =========================
 
     # if facetting by condition is happening
     if (!base::missing(condition)) {
@@ -373,6 +389,7 @@ ggpiestats <-
             by = "condition"
           ) %>%
           dplyr::mutate(
+            .data = .,
             significance = dplyr::if_else(
               condition = duplicated(condition),
               true = NA_character_,
@@ -411,7 +428,7 @@ ggpiestats <-
         )
       }
 
-      # ========================================================== facetted proportion test ============================================
+      # ======================= facetted proportion test ================================
 
       # adding significance labels to pie charts for grouped proportion tests, if expected
       if (isTRUE(facet.proptest)) {
@@ -449,7 +466,7 @@ ggpiestats <-
       )
     }
 
-    #################################### putting all together ############################################
+    # ============================ putting all together ====================================
 
     # preparing the plot
     p <-

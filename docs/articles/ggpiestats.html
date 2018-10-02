@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -116,7 +116,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-28</h4>
+            <h4 class="date">2018-09-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggpiestats.Rmd"><code>vignettes/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -212,21 +212,23 @@
 <a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">data =</span> Titanic_full_<span class="dv">50</span>,</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">main =</span> Survived,</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">condition =</span> Sex,</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic by gender"</span>,       <span class="co"># title for the entire plot</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>,                <span class="co"># caption for the entire plot</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                                  <span class="co"># legend title</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),                             <span class="co"># changing plot theme </span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                           <span class="co"># package from which color palette is to be taken</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                                   <span class="co"># choosing a different color palette</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">stat.title =</span> <span class="st">"chi squared test of independence: "</span>,           <span class="co"># title for statistical test</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="dt">nboot =</span> <span class="dv">10</span>,                                                  <span class="co"># no. of bootstrap sample for effect size CI</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">)  <span class="op">+</span><span class="st">                                                           </span><span class="co"># further modification with ggplot2 commands</span></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(</a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">    <span class="dt">size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb3-26" data-line-number="26">    <span class="dt">hjust =</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27">  ))</a></code></pre></div>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic by gender"</span>,   <span class="co"># title for the entire plot</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>,            <span class="co"># caption for the entire plot</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                              <span class="co"># legend title</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),                         <span class="co"># changing plot theme </span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                               <span class="co"># choosing a different color palette</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                       <span class="co"># package to which color palette belongs</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,             <span class="co"># title for statistical test</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="dt">k =</span> <span class="dv">2</span>,                                                   <span class="co"># decimal places in result</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">perc.k =</span> <span class="dv">1</span>,                                              <span class="co"># decimal places in percentage labels</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">  <span class="dt">nboot =</span> <span class="dv">10</span>,                                              <span class="co"># no. of bootstrap sample for effect size CI</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">)  <span class="op">+</span><span class="st">                                                       </span><span class="co"># further modification with `ggplot2` commands</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">    <span class="dt">size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">    <span class="dt">hjust =</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">  ))</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="768"></p>
 <p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s chi-square test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by the <code>***</code> which is equivalent to a goodness of fit test for each gender.</p>
 </div>
@@ -246,19 +248,21 @@
 <a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">grouping.var =</span> Age,</a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">title.prefix =</span> <span class="st">"Child or Adult?: "</span>,</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">stat.title =</span> <span class="st">"chi squared test of independence: "</span>,</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">main =</span> Survived,</a>
 <a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">condition =</span> Sex,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">nboot =</span> <span class="dv">15</span>,</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">title.text =</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">perc.k =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">title.text =</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="768"></p>
 <p>The resulting pie charts and statistics make the story clear. For adults gender very much matters. Women survived at much higher rates than men. For children gender is not significantly associated with survival and both male and female children have a survival rate that is not significantly different from 50/50.</p>
 </div>
@@ -406,7 +410,7 @@
 <a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
 <a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
 <a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York            </span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-28                  </span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-30                  </span></a>
 <a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;  package      * version     date       lib source                              </span></a>
@@ -426,10 +430,10 @@
 <a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&gt;  codetools      0.2-15      2016-10-05 [2] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb8-31" data-line-number="31"><span class="co">#&gt;  coin           1.2-2       2017-11-28 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb8-32" data-line-number="32"><span class="co">#&gt;  colorspace     1.3-2       2016-12-14 [1] CRAN (R 3.5.0)                      </span></a>
-<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="co">#&gt;  commonmark     1.5         2018-04-28 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="co">#&gt;  commonmark     1.6         2018-09-30 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb8-34" data-line-number="34"><span class="co">#&gt;  cowplot        0.9.99      2018-08-23 [1] Github (wilkelab/cowplot@374c3e9)   </span></a>
 <a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co">#&gt;  crayon         1.3.4       2018-09-26 [1] Github (r-lib/crayon@3e751fb)       </span></a>
-<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt;  data.table     1.11.6      2018-09-19 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt;  data.table     1.11.8      2018-09-30 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt;  debugme        1.1.0       2017-10-22 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt;  desc           1.2.0       2018-05-01 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt;  devtools       1.13.6.9000 2018-09-23 [1] Github (r-lib/devtools@74df201)     </span></a>
@@ -451,7 +455,7 @@
 <a class="sourceLine" id="cb8-55" data-line-number="55"><span class="co">#&gt;  ggplot2        3.0.0.9000  2018-09-26 [1] Github (tidyverse/ggplot2@e9f7ded)  </span></a>
 <a class="sourceLine" id="cb8-56" data-line-number="56"><span class="co">#&gt;  ggrepel        0.8.0.9000  2018-09-09 [1] Github (slowkow/ggrepel@91877ca)    </span></a>
 <a class="sourceLine" id="cb8-57" data-line-number="57"><span class="co">#&gt;  ggridges       0.5.1       2018-09-27 [1] CRAN (R 3.5.1)                      </span></a>
-<a class="sourceLine" id="cb8-58" data-line-number="58"><span class="co">#&gt;  ggstatsplot  * 0.0.5.9000  2018-09-29 [1] local                               </span></a>
+<a class="sourceLine" id="cb8-58" data-line-number="58"><span class="co">#&gt;  ggstatsplot  * 0.0.6       2018-09-30 [1] local                               </span></a>
 <a class="sourceLine" id="cb8-59" data-line-number="59"><span class="co">#&gt;  glmmTMB        0.2.2.0     2018-07-03 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb8-60" data-line-number="60"><span class="co">#&gt;  glue           1.3.0       2018-09-17 [1] Github (tidyverse/glue@4e74901)     </span></a>
 <a class="sourceLine" id="cb8-61" data-line-number="61"><span class="co">#&gt;  gnm            1.1-0       2018-06-21 [1] CRAN (R 3.5.0)                      </span></a>
@@ -461,7 +465,7 @@
 <a class="sourceLine" id="cb8-65" data-line-number="65"><span class="co">#&gt;  htmldeps       0.1.1       2018-09-17 [1] Github (rstudio/htmldeps@c1023e0)   </span></a>
 <a class="sourceLine" id="cb8-66" data-line-number="66"><span class="co">#&gt;  htmltools      0.3.6       2017-04-28 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb8-67" data-line-number="67"><span class="co">#&gt;  httpuv         1.4.5       2018-07-19 [1] CRAN (R 3.5.1)                      </span></a>
-<a class="sourceLine" id="cb8-68" data-line-number="68"><span class="co">#&gt;  jmv            0.9.4       2018-09-18 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb8-68" data-line-number="68"><span class="co">#&gt;  jmv            0.9.4       2018-09-29 [1] Github (jamovi/jmv@7dac133)         </span></a>
 <a class="sourceLine" id="cb8-69" data-line-number="69"><span class="co">#&gt;  jmvcore        0.9.4       2018-09-17 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb8-70" data-line-number="70"><span class="co">#&gt;  knitr          1.20.12     2018-08-13 [1] local                               </span></a>
 <a class="sourceLine" id="cb8-71" data-line-number="71"><span class="co">#&gt;  later          0.7.5       2018-09-18 [1] CRAN (R 3.5.1)                      </span></a>

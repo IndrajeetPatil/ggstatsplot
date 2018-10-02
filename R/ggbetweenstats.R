@@ -172,7 +172,6 @@
 #'   ggstatsplot.layer = FALSE
 #' )
 #' @export
-#'
 
 # defining the function
 ggbetweenstats <- function(data,
@@ -450,7 +449,8 @@ ggbetweenstats <- function(data,
         x = x,
         y = y,
         paired = FALSE,
-        k = k
+        k = k,
+        messages = messages
       )
 
       #------------------------- robust t-test --------------------------------
@@ -496,7 +496,10 @@ ggbetweenstats <- function(data,
       caption = caption,
       color = lab.df[1]
     ) +
-    ggstatsplot::theme_mprl(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+    ggstatsplot::theme_mprl(
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer
+    ) +
     ggplot2::theme(legend.position = "none") +
     ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
     ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
@@ -545,7 +548,8 @@ ggbetweenstats <- function(data,
       data_df$outlier.label <- as.factor(data_df$outlier.label)
     }
 
-    # if outlier labels are words or other types of characters, you want these characters to be diaplyed and not the values
+    # if outlier labels are words or other types of characters, you want these
+    # characters to be diaplyed and not the values
     if (is.factor(data_df$outlier.label)) {
       data_df$outlier.label <- as.character(data_df$outlier.label)
 
@@ -576,8 +580,9 @@ ggbetweenstats <- function(data,
         )
     } else {
 
-      # if the value for outliers are to be displated, no need to convert outlier labels to character vector
-      # applying the labels to tagged outliers with ggrepel
+      # if the value for outliers are to be displated, no need to convert
+      # outlier labels to character vector applying the labels to tagged
+      # outliers with ggrepel
       plot <-
         plot +
         ggrepel::geom_label_repel(
@@ -631,8 +636,16 @@ ggbetweenstats <- function(data,
         dplyr::mutate(
           .data = .,
           se.y = sd.y / base::sqrt(n.y),
-          lower.ci.y = mean.y - stats::qt(p = 1 - (0.05 / 2), df = n.y - 1, lower.tail = TRUE) * se.y,
-          upper.ci.y = mean.y + stats::qt(p = 1 - (0.05 / 2), df = n.y - 1, lower.tail = TRUE) * se.y
+          lower.ci.y = mean.y - stats::qt(
+            p = 1 - (0.05 / 2),
+            df = n.y - 1,
+            lower.tail = TRUE
+          ) * se.y,
+          upper.ci.y = mean.y + stats::qt(
+            p = 1 - (0.05 / 2),
+            df = n.y - 1,
+            lower.tail = TRUE
+          ) * se.y
         ) %>%
         dplyr::ungroup(x = .)
     }
@@ -686,7 +699,7 @@ ggbetweenstats <- function(data,
       )
   }
 
-  #------------------------------------------------- sample size labels ------------------------------------------------------------
+  #------------------------- sample size labels ---------------------------------
 
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
@@ -702,7 +715,7 @@ ggbetweenstats <- function(data,
       ggplot2::scale_x_discrete(labels = c(unique(data_label$label)))
   }
 
-  #------------------------------------------------- messages -------------------------------------------------------------------
+  #----------------------------- messages ----------------------------------------
 
   if (isTRUE(messages)) {
 

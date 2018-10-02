@@ -6,7 +6,7 @@
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
 [![CRAN
 Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.5.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.6.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
 [![Daily downloads
@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--28-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--30-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -78,14 +78,14 @@ plots as well.
 
 # Installation
 
-To get the latest, stable CRAN release (`0.0.5`):
+To get the latest, stable CRAN release (`0.0.6`):
 
 ``` r
 utils::install.packages(pkgs = "ggstatsplot")
 ```
 
 You can get the **development** version of the package from GitHub
-(`0.0.5.9000`). To see what new changes (and bug fixes) have been made
+(`0.0.6.9000`). To see what new changes (and bug fixes) have been made
 to the package since the last release on `CRAN`, you can check the
 detailed log of changes here:
 <https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
@@ -188,11 +188,12 @@ args(name = ggstatsplot::ggscatterstats)
 #>     formula = y ~ x, point.color = "black", point.size = 3, point.alpha = 0.4, 
 #>     point.width.jitter = NULL, point.height.jitter = NULL, line.size = 1.5, 
 #>     line.color = "blue", marginal = TRUE, marginal.type = "histogram", 
-#>     marginal.size = 5, margins = c("both", "x", "y"), xfill = "#009E73", 
-#>     yfill = "#D55E00", xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7, 
-#>     centrality.para = NULL, type = "pearson", results.subtitle = TRUE, 
-#>     title = NULL, subtitle = NULL, caption = NULL, nboot = 100, 
-#>     beta = 0.1, k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(), 
+#>     marginal.size = 5, margins = c("both", "x", "y"), package = "wesanderson", 
+#>     palette = "Royal1", direction = 1, xfill = "#009E73", yfill = "#D55E00", 
+#>     xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL, 
+#>     type = "pearson", results.subtitle = TRUE, title = NULL, 
+#>     subtitle = NULL, caption = NULL, nboot = 100, beta = 0.1, 
+#>     k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(), 
 #>     ggstatsplot.layer = TRUE, messages = TRUE) 
 #> NULL
 ```
@@ -202,7 +203,8 @@ just type the name of the function without the parentheses:
 
 ``` r
 ggstatsplot::theme_ggstatsplot
-#> function(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE) {
+#> function(ggtheme = ggplot2::theme_bw(),
+#>                               ggstatsplot.layer = TRUE) {
 #>   if (isTRUE(ggstatsplot.layer)) {
 #>     ggtheme +
 #>       ggplot2::theme(
@@ -235,7 +237,7 @@ ggstatsplot::theme_ggstatsplot
 #>         plot.subtitle = ggplot2::element_text(
 #>           color = "black",
 #>           size = 10,
-#>           face = "bold",
+#>           face = "plain",
 #>           hjust = 0.5
 #>         )
 #>       )
@@ -243,7 +245,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x00000000289cc5d0>
+#> <bytecode: 0x000000002915e4f0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -740,31 +742,44 @@ For more, including information about the variant of this function
 
 `ggcorrmat` makes a correlalogram (a matrix of correlation coefficients)
 with minimal amount of code. Just sticking to the defaults itself
-produces publication-ready correlation matrices.
+produces publication-ready correlation matrices. But, for the sake of
+exploring the available options, let’s change some of the defaults.
 
 ``` r
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,
-  corr.method = "spearman",                # correlation method
-  p.adjust.method = "holm",                # p-value adjustment method for multiple comparisons
-  cor.vars = Sepal.Length:Petal.Width,     # a range of variables can be selected  
-  cor.vars.names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
-  title = "Correlalogram for length measures for Iris species",
-  subtitle = "Iris dataset by Anderson"
+  data = ggplot2::msleep,
+  corr.method = "robust",                    # correlation method
+  sig.level = 0.001,                         # threshold of significance
+  p.adjust.method = "holm",                  # p-value adjustment method for multiple comparisons
+  cor.vars = c(sleep_rem, awake:bodywt),     # a range of variables can be selected  
+  cor.vars.names = c("REM sleep",            # variable names
+                     "time awake", 
+                     "brain weight", 
+                     "body weight"), 
+  matrix.type = "upper",                     # type of visualization matrix
+  colors = c("#B2182B", "white", "#4D4D4D"), 
+  title = "Correlalogram for mammals sleep dataset",
+  subtitle = "sleep units: hours; weight units: kilograms"
 )
-#> Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.
+#> Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
+#> while the lower triangle is based on unadjusted p-values.
 ```
 
 <img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
 
-Multiple arguments can be modified to change the appearance of the
-correlation matrix.
+Note that if there are `NA`s present in the selected dataframe, the
+legend will display minimum and maximum number of pairs used for
+correlation matrices.
+
+Multiple aesthetics-related arguments can be modified to change the
+appearance of the correlation matrix.
 
 Alternatively, you can use it just to get the correlation matrices and
 their corresponding *p*-values (in a `tibble` format).
 
 ``` r
+# show four digits in a tibble
 options(pillar.sigfig = 4)
 
 # getting the correlation coefficient matrix
@@ -791,7 +806,8 @@ ggstatsplot::ggcorrmat(
   output = "p.values",                  # only "p" or "p-values" will also work
   p.adjust.method = "holm"
 )
-#> Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.
+#> Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons,
+#> while the lower triangle denotes unadjusted p-values.
 #> # A tibble: 6 x 7
 #>   variable sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt
 #>   <chr>          <dbl>     <dbl>       <dbl>     <dbl>     <dbl>     <dbl>
@@ -801,6 +817,23 @@ ggstatsplot::ggcorrmat(
 #> 4 awake      0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6
 #> 5 brainwt    4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17
 #> 6 bodywt     2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.
+
+# getting the sample sizes for all pairs
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "robust",
+  output = "n"
+)
+#> # A tibble: 6 x 7
+#>   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
+#>   <chr>             <dbl>     <dbl>       <dbl> <dbl>   <dbl>  <dbl>
+#> 1 sleep_total          83        61          32    83      56     83
+#> 2 sleep_rem            61        61          32    61      48     61
+#> 3 sleep_cycle          32        32          32    32      30     32
+#> 4 awake                83        61          32    83      56     83
+#> 5 brainwt              56        48          30    56      56     56
+#> 6 bodywt               83        61          32    83      56     83
 ```
 
 Additionally, there is also a `grouped_` variant of this function that
@@ -812,8 +845,9 @@ variable:
 set.seed(123)
 
 # plot
+# let's use only 50% of the data to speed up the process
 ggstatsplot::grouped_ggcorrmat(
-  data = ggstatsplot::movies_long,
+  data = dplyr::sample_frac(ggstatsplot::movies_long, size = 0.5),
   cor.vars = length:votes,
   corr.method = "np",
   colors = c("#cbac43", "white", "#550000"),

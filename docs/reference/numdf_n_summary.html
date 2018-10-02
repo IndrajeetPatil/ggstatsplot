@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>grouped_message — grouped_message • ggstatsplot</title>
+<title>Compute minimum, maximum, and median for a dataframe with numbers. — numdf_n_summary • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -38,9 +38,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="grouped_message — grouped_message" />
+<meta property="og:title" content="Compute minimum, maximum, and median for a dataframe with numbers. — numdf_n_summary" />
 
-<meta property="og:description" content="A note to the user about the class of the output object." />
+<meta property="og:description" content="Compute minimum, maximum, and median for a dataframe with numbers." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -151,32 +151,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>grouped_message</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_messages.R'><code>R/helpers_messages.R</code></a></small>
-    <div class="hidden name"><code>grouped_message.Rd</code></div>
+    <h1>Compute minimum, maximum, and median for a dataframe with numbers.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcorrmat.R'><code>R/helpers_ggcorrmat.R</code></a></small>
+    <div class="hidden name"><code>numdf_n_summary.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A note to the user about the class of the output object.</p>
+    <p>Compute minimum, maximum, and median for a dataframe with numbers.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_message</span>()</pre>
-        
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <pre class="usage"><span class='fu'>numdf_n_summary</span>(<span class='no'>df</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>df</th>
+      <td><p>A dataframe.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <div class='dont-index'><p><code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code>, <code><a href='grouped_gghistostats.html'>grouped_gghistostats</a></code>,
-<code><a href='grouped_ggscatterstats.html'>grouped_ggscatterstats</a></code>, <code><a href='grouped_ggpiestats.html'>grouped_ggpiestats</a></code>,
-<code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
+    <p>A tibble with minimum, median, and maximum values.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#value">Value</a></li>
           </ul>
 
   </div>

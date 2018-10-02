@@ -143,7 +143,7 @@ subtitle_ggscatterstats <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "95% CI for Spearman's rho was computed with ",
+            "95% CI for Spearman's rho was computed with",
             crayon::yellow(nboot),
             "bootstrap samples.\n"
           ),

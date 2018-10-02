@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 200
+    dpi: 150
     toc: true
     warning: FALSE
     message: FALSE
@@ -65,12 +65,12 @@ To reduce the processing time, let's only work with 30% of the dataset.
 # for reproducibility
 set.seed(123)
 
-# to speed up the calculation, let's use only 30% of the data
-movies_30 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.3)
+# to speed up the calculation, let's use only 10% of the data
+movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
 
 # plot
 ggstatsplot::ggscatterstats(
-  data = movies_30,                                            # dataframe from which variables are to be taken
+  data = movies_10,                                            # dataframe from which variables are taken
   x = budget,                                                  # predictor/independent variable 
   y = rating,                                                  # dependent variable
   xlab = "Budget (in millions of US dollars)",                 # label for the x-axis
@@ -82,14 +82,14 @@ ggstatsplot::ggscatterstats(
   point.color = "grey50",
   marginal = TRUE,                                             # show marginal distribution 
   marginal.type = "density",                                   # type of plot for marginal distribution
-  centrality.para = "mean",                                    # which type of centrality parameter to be plotted
+  centrality.para = "mean",                                    # centrality parameter to be plotted
   margins = "both",                                            # marginal distribution on both axes
-  xfill = "#CC79A7",                                           # fill for marginal distributions on the x-axis
-  yfill = "#009E73",                                           # fill for marginal distributions on the y-axis
-  xalpha = 0.5,                                                # changing transparency for the x-axis marginals
-  yalpha = 0.75,                                               # changing transparency for the y-axis marginals
-  xsize = 1,                                                   # changing size for the x-axis marginals
-  ysize = 1,                                                   # changing size for the y-axis marginals
+  xfill = "#CC79A7",                                           # fill for marginals on the x-axis
+  yfill = "#009E73",                                           # fill for marginals on the y-axis
+  xalpha = 0.5,                                                # transparency for the x-axis marginals
+  yalpha = 0.75,                                               # transparency for the y-axis marginals
+  xsize = 1,                                                   # size for the x-axis marginals
+  ysize = 1,                                                   # size for the y-axis marginals
   type = "pearson",                                            # type of linear association
   title = "Relationship between movie budget and IMDB rating",
   caption = "Source: www.imdb.com",
@@ -149,29 +149,42 @@ into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
 Let's see how we can use this function to apply `ggscatterstats` for all MPAA
-ratings. We will be running parametric tests (Pearson's *r*, i.e.). If you set
-`type = "np"` or `type = "r"`, results from non-parametric or robust test will
-be displayed.
+ratings. We will be running parametric tests (Pearson's *r*, i.e.).   
+(If you set `type = "np"` or `type = "r"`, results from non-parametric or robust
+test will be displayed.)
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 8}
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
+# for reproducibility
+set.seed(123)
+
+# to speed up the calculation, let's use only 20% of the data
+# also since there are only 7 movies with NC-17 ratings, leave them out
+movies_20 <-
+  dplyr::filter(.data = ggstatsplot::movies_wide, mpaa != "NC-17") %>%
+  dplyr::sample_frac(tbl = ., size = 0.2)
+
+# plot
 ggstatsplot::grouped_ggscatterstats(
   # arguments relevant for ggstatsplot::ggscatterstats
-  data = ggstatsplot::movies_wide,
+  data = movies_10,
   title.prefix = "MPAA Rating",
   x = budget,
   y = rating,
+  xfill = NULL,
+  package = "ggsci",
+  palette = "nrc_npg",
   grouping.var = mpaa,
   label.var = "title",
-  label.expression = "rating < 5 & budget > 100",
+  label.expression = "rating < 5 & budget > 75",
   marginal.type = "boxplot",
   ggtheme = ggthemes::theme_tufte(),
   ggstatsplot.layer = FALSE,
-  # number of decimal places in results
+  messages = FALSE,
   k = 2,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Relationship between movie budget and IMDB rating",
   caption.text = "Source: www.imdb.com",
-  nrow = 4,
+  nrow = 3,
   ncol = 1,
   labels = c("(a)","(b)","(c)","(d)")
 )
@@ -179,8 +192,7 @@ ggstatsplot::grouped_ggscatterstats(
 
 As seen from the plot, this analysis has revealed something interesting: The
 relationship we found between budget and IMDB rating holds only for PG-13 and
-R-rated movies. Indeed, the relationship even reverses for non-rated or NC-17
-rated films.
+R-rated movies. 
 
 ## Grouped analysis with `ggscatterstats` + `purrr`
 
@@ -212,8 +224,8 @@ set.seed(123)
 # creating a list of plots with different smoothing functions
 plot_list2 <- purrr::pmap(
   .l = list(
-    # let's use only 10% of the data to speed up the calculations
-    data = list(dplyr::sample_frac(tbl = ggstatsplot::movies_wide, size = 0.10)),
+    # let's use only 5% of the data to speed up the calculations
+    data = list(dplyr::sample_frac(tbl = ggstatsplot::movies_wide, size = 0.05)),
     x = "budget",
     y = "rating",
     title = list(

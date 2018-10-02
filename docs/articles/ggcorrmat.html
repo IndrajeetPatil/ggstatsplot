@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -116,7 +116,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-09-28</h4>
+            <h4 class="date">2018-09-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggcorrmat.Rmd"><code>vignettes/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -176,10 +176,12 @@
 <a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>(),           <span class="co"># selected ggplot2 theme</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,                  <span class="co"># turn off default ggestatsplot theme overlay</span></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">matrix.type =</span> <span class="st">"lower"</span>,                      <span class="co"># correlation matrix structure</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">"green"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span>),     <span class="co"># selecting color combination</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">title =</span> <span class="st">"Gapminder correlation matrix"</span>,     <span class="co"># custom title</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder Foundation"</span>   <span class="co"># custom subtitle</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">)</a></code></pre></div>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">colors =</span> <span class="ot">NULL</span>,                              <span class="co"># turning off manual specification of colors</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                  <span class="co"># choosing a color palette</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                          <span class="co"># package to which color palette belongs</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">  <span class="dt">title =</span> <span class="st">"Gapminder correlation matrix"</span>,     <span class="co"># custom title</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder Foundation"</span>   <span class="co"># custom subtitle</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">)</a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="576"></p>
 <p>As seen from this correlation matrix, although there is no relationship between population and life expectancy worldwide, at least in 2007, there is a strong positive relationship between GDP, a well-established indicator of a country’s economic performance.</p>
 <p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <code>ggplot2</code> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
@@ -203,9 +205,9 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># let's use just 15% of the data to speed it up</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),             </a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),             </a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(carat, depth<span class="op">:</span>z),        <span class="co"># note how the variables are getting selected</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">cor.vars.names =</span> <span class="kw">c</span>(</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="st">"carat"</span>,</a>
@@ -223,9 +225,9 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># let's use just 15% of the data to speed it up</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),             </a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),             </a>
 <a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),    <span class="co"># note how the variables are getting selected</span></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">cor.vars.names =</span> <span class="kw">c</span>(</a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="st">"price"</span>,</a>
@@ -309,10 +311,10 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># let's use just 15% of the data to speed it up</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb8-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="co"># arguments relevant for ggstatsplot::ggcorrmat</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</a>
 <a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="dt">corr.method =</span> <span class="st">"r"</span>,                  <span class="co"># percentage bend correlation coefficient</span></a>
 <a class="sourceLine" id="cb8-9" data-line-number="9">  <span class="dt">beta =</span> <span class="fl">0.2</span>,                         <span class="co"># bending constant</span></a>
 <a class="sourceLine" id="cb8-10" data-line-number="10">  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>,           <span class="co"># method to adjust p-values for multiple comparisons</span></a>
@@ -340,20 +342,25 @@
 <a class="sourceLine" id="cb8-32" data-line-number="32">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb8-33" data-line-number="33">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
 <a class="sourceLine" id="cb8-34" data-line-number="34">)</a>
-<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons, while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
+<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
+<a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
+<a class="sourceLine" id="cb8-40" data-line-number="40"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
+<a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co">#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</span></a></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat6-1.png" width="960"></p>
 <p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable. For example, if we wanted to get the same correlation coefficient matrix for <code>color</code> of the diamond, we can do the following-</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># let's use just 15% of the data to speed it up</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># let's use just 5% of the data to speed it up</span></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.15</span>),</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggplot2<span class="op">::</span>diamonds, <span class="dt">size =</span> <span class="fl">0.05</span>),</a>
 <a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="dt">grouping.var =</span> cut,</a>
 <a class="sourceLine" id="cb9-8" data-line-number="8">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(price, carat, depth<span class="op">:</span>table, x<span class="op">:</span>z),</a>
 <a class="sourceLine" id="cb9-9" data-line-number="9">  <span class="dt">output =</span> <span class="st">"correlations"</span>,</a>
@@ -363,16 +370,16 @@
 <a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt; # A tibble: 35 x 9</span></a>
 <a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#&gt;    Group variable  price  carat  depth  table      x      y      z</span></a>
 <a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt;  1 Fair  price     1      0.905  0.007 -0.03   0.87   0.877  0.845</span></a>
-<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#&gt;  2 Fair  carat     0.905  1      0.099 -0.058  0.969  0.967  0.958</span></a>
-<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt;  3 Fair  depth     0.007  0.099  1     -0.577 -0.01  -0.014  0.301</span></a>
-<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#&gt;  4 Fair  table    -0.03  -0.058 -0.577  1     -0.01  -0.021 -0.186</span></a>
-<a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt;  5 Fair  x         0.87   0.969 -0.01  -0.01   1      0.998  0.944</span></a>
-<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt;  6 Fair  y         0.877  0.967 -0.014 -0.021  0.998  1      0.943</span></a>
-<a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt;  7 Fair  z         0.845  0.958  0.301 -0.186  0.944  0.943  1    </span></a>
-<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="co">#&gt;  8 Good  price     1      0.94  -0.028  0.144  0.922  0.925  0.918</span></a>
-<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt;  9 Good  carat     0.94   1     -0.009  0.185  0.989  0.988  0.987</span></a>
-<a class="sourceLine" id="cb9-25" data-line-number="25"><span class="co">#&gt; 10 Good  depth    -0.028 -0.009  1     -0.493 -0.095 -0.098  0.098</span></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt;  1 Fair  price     1      0.882  0.065  0.011  0.789  0.8    0.788</span></a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#&gt;  2 Fair  carat     0.882  1      0.109 -0.003  0.93   0.929  0.92 </span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt;  3 Fair  depth     0.065  0.109  1     -0.683  0.009  0.01   0.358</span></a>
+<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#&gt;  4 Fair  table     0.011 -0.003 -0.683  1      0.018  0.006 -0.221</span></a>
+<a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt;  5 Fair  x         0.789  0.93   0.009  0.018  1      0.997  0.931</span></a>
+<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt;  6 Fair  y         0.8    0.929  0.01   0.006  0.997  1      0.931</span></a>
+<a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt;  7 Fair  z         0.788  0.92   0.358 -0.221  0.931  0.931  1    </span></a>
+<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="co">#&gt;  8 Good  price     1      0.933 -0.026  0.095  0.915  0.918  0.911</span></a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt;  9 Good  carat     0.933  1     -0.012  0.15   0.986  0.986  0.984</span></a>
+<a class="sourceLine" id="cb9-25" data-line-number="25"><span class="co">#&gt; 10 Good  depth    -0.026 -0.012  1     -0.506 -0.11  -0.109  0.105</span></a>
 <a class="sourceLine" id="cb9-26" data-line-number="26"><span class="co">#&gt; # ... with 25 more rows</span></a></code></pre></div>
 <p>As this example illustrates, there is a minimal coding overhead to explore correlations in your dataset with the <code>grouped_ggcorrmat</code> function.</p>
 </div>
@@ -403,7 +410,7 @@
 <a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
 <a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
 <a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York            </span></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-28                  </span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt;  date     2018-09-30                  </span></a>
 <a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#&gt;  package      * version     date       lib source                              </span></a>
@@ -422,10 +429,10 @@
 <a class="sourceLine" id="cb10-29" data-line-number="29"><span class="co">#&gt;  codetools      0.2-15      2016-10-05 [2] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb10-30" data-line-number="30"><span class="co">#&gt;  coin           1.2-2       2017-11-28 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb10-31" data-line-number="31"><span class="co">#&gt;  colorspace     1.3-2       2016-12-14 [1] CRAN (R 3.5.0)                      </span></a>
-<a class="sourceLine" id="cb10-32" data-line-number="32"><span class="co">#&gt;  commonmark     1.5         2018-04-28 [1] CRAN (R 3.5.0)                      </span></a>
+<a class="sourceLine" id="cb10-32" data-line-number="32"><span class="co">#&gt;  commonmark     1.6         2018-09-30 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb10-33" data-line-number="33"><span class="co">#&gt;  cowplot        0.9.99      2018-08-23 [1] Github (wilkelab/cowplot@374c3e9)   </span></a>
 <a class="sourceLine" id="cb10-34" data-line-number="34"><span class="co">#&gt;  crayon         1.3.4       2018-09-26 [1] Github (r-lib/crayon@3e751fb)       </span></a>
-<a class="sourceLine" id="cb10-35" data-line-number="35"><span class="co">#&gt;  data.table     1.11.6      2018-09-19 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb10-35" data-line-number="35"><span class="co">#&gt;  data.table     1.11.8      2018-09-30 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb10-36" data-line-number="36"><span class="co">#&gt;  debugme        1.1.0       2017-10-22 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb10-37" data-line-number="37"><span class="co">#&gt;  desc           1.2.0       2018-05-01 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb10-38" data-line-number="38"><span class="co">#&gt;  devtools       1.13.6.9000 2018-09-23 [1] Github (r-lib/devtools@74df201)     </span></a>
@@ -448,7 +455,7 @@
 <a class="sourceLine" id="cb10-55" data-line-number="55"><span class="co">#&gt;  ggplot2      * 3.0.0.9000  2018-09-26 [1] Github (tidyverse/ggplot2@e9f7ded)  </span></a>
 <a class="sourceLine" id="cb10-56" data-line-number="56"><span class="co">#&gt;  ggrepel        0.8.0.9000  2018-09-09 [1] Github (slowkow/ggrepel@91877ca)    </span></a>
 <a class="sourceLine" id="cb10-57" data-line-number="57"><span class="co">#&gt;  ggridges       0.5.1       2018-09-27 [1] CRAN (R 3.5.1)                      </span></a>
-<a class="sourceLine" id="cb10-58" data-line-number="58"><span class="co">#&gt;  ggstatsplot  * 0.0.5.9000  2018-09-29 [1] local                               </span></a>
+<a class="sourceLine" id="cb10-58" data-line-number="58"><span class="co">#&gt;  ggstatsplot  * 0.0.6       2018-09-30 [1] local                               </span></a>
 <a class="sourceLine" id="cb10-59" data-line-number="59"><span class="co">#&gt;  glmmTMB        0.2.2.0     2018-07-03 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb10-60" data-line-number="60"><span class="co">#&gt;  glue           1.3.0       2018-09-17 [1] Github (tidyverse/glue@4e74901)     </span></a>
 <a class="sourceLine" id="cb10-61" data-line-number="61"><span class="co">#&gt;  gtable         0.2.0       2016-02-26 [1] CRAN (R 3.5.0)                      </span></a>
@@ -457,7 +464,7 @@
 <a class="sourceLine" id="cb10-64" data-line-number="64"><span class="co">#&gt;  htmldeps       0.1.1       2018-09-17 [1] Github (rstudio/htmldeps@c1023e0)   </span></a>
 <a class="sourceLine" id="cb10-65" data-line-number="65"><span class="co">#&gt;  htmltools      0.3.6       2017-04-28 [1] CRAN (R 3.5.0)                      </span></a>
 <a class="sourceLine" id="cb10-66" data-line-number="66"><span class="co">#&gt;  httpuv         1.4.5       2018-07-19 [1] CRAN (R 3.5.1)                      </span></a>
-<a class="sourceLine" id="cb10-67" data-line-number="67"><span class="co">#&gt;  jmv            0.9.4       2018-09-18 [1] CRAN (R 3.5.1)                      </span></a>
+<a class="sourceLine" id="cb10-67" data-line-number="67"><span class="co">#&gt;  jmv            0.9.4       2018-09-29 [1] Github (jamovi/jmv@7dac133)         </span></a>
 <a class="sourceLine" id="cb10-68" data-line-number="68"><span class="co">#&gt;  jmvcore        0.9.4       2018-09-17 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb10-69" data-line-number="69"><span class="co">#&gt;  knitr          1.20.12     2018-08-13 [1] local                               </span></a>
 <a class="sourceLine" id="cb10-70" data-line-number="70"><span class="co">#&gt;  labeling       0.3         2014-08-23 [1] CRAN (R 3.5.0)                      </span></a>

@@ -10,7 +10,8 @@ grouped_ggcorrmat(data, cor.vars, cor.vars.names = NULL, grouping.var,
   method = "square", corr.method = "pearson", exact = FALSE,
   continuity = TRUE, beta = 0.1, digits = 2, sig.level = 0.05,
   p.adjust.method = "none", hc.order = FALSE, hc.method = "complete",
-  lab = TRUE, colors = c("#E69F00", "white", "#009E73"),
+  lab = TRUE, package = "RColorBrewer", palette = "Dark2",
+  direction = 1, colors = c("#E69F00", "white", "#009E73"),
   outline.color = "black", ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, subtitle = NULL, caption = NULL,
   caption.default = TRUE, lab.col = "black", lab.size = 5,
@@ -39,7 +40,9 @@ title (name of each factor level) (Default: \code{"Group"}).}
 \code{"plot"} (for visualization matrix) or \code{"correlations"} (or \code{"corr"} or
 \code{"r"}; for correlation matrix) or \code{"p-values"} (or \code{"p.values"} or \code{"p"};
 for a matrix of \emph{p}-values) or \code{"ci"} (for a tibble with confidence
-intervals for unique correlation pairs; not available for robust correlation).}
+intervals for unique correlation pairs; not available for robust
+correlation) or \code{"n"} (or \code{"sample.size"} for a tibble with sample sizes
+for each correlation pair).}
 
 \item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
 full matrix, lower triangular or upper triangular matrix.}
@@ -93,7 +96,16 @@ hc.ordered using \code{hclust} function (Default is \code{FALSE}).}
 \item{lab}{Logical value. If \code{TRUE}, correlation coefficient values will be
 displayed in the plot.}
 
-\item{colors}{A vector of 3 colors for low, mid, and high correlation values.}
+\item{package}{Name of package from which the palette is desired as string
+or symbol.}
+
+\item{palette}{Name of palette as string or symbol.}
+
+\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
+
+\item{colors}{A vector of 3 colors for low, mid, and high correlation values.
+If set to \code{NULL}, manual specification of colors will be turned off and 3
+colors from the specified \code{palette} from \code{package} will be selected.}
 
 \item{outline.color}{The outline color of square or circle. Default value is
 \code{"gray"}.}
@@ -101,7 +113,7 @@ displayed in the plot.}
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
-\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}).}
+\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}, etc.).}
 
 \item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
 theme elements are to be displayed along with the selected \code{ggtheme}
@@ -231,6 +243,9 @@ ggstatsplot::grouped_ggcorrmat(
   cor.vars = sleep_total:bodywt,
   corr.method = "r",
   p.adjust.method = "holm",
+  colors = NULL,
+  package = "wesanderson",
+  palette = "BottleRocket2",
   nrow = 2
 )
 
@@ -243,8 +258,9 @@ ggstatsplot::grouped_ggcorrmat(
 )
 
 # for getting confidence intervals
-# if robust correlation is selected, confidence intervals will not be
+# if **robust** correlation is selected, confidence intervals will not be
 # available
+# it will work for all other correlation types
 ggstatsplot::grouped_ggcorrmat(
   data = datasets::iris,
   grouping.var = Species,

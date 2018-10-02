@@ -35,7 +35,6 @@
 #' @inherit ggcorrmat return references
 #' @inherit ggcorrmat return details
 #'
-#'
 #' @examples
 #' 
 #' # for getting plot
@@ -45,6 +44,9 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   corr.method = "r",
 #'   p.adjust.method = "holm",
+#'   colors = NULL,
+#'   package = "wesanderson",
+#'   palette = "BottleRocket2",
 #'   nrow = 2
 #' )
 #' 
@@ -57,8 +59,9 @@
 #' )
 #' 
 #' # for getting confidence intervals
-#' # if robust correlation is selected, confidence intervals will not be
+#' # if **robust** correlation is selected, confidence intervals will not be
 #' # available
+#' # it will work for all other correlation types
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = datasets::iris,
 #'   grouping.var = Species,
@@ -68,7 +71,6 @@
 #'   output = "ci"
 #' )
 #' @export
-#'
 
 # defining the function
 grouped_ggcorrmat <- function(data,
@@ -89,6 +91,9 @@ grouped_ggcorrmat <- function(data,
                               hc.order = FALSE,
                               hc.method = "complete",
                               lab = TRUE,
+                              package = "RColorBrewer",
+                              palette = "Dark2",
+                              direction = 1,
                               colors = c("#E69F00", "white", "#009E73"),
                               outline.color = "black",
                               ggtheme = ggplot2::theme_bw(),
@@ -170,6 +175,9 @@ grouped_ggcorrmat <- function(data,
               hc.order = hc.order,
               hc.method = hc.method,
               lab = lab,
+              package = package,
+              palette = palette,
+              direction = direction,
               colors = colors,
               outline.color = outline.color,
               ggtheme = ggtheme,

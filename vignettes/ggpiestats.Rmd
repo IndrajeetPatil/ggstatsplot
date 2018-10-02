@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 200
+    dpi: 150
     toc: true
     warning: FALSE
     message: FALSE
@@ -144,16 +144,18 @@ ggstatsplot::ggpiestats(
   data = Titanic_full_50,
   main = Survived,
   condition = Sex,
-  title = "Passenger survival on the Titanic by gender",       # title for the entire plot
-  caption = "Source: Titanic survival dataset",                # caption for the entire plot
-  legend.title = "Survived?",                                  # legend title
-  ggtheme = ggplot2::theme_grey(),                             # changing plot theme 
-  package = "ggsci",                                           # package from which color palette is to be taken
-  palette = "category10_d3",                                   # choosing a different color palette
-  stat.title = "chi squared test of independence: ",           # title for statistical test
-  nboot = 10,                                                  # no. of bootstrap sample for effect size CI
+  title = "Passenger survival on the Titanic by gender",   # title for the entire plot
+  caption = "Source: Titanic survival dataset",            # caption for the entire plot
+  legend.title = "Survived?",                              # legend title
+  ggtheme = ggplot2::theme_grey(),                         # changing plot theme 
+  palette = "category10_d3",                               # choosing a different color palette
+  package = "ggsci",                                       # package to which color palette belongs
+  stat.title = "Pearson's chi-squared test: ",             # title for statistical test
+  k = 2,                                                   # decimal places in result
+  perc.k = 1,                                              # decimal places in percentage labels
+  nboot = 10,                                              # no. of bootstrap sample for effect size CI
   messages = FALSE
-)  +                                                           # further modification with ggplot2 commands
+)  +                                                       # further modification with `ggplot2` commands
   ggplot2::theme(plot.title = ggplot2::element_text(
     color = "black",
     size = 14,
@@ -192,10 +194,12 @@ ggstatsplot::grouped_ggpiestats(
   data = ggstatsplot::Titanic_full,
   grouping.var = Age,
   title.prefix = "Child or Adult?: ",
-  stat.title = "chi squared test of independence: ",
+  stat.title = "Pearson's chi-squared test: ",
   main = Survived,
   condition = Sex,
-  nboot = 15,
+  nboot = 10,
+  k = 2,
+  perc.k = 1,
   package = "ggsci",
   palette = "category10_d3",
   messages = FALSE,

@@ -12,7 +12,8 @@ grouped_ggscatterstats(data, x, y, label.var = NULL,
   point.alpha = 0.4, line.size = 1.5, point.width.jitter = NULL,
   point.height.jitter = NULL, line.color = "blue", marginal = TRUE,
   marginal.type = "histogram", marginal.size = 5, margins = c("both",
-  "x", "y"), xfill = "#009E73", yfill = "#D55E00", xalpha = 1,
+  "x", "y"), package = "wesanderson", palette = "Royal1",
+  direction = 1, xfill = "#009E73", yfill = "#D55E00", xalpha = 1,
   yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL,
   type = "pearson", results.subtitle = TRUE, caption = NULL,
   subtitle = NULL, nboot = 100, beta = 0.1, k = 3,
@@ -75,11 +76,11 @@ function defined by \code{method}.}
 
 \item{line.size}{Size for the regression line.}
 
-\item{point.width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\% of
-the resolution of the data.}
+\item{point.width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\%
+of the resolution of the data.}
 
-\item{point.height.jitter}{Degree of jitter in \code{y} direction. Defaults to 40\% of
-the resolution of the data.}
+\item{point.height.jitter}{Degree of jitter in \code{y} direction. Defaults to
+40\% of the resolution of the data.}
 
 \item{line.color}{color for the regression line.}
 
@@ -96,13 +97,22 @@ plots compared to the main plot. A size of \code{5} means that the main plot is
 \item{margins}{Character describing along which margins to show the plots.
 Any of the following arguments are accepted: \code{"both"}, \code{"x"}, \code{"y"}.}
 
+\item{package}{Name of package from which the palette is desired as string
+or symbol.}
+
+\item{palette}{Name of palette as string or symbol.}
+
+\item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
+
 \item{xfill}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})).}
+\code{y})). If set to \code{NULL}, manual specification of colors will be turned off
+and 2 colors from the specified \code{palette} from \code{package} will be selected.}
 
 \item{yfill}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})).}
+\code{y})). If set to \code{NULL}, manual specification of colors will be turned off
+and 2 colors from the specified \code{palette} from \code{package} will be selected.}
 
 \item{xalpha}{Numeric deciding transparency levels for the marginal
 distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
@@ -112,9 +122,11 @@ default is \code{1} for both axes.}
 distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
 default is \code{1} for both axes.}
 
-\item{xsize}{Size for the marginal distribution boundaries (Default: \code{0.7}).}
+\item{xsize}{Size for the marginal distribution boundaries (Default:
+\code{0.7}).}
 
-\item{ysize}{Size for the marginal distribution boundaries (Default: \code{0.7}).}
+\item{ysize}{Size for the marginal distribution boundaries (Default:
+\code{0.7}).}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
@@ -142,13 +154,14 @@ to be displayed as subtitle.}
 
 \item{k}{Number of decimal places expected for results.}
 
-\item{axes.range.restrict}{Logical decides whether to restrict the axes values
-ranges to min and max values of the \code{x} and \code{y} variables (Default: \code{FALSE}).}
+\item{axes.range.restrict}{Logical decides whether to restrict the axes
+values ranges to min and max values of the \code{x} and \code{y} variables (Default:
+\code{FALSE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
-\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}).}
+\code{hrbrthemes::theme_ipsum_ps()}, \code{ggthemes::theme_fivethirtyeight()}, etc.).}
 
 \item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
 theme elements are to be displayed along with the selected \code{ggtheme}
@@ -240,6 +253,9 @@ ggstatsplot::grouped_ggscatterstats(
   type = "robust",
   label.var = "manufacturer",
   label.expression = "hwy > 25 & displ > 2.5",
+  xfill = NULL,
+  package = "yarrr",
+  palette = "appletv",
   messages = FALSE
 )
 
@@ -266,7 +282,8 @@ ggstatsplot::grouped_ggscatterstats(
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggscatterstats.html}
 }
 \seealso{
-\code{\link{ggscatterstats}}, \code{\link{ggcorrmat}}, \code{\link{grouped_ggcorrmat}}
+\code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
+\code{\link{grouped_ggcorrmat}}
 }
 \author{
 Indrajeet Patil

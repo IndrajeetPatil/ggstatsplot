@@ -70,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.5.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6</span>
       </span>
     </div>
 
@@ -166,7 +166,8 @@
   <span class='kw'>matrix.type</span> <span class='kw'>=</span> <span class='st'>"full"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"square"</span>, <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>,
   <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>continuity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>,
+  <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>,
   <span class='st'>"#009E73"</span>), <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
@@ -200,7 +201,9 @@ names should be entered in the same order.</p></td>
 <code>"plot"</code> (for visualization matrix) or <code>"correlations"</code> (or <code>"corr"</code> or
 <code>"r"</code>; for correlation matrix) or <code>"p-values"</code> (or <code>"p.values"</code> or <code>"p"</code>;
 for a matrix of <em>p</em>-values) or <code>"ci"</code> (for a tibble with confidence
-intervals for unique correlation pairs; not available for robust correlation).</p></td>
+intervals for unique correlation pairs; not available for robust
+correlation) or <code>"n"</code> (or <code>"sample.size"</code> for a tibble with sample sizes
+for each correlation pair).</p></td>
     </tr>
     <tr>
       <th>matrix.type</th>
@@ -279,8 +282,23 @@ hc.ordered using <code>hclust</code> function (Default is <code>FALSE</code>).</
 displayed in the plot.</p></td>
     </tr>
     <tr>
+      <th>package</th>
+      <td><p>Name of package from which the palette is desired as string
+or symbol.</p></td>
+    </tr>
+    <tr>
+      <th>palette</th>
+      <td><p>Name of palette as string or symbol.</p></td>
+    </tr>
+    <tr>
+      <th>direction</th>
+      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
+    </tr>
+    <tr>
       <th>colors</th>
-      <td><p>A vector of 3 colors for low, mid, and high correlation values.</p></td>
+      <td><p>A vector of 3 colors for low, mid, and high correlation values.
+If set to <code>NULL</code>, manual specification of colors will be turned off and 3
+colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></td>
     </tr>
     <tr>
       <th>outline.color</th>
@@ -292,7 +310,7 @@ displayed in the plot.</p></td>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>).</p></td>
+<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
     </tr>
     <tr>
       <th>ggstatsplot.layer</th>
@@ -410,7 +428,8 @@ of p-values.</p>
   <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"p"</span>
-)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons, while the lower triangle denotes unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
+)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons,
+#&gt; while the lower triangle denotes unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
 #&gt;   variable    sleep_total sleep_rem sleep_cycle    awake  brainwt   bodywt
 #&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
 #&gt; 1 sleep_total    0.        6.11e-12    3.43e- 2 0.       6.79e- 5 3.85e- 6
