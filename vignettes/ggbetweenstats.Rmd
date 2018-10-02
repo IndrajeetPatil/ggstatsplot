@@ -24,66 +24,71 @@ knitr::opts_chunk$set(
 )
 ```
 
-The function `ggstatsplot::ggbetweenstats` is designed not just to facilitate
-**data exploration**, but also for making **publication-ready box-violin plot**,
-with all statistical details included in the plot itself. We will see examples
-of how to use this function in this vignette.
+The function `ggstatsplot::ggbetweenstats` is designed to facilitate **data
+exploration**, and for making highly customizable **publication-ready plots**,
+with relevant statistical details included in the plot itself if desired. We
+will see examples of how to use this function in this vignette.
 
 To begin with, here are some instances where you would want to use
 `ggbetweenstats`-
 
-  - to check if a continuous variable differs between multiple groups/conditions
-  - to check for outliers
+ - to check if a continuous variable differs across multiple groups/conditions
 
-**Note before**: The following demo uses the pipe operator (`%>%`), so in case
-you are not familiar with this operator, here is a good explanation:
+ - to compare distributions visually and check for outliers
+
+**Note**: This vignette uses the pipe operator (`%>%`), if you are not
+familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-## Between-subjects comparisons with `ggbetweenstats`
+## Comparisons between groups with `ggbetweenstats`
 
-To illustrate how this function can be used, we will use the `gapminder`
-dataset. This dataset provides values for life expectancy, GDP per capita, and
-population, every five years, from 1952 to 2007, for each of 142 countries and
-was collected by the Gapminder Foundation. Let's have a look at the data-
+To illustrate how this function can be used, we will use the `gapminder` dataset
+throughout this vignette. This dataset provides values for life expectancy, GDP
+per capita, and population, at 5 year intervals, from 1952 to 2007, for each of
+142 countries (courtesy [Gapminder Foundation](https://www.gapminder.org/)).
+Let's have a look at the data-
 
 ```{r gapminder, warning = FALSE, message = FALSE}
 library(gapminder)
 library(dplyr)
-
 dplyr::glimpse(x = gapminder::gapminder)
 ```
 
-Suppose the first thing we want to check is the distribution of life expectancy
-worldwide (across continents, i.e.) in 2007. That is, we want to see if the
-average (across countries in a given continent) life expectancy differs
-significantly across five continents.
+**Note: ** for the remainder of the vignette we're going to exclude *Oceania*
+from the analysis simply because there are so few observations (countries).
+
+Suppose the first thing we want to inspect is the distribution of life
+expectancy for the countries of a continent in 2007. We also want to know if the
+mean differences in life expectancy between the continents is statistically
+significant.
 
 The simplest form of the function call is-
-```{r ggbetweenstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
-# loading the necessary libraries
-library(ggstatsplot)
-library(gapminder)
 
+```{r ggbetweenstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 # since the confidence intervals for the effect sizes are computed using
 # bootstrapping, important to set a seed for reproducibility
 set.seed(123)
 
 # function call
 ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),
+  data = dplyr::filter(.data = gapminder, year == 2007, continent != "Oceania"),
   x = continent,
   y = lifeExp,
   messages = FALSE
 )
 ```
 
-Note that the test automatically figures out whether independent t-test is to be
-run or an ANOVA based on the number of levels in the grouping variable.
-Additionally, the function output a `ggplot` object which means that it can be
-further modified.
+**Note**:
+  - The function automatically decides whether an independent
+  samples t-test is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups)
+  based on the number of levels in the grouping variable. 
+  - The output of the function is a `ggplot` object which means that it can be further modified.
 
-We will see how this basic call can be further modified with additional
-arguments-
+We can make the output much more aesthetically pleasing as well as informative
+by making use of the many optional parameters in `ggbetweenstats`. We'll add a
+title and caption, better `x` and `y` axis labels, and tag and label the outliers in
+the data. We can and will change the overall theme as well as the color palette
+in use.
 
 ```{r ggbetweenstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 library(ggstatsplot)
@@ -92,40 +97,43 @@ library(gapminder)
 # for reproducibility
 set.seed(123)
 
+# plot
 ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007),      # dataframe
-  x = continent,                                              # grouping/independent variable
-  y = lifeExp,                                                # dependent variables
-  xlab = "Continent",                                         # label for the x-axis
-  ylab = "Life expectancy",                                   # label for the y-axis
-  plot.type = "boxviolin",                                    # type of plot
-  type = "parametric",                                        # type of statistical test  
-  effsize.type = "biased",                                    # type of effect size
-  outlier.tagging = TRUE,                                     # whether outliers should be flagged
-  outlier.coef = 1.5,                                         # coefficient for Tukey's rule
-  outlier.label = country,                                    # label to attacht to outlier values
-  outlier.label.color = "red",                                # outlier point label color
-  mean.plotting = TRUE,                                       # whether the mean is to be displayed
-  mean.color = "darkblue",                                    # color for mean
-  messages = FALSE,                                           # turn off messages
-  ggtheme = ggthemes::theme_economist(),                      # a different theme
-  package = "yarrr",                                          # package for a color palette
-  palette = "info2",                                          # choosing a color palette
+  data = dplyr::filter(.data = gapminder, 
+                        year == 2007, 
+                        continent != "Oceania"),      # dataframe
+  x = continent,                                      # grouping/independent variable
+  y = lifeExp,                                        # dependent variables
+  xlab = "Continent",                                 # label for the x-axis
+  ylab = "Life expectancy",                           # label for the y-axis
+  plot.type = "boxviolin",                            # type of plot
+  type = "parametric",                                # type of statistical test  
+  effsize.type = "biased",                            # type of effect size
+  outlier.tagging = TRUE,                             # whether outliers should be flagged
+  outlier.coef = 1.5,                                 # coefficient for Tukey's rule
+  outlier.label = country,                            # label to attach to outlier values
+  outlier.label.color = "red",                        # outlier point label color
+  mean.plotting = TRUE,                               # whether the mean is to be displayed
+  mean.color = "darkblue",                            # color for mean
+  messages = FALSE,                                   # turn off messages
+  ggtheme = ggthemes::theme_economist(),              # a different theme
+  package = "yarrr",                                  # package from which color palette is to be taken
+  palette = "info2",                                  # choosing a different color palette
   title = "Comparison of life expectancy across continents (Year: 2007)",
   caption = "Source: Gapminder Foundation"
-) +                                                           # modifying the plot further
+) +                                                   # modifying the plot further
   ggplot2::scale_y_continuous(limits = c(35,85), breaks = seq(from = 35, to = 85, by = 5))
 ```
 
-As can be appreciated from the effect size of 0.635, there are big differences
-in the observed life expectancy across continents. Importantly, this plot also
-helps us appreciate the differences within any given continent. For example,
-although Asian countries are doing much better than African countries, on
-average, Afghanistan has a particularly grim average for the Asian continent,
-possibly reflecting the war and the political turmoil.
+As can be appreciated from the effect size (partial eta squared) of 0.635, there
+are large differences in the mean life expectancy across continents.
+Importantly, this plot also helps us appreciate the distributions within any
+given continent. For example, although Asian countries are doing much better
+than African countries, on average, Afghanistan has a particularly grim average
+for the Asian continent, possibly reflecting the war and the political turmoil.
 
-Out of curiosity, we can repeat the same analysis with other available feature
-of `ggstatsplot`:
+So far we have only used a classic parametric test and a boxviolin plot, 
+but we can also use other available options:
 
   - The `type` (of test) argument also accepts the following
 abbreviations:   
@@ -136,10 +144,12 @@ abbreviations:
 
   - The color palettes can be modified.
 
-Let's try out both of these features by plotting continent-level differences for
-two different years, separated by 50 years. Also, since there are just two
-data points for the continent of Oceania, let's leave out this continent from
-our analysis.
+Let's use the `combine_plots` function to make one plot from three separate
+plots that demonstrates all of these options. Let's compare life expectancy for
+all countries for the first and last year of available data 1957 and 2007. We
+will generate the plots one by one and then use `combine_plots` to merge them
+into one plot with some common labeling. It is possible, but not necessarily
+recommended, to make each plot have different colors or themes.
 
 For example,
 ```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
@@ -173,9 +183,11 @@ p2 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
+  xlab = "Year", 
+  ylab = "Life expectancy", 
   plot.type = "violin",
   type = "np",
-  title = "non-parametric test",
+  title = "Non-parametric Test (violin plot)",
   package = "ggsci",
   palette = "uniform_startrek",
   k = 2,
@@ -187,9 +199,11 @@ p3 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
+  xlab = "Year", 
+  ylab = "Life expectancy", 
   plot.type = "boxviolin",
   type = "r",
-  title = "robust test",
+  title = "Robust Test (box & violin plot)",
   tr = 0.005,
   package = "wesanderson",
   palette = "Royal2",
@@ -203,10 +217,13 @@ p4 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
+  xlab = "Year", 
+  ylab = "Life expectancy", 
   type = "bf",
-  title = "bayesian test",
-  package = "palettetown",
-  palette = "natu",
+  plot.type = "box",
+  title = "Bayesian Test (box plot)",
+  package = "ggsci",
+  palette = "nrc_npg",
   k = 2,
   messages = FALSE
 )
@@ -216,9 +233,9 @@ ggstatsplot::combine_plots(
   p1, p2, p3, p4, 
   nrow = 2, 
   ncol = 2, 
-  labels = c("(a)", "(b)", "(c)"),
+  labels = c("(a)", "(b)", "(c)", "(d)"),
   title.text = "Comparison of life expectancy between 1957 and 2007",
-  caption.text = "Note: Comparing results from parametric, non-parametric, robust, and bayesian tests",
+  caption.text = "Source: Gapminder Foundation",
   title.size = 14,
   caption.size = 12
 )
@@ -226,21 +243,19 @@ ggstatsplot::combine_plots(
 
 ## Grouped analysis with `grouped_ggbetweenstats`
 
-What if we want to do the same analysis separately for each year for which the
-data is available, i.e. checking how the differences in life expectancy have
-changed since this data collection started in 1952 until 2007? In that case, we
-will have to either write a `for` loop or use `purrr`, both of which are time
-consuming and can be a bit of a struggle.
+What if we want to analyze both by continent and between 1957 and 2007? A
+combination of our two previous efforts. In that case, we could write a `for`
+loop or use `purrr`, both of which are time consuming and can be a bit of a
+struggle.
 
 `ggstatsplot` provides a special helper function for such instances:
 `grouped_ggbetweenstats`. This is merely a wrapper function around
-`ggstatsplot::combine_plots`. It applies `ggbetweenstats` across all **levels** of
-a specified **grouping variable** and then combines list of individual plots
+`ggstatsplot::combine_plots`. It applies `ggbetweenstats` across all **levels**
+of a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
-in a given study, groups in a study sample, different studies, etc. 
+in a given study, groups in a study sample, different studies, etc.
 
-Let's focus on the following years to see these changes for every 20
-years: 1967, 1987, 2007. 
+Let's focus on the same 4 continents and for years: 1967, 1987, 2007.  
 
 ```{r grouped1, warning = FALSE, message = FALSE, fig.height = 15, fig.width = 7}
 # for reproducibility
@@ -257,6 +272,8 @@ ggstatsplot::grouped_ggbetweenstats(
   ),
   x = continent,
   y = lifeExp,
+  xlab = "Continent", 
+  ylab = "Life expectancy", 
   # number of decimal places in results
   k = 2,
   nboot = 10,
@@ -297,21 +314,23 @@ package. See the associated vignette here:
 
 ## Within-subjects designs
 
-Variant of this function `ggwithinstats` is currently under work. You *can*
-still use this function just to prepare the **plot** for exploratory data
-analysis, but the statistical details displayed in the subtitle will be
-incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
+A variant of this function which will be called `ggwithinstats` is currently
+under development. You *can* still use this function just to prepare the
+**plot** for exploratory data analysis, but the statistical details displayed in
+the subtitle will be incorrect. You can remove them by adding `+
+ggplot2::labs(subtitle = NULL)`.
 
 # Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
-<https://github.com/IndrajeetPatil/ggstatsplot/issues>
+If you find any bugs or have any suggestions/remarks, please file an issue on
+GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 
 Summarizing session information for reproducibility.
 
-```{r session_info, eval = FALSE}
+```{r session_info}
 options(width = 200)
 devtools::session_info()
 ```
+
