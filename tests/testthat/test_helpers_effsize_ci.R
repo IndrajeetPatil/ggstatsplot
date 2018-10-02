@@ -32,10 +32,10 @@ df1<-ggstatsplot:::t1way_ci(data = bogusdata, x = new_hire, y = salary, nboot = 
 # string3 <- specify_decimal_p(.00001234, p.value = TRUE, k = 8)
 
 test_that("ci stuff works", {
-  #  set.seed(123)
+  set.seed(123)
 
   # testing three conditions
-  testthat::expect_equal(df1$xi, 0.08635324, tolerance = .00002)
+  testthat::expect_equal(df1$xi, 0.08635324, tolerance = .00002) # 3 seconds
 #  testthat::expect_match(string2, "< 0.001")
 #  testthat::expect_match(string3, "1.234e-05")
 })
