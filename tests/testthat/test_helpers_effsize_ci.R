@@ -21,16 +21,8 @@ bogusdata <- structure(list(salary = c(50730.83081, 77872.83003, 57803.88727,
                                        66499.9822, 60362.2498, 79035.75994, 76063.98704, 56127.40021,
                                        51375.03835, 74480.09465, 80420.02603, 53964.0617, 135949.0046,
                                        96420.96265, 62239.7917),
-                            new_hire = structure(c(2L, 2L, 2L,
-                                        2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L,
-                                        2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L,
-                                        2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 1L,
-                                        1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
-                                        1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
-                                        1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
-                                        1L), .Label = c("No", "Yes"), class = "factor")),
-                       row.names = c(NA,
-                                                                                                                                                        -100L), class = "data.frame")
+                            new_hire = structure(c(rep(2L, times=50), rep(1L, times=50)), .Label = c("No", "Yes"), class = "factor")),
+                            row.names = c(NA,-100L), class = "data.frame")
 # str(bogusdata)
 set.seed(123)
 df1<-ggstatsplot:::t1way_ci(data = bogusdata, x = new_hire, y = salary, nboot = 25, conf.level = .99, tr = .05, conf.type = c("norm"))
