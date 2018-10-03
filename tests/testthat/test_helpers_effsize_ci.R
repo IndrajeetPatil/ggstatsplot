@@ -1,5 +1,6 @@
-context("Boostrap CI ANOVA")
-
+context("helpers_effsize_ci")
+# make a bogus dataframe to test against
+# some plausible numbers, a negative value and an NA
 bogusdata <- structure(list(salary = c(50730.83081, 77872.83003, 57803.88727,
                                        85409.38994, 62071.88095, 69196.43718, 74876.73551, 86352.12023,
                                        52691.98159, 128703.9815, 52099.91134, 69872.26705, 117719.5328,
@@ -25,7 +26,7 @@ bogusdata <- structure(list(salary = c(50730.83081, 77872.83003, 57803.88727,
                             row.names = c(NA,-100L), class = "data.frame")
 # str(bogusdata)
 set.seed(123)
-# 3 seconds
+# 3 seconds ????
 df1<-ggstatsplot:::t1way_ci(data = bogusdata, x = new_hire, y = salary, nboot = 25, conf.level = .99, tr = .05, conf.type = c("norm"))
 
 test_that("ci stuff works", {
