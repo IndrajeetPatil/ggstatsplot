@@ -25,17 +25,15 @@ bogusdata <- structure(list(salary = c(50730.83081, 77872.83003, 57803.88727,
                             row.names = c(NA,-100L), class = "data.frame")
 # str(bogusdata)
 set.seed(123)
+# 3 seconds
 df1<-ggstatsplot:::t1way_ci(data = bogusdata, x = new_hire, y = salary, nboot = 25, conf.level = .99, tr = .05, conf.type = c("norm"))
-
-
-# string2 <- specify_decimal_p(.00001234, p.value = TRUE)
-# string3 <- specify_decimal_p(.00001234, p.value = TRUE, k = 8)
 
 test_that("ci stuff works", {
   set.seed(123)
-
-  # testing three conditions
-  testthat::expect_equal(df1$xi, 0.08635324, tolerance = .00002) # 3 seconds
-#  testthat::expect_match(string2, "< 0.001")
-#  testthat::expect_match(string3, "1.234e-05")
+  # testing 5 conditions
+  testthat::expect_equal(df1$xi, 0.08635324, tolerance = .00002)
+  testthat::expect_equal(df1$conf.low, -0.1674259, tolerance = .00002)
+  testthat::expect_equal(df1$conf.high, 0.2684582, tolerance = .00002)
+  testthat::expect_equal(df1$`F-value`, 0.3718993, tolerance = .00002)
+  testthat::expect_equal(df1$`p-value`, 0.5435346, tolerance = .00002)
 })
