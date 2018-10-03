@@ -235,6 +235,7 @@ cor_tets_ci <- function(data,
           method = method,
           exact = exact,
           continuity = continuity,
+          alternative = alternative,
           na.action = na.omit
         )
       )
@@ -286,7 +287,7 @@ cor_tets_ci <- function(data,
         "p-value" = tidy_df$p.value,
         "nboot" = bootci$R,
         "method" = tidy_df$method,
-        "alternative" = "two.sided"
+        "alternative" = as.character(alternative)
       )
     )
 

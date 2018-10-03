@@ -2,28 +2,32 @@ context("cor_tets_ci")
 # using mtcars dataset
 set.seed(123)
 # 3 seconds ????
-df1<-ggstatsplot:::cor_tets_ci(data = datasets::mtcars,
-                               x = hp,
-                               y = mpg,
-                               nboot = 125,
-                               conf.level = .99,
-                               conf.type = c("norm"),
-                               method = "kendall",
-                               continuity = TRUE,
-                               alternative = "less")
+df1 <- ggstatsplot:::cor_tets_ci(
+  data = datasets::mtcars,
+  x = hp,
+  y = mpg,
+  nboot = 125,
+  conf.level = .99,
+  conf.type = c("norm"),
+  method = "kendall",
+  continuity = TRUE,
+  alternative = "less"
+)
 mtcars2 <- datasets::mtcars
-#induce an NA
-mtcars2[1,1] <- NA
+# induce an NA
+mtcars2[1, 1] <- NA
 set.seed(123)
-df2<-ggstatsplot:::cor_tets_ci(data = mtcars2,
-                               x = hp,
-                               y = mpg,
-                               nboot = 125,
-                               conf.level = .99,
-                               conf.type = c("norm"),
-                               method = "kendall",
-                               continuity = TRUE,
-                               alternative = "less")
+df2 <- ggstatsplot:::cor_tets_ci(
+  data = mtcars2,
+  x = hp,
+  y = mpg,
+  nboot = 125,
+  conf.level = .99,
+  conf.type = c("norm"),
+  method = "kendall",
+  continuity = TRUE,
+  alternative = "less"
+)
 
 
 test_that("cor_tets_ci works", {
