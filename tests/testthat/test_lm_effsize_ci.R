@@ -1,25 +1,27 @@
 context("lm_effsize_ci")
 # using mtcars dataset
-lmobject1 <- lm(mpg~ hp * wt, data = mtcars)
+lmobject1 <- lm(mpg ~ hp * wt, data = mtcars)
 mtcars2 <- datasets::mtcars
 # induce an NA
 mtcars2[1, 1] <- NA
 mtcars2[2, 4] <- NA
 mtcars2[3, 6] <- NA
-lmobject2 <- lm(mpg~ hp * wt, data = mtcars2)
+lmobject2 <- lm(mpg ~ hp * wt, data = mtcars2)
 #
 set.seed(123)
 df1 <- ggstatsplot:::lm_effsize_ci(
-                        object = lmobject1,
-                        partial = FALSE,
-                        conf.level = .99,
-                        nboot = 100)
+  object = lmobject1,
+  partial = FALSE,
+  conf.level = .99,
+  nboot = 100
+)
 set.seed(123)
 df2 <- ggstatsplot:::lm_effsize_ci(
-                        object = lmobject2,
-                        partial = FALSE,
-                        conf.level = .99,
-                        nboot = 100)
+  object = lmobject2,
+  partial = FALSE,
+  conf.level = .99,
+  nboot = 100
+)
 
 
 

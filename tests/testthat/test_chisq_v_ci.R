@@ -6,24 +6,28 @@ testdata1 <- dplyr::sample_frac(ggstatsplot::Titanic_full, .25)
 
 # add a couple of NA
 testdata2 <- testdata1
-testdata2[20,5] <- NA
-testdata2[100,3] <- NA
+testdata2[20, 5] <- NA
+testdata2[100, 3] <- NA
 
 # run function create outputs
 set.seed(123)
-df1<-ggstatsplot:::chisq_v_ci(data = testdata1,
-                              rows = Sex,
-                              cols = Survived,
-                              nboot = 12,
-                              conf.level = .90,
-                              conf.type = c("norm"))
+df1 <- ggstatsplot:::chisq_v_ci(
+  data = testdata1,
+  rows = Sex,
+  cols = Survived,
+  nboot = 12,
+  conf.level = .90,
+  conf.type = c("norm")
+)
 set.seed(123)
-df2<-ggstatsplot:::chisq_v_ci(data = testdata2,
-                              rows = Sex,
-                              cols = Survived,
-                              nboot = 12,
-                              conf.level = .90,
-                              conf.type = c("norm"))
+df2 <- ggstatsplot:::chisq_v_ci(
+  data = testdata2,
+  rows = Sex,
+  cols = Survived,
+  nboot = 12,
+  conf.level = .90,
+  conf.type = c("norm")
+)
 
 # conduct tests
 test_that("chisq_v_ci works", {
@@ -40,4 +44,3 @@ test_that("chisq_v_ci works", {
   testthat::expect_equal(df2$`Cramer's V`, 0.4540774, tolerance = .00002)
   testthat::expect_equal(df2$`p-value`, 2.168544e-26, tolerance = .00002)
 })
-

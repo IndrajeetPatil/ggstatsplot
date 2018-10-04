@@ -1,152 +1,3 @@
-#' @title Function to run proportion test on grouped data.
-#' @name grouped_proptest
-#' @aliases grouped_proptest
-#' @author Indrajeet Patil
-#' @return Dataframe with percentages and statistical details from a proportion
-#'   test.
-#'
-#' @param data Dataframe from which variables are to be drawn.
-#' @param grouping.vars List of grouping variables
-#' @param measure A variable for which proportion test needs to be carried out
-#'   for each combination of levels of factors entered in `grouping.vars`.
-#'
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
-#' @importFrom rlang quo_squash
-#' @importFrom dplyr everything
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
-#' @importFrom purrr map
-#' @importFrom tidyr nest
-#' @importFrom tidyr unnest
-#' @importFrom tidyr spread
-#'
-#' @family helper_stats
-#'
-#' @note This is a helper function used internally in the package and not
-#' exported. In case you want to use it, you can do so by
-#' `ggstatsplot:::grouped_proptest`. Note that it is `:::` and not `::`.
-#'
-#' @keywords internal
-
-# function body
-grouped_proptest <- function(data,
-                             grouping.vars,
-                             measure) {
-  # turn off warning messages because there are going to be many of them for
-  # tidyr::unnest
-  options(warn = -1)
-  # check how many variables were entered for this grouping variable
-  grouping.vars <-
-    as.list(rlang::quo_squash(rlang::enquo(grouping.vars)))
-  grouping.vars <-
-    if (length(grouping.vars) == 1) {
-      # e.g., in mtcars dataset, grouping.vars = am
-      grouping.vars
-    } else {
-      # e.g., in mtcars dataset, grouping.vars = c(am, cyl)
-      grouping.vars[-1]
-    }
-
-  # getting the dataframe ready
-  df <- dplyr::select(
-    .data = data,
-    !!!grouping.vars,
-    measure = !!rlang::enquo(measure)
-  )
-
-  # creating a nested dataframe
-  df_nest <- df %>%
-    dplyr::group_by(!!!grouping.vars) %>%
-    tidyr::nest(data = .)
-
-  # creating the final results with the
-  df_results <- df_nest %>%
-    dplyr::mutate(
-      .data = .,
-      percentage = data %>%
-        purrr::map(
-          .x = .,
-          .f = ~dplyr::group_by(.data = ., measure) %>%
-            dplyr::summarize(.data = ., counts = length(measure)) %>%
-            dplyr::mutate(
-              .data = .,
-              perc = paste0(ggstatsplot::specify_decimal_p(
-                x = (counts / sum(counts)) * 100, k = 2
-              ), "%", sep = "")
-            ) %>%
-            dplyr::select(.data = ., -counts) %>%
-            tidyr::spread(
-              data = .,
-              key = measure,
-              value = perc
-            )
-        )
-    ) %>%
-    dplyr::mutate(
-      .data = .,
-      chi_sq = data %>% purrr::map(
-        .x = .,
-        .f = ~stats::chisq.test(x = base::table(.$measure))
-      )
-    ) %>%
-    dplyr::mutate(
-      .data = .,
-      results = chi_sq %>%
-        purrr::map(
-          .x = .,
-          .f = ~
-          base::cbind.data.frame(
-            "Chi-squared" = as.numeric(as.character(
-              ggstatsplot::specify_decimal_p(x = .$statistic, k = 3)
-            )),
-            "df" = as.numeric(as.character(
-              ggstatsplot::specify_decimal_p(x = .$parameter, k = 0)
-            )),
-            "p-value" = as.numeric(as.character(
-              ggstatsplot::specify_decimal_p(
-                x = .$p.value,
-                k = 3
-              )
-            ))
-          )
-        )
-    ) %>%
-    dplyr::select(.data = ., -data, -chi_sq) %>%
-    tidyr::unnest(data = .) %>%
-    signif_column(data = ., p = `p-value`) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = purrr::is_bare_character,
-      .funs = ~dplyr::if_else(condition = is.na(.), true = "0%", false = .)
-    )
-
-  # for every level of grouping.vars, it is going to throw following errors
-  # Warning in bind_rows_(x, .id) :
-  # Unequal factor levels: coercing to character
-  # Warning in bind_rows_(x, .id) :
-  #   binding character and factor vector, coercing into character vector
-  # Warning in bind_rows_(x, .id) :
-  #   binding character and factor vector, coercing into character vector
-
-  # this is due different columns having different types
-
-  # clean up after yourself and change the options back to what are R base defaults
-  options(warn = 1)
-
-  # return the final results
-  return(df_results)
-}
-
-
 #' @title Creating a new character type column with significance labels
 #' @name signif_column
 #' @aliases signif_column
@@ -230,12 +81,13 @@ signif_column <- function(data = NULL, p) {
 
     # display message about conversion
     base::message(cat(
-      crayon::green("Note:"),
+      crayon::green("Note: "),
       crayon::blue(
         "The entered vector is of class",
         crayon::yellow(class(df$p)[[1]]),
         "; attempting to convert it to numeric."
-      )
+      ),
+      sep = ""
     ))
 
     # conversion
@@ -262,7 +114,8 @@ signif_column <- function(data = NULL, p) {
     ) %>%
     tibble::as_data_frame(x = .) # convert to tibble dataframe
 
-  # change back from the generic p-value to the original name that was provided by the user for the p-value
+  # change back from the generic p-value to the original name that was provided
+  # by the user for the p-value
   if (!is.null(data)) {
 
     # reordering the dataframe
@@ -278,7 +131,8 @@ signif_column <- function(data = NULL, p) {
 }
 
 
-#' @title Finding the outliers in the dataframe using Tukey's interquartile range rule
+#' @title Finding the outliers in the dataframe using Tukey's interquartile
+#'   range rule
 #' @name check_outlier
 #' @author Indrajeet Patil
 #' @description Returns a logical vector
@@ -296,6 +150,7 @@ signif_column <- function(data = NULL, p) {
 
 # defining function to detect outliers
 check_outlier <- function(var, coef = 1.5) {
+
   # compute the quantiles
   quantiles <- stats::quantile(
     x = var,
@@ -349,8 +204,8 @@ untable <- function(data, counts) {
       dplyr::everything()
     )
 
-  # a custom function to repeat dataframe `rep` number of times, which is going to
-  # be count data for us
+  # a custom function to repeat dataframe `rep` number of times, which is going
+  # to be count data for us
   rep_df <- function(df, rep) {
     df[base::rep(x = 1:nrow(df), times = rep), ]
   }
@@ -365,7 +220,10 @@ untable <- function(data, counts) {
       .funs = ~as.factor(.)
     ) %>%
     base::split(x = ., f = .$id) %>%
-    purrr::map_dfr(.x = ., .f = ~rep_df(df = ., rep = .$counts))
+    purrr::map_dfr(
+      .x = .,
+      .f = ~rep_df(df = ., rep = .$counts)
+    )
 
   # returned the expanded dataset
   return(data)

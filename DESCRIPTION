@@ -43,6 +43,7 @@ Imports:
     ggrepel (>= 0.8.0),
     glue (>= 1.3.0),
     grid,
+    groupedstats (>= 0.0.2),
     jmv (>= 0.9.4),
     magrittr (>= 1.5),
     paletteer (>= 0.1.0),

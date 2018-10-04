@@ -4,7 +4,7 @@ context(desc = "ggbetweenstats")
 # visual tests ------------------------------------------------------------
 
 testthat::test_that(
-  desc = "ggbetweenstats working correctly?",
+  desc = "ggbetweenstats works",
   code = {
     # plot to compare to
     ggbetweenstats_anova <- ggstatsplot::ggbetweenstats(

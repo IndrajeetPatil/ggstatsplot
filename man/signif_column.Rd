@@ -41,7 +41,7 @@ signif_column(p = c("1", "0.1", "0.0002", "0.03", "0.65"))
 }
 \seealso{
 Other helper_stats: \code{\link{check_outlier}},
-  \code{\link{grouped_proptest}}, \code{\link{untable}}
+  \code{\link{untable}}
 }
 \author{
 Indrajeet Patil

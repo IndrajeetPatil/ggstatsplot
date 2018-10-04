@@ -36,6 +36,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
+#' @importFrom dplyr if_else
 #' @importFrom dplyr desc
 #' @importFrom rlang enquo
 #' @importFrom rlang quo_name
@@ -47,6 +48,7 @@
 #' @importFrom jmv contTables
 #' @importFrom jmv contTablesPaired
 #' @importFrom paletteer scale_fill_paletteer_d
+#' @importFrom groupedstats grouped_proptest
 #'
 #' @references
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
@@ -381,7 +383,7 @@ ggpiestats <-
           dplyr::full_join(
             x = df,
             # running grouped proportion test with helper functions
-            y = grouped_proptest(
+            y = groupedstats::grouped_proptest(
               data = data,
               grouping.vars = condition,
               measure = main

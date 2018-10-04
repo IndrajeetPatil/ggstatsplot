@@ -23,7 +23,6 @@ dplyr::glimpse(Titanic_full)
 }
 \seealso{
 Other helper_stats: \code{\link{check_outlier}},
-  \code{\link{grouped_proptest}},
   \code{\link{signif_column}}
 }
 \concept{helper_stats}

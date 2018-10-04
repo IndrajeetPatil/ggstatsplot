@@ -2,7 +2,8 @@
 % Please edit documentation in R/helpers_stats.R
 \name{check_outlier}
 \alias{check_outlier}
-\title{Finding the outliers in the dataframe using Tukey's interquartile range rule}
+\title{Finding the outliers in the dataframe using Tukey's interquartile
+range rule}
 \usage{
 check_outlier(var, coef = 1.5)
 }
@@ -17,8 +18,8 @@ Quartile) \code{coef} times the Inter-Quartile Range (IQR) (Default: \code{1.5})
 Returns a logical vector
 }
 \seealso{
-Other helper_stats: \code{\link{grouped_proptest}},
-  \code{\link{signif_column}}, \code{\link{untable}}
+Other helper_stats: \code{\link{signif_column}},
+  \code{\link{untable}}
 }
 \author{
 Indrajeet Patil

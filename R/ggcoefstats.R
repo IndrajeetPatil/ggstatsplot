@@ -236,7 +236,7 @@ ggcoefstats <- function(x,
     base::stop(base::message(cat(
       crayon::green("Note: "),
       crayon::blue(
-        "The object of class ",
+        "The object of class",
         crayon::yellow(class(x)[[1]]),
         "aren't currently supported.\n"
       ),
@@ -258,7 +258,7 @@ ggcoefstats <- function(x,
     base::message(cat(
       crayon::green("Note: "),
       crayon::blue(
-        "No model diagnostics information available for the object of class ",
+        "No model diagnostics information available for the object of class",
         crayon::yellow(class(x)[[1]]),
         ". Future release might support this.\n"
       ),
@@ -404,9 +404,9 @@ ggcoefstats <- function(x,
     base::message(cat(
       crayon::green("Note: "),
       crayon::blue(
-        "No p-values available for regression coefficients from ",
+        "No p-values available for regression coefficients from",
         crayon::yellow(class(x)[[1]]),
-        " object, so skipping labels.\n"
+        "object, so skipping labels.\n"
       ),
       sep = ""
     ))
@@ -429,9 +429,9 @@ ggcoefstats <- function(x,
     base::message(cat(
       crayon::green("Note: "),
       crayon::blue(
-        "No 95% confidence intervals available for regression coefficients from ",
+        "No 95% confidence intervals available for regression coefficients from",
         crayon::yellow(class(x)[[1]]),
-        " object, so skipping whiskers in the plot.\n"
+        "object, so skipping whiskers in the plot.\n"
       ),
       sep = ""
     ))
@@ -511,7 +511,7 @@ ggcoefstats <- function(x,
     # ================================= t-statistic labels ======================
     if (class(x)[[1]] %in% t.mods) {
       tidy_df %<>%
-        tz_labeller(
+        tfz_labeller(
           tidy_df = .,
           glance_df = glance_df,
           statistic = "t",
@@ -520,7 +520,7 @@ ggcoefstats <- function(x,
       # ======================== z-statistic labels =============================
     } else if (class(x)[[1]] %in% z.mods) {
       tidy_df %<>%
-        tz_labeller(
+        tfz_labeller(
           tidy_df = .,
           glance_df = glance_df,
           statistic = "z",
@@ -539,7 +539,7 @@ ggcoefstats <- function(x,
           "inverse.gaussian"
         )) {
           tidy_df %<>%
-            tz_labeller(
+            tfz_labeller(
               tidy_df = .,
               glance_df = glance_df,
               statistic = "t",
@@ -547,7 +547,7 @@ ggcoefstats <- function(x,
             )
         } else if (summary(x)$family$family[[1]] %in% c("binomial", "poisson")) {
           tidy_df %<>%
-            tz_labeller(
+            tfz_labeller(
               tidy_df = .,
               glance_df = glance_df,
               statistic = "z",
@@ -564,7 +564,7 @@ ggcoefstats <- function(x,
           "inverse.gaussian"
         )) {
           tidy_df %<>%
-            tz_labeller(
+            tfz_labeller(
               tidy_df = .,
               glance_df = glance_df,
               statistic = "t",
@@ -572,7 +572,7 @@ ggcoefstats <- function(x,
             )
         } else if (summary(x)$family[[1]] %in% c("binomial", "poisson")) {
           tidy_df %<>%
-            tz_labeller(
+            tfz_labeller(
               tidy_df = .,
               glance_df = glance_df,
               statistic = "z",
@@ -589,7 +589,7 @@ ggcoefstats <- function(x,
           "inverse.gaussian"
         )) {
           tidy_df %<>%
-            tz_labeller(
+            tfz_labeller(
               tidy_df = .,
               glance_df = glance_df,
               statistic = "t",
@@ -597,7 +597,7 @@ ggcoefstats <- function(x,
             )
         } else if (x$family[[1]] %in% c("binomial", "poisson")) {
           tidy_df %<>%
-            tz_labeller(
+            tfz_labeller(
               tidy_df = .,
               glance_df = glance_df,
               statistic = "z",
@@ -607,104 +607,15 @@ ggcoefstats <- function(x,
       }
       # ====================== F-statistic ======================================
     } else if (class(x)[[1]] %in% f.mods) {
-      # which effect size is needed?
-      if (effsize == "eta") {
-        if (isTRUE(partial)) {
-          tidy_df %<>%
-            purrrlyr::by_row(
-              .d = .,
-              ..f = ~paste(
-                "list(~italic(F)",
-                "(",
-                .$df1,
-                ",",
-                .$df2,
-                ")==",
-                .$statistic,
-                ", ~italic(p)",
-                .$p.value.formatted2,
-                ", ~italic(eta)[p]^2==",
-                ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-                ")",
-                sep = ""
-              ),
-              .collate = "rows",
-              .to = "label",
-              .labels = TRUE
-            )
-        } else {
-          tidy_df %<>%
-            purrrlyr::by_row(
-              .d = .,
-              ..f = ~paste(
-                "list(~italic(F)",
-                "(",
-                .$df1,
-                ",",
-                .$df2,
-                ")==",
-                .$statistic,
-                ", ~italic(p)",
-                .$p.value.formatted2,
-                ", ~italic(eta)^2==",
-                ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-                ")",
-                sep = ""
-              ),
-              .collate = "rows",
-              .to = "label",
-              .labels = TRUE
-            )
-        }
-      } else if (effsize == "omega") {
-        if (isTRUE(partial)) {
-          tidy_df %<>%
-            purrrlyr::by_row(
-              .d = .,
-              ..f = ~paste(
-                "list(~italic(F)",
-                "(",
-                .$df1,
-                ",",
-                .$df2,
-                ")==",
-                .$statistic,
-                ", ~italic(p)",
-                .$p.value.formatted2,
-                ", ~italic(omega)[p]^2==",
-                ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-                ")",
-                sep = ""
-              ),
-              .collate = "rows",
-              .to = "label",
-              .labels = TRUE
-            )
-        } else {
-          tidy_df %<>%
-            purrrlyr::by_row(
-              .d = .,
-              ..f = ~paste(
-                "list(~italic(F)",
-                "(",
-                .$df1,
-                ",",
-                .$df2,
-                ")==",
-                .$statistic,
-                ", ~italic(p)",
-                .$p.value.formatted2,
-                ", ~italic(omega)^2==",
-                ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
-                ")",
-                sep = ""
-              ),
-              .collate = "rows",
-              .to = "label",
-              .labels = TRUE
-            )
-        }
-      }
+      tidy_df %<>%
+        tfz_labeller(
+          tidy_df = .,
+          glance_df = NULL,
+          statistic = "f",
+          effsize = effsize,
+          partial = partial,
+          k = k
+        )
     }
   }
 
@@ -763,7 +674,8 @@ ggcoefstats <- function(x,
     tidy_df$term <- as.character(tidy_df$term)
     tidy_df$term <-
       base::factor(x = tidy_df$term, levels = tidy_df$term[new_order])
-    tidy_df %<>% dplyr::select(.data = ., -rowid)
+    tidy_df %<>%
+      dplyr::select(.data = ., -rowid)
   }
 
   # counting the number of terms in the tidy dataframe

@@ -114,7 +114,10 @@
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/purrr_examples.html">using `ggstatsplot` with `purrr` package</a>
+      <a href="../articles/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
@@ -152,7 +155,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create text labels</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_labeller.R'><code>R/helpers_labeller.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcoefstats.R'><code>R/helpers_ggcoefstats.R</code></a></small>
     <div class="hidden name"><code>tz_labeller.Rd</code></div>
     </div>
 
@@ -162,7 +165,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>tz_labeller</span>(<span class='no'>tidy_df</span>, <span class='no'>glance_df</span>, <span class='no'>statistic</span>, <span class='no'>k</span>)</pre>
+    <pre class="usage"><span class='fu'>tfz_labeller</span>(<span class='no'>tidy_df</span>, <span class='kw'>glance_df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>statistic</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>k</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,7 +181,20 @@
     </tr>
     <tr>
       <th>statistic</th>
-      <td><p>Which statistic is to be displayed (either <code>"t"</code> or <code>"z"</code>).</p></td>
+      <td><p>Which statistic is to be displayed (either <code>"t"</code> or <code>"f"</code>or
+<code>"z"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>effsize</th>
+      <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
+(default) or <code>"omega"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>partial</th>
+      <td><p>Logical that decides if partial eta-squared or omega-squared
+are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
+will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+<code>aovlist</code>.</p></td>
     </tr>
     <tr>
       <th>k</th>

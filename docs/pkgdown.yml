@@ -10,6 +10,7 @@ articles:
   ggpiestats: ggpiestats.html
   ggscatterstats: ggscatterstats.html
   purrr_examples: purrr_examples.html
+  tests_and_coverage: tests_and_coverage.html
   theme_ggstatsplot: theme_ggstatsplot.html
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot//reference
