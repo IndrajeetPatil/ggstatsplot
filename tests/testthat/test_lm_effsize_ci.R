@@ -6,7 +6,8 @@ mtcars2 <- datasets::mtcars
 mtcars2[1, 1] <- NA
 mtcars2[2, 4] <- NA
 mtcars2[3, 6] <- NA
-lmobject2 <- lm(mpg ~ hp * wt, data = mtcars2)
+lmobject2 <- aov(mpg ~ hp * wt, data = mtcars2)
+lmobject3 <- aov(mpg ~ wt + qsec + Error(disp / am), mtcars)
 #
 set.seed(123)
 df1 <- ggstatsplot:::lm_effsize_ci(
@@ -18,6 +19,13 @@ df1 <- ggstatsplot:::lm_effsize_ci(
 set.seed(123)
 df2 <- ggstatsplot:::lm_effsize_ci(
   object = lmobject2,
+  partial = FALSE,
+  conf.level = .99,
+  nboot = 100
+)
+set.seed(123)
+df3 <- ggstatsplot:::lm_effsize_ci(
+  object = lmobject3,
   partial = FALSE,
   conf.level = .99,
   nboot = 100
@@ -36,4 +44,5 @@ test_that("lm_effsize_ci works", {
   testthat::expect_equal(df2$conf.low[2], 0.09086971, tolerance = .00002)
   testthat::expect_equal(df2$conf.high[2], 0.3558572, tolerance = .00002)
   testthat::expect_equal(df2$p.value[2], 6.423958e-08, tolerance = .00002)
+  testthat::expect_equal(df3$etasq[2], 0.03034323, tolerance = .00002)
 })
