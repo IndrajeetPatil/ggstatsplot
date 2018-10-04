@@ -749,14 +749,14 @@ ggstatsplot::combine_plots(
 ## robust regression using an M estimator (`rlm`)
 
 We have already seen an example of `MASS::rlm()` in the `README` document:
-<https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html>
+<https://cran.r-project.org/package=ggstatsplot/readme/README.html>
 
 
 ## quantile regression (`rq`)
 
 We have already seen an example of quantile regression (`quantreg::rq()`) in the
 `README` document:
-<https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html>
+<https://cran.r-project.org/package=ggstatsplot/readme/README.html>
 
 ## And much more...
 
