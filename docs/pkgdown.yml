@@ -12,6 +12,7 @@ articles:
   purrr_examples: purrr_examples.html
   tests_and_coverage: tests_and_coverage.html
   theme_ggstatsplot: theme_ggstatsplot.html
+  ggstatsplot_paper: web_only/ggstatsplot_paper.html
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot//reference
   article: https://indrajeetpatil.github.io/ggstatsplot//articles
