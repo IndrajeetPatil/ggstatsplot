@@ -1,8 +1,11 @@
 context("t_test_subtitles")
 
 test_that("t-test subtitles work", {
+
+  # for reproducibility
   set.seed(123)
 
+  # loading the dataset
   data("bugs", package = "jmv")
 
   # expected output from jamovi

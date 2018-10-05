@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-04 October, 2018 14:31:46
+05 October, 2018 13:26:52
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -48,16 +48,16 @@ package.
 
 |                                 | file                                                                      |  n | time | error | failed | skipped | warning |
 | ------------------------------- | :------------------------------------------------------------------------ | -: | ---: | ----: | -----: | ------: | ------: |
-| test\_anova\_subtitles.R        | [test\_anova\_subtitles.R](testthat/test_anova_subtitles.R)               |  4 | 1.17 |     0 |      0 |       0 |       0 |
-| test\_chisq\_v\_ci.R            | [test\_chisq\_v\_ci.R](testthat/test_chisq_v_ci.R)                        | 10 | 0.02 |     0 |      0 |       0 |       0 |
-| test\_cor\_tets\_ci.R           | [test\_cor\_tets\_ci.R](testthat/test_cor_tets_ci.R)                      | 12 | 0.01 |     0 |      0 |       0 |       0 |
-| test\_ggbetweenstats.R          | [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R)                  |  1 | 2.12 |     0 |      0 |       1 |       0 |
-| test\_grouped\_ggscatterstats.R | [test\_grouped\_ggscatterstats.R](testthat/test_grouped_ggscatterstats.R) |  1 | 0.17 |     0 |      0 |       0 |       0 |
-| test\_helpers\_effsize\_ci.R    | [test\_helpers\_effsize\_ci.R](testthat/test_helpers_effsize_ci.R)        |  5 | 0.00 |     0 |      0 |       0 |       0 |
-| test\_lm\_effsize\_ci.R         | [test\_lm\_effsize\_ci.R](testthat/test_lm_effsize_ci.R)                  |  9 | 0.01 |     0 |      0 |       0 |       0 |
-| test\_robcor\_ci.R              | [test\_robcor\_ci.R](testthat/test_robcor_ci.R)                           |  8 | 0.03 |     0 |      0 |       0 |       0 |
-| test\_specify\_decimal\_p.R     | [test\_specify\_decimal\_p.R](testthat/test_specify_decimal_p.R)          |  3 | 0.00 |     0 |      0 |       0 |       0 |
-| test\_t\_test\_subtitles.R      | [test\_t\_test\_subtitles.R](testthat/test_t_test_subtitles.R)            |  1 | 1.07 |     0 |      0 |       0 |       0 |
+| test\_anova\_subtitles.R        | [test\_anova\_subtitles.R](testthat/test_anova_subtitles.R)               |  4 | 0.85 |     0 |      0 |       0 |       0 |
+| test\_chisq\_v\_ci.R            | [test\_chisq\_v\_ci.R](testthat/test_chisq_v_ci.R)                        | 10 | 2.42 |     0 |      0 |       0 |       0 |
+| test\_cor\_tets\_ci.R           | [test\_cor\_tets\_ci.R](testthat/test_cor_tets_ci.R)                      | 12 | 0.84 |     0 |      0 |       0 |       0 |
+| test\_ggbetweenstats.R          | [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R)                  |  1 | 2.44 |     0 |      0 |       1 |       0 |
+| test\_grouped\_ggscatterstats.R | [test\_grouped\_ggscatterstats.R](testthat/test_grouped_ggscatterstats.R) |  1 | 0.18 |     0 |      0 |       0 |       0 |
+| test\_helpers\_effsize\_ci.R    | [test\_helpers\_effsize\_ci.R](testthat/test_helpers_effsize_ci.R)        |  5 | 6.20 |     0 |      0 |       0 |       0 |
+| test\_lm\_effsize\_ci.R         | [test\_lm\_effsize\_ci.R](testthat/test_lm_effsize_ci.R)                  |  9 | 4.58 |     0 |      0 |       0 |       0 |
+| test\_robcor\_ci.R              | [test\_robcor\_ci.R](testthat/test_robcor_ci.R)                           |  8 | 0.28 |     0 |      0 |       0 |       0 |
+| test\_specify\_decimal\_p.R     | [test\_specify\_decimal\_p.R](testthat/test_specify_decimal_p.R)          |  4 | 0.00 |     0 |      0 |       0 |       0 |
+| test\_t\_test\_subtitles.R      | [test\_t\_test\_subtitles.R](testthat/test_t_test_subtitles.R)            |  1 | 0.36 |     0 |      0 |       0 |       0 |
 
 <details open>
 
@@ -66,16 +66,16 @@ package.
 
 | file                                                                             | context                 | test                          | status  |  n | time |
 | :------------------------------------------------------------------------------- | :---------------------- | :---------------------------- | :------ | -: | ---: |
-| [test\_anova\_subtitles.R](testthat/test_anova_subtitles.R#L30_L33)              | anova\_subtitles        | anova subtitles work          | PASS    |  4 | 1.17 |
-| [test\_chisq\_v\_ci.R](testthat/test_chisq_v_ci.R#L36)                           | chisq\_v\_ci            | chisq\_v\_ci works            | PASS    | 10 | 0.02 |
-| [test\_cor\_tets\_ci.R](testthat/test_cor_tets_ci.R#L36)                         | cor\_tets\_ci           | cor\_tets\_ci works           | PASS    | 12 | 0.01 |
-| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L17_L20)                 | ggbetweenstats          | ggbetweenstats works          | SKIPPED |  1 | 2.12 |
-| [test\_grouped\_ggscatterstats.R](testthat/test_grouped_ggscatterstats.R#L7_L15) | grouped\_ggscatterstats | grouped\_ggscatterstats works | PASS    |  1 | 0.17 |
-| [test\_helpers\_effsize\_ci.R](testthat/test_helpers_effsize_ci.R#L54)           | helpers\_effsize\_ci    | ci stuff works                | PASS    |  5 | 0.00 |
-| [test\_lm\_effsize\_ci.R](testthat/test_lm_effsize_ci.R#L39)                     | lm\_effsize\_ci         | lm\_effsize\_ci works         | PASS    |  9 | 0.01 |
-| [test\_robcor\_ci.R](testthat/test_robcor_ci.R#L32)                              | robcor\_ci              | robcor\_ci works              | PASS    |  8 | 0.03 |
-| [test\_specify\_decimal\_p.R](testthat/test_specify_decimal_p.R#L11)             | Specify decimals        | specify\_decimal\_p works     | PASS    |  3 | 0.00 |
-| [test\_t\_test\_subtitles.R](testthat/test_t_test_subtitles.R#L38_L42)           | t\_test\_subtitles      | t-test subtitles work         | PASS    |  1 | 1.07 |
+| [test\_anova\_subtitles.R](testthat/test_anova_subtitles.R#L30_L33)              | anova\_subtitles        | anova subtitles work          | PASS    |  4 | 0.85 |
+| [test\_chisq\_v\_ci.R](testthat/test_chisq_v_ci.R#L43_L47)                       | chisq\_v\_ci            | chisq\_v\_ci works            | PASS    | 10 | 2.42 |
+| [test\_cor\_tets\_ci.R](testthat/test_cor_tets_ci.R#L43_L47)                     | cor\_tets\_ci           | cor\_tets\_ci works           | PASS    | 12 | 0.84 |
+| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L17_L20)                 | ggbetweenstats          | ggbetweenstats works          | SKIPPED |  1 | 2.44 |
+| [test\_grouped\_ggscatterstats.R](testthat/test_grouped_ggscatterstats.R#L7_L15) | grouped\_ggscatterstats | grouped\_ggscatterstats works | PASS    |  1 | 0.18 |
+| [test\_helpers\_effsize\_ci.R](testthat/test_helpers_effsize_ci.R#L56)           | helpers\_effsize\_ci    | ci stuff works                | PASS    |  5 | 6.20 |
+| [test\_lm\_effsize\_ci.R](testthat/test_lm_effsize_ci.R#L65_L69)                 | lm\_effsize\_ci         | lm\_effsize\_ci works         | PASS    |  9 | 4.58 |
+| [test\_robcor\_ci.R](testthat/test_robcor_ci.R#L37_L41)                          | robcor\_ci              | robcor\_ci works              | PASS    |  8 | 0.28 |
+| [test\_specify\_decimal\_p.R](testthat/test_specify_decimal_p.R#L17)             | Specify decimals        | specify\_decimal\_p works     | PASS    |  4 | 0.00 |
+| [test\_t\_test\_subtitles.R](testthat/test_t_test_subtitles.R#L41_L45)           | t\_test\_subtitles      | t-test subtitles work         | PASS    |  1 | 0.36 |
 
 </details>
 
@@ -95,7 +95,7 @@ package.
 | :------- | :--------- |
 | testthat | 2.0.0      |
 | covr     | 3.2.0.9000 |
-| covrpage | 0.0.58     |
+| covrpage | 0.0.59     |
 
 </details>
 
