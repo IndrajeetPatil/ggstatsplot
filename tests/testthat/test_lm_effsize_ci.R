@@ -34,7 +34,7 @@ test_that("lm_effsize_ci works", {
 
   # model-1
   set.seed(123)
-  df1 <- ggstatsplot:::lm_effsize_ci(
+  df1 <- ggstatsplot::lm_effsize_ci(
     object = lmobject1,
     partial = FALSE,
     conf.level = .99,
@@ -43,7 +43,7 @@ test_that("lm_effsize_ci works", {
 
   # model-2
   set.seed(123)
-  df2 <- ggstatsplot:::lm_effsize_ci(
+  df2 <- ggstatsplot::lm_effsize_ci(
     object = lmobject2,
     partial = FALSE,
     conf.level = .99,
@@ -52,7 +52,7 @@ test_that("lm_effsize_ci works", {
 
   # model-3
   set.seed(123)
-  df3 <- ggstatsplot:::lm_effsize_ci(
+  df3 <- ggstatsplot::lm_effsize_ci(
     object = lmobject3,
     partial = FALSE,
     conf.level = .99,

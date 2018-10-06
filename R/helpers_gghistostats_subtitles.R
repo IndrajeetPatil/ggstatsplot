@@ -20,7 +20,7 @@
 #'   (Default: `100`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
-#' @inheritParams specify_decimal_p
+#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom dplyr group_by
@@ -38,6 +38,7 @@
 #' @importFrom crayon yellow
 #' @importFrom crayon red
 #' @importFrom psych cohen.d.ci
+#' @importFrom groupedstats specify_decimal_p
 #'
 #' @seealso \code{\link{gghistostats}}
 #'

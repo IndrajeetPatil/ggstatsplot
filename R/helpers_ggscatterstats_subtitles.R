@@ -12,7 +12,7 @@
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams robcor_ci
 #' @inheritParams cor_tets_ci
-#' @inheritParams specify_decimal_p
+#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom magrittr "%<>%"

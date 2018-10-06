@@ -32,8 +32,6 @@
 #'   results from regression analyses.
 #'   \item \code{\link[ggstatsplot]{theme_ggstatsplot}} default theme used for this
 #'   package.
-#'   \item \code{\link[ggstatsplot]{specify_decimal_p}} helper function
-#'   to format results for pretty printing.
 #'  }
 #'
 #' For more documentation, see the dedicated

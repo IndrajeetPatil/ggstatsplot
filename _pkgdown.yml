@@ -35,12 +35,14 @@ reference:
     contents:
       - starts_with("subtitle_")
 
-  - title: Helper functions (statistics)
-    desc:  Some useful functions used internally for carrying out smaller statistical operations.
+  - title: Reexported functions
+    desc:  Some useful functions used internally (from `groupedstats` package).
     contents:
       - specify_decimal_p
       - untable
       - signif_column
+      - lm_effsize_ci
+      - set_cwd
 
   - title: Helper functions (messages)
     desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests.

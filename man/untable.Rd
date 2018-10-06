@@ -22,7 +22,6 @@ Titanic_full <- untable(data = as.data.frame(Titanic), counts = Freq)
 dplyr::glimpse(Titanic_full)
 }
 \seealso{
-Other helper_stats: \code{\link{check_outlier}},
-  \code{\link{signif_column}}
+Other helper_stats: \code{\link{check_outlier}}
 }
 \concept{helper_stats}

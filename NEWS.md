@@ -1,5 +1,12 @@
 # ggstatsplot 0.0.6.9000
 
+MAJOR CHANGES
+
+  - Following functions are now reexported from the `groupedstats` package to
+  avoid repeating the same code in two packages: `specify_decimal_p`,
+  `signif_column`, `lm_effsize_ci`. Therefore, `groupedstats` is now added as a
+  dependency.
+
 # ggstatsplot 0.0.6
 
 MAJOR CHANGES

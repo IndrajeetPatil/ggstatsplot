@@ -71,8 +71,6 @@
 #'   direction. Defaults to `0.1`.
 #' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
 #'   direction. Defaults to `0.60`.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams subtitle_ggbetween_anova_parametric

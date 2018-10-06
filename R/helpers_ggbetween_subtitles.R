@@ -58,7 +58,7 @@ bf_message_ttest <- function(jmv_results,
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams stats::oneway.test
-#' @inheritParams specify_decimal_p
+#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom magrittr "%<>%"
@@ -282,7 +282,7 @@ subtitle_ggbetween_anova_parametric <-
 #'   or Hedge's *g* (Default: `FALSE`).
 #' @inheritParams subtitle_ggbetween_anova_parametric
 #' @inheritParams stats::t.test
-#' @inheritParams specify_decimal_p
+#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom magrittr "%<>%"
@@ -487,7 +487,7 @@ subtitle_ggbetween_t_parametric <-
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams subtitle_ggbetween_t_parametric
-#' @inheritParams specify_decimal_p
+#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom magrittr "%<>%"
@@ -621,7 +621,7 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams subtitle_ggbetween_t_parametric
-#' @inheritParams specify_decimal_p
+#' @inheritParams groupedstats::specify_decimal_p
 #' @inheritParams t1way_ci
 #'
 #' @importFrom dplyr select
@@ -945,7 +945,7 @@ subtitle_ggbetween_t_bayes <- function(data,
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams subtitle_ggbetween_t_parametric
-#' @inheritParams specify_decimal_p
+#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom magrittr "%<>%"
@@ -1054,7 +1054,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_ggbetween_t_parametric
-#' @inheritParams specify_decimal_p
+#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom magrittr "%<>%"

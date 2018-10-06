@@ -96,7 +96,7 @@
 #'   entire plot area. Defaults to `c(NA, NA)`.
 #' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
 #'   which to adjust position of labels (Default: `"y"`).
-#' @inheritParams lm_effsize_ci
+#' @inheritParams groupedstats::lm_effsize_ci
 #' @inheritParams broom::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams theme_ggstatsplot
