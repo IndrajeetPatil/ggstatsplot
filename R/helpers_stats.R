@@ -36,67 +36,6 @@ check_outlier <- function(var, coef = 1.5) {
   return(res)
 }
 
-#' @title Untable a dataset
-#' @name untable
-#' @description Given a tabulated dataset, this will untabulate it by repeating
-#'   each row by the number of times it was repeated.
-#'
-#' @param data A data.frame to untable.
-#' @param counts A column containing counts.
-#'
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
-#' @importFrom purrr map_dfr
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr everything
-#' @importFrom tibble rowid_to_column
-#' @importFrom rlang enquo
-#'
-#' @family helper_stats
-#'
-#' @examples
-#' 
-#' # have a look at the Titanic_full dataset first
-#' Titanic_full <- untable(data = as.data.frame(Titanic), counts = Freq)
-#' dplyr::glimpse(Titanic_full)
-#' @export
-
-# function body
-untable <- function(data, counts) {
-  # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      counts = !!rlang::enquo(counts),
-      dplyr::everything()
-    )
-
-  # a custom function to repeat dataframe `rep` number of times, which is going
-  # to be count data for us
-  rep_df <- function(df, rep) {
-    df[base::rep(x = 1:nrow(df), times = rep), ]
-  }
-
-  # converting dataframe to full length based on count information
-  data %<>%
-    tibble::as_data_frame(.) %>%
-    tibble::rowid_to_column(df = ., var = "id") %>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = dplyr::vars("id"),
-      .funs = ~as.factor(.)
-    ) %>%
-    base::split(x = ., f = .$id) %>%
-    purrr::map_dfr(
-      .x = .,
-      .f = ~rep_df(df = ., rep = .$counts)
-    )
-
-  # returned the expanded dataset
-  return(data)
-}
-
-
 #
 # @examples
 # a <- NULL

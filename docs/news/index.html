@@ -165,6 +165,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li>Following functions are now reexported from the <code>groupedstats</code> package to avoid repeating the same code in two packages: <code>specify_decimal_p</code>, <code>signif_column</code>, <code>lm_effsize_ci</code>. Therefore, <code>groupedstats</code> is now added as a dependency.</li>
+<li>The helper function <code>untable</code> has been depcreated in light of <code><a href="http://www.rdocumentation.org/packages/tidyr/topics/uncount">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-6" class="section level1">

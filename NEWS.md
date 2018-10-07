@@ -6,6 +6,9 @@ MAJOR CHANGES
   avoid repeating the same code in two packages: `specify_decimal_p`,
   `signif_column`, `lm_effsize_ci`. Therefore, `groupedstats` is now added as a
   dependency.
+  - The helper function `untable` has been depcreated in light of
+  `tidyr::uncount`, which does exactly what `untable` was doing. The author
+  wasn't aware of this function when `untable` was written.
 
 # ggstatsplot 0.0.6
 

@@ -39,7 +39,6 @@ reference:
     desc:  Some useful functions used internally (from `groupedstats` package).
     contents:
       - specify_decimal_p
-      - untable
       - signif_column
       - lm_effsize_ci
       - set_cwd

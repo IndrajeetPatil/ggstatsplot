@@ -49,15 +49,16 @@
 #' @importFrom jmv contTablesPaired
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
+#' @importFrom tidyr uncount
 #'
 #' @references
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -65,7 +66,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -75,10 +76,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -185,8 +186,13 @@ ggpiestats <-
     # untable the dataframe based on the count for each obervation
     if (!base::missing(counts)) {
       data %<>%
-        untable(data = ., counts = counts) %>%
-        dplyr::select(.data = ., -counts)
+        tidyr::uncount(
+        data = .,
+        weights = counts,
+        .remove = TRUE,
+        .id = "id"
+      ) %>%
+        tibble::as_data_frame(.)
     }
 
     # ============================ percentage dataframe =========================
