@@ -82,11 +82,9 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr group_by
 #' @importFrom dplyr summarize
-#' @importFrom dplyr n
+#' @importFrom dplyr vars contains
 #' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
+#' @importFrom dplyr mutate mutate_at mutate_if
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom magrittr "%<>%"
 #' @importFrom magrittr "%>%"
@@ -96,19 +94,12 @@
 #' @importFrom effsize cohen.d
 #' @importFrom sjstats eta_sq
 #' @importFrom sjstats omega_sq
-#' @importFrom stats sd
 #' @importFrom stats na.omit
 #' @importFrom stats t.test
-#' @importFrom stats var.test
-#' @importFrom stats bartlett.test
-#' @importFrom stats kruskal.test
-#' @importFrom stats quantile
 #' @importFrom stats oneway.test
-#' @importFrom stats qt
 #' @importFrom coin wilcox_test
 #' @importFrom coin statistic
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
+#' @importFrom rlang enquo quo_name
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon green
 #' @importFrom crayon blue
@@ -116,6 +107,7 @@
 #' @importFrom crayon red
 #' @importFrom paletteer scale_color_paletteer_d
 #' @importFrom paletteer scale_fill_paletteer_d
+#' @importFrom groupedstats grouped_summary
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}
 #'
@@ -142,10 +134,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -155,7 +147,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -215,8 +207,8 @@ ggbetweenstats <- function(data,
                            point.jitter.height = 0.1,
                            point.dodge.width = 0.60,
                            messages = TRUE) {
-  #
-  #------------------------------------------------------ variable names ---------------------------------------------------------------
+
+  # variable names ---------------------------------------------------------------
 
   # preparing a dataframe with variable names
   lab.df <- colnames(x = dplyr::select(
@@ -235,12 +227,13 @@ ggbetweenstats <- function(data,
     ylab <- lab.df[2]
   }
 
-  #------------------------------------------------------ data --------------------------------------------------------------------------
+  # data --------------------------------------------------------------------------
 
   # if outlier label is provided then include it in the dataframe
   if (base::missing(outlier.label)) {
 
-    # if outlier label is not provided then only include the two arguments provided
+    # if outlier label is not provided then only include the two arguments
+    # provided
     data <-
       dplyr::select(
         .data = data,
@@ -272,7 +265,7 @@ ggbetweenstats <- function(data,
       .funs = ~base::droplevels(x = base::as.factor(x = .))
     )
 
-  #--------------------- plot ---------------------------------------------------
+  # plot -----------------------------------------------------------------------
 
   # create the basic plot
   plot <-
@@ -354,19 +347,19 @@ ggbetweenstats <- function(data,
       )
   }
 
-  #--------------------- subtitle preparation ----------------------------------
+  # subtitle preparation -------------------------------------------------------
 
-  # figure out which test to run based on the number of levels of the independent variables
+  # figure out which test to run based on the number of levels of the
+  # independent variables
   if (length(levels(as.factor(data$x))) < 3) {
     test <- "t-test"
   } else {
     test <- "anova"
   }
 
-  #---------------------------- parametric anova -------------------------------
-  # running anova
   if (test == "anova") {
-    # running parametric ANOVA
+    ## parametric anova ---------------------------------------------------------
+    #
     if (type == "parametric" || type == "p") {
       subtitle <- subtitle_ggbetween_anova_parametric(
         data = data,
@@ -378,8 +371,8 @@ ggbetweenstats <- function(data,
         k = k,
         messages = messages
       )
-
-      #--------------------------------------------- Kruskal-Wallis (nonparametric ANOVA) ---------------------------------------------
+      ## Kruskal-Wallis (nonparametric ANOVA) -----------------------------------
+      #
     } else if (type == "nonparametric" || type == "np") {
       subtitle <- subtitle_ggbetween_kw_nonparametric(
         data = data,
@@ -388,8 +381,8 @@ ggbetweenstats <- function(data,
         k = k,
         messages = messages
       )
-
-      #---------------------- robust ANOVA -------------------------------------
+      ## robust ANOVA -----------------------------------------------------------
+      #
     } else if (type == "robust" || type == "r") {
       subtitle <- subtitle_ggbetween_rob_anova(
         data = data,
@@ -425,9 +418,8 @@ ggbetweenstats <- function(data,
           caption = caption
         )
     }
-
-    #-------------------------------- parametric t-test -------------------------
-
+    ## parametric t-test --------------------------------------------------------
+    #
     if (type == "parametric" || type == "p") {
       # Welch's t-test run by default
       subtitle <- subtitle_ggbetween_t_parametric(
@@ -441,7 +433,8 @@ ggbetweenstats <- function(data,
         k = k
       )
 
-      #--------------------------------- Mann-Whitney U test ---------------------------
+      ## Mann-Whitney U test ----------------------------------------------------
+      #
     } else if (type == "nonparametric" || type == "np") {
       subtitle <- subtitle_ggbetween_mann_nonparametric(
         data = data,
@@ -451,8 +444,8 @@ ggbetweenstats <- function(data,
         k = k,
         messages = messages
       )
-
-      #------------------------- robust t-test --------------------------------
+      ## robust t-test ----------------------------------------------------------
+      #
     } else if (type == "robust" || type == "r") {
       subtitle <- subtitle_ggbetween_t_rob(
         data = data,
@@ -464,7 +457,7 @@ ggbetweenstats <- function(data,
         messages = messages
       )
 
-      #--------------------------- bayesian t-test -----------------------------
+      ## bayesian t-test --------------------------------------------------------
     } else if (type == "bayes" || type == "bf") {
       subtitle <- subtitle_ggbetween_t_bayes(
         data = data,
@@ -477,7 +470,7 @@ ggbetweenstats <- function(data,
     }
   }
 
-  #------------------------------ annotations and themes -----------------------
+  # annotations and themes -----------------------------------------------------
 
   # if bayes factor message needs to be displayed
   if (test == "t-test" &&
@@ -516,7 +509,7 @@ ggbetweenstats <- function(data,
       direction = direction
     )
 
-  #--------------------------- outlier tagging ---------------------------------
+  # outlier tagging ------------------------------------------------------------
 
   # if outlier.tagging is set to TRUE, first figure out what labels need to be
   # attached to the outlier. If outlier label is not provided, outlier labels
@@ -575,7 +568,8 @@ ggbetweenstats <- function(data,
           point.padding = 0.5,
           segment.color = "black",
           force = 2,
-          na.rm = TRUE
+          na.rm = TRUE,
+          seed = 123
         )
     } else {
 
@@ -593,12 +587,31 @@ ggbetweenstats <- function(data,
           point.padding = 0.5,
           segment.color = "black",
           force = 2,
-          na.rm = TRUE
+          na.rm = TRUE,
+          seed = 123
         )
     }
   }
 
-  #------------------------ labels with mean values ------------------------------
+  # labels with mean values ----------------------------------------------------
+
+  # computing mean and confidence interval for mean
+  mean_dat <-
+    groupedstats::grouped_summary(
+      data = data,
+      grouping.vars = x,
+      measures = y
+    ) %>%
+    dplyr::mutate(.data = ., y = mean) %>%
+    dplyr::select(
+      .data = .,
+      x,
+      y,
+      mean.y = mean,
+      lower.ci.y = mean.low.conf,
+      upper.ci.y = mean.high.conf,
+      n
+    )
 
   # highlight the mean of each group
   if (isTRUE(mean.plotting)) {
@@ -611,52 +624,12 @@ ggbetweenstats <- function(data,
         na.rm = TRUE
       )
 
-    if (!isTRUE(mean.ci)) {
-      # use ggrepel to attach text label to each mean
-      # create a dataframe with means
-      mean_dat <- data %>%
-        # in case outlier.label is present, remove it since it's of no utility here
-        dplyr::select(.data = ., -dplyr::contains("outlier")) %>%
-        dplyr::group_by(.data = ., x) %>%
-        dplyr::summarise(.data = ., y = mean(y, na.rm = TRUE)) %>%
-        dplyr::mutate(.data = ., label = y) %>%
-        dplyr::ungroup(x = .)
-    } else {
-      mean_dat <- data %>%
-        # in case outlier.label is present, remove it since it's of no utility here
-        dplyr::select(.data = ., -dplyr::contains("outlier")) %>%
-        dplyr::group_by(.data = ., x) %>%
-        dplyr::summarise(
-          .data = .,
-          mean.y = base::mean(x = y, na.rm = TRUE),
-          sd.y = stats::sd(x = y, na.rm = TRUE),
-          n.y = dplyr::n()
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          se.y = sd.y / base::sqrt(n.y),
-          lower.ci.y = mean.y - stats::qt(
-            p = 1 - (0.05 / 2),
-            df = n.y - 1,
-            lower.tail = TRUE
-          ) * se.y,
-          upper.ci.y = mean.y + stats::qt(
-            p = 1 - (0.05 / 2),
-            df = n.y - 1,
-            lower.tail = TRUE
-          ) * se.y
-        ) %>%
-        dplyr::ungroup(x = .)
-    }
-
     # format the numeric values
     mean_dat %<>%
-      dplyr::mutate_if(
+      dplyr::mutate_at(
         .tbl = .,
-        .predicate = purrr::is_bare_numeric,
-        .funs = ~as.numeric(as.character(
-          ggstatsplot::specify_decimal_p(x = ., k = k)
-        )) # format the values for printing
+        .vars = dplyr::vars(dplyr::contains(".y")),
+        .funs = ~ggstatsplot::specify_decimal_p(x = ., k = k)
       )
 
     # adding confidence intervals to the label for mean
@@ -676,8 +649,10 @@ ggbetweenstats <- function(data,
           .collate = "rows",
           .to = "label",
           .labels = TRUE
-        ) %>%
-        dplyr::rename(.data = ., y = mean.y)
+        )
+    } else {
+      mean_dat %<>%
+        dplyr::mutate(.data = ., label = mean.y)
     }
 
     # attach the labels with means to the plot
@@ -694,18 +669,16 @@ ggbetweenstats <- function(data,
         point.padding = 0.5,
         segment.color = "black",
         force = 2,
-        na.rm = TRUE
+        na.rm = TRUE,
+        seed = 123
       )
   }
 
-  #------------------------- sample size labels ---------------------------------
+  # sample size labels ---------------------------------------------------------
 
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
-    data_label <- data %>%
-      dplyr::group_by(.data = ., x) %>%
-      dplyr::mutate(.data = ., n = dplyr::n()) %>%
-      dplyr::ungroup(.data = ., x = .) %>%
+    data_label <- mean_dat %>%
       dplyr::mutate(.data = ., label = paste0(x, "\n(n = ", n, ")", sep = "")) %>%
       dplyr::arrange(.data = ., x)
 
@@ -714,7 +687,7 @@ ggbetweenstats <- function(data,
       ggplot2::scale_x_discrete(labels = c(unique(data_label$label)))
   }
 
-  #----------------------------- messages ----------------------------------------
+  # messages -------------------------------------------------------------------
 
   if (isTRUE(messages)) {
 

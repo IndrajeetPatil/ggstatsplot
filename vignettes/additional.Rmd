@@ -1,0 +1,42 @@
+---
+title: "additional vignettes"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 100
+    toc: true
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{additional vignettes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Additional vignettes
+
+Due to constraints on the size of the `R` package, all available vignettes are
+not included in the package and thus can't be accessed on `CRAN`. There are few
+additional vignettes that are only available on the website for this package:
+
+  - `ggstatsplot` plot designs
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggstatsplot_paper.html>)
+  - using `ggstatsplot` with the `purrr` package
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
+
+# Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on
+`GitHub`:
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>

@@ -93,6 +93,8 @@ utils::globalVariables(
     "coef",
     "conf.high",
     "conf.low",
+    "mean.high.conf",
+    "mean.low.conf",
     "rowid",
     "Cramer's V",
     "df[chiSq]",

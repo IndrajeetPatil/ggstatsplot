@@ -1,12 +1,12 @@
-context("cor_tets_ci")
+context("cor_test_ci")
 
-test_that("cor_tets_ci works", {
+test_that("cor_test_ci works", {
 
   # using mtcars dataset
   set.seed(123)
 
   # dataset without NAs
-  df1 <- ggstatsplot:::cor_tets_ci(
+  df1 <- ggstatsplot:::cor_test_ci(
     data = datasets::mtcars,
     x = hp,
     y = mpg,
@@ -24,7 +24,7 @@ test_that("cor_tets_ci works", {
   set.seed(123)
 
   # this also makes sure that the quoted arguments work
-  df2 <- ggstatsplot:::cor_tets_ci(
+  df2 <- ggstatsplot:::cor_test_ci(
     data = mtcars2,
     x = "hp",
     y = "mpg",

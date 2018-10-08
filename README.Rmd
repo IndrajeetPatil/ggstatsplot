@@ -7,7 +7,7 @@
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  dpi = 150,
+  dpi = 100,
   out.width = "100%",
   comment = "#>",
   fig.path = "man/figures/README-"
@@ -690,12 +690,21 @@ ggstatsplot::ggcorrmat(
   p.adjust.method = "holm"
 )
 
+# getting the confidence intervals for correlations
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "kendall",
+  output = "ci",                  
+  p.adjust.method = "holm"
+)
+
 # getting the sample sizes for all pairs
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
   corr.method = "robust",
-  output = "n"
+  output = "n"                           # note that n is different due to NAs
 )
 ```
 

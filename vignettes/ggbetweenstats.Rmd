@@ -71,7 +71,7 @@ set.seed(123)
 
 # function call
 ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, 
+  data = dplyr::filter(.data = gapminder::gapminder, 
                        year == 2007, continent != "Oceania"),
   x = continent,
   y = lifeExp,
@@ -313,8 +313,10 @@ applied for all years, but maybe we want to change this for different years, or
 maybe we want to gave different effect sizes for different years. This type of
 customization for different levels of a grouping variable is not possible with
 `grouped_ggbetweenstats`, but this can be easily achieved using the `purrr`
-package. See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
+package. 
+
+See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Within-subjects designs
 

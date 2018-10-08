@@ -11,7 +11,7 @@
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams robcor_ci
-#' @inheritParams cor_tets_ci
+#' @inheritParams cor_test_ci
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
@@ -21,14 +21,14 @@
 #' @importFrom stats cor.test
 #'
 #' @examples
-#' 
+#'
 #' # without changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
 #'   x = area,
 #'   y = percblack
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
@@ -129,7 +129,7 @@ subtitle_ggscatterstats <-
         )
 
       # getting confidence interval for rho using broom bootstrap
-      c_ci <- cor_tets_ci(
+      c_ci <- cor_test_ci(
         data = data,
         x = x,
         y = y,

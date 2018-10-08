@@ -9,6 +9,8 @@ MAJOR CHANGES
   - The helper function `untable` has been depcreated in light of
   `tidyr::uncount`, which does exactly what `untable` was doing. The author
   wasn't aware of this function when `untable` was written.
+  - Vignette with `purrr` examples removed from `CRAN` to reduce the size of the
+  package. It is now available on the package website.
 
 # ggstatsplot 0.0.6
 

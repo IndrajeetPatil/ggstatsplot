@@ -23,10 +23,10 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#' 
+#'
 #' # message
 #' normality_message(x = datasets::anscombe$x1)
-#' 
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -89,11 +89,13 @@ normality_message <- function(x,
 #' @inheritParams ggbetweenstats
 #' @param lab A character describing label for the variable. If `NULL`, variable
 #'   name will be used.
-#' @param output What output is desired: `"message"` (default) or `"stats"` objects.
+#' @param output What output is desired: `"message"` (default) or `"stats"`
+#'   objects.
 #'
 #' @description A note to the user about the validity of assumptions for the
 #'   default linear model.
 #'
+#' @importFrom rlang enquo quo_name
 #' @importFrom stats bartlett.test
 #' @importFrom crayon green
 #' @importFrom crayon blue
@@ -107,7 +109,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -115,7 +117,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,
@@ -142,7 +144,7 @@ bartlett_message <- function(data,
     !!rlang::enquo(y)
   ))
 
-  # if `xlab` is not provided, use the variable `x` name
+  # if `lab` is not provided, use the variable `x` name
   if (is.null(lab)) {
     lab <- lab.df[1]
   }
@@ -184,7 +186,7 @@ bartlett_message <- function(data,
         "Bartlett's test for homogeneity of variances for factor",
         crayon::yellow(lab),
         # entered x argument
-        ": p-value ="
+        ": p-value = "
       ),
       crayon::yellow(
         ggstatsplot::specify_decimal_p(

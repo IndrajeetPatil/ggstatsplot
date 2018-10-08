@@ -151,7 +151,7 @@ t1way_ci <- function(data,
 }
 
 #' @title A correlation test with confidence interval for effect size.
-#' @name cor_tets_ci
+#' @name cor_test_ci
 #' @description Custom function to get confidence intervals for effect size
 #'   measure for parametric or non-parametric correlation coefficient.
 #'
@@ -181,7 +181,7 @@ t1way_ci <- function(data,
 #'
 #' @keywords internal
 
-cor_tets_ci <- function(data,
+cor_test_ci <- function(data,
                         x,
                         y,
                         method = "spearman",

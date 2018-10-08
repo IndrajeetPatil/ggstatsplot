@@ -9,6 +9,8 @@
 <title>Violin plots for group or condition comparisons in between-subjects
 designs repeated across all levels of a grouping variable. — grouped_ggbetweenstats • ggstatsplot</title>
 
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -96,6 +98,9 @@ grouping variable." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/additional.html">additional vignettes</a>
+    </li>
+    <li>
       <a href="../articles/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -117,16 +122,16 @@ grouping variable." />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
     <li>
-      <a href="../articles/web_only/ggstatsplot_paper.html">plot design</a>
+      <a href="../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
   </ul>
 </li>
@@ -513,7 +518,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>hwy</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>drv</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for hwy : p-value = &lt; 0.001</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor year : p-value =0.144</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for hwy : p-value = 0.033</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor year : p-value =0.682</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for hwy : p-value = &lt; 0.001</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor year : p-value = 0.144</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for hwy : p-value = 0.033</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor year : p-value = 0.682</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

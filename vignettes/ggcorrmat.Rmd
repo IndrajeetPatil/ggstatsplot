@@ -299,8 +299,10 @@ the flexibility with which this function can be used. This is the because the
 common parameters used are applied to plots corresponding to all levels of the
 grouping variable and there is no way to customize the arguments for different
 levels of the grouping variable. We will see how this can be done using the
-`purrr` package in the associated vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
+`purrr` package.  
+
+See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
 # Suggestions
 

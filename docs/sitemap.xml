@@ -19,7 +19,7 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/compound.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/cor_tets_ci.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/cor_test_ci.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html</loc>
@@ -124,6 +124,9 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/t1way_ci.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/tfz_labeller.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/theme_corrmat.html</loc>
   </url>
   <url>
@@ -142,7 +145,7 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/Titanic_full.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/tz_labeller.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/additional.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/combine_plots.html</loc>
@@ -166,9 +169,6 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/ggscatterstats.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/purrr_examples.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/tests_and_coverage.html</loc>
   </url>
   <url>
@@ -176,5 +176,8 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggstatsplot_paper.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/purrr_examples.html</loc>
   </url>
 </urlset>

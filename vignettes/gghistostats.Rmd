@@ -173,8 +173,10 @@ For example, if we wanted to add, let's say, a separate `test.value` argument
 for each gender, this is not possible with `grouped_gghistostats`. For cases
 like these, or to run separate  kinds of tests (robust for some, parametric for
 other, while Bayesian for some other levels of the group) it would be better to
-use `purrr`.  See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
+use `purrr`.   
+
+See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
 # Suggestions
 

@@ -202,8 +202,10 @@ For example, if we wanted to add, let's say, a separate type of marginal
 distribution plot for each MPAA rating or if we wanted to use different types of
 correlations across different levels of MPAA ratings (NC-17 has only 6 movies,
 so a robust correlation would be a good idea), this is not possible. But this
-can be easily done using `purrr`. See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
+can be easily done using `purrr`.  
+
+See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Different smoothing methods
 

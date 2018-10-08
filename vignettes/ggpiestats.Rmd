@@ -221,9 +221,10 @@ children have a survival rate that is not significantly different from 50/50.
 Although `grouped_ggpiestats` provides a quick way to explore the data, it
 leaves much to be desired. For example, we may want to add different captions,
 titles, themes, or palettes for each level of the grouping variable, etc. For
-cases like these, it would be better to use `purrr` package. See the associated
-vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/purrr_examples.html>
+cases like these, it would be better to use `purrr` package.  
+
+See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Working with data organized by `counts` 
 

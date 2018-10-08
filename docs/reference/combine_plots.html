@@ -9,6 +9,8 @@
 <title>Combining multiple plots using <code>cowplot::plot_grid()</code> with a
 combination of title, caption, and annotation label — combine_plots • ggstatsplot</title>
 
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -96,6 +98,9 @@ a plotgrid along with a combination of title, caption, and annotation label" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/additional.html">additional vignettes</a>
+    </li>
+    <li>
       <a href="../articles/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -117,16 +122,16 @@ a plotgrid along with a combination of title, caption, and annotation label" />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
     <li>
-      <a href="../articles/web_only/ggstatsplot_paper.html">plot design</a>
+      <a href="../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
   </ul>
 </li>
@@ -329,8 +334,8 @@ while combining (title, plot, caption).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># loading the necessary libraries</span>
-<span class='fu'>library</span>(<span class='no'>ggplot2</span>)</div><div class='output co'>#&gt; <span class='message'>Want to understand how all the pieces fit together? See the R for Data</span>
-#&gt; <span class='message'>Science book: http://r4ds.had.co.nz/</span></div><div class='input'>
+<span class='fu'>library</span>(<span class='no'>ggplot2</span>)
+
 <span class='co'># preparing the first plot</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span>
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(

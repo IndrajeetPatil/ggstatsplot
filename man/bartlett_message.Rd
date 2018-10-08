@@ -19,7 +19,8 @@ name will be used.}
 
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
-\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"} objects.}
+\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"}
+objects.}
 }
 \value{
 A list of class \code{"htest"} containing the following components:

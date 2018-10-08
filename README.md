@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--02-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--07-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -245,7 +245,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x00000000291eee88>
+#> <bytecode: 0x000000002c0e7548>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -818,12 +818,39 @@ ggstatsplot::ggcorrmat(
 #> 5 brainwt    4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17
 #> 6 bodywt     2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.
 
+# getting the confidence intervals for correlations
+ggstatsplot::ggcorrmat(
+  data = ggplot2::msleep,
+  cor.vars = sleep_total:bodywt,
+  corr.method = "kendall",
+  output = "ci",                  
+  p.adjust.method = "holm"
+)
+#> # A tibble: 15 x 7
+#>    pair              r      lower      upper         p lower.adj upper.adj
+#>    <chr>         <dbl>      <dbl>      <dbl>     <dbl>     <dbl>     <dbl>
+#>  1 slp_t-slp_r  0.5922  0.4000     0.7345    4.981e- 7   0.3027    0.7817 
+#>  2 slp_t-slp_c -0.3481 -0.6214     0.0006818 5.090e- 2  -0.6789    0.1002 
+#>  3 slp_t-awake -1      -1         -1         0.         -1        -1      
+#>  4 slp_t-brnwt -0.4293 -0.6220    -0.1875    9.621e- 4  -0.6858   -0.07796
+#>  5 slp_t-bdywt -0.3851 -0.5547    -0.1847    3.247e- 4  -0.6050   -0.1106 
+#>  6 slp_r-slp_c -0.2066 -0.5180     0.1531    2.566e- 1  -0.5180    0.1531 
+#>  7 slp_r-awake -0.5922 -0.7345    -0.4000    4.981e- 7  -0.7832   -0.2990 
+#>  8 slp_r-brnwt -0.2636 -0.5096     0.02217   7.022e- 2  -0.5400    0.06404
+#>  9 slp_r-bdywt -0.3163 -0.5262    -0.07004   1.302e- 2  -0.5662   -0.01317
+#> 10 slp_c-awake  0.3481 -0.0006818  0.6214    5.090e- 2  -0.1145    0.6867 
+#> 11 slp_c-brnwt  0.7125  0.4739     0.8536    1.001e- 5   0.3239    0.8954 
+#> 12 slp_c-bdywt  0.6545  0.3962     0.8168    4.834e- 5   0.2459    0.8656 
+#> 13 awake-brnwt  0.4293  0.1875     0.6220    9.621e- 4   0.08322   0.6829 
+#> 14 awake-bdywt  0.3851  0.1847     0.5547    3.247e- 4   0.1049    0.6087 
+#> 15 brnwt-bdywt  0.8378  0.7373     0.9020    8.181e-16   0.6716    0.9238
+
 # getting the sample sizes for all pairs
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
   corr.method = "robust",
-  output = "n"
+  output = "n"                           # note that n is different due to NAs
 )
 #> # A tibble: 6 x 7
 #>   variable    sleep_total sleep_rem sleep_cycle awake brainwt bodywt

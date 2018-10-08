@@ -1,7 +1,8 @@
 pandoc: 2.2.3.2
 pkgdown: 1.1.0.9000
-pkgdown_sha: f99ff09e95790156c36c8bcfa7288bf5a4bf0ca0
+pkgdown_sha: c990ad4daa65267cbd90ab7f1438bab329da3bc0
 articles:
+  additional: additional.html
   combine_plots: combine_plots.html
   ggbetweenstats: ggbetweenstats.html
   ggcoefstats: ggcoefstats.html
@@ -9,10 +10,10 @@ articles:
   gghistostats: gghistostats.html
   ggpiestats: ggpiestats.html
   ggscatterstats: ggscatterstats.html
-  purrr_examples: purrr_examples.html
   tests_and_coverage: tests_and_coverage.html
   theme_ggstatsplot: theme_ggstatsplot.html
   ggstatsplot_paper: web_only/ggstatsplot_paper.html
+  purrr_examples: web_only/purrr_examples.html
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot//reference
   article: https://indrajeetpatil.github.io/ggstatsplot//articles

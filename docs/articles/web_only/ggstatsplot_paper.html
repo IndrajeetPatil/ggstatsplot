@@ -5,14 +5,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>plot design • ggstatsplot</title>
+<title>ggstatsplot: ggplot2 Based Plots with Statistical Details • ggstatsplot</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
 <script src="../../pkgdown.js"></script><!-- docsearch --><script src="../../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
 <link href="../../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../../extra.css" rel="stylesheet">
-<meta property="og:title" content="plot design">
+<meta property="og:title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -56,6 +57,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../../articles/additional.html">additional vignettes</a>
+    </li>
+    <li>
       <a href="../../articles/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -77,16 +81,16 @@
       <a href="../../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../../articles/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
       <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="../../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
     <li>
-      <a href="../../articles/web_only/ggstatsplot_paper.html">plot design</a>
+      <a href="../../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
   </ul>
 </li>
@@ -119,10 +123,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>plot design</h1>
+      <h1>ggstatsplot: ggplot2 Based Plots with Statistical Details</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-10-07</h4>
+            <h4 class="date">2018-10-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggstatsplot_paper.Rmd"><code>vignettes/web_only/ggstatsplot_paper.Rmd</code></a></small>
       <div class="hidden name"><code>ggstatsplot_paper.Rmd</code></div>
@@ -132,14 +136,19 @@
     
     
 <blockquote>
-<p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.” - Edward R. Tufte</p>
+<p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.”<br>
+- Edward R. Tufte</p>
 </blockquote>
-<p>The <code>ggstatsplot</code> package is an opinionated collection of plots made with <code>ggplot2</code> and is designed for exploratory data analysis or for producing publication-ready. All plots share an underlying principle of displaying information-rich plots with all necessary statistical details included in the plots themselves. Although the plots produced by <code>ggstatsplot</code> are still <code>ggplot</code> objects and can thus be further modified using <code>ggplot2</code> commands, there is a limit to how many such modifications can be made. That is, it is less flexible than <code>ggplot2</code>, but that’s a feature and not a bug. The original intent behind this package is to offload struggles associated with <em>constructing</em> the plot and focus more on the <em>interpretation</em> of that data displayed in the plot.</p>
+<div id="introduction" class="section level1">
+<h1 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>Introduction</h1>
+<p>The <code>ggstatsplot</code> package is an opinionated collection of plots made with <code>ggplot2</code> and is designed for exploratory data analysis or for producing publication-ready statistical graphics. All plots share an underlying principle of displaying information-rich plots with all necessary statistical details included in the plots themselves. Although the plots produced by <code>ggstatsplot</code> are still <code>ggplot</code> objects and can thus be further modified using <code>ggplot2</code> commands, there is a limit to how many such modifications can be made. That is, it is less flexible than <code>ggplot2</code>, but that’s a feature and not a bug. The original intent behind this package is to offload struggles associated with <em>constructing</em> the plot and focus more on the <em>interpretation</em> of that data displayed in the plot.</p>
 <p>(<strong>This vignette is still a work in progress</strong>)</p>
+</div>
 <div id="graphical-perception" class="section level1">
 <h1 class="hasAnchor">
 <a href="#graphical-perception" class="anchor"></a>Graphical perception</h1>
-<p>Graphical perception involves visual decoding of the encoded information in graphs. <code>ggstatsplot</code> incorporates the paradigm proposed in Cleveland (1985, Chapter 4) to facilitate making visual judgments about quantitative information effortless and almost instantaneous. Based on experiments, Cleveland proposes that there are ten elementary graphical-perception tasks that we perform to visually decode quantitative information in graphs (organized from most to least accurate <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>)-</p>
+<p>Graphical perception involves visual decoding of the encoded information in graphs. <code>ggstatsplot</code> incorporates the paradigm proposed in Cleveland (1985, Chapter 4) to facilitate making visual judgments about quantitative information effortless and almost instantaneous. Based on experiments, Cleveland proposes that there are ten elementary graphical-perception tasks that we perform to visually decode quantitative information in graphs (organized from most to least accurate; Cleveland, 1985, p.254)-</p>
 <ul>
 <li>Position along a common scale</li>
 <li>Position along identical, non-aligned scales</li>
@@ -208,30 +217,30 @@
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="co"># plot 1: juxtaposition</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="co"># plot 1: superposition</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">  ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">                           </span>genre <span class="op">==</span><span class="st"> "Drama"</span>),</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="dt">x =</span> length,</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="dt">y =</span> rating,</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">    <span class="dt">grouping.var =</span> genre,</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="dt">marginal =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="dt">title.prefix =</span> <span class="st">"Genre"</span>,</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">    <span class="dt">title.text =</span> <span class="st">"juxtaposition (`ggstatsplot` implementation in `grouped_` functions)"</span>,</a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">    <span class="dt">title.size =</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">  ),</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="co"># plot2: superposition</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">  ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> length,</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">                           <span class="dt">y =</span> rating,</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">                           <span class="dt">color =</span> genre)</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_jitter">geom_jitter</a></span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_smooth">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="co"># plot 2: juxtaposition</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb3-20" data-line-number="20">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb3-21" data-line-number="21"><span class="st">                           </span>genre <span class="op">==</span><span class="st"> "Drama"</span>),</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> length,</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">                           <span class="dt">y =</span> rating,</a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">                           <span class="dt">color =</span> genre)</a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_jitter">geom_jitter</a></span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_smooth">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),</a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="dt">x =</span> length,</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">    <span class="dt">y =</span> rating,</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">    <span class="dt">grouping.var =</span> genre,</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">    <span class="dt">marginal =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">    <span class="dt">title.prefix =</span> <span class="st">"Genre"</span>,</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">    <span class="dt">title.text =</span> <span class="st">"juxtaposition (`ggstatsplot` implementation in `grouped_` functions)"</span>,</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">    <span class="dt">title.size =</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">  ),</a>
 <a class="sourceLine" id="cb3-30" data-line-number="30">  <span class="co"># combine for comparison</span></a>
 <a class="sourceLine" id="cb3-31" data-line-number="31">  <span class="dt">title.text =</span> <span class="st">"Two ways to compare different aspects of data"</span>,</a>
 <a class="sourceLine" id="cb3-32" data-line-number="32">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
@@ -240,11 +249,11 @@
 <a class="sourceLine" id="cb3-35" data-line-number="35"><span class="co">#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</span></a>
 <a class="sourceLine" id="cb3-36" data-line-number="36"><span class="co">#&gt; </span></a></code></pre></div>
 <div class="figure">
-<img src="ggstatsplot_paper_files/figure-html/example3-1.png" alt="**Figure-3**. Comparing different aspects of data is much more accurate in a superposed plot (b), which is recommended in Cleveland's paradigm, than in a juxtaposed plot, which is how it's implemented in `ggstatsplot` because displaying detailed results from statistical tests would be difficult otherwise." width="960"><p class="caption">
-<strong>Figure-3</strong>. Comparing different aspects of data is much more accurate in a superposed plot (b), which is recommended in Cleveland’s paradigm, than in a juxtaposed plot, which is how it’s implemented in <code>ggstatsplot</code> because displaying detailed results from statistical tests would be difficult otherwise.
+<img src="ggstatsplot_paper_files/figure-html/example3-1.png" alt="**Figure-3**. Comparing different aspects of data is much more accurate in (a) a *superposed* plot, which is recommended in Cleveland's paradigm, than in (b) a *juxtaposed* plot, which is how it is implemented in `ggstatsplot` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot." width="960"><p class="caption">
+<strong>Figure-3</strong>. Comparing different aspects of data is much more accurate in (a) a <em>superposed</em> plot, which is recommended in Cleveland’s paradigm, than in (b) a <em>juxtaposed</em> plot, which is how it is implemented in <code>ggstatsplot</code> package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot.
 </p>
 </div>
-<p>The <code>grouped_</code> function plots output follow the <em>Shrink Principle</em> (Tufte, 2001, p.166-7) for high-information graphics, which dictates that the data density and the size of the data matrix can be maximized to exploit maximum resolution of the available data-display technology. Given the large maximum resolution afforded by most computer monitors today, saving <code>grouped_</code> plots with appropriate resolution ensures no loss in legibility with reduced graphics area.</p>
+<p>The <code>grouped_</code> plots follow the <em>Shrink Principle</em> (Tufte, 2001, p.166-7) for high-information graphics, which dictates that the data density and the size of the data matrix can be maximized to exploit maximum resolution of the available data-display technology. Given the large maximum resolution afforded by most computer monitors today, saving <code>grouped_</code> plots with appropriate resolution ensures no loss in legibility with reduced graphics area.</p>
 </div>
 <div id="graphical-integrity-and-clean-design" class="section level1">
 <h1 class="hasAnchor">
@@ -347,7 +356,7 @@
 <p>One of the important functions of a plot is to show the variation in the data, which comes in two forms:</p>
 <ul>
 <li>
-<em>Measurement noise</em>: In <code>ggstatsplot</code>, the actual variation in measurements is shown by plotting a combination of (jittered) raw data points with a boxplot laid on top (Figure-1) or a histogram (Figure-4). None of the plots, where empirical distribution of the data is concerned, show the sample standard deviation because they are poor at conveying information about limits of the sample and presence of outliers (Cleveland, 1985, p.220).</li>
+<strong>Measurement noise</strong>: In <code>ggstatsplot</code>, the actual variation in measurements is shown by plotting a combination of (jittered) raw data points with a boxplot laid on top (Figure-1) or a histogram (Figure-4). None of the plots, where empirical distribution of the data is concerned, show the sample standard deviation because they are poor at conveying information about limits of the sample and presence of outliers (Cleveland, 1985, p.220).</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
@@ -358,11 +367,12 @@
 <a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">x =</span> Speed,</a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">test.value =</span> <span class="dv">792</span>,</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">xlab =</span> <span class="st">"Speed of light (km/sec, with 299000 subtracted)"</span>,</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">title =</span> <span class="st">"Figure-4: Distribution of Speed of light"</span>,</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">caption =</span> <span class="st">"Note: Data collected across 5 different experiments (20 measurements per study)"</span>,</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">xlab =</span> <span class="st">"Speed of light (km/sec, with 299000 subtracted)"</span>,</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">title =</span> <span class="st">"Figure-4: Distribution of Speed of light"</span>,</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">caption =</span> <span class="st">"Note: Data collected across 5 experiments (20 measurements each)"</span>,</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">)</a></code></pre></div>
 <div class="figure">
 <img src="ggstatsplot_paper_files/figure-html/example4-1.png" alt="**Figure-4**. Distribution of a variable shown using `gghistostats`." width="768"><p class="caption">
 <strong>Figure-4</strong>. Distribution of a variable shown using <code>gghistostats</code>.
@@ -370,7 +380,7 @@
 </div>
 <ul>
 <li>
-<em>Sample-to-sample statistic variation</em>: Although, traditionally, this variation has been shown using the standard error of the mean (SEM) of the statistic, <code>ggstatsplot</code> plots instead use 95% confidence intervals (e.g, Figure-5). This is because the interval formed by error bars correspond to a 68% confidence interval, which is not a particularly interesting interval (Cleveland, 1985, p.222-225).</li>
+<strong>Sample-to-sample statistic variation</strong>: Although, traditionally, this variation has been shown using the standard error of the mean (SEM) of the statistic, <code>ggstatsplot</code> plots instead use 95% confidence intervals (e.g., Figure-5). This is because the interval formed by error bars correspond to a 68% confidence interval, which is not a particularly interesting interval (Cleveland, 1985, p.222-225).</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
@@ -380,47 +390,84 @@
 <a class="sourceLine" id="cb5-6" data-line-number="6">  total.fruits <span class="op">~</span><span class="st"> </span>nutrient <span class="op">+</span><span class="st"> </span>rack <span class="op">+</span><span class="st"> </span>(nutrient <span class="op">|</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">                               </span>popu <span class="op">/</span><span class="st"> </span>gen),</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">data =</span> lme4<span class="op">::</span>Arabidopsis</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">))</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; Computing p-values via Kenward-Roger approximation. Use `p.kr = FALSE` if computation takes too long.</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-9" data-line-number="9">),</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="dt">p.kr =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; Computing p-values via Wald-statistics approximation (treating t as Wald z).</span></a></code></pre></div>
 <div class="figure">
 <img src="ggstatsplot_paper_files/figure-html/example5-1.png" alt="**Figure-5**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`." width="480"><p class="caption">
 <strong>Figure-5</strong>. Sample-to-sample variation in regression estimates is displayed using confidence intervals in <code>ggcoefstats</code>.
 </p>
 </div>
 </div>
-<div id="p-values" class="section level2">
+<div id="statistical-reporting" class="section level2">
 <h2 class="hasAnchor">
-<a href="#p-values" class="anchor"></a>p-values</h2>
+<a href="#statistical-reporting" class="anchor"></a>Statistical reporting</h2>
+<p>The default setting in <code>ggstatsplot</code> is to produce plots with statistical details included. Most often than not, the results are displayed as a <code>subtitle</code> in the plot. Great care has been taken into which details are included in statistical reporting and why.</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>APA guidelines</strong> (APA, 2009) are followed (for the most part) by default:<br>
+</li>
+</ol>
 <ul>
-<li>As Lilienfeld and colleagues report (Lilienfeld et al., 2015):</li>
+<li>Percentages are displayed with no decimal places (Figure-2).</li>
+<li>Correlations, <em>t</em>-tests, and chi-squared tests are reported with the degrees of freedom in parentheses and the significance level (Figure-2, Figure-3b, Figure-4).</li>
+<li>ANOVAs are reported with two degrees of freedom and the significance level (Figure-1).</li>
+<li>Regression results are presented with the unstandardized or standardized estimate (beta), whichever was specified by the user, along with the statistic (depending on the model, this can be a <em>t</em> or <em>z</em> statistic) and the corresponding significance level (Figure-5).</li>
 </ul>
-<blockquote>
-<p><strong>p = 0.000</strong>. Even though this statistical expression, used in over 97,000 manuscripts according to Google Scholar, makes regular cameo appearances in our computer printouts, we should assiduously avoid inserting it in our Results sections. This expression implies erroneously that there is a zero probability that the investigators have committed a Type I error, that is, a false rejection of a true null hypothesis.</p>
-</blockquote>
-<p>All p-values displayed in <code>ggstatsplot</code> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such. The package doesn’t care how infinitesimally small the <em>p</em>-values are. Instead, the emphasis is put more on the effect size magnitudes and their 95% CIs.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Default statistical tests:</p></li>
+<li><p>Dealing with <strong>null results</strong>:</p></li>
+<li><p>Avoiding the <strong>“p-value error”</strong>:<br>
+The <em>p</em>-value indexes the probability that the researchers have falsely rejected a true null hypothesis (Type I error, i.e.) and can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on Google Scholar report the <em>p</em>-value to be <code>p = 0.000</code> (Lilienfeld et al., 2015), putatively due to relying on default computer outputs. All <em>p</em>-values displayed in <code>ggstatsplot</code> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such (e.g, Figure-1). The package deems it unimportant how infinitesimally small the <em>p</em>-values are and, instead, puts emphasis on the effect size magnitudes and their 95% CIs.</p></li>
+</ol>
 </div>
 </div>
-<div id="suggestions" class="section level1">
+<div id="conclusion" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
-</div>
-<div id="session-information" class="section level1">
-<h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session Information</h1>
-<p>Summarizing session information for reproducibility.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">session_info</a></span>()</a></code></pre></div>
+<a href="#conclusion" class="anchor"></a>Conclusion</h1>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 </div>
-<div class="footnotes">
-<hr>
-<ol>
-<li id="fn1"><p>“The ordering is based on the theory of visual perception, on experiments in graphical perception, and on informal experimentation.” (Cleveland, 1985, p.254)<a href="#fnref1" class="footnote-back">↩</a></p></li>
-</ol>
+<div id="appendix" class="section level1">
+<h1 class="hasAnchor">
+<a href="#appendix" class="anchor"></a>Appendix</h1>
+<div id="appendix-a-documentation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#appendix-a-documentation" class="anchor"></a>Appendix A: Documentation</h2>
+<p>There are three main documents one can rely on to learn how to use <code>ggstatsplot</code>:</p>
+<ul>
+<li><p><strong>Manual</strong>:<br>
+The <code>CRAN</code> reference manual provides detailed documentation about arguments for each function and examples : <a href="https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf" class="uri">https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf</a></p></li>
+<li><p><strong>README</strong>:<br>
+The GitHub <code>README</code> document provides a quick summary of all available functionality without going too much into details: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.html" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md</a></p></li>
+<li><p><strong>Vignettes</strong>:<br>
+Vignettes contain probably the most detailed exposition. Every single function in <code>ggstatsplot</code> has an associated vignette which describes in depth how to use the function and modify the defaults to customize the plot to your liking. All these vignettes can be accessed from the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a></p></li>
+</ul>
+</div>
+<div id="appendix-b-suggestions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#appendix-b-suggestions" class="anchor"></a>Appendix B: Suggestions</h2>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code> repository for this package: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+</div>
+<div id="appendix-c-session-information" class="section level2">
+<h2 class="hasAnchor">
+<a href="#appendix-c-session-information" class="anchor"></a>Appendix C: Session information</h2>
+<p>Summarizing session information for reproducibility.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">session_info</a></span>()<span class="op">$</span>platform</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;  setting  value                       </span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;  version  R version 3.5.1 (2018-07-02)</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;  os       Windows 10 x64              </span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;  system   x86_64, mingw32             </span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;  ui       RTerm                       </span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt;  language (EN)                        </span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;  tz       America/New_York            </span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;  date     2018-10-08</span></a></code></pre></div>
+</div>
 </div>
   </div>
 
@@ -429,18 +476,25 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#graphical-perception">Graphical perception</a></li>
+<li><a href="#introduction">Introduction</a></li>
+      <li><a href="#graphical-perception">Graphical perception</a></li>
       <li><a href="#graphical-integrity-and-clean-design">Graphical integrity (and clean design)</a></li>
       <li>
 <a href="#statistical-details">Statistical details</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#types-of-tests-supported-in-each-function">Types of tests supported in each function</a></li>
       <li><a href="#statistical-variation">Statistical variation</a></li>
-      <li><a href="#p-values">p-values</a></li>
+      <li><a href="#statistical-reporting">Statistical reporting</a></li>
       </ul>
 </li>
-      <li><a href="#suggestions">Suggestions</a></li>
-      <li><a href="#session-information">Session Information</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
       <li><a href="#references">References</a></li>
+      <li>
+<a href="#appendix">Appendix</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#appendix-a-documentation">Appendix A: Documentation</a></li>
+      <li><a href="#appendix-b-suggestions">Appendix B: Suggestions</a></li>
+      <li><a href="#appendix-c-session-information">Appendix C: Session information</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>

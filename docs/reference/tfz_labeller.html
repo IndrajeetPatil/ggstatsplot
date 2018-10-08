@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function to run proportion test on grouped data. — grouped_proptest • ggstatsplot</title>
+<title>Create text labels — tfz_labeller • ggstatsplot</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -38,9 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Function to run proportion test on grouped data. — grouped_proptest" />
+<meta property="og:title" content="Create text labels — tfz_labeller" />
 
-<meta property="og:description" content="Function to run proportion test on grouped data." />
+<meta property="og:description" content="Create text labels" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -93,6 +95,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/additional.html">additional vignettes</a>
+    </li>
+    <li>
       <a href="../articles/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -114,10 +119,16 @@
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/purrr_examples.html">using `ggstatsplot` with `purrr` package</a>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
   </ul>
 </li>
@@ -151,52 +162,53 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function to run proportion test on grouped data.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_stats.R'><code>R/helpers_stats.R</code></a></small>
-    <div class="hidden name"><code>grouped_proptest.Rd</code></div>
+    <h1>Create text labels</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcoefstats.R'><code>R/helpers_ggcoefstats.R</code></a></small>
+    <div class="hidden name"><code>tfz_labeller.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Function to run proportion test on grouped data.</p>
+    <p>Create text labels</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_proptest</span>(<span class='no'>data</span>, <span class='no'>grouping.vars</span>, <span class='no'>measure</span>)</pre>
+    <pre class="usage"><span class='fu'>tfz_labeller</span>(<span class='no'>tidy_df</span>, <span class='kw'>glance_df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>statistic</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>k</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Dataframe from which variables are to be drawn.</p></td>
+      <th>tidy_df</th>
+      <td><p>Tidy dataframe from <code><a href='http://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy</a></code>.</p></td>
     </tr>
     <tr>
-      <th>grouping.vars</th>
-      <td><p>List of grouping variables</p></td>
+      <th>glance_df</th>
+      <td><p>Glance model summary dataframe from <code><a href='http://www.rdocumentation.org/packages/broom/topics/reexports'>broom::glance</a></code>.</p></td>
     </tr>
     <tr>
-      <th>measure</th>
-      <td><p>A variable for which proportion test needs to be carried out
-for each combination of levels of factors entered in <code>grouping.vars</code>.</p></td>
+      <th>statistic</th>
+      <td><p>Which statistic is to be displayed (either <code>"t"</code> or <code>"f"</code>or
+<code>"z"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>effsize</th>
+      <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
+(default) or <code>"omega"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>partial</th>
+      <td><p>Logical that decides if partial eta-squared or omega-squared
+are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
+will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+<code>aovlist</code>.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of decimal places expected for results displayed in labels.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Dataframe with percentages and statistical details from a proportion
-test.</p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>This is a helper function used internally in the package and not
-exported. In case you want to use it, you can do so by
-<code>ggstatsplot:::grouped_proptest</code>. Note that it is <code>:::</code> and not <code>::</code>.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other helper_stats: <code><a href='check_outlier.html'>check_outlier</a></code>,
-  <code><a href='signif_column.html'>signif_column</a></code>, <code><a href='untable.html'>untable</a></code></p></div>
     
 
   </div>
@@ -204,17 +216,7 @@ exported. In case you want to use it, you can do so by
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-          </ul>
-
-    <h2>Author</h2>
-    
-Indrajeet Patil
+                </ul>
 
   </div>
 </div>

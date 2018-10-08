@@ -8,6 +8,8 @@
 
 <title>Display homogeneity of variance test as a message — bartlett_message • ggstatsplot</title>
 
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -94,6 +96,9 @@ default linear model." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/additional.html">additional vignettes</a>
+    </li>
+    <li>
       <a href="../articles/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -115,16 +120,16 @@ default linear model." />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../articles/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
       <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
     <li>
-      <a href="../articles/web_only/ggstatsplot_paper.html">plot design</a>
+      <a href="../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
   </ul>
 </li>
@@ -199,7 +204,8 @@ name will be used.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>What output is desired: <code>"message"</code> (default) or <code>"stats"</code> objects.</p></td>
+      <td><p>What output is desired: <code>"message"</code> (default) or <code>"stats"</code>
+objects.</p></td>
     </tr>
     </table>
     
@@ -229,7 +235,7 @@ name will be used.</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
   <span class='kw'>lab</span> <span class='kw'>=</span> <span class='st'>"Iris Species"</span>
-)</div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Iris Species : p-value =&lt; 0.001</div><div class='output co'>#&gt; </div><div class='input'>
+)</div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Iris Species : p-value = &lt; 0.001</div><div class='output co'>#&gt; </div><div class='input'>
 <span class='co'># getting results from the test</span>
 <span class='fu'>bartlett_message</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,

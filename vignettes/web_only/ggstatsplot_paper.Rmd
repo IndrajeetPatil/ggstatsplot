@@ -1,5 +1,5 @@
 ---
-title: "plot design"
+title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -7,12 +7,13 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 300
+    dpi: 100
     toc: true
+    eval: FALSE
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{plot design}
+  %\VignetteIndexEntry{ggstatsplot: ggplot2 Based Plots with Statistical Details}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,43 +27,42 @@ knitr::opts_chunk$set(
 
 > "What is to be sought in designs for the display of information is the clear
 portrayal of complexity. Not the complication of the simple; rather ... the
-revelation of the complex." - Edward R. Tufte
+revelation of the complex."   
+- Edward R. Tufte
 
-
+# Introduction
+   
 The `ggstatsplot` package is an opinionated collection of plots made with
 `ggplot2` and is designed for exploratory data analysis or for producing
-publication-ready. All plots share an underlying principle of displaying
-information-rich plots with all necessary statistical details included in the
-plots themselves. Although the plots produced by `ggstatsplot` are still
-`ggplot` objects and can thus be further modified using `ggplot2` commands,
-there is a limit to how many such modifications can be made. That is, it is less
-flexible than `ggplot2`, but that's a feature and not a bug. The original intent
-behind this package is to offload struggles associated with *constructing* the
-plot and focus more on the *interpretation* of that data displayed in the plot.
+publication-ready statistical graphics. All plots share an underlying principle
+of displaying information-rich plots with all necessary statistical details
+included in the plots themselves. Although the plots produced by `ggstatsplot`
+are still `ggplot` objects and can thus be further modified using `ggplot2`
+commands, there is a limit to how many such modifications can be made. That is,
+it is less flexible than `ggplot2`, but that's a feature and not a bug. The
+original intent behind this package is to offload struggles associated with
+*constructing* the plot and focus more on the *interpretation* of that data
+displayed in the plot.
 
 (**This vignette is still a work in progress**)
 
 # Graphical perception
-
+   
 Graphical perception involves visual decoding of the encoded information in
 graphs. `ggstatsplot` incorporates the paradigm proposed in Cleveland (1985,
 Chapter 4) to facilitate making visual judgments about quantitative information
 effortless and almost instantaneous. Based on experiments, Cleveland proposes
 that there are ten elementary graphical-perception tasks that we perform to
 visually decode quantitative information in graphs (organized from most to least
-accurate [^1])-
+accurate; Cleveland, 1985, p.254)-
  
- [^1]: "The ordering is based on the theory of visual perception, on experiments
- in graphical perception, and on informal experimentation." (Cleveland, 1985,
- p.254)
-
-* Position along a common scale
-* Position along identical, non-aligned scales
-* Length
-* Angle (Slope)
-* Area
-* Volume
-* Color hue - Color saturation - Density
+  * Position along a common scale
+  * Position along identical, non-aligned scales
+  * Length
+  * Angle (Slope)
+  * Area
+  * Volume
+  * Color hue - Color saturation - Density
 
 So the key principle of Cleveland's paradigm for data display is- 
 
@@ -135,25 +135,13 @@ superposed plot is difficult. Therefore, this is a compromise `ggstatsplot` is
 comfortable with, at least to produce plots for quick exploration of different
 aspects of the data. 
 
-```{r example3, fig.height = 12, fig.width = 10, fig.cap = "**Figure-3**. Comparing different aspects of data is much more accurate in a superposed plot (b), which is recommended in Cleveland's paradigm, than in a juxtaposed plot, which is how it's implemented in `ggstatsplot` because displaying detailed results from statistical tests would be difficult otherwise."}
+```{r example3, fig.height = 12, fig.width = 10, fig.cap = "**Figure-3**. Comparing different aspects of data is much more accurate in (a) a *superposed* plot, which is recommended in Cleveland's paradigm, than in (b) a *juxtaposed* plot, which is how it is implemented in `ggstatsplot` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot."}
 # for reproducibility
 set.seed(123)
 
 # plot
 ggstatsplot::combine_plots(
-  # plot 1: juxtaposition
-  ggstatsplot::grouped_ggscatterstats(
-    data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
-                           genre == "Drama"),
-    x = length,
-    y = rating,
-    grouping.var = genre,
-    marginal = FALSE,
-    title.prefix = "Genre",
-    title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
-    title.size = 12
-  ),
-  # plot2: superposition
+  # plot 1: superposition
   ggplot2::ggplot(
     data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
                            genre == "Drama"),
@@ -165,6 +153,18 @@ ggstatsplot::combine_plots(
     ggplot2::geom_smooth(method = "lm") +
     ggplot2::labs(title = "superposition (recommended in Cleveland's paradigm)") +
     ggstatsplot::theme_ggstatsplot(),
+  # plot 2: juxtaposition
+  ggstatsplot::grouped_ggscatterstats(
+    data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
+                           genre == "Drama"),
+    x = length,
+    y = rating,
+    grouping.var = genre,
+    marginal = FALSE,
+    title.prefix = "Genre",
+    title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
+    title.size = 12
+  ),
   # combine for comparison
   title.text = "Two ways to compare different aspects of data",
   nrow = 2,
@@ -172,17 +172,17 @@ ggstatsplot::combine_plots(
 )
 ```
 
-The `grouped_` function plots output follow the *Shrink Principle* (Tufte, 2001,
-p.166-7) for high-information graphics, which dictates that the data density and
-the size of the data matrix can be maximized to exploit maximum resolution of
-the available data-display technology. Given the large maximum resolution
-afforded by most computer monitors today, saving `grouped_` plots with
-appropriate resolution ensures no loss in legibility with reduced graphics area.
+The `grouped_` plots follow the *Shrink Principle* (Tufte, 2001, p.166-7) for
+high-information graphics, which dictates that the data density and the size of
+the data matrix can be maximized to exploit maximum resolution of the available
+data-display technology. Given the large maximum resolution afforded by most
+computer monitors today, saving `grouped_` plots with appropriate resolution
+ensures no loss in legibility with reduced graphics area.
 
 # Graphical integrity (and clean design)
-
-Graphical excellence consists of communicating complex ideas with clarity and in a
-way that the viewer understands the greatest number of ideas in a short amount
+   
+Graphical excellence consists of communicating complex ideas with clarity and in
+a way that the viewer understands the greatest number of ideas in a short amount
 of time all the while not quoting the data out of context. The package follows
 the principles for **graphical integrity** (as outlined in Tufte, 2001):
 
@@ -225,15 +225,14 @@ the graphic without adding any new information. But this redundancy is tolerated
 for the sake of beauty that such symmetrical shapes can bring to the graphic.
 Even Tufte admits that efficiency is but one consideration in the design of
 statistical graphics (Tufte, 2001, p. 137). Additionally, these principles were
-formulated in an era in which computer graphics had yet to revolutionize the ease
-with which graphics could be produced and thus some of the concerns about
+formulated in an era in which computer graphics had yet to revolutionize the
+ease with which graphics could be produced and thus some of the concerns about
 minimizing data-ink for easier production of graphics are not as relevant as
 they were.
 
 
 # Statistical details
-
-
+   
 ## Types of tests supported in each function
 
 Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
@@ -250,14 +249,14 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 One of the important functions of a plot is to show the variation in the data,
 which comes in two forms:
 
-* *Measurement noise*: In `ggstatsplot`, the actual variation in measurements is
-shown by plotting a combination of (jittered) raw data points with a boxplot
-laid on top (Figure-1) or a histogram (Figure-4). None of the plots, where
-empirical distribution of the data is concerned, show the sample standard
-deviation because they are poor at conveying information about limits of the
-sample and presence of outliers (Cleveland, 1985, p.220).
+  - **Measurement noise**: In `ggstatsplot`, the actual variation in measurements
+    is shown by plotting a combination of (jittered) raw data points with a
+    boxplot laid on top (Figure-1) or a histogram (Figure-4). None of the plots,
+    where empirical distribution of the data is concerned, show the sample
+    standard deviation because they are poor at conveying information about
+    limits of the sample and presence of outliers (Cleveland, 1985, p.220).
 
-```{r example4, fig.height = 6, fig.width = 8, fig.cap = "**Figure-4**. Distribution of a variable shown using `gghistostats`."}
+```{r example4, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "**Figure-4**. Distribution of a variable shown using `gghistostats`."}
 # for reproducibility
 set.seed(123)
 
@@ -267,19 +266,20 @@ ggstatsplot::gghistostats(
   x = Speed,
   test.value = 792,
   test.value.line = TRUE,
+  bf.message = TRUE,
   xlab = "Speed of light (km/sec, with 299000 subtracted)",
   title = "Figure-4: Distribution of Speed of light",
-  caption = "Note: Data collected across 5 different experiments (20 measurements per study)",
+  caption = "Note: Data collected across 5 experiments (20 measurements each)",
   messages = FALSE
 )
 ```
 
-* *Sample-to-sample statistic variation*: Although, traditionally, this
-variation has been shown using the standard error of the mean (SEM) of the
-statistic, `ggstatsplot` plots instead use 95% confidence intervals (e.g,
-Figure-5). This is because the interval formed by error bars correspond to a 68%
-confidence interval, which is not a particularly interesting interval
-(Cleveland, 1985, p.222-225).
+  - **Sample-to-sample statistic variation**: Although, traditionally, this
+    variation has been shown using the standard error of the mean (SEM) of the
+    statistic, `ggstatsplot` plots instead use 95% confidence intervals (e.g.,
+    Figure-5). This is because the interval formed by error bars correspond to
+    a 68% confidence interval, which is not a particularly interesting interval
+    (Cleveland, 1985, p.222-225).
 
 ```{r example5, fig.height = 5, fig.width = 5, fig.cap = "**Figure-5**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`."}
 # for reproducibility
@@ -290,37 +290,85 @@ ggstatsplot::ggcoefstats(x = lme4::lmer(
   total.fruits ~ nutrient + rack + (nutrient |
                                popu / gen),
   data = lme4::Arabidopsis
-))
+),
+p.kr = FALSE)
 ```
 
-## p-values
+## Statistical reporting
 
-* As Lilienfeld and colleagues report (Lilienfeld et al., 2015):
+The default setting in `ggstatsplot` is to produce plots with statistical
+details included. Most often than not, the results are displayed as a `subtitle`
+in the plot. Great care has been taken into which details are included in
+statistical reporting and why.
 
-> **p = 0.000**. Even though this statistical expression, used in over 97,000
-manuscripts according to Google Scholar, makes regular cameo appearances in our
-computer printouts, we should assiduously avoid inserting it in our Results
-sections. This expression implies erroneously that there is a zero probability
-that the investigators have committed a Type I error, that is, a false rejection
-of a true null hypothesis.
+1. **APA guidelines** (APA, 2009) are followed (for the most part) by default:   
+  - Percentages are displayed with no decimal places (Figure-2).
+  - Correlations, *t*-tests, and chi-squared tests are reported with the degrees
+    of freedom in parentheses and the significance level (Figure-2, Figure-3b,
+    Figure-4).
+  - ANOVAs are reported with two degrees of freedom and the significance level
+    (Figure-1).
+  - Regression results are presented with the unstandardized or standardized
+    estimate (beta), whichever was specified by the user, along with the
+    statistic (depending on the model, this can be a *t* or *z* statistic) and
+    the corresponding significance level (Figure-5).
 
-All p-values displayed in `ggstatsplot` plots avoid this mistake. Anything less
-  than `p < 0.001` is displayed as such. The package doesn't care how
-  infinitesimally small the *p*-values are. Instead, the emphasis is put more on
-  the effect size magnitudes and their 95% CIs.
+2. Default statistical tests: 
 
-# Suggestions
+3. Dealing with **null results**:
 
-If you find any bugs or have any suggestions/remarks, please file an issue on `GitHub`: 
+4.  Avoiding the **"p-value error"**:  
+    The *p*-value indexes the probability that the researchers have falsely
+    rejected a true null hypothesis (Type I error, i.e.) and can rarely be
+    *exactly* 0. And yet over 97,000 manuscripts on Google Scholar report the
+    *p*-value to be `p = 0.000` (Lilienfeld et al., 2015), putatively due to
+    relying on default computer outputs. All *p*-values displayed in
+    `ggstatsplot` plots avoid this mistake. Anything less than `p < 0.001` is
+    displayed as such (e.g, Figure-1). The package deems it unimportant how
+    infinitesimally small the *p*-values are and, instead, puts emphasis on the
+    effect size magnitudes and their 95% CIs.
+
+# Conclusion
+
+
+
+# References
+   
+# Appendix
+   
+## Appendix A: Documentation
+
+There are three main documents one can rely on to learn how to use
+`ggstatsplot`:
+
+  - **Manual**:  
+    The `CRAN` reference manual provides detailed documentation about arguments
+    for each function and examples :
+    <https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf>
+
+  - **README**:  
+    The GitHub `README` document provides a quick summary of all available
+    functionality without going too much into details:
+    <https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
+
+  - **Vignettes**:  
+    Vignettes contain probably the most detailed exposition. Every single
+    function in `ggstatsplot` has an associated vignette which describes in
+    depth how to use the function and modify the defaults to customize the plot
+    to your liking. All these vignettes can be accessed from the package
+    website: <https://indrajeetpatil.github.io/ggstatsplot/articles/>
+
+## Appendix B: Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on
+`GitHub` repository for this package:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
-# Session Information
+## Appendix C: Session information
 
 Summarizing session information for reproducibility.
 
-```{r session_info, eval = FALSE}
+```{r session_info}
 options(width = 200)
-devtools::session_info()
+devtools::session_info()$platform
 ```
-
-# References

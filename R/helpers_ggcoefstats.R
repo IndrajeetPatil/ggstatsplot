@@ -1,6 +1,5 @@
-
 #' @title Create text labels
-#' @name tz_labeller
+#' @name tfz_labeller
 #'
 #' @param tidy_df Tidy dataframe from `broom::tidy`.
 #' @param glance_df Glance model summary dataframe from `broom::glance`.

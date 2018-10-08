@@ -1,6 +1,6 @@
-context("helpers_effsize_ci")
+context("t1way_ci")
 
-test_that("ci stuff works", {
+test_that("t1way_ci works", {
   # make a bogus dataframe to test against
   # some plausible numbers, a negative value and an NA
   bogusdata <- structure(list(
