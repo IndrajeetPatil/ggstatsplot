@@ -30,21 +30,21 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#'
+#' 
 #' # without counts data
 #' subtitle_contigency_tab(
 #'   data = mtcars,
 #'   main = am,
 #'   condition = cyl
 #' )
-#'
+#' 
 #' # with counts data
 #' # in case of no variation, NaN will be shown for results
 #' library(jmv)
-#'
+#' 
 #' dat <- as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male")
-#'
+#' 
 #' subtitle_contigency_tab(
 #'   data = dat,
 #'   main = Hair,
@@ -96,11 +96,11 @@ subtitle_contigency_tab <- function(data,
   if (!base::missing(counts)) {
     data %<>%
       tidyr::uncount(
-      data = .,
-      weights = counts,
-      .remove = TRUE,
-      .id = "id"
-    ) %>%
+        data = .,
+        weights = counts,
+        .remove = TRUE,
+        .id = "id"
+      ) %>%
       tibble::as_data_frame(.)
   }
 
@@ -293,16 +293,16 @@ subtitle_contigency_tab <- function(data,
 #' @inheritParams subtitle_contigency_tab
 #'
 #' @examples
-#'
+#' 
 #' # with counts
 #' library(jmv)
-#'
+#' 
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#'
+#' 
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),
@@ -328,7 +328,7 @@ subtitle_onesample_proptest <-
         ))[1]
     }
 
-    #=================== dataframe =============================================
+    # =================== dataframe =============================================
 
     if (base::missing(counts)) {
       data <-
@@ -347,7 +347,7 @@ subtitle_onesample_proptest <-
         tibble::as_data_frame(x = .)
     }
 
-    #========================== converting counts ================================
+    # ========================== converting counts ================================
 
     # untable the dataframe based on the count for each obervation
     if (!base::missing(counts)) {
@@ -361,7 +361,7 @@ subtitle_onesample_proptest <-
         tibble::as_data_frame(.)
     }
 
-    #================================= statistical test =========================
+    # ================================= statistical test =========================
 
     # conducting proportion test with jmv::propTestN()
     jmv_prop <- jmv::propTestN(

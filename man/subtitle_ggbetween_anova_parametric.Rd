@@ -6,7 +6,7 @@
 \usage{
 subtitle_ggbetween_anova_parametric(data, x, y,
   effsize.type = "partial_omega", nboot = 100, var.equal = FALSE,
-  k = 3, messages = TRUE)
+  k = 3, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -36,6 +36,8 @@ omega-squared for \strong{anova})).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{...}{Additional arguments (ignored).}
 }
 \description{
 Making text subtitle for the between-subject anova designs.

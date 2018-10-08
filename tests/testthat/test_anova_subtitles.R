@@ -1,55 +1,58 @@
 context("anova_subtitles")
 
-test_that("anova subtitles work", {
-  # the expected result
-  r <-
-    broom::tidy(
-      stats::oneway.test(
-        formula = sleep_total ~ vore,
-        na.action = na.omit,
-        subset = NULL,
-        data = ggplot2::msleep
+testthat::test_that(
+  desc = "anova subtitles work",
+  code = {
+    # the expected result
+    r <-
+      broom::tidy(
+        stats::oneway.test(
+          formula = sleep_total ~ vore,
+          na.action = na.omit,
+          subset = NULL,
+          data = ggplot2::msleep
+        )
       )
+
+    # output from ggstatsplot helper subtitle
+    subtitle <-
+      ggstatsplot::subtitle_ggbetween_anova_parametric(
+        data = ggplot2::msleep,
+        x = vore,
+        y = sleep_total,
+        messages = FALSE
+      )
+
+    # extracting only the numbers and creating a tibble
+    subtitle_vec <- num_parser(ggstats.obj = subtitle)
+
+    # testing values
+
+    # numerator degress of freedom
+    testthat::expect_equal(
+      expected = r$`num df`[[1]],
+      object = subtitle_vec[[1]]
     )
 
-  # output from ggstatsplot helper subtitle
-  subtitle <-
-    ggstatsplot::subtitle_ggbetween_anova_parametric(
-      data = ggplot2::msleep,
-      x = vore,
-      y = sleep_total,
-      messages = FALSE
+    # denominator degress of freedom
+    testthat::expect_equal(
+      expected = r$`denom df`[[1]],
+      object = subtitle_vec[[2]],
+      tolerance = 1e-3
     )
 
-  # extracting only the numbers and creating a tibble
-  subtitle_vec <- num_parser(ggstats.obj = subtitle)
+    # F-value
+    testthat::expect_equal(
+      expected = r$statistic[[1]],
+      object = subtitle_vec[[3]],
+      tolerance = 1e-3
+    )
 
-  # testing values
-
-  # numerator degress of freedom
-  testthat::expect_equal(
-    expected = r$`num df`[[1]],
-    object = subtitle_vec[[1]]
-  )
-
-  # denominator degress of freedom
-  testthat::expect_equal(
-    expected = r$`denom df`[[1]],
-    object = subtitle_vec[[2]],
-    tolerance = 1e-3
-  )
-
-  # F-value
-  testthat::expect_equal(
-    expected = r$statistic[[1]],
-    object = subtitle_vec[[3]],
-    tolerance = 1e-3
-  )
-
-  # p-value
-  testthat::expect_equal(
-    expected = r$p.value[[1]],
-    object = subtitle_vec[[4]],
-    tolerance = 1e-3
-  )
-})
+    # p-value
+    testthat::expect_equal(
+      expected = r$p.value[[1]],
+      object = subtitle_vec[[4]],
+      tolerance = 1e-3
+    )
+  }
+)

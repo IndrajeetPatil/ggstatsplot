@@ -57,6 +57,7 @@ bf_message_ttest <- function(jmv_results,
 #'   omega-squared for **anova**)).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @param ... Additional arguments (ignored).
 #' @inheritParams stats::oneway.test
 #' @inheritParams groupedstats::specify_decimal_p
 #'
@@ -95,7 +96,8 @@ subtitle_ggbetween_anova_parametric <-
              nboot = 100,
              var.equal = FALSE,
              k = 3,
-             messages = TRUE) {
+             messages = TRUE,
+             ...) {
     # creating a dataframe
     data <-
       dplyr::select(
@@ -280,6 +282,7 @@ subtitle_ggbetween_anova_parametric <-
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the 95% confidence interval for Cohen's *d*
 #'   or Hedge's *g* (Default: `FALSE`).
+#' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_ggbetween_anova_parametric
 #' @inheritParams stats::t.test
 #' @inheritParams groupedstats::specify_decimal_p
@@ -323,7 +326,8 @@ subtitle_ggbetween_t_parametric <-
              effsize.type = "g",
              effsize.noncentral = FALSE,
              var.equal = FALSE,
-             k = 3) {
+             k = 3,
+             ...) {
 
     # creating a dataframe
     data <-
@@ -486,6 +490,7 @@ subtitle_ggbetween_t_parametric <-
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_ggbetween_t_parametric
 #' @inheritParams groupedstats::specify_decimal_p
 #'
@@ -511,7 +516,8 @@ subtitle_ggbetween_mann_nonparametric <-
              y,
              paired = FALSE,
              k = 3,
-             messages = TRUE) {
+             messages = TRUE,
+             ...) {
 
     # creating a dataframe
     data <-
@@ -620,6 +626,7 @@ subtitle_ggbetween_mann_nonparametric <-
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_ggbetween_t_parametric
 #' @inheritParams groupedstats::specify_decimal_p
 #' @inheritParams t1way_ci
@@ -659,7 +666,8 @@ subtitle_ggbetween_t_rob <-
              tr = 0.1,
              nboot = 100,
              k = 3,
-             messages = TRUE) {
+             messages = TRUE,
+             ...) {
 
     # creating a dataframe
     data <-
@@ -766,6 +774,7 @@ subtitle_ggbetween_t_rob <-
 #'
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
+#' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_ggbetween_t_parametric
 #'
 #' @importFrom jmv ttestIS
@@ -802,7 +811,8 @@ subtitle_ggbetween_t_bayes <- function(data,
                                        y,
                                        bf.prior = 0.707,
                                        paired = FALSE,
-                                       k = 3) {
+                                       k = 3,
+                                       ...) {
 
   # creating a dataframe
   data <-
@@ -944,6 +954,7 @@ subtitle_ggbetween_t_bayes <- function(data,
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_ggbetween_t_parametric
 #' @inheritParams groupedstats::specify_decimal_p
 #'
@@ -967,7 +978,8 @@ subtitle_ggbetween_kw_nonparametric <-
              x,
              y,
              messages = TRUE,
-             k = 3) {
+             k = 3,
+             ...) {
 
     # creating a dataframe
     data <-
@@ -1052,6 +1064,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
+#' @param ... Additional arguments (ignored).
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_ggbetween_t_parametric
 #' @inheritParams groupedstats::specify_decimal_p
@@ -1096,7 +1109,8 @@ subtitle_ggbetween_rob_anova <-
              tr = 0.1,
              nboot = 100,
              messages = TRUE,
-             k = 3) {
+             k = 3,
+             ...) {
 
     # creating a dataframe
     data <-

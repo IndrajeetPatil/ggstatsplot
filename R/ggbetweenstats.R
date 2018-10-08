@@ -1,4 +1,3 @@
-#'
 #' @title Violin plots for group or condition comparisons in between-subjects
 #'   designs.
 #' @name ggbetweenstats
@@ -79,34 +78,18 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr vars contains
-#' @importFrom dplyr arrange
+#' @importFrom dplyr select group_by summarize vars contains arrange
 #' @importFrom dplyr mutate mutate_at mutate_if
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
-#' @importFrom WRS2 t1way
-#' @importFrom WRS2 yuen
-#' @importFrom WRS2 yuen.effect.ci
+#' @importFrom WRS2 t1way yuen yuen.effect.ci
 #' @importFrom effsize cohen.d
-#' @importFrom sjstats eta_sq
-#' @importFrom sjstats omega_sq
-#' @importFrom stats na.omit
-#' @importFrom stats t.test
-#' @importFrom stats oneway.test
-#' @importFrom coin wilcox_test
-#' @importFrom coin statistic
+#' @importFrom sjstats eta_sq omega_sq
+#' @importFrom stats na.omit t.test oneway.test
+#' @importFrom coin wilcox_test statistic
 #' @importFrom rlang enquo quo_name
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom crayon green
-#' @importFrom crayon blue
-#' @importFrom crayon yellow
-#' @importFrom crayon red
-#' @importFrom paletteer scale_color_paletteer_d
-#' @importFrom paletteer scale_fill_paletteer_d
+#' @importFrom crayon blue green red yellow
+#' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_summary
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}
@@ -134,10 +117,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -147,7 +130,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#'
+#' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -357,44 +340,25 @@ ggbetweenstats <- function(data,
     test <- "anova"
   }
 
-  if (test == "anova") {
-    ## parametric anova ---------------------------------------------------------
-    #
-    if (type == "parametric" || type == "p") {
-      subtitle <- subtitle_ggbetween_anova_parametric(
-        data = data,
-        x = x,
-        y = y,
-        effsize.type = effsize.type,
-        nboot = nboot,
-        var.equal = var.equal,
-        k = k,
-        messages = messages
-      )
-      ## Kruskal-Wallis (nonparametric ANOVA) -----------------------------------
-      #
-    } else if (type == "nonparametric" || type == "np") {
-      subtitle <- subtitle_ggbetween_kw_nonparametric(
-        data = data,
-        x = x,
-        y = y,
-        k = k,
-        messages = messages
-      )
-      ## robust ANOVA -----------------------------------------------------------
-      #
-    } else if (type == "robust" || type == "r") {
-      subtitle <- subtitle_ggbetween_rob_anova(
-        data = data,
-        x = x,
-        y = y,
-        k = k,
-        messages = messages,
-        tr = tr,
-        nboot = nboot
-      )
-    }
-  } else if (test == "t-test") {
+  if (!is.null(effsize.type)) {
+    # figuring out which effect size to use
+    effsize.type <- switch(
+      EXPR = effsize.type,
+      d = "biased",
+      g = "unbiased",
+      partial_eta = "biased",
+      partial_omega = "unbiased",
+      biased = "biased",
+      unbiased = "unbiased",
+      "unbiased"
+    )
+  } else {
+    effsize.type <- "unbiased"
+  }
+
+
+  # preparing the bayes factor message
+  if (test == "t-test") {
 
     # running bayesian analysis
     jmv_results <- jmv::ttestIS(
@@ -418,57 +382,27 @@ ggbetweenstats <- function(data,
           caption = caption
         )
     }
-    ## parametric t-test --------------------------------------------------------
-    #
-    if (type == "parametric" || type == "p") {
-      # Welch's t-test run by default
-      subtitle <- subtitle_ggbetween_t_parametric(
-        data = data,
-        x = x,
-        y = y,
-        paired = FALSE,
-        effsize.type = effsize.type,
-        effsize.noncentral = effsize.noncentral,
-        var.equal = var.equal,
-        k = k
-      )
-
-      ## Mann-Whitney U test ----------------------------------------------------
-      #
-    } else if (type == "nonparametric" || type == "np") {
-      subtitle <- subtitle_ggbetween_mann_nonparametric(
-        data = data,
-        x = x,
-        y = y,
-        paired = FALSE,
-        k = k,
-        messages = messages
-      )
-      ## robust t-test ----------------------------------------------------------
-      #
-    } else if (type == "robust" || type == "r") {
-      subtitle <- subtitle_ggbetween_t_rob(
-        data = data,
-        x = x,
-        y = y,
-        k = k,
-        tr = tr,
-        nboot = nboot,
-        messages = messages
-      )
-
-      ## bayesian t-test --------------------------------------------------------
-    } else if (type == "bayes" || type == "bf") {
-      subtitle <- subtitle_ggbetween_t_bayes(
-        data = data,
-        x = x,
-        y = y,
-        bf.prior = bf.prior,
-        k = k,
-        paired = FALSE
-      )
-    }
   }
+
+  # extracting the subtitle using the switch function
+  subtitle <- ggbetweenstats_switch(
+    # switch based on
+    type = type,
+    test = test,
+    # arguments relevant for subtitle helper functions
+    data = data,
+    x = x,
+    y = y,
+    paired = FALSE,
+    effsize.type = effsize.type,
+    effsize.noncentral = effsize.noncentral,
+    var.equal = var.equal,
+    bf.prior = bf.prior,
+    tr = tr,
+    nboot = nboot,
+    k = k,
+    messages = messages
+  )
 
   # annotations and themes -----------------------------------------------------
 

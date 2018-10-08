@@ -6,7 +6,7 @@
 (between-/within-subjects designs).}
 \usage{
 subtitle_ggbetween_mann_nonparametric(data, x, y, paired = FALSE,
-  k = 3, messages = TRUE)
+  k = 3, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -23,6 +23,8 @@ taken.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{...}{Additional arguments (ignored).}
 }
 \description{
 Making text subtitle for the Mann-Whitney U-test

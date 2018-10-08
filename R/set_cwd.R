@@ -23,5 +23,6 @@ set_cwd <- function() {
 
   # print the current directory to confirm you are in the right directory
   print(x = paste("setting current working directory to: ", base::getwd(),
-                  sep = ""))
+    sep = ""
+  ))
 }

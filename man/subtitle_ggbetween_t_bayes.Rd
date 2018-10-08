@@ -5,7 +5,7 @@
 \title{Making text subtitle for the bayesian t-test.}
 \usage{
 subtitle_ggbetween_t_bayes(data, x, y, bf.prior = 0.707,
-  paired = FALSE, k = 3)
+  paired = FALSE, k = 3, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -22,6 +22,8 @@ to use in calculating Bayes factors.}
     t-test.}
 
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+
+\item{...}{Additional arguments (ignored).}
 }
 \description{
 Making text subtitle for the bayesian t-test.

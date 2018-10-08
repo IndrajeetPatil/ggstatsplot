@@ -5,7 +5,8 @@
 \title{Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 (between-subjects designs).}
 \usage{
-subtitle_ggbetween_kw_nonparametric(data, x, y, messages = TRUE, k = 3)
+subtitle_ggbetween_kw_nonparametric(data, x, y, messages = TRUE, k = 3,
+  ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -19,6 +20,8 @@ taken.}
 to be displayed (Default: \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+
+\item{...}{Additional arguments (ignored).}
 }
 \description{
 Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)

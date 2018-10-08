@@ -83,7 +83,7 @@ fail if we're trying to make three plots.
 checked for the right class (in this case `chr`) and the right quantity of
 entries in the list.
 
-# `ggbetweenstats` and `purrr`
+# `ggbetweenstats`
 
 Following our methodology above let's start with `ggebtweenstats`. We'll use the
 `gapminder` dataset. We'll make a 3 item named `list` called `data_list` using

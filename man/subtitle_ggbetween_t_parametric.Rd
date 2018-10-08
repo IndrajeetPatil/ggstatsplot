@@ -6,7 +6,7 @@
 \usage{
 subtitle_ggbetween_t_parametric(data, x, y, paired = FALSE,
   effsize.type = "g", effsize.noncentral = FALSE, var.equal = FALSE,
-  k = 3)
+  k = 3, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -37,6 +37,8 @@ or Hedge's \emph{g} (Default: \code{FALSE}).}
     the case of arbitrarily many samples.}
 
 \item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+
+\item{...}{Additional arguments (ignored).}
 }
 \description{
 Making text subtitle for the t-test (between-/within-subjects designs).
