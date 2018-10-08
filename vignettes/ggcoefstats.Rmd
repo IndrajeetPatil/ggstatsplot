@@ -25,17 +25,22 @@ knitr::opts_chunk$set(
 ```
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** of
-regression models saved in tidy data frames (produced with the `broom` package).
-By default, the plot displays `95%` confidence intervals for the regression
-coefficients. The function currently supports only those classes of object that
-are supported by the `broom` package. For an exhaustive list, see-
-<https://broom.tidyverse.org/articles/available-methods.html>
+key model indicators for a very wide array of models ranging from multiple
+linear regression using ordinary least squares through ANOVA models to almost
+any model generated under the GLM framework. 
 
-In this vignette, we will see examples of how to use this function. We will try
-to cover as many classes of objects as possible. Unfortunately, there is no
-single dataset that will be helpful for carrying out all types of regression
-analyses and, therefore, we will use various datasets to explore data-specific
-hypotheses using regression models.
+The function currently supports only those classes of object that are supported
+by the `broom` package which saves them in tidy data frames. For an exhaustive
+list, see- <https://broom.tidyverse.org/articles/available-methods.html> By
+default, the plot displays `95%` confidence intervals for the regression
+coefficients.
+
+In this vignette, we will explore the use of this function. We will progress in
+what we hope is an orderly logical fashion and try to cover as many classes of
+object models as possible. Unfortunately, there is no single dataset that will
+be helpful for carrying out all types of regression analyses and, therefore, we
+will use various datasets to explore data-specific hypotheses using regression
+models.
 
 **Note before**: The following demo uses the pipe operator (`%>%`), so in case
   you are not familiar with this operator, here is a good explanation:
@@ -44,7 +49,7 @@ hypotheses using regression models.
 ## General structure of the plots
 
 Although the statistical models displayed in the plot may differ based on the
-class of models being investigated, there are few aspects of the plot that will
+class of model being investigated, there are few aspects of the plot that will
 be invariant across models:
 
 - The dot-whisker plot contains a dot representing the **estimate** and their
@@ -67,6 +72,41 @@ be invariant across models:
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
 itself.
+
+## A simple example using `lm` and `mtcars`
+
+Let's start with a simple example using a common dataset. We'll predict miles per gallon `mpg` using weight of the car `wt`, engine displacement `disp`, and horsepower `hp` using `lm`. 
+
+```{r lm0, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+# loading needed libraries
+library(ggstatsplot)
+library(ggplot2)
+
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = stats::lm(
+    formula = mpg ~ wt + disp + hp,
+    data = mtcars
+  ),
+#  effsize = "omega",                        # changing the effect size estimate being displayed
+  point.color = "red",                      # changing the point color
+  point.size = 4,                           # changing the point size
+  point.shape = 15,                         # changing the point shape
+  package = "dutchmasters",                 # package from which color paletter is to be taken
+  palette = "milkmaid",                     # color palette for labels
+  title = "Estimated regression coeffients"                   # title for the plot
+) +                                    
+  # further modification with the ggplot2 commands
+  # note the order in which the labels are entered
+  ggplot2::scale_y_discrete(labels = c("Weight", "Displacement", "Horsepower")) +
+  ggplot2::labs(x = "effect size estimate (partial omega-squared)",
+                y = NULL)
+```
+
+
 
 ## omnibus ANOVA (`aov`)
 
