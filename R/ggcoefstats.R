@@ -367,6 +367,15 @@ ggcoefstats <- function(x,
       )
   }
 
+  if (is(x, "lm")) {
+    predictors <- model.matrix(x$terms, data = x$model)
+    predictors <- as.data.frame(predictors)
+    sy <- sd(x$model[[1]])
+    tidy_df$sx <- sapply(predictors, sd)
+    tidy_df$std.coef <- tidy_df$estimate * tidy_df$sx/sy
+    tidy_df$sx <- NULL
+  }
+
   # =================== p-value computation =====================================
   #
   # p-values won't be computed by default for the lmer models
