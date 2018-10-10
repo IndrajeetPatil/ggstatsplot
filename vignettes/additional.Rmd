@@ -30,11 +30,17 @@ Due to constraints on the size of the `R` package, all available vignettes are
 not included in the package and thus can't be accessed on `CRAN`. There are few
 additional vignettes that are only available on the website for this package:
 
-  - `ggstatsplot` plot designs
+  - Introduction to `ggstatsplot` (publication describing philosophy and
+    principles behind this package):
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggstatsplot_paper.html>)
-  - using `ggstatsplot` with the `purrr` package
+    
+  - Using `ggstatsplot` with the `purrr` package:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
-
+    
+  - Gallery of `ggstatsplot` examples (shows how `ggstatsplot` can be further
+    modified using `ggplot2` functions):
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gallery.html>)
+    
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

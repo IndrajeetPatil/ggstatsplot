@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--07-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--09-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -176,6 +176,19 @@ In `R`, documentation for any function can be accessed with the standard
 # helper functions
 ?combine_plots
 ?theme_ggstatsplot
+
+# helper functions for making text with results from statistical tests
+?subtitle_contigency_tab
+?subtitle_ggbetween_anova_parametric
+?subtitle_ggbetween_kw_nonparametric
+?subtitle_ggbetween_mann_nonparametric
+?subtitle_ggbetween_rob_anova
+?subtitle_ggbetween_t_bayes
+?subtitle_ggbetween_t_parametric
+?subtitle_ggbetween_t_rob
+?subtitle_ggscatterstats
+?subtitle_onesample
+?subtitle_onesample_proptest
 ```
 
 Another handy tool to see arguments to any of the functions is `args`.
@@ -245,7 +258,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002c0e7548>
+#> <bytecode: 0x000000002b913228>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -258,26 +271,34 @@ relies a lot on, you can check out these links-
 
 ## Usage
 
-`ggstatsplot` relies on [non-standard
-evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html),
-which means you **shouldn’t** enter arguments in the following manner:
-`data = NULL, x = data$x, y = data$y`. You **must** always specify the
-`data` argument for all functions.
+`ggstatsplot` relies on non-standard evaluation (NSE), i.e., rather than
+looking at the values of arguments (`x`, `y`), it instead looks at their
+expressions. This means that you **shouldn’t** enter arguments with the
+`$` operator and setting `data = NULL`: `data = NULL, x = data$x, y =
+data$y`. You **must** always specify the `data` argument for all
+functions. On the plus side, you can enter arguments either as a string
+(`x = "x", y = "y"`) or as a bare expression (`x = x, y = y`) and it
+wouldn’t matter. To read more about NSE, see-
+<http://adv-r.had.co.nz/Computing-on-the-language.html>
 
-Additionally, `ggstatsplot` is a very chatty package and will by default
-output information about references for tests, notes on assumptions
-about linear models, and warnings. If you don’t want your console to be
-cluttered with such messages, they can be turned off by setting argument
-`messages = FALSE` in the function call.
+`ggstatsplot` is a very chatty package and will by default print helpful
+notes on assumptions about linear models, warnings, etc. If you don’t
+want your console to be cluttered with such messages, they can be turned
+off by setting argument `messages = FALSE` in the function call.
 
 Here are examples of the main functions currently supported in
 `ggstatsplot`.
 
-**Note**: The documentation below is for the **development** version of
-the package. So you may see some features available here that are not
-currently present in the stable version of this package on **CRAN**. For
-documentation relevant for the CRAN version, see the vignettes on the
-site: <https://cran.r-project.org/web/packages/ggstatsplot/vignettes/>
+**Note**: If you are reading this on GitHub repository, the
+documentation below is for the **development** version of the package.
+So you may see some features available here that are not currently
+present in the stable version of this package on **CRAN**. For
+documentation relevant for the CRAN version, see:
+
+  - vignettes:
+    <https://cran.r-project.org/web/packages/ggstatsplot/vignettes/>
+  - README:
+    <https://cran.r-project.org/web/packages/ggstatsplot/readme/README.html>
 
 ## `ggbetweenstats`
 
@@ -388,6 +409,7 @@ ggstatsplot::grouped_ggbetweenstats(
   x = mpaa, 
   y = length,
   grouping.var = genre,            # grouping variable
+  k = 2,
   title.prefix = "Movie genre",
   palette = "default_jama",
   package = "ggsci",
@@ -694,8 +716,8 @@ ggstatsplot::gghistostats(
   test.value.line = TRUE,                        # display a vertical line at test value
   test.value.color = "#0072B2",                  # color for the line for test value
   centrality.para = "mean",                      # which measure of central tendency is to be plotted
-  centrality.color = "darkred",                  # decides color of vertical line representing central tendency
-  binwidth = 0.10,                               # binwidth value (experiment until you find the best one)
+  centrality.color = "darkred",                  # decides color for central tendency line
+  binwidth = 0.10,                               # binwidth value (experiment)
   bf.message = TRUE,                             # display bayes factor for null over alternative
   bf.prior = 0.8,                                # prior width for computing bayes factor
   messages = FALSE,                              # turn off the messages

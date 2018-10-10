@@ -260,7 +260,7 @@ ggcoefstats <- function(x,
       crayon::blue(
         "No model diagnostics information available for the object of class",
         crayon::yellow(class(x)[[1]]),
-        ". Future release might support this.\n"
+        ". \nFuture release might support this.\n"
       ),
       sep = ""
     ))

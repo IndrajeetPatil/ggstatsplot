@@ -78,8 +78,7 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select group_by summarize vars contains arrange
-#' @importFrom dplyr mutate mutate_at mutate_if
+#' @importFrom dplyr select group_by arrange mutate mutate_at mutate_if
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom WRS2 t1way yuen yuen.effect.ci
 #' @importFrom effsize cohen.d
@@ -90,7 +89,6 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
-#' @importFrom groupedstats grouped_summary
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}
 #'
@@ -117,10 +115,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -130,7 +128,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -527,24 +525,18 @@ ggbetweenstats <- function(data,
     }
   }
 
-  # labels with mean values ----------------------------------------------------
+  # mean value tagging ---------------------------------------------------------
 
-  # computing mean and confidence interval for mean
+  # computing mean and confidence interval for mean using helper function
+  # creating label column based on whether just mean is to be displayed or
+  # mean plus its CI
   mean_dat <-
-    groupedstats::grouped_summary(
+    mean_labeller(
       data = data,
-      grouping.vars = x,
-      measures = y
-    ) %>%
-    dplyr::mutate(.data = ., y = mean) %>%
-    dplyr::select(
-      .data = .,
-      x,
-      y,
-      mean.y = mean,
-      lower.ci.y = mean.low.conf,
-      upper.ci.y = mean.high.conf,
-      n
+      x = x,
+      y = y,
+      mean.ci = mean.ci,
+      k = k
     )
 
   # highlight the mean of each group
@@ -557,37 +549,6 @@ ggbetweenstats <- function(data,
         size = mean.size,
         na.rm = TRUE
       )
-
-    # format the numeric values
-    mean_dat %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = dplyr::vars(dplyr::contains(".y")),
-        .funs = ~ggstatsplot::specify_decimal_p(x = ., k = k)
-      )
-
-    # adding confidence intervals to the label for mean
-    if (isTRUE(mean.ci)) {
-      mean_dat %<>%
-        purrrlyr::by_row(
-          .d = .,
-          ..f = ~paste(.$mean.y,
-            ", 95% CI [",
-            .$lower.ci.y,
-            ", ",
-            .$upper.ci.y,
-            "]",
-            sep = "",
-            collapse = ""
-          ),
-          .collate = "rows",
-          .to = "label",
-          .labels = TRUE
-        )
-    } else {
-      mean_dat %<>%
-        dplyr::mutate(.data = ., label = mean.y)
-    }
 
     # attach the labels with means to the plot
     plot <- plot +
@@ -613,12 +574,12 @@ ggbetweenstats <- function(data,
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
     data_label <- mean_dat %>%
-      dplyr::mutate(.data = ., label = paste0(x, "\n(n = ", n, ")", sep = "")) %>%
+      dplyr::mutate(.data = ., n_label = paste0(x, "\n(n = ", n, ")", sep = "")) %>%
       dplyr::arrange(.data = ., x)
 
     # adding new labels to the plot
     plot <- plot +
-      ggplot2::scale_x_discrete(labels = c(unique(data_label$label)))
+      ggplot2::scale_x_discrete(labels = c(unique(data_label$n_label)))
   }
 
   # messages -------------------------------------------------------------------

@@ -1,5 +1,13 @@
 # ggstatsplot 0.0.6.9000
 
+BUG FIXES
+
+  - `ggcoefstats` was showing wrong confidence intervals for `merMod` class
+  objects due to a bug in the `broom.mixed` package
+  (https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005).
+  This was fixed in `broom.mixed` and so `ggcoefstats` should no longer have any
+  issues.
+
 MAJOR CHANGES
 
   - Following functions are now reexported from the `groupedstats` package to

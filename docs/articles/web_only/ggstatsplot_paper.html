@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ggstatsplot: ggplot2 Based Plots with Statistical Details • ggstatsplot</title>
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
@@ -16,7 +16,7 @@
 <meta property="og:title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
-<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -87,6 +87,9 @@
       <a href="../../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
     <li>
+      <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
     </li>
     <li>
@@ -126,7 +129,7 @@
       <h1>ggstatsplot: ggplot2 Based Plots with Statistical Details</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-10-08</h4>
+            <h4 class="date">2018-10-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggstatsplot_paper.Rmd"><code>vignettes/web_only/ggstatsplot_paper.Rmd</code></a></small>
       <div class="hidden name"><code>ggstatsplot_paper.Rmd</code></div>
@@ -275,12 +278,73 @@
 </ol>
 <p>In particular, default plots in <code>ggstatsplot</code> can sometimes violate one of the principles from 2-4. According to these principles, every bit of ink should have reason for its inclusion in the graphic and should convey some new information to the viewer. If not, such ink should be removed. One instance of this is bilteral symmetry of data measures. For example, in Figure-1, we can see that both the box and violin plots are mirrored, which consumes twice the space in the graphic without adding any new information. But this redundancy is tolerated for the sake of beauty that such symmetrical shapes can bring to the graphic. Even Tufte admits that efficiency is but one consideration in the design of statistical graphics (Tufte, 2001, p. 137). Additionally, these principles were formulated in an era in which computer graphics had yet to revolutionize the ease with which graphics could be produced and thus some of the concerns about minimizing data-ink for easier production of graphics are not as relevant as they were.</p>
 </div>
-<div id="statistical-details" class="section level1">
+<div id="statistical-analysis" class="section level1">
 <h1 class="hasAnchor">
-<a href="#statistical-details" class="anchor"></a>Statistical details</h1>
-<div id="types-of-tests-supported-in-each-function" class="section level2">
+<a href="#statistical-analysis" class="anchor"></a>Statistical analysis</h1>
+<p>As an extension of <code>ggplot2</code>, <code>ggstatsplot</code> has the same expectations about the structure of the data. More specifically,</p>
+<ul>
+<li><p>The <code>data</code> should be an object of class <code>data.frame</code> (a <code>tibble</code> dataframe will also work).</p></li>
+<li><p>The data should be organized following the principles of <em>tidy data</em>, which specify how statistical structure of a data frame (variables and observations) should be mapped to physical structure (columns and rows). More specifically, tidy data means all variables have their own columns and each row corresponds to a unique observation (Wickham, 2014).</p></li>
+<li><p>All <code>ggstatsplot</code> functions remove <code>NA</code>s from variables of interest (similar to <code>ggplot2</code>; Wickham, 2016, p.207) in the data and display total sample size (<em>n</em>) in the subtitle to inform the user/reader about the number of observations included for both the statistical analysis and the visualization. But, when sample sizes differ <em>across</em> tests in the same function, <code>ggstatsplot</code> makes an effort to inform the user of this aspect (Figure-4).</p></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># creating a new dataset without any NAs in variables of interest</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">msleep_no_na &lt;-</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="dt">.data =</span> ggplot2<span class="op">::</span>msleep,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="op">!</span><span class="kw">is.na</span>(sleep_rem),</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="op">!</span><span class="kw">is.na</span>(awake),</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="op">!</span><span class="kw">is.na</span>(brainwt),</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="op">!</span><span class="kw">is.na</span>(bodywt)</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  )</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co"># variable names vector</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">var_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"REM sleep"</span>,</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">               <span class="st">"time awake"</span>,</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">               <span class="st">"brain weight"</span>,</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">               <span class="st">"body weight"</span>)</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co"># combining two plots</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="co"># plot *without* any NAs</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">    <span class="dt">data =</span> msleep_no_na,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">    <span class="dt">corr.method =</span> <span class="st">"kendall"</span>,</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">    <span class="dt">sig.level =</span> <span class="fl">0.001</span>,</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">    <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>,</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">    <span class="dt">cor.vars =</span> <span class="kw">c</span>(sleep_rem, awake<span class="op">:</span>bodywt),</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">    <span class="dt">cor.vars.names =</span> var_names,</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">    <span class="dt">matrix.type =</span> <span class="st">"upper"</span>,</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">    <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span>),</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">    <span class="dt">title =</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">    <span class="dt">subtitle =</span> <span class="st">"sleep units: hours; weight units: kilograms"</span>,</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">  ),</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">  <span class="co"># plot *with* NAs</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">    <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">    <span class="dt">corr.method =</span> <span class="st">"kendall"</span>,</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">    <span class="dt">sig.level =</span> <span class="fl">0.001</span>,</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">    <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>,</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">    <span class="dt">cor.vars =</span> <span class="kw">c</span>(sleep_rem, awake<span class="op">:</span>bodywt),</a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">    <span class="dt">cor.vars.names =</span> var_names,</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">    <span class="dt">matrix.type =</span> <span class="st">"upper"</span>,</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">    <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span>),</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">    <span class="dt">title =</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">    <span class="dt">subtitle =</span> <span class="st">"sleep units: hours; weight units: kilograms"</span>,</a>
+<a class="sourceLine" id="cb4-46" data-line-number="46">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb4-47" data-line-number="47">  ),</a>
+<a class="sourceLine" id="cb4-48" data-line-number="48">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
+<a class="sourceLine" id="cb4-49" data-line-number="49">  <span class="dt">nrow =</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-50" data-line-number="50">)</a></code></pre></div>
+<div class="figure">
+<img src="ggstatsplot_paper_files/figure-html/example4-1.png" alt="**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables." width="960"><p class="caption">
+<strong>Figure-4</strong>. <code>ggstatsplot</code> functions remove <code>NA</code>s from variables of interest and display total sample size <em>n</em>, but they can give more nuanced information about sample sizes when <em>n</em> differs across tests. For example, <code>ggcorrmat</code> will display (a) only one total sample size once when no <code>NA</code>s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when <code>NA</code>s are present across correlation variables.
+</p>
+</div>
+<div id="types-of-statistics-supported" class="section level2">
 <h2 class="hasAnchor">
-<a href="#types-of-tests-supported-in-each-function" class="anchor"></a>Types of tests supported in each function</h2>
+<a href="#types-of-statistics-supported" class="anchor"></a>Types of statistics supported</h2>
 <table class="table">
 <colgroup>
 <col width="16%">
@@ -309,7 +373,7 @@
 </tr>
 <tr class="even">
 <td><code>gghistostats</code></td>
-<td>Distribution of a variable</td>
+<td>Distribution of a numeric variable</td>
 <td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
 <td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
 <td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
@@ -333,7 +397,7 @@
 </tr>
 <tr class="odd">
 <td><code>ggpiestats</code></td>
-<td>Association between two categorical variables</td>
+<td>Association between categorical variables</td>
 <td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
 <td><font color="red"><span class="math inline">\(\times\)</span></font></td>
 <td><font color="red"><span class="math inline">\(\times\)</span></font></td>
@@ -350,58 +414,62 @@
 </tbody>
 </table>
 </div>
+<div id="types-of-statistical-tests-supported" class="section level2">
+<h2 class="hasAnchor">
+<a href="#types-of-statistical-tests-supported" class="anchor"></a>Types of statistical tests supported</h2>
+</div>
 <div id="statistical-variation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#statistical-variation" class="anchor"></a>Statistical variation</h2>
 <p>One of the important functions of a plot is to show the variation in the data, which comes in two forms:</p>
 <ul>
 <li>
-<strong>Measurement noise</strong>: In <code>ggstatsplot</code>, the actual variation in measurements is shown by plotting a combination of (jittered) raw data points with a boxplot laid on top (Figure-1) or a histogram (Figure-4). None of the plots, where empirical distribution of the data is concerned, show the sample standard deviation because they are poor at conveying information about limits of the sample and presence of outliers (Cleveland, 1985, p.220).</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">data =</span> morley,</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">x =</span> Speed,</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">test.value =</span> <span class="dv">792</span>,</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">xlab =</span> <span class="st">"Speed of light (km/sec, with 299000 subtracted)"</span>,</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">title =</span> <span class="st">"Figure-4: Distribution of Speed of light"</span>,</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">caption =</span> <span class="st">"Note: Data collected across 5 experiments (20 measurements each)"</span>,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">)</a></code></pre></div>
-<div class="figure">
-<img src="ggstatsplot_paper_files/figure-html/example4-1.png" alt="**Figure-4**. Distribution of a variable shown using `gghistostats`." width="768"><p class="caption">
-<strong>Figure-4</strong>. Distribution of a variable shown using <code>gghistostats</code>.
-</p>
-</div>
-<ul>
-<li>
-<strong>Sample-to-sample statistic variation</strong>: Although, traditionally, this variation has been shown using the standard error of the mean (SEM) of the statistic, <code>ggstatsplot</code> plots instead use 95% confidence intervals (e.g., Figure-5). This is because the interval formed by error bars correspond to a 68% confidence interval, which is not a particularly interesting interval (Cleveland, 1985, p.222-225).</li>
+<strong>Measurement noise</strong>: In <code>ggstatsplot</code>, the actual variation in measurements is shown by plotting a combination of (jittered) raw data points with a boxplot laid on top (Figure-1) or a histogram (Figure-5). None of the plots, where empirical distribution of the data is concerned, show the sample standard deviation because they are poor at conveying information about limits of the sample and presence of outliers (Cleveland, 1985, p.220).</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">  total.fruits <span class="op">~</span><span class="st"> </span>nutrient <span class="op">+</span><span class="st"> </span>rack <span class="op">+</span><span class="st"> </span>(nutrient <span class="op">|</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">                               </span>popu <span class="op">/</span><span class="st"> </span>gen),</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">data =</span> lme4<span class="op">::</span>Arabidopsis</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">),</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="dt">p.kr =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; Computing p-values via Wald-statistics approximation (treating t as Wald z).</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> morley,</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="dt">x =</span> Speed,</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">test.value =</span> <span class="dv">792</span>,</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">  <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">  <span class="dt">xlab =</span> <span class="st">"Speed of light (km/sec, with 299000 subtracted)"</span>,</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">  <span class="dt">title =</span> <span class="st">"Figure-5: Distribution of Speed of light"</span>,</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">  <span class="dt">caption =</span> <span class="st">"Note: Data collected across 5 experiments (20 measurements each)"</span>,</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">)</a></code></pre></div>
 <div class="figure">
-<img src="ggstatsplot_paper_files/figure-html/example5-1.png" alt="**Figure-5**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`." width="480"><p class="caption">
-<strong>Figure-5</strong>. Sample-to-sample variation in regression estimates is displayed using confidence intervals in <code>ggcoefstats</code>.
+<img src="ggstatsplot_paper_files/figure-html/example5-1.png" alt="**Figure-5**. Distribution of a variable shown using `gghistostats`." width="768"><p class="caption">
+<strong>Figure-5</strong>. Distribution of a variable shown using <code>gghistostats</code>.
+</p>
+</div>
+<ul>
+<li>
+<strong>Sample-to-sample statistic variation</strong>: Although, traditionally, this variation has been shown using the standard error of the mean (SEM) of the statistic, <code>ggstatsplot</code> plots instead use 95% confidence intervals (e.g., Figure-6). This is because the interval formed by error bars correspond to a 68% confidence interval, which is not a particularly interesting interval (Cleveland, 1985, p.222-225).</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  total.fruits <span class="op">~</span><span class="st"> </span>nutrient <span class="op">+</span><span class="st"> </span>rack <span class="op">+</span><span class="st"> </span>(nutrient <span class="op">|</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="st">                               </span>popu <span class="op">/</span><span class="st"> </span>gen),</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">data =</span> lme4<span class="op">::</span>Arabidopsis</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">),</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="dt">p.kr =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; Computing p-values via Wald-statistics approximation (treating t as Wald z).</span></a></code></pre></div>
+<div class="figure">
+<img src="ggstatsplot_paper_files/figure-html/example6-1.png" alt="**Figure-6**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`." width="480"><p class="caption">
+<strong>Figure-6</strong>. Sample-to-sample variation in regression estimates is displayed using confidence intervals in <code>ggcoefstats</code>.
 </p>
 </div>
 </div>
-<div id="statistical-reporting" class="section level2">
+<div id="reporting-results" class="section level2">
 <h2 class="hasAnchor">
-<a href="#statistical-reporting" class="anchor"></a>Statistical reporting</h2>
+<a href="#reporting-results" class="anchor"></a>Reporting results</h2>
 <p>The default setting in <code>ggstatsplot</code> is to produce plots with statistical details included. Most often than not, the results are displayed as a <code>subtitle</code> in the plot. Great care has been taken into which details are included in statistical reporting and why.</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -410,9 +478,9 @@
 </ol>
 <ul>
 <li>Percentages are displayed with no decimal places (Figure-2).</li>
-<li>Correlations, <em>t</em>-tests, and chi-squared tests are reported with the degrees of freedom in parentheses and the significance level (Figure-2, Figure-3b, Figure-4).</li>
+<li>Correlations, <em>t</em>-tests, and chi-squared tests are reported with the degrees of freedom in parentheses and the significance level (Figure-2, Figure-3b, Figure-5).</li>
 <li>ANOVAs are reported with two degrees of freedom and the significance level (Figure-1).</li>
-<li>Regression results are presented with the unstandardized or standardized estimate (beta), whichever was specified by the user, along with the statistic (depending on the model, this can be a <em>t</em> or <em>z</em> statistic) and the corresponding significance level (Figure-5).</li>
+<li>Regression results are presented with the unstandardized or standardized estimate (beta), whichever was specified by the user, along with the statistic (depending on the model, this can be a <em>t</em> or <em>z</em> statistic) and the corresponding significance level (Figure-6).</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Default statistical tests:</p></li>
@@ -455,18 +523,18 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <h2 class="hasAnchor">
 <a href="#appendix-c-session-information" class="anchor"></a>Appendix C: Session information</h2>
 <p>Summarizing session information for reproducibility.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">session_info</a></span>()<span class="op">$</span>platform</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;  setting  value                       </span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;  version  R version 3.5.1 (2018-07-02)</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;  os       Windows 10 x64              </span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;  system   x86_64, mingw32             </span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;  ui       RTerm                       </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt;  language (EN)                        </span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;  tz       America/New_York            </span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;  date     2018-10-08</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">session_info</a></span>()<span class="op">$</span>platform</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;  setting  value                       </span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt;  version  R version 3.5.1 (2018-07-02)</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;  os       Windows 10 x64              </span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;  system   x86_64, mingw32             </span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  ui       RTerm                       </span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  language (EN)                        </span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  tz       America/New_York            </span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  date     2018-10-09</span></a></code></pre></div>
 </div>
 </div>
   </div>
@@ -480,10 +548,11 @@ Vignettes contain probably the most detailed exposition. Every single function i
       <li><a href="#graphical-perception">Graphical perception</a></li>
       <li><a href="#graphical-integrity-and-clean-design">Graphical integrity (and clean design)</a></li>
       <li>
-<a href="#statistical-details">Statistical details</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#types-of-tests-supported-in-each-function">Types of tests supported in each function</a></li>
+<a href="#statistical-analysis">Statistical analysis</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#types-of-statistics-supported">Types of statistics supported</a></li>
+      <li><a href="#types-of-statistical-tests-supported">Types of statistical tests supported</a></li>
       <li><a href="#statistical-variation">Statistical variation</a></li>
-      <li><a href="#statistical-reporting">Statistical reporting</a></li>
+      <li><a href="#reporting-results">Reporting results</a></li>
       </ul>
 </li>
       <li><a href="#conclusion">Conclusion</a></li>

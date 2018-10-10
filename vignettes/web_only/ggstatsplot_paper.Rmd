@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 100
+    dpi: 300
     toc: true
     eval: FALSE
     warning: FALSE
@@ -231,18 +231,92 @@ minimizing data-ink for easier production of graphics are not as relevant as
 they were.
 
 
-# Statistical details
+# Statistical analysis
+
+As an extension of `ggplot2`, `ggstatsplot` has the same expectations about the
+structure of the data. More specifically,
+
+  - The `data` should be an object of class `data.frame` (a `tibble` dataframe
+    will also work).
+    
+  - The data should be organized following the principles of *tidy data*, which
+    specify how statistical structure of a data frame (variables and
+    observations) should be mapped to physical structure (columns and rows).
+    More specifically, tidy data means all variables have their own columns and
+    each row corresponds to a unique observation (Wickham, 2014).
+    
+  - All `ggstatsplot` functions remove `NA`s from variables of interest (similar
+    to `ggplot2`; Wickham, 2016, p.207) in the data and display total sample size (*n*) in
+    the subtitle to inform the user/reader about the number of observations
+    included for both the statistical analysis and the visualization. But, when
+    sample sizes differ *across* tests in the same function, `ggstatsplot` makes
+    an effort to inform the user of this aspect (Figure-4).
+
+```{r example4, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 10, fig.cap = "**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
+
+# creating a new dataset without any NAs in variables of interest
+msleep_no_na <-
+  dplyr::filter(
+    .data = ggplot2::msleep,
+    !is.na(sleep_rem),
+    !is.na(awake),
+    !is.na(brainwt),
+    !is.na(bodywt)
+  )
+
+# variable names vector
+var_names <- c("REM sleep",
+               "time awake",
+               "brain weight",
+               "body weight")
+
+# combining two plots
+ggstatsplot::combine_plots(
+  # plot *without* any NAs
+  ggstatsplot::ggcorrmat(
+    data = msleep_no_na,
+    corr.method = "kendall",
+    sig.level = 0.001,
+    p.adjust.method = "holm",
+    cor.vars = c(sleep_rem, awake:bodywt),
+    cor.vars.names = var_names,
+    matrix.type = "upper",
+    colors = c("#B2182B", "white", "#4D4D4D"),
+    title = "Correlalogram for mammals sleep dataset",
+    subtitle = "sleep units: hours; weight units: kilograms",
+    messages = FALSE
+  ),
+  # plot *with* NAs
+  ggstatsplot::ggcorrmat(
+    data = ggplot2::msleep,
+    corr.method = "kendall",
+    sig.level = 0.001,
+    p.adjust.method = "holm",
+    cor.vars = c(sleep_rem, awake:bodywt),
+    cor.vars.names = var_names,
+    matrix.type = "upper",
+    colors = c("#B2182B", "white", "#4D4D4D"),
+    title = "Correlalogram for mammals sleep dataset",
+    subtitle = "sleep units: hours; weight units: kilograms",
+    messages = FALSE
+  ),
+  labels = c("(a)", "(b)"),
+  nrow = 1
+)
+```
    
-## Types of tests supported in each function
+## Types of statistics supported
 
 Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 ------- | ------------------ | ---- | ----- | ----| ----- 
 `ggbetweenstats` | Between group/condition comparisons | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
-`gghistostats` | Distribution of a variable | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
+`gghistostats` | Distribution of a numeric variable | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
 `ggcorrmat` | Correlation matrix | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
 `ggscatterstats` | Correlation between two variables | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
-`ggpiestats` | Association between two categorical variables | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font>
+`ggpiestats` | Association between categorical variables | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font>
 `ggcoefstats` | Regression model coefficients | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>| <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
+
+## Types of statistical tests supported
 
 ## Statistical variation
 
@@ -251,12 +325,12 @@ which comes in two forms:
 
   - **Measurement noise**: In `ggstatsplot`, the actual variation in measurements
     is shown by plotting a combination of (jittered) raw data points with a
-    boxplot laid on top (Figure-1) or a histogram (Figure-4). None of the plots,
+    boxplot laid on top (Figure-1) or a histogram (Figure-5). None of the plots,
     where empirical distribution of the data is concerned, show the sample
     standard deviation because they are poor at conveying information about
     limits of the sample and presence of outliers (Cleveland, 1985, p.220).
 
-```{r example4, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "**Figure-4**. Distribution of a variable shown using `gghistostats`."}
+```{r example5, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "**Figure-5**. Distribution of a variable shown using `gghistostats`."}
 # for reproducibility
 set.seed(123)
 
@@ -268,7 +342,7 @@ ggstatsplot::gghistostats(
   test.value.line = TRUE,
   bf.message = TRUE,
   xlab = "Speed of light (km/sec, with 299000 subtracted)",
-  title = "Figure-4: Distribution of Speed of light",
+  title = "Figure-5: Distribution of Speed of light",
   caption = "Note: Data collected across 5 experiments (20 measurements each)",
   messages = FALSE
 )
@@ -277,11 +351,11 @@ ggstatsplot::gghistostats(
   - **Sample-to-sample statistic variation**: Although, traditionally, this
     variation has been shown using the standard error of the mean (SEM) of the
     statistic, `ggstatsplot` plots instead use 95% confidence intervals (e.g.,
-    Figure-5). This is because the interval formed by error bars correspond to
+    Figure-6). This is because the interval formed by error bars correspond to
     a 68% confidence interval, which is not a particularly interesting interval
     (Cleveland, 1985, p.222-225).
 
-```{r example5, fig.height = 5, fig.width = 5, fig.cap = "**Figure-5**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`."}
+```{r example6, fig.height = 5, fig.width = 5, fig.cap = "**Figure-6**. Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`."}
 # for reproducibility
 set.seed(123)
 
@@ -294,7 +368,7 @@ ggstatsplot::ggcoefstats(x = lme4::lmer(
 p.kr = FALSE)
 ```
 
-## Statistical reporting
+## Reporting results
 
 The default setting in `ggstatsplot` is to produce plots with statistical
 details included. Most often than not, the results are displayed as a `subtitle`
@@ -305,13 +379,13 @@ statistical reporting and why.
   - Percentages are displayed with no decimal places (Figure-2).
   - Correlations, *t*-tests, and chi-squared tests are reported with the degrees
     of freedom in parentheses and the significance level (Figure-2, Figure-3b,
-    Figure-4).
+    Figure-5).
   - ANOVAs are reported with two degrees of freedom and the significance level
     (Figure-1).
   - Regression results are presented with the unstandardized or standardized
     estimate (beta), whichever was specified by the user, along with the
     statistic (depending on the model, this can be a *t* or *z* statistic) and
-    the corresponding significance level (Figure-5).
+    the corresponding significance level (Figure-6).
 
 2. Default statistical tests: 
 
