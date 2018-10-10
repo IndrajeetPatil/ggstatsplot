@@ -111,7 +111,7 @@ ggstatsplot::ggcoefstats(
 
 **Note:** users should exercise the usual diligence in interpreting unstandarized coefficents, sine in this case `wt` is on a very different scale than `disp` and `hp`.  The appropriate conclusion in this case is that both `wt` and `hp` have a significant impact on predicting mileage while `disp` does not.
 
-*(Editorial note... why not display $R^{2}$ and adjusted $R_{adj}^{2}$ in the footer?)*
+*(Editorial note... why not display $R^{2}$ and adjusted $R_{adj}^{2}$ in the footer? changing `effisize` does nothing here nor does changing `nboot`)*
 
 ## omnibus ANOVA (`aov`)
 
