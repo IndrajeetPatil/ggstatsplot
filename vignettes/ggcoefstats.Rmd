@@ -77,7 +77,7 @@ itself.
 
 Let's start with a simple example using a common dataset. We'll predict miles per gallon `mpg` using weight of the car `wt`, engine displacement `disp`, and horsepower `hp` using `lm`. To keep things simple we'll build a model with no interaction terms `lm(formula = mpg ~ wt + disp + hp, data = mtcars)`.  In this simplest case `ggstatsplot::ggcoefstats` will produce a plot that displays the estimated regression coefficient (a.k.a. $\hat{b_n}$ and labeled $\beta$ on the plot) and the 95% confidence intervals associated with them, as well as the the default `t test` and significance as to whether the coefficient is distinguishable from zero.  We will set various aesthetic parameters, such as title, y axis labels, CI color and shape as well as the overall color palette.  
 
-```{r lm0, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+```{r lm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 # loading needed libraries
 library(ggstatsplot)
 library(ggplot2)
@@ -112,6 +112,54 @@ ggstatsplot::ggcoefstats(
 **Note:** users should exercise the usual diligence in interpreting unstandarized coefficents, sine in this case `wt` is on a very different scale than `disp` and `hp`.  The appropriate conclusion in this case is that both `wt` and `hp` have a significant impact on predicting mileage while `disp` does not.
 
 *(Editorial note... why not display $R^{2}$ and adjusted $R_{adj}^{2}$ in the footer? changing `effisize` does nothing here nor does changing `nboot`)*
+
+## A more interesting example of a linear model (`lm`) with IMDB
+
+For this analysis, let's use the `movies_long` dataset, which provides
+information about IMDB user ratings, budget, length, MPAA categories (e.g.,
+R-rated, NC-17, PG-13, etc.), and genre for `r nrow(movies_long)` movies. Let's
+say our hypothesis is that the IMDB ratings for a movie are predicted by a
+combination of the movie's budget and the running time or length of the movie.
+
+Bearing in mind what we learned from our first simple example let's first inspect the results from the `lm` model `lm(rating ~ budget * length, movies_long)`.  Rather than do that with a separate function call we can accomplish it right within our call to `ggcoefstats` by changing the `output` option from the default `"plot"` to `"tidy"`. While we're at it we'll also set `conf.level = 0.99` to be more conservative since we have plenty of observations and power to detect differences.
+
+```{r lm2, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+# show "tidy" option
+ggstatsplot::ggcoefstats(
+  x = stats::lm(
+    formula = rating ~ budget * length,
+    data = movies_long
+  ),
+  conf.level = 0.99,
+  output = "tidy")
+```
+
+
+
+```{r lm3, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+# plot
+ggstatsplot::ggcoefstats(
+  x = stats::lm(
+    formula = scale(rating) ~ scale(budget) * scale(length),
+    data = movies_long
+  ),
+  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
+  sort = "ascending",                     # sorting the terms of the model based on estimate values
+  ggtheme = ggplot2::theme_gray(),        # changing the default theme
+  stats.label.color = c("darkgreen", "black", "red"),
+  title = "Movie ratings by their genre",
+  subtitle = "Source: www.imdb.com"
+) +                                    
+  # further modification with the ggplot2 commands
+  # note the order in which the labels are entered
+  ggplot2::scale_y_discrete(labels = c("Movie Budget", "Interaction Term", "Movie Length")) +
+  ggplot2::labs(y = "genre (comparison level: Action)") +
+  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
+```
+
+As can be seen from the regression coefficients, compared to the action movies,
+only romantic movies, animated movies, and dramas fare better with the
+audiences.
 
 ## omnibus ANOVA (`aov`)
 
@@ -235,43 +283,6 @@ mod <- stats::lm(
 ggstatsplot::ggcoefstats(x = car::Anova(mod, type = "III"))
 ```
 
-## linear model (`lm`)
-
-Now that we have figured out that the movie `genre` best explains a fair deal of
-variation in how good people rate the movie to be on IMDB. Let's run a linear
-regression model to see how different types of genres compare with each other-
-
-```{r lm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
-# let's check all the levels for the genre variable
-levels(ggstatsplot::movies_long$genre)
-
-# to speed up the calculation, let's use only 10% of the data
-movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = stats::lm(
-    formula = rating ~ genre,
-    data = movies_10
-  ),
-  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
-  sort = "ascending",                     # sorting the terms of the model based on estimate values
-  label.direction = "both",               # direction in which to adjust position of labels (both x and y)
-  ggtheme = ggplot2::theme_gray(),        # changing the default theme
-  stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "black", "red"),
-  title = "Movie ratings by their genre",
-  subtitle = "Source: www.imdb.com"
-) +                                    
-  # further modification with the ggplot2 commands
-  # note the order in which the labels are entered
-  ggplot2::scale_y_discrete(labels = c("Comedy", "Romance", "Documentary", "Animation", "Drama")) +
-  ggplot2::labs(y = "genre (comparison level: Action)") +
-  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
-```
-
-As can be seen from the regression coefficients, compared to the action movies,
-only romantic movies, animated movies, and dramas fare better with the
-audiences.
 
 ## linear mixed-effects model (`lmer`)
 
