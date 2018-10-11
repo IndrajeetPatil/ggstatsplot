@@ -15,11 +15,11 @@ ggbetweenstats(data, x, y, plot.type = "boxviolin",
   linetype = "solid", outlier.tagging = FALSE, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
-  mean.size = 5, mean.color = "darkred",
+  mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
+  point.jitter.height = 0.1, point.dodge.width = 0.6,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
-  point.jitter.width = NULL, point.jitter.height = 0.1,
-  point.dodge.width = 0.6, messages = TRUE)
+  messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -129,6 +129,15 @@ is to be displayed (Default: \code{FALSE}).}
 \item{mean.color}{Color for the data point corresponding to mean (Default:
 \code{"darkred"}).}
 
+\item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
+direction. Defaults to \code{40\%} of the resolution of the data.}
+
+\item{point.jitter.height}{Numeric specifying the degree of jitter in \code{y}
+direction. Defaults to \code{0.1}.}
+
+\item{point.dodge.width}{Numeric specifying the amount to dodge in the \code{x}
+direction. Defaults to \code{0.60}.}
+
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
 extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
@@ -146,15 +155,6 @@ palette. If a number, will index into the list of palettes of appropriate
 type. Default palette is \code{"Dark2"}.}
 
 \item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
-
-\item{point.jitter.width}{Numeric specifying the degree of jitter in \code{x}
-direction. Defaults to \code{40\%} of the resolution of the data.}
-
-\item{point.jitter.height}{Numeric specifying the degree of jitter in \code{y}
-direction. Defaults to \code{0.1}.}
-
-\item{point.dodge.width}{Numeric specifying the amount to dodge in the \code{x}
-direction. Defaults to \code{0.60}.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

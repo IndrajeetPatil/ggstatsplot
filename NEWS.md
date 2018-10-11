@@ -20,6 +20,11 @@ MAJOR CHANGES
   - Vignette with `purrr` examples removed from `CRAN` to reduce the size of the
   package. It is now available on the package website.
 
+MINOR CHANGES
+
+  - `ggscatterstats` (and its `grouped_` variant) support bayes factor tests and
+  gain two new arguments: `bf.prior` and `bf.message`.
+
 # ggstatsplot 0.0.6
 
 MAJOR CHANGES

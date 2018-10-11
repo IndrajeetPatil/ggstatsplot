@@ -5,20 +5,21 @@
 \title{Scatterplot with marginal distributions for all levels of a grouping
 variable}
 \usage{
-grouped_ggscatterstats(data, x, y, label.var = NULL,
-  label.expression = NULL, grouping.var, title.prefix = "Group",
-  xlab = NULL, ylab = NULL, method = "lm", method.args = list(),
-  formula = y ~ x, point.color = "black", point.size = 3,
-  point.alpha = 0.4, line.size = 1.5, point.width.jitter = NULL,
+grouped_ggscatterstats(data, x, y, type = "pearson", bf.prior = 0.707,
+  bf.message = FALSE, label.var = NULL, label.expression = NULL,
+  grouping.var, title.prefix = "Group", xlab = NULL, ylab = NULL,
+  method = "lm", method.args = list(), formula = y ~ x,
+  point.color = "black", point.size = 3, point.alpha = 0.4,
+  line.size = 1.5, point.width.jitter = NULL,
   point.height.jitter = NULL, line.color = "blue", marginal = TRUE,
   marginal.type = "histogram", marginal.size = 5, margins = c("both",
   "x", "y"), package = "wesanderson", palette = "Royal1",
   direction = 1, xfill = "#009E73", yfill = "#D55E00", xalpha = 1,
   yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL,
-  type = "pearson", results.subtitle = TRUE, caption = NULL,
-  subtitle = NULL, nboot = 100, beta = 0.1, k = 3,
-  axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, messages = TRUE, ...)
+  results.subtitle = TRUE, caption = NULL, subtitle = NULL,
+  nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE,
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -27,6 +28,20 @@ taken.}
 \item{x}{A vector containing the explanatory variable.}
 
 \item{y}{The response - a vector of length the number of rows of \code{x}.}
+
+\item{type}{Type of association between paired samples required
+("\code{"parametric"}: Pearson's product moment correlation coefficient" or
+"\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
+correlation coefficient" or "\code{"bayes"}: Bayes Factor for Pearson's \emph{r}").
+Corresponding abbreviations are also accepted: \code{"p"} (for
+parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
+\code{"bf"} (for bayes factor), resp.}
+
+\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
+to use in calculating Bayes factors.}
+
+\item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
+of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}).}
 
 \item{label.var}{Variable to use for points labels. \strong{Must} be entered as a
 character string e.g. \code{"y"}}
@@ -131,13 +146,6 @@ default is \code{1} for both axes.}
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal (for
 \code{y}) lines.}
-
-\item{type}{Type of association between paired samples required
-("\code{"parametric"}: Pearson's product moment correlation coefficient" or
-"\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
-correlation coefficient"). Corresponding abbreviations are also accepted:
-\code{"p"} (for parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"}
-(robust), resp.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle.}
@@ -270,8 +278,8 @@ ggstatsplot::grouped_ggscatterstats(
   x = budget,
   y = length,
   grouping.var = genre,
+  bf.message = TRUE,
   label.var = "title",
-  results.subtitle = FALSE,
   marginal = FALSE,
   title.prefix = "Genre",
   caption.text = "All movies have IMDB rating greater than 8."

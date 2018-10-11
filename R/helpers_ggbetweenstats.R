@@ -121,7 +121,7 @@ check_outlier <- function(var, coef = 1.5) {
   # check for outlier and output a logical
   res <-
     ((var < (quantiles[1] - coef * IQR)) |
-       (var > (quantiles[2] + coef * IQR)))
+      (var > (quantiles[2] + coef * IQR)))
 
   # return the result
   return(res)

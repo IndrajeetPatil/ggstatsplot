@@ -34,12 +34,20 @@ additional vignettes that are only available on the website for this package:
     principles behind this package):
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggstatsplot_paper.html>)
     
-  - Using `ggstatsplot` with the `purrr` package:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
-    
   - Gallery of `ggstatsplot` examples (shows how `ggstatsplot` can be further
     modified using `ggplot2` functions):
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gallery.html>)
+    
+  - Using `ggstatsplot` with the `purrr` package:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
+    
+  - How to arrange multiple plots in a single plot along with annotations using
+    the `combine_plots` helper function:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html>)
+    
+  - Default theme used for the package and how it can be modified:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html>)
+    
     
 # Suggestions
 

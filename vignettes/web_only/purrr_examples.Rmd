@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 100
+    dpi: 300
     toc: true
     eval: FALSE
     warning: FALSE
@@ -227,7 +227,7 @@ plot_list <- purrr::pmap(
        "rating > 8 & budget < 50",
        "rating > 9 & budget < 10"
      ),
-    type = list("r", "np", "p"),
+    type = list("r", "np", "bf"),
     method = list(MASS::rlm, "lm", "lm"),
     nboot = 25,
     marginal.type = list("boxplot", "density", "violin"),

@@ -3,7 +3,6 @@ pkgdown: 1.1.0.9000
 pkgdown_sha: 16c6506a153dacf99c185f0ef62488458297d301
 articles:
   additional: additional.html
-  combine_plots: combine_plots.html
   ggbetweenstats: ggbetweenstats.html
   ggcoefstats: ggcoefstats.html
   ggcorrmat: ggcorrmat.html
@@ -11,10 +10,11 @@ articles:
   ggpiestats: ggpiestats.html
   ggscatterstats: ggscatterstats.html
   tests_and_coverage: tests_and_coverage.html
-  theme_ggstatsplot: theme_ggstatsplot.html
+  combine_plots: web_only/combine_plots.html
   gallery: web_only/gallery.html
   ggstatsplot_paper: web_only/ggstatsplot_paper.html
   purrr_examples: web_only/purrr_examples.html
+  theme_ggstatsplot: web_only/theme_ggstatsplot.html
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot//reference
   article: https://indrajeetpatil.github.io/ggstatsplot//articles

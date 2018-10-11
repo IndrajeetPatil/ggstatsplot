@@ -60,9 +60,6 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../../articles/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
       <a href="../../articles/ggbetweenstats.html">ggbetweenstats</a>
     </li>
     <li>
@@ -84,7 +81,7 @@
       <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
-      <a href="../../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
       <a href="../../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -94,6 +91,9 @@
     </li>
     <li>
       <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
 </li>
@@ -129,7 +129,7 @@
       <h1>ggstatsplot: ggplot2 Based Plots with Statistical Details</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-10-09</h4>
+            <h4 class="date">2018-10-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggstatsplot_paper.Rmd"><code>vignettes/web_only/ggstatsplot_paper.Rmd</code></a></small>
       <div class="hidden name"><code>ggstatsplot_paper.Rmd</code></div>
@@ -142,11 +142,11 @@
 <p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.”<br>
 - Edward R. Tufte</p>
 </blockquote>
+<p>(<strong>This vignette is still a work in progress</strong>)</p>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>The <code>ggstatsplot</code> package is an opinionated collection of plots made with <code>ggplot2</code> and is designed for exploratory data analysis or for producing publication-ready statistical graphics. All plots share an underlying principle of displaying information-rich plots with all necessary statistical details included in the plots themselves. Although the plots produced by <code>ggstatsplot</code> are still <code>ggplot</code> objects and can thus be further modified using <code>ggplot2</code> commands, there is a limit to how many such modifications can be made. That is, it is less flexible than <code>ggplot2</code>, but that’s a feature and not a bug. The original intent behind this package is to offload struggles associated with <em>constructing</em> the plot and focus more on the <em>interpretation</em> of that data displayed in the plot.</p>
-<p>(<strong>This vignette is still a work in progress</strong>)</p>
 </div>
 <div id="graphical-perception" class="section level1">
 <h1 class="hasAnchor">
@@ -182,7 +182,20 @@
 <a class="sourceLine" id="cb1-14" data-line-number="14">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">  <span class="dt">outlier.label =</span> title,</a>
 <a class="sourceLine" id="cb1-16" data-line-number="16">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">)</a></code></pre></div>
+<a class="sourceLine" id="cb1-17" data-line-number="17">)</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt; Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt; Please use the non-prefixed form or `!!!` instead.</span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt;   # Bad:</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="co">#&gt;   rlang::expr(mean(rlang::UQS(args)))</span></a>
+<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="co">#&gt;   # Ok:</span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="co">#&gt;   rlang::expr(mean(UQS(args)))</span></a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-27" data-line-number="27"><span class="co">#&gt;   # Good:</span></a>
+<a class="sourceLine" id="cb1-28" data-line-number="28"><span class="co">#&gt;   rlang::expr(mean(!!!args))</span></a>
+<a class="sourceLine" id="cb1-29" data-line-number="29"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-30" data-line-number="30"><span class="co">#&gt; This warning is displayed once per session.</span></a></code></pre></div>
 <div class="figure">
 <img src="ggstatsplot_paper_files/figure-html/example1-1.png" alt="**Figure-1**. Note that assessing differences in mean values between groups has been made easier with the help of *position* of data points along a common scale (the Y-axis) and labels." width="960"><p class="caption">
 <strong>Figure-1</strong>. Note that assessing differences in mean values between groups has been made easier with the help of <em>position</em> of data points along a common scale (the Y-axis) and labels.
@@ -393,7 +406,7 @@
 <td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
 <td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
 <td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
-<td><font color="red"><span class="math inline">\(\times\)</span></font></td>
+<td><font color="green"><span class="math inline">\(\checkmark\)</span></font></td>
 </tr>
 <tr class="odd">
 <td><code>ggpiestats</code></td>
@@ -534,7 +547,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
 <a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
 <a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  tz       America/New_York            </span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  date     2018-10-09</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  date     2018-10-11</span></a></code></pre></div>
 </div>
 </div>
   </div>

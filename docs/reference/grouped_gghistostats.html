@@ -100,9 +100,6 @@ resulting plots using ggstatsplot::combine_plots." />
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
       <a href="../articles/ggbetweenstats.html">ggbetweenstats</a>
     </li>
     <li>
@@ -124,7 +121,7 @@ resulting plots using ggstatsplot::combine_plots." />
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
-      <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -134,6 +131,9 @@ resulting plots using ggstatsplot::combine_plots." />
     </li>
     <li>
       <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
 </li>
@@ -182,10 +182,10 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
 
     <pre class="usage"><span class='fu'>grouped_gghistostats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>,
   <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"count"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>fill.gradient</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>,
   <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
@@ -236,10 +236,6 @@ in the same plot (only available from <code>ggplot2 3.0.1</code> onward).</p></t
     <tr>
       <th>xlab</th>
       <td><p>Label for <code>x</code> axis variable.</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>The text for the plot title.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>

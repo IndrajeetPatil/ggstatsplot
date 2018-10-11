@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Display normality test result as a message. — normality_message • ggstatsplot</title>
+<title>Bayesian correlation test. — bf_corr_test • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -40,10 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Display normality test result as a message. — normality_message" />
+<meta property="og:title" content="Bayesian correlation test. — bf_corr_test" />
 
-<meta property="og:description" content="A note to the user about the validity of assumptions for the
-default linear model." />
+<meta property="og:description" content="Bayesian correlation test." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -166,84 +165,64 @@ default linear model." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Display normality test result as a message.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_messages.R'><code>R/helpers_messages.R</code></a></small>
-    <div class="hidden name"><code>normality_message.Rd</code></div>
+    <h1>Bayesian correlation test.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggscatterstats.R'><code>R/helpers_ggscatterstats.R</code></a></small>
+    <div class="hidden name"><code>bf_corr_test.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A note to the user about the validity of assumptions for the
-default linear model.</p>
+    <p>Bayesian correlation test.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>normality_message</span>(<span class='no'>x</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>)</pre>
+    <pre class="usage"><span class='fu'>bf_corr_test</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>data</th>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken.</p></td>
+    </tr>
+    <tr>
       <th>x</th>
-      <td><p>A numeric vector.</p></td>
+      <td><p>A vector containing the explanatory variable.</p></td>
     </tr>
     <tr>
-      <th>lab</th>
-      <td><p>A character describing label for the variable. If <code>NULL</code>, a
-generic <code>"x"</code> label will be used.</p></td>
+      <th>y</th>
+      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
     </tr>
     <tr>
-      <th>k</th>
-      <td><p>Number of decimal places expected for results (Default: <code>3</code>).</p></td>
+      <th>bf.prior</th>
+      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
+to use in calculating Bayes factors.</p></td>
+    </tr>
+    <tr>
+      <th>caption</th>
+      <td><p>The text for the plot caption.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>What output is desired: <code>"message"</code> (default) or <code>"stats"</code> objects.</p></td>
+      <td><p>Can either be <code>"caption"</code> (which will contain text for evidence
+in favor of null)  or <code>"results"</code> (which will return the dataframe with
+results).</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with class <code>"htest"</code> containing the following components:</p>
-<dt>statistic</dt><dd><p>the value of the Shapiro-Wilk statistic.</p></dd>
-  <dt>p.value</dt><dd><p>an approximate p-value for the test.  This is
-    said in Royston (1995) to be adequate for <code>p.value &lt; 0.1</code>.</p></dd>
-  <dt>method</dt><dd><p>the character string <code>"Shapiro-Wilk normality test"</code>.</p></dd>
-  <dt>data.name</dt><dd><p>a character string giving the name(s) of the data.</p></dd>
-
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p>
-<p>Other helper_messages: <code><a href='bartlett_message.html'>bartlett_message</a></code></p></div>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># message</span>
-<span class='fu'>normality_message</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/anscombe'>anscombe</a></span>$<span class='no'>x1</span>)</div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for x : p-value = 0.870</div><div class='output co'>#&gt; </div><div class='input'>
-<span class='co'># statistical test object</span>
-<span class='fu'>normality_message</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/anscombe'>anscombe</a></span>$<span class='no'>x2</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"stats"</span>
-)</div><div class='output co'>#&gt; 
-#&gt; 	Shapiro-Wilk normality test
-#&gt; 
-#&gt; data:  x
-#&gt; W = 0.96839, p-value = 0.8698
-#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
+                </ul>
 
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+    <h2>Author</h2>
+    
+Indrajeet Patil
 
   </div>
 </div>

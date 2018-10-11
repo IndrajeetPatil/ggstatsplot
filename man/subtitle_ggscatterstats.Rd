@@ -5,8 +5,8 @@
 \title{Making text subtitle for the correlation test.}
 \usage{
 subtitle_ggscatterstats(data, x, y, nboot = 100, beta = 0.1,
-  type = "pearson", conf.level = 0.95, conf.type = "norm",
-  messages = TRUE, k = 3)
+  type = "pearson", bf.prior = 0.707, conf.level = 0.95,
+  conf.type = "norm", messages = TRUE, k = 3)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -24,9 +24,13 @@ taken.}
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
 "\code{"nonparametric"}: Spearman's rho" or "\code{"robust"}: percentage bend
-correlation coefficient"). Corresponding abbreviations are also accepted:
-\code{"p"} (for parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"}
-(robust), resp.}
+correlation coefficient" or "\code{"bayes"}: Bayes Factor for Pearson's \emph{r}").
+Corresponding abbreviations are also accepted: \code{"p"} (for
+parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
+\code{"bf"} (for bayes factor), resp.}
+
+\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
+to use in calculating Bayes factors.}
 
 \item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return 95%
 lower and upper confidence intervals (\code{0.95}).}

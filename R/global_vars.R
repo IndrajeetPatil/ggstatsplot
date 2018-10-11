@@ -119,7 +119,9 @@ utils::globalVariables(
     "or",
     "atop",
     "top.text",
-    "bottom.text"
+    "bottom.text",
+    "code",
+    "time"
   ),
   package = "ggstatsplot",
   add = FALSE

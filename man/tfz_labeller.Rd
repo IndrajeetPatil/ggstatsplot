@@ -16,11 +16,12 @@ tfz_labeller(tidy_df, glance_df = NULL, statistic, effsize = "eta",
 \code{"z"}).}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
-(default) or \code{"omega"}.}
+(default) or \code{"omega"}. This argument is relevant
+only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
 
 \item{partial}{Logical that decides if partial eta-squared or omega-squared
 are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
-will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
+will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 \code{aovlist}.}
 
 \item{k}{Number of decimal places expected for results displayed in labels.}

@@ -36,31 +36,34 @@ ggcoefstats(x, output = "plot", scales = NULL, conf.method = "Wald",
 dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}
 
-\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation
-or logistic) are not yet implemented, but may be in the future.}
+\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.}
 
 \item{conf.method}{Character describing method for computing confidence
-intervals (for more, see \code{lme4::confint.merMod}).}
+intervals (for more, see \code{lme4::confint.merMod}). This argument is valid
+only for the \code{merMod} class model objects (\code{lmer}, \code{glmer}, \code{nlmer}, etc.).}
 
 \item{p.kr}{Logical, if \code{TRUE}, the computation of p-values for \code{lmer} is
 based on conditional F-tests with Kenward-Roger approximation for the df.
 For details, see \code{?sjstats::p_value}.}
 
-\item{coefficient.type}{For ordinal regression models, which parameters to
-display in the plot. By default only \code{"beta"} (a vector of regression
-parameters) parameters will be show. Other options are \code{"alpha"} (a vector
-of threshold parameters) or \code{"both"}.}
+\item{coefficient.type}{Relevant only for ordinal regression models (\code{clm}
+and \code{clmm}), this argument decides which parameters to display in the plot.
+By default only \code{"beta"} (a vector of regression parameters) parameters
+will be show. Other options are \code{"alpha"} (a vector of threshold
+parameters) or \code{"both"}.}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
-(default) or \code{"omega"}.}
+(default) or \code{"omega"}. This argument is relevant
+only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
 
 \item{partial}{Logical that decides if partial eta-squared or omega-squared
 are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
-will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
+will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 \code{aovlist}.}
 
 \item{nboot}{Number of bootstrap samples for confidence intervals for partial
-eta-squared and omega-squared (Default: \code{500}).}
+eta-squared and omega-squared (Default: \code{500}). This argument is relevant
+only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
 
 \item{point.color}{Character describing color for the point (Default:
 \code{"blue"}).}
@@ -88,7 +91,7 @@ displayed in captions.}
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}
 
-\item{exponentiate}{If \code{TRUE}, the x-axis will be logarithmic (Default:
+\item{exponentiate}{If \code{TRUE}, the \code{x}-axis will be logarithmic (Default:
 \code{FALSE}).}
 
 \item{errorbar.color}{Character deciding color of the error bars (Default:

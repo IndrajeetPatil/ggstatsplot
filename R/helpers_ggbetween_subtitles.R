@@ -62,8 +62,6 @@ bf_message_ttest <- function(jmv_results,
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #' @importFrom stats lm
 #'
@@ -288,8 +286,6 @@ subtitle_ggbetween_anova_parametric <-
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #' @importFrom stats t.test
 #' @importFrom effsize cohen.d
@@ -495,8 +491,6 @@ subtitle_ggbetween_t_parametric <-
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #' @importFrom stats wilcox.test
 #' @importFrom coin wilcox_test
@@ -632,8 +626,6 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @inheritParams t1way_ci
 #'
 #' @importFrom dplyr select
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #' @importFrom WRS2 yuen
 #' @importFrom WRS2 yuen.effect.ci
@@ -777,8 +769,7 @@ subtitle_ggbetween_t_rob <-
 #' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_ggbetween_t_parametric
 #'
-#' @importFrom jmv ttestIS
-#' @importFrom jmv ttestPS
+#' @importFrom jmv ttestIS ttestPS
 #'
 #' @examples
 #' 
@@ -836,7 +827,8 @@ subtitle_ggbetween_t_bayes <- function(data,
   if (!isTRUE(paired)) {
 
     # removing NAs
-    data %<>% stats::na.omit(.)
+    data %<>%
+      stats::na.omit(.)
 
     # sample size
     sample_size <- nrow(data)
@@ -922,7 +914,10 @@ subtitle_ggbetween_t_bayes <- function(data,
     env = base::list(
       # df is integer value for Student's t-test
       df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-      estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
+      estimate = ggstatsplot::specify_decimal_p(
+        x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
+        k = k
+      ),
       bf = ggstatsplot::specify_decimal_p(
         x = log(
           x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
@@ -959,8 +954,6 @@ subtitle_ggbetween_t_bayes <- function(data,
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #' @importFrom stats kruskal.test
 #'
@@ -1070,14 +1063,11 @@ subtitle_ggbetween_kw_nonparametric <-
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #' @importFrom rlang enquo
 #'
 #' @examples
 #' 
-#' # the following examples are not run in the manual because bootstrapping is taking too much
-#' # time
+#' # examples not executed due to time constraints
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)

@@ -85,7 +85,7 @@
 #' @importFrom sjstats eta_sq omega_sq
 #' @importFrom stats na.omit t.test oneway.test
 #' @importFrom coin wilcox_test statistic
-#' @importFrom rlang enquo quo_name
+#' @importFrom rlang enquo quo_name !!
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
@@ -115,10 +115,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -128,7 +128,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#'
+#' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -179,14 +179,14 @@ ggbetweenstats <- function(data,
                            mean.ci = FALSE,
                            mean.size = 5,
                            mean.color = "darkred",
+                           point.jitter.width = NULL,
+                           point.jitter.height = 0.1,
+                           point.dodge.width = 0.60,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
                            package = "RColorBrewer",
                            palette = "Dark2",
                            direction = 1,
-                           point.jitter.width = NULL,
-                           point.jitter.height = 0.1,
-                           point.dodge.width = 0.60,
                            messages = TRUE) {
 
   # variable names ---------------------------------------------------------------

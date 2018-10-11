@@ -16,7 +16,8 @@
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle.
 #' @param conf.method Character describing method for computing confidence
-#'   intervals (for more, see `lme4::confint.merMod`).
+#'   intervals (for more, see `lme4::confint.merMod`). This argument is valid
+#'   only for the `merMod` class model objects (`lmer`, `glmer`, `nlmer`, etc.).
 #' @param p.kr Logical, if `TRUE`, the computation of p-values for `lmer` is
 #'   based on conditional F-tests with Kenward-Roger approximation for the df.
 #'   For details, see `?sjstats::p_value`.
@@ -29,19 +30,30 @@
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
 #'   `0.95`).
-#' @param coefficient.type For ordinal regression models, which parameters to
-#'   display in the plot. By default only `"beta"` (a vector of regression
-#'   parameters) parameters will be show. Other options are `"alpha"` (a vector
-#'   of threshold parameters) or `"both"`.
+#' @param coefficient.type Relevant only for ordinal regression models (`clm`
+#'   and `clmm`), this argument decides which parameters to display in the plot.
+#'   By default only `"beta"` (a vector of regression parameters) parameters
+#'   will be show. Other options are `"alpha"` (a vector of threshold
+#'   parameters) or `"both"`.
 #' @param se.type Character specifying the method used to compute standard
 #'   standard errors for quantile regression (Default: `"nid"`). To see all
 #'   available methods, see `quantreg::summary.rq()`.
+#' @param nboot Number of bootstrap samples for confidence intervals for partial
+#'   eta-squared and omega-squared (Default: `500`). This argument is relevant
+#'   only for models objects of class `aov`, `anova`, and `aovlist`.
+#' @param effsize Character describing the effect size to be displayed: `"eta"`
+#'   (default) or `"omega"`. This argument is relevant
+#'   only for models objects of class `aov`, `anova`, and `aovlist`.
+#' @param partial Logical that decides if partial eta-squared or omega-squared
+#'   are returned (Default: `TRUE`). If `FALSE`, eta-squared or omega-squared
+#'   will be returned. Valid only for objects of class `aov`, `anova`, or
+#'   `aovlist`.
 #' @param k Number of decimal places expected for results displayed in labels.
 #' @param k.caption.summary Number of decimal places expected for results
 #'   displayed in captions.
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `TRUE`).
-#' @param exponentiate If `TRUE`, the x-axis will be logarithmic (Default:
+#' @param exponentiate If `TRUE`, the `x`-axis will be logarithmic (Default:
 #'   `FALSE`).
 #' @param errorbar.color Character deciding color of the error bars (Default:
 #'   `"black"`).
@@ -96,8 +108,7 @@
 #'   entire plot area. Defaults to `c(NA, NA)`.
 #' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
 #'   which to adjust position of labels (Default: `"y"`).
-#' @inheritParams groupedstats::lm_effsize_ci
-#' @inheritParams broom::tidy.merMod
+#' @inheritParams broom.mixed::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d

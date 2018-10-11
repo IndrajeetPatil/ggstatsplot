@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--09-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--11-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -196,18 +196,19 @@ For example-
 
 ``` r
 args(name = ggstatsplot::ggscatterstats)
-#> function (data, x, y, label.var = NULL, label.expression = NULL, 
-#>     xlab = NULL, ylab = NULL, method = "lm", method.args = list(), 
-#>     formula = y ~ x, point.color = "black", point.size = 3, point.alpha = 0.4, 
-#>     point.width.jitter = NULL, point.height.jitter = NULL, line.size = 1.5, 
-#>     line.color = "blue", marginal = TRUE, marginal.type = "histogram", 
-#>     marginal.size = 5, margins = c("both", "x", "y"), package = "wesanderson", 
-#>     palette = "Royal1", direction = 1, xfill = "#009E73", yfill = "#D55E00", 
-#>     xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL, 
-#>     type = "pearson", results.subtitle = TRUE, title = NULL, 
-#>     subtitle = NULL, caption = NULL, nboot = 100, beta = 0.1, 
-#>     k = 3, axes.range.restrict = FALSE, ggtheme = ggplot2::theme_bw(), 
-#>     ggstatsplot.layer = TRUE, messages = TRUE) 
+#> function (data, x, y, type = "pearson", bf.prior = 0.707, bf.message = FALSE, 
+#>     label.var = NULL, label.expression = NULL, xlab = NULL, ylab = NULL, 
+#>     method = "lm", method.args = list(), formula = y ~ x, point.color = "black", 
+#>     point.size = 3, point.alpha = 0.4, point.width.jitter = NULL, 
+#>     point.height.jitter = NULL, line.size = 1.5, line.color = "blue", 
+#>     marginal = TRUE, marginal.type = "histogram", marginal.size = 5, 
+#>     margins = c("both", "x", "y"), package = "wesanderson", palette = "Royal1", 
+#>     direction = 1, xfill = "#009E73", yfill = "#D55E00", xalpha = 1, 
+#>     yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL, 
+#>     results.subtitle = TRUE, title = NULL, subtitle = NULL, caption = NULL, 
+#>     nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE, 
+#>     ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE, 
+#>     messages = TRUE) 
 #> NULL
 ```
 
@@ -258,7 +259,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002b913228>
+#> <bytecode: 0x0000000024ea08d0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -538,6 +539,7 @@ ggstatsplot::grouped_ggscatterstats(
   data = ggstatsplot::movies_long, 
   x = rating, 
   y = length,
+  bf.message = TRUE,               # display bayes factor message
   xfill = "#E69F00", 
   yfill = "#8b3058",
   xlab = "IMDB rating",

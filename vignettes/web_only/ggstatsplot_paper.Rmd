@@ -25,10 +25,17 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r library, include = FALSE}
+library(tidyverse)
+library(ggstatsplot)
+```
+
 > "What is to be sought in designs for the display of information is the clear
 portrayal of complexity. Not the complication of the simple; rather ... the
 revelation of the complex."   
 - Edward R. Tufte
+
+(**This vignette is still a work in progress**)
 
 # Introduction
    
@@ -43,8 +50,6 @@ it is less flexible than `ggplot2`, but that's a feature and not a bug. The
 original intent behind this package is to offload struggles associated with
 *constructing* the plot and focus more on the *interpretation* of that data
 displayed in the plot.
-
-(**This vignette is still a work in progress**)
 
 # Graphical perception
    
@@ -312,7 +317,7 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggbetweenstats` | Between group/condition comparisons | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
 `gghistostats` | Distribution of a numeric variable | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
 `ggcorrmat` | Correlation matrix | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
-`ggscatterstats` | Correlation between two variables | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
+`ggscatterstats` | Correlation between two variables | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
 `ggpiestats` | Association between categorical variables | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font>
 `ggcoefstats` | Regression model coefficients | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>| <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
 

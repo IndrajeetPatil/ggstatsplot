@@ -38,8 +38,7 @@ Making text subtitle for the robust ANOVA
 }
 \examples{
 
-# the following examples are not run in the manual because bootstrapping is taking too much
-# time
+# examples not executed due to time constraints
 \dontrun{
 # for reproducibility
 set.seed(123)

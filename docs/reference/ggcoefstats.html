@@ -101,9 +101,6 @@ caption." />
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
       <a href="../articles/ggbetweenstats.html">ggbetweenstats</a>
     </li>
     <li>
@@ -125,7 +122,7 @@ caption." />
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
-      <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -135,6 +132,9 @@ caption." />
     </li>
     <li>
       <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
 </li>
@@ -220,13 +220,13 @@ dataframe of results from <code><a href='http://www.rdocumentation.org/packages/
     </tr>
     <tr>
       <th>scales</th>
-      <td><p>scales on which to report the variables: for random effects, the choices are &#8216;"sdcor"&#8217; (standard deviations and correlations: the default if <code>scales</code> is <code>NULL</code>) or &#8216;"vcov"&#8217; (variances and covariances). <code>NA</code> means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation
-or logistic) are not yet implemented, but may be in the future.</p></td>
+      <td><p>scales on which to report the variables: for random effects, the choices are &#8216;"sdcor"&#8217; (standard deviations and correlations: the default if <code>scales</code> is <code>NULL</code>) or &#8216;"vcov"&#8217; (variances and covariances). <code>NA</code> means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.</p></td>
     </tr>
     <tr>
       <th>conf.method</th>
       <td><p>Character describing method for computing confidence
-intervals (for more, see <code><a href='http://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>lme4::confint.merMod</a></code>).</p></td>
+intervals (for more, see <code><a href='http://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>lme4::confint.merMod</a></code>). This argument is valid
+only for the <code>merMod</code> class model objects (<code>lmer</code>, <code>glmer</code>, <code>nlmer</code>, etc.).</p></td>
     </tr>
     <tr>
       <th>p.kr</th>
@@ -236,27 +236,30 @@ For details, see <code><a href='http://www.rdocumentation.org/packages/sjstats/t
     </tr>
     <tr>
       <th>coefficient.type</th>
-      <td><p>For ordinal regression models, which parameters to
-display in the plot. By default only <code>"beta"</code> (a vector of regression
-parameters) parameters will be show. Other options are <code>"alpha"</code> (a vector
-of threshold parameters) or <code>"both"</code>.</p></td>
+      <td><p>Relevant only for ordinal regression models (<code>clm</code>
+and <code>clmm</code>), this argument decides which parameters to display in the plot.
+By default only <code>"beta"</code> (a vector of regression parameters) parameters
+will be show. Other options are <code>"alpha"</code> (a vector of threshold
+parameters) or <code>"both"</code>.</p></td>
     </tr>
     <tr>
       <th>effsize</th>
       <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
-(default) or <code>"omega"</code>.</p></td>
+(default) or <code>"omega"</code>. This argument is relevant
+only for models objects of class <code>aov</code>, <code>anova</code>, and <code>aovlist</code>.</p></td>
     </tr>
     <tr>
       <th>partial</th>
       <td><p>Logical that decides if partial eta-squared or omega-squared
 are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+will be returned. Valid only for objects of class <code>aov</code>, <code>anova</code>, or
 <code>aovlist</code>.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
       <td><p>Number of bootstrap samples for confidence intervals for partial
-eta-squared and omega-squared (Default: <code>500</code>).</p></td>
+eta-squared and omega-squared (Default: <code>500</code>). This argument is relevant
+only for models objects of class <code>aov</code>, <code>anova</code>, and <code>aovlist</code>.</p></td>
     </tr>
     <tr>
       <th>point.color</th>
@@ -304,7 +307,7 @@ excluded from the plot (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>exponentiate</th>
-      <td><p>If <code>TRUE</code>, the x-axis will be logarithmic (Default:
+      <td><p>If <code>TRUE</code>, the <code>x</code>-axis will be logarithmic (Default:
 <code>FALSE</code>).</p></td>
     </tr>
     <tr>

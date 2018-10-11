@@ -7,7 +7,7 @@
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  dpi = 100,
+  dpi = 200,
   out.width = "100%",
   comment = "#>",
   fig.path = "man/figures/README-"
@@ -451,6 +451,7 @@ ggstatsplot::grouped_ggscatterstats(
   data = ggstatsplot::movies_long, 
   x = rating, 
   y = length,
+  bf.message = TRUE,               # display bayes factor message
   xfill = "#E69F00", 
   yfill = "#8b3058",
   xlab = "IMDB rating",

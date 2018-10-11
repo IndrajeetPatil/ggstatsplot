@@ -102,9 +102,6 @@ the plot as a subtitle." />
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
       <a href="../articles/ggbetweenstats.html">ggbetweenstats</a>
     </li>
     <li>
@@ -126,7 +123,7 @@ the plot as a subtitle." />
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
-      <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -136,6 +133,9 @@ the plot as a subtitle." />
     </li>
     <li>
       <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
 </li>
@@ -193,11 +193,11 @@ the plot as a subtitle.</p>
   <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
+  <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -372,6 +372,21 @@ is to be displayed (Default: <code>FALSE</code>).</p></td>
 <code>"darkred"</code>).</p></td>
     </tr>
     <tr>
+      <th>point.jitter.width</th>
+      <td><p>Numeric specifying the degree of jitter in <code>x</code>
+direction. Defaults to <code>40%</code> of the resolution of the data.</p></td>
+    </tr>
+    <tr>
+      <th>point.jitter.height</th>
+      <td><p>Numeric specifying the degree of jitter in <code>y</code>
+direction. Defaults to <code>0.1</code>.</p></td>
+    </tr>
+    <tr>
+      <th>point.dodge.width</th>
+      <td><p>Numeric specifying the amount to dodge in the <code>x</code>
+direction. Defaults to <code>0.60</code>.</p></td>
+    </tr>
+    <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
@@ -398,21 +413,6 @@ type. Default palette is <code>"Dark2"</code>.</p></td>
     <tr>
       <th>direction</th>
       <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
-    </tr>
-    <tr>
-      <th>point.jitter.width</th>
-      <td><p>Numeric specifying the degree of jitter in <code>x</code>
-direction. Defaults to <code>40%</code> of the resolution of the data.</p></td>
-    </tr>
-    <tr>
-      <th>point.jitter.height</th>
-      <td><p>Numeric specifying the degree of jitter in <code>y</code>
-direction. Defaults to <code>0.1</code>.</p></td>
-    </tr>
-    <tr>
-      <th>point.dodge.width</th>
-      <td><p>Numeric specifying the amount to dodge in the <code>x</code>
-direction. Defaults to <code>0.60</code>.</p></td>
     </tr>
     <tr>
       <th>messages</th>

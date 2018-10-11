@@ -95,9 +95,6 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/combine_plots.html">combine_plots</a>
-    </li>
-    <li>
       <a href="../articles/ggbetweenstats.html">ggbetweenstats</a>
     </li>
     <li>
@@ -119,7 +116,7 @@
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
     </li>
     <li>
-      <a href="../articles/theme_ggstatsplot.html">ggstatsplot theme</a>
+      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">Gallery of ggstatsplot examples</a>
@@ -129,6 +126,9 @@
     </li>
     <li>
       <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
 </li>
@@ -180,6 +180,11 @@
 <li>Following functions are now reexported from the <code>groupedstats</code> package to avoid repeating the same code in two packages: <code>specify_decimal_p</code>, <code>signif_column</code>, <code>lm_effsize_ci</code>. Therefore, <code>groupedstats</code> is now added as a dependency.</li>
 <li>The helper function <code>untable</code> has been depcreated in light of <code><a href="http://www.rdocumentation.org/packages/tidyr/topics/uncount">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
 <li>Vignette with <code>purrr</code> examples removed from <code>CRAN</code> to reduce the size of the package. It is now available on the package website.</li>
+</ul>
+<p>MINOR CHANGES</p>
+<ul>
+<li>
+<code>ggscatterstats</code> (and its <code>grouped_</code> variant) support bayes factor tests and gain two new arguments: <code>bf.prior</code> and <code>bf.message</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-6" class="section level1">
