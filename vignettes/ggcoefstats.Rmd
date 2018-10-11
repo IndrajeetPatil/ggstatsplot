@@ -25,17 +25,22 @@ knitr::opts_chunk$set(
 ```
 
 The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** of
-regression models saved in tidy data frames (produced with the `broom` package).
-By default, the plot displays `95%` confidence intervals for the regression
-coefficients. The function currently supports only those classes of object that
-are supported by the `broom` package. For an exhaustive list, see-
-<https://broom.tidyverse.org/articles/available-methods.html>
+key model indicators for a very wide array of models ranging from multiple
+linear regression using ordinary least squares through ANOVA models to almost
+any model generated under the GLM framework. 
 
-In this vignette, we will see examples of how to use this function. We will try
-to cover as many classes of objects as possible. Unfortunately, there is no
-single dataset that will be helpful for carrying out all types of regression
-analyses and, therefore, we will use various datasets to explore data-specific
-hypotheses using regression models.
+The function currently supports only those classes of object that are supported
+by the `broom` package which saves them in tidy data frames. For an exhaustive
+list, see- <https://broom.tidyverse.org/articles/available-methods.html> By
+default, the plot displays `95%` confidence intervals for the regression
+coefficients.
+
+In this vignette, we will explore the use of this function. We will progress in
+what we hope is an orderly logical fashion and try to cover as many classes of
+object models as possible. Unfortunately, there is no single dataset that will
+be helpful for carrying out all types of regression analyses and, therefore, we
+will use various datasets to explore data-specific hypotheses using regression
+models.
 
 **Note before**: The following demo uses the pipe operator (`%>%`), so in case
   you are not familiar with this operator, here is a good explanation:
@@ -44,7 +49,7 @@ hypotheses using regression models.
 ## General structure of the plots
 
 Although the statistical models displayed in the plot may differ based on the
-class of models being investigated, there are few aspects of the plot that will
+class of model being investigated, there are few aspects of the plot that will
 be invariant across models:
 
 - The dot-whisker plot contains a dot representing the **estimate** and their
@@ -67,6 +72,94 @@ be invariant across models:
 In the following examples, we will try out a number of regression models and,
 additionally, we will also see how we can change different aspects of the plot
 itself.
+
+## A simple example using `lm` and `mtcars`
+
+Let's start with a simple example using a common dataset. We'll predict miles per gallon `mpg` using weight of the car `wt`, engine displacement `disp`, and horsepower `hp` using `lm`. To keep things simple we'll build a model with no interaction terms `lm(formula = mpg ~ wt + disp + hp, data = mtcars)`.  In this simplest case `ggstatsplot::ggcoefstats` will produce a plot that displays the estimated regression coefficient (a.k.a. $\hat{b_n}$ and labeled $\beta$ on the plot) and the 95% confidence intervals associated with them, as well as the the default `t test` and significance as to whether the coefficient is distinguishable from zero.  We will set various aesthetic parameters, such as title, y axis labels, CI color and shape as well as the overall color palette.  
+
+```{r lm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+# loading needed libraries
+library(ggstatsplot)
+library(ggplot2)
+
+# for reproducibility
+set.seed(123)
+
+# standard textual display
+summary(lm(formula = mpg ~ wt + disp + hp, data = mtcars))
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = stats::lm(
+    formula = mpg ~ wt + disp + hp,
+    data = mtcars
+  ),
+  point.color = "red",                      # changing the point color
+  point.size = 4,                           # changing the point size
+  point.shape = 15,                         # changing the point shape
+  errorbar.color = "red",                   # changing the CI error bar color
+  package = "dutchmasters",                 # package from which color paletter is to be taken
+  palette = "milkmaid",                     # color palette for labels
+  title = "Model formula mpg ~ wt + disp + hp"      # title for the plot
+) +                                    
+  # further modification with the ggplot2 commands
+  # note the order in which the labels are entered
+  ggplot2::scale_y_discrete(labels = c("Weight", "Displacement", "Horsepower")) +
+  ggplot2::labs(x = "Regression coefficients with 95% confidence intervals",
+                y = NULL)
+```
+
+**Note:** users should exercise the usual diligence in interpreting unstandarized coefficents, sine in this case `wt` is on a very different scale than `disp` and `hp`.  The appropriate conclusion in this case is that both `wt` and `hp` have a significant impact on predicting mileage while `disp` does not.
+
+*(Editorial note... why not display $R^{2}$ and adjusted $R_{adj}^{2}$ in the footer? changing `effisize` does nothing here nor does changing `nboot`)*
+
+## A more interesting example of a linear model (`lm`) with IMDB
+
+For this analysis, let's use the `movies_long` dataset, which provides
+information about IMDB user ratings, budget, length, MPAA categories (e.g.,
+R-rated, NC-17, PG-13, etc.), and genre for `r nrow(movies_long)` movies. Let's
+say our hypothesis is that the IMDB ratings for a movie are predicted by a
+combination of the movie's budget and the running time or length of the movie.
+
+Bearing in mind what we learned from our first simple example let's first inspect the results from the `lm` model `lm(rating ~ budget * length, movies_long)`.  Rather than do that with a separate function call we can accomplish it right within our call to `ggcoefstats` by changing the `output` option from the default `"plot"` to `"tidy"`. While we're at it we'll also set `conf.level = 0.99` to be more conservative since we have plenty of observations and power to detect differences.
+
+```{r lm2, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+# show "tidy" option
+ggstatsplot::ggcoefstats(
+  x = stats::lm(
+    formula = rating ~ budget * length,
+    data = movies_long
+  ),
+  conf.level = 0.99,
+  output = "tidy")
+```
+
+
+
+```{r lm3, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+# plot
+ggstatsplot::ggcoefstats(
+  x = stats::lm(
+    formula = scale(rating) ~ scale(budget) * scale(length),
+    data = movies_long
+  ),
+  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
+  sort = "ascending",                     # sorting the terms of the model based on estimate values
+  ggtheme = ggplot2::theme_gray(),        # changing the default theme
+  stats.label.color = c("darkgreen", "black", "red"),
+  title = "Movie ratings by their genre",
+  subtitle = "Source: www.imdb.com"
+) +                                    
+  # further modification with the ggplot2 commands
+  # note the order in which the labels are entered
+  ggplot2::scale_y_discrete(labels = c("Movie Budget", "Interaction Term", "Movie Length")) +
+  ggplot2::labs(y = "genre (comparison level: Action)") +
+  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
+```
+
+As can be seen from the regression coefficients, compared to the action movies,
+only romantic movies, animated movies, and dramas fare better with the
+audiences.
 
 ## omnibus ANOVA (`aov`)
 
@@ -190,43 +283,6 @@ mod <- stats::lm(
 ggstatsplot::ggcoefstats(x = car::Anova(mod, type = "III"))
 ```
 
-## linear model (`lm`)
-
-Now that we have figured out that the movie `genre` best explains a fair deal of
-variation in how good people rate the movie to be on IMDB. Let's run a linear
-regression model to see how different types of genres compare with each other-
-
-```{r lm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
-# let's check all the levels for the genre variable
-levels(ggstatsplot::movies_long$genre)
-
-# to speed up the calculation, let's use only 10% of the data
-movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
-
-# plot
-ggstatsplot::ggcoefstats(
-  x = stats::lm(
-    formula = rating ~ genre,
-    data = movies_10
-  ),
-  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
-  sort = "ascending",                     # sorting the terms of the model based on estimate values
-  label.direction = "both",               # direction in which to adjust position of labels (both x and y)
-  ggtheme = ggplot2::theme_gray(),        # changing the default theme
-  stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "black", "red"),
-  title = "Movie ratings by their genre",
-  subtitle = "Source: www.imdb.com"
-) +                                    
-  # further modification with the ggplot2 commands
-  # note the order in which the labels are entered
-  ggplot2::scale_y_discrete(labels = c("Comedy", "Romance", "Documentary", "Animation", "Drama")) +
-  ggplot2::labs(y = "genre (comparison level: Action)") +
-  ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
-```
-
-As can be seen from the regression coefficients, compared to the action movies,
-only romantic movies, animated movies, and dramas fare better with the
-audiences.
 
 ## linear mixed-effects model (`lmer`)
 
