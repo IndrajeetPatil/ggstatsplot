@@ -21,14 +21,14 @@
 #' @importFrom stats cor.test
 #'
 #' @examples
-#'
+#' 
 #' # without changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
 #'   x = area,
 #'   y = percblack
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
@@ -259,6 +259,7 @@ subtitle_ggscatterstats <-
           sep = ""
         ))
       }
+      #---------------------- bayes factor -------------------------------------
     } else if (type == "bayes" || type == "bf") {
 
       # bayes factor results

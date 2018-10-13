@@ -55,10 +55,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -66,7 +66,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -76,10 +76,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -205,7 +205,7 @@ ggpiestats <-
       dplyr::mutate_at(
         .tbl = .,
         .vars = "main",
-        .funs = ~base::as.factor(x = .)
+        .funs = ~base::droplevels(x = base::as.factor(x = .))
       ) %>%
       stats::na.omit(.)
 
@@ -216,7 +216,8 @@ ggpiestats <-
           .tbl = .,
           .vars = "condition",
           .funs = ~base::droplevels(x = base::as.factor(x = .))
-        )
+        ) %>%
+        stats::na.omit(.)
     }
 
     # convert the data into percentages; group by conditional variable if needed
@@ -384,7 +385,8 @@ ggpiestats <-
     # if facetting by condition is happening
     if (!base::missing(condition)) {
       if (isTRUE(facet.proptest)) {
-        # merging dataframe containing results from the proportion test with counts and percentage dataframe
+        # merging dataframe containing results from the proportion test with
+        # counts and percentage dataframe
         df2 <-
           dplyr::full_join(
             x = df,
@@ -405,9 +407,23 @@ ggpiestats <-
             )
           ) %>%
           stats::na.omit(.)
+
+        # display grouped proportion test results
+        if (isTRUE(messages)) {
+          # tell the user what these results are
+          base::message(cat(
+            crayon::green("Note: "),
+            crayon::blue("Results from faceted one-sample proportion tests:"),
+            sep = ""
+          ))
+
+          # print the tibble and leave out unnecessary columns
+          print(tibble::as.tibble(df2) %>%
+                  dplyr::select(.data = ., -c(main:perc)))
+        }
       }
 
-      # running Pearson's Chi-square test of independence using jmv::contTables
+      # running Pearson's Chi-square test of independence
       if (!isTRUE(paired)) {
         subtitle <- subtitle_contigency_tab(
           data = data,

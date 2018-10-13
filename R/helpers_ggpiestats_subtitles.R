@@ -39,7 +39,7 @@
 #' )
 #' 
 #' # with counts data
-#' # in case of no variation, NaN will be shown for results
+#' # in case of no variation, a `NULL` will be returned.
 #' library(jmv)
 #' 
 #' dat <- as.data.frame(HairEyeColor) %>%
@@ -88,6 +88,44 @@ subtitle_contigency_tab <- function(data,
       ) %>%
       stats::na.omit(.) %>%
       tibble::as_data_frame(x = .)
+  }
+
+  # main and condition need to be a factor for this analysis
+  # also drop the unused levels of the factors
+
+  # main
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "main",
+      .funs = ~base::droplevels(x = base::as.factor(x = .))
+    )
+
+  # condition
+  if (!base::missing(condition)) {
+    data %<>%
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "condition",
+        .funs = ~base::droplevels(x = base::as.factor(x = .))
+      )
+
+    # in case there is no variation, no subtitle will be shown
+    if (length(unique(levels(data$condition))) == 1L) {
+      # display message
+      base::message(cat(
+        crayon::red("Error: "),
+        crayon::blue("Row variable 'condition' contains less than 2 levels.\n"),
+        crayon::blue("Chi-squared test can't be run and subtitle won't be displayed.\n"),
+        sep = ""
+      ))
+
+      # assigning NULL to subtitle
+      subtitle <- NULL
+
+      # return early
+      return(subtitle)
+    }
   }
 
   # ============================== converting counts ===========================
@@ -220,7 +258,7 @@ subtitle_contigency_tab <- function(data,
       alternative = "two.sided",
       tsmethod = NULL,
       conf.int = TRUE,
-      conf.level = 0.95,
+      conf.level = conf.level,
       tol = 0.00001,
       conditional = TRUE,
       paired = TRUE,

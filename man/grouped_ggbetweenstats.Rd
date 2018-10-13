@@ -51,8 +51,10 @@ argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-t
 omega-squared for \strong{anova})).}
 
 \item{effsize.noncentral}{Logical indicating whether to use non-central
-\emph{t}-distributions for computing the 95% confidence interval for Cohen's \emph{d}
-or Hedge's \emph{g} (Default: \code{FALSE}).}
+\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
+or Hedge's \emph{g} (Default: \code{FALSE}).
+@param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95%
+lower and upper confidence intervals (\code{0.95}).}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
@@ -70,7 +72,8 @@ of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.messag
 should be displayed for each level of the grouping variable \code{x} (Default:
 \code{TRUE}).}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 
 \item{var.equal}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F

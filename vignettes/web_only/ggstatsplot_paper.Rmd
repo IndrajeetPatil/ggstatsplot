@@ -27,15 +27,19 @@ knitr::opts_chunk$set(
 
 ```{r library, include = FALSE}
 library(tidyverse)
+library(rlang)
 library(ggstatsplot)
+
+# this is to get rid of the rlang warnings appearing once per session
+ggstatsplot::ggbetweenstats(data = iris, x = Species, y = Sepal.Length)
 ```
+
+(**This publication is still a work in progress**)
 
 > "What is to be sought in designs for the display of information is the clear
 portrayal of complexity. Not the complication of the simple; rather ... the
 revelation of the complex."   
 - Edward R. Tufte
-
-(**This vignette is still a work in progress**)
 
 # Introduction
    
@@ -77,7 +81,7 @@ So the key principle of Cleveland's paradigm for data display is-
 For example, decoding the data point values in `ggbetweenstats` requires
 position judgments along a common scale (Figure-1):
 
-```{r example1, fig.height = 8, fig.width = 10, fig.cap = "**Figure-1**. Note that assessing differences in mean values between groups has been made easier with the help of *position* of data points along a common scale (the Y-axis) and labels."}
+```{r example1, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 10, fig.cap = "**Figure-1**. Note that assessing differences in mean values between groups has been made easier with the help of *position* of data points along a common scale (the Y-axis) and labels."}
 # for reproducibility
 set.seed(123)
 
@@ -89,7 +93,7 @@ ggstatsplot::ggbetweenstats(
   title = "Figure-1: IMDB rating by film genre",
   xlab = "Genre",
   ylab = "IMDB rating (average)",
-  ggtheme = ggthemes::theme_fivethirtyeight(),
+  ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
   outlier.label = title,
@@ -322,6 +326,22 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggcoefstats` | Regression model coefficients | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>| <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
 
 ## Types of statistical tests supported
+
+Functions | Type | Test | Effect size | 95% CI available? 
+----------- | ----------- | ------------------ | ------------------ | -----  
+`ggbetweenstats` | Parametric | Independent samples *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Parametric | One-way ANOVA | $$p\eta^2, p\omega^2$$ | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
+`ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramer's *V* | <font color="green">$\checkmark$</font>
+`ggpiestats` | Parametric | McNemar's test | odds ratio (OR) | <font color="green">$\checkmark$</font>
+`ggscatterstats`/`ggcorrmat` | Parametric | Pearson's *r* | *r* | <font color="green">$\checkmark$</font>
+`ggscatterstats`/`ggcorrmat` | Non-parametric | $$\text{Spearman's}~ \rho$$ | $$\rho$$ | <font color="green">$\checkmark$</font>
+`ggscatterstats`/`ggcorrmat` | Robust | Percentage bend correlation | *r* | <font color="green">$\checkmark$</font>
+`gghistostats` | Parametric | One-sample *t*-test | Cohen's *d* | <font color="green">$\checkmark$</font>
+`gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | Cohen's *d* | <font color="red">$\times$</font>
+`gghistostats` | Robust | One-sample percentile bootstrap | robust estimator | <font color="green">$\checkmark$</font>
+`ggcoefstats` | Parametric | Regression models | $$\beta$$ | <font color="green">$\checkmark$</font>
 
 ## Statistical variation
 

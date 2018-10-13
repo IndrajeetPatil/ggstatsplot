@@ -18,9 +18,8 @@
 #' @import ggplot2
 #' @importFrom grid unit
 #'
-#'
 #' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html}
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
 #'
 #' @export
 
@@ -78,7 +77,7 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(),
 #' @note This is just another name for the function `theme_ggstatsplot()`.
 #'
 #' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html}
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
 #'
 #' @export
 

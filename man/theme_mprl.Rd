@@ -25,7 +25,7 @@ user/reader.
 This is just another name for the function \code{theme_ggstatsplot()}.
 }
 \references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
 }
 \author{
 Indrajeet Patil

@@ -5,8 +5,8 @@
 \title{Making text subtitle for the t-test (between-/within-subjects designs).}
 \usage{
 subtitle_ggbetween_t_parametric(data, x, y, paired = FALSE,
-  effsize.type = "g", effsize.noncentral = FALSE, var.equal = FALSE,
-  k = 3, ...)
+  effsize.type = "g", effsize.noncentral = FALSE, conf.level = 0.95,
+  var.equal = FALSE, k = 3, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -26,8 +26,12 @@ argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-t
 omega-squared for \strong{anova})).}
 
 \item{effsize.noncentral}{Logical indicating whether to use non-central
-\emph{t}-distributions for computing the 95% confidence interval for Cohen's \emph{d}
-or Hedge's \emph{g} (Default: \code{FALSE}).}
+\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
+or Hedge's \emph{g} (Default: \code{FALSE}).
+@param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95%
+lower and upper confidence intervals (\code{0.95}).}
+
+\item{conf.level}{confidence level of the interval.}
 
 \item{var.equal}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F
@@ -36,7 +40,8 @@ or Hedge's \emph{g} (Default: \code{FALSE}).}
     is used, which generalizes the commonly known 2-sample Welch test to
     the case of arbitrarily many samples.}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 
 \item{...}{Additional arguments (ignored).}
 }

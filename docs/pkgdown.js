@@ -78,7 +78,7 @@
     element.setAttribute('data-original-title', tooltipOriginalTitle);
   }
 
-  if(Clipboard.isSupported()) {
+  if(ClipboardJS.isSupported()) {
     $(document).ready(function() {
       var copyButton = "<button type='button' class='btn btn-primary btn-copy-ex' type = 'submit' title='Copy to clipboard' aria-label='Copy to clipboard' data-toggle='tooltip' data-placement='left auto' data-trigger='hover' data-clipboard-copy><i class='fa fa-copy'></i></button>";
 
@@ -91,7 +91,7 @@
       $('.btn-copy-ex').tooltip({container: 'body'});
 
       // Initialize clipboard:
-      var clipboardBtnCopies = new Clipboard('[data-clipboard-copy]', {
+      var clipboardBtnCopies = new ClipboardJS('[data-clipboard-copy]', {
         text: function(trigger) {
           return trigger.parentNode.textContent;
         }

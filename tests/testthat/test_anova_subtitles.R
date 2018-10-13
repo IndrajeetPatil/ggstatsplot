@@ -16,12 +16,12 @@ testthat::test_that(
 
     # output from ggstatsplot helper subtitle
     subtitle <-
-      ggstatsplot::subtitle_ggbetween_anova_parametric(
+      suppressWarnings(ggstatsplot::subtitle_ggbetween_anova_parametric(
         data = ggplot2::msleep,
         x = vore,
         y = sleep_total,
         messages = FALSE
-      )
+      ))
 
     # extracting only the numbers and creating a tibble
     subtitle_vec <- num_parser(ggstats.obj = subtitle)

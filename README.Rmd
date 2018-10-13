@@ -345,7 +345,7 @@ ggstatsplot::grouped_ggbetweenstats(
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
-** This function is not appropriate for within-subjects designs.**
+**This function is not appropriate for within-subjects designs.**
 
 Variant of this function `ggwithinstats` is currently under work. You *can*
 still use this function just to prepare the **plot** for exploratory data
@@ -357,7 +357,7 @@ As a **temporary solution**, you can use the helper function from `ggstatsplot`
 to display results from within-subjects version of the test in question. Here is
 an example-
 
-```{r ggbetweenstats4, message = FALSE, warning = FALSE}
+```{r ggbetweenstats4, message = FALSE, warning = FALSE, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -365,7 +365,7 @@ set.seed(123)
 intent_short <- ggstatsplot::intent_morality %>%
   dplyr::filter(.data = ., condition %in% c("accidental", "attempted")) 
 
-# getting text results using with a helper function
+# getting text results using a helper function
 results_subtitle <- ggstatsplot::subtitle_ggbetween_t_parametric(
   data = intent_short,
   x = condition,
@@ -504,11 +504,10 @@ ggstatsplot::ggpiestats(
   main = am,
   condition = cyl,
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
-  stat.title = "interaction: ",                       # title for the results from Pearson's chi-squared test
+  stat.title = "interaction: ",                       # title for the results
   legend.title = "Transmission",                      # title for the legend
-  factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names for 'main' variable 
+  factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names (`main`)
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
-  facet.proptest = FALSE,                             # turning of facetted proportion test results
   package = "ggsci",                                  # package from which color palette is to be taken
   palette = "default_jama",                           # choosing a different color palette 
   caption = expression(                               # text for the caption
@@ -824,10 +823,10 @@ ggstatsplot::ggcoefstats(
   se.type = "iid",
   title = "quantile regression"
 ),
-  # linear mmodel
+  # linear model
   ggstatsplot::ggcoefstats(
     x = lme4::lmer(
-      formula = Reaction ~ Days + (Days | Subject),
+      formula = scale(Reaction) ~ scale(Days) + (Days | Subject),
       data = lme4::sleepstudy
     ),
     point.color = "red",

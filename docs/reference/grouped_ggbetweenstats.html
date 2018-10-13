@@ -12,7 +12,7 @@ designs repeated across all levels of a grouping variable. — grouped_ggbetween
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
 <!-- jquery -->
-<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
@@ -22,7 +22,7 @@ designs repeated across all levels of a grouping variable. — grouped_ggbetween
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script>
 
 <!-- sticky kit -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
@@ -247,8 +247,10 @@ omega-squared for <strong>anova</strong>)).</p></td>
     <tr>
       <th>effsize.noncentral</th>
       <td><p>Logical indicating whether to use non-central
-<em>t</em>-distributions for computing the 95<!-- % confidence interval for Cohen's \emph{d} -->
-or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
+<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
+or Hedge's <em>g</em> (Default: <code>FALSE</code>).
+@param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95<!-- % -->
+lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
@@ -280,7 +282,8 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 3</code>).</p></td>
     </tr>
     <tr>
       <th>var.equal</th>

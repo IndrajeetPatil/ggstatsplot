@@ -46,12 +46,16 @@ testthat::test_that(
         convert = TRUE,
         drop = TRUE
       ) %>%
-      dplyr::mutate(.data = .,
-                    difference = grouped - (basic + 2)) %>%
+      dplyr::mutate(
+        .data = .,
+        difference = grouped - (basic + 2)
+      ) %>%
       stats::na.omit(.)
 
     # sum of difference should be exactly 0
-    testthat::expect_equal(object = sum(ns_df$difference),
-                           expected = 0L)
+    testthat::expect_equal(
+      object = sum(ns_df$difference),
+      expected = 0L
+    )
   }
 )

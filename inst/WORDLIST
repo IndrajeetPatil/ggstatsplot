@@ -1,5 +1,6 @@
 anova
 ascender
+bayes
 bayesian
 binwidth
 boxviolin
@@ -19,7 +20,6 @@ ds
 effsize
 eg
 eranraviv
-eval
 Gapminder
 ggbetween
 ggbetweenstats

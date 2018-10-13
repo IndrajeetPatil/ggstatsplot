@@ -60,7 +60,7 @@ bf_corr_test <-
             # ", log"["e"],
             # "(error) = ",
             # bf_error,
-            #"%",
+            # "%",
             ", Prior width = ",
             bf_prior
           )

@@ -3,9 +3,10 @@
 \name{subtitle_ggbetween_t_rob}
 \alias{subtitle_ggbetween_t_rob}
 \title{Making text subtitle for the robust t-test
-(between-subjects designs).}
+(between- and within-subjects designs).}
 \usage{
-subtitle_ggbetween_t_rob(data, x, y, tr = 0.1, nboot = 100, k = 3,
+subtitle_ggbetween_t_rob(data, x, y, tr = 0.1, paired = FALSE,
+  nboot = 100, conf.level = 0.95, conf.type = "norm", k = 3,
   messages = TRUE, ...)
 }
 \arguments{
@@ -22,10 +23,20 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
+\item{paired}{a logical indicating whether you want a paired
+    t-test.}
+
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{conf.level}{confidence level of the interval.}
+
+\item{conf.type}{A vector of character strings representing the type of
+intervals required. The value should be any subset of the values \code{"norm"},
+\code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
@@ -34,7 +45,7 @@ to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Making text subtitle for the robust t-test
-(between-subjects designs).
+(between- and within-subjects designs).
 }
 \examples{
 
@@ -53,6 +64,19 @@ subtitle_ggbetween_t_rob(
   nboot = 10,
   k = 1,
   tr = 0.2
+)
+
+# within-subjects design
+ggstatsplot::subtitle_ggbetween_t_rob(
+  data = dplyr::filter(
+    ggstatsplot::intent_morality,
+    condition \%in\% c("accidental", "attempted"),
+    harm == "Poisoning"
+  ),
+  x = condition,
+  y = rating,
+  paired = TRUE,
+  nboot = 25
 )
 }
 \author{

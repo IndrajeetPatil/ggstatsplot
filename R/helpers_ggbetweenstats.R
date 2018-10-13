@@ -127,6 +127,59 @@ check_outlier <- function(var, coef = 1.5) {
   return(res)
 }
 
+
+#' @title Converts long-format dataframe to wide-format dataframe
+#' @name long_to_wide_converter
+#' @author Indrajeet Patil
+#'
+#' @importFrom rlang !! enquo
+#' @importFrom dplyr n row_number select mutate mutate_at group_by ungroup
+#' @importFrom tidyr spread
+#' @importFrom stats na.omit
+#'
+#' @keywords internal
+
+long_to_wide_converter <- function(data, x, y) {
+
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    )
+
+  # convert the grouping variable to factor and drop unused levels
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~base::droplevels(x = base::as.factor(x = .))
+    )
+
+  # wide format
+  data_wide <-
+    data %>%
+    dplyr::group_by(.data = ., x) %>%
+    dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
+    dplyr::ungroup(x = .) %>%
+    stats::na.omit(.) %>%
+    dplyr::group_by(.data = ., rowid) %>%
+    dplyr::mutate(.data = ., n = dplyr::n()) %>%
+    dplyr::ungroup(x = .) %>%
+    dplyr::filter(.data = ., n == 2) %>%
+    dplyr::select(.data = ., x, y, rowid) %>%
+    tidyr::spread(
+      data = .,
+      key = x,
+      value = y,
+      convert = TRUE
+    )
+
+  # return the dataframe in wide format
+  return(data_wide)
+}
+
 #
 # @examples
 # a <- NULL

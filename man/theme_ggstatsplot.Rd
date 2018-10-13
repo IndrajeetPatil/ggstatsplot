@@ -26,7 +26,7 @@ and \emph{assumed} by the author to be aesthetically pleasing to the
 user/reader.
 }
 \references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
 }
 \author{
 Indrajeet Patil
