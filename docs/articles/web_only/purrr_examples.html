@@ -78,9 +78,6 @@
       <a href="../../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
-      <a href="../../articles/tests_and_coverage.html">Tests and Coverage</a>
-    </li>
-    <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -129,7 +126,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-10-12</h4>
+            <h4 class="date">2018-10-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -247,7 +244,8 @@
 <a class="sourceLine" id="cb2-39" data-line-number="39">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb2-40" data-line-number="40">  ),</a>
 <a class="sourceLine" id="cb2-41" data-line-number="41">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
-<a class="sourceLine" id="cb2-42" data-line-number="42">)</a></code></pre></div>
+<a class="sourceLine" id="cb2-42" data-line-number="42">)</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="co">#&gt; Error: Identical variable ( [[ ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) was used for both grouping and outlier labeling, which is not allowed.Error: Identical variable ( [[ ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) was used for both grouping and outlier labeling, which is not allowed.Error: Identical variable ( [[ ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) was used for both grouping and outlier labeling, which is not allowed.</span></a></code></pre></div>
 <p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
@@ -570,7 +568,7 @@
 <a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
 <a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
 <a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York            </span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;  date     2018-10-12                  </span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;  date     2018-10-13                  </span></a>
 <a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;  package      * version     date       lib source                               </span></a>
@@ -619,7 +617,7 @@
 <a class="sourceLine" id="cb8-59" data-line-number="59"><span class="co">#&gt;  ggplot2        3.0.0.9000  2018-09-26 [1] Github (tidyverse/ggplot2@e9f7ded)   </span></a>
 <a class="sourceLine" id="cb8-60" data-line-number="60"><span class="co">#&gt;  ggrepel        0.8.0.9000  2018-09-09 [1] Github (slowkow/ggrepel@91877ca)     </span></a>
 <a class="sourceLine" id="cb8-61" data-line-number="61"><span class="co">#&gt;  ggridges       0.5.1       2018-10-04 [1] Github (clauswilke/ggridges@1d5131f) </span></a>
-<a class="sourceLine" id="cb8-62" data-line-number="62"><span class="co">#&gt;  ggstatsplot  * 0.0.6.9000  2018-10-13 [1] local                                </span></a>
+<a class="sourceLine" id="cb8-62" data-line-number="62"><span class="co">#&gt;  ggstatsplot  * 0.0.6.9000  2018-10-14 [1] local                                </span></a>
 <a class="sourceLine" id="cb8-63" data-line-number="63"><span class="co">#&gt;  ggthemes     * 4.0.1       2018-08-24 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-64" data-line-number="64"><span class="co">#&gt;  glmmTMB        0.2.2.0     2018-07-03 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-65" data-line-number="65"><span class="co">#&gt;  glue           1.3.0       2018-09-17 [1] Github (tidyverse/glue@4e74901)      </span></a>
@@ -707,7 +705,7 @@
 <a class="sourceLine" id="cb8-147" data-line-number="147"><span class="co">#&gt;  stringi        1.2.4       2018-07-20 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-148" data-line-number="148"><span class="co">#&gt;  stringr        1.3.1       2018-05-10 [1] CRAN (R 3.5.0)                       </span></a>
 <a class="sourceLine" id="cb8-149" data-line-number="149"><span class="co">#&gt;  survival       2.42-3      2018-04-16 [2] CRAN (R 3.5.1)                       </span></a>
-<a class="sourceLine" id="cb8-150" data-line-number="150"><span class="co">#&gt;  testthat       2.0.0       2017-12-13 [1] CRAN (R 3.5.0)                       </span></a>
+<a class="sourceLine" id="cb8-150" data-line-number="150"><span class="co">#&gt;  testthat       2.0.1       2018-10-13 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-151" data-line-number="151"><span class="co">#&gt;  TH.data        1.0-9       2018-07-10 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-152" data-line-number="152"><span class="co">#&gt;  tibble         1.4.2       2018-01-22 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-153" data-line-number="153"><span class="co">#&gt;  tidyr          0.8.1.9000  2018-10-06 [1] Github (tidyverse/tidyr@3b62137)     </span></a>

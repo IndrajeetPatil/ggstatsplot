@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--11-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--13-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -259,7 +259,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x0000000024ea08d0>
+#> <bytecode: 0x000000002deb8468>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -426,7 +426,7 @@ ggstatsplot::grouped_ggbetweenstats(
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
 
-\*\* This function is not appropriate for within-subjects designs.\*\*
+**This function is not appropriate for within-subjects designs.**
 
 Variant of this function `ggwithinstats` is currently under work. You
 *can* still use this function just to prepare the **plot** for
@@ -446,7 +446,7 @@ set.seed(123)
 intent_short <- ggstatsplot::intent_morality %>%
   dplyr::filter(.data = ., condition %in% c("accidental", "attempted")) 
 
-# getting text results using with a helper function
+# getting text results using a helper function
 results_subtitle <- ggstatsplot::subtitle_ggbetween_t_parametric(
   data = intent_short,
   x = condition,
@@ -597,11 +597,10 @@ ggstatsplot::ggpiestats(
   main = am,
   condition = cyl,
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
-  stat.title = "interaction: ",                       # title for the results from Pearson's chi-squared test
+  stat.title = "interaction: ",                       # title for the results
   legend.title = "Transmission",                      # title for the legend
-  factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names for 'main' variable 
+  factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names (`main`)
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
-  facet.proptest = FALSE,                             # turning of facetted proportion test results
   package = "ggsci",                                  # package from which color palette is to be taken
   palette = "default_jama",                           # choosing a different color palette 
   caption = expression(                               # text for the caption
@@ -639,6 +638,11 @@ ggstatsplot::ggpiestats(
   package = "wesanderson",
   palette = "Royal1"
 )
+#> Note: Results from faceted one-sample proportion tests:# A tibble: 2 x 7
+#>   condition  Approve Disapprove `Chi-squared`    df `p-value` significance
+#>   <fct>      <chr>   <chr>              <dbl> <dbl>     <dbl> <chr>       
+#> 1 Approve    90.23%  9.77%               570.     1         0 ***         
+#> 2 Disapprove 20.83%  79.17%              245      1         0 ***
 ```
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />
@@ -987,10 +991,10 @@ ggstatsplot::ggcoefstats(
   se.type = "iid",
   title = "quantile regression"
 ),
-  # linear mmodel
+  # linear model
   ggstatsplot::ggcoefstats(
     x = lme4::lmer(
-      formula = Reaction ~ Days + (Days | Subject),
+      formula = scale(Reaction) ~ scale(Days) + (Days | Subject),
       data = lme4::sleepstudy
     ),
     point.color = "red",

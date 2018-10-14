@@ -305,9 +305,15 @@ subtitle_contigency_tab <- function(data,
           p.value = TRUE
         ),
         # select odds ratio as effect size
-        or = ggstatsplot::specify_decimal_p(x = log(x = or_df$estimate, base = exp(1)), k),
-        LL = ggstatsplot::specify_decimal_p(x = log(x = or_df$conf.int[1], base = exp(1)), k),
-        UL = ggstatsplot::specify_decimal_p(x = log(x = or_df$conf.int[2], base = exp(1)), k),
+        or = ggstatsplot::specify_decimal_p(x = log(
+          x = or_df$estimate, base = exp(1)
+        ), k),
+        LL = ggstatsplot::specify_decimal_p(x = log(
+          x = or_df$conf.int[1], base = exp(1)
+        ), k),
+        UL = ggstatsplot::specify_decimal_p(x = log(
+          x = or_df$conf.int[2], base = exp(1)
+        ), k),
         n = as.data.frame(jmv_chi$test)$`value[n]`[[1]]
       )
     )

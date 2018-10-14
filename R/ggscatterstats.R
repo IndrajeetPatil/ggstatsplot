@@ -195,10 +195,10 @@ ggscatterstats <-
 
     # preparing the dataframe
     data <- dplyr::full_join(
-      # dataframe where x and y are named "x...internal" and "y...internal"
-      # these bizarre names are used to protect against the possibility
-      # that user has already used "x" and "y" as variable names, in which case the
-      # full_join() will create variable names that will create problems
+      # bizarre names like "x...internal" and "y...internal" are used to protect
+      # against the possibility that user has already used "x" and "y" as
+      # variable names, in which case the full_join() will create variable names
+      # that will create problems
       x = data %>%
         dplyr::select(
           .data = .,
@@ -217,7 +217,7 @@ ggscatterstats <-
         tibble::rowid_to_column(., var = "rowid"),
       by = "rowid"
     ) %>%
-      dplyr::select(.data = ., -rowid) %>%
+      dplyr::select(.data = ., -rowid) %>% # remove NAs only from x & y columns
       dplyr::filter(.data = ., !is.na(x...internal), !is.na(y...internal)) %>%
       tibble::as_data_frame(x = .)
 
@@ -531,7 +531,10 @@ ggscatterstats <-
       base::message(cat(
         crayon::red("Warning: "),
         crayon::blue(
-          "The plot is not a `ggplot` object and therefore can't be further modified with `ggplot2` functions.\n"
+          "The output is not a `ggplot` object and can't be further modified with `ggplot2` functions.\n"
+        ),
+        crayon::blue(
+          "In case you want a `ggplot` object, set `marginal = FALSE`.\n"
         ),
         sep = ""
       ))

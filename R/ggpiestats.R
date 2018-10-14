@@ -55,10 +55,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -66,7 +66,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#'
+#' 
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -76,10 +76,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#'
+#' 
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -413,44 +413,30 @@ ggpiestats <-
           # tell the user what these results are
           base::message(cat(
             crayon::green("Note: "),
-            crayon::blue("Results from faceted one-sample proportion tests:"),
+            crayon::blue("Results from faceted one-sample proportion tests:\n"),
             sep = ""
           ))
 
           # print the tibble and leave out unnecessary columns
           print(tibble::as.tibble(df2) %>%
-                  dplyr::select(.data = ., -c(main:perc)))
+            dplyr::select(.data = ., -c(main:perc)))
         }
       }
 
-      # running Pearson's Chi-square test of independence
-      if (!isTRUE(paired)) {
-        subtitle <- subtitle_contigency_tab(
-          data = data,
-          main = main,
-          condition = condition,
-          nboot = nboot,
-          paired = FALSE,
-          stat.title = stat.title,
-          conf.level = 0.95,
-          conf.type = "norm",
-          messages = messages,
-          k = k
-        )
-      } else if (isTRUE(paired)) {
-        subtitle <- subtitle_contigency_tab(
-          data = data,
-          main = main,
-          condition = condition,
-          nboot = nboot,
-          paired = TRUE,
-          stat.title = stat.title,
-          conf.level = 0.95,
-          conf.type = "norm",
-          messages = messages,
-          k = k
-        )
-      }
+      # running approprate statistical test
+      # unpaired: Pearson's Chi-square test of independence
+      subtitle <- subtitle_contigency_tab(
+        data = data,
+        main = main,
+        condition = condition,
+        nboot = nboot,
+        paired = paired,
+        stat.title = stat.title,
+        conf.level = 0.95,
+        conf.type = "norm",
+        messages = messages,
+        k = k
+      )
 
       # ======================= facetted proportion test ================================
 
