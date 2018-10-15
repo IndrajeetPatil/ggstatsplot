@@ -20,6 +20,9 @@
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
 #' @param perc.k Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0`).
+#' @param slice.label Character decides what information needs to be displayed
+#'   on the label in each pie slice. Possible options are `"percentage"`
+#'   (default), `"counts"`, `"both"`.
 #' @inheritParams subtitle_contigency_tab
 #' @inheritParams subtitle_onesample_proptest
 #' @inheritParams paletteer::scale_fill_paletteer_d
@@ -27,7 +30,6 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom tidyr complete
 #' @importFrom dplyr select
 #' @importFrom dplyr group_by
 #' @importFrom dplyr summarize
@@ -55,10 +57,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -66,7 +68,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -76,10 +78,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -105,6 +107,7 @@ ggpiestats <-
              facet.wrap.name = NULL,
              k = 3,
              perc.k = 0,
+             slice.label = "percentage",
              facet.proptest = TRUE,
              ggtheme = ggplot2::theme_bw(),
              ggstatsplot.layer = TRUE,
@@ -225,9 +228,6 @@ ggpiestats <-
       df <-
         data %>%
         dplyr::group_by(.data = ., main) %>%
-        # this makes sure that even if there is not single instance for one of
-        # the factor levels, there will still be 0 corresponding to that value
-        tidyr::complete(data = ., main) %>%
         dplyr::summarize(.data = ., counts = n()) %>%
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
         dplyr::ungroup(x = .) %>%
@@ -240,6 +240,38 @@ ggpiestats <-
         dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
         dplyr::ungroup(x = .) %>%
         dplyr::arrange(.data = ., dplyr::desc(x = main))
+    }
+
+    # checking what needs to be displayed on pie slices as labels also decide on
+    # the text size for the label; if both counts and percentages are going to
+    # be displayed, then use a bit smaller text size
+    if (slice.label == "percentage") {
+      # only percentage
+      df %<>%
+        dplyr::mutate(
+          .data = .,
+          slice.label = paste0(round(x = perc, digits = perc.k), "%")
+        )
+
+      label.text.size <- 4
+    } else if (slice.label == "counts") {
+      # only raw counts
+      df %<>%
+        dplyr::mutate(
+          .data = .,
+          slice.label = paste0("n = ", counts)
+        )
+
+      label.text.size <- 4
+    } else if (slice.label == "both") {
+      # both raw counts and percentages
+      df %<>%
+        dplyr::mutate(
+          .data = .,
+          slice.label = paste0("n = ", counts, "\n(", round(x = perc, digits = perc.k), "%)")
+        )
+
+      label.text.size <- 3
     }
 
     # ============================ sample size label ====================================
@@ -318,12 +350,12 @@ ggpiestats <-
         ) +
         ggplot2::geom_label(
           ggplot2::aes(
-            label = paste0(round(x = perc, digits = perc.k), "%"),
+            label = slice.label,
             group = factor(get("main"))
           ),
           position = position_fill(vjust = 0.5),
           color = "black",
-          size = 4,
+          size = label.text.size,
           show.legend = FALSE
         ) +
         ggplot2::coord_polar(theta = "y") # convert to polar coordinates
@@ -351,12 +383,12 @@ ggpiestats <-
         ) +
         ggplot2::geom_label(
           ggplot2::aes(
-            label = paste0(round(x = perc, digits = perc.k), "%"),
+            label = slice.label,
             group = factor(get("main"))
           ),
           position = position_fill(vjust = 0.5),
           color = "black",
-          size = 4,
+          size = label.text.size,
           show.legend = FALSE
         ) +
         # convert to polar coordinates
@@ -419,7 +451,7 @@ ggpiestats <-
 
           # print the tibble and leave out unnecessary columns
           print(tibble::as.tibble(df2) %>%
-            dplyr::select(.data = ., -c(main:perc)))
+            dplyr::select(.data = ., -c(main:slice.label)))
         }
       }
 
@@ -438,9 +470,9 @@ ggpiestats <-
         k = k
       )
 
-      # ======================= facetted proportion test ================================
+      # ======================= facetted proportion test ========================
 
-      # adding significance labels to pie charts for grouped proportion tests, if expected
+      # adding significance labels to pie charts for grouped proportion tests
       if (isTRUE(facet.proptest)) {
         p <-
           p +
@@ -453,7 +485,7 @@ ggpiestats <-
           )
       }
 
-      # adding significance labels to pie charts for grouped proportion tests, if expected
+      # adding sample size info
       if (isTRUE(sample.size.label)) {
         p <-
           p +

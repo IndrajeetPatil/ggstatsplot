@@ -20,10 +20,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
+#' @importFrom rlang !! quo_name enquo
 #' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest
@@ -34,23 +31,47 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#' 
+#'
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   main = cyl
 #' )
-#' 
+#'
 #' # without condition and with count data
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
+#'
+#' # the following will take slightly more amount of time
+#' \dontrun{
+#' # for reproducibility
+#' set.seed(123)
+#'
+#' # let's create a smaller dataframe
+#' diamonds_short <- ggplot2::diamonds %>%
+#'   dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
+#'   dplyr::sample_frac(tbl = ., size = 0.10)
+#'
+#' # plot
+#' ggstatsplot::grouped_ggpiestats(
+#'   data = diamonds_short,
+#'   main = color,
+#'   condition = clarity,
+#'   grouping.var = cut,
+#'   title.prefix = "Quality",
+#'   slice.label = "both",
+#'   messages = FALSE,
+#'   perc.k = 1,
+#'   nrow = 3
+#' )
+#' }
 #' @export
 
 # defining the function
@@ -71,6 +92,7 @@ grouped_ggpiestats <- function(data,
                                facet.wrap.name = NULL,
                                k = 3,
                                perc.k = 0,
+                               slice.label = "percentage",
                                facet.proptest = TRUE,
                                ggtheme = ggplot2::theme_bw(),
                                ggstatsplot.layer = TRUE,
@@ -182,6 +204,7 @@ grouped_ggpiestats <- function(data,
                 facet.wrap.name = facet.wrap.name,
                 k = k,
                 perc.k = perc.k,
+                slice.label = slice.label,
                 facet.proptest = facet.proptest,
                 ggtheme = ggtheme,
                 ggstatsplot.layer = ggstatsplot.layer,
@@ -217,6 +240,7 @@ grouped_ggpiestats <- function(data,
                 facet.wrap.name = facet.wrap.name,
                 k = k,
                 perc.k = perc.k,
+                slice.label = slice.label,
                 facet.proptest = facet.proptest,
                 ggtheme = ggtheme,
                 ggstatsplot.layer = ggstatsplot.layer,
@@ -252,6 +276,7 @@ grouped_ggpiestats <- function(data,
                 facet.wrap.name = facet.wrap.name,
                 k = k,
                 perc.k = perc.k,
+                slice.label = slice.label,
                 facet.proptest = facet.proptest,
                 ggtheme = ggtheme,
                 ggstatsplot.layer = ggstatsplot.layer,
@@ -286,6 +311,7 @@ grouped_ggpiestats <- function(data,
                 facet.wrap.name = facet.wrap.name,
                 k = k,
                 perc.k = perc.k,
+                slice.label = slice.label,
                 facet.proptest = facet.proptest,
                 ggtheme = ggtheme,
                 ggstatsplot.layer = ggstatsplot.layer,

@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--13-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--14-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -259,7 +259,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002deb8468>
+#> <bytecode: 0x000000002e651bd0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -601,6 +601,7 @@ ggstatsplot::ggpiestats(
   legend.title = "Transmission",                      # title for the legend
   factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names (`main`)
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
+  slice.label = "counts",                             # show counts data instead of percentages 
   package = "ggsci",                                  # package from which color palette is to be taken
   palette = "default_jama",                           # choosing a different color palette 
   caption = expression(                               # text for the caption
@@ -638,7 +639,8 @@ ggstatsplot::ggpiestats(
   package = "wesanderson",
   palette = "Royal1"
 )
-#> Note: Results from faceted one-sample proportion tests:# A tibble: 2 x 7
+#> Note: Results from faceted one-sample proportion tests:
+#> # A tibble: 2 x 7
 #>   condition  Approve Disapprove `Chi-squared`    df `p-value` significance
 #>   <fct>      <chr>   <chr>              <dbl> <dbl>     <dbl> <chr>       
 #> 1 Approve    90.23%  9.77%               570.     1         0 ***         
@@ -660,7 +662,9 @@ ggstatsplot::grouped_ggpiestats(
   data = ggstatsplot::movies_long, 
   main = mpaa,
   grouping.var = genre,            # grouping variable
-  title.prefix = "Movie genre",
+  title.prefix = "Movie genre",    # prefix for the facetted title
+  slice.label = "both",            # show both counts and percentage data
+  perc.k = 1,                      # no. of decimal places for percentages  
   palette = "BrightPastel",
   package = "quickpalette",
   messages = FALSE,

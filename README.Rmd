@@ -508,6 +508,7 @@ ggstatsplot::ggpiestats(
   legend.title = "Transmission",                      # title for the legend
   factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names (`main`)
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
+  slice.label = "counts",                             # show counts data instead of percentages 
   package = "ggsci",                                  # package from which color palette is to be taken
   palette = "default_jama",                           # choosing a different color palette 
   caption = expression(                               # text for the caption
@@ -557,7 +558,9 @@ ggstatsplot::grouped_ggpiestats(
   data = ggstatsplot::movies_long, 
   main = mpaa,
   grouping.var = genre,            # grouping variable
-  title.prefix = "Movie genre",
+  title.prefix = "Movie genre",    # prefix for the facetted title
+  slice.label = "both",            # show both counts and percentage data
+  perc.k = 1,                      # no. of decimal places for percentages  
   palette = "BrightPastel",
   package = "quickpalette",
   messages = FALSE,

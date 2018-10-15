@@ -8,9 +8,10 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   paired = FALSE, factor.levels = NULL, stat.title = NULL,
   sample.size.label = TRUE, title = NULL, caption = NULL,
   nboot = 25, legend.title = NULL, facet.wrap.name = NULL, k = 3,
-  perc.k = 0, facet.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, package = "RColorBrewer",
-  palette = "Dark2", direction = 1, messages = TRUE)
+  perc.k = 0, slice.label = "percentage", facet.proptest = TRUE,
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  package = "RColorBrewer", palette = "Dark2", direction = 1,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -59,6 +60,10 @@ should be displayed for each level of the grouping variable \code{condition} (De
 
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
+
+\item{slice.label}{Character decides what information needs to be displayed
+on the label in each pie slice. Possible options are \code{"percentage"}
+(default), \code{"counts"}, \code{"both"}.}
 
 \item{facet.proptest}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}

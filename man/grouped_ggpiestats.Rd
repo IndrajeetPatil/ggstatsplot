@@ -8,7 +8,8 @@ grouped_ggpiestats(data, main, condition = NULL, counts = NULL,
   grouping.var, title.prefix = "Group", ratio = NULL, paired = FALSE,
   factor.levels = NULL, stat.title = NULL, sample.size.label = TRUE,
   caption = NULL, nboot = 25, legend.title = NULL,
-  facet.wrap.name = NULL, k = 3, perc.k = 0, facet.proptest = TRUE,
+  facet.wrap.name = NULL, k = 3, perc.k = 0,
+  slice.label = "percentage", facet.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   messages = TRUE, ...)
@@ -63,6 +64,10 @@ should be displayed for each level of the grouping variable \code{condition} (De
 
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
+
+\item{slice.label}{Character decides what information needs to be displayed
+on the label in each pie slice. Possible options are \code{"percentage"}
+(default), \code{"counts"}, \code{"both"}.}
 
 \item{facet.proptest}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
@@ -160,6 +165,30 @@ ggstatsplot::grouped_ggpiestats(
   counts = Freq,
   grouping.var = Sex
 )
+
+# the following will take slightly more amount of time
+\dontrun{
+# for reproducibility
+set.seed(123)
+
+# let's create a smaller dataframe
+diamonds_short <- ggplot2::diamonds \%>\%
+  dplyr::filter(.data = ., cut \%in\% c("Fair", "Very Good", "Ideal")) \%>\%
+  dplyr::sample_frac(tbl = ., size = 0.10)
+
+# plot
+ggstatsplot::grouped_ggpiestats(
+  data = diamonds_short,
+  main = color,
+  condition = clarity,
+  grouping.var = cut,
+  title.prefix = "Quality",
+  slice.label = "both",
+  messages = FALSE,
+  perc.k = 1,
+  nrow = 3
+)
+}
 }
 \references{
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
