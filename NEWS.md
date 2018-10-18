@@ -37,6 +37,8 @@ MINOR CHANGES
     decides what information needs to be displayed as a label on the slices of
     the pie chart: `"percentage"` (which has been the default thus far),
     `"counts"`, or `"both"`.
+  - Given the constant changes to the default behavior of functions, the
+    lifecycle badge has been changed from `stable` to `maturing`.
 
 # ggstatsplot 0.0.6
 
