@@ -26,25 +26,26 @@
 #' @importFrom tibble tribble
 #' @importFrom exact2x2 exact2x2
 #' @importFrom tidyr uncount
+#' @importFrom jmv propTestN contTables contTablesPaired
 #'
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#' 
+#'
 #' # without counts data
 #' subtitle_contigency_tab(
 #'   data = mtcars,
 #'   main = am,
 #'   condition = cyl
 #' )
-#' 
+#'
 #' # with counts data
 #' # in case of no variation, a `NULL` will be returned.
 #' library(jmv)
-#' 
+#'
 #' dat <- as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male")
-#' 
+#'
 #' subtitle_contigency_tab(
 #'   data = dat,
 #'   main = Hair,
@@ -337,16 +338,16 @@ subtitle_contigency_tab <- function(data,
 #' @inheritParams subtitle_contigency_tab
 #'
 #' @examples
-#' 
+#'
 #' # with counts
 #' library(jmv)
-#' 
+#'
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#' 
+#'
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),

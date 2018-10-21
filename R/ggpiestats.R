@@ -40,15 +40,11 @@
 #' @importFrom dplyr mutate_if
 #' @importFrom dplyr if_else
 #' @importFrom dplyr desc
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
+#' @importFrom rlang !! enquo quo_name
 #' @importFrom crayon green
 #' @importFrom crayon blue
 #' @importFrom crayon yellow
 #' @importFrom crayon red
-#' @importFrom jmv propTestN
-#' @importFrom jmv contTables
-#' @importFrom jmv contTablesPaired
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount
@@ -438,7 +434,7 @@ ggpiestats <-
               false = significance
             )
           ) %>%
-          stats::na.omit(.)
+          dplyr::filter(.data = ., !is.na(significance))
 
         # display grouped proportion test results
         if (isTRUE(messages)) {
@@ -498,7 +494,6 @@ ggpiestats <-
           )
       }
     } else {
-      # conducting proportion test with jmv::propTestN()
       subtitle <- subtitle_onesample_proptest(
         data = data,
         main = main,
