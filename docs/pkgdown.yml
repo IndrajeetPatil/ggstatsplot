@@ -1,6 +1,6 @@
 pandoc: 2.2.3.2
 pkgdown: 1.1.0.9000
-pkgdown_sha: 3b3188bfbbd8cc42daa3218f3884b85fd5122372
+pkgdown_sha: 3836984197179dd712138dbc2396527e4cb3131a
 articles:
   additional: additional.html
   ggbetweenstats: ggbetweenstats.html
@@ -9,6 +9,7 @@ articles:
   gghistostats: gghistostats.html
   ggpiestats: ggpiestats.html
   ggscatterstats: ggscatterstats.html
+  tests_and_coverage: tests_and_coverage.html
   combine_plots: web_only/combine_plots.html
   gallery: web_only/gallery.html
   ggstatsplot_paper: web_only/ggstatsplot_paper.html

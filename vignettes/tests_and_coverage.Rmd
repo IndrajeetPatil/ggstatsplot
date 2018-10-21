@@ -1,0 +1,126 @@
+---
+title: "Tests and Coverage"
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+<!--- Placeholder for tests/README.md Do Not Edit--->
+This output is created by
+[covrpage](https://github.com/yonicd/covrpage).
+
+## Coverage
+
+Coverage summary is created using the
+[covr](https://github.com/r-lib/covr) package.
+
+    ## - Tests Failed
+    ##   Coverage statistics are approximations of the non-failing tests.
+    ##   Use with caution
+    ## 
+    ##  For further investigation check in testthat summary tables.
+
+| Object                                                                            | Coverage (%) |
+| :-------------------------------------------------------------------------------- | :----------: |
+| ggstatsplot                                                                       |    21.82     |
+| [R/combine\_plots.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/combine_plots.R)                                        |     0.00     |
+| [R/ggcoefstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/ggcoefstats.R)                                             |     0.00     |
+| [R/ggcorrmat.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/ggcorrmat.R)                                                 |     0.00     |
+| [R/gghistostats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/gghistostats.R)                                           |     0.00     |
+| [R/ggpiestats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/ggpiestats.R)                                               |     0.00     |
+| [R/grouped\_ggbetweenstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/grouped_ggbetweenstats.R)                      |     0.00     |
+| [R/grouped\_ggcorrmat.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/grouped_ggcorrmat.R)                                |     0.00     |
+| [R/grouped\_gghistostats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/grouped_gghistostats.R)                          |     0.00     |
+| [R/grouped\_ggpiestats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/grouped_ggpiestats.R)                              |     0.00     |
+| [R/helpers\_ggcoefstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_ggcoefstats.R)                            |     0.00     |
+| [R/helpers\_ggcorrmat.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_ggcorrmat.R)                                |     0.00     |
+| [R/helpers\_gghistostats\_subtitles.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_gghistostats_subtitles.R)     |     0.00     |
+| [R/helpers\_ggpiestats\_subtitles.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_ggpiestats_subtitles.R)         |     0.00     |
+| [R/helpers\_ggscatterstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_ggscatterstats.R)                      |     0.00     |
+| [R/helpers\_messages.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_messages.R)                                  |     0.00     |
+| [R/set\_cwd.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/set_cwd.R)                                                    |     0.00     |
+| [R/helpers\_ggbetween\_subtitles.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_ggbetween_subtitles.R)           |    19.92     |
+| [R/helpers\_ggscatterstats\_subtitles.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_ggscatterstats_subtitles.R) |    25.45     |
+| [R/theme\_ggstatsplot.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/theme_ggstatsplot.R)                                |    29.27     |
+| [R/grouped\_ggscatterstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/grouped_ggscatterstats.R)                      |    45.21     |
+| [R/ggscatterstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/ggscatterstats.R)                                       |    51.42     |
+| [R/switch\_functions.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/switch_functions.R)                                  |    59.09     |
+| [R/helpers\_effsize\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_effsize_ci.R)                             |    64.58     |
+| [R/helpers\_ggbetweenstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/helpers_ggbetweenstats.R)                      |    82.98     |
+| [R/ggbetweenstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/R/ggbetweenstats.R)                                       |    86.48     |
+
+<br>
+
+## Unit Tests
+
+Unit Test summary is created using the
+[testthat](https://github.com/r-lib/testthat)
+package.
+
+| icon | file                                                                      |  n | time | error | failed | skipped | warning |
+| :--- | :------------------------------------------------------------------------ | -: | ---: | ----: | -----: | ------: | ------: |
+|      | [test\_anova\_subtitles.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_anova_subtitles.R)               |  4 | 1.06 |     0 |      0 |       0 |       0 |
+|      | [test\_argument\_count.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_argument_count.R)                 |  1 | 0.03 |     0 |      0 |       0 |       0 |
+|      | [test\_chisq\_v\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_chisq_v_ci.R)                        | 10 | 3.02 |     0 |      0 |       0 |       0 |
+|      | [test\_cor\_test\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_cor_test_ci.R)                      | 12 | 0.51 |     0 |      0 |       0 |       0 |
+| \+   | [test\_ggbetweenstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_ggbetweenstats.R)                  |  5 | 5.47 |     0 |      0 |       1 |       0 |
+|      | [test\_grouped\_ggscatterstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_grouped_ggscatterstats.R) |  1 | 0.12 |     0 |      0 |       0 |       0 |
+|      | [test\_lm\_effsize\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_lm_effsize_ci.R)                  |  9 | 3.33 |     0 |      0 |       0 |       0 |
+|      | [test\_robcor\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_robcor_ci.R)                           |  8 | 0.18 |     0 |      0 |       0 |       0 |
+|      | [test\_t\_test\_subtitles.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_t_test_subtitles.R)            |  1 | 0.42 |     0 |      0 |       0 |       0 |
+|      | [test\_t1way\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_t1way_ci.R)                             |  5 | 4.00 |     0 |      0 |       0 |       0 |
+
+<details open>
+
+<summary> Show Detailed Test Results
+</summary>
+
+| icon | file                                                                             | context                 | test                                       | status  |  n | time |
+| :--- | :------------------------------------------------------------------------------- | :---------------------- | :----------------------------------------- | :------ | -: | ---: |
+|      | [test\_anova\_subtitles.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_anova_subtitles.R#L32_L35)              | anova\_subtitles        | anova subtitles work                       | PASS    |  4 | 1.06 |
+|      | [test\_argument\_count.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_argument_count.R#L56_L59)                | argument\_count         | argument\_count is correct                 | PASS    |  1 | 0.03 |
+|      | [test\_chisq\_v\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_chisq_v_ci.R#L45_L49)                       | chisq\_v\_ci            | chisq\_v\_ci works                         | PASS    | 10 | 3.02 |
+|      | [test\_cor\_test\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_cor_test_ci.R#L45_L49)                     | cor\_test\_ci           | cor\_test\_ci works                        | PASS    | 12 | 0.51 |
+|      | [test\_ggbetweenstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_ggbetweenstats.R#L9_L16)                  | ggbetweenstats          | error when x and outlier.label are same    | PASS    |  1 | 0.02 |
+|      | [test\_ggbetweenstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_ggbetweenstats.R#L26_L36)                 | ggbetweenstats          | outlier.labeling works across vector types | PASS    |  3 | 3.33 |
+| \+   | [test\_ggbetweenstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_ggbetweenstats.R#L89_L92)                 | ggbetweenstats          | ggbetweenstats works                       | SKIPPED |  1 | 2.12 |
+|      | [test\_grouped\_ggscatterstats.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_grouped_ggscatterstats.R#L9_L17) | grouped\_ggscatterstats | grouped\_ggscatterstats works              | PASS    |  1 | 0.12 |
+|      | [test\_lm\_effsize\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_lm_effsize_ci.R#L67_L71)                 | lm\_effsize\_ci         | lm\_effsize\_ci works                      | PASS    |  9 | 3.33 |
+|      | [test\_robcor\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_robcor_ci.R#L39_L43)                          | robcor\_ci              | robcor\_ci works                           | PASS    |  8 | 0.18 |
+|      | [test\_t\_test\_subtitles.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_t_test_subtitles.R#L43_L47)           | t\_test\_subtitles      | t-test subtitles work                      | PASS    |  1 | 0.42 |
+|      | [test\_t1way\_ci.R](https://github.com/IndrajeetPatil/ggstatsplot/tree/master/tests/testthat/test_t1way_ci.R#L58)                                | t1way\_ci               | t1way\_ci works                            | PASS    |  5 | 4.00 |
+
+</details>
+
+<details>
+
+<summary> Session Info </summary>
+
+| Field    | Value                            |
+| :------- | :------------------------------- |
+| Version  | R version 3.5.1 (2018-07-02)     |
+| Platform | x86\_64-w64-mingw32/x64 (64-bit) |
+| Running  | Windows \>= 8 x64 (build 9200)   |
+| Language | English\_United States           |
+| Timezone | America/New\_York                |
+
+| Package  | Version    |
+| :------- | :--------- |
+| testthat | 2.0.1      |
+| covr     | 3.2.0.9000 |
+| covrpage | 0.0.60     |
+
+</details>
+
+<!--- Final Status : skipped/warning --->

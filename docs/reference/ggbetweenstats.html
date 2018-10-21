@@ -120,6 +120,9 @@ the plot as a subtitle." />
       <a href="../articles/ggscatterstats.html">ggscatterstats</a>
     </li>
     <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -472,7 +475,19 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.</span>
+#&gt; <span class='warning'>Please use the non-prefixed form or `!!!` instead.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>  # Bad:</span>
+#&gt; <span class='warning'>  rlang::expr(mean(rlang::UQS(args)))</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>  # Ok:</span>
+#&gt; <span class='warning'>  rlang::expr(mean(UQS(args)))</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>  # Good:</span>
+#&gt; <span class='warning'>  rlang::expr(mean(!!!args))</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>This warning is displayed once per session.</span></div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
