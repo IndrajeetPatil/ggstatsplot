@@ -229,7 +229,7 @@ ggcorrmat <-
 
     # counting number of NAs present in the dataframe
     na_total <- df %>%
-      purrr::map_df(.x = ., .f = ~sum(is.na(.))) %>%
+      purrr::map_df(.x = ., .f = ~ sum(is.na(.))) %>%
       purrr::flatten_dbl(.x = .) %>%
       sum(., na.rm = TRUE)
 

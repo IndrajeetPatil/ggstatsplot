@@ -344,7 +344,7 @@ cor_test_ci <- function(data,
   # running correlation and creating a tidy dataframe
   tidy_df <- broom::tidy(
     x = stats::cor.test(
-      formula = stats::as.formula(~x + y),
+      formula = stats::as.formula(~ x + y),
       data = data,
       method = method,
       exact = exact,
@@ -368,7 +368,7 @@ cor_test_ci <- function(data,
     boot_df <-
       broom::tidy(
         stats::cor.test(
-          formula = stats::as.formula(~x + y),
+          formula = stats::as.formula(~ x + y),
           data = d,
           method = method,
           exact = exact,

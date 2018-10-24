@@ -196,7 +196,7 @@ ggbetweenstats <- function(data,
 
   # check that x and outlier.label are different
   if (("x" %in% names(param_list)) && ("outlier.label" %in% names(param_list))) {
-    if (as.character(param_list$x) == as.character(param_list$outlier.label)) {
+    if (as.character(param_list$x)[[1]] == as.character(param_list$outlier.label)[[1]]) {
       base::message(cat(
         crayon::red("Error: "),
         crayon::blue(
@@ -263,7 +263,7 @@ ggbetweenstats <- function(data,
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",
-      .funs = ~base::droplevels(x = base::as.factor(x = .))
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
   # plot -----------------------------------------------------------------------

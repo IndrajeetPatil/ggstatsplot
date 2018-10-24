@@ -177,6 +177,7 @@ ggstatsplot::combine_plots(
 You can also use `car` package to run an omnibus ANOVA:
 
 ```{r anova1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+# dataset will be used from `car` package
 library(car)
 
 # creating a model
@@ -396,7 +397,7 @@ child).
 
 ```{r glm2, warning = FALSE, message = FALSE, fig.height = 13, fig.width = 10}
 # creating dataframes to use for regression analyses
-library(dplyr)
+library(ggstatsplot)
 
 # dataframe #1
 (
@@ -539,6 +540,8 @@ befell the Titanic.
 
 ## cumulative link models (`clm`)
 
+**clm and clmm examples are too time-consuming; thus not evaluated in vignette**
+
 So far we have dealt either with continuous or nominal/factor responses (or
 output variables), but sometimes we will encounter **ordinal** data (e.g.,
 Likert scale measurement in behavioral sciences). In these cases, ordinal
@@ -552,7 +555,7 @@ four different vignettes, each featuring a different type of harm. The question
 we are interested in is what explains variation in participants' rating:
 information about intentionality, consequences, or their interaction?
 
-```{r clm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r clm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
 # for reproducibility
 set.seed(123)
 
@@ -586,7 +589,7 @@ different types of harm)? For this, we can use ordinal mixed-effects regression
 model (with random effects for type of harm) to see how intent and outcome
 contribute towards variation in moral judgment ratings-
 
-```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
 # for reproducibility
 set.seed(123)
 
@@ -618,7 +621,7 @@ with these four types of (minor) harms.
 Note that, by default, `beta` parameters are shown for `clm` and `clmm` models,
 but you can also plot either just `alpha` or `both` using `ggcoefstats`.
 
-```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
 # for reproducibility
 set.seed(123)
 
@@ -699,7 +702,7 @@ ggstatsplot::ggcoefstats(
   subtitle = "Source: Iris data set (by Fisher or Anderson)"
 ) + 
   ggplot2::labs(caption = "Results from 2 by 2 RM ANOVA") + 
-  ggplot2::theme(plot.subtitle = element_text(size = 11, face = "plain"))
+  ggplot2::theme(plot.subtitle = ggplot2::element_text(size = 11, face = "plain"))
 ```
 
 As revealed by this analysis, all effects of this model are significant. But
@@ -744,6 +747,41 @@ ggstatsplot::combine_plots(
   nrow = 2,
   ncol = 1
 )
+```
+
+## Fit A Linear Model With Multiple Group Fixed Effects (`felm`)
+
+Models of class `felm` from `lfe` package are also supported. This method is
+used to fit linear models with multiple group fixed effects, similarly to `lm`.
+It uses the Method of Alternating projections to sweep out multiple group
+effects from the normal equations before estimating the remaining coefficients
+with OLS.
+
+```{r felm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+library(lfe)
+
+# create covariates
+x <- rnorm(1000)
+x2 <- rnorm(length(x))
+
+# individual and firm
+id <- factor(sample(20, length(x), replace = TRUE))
+firm <- factor(sample(13, length(x), replace = TRUE))
+
+# effects for them
+id.eff <- rnorm(nlevels(id))
+firm.eff <- rnorm(nlevels(firm))
+
+# left hand side
+u <- rnorm(length(x))
+y <- x + 0.5 * x2 + id.eff[id] + firm.eff[firm] + u
+
+# estimate and print result
+est <- lfe::felm(formula = y ~ x + x2 | id + firm)
+
+# plot
+ggstatsplot::ggcoefstats(x = est)
+
 ```
 
 ## robust regression using an M estimator (`rlm`)

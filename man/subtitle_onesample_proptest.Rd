@@ -22,8 +22,7 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 
 \item{legend.title}{Title text for the legend.}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 }
 \description{
 Making text subtitle for Proportion Test (N Outcomes), a chi-squared

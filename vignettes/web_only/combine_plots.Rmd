@@ -53,9 +53,7 @@ gluing the results or using `cowplot` directly, we'll create a `tibble` called
 plot.
 
 ```{r ggscatterstats_purrr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
-library(glue)
-library(dplyr)
-library(ggplot2)
+library(ggstatsplot)
 
 # for reproducibility
 set.seed(123)

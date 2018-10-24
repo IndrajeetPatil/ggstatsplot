@@ -17,7 +17,7 @@ movies_wide <- ggplot2movies::movies %>%
     .tbl = .,
     # convert mpaa ratings to a factor
     .predicate = purrr::is_bare_character,
-    .funs = ~as.factor(.)
+    .funs = ~ as.factor(.)
   )
 
 
@@ -53,12 +53,12 @@ movies_long %<>%
   dplyr::mutate_if(
     .tbl = .,
     .predicate = purrr::is_bare_character,
-    .funs = ~base::as.factor(.)
+    .funs = ~ base::as.factor(.)
   ) %>%
   dplyr::mutate_if(
     .tbl = .,
     .predicate = base::is.factor,
-    .funs = ~base::droplevels(.)
+    .funs = ~ base::droplevels(.)
   ) %>%
   dplyr::select(.data = ., -n)
 

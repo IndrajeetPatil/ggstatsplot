@@ -134,12 +134,12 @@ grouped_ggcorrmat <- function(data,
     dplyr::mutate_if(
       .tbl = .,
       .predicate = purrr::is_bare_character,
-      .funs = ~as.factor(.)
+      .funs = ~ as.factor(.)
     ) %>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
-      .funs = ~base::droplevels(.)
+      .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
@@ -157,7 +157,7 @@ grouped_ggcorrmat <- function(data,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ggstatsplot::ggcorrmat(
+            .f = ~ ggstatsplot::ggcorrmat(
               title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
               data = .,
               cor.vars = !!rlang::enquo(cor.vars),
@@ -229,7 +229,7 @@ grouped_ggcorrmat <- function(data,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ggstatsplot::ggcorrmat(
+            .f = ~ ggstatsplot::ggcorrmat(
               data = .,
               cor.vars = !!rlang::enquo(cor.vars),
               cor.vars.names = cor.vars.names,

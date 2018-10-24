@@ -28,8 +28,7 @@ try to play around with the value of \code{tr}, which is by default set to
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{...}{Additional arguments (ignored).}
 }

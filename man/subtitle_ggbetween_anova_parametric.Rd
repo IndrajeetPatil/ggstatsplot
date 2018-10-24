@@ -32,8 +32,7 @@ omega-squared for \strong{anova})).}
     is used, which generalizes the commonly known 2-sample Welch test to
     the case of arbitrarily many samples.}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

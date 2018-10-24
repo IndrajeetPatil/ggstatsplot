@@ -32,8 +32,7 @@ to use in calculating Bayes factors.}
 \item{nboot}{Number of bootstrap samples for robust one-sample location test
 (Default: \code{100}).}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

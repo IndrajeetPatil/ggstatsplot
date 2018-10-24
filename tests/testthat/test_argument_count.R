@@ -32,7 +32,7 @@ testthat::test_that(
       dplyr::arrange(.data = ., value) %>%
       purrrlyr::by_row(
         .d = .,
-        ..f = ~length(formals(eval(
+        ..f = ~ length(formals(eval(
           rlang::parse_expr(.$functions)
         ))),
         .collate = "cols",

@@ -21,7 +21,7 @@ expect_doppelganger <- function(title,
                                 user_fonts = NULL,
                                 verbose = FALSE) {
   if (!enable_vdiffr) {
-    expect_error(regexp = NA, ggplot_build(fig))
+    testthat::expect_error(regexp = NA, ggplot2::ggplot_build(fig))
     return(invisible(NULL))
   }
 

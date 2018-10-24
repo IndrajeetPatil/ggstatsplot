@@ -29,7 +29,7 @@ tfz_labeller <- function(tidy_df,
       tidy_df %<>%
         purrrlyr::by_row(
           .d = .,
-          ..f = ~paste(
+          ..f = ~ paste(
             "list(~italic(beta)==",
             ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
             ", ~italic(t)",
@@ -51,7 +51,7 @@ tfz_labeller <- function(tidy_df,
       tidy_df %<>%
         purrrlyr::by_row(
           .d = .,
-          ..f = ~paste(
+          ..f = ~ paste(
             "list(~italic(beta)==",
             ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
             ", ~italic(t)",
@@ -73,7 +73,7 @@ tfz_labeller <- function(tidy_df,
     tidy_df %<>%
       purrrlyr::by_row(
         .d = .,
-        ..f = ~paste(
+        ..f = ~ paste(
           "list(~italic(beta)==",
           ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
           ", ~italic(z)==",
@@ -97,7 +97,7 @@ tfz_labeller <- function(tidy_df,
         tidy_df %<>%
           purrrlyr::by_row(
             .d = .,
-            ..f = ~paste(
+            ..f = ~ paste(
               "list(~italic(F)",
               "(",
               .$df1,
@@ -120,7 +120,7 @@ tfz_labeller <- function(tidy_df,
         tidy_df %<>%
           purrrlyr::by_row(
             .d = .,
-            ..f = ~paste(
+            ..f = ~ paste(
               "list(~italic(F)",
               "(",
               .$df1,
@@ -145,7 +145,7 @@ tfz_labeller <- function(tidy_df,
         tidy_df %<>%
           purrrlyr::by_row(
             .d = .,
-            ..f = ~paste(
+            ..f = ~ paste(
               "list(~italic(F)",
               "(",
               .$df1,
@@ -168,7 +168,7 @@ tfz_labeller <- function(tidy_df,
         tidy_df %<>%
           purrrlyr::by_row(
             .d = .,
-            ..f = ~paste(
+            ..f = ~ paste(
               "list(~italic(F)",
               "(",
               .$df1,

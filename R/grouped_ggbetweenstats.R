@@ -132,12 +132,12 @@ grouped_ggbetweenstats <- function(data,
     dplyr::mutate_if(
       .tbl = .,
       .predicate = purrr::is_bare_character,
-      .funs = ~as.factor(.)
+      .funs = ~ as.factor(.)
     ) %>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
-      .funs = ~base::droplevels(.)
+      .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
@@ -153,7 +153,7 @@ grouped_ggbetweenstats <- function(data,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ggstatsplot::ggbetweenstats(
+            .f = ~ ggstatsplot::ggbetweenstats(
               data = .,
               x = !!rlang::enquo(x),
               y = !!rlang::enquo(y),
@@ -208,7 +208,7 @@ grouped_ggbetweenstats <- function(data,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ggstatsplot::ggbetweenstats(
+            .f = ~ ggstatsplot::ggbetweenstats(
               data = .,
               x = !!rlang::enquo(x),
               y = !!rlang::enquo(y),

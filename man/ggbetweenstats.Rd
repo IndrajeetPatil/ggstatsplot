@@ -68,8 +68,7 @@ of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.messag
 should be displayed for each level of the grouping variable \code{x} (Default:
 \code{TRUE}).}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 
 \item{var.equal}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F

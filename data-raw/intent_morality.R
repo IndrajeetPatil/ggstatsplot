@@ -33,7 +33,7 @@ intent_morality %<>%
   dplyr::mutate_if(
     .tbl = .,
     .predicate = purrr::is_bare_character,
-    .funs = ~as.factor(.)
+    .funs = ~ as.factor(.)
   )
 
 # saving the data

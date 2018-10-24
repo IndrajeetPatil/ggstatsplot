@@ -31,34 +31,34 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#'
+#' 
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   main = cyl
 #' )
-#'
+#' 
 #' # without condition and with count data
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
-#'
+#' 
 #' # the following will take slightly more amount of time
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
 #'   dplyr::sample_frac(tbl = ., size = 0.10)
-#'
+#' 
 #' # plot
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = diamonds_short,
@@ -166,12 +166,12 @@ grouped_ggpiestats <- function(data,
     dplyr::mutate_if(
       .tbl = .,
       .predicate = purrr::is_bare_character,
-      .funs = ~as.factor(.)
+      .funs = ~ as.factor(.)
     ) %>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
-      .funs = ~base::droplevels(.)
+      .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
@@ -188,7 +188,7 @@ grouped_ggpiestats <- function(data,
             purrr::set_names(!!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
-              .f = ~ggstatsplot::ggpiestats(
+              .f = ~ ggstatsplot::ggpiestats(
                 data = .,
                 main = !!rlang::enquo(main),
                 condition = !!rlang::enquo(condition),
@@ -223,7 +223,7 @@ grouped_ggpiestats <- function(data,
             purrr::set_names(!!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
-              .f = ~ggstatsplot::ggpiestats(
+              .f = ~ ggstatsplot::ggpiestats(
                 data = .,
                 main = !!rlang::enquo(main),
                 condition = !!rlang::enquo(condition),
@@ -262,7 +262,7 @@ grouped_ggpiestats <- function(data,
             purrr::set_names(!!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
-              .f = ~ggstatsplot::ggpiestats(
+              .f = ~ ggstatsplot::ggpiestats(
                 data = .,
                 main = !!rlang::enquo(main),
                 title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
@@ -296,7 +296,7 @@ grouped_ggpiestats <- function(data,
             purrr::set_names(!!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
-              .f = ~ggstatsplot::ggpiestats(
+              .f = ~ ggstatsplot::ggpiestats(
                 data = .,
                 main = !!rlang::enquo(main),
                 counts = !!rlang::enquo(counts),

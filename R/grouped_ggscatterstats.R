@@ -191,12 +191,12 @@ grouped_ggscatterstats <- function(data,
     dplyr::mutate_if(
       .tbl = .,
       .predicate = purrr::is_bare_character,
-      .funs = ~as.factor(.)
+      .funs = ~ as.factor(.)
     ) %>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = is.factor,
-      .funs = ~base::droplevels(.)
+      .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
@@ -213,7 +213,7 @@ grouped_ggscatterstats <- function(data,
             purrr::set_names(!!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
-              .f = ~ggstatsplot::ggscatterstats(
+              .f = ~ ggstatsplot::ggscatterstats(
                 data = .,
                 x = !!rlang::enquo(x),
                 y = !!rlang::enquo(y),
@@ -273,7 +273,7 @@ grouped_ggscatterstats <- function(data,
             purrr::set_names(!!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
-              .f = ~ggstatsplot::ggscatterstats(
+              .f = ~ ggstatsplot::ggscatterstats(
                 data = .,
                 x = !!rlang::enquo(x),
                 y = !!rlang::enquo(y),
@@ -333,7 +333,7 @@ grouped_ggscatterstats <- function(data,
           purrr::set_names(!!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
-            .f = ~ggstatsplot::ggscatterstats(
+            .f = ~ ggstatsplot::ggscatterstats(
               data = .,
               x = !!rlang::enquo(x),
               y = !!rlang::enquo(y),

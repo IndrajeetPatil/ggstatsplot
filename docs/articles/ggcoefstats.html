@@ -129,7 +129,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-10-21</h4>
+            <h4 class="date">2018-10-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggcoefstats.Rmd"><code>vignettes/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -252,19 +252,20 @@
 <h2 class="hasAnchor">
 <a href="#omnibus-anova-anova" class="anchor"></a>omnibus ANOVA (<code>anova</code>)</h2>
 <p>You can also use <code>car</code> package to run an omnibus ANOVA:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(car)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># creating a model</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">mod &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">formula =</span> conformity <span class="op">~</span><span class="st"> </span>fcategory <span class="op">*</span><span class="st"> </span>partner.status,</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">data =</span> Moore,</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">fcategory =</span> contr.sum, <span class="dt">partner.status =</span> contr.sum)</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co"># plotting estimates</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> car<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/car/topics/Anova">Anova</a></span>(mod, <span class="dt">type =</span> <span class="st">"III"</span>))</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; Note: No model diagnostics information available for the object of class anova . </span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Future release might support this.</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># dataset will be used from `car` package</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># creating a model</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">mod &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">formula =</span> conformity <span class="op">~</span><span class="st"> </span>fcategory <span class="op">*</span><span class="st"> </span>partner.status,</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">data =</span> Moore,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">fcategory =</span> contr.sum, <span class="dt">partner.status =</span> contr.sum)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># plotting estimates</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> car<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/car/topics/Anova">Anova</a></span>(mod, <span class="dt">type =</span> <span class="st">"III"</span>))</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Note: No model diagnostics information available for the object of class anova . </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; Future release might support this.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/anova1-1.png" width="768"></p>
 </div>
 <div id="linear-model-lm" class="section level2">
@@ -345,14 +346,14 @@
 <a class="sourceLine" id="cb5-38" data-line-number="38">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lmer1-1.png" width="672"></p>
 <p>As can be seen from these plots, although there seems to be a really small correlation between budget and rating in a linear model, this effect is not significant once we take into account the hierarchical structure of the data.</p>
-<p>Note that for mixed-effects models, only the <em>fixed</em> effects are shown because there are no confidence intervals for <em>random</em> effects terms. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="http://www.rdocumentation.org/packages/broom/topics/reexports">broom::tidy</a></code>:</p>
+<p>Note that for mixed-effects models, only the <em>fixed</em> effects are shown because there are no confidence intervals for <em>random</em> effects terms. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="http://www.rdocumentation.org/packages/broom/topics/tidy">broom::tidy</a></code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># to speed up the calculation, let's use only 10% of the data</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co"># tidy output</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">broom<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/broom/topics/reexports">tidy</a></span>(</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">broom<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/broom/topics/tidy">tidy</a></span>(</a>
 <a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">formula =</span> <span class="kw">scale</span>(rating) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(budget) <span class="op">+</span><span class="st"> </span>(budget <span class="op">|</span><span class="st"> </span>genre),</a>
 <a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">data =</span> movies_<span class="dv">10</span>,</a>
@@ -436,7 +437,7 @@
 <li><p>Some families will have a <code>t</code> statistic associated with them, while others a <code>z</code> statistic. The function will figure this out for you.</p></li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># creating dataframes to use for regression analyses</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># dataframe #1</span></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">(</a>
@@ -619,6 +620,7 @@
 <div id="cumulative-link-models-clm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-models-clm" class="anchor"></a>cumulative link models (<code>clm</code>)</h2>
+<p><strong>clm and clmm examples are too time-consuming; thus not evaluated in vignette</strong></p>
 <p>So far we have dealt either with continuous or nominal/factor responses (or output variables), but sometimes we will encounter <strong>ordinal</strong> data (e.g., Likert scale measurement in behavioral sciences). In these cases, ordinal regression models are more suitable. To study these models, we will use <code>intent_morality</code> dataset included in the <code>ggstatsplot</code> package. This dataset contains moral judgments (“how wrong was this behavior?”, “how much punishment does the agent deserve?”; on a Likert scale of 1-7) by participants about third-party actors who harmed someone. There are four different conditions formed out of belief (neutral, negative) and outcome (neutral, negative) for four different vignettes, each featuring a different type of harm. The question we are interested in is what explains variation in participants’ rating: information about intentionality, consequences, or their interaction?</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
@@ -639,7 +641,6 @@
 <a class="sourceLine" id="cb11-17" data-line-number="17">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb11-19" data-line-number="19">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/clm-1.png" width="576"></p>
 <p>As can be seen from this plot, both factors (intentionality and consequences) were significant, and so was their interaction.</p>
 </div>
 <div id="cumulative-link-mixed-models-clmm" class="section level2">
@@ -667,7 +668,6 @@
 <a class="sourceLine" id="cb12-19" data-line-number="19">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-20" data-line-number="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
 <a class="sourceLine" id="cb12-21" data-line-number="21">                <span class="dt">y =</span> <span class="st">"fixed effects"</span>)</a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/clmm1-1.png" width="576"></p>
 <p>Mixed effects regression didn’t reveal any interaction effect. That is, most of the variance was accounted for by the information about whether there was harmful intent and whether there was harm, at least this is the effect we found with these four types of (minor) harms.</p>
 <p>Note that, by default, <code>beta</code> parameters are shown for <code>clm</code> and <code>clmm</code> models, but you can also plot either just <code>alpha</code> or <code>both</code> using <code>ggcoefstats</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
@@ -690,7 +690,6 @@
 <a class="sourceLine" id="cb13-18" data-line-number="18">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb13-19" data-line-number="19"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
 <a class="sourceLine" id="cb13-20" data-line-number="20">                <span class="dt">y =</span> <span class="st">"threshold parameters"</span>)</a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/clmm2-1.png" width="576"></p>
 </div>
 <div id="repeated-measures-anova-aovlist" class="section level2">
 <h2 class="hasAnchor">
@@ -755,7 +754,7 @@
 <a class="sourceLine" id="cb14-57" data-line-number="57">  <span class="dt">subtitle =</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span></a>
 <a class="sourceLine" id="cb14-58" data-line-number="58">) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb14-59" data-line-number="59"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-60" data-line-number="60"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
+<a class="sourceLine" id="cb14-60" data-line-number="60"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
 <a class="sourceLine" id="cb14-61" data-line-number="61"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist . </span></a>
 <a class="sourceLine" id="cb14-62" data-line-number="62"><span class="co">#&gt; Future release might support this.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
@@ -799,6 +798,35 @@
 <a class="sourceLine" id="cb15-32" data-line-number="32"><span class="co">#&gt; Note: No 95% confidence intervals available for regression coefficients from lmRob object, so skipping whiskers in the plot.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/robust-1.png" width="768"></p>
 </div>
+<div id="fit-a-linear-model-with-multiple-group-fixed-effects-felm" class="section level2">
+<h2 class="hasAnchor">
+<a href="#fit-a-linear-model-with-multiple-group-fixed-effects-felm" class="anchor"></a>Fit A Linear Model With Multiple Group Fixed Effects (<code>felm</code>)</h2>
+<p>Models of class <code>felm</code> from <code>lfe</code> package are also supported. This method is used to fit linear models with multiple group fixed effects, similarly to <code>lm</code>. It uses the Method of Alternating projections to sweep out multiple group effects from the normal equations before estimating the remaining coefficients with OLS.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(lfe)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co"># create covariates</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">x2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(x))</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co"># individual and firm</span></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">id &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="dv">20</span>, <span class="kw">length</span>(x), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">firm &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="dv">13</span>, <span class="kw">length</span>(x), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb16-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb16-11" data-line-number="11"><span class="co"># effects for them</span></a>
+<a class="sourceLine" id="cb16-12" data-line-number="12">id.eff &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">nlevels</span>(id))</a>
+<a class="sourceLine" id="cb16-13" data-line-number="13">firm.eff &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">nlevels</span>(firm))</a>
+<a class="sourceLine" id="cb16-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb16-15" data-line-number="15"><span class="co"># left hand side</span></a>
+<a class="sourceLine" id="cb16-16" data-line-number="16">u &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(x))</a>
+<a class="sourceLine" id="cb16-17" data-line-number="17">y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>x2 <span class="op">+</span><span class="st"> </span>id.eff[id] <span class="op">+</span><span class="st"> </span>firm.eff[firm] <span class="op">+</span><span class="st"> </span>u</a>
+<a class="sourceLine" id="cb16-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb16-19" data-line-number="19"><span class="co"># estimate and print result</span></a>
+<a class="sourceLine" id="cb16-20" data-line-number="20">est &lt;-<span class="st"> </span>lfe<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lfe/topics/felm">felm</a></span>(<span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span>x2 <span class="op">|</span><span class="st"> </span>id <span class="op">+</span><span class="st"> </span>firm)</a>
+<a class="sourceLine" id="cb16-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb16-22" data-line-number="22"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb16-23" data-line-number="23">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> est)</a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/felm-1.png" width="576"></p>
+</div>
 <div id="robust-regression-using-an-m-estimator-rlm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#robust-regression-using-an-m-estimator-rlm" class="anchor"></a>robust regression using an M estimator (<code>rlm</code>)</h2>
@@ -824,180 +852,177 @@
 <h1 class="hasAnchor">
 <a href="#session-information" class="anchor"></a>Session Information</h1>
 <p>Summarizing session information for reproducibility.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">session_info</a></span>()</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co">#&gt; - Session info ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#&gt;  setting  value                       </span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="co">#&gt;  version  R version 3.5.1 (2018-07-02)</span></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="co">#&gt;  os       Windows 10 x64              </span></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#&gt;  system   x86_64, mingw32             </span></a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="co">#&gt;  ui       RTerm                       </span></a>
-<a class="sourceLine" id="cb16-9" data-line-number="9"><span class="co">#&gt;  language (EN)                        </span></a>
-<a class="sourceLine" id="cb16-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252  </span></a>
-<a class="sourceLine" id="cb16-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252  </span></a>
-<a class="sourceLine" id="cb16-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York            </span></a>
-<a class="sourceLine" id="cb16-13" data-line-number="13"><span class="co">#&gt;  date     2018-10-21                  </span></a>
-<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb16-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb16-16" data-line-number="16"><span class="co">#&gt;  package      * version     date       lib source                                      </span></a>
-<a class="sourceLine" id="cb16-17" data-line-number="17"><span class="co">#&gt;  abind          1.4-5       2016-07-21 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-18" data-line-number="18"><span class="co">#&gt;  assertthat     0.2.0       2017-04-11 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-19" data-line-number="19"><span class="co">#&gt;  backports      1.1.2       2017-12-13 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-20" data-line-number="20"><span class="co">#&gt;  base64enc      0.1-3       2015-07-28 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-21" data-line-number="21"><span class="co">#&gt;  BayesFactor    0.9.12-4.2  2018-05-19 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-22" data-line-number="22"><span class="co">#&gt;  bayesplot      1.6.0       2018-08-02 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-23" data-line-number="23"><span class="co">#&gt;  bindr          0.1.1       2018-03-13 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-24" data-line-number="24"><span class="co">#&gt;  bindrcpp     * 0.2.2       2018-03-29 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-25" data-line-number="25"><span class="co">#&gt;  boot           1.3-20      2017-08-06 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-26" data-line-number="26"><span class="co">#&gt;  broom          0.5.0.9001  2018-10-03 [1] Github (tidymodels/broom@140eb58)           </span></a>
-<a class="sourceLine" id="cb16-27" data-line-number="27"><span class="co">#&gt;  broom.mixed    0.2.2.9000  2018-10-09 [1] Github (bbolker/broom.mixed@fb9163a)        </span></a>
-<a class="sourceLine" id="cb16-28" data-line-number="28"><span class="co">#&gt;  callr          3.0.0       2018-08-24 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-29" data-line-number="29"><span class="co">#&gt;  car          * 3.0-2       2018-08-23 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-30" data-line-number="30"><span class="co">#&gt;  carData      * 3.0-2       2018-09-30 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-31" data-line-number="31"><span class="co">#&gt;  cellranger     1.1.0       2016-07-27 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-32" data-line-number="32"><span class="co">#&gt;  cli            1.0.1       2018-09-25 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-33" data-line-number="33"><span class="co">#&gt;  cluster        2.0.7-1     2018-04-13 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-34" data-line-number="34"><span class="co">#&gt;  coda           0.19-2      2018-10-08 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-35" data-line-number="35"><span class="co">#&gt;  codetools      0.2-15      2016-10-05 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-36" data-line-number="36"><span class="co">#&gt;  coin           1.2-2       2017-11-28 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-37" data-line-number="37"><span class="co">#&gt;  colorspace     1.3-2       2016-12-14 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-38" data-line-number="38"><span class="co">#&gt;  commonmark     1.6         2018-09-30 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-39" data-line-number="39"><span class="co">#&gt;  cowplot        0.9.99      2018-08-23 [1] Github (wilkelab/cowplot@374c3e9)           </span></a>
-<a class="sourceLine" id="cb16-40" data-line-number="40"><span class="co">#&gt;  crayon         1.3.4       2018-09-26 [1] Github (r-lib/crayon@3e751fb)               </span></a>
-<a class="sourceLine" id="cb16-41" data-line-number="41"><span class="co">#&gt;  curl           3.2         2018-03-28 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-42" data-line-number="42"><span class="co">#&gt;  data.table     1.11.8      2018-09-30 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-43" data-line-number="43"><span class="co">#&gt;  debugme        1.1.0       2017-10-22 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-44" data-line-number="44"><span class="co">#&gt;  DEoptimR       1.0-8       2016-11-19 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-45" data-line-number="45"><span class="co">#&gt;  desc           1.2.0       2018-05-01 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-46" data-line-number="46"><span class="co">#&gt;  devtools       2.0.0       2018-10-19 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-47" data-line-number="47"><span class="co">#&gt;  digest         0.6.18      2018-10-10 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-48" data-line-number="48"><span class="co">#&gt;  dplyr        * 0.7.7       2018-10-16 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-49" data-line-number="49"><span class="co">#&gt;  effsize        0.7.1       2017-03-21 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-50" data-line-number="50"><span class="co">#&gt;  emmeans        1.2.4       2018-09-22 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-51" data-line-number="51"><span class="co">#&gt;  estimability   1.3         2018-02-11 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-52" data-line-number="52"><span class="co">#&gt;  evaluate       0.12        2018-10-09 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-53" data-line-number="53"><span class="co">#&gt;  exact2x2       1.6.3       2018-07-27 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-54" data-line-number="54"><span class="co">#&gt;  exactci        1.3-3       2017-10-02 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-55" data-line-number="55"><span class="co">#&gt;  fansi          0.4.0       2018-10-05 [1] Github (brodieG/fansi@ab11e9c)              </span></a>
-<a class="sourceLine" id="cb16-56" data-line-number="56"><span class="co">#&gt;  fit.models     0.5-14      2017-04-06 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-57" data-line-number="57"><span class="co">#&gt;  forcats        0.3.0       2018-02-19 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-58" data-line-number="58"><span class="co">#&gt;  foreign        0.8-70      2017-11-28 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-59" data-line-number="59"><span class="co">#&gt;  fs             1.2.6       2018-08-23 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-60" data-line-number="60"><span class="co">#&gt;  generics       0.0.1.9000  2018-10-03 [1] Github (r-lib/generics@24ba515)             </span></a>
-<a class="sourceLine" id="cb16-61" data-line-number="61"><span class="co">#&gt;  ggcorrplot     0.1.2       2018-09-11 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-62" data-line-number="62"><span class="co">#&gt;  ggExtra        0.8         2018-08-14 [1] Github (daattali/ggExtra@76d1618)           </span></a>
-<a class="sourceLine" id="cb16-63" data-line-number="63"><span class="co">#&gt;  ggplot2      * 3.0.0.9000  2018-09-26 [1] Github (tidyverse/ggplot2@e9f7ded)          </span></a>
-<a class="sourceLine" id="cb16-64" data-line-number="64"><span class="co">#&gt;  ggrepel        0.8.0.9000  2018-09-09 [1] Github (slowkow/ggrepel@91877ca)            </span></a>
-<a class="sourceLine" id="cb16-65" data-line-number="65"><span class="co">#&gt;  ggridges       0.5.1       2018-10-04 [1] Github (clauswilke/ggridges@1d5131f)        </span></a>
-<a class="sourceLine" id="cb16-66" data-line-number="66"><span class="co">#&gt;  ggstatsplot  * 0.0.6.9000  2018-10-21 [1] local                                       </span></a>
-<a class="sourceLine" id="cb16-67" data-line-number="67"><span class="co">#&gt;  ggthemes       4.0.1       2018-08-24 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-68" data-line-number="68"><span class="co">#&gt;  glmmTMB        0.2.2.0     2018-07-03 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-69" data-line-number="69"><span class="co">#&gt;  glue           1.3.0       2018-09-17 [1] Github (tidyverse/glue@4e74901)             </span></a>
-<a class="sourceLine" id="cb16-70" data-line-number="70"><span class="co">#&gt;  groupedstats   0.0.3.9000  2018-10-12 [1] local                                       </span></a>
-<a class="sourceLine" id="cb16-71" data-line-number="71"><span class="co">#&gt;  gtable         0.2.0       2016-02-26 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-72" data-line-number="72"><span class="co">#&gt;  gtools         3.8.1       2018-06-26 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-73" data-line-number="73"><span class="co">#&gt;  haven          1.1.2       2018-06-27 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-74" data-line-number="74"><span class="co">#&gt;  hms            0.4.2       2018-03-10 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-75" data-line-number="75"><span class="co">#&gt;  htmldeps       0.1.1       2018-09-17 [1] Github (rstudio/htmldeps@c1023e0)           </span></a>
-<a class="sourceLine" id="cb16-76" data-line-number="76"><span class="co">#&gt;  htmltools      0.3.6       2017-04-28 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-77" data-line-number="77"><span class="co">#&gt;  httpuv         1.4.5       2018-07-19 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-78" data-line-number="78"><span class="co">#&gt;  jmv            0.9.4       2018-09-29 [1] Github (jamovi/jmv@7dac133)                 </span></a>
-<a class="sourceLine" id="cb16-79" data-line-number="79"><span class="co">#&gt;  jmvcore        0.9.4       2018-09-17 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-80" data-line-number="80"><span class="co">#&gt;  knitr          1.20.19     2018-10-10 [1] Github (yihui/knitr@3abb642)                </span></a>
-<a class="sourceLine" id="cb16-81" data-line-number="81"><span class="co">#&gt;  labeling       0.3         2014-08-23 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-82" data-line-number="82"><span class="co">#&gt;  later          0.7.5       2018-09-18 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-83" data-line-number="83"><span class="co">#&gt;  lattice        0.20-35     2017-03-25 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-84" data-line-number="84"><span class="co">#&gt;  lazyeval       0.2.1       2017-10-29 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-85" data-line-number="85"><span class="co">#&gt;  lme4         * 1.1-18-1    2018-08-17 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-86" data-line-number="86"><span class="co">#&gt;  magrittr       1.5         2014-11-22 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-87" data-line-number="87"><span class="co">#&gt;  MASS           7.3-50      2018-04-30 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-88" data-line-number="88"><span class="co">#&gt;  Matrix       * 1.2-14      2018-04-13 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-89" data-line-number="89"><span class="co">#&gt;  MatrixModels   0.4-1       2015-08-22 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-90" data-line-number="90"><span class="co">#&gt;  mc2d           0.1-18      2017-03-06 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-91" data-line-number="91"><span class="co">#&gt;  memoise        1.1.0       2017-04-21 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-92" data-line-number="92"><span class="co">#&gt;  mime           0.6         2018-10-05 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-93" data-line-number="93"><span class="co">#&gt;  miniUI         0.1.1.1     2018-05-18 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-94" data-line-number="94"><span class="co">#&gt;  minqa          1.2.4       2014-10-09 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-95" data-line-number="95"><span class="co">#&gt;  mnormt         1.5-5       2016-10-15 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-96" data-line-number="96"><span class="co">#&gt;  modelr         0.1.2       2018-05-11 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-97" data-line-number="97"><span class="co">#&gt;  modeltools     0.2-22      2018-07-16 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-98" data-line-number="98"><span class="co">#&gt;  multcomp       1.4-8       2017-11-08 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-99" data-line-number="99"><span class="co">#&gt;  munsell        0.5.0       2018-06-12 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-100" data-line-number="100"><span class="co">#&gt;  mvtnorm        1.0-8       2018-05-31 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-101" data-line-number="101"><span class="co">#&gt;  nlme           3.1-137     2018-04-07 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-102" data-line-number="102"><span class="co">#&gt;  nloptr         1.2.1       2018-10-03 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-103" data-line-number="103"><span class="co">#&gt;  numDeriv       2016.8-1    2016-08-27 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-104" data-line-number="104"><span class="co">#&gt;  openxlsx       4.1.0       2018-05-26 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-105" data-line-number="105"><span class="co">#&gt;  ordinal        2018.8-25   2018-08-25 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-106" data-line-number="106"><span class="co">#&gt;  paletteer      0.1.0       2018-07-10 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-107" data-line-number="107"><span class="co">#&gt;  pbapply        1.3-4       2018-01-10 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-108" data-line-number="108"><span class="co">#&gt;  pbkrtest       0.4-7       2017-03-15 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-109" data-line-number="109"><span class="co">#&gt;  pcaPP          1.9-73      2018-01-14 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-110" data-line-number="110"><span class="co">#&gt;  pillar         1.3.0.9000  2018-10-01 [1] Github (r-lib/pillar@7be5b8a)               </span></a>
-<a class="sourceLine" id="cb16-111" data-line-number="111"><span class="co">#&gt;  pkgbuild       1.0.2       2018-10-16 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-112" data-line-number="112"><span class="co">#&gt;  pkgconfig      2.0.2       2018-08-16 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-113" data-line-number="113"><span class="co">#&gt;  pkgdown        1.1.0.9000  2018-10-21 [1] Github (metrumresearchgroup/pkgdown@3836984)</span></a>
-<a class="sourceLine" id="cb16-114" data-line-number="114"><span class="co">#&gt;  pkgload        1.0.1       2018-10-11 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-115" data-line-number="115"><span class="co">#&gt;  plyr           1.8.4       2016-06-08 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-116" data-line-number="116"><span class="co">#&gt;  prediction     0.3.6       2018-05-22 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-117" data-line-number="117"><span class="co">#&gt;  prettyunits    1.0.2       2015-07-13 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-118" data-line-number="118"><span class="co">#&gt;  processx       3.2.0       2018-08-16 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-119" data-line-number="119"><span class="co">#&gt;  promises       1.0.1       2018-04-13 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-120" data-line-number="120"><span class="co">#&gt;  ps             1.2.0       2018-10-16 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-121" data-line-number="121"><span class="co">#&gt;  psych          1.8.9       2018-10-08 [1] local                                       </span></a>
-<a class="sourceLine" id="cb16-122" data-line-number="122"><span class="co">#&gt;  purrr          0.2.5       2018-05-29 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-123" data-line-number="123"><span class="co">#&gt;  purrrlyr       0.0.3       2018-05-29 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-124" data-line-number="124"><span class="co">#&gt;  pwr            1.2-2       2018-03-03 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-125" data-line-number="125"><span class="co">#&gt;  R6             2.3.0       2018-10-04 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-126" data-line-number="126"><span class="co">#&gt;  Rcpp           0.12.19     2018-10-01 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-127" data-line-number="127"><span class="co">#&gt;  readxl         1.1.0       2018-04-20 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-128" data-line-number="128"><span class="co">#&gt;  remotes        2.0.1       2018-10-19 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-129" data-line-number="129"><span class="co">#&gt;  reshape        0.8.7       2017-08-06 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-130" data-line-number="130"><span class="co">#&gt;  reshape2       1.4.3       2017-12-11 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-131" data-line-number="131"><span class="co">#&gt;  rio            0.5.10      2018-03-29 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-132" data-line-number="132"><span class="co">#&gt;  rjson          0.2.20      2018-06-08 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-133" data-line-number="133"><span class="co">#&gt;  rlang          0.2.99.0000 2018-10-10 [1] Github (r-lib/rlang@fb09ff3)                </span></a>
-<a class="sourceLine" id="cb16-134" data-line-number="134"><span class="co">#&gt;  rmarkdown      1.10.14     2018-10-10 [1] Github (rstudio/rmarkdown@dcc7d37)          </span></a>
-<a class="sourceLine" id="cb16-135" data-line-number="135"><span class="co">#&gt;  robust         0.4-18      2017-04-27 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-136" data-line-number="136"><span class="co">#&gt;  robustbase     0.93-3      2018-09-21 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-137" data-line-number="137"><span class="co">#&gt;  roxygen2       6.1.0.9000  2018-09-13 [1] Github (klutometis/roxygen@cc34200)         </span></a>
-<a class="sourceLine" id="cb16-138" data-line-number="138"><span class="co">#&gt;  rprojroot      1.3-2       2018-01-03 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-139" data-line-number="139"><span class="co">#&gt;  rrcov          1.4-4       2018-05-24 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-140" data-line-number="140"><span class="co">#&gt;  rstudioapi     0.8         2018-10-02 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-141" data-line-number="141"><span class="co">#&gt;  sandwich       2.5-0       2018-08-17 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-142" data-line-number="142"><span class="co">#&gt;  scales         1.0.0       2018-08-09 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-143" data-line-number="143"><span class="co">#&gt;  sessioninfo    1.1.0       2018-09-25 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-144" data-line-number="144"><span class="co">#&gt;  shiny          1.1.0       2018-05-17 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-145" data-line-number="145"><span class="co">#&gt;  sjlabelled     1.0.14      2018-09-12 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-146" data-line-number="146"><span class="co">#&gt;  sjmisc         2.7.5       2018-09-13 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-147" data-line-number="147"><span class="co">#&gt;  sjstats        0.17.1      2018-10-04 [1] Github (strengejacke/sjstats@9eafc5e)       </span></a>
-<a class="sourceLine" id="cb16-148" data-line-number="148"><span class="co">#&gt;  skimr          1.0.3       2018-07-06 [1] Github (ropenscilabs/skimr@c67559a)         </span></a>
-<a class="sourceLine" id="cb16-149" data-line-number="149"><span class="co">#&gt;  snakecase      0.9.2       2018-08-14 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-150" data-line-number="150"><span class="co">#&gt;  ssanv          1.1         2015-06-23 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-151" data-line-number="151"><span class="co">#&gt;  stringdist     0.9.5.1     2018-06-08 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-152" data-line-number="152"><span class="co">#&gt;  stringi        1.2.4       2018-07-20 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-153" data-line-number="153"><span class="co">#&gt;  stringr        1.3.1       2018-05-10 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-154" data-line-number="154"><span class="co">#&gt;  survival       2.42-3      2018-04-16 [2] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-155" data-line-number="155"><span class="co">#&gt;  testthat       2.0.1       2018-10-13 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-156" data-line-number="156"><span class="co">#&gt;  TH.data        1.0-9       2018-07-10 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-157" data-line-number="157"><span class="co">#&gt;  tibble         1.4.2       2018-01-22 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-158" data-line-number="158"><span class="co">#&gt;  tidyr          0.8.1.9000  2018-10-06 [1] Github (tidyverse/tidyr@3b62137)            </span></a>
-<a class="sourceLine" id="cb16-159" data-line-number="159"><span class="co">#&gt;  tidyselect     0.2.5       2018-10-11 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-160" data-line-number="160"><span class="co">#&gt;  TMB            1.7.14      2018-06-23 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-161" data-line-number="161"><span class="co">#&gt;  ucminf         1.1-4       2016-08-18 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-162" data-line-number="162"><span class="co">#&gt;  usethis        1.4.0.9000  2018-09-23 [1] Github (r-lib/usethis@1e3c6a6)              </span></a>
-<a class="sourceLine" id="cb16-163" data-line-number="163"><span class="co">#&gt;  utf8           1.1.4       2018-05-24 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-164" data-line-number="164"><span class="co">#&gt;  withr          2.1.2       2018-03-15 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-165" data-line-number="165"><span class="co">#&gt;  WRS2           0.10-0      2018-06-15 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-166" data-line-number="166"><span class="co">#&gt;  xfun           0.3         2018-07-06 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-167" data-line-number="167"><span class="co">#&gt;  xml2           1.2.0       2018-01-24 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-168" data-line-number="168"><span class="co">#&gt;  xtable         1.8-3       2018-08-29 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-169" data-line-number="169"><span class="co">#&gt;  yaml           2.2.0       2018-07-25 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-170" data-line-number="170"><span class="co">#&gt;  zip            1.0.0       2017-04-25 [1] CRAN (R 3.5.0)                              </span></a>
-<a class="sourceLine" id="cb16-171" data-line-number="171"><span class="co">#&gt;  zoo            1.8-4       2018-09-19 [1] CRAN (R 3.5.1)                              </span></a>
-<a class="sourceLine" id="cb16-172" data-line-number="172"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb16-173" data-line-number="173"><span class="co">#&gt; [1] C:/Users/inp099/Documents/R/win-library/3.5</span></a>
-<a class="sourceLine" id="cb16-174" data-line-number="174"><span class="co">#&gt; [2] C:/Program Files/R/R-3.5.1/library</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">session_info</a></span>()</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co">#&gt; - Session info ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">#&gt;  setting  value                                             </span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">#&gt;  version  R Under development (unstable) (2018-10-20 r75474)</span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt;  os       Windows 10 x64                                    </span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">#&gt;  system   x86_64, mingw32                                   </span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt;  ui       RTerm                                             </span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt;  language (EN)                                              </span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252                        </span></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252                        </span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York                                  </span></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="co">#&gt;  date     2018-10-24                                        </span></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb17-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16"><span class="co">#&gt;  ! package      * version    date       lib source                             </span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="co">#&gt;    abind          1.4-5      2016-07-21 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-18" data-line-number="18"><span class="co">#&gt;    assertthat     0.2.0      2017-04-11 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-19" data-line-number="19"><span class="co">#&gt;    backports      1.1.2      2017-12-13 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-20" data-line-number="20"><span class="co">#&gt;    base64enc      0.1-3      2015-07-28 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-21" data-line-number="21"><span class="co">#&gt;    BayesFactor    0.9.12-4.2 2018-05-19 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-22" data-line-number="22"><span class="co">#&gt;    bayesplot      1.6.0      2018-08-02 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-23" data-line-number="23"><span class="co">#&gt;    bindr          0.1.1      2018-03-13 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-24" data-line-number="24"><span class="co">#&gt;    bindrcpp     * 0.2.2      2018-03-29 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-25" data-line-number="25"><span class="co">#&gt;    boot           1.3-20     2017-08-06 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-26" data-line-number="26"><span class="co">#&gt;    broom          0.5.0      2018-07-17 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-27" data-line-number="27"><span class="co">#&gt;    broom.mixed    0.2.3      2018-10-21 [1] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-28" data-line-number="28"><span class="co">#&gt;    callr          3.0.0      2018-08-24 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-29" data-line-number="29"><span class="co">#&gt;    car          * 3.0-2      2018-08-23 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-30" data-line-number="30"><span class="co">#&gt;    carData      * 3.0-2      2018-09-30 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-31" data-line-number="31"><span class="co">#&gt;    cellranger     1.1.0      2016-07-27 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-32" data-line-number="32"><span class="co">#&gt;    cli            1.0.1      2018-09-25 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-33" data-line-number="33"><span class="co">#&gt;    cluster        2.0.7-1    2018-04-13 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-34" data-line-number="34"><span class="co">#&gt;    coda           0.19-2     2018-10-08 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-35" data-line-number="35"><span class="co">#&gt;    codetools      0.2-15     2016-10-05 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-36" data-line-number="36"><span class="co">#&gt;    coin           1.2-2      2017-11-28 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-37" data-line-number="37"><span class="co">#&gt;    colorspace     1.3-2      2016-12-14 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-38" data-line-number="38"><span class="co">#&gt;    commonmark     1.6        2018-09-30 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-39" data-line-number="39"><span class="co">#&gt;    cowplot        0.9.3      2018-07-15 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-40" data-line-number="40"><span class="co">#&gt;    crayon         1.3.4      2017-09-16 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-41" data-line-number="41"><span class="co">#&gt;    curl           3.2        2018-03-28 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-42" data-line-number="42"><span class="co">#&gt;    data.table     1.11.8     2018-09-30 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-43" data-line-number="43"><span class="co">#&gt;    DEoptimR       1.0-8      2016-11-19 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-44" data-line-number="44"><span class="co">#&gt;    desc           1.2.0      2018-05-01 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-45" data-line-number="45"><span class="co">#&gt;    devtools       2.0.0      2018-10-19 [1] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-46" data-line-number="46"><span class="co">#&gt;    digest         0.6.18     2018-10-10 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-47" data-line-number="47"><span class="co">#&gt;    dplyr          0.7.7      2018-10-16 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-48" data-line-number="48"><span class="co">#&gt;    effsize        0.7.1      2017-03-21 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-49" data-line-number="49"><span class="co">#&gt;    emmeans        1.2.4      2018-09-22 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-50" data-line-number="50"><span class="co">#&gt;    estimability   1.3        2018-02-11 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-51" data-line-number="51"><span class="co">#&gt;    evaluate       0.12       2018-10-09 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-52" data-line-number="52"><span class="co">#&gt;    exact2x2       1.6.3      2018-07-27 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-53" data-line-number="53"><span class="co">#&gt;    exactci        1.3-3      2017-10-02 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-54" data-line-number="54"><span class="co">#&gt;    fansi          0.4.0      2018-10-05 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-55" data-line-number="55"><span class="co">#&gt;    fit.models     0.5-14     2017-04-06 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-56" data-line-number="56"><span class="co">#&gt;    forcats        0.3.0      2018-02-19 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-57" data-line-number="57"><span class="co">#&gt;    foreign        0.8-71     2018-07-20 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-58" data-line-number="58"><span class="co">#&gt;    Formula        1.2-3      2018-05-03 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-59" data-line-number="59"><span class="co">#&gt;    fs             1.2.6      2018-08-23 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-60" data-line-number="60"><span class="co">#&gt;    ggcorrplot     0.1.2      2018-09-11 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-61" data-line-number="61"><span class="co">#&gt;    ggExtra        0.8        2018-04-04 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-62" data-line-number="62"><span class="co">#&gt;    ggplot2      * 3.0.0.9000 2018-10-21 [1] Github (tidyverse/ggplot2@3550772) </span></a>
+<a class="sourceLine" id="cb17-63" data-line-number="63"><span class="co">#&gt;    ggrepel        0.8.0      2018-05-09 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-64" data-line-number="64"><span class="co">#&gt;    ggridges       0.5.1      2018-09-27 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-65" data-line-number="65"><span class="co">#&gt;    ggstatsplot  * 0.0.6.9000 2018-10-24 [1] local                              </span></a>
+<a class="sourceLine" id="cb17-66" data-line-number="66"><span class="co">#&gt;    ggthemes       4.0.1      2018-08-24 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-67" data-line-number="67"><span class="co">#&gt;    glmmTMB        0.2.2.0    2018-07-03 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-68" data-line-number="68"><span class="co">#&gt;    glue           1.3.0      2018-07-17 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-69" data-line-number="69"><span class="co">#&gt;    groupedstats   0.0.3      2018-10-05 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-70" data-line-number="70"><span class="co">#&gt;    gtable         0.2.0      2016-02-26 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-71" data-line-number="71"><span class="co">#&gt;    gtools         3.8.1      2018-06-26 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-72" data-line-number="72"><span class="co">#&gt;    haven          1.1.2      2018-06-27 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-73" data-line-number="73"><span class="co">#&gt;    hms            0.4.2      2018-03-10 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-74" data-line-number="74"><span class="co">#&gt;    htmltools      0.3.6      2017-04-28 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-75" data-line-number="75"><span class="co">#&gt;    httpuv         1.4.5      2018-07-19 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-76" data-line-number="76"><span class="co">#&gt;    jmv            0.9.4      2018-09-18 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-77" data-line-number="77"><span class="co">#&gt;    jmvcore        0.9.4      2018-09-17 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-78" data-line-number="78"><span class="co">#&gt;    knitr          1.20       2018-02-20 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-79" data-line-number="79"><span class="co">#&gt;    labeling       0.3        2014-08-23 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-80" data-line-number="80"><span class="co">#&gt;    later          0.7.5      2018-09-18 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-81" data-line-number="81"><span class="co">#&gt;    lattice        0.20-35    2017-03-25 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-82" data-line-number="82"><span class="co">#&gt;    lazyeval       0.2.1      2017-10-29 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-83" data-line-number="83"><span class="co">#&gt;    lfe          * 2.8-2      2018-08-22 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-84" data-line-number="84"><span class="co">#&gt;    lme4         * 1.1-18-1   2018-08-17 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-85" data-line-number="85"><span class="co">#&gt;    magrittr       1.5        2014-11-22 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-86" data-line-number="86"><span class="co">#&gt;    MASS           7.3-51     2018-10-16 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-87" data-line-number="87"><span class="co">#&gt;    Matrix       * 1.2-14     2018-04-13 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-88" data-line-number="88"><span class="co">#&gt;    MatrixModels   0.4-1      2015-08-22 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-89" data-line-number="89"><span class="co">#&gt;    mc2d           0.1-18     2017-03-06 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-90" data-line-number="90"><span class="co">#&gt;    memoise        1.1.0      2017-04-21 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-91" data-line-number="91"><span class="co">#&gt;    mime           0.6        2018-10-05 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-92" data-line-number="92"><span class="co">#&gt;    miniUI         0.1.1.1    2018-05-18 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-93" data-line-number="93"><span class="co">#&gt;    minqa          1.2.4      2014-10-09 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-94" data-line-number="94"><span class="co">#&gt;    mnormt         1.5-5      2016-10-15 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-95" data-line-number="95"><span class="co">#&gt;    modelr         0.1.2      2018-05-11 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-96" data-line-number="96"><span class="co">#&gt;    modeltools     0.2-22     2018-07-16 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-97" data-line-number="97"><span class="co">#&gt;    multcomp       1.4-8      2017-11-08 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-98" data-line-number="98"><span class="co">#&gt;    munsell        0.5.0      2018-06-12 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-99" data-line-number="99"><span class="co">#&gt;    mvtnorm        1.0-8      2018-05-31 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-100" data-line-number="100"><span class="co">#&gt;    nlme           3.1-137    2018-04-07 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-101" data-line-number="101"><span class="co">#&gt;    nloptr         1.2.1      2018-10-03 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-102" data-line-number="102"><span class="co">#&gt;    openxlsx       4.1.0      2018-05-26 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-103" data-line-number="103"><span class="co">#&gt;    paletteer      0.1.0      2018-07-10 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-104" data-line-number="104"><span class="co">#&gt;    pbapply        1.3-4      2018-01-10 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-105" data-line-number="105"><span class="co">#&gt;    pbkrtest       0.4-7      2017-03-15 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-106" data-line-number="106"><span class="co">#&gt;    pcaPP          1.9-73     2018-01-14 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-107" data-line-number="107"><span class="co">#&gt;    pillar         1.3.0      2018-07-14 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-108" data-line-number="108"><span class="co">#&gt;    pkgbuild       1.0.2      2018-10-16 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-109" data-line-number="109"><span class="co">#&gt;    pkgconfig      2.0.2      2018-08-16 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-110" data-line-number="110"><span class="co">#&gt;    pkgdown        1.1.0.9000 2018-10-24 [1] Github (r-lib/pkgdown@0ae2388)     </span></a>
+<a class="sourceLine" id="cb17-111" data-line-number="111"><span class="co">#&gt;    pkgload        1.0.1      2018-10-11 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-112" data-line-number="112"><span class="co">#&gt;    plyr           1.8.4      2016-06-08 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-113" data-line-number="113"><span class="co">#&gt;    prediction     0.3.6      2018-05-22 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-114" data-line-number="114"><span class="co">#&gt;    prettyunits    1.0.2      2015-07-13 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-115" data-line-number="115"><span class="co">#&gt;    processx       3.2.0      2018-08-16 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-116" data-line-number="116"><span class="co">#&gt;    promises       1.0.1      2018-04-13 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-117" data-line-number="117"><span class="co">#&gt;    ps             1.2.0      2018-10-16 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-118" data-line-number="118"><span class="co">#&gt;    psych          1.8.4      2018-05-06 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-119" data-line-number="119"><span class="co">#&gt;    purrr          0.2.5      2018-05-29 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-120" data-line-number="120"><span class="co">#&gt;    purrrlyr       0.0.3      2018-05-29 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-121" data-line-number="121"><span class="co">#&gt;    pwr            1.2-2      2018-03-03 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-122" data-line-number="122"><span class="co">#&gt;    R6             2.3.0      2018-10-04 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-123" data-line-number="123"><span class="co">#&gt;    Rcpp           0.12.19    2018-10-01 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-124" data-line-number="124"><span class="co">#&gt;    readxl         1.1.0      2018-04-20 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-125" data-line-number="125"><span class="co">#&gt;    remotes        2.0.1      2018-10-19 [1] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-126" data-line-number="126"><span class="co">#&gt;    reshape        0.8.8      2018-10-23 [1] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-127" data-line-number="127"><span class="co">#&gt;    reshape2       1.4.3      2017-12-11 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-128" data-line-number="128"><span class="co">#&gt;    rio            0.5.10     2018-03-29 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-129" data-line-number="129"><span class="co">#&gt;    rjson          0.2.20     2018-06-08 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-130" data-line-number="130"><span class="co">#&gt;    rlang          0.3.0      2018-10-22 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-131" data-line-number="131"><span class="co">#&gt;    rmarkdown      1.10       2018-06-11 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-132" data-line-number="132"><span class="co">#&gt;    robust         0.4-18     2017-04-27 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-133" data-line-number="133"><span class="co">#&gt;    robustbase     0.93-3     2018-09-21 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-134" data-line-number="134"><span class="co">#&gt;    roxygen2       6.1.0.9000 2018-10-21 [1] Github (klutometis/roxygen@cc34200)</span></a>
+<a class="sourceLine" id="cb17-135" data-line-number="135"><span class="co">#&gt;    rprojroot      1.3-2      2018-01-03 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-136" data-line-number="136"><span class="co">#&gt;    rrcov          1.4-4      2018-05-24 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-137" data-line-number="137"><span class="co">#&gt;    rstudioapi     0.8        2018-10-02 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-138" data-line-number="138"><span class="co">#&gt;    sandwich       2.5-0      2018-08-17 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-139" data-line-number="139"><span class="co">#&gt;    scales         1.0.0      2018-08-09 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-140" data-line-number="140"><span class="co">#&gt;    sessioninfo    1.1.0      2018-09-25 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-141" data-line-number="141"><span class="co">#&gt;    shiny          1.1.0      2018-05-17 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-142" data-line-number="142"><span class="co">#&gt;    sjlabelled     1.0.14     2018-09-12 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-143" data-line-number="143"><span class="co">#&gt;    sjmisc         2.7.5      2018-09-13 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-144" data-line-number="144"><span class="co">#&gt;    sjstats        0.17.1     2018-10-02 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-145" data-line-number="145"><span class="co">#&gt;    skimr          1.0.3      2018-06-07 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-146" data-line-number="146"><span class="co">#&gt;    snakecase      0.9.2      2018-08-14 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-147" data-line-number="147"><span class="co">#&gt;    ssanv          1.1        2015-06-23 [1] CRAN (R 3.5.0)                     </span></a>
+<a class="sourceLine" id="cb17-148" data-line-number="148"><span class="co">#&gt;    stringdist     0.9.5.1    2018-06-08 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-149" data-line-number="149"><span class="co">#&gt;    stringi        1.2.4      2018-07-20 [1] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-150" data-line-number="150"><span class="co">#&gt;    stringr        1.3.1      2018-05-10 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-151" data-line-number="151"><span class="co">#&gt;    survival       2.42-6     2018-07-17 [2] CRAN (R 3.6.0)                     </span></a>
+<a class="sourceLine" id="cb17-152" data-line-number="152"><span class="co">#&gt;    testthat       2.0.1      2018-10-13 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-153" data-line-number="153"><span class="co">#&gt;    TH.data        1.0-9      2018-07-10 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-154" data-line-number="154"><span class="co">#&gt;    tibble         1.4.2      2018-01-22 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-155" data-line-number="155"><span class="co">#&gt;    tidyr          0.8.1      2018-05-18 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-156" data-line-number="156"><span class="co">#&gt;    tidyselect     0.2.5      2018-10-11 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-157" data-line-number="157"><span class="co">#&gt;  D TMB            1.7.14     2018-06-23 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-158" data-line-number="158"><span class="co">#&gt;    usethis        1.4.0      2018-08-14 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-159" data-line-number="159"><span class="co">#&gt;    utf8           1.1.4      2018-05-24 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-160" data-line-number="160"><span class="co">#&gt;    withr          2.1.2      2018-03-15 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-161" data-line-number="161"><span class="co">#&gt;    WRS2           0.10-0     2018-06-15 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-162" data-line-number="162"><span class="co">#&gt;    xml2           1.2.0      2018-01-24 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-163" data-line-number="163"><span class="co">#&gt;    xtable         1.8-3      2018-08-29 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-164" data-line-number="164"><span class="co">#&gt;    yaml           2.2.0      2018-07-25 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-165" data-line-number="165"><span class="co">#&gt;    zip            1.0.0      2017-04-25 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-166" data-line-number="166"><span class="co">#&gt;    zoo            1.8-4      2018-09-19 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb17-167" data-line-number="167"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb17-168" data-line-number="168"><span class="co">#&gt; [1] C:/Users/inp099/Documents/R/win-library/3.6</span></a>
+<a class="sourceLine" id="cb17-169" data-line-number="169"><span class="co">#&gt; [2] C:/Program Files/R/R-devel/library</span></a>
+<a class="sourceLine" id="cb17-170" data-line-number="170"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb17-171" data-line-number="171"><span class="co">#&gt;  D -- DLL MD5 mismatch, broken installation.</span></a></code></pre></div>
 </div>
   </div>
 
@@ -1018,6 +1043,7 @@
       <li><a href="#cumulative-link-mixed-models-clmm">cumulative link mixed models (<code>clmm</code>)</a></li>
       <li><a href="#repeated-measures-anova-aovlist">repeated measures ANOVA (<code>aovlist</code>)</a></li>
       <li><a href="#robust-regression-lmrob-glmrob">robust regression (<code>lmRob</code>, <code>glmRob</code>)</a></li>
+      <li><a href="#fit-a-linear-model-with-multiple-group-fixed-effects-felm">Fit A Linear Model With Multiple Group Fixed Effects (<code>felm</code>)</a></li>
       <li><a href="#robust-regression-using-an-m-estimator-rlm">robust regression using an M estimator (<code>rlm</code>)</a></li>
       <li><a href="#quantile-regression-rq">quantile regression (<code>rq</code>)</a></li>
       <li><a href="#and-much-more">And much more…</a></li>

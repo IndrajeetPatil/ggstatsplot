@@ -336,7 +336,7 @@ gghistostats <-
         ) +
         ggplot2::scale_y_continuous(
           sec.axis = ggplot2::sec_axis(
-            trans = ~. / nrow(x = data),
+            trans = ~ . / nrow(x = data),
             labels = scales::percent,
             name = "proportion"
           )

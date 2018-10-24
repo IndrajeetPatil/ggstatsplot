@@ -165,7 +165,7 @@ bartlett_message <- function(data,
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",
-      .funs = ~base::droplevels(x = base::as.factor(x = .))
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
   #---------------------------------------- bartlett's test -------------------------------------------

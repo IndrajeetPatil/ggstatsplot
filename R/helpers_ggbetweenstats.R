@@ -34,7 +34,7 @@ mean_labeller <- function(data,
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",
-      .funs = ~base::droplevels(x = base::as.factor(x = .))
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
     ) %>%
     tibble::as_data_frame(x = .)
 
@@ -58,7 +58,7 @@ mean_labeller <- function(data,
     dplyr::mutate_at(
       .tbl = .,
       .vars = dplyr::vars(dplyr::contains(".y")),
-      .funs = ~ggstatsplot::specify_decimal_p(x = ., k = k)
+      .funs = ~ ggstatsplot::specify_decimal_p(x = ., k = k)
     )
 
   # adding confidence intervals to the label for mean
@@ -66,7 +66,7 @@ mean_labeller <- function(data,
     mean_dat %<>%
       purrrlyr::by_row(
         .d = .,
-        ..f = ~paste(.$mean.y,
+        ..f = ~ paste(.$mean.y,
           ", 95% CI [",
           .$lower.ci.y,
           ", ",
@@ -154,7 +154,7 @@ long_to_wide_converter <- function(data, x, y) {
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",
-      .funs = ~base::droplevels(x = base::as.factor(x = .))
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
   # wide format

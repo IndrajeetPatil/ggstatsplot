@@ -68,7 +68,7 @@ subtitle_ggscatterstats <-
     # Pearson's r (will also be used for Bayes tests)
     pearson_r_res <-
       stats::cor.test(
-        formula = ~x + y,
+        formula = ~ x + y,
         data = data,
         method = "pearson",
         alternative = "two.sided",
@@ -127,7 +127,7 @@ subtitle_ggscatterstats <-
       # calculated as df = (no. of pairs - 2)
       c <-
         stats::cor.test(
-          formula = ~x + y,
+          formula = ~ x + y,
           data = data,
           method = "spearman",
           alternative = "two.sided",

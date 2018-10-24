@@ -7,6 +7,9 @@ boxviolin
 cex
 chisq
 ci
+clm
+clmm
+conf
 correlalogram
 covr
 covrpage
@@ -60,6 +63,7 @@ MPAA
 nd
 nz
 Oneway
+param
 Patil
 pch
 pearson's

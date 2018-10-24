@@ -111,7 +111,7 @@ subtitle_ggbetween_anova_parametric <-
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
-        .funs = ~base::droplevels(x = base::as.factor(x = .))
+        .funs = ~ base::droplevels(x = base::as.factor(x = .))
       )
 
     # Welch's ANOVA run by default
@@ -343,7 +343,7 @@ subtitle_ggbetween_t_parametric <-
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
-        .funs = ~base::droplevels(x = base::as.factor(x = .))
+        .funs = ~ base::droplevels(x = base::as.factor(x = .))
       )
 
     # sample size
@@ -533,7 +533,7 @@ subtitle_ggbetween_mann_nonparametric <-
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
-        .funs = ~base::droplevels(x = base::as.factor(x = .))
+        .funs = ~ base::droplevels(x = base::as.factor(x = .))
       )
 
     # sample size
@@ -696,7 +696,7 @@ subtitle_ggbetween_t_rob <-
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
-        .funs = ~base::droplevels(x = base::as.factor(x = .))
+        .funs = ~ base::droplevels(x = base::as.factor(x = .))
       )
 
     ## ---------------------------- between-subjects design --------------------
@@ -911,7 +911,7 @@ subtitle_ggbetween_t_bayes <- function(data,
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",
-      .funs = ~base::droplevels(x = base::as.factor(x = .))
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
   ## ---------------------------- between-subjects design ---------------------------
@@ -1072,7 +1072,7 @@ subtitle_ggbetween_kw_nonparametric <-
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
-        .funs = ~base::droplevels(x = base::as.factor(x = .))
+        .funs = ~ base::droplevels(x = base::as.factor(x = .))
       )
 
     # sample size
@@ -1200,7 +1200,7 @@ subtitle_ggbetween_rob_anova <-
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
-        .funs = ~base::droplevels(x = base::as.factor(x = .))
+        .funs = ~ base::droplevels(x = base::as.factor(x = .))
       )
 
     # sample size

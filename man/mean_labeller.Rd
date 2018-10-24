@@ -18,8 +18,7 @@ taken.}
 \item{mean.ci}{Logical that decides whether 95% confidence interval for mean
 is to be displayed (Default: \code{FALSE}).}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
 }
 \description{
 Create a dataframe with mean per group and a formatted label for

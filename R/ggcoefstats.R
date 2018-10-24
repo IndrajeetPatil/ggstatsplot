@@ -388,7 +388,7 @@ ggcoefstats <- function(x,
       dplyr::mutate_at(
         .tbl = .,
         .vars = "term",
-        .funs = ~as.character(x = .)
+        .funs = ~ as.character(x = .)
       ) %>%
       dplyr::full_join(
         x = .,
@@ -398,7 +398,7 @@ ggcoefstats <- function(x,
           dplyr::mutate_at(
             .tbl = .,
             .vars = "term",
-            .funs = ~as.character(x = .)
+            .funs = ~ as.character(x = .)
           ),
         by = "term"
       )
@@ -485,7 +485,7 @@ ggcoefstats <- function(x,
         .vars = dplyr::vars(dplyr::matches(
           match = "estimate|conf", ignore.case = TRUE
         )),
-        .funs = ~base::exp(x = .)
+        .funs = ~ base::exp(x = .)
       )
   }
 
@@ -497,12 +497,12 @@ ggcoefstats <- function(x,
       dplyr::mutate_at(
         .tbl = .,
         .vars = "statistic",
-        .funs = ~ggstatsplot::specify_decimal_p(x = ., k = k)
+        .funs = ~ ggstatsplot::specify_decimal_p(x = ., k = k)
       ) %>%
       signif_column(data = ., p = p.value) %>%
       purrrlyr::by_row(
         .d = .,
-        ..f = ~ggstatsplot::specify_decimal_p(
+        ..f = ~ ggstatsplot::specify_decimal_p(
           x = .$p.value,
           k = k,
           p.value = TRUE
