@@ -218,8 +218,8 @@ multiple widths to find the best to illustrate the stories in your data.</p></td
 height in the bar chart. This can either be <code>"count"</code>, which shows number
 of points in bin, or <code>"density"</code>, which density of points in bin, scaled to
 integrate to 1, or "<code>proportion</code>", which shows relative frequencies of
-observations in each bin, or "<code>mix</code>", which shows both count and proportion
-in the same plot (only available from <code>ggplot2 3.0.1</code> onward).</p></td>
+observations in each bin, or "<code>mix</code>", which shows <em>both</em> count and proportion
+in the same plot.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -392,7 +392,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html'>gghistostats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-  <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"count"</span>,
+  <span class='kw'>bar.measure</span> <span class='kw'>=</span> <span class='st'>"mix"</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='fu'>substitute</span>(<span class='fu'>paste</span>(<span class='fu'>italic</span>(<span class='st'>"Note"</span>), <span class='st'>": Iris dataset by Fisher."</span>)),
@@ -401,7 +401,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>,
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; [32mNote: [39m[34mShapiro-Wilk Normality Test for [33mSepal.Length[34m : p-value = [39m[33m0.010[39m</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Sepal.Length : p-value = 0.010</div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

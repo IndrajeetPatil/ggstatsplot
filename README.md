@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--21-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--25-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -196,6 +196,31 @@ For example-
 
 ``` r
 args(name = ggstatsplot::ggscatterstats)
+#> Registered S3 methods overwritten by 'ggplot2':
+#>   method         from 
+#>   [.quosures     rlang
+#>   c.quosures     rlang
+#>   print.quosures rlang
+#> Registered S3 method overwritten by 'dplyr':
+#>   method               from  
+#>   as.data.frame.tbl_df tibble
+#> Registered S3 methods overwritten by 'broom.mixed':
+#>   method         from 
+#>   augment.lme    broom
+#>   augment.merMod broom
+#>   glance.lme     broom
+#>   glance.merMod  broom
+#>   glance.stanreg broom
+#>   tidy.brmsfit   broom
+#>   tidy.gamlss    broom
+#>   tidy.lme       broom
+#>   tidy.merMod    broom
+#>   tidy.rjags     broom
+#>   tidy.stanfit   broom
+#>   tidy.stanreg   broom
+#> Registered S3 method overwritten by 'skimr':
+#>   method      from  
+#>   print.spark pillar
 #> function (data, x, y, type = "pearson", bf.prior = 0.707, bf.message = FALSE, 
 #>     label.var = NULL, label.expression = NULL, xlab = NULL, ylab = NULL, 
 #>     method = "lm", method.args = list(), formula = y ~ x, point.color = "black", 
@@ -259,7 +284,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002de62940>
+#> <bytecode: 0x00000000268c1228>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -708,12 +733,9 @@ ggstatsplot::gghistostats(
 
 The aesthetic defaults can be easily modified-
 
-**Note**: To use `bar.measure = "mix"` option, you will need to get the
-development version of `ggplot2` from GitHub.
-
 ``` r
-# getting development version of ggplot2
-# devtools::install_github(repo = "tidyverse/ggplot2", dependencies = FALSE)
+# for reproducibility
+set.seed(123)
 
 # plot
 ggstatsplot::gghistostats(

@@ -242,8 +242,10 @@ linear mixed-effects model (using `lme4::lmer` and *p*-values generated using
 the `sjstats::p_values` function) with a random slope for the genre variable.
 
 ```{r lmer1, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
+# set up
 library(lme4)
 library(ggstatsplot)
+set.seed(123)
 
 # to speed up the calculation, let's use only 10% of the data
 movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)

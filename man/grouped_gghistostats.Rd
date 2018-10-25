@@ -40,8 +40,8 @@ multiple widths to find the best to illustrate the stories in your data.}
 height in the bar chart. This can either be \code{"count"}, which shows number
 of points in bin, or \code{"density"}, which density of points in bin, scaled to
 integrate to 1, or "\code{proportion}", which shows relative frequencies of
-observations in each bin, or "\code{mix}", which shows both count and proportion
-in the same plot (only available from \code{ggplot2 3.0.1} onward).}
+observations in each bin, or "\code{mix}", which shows \emph{both} count and proportion
+in the same plot.}
 
 \item{xlab}{Label for \code{x} axis variable.}
 

@@ -9,8 +9,8 @@
 #'   height in the bar chart. This can either be `"count"`, which shows number
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
 #'   integrate to 1, or "`proportion`", which shows relative frequencies of
-#'   observations in each bin, or "`mix`", which shows both count and proportion
-#'   in the same plot (only available from `ggplot2 3.0.1` onward).
+#'   observations in each bin, or "`mix`", which shows *both* count and proportion
+#'   in the same plot.
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle *if* you don't want results
@@ -81,7 +81,7 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' # this is the only function where data argument can be `NULL`.
 #' ggstatsplot::gghistostats(
@@ -89,12 +89,12 @@
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
 #'   x = Sepal.Length,
-#'   bar.measure = "count",
+#'   bar.measure = "mix",
 #'   type = "p",
 #'   bf.message = TRUE,
 #'   caption = substitute(paste(italic("Note"), ": Iris dataset by Fisher.")),
