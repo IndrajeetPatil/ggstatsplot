@@ -22,7 +22,7 @@ Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](htt
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--25-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--27-yellowgreen.svg)](/commits/master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
@@ -33,6 +33,8 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 Pull-Requests](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls)
 [![Github
 Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
+[![Github
+Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)
 
 <!--
 [![Dependency Status](http://img.shields.io/gemnasium/IndrajeetPatil/ggstatsplot.svg)](https://gemnasium.com/IndrajeetPatil/ggstatsplot) 
@@ -196,31 +198,6 @@ For example-
 
 ``` r
 args(name = ggstatsplot::ggscatterstats)
-#> Registered S3 methods overwritten by 'ggplot2':
-#>   method         from 
-#>   [.quosures     rlang
-#>   c.quosures     rlang
-#>   print.quosures rlang
-#> Registered S3 method overwritten by 'dplyr':
-#>   method               from  
-#>   as.data.frame.tbl_df tibble
-#> Registered S3 methods overwritten by 'broom.mixed':
-#>   method         from 
-#>   augment.lme    broom
-#>   augment.merMod broom
-#>   glance.lme     broom
-#>   glance.merMod  broom
-#>   glance.stanreg broom
-#>   tidy.brmsfit   broom
-#>   tidy.gamlss    broom
-#>   tidy.lme       broom
-#>   tidy.merMod    broom
-#>   tidy.rjags     broom
-#>   tidy.stanfit   broom
-#>   tidy.stanreg   broom
-#> Registered S3 method overwritten by 'skimr':
-#>   method      from  
-#>   print.spark pillar
 #> function (data, x, y, type = "pearson", bf.prior = 0.707, bf.message = FALSE, 
 #>     label.var = NULL, label.expression = NULL, xlab = NULL, ylab = NULL, 
 #>     method = "lm", method.args = list(), formula = y ~ x, point.color = "black", 
@@ -284,7 +261,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x00000000268c1228>
+#> <bytecode: 0x0000000029adbd58>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -760,8 +737,8 @@ ggstatsplot::gghistostats(
 
 <img src="man/figures/README-gghistostats2-1.png" width="100%" />
 
-As can be seen from the plot, bayes factor can be attached (using
-`bf.message = TRUE`) to assess evidence in favor of the null hypothesis.
+As can be seen from the plot, bayes factor can be attached (`bf.message
+= TRUE`) to assess evidence in favor of the null hypothesis.
 
 Additionally, there is also a `grouped_` variant of this function that
 makes it easy to repeat the same operation across a **single** grouping
@@ -800,6 +777,9 @@ produces publication-ready correlation matrices. But, for the sake of
 exploring the available options, let’s change some of the defaults.
 
 ``` r
+# for reproducibility
+set.seed(123)
+
 # as a default this function outputs a correlalogram plot
 ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
@@ -833,6 +813,9 @@ Alternatively, you can use it just to get the correlation matrices and
 their corresponding *p*-values (in a `tibble` format).
 
 ``` r
+# for reproducibility
+set.seed(123)
+
 # show four digits in a tibble
 options(pillar.sigfig = 4)
 
@@ -951,6 +934,10 @@ For examples and more information, see the `ggcorrmat` vignette:
 estimates as dots with confidence interval whiskers.
 
 ``` r
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
                                        data = datasets::mtcars)) 
 ```
@@ -962,6 +949,10 @@ arguments (also, let’s use a robust linear model instead of a simple
 linear model now):
 
 ``` r
+# for reproducibility
+set.seed(123)
+
+# plot
 ggstatsplot::ggcoefstats(
   x = MASS::rlm(formula = mpg ~ am * cyl,
                 data = datasets::mtcars),
@@ -994,12 +985,10 @@ aesthetic modifications by changing the defaults for theme and palette.
 Let’s see a couple more examples:
 
 ``` r
-library(dplyr)
+# for reproducibility
+set.seed(123)
 library(lme4)
 library(quantreg)
-
-# for reproducibility
-set.seed(200)
 
 # creating dataframe needed for one of the analyses below
 d <- as.data.frame(Titanic)
@@ -1125,7 +1114,6 @@ example, in the following chunk, we will use pirateplot from `yarrr`
 package and use `ggstatsplot` helper function to display the results.
 
 ``` r
-
 # for reproducibility
 set.seed(123)
 
