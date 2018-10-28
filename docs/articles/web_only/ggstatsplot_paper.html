@@ -93,6 +93,9 @@
       <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
+      <a href="../../articles/web_only/session_info.html">session information</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
@@ -129,7 +132,7 @@
       <h1>ggstatsplot: ggplot2 Based Plots with Statistical Details</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-10-27</h4>
+            <h4 class="date">2018-10-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggstatsplot_paper.Rmd"><code>vignettes/web_only/ggstatsplot_paper.Rmd</code></a></small>
       <div class="hidden name"><code>ggstatsplot_paper.Rmd</code></div>
@@ -251,7 +254,7 @@
 <a class="sourceLine" id="cb3-32" data-line-number="32">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb3-33" data-line-number="33">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>)</a>
 <a class="sourceLine" id="cb3-34" data-line-number="34">)</a>
-<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="co">#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</span></a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="co">#&gt; Warning: Plots from `grouped_` functions are not `ggplot` objects and can't be further modified with `ggplot2` functions.</span></a>
 <a class="sourceLine" id="cb3-36" data-line-number="36"><span class="co">#&gt; </span></a></code></pre></div>
 <div class="figure">
 <img src="ggstatsplot_paper_files/figure-html/example3-1.png" alt="**Figure-3**. Comparing different aspects of data is much more accurate in (a) a *superposed* plot, which is recommended in Cleveland's paradigm, than in (b) a *juxtaposed* plot, which is how it is implemented in `ggstatsplot` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot." width="960"><p class="caption">
@@ -278,7 +281,7 @@
 <li>Erase non-data-ink.</li>
 <li>Erase redundant data-ink, within reason.</li>
 </ol>
-<p>In particular, default plots in <code>ggstatsplot</code> can sometimes violate one of the principles from 2-4. According to these principles, every bit of ink should have reason for its inclusion in the graphic and should convey some new information to the viewer. If not, such ink should be removed. One instance of this is bilteral symmetry of data measures. For example, in Figure-1, we can see that both the box and violin plots are mirrored, which consumes twice the space in the graphic without adding any new information. But this redundancy is tolerated for the sake of beauty that such symmetrical shapes can bring to the graphic. Even Tufte admits that efficiency is but one consideration in the design of statistical graphics (Tufte, 2001, p. 137). Additionally, these principles were formulated in an era in which computer graphics had yet to revolutionize the ease with which graphics could be produced and thus some of the concerns about minimizing data-ink for easier production of graphics are not as relevant as they were.</p>
+<p>In particular, default plots in <code>ggstatsplot</code> can sometimes violate one of the principles from 2-4. According to these principles, every bit of ink should have reason for its inclusion in the graphic and should convey some new information to the viewer. If not, such ink should be removed. One instance of this is bilateral symmetry of data measures. For example, in Figure-1, we can see that both the box and violin plots are mirrored, which consumes twice the space in the graphic without adding any new information. But this redundancy is tolerated for the sake of beauty that such symmetrical shapes can bring to the graphic. Even Tufte admits that efficiency is but one consideration in the design of statistical graphics (Tufte, 2001, p. 137). Additionally, these principles were formulated in an era in which computer graphics had yet to revolutionize the ease with which graphics could be produced and thus some of the concerns about minimizing data-ink for easier production of graphics are not as relevant as they were.</p>
 </div>
 <div id="statistical-analysis" class="section level1">
 <h1 class="hasAnchor">
@@ -656,7 +659,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  collate  English_United States.1252                        </span></a>
 <a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  ctype    English_United States.1252                        </span></a>
 <a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  tz       America/New_York                                  </span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  date     2018-10-27</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  date     2018-10-28</span></a></code></pre></div>
 </div>
 </div>
   </div>

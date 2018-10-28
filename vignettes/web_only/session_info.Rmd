@@ -1,0 +1,49 @@
+---
+title: "session information"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 100
+    toc: true
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{session information}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Session information
+
+This vignette provides exhaustive details about the session (attached packages,
+their versions, date, source, etc.) in which the vignettes were created and the
+website was generated. This is helpful information for reproducibility. If you
+see any divergences between function behavior as described on the website and
+what you see on your system, this information can come in handy for diagnosing
+the source of those divergences.
+
+```{r libcall, include = FALSE}
+library(ggstatsplot)
+```
+
+```{r session_info}
+options(width = 200)
+devtools::session_info(include_base = TRUE)
+```
+
+# Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on
+`GitHub`:
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>

@@ -48,6 +48,9 @@ additional vignettes that are only available on the website for this package:
   - Default theme used for the package and how it can be modified:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html>)
     
+  - Session information:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
+    
     
 # Suggestions
 

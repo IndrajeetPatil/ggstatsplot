@@ -41,6 +41,9 @@ MINOR CHANGES
     `"counts"`, or `"both"`.
   - Given the constant changes to the default behavior of functions, the
     lifecycle badge has been changed from `stable` to `maturing`.
+  - When the number of colors needed by a function exceeds the number of colors
+    contained in a given palette, informative message is displayed to the user
+    (with the new internal function `palette_message()`).
 
 # ggstatsplot 0.0.6
 

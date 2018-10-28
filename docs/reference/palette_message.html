@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for one sample t-test and its nonparametric and
-robust equivalents. — subtitle_onesample • ggstatsplot</title>
+<title>Message if palette doesn't have enough number of colors. — palette_message • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -41,11 +40,11 @@ robust equivalents. — subtitle_onesample • ggstatsplot</title>
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for one sample t-test and its nonparametric and
-robust equivalents. — subtitle_onesample" />
+<meta property="og:title" content="Message if palette doesn't have enough number of colors. — palette_message" />
 
-<meta property="og:description" content="Making text subtitle for one sample t-test and its nonparametric and
-robust equivalents." />
+<meta property="og:description" content="A note to the user about not using the default color palette
+when the number of factor levels is greater than 8, the maximum number of
+colors allowed by &quot;Dark2&quot; palette from the RColorBrewer package." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -171,89 +170,46 @@ robust equivalents." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for one sample t-test and its nonparametric and
-robust equivalents.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_gghistostats_subtitles.R'><code>R/helpers_gghistostats_subtitles.R</code></a></small>
-    <div class="hidden name"><code>subtitle_onesample.Rd</code></div>
+    <h1>Message if palette doesn't have enough number of colors.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_messages.R'><code>R/helpers_messages.R</code></a></small>
+    <div class="hidden name"><code>palette_message.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for one sample t-test and its nonparametric and
-robust equivalents.</p>
+    <p>A note to the user about not using the default color palette
+when the number of factor levels is greater than 8, the maximum number of
+colors allowed by <code>"Dark2"</code> palette from the <code>RColorBrewer</code> package.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_onesample</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>palette_message</span>(<span class='no'>package</span>, <span class='no'>palette</span>, <span class='no'>min_length</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Dataframe from which variables specified are preferentially to be
-taken. This argument is optional.</p></td>
+      <th>package</th>
+      <td><p>Name of package from which the palette is desired as string
+or symbol.</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>A numeric variable.</p></td>
+      <th>palette</th>
+      <td><p>Name of palette as string or symbol.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
-or <code>"robust"</code> or <code>"bayes"</code>). Abbreviations accepted are <code>"p"</code> or <code>"np"</code> or
-<code>"r"</code> or <code>"bf"</code>, respectively.</p></td>
-    </tr>
-    <tr>
-      <th>test.value</th>
-      <td><p>A number specifying the value of the null hypothesis
-(Default: <code>0</code>).</p></td>
-    </tr>
-    <tr>
-      <th>bf.prior</th>
-      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
-to use in calculating Bayes factors.</p></td>
-    </tr>
-    <tr>
-      <th>robust.estimator</th>
-      <td><p>If <code>test = "robust"</code> robust estimator to be used
-(<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
-<code><a href='http://www.rdocumentation.org/packages/WRS2/topics/onesampb'>?WRS2::onesampb</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for robust one-sample location test
-(Default: <code>100</code>).</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer) (Default: <code>k = 3</code>).</p></td>
-    </tr>
-    <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
+      <th>min_length</th>
+      <td><p>Minimum number of colors needed.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='gghistostats.html'>gghistostats</a></code></p></div>
+    <div class='dont-index'><p>Other helper_messages: <code><a href='bartlett_message.html'>bartlett_message</a></code>,
+  <code><a href='grouped_message.html'>grouped_message</a></code>,
+  <code><a href='normality_message.html'>normality_message</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># for reproducibility</span>
-<span class='fu'>set.seed</span>(<span class='fl'>123</span>)
-
-<span class='fu'>subtitle_onesample</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note: 95% CI for robsut location measure median, Huber Psi computed with  100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste("M"[robust], " = ", "5.820", ", 95% CI [", "5.693", ", ", 
-#&gt;     "5.988", "], ", italic("p"), " = ", "&lt; 0.001", ", ", italic("n"), 
-#&gt;     " = ", 150L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -261,9 +217,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
     <h2>Author</h2>
     

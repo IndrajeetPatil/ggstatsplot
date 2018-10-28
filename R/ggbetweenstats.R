@@ -266,6 +266,13 @@ ggbetweenstats <- function(data,
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
+  # if no. of factor levels is greater than the default palette color count
+  palette_message(
+    package = package,
+    palette = palette,
+    min_length = length(unique(levels(data$x)))[[1]]
+  )
+
   # plot -----------------------------------------------------------------------
 
   # create the basic plot

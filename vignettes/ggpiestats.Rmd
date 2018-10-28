@@ -358,10 +358,6 @@ GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 
-Summarizing session information for reproducibility.
-
-```{r session_info}
-options(width = 200)
-devtools::session_info()
-```
+For details, see-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
 

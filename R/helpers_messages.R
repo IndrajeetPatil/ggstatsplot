@@ -1,6 +1,7 @@
 #' @title Display normality test result as a message.
 #' @name normality_message
 #' @aliases normality_message
+#' @author Indrajeet Patil
 #'
 #' @param x A numeric vector.
 #' @param lab A character describing label for the variable. If `NULL`, a
@@ -23,10 +24,10 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#' 
+#'
 #' # message
 #' normality_message(x = datasets::anscombe$x1)
-#' 
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -85,6 +86,7 @@ normality_message <- function(x,
 #' @title Display homogeneity of variance test as a message
 #' @name bartlett_message
 #' @aliases bartlett_message
+#' @author Indrajeet Patil
 #'
 #' @inheritParams ggbetweenstats
 #' @param lab A character describing label for the variable. If `NULL`, variable
@@ -109,7 +111,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -117,7 +119,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,
@@ -205,10 +207,13 @@ bartlett_message <- function(data,
 
 #' @title grouped_message
 #' @description A note to the user about the class of the output object.
+#' @author Indrajeet Patil
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{grouped_gghistostats}},
 #' \code{\link{grouped_ggscatterstats}}, \code{\link{grouped_ggpiestats}},
 #' \code{\link{grouped_ggcorrmat}}
+#'
+#' @family helper_messages
 #'
 #' @keywords internal
 
@@ -217,8 +222,48 @@ grouped_message <- function() {
   base::message(cat(
     crayon::red("Warning: "),
     crayon::blue(
-      "The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.\n"
+      "Plots from `grouped_` functions are not `ggplot` objects and can't be further modified with `ggplot2` functions.\n"
     ),
     sep = ""
   ))
+}
+
+#' @title Message if palette doesn't have enough number of colors.
+#' @name palette_message
+#' @author Indrajeet Patil
+#' @description A note to the user about not using the default color palette
+#'   when the number of factor levels is greater than 8, the maximum number of
+#'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
+#'
+#' @inheritParams paletteer::scale_fill_paletteer_d
+#' @param min_length Minimum number of colors needed.
+#'
+#' @importFrom tibble as.tibble
+#' @importFrom dplyr filter select
+#' @importFrom crayon red blue
+#' @importFrom rlang !!
+#'
+#' @family helper_messages
+#'
+#' @keywords internal
+
+# function body
+palette_message <- function(package, palette, min_length) {
+  # computing the number of colors in a given palette
+  palette_df <- tibble::as.tibble(paletteer::palettes_d_names) %>%
+    dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
+    dplyr::select(.data = ., length)
+
+  # if insufficient number of colors are available in a given palette
+  if (palette_df$length[[1]] < min_length) {
+    # message to display
+    base::message(cat(
+      crayon::red("Warning: "),
+      crayon::blue(
+        "Number of factor levels is greater than the specified palette color count.\n",
+        "Try using another color palette (and/or package).\n"
+      ),
+      sep = ""
+    ))
+  }
 }

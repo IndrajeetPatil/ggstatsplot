@@ -14,6 +14,7 @@ articles:
   gallery: web_only/gallery.html
   ggstatsplot_paper: web_only/ggstatsplot_paper.html
   purrr_examples: web_only/purrr_examples.html
+  session_info: web_only/session_info.html
   theme_ggstatsplot: web_only/theme_ggstatsplot.html
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot//reference

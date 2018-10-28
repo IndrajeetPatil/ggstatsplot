@@ -135,6 +135,9 @@ subtitle." />
       <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
+      <a href="../articles/web_only/session_info.html">session information</a>
+    </li>
+    <li>
       <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
@@ -529,7 +532,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>
 )</div><div class='output co'>#&gt; Warning: The output is not a `ggplot` object and can't be further modified with `ggplot2` functions.
 #&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output is not a `ggplot` object and can't be further modified with `ggplot2` functions.
-#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Plots from `grouped_` functions are not `ggplot` objects and can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># using labeling</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/mpg'>mpg</a></span>, <span class='no'>cyl</span> <span class='kw'>!=</span> <span class='fl'>5</span>),
@@ -560,7 +563,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Genre"</span>,
   <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"All movies have IMDB rating greater than 8."</span>
-)</div><div class='output co'>#&gt; Warning: The output from `grouped_` functions are not `ggplot` objects and therefore can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Warning: Plots from `grouped_` functions are not `ggplot` objects and can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

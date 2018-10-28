@@ -219,6 +219,13 @@ ggpiestats <-
         stats::na.omit(.)
     }
 
+    # if no. of factor levels is greater than the default palette color count
+    palette_message(
+      package = package,
+      palette = palette,
+      min_length = length(unique(levels(data$main)))[[1]]
+    )
+
     # convert the data into percentages; group by conditional variable if needed
     if (base::missing(condition)) {
       df <-

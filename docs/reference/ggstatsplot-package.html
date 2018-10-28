@@ -45,10 +45,16 @@
 <meta property="og:description" content="ggstatsplot is an extension of ggplot2 package for creating
 graphics with details from statistical tests included in the plots
 themselves and targeted primarily at behavioral sciences community to
-provide a one-line code to produce information-rich plots. Currently, it
-supports only the most common types of statistical tests (parametric,
-nonparametric, and robust versions of t-test/anova, correlation, and
-contingency tables analyses)." />
+provide a one-line code to produce information-rich plots. In a typical
+exploratory data analysis workflow, data visualization and statistical
+modelling are two different phases: visualization informs modelling, and
+modelling in its turn can suggest a different visualization method, and so
+on and so forth. The central idea of ggstatsplot is simple: combine these
+two phases into one in the form of graphics with statistical details, which
+makes data exploration simpler and faster. Currently, it supports only the
+most common types of statistical tests (parametric, nonparametric, and
+robust versions of t-test/anova, correlation, regression, and contingency
+tables analyses)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,6 +143,9 @@ contingency tables analyses)." />
       <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
+      <a href="../articles/web_only/session_info.html">session information</a>
+    </li>
+    <li>
       <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
     </li>
   </ul>
@@ -178,13 +187,19 @@ contingency tables analyses)." />
 
     <div class="ref-description">
     
-    <p>ggstatsplot is an extension of ggplot2 package for creating
+    <p><code>ggstatsplot</code> is an extension of <code>ggplot2</code> package for creating
 graphics with details from statistical tests included in the plots
 themselves and targeted primarily at behavioral sciences community to
-provide a one-line code to produce information-rich plots. Currently, it
-supports only the most common types of statistical tests (parametric,
-nonparametric, and robust versions of t-test/anova, correlation, and
-contingency tables analyses).</p>
+provide a one-line code to produce information-rich plots. In a typical
+exploratory data analysis workflow, data visualization and statistical
+modelling are two different phases: visualization informs modelling, and
+modelling in its turn can suggest a different visualization method, and so
+on and so forth. The central idea of ggstatsplot is simple: combine these
+two phases into one in the form of graphics with statistical details, which
+makes data exploration simpler and faster. Currently, it supports only the
+most common types of statistical tests (parametric, nonparametric, and
+robust versions of t-test/anova, correlation, regression, and contingency
+tables analyses).</p>
     
     </div>
 
@@ -196,23 +211,24 @@ contingency tables analyses).</p>
 <li><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code> function to produce
 information-rich comparison plot between different groups or conditions
 with <code>ggplot2</code> and details from the statistical tests in the subtitle.</p></li>
-<li><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code> function to produce <code>ggplot2</code>
-scatterplots along with a marginal histograms/boxplots/density plots from
-<code>ggExtra</code> and details from the statistical tests in the subtitle.</p></li>
-<li><p><code><a href='ggpiestats.html'>ggpiestats</a></code> function to produce pie chart with
-details from the statistical tests in the subtitle.</p></li>
-<li><p><code><a href='gghistostats.html'>gghistostats</a></code> function to produce histogram for a
-single variable with results from one sample test displayed in the subtitle.</p></li>
-<li><p><code><a href='ggcorrmat.html'>ggcorrmat</a></code> function to visualize
+<li><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code> function to produce
+<code>ggplot2</code> scatterplots along with a marginal histograms/boxplots/density
+plots from <code>ggExtra</code> and details from the statistical tests in the
+subtitle.</p></li>
+<li><p><code><a href='ggpiestats.html'>ggpiestats</a></code> function to produce pie chart
+with details from the statistical tests in the subtitle.</p></li>
+<li><p><code><a href='gghistostats.html'>gghistostats</a></code> function to produce histogram
+for a single variable with results from one sample test displayed in the
+subtitle.</p></li>
+<li><p><code><a href='ggcorrmat.html'>ggcorrmat</a></code> function to visualize the
 correlation matrix.</p></li>
-<li><p><code><a href='combine_plots.html'>combine_plots</a></code> helper
-function to combine multiple <code>ggstatsplot</code> plots using
-<code><a href='http://www.rdocumentation.org/packages/cowplot/topics/plot_grid'>cowplot::plot_grid()</a></code> with a combination of title, caption, and annotation
-label.</p></li>
 <li><p><code><a href='ggcoefstats.html'>ggcoefstats</a></code> function to visualize
 results from regression analyses.</p></li>
-<li><p><code><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></code> default theme used for this
-package.</p></li>
+<li><p><code><a href='combine_plots.html'>combine_plots</a></code> helper function to combine
+multiple <code>ggstatsplot</code> plots using <code><a href='http://www.rdocumentation.org/packages/cowplot/topics/plot_grid'>cowplot::plot_grid()</a></code> with a
+combination of title, caption, and annotation label.</p></li>
+<li><p><code><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></code> default theme used for
+this package.</p></li>
 </ul>
     <p>For more documentation, see the dedicated
 <a href='https://indrajeetpatil.github.io/ggstatsplot/'>Website</a>.</p>

@@ -13,5 +13,13 @@ A note to the user about the class of the output object.
 \code{\link{grouped_ggbetweenstats}}, \code{\link{grouped_gghistostats}},
 \code{\link{grouped_ggscatterstats}}, \code{\link{grouped_ggpiestats}},
 \code{\link{grouped_ggcorrmat}}
+
+Other helper_messages: \code{\link{bartlett_message}},
+  \code{\link{normality_message}},
+  \code{\link{palette_message}}
 }
+\author{
+Indrajeet Patil
+}
+\concept{helper_messages}
 \keyword{internal}

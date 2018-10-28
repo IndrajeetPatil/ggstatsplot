@@ -692,6 +692,23 @@ ggcoefstats <- function(x,
   # counting the number of terms in the tidy dataframe
   count_term <- length(tidy_df$term)
 
+  # if no. of factor levels is greater than the default palette color count
+  palette_message(
+    package = package,
+    palette = palette,
+    min_length = count_term
+  )
+
+  # computing the number of colors in a given palette
+  palette_df <- tibble::as.tibble(paletteer::palettes_d_names) %>%
+    dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
+    dplyr::select(.data = ., length)
+
+  # if insufficient number of colors are available in a given palette
+  if (palette_df$length[[1]] < count_term) {
+    stats.label.color <- "black"
+  }
+
   # setting up the basic architecture
   plot <-
     ggplot2::ggplot(

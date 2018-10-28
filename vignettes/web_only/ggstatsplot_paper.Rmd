@@ -228,7 +228,7 @@ In particular, default plots in `ggstatsplot` can sometimes violate one of the
 principles from 2-4. According to these principles, every bit of ink should have
 reason for its inclusion in the graphic and should convey some new information
 to the viewer. If not, such ink should be removed. One instance of this is
-bilteral symmetry of data measures. For example, in Figure-1, we can see that
+bilateral symmetry of data measures. For example, in Figure-1, we can see that
 both the box and violin plots are mirrored, which consumes twice the space in
 the graphic without adding any new information. But this redundancy is tolerated
 for the sake of beauty that such symmetrical shapes can bring to the graphic.
