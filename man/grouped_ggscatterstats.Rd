@@ -148,7 +148,8 @@ or \code{"median"}) is to be displayed as vertical (for \code{x}) and horizontal
 \code{y}) lines.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as subtitle.}
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
 
 \item{caption}{The text for the plot caption.}
 

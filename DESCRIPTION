@@ -49,7 +49,7 @@ Imports:
     jmv (>= 0.9.4),
     magrittr (>= 1.5),
     paletteer (>= 0.1.0),
-    psych (>= 1.8.4),
+    psych (>= 1.8.10),
     purrr (>= 0.2.5),
     purrrlyr (>= 0.0.3),
     rlang (>= 0.3.0.1),
@@ -57,7 +57,7 @@ Imports:
     scales (>= 1.0.0),
     sjstats (>= 0.17.1),
     tibble (>= 1.4.2),
-    tidyr (>= 0.8.1),
+    tidyr (>= 0.8.2),
     WRS2 (>= 0.10-0)
 Suggests:
     car (>= 3.0-2),

@@ -21,7 +21,8 @@ to use in calculating Bayes factors.}
 \item{paired}{a logical indicating whether you want a paired
     t-test.}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 
 \item{...}{Additional arguments (ignored).}
 }

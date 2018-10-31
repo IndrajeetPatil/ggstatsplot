@@ -44,7 +44,8 @@ intervals required. The value should be any subset of the values \code{"norm"},
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 }
 \description{
 Making text subtitle for contingency analysis (Pearson's chi-square

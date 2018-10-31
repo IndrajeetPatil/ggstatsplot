@@ -337,7 +337,7 @@ ggpiestats <-
       return(lab)
     }
 
-    # =================================== plot =======================================
+    # =================================== plot ==================================
 
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
@@ -413,7 +413,7 @@ ggpiestats <-
         ggstatsplot.layer = ggstatsplot.layer
       ) +
       # remove black diagonal line from legend
-      ggplot2::guides(fill = guide_legend(override.aes = list(color = NA)))
+      ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 
     # ================ chi-square test (either Pearson or McNemar) =========================
 

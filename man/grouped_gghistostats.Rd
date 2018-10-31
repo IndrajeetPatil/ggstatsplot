@@ -72,7 +72,8 @@ This will work only if \code{results.subtitle = TRUE}.}
 \item{nboot}{Number of bootstrap samples for robust one-sample location test
 (Default: \code{100}).}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

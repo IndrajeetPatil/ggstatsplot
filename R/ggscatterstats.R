@@ -42,7 +42,8 @@
 #' @param xsize,ysize Size for the marginal distribution boundaries (Default:
 #'   `0.7`).
 #' @param results.subtitle Decides whether the results of statistical tests are
-#'   to be displayed as subtitle.
+#'   to be displayed as a subtitle (Default: `TRUE`). If set to `FALSE`, only
+#'   the plot will be returned.
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
 #'   or `"median"`) is to be displayed as vertical (for `x`) and horizontal (for
 #'   `y`) lines.

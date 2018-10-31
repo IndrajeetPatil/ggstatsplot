@@ -178,7 +178,7 @@
 <li>
 <code>ggcoefstats</code> was showing wrong confidence intervals for <code>merMod</code> class objects due to a bug in the <code>broom.mixed</code> package (<a href="https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005" class="uri">https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005</a>). This was fixed in <code>broom.mixed</code> and so <code>ggcoefstats</code> should no longer have any issues.</li>
 <li>
-<code>specify_decimal_p</code> was giving incorrect results when <code>k &lt; 3</code> and <code>p.value = TRUE</code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>). This has been fixed.</li>
+<code>specify_decimal_p</code> has been modified because it produced incorrect results when <code>k &lt; 3</code> and <code>p.value = TRUE</code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>).</li>
 <li>
 <code>ggpiestats</code> produced incorrect results if some levels of the factor had been filtered out prior to using this function. It now drops unused levels and produces correct results.</li>
 </ul>
@@ -200,6 +200,7 @@
 <code>ggpiestats</code> (and its <code>grouped_</code> version) gain <code>slice.label</code> argument that decides what information needs to be displayed as a label on the slices of the pie chart: <code>"percentage"</code> (which has been the default thus far), <code>"counts"</code>, or <code>"both"</code>.</li>
 <li>Given the constant changes to the default behavior of functions, the lifecycle badge has been changed from <code>stable</code> to <code>maturing</code>.</li>
 <li>When the number of colors needed by a function exceeds the number of colors contained in a given palette, informative message is displayed to the user (with the new internal function <code><a href="../reference/palette_message.html">palette_message()</a></code>).</li>
+<li>Several users had requested an easier way to turn off subtitles with results from tests (which was already implemented in <code>ggscatterstats</code> and <code>gghistostats</code> with the argument <code>results.subtitle</code>), so <code>ggbetweenstats</code> also gains two new arguments to do this: <code>results.subtitle</code> and <code>subtitle</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-6" class="section level1">

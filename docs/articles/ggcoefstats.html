@@ -132,7 +132,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-10-28</h4>
+            <h4 class="date">2018-10-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggcoefstats.Rmd"><code>vignettes/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -198,8 +198,8 @@
 <a class="sourceLine" id="cb1-37" data-line-number="37">) <span class="op">+</span><span class="st">                                    </span></a>
 <a class="sourceLine" id="cb1-38" data-line-number="38"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb1-39" data-line-number="39"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb1-40" data-line-number="40"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-41" data-line-number="41"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"effect size estimate (partial omega-squared)"</span>,</a>
+<a class="sourceLine" id="cb1-40" data-line-number="40"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-41" data-line-number="41"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"effect size estimate (partial omega-squared)"</span>,</a>
 <a class="sourceLine" id="cb1-42" data-line-number="42">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aov1-1.png" width="768"></p>
 <p>As this plot shows, there is no interaction effect between these two factors.</p>
@@ -292,16 +292,16 @@
 <a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>,                      <span class="co"># changing the confidence levels for confidence intervals</span></a>
 <a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,                     <span class="co"># sorting the terms of the model based on estimate values</span></a>
 <a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">label.direction =</span> <span class="st">"both"</span>,               <span class="co"># direction in which to adjust position of labels (both x and y)</span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_gray</a></span>(),        <span class="co"># changing the default theme</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(),        <span class="co"># changing the default theme</span></a>
 <a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">stats.label.color =</span> <span class="kw">c</span>(<span class="st">"#CC79A7"</span>, <span class="st">"darkgreen"</span>, <span class="st">"#0072B2"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>),</a>
 <a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">title =</span> <span class="st">"Movie ratings by their genre"</span>,</a>
 <a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">subtitle =</span> <span class="st">"Source: www.imdb.com"</span></a>
 <a class="sourceLine" id="cb4-22" data-line-number="22">) <span class="op">+</span><span class="st">                                    </span></a>
 <a class="sourceLine" id="cb4-23" data-line-number="23"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb4-24" data-line-number="24"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"Comedy"</span>, <span class="st">"Romance"</span>, <span class="st">"Documentary"</span>, <span class="st">"Animation"</span>, <span class="st">"Drama"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">y =</span> <span class="st">"genre (comparison level: Action)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"Comedy"</span>, <span class="st">"Romance"</span>, <span class="st">"Documentary"</span>, <span class="st">"Animation"</span>, <span class="st">"Drama"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"genre (comparison level: Action)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
 <p>As can be seen from the regression coefficients, compared to the action movies, only romantic movies, animated movies, and dramas fare better with the audiences.</p>
 </div>
@@ -329,7 +329,7 @@
 <a class="sourceLine" id="cb5-18" data-line-number="18">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb5-19" data-line-number="19">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>              <span class="co"># show the intercept</span></a>
 <a class="sourceLine" id="cb5-20" data-line-number="20">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="kw">parse</span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="kw">parse</span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),</a>
 <a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="co"># model 2: linear mixed-effects model</span></a>
 <a class="sourceLine" id="cb5-23" data-line-number="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb5-24" data-line-number="24">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
@@ -342,7 +342,7 @@
 <a class="sourceLine" id="cb5-31" data-line-number="31">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb5-32" data-line-number="32">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>              <span class="co"># show the intercept</span></a>
 <a class="sourceLine" id="cb5-33" data-line-number="33">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="kw">parse</span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>), </a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="kw">parse</span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>), </a>
 <a class="sourceLine" id="cb5-35" data-line-number="35">                  <span class="dt">y =</span> <span class="st">"fixed effects"</span>),</a>
 <a class="sourceLine" id="cb5-36" data-line-number="36">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
 <a class="sourceLine" id="cb5-37" data-line-number="37">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
@@ -351,14 +351,14 @@
 <a class="sourceLine" id="cb5-40" data-line-number="40">)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lmer1-1.png" width="672"></p>
 <p>As can be seen from these plots, although there seems to be a really small correlation between budget and rating in a linear model, this effect is not significant once we take into account the hierarchical structure of the data.</p>
-<p>Note that for mixed-effects models, only the <em>fixed</em> effects are shown because there are no confidence intervals for <em>random</em> effects terms. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="http://www.rdocumentation.org/packages/broom/topics/tidy">broom::tidy</a></code>:</p>
+<p>Note that for mixed-effects models, only the <em>fixed</em> effects are shown because there are no confidence intervals for <em>random</em> effects terms. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code>ggcoefstats</code> in <code><a href="http://www.rdocumentation.org/packages/broom/topics/reexports">broom::tidy</a></code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># to speed up the calculation, let's use only 10% of the data</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co"># tidy output</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">broom<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/broom/topics/tidy">tidy</a></span>(</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">broom<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/broom/topics/reexports">tidy</a></span>(</a>
 <a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">formula =</span> <span class="kw">scale</span>(rating) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(budget) <span class="op">+</span><span class="st"> </span>(budget <span class="op">|</span><span class="st"> </span>genre),</a>
 <a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">data =</span> movies_<span class="dv">10</span>,</a>
@@ -644,7 +644,7 @@
 <a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="dt">subtitle =</span> <span class="st">"(Using `ordinal` package)"</span>,</a>
 <a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">caption.summary =</span> <span class="ot">FALSE</span>                            <span class="co"># suppress model diagnostics</span></a>
 <a class="sourceLine" id="cb11-17" data-line-number="17">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb11-19" data-line-number="19">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p>As can be seen from this plot, both factors (intentionality and consequences) were significant, and so was their interaction.</p>
 </div>
@@ -671,7 +671,7 @@
 <a class="sourceLine" id="cb12-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"Cumulative Link Mixed Model (clmm)"</span>,</a>
 <a class="sourceLine" id="cb12-18" data-line-number="18">    <span class="dt">subtitle =</span> <span class="st">"(Using `ordinal` package)"</span></a>
 <a class="sourceLine" id="cb12-19" data-line-number="19">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
+<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
 <a class="sourceLine" id="cb12-21" data-line-number="21">                <span class="dt">y =</span> <span class="st">"fixed effects"</span>)</a></code></pre></div>
 <p>Mixed effects regression didn’t reveal any interaction effect. That is, most of the variance was accounted for by the information about whether there was harmful intent and whether there was harm, at least this is the effect we found with these four types of (minor) harms.</p>
 <p>Note that, by default, <code>beta</code> parameters are shown for <code>clm</code> and <code>clmm</code> models, but you can also plot either just <code>alpha</code> or <code>both</code> using <code>ggcoefstats</code>.</p>
@@ -693,7 +693,7 @@
 <a class="sourceLine" id="cb13-16" data-line-number="16">  ),</a>
 <a class="sourceLine" id="cb13-17" data-line-number="17">  <span class="dt">coefficient.type =</span> <span class="st">"alpha"</span></a>
 <a class="sourceLine" id="cb13-18" data-line-number="18">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
+<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
 <a class="sourceLine" id="cb13-20" data-line-number="20">                <span class="dt">y =</span> <span class="st">"threshold parameters"</span>)</a></code></pre></div>
 </div>
 <div id="repeated-measures-anova-aovlist" class="section level2">
@@ -758,8 +758,8 @@
 <a class="sourceLine" id="cb14-56" data-line-number="56">  <span class="dt">title =</span> <span class="st">"Variation in measurements for Iris species"</span>,</a>
 <a class="sourceLine" id="cb14-57" data-line-number="57">  <span class="dt">subtitle =</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span></a>
 <a class="sourceLine" id="cb14-58" data-line-number="58">) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-59" data-line-number="59"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-60" data-line-number="60"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
+<a class="sourceLine" id="cb14-59" data-line-number="59"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-60" data-line-number="60"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
 <a class="sourceLine" id="cb14-61" data-line-number="61"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist . </span></a>
 <a class="sourceLine" id="cb14-62" data-line-number="62"><span class="co">#&gt; Future release might support this.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>

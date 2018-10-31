@@ -3,13 +3,12 @@
 BUG FIXES
 
   - `ggcoefstats` was showing wrong confidence intervals for `merMod` class
-  objects due to a bug in the `broom.mixed` package
-  (https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005).
-  This was fixed in `broom.mixed` and so `ggcoefstats` should no longer have any
-  issues. 
-  - `specify_decimal_p` was giving incorrect results when `k < 3` and
-  `p.value = TRUE` (e.g., `0.002` was printed as `< 0.001`). This has been
-  fixed.
+    objects due to a bug in the `broom.mixed` package
+    (<https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005>).
+    This was fixed in `broom.mixed` and so `ggcoefstats` should no longer have
+    any issues.
+  - `specify_decimal_p` has been modified because it produced incorrect results
+    when `k < 3` and `p.value = TRUE` (e.g., `0.002` was printed as `< 0.001`).
   - `ggpiestats` produced incorrect results if some levels of the factor had
     been filtered out prior to using this function. It now drops unused levels
     and produces correct results.
@@ -44,6 +43,10 @@ MINOR CHANGES
   - When the number of colors needed by a function exceeds the number of colors
     contained in a given palette, informative message is displayed to the user
     (with the new internal function `palette_message()`).
+  - Several users had requested an easier way to turn off subtitles with results
+    from tests (which was already implemented in `ggscatterstats` and
+    `gghistostats` with the argument `results.subtitle`), so `ggbetweenstats`
+    also gains two new arguments to do this: `results.subtitle` and `subtitle`.
 
 # ggstatsplot 0.0.6
 

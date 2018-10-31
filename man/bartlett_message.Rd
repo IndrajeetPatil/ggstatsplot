@@ -17,7 +17,8 @@ taken.}
 \item{lab}{A character describing label for the variable. If \code{NULL}, variable
 name will be used.}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 
 \item{output}{What output is desired: \code{"message"} (default) or \code{"stats"}
 objects.}

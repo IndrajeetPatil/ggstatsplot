@@ -55,7 +55,8 @@ should be displayed for each level of the grouping variable \code{condition} (De
 
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}

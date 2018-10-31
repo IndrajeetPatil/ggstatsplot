@@ -24,7 +24,12 @@
 #'   to use in calculating Bayes factors.
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
 #'   of *null* hypothesis **for parametric test** (Default: `bf.message = FALSE`).
+#' @param results.subtitle Decides whether the results of statistical tests are
+#'   to be displayed as a subtitle (Default: `TRUE`). If set to `FALSE`, only
+#'   the plot will be returned.
 #' @param title The text for the plot title.
+#' @param subtitle The text for the plot subtitle. Will work only if
+#'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption.
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `x` (Default:
@@ -115,10 +120,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -128,7 +133,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -155,10 +160,12 @@ ggbetweenstats <- function(data,
                            effsize.noncentral = FALSE,
                            bf.prior = 0.707,
                            bf.message = FALSE,
+                           results.subtitle = TRUE,
                            xlab = NULL,
                            ylab = NULL,
                            caption = NULL,
                            title = NULL,
+                           subtitle = NULL,
                            sample.size.label = TRUE,
                            k = 3,
                            var.equal = FALSE,
@@ -295,12 +302,13 @@ ggbetweenstats <- function(data,
     )
 
   # single component for creating geom_violin
-  ggbetweenstats_geom_violin <- ggplot2::geom_violin(
-    width = 0.5,
-    alpha = 0.2,
-    fill = "white",
-    na.rm = TRUE
-  )
+  ggbetweenstats_geom_violin <-
+    ggplot2::geom_violin(
+      width = 0.5,
+      alpha = 0.2,
+      fill = "white",
+      na.rm = TRUE
+    )
 
   if (plot.type == "box" || plot.type == "boxviolin") {
     # adding a boxplot
@@ -355,85 +363,87 @@ ggbetweenstats <- function(data,
 
   # subtitle preparation -------------------------------------------------------
 
-  # figure out which test to run based on the number of levels of the
-  # independent variables
-  if (length(levels(as.factor(data$x))) < 3) {
-    test <- "t-test"
-  } else {
-    test <- "anova"
-  }
+  if (isTRUE(results.subtitle)) {
+    # figure out which test to run based on the number of levels of the
+    # independent variables
+    if (length(levels(as.factor(data$x))) < 3) {
+      test <- "t-test"
+    } else {
+      test <- "anova"
+    }
 
-  if (!is.null(effsize.type)) {
-    # figuring out which effect size to use
-    effsize.type <- switch(
-      EXPR = effsize.type,
-      d = "biased",
-      g = "unbiased",
-      partial_eta = "biased",
-      partial_omega = "unbiased",
-      biased = "biased",
-      unbiased = "unbiased",
-      "unbiased"
-    )
-  } else {
-    effsize.type <- "unbiased"
-  }
+    if (!is.null(effsize.type)) {
+      # figuring out which effect size to use
+      effsize.type <- switch(
+        EXPR = effsize.type,
+        d = "biased",
+        g = "unbiased",
+        partial_eta = "biased",
+        partial_omega = "unbiased",
+        biased = "biased",
+        unbiased = "unbiased",
+        "unbiased"
+      )
+    } else {
+      effsize.type <- "unbiased"
+    }
 
+    # preparing the bayes factor message
+    if (test == "t-test") {
 
-  # preparing the bayes factor message
-  if (test == "t-test") {
-
-    # running bayesian analysis
-    jmv_results <- jmv::ttestIS(
-      data = data,
-      vars = "y",
-      group = "x",
-      students = TRUE,
-      effectSize = TRUE,
-      bf = TRUE,
-      bfPrior = bf.prior,
-      hypothesis = "different",
-      miss = "listwise"
-    )
-
-    # preparing the BF message for NULL
-    if (isTRUE(bf.message)) {
-      bf.caption.text <-
-        bf_message_ttest(
-          jmv_results = jmv_results,
-          bf.prior = bf.prior,
-          caption = caption
+      # running bayesian analysis
+      jmv_results <-
+        jmv::ttestIS(
+          data = data,
+          vars = "y",
+          group = "x",
+          students = TRUE,
+          effectSize = TRUE,
+          bf = TRUE,
+          bfPrior = bf.prior,
+          hypothesis = "different",
+          miss = "listwise"
         )
+
+      # preparing the BF message for NULL
+      if (isTRUE(bf.message)) {
+        bf.caption.text <-
+          bf_message_ttest(
+            jmv_results = jmv_results,
+            bf.prior = bf.prior,
+            caption = caption
+          )
+      }
+    }
+
+    # extracting the subtitle using the switch function
+    subtitle <- ggbetweenstats_switch(
+      # switch based on
+      type = type,
+      test = test,
+      # arguments relevant for subtitle helper functions
+      data = data,
+      x = x,
+      y = y,
+      paired = FALSE,
+      effsize.type = effsize.type,
+      effsize.noncentral = effsize.noncentral,
+      var.equal = var.equal,
+      bf.prior = bf.prior,
+      tr = tr,
+      nboot = nboot,
+      k = k,
+      messages = messages
+    )
+
+    # if bayes factor message needs to be displayed
+    if (test == "t-test" &&
+      type %in% c("parametric", "p") && isTRUE(bf.message)) {
+      caption <- bf.caption.text
     }
   }
 
-  # extracting the subtitle using the switch function
-  subtitle <- ggbetweenstats_switch(
-    # switch based on
-    type = type,
-    test = test,
-    # arguments relevant for subtitle helper functions
-    data = data,
-    x = x,
-    y = y,
-    paired = FALSE,
-    effsize.type = effsize.type,
-    effsize.noncentral = effsize.noncentral,
-    var.equal = var.equal,
-    bf.prior = bf.prior,
-    tr = tr,
-    nboot = nboot,
-    k = k,
-    messages = messages
-  )
-
   # annotations and themes -----------------------------------------------------
-
-  # if bayes factor message needs to be displayed
-  if (test == "t-test" &&
-    type %in% c("parametric", "p") && isTRUE(bf.message)) {
-    caption <- bf.caption.text
-  }
 
   # specifying theme and labels for the final plot
   plot <- plot +

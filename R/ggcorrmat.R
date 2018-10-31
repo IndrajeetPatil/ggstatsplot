@@ -279,7 +279,8 @@ ggcorrmat <-
         method = corr.method,
         adjust = p.adjust.method,
         alpha = .05,
-        ci = ci
+        ci = ci,
+        minlength = 20
       )
 
       # computing correlations on all included variables
@@ -304,7 +305,8 @@ ggcorrmat <-
         use = "pairwise",
         adjust = "none",
         alpha = .05,
-        ci = FALSE
+        ci = FALSE,
+        minlength = 20
       )
 
       # in case of NAs, compute minimum, median, and maximum sample sizes of

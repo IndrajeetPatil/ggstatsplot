@@ -8,7 +8,8 @@ designs.}
 ggbetweenstats(data, x, y, plot.type = "boxviolin",
   type = "parametric", effsize.type = "unbiased",
   effsize.noncentral = FALSE, bf.prior = 0.707, bf.message = FALSE,
-  xlab = NULL, ylab = NULL, caption = NULL, title = NULL,
+  results.subtitle = TRUE, xlab = NULL, ylab = NULL,
+  caption = NULL, title = NULL, subtitle = NULL,
   sample.size.label = TRUE, k = 3, var.equal = FALSE, nboot = 100,
   tr = 0.1, mean.label.size = 3, mean.label.fontface = "bold",
   mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
@@ -56,6 +57,10 @@ to use in calculating Bayes factors.}
 \item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
 of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}).}
 
+\item{results.subtitle}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
+
 \item{xlab}{Label for \code{x} axis variable.}
 
 \item{ylab}{Label for \code{y} axis variable.}
@@ -64,11 +69,15 @@ of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.messag
 
 \item{title}{The text for the plot title.}
 
+\item{subtitle}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
+
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{x} (Default:
 \code{TRUE}).}
 
-\item{k}{Number of digits after decimal point (should be an integer) (Default: \code{k = 3}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 3}).}
 
 \item{var.equal}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F
