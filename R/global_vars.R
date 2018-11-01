@@ -122,7 +122,11 @@ utils::globalVariables(
     "bottom.text",
     "code",
     "time",
-    "t-value"
+    "t-value",
+    "Group",
+    "Group1",
+    "group1",
+    "group2"
   ),
   package = "ggstatsplot",
   add = FALSE

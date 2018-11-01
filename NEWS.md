@@ -47,6 +47,7 @@ MINOR CHANGES
     from tests (which was already implemented in `ggscatterstats` and
     `gghistostats` with the argument `results.subtitle`), so `ggbetweenstats`
     also gains two new arguments to do this: `results.subtitle` and `subtitle`.
+  - New dataset added: `iris_long`.
 
 # ggstatsplot 0.0.6
 

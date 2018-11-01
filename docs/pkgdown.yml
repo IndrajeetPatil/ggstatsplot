@@ -1,6 +1,6 @@
 pandoc: 2.2.3.2
 pkgdown: 1.1.0.9000
-pkgdown_sha: eec35964f8c7a091ff953c7e07b2e285d7475df1
+pkgdown_sha: 36bedb20e8d68ee91d33834c76f0e3dd03d5086a
 articles:
   additional: additional.html
   ggbetweenstats: ggbetweenstats.html

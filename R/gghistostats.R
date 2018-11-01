@@ -160,7 +160,7 @@ gghistostats <-
       high.color <- bar.fill
     }
 
-    # ========================================== dataframe ==============================================================
+    # ================================= dataframe ==============================
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # preparing labels from given dataframe
@@ -195,7 +195,7 @@ gghistostats <-
     }
 
 
-    # ========================================== stats ==================================================================
+    # ================ stats labels ============================================
 
     if (isTRUE(results.subtitle)) {
       # model
@@ -238,9 +238,10 @@ gghistostats <-
       )
     }
 
-    # ========================================== plot ===================================================================
+    # ============================= plot =======================================
 
-    # preparing the basic layout of the plot based on whether counts or density information is needed
+    # preparing the basic layout of the plot based on whether counts or density
+    # information is needed
 
     if (bar.measure == "count") {
 
@@ -313,7 +314,6 @@ gghistostats <-
         )
     } else if (bar.measure == "mix") {
 
-      # this works only with the development version of ggplot2
       # all things combined
       plot <- ggplot2::ggplot(
         data = data,
@@ -346,7 +346,8 @@ gghistostats <-
     }
 
     # if bayes factor message needs to be displayed
-    if (isTRUE(results.subtitle) && type %in% c("parametric", "p") && isTRUE(bf.message)) {
+    if (isTRUE(results.subtitle) &&
+      type %in% c("parametric", "p") && isTRUE(bf.message)) {
       caption <- bf.caption.text
     }
 
@@ -363,7 +364,7 @@ gghistostats <-
         caption = caption
       )
 
-    # ========================================== line and label ===================================================================
+    # ====================== centrality line and label =========================
 
     # computing summary statistics needed for displaying labels
     x_mean <- mean(x = data$x, na.rm = TRUE)
@@ -472,7 +473,7 @@ gghistostats <-
         ggplot2::theme(legend.position = "none")
     }
 
-    # ========================================== messages ==================================================================
+    # ============================= messages ===================================
     #
     # display normality test result as a message
     if (isTRUE(messages)) {

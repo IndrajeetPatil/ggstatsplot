@@ -180,10 +180,131 @@ long_to_wide_converter <- function(data, x, y) {
   return(data_wide)
 }
 
-#
-# @examples
-# a <- NULL
-# b <- "y"
-#
-# purrr::`%||%`(a,b)
-#
+#' @title Pairwise comparison tests
+#' @name pairwise_p
+#' @aliases pairwise_p
+#' @description Calculate pairwise comparisons between group levels with
+#'   corrections for multiple testing.
+#' @author Indrajeet Patil
+#'
+#' @inheritParams ggbetweenstats
+#' @inheritParams stats::p.adjust
+#'
+#' @importFrom stats p.adjust
+#'
+#' @seealso \code{\link{ggbetweenstats}}
+#'
+#' @keywords internal
+
+# function body
+pairwise_p <-
+  function(data,
+             x,
+             y,
+             type = "parametric",
+             tr = 0.1,
+             paired = FALSE,
+             p.adjust.method = "holm",
+             ...) {
+    # ---------------------------- data cleanup --------------------------------
+    # creating a dataframe
+    data <-
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x),
+        y = !!rlang::enquo(y)
+      )
+
+    # convert the grouping variable to factor and drop unused levels
+    data %<>%
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~ base::droplevels(x = base::as.factor(x = .))
+      ) %>%
+      stats::na.omit(.) %>%
+      tibble::as.tibble(x = .)
+
+    # ---------------------------- parametric ----------------------------------
+    #
+    if (type %in% c("parametric", "p")) {
+      df <- broom::tidy(
+        stats::pairwise.t.test(
+          x = data$y,
+          g = data$x,
+          p.adjust.method = p.adjust.method,
+          paired = FALSE,
+          alternative = "two.sided",
+          na.action = na.omit,
+          exact = FALSE,
+          correct = TRUE,
+          conf.int = TRUE,
+          conf.level = 0.95
+        )
+      ) %>%
+        ggstatsplot::signif_column(data = ., p = p.value)
+
+      # ---------------------------- nonparametric -----------------------------
+      #
+    } else if (type %in% c("nonparametric", "np")) {
+      df <- broom::tidy(
+        stats::pairwise.wilcox.test(
+          x = data$y,
+          g = data$x,
+          p.adjust.method = p.adjust.method,
+          paired = FALSE,
+          alternative = "two.sided",
+          na.action = na.omit,
+          exact = FALSE,
+          correct = TRUE,
+          conf.int = TRUE,
+          conf.level = 0.95
+        )
+      ) %>%
+        ggstatsplot::signif_column(data = ., p = p.value)
+    } else if (type %in% c("robust", "r")) {
+      if (!isTRUE(paired)) {
+
+        # object with all details about pairwise comparisons
+        rob_pairwise_df <- WRS2::lincon(
+          formula = y ~ x,
+          data = data,
+          tr = tr
+        )
+      }
+
+      # cleaning the raw object and getting it in the right format
+      df <- dplyr::full_join(
+        # dataframe comparing comparion details
+        x = rob_pairwise_df$comp %>%
+          tibble::as.tibble(x = .) %>%
+          dplyr::rename(
+            .data = .,
+            group1 = Group,
+            group2 = Group1
+          ) %>%
+          dplyr::mutate(
+            .data = .,
+            p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
+          ) %>%
+          ggstatsplot::signif_column(data = ., p = p.value) %>%
+          tidyr::gather(
+            data = .,
+            key = "key",
+            value = "rowid",
+            group1:group2
+          ),
+        # dataframe with factor level codings
+        y = rob_pairwise_df$fnames %>%
+          tibble::as.tibble(x = .) %>%
+          tibble::rowid_to_column(.),
+        by = "rowid"
+      ) %>%
+        dplyr::select(.data = ., -rowid) %>%
+        tidyr::spread(data = ., key = "key", value = "value") %>%
+        dplyr::select(.data = ., group1, group2, dplyr::everything())
+    }
+
+    # return
+    return(df)
+  }
