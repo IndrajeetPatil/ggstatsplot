@@ -189,8 +189,15 @@ long_to_wide_converter <- function(data, x, y) {
 #'
 #' @inheritParams ggbetweenstats
 #' @inheritParams stats::p.adjust
+#' @inheritParams stats::t.test
 #'
-#' @importFrom stats p.adjust
+#' @importFrom dplyr select rename mutate mutate_if everything full_join
+#' @importFrom stats p.adjust pairwise.t.test pairwise.wilcox.test na.omit
+#' @importFrom WRS2 lincon
+#' @importFrom tidyr gather spread
+#' @importFrom rlang !! enquo
+#' @importFrom tibble as.tibble rowid_to_column
+#' @importFrom broom tidy
 #'
 #' @seealso \code{\link{ggbetweenstats}}
 #'
@@ -266,40 +273,42 @@ pairwise_p <-
       if (!isTRUE(paired)) {
 
         # object with all details about pairwise comparisons
-        rob_pairwise_df <- WRS2::lincon(
-          formula = y ~ x,
-          data = data,
-          tr = tr
-        )
+        rob_pairwise_df <-
+          WRS2::lincon(
+            formula = y ~ x,
+            data = data,
+            tr = tr
+          )
       }
 
       # cleaning the raw object and getting it in the right format
-      df <- dplyr::full_join(
-        # dataframe comparing comparion details
-        x = rob_pairwise_df$comp %>%
-          tibble::as.tibble(x = .) %>%
-          dplyr::rename(
-            .data = .,
-            group1 = Group,
-            group2 = Group1
-          ) %>%
-          dplyr::mutate(
-            .data = .,
-            p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
-          ) %>%
-          ggstatsplot::signif_column(data = ., p = p.value) %>%
-          tidyr::gather(
-            data = .,
-            key = "key",
-            value = "rowid",
-            group1:group2
-          ),
-        # dataframe with factor level codings
-        y = rob_pairwise_df$fnames %>%
-          tibble::as.tibble(x = .) %>%
-          tibble::rowid_to_column(.),
-        by = "rowid"
-      ) %>%
+      df <-
+        dplyr::full_join(
+          # dataframe comparing comparion details
+          x = rob_pairwise_df$comp %>%
+            tibble::as.tibble(x = .) %>%
+            dplyr::rename(
+              .data = .,
+              group1 = Group,
+              group2 = Group1
+            ) %>%
+            dplyr::mutate(
+              .data = .,
+              p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
+            ) %>%
+            ggstatsplot::signif_column(data = ., p = p.value) %>%
+            tidyr::gather(
+              data = .,
+              key = "key",
+              value = "rowid",
+              group1:group2
+            ),
+          # dataframe with factor level codings
+          y = rob_pairwise_df$fnames %>%
+            tibble::as.tibble(x = .) %>%
+            tibble::rowid_to_column(.),
+          by = "rowid"
+        ) %>%
         dplyr::select(.data = ., -rowid) %>%
         tidyr::spread(data = ., key = "key", value = "value") %>%
         dplyr::select(.data = ., group1, group2, dplyr::everything())

@@ -78,13 +78,13 @@ Quartile
 Rafferty
 readme
 README
-reproducibility
 rmarkdown
 Rmarkdown
 robcor
 Royston
 RStudio
 sdcor
+setosa
 spearman
 srt
 stype
@@ -97,9 +97,11 @@ tl
 toc
 unadjusted
 vcov
+versicolor
 VignetteEncoding
 VignetteEngine
 VignetteIndexEntry
+virginica
 vjust
 Welch
 Welch's

@@ -25,6 +25,11 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
+
+\item{paired}{a logical indicating whether you want a paired
+    t-test.}
+
+\item{...}{further arguments to be passed to or from methods.}
 }
 \description{
 Calculate pairwise comparisons between group levels with
