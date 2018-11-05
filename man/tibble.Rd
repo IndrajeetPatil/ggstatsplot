@@ -4,6 +4,6 @@
 \alias{tibble}
 \title{Anticipate use of tibbles}
 \description{
-See \code{tibble::\link[tibble]{tibble}} for details.
+See \code{\link[tibble]{tibble}} for details.
 }
 \keyword{internal}

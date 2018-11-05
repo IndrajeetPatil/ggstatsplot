@@ -22,8 +22,8 @@
 #'   `"bf"`resp.
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
-#' @param bf.message Logical. Decides whether to display Bayes Factor in favor
-#'   of *null* hypothesis **for parametric test** (Default: `bf.message = FALSE`).
+#' @param bf.message Logical that decides whether to display Bayes Factor in
+#'   favor of the *null* hypothesis **for parametric test** (Default: `FALSE`).
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as a subtitle (Default: `TRUE`). If set to `FALSE`, only
 #'   the plot will be returned.
@@ -35,13 +35,13 @@
 #'   should be displayed for each level of the grouping variable `x` (Default:
 #'   `TRUE`).
 #' @param mean.label.size,mean.label.fontface,mean.label.color Aesthetics for
-#'   the label displaying mean. Defaults: `3`, `"bold"`,`"black"`, respectively.
+#' the label displaying mean. Defaults: `3`, `"bold"`,`"black"`, respectively.
 #' @param notch A logical. If `FALSE` (default), a standard box plot will be
 #'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
 #'   compare groups; if the notches of two boxes do not overlap, this suggests
 #'   that the medians are significantly different. In a notched box plot, the
-#'   notches extend `1.58 * IQR / sqrt(n)`. This gives a roughly `95%` confidence
-#'   interval for comparing medians. IQR: Inter-Quartile Range.
+#'   notches extend `1.58 * IQR / sqrt(n)`. This gives a roughly `95%`
+#'   confidence interval for comparing medians. IQR: Inter-Quartile Range.
 #' @param notchwidth For a notched box plot, width of the notch relative to the
 #'   body (default `0.5`).
 #' @param linetype Character strings (`"blank"`, `"solid"`, `"dashed"`,
@@ -196,7 +196,7 @@ ggbetweenstats <- function(data,
                            direction = 1,
                            messages = TRUE) {
 
-  # checks ---------------------------------------------------------------------
+  # ------------------------ checks -------------------------------------------
 
   # create a list of function call to check for label.expression
   param_list <- base::as.list(base::match.call())
@@ -204,20 +204,21 @@ ggbetweenstats <- function(data,
   # check that x and outlier.label are different
   if (("x" %in% names(param_list)) &&
     ("outlier.label" %in% names(param_list))) {
-    if (as.character(param_list$x)[[1]] == as.character(param_list$outlier.label)[[1]]) {
+    if (as.character(param_list$x)[[1]] ==
+      as.character(param_list$outlier.label)[[1]]) {
       base::message(cat(
         crayon::red("Error: "),
         crayon::blue(
           "Identical variable (",
           crayon::yellow(param_list$x),
-          ") was used for both grouping and outlier labeling, which is not allowed."
+          ") used for both grouping and outlier labeling, which is not allowed."
         ),
         sep = ""
       ))
     }
   }
 
-  # variable names -------------------------------------------------------------
+  # ------------------------------ variable names ----------------------------
 
   # preparing a dataframe with variable names
   lab.df <- colnames(x = dplyr::select(
@@ -236,7 +237,7 @@ ggbetweenstats <- function(data,
     ylab <- lab.df[2]
   }
 
-  # data --------------------------------------------------------------------------
+  # --------------------------------- data -----------------------------------
 
   # if outlier label is provided then include it in the dataframe
   if (base::missing(outlier.label)) {
@@ -281,7 +282,7 @@ ggbetweenstats <- function(data,
     min_length = length(unique(levels(data$x)))[[1]]
   )
 
-  # plot -----------------------------------------------------------------------
+  # -------------------------------- plot -----------------------------------
 
   # create the basic plot
   plot <-
@@ -362,7 +363,7 @@ ggbetweenstats <- function(data,
       ggbetweenstats_geom_violin
   }
 
-  # subtitle preparation -------------------------------------------------------
+  # --------------------- subtitle preparation -------------------------------
 
   if (isTRUE(results.subtitle)) {
     # figure out which test to run based on the number of levels of the
@@ -444,7 +445,7 @@ ggbetweenstats <- function(data,
     }
   }
 
-  # annotations and themes -----------------------------------------------------
+  # ------------------------ annotations and themes -------------------------
 
   # specifying theme and labels for the final plot
   plot <- plot +
@@ -477,12 +478,11 @@ ggbetweenstats <- function(data,
       direction = direction
     )
 
-  # outlier tagging ------------------------------------------------------------
+  # ---------------------------- outlier tagging -----------------------------
 
-  # if `outlier.tagging` is set to `TRUE`, first figure out what labels need to
-  # be attached to the outlier. If `outlier.label` is not provided, outlier
-  # labels will just be values of the `y` vector. If the outlier tag has been
-  # provided, just use the dataframe already created.
+  # If `outlier.label` is not provided, outlier labels will just be values of
+  # the `y` vector. If the outlier tag has been provided, just use the dataframe
+  # already created.
 
   if (isTRUE(outlier.tagging)) {
     # finding and tagging the outliers
@@ -521,7 +521,7 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # mean value tagging ---------------------------------------------------------
+  # ---------------- mean value tagging -------------------------------------
 
   # computing mean and confidence interval for mean using helper function
   # creating label column based on whether just mean is to be displayed or
@@ -565,11 +565,12 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # sample size labels ---------------------------------------------------------
+  # ----------------- sample size labels --------------------------------------
 
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
-    data_label <- mean_dat %>%
+    data_label <-
+      mean_dat %>%
       dplyr::mutate(
         .data = .,
         n_label = paste0(x, "\n(n = ", n, ")", sep = "")
@@ -581,7 +582,7 @@ ggbetweenstats <- function(data,
       ggplot2::scale_x_discrete(labels = c(unique(data_label$n_label)))
   }
 
-  # messages -------------------------------------------------------------------
+  # --------------------- messages ------------------------------------------
 
   if (isTRUE(messages)) {
 

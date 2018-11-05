@@ -116,8 +116,9 @@ excluded from the plot (Default: \code{TRUE}).}
 \item{vline.size}{Numeric specifying the size of the vertical line (Default:
 \code{1}).}
 
-\item{sort}{If \code{"none"} (default) do not sort, \code{"ascending"} sort by increasing
-coefficient value, or \code{"descending"} sort by decreasing coefficient value.}
+\item{sort}{If \code{"none"} (default) do not sort, \code{"ascending"} sort by
+increasing coefficient value, or \code{"descending"} sort by decreasing
+coefficient value.}
 
 \item{xlab}{Label for \code{x} axis variable (Default: \code{"estimate"}).}
 

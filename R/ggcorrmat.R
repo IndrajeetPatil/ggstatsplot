@@ -221,7 +221,7 @@ ggcorrmat <-
              axis.text.x.margin.r = 0,
              axis.text.x.margin.b = 0,
              messages = TRUE) {
-    # ======================= dataframe =======================================
+    # ======================= dataframe ========================================
     #
     # creating a dataframe out of the entered variables
     df <- data %>%
@@ -242,7 +242,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::red("Warning: "),
           crayon::blue(
-            "The number of variable names does not equal the number of variables.\n"
+            "Number of variable names does not equal the number of variables.\n"
           ),
           sep = ""
         ))
@@ -252,7 +252,7 @@ ggcorrmat <-
       }
     }
 
-    # ============================= checking corr.method =======================
+    # ============================ checking corr.method =======================
 
     # if any of the abbreviations have been entered, change them
     if (corr.method == "p") {
@@ -263,7 +263,7 @@ ggcorrmat <-
       corr.method <- "robust"
     }
 
-    # ===================== statistics =========================================
+    # ===================== statistics ========================================
     #
     if (corr.method %in% c("pearson", "spearman", "kendall")) {
       if (output == "ci") {
@@ -344,7 +344,7 @@ ggcorrmat <-
       }
     }
 
-    # ========================== plot =======================================
+    # ========================== plot =========================================
 
     # if user has not specified colors, then use a color palette
     if (is.null(colors)) {
@@ -394,7 +394,6 @@ ggcorrmat <-
             ))
         }
 
-
         # plotting the correlalogram
         plot <- ggcorrplot::ggcorrplot(
           corr = corr.mat,
@@ -420,9 +419,10 @@ ggcorrmat <-
           tl.srt = tl.srt
         )
 
-        # ============================ labels ==================================
+        # =========================== labels ==================================
 
-        # if caption is not specified, use the generic version only if caption.default is TRUE
+        # if `caption` is not specified, use the generic version only if
+        # `caption.default` is `TRUE`
         if (is.null(caption) &&
           pch == 4 && isTRUE(caption.default)) {
 
@@ -501,7 +501,7 @@ ggcorrmat <-
           )
       }
     }
-    # ================================ output ==================================
+    # =============================== output ==================================
 
     # return the desired result
     if (output %in% c("correlations", "corr", "r")) {
@@ -539,7 +539,9 @@ ggcorrmat <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons,\nwhile the lower triangle denotes unadjusted p-values.\n"
+            "In the correlation matrix,\n
+            the upper triangle: p-values adjusted for multiple comparisons\n
+            the lower triangle: unadjusted p-values.\n"
           ),
           sep = ""
         ))
@@ -572,7 +574,7 @@ ggcorrmat <-
         base::message(cat(
           crayon::red("Warning: "),
           crayon::blue(
-            "Confidence intervals are currently not available for robust correlations.\n"
+            "Confidence intervals currently not available for robust method.\n"
           ),
           sep = ""
         ))
@@ -584,7 +586,9 @@ ggcorrmat <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,\nwhile the lower triangle is based on unadjusted p-values.\n"
+            "In the correlation matrix,\n
+            the upper triangle: p-values adjusted for multiple comparisons\n
+            the lower triangle: unadjusted p-values.\n"
           ),
           sep = ""
         ))

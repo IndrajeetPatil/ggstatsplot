@@ -125,8 +125,9 @@ subtitle_ggbetween_anova_parametric <-
       )
 
     # preparing the subtitles with appropriate effect sizes
-    if (effsize.type == "unbiased" || effsize.type == "partial_omega") {
-      # partial omega-squared is the biased estimate of effect size for parametric ANOVA
+    if (effsize.type %in% c("unbiased", "partial_omega")) {
+      # partial omega-squared is the biased estimate of effect size for
+      # parametric ANOVA
       aov_effsize_ci <- sjstats::omega_sq(
         model = stats::lm(
           formula = y ~ x,
@@ -151,7 +152,7 @@ subtitle_ggbetween_anova_parametric <-
         ))
       }
 
-      # aov_stat input represents the anova object summary derived from car library
+      # preparing the subtitle
       subtitle <-
         # extracting the elements of the statistical object
         base::substitute(
@@ -183,18 +184,41 @@ subtitle_ggbetween_anova_parametric <-
               n
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
+            estimate = ggstatsplot::specify_decimal_p(
+              x = aov_stat$statistic[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             df1 = aov_stat$parameter[[1]],
-            # numerator degrees of freedom are always integer
-            df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
-            pvalue = ggstatsplot::specify_decimal_p(x = aov_stat$p.value[[1]], k, p.value = TRUE),
-            effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.omegasq[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k),
+            df2 = ggstatsplot::specify_decimal_p(
+              x = aov_stat$parameter[[2]],
+              k = k,
+              p.value = FALSE
+            ),
+            pvalue = ggstatsplot::specify_decimal_p(
+              x = aov_stat$p.value[[1]],
+              k = k,
+              p.value = TRUE
+            ),
+            effsize = ggstatsplot::specify_decimal_p(
+              x = aov_effsize_ci$partial.omegasq[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            LL = ggstatsplot::specify_decimal_p(
+              x = aov_effsize_ci$conf.low[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            UL = ggstatsplot::specify_decimal_p(
+              x = aov_effsize_ci$conf.high[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             n = nrow(x = data)
           )
         )
-    } else if (effsize.type == "biased" || effsize.type == "partial_eta") {
+    } else if (effsize.type %in% c("biased", "partial_eta")) {
       # getting confidence interval for partial eta-squared
       aov_effsize_ci <- sjstats::eta_sq(
         model = stats::lm(
@@ -220,7 +244,7 @@ subtitle_ggbetween_anova_parametric <-
         ))
       }
 
-      # aov_stat input represents the anova object summary derived from car library
+      # preparing the subtitle
       subtitle <-
         # extracting the elements of the statistical object
         base::substitute(
@@ -252,18 +276,37 @@ subtitle_ggbetween_anova_parametric <-
               n
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = aov_stat$statistic[[1]], k),
+            estimate = ggstatsplot::specify_decimal_p(
+              x = aov_stat$statistic[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             df1 = aov_stat$parameter[[1]],
-            # numerator degrees of freedom are always integer
-            df2 = ggstatsplot::specify_decimal_p(x = aov_stat$parameter[[2]], k),
+            df2 = ggstatsplot::specify_decimal_p(
+              x = aov_stat$parameter[[2]],
+              k = k,
+              p.value = FALSE
+            ),
             pvalue = ggstatsplot::specify_decimal_p(
               x = aov_stat$p.value[[1]],
               k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$partial.etasq[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.low[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = aov_effsize_ci$conf.high[[1]], k),
+            effsize = ggstatsplot::specify_decimal_p(
+              x = aov_effsize_ci$partial.etasq[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            LL = ggstatsplot::specify_decimal_p(
+              x = aov_effsize_ci$conf.low[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            UL = ggstatsplot::specify_decimal_p(
+              x = aov_effsize_ci$conf.high[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             n = nrow(x = data)
           )
         )
@@ -274,21 +317,22 @@ subtitle_ggbetween_anova_parametric <-
   }
 
 
-#' @title Making text subtitle for the t-test (between-/within-subjects designs).
+#' @title Making text subtitle for the t-test (between-/within-subjects
+#'   designs).
 #' @name subtitle_ggbetween_t_parametric
 #' @author Indrajeet Patil
 #'
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence interval for Cohen's *d*
 #'   or Hedge's *g* (Default: `FALSE`).
-#'  @param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95%
-#'   lower and upper confidence intervals (`0.95`).
+#'  @param conf.level A scalar value between 0 and 1. If unspecified, the
+#'    default is to return `95%` lower and upper confidence intervals (`0.95`).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_ggbetween_anova_parametric
 #' @inheritParams stats::t.test
 #' @inheritParams groupedstats::specify_decimal_p
 #'
-#' @importFrom dplyr select
+#' @importFrom dplyr select mutate_at
 #' @importFrom rlang !! enquo
 #' @importFrom stats t.test
 #' @importFrom effsize cohen.d
@@ -296,7 +340,10 @@ subtitle_ggbetween_anova_parametric <-
 #' @examples
 #' 
 #' # creating a smaller dataset
-#' msleep_short <- dplyr::filter(ggplot2::msleep, vore %in% c("carni", "herbi"))
+#' msleep_short <- dplyr::filter(
+#'   .data = ggplot2::msleep,
+#'   vore %in% c("carni", "herbi")
+#' )
 #' 
 #' # with defaults
 #' subtitle_ggbetween_t_parametric(
@@ -361,10 +408,10 @@ subtitle_ggbetween_t_parametric <-
       )
 
     # deciding which effect size to use
-    if (effsize.type == "unbiased" || effsize.type == "g") {
+    if (effsize.type %in% c("unbiased", "g")) {
       # Hedge's g is an unbiased estimate of the effect size
       hedges.correction <- TRUE
-    } else if (effsize.type == "biased" || effsize.type == "d") {
+    } else if (effsize.type %in% c("biased", "d")) {
       hedges.correction <- FALSE
     }
 
@@ -388,9 +435,9 @@ subtitle_ggbetween_t_parametric <-
     }
 
     # preparing the subtitle
-    if (effsize.type == "unbiased" || effsize.type == "g") {
+    if (effsize.type %in% c("unbiased", "g")) {
 
-      # preparing subtitle with Hedge's
+      # preparing subtitle with Hedge's g
       subtitle <-
         # extracting the elements of the statistical object
         base::substitute(
@@ -420,24 +467,43 @@ subtitle_ggbetween_t_parametric <-
               n
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
-            df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k.df),
+            estimate = ggstatsplot::specify_decimal_p(
+              x = t_stat[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            df = ggstatsplot::specify_decimal_p(
+              x = t_stat[[2]],
+              k = k.df,
+              p.value = FALSE
+            ),
             pvalue = ggstatsplot::specify_decimal_p(
               x = t_stat[[3]],
-              k,
+              k = k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
-            LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
+            effsize = ggstatsplot::specify_decimal_p(
+              x = t_effsize[[3]],
+              k = k,
+              p.value = FALSE
+            ),
+            LL = ggstatsplot::specify_decimal_p(
+              x = t_effsize$conf.int[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            UL = ggstatsplot::specify_decimal_p(
+              x = t_effsize$conf.int[[2]],
+              k = k,
+              p.value = FALSE
+            ),
             n = sample_size
           )
         )
-    } else if (effsize.type == "biased" || effsize.type == "d") {
+    } else if (effsize.type %in% c("biased", "d")) {
 
-      # preparing subtitle with Cohen's d
+      # preparing the subtitle
       subtitle <-
-        # extracting the elements of the statistical object
         base::substitute(
           expr =
             paste(
@@ -540,28 +606,29 @@ subtitle_ggbetween_mann_nonparametric <-
     sample_size <- nrow(data)
 
     # setting up the Mann-Whitney U-test and getting its summary
-    mann_stat <- stats::wilcox.test(
-      formula = y ~ x,
-      data = data,
-      paired = paired,
-      alternative = "two.sided",
-      na.action = na.omit,
-      exact = FALSE,
-      # asymptotic
-      correct = TRUE,
-      conf.int = TRUE,
-      conf.level = 0.95
-    )
+    mann_stat <-
+      stats::wilcox.test(
+        formula = y ~ x,
+        data = data,
+        paired = paired,
+        alternative = "two.sided",
+        na.action = na.omit,
+        exact = FALSE,
+        correct = TRUE,
+        conf.int = TRUE,
+        conf.level = 0.95
+      )
 
     # computing Z score
-    z_stat <- coin::wilcox_test(
-      formula = y ~ x,
-      data = data,
-      distribution = "asymptotic",
-      alternative = "two.sided",
-      conf.int = TRUE,
-      conf.level = 0.95
-    )
+    z_stat <-
+      coin::wilcox_test(
+        formula = y ~ x,
+        data = data,
+        distribution = "asymptotic",
+        alternative = "two.sided",
+        conf.int = TRUE,
+        conf.level = 0.95
+      )
 
     # displaying message about which test was run
     if (isTRUE(messages)) {
@@ -577,12 +644,11 @@ subtitle_ggbetween_mann_nonparametric <-
     # mann_stat input represents the U-test summary derived from `stats`
     # library, while Z is from Exact `Wilcoxon-Pratt Signed-Rank Test` from
     # `coin` library
+    # effect size is computed as `r = z/sqrt(n)`
     subtitle <-
-      # extracting the elements of the statistical object
       base::substitute(
         expr =
           paste(
-            # "Mann-Whitney: ",
             italic(U),
             " = ",
             estimate,
@@ -604,13 +670,26 @@ subtitle_ggbetween_mann_nonparametric <-
             n
           ),
         env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(x = mann_stat$statistic[[1]], k),
-          z_value = ggstatsplot::specify_decimal_p(x = coin::statistic(z_stat)[[1]], k),
-          pvalue = ggstatsplot::specify_decimal_p(x = mann_stat$p.value[[1]], k, p.value = TRUE),
-          # effect size is r = z/sqrt(n)
-          r = ggstatsplot::specify_decimal_p(x = (
-            coin::statistic(z_stat)[[1]] / sqrt(length(data$y))
-          ), k),
+          estimate = ggstatsplot::specify_decimal_p(
+            x = mann_stat$statistic[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          z_value = ggstatsplot::specify_decimal_p(
+            x = coin::statistic(z_stat)[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          pvalue = ggstatsplot::specify_decimal_p(
+            x = mann_stat$p.value[[1]],
+            k = k,
+            p.value = TRUE
+          ),
+          r = ggstatsplot::specify_decimal_p(
+            x = (coin::statistic(z_stat)[[1]] / sqrt(length(
+              data$y
+            ))), k
+          ),
           n = sample_size
         )
       )
@@ -632,9 +711,8 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @inheritParams yuend_ci
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
-#' @importFrom WRS2 yuen
-#' @importFrom WRS2 yuen.effect.ci
+#' @importFrom rlang !! enquo
+#' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
 #' 
@@ -699,7 +777,7 @@ subtitle_ggbetween_t_rob <-
         .funs = ~ base::droplevels(x = base::as.factor(x = .))
       )
 
-    ## ---------------------------- between-subjects design --------------------
+    # ---------------------------- between-subjects design --------------------
 
     # running bayesian analysis
     if (!isTRUE(paired)) {
@@ -729,10 +807,8 @@ subtitle_ggbetween_t_rob <-
           alpha = 1 - conf.level
         )
 
-      # t_robust_stat input represents the t-test object summary derived from WRS2
-      # library
+      # preparing the subtitle
       subtitle <-
-        # extracting the elements of the statistical object
         base::substitute(
           expr =
             paste(
@@ -760,37 +836,57 @@ subtitle_ggbetween_t_rob <-
               n
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = t_robust_stat$test[[1]], k),
-            df = ggstatsplot::specify_decimal_p(x = t_robust_stat$df[[1]], k),
+            estimate = ggstatsplot::specify_decimal_p(
+              x = t_robust_stat$test[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            df = ggstatsplot::specify_decimal_p(
+              x = t_robust_stat$df[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             pvalue = ggstatsplot::specify_decimal_p(
               x = t_robust_stat$p.value[[1]],
-              k,
+              k = k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = t_robust_effsize$effsize[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[1]][[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = t_robust_effsize$CI[[2]][[1]], k),
+            effsize = ggstatsplot::specify_decimal_p(
+              x = t_robust_effsize$effsize[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            LL = ggstatsplot::specify_decimal_p(
+              x = t_robust_effsize$CI[[1]][[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            UL = ggstatsplot::specify_decimal_p(
+              x = t_robust_effsize$CI[[2]][[1]],
+              k = k,
+              p.value = FALSE
+            ),
             n = sample_size
           )
         )
 
-      ## ---------------------------- within-subjects design ---------------------
+      # ---------------------------- within-subjects design -------------------
     } else {
 
       # getting dataframe of results from the custom function
-      yuend_results <- yuend_ci(
-        data = data,
-        x = x,
-        y = y,
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        conf.type = conf.type
-      )
+      yuend_results <-
+        yuend_ci(
+          data = data,
+          x = x,
+          y = y,
+          tr = tr,
+          nboot = nboot,
+          conf.level = conf.level,
+          conf.type = conf.type
+        )
 
-      # t_robust_stat input represents the t-test object summary derived from WRS2 library
+      # preparing the subtitle
       subtitle <-
-        # extracting the elements of the statistical object
         base::substitute(
           expr =
             paste(
@@ -818,16 +914,36 @@ subtitle_ggbetween_t_rob <-
               n
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = yuend_results$`t-value`[[1]], k),
-            df = ggstatsplot::specify_decimal_p(x = yuend_results$df[[1]], k),
+            estimate = ggstatsplot::specify_decimal_p(
+              x = yuend_results$`t-value`[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            df = ggstatsplot::specify_decimal_p(
+              x = yuend_results$df[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             pvalue = ggstatsplot::specify_decimal_p(
               x = yuend_results$`p-value`[[1]],
               k,
               p.value = TRUE
             ),
-            effsize = ggstatsplot::specify_decimal_p(x = yuend_results$xi[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = yuend_results$conf.low[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = yuend_results$conf.high[[1]], k),
+            effsize = ggstatsplot::specify_decimal_p(
+              x = yuend_results$xi[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            LL = ggstatsplot::specify_decimal_p(
+              x = yuend_results$conf.low[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            UL = ggstatsplot::specify_decimal_p(
+              x = yuend_results$conf.high[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             n = yuend_results$n[[1]]
           )
         )
@@ -914,7 +1030,7 @@ subtitle_ggbetween_t_bayes <- function(data,
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
-  ## ---------------------------- between-subjects design ---------------------------
+  # -------------------------- between-subjects design ------------------------
 
   # running bayesian analysis
   if (!isTRUE(paired)) {
@@ -939,7 +1055,7 @@ subtitle_ggbetween_t_bayes <- function(data,
       miss = "listwise"
     )
 
-    ## ---------------------------- within-subjects design ---------------------------
+    # --------------------- within-subjects design ---------------------------
   } else if (isTRUE(paired)) {
 
     # jamovi needs data to be wide format and not long format
@@ -1016,7 +1132,11 @@ subtitle_ggbetween_t_bayes <- function(data,
       #   ),
       #   k = 1
       # ),
-      effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
+      effsize = ggstatsplot::specify_decimal_p(
+        x = as.data.frame(jmv_results$ttest)$`es[stud]`,
+        k = k,
+        p.value = FALSE
+      ),
       n = sample_size
     )
   )
@@ -1087,7 +1207,6 @@ subtitle_ggbetween_kw_nonparametric <-
 
     # preparing the subtitle
     subtitle <-
-      # extracting the elements of the statistical object
       base::substitute(
         expr =
           paste(
@@ -1107,9 +1226,12 @@ subtitle_ggbetween_kw_nonparametric <-
             n
           ),
         env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(x = kw_stat$statistic[[1]], k),
+          estimate = ggstatsplot::specify_decimal_p(
+            x = kw_stat$statistic[[1]],
+            k = k,
+            p.value = FALSE
+          ),
           df = kw_stat$parameter[[1]],
-          # degrees of freedom are always integer
           pvalue = ggstatsplot::specify_decimal_p(
             x = kw_stat$p.value[[1]],
             k,
@@ -1231,10 +1353,8 @@ subtitle_ggbetween_rob_anova <-
       ))
     }
 
-    # robust_aov_stat input represents the robust anova object summary derived
-    # from WRS2 library
+    # preparing the subtitle
     subtitle <-
-      # extracting the elements of the statistical object
       base::substitute(
         expr =
           paste(
@@ -1264,18 +1384,37 @@ subtitle_ggbetween_rob_anova <-
             n
           ),
         env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(x = robust_aov_stat$`F-value`[[1]], k),
+          estimate = ggstatsplot::specify_decimal_p(
+            x = robust_aov_stat$`F-value`[[1]],
+            k = k,
+            p.value = FALSE
+          ),
           df1 = robust_aov_stat$df1[[1]],
-          # degrees of freedom are always integer
-          df2 = ggstatsplot::specify_decimal_p(x = robust_aov_stat$df2[[1]], k),
+          df2 = ggstatsplot::specify_decimal_p(
+            x = robust_aov_stat$df2[[1]],
+            k = k,
+            p.value = FALSE
+          ),
           pvalue = ggstatsplot::specify_decimal_p(
             x = robust_aov_stat$`p-value`[[1]],
-            k,
+            k = k,
             p.value = TRUE
           ),
-          effsize = ggstatsplot::specify_decimal_p(x = robust_aov_stat$xi[[1]], k),
-          LL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.low[[1]], k),
-          UL = ggstatsplot::specify_decimal_p(x = robust_aov_stat$conf.high[[1]], k),
+          effsize = ggstatsplot::specify_decimal_p(
+            x = robust_aov_stat$xi[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          LL = ggstatsplot::specify_decimal_p(
+            x = robust_aov_stat$conf.low[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          UL = ggstatsplot::specify_decimal_p(
+            x = robust_aov_stat$conf.high[[1]],
+            k = k,
+            p.value = FALSE
+          ),
           n = sample_size
         )
       )

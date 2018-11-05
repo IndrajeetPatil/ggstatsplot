@@ -13,18 +13,9 @@
 #' @inheritParams ggcorrmat
 #' @inheritDotParams combine_plots
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
+#' @importFrom dplyr select bind_rows summarize  mutate mutate_at  mutate_if
+#' @importFrom dplyr group_by n arrange
+#' @importFrom rlang !! enquo quo_name
 #' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest
@@ -116,7 +107,7 @@ grouped_ggcorrmat <- function(data,
                               axis.text.x.margin.l = 0,
                               messages = TRUE,
                               ...) {
-  # ========================================= preparing dataframe ==================================================
+  # ========================= preparing dataframe =============================
 
   # getting the dataframe ready
   df <- dplyr::select(
@@ -146,11 +137,12 @@ grouped_ggcorrmat <- function(data,
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
 
-  # ========================================= grouped plot ==================================================
+  # ===================== grouped plot ===================================
   #
+  # creating a list of plots
   if (output == "plot") {
-    # creating a list of plots
-    plotlist_purrr <- df %>%
+    plotlist_purrr <-
+      df %>%
       dplyr::mutate(
         .data = .,
         plots = data %>%
@@ -219,10 +211,11 @@ grouped_ggcorrmat <- function(data,
     # return the combined plot
     return(combined_plot)
   } else {
-    # ========================================= grouped stats tables ==================================================
+    # ======================== grouped stats dataframe ======================
     #
     # creating a list of plots
-    statsdf_purrr <- df %>%
+    statsdf_purrr <-
+      df %>%
       dplyr::mutate(
         .data = .,
         statsdf = data %>%

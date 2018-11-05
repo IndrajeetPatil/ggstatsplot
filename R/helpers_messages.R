@@ -7,15 +7,13 @@
 #' @param lab A character describing label for the variable. If `NULL`, a
 #'   generic `"x"` label will be used.
 #' @param k Number of decimal places expected for results (Default: `3`).
-#' @param output What output is desired: `"message"` (default) or `"stats"` objects.
+#' @param output What output is desired: `"message"` (default) or `"stats"`
+#'   objects.
 #' @description A note to the user about the validity of assumptions for the
 #'   default linear model.
 #'
 #' @importFrom stats shapiro.test
-#' @importFrom crayon green
-#' @importFrom crayon blue
-#' @importFrom crayon yellow
-#' @importFrom crayon red
+#' @importFrom crayon green blue yellow red
 #'
 #' @inherit stats::shapiro.test return value
 #'
@@ -46,7 +44,8 @@ normality_message <- function(x,
     lab <- "x"
   }
 
-  # for SW test of normality, sample size must be greater than 3 and less than 5000
+  # for SW test of normality, sample size must be greater than 3 and less than
+  # 5000
   if (length(x) > 3 && length(x) < 5000) {
 
     # test object
@@ -97,12 +96,9 @@ normality_message <- function(x,
 #' @description A note to the user about the validity of assumptions for the
 #'   default linear model.
 #'
-#' @importFrom rlang enquo quo_name
+#' @importFrom rlang enquo quo_name !!
 #' @importFrom stats bartlett.test
-#' @importFrom crayon green
-#' @importFrom crayon blue
-#' @importFrom crayon yellow
-#' @importFrom crayon red
+#' @importFrom crayon green blue yellow red
 #'
 #' @inherit stats::bartlett.test return value
 #'
@@ -137,7 +133,7 @@ bartlett_message <- function(data,
                              k = 3,
                              output = "message") {
 
-  #------------------------------------- variable names --------------------------------------
+  #--------------------------- variable names ---------------------------------
 
   # preparing a dataframe with variable names
   lab.df <- colnames(x = dplyr::select(
@@ -151,7 +147,7 @@ bartlett_message <- function(data,
     lab <- lab.df[1]
   }
 
-  #---------------------------------------- data ----------------------------------------------------
+  #-------------------------- data -------------------------------------------
 
   # creating a dataframe
   data <-
@@ -170,7 +166,7 @@ bartlett_message <- function(data,
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
-  #---------------------------------------- bartlett's test -------------------------------------------
+  #------------------------------ bartlett's test ----------------------------
 
   # running the test
   bartlett <- stats::bartlett.test(
@@ -209,9 +205,9 @@ bartlett_message <- function(data,
 #' @description A note to the user about the class of the output object.
 #' @author Indrajeet Patil
 #'
-#' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{grouped_gghistostats}},
-#' \code{\link{grouped_ggscatterstats}}, \code{\link{grouped_ggpiestats}},
-#' \code{\link{grouped_ggcorrmat}}
+#' @seealso \code{\link{grouped_ggbetweenstats}},
+#'   \code{\link{grouped_gghistostats}}, \code{\link{grouped_ggscatterstats}},
+#'   \code{\link{grouped_ggpiestats}}, \code{\link{grouped_ggcorrmat}}
 #'
 #' @family helper_messages
 #'
@@ -222,7 +218,8 @@ grouped_message <- function() {
   base::message(cat(
     crayon::red("Warning: "),
     crayon::blue(
-      "Plots from `grouped_` functions are not `ggplot` objects and can't be further modified with `ggplot2` functions.\n"
+      "Plots from `grouped_` functions are not `ggplot` objects.\n
+      Therefore, they can't be further modified with `ggplot2` functions.\n"
     ),
     sep = ""
   ))
@@ -240,7 +237,7 @@ grouped_message <- function() {
 #'
 #' @importFrom tibble as.tibble
 #' @importFrom dplyr filter select
-#' @importFrom crayon red blue
+#' @importFrom crayon green blue yellow red
 #' @importFrom rlang !!
 #'
 #' @family helper_messages
@@ -260,8 +257,8 @@ palette_message <- function(package, palette, min_length) {
     base::message(cat(
       crayon::red("Warning: "),
       crayon::blue(
-        "Number of factor levels is greater than the specified palette color count.\n",
-        "Try using another color palette (and/or package).\n"
+        "No. of factor levels is greater than specified palette color count.\n",
+        "Try using another color `palette` (and/or `package`).\n"
       ),
       sep = ""
     ))

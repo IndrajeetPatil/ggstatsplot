@@ -24,3 +24,4 @@ publication/*
 ^CRAN-RELEASE$
 tests\^spelling
 ^LICENSE\.md$
+^\.lintr\.yml$

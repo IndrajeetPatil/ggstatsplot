@@ -98,10 +98,9 @@ grouped_ggbetweenstats <- function(data,
                                    direction = 1,
                                    messages = TRUE,
                                    ...) {
-  # ================== preparing dataframe ==================
+  # ======================== preparing dataframe ==========================
 
   if (!base::missing(outlier.label)) {
-    # getting the dataframe ready
     df <- dplyr::select(
       .data = data,
       !!rlang::enquo(grouping.var),
@@ -115,7 +114,6 @@ grouped_ggbetweenstats <- function(data,
       ) %>%
       stats::na.omit(.)
   } else {
-    # getting the dataframe ready
     df <- dplyr::select(
       .data = data,
       !!rlang::enquo(grouping.var),
@@ -146,9 +144,10 @@ grouped_ggbetweenstats <- function(data,
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
 
+  # creating a list of plots
   if (!base::missing(outlier.label)) {
-    # creating a list of plots
-    plotlist_purrr <- df %>%
+    plotlist_purrr <-
+      df %>%
       dplyr::mutate(
         .data = .,
         plots = data %>%
@@ -204,8 +203,8 @@ grouped_ggbetweenstats <- function(data,
           )
       )
   } else {
-    # creating a list of plots
-    plotlist_purrr <- df %>%
+    plotlist_purrr <-
+      df %>%
       dplyr::mutate(
         .data = .,
         plots = data %>%

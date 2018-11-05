@@ -13,7 +13,8 @@
 \item rating.  Average IMDB user rating.
 \item votes.  Number of IMDB users who rated this movie.
 \item mpaa.  MPAA rating.
-\item genre. Different genres of movies (action, animation, comedy, drama, documentary, romance, short).
+\item genre. Different genres of movies (action, animation, comedy, drama,
+documentary, romance, short).
 }}
 \source{
 \url{https://CRAN.R-project.org/package=ggplot2movies}

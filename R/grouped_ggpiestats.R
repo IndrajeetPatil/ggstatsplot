@@ -101,7 +101,7 @@ grouped_ggpiestats <- function(data,
                                direction = 1,
                                messages = TRUE,
                                ...) {
-  # ================================ preparing dataframe ======================================
+  # ======================== preparing dataframe =============================
 
   if (!missing(condition)) {
 
@@ -178,10 +178,11 @@ grouped_ggpiestats <- function(data,
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
 
+  # creating a list of plots
   if (!missing(condition)) {
     if (missing(counts)) {
-      # creating a list of plots
-      plotlist_purrr <- df %>%
+      plotlist_purrr <-
+        df %>%
         dplyr::mutate(
           .data = .,
           plots = data %>%
@@ -216,7 +217,8 @@ grouped_ggpiestats <- function(data,
             )
         )
     } else {
-      plotlist_purrr <- df %>%
+      plotlist_purrr <-
+        df %>%
         dplyr::mutate(
           .data = .,
           plots = data %>%
@@ -254,8 +256,8 @@ grouped_ggpiestats <- function(data,
     }
   } else if (missing(condition)) {
     if (missing(counts)) {
-      # creating a list of plots
-      plotlist_purrr <- df %>%
+      plotlist_purrr <-
+        df %>%
         dplyr::mutate(
           .data = .,
           plots = data %>%
@@ -288,8 +290,8 @@ grouped_ggpiestats <- function(data,
             )
         )
     } else if (!missing(counts)) {
-      # creating a list of plots
-      plotlist_purrr <- df %>%
+      plotlist_purrr <-
+        df %>%
         dplyr::mutate(
           .data = .,
           plots = data %>%

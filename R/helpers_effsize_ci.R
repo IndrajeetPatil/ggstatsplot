@@ -461,12 +461,12 @@ cor_test_ci <- function(data,
 }
 
 
-
-#' @title Chi-squared test of association with confidence interval for effect size
-#'   (Cramer's V).
+#' @title Chi-squared test of association with confidence interval for effect
+#'   size (Cramer's V).
 #' @name chisq_v_ci
 #' @description Custom function to get confidence intervals for effect size
-#'   measure for chi-squared test of association (Contingency Tables analyses, i.e.).
+#'   measure for chi-squared test of association (Contingency Tables analyses,
+#'   i.e.).
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
@@ -483,16 +483,15 @@ cor_test_ci <- function(data,
 #'
 #' @importFrom tibble as_data_frame
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
+#' @importFrom rlang !! enquo
 #' @importFrom jmv contTables
 #' @importFrom boot boot
 #' @importFrom boot boot.ci
 #' @importFrom stats na.omit
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #'
 #' @keywords internal
 
+# function body
 chisq_v_ci <- function(data,
                        rows,
                        cols,
@@ -501,11 +500,12 @@ chisq_v_ci <- function(data,
                        conf.type = "norm",
                        ...) {
   # creating a dataframe from entered data
-  data <- dplyr::select(
-    .data = data,
-    rows = !!rlang::enquo(rows),
-    cols = !!rlang::enquo(cols)
-  ) %>%
+  data <-
+    dplyr::select(
+      .data = data,
+      rows = !!rlang::enquo(rows),
+      cols = !!rlang::enquo(cols)
+    ) %>%
     stats::na.omit(.) %>%
     tibble::as.tibble(x = .)
 
@@ -642,8 +642,6 @@ chisq_v_ci <- function(data,
 #' @importFrom boot boot
 #' @importFrom boot boot.ci
 #' @importFrom stats na.omit
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #'
 #' @keywords internal
 
@@ -656,11 +654,12 @@ robcor_ci <- function(data,
                       conf.type = "norm",
                       ...) {
   # creating a dataframe from entered data
-  data <- dplyr::select(
-    .data = data,
-    x = !!rlang::enquo(x),
-    y = !!rlang::enquo(y)
-  ) %>%
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
     stats::na.omit(.) %>%
     tibble::as.tibble(x = .)
 

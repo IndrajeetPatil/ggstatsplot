@@ -273,13 +273,19 @@ ggpiestats <-
       df %<>%
         dplyr::mutate(
           .data = .,
-          slice.label = paste0("n = ", counts, "\n(", round(x = perc, digits = perc.k), "%)")
+          slice.label = paste0(
+            "n = ",
+            counts,
+            "\n(",
+            round(x = perc, digits = perc.k),
+            "%)"
+          )
         )
 
       label.text.size <- 3
     }
 
-    # ============================ sample size label ===========================
+    # ============================ sample size label ==========================
 
     # if sample size labels are to be displayed at the bottom of the pie charts
     # for each facet
@@ -415,9 +421,11 @@ ggpiestats <-
         ggstatsplot.layer = ggstatsplot.layer
       ) +
       # remove black diagonal line from legend
-      ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
+      ggplot2::guides(
+        fill = ggplot2::guide_legend(override.aes = list(color = NA))
+      )
 
-    # ================ chi-square test (either Pearson or McNemar) =============
+    # =============== chi-square test (either Pearson or McNemar) =============
 
     # if facetting by condition is happening
     if (!base::missing(condition)) {
@@ -475,7 +483,7 @@ ggpiestats <-
         k = k
       )
 
-      # ======================= facetted proportion test =======================
+      # ====================== facetted proportion test =======================
 
       # adding significance labels to pie charts for grouped proportion tests
       if (isTRUE(facet.proptest)) {
@@ -512,7 +520,7 @@ ggpiestats <-
       )
     }
 
-    # ============================ putting all together ========================
+    # =========================== putting all together ========================
 
     # preparing the plot
     p <-

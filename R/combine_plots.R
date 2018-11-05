@@ -1,5 +1,4 @@
-#' @title Combining multiple plots using `cowplot::plot_grid()` with a
-#'   combination of title, caption, and annotation label
+#' @title Combining and arranging multiple plots in a grid
 #' @name combine_plots
 #' @aliases combine_plots
 #' @author Indrajeet Patil
@@ -12,12 +11,12 @@
 #'   *combined plot*.
 #' @param title.color Text color for title.
 #' @param title.size Point size of title text.
-#' @param title.vjust Vertical justification for title. Default = `0.5` (centered
-#'   on y). `0` = baseline at y, 1 = ascender at y.
+#' @param title.vjust Vertical justification for title. Default = `0.5`
+#'   (centered on `y`). `0` = baseline at `y`, `1` = ascender at `y`.
 #' @param title.hjust Horizontal justification for title. Default = `0.5`
-#'   (centered on x). `0` = flush-left at x, `1` = flush-right.
-#' @param title.fontface The font face (`"plain"`, `"bold"` (default), `"italic"`,
-#'   `"bold.italic"`) for title.
+#'   (centered on `x`). `0` = flush-left at x, `1` = flush-right.
+#' @param title.fontface The font face (`"plain"`, `"bold"` (default),
+#'   `"italic"`, `"bold.italic"`) for title.
 #' @param caption.text String or plotmath expression to be drawn as the caption
 #'   for the *combined plot*.
 #' @param caption.color Text color for caption.
@@ -26,8 +25,8 @@
 #'   (centered on y). `0` = baseline at y, `1` = ascender at y.
 #' @param caption.hjust Horizontal justification for caption. Default = `0.5`
 #'   (centered on x). `0` = flush-left at x, `1` = flush-right.
-#' @param caption.fontface The font face (`"plain"` (default), `"bold"`, `"italic"`,
-#'   `"bold.italic"`) for caption.
+#' @param caption.fontface The font face (`"plain"` (default), `"bold"`,
+#'   `"italic"`, `"bold.italic"`) for caption.
 #' @param sub.text The label with which the *combined plot* should be annotated.
 #'   Can be a plotmath expression.
 #' @param sub.color Text color for annotation label (Default: `"black"`).
@@ -64,7 +63,6 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/combine_plots.html}
 #'
 #' @examples
-#' 
 #' # loading the necessary libraries
 #' library(ggplot2)
 #' 
@@ -97,8 +95,8 @@
 #'   caption.color = "blue"
 #' )
 #' @export
-#'
 
+# function body
 combine_plots <-
   function(...,
              title.text = NULL,

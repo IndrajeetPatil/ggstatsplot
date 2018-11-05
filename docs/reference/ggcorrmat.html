@@ -423,7 +423,7 @@ of p-values.</p>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
   <span class='kw'>cor.vars.names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"total sleep"</span>, <span class='st'>"REM sleep"</span>)
-)</div><div class='output co'>#&gt; Warning: The number of variable names does not equal the number of variables.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; Warning: Number of variable names does not equal the number of variables.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get the correlation matrix</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -445,8 +445,11 @@ of p-values.</p>
   <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"p"</span>
-)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle denotes p-values adjusted for multiple comparisons,
-#&gt; while the lower triangle denotes unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
+)</div><div class='output co'>#&gt; Note: In the correlation matrix,
+#&gt; 
+#&gt;             the upper triangle: p-values adjusted for multiple comparisons
+#&gt; 
+#&gt;             the lower triangle: unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
 #&gt;   variable    sleep_total sleep_rem sleep_cycle    awake  brainwt   bodywt
 #&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
 #&gt; 1 sleep_total    0.        6.11e-12    3.43e- 2 0.       6.79e- 5 3.85e- 6

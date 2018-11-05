@@ -1,6 +1,6 @@
 #' Pipe operator
 #'
-#' See \code{magrittr::\link[magrittr]{\%>\%}} for details.
+#' See \code{\link[magrittr]{\%>\%}} for details.
 #'
 #' @name %>%
 #' @rdname pipe
@@ -12,7 +12,7 @@ NULL
 
 #' Compound assignment pipe operator
 #'
-#' See \code{magrittr::\link[magrittr]{\%<>\%}} for details.
+#' See \code{\link[magrittr]{\%<>\%}} for details.
 #'
 #' @name %<>%
 #' @rdname compound
@@ -24,7 +24,7 @@ NULL
 
 #' Anticipate use of tibbles
 #'
-#' See \code{tibble::\link[tibble]{tibble}} for details.
+#' See \code{\link[tibble]{tibble}} for details.
 #'
 #' @name tibble
 #' @keywords internal

@@ -2,8 +2,8 @@
 % Please edit documentation in R/helpers_effsize_ci.R
 \name{chisq_v_ci}
 \alias{chisq_v_ci}
-\title{Chi-squared test of association with confidence interval for effect size
-(Cramer's V).}
+\title{Chi-squared test of association with confidence interval for effect
+size (Cramer's V).}
 \usage{
 chisq_v_ci(data, rows, cols, nboot = 25, conf.level = 0.95,
   conf.type = "norm", ...)
@@ -156,6 +156,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 }
 \description{
 Custom function to get confidence intervals for effect size
-measure for chi-squared test of association (Contingency Tables analyses, i.e.).
+measure for chi-squared test of association (Contingency Tables analyses,
+i.e.).
 }
 \keyword{internal}

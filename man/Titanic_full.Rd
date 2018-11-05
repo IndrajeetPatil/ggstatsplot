@@ -22,9 +22,9 @@ Titanic_full
 Titanic dataset.
 }
 \details{
-This data set provides information on the fate of passengers on the fatal
-maiden voyage of the ocean liner 'Titanic', summarized according to economic
-status (class), sex, age and survival.
+This data set provides information on the fate of passengers on the
+fatal maiden voyage of the ocean liner 'Titanic', summarized according to
+economic status (class), sex, age and survival.
 
 This is a modified dataset from \code{datasets} package.
 }

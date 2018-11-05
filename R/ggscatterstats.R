@@ -222,7 +222,7 @@ ggscatterstats <-
       dplyr::filter(.data = ., !is.na(x...internal), !is.na(y...internal)) %>%
       tibble::as_data_frame(x = .)
 
-    #--------------------------------- user expression ----------------------------------------------------------
+    #---------------------------- user expression -------------------------
 
     # create a list of function call to check for label.expression
     param_list <- base::as.list(base::match.call())
@@ -239,13 +239,14 @@ ggscatterstats <-
       data %>%
       {
         if ("label.expression" %in% names(param_list)) {
-          #  dplyr::filter(.data = ., !!rlang::enquo(label.expression))  # original
+          # original
+          #  dplyr::filter(.data = ., !!rlang::enquo(label.expression))
           dplyr::filter(.data = ., !!rlang::parse_expr(label.expression))
         } else {
           (.)
         }
       }
-    #------------------------ creating results subtitle ------------------------
+    #----------------------- creating results subtitle ------------------------
     #
     # adding a subtitle with statistical results
     if (isTRUE(results.subtitle)) {
@@ -281,7 +282,7 @@ ggscatterstats <-
       }
     }
 
-    #------------------------------------ basic plot ---------------------------
+    #--------------------------------- basic plot ---------------------------
 
     # if user has not specified colors, then use a color palette
     if (is.null(xfill) || is.null(yfill)) {
@@ -340,7 +341,7 @@ ggscatterstats <-
         caption = caption
       )
 
-    #------------------------- adding centrality parameters --------------------
+    #----------------------- adding centrality parameters --------------------
 
     # by default, if the input is NULL, then no centrality.para lines will be
     # plotted
@@ -467,7 +468,7 @@ ggscatterstats <-
         )
     }
 
-    #------------------------- range restriction -------------------------------
+    #---------------------- range restriction -------------------------------
 
     # forcing the plots to get cut off at min and max values of the variable
     if (isTRUE(axes.range.restrict)) {
@@ -482,7 +483,7 @@ ggscatterstats <-
         ))
     }
 
-    #--------------------- adding point labels --------------------------------
+    #-------------------- adding point labels --------------------------------
 
     if (isTRUE(point.labelling)) {
       # using geom_repel_label
@@ -504,7 +505,7 @@ ggscatterstats <-
           na.rm = TRUE
         )
     }
-    #------------------------- ggMarginal  ----------------------------
+    #------------------------- ggMarginal  ---------------------------------
 
     # creating the ggMarginal plot of a given marginal.type
     if (isTRUE(marginal)) {
@@ -531,17 +532,15 @@ ggscatterstats <-
         )
     }
 
-    #---------------------------- messages  ------------------------------------
+    #------------------------- messages  ------------------------------------
     #
     # display warning that this function doesn't produce a ggplot2 object
     if (isTRUE(marginal) && isTRUE(messages)) {
       base::message(cat(
         crayon::red("Warning: "),
         crayon::blue(
-          "The output is not a `ggplot` object and can't be further modified with `ggplot2` functions.\n"
-        ),
-        crayon::blue(
-          "In case you want a `ggplot` object, set `marginal = FALSE`.\n"
+          "The output can't be further modified with `ggplot2` functions.\n
+          In case you want a `ggplot` object, set `marginal = FALSE`.\n"
         ),
         sep = ""
       ))

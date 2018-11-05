@@ -2,8 +2,7 @@
 % Please edit documentation in R/combine_plots.R
 \name{combine_plots}
 \alias{combine_plots}
-\title{Combining multiple plots using \code{cowplot::plot_grid()} with a
-combination of title, caption, and annotation label}
+\title{Combining and arranging multiple plots in a grid}
 \usage{
 combine_plots(..., title.text = NULL, title.color = "black",
   title.size = 16, title.vjust = 0.5, title.hjust = 0.5,
@@ -27,14 +26,14 @@ combine_plots(..., title.text = NULL, title.color = "black",
 
 \item{title.size}{Point size of title text.}
 
-\item{title.vjust}{Vertical justification for title. Default = \code{0.5} (centered
-on y). \code{0} = baseline at y, 1 = ascender at y.}
+\item{title.vjust}{Vertical justification for title. Default = \code{0.5}
+(centered on \code{y}). \code{0} = baseline at \code{y}, \code{1} = ascender at \code{y}.}
 
 \item{title.hjust}{Horizontal justification for title. Default = \code{0.5}
-(centered on x). \code{0} = flush-left at x, \code{1} = flush-right.}
+(centered on \code{x}). \code{0} = flush-left at x, \code{1} = flush-right.}
 
-\item{title.fontface}{The font face (\code{"plain"}, \code{"bold"} (default), \code{"italic"},
-\code{"bold.italic"}) for title.}
+\item{title.fontface}{The font face (\code{"plain"}, \code{"bold"} (default),
+\code{"italic"}, \code{"bold.italic"}) for title.}
 
 \item{caption.text}{String or plotmath expression to be drawn as the caption
 for the \emph{combined plot}.}
@@ -49,8 +48,8 @@ for the \emph{combined plot}.}
 \item{caption.hjust}{Horizontal justification for caption. Default = \code{0.5}
 (centered on x). \code{0} = flush-left at x, \code{1} = flush-right.}
 
-\item{caption.fontface}{The font face (\code{"plain"} (default), \code{"bold"}, \code{"italic"},
-\code{"bold.italic"}) for caption.}
+\item{caption.fontface}{The font face (\code{"plain"} (default), \code{"bold"},
+\code{"italic"}, \code{"bold.italic"}) for caption.}
 
 \item{sub.text}{The label with which the \emph{combined plot} should be annotated.
 Can be a plotmath expression.}
@@ -99,7 +98,6 @@ Wrapper around \code{\link[cowplot]{plot_grid}} that will return
 a plotgrid along with a combination of title, caption, and annotation label
 }
 \examples{
-
 # loading the necessary libraries
 library(ggplot2)
 

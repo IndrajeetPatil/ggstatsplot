@@ -87,24 +87,26 @@ grouped_gghistostats <- function(data,
                                  messages = TRUE,
                                  ...) {
 
-  # ============================================= preparing dataframe =====================================================
+  # ======================== preparing dataframe ============================
 
   # getting the dataframe ready
-  df <- dplyr::select(
-    .data = data,
-    !!rlang::enquo(grouping.var),
-    !!rlang::enquo(x)
-  ) %>%
+  df <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(grouping.var),
+      !!rlang::enquo(x)
+    ) %>%
     dplyr::mutate(
       .data = .,
       title.text = !!rlang::enquo(grouping.var)
     )
 
   # maximum value for x
-  binmax <- dplyr::select(
-    .data = data,
-    !!rlang::enquo(x)
-  ) %>%
+  binmax <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(x)
+    ) %>%
     max(x = ., na.rm = TRUE)
 
   # minimum value for x
@@ -140,7 +142,8 @@ grouped_gghistostats <- function(data,
     tidyr::nest(data = .)
 
   # creating a list of plots
-  plotlist_purrr <- df %>%
+  plotlist_purrr <-
+    df %>%
     dplyr::mutate(
       .data = .,
       plots = data %>%

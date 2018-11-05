@@ -22,8 +22,8 @@
 #'   \item rating.  Average IMDB user rating.
 #'   \item votes.  Number of IMDB users who rated this movie.
 #'   \item mpaa.  MPAA rating.
-#'   \item action, animation, comedy, drama, documentary, romance, short.
-#'     Binary variables representing if movie was classified as belonging to that genre.
+#'   \item action, animation, comedy, drama, documentary, romance, short. Binary
+#'   variables representing if movie was classified as belonging to that genre.
 #' }
 #'
 #' @source \url{https://CRAN.R-project.org/package=ggplot2movies}
@@ -57,7 +57,8 @@
 #'   \item rating.  Average IMDB user rating.
 #'   \item votes.  Number of IMDB users who rated this movie.
 #'   \item mpaa.  MPAA rating.
-#'   \item genre. Different genres of movies (action, animation, comedy, drama, documentary, romance, short).
+#'   \item genre. Different genres of movies (action, animation, comedy, drama,
+#'   documentary, romance, short).
 #' }
 #'
 #' @source \url{https://CRAN.R-project.org/package=ggplot2movies}
@@ -69,9 +70,9 @@
 
 #' @title Titanic dataset.
 #' @name Titanic_full
-#' @details This data set provides information on the fate of passengers on the fatal
-#' maiden voyage of the ocean liner 'Titanic', summarized according to economic
-#' status (class), sex, age and survival.
+#' @details This data set provides information on the fate of passengers on the
+#'   fatal maiden voyage of the ocean liner 'Titanic', summarized according to
+#'   economic status (class), sex, age and survival.
 #'
 #' This is a modified dataset from `datasets` package.
 #'
@@ -84,7 +85,8 @@
 #'   \item Survived.	No, Yes.
 #' }
 #'
-#' @source \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Titanic.html}
+#' @source
+#' \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Titanic.html}
 #'
 #' @examples
 #' dim(Titanic_full)
@@ -97,7 +99,8 @@
 #'   judge behavior of others when they unintentionally or intentionally cause
 #'   harm to others.
 #'
-#' Participants responded to four different vignettes that contains four different types of conditions-
+#' Participants responded to four different vignettes that contains four
+#' different types of conditions-
 #'  \itemize{
 #'   \item accidental harm. neutral belief, harmful/negative outcome
 #'   \item intentional harm. harmful/negative belief, harmful/negative outcome
@@ -112,10 +115,13 @@
 #' \itemize{
 #'   \item id.  Participant id.
 #'   \item gender.  Participant's gender.
-#'   \item item.  Which story/vignette participants read for a given `condition`.
+#'   \item item.  Which story/vignette participants read for a given
+#'   `condition`.
 #'   \item harm.  What kind of harm was involved in the `item`.
-#'   \item belief.  What kind of belief the actor had (neutral or negative/harmful).
-#'   \item outcome.  What kind of outcome the actor caused (neutral or negative/harmful).
+#'   \item belief.  What kind of belief the actor had (neutral or
+#'   negative/harmful).
+#'   \item outcome.  What kind of outcome the actor caused (neutral or
+#'   negative/harmful).
 #'   \item condition.  Type of harm, composed of `belif` and `outcome`.
 #'   \item question. Type of moral judgment asked (`wrongess` or `punishment`).
 #'   \item rating. Moral judgment rating on a scale of 1 to 7.
@@ -140,14 +146,16 @@
 #' @format A data frame with 600 rows and 5 variables
 #' \itemize{
 #'   \item id. Dummy identity number for each flower (150 flowers in total).
-#'   \item Species.	The species are *Iris setosa*, *versicolor*, and *virginica*.
+#'   \item Species.	The species are *Iris setosa*, *versicolor*, and
+#'   *virginica*.
 #'   \item attribute.	What attribute is being measured (`"Sepal"` or `"Pepal"`).
 #'   \item measure.	What aspect of the attribute is being measured (`"Length"`
 #'   or `"Width"`).
 #'   \item value.	Value of the measurement.
 #' }
 #'
-#' @source \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html}
+#' @source
+#' \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html}
 #'
 #' @examples
 #' dim(iris_long)

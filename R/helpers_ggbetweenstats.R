@@ -215,7 +215,7 @@ long_to_wide_converter <- function(data, x, y) {
 #' set.seed(123)
 #' 
 #' # parametric
-#' ggstatsplot:::pairwise_p(
+#' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = brainwt,
@@ -224,7 +224,7 @@ long_to_wide_converter <- function(data, x, y) {
 #' )
 #' 
 #' # non-parametric
-#' ggstatsplot:::pairwise_p(
+#' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = brainwt,
@@ -233,12 +233,12 @@ long_to_wide_converter <- function(data, x, y) {
 #' )
 #' 
 #' # robust
-#' ggstatsplot:::pairwise_p(
+#' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = brainwt,
 #'   type = "r",
-#'   p.adjust.method = "none"
+#'   p.adjust.method = "fdr"
 #' )
 #' }
 #' @export
@@ -254,7 +254,7 @@ pairwise_p <-
              p.adjust.method = "holm",
              messages = TRUE,
              ...) {
-    # ---------------------------- data cleanup --------------------------------
+    # ---------------------------- data cleanup -------------------------------
     # creating a dataframe
     data <-
       dplyr::select(
@@ -273,7 +273,7 @@ pairwise_p <-
       stats::na.omit(.) %>%
       tibble::as.tibble(x = .)
 
-    # ---------------------------- parametric ----------------------------------
+    # ---------------------------- parametric ---------------------------------
     #
     if (type %in% c("parametric", "p")) {
       df <-
@@ -282,7 +282,10 @@ pairwise_p <-
           x = stats::aov(formula = y ~ x, data = data) %>%
             stats::TukeyHSD(x = .) %>%
             broom::tidy(x = .) %>%
-            dplyr::select(.data = ., comparison, estimate, conf.low, conf.high) %>%
+            dplyr::select(
+              .data = .,
+              comparison, estimate, conf.low, conf.high
+            ) %>%
             tidyr::separate(
               data = .,
               col = comparison,
@@ -312,7 +315,7 @@ pairwise_p <-
         base::message(cat(
           crayon::red("Note: "),
           crayon::blue(
-            "The parametric pairwise multiple comparisons carried out using-\n",
+            "The parametric pairwise multiple comparisons carried out-\n",
             "Student's t-test.\n",
             "Adjustment method for p-values: "
           ),
@@ -321,7 +324,7 @@ pairwise_p <-
         ))
       }
 
-      # ---------------------------- nonparametric -----------------------------
+      # ---------------------------- nonparametric ----------------------------
       #
     } else if (type %in% c("nonparametric", "np")) {
       # running Dwass-Steel-Crichtlow-Fligner test using `jmv` package
@@ -354,7 +357,7 @@ pairwise_p <-
         base::message(cat(
           crayon::red("Note: "),
           crayon::blue(
-            "The nonparametric pairwise multiple comparisons carried out using-\n",
+            "The nonparametric pairwise multiple comparisons carried out-\n",
             "Dwass-Steel-Crichtlow-Fligner test.\n",
             "Adjustment method for p-values: "
           ),
@@ -426,7 +429,7 @@ pairwise_p <-
         base::message(cat(
           crayon::red("Note: "),
           crayon::blue(
-            "The robust pairwise multiple comparisons carried out using-\n",
+            "The robust pairwise multiple comparisons carried out-\n",
             "Yuen's trimmed means comparisons test.\n",
             "Adjustment method for p-values: "
           ),

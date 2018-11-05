@@ -2,7 +2,8 @@
 % Please edit documentation in R/helpers_ggbetween_subtitles.R
 \name{subtitle_ggbetween_t_parametric}
 \alias{subtitle_ggbetween_t_parametric}
-\title{Making text subtitle for the t-test (between-/within-subjects designs).}
+\title{Making text subtitle for the t-test (between-/within-subjects
+designs).}
 \usage{
 subtitle_ggbetween_t_parametric(data, x, y, paired = FALSE,
   effsize.type = "g", effsize.noncentral = FALSE, conf.level = 0.95,
@@ -28,8 +29,8 @@ omega-squared for \strong{anova})).}
 \item{effsize.noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
 or Hedge's \emph{g} (Default: \code{FALSE}).
-@param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95%
-lower and upper confidence intervals (\code{0.95}).}
+@param conf.level A scalar value between 0 and 1. If unspecified, the
+default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{conf.level}{confidence level of the interval.}
 
@@ -46,12 +47,16 @@ lower and upper confidence intervals (\code{0.95}).}
 \item{...}{Additional arguments (ignored).}
 }
 \description{
-Making text subtitle for the t-test (between-/within-subjects designs).
+Making text subtitle for the t-test (between-/within-subjects
+designs).
 }
 \examples{
 
 # creating a smaller dataset
-msleep_short <- dplyr::filter(ggplot2::msleep, vore \%in\% c("carni", "herbi"))
+msleep_short <- dplyr::filter(
+  .data = ggplot2::msleep,
+  vore \%in\% c("carni", "herbi")
+)
 
 # with defaults
 subtitle_ggbetween_t_parametric(

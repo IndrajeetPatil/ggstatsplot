@@ -49,7 +49,7 @@ corrections for multiple testing.
 set.seed(123)
 
 # parametric
-ggstatsplot:::pairwise_p(
+ggstatsplot::pairwise_p(
   data = ggplot2::msleep,
   x = vore,
   y = brainwt,
@@ -58,7 +58,7 @@ ggstatsplot:::pairwise_p(
 )
 
 # non-parametric
-ggstatsplot:::pairwise_p(
+ggstatsplot::pairwise_p(
   data = ggplot2::msleep,
   x = vore,
   y = brainwt,
@@ -67,12 +67,12 @@ ggstatsplot:::pairwise_p(
 )
 
 # robust
-ggstatsplot:::pairwise_p(
+ggstatsplot::pairwise_p(
   data = ggplot2::msleep,
   x = vore,
   y = brainwt,
   type = "r",
-  p.adjust.method = "none"
+  p.adjust.method = "fdr"
 )
 }
 }

@@ -48,14 +48,14 @@ omega-squared for \strong{anova})).}
 \item{effsize.noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
 or Hedge's \emph{g} (Default: \code{FALSE}).
-@param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95%
-lower and upper confidence intervals (\code{0.95}).}
+@param conf.level A scalar value between 0 and 1. If unspecified, the
+default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
 
-\item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
-of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}).}
+\item{bf.message}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
@@ -102,8 +102,8 @@ the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, res
 displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend \code{1.58 * IQR / sqrt(n)}. This gives a roughly \code{95\%} confidence
-interval for comparing medians. IQR: Inter-Quartile Range.}
+notches extend \code{1.58 * IQR / sqrt(n)}. This gives a roughly \code{95\%}
+confidence interval for comparing medians. IQR: Inter-Quartile Range.}
 
 \item{notchwidth}{For a notched box plot, width of the notch relative to the
 body (default \code{0.5}).}

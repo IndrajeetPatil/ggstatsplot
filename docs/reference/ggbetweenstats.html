@@ -245,8 +245,8 @@ omega-squared for <strong>anova</strong>)).</p></td>
       <td><p>Logical indicating whether to use non-central
 <em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
 or Hedge's <em>g</em> (Default: <code>FALSE</code>).
-@param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95<!-- % -->
-lower and upper confidence intervals (<code>0.95</code>).</p></td>
+@param conf.level A scalar value between 0 and 1. If unspecified, the
+default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
@@ -255,8 +255,8 @@ to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
-      <td><p>Logical. Decides whether to display Bayes Factor in favor
-of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>bf.message = FALSE</code>).</p></td>
+      <td><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
@@ -329,8 +329,8 @@ the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"
 displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend <code>1.58 * IQR / sqrt(n)</code>. This gives a roughly <code>95%</code> confidence
-interval for comparing medians. IQR: Inter-Quartile Range.</p></td>
+notches extend <code>1.58 * IQR / sqrt(n)</code>. This gives a roughly <code>95%</code>
+confidence interval for comparing medians. IQR: Inter-Quartile Range.</p></td>
     </tr>
     <tr>
       <th>notchwidth</th>
@@ -490,19 +490,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.</span>
-#&gt; <span class='warning'>Please use the non-prefixed form or `!!!` instead.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Bad:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(rlang::UQS(args)))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Ok:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(UQS(args)))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Good:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(!!!args))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>This warning is displayed once per session.</span></div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

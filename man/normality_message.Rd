@@ -14,7 +14,8 @@ generic \code{"x"} label will be used.}
 
 \item{k}{Number of decimal places expected for results (Default: \code{3}).}
 
-\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"} objects.}
+\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"}
+objects.}
 }
 \value{
 A list with class \code{"htest"} containing the following components:

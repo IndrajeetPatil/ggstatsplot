@@ -450,12 +450,12 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <em>combined plot</em>.</p></dd>
   <dt>title.color</dt><dd><p>Text color for title.</p></dd>
   <dt>title.size</dt><dd><p>Point size of title text.</p></dd>
-  <dt>title.vjust</dt><dd><p>Vertical justification for title. Default = <code>0.5</code> (centered
-on y). <code>0</code> = baseline at y, 1 = ascender at y.</p></dd>
+  <dt>title.vjust</dt><dd><p>Vertical justification for title. Default = <code>0.5</code>
+(centered on <code>y</code>). <code>0</code> = baseline at <code>y</code>, <code>1</code> = ascender at <code>y</code>.</p></dd>
   <dt>title.hjust</dt><dd><p>Horizontal justification for title. Default = <code>0.5</code>
-(centered on x). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
-  <dt>title.fontface</dt><dd><p>The font face (<code>"plain"</code>, <code>"bold"</code> (default), <code>"italic"</code>,
-<code>"bold.italic"</code>) for title.</p></dd>
+(centered on <code>x</code>). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
+  <dt>title.fontface</dt><dd><p>The font face (<code>"plain"</code>, <code>"bold"</code> (default),
+<code>"italic"</code>, <code>"bold.italic"</code>) for title.</p></dd>
   <dt>caption.text</dt><dd><p>String or plotmath expression to be drawn as the caption
 for the <em>combined plot</em>.</p></dd>
   <dt>caption.color</dt><dd><p>Text color for caption.</p></dd>
@@ -464,8 +464,8 @@ for the <em>combined plot</em>.</p></dd>
 (centered on y). <code>0</code> = baseline at y, <code>1</code> = ascender at y.</p></dd>
   <dt>caption.hjust</dt><dd><p>Horizontal justification for caption. Default = <code>0.5</code>
 (centered on x). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></dd>
-  <dt>caption.fontface</dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
-<code>"bold.italic"</code>) for caption.</p></dd>
+  <dt>caption.fontface</dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>,
+<code>"italic"</code>, <code>"bold.italic"</code>) for caption.</p></dd>
   <dt>sub.text</dt><dd><p>The label with which the <em>combined plot</em> should be annotated.
 Can be a plotmath expression.</p></dd>
   <dt>sub.color</dt><dd><p>Text color for annotation label (Default: <code>"black"</code>).</p></dd>
@@ -523,11 +523,25 @@ of p-values.</p>
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wesanderson"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"BottleRocket2"</span>,
   <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2</span>
-)</div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
-#&gt; while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
-#&gt; while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Number of subjects must be greater than 3 to find confidence intervals.</span></div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
-#&gt; while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,
-#&gt; while the lower triangle is based on unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Plots from `grouped_` functions are not `ggplot` objects and can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='output co'>#&gt; Note: In the correlation matrix,
+#&gt; 
+#&gt;             the upper triangle: p-values adjusted for multiple comparisons
+#&gt; 
+#&gt;             the lower triangle: unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix,
+#&gt; 
+#&gt;             the upper triangle: p-values adjusted for multiple comparisons
+#&gt; 
+#&gt;             the lower triangle: unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Number of subjects must be greater than 3 to find confidence intervals.</span></div><div class='output co'>#&gt; Note: In the correlation matrix,
+#&gt; 
+#&gt;             the upper triangle: p-values adjusted for multiple comparisons
+#&gt; 
+#&gt;             the lower triangle: unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In the correlation matrix,
+#&gt; 
+#&gt;             the upper triangle: p-values adjusted for multiple comparisons
+#&gt; 
+#&gt;             the lower triangle: unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Plots from `grouped_` functions are not `ggplot` objects.
+#&gt; 
+#&gt;       Therefore, they can't be further modified with `ggplot2` functions.</div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting correlations</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -559,7 +573,7 @@ of p-values.</p>
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Petal.Width</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
-)</div><div class='output co'>#&gt; Warning: Confidence intervals are currently not available for robust correlations.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals are currently not available for robust correlations.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals are currently not available for robust correlations.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 0 x 1
+)</div><div class='output co'>#&gt; Warning: Confidence intervals currently not available for robust method.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals currently not available for robust method.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: Confidence intervals currently not available for robust method.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 0 x 1
 #&gt; # ... with 1 variable: Group &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

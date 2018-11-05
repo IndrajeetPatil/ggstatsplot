@@ -252,13 +252,13 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='fu'>set.seed</span>(<span class='fl'>123</span>)
 
 <span class='co'># parametric</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>
-)</div><div class='output co'>#&gt; Note: The parametric pairwise multiple comparisons carried out using-
+)</div><div class='output co'>#&gt; Note: The parametric pairwise multiple comparisons carried out-
 #&gt;  Student's t-test.
 #&gt;  Adjustment method for p-values: bonferroni</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
 #&gt;   group1  group2  mean.difference conf.low conf.high p.value significance
@@ -270,13 +270,13 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; 5 omni    herbi           -0.476    -1.37      0.419   0.979 ns          
 #&gt; 6 omni    insecti          0.124    -1.26      1.50    1     ns          </div><div class='input'>
 <span class='co'># non-parametric</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>
-)</div><div class='output co'>#&gt; Note: The nonparametric pairwise multiple comparisons carried out using-
+)</div><div class='output co'>#&gt; Note: The nonparametric pairwise multiple comparisons carried out-
 #&gt;  Dwass-Steel-Crichtlow-Fligner test.
 #&gt;  Adjustment method for p-values: none</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 5
 #&gt;   group1  group2       W p.value significance
@@ -288,23 +288,23 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; 5 herbi   omni    -0.948  0.503  ns          
 #&gt; 6 insecti omni     1.61   0.256  ns          </div><div class='input'>
 <span class='co'># robust</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
-  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>
-)</div><div class='output co'>#&gt; Note: The robust pairwise multiple comparisons carried out using-
+  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"fdr"</span>
+)</div><div class='output co'>#&gt; Note: The robust pairwise multiple comparisons carried out-
 #&gt;  Yuen's trimmed means comparisons test.
-#&gt;  Adjustment method for p-values: none</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
+#&gt;  Adjustment method for p-values: fdr</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
 #&gt;   group1  group2    psihat ci.lower ci.upper p.value significance
 #&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
-#&gt; 1 insecti omni    -0.0556   -0.184    0.0728   0.219 ns          
-#&gt; 2 carni   herbi   -0.0530   -0.274    0.168    0.498 ns          
+#&gt; 1 insecti omni    -0.0556   -0.184    0.0728   0.438 ns          
+#&gt; 2 carni   herbi   -0.0530   -0.274    0.168    0.598 ns          
 #&gt; 3 carni   omni     0.00210  -0.151    0.155    0.969 ns          
-#&gt; 4 herbi   omni     0.0551   -0.173    0.283    0.498 ns          
-#&gt; 5 carni   insecti  0.0577   -0.0609   0.176    0.154 ns          
-#&gt; 6 herbi   insecti  0.111    -0.0983   0.320    0.136 ns          </div></pre>
+#&gt; 4 herbi   omni     0.0551   -0.173    0.283    0.598 ns          
+#&gt; 5 carni   insecti  0.0577   -0.0609   0.176    0.438 ns          
+#&gt; 6 herbi   insecti  0.111    -0.0983   0.320    0.438 ns          </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -143,7 +143,8 @@ grouped_ggscatterstats <- function(data,
   param_list <- base::as.list(base::match.call())
 
   # check that label.var and grouping.var are different
-  if (("label.var" %in% names(param_list)) && ("grouping.var" %in% names(param_list))) {
+  if (("label.var" %in% names(param_list)) &&
+    ("grouping.var" %in% names(param_list))) {
     if (as.character(param_list$label.var) == as.character(param_list$grouping.var)) {
       base::message(cat(
         crayon::red("Error: "),
@@ -171,7 +172,7 @@ grouped_ggscatterstats <- function(data,
     expression.present <- FALSE
   }
 
-  # ========================================= preparing dataframe =======================================================
+  # ======================== preparing dataframe =============================
 
   # getting the dataframe ready
   df <- dplyr::select(
@@ -205,8 +206,8 @@ grouped_ggscatterstats <- function(data,
 
   if (isTRUE(point.labelling)) {
     if (isTRUE(expression.present)) {
-      # creating a list of plots
-      plotlist_purrr <- df %>%
+      plotlist_purrr <-
+        df %>%
         dplyr::mutate(
           .data = .,
           plots = data %>%
@@ -258,15 +259,13 @@ grouped_ggscatterstats <- function(data,
                 axes.range.restrict = axes.range.restrict,
                 ggtheme = ggtheme,
                 ggstatsplot.layer = ggstatsplot.layer,
-                # there is already grouped_message() being displayed, which says
-                # the same thing
                 messages = messages
               )
             )
         )
     } else {
-      # creating a list of plots
-      plotlist_purrr <- df %>%
+      plotlist_purrr <-
+        df %>%
         dplyr::mutate(
           .data = .,
           plots = data %>%
@@ -317,16 +316,14 @@ grouped_ggscatterstats <- function(data,
                 axes.range.restrict = axes.range.restrict,
                 ggtheme = ggtheme,
                 ggstatsplot.layer = ggstatsplot.layer,
-                # there is already grouped_message() being displayed, which says
-                # the same thing
                 messages = messages
               )
             )
         )
     }
   } else {
-    # creating a list of plots
-    plotlist_purrr <- df %>%
+    plotlist_purrr <-
+      df %>%
       dplyr::mutate(
         .data = .,
         plots = data %>%
@@ -376,8 +373,6 @@ grouped_ggscatterstats <- function(data,
               axes.range.restrict = axes.range.restrict,
               ggtheme = ggtheme,
               ggstatsplot.layer = ggstatsplot.layer,
-              # there is already grouped_message() being displayed, which says
-              # the same thing
               messages = messages
             )
           )

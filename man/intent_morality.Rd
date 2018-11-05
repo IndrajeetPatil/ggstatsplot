@@ -8,10 +8,13 @@
 \itemize{
 \item id.  Participant id.
 \item gender.  Participant's gender.
-\item item.  Which story/vignette participants read for a given \code{condition}.
+\item item.  Which story/vignette participants read for a given
+\code{condition}.
 \item harm.  What kind of harm was involved in the \code{item}.
-\item belief.  What kind of belief the actor had (neutral or negative/harmful).
-\item outcome.  What kind of outcome the actor caused (neutral or negative/harmful).
+\item belief.  What kind of belief the actor had (neutral or
+negative/harmful).
+\item outcome.  What kind of outcome the actor caused (neutral or
+negative/harmful).
 \item condition.  Type of harm, composed of \code{belif} and \code{outcome}.
 \item question. Type of moral judgment asked (\code{wrongess} or \code{punishment}).
 \item rating. Moral judgment rating on a scale of 1 to 7.
@@ -30,7 +33,8 @@ This dataset contains data from a recent study about how people
 judge behavior of others when they unintentionally or intentionally cause
 harm to others.
 
-Participants responded to four different vignettes that contains four different types of conditions-
+Participants responded to four different vignettes that contains four
+different types of conditions-
 \itemize{
 \item accidental harm. neutral belief, harmful/negative outcome
 \item intentional harm. harmful/negative belief, harmful/negative outcome

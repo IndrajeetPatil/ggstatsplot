@@ -67,7 +67,7 @@ tfz_labeller <- function(tidy_df,
           .labels = TRUE
         )
     }
-    #--------------------------- z-statistic ------------------------------------
+    #--------------------------- z-statistic ---------------------------------
   } else if (statistic == "z") {
     # if the statistic is z-value
     tidy_df %<>%
@@ -88,7 +88,7 @@ tfz_labeller <- function(tidy_df,
         .labels = TRUE
       )
 
-    #--------------------------- f-statistic ------------------------------------
+    #--------------------------- f-statistic ---------------------------------
   } else if (statistic == "f") {
 
     # which effect size is needed?

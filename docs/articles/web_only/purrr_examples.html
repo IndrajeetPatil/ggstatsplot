@@ -132,7 +132,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-11-04</h4>
+            <h4 class="date">2018-11-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -251,7 +251,7 @@
 <a class="sourceLine" id="cb2-40" data-line-number="40">  ),</a>
 <a class="sourceLine" id="cb2-41" data-line-number="41">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
 <a class="sourceLine" id="cb2-42" data-line-number="42">)</a>
-<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="co">#&gt; Error: Identical variable ( [[ ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) was used for both grouping and outlier labeling, which is not allowed.Error: Identical variable ( [[ ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) was used for both grouping and outlier labeling, which is not allowed.Error: Identical variable ( [[ ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) was used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) was used for both grouping and outlier labeling, which is not allowed.</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="co">#&gt; Error: Identical variable ( [[ ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) used for both grouping and outlier labeling, which is not allowed.Error: Identical variable ( [[ ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) used for both grouping and outlier labeling, which is not allowed.Error: Identical variable ( [[ ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) used for both grouping and outlier labeling, which is not allowed.</span></a></code></pre></div>
 <p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
@@ -389,27 +389,39 @@
 <a class="sourceLine" id="cb5-53" data-line-number="53">  ),</a>
 <a class="sourceLine" id="cb5-54" data-line-number="54">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggcorrmat</a>
 <a class="sourceLine" id="cb5-55" data-line-number="55">)</a>
-<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
-<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
-<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
-<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt; Note: In the correlation matrix, the upper triangle is based on p-values adjusted for multiple comparisons,</span></a>
-<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt; while the lower triangle is based on unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb5-64" data-line-number="64"></a>
-<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co"># combining all individual plots from the list into a single plot using</span></a>
-<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co"># `combine_plots` function</span></a>
-<a class="sourceLine" id="cb5-67" data-line-number="67">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb5-68" data-line-number="68">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb5-69" data-line-number="69">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
-<a class="sourceLine" id="cb5-70" data-line-number="70">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb5-71" data-line-number="71">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb5-72" data-line-number="72">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
-<a class="sourceLine" id="cb5-73" data-line-number="73">  <span class="dt">caption.size =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb5-74" data-line-number="74">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
-<a class="sourceLine" id="cb5-75" data-line-number="75">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-76" data-line-number="76">)</a></code></pre></div>
+<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
+<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt;             the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt;             the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
+<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt;             the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt;             the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
+<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-68" data-line-number="68"><span class="co">#&gt;             the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb5-69" data-line-number="69"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-70" data-line-number="70"><span class="co">#&gt;             the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb5-71" data-line-number="71"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
+<a class="sourceLine" id="cb5-72" data-line-number="72"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-73" data-line-number="73"><span class="co">#&gt;             the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb5-74" data-line-number="74"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-75" data-line-number="75"><span class="co">#&gt;             the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb5-76" data-line-number="76"></a>
+<a class="sourceLine" id="cb5-77" data-line-number="77"><span class="co"># combining all individual plots from the list into a single plot using</span></a>
+<a class="sourceLine" id="cb5-78" data-line-number="78"><span class="co"># `combine_plots` function</span></a>
+<a class="sourceLine" id="cb5-79" data-line-number="79">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb5-80" data-line-number="80">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb5-81" data-line-number="81">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
+<a class="sourceLine" id="cb5-82" data-line-number="82">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb5-83" data-line-number="83">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb5-84" data-line-number="84">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
+<a class="sourceLine" id="cb5-85" data-line-number="85">  <span class="dt">caption.size =</span> <span class="dv">12</span>,</a>
+<a class="sourceLine" id="cb5-86" data-line-number="86">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
+<a class="sourceLine" id="cb5-87" data-line-number="87">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb5-88" data-line-number="88">)</a></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggcorrmat-1.png" width="960"></p>
 </div>
 <div id="gghistostats" class="section level1">
@@ -574,7 +586,7 @@
 <a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252                        </span></a>
 <a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252                        </span></a>
 <a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York                                  </span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;  date     2018-11-04                                        </span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;  date     2018-11-05                                        </span></a>
 <a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;  ! package      * version     date       lib source                               </span></a>
@@ -620,7 +632,7 @@
 <a class="sourceLine" id="cb8-56" data-line-number="56"><span class="co">#&gt;    generics       0.0.1       2018-10-26 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-57" data-line-number="57"><span class="co">#&gt;    ggcorrplot     0.1.2.9000  2018-10-28 [1] local                                </span></a>
 <a class="sourceLine" id="cb8-58" data-line-number="58"><span class="co">#&gt;    ggExtra        0.8         2018-04-04 [1] CRAN (R 3.5.1)                       </span></a>
-<a class="sourceLine" id="cb8-59" data-line-number="59"><span class="co">#&gt;    ggplot2        3.1.0       2018-10-28 [1] Github (tidyverse/ggplot2@fd8a3eb)   </span></a>
+<a class="sourceLine" id="cb8-59" data-line-number="59"><span class="co">#&gt;    ggplot2        3.1.0.9000  2018-11-05 [1] Github (tidyverse/ggplot2@05dfaea)   </span></a>
 <a class="sourceLine" id="cb8-60" data-line-number="60"><span class="co">#&gt;    ggrepel        0.8.0.9000  2018-10-28 [1] Github (slowkow/ggrepel@c92336c)     </span></a>
 <a class="sourceLine" id="cb8-61" data-line-number="61"><span class="co">#&gt;    ggridges       0.5.1       2018-09-27 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-62" data-line-number="62"><span class="co">#&gt;    ggstatsplot  * 0.0.6.9000  2018-11-05 [1] local                                </span></a>
@@ -636,7 +648,7 @@
 <a class="sourceLine" id="cb8-72" data-line-number="72"><span class="co">#&gt;    htmltools      0.3.6       2017-04-28 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-73" data-line-number="73"><span class="co">#&gt;    httpuv         1.4.5       2018-07-19 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-74" data-line-number="74"><span class="co">#&gt;    jmv            0.9.4       2018-09-18 [1] CRAN (R 3.5.1)                       </span></a>
-<a class="sourceLine" id="cb8-75" data-line-number="75"><span class="co">#&gt;    jmvcore        0.9.4       2018-09-17 [1] CRAN (R 3.5.1)                       </span></a>
+<a class="sourceLine" id="cb8-75" data-line-number="75"><span class="co">#&gt;    jmvcore        0.9.5       2018-11-05 [1] CRAN (R 3.6.0)                       </span></a>
 <a class="sourceLine" id="cb8-76" data-line-number="76"><span class="co">#&gt;    knitr          1.20        2018-02-20 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-77" data-line-number="77"><span class="co">#&gt;    labeling       0.3         2014-08-23 [1] CRAN (R 3.5.0)                       </span></a>
 <a class="sourceLine" id="cb8-78" data-line-number="78"><span class="co">#&gt;    later          0.7.5       2018-09-18 [1] CRAN (R 3.5.1)                       </span></a>
@@ -699,7 +711,7 @@
 <a class="sourceLine" id="cb8-135" data-line-number="135"><span class="co">#&gt;    sandwich       2.5-0       2018-08-17 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-136" data-line-number="136"><span class="co">#&gt;    scales         1.0.0       2018-08-09 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-137" data-line-number="137"><span class="co">#&gt;    sessioninfo    1.1.0       2018-09-25 [1] CRAN (R 3.5.1)                       </span></a>
-<a class="sourceLine" id="cb8-138" data-line-number="138"><span class="co">#&gt;    shiny          1.1.0       2018-05-17 [1] CRAN (R 3.5.1)                       </span></a>
+<a class="sourceLine" id="cb8-138" data-line-number="138"><span class="co">#&gt;    shiny          1.2.0       2018-11-02 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-139" data-line-number="139"><span class="co">#&gt;    sjlabelled     1.0.14      2018-09-12 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-140" data-line-number="140"><span class="co">#&gt;    sjmisc         2.7.5       2018-09-13 [1] CRAN (R 3.5.1)                       </span></a>
 <a class="sourceLine" id="cb8-141" data-line-number="141"><span class="co">#&gt;    sjstats        0.17.1.9000 2018-10-28 [1] Github (strengejacke/sjstats@8a5764e)</span></a>

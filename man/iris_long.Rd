@@ -7,7 +7,8 @@
 \format{A data frame with 600 rows and 5 variables
 \itemize{
 \item id. Dummy identity number for each flower (150 flowers in total).
-\item Species.	The species are \emph{Iris setosa}, \emph{versicolor}, and \emph{virginica}.
+\item Species.	The species are \emph{Iris setosa}, \emph{versicolor}, and
+\emph{virginica}.
 \item attribute.	What attribute is being measured (\code{"Sepal"} or \code{"Pepal"}).
 \item measure.	What aspect of the attribute is being measured (\code{"Length"}
 or \code{"Width"}).

@@ -63,7 +63,7 @@ subtitle_onesample <- function(data = NULL,
                                k = 3,
                                messages = TRUE) {
 
-  # ========================================== dataframe ==============================================================
+  # ====================== dataframe ==========================================
 
   # preparing a dataframe out of provided inputs
   if (!is.null(data)) {
@@ -84,26 +84,27 @@ subtitle_onesample <- function(data = NULL,
     stats::na.omit(.) %>%
     tibble::as_data_frame(x = .)
 
-  # ========================================== stats ==================================================================
+  # ========================== stats ==========================================
 
   # common test
-  jmv_results <- jmv::ttestOneS(
-    data = data,
-    vars = "x",
-    students = TRUE,
-    bf = TRUE,
-    bfPrior = bf.prior,
-    wilcoxon = TRUE,
-    # Mann-Whitney U test
-    testValue = test.value,
-    hypothesis = "dt",
-    # two-sided hypothesis-testing
-    effectSize = TRUE,
-    miss = "listwise"
-    # excludes a row from all analyses if one of its entries is missing
-  )
+  jmv_results <-
+    jmv::ttestOneS(
+      data = data,
+      vars = "x",
+      students = TRUE,
+      bf = TRUE,
+      bfPrior = bf.prior,
+      wilcoxon = TRUE,
+      # Mann-Whitney U test
+      testValue = test.value,
+      hypothesis = "dt",
+      # two-sided hypothesis-testing
+      effectSize = TRUE,
+      miss = "listwise"
+      # excludes a row from all analyses if one of its entries is missing
+    )
 
-  # =================================== parametric =====================================================
+  # ========================= parametric ======================================
   if (type == "parametric" || type == "p") {
 
     # confidence intervals for Cohen's d
@@ -142,22 +143,29 @@ subtitle_onesample <- function(data = NULL,
           n
         ),
       env = base::list(
-        estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
-        # df is integer value for Student's t-test
+        estimate = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
+          k = k,
+          p.value = FALSE
+        ),
         df = as.data.frame(jmv_results$ttest)$`df[stud]`,
         pvalue = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_results$ttest)$`p[stud]`,
           k,
           p.value = TRUE
         ),
-        effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
-        LL = ggstatsplot::specify_decimal_p(x = ci_df$lower[[1]], k),
-        UL = ggstatsplot::specify_decimal_p(x = ci_df$upper[[1]], k),
+        effsize = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_results$ttest)$`es[stud]`,
+          k = k,
+          p.value = FALSE
+        ),
+        LL = ggstatsplot::specify_decimal_p(x = ci_df$lower[[1]], k = k),
+        UL = ggstatsplot::specify_decimal_p(x = ci_df$upper[[1]], k = k),
         n = nrow(x = data)
       )
     )
 
-    # ========================================== non-parametric =====================================
+    # ========================== non-parametric ==============================
   } else if (type == "nonparametric" || type == "np") {
     # preparing the subtitle
     subtitle <- base::substitute(
@@ -186,12 +194,16 @@ subtitle_onesample <- function(data = NULL,
           k,
           p.value = TRUE
         ),
-        effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[wilc]`, k),
+        effsize = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_results$ttest)$`es[wilc]`,
+          k = k,
+          p.value = FALSE
+        ),
         n = nrow(x = data)
       )
     )
 
-    # ========================================== robust ===============================================
+    # ======================= robust =========================================
   } else if (type == "robust" || type == "r") {
 
     # running one-sample percentile bootstrap
@@ -249,7 +261,7 @@ subtitle_onesample <- function(data = NULL,
         n = rob_os$n[[1]]
       )
     )
-    # ========================================== bayes ==================================================================
+    # ===================== bayes ============================================
   } else if (type == "bayes" || type == "bf") {
     # preparing the subtitle
     subtitle <- base::substitute(
@@ -279,7 +291,11 @@ subtitle_onesample <- function(data = NULL,
       env = base::list(
         # df is integer value for Student's t-test
         df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-        estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`stat[stud]`, k),
+        estimate = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
+          k = k,
+          p.value = FALSE
+        ),
         bf = ggstatsplot::specify_decimal_p(
           x = log(
             x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
@@ -294,7 +310,11 @@ subtitle_onesample <- function(data = NULL,
           ),
           k = 1
         ),
-        effsize = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_results$ttest)$`es[stud]`, k),
+        effsize = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_results$ttest)$`es[stud]`,
+          k = k,
+          p.value = FALSE
+        ),
         n = nrow(x = data)
       )
     )

@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for the t-test (between-/within-subjects designs). — subtitle_ggbetween_t_parametric • ggstatsplot</title>
+<title>Making text subtitle for the t-test (between-/within-subjects
+designs). — subtitle_ggbetween_t_parametric • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -40,9 +41,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for the t-test (between-/within-subjects designs). — subtitle_ggbetween_t_parametric" />
+<meta property="og:title" content="Making text subtitle for the t-test (between-/within-subjects
+designs). — subtitle_ggbetween_t_parametric" />
 
-<meta property="og:description" content="Making text subtitle for the t-test (between-/within-subjects designs)." />
+<meta property="og:description" content="Making text subtitle for the t-test (between-/within-subjects
+designs)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,14 +171,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for the t-test (between-/within-subjects designs).</h1>
+    <h1>Making text subtitle for the t-test (between-/within-subjects
+designs).</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_subtitles.R'><code>R/helpers_ggbetween_subtitles.R</code></a></small>
     <div class="hidden name"><code>subtitle_ggbetween_t_parametric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for the t-test (between-/within-subjects designs).</p>
+    <p>Making text subtitle for the t-test (between-/within-subjects
+designs).</p>
     
     </div>
 
@@ -217,8 +222,8 @@ omega-squared for <strong>anova</strong>)).</p></td>
       <td><p>Logical indicating whether to use non-central
 <em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
 or Hedge's <em>g</em> (Default: <code>FALSE</code>).
-@param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95<!-- % -->
-lower and upper confidence intervals (<code>0.95</code>).</p></td>
+@param conf.level A scalar value between 0 and 1. If unspecified, the
+default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -248,7 +253,10 @@ lower and upper confidence intervals (<code>0.95</code>).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># creating a smaller dataset</span>
-<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>, <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>))
+<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
+)
 
 <span class='co'># with defaults</span>
 <span class='fu'>subtitle_ggbetween_t_parametric</span>(

@@ -6,7 +6,8 @@ testthat::test_that(
 
     # using sampled 25% Titanic_full dataset
     set.seed(123)
-    testdata1 <- dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.25)
+    testdata1 <-
+      dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.25)
 
     # add a couple of NAs
     testdata2 <- testdata1

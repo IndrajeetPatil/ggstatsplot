@@ -69,8 +69,9 @@
 #'   (Default: `"dashed"`).
 #' @param vline.size Numeric specifying the size of the vertical line (Default:
 #'   `1`).
-#' @param sort If `"none"` (default) do not sort, `"ascending"` sort by increasing
-#'   coefficient value, or `"descending"` sort by decreasing coefficient value.
+#' @param sort If `"none"` (default) do not sort, `"ascending"` sort by
+#'   increasing coefficient value, or `"descending"` sort by decreasing
+#'   coefficient value.
 #' @param stats.labels Logical. Decides whether the statistic and p-values for
 #'   each coefficient are to be attached to each dot as a text label using
 #'   `ggrepel` (Default: `TRUE`).
@@ -116,12 +117,8 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom broom glance
-#' @importFrom broom tidy
-#' @importFrom broom augment
-#' @importFrom broom.mixed glance
-#' @importFrom broom.mixed tidy
-#' @importFrom broom.mixed augment
+#' @importFrom broom tidy glance augment
+#' @importFrom broom.mixed tidy glance augment
 #' @importFrom dplyr select
 #' @importFrom dplyr filter
 #' @importFrom dplyr mutate_at
@@ -131,15 +128,11 @@
 #' @importFrom dplyr vars
 #' @importFrom dplyr matches
 #' @importFrom purrrlyr by_row
-#' @importFrom stats as.formula
-#' @importFrom stats lm
+#' @importFrom stats as.formula lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
-#' @importFrom magrittr "%>%"
-#' @importFrom magrittr "%<>%"
 #' @importFrom sjstats p_value
-#' @importFrom tibble rownames_to_column
-#' @importFrom tibble as_data_frame
+#' @importFrom tibble as_data_frame rownames_to_column
 #'
 #' @references
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
@@ -440,7 +433,7 @@ ggcoefstats <- function(x,
     base::message(cat(
       crayon::green("Note: "),
       crayon::blue(
-        "No 95% confidence intervals available for regression coefficients from",
+        "No confidence intervals available for regression coefficients from",
         crayon::yellow(class(x)[[1]]),
         "object, so skipping whiskers in the plot.\n"
       ),
@@ -448,7 +441,7 @@ ggcoefstats <- function(x,
     ))
   }
 
-  # ============== intercept, exponentiation, and final tidy dataframe =========
+  # ============= intercept, exponentiation, and final tidy dataframe =========
 
   # ordering the dataframe
   tidy_df %<>%
@@ -461,8 +454,8 @@ ggcoefstats <- function(x,
       dplyr::everything()
     )
 
-  # whether to show model intercept; if not, remove the corresponding terms from
-  # the dataframe
+  # whether to show model intercept
+  # if not, remove the corresponding terms from the dataframe
   if (isTRUE(exclude.intercept)) {
     tidy_df %<>%
       dplyr::filter(
@@ -488,7 +481,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # ================================= p-value formatting =======================
+  # =============================== p-value formatting =======================
   #
   # formatting the numbers for display and preparing labels
   if (isTRUE(stats.labels)) {
@@ -520,7 +513,7 @@ ggcoefstats <- function(x,
         )
       )
 
-    # ================================= t-statistic labels =====================
+    # ================================ t-statistic labels =====================
     if (class(x)[[1]] %in% t.mods) {
       tidy_df %<>%
         tfz_labeller(
@@ -529,7 +522,7 @@ ggcoefstats <- function(x,
           statistic = "t",
           k = k
         )
-      # ======================== z-statistic labels ============================
+      # ======================= z-statistic labels ============================
     } else if (class(x)[[1]] %in% z.mods) {
       tidy_df %<>%
         tfz_labeller(
@@ -539,7 +532,7 @@ ggcoefstats <- function(x,
           k = k
         )
 
-      # ================= t/z-statistic labels =================================
+      # ================ t/z-statistic labels =================================
     } else if (class(x)[[1]] %in% g.mods) {
       if (class(x)[[1]] == "glm") {
         if (summary(x)$family$family[[1]] %in% c(
@@ -618,7 +611,7 @@ ggcoefstats <- function(x,
             )
         }
       }
-      # ====================== F-statistic =====================================
+      # ====================== F-statistic ====================================
     } else if (class(x)[[1]] %in% f.mods) {
       tidy_df %<>%
         tfz_labeller(
@@ -632,7 +625,7 @@ ggcoefstats <- function(x,
     }
   }
 
-  # ========================== summary caption =================================
+  # ========================== summary caption ================================
 
   # caption containing model diagnostics
   if (isTRUE(caption.summary)) {
@@ -679,7 +672,7 @@ ggcoefstats <- function(x,
     caption <- NULL
   }
 
-  # ============================== basic plot ==============================================
+  # ========================== basic plot ===================================
 
   # whether the term need to be arranged in any specified order
   if (sort != "none") {
@@ -731,7 +724,8 @@ ggcoefstats <- function(x,
       mapping = ggplot2::aes(x = estimate, y = factor(term))
     )
 
-  # adding the vertical line, either at 1 if coefficients are exponentiated or to 0 if not
+  # adding the vertical line, either at 1 if coefficients are exponentiated or
+  # to 0 if not
   if (isTRUE(vline)) {
     if (isTRUE(exponentiate)) {
       plot <- plot +
@@ -777,7 +771,7 @@ ggcoefstats <- function(x,
       na.rm = TRUE
     )
 
-  # ========================= ggrepel labels ====================================
+  # ========================= ggrepel labels ================================
 
   # if user has not specified colors, then use a color palette
   if (is.null(stats.label.color)) {
@@ -822,7 +816,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # ========================== other plot labels ================================
+  # ========================== other plot labels =============================
   #
   # adding other labels to the plot
   plot <- plot +
@@ -839,7 +833,7 @@ ggcoefstats <- function(x,
     ) +
     ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
 
-  # ================================ output =====================================
+  # =========================== output =====================================
   #
   # what needs to be returned?
   if (output == "plot") {
