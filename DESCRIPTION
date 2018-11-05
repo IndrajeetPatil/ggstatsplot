@@ -24,7 +24,7 @@ License: GPL-3 | file LICENSE
 URL: https://indrajeetpatil.github.io/ggstatsplot/, https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
-    R (>= 3.3.0),
+    R (>= 3.5.0),
     datasets,
     grDevices,
     stats

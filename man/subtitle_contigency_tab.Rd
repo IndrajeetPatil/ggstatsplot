@@ -58,7 +58,8 @@ within-subjects design)
 subtitle_contigency_tab(
   data = mtcars,
   main = am,
-  condition = cyl
+  condition = cyl,
+  nboot = 15
 )
 
 # with counts data

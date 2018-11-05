@@ -184,6 +184,8 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
+<li>
+<code>ggstatsplot</code> now depends on <code>R 3.5.0</code>. This is because some of its dependencies require 3.5.0 to work (e.g., <code>broom.mixed</code>).</li>
 <li>Following functions are now reexported from the <code>groupedstats</code> package to avoid repeating the same code in two packages: <code>specify_decimal_p</code>, <code>signif_column</code>, <code>lm_effsize_ci</code>. Therefore, <code>groupedstats</code> is now added as a dependency.</li>
 <li>
 <code>gghistostats</code> can now show both counts and proportions information on the same plot when <code>bar.measure</code> argument is set to <code>"mix"</code>.</li>

@@ -15,6 +15,8 @@ BUG FIXES
 
 MAJOR CHANGES
 
+  - `ggstatsplot` now depends on `R 3.5.0`. This is because some of its
+    dependencies require 3.5.0 to work (e.g., `broom.mixed`).
   - Following functions are now reexported from the `groupedstats` package to
     avoid repeating the same code in two packages: `specify_decimal_p`,
     `signif_column`, `lm_effsize_ci`. Therefore, `groupedstats` is now added as
