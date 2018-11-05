@@ -2,14 +2,13 @@
 
 language: r
 r:
-  #- oldrel
   - release
   - devel
 
 sudo: required
 cache: packages
 bioc_required: true
-warnings_are_errors: false
+warnings_are_errors: true
 #install: travis_wait 30 mvn install
 
 env:
@@ -71,12 +70,10 @@ notifications:
   on_success: change
   on_failure: change
 
-#after_script:
-#  - R CMD INSTALL $PKG_TARBALL
-#  - Rscript -e 'lintr::lint_package()'
+after_script:
+  - R CMD INSTALL $PKG_TARBALL
+  - Rscript -e 'lintr::lint_package()'
 
 after_success:
   - Rscript -e 'covr::codecov(type = "all")'
   - Rscript -e 'covr::coveralls()'
-  - R CMD INSTALL $PKG_TARBALL
-  - Rscript -e 'lintr::lint_package()'

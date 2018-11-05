@@ -41,8 +41,8 @@ effect being shown. An example of a \code{stat.title} argument will be something
 like \code{"main x condition"} or \code{"interaction"}.}
 
 \item{sample.size.label}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{condition} (Default:
-\code{TRUE}).}
+should be displayed for each level of the grouping variable \code{condition}
+(Default: \code{TRUE}).}
 
 \item{title}{The text for the plot title.}
 

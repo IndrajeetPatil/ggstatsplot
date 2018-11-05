@@ -9,8 +9,8 @@
 #'   height in the bar chart. This can either be `"count"`, which shows number
 #'   of points in bin, or `"density"`, which density of points in bin, scaled to
 #'   integrate to 1, or "`proportion`", which shows relative frequencies of
-#'   observations in each bin, or "`mix`", which shows *both* count and proportion
-#'   in the same plot.
+#'   observations in each bin, or "`mix`", which shows *both* count and
+#'   proportion in the same plot.
 #' @param xlab Label for `x` axis variable.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle *if* you don't want results
@@ -24,8 +24,8 @@
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
-#'   of *null* hypothesis **for parametric test** (Default: `bf.message = FALSE`).
-#'   This will work only if `results.subtitle = TRUE`.
+#'   of *null* hypothesis **for parametric test** (Default: `bf.message =
+#'   FALSE`). This will work only if `results.subtitle = TRUE`.
 #' @param fill.gradient Logical decides whether color fill gradient is to be
 #'   displayed (Default: `FALSE`). If `FALSE`, the legend and the color gradient
 #'   will also be removed. The default is set to `FALSE` because the gradient
@@ -33,7 +33,8 @@
 #' @param low.color,high.color Colors for low and high ends of the gradient.
 #'   Defaults are colorblind-friendly.
 #' @param bar.fill If `fill.gradient = FALSE`, then `bar.fill` decides which
-#'   color will uniformly fill all the bars in the histogram (Default: `"grey50"`).
+#'   color will uniformly fill all the bars in the histogram (Default:
+#'   `"grey50"`).
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as subtitle (Default: `results.subtitle = TRUE`). If set to
 #'   `FALSE`, no statistical tests will be run.
@@ -54,10 +55,11 @@
 #' @param test.k,centrality.k Integer denoting the number of decimal places
 #'   expected for test and centrality parameters. (Default: `0` and `2`,
 #'   respectively).
-#' @param binwidth The width of the histogram bins. Can be specified as a numeric
-#'   value, or a function that calculates width from `x`. The default is to use the
-#'   `max(x) - min(x) / sqrt(N)`. You should always check this value and explore
-#'   multiple widths to find the best to illustrate the stories in your data.
+#' @param binwidth The width of the histogram bins. Can be specified as a
+#'   numeric value, or a function that calculates width from `x`. The default is
+#'   to use the `max(x) - min(x) / sqrt(N)`. You should always check this value
+#'   and explore multiple widths to find the best to illustrate the stories in
+#'   your data.
 #'
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams subtitle_onesample
@@ -81,7 +83,7 @@
 #' @importFrom crayon red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' # this is the only function where data argument can be `NULL`.
 #' ggstatsplot::gghistostats(
@@ -89,7 +91,7 @@
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,

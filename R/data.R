@@ -85,8 +85,7 @@
 #'   \item Survived.	No, Yes.
 #' }
 #'
-#' @source
-#' \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Titanic.html}
+#' @source \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Titanic.html}
 #'
 #' @examples
 #' dim(Titanic_full)

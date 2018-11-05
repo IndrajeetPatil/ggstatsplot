@@ -41,10 +41,10 @@ parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust)
 to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
-of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}).}
+of \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
 
 \item{label.var}{Variable to use for points labels. \strong{Must} be entered as a
-character string e.g. \code{"y"}}
+character string e.g. \code{"y"}.}
 
 \item{label.expression}{An expression evaluating to a logical vector that
 determines the subset of data points to label. \strong{Must} be entered as a
@@ -234,7 +234,6 @@ histograms/boxplots/density plots with statistical details added as a
 subtitle.
 }
 \examples{
-
 # to ensure reproducibility
 set.seed(123)
 

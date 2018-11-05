@@ -11,9 +11,9 @@
 #' @param x A vector containing the explanatory variable.
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
-#'   of *null* hypothesis **for parametric test** (Default: `bf.message = FALSE`).
+#'   of *null* hypothesis **for parametric test** (Default: `FALSE`).
 #' @param label.var Variable to use for points labels. **Must** be entered as a
-#'   character string e.g. `"y"`
+#'   character string e.g. `"y"`.
 #' @param label.expression An expression evaluating to a logical vector that
 #'   determines the subset of data points to label. **Must** be entered as a
 #'   character string e.g. `"y < 4 & z < 20"`.
@@ -102,15 +102,14 @@
 #' }
 #'
 #' @examples
-#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,

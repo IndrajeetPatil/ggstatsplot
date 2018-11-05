@@ -25,17 +25,18 @@ taken. This argument is optional.}
 
 \item{x}{A numeric variable.}
 
-\item{binwidth}{The width of the histogram bins. Can be specified as a numeric
-value, or a function that calculates width from \code{x}. The default is to use the
-\code{max(x) - min(x) / sqrt(N)}. You should always check this value and explore
-multiple widths to find the best to illustrate the stories in your data.}
+\item{binwidth}{The width of the histogram bins. Can be specified as a
+numeric value, or a function that calculates width from \code{x}. The default is
+to use the \code{max(x) - min(x) / sqrt(N)}. You should always check this value
+and explore multiple widths to find the best to illustrate the stories in
+your data.}
 
 \item{bar.measure}{Character describing what value needs to be represented as
 height in the bar chart. This can either be \code{"count"}, which shows number
 of points in bin, or \code{"density"}, which density of points in bin, scaled to
 integrate to 1, or "\code{proportion}", which shows relative frequencies of
-observations in each bin, or "\code{mix}", which shows \emph{both} count and proportion
-in the same plot.}
+observations in each bin, or "\code{mix}", which shows \emph{both} count and
+proportion in the same plot.}
 
 \item{xlab}{Label for \code{x} axis variable.}
 
@@ -58,8 +59,7 @@ or \code{"robust"} or \code{"bayes"}). Abbreviations accepted are \code{"p"} or 
 to use in calculating Bayes factors.}
 
 \item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
-of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}).
-This will work only if \code{results.subtitle = TRUE}.}
+of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}). This will work only if \code{results.subtitle = TRUE}.}
 
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
@@ -89,7 +89,8 @@ provides redundant information in light of y-axis labels.}
 Defaults are colorblind-friendly.}
 
 \item{bar.fill}{If \code{fill.gradient = FALSE}, then \code{bar.fill} decides which
-color will uniformly fill all the bars in the histogram (Default: \code{"grey50"}).}
+color will uniformly fill all the bars in the histogram (Default:
+\code{"grey50"}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to

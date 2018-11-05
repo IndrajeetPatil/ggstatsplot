@@ -44,8 +44,8 @@ intervals for unique correlation pairs; not available for robust
 correlation) or \code{"n"} (or \code{"sample.size"} for a tibble with sample sizes
 for each correlation pair).}
 
-\item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"}, display
-full matrix, lower triangular or upper triangular matrix.}
+\item{matrix.type}{Character, \code{"full"} (default), \code{"upper"} or \code{"lower"},
+display full matrix, lower triangular or upper triangular matrix.}
 
 \item{method}{Character argument that decides the visualization method of
 correlation matrix to be used. Allowed values are \code{"square"} (default),

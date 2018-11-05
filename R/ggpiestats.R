@@ -10,8 +10,8 @@
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param sample.size.label Logical that decides whether sample size information
-#'   should be displayed for each level of the grouping variable `condition` (Default:
-#'   `TRUE`).
+#'   should be displayed for each level of the grouping variable `condition`
+#'   (Default: `TRUE`).
 #' @param palette If a character string (e.g., `"Set1"`), will use that named
 #'   palette. If a number, will index into the list of palettes of appropriate
 #'   type. Default palette is `"Dark2"`.
@@ -53,10 +53,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -64,7 +64,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -74,10 +74,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,

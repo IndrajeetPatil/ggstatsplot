@@ -441,13 +441,15 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>For parametric tests, Welch's ANOVA/t-test are used as a default. References:</p><ul>
+    <p>For parametric tests, Welch's ANOVA/<em>t</em>-test are used as a default.
+References:</p><ul>
 <li><p>ANOVA: Delacre, Leys, Mora, &amp; Lakens, <em>PsyArXiv</em>, 2018</p></li>
-<li><p>t-test: Delacre, Lakens, &amp; Leys, <em>International Review of Social Psychology</em>, 2017</p></li>
+<li><p><em>t</em>-test: Delacre, Lakens, &amp; Leys,
+<em>International Review of Social Psychology</em>, 2017</p></li>
 </ul>
     <p>If robust tests are selected, following tests are used is .</p><ul>
 <li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/t1way'>?WRS2::t1way</a></code>)</p></li>
-<li><p>t-test: Yuen's test for trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
+<li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
 </ul>
     <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em>
 still use this function just to prepare the <strong>plot</strong> for exploratory data
@@ -464,8 +466,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># to get reproducible results from bootstrapping</span>
+    <pre class="examples"><div class='input'><span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'>set.seed</span>(<span class='fl'>123</span>)
 
 <span class='co'># simple function call with the defaults</span>
@@ -490,7 +491,19 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.</span>
+#&gt; <span class='warning'>Please use the non-prefixed form or `!!!` instead.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>  # Bad:</span>
+#&gt; <span class='warning'>  rlang::expr(mean(rlang::UQS(args)))</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>  # Ok:</span>
+#&gt; <span class='warning'>  rlang::expr(mean(UQS(args)))</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>  # Good:</span>
+#&gt; <span class='warning'>  rlang::expr(mean(!!!args))</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>This warning is displayed once per session.</span></div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

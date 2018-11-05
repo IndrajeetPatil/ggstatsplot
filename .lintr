@@ -1,1 +1,1 @@
-linters: with_defaults(snake_case_linter = NULL)
+linters: with_defaults(snake_case_linter = NULL,line_length_linter(90))
