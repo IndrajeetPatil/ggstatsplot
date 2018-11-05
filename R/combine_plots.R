@@ -157,7 +157,8 @@ combine_plots <-
         )
     }
 
-    # combining the basic plot with the either title or caption or title and caption
+    # combining the basic plot with the either title or caption or title and
+    # caption
     if (!is.null(title.text)) {
       if (!is.null(caption.text)) {
         # if both title and caption are needed

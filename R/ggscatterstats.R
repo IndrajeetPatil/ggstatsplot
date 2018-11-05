@@ -239,14 +239,13 @@ ggscatterstats <-
       data %>%
       {
         if ("label.expression" %in% names(param_list)) {
-          #          dplyr::filter(.data = ., !!rlang::enquo(label.expression))  # original
+          #  dplyr::filter(.data = ., !!rlang::enquo(label.expression))  # original
           dplyr::filter(.data = ., !!rlang::parse_expr(label.expression))
-        }
-        else {
+        } else {
           (.)
         }
       }
-    #--------------------------------- creating results subtitle --------------------------------------
+    #------------------------ creating results subtitle ------------------------
     #
     # adding a subtitle with statistical results
     if (isTRUE(results.subtitle)) {
@@ -282,7 +281,7 @@ ggscatterstats <-
       }
     }
 
-    #------------------------------------ basic plot -----------------------------
+    #------------------------------------ basic plot ---------------------------
 
     # if user has not specified colors, then use a color palette
     if (is.null(xfill) || is.null(yfill)) {
@@ -341,17 +340,24 @@ ggscatterstats <-
         caption = caption
       )
 
-    #--------------------------------- adding centrality parameters ----------------------------------
+    #------------------------- adding centrality parameters --------------------
 
-    # by default, if the input is NULL, then no centrality.para lines will be plotted
+    # by default, if the input is NULL, then no centrality.para lines will be
+    # plotted
 
     # computing summary statistics needed for displaying labels
     x_mean <- mean(x = data$x...internal, na.rm = TRUE)
     x_median <- median(x = data$x...internal, na.rm = TRUE)
     y_mean <- mean(x = data$y...internal, na.rm = TRUE)
     y_median <- median(x = data$y...internal, na.rm = TRUE)
-    x_label_pos <- median(x = ggplot2::layer_scales(plot)$x$range$range, na.rm = TRUE)
-    y_label_pos <- median(x = ggplot2::layer_scales(plot)$y$range$range, na.rm = TRUE)
+    x_label_pos <- median(
+      x = ggplot2::layer_scales(plot)$x$range$range,
+      na.rm = TRUE
+    )
+    y_label_pos <- median(
+      x = ggplot2::layer_scales(plot)$y$range$range,
+      na.rm = TRUE
+    )
 
     # adding vertical and horizontal lines and attaching labels
     if (is.null(centrality.para)) {
@@ -461,7 +467,7 @@ ggscatterstats <-
         )
     }
 
-    #--------------------------------- range restriction -------------------------------------
+    #------------------------- range restriction -------------------------------
 
     # forcing the plots to get cut off at min and max values of the variable
     if (isTRUE(axes.range.restrict)) {
@@ -476,7 +482,7 @@ ggscatterstats <-
         ))
     }
 
-    #--------------------------------- adding point labels --------------------------
+    #--------------------- adding point labels --------------------------------
 
     if (isTRUE(point.labelling)) {
       # using geom_repel_label
@@ -498,7 +504,7 @@ ggscatterstats <-
           na.rm = TRUE
         )
     }
-    #-------------------------------------- ggMarginal  ----------------------------
+    #------------------------- ggMarginal  ----------------------------
 
     # creating the ggMarginal plot of a given marginal.type
     if (isTRUE(marginal)) {

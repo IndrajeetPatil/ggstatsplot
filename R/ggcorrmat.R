@@ -233,7 +233,8 @@ ggcorrmat <-
       purrr::flatten_dbl(.x = .) %>%
       sum(., na.rm = TRUE)
 
-    # renaming the columns if so desired (must be equal to the number of number of cor.vars)
+    # renaming the columns if so desired (must be equal to the number of number
+    # of cor.vars)
     if (!is.null(cor.vars.names)) {
       # check if number of cor.vars is equal to the number of names entered
       if (length(df) != length(cor.vars.names)) {
@@ -251,7 +252,7 @@ ggcorrmat <-
       }
     }
 
-    # ============================= checking corr.method ==========================
+    # ============================= checking corr.method =======================
 
     # if any of the abbreviations have been entered, change them
     if (corr.method == "p") {
@@ -262,7 +263,7 @@ ggcorrmat <-
       corr.method <- "robust"
     }
 
-    # ===================== statistics ===========================================
+    # ===================== statistics =========================================
     #
     if (corr.method %in% c("pearson", "spearman", "kendall")) {
       if (output == "ci") {
@@ -272,16 +273,17 @@ ggcorrmat <-
       }
 
       # computing correlations using `psych` package
-      corr_df <- psych::corr.test(
-        x = base::as.data.frame(df),
-        y = NULL,
-        use = "pairwise",
-        method = corr.method,
-        adjust = p.adjust.method,
-        alpha = .05,
-        ci = ci,
-        minlength = 20
-      )
+      corr_df <-
+        psych::corr.test(
+          x = base::as.data.frame(df),
+          y = NULL,
+          use = "pairwise",
+          method = corr.method,
+          adjust = p.adjust.method,
+          alpha = .05,
+          ci = ci,
+          minlength = 20
+        )
 
       # computing correlations on all included variables
       corr.mat <- base::round(x = corr_df$r, digits = digits)

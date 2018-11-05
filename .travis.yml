@@ -64,11 +64,17 @@ r_packages:
   - WRS2
   - scico
   - viridisLite
+  - lintr
 
 notifications:
   email:
   on_success: change
   on_failure: change
 
+after_script:
+  - R CMD INSTALL $PKG_TARBALL
+  - Rscript -e 'lintr::lint_package()'
+
 after_success:
   - Rscript -e 'covr::codecov(type = "all")'
+  - Rscript -e 'covr::coveralls()'

@@ -220,23 +220,27 @@ subtitle_contigency_tab <- function(data,
         ),
       env = base::list(
         y = stat.title,
-        estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$chiSq)[[2]], k),
+        estimate = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_chi$chiSq)[[2]],
+          k = k
+        ),
         df = as.data.frame(jmv_chi$chiSq)[[3]],
-        # df always an integer
         pvalue = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_chi$chiSq)[[4]],
           k,
           p.value = TRUE
         ),
-        # select Cramer's V as effect size
-        cramer = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$nom)[[4]], k),
-        LL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.low[[1]], k),
-        UL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.high[[1]], k),
+        cramer = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_chi$nom)[[4]],
+          k = k
+        ),
+        LL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.low[[1]], k = k),
+        UL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.high[[1]], k = k),
         n = as.data.frame(jmv_chi$chiSq)$`value[N]`[[1]]
       )
     )
 
-    # ================================= McNemar's test ================================================================================
+    # ============== McNemar's test ============================================
   } else if (isTRUE(paired)) {
     # carrying out McNemar's test
     jmv_chi <- jmv::contTablesPaired(

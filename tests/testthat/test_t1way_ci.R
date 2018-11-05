@@ -37,7 +37,6 @@ testthat::test_that(
     row.names = c(NA, -100L), class = "data.frame"
     )
 
-    # str(bogusdata)
     set.seed(123)
 
     # 3 seconds ????

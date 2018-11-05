@@ -60,7 +60,7 @@ bartlett_message(
 
 Other helper_messages: \code{\link{grouped_message}},
   \code{\link{normality_message}},
-  \code{\link{palette_message}}
+  \code{\link{pairwise_p}}, \code{\link{palette_message}}
 }
 \author{
 Indrajeet Patil

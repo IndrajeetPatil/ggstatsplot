@@ -129,17 +129,19 @@ ggpiestats <-
         !!rlang::enquo(main),
         !!rlang::enquo(condition)
       ))
-      # if legend title is not provided, use the variable name for 'main' argument
+      # if legend title is not provided, use the variable name for 'main'
+      # argument
       if (is.null(legend.title)) {
         legend.title <- lab.df[1]
       }
-      # if facetting variable name is not specified, use the variable name for 'condition' argument
+      # if facetting variable name is not specified, use the variable name for
+      # 'condition' argument
       if (is.null(facet.wrap.name)) {
         facet.wrap.name <- lab.df[2]
       }
     }
 
-    # =============================== dataframe =================================
+    # =============================== dataframe ================================
 
     # creating a dataframe based on which variables are provided
     if (base::missing(condition)) {
@@ -180,7 +182,7 @@ ggpiestats <-
       }
     }
 
-    # =========================== converting counts =============================
+    # =========================== converting counts ============================
 
     # untable the dataframe based on the count for each obervation
     if (!base::missing(counts)) {
@@ -194,7 +196,7 @@ ggpiestats <-
         tibble::as_data_frame(.)
     }
 
-    # ============================ percentage dataframe =========================
+    # ============================ percentage dataframe ========================
     #
     # main and condition need to be a factor for this analysis
     # also drop the unused levels of the factors
@@ -277,7 +279,7 @@ ggpiestats <-
       label.text.size <- 3
     }
 
-    # ============================ sample size label ====================================
+    # ============================ sample size label ===========================
 
     # if sample size labels are to be displayed at the bottom of the pie charts
     # for each facet
@@ -313,7 +315,7 @@ ggpiestats <-
       }
     }
 
-    # ================= preparing names for legend and facet_wrap ==================
+    # ================= preparing names for legend and facet_wrap ==============
 
     # reorder the category factor levels to order the legend
     df$main <- factor(
@@ -337,7 +339,7 @@ ggpiestats <-
       return(lab)
     }
 
-    # =================================== plot ==================================
+    # =================================== plot =================================
 
     # if facet_wrap is *not* happening
     if (base::missing(condition)) {
@@ -415,7 +417,7 @@ ggpiestats <-
       # remove black diagonal line from legend
       ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 
-    # ================ chi-square test (either Pearson or McNemar) =========================
+    # ================ chi-square test (either Pearson or McNemar) =============
 
     # if facetting by condition is happening
     if (!base::missing(condition)) {
@@ -473,7 +475,7 @@ ggpiestats <-
         k = k
       )
 
-      # ======================= facetted proportion test ========================
+      # ======================= facetted proportion test =======================
 
       # adding significance labels to pie charts for grouped proportion tests
       if (isTRUE(facet.proptest)) {
@@ -510,7 +512,7 @@ ggpiestats <-
       )
     }
 
-    # ============================ putting all together ====================================
+    # ============================ putting all together ========================
 
     # preparing the plot
     p <-

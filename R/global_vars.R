@@ -126,7 +126,11 @@ utils::globalVariables(
     "Group",
     "Group1",
     "group1",
-    "group2"
+    "group2",
+    "comparison",
+    "p",
+    "p1",
+    "p2"
   ),
   package = "ggstatsplot",
   add = FALSE

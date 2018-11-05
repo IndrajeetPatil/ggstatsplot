@@ -34,6 +34,7 @@ reference:
     desc: Functions used to create statistical subtitles that can be used outside of `ggstatsplot` package.
     contents:
       - starts_with("subtitle_")
+      - pairwise_p
 
   - title: Reexported functions
     desc:  Some useful functions used internally (from `groupedstats` package).

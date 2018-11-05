@@ -202,7 +202,8 @@ ggbetweenstats <- function(data,
   param_list <- base::as.list(base::match.call())
 
   # check that x and outlier.label are different
-  if (("x" %in% names(param_list)) && ("outlier.label" %in% names(param_list))) {
+  if (("x" %in% names(param_list)) &&
+    ("outlier.label" %in% names(param_list))) {
     if (as.character(param_list$x)[[1]] == as.character(param_list$outlier.label)[[1]]) {
       base::message(cat(
         crayon::red("Error: "),
@@ -569,7 +570,10 @@ ggbetweenstats <- function(data,
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
     data_label <- mean_dat %>%
-      dplyr::mutate(.data = ., n_label = paste0(x, "\n(n = ", n, ")", sep = "")) %>%
+      dplyr::mutate(
+        .data = .,
+        n_label = paste0(x, "\n(n = ", n, ")", sep = "")
+      ) %>%
       dplyr::arrange(.data = ., x)
 
     # adding new labels to the plot

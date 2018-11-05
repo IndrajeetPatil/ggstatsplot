@@ -45,4 +45,4 @@ dplyr::glimpse(x = iris_long)
 
 # saving the files
 readr::write_csv(x = iris_long, path = "data-raw/iris_long.csv")
-base::save(iris_long, file = "data/iris_long.rdata")
+base::save(iris_long, file = "data/iris_long.rdata", version = 2)

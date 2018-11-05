@@ -1124,7 +1124,7 @@ subtitle_ggbetween_kw_nonparametric <-
       base::message(cat(
         crayon::red("Note: "),
         crayon::blue(
-          "No effect size available for Kruskal-Wallis Rank Sum Test."
+          "No effect size available for Kruskal-Wallis Rank Sum Test.\n"
         ),
         sep = ""
       ))

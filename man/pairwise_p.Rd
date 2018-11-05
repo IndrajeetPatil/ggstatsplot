@@ -5,7 +5,7 @@
 \title{Pairwise comparison tests}
 \usage{
 pairwise_p(data, x, y, type = "parametric", tr = 0.1, paired = FALSE,
-  p.adjust.method = "holm", ...)
+  p.adjust.method = "holm", messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -29,16 +29,62 @@ try to play around with the value of \code{tr}, which is by default set to
 \item{paired}{a logical indicating whether you want a paired
     t-test.}
 
+\item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
+
 \item{...}{further arguments to be passed to or from methods.}
 }
 \description{
 Calculate pairwise comparisons between group levels with
 corrections for multiple testing.
 }
+\examples{
+\dontrun{
+
+# for reproducibility
+set.seed(123)
+
+# parametric
+ggstatsplot:::pairwise_p(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "p",
+  p.adjust.method = "bonferroni"
+)
+
+# non-parametric
+ggstatsplot:::pairwise_p(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "np",
+  p.adjust.method = "none"
+)
+
+# robust
+ggstatsplot:::pairwise_p(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "r",
+  p.adjust.method = "none"
+)
+}
+}
 \seealso{
 \code{\link{ggbetweenstats}}
+
+Other helper_messages: \code{\link{bartlett_message}},
+  \code{\link{grouped_message}},
+  \code{\link{normality_message}},
+  \code{\link{palette_message}}
 }
 \author{
 Indrajeet Patil
 }
-\keyword{internal}
+\concept{helper_messages}

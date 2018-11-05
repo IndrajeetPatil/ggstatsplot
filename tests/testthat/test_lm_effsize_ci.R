@@ -7,7 +7,7 @@ testthat::test_that(
     # for reproducibility
     set.seed(123)
 
-    # # creating lm object-1
+    # creating lm object-1
     lmobject1 <- stats::lm(
       formula = mpg ~ hp * wt,
       data = mtcars
