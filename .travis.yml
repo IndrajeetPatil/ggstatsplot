@@ -5,9 +5,10 @@ r:
   - release
   - devel
 
-sudo: false
+sudo: true
+dist: trusty
 cache: packages
-bioc_required: true
+#bioc_required: true
 warnings_are_errors: true
 
 repos:
