@@ -5,16 +5,20 @@ r:
   - release
   - devel
 
-sudo: required
+sudo: false
 cache: packages
 bioc_required: true
-warnings_are_errors: false
-#install: travis_wait 30 mvn install
+warnings_are_errors: true
+
+repos:
+  CRAN: https://cloud.r-project.org
+  ropensci: http://packages.ropensci.org
 
 env:
   global:
     - R_MAX_NUM_DLLS=999
-    - _R_CHECK_FORCE_SUGGESTS_=FALSE
+    - _R_CHECK_FORCE_SUGGESTS_=true
+    - _R_CHECK_CRAN_INCOMING_=true
 
 #r_build_args: "--no-build-vignettes"
 #r_check_args: "--no-build-vignettes --as-cran"
@@ -63,17 +67,21 @@ r_packages:
   - WRS2
   - scico
   - viridisLite
-  - lintr
+
+r_github_packages:
+  - jimhester/lintr
 
 notifications:
   email:
   on_success: change
   on_failure: change
 
-after_script:
-  - R CMD INSTALL $PKG_TARBALL
-  - Rscript -e 'lintr::lint_package()'
+#after_script:
+#  - R CMD INSTALL $PKG_TARBALL
+#  - Rscript -e 'lintr::lint_package()'
 
 after_success:
   - Rscript -e 'covr::codecov(type = "all")'
   - Rscript -e 'covr::coveralls()'
+  - R CMD INSTALL $PKG_TARBALL
+  - Rscript -e 'lintr::lint_package()'
