@@ -8,7 +8,6 @@ r:
 sudo: true
 dist: trusty
 cache: packages
-#bioc_required: true
 warnings_are_errors: true
 
 repos:
@@ -76,10 +75,6 @@ notifications:
   email:
   on_success: change
   on_failure: change
-
-#after_script:
-#  - R CMD INSTALL $PKG_TARBALL
-#  - Rscript -e 'lintr::lint_package()'
 
 after_success:
   - Rscript -e 'covr::codecov(type = "all")'

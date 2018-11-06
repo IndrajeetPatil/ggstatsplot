@@ -7,7 +7,8 @@ bf_message_ttest <- function(jmv_results,
 
   # prepare the bayes factor message
   bf_message <- base::substitute(
-    atop(top.text,
+    atop(
+      top.text,
       expr =
         paste(
           "In favor of null: ",
@@ -15,25 +16,25 @@ bf_message_ttest <- function(jmv_results,
           "(BF"["01"],
           ") = ",
           bf,
-          # ", log"["e"],
-          # "(error) = ",
-          # bf_error,
-          # "%",
           ", Prior width = ",
           bf_prior
         )
     ),
     env = base::list(
       top.text = caption,
-      bf = ggstatsplot::specify_decimal_p(x = log(
-        x = (1 / as.data.frame(jmv_results$ttest)$`stat[bf]`),
-        base = exp(1)
-      ), k = 1),
-      # bf_error = ggstatsplot::specify_decimal_p(x = log(
-      #   x = (1 / as.data.frame(jmv_results$ttest)$`err[bf]`),
-      #   base = exp(1)
-      # ), k = 1),
-      bf_prior = ggstatsplot::specify_decimal_p(x = bf.prior, k = 3)
+      bf = ggstatsplot::specify_decimal_p(
+        x = log(
+          x = (1 / as.data.frame(jmv_results$ttest)$`stat[bf]`),
+          base = exp(1)
+        ),
+        k = 1,
+        p.value = FALSE
+      ),
+      bf_prior = ggstatsplot::specify_decimal_p(
+        x = bf.prior,
+        k = 3,
+        p.value = FALSE
+      )
     )
   )
 
@@ -63,8 +64,9 @@ bf_message_ttest <- function(jmv_results,
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
-#' @importFrom stats lm
+#' @importFrom rlang !! enquo
+#' @importFrom stats lm oneway.test na.omit
+#' @importFrom sjstats eta_sq omega_sq
 #'
 #' @examples
 #' # with defaults
@@ -128,16 +130,17 @@ subtitle_ggbetween_anova_parametric <-
     if (effsize.type %in% c("unbiased", "partial_omega")) {
       # partial omega-squared is the biased estimate of effect size for
       # parametric ANOVA
-      aov_effsize_ci <- sjstats::omega_sq(
-        model = stats::lm(
-          formula = y ~ x,
-          data = data,
-          na.action = na.omit
-        ),
-        partial = TRUE,
-        ci.lvl = 0.95,
-        n = nboot
-      )
+      aov_effsize_ci <-
+        sjstats::omega_sq(
+          model = stats::lm(
+            formula = y ~ x,
+            data = data,
+            na.action = na.omit
+          ),
+          partial = TRUE,
+          ci.lvl = 0.95,
+          n = nboot
+        )
 
       # displaying message about bootstrap
       if (isTRUE(messages)) {
@@ -334,7 +337,7 @@ subtitle_ggbetween_anova_parametric <-
 #'
 #' @importFrom dplyr select mutate_at
 #' @importFrom rlang !! enquo
-#' @importFrom stats t.test
+#' @importFrom stats t.test na.omit
 #' @importFrom effsize cohen.d
 #'
 #' @examples
@@ -563,7 +566,7 @@ subtitle_ggbetween_t_parametric <-
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
+#' @importFrom rlang !! enquo
 #' @importFrom stats wilcox.test
 #' @importFrom coin wilcox_test
 #'
@@ -686,9 +689,9 @@ subtitle_ggbetween_mann_nonparametric <-
             p.value = TRUE
           ),
           r = ggstatsplot::specify_decimal_p(
-            x = (coin::statistic(z_stat)[[1]] / sqrt(length(
-              data$y
-            ))), k
+            x = (coin::statistic(z_stat)[[1]] / sqrt(length(data$y))),
+            k = k,
+            p.value = FALSE
           ),
           n = sample_size
         )
@@ -978,7 +981,6 @@ subtitle_ggbetween_t_rob <-
 #' @importFrom jmv ttestIS ttestPS
 #'
 #' @examples
-#' 
 #' # for reproducibility
 #' set.seed(123)
 #' 
@@ -1080,66 +1082,56 @@ subtitle_ggbetween_t_bayes <- function(data,
   }
 
   # preparing the subtitle
-  subtitle <- base::substitute(
-    expr =
-      paste(
-        italic("t"),
-        "(",
-        df,
-        ") = ",
-        estimate,
-        ", log"["e"],
-        "(BF"["10"],
-        ") = ",
-        bf,
-        ", Prior width = ",
-        bf_prior,
-        ", ",
-        # ", log"["e"],
-        # "(error) = ",
-        # bf_error,
-        # "% , ",
-        italic("d"),
-        " = ",
-        effsize,
-        ", ",
-        italic("n"),
-        " = ",
-        n
-      ),
-    env = base::list(
-      # df is integer value for Student's t-test
-      df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-      estimate = ggstatsplot::specify_decimal_p(
-        x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
-        k = k
-      ),
-      bf = ggstatsplot::specify_decimal_p(
-        x = log(
-          x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
-          base = exp(1)
+  subtitle <-
+    base::substitute(
+      expr =
+        paste(
+          italic("t"),
+          "(",
+          df,
+          ") = ",
+          estimate,
+          ", log"["e"],
+          "(BF"["10"],
+          ") = ",
+          bf,
+          ", Prior width = ",
+          bf_prior,
+          ", ",
+          italic("d"),
+          " = ",
+          effsize,
+          ", ",
+          italic("n"),
+          " = ",
+          n
         ),
-        k = 1
-      ),
-      bf_prior = ggstatsplot::specify_decimal_p(
-        x = bf.prior,
-        k = 3
-      ),
-      # bf_error = ggstatsplot::specify_decimal_p(
-      #   x = log(
-      #     x = as.data.frame(jmv_results$ttest)$`err[bf]`,
-      #     base = exp(1)
-      #   ),
-      #   k = 1
-      # ),
-      effsize = ggstatsplot::specify_decimal_p(
-        x = as.data.frame(jmv_results$ttest)$`es[stud]`,
-        k = k,
-        p.value = FALSE
-      ),
-      n = sample_size
+      env = base::list(
+        # df is integer value for Student's t-test
+        df = as.data.frame(jmv_results$ttest)$`df[stud]`,
+        estimate = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
+          k = k
+        ),
+        bf = ggstatsplot::specify_decimal_p(
+          x = log(
+            x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
+            base = exp(1)
+          ),
+          k = 1
+        ),
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf.prior,
+          k = 3
+        ),
+        effsize = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_results$ttest)$`es[stud]`,
+          k = k,
+          p.value = FALSE
+        ),
+        n = sample_size
+      )
     )
-  )
 
   # return the message
   return(subtitle)
@@ -1158,7 +1150,7 @@ subtitle_ggbetween_t_bayes <- function(data,
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
+#' @importFrom rlang !! enquo
 #' @importFrom stats kruskal.test
 #'
 #' @examples
@@ -1199,11 +1191,12 @@ subtitle_ggbetween_kw_nonparametric <-
     sample_size <- nrow(data)
 
     # setting up the anova model and getting its summary
-    kw_stat <- stats::kruskal.test(
-      formula = y ~ x,
-      data = data,
-      na.action = na.omit
-    )
+    kw_stat <-
+      stats::kruskal.test(
+        formula = y ~ x,
+        data = data,
+        na.action = na.omit
+      )
 
     # preparing the subtitle
     subtitle <-
@@ -1269,7 +1262,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
+#' @importFrom rlang !! enquo
 #'
 #' @examples
 #' 
@@ -1330,15 +1323,16 @@ subtitle_ggbetween_rob_anova <-
 
     # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for
     # trimmed means
-    robust_aov_stat <- t1way_ci(
-      data = data,
-      x = x,
-      y = y,
-      tr = tr,
-      nboot = nboot,
-      conf.level = 0.95,
-      conf.type = "norm"
-    )
+    robust_aov_stat <-
+      t1way_ci(
+        data = data,
+        x = x,
+        y = y,
+        tr = tr,
+        nboot = nboot,
+        conf.level = 0.95,
+        conf.type = "norm"
+      )
 
     # displaying message about bootstrap
     if (isTRUE(messages)) {

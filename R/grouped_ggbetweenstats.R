@@ -22,14 +22,10 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
+#' @importFrom rlang !! enquo quo_name
 #' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest
-#'
 #'
 #' @seealso \code{\link{ggbetweenstats}}
 #'
@@ -37,10 +33,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),

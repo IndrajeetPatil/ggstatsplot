@@ -66,15 +66,14 @@ subtitle_contigency_tab(
 # in case of no variation, a `NULL` will be returned.
 library(jmv)
 
-dat <- as.data.frame(HairEyeColor) \%>\%
-  dplyr::filter(.data = ., Sex == "Male")
-
-subtitle_contigency_tab(
-  data = dat,
-  main = Hair,
-  condition = Sex,
-  counts = Freq
-)
+as.data.frame(HairEyeColor) \%>\%
+  dplyr::filter(.data = ., Sex == "Male") \%>\%
+  subtitle_contigency_tab(
+    data = .,
+    main = Hair,
+    condition = Sex,
+    counts = Freq
+  )
 }
 \seealso{
 \code{\link{ggpiestats}}

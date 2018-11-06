@@ -30,21 +30,23 @@ bf_corr_test <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      stats::na.omit(.)
+      stats::na.omit(.) %>% # converting to a tibble dataframe
+      tibble::as_data_frame(.)
 
     # extracting results from bayesian test and creating a dataframe
-    bf_results <- BayesFactor::extractBF(
-      x = BayesFactor::correlationBF(
-        x = data$x,
-        y = data$y,
-        nullInterval = NULL,
-        rscale = bf.prior
-      ),
-      logbf = FALSE,
-      onlybf = FALSE
-    ) %>% # converting to a tibble dataframe
+    bf_results <-
+      BayesFactor::extractBF(
+        x = BayesFactor::correlationBF(
+          x = data$x,
+          y = data$y,
+          nullInterval = NULL,
+          rscale = bf.prior
+        ),
+        logbf = FALSE,
+        onlybf = FALSE
+      ) %>% # converting to a tibble dataframe
       tibble::as_data_frame(.) %>% # removing unnecessary columns
-      dplyr::select(.data = ., -time, -code) %>% # adding info about prior width
+      dplyr::select(.data = ., -time, -code) %>% # adding prior width column
       dplyr::mutate(.data = ., bf.prior = bf.prior)
 
     # prepare the bayes factor message
@@ -57,27 +59,24 @@ bf_corr_test <-
             "(BF"["01"],
             ") = ",
             bf,
-            # ", log"["e"],
-            # "(error) = ",
-            # bf_error,
-            # "%",
             ", Prior width = ",
             bf_prior
           )
       ),
       env = base::list(
         top.text = caption,
-        bf = ggstatsplot::specify_decimal_p(x = log(
-          x = (1 / bf_results$bf[[1]]),
-          base = exp(1)
-        ), k = 1),
-        # bf_error = ggstatsplot::specify_decimal_p(x = log(
-        #   x = (1 / bf_results$error[[1]]),
-        #   base = exp(1)
-        # ), k = 1),
+        bf = ggstatsplot::specify_decimal_p(
+          x = log(
+            x = (1 / bf_results$bf[[1]]),
+            base = exp(1)
+          ),
+          k = 1,
+          p.value = FALSE
+        ),
         bf_prior = ggstatsplot::specify_decimal_p(
           x = bf_results$bf.prior[[1]],
-          k = 3
+          k = 3,
+          p.value = FALSE
         )
       )
     )

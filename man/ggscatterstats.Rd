@@ -175,6 +175,7 @@ have a lot of labels that overlap.
 }
 }
 \examples{
+
 # to get reproducible results from bootstrapping
 set.seed(123)
 

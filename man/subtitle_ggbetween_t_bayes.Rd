@@ -30,7 +30,6 @@ to use in calculating Bayes factors.}
 Making text subtitle for the bayesian t-test.
 }
 \examples{
-
 # for reproducibility
 set.seed(123)
 

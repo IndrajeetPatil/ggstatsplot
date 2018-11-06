@@ -129,7 +129,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
@@ -138,14 +138,14 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   cor.vars.names = c("total sleep", "REM sleep")
 #' )
-#'
+#' 
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "r"
 #' )
-#'
+#' 
 #' # setting output = "p-values" (or "p") will return the p-value matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -154,7 +154,7 @@
 #'   p.adjust.method = "bonferroni",
 #'   output = "p"
 #' )
-#'
+#' 
 #' # setting `output = "ci"` will return the confidence intervals for unique
 #' # correlation pairs
 #' ggstatsplot::ggcorrmat(
@@ -163,7 +163,7 @@
 #'   p.adjust.method = "BH",
 #'   output = "ci"
 #' )
-#'
+#' 
 #' # modifying elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,

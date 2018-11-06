@@ -234,6 +234,7 @@ histograms/boxplots/density plots with statistical details added as a
 subtitle.
 }
 \examples{
+
 # to ensure reproducibility
 set.seed(123)
 

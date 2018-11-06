@@ -41,6 +41,7 @@
 #' )
 #' @export
 
+# function body
 subtitle_ggscatterstats <-
   function(data,
              x,
@@ -53,6 +54,9 @@ subtitle_ggscatterstats <-
              conf.type = "norm",
              messages = TRUE,
              k = 3) {
+
+    #------------------------ dataframe -------------------------------------
+
     # if dataframe is provided
     data <-
       dplyr::select(
@@ -60,7 +64,8 @@ subtitle_ggscatterstats <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      stats::na.omit(.)
+      stats::na.omit(.) %>%
+      tibble::as.tibble(x = .)
 
     # the total sample size for analysis
     sample_size <- nrow(x = data)
@@ -76,7 +81,7 @@ subtitle_ggscatterstats <-
         na.action = na.omit
       )
 
-    #------------------------ Pearson's r --------------------------------------
+    #------------------------ Pearson's r -------------------------------------
     #
     if (type == "pearson" || type == "parametric" || type == "p") {
 
@@ -106,11 +111,22 @@ subtitle_ggscatterstats <-
               n
             ),
           env = base::list(
-            # degrees of freedom are always integer
             df = pearson_r_res$parameter[[1]],
-            estimate = ggstatsplot::specify_decimal_p(x = pearson_r_res$estimate[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = pearson_r_res$conf.int[1][[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = pearson_r_res$conf.int[2][[1]], k),
+            estimate = ggstatsplot::specify_decimal_p(
+              x = pearson_r_res$estimate[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            LL = ggstatsplot::specify_decimal_p(
+              x = pearson_r_res$conf.int[1][[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            UL = ggstatsplot::specify_decimal_p(
+              x = pearson_r_res$conf.int[2][[1]],
+              k = k,
+              p.value = FALSE
+            ),
             pvalue = ggstatsplot::specify_decimal_p(
               x = pearson_r_res$p.value[[1]],
               k = k,
@@ -120,7 +136,7 @@ subtitle_ggscatterstats <-
           )
         )
 
-      #--------------------- Spearnman's rho ------------------------------------
+      #--------------------- Spearnman's rho ---------------------------------
     } else if (type == "spearman" || type == "nonparametric" || type == "np") {
 
       # note that stats::cor.test doesn't give degress of freedom; it's
@@ -136,14 +152,15 @@ subtitle_ggscatterstats <-
         )
 
       # getting confidence interval for rho using broom bootstrap
-      c_ci <- cor_test_ci(
-        data = data,
-        x = x,
-        y = y,
-        nboot = nboot,
-        conf.level = conf.level,
-        conf.type = conf.type
-      )
+      c_ci <-
+        cor_test_ci(
+          data = data,
+          x = x,
+          y = y,
+          nboot = nboot,
+          conf.level = conf.level,
+          conf.type = conf.type
+        )
 
       # displaying message about bootstrap
       if (isTRUE(messages)) {
@@ -185,10 +202,21 @@ subtitle_ggscatterstats <-
             ),
           env = base::list(
             df = (sample_size - 2),
-            # degrees of freedom are always integer
-            estimate = ggstatsplot::specify_decimal_p(x = c$estimate[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = c_ci$conf.low[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = c_ci$conf.high[[1]], k),
+            estimate = ggstatsplot::specify_decimal_p(
+              x = c$estimate[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            LL = ggstatsplot::specify_decimal_p(
+              x = c_ci$conf.low[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            UL = ggstatsplot::specify_decimal_p(
+              x = c_ci$conf.high[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             pvalue = ggstatsplot::specify_decimal_p(
               x = c$p.value[[1]],
               k,
@@ -198,18 +226,19 @@ subtitle_ggscatterstats <-
           )
         )
 
-      #---------------------- robust percentage bend ----------------------------
+      #---------------------- robust percentage bend --------------------------
     } else if (type == "robust" || type == "r") {
       # running robust correlation
-      rob_res <- robcor_ci(
-        data = data,
-        x = x,
-        y = y,
-        beta = beta,
-        nboot = nboot,
-        conf.level = conf.level,
-        conf.type = conf.type
-      )
+      rob_res <-
+        robcor_ci(
+          data = data,
+          x = x,
+          y = y,
+          beta = beta,
+          nboot = nboot,
+          conf.level = conf.level,
+          conf.type = conf.type
+        )
 
       # preparing the subtitle
       subtitle <-
@@ -233,12 +262,22 @@ subtitle_ggscatterstats <-
               " = ",
               n
             ),
-
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = rob_res$r[[1]], k),
-            LL = ggstatsplot::specify_decimal_p(x = rob_res$conf.low[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = rob_res$conf.high[[1]], k),
-            # degrees of freedom are always integer
+            estimate = ggstatsplot::specify_decimal_p(
+              x = rob_res$r[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            LL = ggstatsplot::specify_decimal_p(
+              x = rob_res$conf.low[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            UL = ggstatsplot::specify_decimal_p(
+              x = rob_res$conf.high[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             pvalue = ggstatsplot::specify_decimal_p(rob_res$`p-value`[[1]],
               k,
               p.value = TRUE
@@ -259,77 +298,64 @@ subtitle_ggscatterstats <-
           sep = ""
         ))
       }
-      #---------------------- bayes factor -------------------------------------
+      #---------------------- bayes factor -----------------------------------
     } else if (type == "bayes" || type == "bf") {
 
       # bayes factor results
-      bf_results <- bf_corr_test(
-        data = data,
-        x = x,
-        y = y,
-        bf.prior = bf.prior,
-        caption = NULL,
-        output = "results"
-      )
+      bf_results <-
+        bf_corr_test(
+          data = data,
+          x = x,
+          y = y,
+          bf.prior = bf.prior,
+          caption = NULL,
+          output = "results"
+        )
 
       # preparing the subtitle
-      subtitle <- base::substitute(
-        expr =
-          paste(
-            "Pearson's ",
-            italic("r"),
-            "(",
-            df,
-            ")",
-            " = ",
-            estimate,
-            # ", 95% CI [",
-            # LL,
-            # ", ",
-            # UL,
-            # "], ",
-            ", log"["e"],
-            "(BF"["10"],
-            ") = ",
-            bf,
-            ", Prior width = ",
-            bf_prior,
-            ", ",
-            # ", log"["e"],
-            # "(error) = ",
-            # bf_error,
-            # "% , ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          # degrees of freedom are always integer
-          df = pearson_r_res$parameter[[1]],
-          estimate = ggstatsplot::specify_decimal_p(x = pearson_r_res$estimate[[1]], k),
-          # LL = ggstatsplot::specify_decimal_p(x = pearson_r_res$conf.int[1][[1]], k),
-          # UL = ggstatsplot::specify_decimal_p(x = pearson_r_res$conf.int[2][[1]], k),
-          bf = ggstatsplot::specify_decimal_p(
-            x = log(
-              x = bf_results$bf[[1]],
-              base = exp(1)
+      subtitle <-
+        base::substitute(
+          expr =
+            paste(
+              "Pearson's ",
+              italic("r"),
+              "(",
+              df,
+              ")",
+              " = ",
+              estimate,
+              ", log"["e"],
+              "(BF"["10"],
+              ") = ",
+              bf,
+              ", Prior width = ",
+              bf_prior,
+              ", ",
+              italic("n"),
+              " = ",
+              n
             ),
-            k = 1
-          ),
-          bf_prior = ggstatsplot::specify_decimal_p(
-            x = bf_results$bf.prior[[1]],
-            k = 3
-          ),
-          # bf_error = ggstatsplot::specify_decimal_p(
-          #   x = log(
-          #     x = bf_results$error[[1]],
-          #     base = exp(1)
-          #   ),
-          #   k = 1
-          # ),
-          n = sample_size
+          env = base::list(
+            df = pearson_r_res$parameter[[1]],
+            estimate = ggstatsplot::specify_decimal_p(
+              x = pearson_r_res$estimate[[1]],
+              k = k,
+              p.value = FALSE
+            ),
+            bf = ggstatsplot::specify_decimal_p(
+              x = log(
+                x = bf_results$bf[[1]],
+                base = exp(1)
+              ),
+              k = 1
+            ),
+            bf_prior = ggstatsplot::specify_decimal_p(
+              x = bf_results$bf.prior[[1]],
+              k = 3
+            ),
+            n = sample_size
+          )
         )
-      )
     }
 
     # return the subtitle

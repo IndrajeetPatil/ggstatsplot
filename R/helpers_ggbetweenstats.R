@@ -365,21 +365,6 @@ pairwise_p <-
           sep = ""
         ))
       }
-      # df <- broom::tidy(
-      #   stats::pairwise.wilcox.test(
-      #     x = data$y,
-      #     g = data$x,
-      #     p.adjust.method = p.adjust.method,
-      #     paired = FALSE,
-      #     alternative = "two.sided",
-      #     na.action = na.omit,
-      #     exact = FALSE,
-      #     correct = TRUE,
-      #     conf.int = TRUE,
-      #     conf.level = 0.95
-      #   )
-      # ) %>%
-      #   ggstatsplot::signif_column(data = ., p = p.value)
     } else if (type %in% c("robust", "r")) {
       if (!isTRUE(paired)) {
 

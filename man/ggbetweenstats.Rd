@@ -196,6 +196,7 @@ analysis, but the statistical details displayed in the subtitle will be
 incorrect. You can remove them by adding \code{+ ggplot2::labs(subtitle = NULL)}.
 }
 \examples{
+
 # to get reproducible results from bootstrapping
 set.seed(123)
 

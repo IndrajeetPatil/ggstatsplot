@@ -31,7 +31,7 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#'
+#' 
 #' # without counts data
 #' subtitle_contigency_tab(
 #'   data = mtcars,
@@ -39,20 +39,19 @@
 #'   condition = cyl,
 #'   nboot = 15
 #' )
-#'
+#' 
 #' # with counts data
 #' # in case of no variation, a `NULL` will be returned.
 #' library(jmv)
-#'
-#' dat <- as.data.frame(HairEyeColor) %>%
-#'   dplyr::filter(.data = ., Sex == "Male")
-#'
-#' subtitle_contigency_tab(
-#'   data = dat,
-#'   main = Hair,
-#'   condition = Sex,
-#'   counts = Freq
-#' )
+#' 
+#' as.data.frame(HairEyeColor) %>%
+#'   dplyr::filter(.data = ., Sex == "Male") %>%
+#'   subtitle_contigency_tab(
+#'     data = .,
+#'     main = Hair,
+#'     condition = Sex,
+#'     counts = Freq
+#'   )
 #' @export
 
 # function body
@@ -68,7 +67,7 @@ subtitle_contigency_tab <- function(data,
                                     messages = TRUE,
                                     k = 3) {
 
-  # ================================= dataframe ================================
+  # =============================== dataframe ================================
 
   # creating a dataframe based on which variables are provided
   if (base::missing(counts)) {
@@ -118,7 +117,7 @@ subtitle_contigency_tab <- function(data,
       base::message(cat(
         crayon::red("Error: "),
         crayon::blue("Row variable 'condition' contains less than 2 levels.\n"),
-        crayon::blue("Chi-squared test can't be run and subtitle won't be displayed.\n"),
+        crayon::blue("Chi-squared test can't be run; no subtitle displayed.\n"),
         sep = ""
       ))
 
@@ -130,7 +129,7 @@ subtitle_contigency_tab <- function(data,
     }
   }
 
-  # ============================== converting counts ===========================
+  # ============================ converting counts ===========================
 
   # untable the dataframe based on the count for each obervation
   if (!base::missing(counts)) {
@@ -144,7 +143,7 @@ subtitle_contigency_tab <- function(data,
       tibble::as_data_frame(.)
   }
 
-  # ================================= Pearson's chi-square =====================
+  # =============================== Pearson's chi-square =====================
 
   # running Pearson's Chi-square test of independence using jmv::contTables
   if (!isTRUE(paired)) {
@@ -223,25 +222,35 @@ subtitle_contigency_tab <- function(data,
         y = stat.title,
         estimate = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_chi$chiSq)[[2]],
-          k = k
+          k = k,
+          p.value = FALSE
         ),
         df = as.data.frame(jmv_chi$chiSq)[[3]],
         pvalue = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_chi$chiSq)[[4]],
-          k,
+          k = k,
           p.value = TRUE
         ),
         cramer = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_chi$nom)[[4]],
-          k = k
+          k = k,
+          p.value = FALSE
         ),
-        LL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.low[[1]], k = k),
-        UL = ggstatsplot::specify_decimal_p(x = cramer_ci$conf.high[[1]], k = k),
+        LL = ggstatsplot::specify_decimal_p(
+          x = cramer_ci$conf.low[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        UL = ggstatsplot::specify_decimal_p(
+          x = cramer_ci$conf.high[[1]],
+          k = k,
+          p.value = FALSE
+        ),
         n = as.data.frame(jmv_chi$chiSq)$`value[N]`[[1]]
       )
     )
 
-    # ============== McNemar's test ============================================
+    # ============== McNemar's test ===========================================
   } else if (isTRUE(paired)) {
     # carrying out McNemar's test
     jmv_chi <- jmv::contTablesPaired(
@@ -302,15 +311,17 @@ subtitle_contigency_tab <- function(data,
         ),
       env = base::list(
         y = stat.title,
-        estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_chi$test)$`value[mcn]`[[1]], k),
+        estimate = ggstatsplot::specify_decimal_p(
+          x = as.data.frame(jmv_chi$test)$`value[mcn]`[[1]],
+          k = k,
+          p.value = FALSE
+        ),
         df = as.data.frame(jmv_chi$test)$`df[mcn]`[[1]],
-        # df always an integer
         pvalue = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_chi$test)$`p[mcn]`[[1]],
-          k,
+          k = k,
           p.value = TRUE
         ),
-        # select odds ratio as effect size
         or = ggstatsplot::specify_decimal_p(x = log(
           x = or_df$estimate, base = exp(1)
         ), k),
@@ -343,16 +354,16 @@ subtitle_contigency_tab <- function(data,
 #' @inheritParams subtitle_contigency_tab
 #'
 #' @examples
-#'
+#' 
 #' # with counts
 #' library(jmv)
-#'
+#' 
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#'
+#' 
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),
@@ -378,7 +389,7 @@ subtitle_onesample_proptest <-
         ))[1]
     }
 
-    # =================== dataframe =============================================
+    # =================== dataframe ========================================
 
     if (base::missing(counts)) {
       data <-
@@ -397,7 +408,7 @@ subtitle_onesample_proptest <-
         tibble::as_data_frame(x = .)
     }
 
-    # ========================== converting counts ================================
+    # ====================== converting counts ================================
 
     # untable the dataframe based on the count for each obervation
     if (!base::missing(counts)) {
@@ -411,7 +422,7 @@ subtitle_onesample_proptest <-
         tibble::as_data_frame(.)
     }
 
-    # ================================= statistical test =========================
+    # ============================= statistical test =========================
 
     # conducting proportion test with jmv::propTestN()
     jmv_prop <- jmv::propTestN(
@@ -463,12 +474,15 @@ subtitle_onesample_proptest <-
               n
             ),
           env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = as.data.frame(jmv_prop$tests)[[1]], k),
+            estimate = ggstatsplot::specify_decimal_p(
+              x = as.data.frame(jmv_prop$tests)[[1]],
+              k = k,
+              p.value = FALSE
+            ),
             df = base::as.data.frame(jmv_prop$tests)[[2]],
-            # df is always an integer
             pvalue = ggstatsplot::specify_decimal_p(
               x = as.data.frame(jmv_prop$tests)[[3]],
-              k,
+              k = k,
               p.value = TRUE
             ),
             n = nrow(x = data)
