@@ -60,7 +60,6 @@ normality_message <- function(x,
         crayon::blue(
           "Shapiro-Wilk Normality Test for",
           crayon::yellow(lab),
-          # entered y argument
           ": p-value = "
         ),
         crayon::yellow(
@@ -183,7 +182,6 @@ bartlett_message <- function(data,
       crayon::blue(
         "Bartlett's test for homogeneity of variances for factor",
         crayon::yellow(lab),
-        # entered x argument
         ": p-value = "
       ),
       crayon::yellow(
@@ -217,10 +215,8 @@ bartlett_message <- function(data,
 grouped_message <- function() {
   base::message(cat(
     crayon::red("Warning: "),
-    crayon::blue(
-      "Plots from `grouped_` functions are not `ggplot` objects.\n
-      Therefore, they can't be further modified with `ggplot2` functions.\n"
-    ),
+    crayon::blue("Plots from `grouped_` functions are not `ggplot` objects \n"),
+    crayon::blue("and can't be further modified with `ggplot2` functions.\n"),
     sep = ""
   ))
 }
@@ -257,10 +253,33 @@ palette_message <- function(package, palette, min_length) {
     base::message(cat(
       crayon::red("Warning: "),
       crayon::blue(
-        "No. of factor levels is greater than specified palette color count.\n",
-        "Try using another color `palette` (and/or `package`).\n"
+        "No. of factor levels is greater than specified palette color count.\n"
       ),
-      sep = ""
-    ))
+      crayon::blue("Try using another color `palette` (and/or `package`).\n")
+    ),
+    sep = ""
+    )
   }
+}
+
+
+#' @title Message to display when adjusted p-values are displayed in correlation
+#'   matrix.
+#'
+#' @name ggcorrmat_matrix_message
+#'
+#' @keywords internal
+
+ggcorrmat_matrix_message <- function() {
+  base::message(
+    cat(
+      crayon::green("Note: "),
+      crayon::blue("In the correlation matrix,\n"),
+      crayon::blue(
+        "the upper triangle: p-values adjusted for multiple comparisons\n"
+      ),
+      crayon::blue("the lower triangle: unadjusted p-values.\n"),
+      sep = ""
+    )
+  )
 }

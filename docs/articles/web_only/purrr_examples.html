@@ -252,35 +252,7 @@
 <a class="sourceLine" id="cb2-41" data-line-number="41">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb2-42" data-line-number="42">  ),</a>
 <a class="sourceLine" id="cb2-43" data-line-number="43">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
-<a class="sourceLine" id="cb2-44" data-line-number="44">)</a>
-<a class="sourceLine" id="cb2-45" data-line-number="45"><span class="co">#&gt; Error: Identical variable ( [[ ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) used for both grouping and outlier labeling, which is not allowed.# A tibble: 6 x 7</span></a>
-<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="co">#&gt;   group1   group2   psihat ci.lower ci.upper      p.value significance</span></a>
-<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;       </span></a>
-<a class="sourceLine" id="cb2-48" data-line-number="48"><span class="co">#&gt; 1 Africa   Europe   -25.1   -27.8     -22.4  0            ***         </span></a>
-<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="co">#&gt; 2 Africa   Americas -15.6   -21.0     -10.3  0.0000000168 ***         </span></a>
-<a class="sourceLine" id="cb2-50" data-line-number="50"><span class="co">#&gt; 3 Asia     Europe   -15.4   -20.6     -10.2  0.0000000105 ***         </span></a>
-<a class="sourceLine" id="cb2-51" data-line-number="51"><span class="co">#&gt; 4 Africa   Asia      -9.67  -15.1      -4.26 0.0000340    ***         </span></a>
-<a class="sourceLine" id="cb2-52" data-line-number="52"><span class="co">#&gt; 5 Americas Europe    -9.45  -14.6      -4.31 0.0000453    ***         </span></a>
-<a class="sourceLine" id="cb2-53" data-line-number="53"><span class="co">#&gt; 6 Americas Asia       5.96   -0.807    12.7  0.0197       *           </span></a>
-<a class="sourceLine" id="cb2-54" data-line-number="54"><span class="co">#&gt; Error: Identical variable ( [[ ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) used for both grouping and outlier labeling, which is not allowed.# A tibble: 6 x 10</span></a>
-<a class="sourceLine" id="cb2-55" data-line-number="55"><span class="co">#&gt;   group1 group2 mean.difference low.conf high.conf    se t.value    df</span></a>
-<a class="sourceLine" id="cb2-56" data-line-number="56"><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb2-57" data-line-number="57"><span class="co">#&gt; 1 Asia   Europe            8.79     4.67     12.9  1.09     5.70  42.1</span></a>
-<a class="sourceLine" id="cb2-58" data-line-number="58"><span class="co">#&gt; 2 Asia   Africa          -11.5    -16.2      -6.77 1.27     6.40  66.1</span></a>
-<a class="sourceLine" id="cb2-59" data-line-number="59"><span class="co">#&gt; 3 Asia   Ameri~            3.24    -1.63      8.11 1.30     1.76  55.8</span></a>
-<a class="sourceLine" id="cb2-60" data-line-number="60"><span class="co">#&gt; 4 Europe Africa          -20.3    -23.5     -17.1  0.873   16.4   73.5</span></a>
-<a class="sourceLine" id="cb2-61" data-line-number="61"><span class="co">#&gt; 5 Europe Ameri~           -5.55    -9.05     -2.06 0.917    4.28  35.6</span></a>
-<a class="sourceLine" id="cb2-62" data-line-number="62"><span class="co">#&gt; 6 Africa Ameri~           14.7     10.5      19.0  1.13     9.26  62.3</span></a>
-<a class="sourceLine" id="cb2-63" data-line-number="63"><span class="co">#&gt; # ... with 2 more variables: p.value &lt;dbl&gt;, significance &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb2-64" data-line-number="64"><span class="co">#&gt; Error: Identical variable ( [[ ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( .l ) used for both grouping and outlier labeling, which is not allowed.Identical variable ( c(2, 1) ) used for both grouping and outlier labeling, which is not allowed.# A tibble: 6 x 5</span></a>
-<a class="sourceLine" id="cb2-65" data-line-number="65"><span class="co">#&gt;   group1   group2        W       p.value significance</span></a>
-<a class="sourceLine" id="cb2-66" data-line-number="66"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       </span></a>
-<a class="sourceLine" id="cb2-67" data-line-number="67"><span class="co">#&gt; 1 Africa   Americas   8.75 0.00000000180 ***         </span></a>
-<a class="sourceLine" id="cb2-68" data-line-number="68"><span class="co">#&gt; 2 Africa   Asia       8.44 0.00000000477 ***         </span></a>
-<a class="sourceLine" id="cb2-69" data-line-number="69"><span class="co">#&gt; 3 Africa   Europe    10.3  0             ***         </span></a>
-<a class="sourceLine" id="cb2-70" data-line-number="70"><span class="co">#&gt; 4 Americas Asia      -1.77 0.212         ns          </span></a>
-<a class="sourceLine" id="cb2-71" data-line-number="71"><span class="co">#&gt; 5 Americas Europe     5.26 0.000241      ***         </span></a>
-<a class="sourceLine" id="cb2-72" data-line-number="72"><span class="co">#&gt; 6 Asia     Europe     5.82 0.0000582     ***</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-44" data-line-number="44">)</a></code></pre></div>
 <p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
@@ -419,38 +391,30 @@
 <a class="sourceLine" id="cb5-54" data-line-number="54">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggcorrmat</a>
 <a class="sourceLine" id="cb5-55" data-line-number="55">)</a>
 <a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
-<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt;             the upper triangle: p-values adjusted for multiple comparisons</span></a>
-<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt;             the lower triangle: unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
-<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt;             the upper triangle: p-values adjusted for multiple comparisons</span></a>
-<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt;             the lower triangle: unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
-<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-68" data-line-number="68"><span class="co">#&gt;             the upper triangle: p-values adjusted for multiple comparisons</span></a>
-<a class="sourceLine" id="cb5-69" data-line-number="69"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-70" data-line-number="70"><span class="co">#&gt;             the lower triangle: unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb5-71" data-line-number="71"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
-<a class="sourceLine" id="cb5-72" data-line-number="72"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-73" data-line-number="73"><span class="co">#&gt;             the upper triangle: p-values adjusted for multiple comparisons</span></a>
-<a class="sourceLine" id="cb5-74" data-line-number="74"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-75" data-line-number="75"><span class="co">#&gt;             the lower triangle: unadjusted p-values.</span></a>
-<a class="sourceLine" id="cb5-76" data-line-number="76"></a>
-<a class="sourceLine" id="cb5-77" data-line-number="77"><span class="co"># combining all individual plots from the list into a single plot using</span></a>
-<a class="sourceLine" id="cb5-78" data-line-number="78"><span class="co"># `combine_plots` function</span></a>
-<a class="sourceLine" id="cb5-79" data-line-number="79">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb5-80" data-line-number="80">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb5-81" data-line-number="81">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
-<a class="sourceLine" id="cb5-82" data-line-number="82">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb5-83" data-line-number="83">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb5-84" data-line-number="84">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
-<a class="sourceLine" id="cb5-85" data-line-number="85">  <span class="dt">caption.size =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb5-86" data-line-number="86">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
-<a class="sourceLine" id="cb5-87" data-line-number="87">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-88" data-line-number="88">)</a></code></pre></div>
+<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
+<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
+<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt; Note: In the correlation matrix,</span></a>
+<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></a>
+<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></a>
+<a class="sourceLine" id="cb5-68" data-line-number="68"></a>
+<a class="sourceLine" id="cb5-69" data-line-number="69"><span class="co"># combining all individual plots from the list into a single plot using</span></a>
+<a class="sourceLine" id="cb5-70" data-line-number="70"><span class="co"># `combine_plots` function</span></a>
+<a class="sourceLine" id="cb5-71" data-line-number="71">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb5-72" data-line-number="72">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb5-73" data-line-number="73">  <span class="dt">title.text =</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,</a>
+<a class="sourceLine" id="cb5-74" data-line-number="74">  <span class="dt">title.size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb5-75" data-line-number="75">  <span class="dt">title.color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb5-76" data-line-number="76">  <span class="dt">caption.text =</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</a>
+<a class="sourceLine" id="cb5-77" data-line-number="77">  <span class="dt">caption.size =</span> <span class="dv">12</span>,</a>
+<a class="sourceLine" id="cb5-78" data-line-number="78">  <span class="dt">caption.color =</span> <span class="st">"blue"</span>,</a>
+<a class="sourceLine" id="cb5-79" data-line-number="79">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb5-80" data-line-number="80">)</a></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggcorrmat-1.png" width="960"></p>
 </div>
 <div id="gghistostats" class="section level1">

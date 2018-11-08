@@ -40,6 +40,9 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat_matrix_message.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html</loc>
   </url>
   <url>
@@ -97,7 +100,13 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/numdf_n_summary.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/p.adjust.method.description.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p_caption.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/palette_message.html</loc>

@@ -98,7 +98,6 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
-#' @importFrom magrittr "%$%"
 #' @importFrom ggsignif geom_signif
 #' @importFrom purrrlyr by_row
 #'
@@ -131,10 +130,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -144,7 +143,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#'
+#' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -213,25 +212,25 @@ ggbetweenstats <- function(data,
 
   # ------------------------ checks -------------------------------------------
 
-  # create a list of function call to check for label.expression
-  param_list <- base::as.list(base::match.call())
-
-  # check that x and outlier.label are different
-  if (("x" %in% names(param_list)) &&
-    ("outlier.label" %in% names(param_list))) {
-    if (as.character(param_list$x)[[1]] ==
-      as.character(param_list$outlier.label)[[1]]) {
-      base::message(cat(
-        crayon::red("Error: "),
-        crayon::blue(
-          "Identical variable (",
-          crayon::yellow(param_list$x),
-          ") used for both grouping and outlier labeling, which is not allowed."
-        ),
-        sep = ""
-      ))
-    }
-  }
+  # # create a list of function call to check for label.expression
+  #   param_list <- base::as.list(base::match.call())
+  #
+  #   # check that x and outlier.label are different
+  #   if (("x" %in% names(param_list)) &&
+  #     ("outlier.label" %in% names(param_list))) {
+  #     if (as.character(param_list$x)[[1]] ==
+  #       as.character(param_list$outlier.label)[[1]]) {
+  #       base::message(cat(
+  #         crayon::red("Error: "),
+  #         crayon::blue(
+  #           "Identical variable (",
+  #           crayon::yellow(param_list$x),
+  #           ") used for both grouping and outlier labeling, which is not allowed."
+  #         ),
+  #         sep = ""
+  #       ))
+  #     }
+  #   }
 
   # ------------------------------ variable names ----------------------------
 
@@ -460,44 +459,6 @@ ggbetweenstats <- function(data,
     }
   }
 
-  # ------------------------ annotations and themes -------------------------
-
-  # specifying theme and labels for the final plot
-  plot <- plot +
-    ggplot2::labs(
-      x = xlab,
-      y = ylab,
-      title = title,
-      subtitle = subtitle,
-      caption = caption,
-      color = lab.df[1]
-    ) +
-    ggstatsplot::theme_mprl(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
-    ggplot2::theme(legend.position = "none")
-
-  # don't do scale restriction in case of post hoc comparisons
-  if (!isTRUE(pairwise.comparisons)) {
-    plot <- plot +
-      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-      ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
-  }
-
-  # choosing palette
-  plot <- plot +
-    paletteer::scale_color_paletteer_d(
-      package = !!package,
-      palette = !!palette,
-      direction = direction
-    ) +
-    paletteer::scale_fill_paletteer_d(
-      package = !!package,
-      palette = !!palette,
-      direction = direction
-    )
-
   # ---------------------------- outlier tagging -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
@@ -602,7 +563,7 @@ ggbetweenstats <- function(data,
       ggplot2::scale_x_discrete(labels = c(unique(data_label$n_label)))
   }
 
-  # ggsignif labels ------------------------------------------------------------
+  # ggsignif labels -----------------------------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
@@ -616,13 +577,22 @@ ggbetweenstats <- function(data,
         paired = FALSE,
         var.equal = var.equal,
         p.adjust.method = p.adjust.method,
-        messages = messages
-      ) %$%
-      print(.) %>%
-      purrrlyr::by_row(.d = .,
-                       ..f = ~c(.$group1, .$group2),
-                       .collate = "list",
-                       .to = "groups") %>%
+        messages = FALSE
+      )
+
+    # display the results if needed
+    if (isTRUE(messages)) {
+      print(df_pairwise)
+    }
+
+    # creating a column for group combinations
+    df_pairwise %<>%
+      purrrlyr::by_row(
+        .d = .,
+        ..f = ~ c(.$group1, .$group2),
+        .collate = "list",
+        .to = "groups"
+      ) %>%
       dplyr::filter(.data = ., significance != "ns")
 
     # proceed only if there are any significant comparisons to display
@@ -632,8 +602,8 @@ ggbetweenstats <- function(data,
       df_pairwise %<>%
         dplyr::arrange(.data = ., group1)
 
-      # retaining data corresponding to the levels of the grouping variable for which
-      # the comparisons are to be drawn
+      # retaining data corresponding to the levels of the grouping variable for
+      # which the comparisons are to be drawn
       data_ggsignif <-
         dplyr::filter(.data = data, x %in%
           unique(x = c(levels(
@@ -666,7 +636,55 @@ ggbetweenstats <- function(data,
           na.rm = TRUE
         )
     }
+
+    # preparing the caption for pairwise comparisons test
+    caption <-
+      pairwise_p_caption(
+        type = type,
+        var.equal = var.equal,
+        paired = FALSE,
+        p.adjust.method = p.adjust.method,
+        caption = caption
+      )
   }
+
+  # ------------------------ annotations and themes -------------------------
+
+  # specifying theme and labels for the final plot
+  plot <- plot +
+    ggplot2::labs(
+      x = xlab,
+      y = ylab,
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
+      color = lab.df[1]
+    ) +
+    ggstatsplot::theme_mprl(
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer
+    ) +
+    ggplot2::theme(legend.position = "none")
+
+  # don't do scale restriction in case of post hoc comparisons
+  if (!isTRUE(pairwise.comparisons)) {
+    plot <- plot +
+      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
+      ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+  }
+
+  # choosing palette
+  plot <- plot +
+    paletteer::scale_color_paletteer_d(
+      package = !!package,
+      palette = !!palette,
+      direction = direction
+    ) +
+    paletteer::scale_fill_paletteer_d(
+      package = !!package,
+      palette = !!palette,
+      direction = direction
+    )
 
   # --------------------- messages ------------------------------------------
 

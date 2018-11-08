@@ -234,7 +234,8 @@ grouped_ggcorrmat <- function(data,
               continuity = continuity,
               beta = beta,
               digits = digits,
-              sig.level = sig.level
+              sig.level = sig.level,
+              messages = messages
             )
           )
       )

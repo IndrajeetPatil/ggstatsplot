@@ -176,7 +176,7 @@ The final step is to pass the `plot_list` object we just created to the
 information `combine_plots` gives us an opportunity to add additional details to
 the merged plots and specify the layout in rows and columns.
 
-```{r purrr_ggbetweenstats3, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
+```{r purrr_ggbetweenstats3, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,

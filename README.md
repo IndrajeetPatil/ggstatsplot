@@ -233,7 +233,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002a097b80>
+#> <bytecode: 0x000000002a843c78>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -398,34 +398,6 @@ ggstatsplot::grouped_ggbetweenstats(
   ncol = 2,
   title.text = "Differences in movie length by mpaa ratings for different genres"
 )
-#> # A tibble: 3 x 10
-#>   group1 group2 mean.difference low.conf high.conf    se t.value    df
-#>   <chr>  <chr>            <dbl>    <dbl>     <dbl> <dbl>   <dbl> <dbl>
-#> 1 PG-13  PG              -10     -18.3       -1.65  2.48    2.86  85.6
-#> 2 PG-13  R                -2.67   -8.75       3.40  1.82    1.04 303. 
-#> 3 PG     R                 7.33   -0.319     15.0   2.25    2.30  62.2
-#> # ... with 2 more variables: p.value <dbl>, significance <chr>
-#> # A tibble: 3 x 10
-#>   group1 group2 mean.difference low.conf high.conf    se t.value    df
-#>   <chr>  <chr>            <dbl>    <dbl>     <dbl> <dbl>   <dbl> <dbl>
-#> 1 PG     R                4.91      2.03      7.78 0.864   4.02   259.
-#> 2 PG     PG-13            5.40      2.29      8.50 0.933   4.09   305.
-#> 3 R      PG-13            0.489    -2.10      3.08 0.779   0.444  539.
-#> # ... with 2 more variables: p.value <dbl>, significance <chr>
-#> # A tibble: 3 x 10
-#>   group1 group2 mean.difference low.conf high.conf    se t.value    df
-#>   <chr>  <chr>            <dbl>    <dbl>     <dbl> <dbl>   <dbl> <dbl>
-#> 1 R      PG-13             2.00    -1.84      5.83  1.15    1.22  485.
-#> 2 R      PG               -3.29    -9.22      2.64  1.76    1.32  103.
-#> 3 PG-13  PG               -5.28   -11.6       1.06  1.89    1.97  133.
-#> # ... with 2 more variables: p.value <dbl>, significance <chr>
-#> # A tibble: 3 x 10
-#>   group1 group2 mean.difference low.conf high.conf    se t.value    df
-#>   <chr>  <chr>            <dbl>    <dbl>     <dbl> <dbl>   <dbl> <dbl>
-#> 1 R      PG                1.72    -7.82     11.3   2.80   0.434  53.2
-#> 2 R      PG-13             3.25    -2.31      8.82  1.67   1.38  277. 
-#> 3 PG     PG-13             1.53    -8.18     11.2   2.85   0.38   57.1
-#> # ... with 2 more variables: p.value <dbl>, significance <chr>
 ```
 
 <img src="man/figures/README-ggbetweenstats3-1.png" width="100%" />
@@ -544,6 +516,7 @@ ggstatsplot::grouped_ggscatterstats(
   x = rating, 
   y = length,
   bf.message = TRUE,               # display bayes factor message
+  k = 2,                           # no. of decimal places in the results
   xfill = "#E69F00", 
   yfill = "#8b3058",
   xlab = "IMDB rating",
@@ -801,10 +774,8 @@ ggstatsplot::ggcorrmat(
   subtitle = "sleep units: hours; weight units: kilograms"
 )
 #> Note: In the correlation matrix,
-#> 
-#>             the upper triangle: p-values adjusted for multiple comparisons
-#> 
-#>             the lower triangle: unadjusted p-values.
+#> the upper triangle: p-values adjusted for multiple comparisons
+#> the lower triangle: unadjusted p-values.
 ```
 
 <img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
@@ -848,10 +819,8 @@ ggstatsplot::ggcorrmat(
   p.adjust.method = "holm"
 )
 #> Note: In the correlation matrix,
-#> 
-#>             the upper triangle: p-values adjusted for multiple comparisons
-#> 
-#>             the lower triangle: unadjusted p-values.
+#> the upper triangle: p-values adjusted for multiple comparisons
+#> the lower triangle: unadjusted p-values.
 #> # A tibble: 6 x 7
 #>   variable  sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt
 #>   <chr>           <dbl>     <dbl>       <dbl>     <dbl>     <dbl>     <dbl>

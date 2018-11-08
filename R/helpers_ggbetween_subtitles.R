@@ -6,37 +6,38 @@ bf_message_ttest <- function(jmv_results,
                              caption) {
 
   # prepare the bayes factor message
-  bf_message <- base::substitute(
-    atop(
-      top.text,
-      expr =
-        paste(
-          "In favor of null: ",
-          "log"["e"],
-          "(BF"["01"],
-          ") = ",
-          bf,
-          ", Prior width = ",
-          bf_prior
-        )
-    ),
-    env = base::list(
-      top.text = caption,
-      bf = ggstatsplot::specify_decimal_p(
-        x = log(
-          x = (1 / as.data.frame(jmv_results$ttest)$`stat[bf]`),
-          base = exp(1)
-        ),
-        k = 1,
-        p.value = FALSE
+  bf_message <-
+    base::substitute(
+      atop(
+        top.text,
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", Prior width = ",
+            bf_prior
+          )
       ),
-      bf_prior = ggstatsplot::specify_decimal_p(
-        x = bf.prior,
-        k = 3,
-        p.value = FALSE
+      env = base::list(
+        top.text = caption,
+        bf = ggstatsplot::specify_decimal_p(
+          x = log(
+            x = (1 / as.data.frame(jmv_results$ttest)$`stat[bf]`),
+            base = exp(1)
+          ),
+          k = 1,
+          p.value = FALSE
+        ),
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf.prior,
+          k = 3,
+          p.value = FALSE
+        )
       )
     )
-  )
 
   # return the message
   return(bf_message)

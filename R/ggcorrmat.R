@@ -425,20 +425,6 @@ ggcorrmat <-
         if (is.null(caption) &&
           pch == 4 && isTRUE(caption.default)) {
 
-          # preparing text for which p-value adjustment method was used
-          p.adjust.method.description <- function(p.adjust.method) {
-            switch(p.adjust.method,
-              none = "None",
-              bonferroni = "Bonferroni",
-              holm = "Holm",
-              hochberg = "Hochberg",
-              hommel = "Hommel",
-              BH = "Benjamini & Hochberg",
-              fdr = "Benjamini & Hochberg",
-              BY = "Benjamini & Yekutieli"
-            )
-          }
-
           # p value adjustment method description
           p.adjust.method.text <-
             paste(
@@ -449,23 +435,24 @@ ggcorrmat <-
             )
 
           # preparing the caption
-          caption <- base::substitute(
-            atop(
-              expr = paste(
-                bold("X"),
-                " = correlation non-significant at ",
-                italic("p"),
-                " < ",
-                sig.level,
-                sep = ""
+          caption <-
+            base::substitute(
+              atop(
+                expr = paste(
+                  bold("X"),
+                  " = correlation non-significant at ",
+                  italic("p"),
+                  " < ",
+                  sig.level,
+                  sep = ""
+                ),
+                bottom.text
               ),
-              bottom.text
-            ),
-            env = list(
-              sig.level = sig.level,
-              bottom.text = p.adjust.method.text
+              env = list(
+                sig.level = sig.level,
+                bottom.text = p.adjust.method.text
+              )
             )
-          )
         }
 
         # adding text details to the plot
@@ -535,15 +522,7 @@ ggcorrmat <-
 
       # if p-values were adjusted, notify how they are going to be displayed
       if (p.adjust.method != "none" && isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue(
-            "In the correlation matrix,\n
-            the upper triangle: p-values adjusted for multiple comparisons\n
-            the lower triangle: unadjusted p-values.\n"
-          ),
-          sep = ""
-        ))
+        ggcorrmat_matrix_message()
       }
 
       # p-value matrix
@@ -582,15 +561,7 @@ ggcorrmat <-
 
       # if p-values were adjusted, notify how they are going to be displayed
       if (p.adjust.method != "none" && isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue(
-            "In the correlation matrix,\n
-            the upper triangle: p-values adjusted for multiple comparisons\n
-            the lower triangle: unadjusted p-values.\n"
-          ),
-          sep = ""
-        ))
+        ggcorrmat_matrix_message()
       }
 
       # correlalogram plot

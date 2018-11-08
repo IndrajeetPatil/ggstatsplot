@@ -81,7 +81,7 @@ games.howell <- function(data, x, y) {
     # sigma standard error
     se <-
       sqrt(x = 0.5 * (std[combs[1, x]] / n[combs[1, x]] +
-                        std[combs[2, x]] / n[combs[2, x]]))
+        std[combs[2, x]] / n[combs[2, x]]))
 
     # upper confidence limit for mean difference
     high.conf <- lapply(X = 1:ncol(combs), FUN = function(x) {

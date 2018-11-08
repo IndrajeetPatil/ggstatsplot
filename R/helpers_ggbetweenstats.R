@@ -196,12 +196,11 @@ long_to_wide_converter <- function(data, x, y) {
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams ggbetweenstats
-#' @inheritParams stats::p.adjust
 #' @inheritParams stats::t.test
 #' @inheritParams WRS2::rmmcp
 #'
 #' @importFrom dplyr select rename mutate mutate_if everything full_join
-#' @importFrom stats p.adjust pairwise.t.test pairwise.wilcox.test na.omit
+#' @importFrom stats p.adjust pairwise.t.test na.omit
 #' @importFrom stats aov TukeyHSD var sd
 #' @importFrom WRS2 lincon rmmcp
 #' @importFrom tidyr gather spread separate
@@ -216,10 +215,10 @@ long_to_wide_converter <- function(data, x, y) {
 #'
 #' @examples
 #' \dontrun{
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
@@ -231,7 +230,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#'
+#' 
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -242,7 +241,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#'
+#' 
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -251,7 +250,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   type = "np",
 #'   p.adjust.method = "none"
 #' )
-#'
+#' 
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -322,11 +321,7 @@ pairwise_p <-
                 p.adjust.method = p.adjust.method,
                 paired = paired,
                 alternative = "two.sided",
-                na.action = na.omit,
-                exact = FALSE,
-                correct = TRUE,
-                conf.int = TRUE,
-                conf.level = 0.95
+                na.action = na.omit
               )
             ) %>%
               ggstatsplot::signif_column(data = ., p = p.value),
@@ -416,7 +411,11 @@ pairwise_p <-
       } else if (isTRUE(paired)) {
 
         # converting the entered long format data to wide format
-        data_wide <- long_to_wide_converter(data = data, x = x, y = y)
+        data_wide <- long_to_wide_converter(
+          data = data,
+          x = x,
+          y = y
+        )
 
         # running Durbin-Conover test using `jmv` package
         jmv_pairs <-
@@ -471,10 +470,14 @@ pairwise_p <-
             tr = tr
           )
       } else if (isTRUE(paired)) {
-        # converting to long format and then getting it back in wide so that the rowid
-        # variable can be used as the block variable for WRS2 functions
+        # converting to long format and then getting it back in wide so that the
+        # rowid variable can be used as the block variable for WRS2 functions
         data_within <-
-          long_to_wide_converter(data = data, x = x, y = y) %>%
+          long_to_wide_converter(
+            data = data,
+            x = x,
+            y = y
+          ) %>%
           tidyr::gather(data = ., key, value, -rowid) %>%
           dplyr::arrange(.data = ., rowid)
 
@@ -555,6 +558,90 @@ pairwise_p <-
     # return
     return(df)
   }
+
+
+#' @title Preparing caption in case pairwise comparisons are displayed.
+#' @name pairwise_p_caption
+#'
+#' @inheritParams pairwise_p
+#' @inheritParams ggbetweenstats
+#'
+#' @keywords internal
+
+pairwise_p_caption <- function(type,
+                               var.equal,
+                               paired,
+                               p.adjust.method,
+                               caption = NULL) {
+
+  # ======================= pairwise test run ==============================
+
+  # figuring out type of test needed to run
+  test.type <- switch(
+    EXPR = type,
+    parametric = "p",
+    p = "p",
+    robust = "r",
+    r = "r",
+    nonparametric = "np",
+    np = "np",
+    bayes = "bf",
+    bf = "bf"
+  )
+
+  # figuring out which pairwise comparison test was run
+  if (test.type == "p") {
+    if (isTRUE(paired)) {
+      test.description <- "Student's t-test"
+    } else if (!isTRUE(paired)) {
+      if (!isTRUE(var.equal)) {
+        test.description <- "Games-Howell test"
+      } else {
+        test.description <- "Student's t-test"
+      }
+    }
+  } else if (test.type == "np") {
+    if (isTRUE(paired)) {
+      test.description <- "Durbin-Conover test"
+    } else {
+      test.description <- "Dwass-Steel-Crichtlow-Fligner test"
+    }
+  } else if (test.type == "r") {
+    test.description <- "Yuen's trimmed means test"
+  }
+
+  # ======================= adjustment method ==============================
+
+  # p value adjustment method description
+  p.adjust.method.text <-
+    p.adjust.method.description(p.adjust.method = p.adjust.method)
+
+  # ==================== combining into a caption ==========================
+
+  # prepare the bayes factor message
+  pairwise_caption <-
+    base::substitute(
+      atop(
+        top.text,
+        expr =
+          paste(
+            "Pairwise comparisons: ",
+            bold(test.description),
+            "; Adjustment (p-value): ",
+            bold(p.adjust.method.text)
+          )
+      ),
+      env = base::list(
+        top.text = caption,
+        test.description = test.description,
+        p.adjust.method.text = p.adjust.method.text
+      )
+    )
+
+  # return the caption
+  return(pairwise_caption)
+}
+
 
 #' @title Calculating `y` coordinates for the `ggsignif` comparison bars.
 #' @inheritParams ggbetweenstats
