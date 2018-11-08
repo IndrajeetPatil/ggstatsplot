@@ -132,7 +132,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-11-05</h4>
+            <h4 class="date">2018-11-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggbetweenstats.Rmd"><code>vignettes/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -154,7 +154,7 @@
 </h2>
 <p>To illustrate how this function can be used, we will use the <code>gapminder</code> dataset throughout this vignette. This dataset provides values for life expectancy, GDP per capita, and population, at 5 year intervals, from 1952 to 2007, for each of 142 countries (courtesy <a href="https://www.gapminder.org/">Gapminder Foundation</a>). Let’s have a look at the data-</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(gapminder)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; Observations: 1,704</span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; Variables: 6</span></a>
@@ -181,7 +181,7 @@
 <a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats1-1.png" width="768"></p>
-<p><strong>Note</strong>: - The function automatically decides whether an independent samples t-test is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups) based on the number of levels in the grouping variable. - The output of the function is a <code>ggplot</code> object which means that it can be further modified.</p>
+<p><strong>Note</strong>: - The function automatically decides whether an independent samples <em>t</em>-test is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups). based on the number of levels in the grouping variable. - The output of the function is a <code>ggplot</code> object which means that it can be further modified with <code>ggplot2</code> functions.</p>
 <p>We can make the output much more aesthetically pleasing as well as informative by making use of the many optional parameters in <code>ggbetweenstats</code>. We’ll add a title and caption, better <code>x</code> and <code>y</code> axis labels, and tag and label the outliers in the data. We can and will change the overall theme as well as the color palette in use.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(gapminder)</a>

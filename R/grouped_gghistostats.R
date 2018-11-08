@@ -145,7 +145,7 @@ grouped_gghistostats <- function(data,
     dplyr::mutate(
       .data = .,
       plots = data %>%
-        purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+        purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
         purrr::map(
           .x = .,
           .f = ~ ggstatsplot::gghistostats(

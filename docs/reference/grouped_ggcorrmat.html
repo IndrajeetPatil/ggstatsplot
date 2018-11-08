@@ -563,9 +563,7 @@ of p-values.</p>
 #&gt; 10 herbi awake             -1        -0.86        0.71  1       0.39   0.38
 #&gt; # ... with 14 more rows</div><div class='input'>
 <span class='co'># for getting confidence intervals</span>
-<span class='co'># if **robust** correlation is selected, confidence intervals will not be</span>
-<span class='co'># available</span>
-<span class='co'># it will work for all other correlation types</span>
+<span class='co'># confidence intervals are not available for **robust** correlation</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,

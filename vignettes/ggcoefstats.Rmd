@@ -270,7 +270,7 @@ ggstatsplot::combine_plots(
       data = movies_10,
       control = lme4::lmerControl(calc.derivs = FALSE)
     ),
-    p.kr = TRUE,                           # use Kenward-Roger approximation to compute p-values (fast)
+    p.kr = FALSE,
     title = "linear mixed-effects model",
     stats.label.color = "black",
     exclude.intercept = FALSE              # show the intercept
@@ -294,13 +294,11 @@ like to see these terms, you can enter the same object you entered as `x`
 argument to `ggcoefstats` in `broom::tidy`:
 
 ```{r lmer2, warning = FALSE, message = FALSE}
-library(ggstatsplot)
-
 # to speed up the calculation, let's use only 10% of the data
 movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
 
 # tidy output
-broom::tidy(
+broom.mixed::tidy(
   x = lme4::lmer(
     formula = scale(rating) ~ scale(budget) + (budget | genre),
     data = movies_10,

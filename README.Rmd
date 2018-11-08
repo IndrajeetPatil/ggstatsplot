@@ -29,7 +29,7 @@ Package | Status | Usage | GitHub | References
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/) | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/) | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues) | [![vignettes](https://img.shields.io/badge/vignettes-0.0.6-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/) | [![Covealls Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master) | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![manual](https://img.shields.io/badge/manual-0.0.6-darkgreen.svg)](https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) | [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master) | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot) | [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master) | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)
-[![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-`r gsub('-', '--', Sys.Date())`-brightgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md) | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil) | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
+[![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_11_07-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md) | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil) | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
 
 
 # Overview
@@ -285,7 +285,7 @@ ggstatsplot::ggbetweenstats(
   mean.ci = TRUE,                                 # whether to display confidence interval for means
   mean.label.size = 2.5,                          # size of the label for mean
   type = "p",                                     # which type of test is to be run
-  bf.message = TRUE,                              # add a message with bayes factor in favor of the null
+  bf.message = TRUE,                              # add a message with bayes factor favoring null
   k = 2,                                          # number of decimal places for statistical results
   outlier.tagging = TRUE,                         # whether outliers need to be tagged
   outlier.label = Sepal.Width,                    # variable to be used for the outlier tag
@@ -426,7 +426,7 @@ ggstatsplot::ggscatterstats(
   yfill = "#009E73",                              # color fill for y-axis marginal distribution
   xalpha = 0.6,                                   # transparency for x-axis marginal distribution
   yalpha = 0.6,                                   # transparency for y-axis marginal distribution
-  centrality.para = "median",                     # which type of central tendency lines are to be displayed  
+  centrality.para = "median",                     # central tendency lines to be displayed  
   point.width.jitter = 0.2,                       # amount of horizontal jitter for data points
   point.height.jitter = 0.4,                      # amount of vertical jitter for data points
   messages = FALSE                                # turn off messages and notes
@@ -654,7 +654,9 @@ For more, including information about the variant of this function
 `ggcorrmat` makes a correlalogram (a matrix of correlation coefficients) with
 minimal amount of code. Just sticking to the defaults itself produces
 publication-ready correlation matrices. But, for the sake of exploring the
-available options, let's change some of the defaults.
+available options, let's change some of the defaults. For example, multiple
+aesthetics-related arguments can be modified to change the appearance of the
+correlation matrix.
 
 ```{r ggcorrmat1, message = FALSE, warning = FALSE}
 # for reproducibility
@@ -681,9 +683,6 @@ ggstatsplot::ggcorrmat(
 Note that if there are `NA`s present in the selected dataframe, the legend will
 display minimum, median, and maximum number of pairs used for correlation
 matrices.
-
-Multiple aesthetics-related arguments can be modified to change the appearance
-of the correlation matrix.
 
 Alternatively, you can use it just to get the correlation matrices and their
 corresponding *p*-values (in a `tibble` format).

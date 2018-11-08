@@ -5,7 +5,7 @@
 \title{Pairwise comparison tests}
 \usage{
 pairwise_p(data, x, y, type = "parametric", tr = 0.1, paired = FALSE,
-  p.adjust.method = "holm", messages = TRUE, ...)
+  var.equal = FALSE, p.adjust.method = "holm", messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -29,6 +29,13 @@ try to play around with the value of \code{tr}, which is by default set to
 \item{paired}{a logical indicating whether you want a paired
     t-test.}
 
+\item{var.equal}{a logical variable indicating whether to treat the
+    variances in the samples as equal.  If \code{TRUE}, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If \code{FALSE}, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.}
+
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
@@ -49,11 +56,25 @@ corrections for multiple testing.
 set.seed(123)
 
 # parametric
+# if `var.equal = TRUE`, then Student's *t*-test will be run
 ggstatsplot::pairwise_p(
   data = ggplot2::msleep,
   x = vore,
   y = brainwt,
   type = "p",
+  var.equal = TRUE,
+  paired = FALSE,
+  p.adjust.method = "bonferroni"
+)
+
+# if `var.equal = FALSE`, then Games-Howell test will be run
+ggstatsplot::pairwise_p(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "p",
+  var.equal = FALSE,
+  paired = FALSE,
   p.adjust.method = "bonferroni"
 )
 
@@ -77,7 +98,7 @@ ggstatsplot::pairwise_p(
 }
 }
 \seealso{
-\code{\link{ggbetweenstats}}
+\code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}
 
 Other helper_messages: \code{\link{bartlett_message}},
   \code{\link{grouped_message}},

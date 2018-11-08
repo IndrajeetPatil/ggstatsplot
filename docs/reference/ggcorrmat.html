@@ -450,14 +450,14 @@ of p-values.</p>
 #&gt;             the upper triangle: p-values adjusted for multiple comparisons
 #&gt; 
 #&gt;             the lower triangle: unadjusted p-values.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 6 x 7
-#&gt;   variable    sleep_total sleep_rem sleep_cycle    awake  brainwt   bodywt
-#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 sleep_total    0.        6.11e-12    3.43e- 2 0.       6.79e- 5 3.85e- 6
-#&gt; 2 sleep_rem      4.07e-13  0.          2.97e- 1 6.11e-12 7.27e- 2 1.13e- 2
-#&gt; 3 sleep_cycle    2.28e- 3  1.98e- 2    0.       3.43e- 2 2.23e- 9 3.18e- 5
-#&gt; 4 awake          0.        4.07e-13    2.28e- 3 0.       6.79e- 5 3.85e- 6
-#&gt; 5 brainwt        4.53e- 6  4.85e- 3    1.49e-10 4.53e- 6 0.       4.83e-17
-#&gt; 6 bodywt         2.57e- 7  7.52e- 4    2.12e- 6 2.57e- 7 3.22e-18 0.      </div><div class='input'>
+#&gt;   variable    sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt
+#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+#&gt; 1 sleep_total   0.        6.105e-12   3.427e- 2 0.        6.792e- 5 3.851e- 6
+#&gt; 2 sleep_rem     4.070e-13 0.          2.967e- 1 6.105e-12 7.274e- 2 1.129e- 2
+#&gt; 3 sleep_cycle   2.285e- 3 1.978e- 2   0.        3.427e- 2 2.232e- 9 3.180e- 5
+#&gt; 4 awake         0.        4.070e-13   2.285e- 3 0.        6.792e- 5 3.851e- 6
+#&gt; 5 brainwt       4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.831e-17
+#&gt; 6 bodywt        2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.       </div><div class='input'>
 <span class='co'># setting `output = "ci"` will return the confidence intervals for unique</span>
 <span class='co'># correlation pairs</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(
@@ -466,23 +466,23 @@ of p-values.</p>
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"BH"</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"ci"</span>
 )</div><div class='output co'>#&gt; # A tibble: 15 x 7
-#&gt;    pair             r   lower   upper         p lower.adj upper.adj
-#&gt;    &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-#&gt;  1 slp_t-slp_r  0.752  0.617   0.844  2.92e- 12   0.531     0.877  
-#&gt;  2 slp_t-slp_c -0.474 -0.706  -0.150  6.17e-  3  -0.786     0.0302 
-#&gt;  3 slp_t-awake -1.000 -1.000  -1.000  2.42e-226  -1.000    -1.000  
-#&gt;  4 slp_t-brnwt -0.360 -0.569  -0.108  6.35e-  3  -0.653     0.0257 
-#&gt;  5 slp_t-bdywt -0.312 -0.494  -0.103  4.09e-  3  -0.572     0.00539
-#&gt;  6 slp_r-slp_c -0.338 -0.614   0.0120 5.84e-  2  -0.715     0.191  
-#&gt;  7 slp_r-awake -0.752 -0.844  -0.617  2.91e- 12  -0.877    -0.531  
-#&gt;  8 slp_r-brnwt -0.221 -0.476   0.0670 1.31e-  1  -0.580     0.209  
-#&gt;  9 slp_r-bdywt -0.328 -0.535  -0.0826 9.95e-  3  -0.620     0.0452 
-#&gt; 10 slp_c-awake  0.474  0.150   0.706  6.17e-  3  -0.0302    0.786  
-#&gt; 11 slp_c-brnwt  0.852  0.709   0.927  2.42e-  9   0.603     0.950  
-#&gt; 12 slp_c-bdywt  0.418  0.0809  0.669  1.73e-  2  -0.0997    0.757  
-#&gt; 13 awake-brnwt  0.360  0.108   0.569  6.35e-  3  -0.0257    0.653  
-#&gt; 14 awake-bdywt  0.312  0.103   0.494  4.09e-  3  -0.00543   0.572  
-#&gt; 15 brnwt-bdywt  0.934  0.889   0.961  9.16e- 26   0.858     0.970  </div><div class='input'>
+#&gt;    pair              r    lower    upper          p lower.adj upper.adj
+#&gt;    &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+#&gt;  1 slp_t-slp_r  0.7518  0.6167   0.8438  2.916e- 12  0.5310    0.8769  
+#&gt;  2 slp_t-slp_c -0.4737 -0.7058  -0.1498  6.169e-  3 -0.7856    0.03020 
+#&gt;  3 slp_t-awake -1.0000 -1.0000  -1.0000  2.419e-226 -1.0000   -1.0000  
+#&gt;  4 slp_t-brnwt -0.3605 -0.5694  -0.1078  6.348e-  3 -0.6531    0.02573 
+#&gt;  5 slp_t-bdywt -0.3120 -0.4944  -0.1033  4.085e-  3 -0.5723    0.005394
+#&gt;  6 slp_r-slp_c -0.3381 -0.6144   0.01198 5.839e-  2 -0.7148    0.1907  
+#&gt;  7 slp_r-awake -0.7518 -0.8438  -0.6167  2.911e- 12 -0.8770   -0.5310  
+#&gt;  8 slp_r-brnwt -0.2213 -0.4756   0.06701 1.306e-  1 -0.5801    0.2094  
+#&gt;  9 slp_r-bdywt -0.3277 -0.5353  -0.08265 9.947e-  3 -0.6204    0.04519 
+#&gt; 10 slp_c-awake  0.4737  0.1498   0.7058  6.169e-  3 -0.03020   0.7856  
+#&gt; 11 slp_c-brnwt  0.8516  0.7088   0.9274  2.420e-  9  0.6026    0.9495  
+#&gt; 12 slp_c-bdywt  0.4178  0.08089  0.6690  1.734e-  2 -0.09969   0.7574  
+#&gt; 13 awake-brnwt  0.3605  0.1078   0.5694  6.348e-  3 -0.02573   0.6531  
+#&gt; 14 awake-bdywt  0.3120  0.1032   0.4944  4.089e-  3 -0.005428  0.5723  
+#&gt; 15 brnwt-bdywt  0.9338  0.8892   0.9608  9.155e- 26  0.8575    0.9699  </div><div class='input'>
 <span class='co'># modifying elements of the correlation matrix by changing function defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html'>ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,

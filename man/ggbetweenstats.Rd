@@ -176,7 +176,8 @@ points for between-subjects designs with statistical details included in
 the plot as a subtitle.
 }
 \details{
-For parametric tests, Welch's ANOVA/\emph{t}-test are used as a default.
+For parametric tests, Welch's ANOVA/\emph{t}-test are used as a default (i.e.,
+\code{var.equal = FALSE}).
 References:
 \itemize{
 \item ANOVA: Delacre, Leys, Mora, & Lakens, \emph{PsyArXiv}, 2018
@@ -229,7 +230,8 @@ ggstatsplot::ggbetweenstats(
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 }
 \seealso{
-\code{\link{grouped_ggbetweenstats}}
+\code{\link{grouped_ggbetweenstats}},
+\code{\link{pairwise_p}}
 }
 \author{
 Indrajeet Patil

@@ -95,11 +95,13 @@
 #' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #'
-#' @seealso \code{\link{grouped_ggbetweenstats}}
+#' @seealso \code{\link{grouped_ggbetweenstats}},
+#'  \code{\link{pairwise_p}}
 #'
 #' @details
 #'
-#' For parametric tests, Welch's ANOVA/*t*-test are used as a default.
+#' For parametric tests, Welch's ANOVA/*t*-test are used as a default (i.e.,
+#' `var.equal = FALSE`).
 #' References:
 #' \itemize{
 #'  \item ANOVA: Delacre, Leys, Mora, & Lakens, *PsyArXiv*, 2018

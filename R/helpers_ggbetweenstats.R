@@ -157,6 +157,9 @@ long_to_wide_converter <- function(data, x, y) {
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
+  # figuring out number of levels in the grouping factor
+  x_n_levels <- length(levels(data$x))[[1]]
+
   # wide format
   data_wide <-
     data %>%
@@ -167,7 +170,7 @@ long_to_wide_converter <- function(data, x, y) {
     dplyr::group_by(.data = ., rowid) %>%
     dplyr::mutate(.data = ., n = dplyr::n()) %>%
     dplyr::ungroup(x = .) %>%
-    dplyr::filter(.data = ., n == 2) %>%
+    dplyr::filter(.data = ., n == x_n_levels) %>%
     dplyr::select(.data = ., x, y, rowid) %>%
     tidyr::spread(
       data = .,
@@ -196,15 +199,15 @@ long_to_wide_converter <- function(data, x, y) {
 #'
 #' @importFrom dplyr select rename mutate mutate_if everything full_join
 #' @importFrom stats p.adjust pairwise.t.test pairwise.wilcox.test na.omit
-#' @importFrom stats aov TukeyHSD
-#' @importFrom WRS2 lincon
+#' @importFrom stats aov TukeyHSD var sd
+#' @importFrom WRS2 lincon rmmcp
 #' @importFrom tidyr gather spread separate
 #' @importFrom rlang !! enquo
 #' @importFrom tibble as.tibble rowid_to_column
 #' @importFrom broom tidy
-#' @importFrom jmv anovaNP
+#' @importFrom jmv anovaNP anovaRMNP
 #'
-#' @seealso \code{\link{ggbetweenstats}}
+#' @seealso \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}
 #'
 #' @family helper_messages
 #'
@@ -215,11 +218,25 @@ long_to_wide_converter <- function(data, x, y) {
 #' set.seed(123)
 #' 
 #' # parametric
+#' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = brainwt,
 #'   type = "p",
+#'   var.equal = TRUE,
+#'   paired = FALSE,
+#'   p.adjust.method = "bonferroni"
+#' )
+#' 
+#' # if `var.equal = FALSE`, then Games-Howell test will be run
+#' ggstatsplot::pairwise_p(
+#'   data = ggplot2::msleep,
+#'   x = vore,
+#'   y = brainwt,
+#'   type = "p",
+#'   var.equal = FALSE,
+#'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
 #' 
@@ -251,6 +268,7 @@ pairwise_p <-
              type = "parametric",
              tr = 0.1,
              paired = FALSE,
+             var.equal = FALSE,
              p.adjust.method = "holm",
              messages = TRUE,
              ...) {
@@ -270,110 +288,208 @@ pairwise_p <-
         .vars = "x",
         .funs = ~ base::droplevels(x = base::as.factor(x = .))
       ) %>%
-      stats::na.omit(.) %>%
+      # stats::na.omit(.) %>%
       tibble::as.tibble(x = .)
 
     # ---------------------------- parametric ---------------------------------
     #
     if (type %in% c("parametric", "p")) {
-      df <-
-        dplyr::full_join(
-          # mean difference and its confidence intervals
-          x = stats::aov(formula = y ~ x, data = data) %>%
-            stats::TukeyHSD(x = .) %>%
-            broom::tidy(x = .) %>%
-            dplyr::select(
-              .data = .,
-              comparison, estimate, conf.low, conf.high
+      if (isTRUE(var.equal)) {
+        df <-
+          dplyr::full_join(
+            # mean difference and its confidence intervals
+            x = stats::aov(formula = y ~ x, data = data) %>%
+              stats::TukeyHSD(x = .) %>%
+              broom::tidy(x = .) %>%
+              dplyr::select(
+                .data = .,
+                comparison, estimate, conf.low, conf.high
+              ) %>%
+              tidyr::separate(
+                data = .,
+                col = comparison,
+                into = c("group1", "group2"),
+                sep = "-"
+              ) %>%
+              dplyr::rename(.data = ., mean.difference = estimate),
+            y = broom::tidy(
+              stats::pairwise.t.test(
+                x = data$y,
+                g = data$x,
+                p.adjust.method = p.adjust.method,
+                paired = paired,
+                alternative = "two.sided",
+                na.action = na.omit,
+                exact = FALSE,
+                correct = TRUE,
+                conf.int = TRUE,
+                conf.level = 0.95
+              )
             ) %>%
-            tidyr::separate(
-              data = .,
-              col = comparison,
-              into = c("group1", "group2"),
-              sep = "-"
-            ) %>%
-            dplyr::rename(.data = ., mean.difference = estimate),
-          y = broom::tidy(
-            stats::pairwise.t.test(
-              x = data$y,
-              g = data$x,
-              p.adjust.method = p.adjust.method,
-              paired = FALSE,
-              alternative = "two.sided",
-              na.action = na.omit,
-              exact = FALSE,
-              correct = TRUE,
-              conf.int = TRUE,
-              conf.level = 0.95
-            )
+              ggstatsplot::signif_column(data = ., p = p.value),
+            by = c("group1", "group2")
+          )
+
+        # display message about the post hoc tests run
+        if (isTRUE(messages)) {
+          base::message(cat(
+            crayon::red("Note: "),
+            crayon::blue(
+              "The parametric pairwise multiple comparisons test used-\n",
+              "Student's t-test.\n",
+              "Adjustment method for p-values: "
+            ),
+            crayon::yellow(p.adjust.method),
+            sep = ""
+          ))
+        }
+      } else if (!isTRUE(var.equal)) {
+
+        # dataframe with Games-Howell test results
+        df <-
+          games.howell(data = data, x = x, y = y) %>%
+          dplyr::mutate(
+            .data = .,
+            p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
           ) %>%
-            ggstatsplot::signif_column(data = ., p = p.value),
-          by = c("group1", "group2")
-        )
+          ggstatsplot::signif_column(data = ., p = p.value)
 
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::red("Note: "),
-          crayon::blue(
-            "The parametric pairwise multiple comparisons carried out-\n",
-            "Student's t-test.\n",
-            "Adjustment method for p-values: "
-          ),
-          crayon::yellow(p.adjust.method),
-          sep = ""
-        ))
+        # display message about the post hoc tests run
+        if (isTRUE(messages)) {
+          base::message(cat(
+            crayon::red("Note: "),
+            crayon::blue(
+              "The parametric pairwise multiple comparisons test used-\n",
+              "Games-Howell test.\n",
+              "Adjustment method for p-values: "
+            ),
+            crayon::yellow(p.adjust.method),
+            sep = ""
+          ))
+        }
       }
-
       # ---------------------------- nonparametric ----------------------------
       #
     } else if (type %in% c("nonparametric", "np")) {
-      # running Dwass-Steel-Crichtlow-Fligner test using `jmv` package
-      jmv_pairs <-
-        jmv::anovaNP(
-          data = data,
-          deps = "y",
-          group = "x",
-          pairs = TRUE
-        )
+      if (!isTRUE(paired)) {
+        # running Dwass-Steel-Crichtlow-Fligner test using `jmv` package
+        jmv_pairs <-
+          jmv::anovaNP(
+            data = data,
+            deps = "y",
+            group = "x",
+            pairs = TRUE
+          )
 
-      # extracting the pairwise tests and formatting the output
-      df <-
-        as.data.frame(x = jmv_pairs$comparisons[[1]]) %>%
-        tibble::as.tibble(x = .) %>%
-        dplyr::rename(
-          .data = .,
-          group1 = p1,
-          group2 = p2,
-          p.value = p
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
-        ) %>%
-        ggstatsplot::signif_column(data = ., p = p.value)
+        # extracting the pairwise tests and formatting the output
+        df <-
+          as.data.frame(x = jmv_pairs$comparisons[[1]]) %>%
+          tibble::as.tibble(x = .) %>%
+          dplyr::rename(
+            .data = .,
+            group1 = p1,
+            group2 = p2,
+            p.value = p
+          ) %>%
+          dplyr::mutate(
+            .data = .,
+            p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
+          ) %>%
+          ggstatsplot::signif_column(data = ., p = p.value)
 
-      # letting the user know which test was run
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::red("Note: "),
-          crayon::blue(
-            "The nonparametric pairwise multiple comparisons carried out-\n",
-            "Dwass-Steel-Crichtlow-Fligner test.\n",
-            "Adjustment method for p-values: "
-          ),
-          crayon::yellow(p.adjust.method),
-          sep = ""
-        ))
+        # letting the user know which test was run
+        if (isTRUE(messages)) {
+          base::message(cat(
+            crayon::red("Note: "),
+            crayon::blue(
+              "The nonparametric pairwise multiple comparisons test used-\n",
+              "Dwass-Steel-Crichtlow-Fligner test.\n",
+              "Adjustment method for p-values: "
+            ),
+            crayon::yellow(p.adjust.method),
+            sep = ""
+          ))
+        }
+      } else if (isTRUE(paired)) {
+
+        # converting the entered long format data to wide format
+        data_wide <- long_to_wide_converter(data = data, x = x, y = y)
+
+        # running Durbin-Conover test using `jmv` package
+        jmv_pairs <-
+          jmv::anovaRMNP(
+            data = data_wide,
+            measures = names(data_wide[, -1]),
+            pairs = TRUE
+          )
+
+        # extracting the pairwise tests and formatting the output
+        df <-
+          as.data.frame(x = jmv_pairs$comp) %>%
+          tibble::as.tibble(x = .) %>%
+          dplyr::select(.data = ., -sep) %>%
+          dplyr::rename(
+            .data = .,
+            group1 = i1,
+            group2 = i2,
+            statistic = stat,
+            p.value = p
+          ) %>%
+          dplyr::mutate(
+            .data = .,
+            p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
+          ) %>%
+          dplyr::mutate_if(
+            .tbl = .,
+            .predicate = base::is.factor,
+            .funs = ~ as.character(.)
+          ) %>%
+          ggstatsplot::signif_column(data = ., p = p.value)
+
+        # letting the user know which test was run
+        if (isTRUE(messages)) {
+          base::message(cat(
+            crayon::red("Note: "),
+            crayon::blue(
+              "The nonparametric pairwise multiple comparisons test used-\n",
+              "Durbin-Conover test.\n",
+              "Adjustment method for p-values: "
+            ),
+            crayon::yellow(p.adjust.method),
+            sep = ""
+          ))
+        }
       }
+
+      # ---------------------------- robust ----------------------------------
+      #
     } else if (type %in% c("robust", "r")) {
       if (!isTRUE(paired)) {
-
         # object with all details about pairwise comparisons
         rob_pairwise_df <-
           WRS2::lincon(
             formula = y ~ x,
             data = data,
             tr = tr
+          )
+      } else if (isTRUE(paired)) {
+        # converting to long format and then getting it back in wide so that the rowid
+        # variable can be used as the block variable for WRS2 functions
+        data_within <-
+          long_to_wide_converter(data = data, x = x, y = y) %>%
+          tidyr::gather(data = ., key, value, -rowid) %>%
+          dplyr::arrange(.data = ., rowid)
+
+        # running pairwise multiple comparison tests
+        rob_pairwise_df <-
+          base::with(
+            data = data_within,
+            expr = WRS2::rmmcp(
+              y = value,
+              groups = key,
+              blocks = rowid,
+              tr = tr
+            )
           )
       }
 
@@ -409,12 +525,18 @@ pairwise_p <-
         tidyr::spread(data = ., key = "key", value = "value") %>%
         dplyr::select(.data = ., group1, group2, dplyr::everything())
 
+      # for paired designs, there will be an unnecessary column to remove
+      if (("p.crit") %in% names(df)) {
+        df %<>%
+          dplyr::select(.data = ., -p.crit)
+      }
+
       # message about which test was run
       if (isTRUE(messages)) {
         base::message(cat(
           crayon::red("Note: "),
           crayon::blue(
-            "The robust pairwise multiple comparisons carried out-\n",
+            "The robust pairwise multiple comparisons test used-\n",
             "Yuen's trimmed means comparisons test.\n",
             "Adjustment method for p-values: "
           ),
@@ -423,7 +545,6 @@ pairwise_p <-
         ))
       }
     }
-
     # return
     return(df)
   }

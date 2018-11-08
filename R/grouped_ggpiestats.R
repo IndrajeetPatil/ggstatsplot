@@ -109,12 +109,13 @@ grouped_ggpiestats <- function(data,
     if (missing(counts)) {
 
       # if the data is not tabled
-      df <- dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(main),
-        !!rlang::enquo(condition)
-      ) %>%
+      df <-
+        dplyr::select(
+          .data = data,
+          !!rlang::enquo(grouping.var),
+          !!rlang::enquo(main),
+          !!rlang::enquo(condition)
+        ) %>%
         dplyr::mutate(
           .data = .,
           title.text = !!rlang::enquo(grouping.var)
@@ -122,13 +123,14 @@ grouped_ggpiestats <- function(data,
     } else if (!missing(counts)) {
 
       # if data is tabled
-      df <- dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(main),
-        !!rlang::enquo(condition),
-        !!rlang::enquo(counts)
-      ) %>%
+      df <-
+        dplyr::select(
+          .data = data,
+          !!rlang::enquo(grouping.var),
+          !!rlang::enquo(main),
+          !!rlang::enquo(condition),
+          !!rlang::enquo(counts)
+        ) %>%
         dplyr::mutate(
           .data = .,
           title.text = !!rlang::enquo(grouping.var)
@@ -138,22 +140,24 @@ grouped_ggpiestats <- function(data,
 
     # if condition variable is *not* provided
     if (base::missing(counts)) {
-      df <- dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(main)
-      ) %>%
+      df <-
+        dplyr::select(
+          .data = data,
+          !!rlang::enquo(grouping.var),
+          !!rlang::enquo(main)
+        ) %>%
         dplyr::mutate(
           .data = .,
           title.text = !!rlang::enquo(grouping.var)
         )
     } else if (!missing(counts)) {
-      df <- dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(main),
-        !!rlang::enquo(counts)
-      ) %>%
+      df <-
+        dplyr::select(
+          .data = data,
+          !!rlang::enquo(grouping.var),
+          !!rlang::enquo(main),
+          !!rlang::enquo(counts)
+        ) %>%
         dplyr::mutate(
           .data = .,
           title.text = !!rlang::enquo(grouping.var)
@@ -186,7 +190,7 @@ grouped_ggpiestats <- function(data,
         dplyr::mutate(
           .data = .,
           plots = data %>%
-            purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+            purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
               .f = ~ ggstatsplot::ggpiestats(
@@ -222,7 +226,7 @@ grouped_ggpiestats <- function(data,
         dplyr::mutate(
           .data = .,
           plots = data %>%
-            purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+            purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
               .f = ~ ggstatsplot::ggpiestats(
@@ -261,7 +265,7 @@ grouped_ggpiestats <- function(data,
         dplyr::mutate(
           .data = .,
           plots = data %>%
-            purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+            purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
               .f = ~ ggstatsplot::ggpiestats(
@@ -295,7 +299,7 @@ grouped_ggpiestats <- function(data,
         dplyr::mutate(
           .data = .,
           plots = data %>%
-            purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+            purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
               .f = ~ ggstatsplot::ggpiestats(

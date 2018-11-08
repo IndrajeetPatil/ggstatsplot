@@ -3,42 +3,14 @@
 
 # ggstatsplot: `ggplot2` Based Plots with Statistical Details
 
-<!--
-[![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
-[![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)
-[![GitHub version](https://img.shields.io/badge/GitHub-0.0.6.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)
-[![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)
-[![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
-[![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
-[![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
-[![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
-[![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot) 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) 
-[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--11--05-yellowgreen.svg)](/commits/master)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
-[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
-[![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls)
-[![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
-[![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)
-[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_11_05-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)
-[![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)
-[![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)
-[![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)
-[![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)
-[![author](https://img.shields.io/badge/Website-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)
-[![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)
--->
-
 | Package                                                                                                                                              | Status                                                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                          | References                                                                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                       | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.0.6.1-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)                   | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
+| [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                       | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.0.6.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)                | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)           | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                           | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.6-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                       | [![Covealls Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![manual](https://img.shields.io/badge/manual-0.0.6-darkgreen.svg)](https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf)                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)                      | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--11--05-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
-| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-2018--11--05-brightgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                         | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)                      | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--11--07-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
+| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-2018--11--07-brightgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                         | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
 
@@ -80,7 +52,7 @@ plots as well.
 
 # Installation
 
-To get the latest, stable CRAN release (`0.0.6.1`):
+To get the latest, stable CRAN release (`0.0.6.9000`):
 
 ``` r
 utils::install.packages(pkgs = "ggstatsplot")
@@ -224,16 +196,16 @@ ggstatsplot::theme_ggstatsplot
 #>   if (isTRUE(ggstatsplot.layer)) {
 #>     ggtheme +
 #>       ggplot2::theme(
-#>         axis.title.x = ggplot2::element_text(size = 10, face = "bold"),
-#>         strip.text.x = ggplot2::element_text(size = 10, face = "bold"),
-#>         strip.text.y = ggplot2::element_text(size = 10, face = "bold"),
-#>         strip.text = ggplot2::element_text(size = 10, face = "bold"),
-#>         axis.title.y = ggplot2::element_text(size = 10, face = "bold"),
-#>         axis.text.x = ggplot2::element_text(size = 10, face = "bold"),
-#>         axis.text.y = ggplot2::element_text(size = 10, face = "bold"),
+#>         axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
+#>         strip.text.x = ggplot2::element_text(size = 11, face = "bold"),
+#>         strip.text.y = ggplot2::element_text(size = 11, face = "bold"),
+#>         strip.text = ggplot2::element_text(size = 11, face = "bold"),
+#>         axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
+#>         axis.text.x = ggplot2::element_text(size = 11, face = "bold"),
+#>         axis.text.y = ggplot2::element_text(size = 11, face = "bold"),
 #>         axis.line = ggplot2::element_line(),
-#>         legend.text = ggplot2::element_text(size = 10),
-#>         legend.title = ggplot2::element_text(size = 10, face = "bold"),
+#>         legend.text = ggplot2::element_text(size = 11),
+#>         legend.title = ggplot2::element_text(size = 11, face = "bold"),
 #>         legend.title.align = 0.5,
 #>         legend.text.align = 0.5,
 #>         legend.key.height = grid::unit(x = 1, units = "line"),
@@ -252,7 +224,7 @@ ggstatsplot::theme_ggstatsplot
 #>         ),
 #>         plot.subtitle = ggplot2::element_text(
 #>           color = "black",
-#>           size = 10,
+#>           size = 11,
 #>           face = "plain",
 #>           hjust = 0.5
 #>         )
@@ -261,7 +233,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x0000000028b70a20>
+#> <bytecode: 0x0000000028743890>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -367,7 +339,7 @@ ggstatsplot::ggbetweenstats(
   mean.ci = TRUE,                                 # whether to display confidence interval for means
   mean.label.size = 2.5,                          # size of the label for mean
   type = "p",                                     # which type of test is to be run
-  bf.message = TRUE,                              # add a message with bayes factor in favor of the null
+  bf.message = TRUE,                              # add a message with bayes factor favoring null
   k = 2,                                          # number of decimal places for statistical results
   outlier.tagging = TRUE,                         # whether outliers need to be tagged
   outlier.label = Sepal.Width,                    # variable to be used for the outlier tag
@@ -519,7 +491,7 @@ ggstatsplot::ggscatterstats(
   yfill = "#009E73",                              # color fill for y-axis marginal distribution
   xalpha = 0.6,                                   # transparency for x-axis marginal distribution
   yalpha = 0.6,                                   # transparency for y-axis marginal distribution
-  centrality.para = "median",                     # which type of central tendency lines are to be displayed  
+  centrality.para = "median",                     # central tendency lines to be displayed  
   point.width.jitter = 0.2,                       # amount of horizontal jitter for data points
   point.height.jitter = 0.4,                      # amount of vertical jitter for data points
   messages = FALSE                                # turn off messages and notes
@@ -774,7 +746,9 @@ For more, including information about the variant of this function
 `ggcorrmat` makes a correlalogram (a matrix of correlation coefficients)
 with minimal amount of code. Just sticking to the defaults itself
 produces publication-ready correlation matrices. But, for the sake of
-exploring the available options, let’s change some of the defaults.
+exploring the available options, let’s change some of the defaults. For
+example, multiple aesthetics-related arguments can be modified to change
+the appearance of the correlation matrix.
 
 ``` r
 # for reproducibility
@@ -808,9 +782,6 @@ ggstatsplot::ggcorrmat(
 Note that if there are `NA`s present in the selected dataframe, the
 legend will display minimum, median, and maximum number of pairs used
 for correlation matrices.
-
-Multiple aesthetics-related arguments can be modified to change the
-appearance of the correlation matrix.
 
 Alternatively, you can use it just to get the correlation matrices and
 their corresponding *p*-values (in a `tibble` format).
@@ -852,14 +823,14 @@ ggstatsplot::ggcorrmat(
 #> 
 #>             the lower triangle: unadjusted p-values.
 #> # A tibble: 6 x 7
-#>   variable sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt
-#>   <chr>          <dbl>     <dbl>       <dbl>     <dbl>     <dbl>     <dbl>
-#> 1 sleep_t~   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6
-#> 2 sleep_r~   4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3
-#> 3 sleep_c~   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5
-#> 4 awake      0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6
-#> 5 brainwt    4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17
-#> 6 bodywt     2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.
+#>   variable  sleep_total sleep_rem sleep_cycle     awake   brainwt    bodywt
+#>   <chr>           <dbl>     <dbl>       <dbl>     <dbl>     <dbl>     <dbl>
+#> 1 sleep_to~   0.        5.291e-12   9.138e- 3 0.        3.170e- 5 2.568e- 6
+#> 2 sleep_rem   4.070e-13 0.          1.978e- 2 5.291e-12 9.698e- 3 3.762e- 3
+#> 3 sleep_cy~   2.285e- 3 1.978e- 2   0.        9.138e- 3 1.637e- 9 1.696e- 5
+#> 4 awake       0.        4.070e-13   2.285e- 3 0.        3.170e- 5 2.568e- 6
+#> 5 brainwt     4.528e- 6 4.849e- 3   1.488e-10 4.528e- 6 0.        4.509e-17
+#> 6 bodywt      2.568e- 7 7.524e- 4   2.120e- 6 2.568e- 7 3.221e-18 0.
 
 # getting the confidence intervals for correlations
 ggstatsplot::ggcorrmat(

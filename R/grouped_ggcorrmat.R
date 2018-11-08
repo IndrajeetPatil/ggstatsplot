@@ -50,9 +50,7 @@
 #' )
 #' 
 #' # for getting confidence intervals
-#' # if **robust** correlation is selected, confidence intervals will not be
-#' # available
-#' # it will work for all other correlation types
+#' # confidence intervals are not available for **robust** correlation
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = datasets::iris,
 #'   grouping.var = Species,
@@ -110,11 +108,12 @@ grouped_ggcorrmat <- function(data,
   # ========================= preparing dataframe =============================
 
   # getting the dataframe ready
-  df <- dplyr::select(
-    .data = data,
-    !!rlang::enquo(grouping.var),
-    !!rlang::enquo(cor.vars)
-  ) %>%
+  df <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(grouping.var),
+      !!rlang::enquo(cor.vars)
+    ) %>%
     dplyr::mutate(
       .data = .,
       title.text = !!rlang::enquo(grouping.var)
@@ -146,7 +145,7 @@ grouped_ggcorrmat <- function(data,
       dplyr::mutate(
         .data = .,
         plots = data %>%
-          purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+          purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
             .f = ~ ggstatsplot::ggcorrmat(

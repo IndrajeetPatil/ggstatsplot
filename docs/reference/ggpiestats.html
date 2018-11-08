@@ -346,15 +346,13 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; Note: Results from faceted one-sample proportion tests:</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 3 x 7
 #&gt;   condition `0`     `1`    `Chi-squared`    df `p-value` significance
 #&gt;   &lt;fct&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       
-#&gt; 1 4         9.09%   90.91%         7.36      1     0.007 **          
+#&gt; 1 4         9.09%   90.91%         7.364     1     0.007 **          
 #&gt; 2 6         42.86%  57.14%         0.143     1     0.705 ns          
 #&gt; 3 8         100.00% &lt;NA&gt;          14         1     0     ***         
 #&gt; Note: 95% CI for Cramer's V was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># simple function call with the defaults (without condition; with count data)</span>
-<span class='fu'>library</span>(<span class='no'>jmv</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘jmv’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    anova</span></div><div class='input'>
+<span class='fu'>library</span>(<span class='no'>jmv</span>)
+
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,

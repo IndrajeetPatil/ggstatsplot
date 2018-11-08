@@ -441,7 +441,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>For parametric tests, Welch's ANOVA/<em>t</em>-test are used as a default.
+    <p>For parametric tests, Welch's ANOVA/<em>t</em>-test are used as a default (i.e.,
+<code>var.equal = FALSE</code>).
 References:</p><ul>
 <li><p>ANOVA: Delacre, Leys, Mora, &amp; Lakens, <em>PsyArXiv</em>, 2018</p></li>
 <li><p><em>t</em>-test: Delacre, Lakens, &amp; Leys,
@@ -462,7 +463,8 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code></p></div>
+    <div class='dont-index'><p><code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code>,
+<code><a href='pairwise_p.html'>pairwise_p</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -492,19 +494,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.</span>
-#&gt; <span class='warning'>Please use the non-prefixed form or `!!!` instead.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Bad:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(rlang::UQS(args)))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Ok:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(UQS(args)))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Good:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(!!!args))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>This warning is displayed once per session.</span></div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

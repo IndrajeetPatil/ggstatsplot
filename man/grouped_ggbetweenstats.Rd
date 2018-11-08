@@ -233,7 +233,8 @@ A combined plot of comparison plot created for levels of a
 grouping variable.
 }
 \details{
-For parametric tests, Welch's ANOVA/\emph{t}-test are used as a default.
+For parametric tests, Welch's ANOVA/\emph{t}-test are used as a default (i.e.,
+\code{var.equal = FALSE}).
 References:
 \itemize{
 \item ANOVA: Delacre, Leys, Mora, & Lakens, \emph{PsyArXiv}, 2018

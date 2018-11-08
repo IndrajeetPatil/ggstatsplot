@@ -258,9 +258,7 @@ ggstatsplot::grouped_ggcorrmat(
 )
 
 # for getting confidence intervals
-# if **robust** correlation is selected, confidence intervals will not be
-# available
-# it will work for all other correlation types
+# confidence intervals are not available for **robust** correlation
 ggstatsplot::grouped_ggcorrmat(
   data = datasets::iris,
   grouping.var = Species,

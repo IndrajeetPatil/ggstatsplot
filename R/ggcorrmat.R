@@ -298,17 +298,17 @@ ggcorrmat <-
       }
     } else if (corr.method == "robust") {
 
-      # this is just get a matrix of samples sizes to be used `n` argument in
-      # corr.p function
-      n_df <- psych::corr.test(
-        x = base::as.data.frame(df),
-        y = NULL,
-        use = "pairwise",
-        adjust = "none",
-        alpha = .05,
-        ci = FALSE,
-        minlength = 20
-      )
+      # get matrix of samples sizes to be used later in `corr.p` function (`n`)
+      n_df <-
+        psych::corr.test(
+          x = base::as.data.frame(df),
+          y = NULL,
+          use = "pairwise",
+          adjust = "none",
+          alpha = .05,
+          ci = FALSE,
+          minlength = 20
+        )
 
       # in case of NAs, compute minimum, median, and maximum sample sizes of
       # pairs

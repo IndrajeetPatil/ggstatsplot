@@ -33,10 +33,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
@@ -97,25 +97,27 @@ grouped_ggbetweenstats <- function(data,
   # ======================== preparing dataframe ==========================
 
   if (!base::missing(outlier.label)) {
-    df <- dplyr::select(
-      .data = data,
-      !!rlang::enquo(grouping.var),
-      !!rlang::enquo(x),
-      !!rlang::enquo(y),
-      !!rlang::enquo(outlier.label)
-    ) %>%
+    df <-
+      dplyr::select(
+        .data = data,
+        !!rlang::enquo(grouping.var),
+        !!rlang::enquo(x),
+        !!rlang::enquo(y),
+        !!rlang::enquo(outlier.label)
+      ) %>%
       dplyr::mutate(
         .data = .,
         title.text = !!rlang::enquo(grouping.var)
       ) %>%
       stats::na.omit(.)
   } else {
-    df <- dplyr::select(
-      .data = data,
-      !!rlang::enquo(grouping.var),
-      !!rlang::enquo(x),
-      !!rlang::enquo(y)
-    ) %>%
+    df <-
+      dplyr::select(
+        .data = data,
+        !!rlang::enquo(grouping.var),
+        !!rlang::enquo(x),
+        !!rlang::enquo(y)
+      ) %>%
       dplyr::mutate(
         .data = .,
         title.text = !!rlang::enquo(grouping.var)
@@ -147,7 +149,7 @@ grouped_ggbetweenstats <- function(data,
       dplyr::mutate(
         .data = .,
         plots = data %>%
-          purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+          purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
             .f = ~ ggstatsplot::ggbetweenstats(
@@ -204,7 +206,7 @@ grouped_ggbetweenstats <- function(data,
       dplyr::mutate(
         .data = .,
         plots = data %>%
-          purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+          purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
             .f = ~ ggstatsplot::ggbetweenstats(

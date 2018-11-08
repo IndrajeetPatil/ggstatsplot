@@ -175,13 +175,14 @@ grouped_ggscatterstats <- function(data,
   # ======================== preparing dataframe =============================
 
   # getting the dataframe ready
-  df <- dplyr::select(
-    .data = data,
-    !!rlang::enquo(grouping.var),
-    !!rlang::enquo(x),
-    !!rlang::enquo(y),
-    dplyr::everything()
-  ) %>%
+  df <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(grouping.var),
+      !!rlang::enquo(x),
+      !!rlang::enquo(y),
+      dplyr::everything()
+    ) %>%
     dplyr::mutate(
       .data = .,
       title.text = !!rlang::enquo(grouping.var)
@@ -211,7 +212,7 @@ grouped_ggscatterstats <- function(data,
         dplyr::mutate(
           .data = .,
           plots = data %>%
-            purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+            purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
               .f = ~ ggstatsplot::ggscatterstats(
@@ -269,7 +270,7 @@ grouped_ggscatterstats <- function(data,
         dplyr::mutate(
           .data = .,
           plots = data %>%
-            purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+            purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
             purrr::map(
               .x = .,
               .f = ~ ggstatsplot::ggscatterstats(
@@ -327,7 +328,7 @@ grouped_ggscatterstats <- function(data,
       dplyr::mutate(
         .data = .,
         plots = data %>%
-          purrr::set_names(!!rlang::enquo(grouping.var)) %>%
+          purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
           purrr::map(
             .x = .,
             .f = ~ ggstatsplot::ggscatterstats(

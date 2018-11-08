@@ -130,7 +130,17 @@ utils::globalVariables(
     "comparison",
     "p",
     "p1",
-    "p2"
+    "p2",
+    "high.conf",
+    "i1",
+    "i2",
+    "key",
+    "low.conf",
+    "mean.difference",
+    "p.crit",
+    "sep",
+    "value",
+    "var"
   ),
   package = "ggstatsplot",
   add = FALSE
