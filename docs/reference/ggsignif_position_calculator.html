@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Edgar Anderson's Iris Data in long format. — iris_long • ggstatsplot</title>
+<title>Calculating <code>y</code> coordinates for the <code>ggsignif</code> comparison bars. — ggsignif_position_calculator • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -40,9 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Edgar Anderson's Iris Data in long format. — iris_long" />
+<meta property="og:title" content="Calculating <code>y</code> coordinates for the <code>ggsignif</code> comparison bars. — ggsignif_position_calculator" />
 
-<meta property="og:description" content="Edgar Anderson's Iris Data in long format." />
+<meta property="og:description" content="Calculating y coordinates for the ggsignif comparison bars." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,67 +168,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Edgar Anderson's Iris Data in long format.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>iris_long.Rd</code></div>
+    <h1>Calculating <code>y</code> coordinates for the <code>ggsignif</code> comparison bars.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetweenstats.R'><code>R/helpers_ggbetweenstats.R</code></a></small>
+    <div class="hidden name"><code>ggsignif_position_calculator.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Edgar Anderson's Iris Data in long format.</p>
+    <p>Calculating <code>y</code> coordinates for the <code>ggsignif</code> comparison bars.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>iris_long</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 600 rows and 5 variables</p><ul>
-<li><p>id. Dummy identity number for each flower (150 flowers in total).</p></li>
-<li><p>Species.	The species are <em>Iris setosa</em>, <em>versicolor</em>, and
-<em>virginica</em>.</p></li>
-<li><p>attribute.	What attribute is being measured (<code>"Sepal"</code> or <code>"Pepal"</code>).</p></li>
-<li><p>measure.	What aspect of the attribute is being measured (<code>"Length"</code>
-or <code>"Width"</code>).</p></li>
-<li><p>value.	Value of the measurement.</p></li>
-</ul>
+    <pre class="usage"><span class='fu'>ggsignif_position_calculator</span>(<span class='no'>x</span>, <span class='no'>y</span>)</pre>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html'>https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html</a></p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This famous (Fisher's or Anderson's) iris data set gives the
-measurements in centimeters of the variables sepal length and width and
-petal length and width, respectively, for 50 flowers from each of 3 species
-of iris. The species are Iris setosa, versicolor, and virginica.</p>
-<p>This is a modified dataset from <code>datasets</code> package.</p>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>The grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+    </tr>
+    </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>dim</span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; [1] 600   5</div><div class='input'><span class='fu'>head</span>(<span class='no'>iris_long</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 5
-#&gt;      id Species attribute measure value
-#&gt;   &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;   &lt;dbl&gt;
-#&gt; 1     1 setosa  Sepal     Length    5.1
-#&gt; 2     2 setosa  Sepal     Length    4.9
-#&gt; 3     3 setosa  Sepal     Length    4.7
-#&gt; 4     4 setosa  Sepal     Length    4.6
-#&gt; 5     5 setosa  Sepal     Length    5  
-#&gt; 6     6 setosa  Sepal     Length    5.4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-
-      <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
 
   </div>
 </div>

@@ -193,9 +193,12 @@ long_to_wide_converter <- function(data, x, y) {
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
 #'   `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
+#' @param messages Decides whether messages references, notes, and warnings are
+#'   to be displayed (Default: `TRUE`).
 #' @inheritParams ggbetweenstats
 #' @inheritParams stats::p.adjust
 #' @inheritParams stats::t.test
+#' @inheritParams WRS2::rmmcp
 #'
 #' @importFrom dplyr select rename mutate mutate_if everything full_join
 #' @importFrom stats p.adjust pairwise.t.test pairwise.wilcox.test na.omit
@@ -213,10 +216,10 @@ long_to_wide_converter <- function(data, x, y) {
 #'
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
@@ -228,7 +231,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -239,7 +242,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -248,7 +251,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   type = "np",
 #'   p.adjust.method = "none"
 #' )
-#' 
+#'
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -333,7 +336,7 @@ pairwise_p <-
         # display message about the post hoc tests run
         if (isTRUE(messages)) {
           base::message(cat(
-            crayon::red("Note: "),
+            crayon::green("Note: "),
             crayon::blue(
               "The parametric pairwise multiple comparisons test used-\n",
               "Student's t-test.\n",
@@ -357,7 +360,7 @@ pairwise_p <-
         # display message about the post hoc tests run
         if (isTRUE(messages)) {
           base::message(cat(
-            crayon::red("Note: "),
+            crayon::green("Note: "),
             crayon::blue(
               "The parametric pairwise multiple comparisons test used-\n",
               "Games-Howell test.\n",
@@ -400,7 +403,7 @@ pairwise_p <-
         # letting the user know which test was run
         if (isTRUE(messages)) {
           base::message(cat(
-            crayon::red("Note: "),
+            crayon::green("Note: "),
             crayon::blue(
               "The nonparametric pairwise multiple comparisons test used-\n",
               "Dwass-Steel-Crichtlow-Fligner test.\n",
@@ -439,17 +442,12 @@ pairwise_p <-
             .data = .,
             p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
           ) %>%
-          dplyr::mutate_if(
-            .tbl = .,
-            .predicate = base::is.factor,
-            .funs = ~ as.character(.)
-          ) %>%
           ggstatsplot::signif_column(data = ., p = p.value)
 
         # letting the user know which test was run
         if (isTRUE(messages)) {
           base::message(cat(
-            crayon::red("Note: "),
+            crayon::green("Note: "),
             crayon::blue(
               "The nonparametric pairwise multiple comparisons test used-\n",
               "Durbin-Conover test.\n",
@@ -534,7 +532,7 @@ pairwise_p <-
       # message about which test was run
       if (isTRUE(messages)) {
         base::message(cat(
-          crayon::red("Note: "),
+          crayon::green("Note: "),
           crayon::blue(
             "The robust pairwise multiple comparisons test used-\n",
             "Yuen's trimmed means comparisons test.\n",
@@ -545,6 +543,47 @@ pairwise_p <-
         ))
       }
     }
+
+    # if there are factors, covert them to character to make life easy
+    df %<>%
+      dplyr::mutate_if(
+        .tbl = .,
+        .predicate = base::is.factor,
+        .funs = ~ as.character(.)
+      )
+
     # return
     return(df)
   }
+
+#' @title Calculating `y` coordinates for the `ggsignif` comparison bars.
+#' @inheritParams ggbetweenstats
+#'
+#' @keywords internal
+
+ggsignif_position_calculator <- function(x, y) {
+  # number of comparisons
+  n_comparions <-
+    length(x = utils::combn(
+      x = unique(x),
+      m = 2,
+      simplify = FALSE
+    ))
+
+  # start position on y-axis for the ggsignif lines
+  y_start <- max(x = y, na.rm = TRUE) * (1 + 0.025)
+
+  # end position on y-axis for the ggsignif lines
+  y_end <- y_start + (0.125 * n_comparions)
+
+  # creating a vector of positions for the ggsignif lines
+  ggsignif_position <-
+    seq(
+      from = y_start,
+      to = y_end,
+      length.out = n_comparions
+    )
+
+  # return the position vector
+  return(ggsignif_position)
+}

@@ -33,10 +33,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
@@ -55,6 +55,8 @@ grouped_ggbetweenstats <- function(data,
                                    title.prefix = "Group",
                                    plot.type = "boxviolin",
                                    type = "parametric",
+                                   pairwise.comparisons = FALSE,
+                                   p.adjust.method = "holm",
                                    effsize.type = "unbiased",
                                    effsize.noncentral = FALSE,
                                    bf.prior = 0.707,
@@ -159,6 +161,8 @@ grouped_ggbetweenstats <- function(data,
               title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
               plot.type = plot.type,
               type = type,
+              pairwise.comparisons = pairwise.comparisons,
+              p.adjust.method = p.adjust.method,
               effsize.type = effsize.type,
               effsize.noncentral = effsize.noncentral,
               bf.prior = bf.prior,
@@ -216,6 +220,8 @@ grouped_ggbetweenstats <- function(data,
               title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
               plot.type = plot.type,
               type = type,
+              pairwise.comparisons = pairwise.comparisons,
+              p.adjust.method = p.adjust.method,
               effsize.type = effsize.type,
               effsize.noncentral = effsize.noncentral,
               bf.prior = bf.prior,

@@ -319,11 +319,16 @@ easy to repeat the same operation across a **single** grouping variable:
 # for reproducibility
 set.seed(123)
 
+# let's exclude animation and documentary genres since there are not many
+# datapoints for these genres
+
 # plot
 ggstatsplot::grouped_ggbetweenstats(
-  data = ggstatsplot::movies_long, 
+  data = dplyr::filter(ggstatsplot::movies_long, !genre %in% c("Animation", "Documentary")),
   x = mpaa, 
   y = length,
+  pairwise.comparisons = TRUE,      # display significant pairwise comparisons
+  p.adjust.method = "bonferroni",  # method for adjusting p-values for multiple comparisons
   grouping.var = genre,            # grouping variable
   k = 2,
   title.prefix = "Movie genre",
@@ -351,27 +356,24 @@ As a **temporary solution**, you can use the helper function from `ggstatsplot`
 to display results from within-subjects version of the test in question. Here is
 an example-
 
-```{r ggbetweenstats4, message = FALSE, warning = FALSE, fig.width = 6}
+```{r ggbetweenstats4, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 4}
 # for reproducibility
 set.seed(123)
 
-# creating a smaller dataframe
-intent_short <- ggstatsplot::intent_morality %>%
-  dplyr::filter(.data = ., condition %in% c("accidental", "attempted")) 
-
 # getting text results using a helper function
-results_subtitle <- ggstatsplot::subtitle_ggbetween_t_parametric(
-  data = intent_short,
-  x = condition,
-  y = rating,
+results_subtitle <- 
+  ggstatsplot::subtitle_ggbetween_t_parametric(
+  data = ggstatsplot::iris_long,
+  x = attribute,
+  y = value,
   paired = TRUE
 )
 
 # displaying the subtitle on the plot
 ggstatsplot::ggbetweenstats(
-  data = intent_short,
-  x = condition,
-  y = rating,
+  data = ggstatsplot::iris_long,
+  x = attribute,
+  y = value,
   messages = FALSE
 ) +
   ggplot2::labs(subtitle = results_subtitle)
@@ -446,6 +448,7 @@ ggstatsplot::grouped_ggscatterstats(
   x = rating, 
   y = length,
   bf.message = TRUE,               # display bayes factor message
+  k = 2,                           # no. of decimal places in the results
   xfill = "#E69F00", 
   yfill = "#8b3058",
   xlab = "IMDB rating",

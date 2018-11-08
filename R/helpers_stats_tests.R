@@ -65,9 +65,9 @@ games.howell <- function(data, x, y) {
     # degrees of freedom (df)
     df <-
       ((std[combs[1, x]] / n[combs[1, x]] +
-        std[combs[2, x]] / n[combs[2, x]])^2) / # numerator df
-        ((((std[combs[1, x]] / n[combs[1, x]])^2 / (n[combs[1, x]] - 1)) + # Part 1 of denominator df
-          ((std[combs[2, x]] / n[combs[2, x]])^2 / (n[combs[2, x]] - 1)))) # Part 2 of denominator df
+        std[combs[2, x]] / n[combs[2, x]])^2) /
+        ((((std[combs[1, x]] / n[combs[1, x]])^2 / (n[combs[1, x]] - 1)) +
+          ((std[combs[2, x]] / n[combs[2, x]])^2 / (n[combs[2, x]] - 1))))
 
     # p-values
     p <-
@@ -80,7 +80,8 @@ games.howell <- function(data, x, y) {
 
     # sigma standard error
     se <-
-      sqrt(0.5 * (std[combs[1, x]] / n[combs[1, x]] + std[combs[2, x]] / n[combs[2, x]]))
+      sqrt(x = 0.5 * (std[combs[1, x]] / n[combs[1, x]] +
+                        std[combs[2, x]] / n[combs[2, x]]))
 
     # upper confidence limit for mean difference
     high.conf <- lapply(X = 1:ncol(combs), FUN = function(x) {
@@ -108,7 +109,7 @@ games.howell <- function(data, x, y) {
     stats <-
       list(group1, group2, mean.diff, se, t, df, p, high.conf, low.conf)
   })
-  # print(statistics)
+
   # unlist statistics collected earlier
   stats.unlisted <- lapply(statistics, function(x) {
     unlist(x)

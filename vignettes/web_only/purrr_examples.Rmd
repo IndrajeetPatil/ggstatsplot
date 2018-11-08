@@ -144,6 +144,8 @@ plot_list <- purrr::pmap(
       "Year: 2007"
     ),
     type = list("r", "p", "np"),
+    pairwise.comparisons = TRUE,
+    p.adjust.method = list("hommel", "bonferroni", "BH"),
     nboot = 25,
     mean.label.size = c(3, 4, 5),
     k = list(1, 2, 3),
@@ -474,10 +476,6 @@ GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 
-Summarizing session information for reproducibility.
-
-```{r session_info}
-options(width = 200)
-devtools::session_info()
-```
+For details, see-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
 

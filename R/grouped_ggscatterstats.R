@@ -23,10 +23,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
+#' @importFrom rlang !! enquo quo_name
 #' @importFrom purrr set_names
 #'
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
@@ -36,10 +33,10 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -53,7 +50,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -69,7 +66,7 @@
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
 #' \dontrun{
 #' ggstatsplot::grouped_ggscatterstats(

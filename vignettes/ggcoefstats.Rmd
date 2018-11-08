@@ -661,32 +661,10 @@ of these factors and their interaction.
 set.seed(123)
 
 # having a look at iris before converting to long format
-dplyr::glimpse(iris)
-
-# converting the iris dataset to long format
-iris_long <- datasets::iris %>%
-  dplyr::mutate(.data = ., id = dplyr::row_number(x = Species)) %>%
-  tidyr::gather(
-    data = .,
-    key = "condition",
-    value = "value",
-    Sepal.Length:Petal.Width,
-    convert = TRUE,
-    factor_key = TRUE
-  ) %>%
-  tidyr::separate(
-    col = "condition",
-    into = c("attribute", "measure"),
-    sep = "\\.",
-    convert = TRUE
-  ) %>%
-  tibble::as_data_frame(x = .)
-
-# looking at the long format data
-dplyr::glimpse(x = iris_long)
+dplyr::glimpse(ggstatsplot::iris_long)
 
 # let's use 20% of the sample to speed up the analysis
-iris_long_20 <- dplyr::sample_frac(tbl = iris_long, size = 0.20)
+iris_long_20 <- dplyr::sample_frac(tbl = ggstatsplot::iris_long, size = 0.20)
 
 # specifying the model (note the error structure)
 ggstatsplot::ggcoefstats(

@@ -7,6 +7,7 @@ designs repeated across all levels of a grouping variable.}
 \usage{
 grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   plot.type = "boxviolin", type = "parametric",
+  pairwise.comparisons = FALSE, p.adjust.method = "holm",
   effsize.type = "unbiased", effsize.noncentral = FALSE,
   bf.prior = 0.707, bf.message = FALSE, results.subtitle = TRUE,
   xlab = NULL, ylab = NULL, subtitle = NULL, caption = NULL,
@@ -43,6 +44,14 @@ and \code{"boxviolin"} (for a mix of box and violin plots; default).}
 or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
 \code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
 \code{"bf"}resp.}
+
+\item{pairwise.comparisons}{Logical that decides whether pairwise comparisons
+are to be displayed. Only significant comparisons will be shown (Also see:
+\code{?ggstatsplot::pairwise_p()}).}
+
+\item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-test};

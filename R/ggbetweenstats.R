@@ -20,6 +20,9 @@
 #'   or `"robust"` or `"bayes"`).Corresponding abbreviations are also accepted:
 #'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
 #'   `"bf"`resp.
+#' @param pairwise.comparisons Logical that decides whether pairwise comparisons
+#'   are to be displayed. Only significant comparisons will be shown (Also see:
+#'   `?ggstatsplot::pairwise_p()`).
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
@@ -80,6 +83,7 @@
 #' @inheritParams subtitle_ggbetween_anova_parametric
 #' @inheritParams subtitle_ggbetween_t_parametric
 #' @inheritParams t1way_ci
+#' @inheritParams pairwise_p
 #'
 #' @import ggplot2
 #'
@@ -94,6 +98,9 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
+#' @importFrom magrittr "%$%"
+#' @importFrom ggsignif geom_signif
+#' @importFrom purrrlyr by_row
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}},
 #'  \code{\link{pairwise_p}}
@@ -124,10 +131,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -137,7 +144,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -146,6 +153,8 @@
 #'   plot.type = "box",
 #'   xlab = "The experiment number",
 #'   ylab = "Speed-of-light measurement",
+#'   pairwise.comparisons = TRUE,
+#'   p.adjust.method = "fdr",
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Run,
 #'   nboot = 10,
@@ -160,6 +169,8 @@ ggbetweenstats <- function(data,
                            y,
                            plot.type = "boxviolin",
                            type = "parametric",
+                           pairwise.comparisons = FALSE,
+                           p.adjust.method = "holm",
                            effsize.type = "unbiased",
                            effsize.noncentral = FALSE,
                            bf.prior = 0.707,
@@ -465,9 +476,14 @@ ggbetweenstats <- function(data,
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer
     ) +
-    ggplot2::theme(legend.position = "none") +
-    ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-    ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+    ggplot2::theme(legend.position = "none")
+
+  # don't do scale restriction in case of post hoc comparisons
+  if (!isTRUE(pairwise.comparisons)) {
+    plot <- plot +
+      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
+      ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+  }
 
   # choosing palette
   plot <- plot +
@@ -584,6 +600,72 @@ ggbetweenstats <- function(data,
     # adding new labels to the plot
     plot <- plot +
       ggplot2::scale_x_discrete(labels = c(unique(data_label$n_label)))
+  }
+
+  # ggsignif labels ------------------------------------------------------------
+
+  if (isTRUE(pairwise.comparisons) && test == "anova") {
+    # creating dataframe with pairwise comparison results
+    df_pairwise <-
+      ggstatsplot::pairwise_p(
+        data = data,
+        x = x,
+        y = y,
+        type = type,
+        tr = tr,
+        paired = FALSE,
+        var.equal = var.equal,
+        p.adjust.method = p.adjust.method,
+        messages = messages
+      ) %$%
+      print(.) %>%
+      purrrlyr::by_row(.d = .,
+                       ..f = ~c(.$group1, .$group2),
+                       .collate = "list",
+                       .to = "groups") %>%
+      dplyr::filter(.data = ., significance != "ns")
+
+    # proceed only if there are any significant comparisons to display
+    if (dim(df_pairwise)[[1]] != 0L) {
+
+      # arrange the dataframe so that annotations are properly aligned
+      df_pairwise %<>%
+        dplyr::arrange(.data = ., group1)
+
+      # retaining data corresponding to the levels of the grouping variable for which
+      # the comparisons are to be drawn
+      data_ggsignif <-
+        dplyr::filter(.data = data, x %in%
+          unique(x = c(levels(
+            as.factor(df_pairwise$group1)
+          ), levels(
+            as.factor(df_pairwise$group2)
+          )))) %>%
+        dplyr::mutate_if(
+          .tbl = .,
+          .predicate = base::is.factor,
+          .funs = ~ as.character(.)
+        ) %>%
+        dplyr::arrange(.data = ., x) %>%
+        tibble::as.tibble(x = .)
+
+      # computing y coordinates for ggsgnif bars
+      ggsignif_y_position <-
+        ggsignif_position_calculator(x = data_ggsignif$x, y = data_ggsignif$y)
+
+      # adding ggsignif comparisons to the plot
+      plot <- plot +
+        ggsignif::geom_signif(
+          comparisons = df_pairwise$groups,
+          map_signif_level = TRUE,
+          textsize = 4,
+          step_increase = 0.1,
+          tip_length = 0.01,
+          y_position = ggsignif_y_position,
+          annotations = df_pairwise$significance,
+          na.rm = TRUE
+        )
+    }
   }
 
   # --------------------- messages ------------------------------------------
