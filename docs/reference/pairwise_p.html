@@ -210,7 +210,11 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     </tr>
     <tr>
       <th>tr</th>
-      <td><p>trim level for the mean.</p></td>
+      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of <code>tr</code>, which is by default set to
+<code>0.1</code>. Lowering the value might help.</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -220,15 +224,22 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     <tr>
       <th>var.equal</th>
       <td><p>a logical variable indicating whether to treat the
-    two variances as being equal. If <code>TRUE</code> then the pooled
-    variance is used to estimate the variance otherwise the Welch
-    (or Satterthwaite) approximation to the degrees of freedom is used.</p></td>
+    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.</p></td>
     </tr>
     <tr>
       <th>p.adjust.method</th>
       <td><p>Adjustment method for <em>p</em>-values for multiple
 comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
 <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 3</code>).</p></td>
     </tr>
     <tr>
       <th>messages</th>

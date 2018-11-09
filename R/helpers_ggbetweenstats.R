@@ -190,11 +190,6 @@ long_to_wide_converter <- function(data, x, y) {
 #'   corrections for multiple testing.
 #' @author Indrajeet Patil
 #'
-#' @param p.adjust.method Adjustment method for *p*-values for multiple
-#'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
-#'   `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
 #' @inheritParams ggbetweenstats
 #' @inheritParams stats::t.test
 #' @inheritParams WRS2::rmmcp
@@ -215,10 +210,10 @@ long_to_wide_converter <- function(data, x, y) {
 #'
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
@@ -230,7 +225,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -241,7 +236,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -250,7 +245,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   type = "np",
 #'   p.adjust.method = "none"
 #' )
-#' 
+#'
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,

@@ -23,6 +23,9 @@
 #' @param pairwise.comparisons Logical that decides whether pairwise comparisons
 #'   are to be displayed. **Only significant comparisons** will be shown
 #'   (default: `FALSE`).
+#' @param p.adjust.method Adjustment method for *p*-values for multiple
+#'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
+#'   `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
 #' @param pairwise.annotation Character that decides the annotations to use for
 #'   pairwise comparisons. Either `"p.value"` or `"asterisk"` (default).
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
@@ -85,7 +88,6 @@
 #' @inheritParams subtitle_ggbetween_anova_parametric
 #' @inheritParams subtitle_ggbetween_t_parametric
 #' @inheritParams t1way_ci
-#' @inheritParams pairwise_p
 #'
 #' @import ggplot2
 #'
@@ -132,10 +134,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -145,7 +147,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,

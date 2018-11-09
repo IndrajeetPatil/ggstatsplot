@@ -195,9 +195,11 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     <tr>
       <th>var.equal</th>
       <td><p>a logical variable indicating whether to treat the
-    two variances as being equal. If <code>TRUE</code> then the pooled
-    variance is used to estimate the variance otherwise the Welch
-    (or Satterthwaite) approximation to the degrees of freedom is used.</p></td>
+    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.</p></td>
     </tr>
     <tr>
       <th>paired</th>
