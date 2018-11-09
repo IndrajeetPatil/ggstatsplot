@@ -7,14 +7,15 @@ designs.}
 \usage{
 ggbetweenstats(data, x, y, plot.type = "boxviolin",
   type = "parametric", pairwise.comparisons = FALSE,
-  p.adjust.method = "holm", effsize.type = "unbiased",
-  effsize.noncentral = FALSE, bf.prior = 0.707, bf.message = FALSE,
-  results.subtitle = TRUE, xlab = NULL, ylab = NULL,
-  caption = NULL, title = NULL, subtitle = NULL,
-  sample.size.label = TRUE, k = 3, var.equal = FALSE, nboot = 100,
-  tr = 0.1, mean.label.size = 3, mean.label.fontface = "bold",
-  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
-  linetype = "solid", outlier.tagging = FALSE, outlier.label = NULL,
+  pairwise.annotation = "asterisk", p.adjust.method = "holm",
+  effsize.type = "unbiased", effsize.noncentral = FALSE,
+  bf.prior = 0.707, bf.message = FALSE, results.subtitle = TRUE,
+  xlab = NULL, ylab = NULL, caption = NULL, title = NULL,
+  subtitle = NULL, sample.size.label = TRUE, k = 3,
+  var.equal = FALSE, nboot = 100, tr = 0.1, mean.label.size = 3,
+  mean.label.fontface = "bold", mean.label.color = "black",
+  notch = FALSE, notchwidth = 0.5, linetype = "solid",
+  outlier.tagging = FALSE, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
@@ -41,8 +42,11 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \code{"bf"}resp.}
 
 \item{pairwise.comparisons}{Logical that decides whether pairwise comparisons
-are to be displayed. Only significant comparisons will be shown (Also see:
-\code{?ggstatsplot::pairwise_p()}).}
+are to be displayed. \strong{Only significant comparisons} will be shown
+(default: \code{FALSE}).}
+
+\item{pairwise.annotation}{Character that decides the annotations to use for
+pairwise comparisons. Either \code{"p.value"} or \code{"asterisk"} (default).}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
@@ -229,6 +233,7 @@ ggstatsplot::ggbetweenstats(
   xlab = "The experiment number",
   ylab = "Speed-of-light measurement",
   pairwise.comparisons = TRUE,
+  pairwise.annotation = "p.value",
   p.adjust.method = "fdr",
   outlier.tagging = TRUE,
   outlier.label = Run,

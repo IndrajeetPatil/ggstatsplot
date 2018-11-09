@@ -21,8 +21,10 @@
 #'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
 #'   `"bf"`resp.
 #' @param pairwise.comparisons Logical that decides whether pairwise comparisons
-#'   are to be displayed. Only significant comparisons will be shown (Also see:
-#'   `?ggstatsplot::pairwise_p()`).
+#'   are to be displayed. **Only significant comparisons** will be shown
+#'   (default: `FALSE`).
+#' @param pairwise.annotation Character that decides the annotations to use for
+#'   pairwise comparisons. Either `"p.value"` or `"asterisk"` (default).
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
@@ -153,6 +155,7 @@
 #'   xlab = "The experiment number",
 #'   ylab = "Speed-of-light measurement",
 #'   pairwise.comparisons = TRUE,
+#'   pairwise.annotation = "p.value",
 #'   p.adjust.method = "fdr",
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Run,
@@ -169,6 +172,7 @@ ggbetweenstats <- function(data,
                            plot.type = "boxviolin",
                            type = "parametric",
                            pairwise.comparisons = FALSE,
+                           pairwise.annotation = "asterisk",
                            p.adjust.method = "holm",
                            effsize.type = "unbiased",
                            effsize.noncentral = FALSE,
@@ -209,28 +213,6 @@ ggbetweenstats <- function(data,
                            palette = "Dark2",
                            direction = 1,
                            messages = TRUE) {
-
-  # ------------------------ checks -------------------------------------------
-
-  # # create a list of function call to check for label.expression
-  #   param_list <- base::as.list(base::match.call())
-  #
-  #   # check that x and outlier.label are different
-  #   if (("x" %in% names(param_list)) &&
-  #     ("outlier.label" %in% names(param_list))) {
-  #     if (as.character(param_list$x)[[1]] ==
-  #       as.character(param_list$outlier.label)[[1]]) {
-  #       base::message(cat(
-  #         crayon::red("Error: "),
-  #         crayon::blue(
-  #           "Identical variable (",
-  #           crayon::yellow(param_list$x),
-  #           ") used for both grouping and outlier labeling, which is not allowed."
-  #         ),
-  #         sep = ""
-  #       ))
-  #     }
-  #   }
 
   # ------------------------------ variable names ----------------------------
 
@@ -577,6 +559,7 @@ ggbetweenstats <- function(data,
         paired = FALSE,
         var.equal = var.equal,
         p.adjust.method = p.adjust.method,
+        k = k,
         messages = FALSE
       )
 
@@ -597,6 +580,23 @@ ggbetweenstats <- function(data,
 
     # proceed only if there are any significant comparisons to display
     if (dim(df_pairwise)[[1]] != 0L) {
+
+      # deciding what needs to be displayed
+      if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
+        # if p-values are to be displayed
+        df_pairwise %<>%
+          dplyr::rename(.data = ., label = p.value.label)
+
+        # for ggsignif
+        textsize <- 3
+      } else {
+        # otherwise just show the asterisks
+        df_pairwise %<>%
+          dplyr::rename(.data = ., label = significance)
+
+        # for ggsignif
+        textsize <- 4
+      }
 
       # arrange the dataframe so that annotations are properly aligned
       df_pairwise %<>%
@@ -628,11 +628,11 @@ ggbetweenstats <- function(data,
         ggsignif::geom_signif(
           comparisons = df_pairwise$groups,
           map_signif_level = TRUE,
-          textsize = 4,
-          step_increase = 0.1,
+          textsize = textsize,
           tip_length = 0.01,
+          vjust = 0.2,
           y_position = ggsignif_y_position,
-          annotations = df_pairwise$significance,
+          annotations = df_pairwise$label,
           na.rm = TRUE
         )
     }

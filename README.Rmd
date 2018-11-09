@@ -315,7 +315,7 @@ null (`BF01`) hypotheses (since `log(BF10) = - log(BF01)`).
 Additionally, there is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+```{r ggbetweenstats3, message = FALSE, warning = FALSE, fig.height = 14, fig.width = 12}
 # for reproducibility
 set.seed(123)
 
@@ -328,8 +328,9 @@ ggstatsplot::grouped_ggbetweenstats(
   x = mpaa, 
   y = length,
   pairwise.comparisons = TRUE,      # display significant pairwise comparisons
-  p.adjust.method = "bonferroni",  # method for adjusting p-values for multiple comparisons
-  grouping.var = genre,            # grouping variable
+  pairwise.annotation = "p.value",  # how do you want to annotate the pairwise comparisons
+  p.adjust.method = "bonferroni",   # method for adjusting p-values for multiple comparisons
+  grouping.var = genre,             # grouping variable
   k = 2,
   title.prefix = "Movie genre",
   palette = "default_jama",

@@ -187,7 +187,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg" alt="Coverage Status"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--08-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--09-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://sites.google.com/site/indrajeetspatilmorality/"><img src="https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0" alt="author"></a></td>
 </tr>
 <tr class="even">
@@ -362,7 +362,7 @@
 <a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x00000000226f3078&gt;</span></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x0000000021f2d440&gt;</span></a>
 <a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -462,17 +462,18 @@
 <a class="sourceLine" id="cb11-10" data-line-number="10">  <span class="dt">x =</span> mpaa, </a>
 <a class="sourceLine" id="cb11-11" data-line-number="11">  <span class="dt">y =</span> length,</a>
 <a class="sourceLine" id="cb11-12" data-line-number="12">  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,      <span class="co"># display significant pairwise comparisons</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13">  <span class="dt">p.adjust.method =</span> <span class="st">"bonferroni"</span>,  <span class="co"># method for adjusting p-values for multiple comparisons</span></a>
-<a class="sourceLine" id="cb11-14" data-line-number="14">  <span class="dt">grouping.var =</span> genre,            <span class="co"># grouping variable</span></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
-<a class="sourceLine" id="cb11-17" data-line-number="17">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</a>
-<a class="sourceLine" id="cb11-18" data-line-number="18">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb11-19" data-line-number="19">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb11-21" data-line-number="21">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb11-22" data-line-number="22">  <span class="dt">title.text =</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span></a>
-<a class="sourceLine" id="cb11-23" data-line-number="23">)</a></code></pre></div>
+<a class="sourceLine" id="cb11-13" data-line-number="13">  <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>,  <span class="co"># how do you want to annotate the pairwise comparisons</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">  <span class="dt">p.adjust.method =</span> <span class="st">"bonferroni"</span>,   <span class="co"># method for adjusting p-values for multiple comparisons</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="dt">grouping.var =</span> genre,             <span class="co"># grouping variable</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb11-17" data-line-number="17">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
+<a class="sourceLine" id="cb11-18" data-line-number="18">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</a>
+<a class="sourceLine" id="cb11-19" data-line-number="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb11-21" data-line-number="21">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb11-22" data-line-number="22">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb11-23" data-line-number="23">  <span class="dt">title.text =</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span></a>
+<a class="sourceLine" id="cb11-24" data-line-number="24">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
 <p>For more, see the <code>ggbetweenstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html</a></p>
 <p><strong>This function is not appropriate for within-subjects designs.</strong></p>

@@ -5,7 +5,8 @@
 \title{Pairwise comparison tests}
 \usage{
 pairwise_p(data, x, y, type = "parametric", tr = 0.1, paired = FALSE,
-  var.equal = FALSE, p.adjust.method = "holm", messages = TRUE, ...)
+  var.equal = FALSE, p.adjust.method = "holm", k = 3,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be

@@ -140,7 +140,9 @@ utils::globalVariables(
     "p.crit",
     "sep",
     "value",
-    "var"
+    "var",
+    "label2",
+    "p.value.label"
   ),
   package = "ggstatsplot",
   add = FALSE

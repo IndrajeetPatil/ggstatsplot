@@ -272,6 +272,7 @@ pairwise_p <-
              paired = FALSE,
              var.equal = FALSE,
              p.adjust.method = "holm",
+             k = 3,
              messages = TRUE,
              ...) {
     # ---------------------------- data cleanup -------------------------------
@@ -553,7 +554,39 @@ pairwise_p <-
         .tbl = .,
         .predicate = base::is.factor,
         .funs = ~ as.character(.)
-      )
+      ) %>%
+      purrrlyr::by_row(
+        .d = .,
+        ..f = ~ ggstatsplot::specify_decimal_p(
+          x = .$p.value,
+          k = k,
+          p.value = TRUE
+        ),
+        .collate = "rows",
+        .to = "label",
+        .labels = TRUE
+      ) %>%
+      dplyr::mutate(
+        .data = .,
+        label2 = dplyr::case_when(
+          label == "< 0.001" ~ "<= 0.001",
+          label != "< 0.001" ~ paste(" = ", label,
+            sep = ""
+          )
+        )
+      ) %>%
+      dplyr::select(.data = ., -label) %>%
+      purrrlyr::by_row(
+        .d = .,
+        ..f = ~ paste("p ",
+          .$label2,
+          sep = ""
+        ),
+        .collate = "rows",
+        .to = "p.value.label",
+        .labels = TRUE
+      ) %>%
+      dplyr::select(.data = ., -label2)
 
     # return
     return(df)
@@ -658,10 +691,13 @@ ggsignif_position_calculator <- function(x, y) {
     ))
 
   # start position on y-axis for the ggsignif lines
-  y_start <- max(x = y, na.rm = TRUE) * (1 + 0.025)
+  y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
+
+  # steps in which the y values need to increase
+  step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 25
 
   # end position on y-axis for the ggsignif lines
-  y_end <- y_start + (0.125 * n_comparions)
+  y_end <- y_start + (step_length * n_comparions)
 
   # creating a vector of positions for the ggsignif lines
   ggsignif_position <-
