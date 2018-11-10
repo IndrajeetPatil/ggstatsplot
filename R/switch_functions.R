@@ -56,7 +56,7 @@ ggbetweenstats_switch <- function(type, test, ...) {
         ggstatsplot::subtitle_ggbetween_rob_anova(...)
       },
       bf = {
-        print("Bayes Factors currently not supported for ANOVA designs.")
+        ggstatsplot::subtitle_anova_bayes(...)
       }
     )
   }

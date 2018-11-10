@@ -74,7 +74,8 @@ bf_message_ttest <- function(jmv_results,
 #' subtitle_ggbetween_anova_parametric(
 #'   data = ggplot2::msleep,
 #'   x = vore,
-#'   y = sleep_rem
+#'   y = sleep_rem,
+#'   k = 2
 #' )
 #' 
 #' # modifying the defaults
@@ -83,7 +84,6 @@ bf_message_ttest <- function(jmv_results,
 #'   x = vore,
 #'   y = sleep_rem,
 #'   effsize.type = "partial_eta",
-#'   k = 2,
 #'   var.equal = TRUE,
 #'   nboot = 10
 #' )
@@ -127,8 +127,15 @@ subtitle_ggbetween_anova_parametric <-
         var.equal = var.equal
       )
 
+    # number of decimal places for degree of freedom
+    if (!isTRUE(var.equal)) {
+      k.df2 <- k
+    } else if (isTRUE(var.equal)) {
+      k.df2 <- 0
+    }
+
     # preparing the subtitles with appropriate effect sizes
-    if (effsize.type %in% c("unbiased", "partial_omega")) {
+    if (effsize.type %in% c("unbiased", "partial_omega", "partial.omega")) {
       # partial omega-squared is the biased estimate of effect size for
       # parametric ANOVA
       aov_effsize_ci <-
@@ -196,7 +203,7 @@ subtitle_ggbetween_anova_parametric <-
             df1 = aov_stat$parameter[[1]],
             df2 = ggstatsplot::specify_decimal_p(
               x = aov_stat$parameter[[2]],
-              k = k,
+              k = k.df2,
               p.value = FALSE
             ),
             pvalue = ggstatsplot::specify_decimal_p(
@@ -222,7 +229,7 @@ subtitle_ggbetween_anova_parametric <-
             n = nrow(x = data)
           )
         )
-    } else if (effsize.type %in% c("biased", "partial_eta")) {
+    } else if (effsize.type %in% c("biased", "partial_eta", "partial.eta")) {
       # getting confidence interval for partial eta-squared
       aov_effsize_ci <- sjstats::eta_sq(
         model = stats::lm(
@@ -288,7 +295,7 @@ subtitle_ggbetween_anova_parametric <-
             df1 = aov_stat$parameter[[1]],
             df2 = ggstatsplot::specify_decimal_p(
               x = aov_stat$parameter[[2]],
-              k = k,
+              k = k.df2,
               p.value = FALSE
             ),
             pvalue = ggstatsplot::specify_decimal_p(
@@ -1431,3 +1438,243 @@ subtitle_ggbetween_rob_anova <-
     # return the subtitle
     return(subtitle)
   }
+
+
+#' @title Making text subtitle for the between-subject one-way anova designs.
+#' @name subtitle_anova_bayes
+#' @author Indrajeet Patil
+#'
+#' @inheritParams subtitle_ggbetween_anova_parametric
+#' @inheritParams subtitle_ggbetween_t_bayes
+#'
+#' @importFrom dplyr select
+#' @importFrom rlang !! enquo
+#' @importFrom stats lm oneway.test na.omit
+#' @importFrom sjstats eta_sq omega_sq
+#'
+#' @examples
+#' # with defaults
+#' subtitle_anova_bayes(
+#'   data = ggplot2::msleep,
+#'   x = vore,
+#'   y = sleep_rem,
+#'   k = 2,
+#'   bf.prior = 0.8
+#' )
+#' 
+#' # modifying the defaults
+#' subtitle_anova_bayes(
+#'   data = ggplot2::msleep,
+#'   x = vore,
+#'   y = sleep_rem,
+#'   effsize.type = "partial_eta",
+#'   var.equal = TRUE,
+#'   nboot = 10
+#' )
+#' @export
+
+# function body
+subtitle_anova_bayes <- function(data,
+                                 x,
+                                 y,
+                                 effsize.type = "partial_omega",
+                                 var.equal = FALSE,
+                                 bf.prior = 0.707,
+                                 paired = FALSE,
+                                 k = 3,
+                                 ...) {
+
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    )
+
+  # convert the grouping variable to factor and drop unused levels
+  data %<>%
+    stats::na.omit(.) %>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    )
+
+  # sample size
+  sample_size <- nrow(data)
+
+  # Welch's ANOVA run by default
+  aov_stat <-
+    stats::oneway.test(
+      formula = y ~ x,
+      data = data,
+      subset = NULL,
+      na.action = na.omit,
+      var.equal = var.equal
+    )
+
+  # bayes factor results
+  bf_results <-
+    bf_oneway_anova(
+      data = data,
+      x = x,
+      y = y,
+      bf.prior = bf.prior,
+      caption = NULL,
+      output = "results"
+    )
+
+  # number of decimal places for degree of freedom
+  if (!isTRUE(var.equal)) {
+    k.df2 <- k
+  } else if (isTRUE(var.equal)) {
+    k.df2 <- 0
+  }
+
+  # preparing the subtitles with appropriate effect sizes
+  if (effsize.type %in% c("unbiased", "partial_omega", "partial.omega")) {
+    # partial omega-squared is the biased estimate of effect size for
+    # parametric ANOVA
+    aov_effsize_ci <-
+      sjstats::omega_sq(
+        model = stats::lm(
+          formula = y ~ x,
+          data = data,
+          na.action = na.omit
+        ),
+        partial = TRUE
+      )
+
+    # preparing the subtitle
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            italic("F"),
+            "(",
+            df1,
+            ",",
+            df2,
+            ") = ",
+            estimate,
+            ", p",
+            omega^2,
+            " = ",
+            effsize,
+            ", log"["e"],
+            "(BF"["10"],
+            ") = ",
+            bf,
+            ", Prior width = ",
+            bf_prior,
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          estimate = ggstatsplot::specify_decimal_p(
+            x = aov_stat$statistic[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          df1 = aov_stat$parameter[[1]],
+          df2 = ggstatsplot::specify_decimal_p(
+            x = aov_stat$parameter[[2]],
+            k = k.df2,
+            p.value = FALSE
+          ),
+          effsize = ggstatsplot::specify_decimal_p(
+            x = aov_effsize_ci$partial.omegasq[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          bf = ggstatsplot::specify_decimal_p(
+            x = log(
+              x = bf_results$bf[[1]],
+              base = exp(1)
+            ),
+            k = 1
+          ),
+          bf_prior = ggstatsplot::specify_decimal_p(
+            x = bf_results$bf.prior[[1]],
+            k = 3
+          ),
+          n = sample_size
+        )
+      )
+  } else if (effsize.type %in% c("biased", "partial_eta", "partial.eta")) {
+    # getting confidence interval for partial eta-squared
+    aov_effsize_ci <- sjstats::eta_sq(
+      model = stats::lm(
+        formula = y ~ x,
+        data = data,
+        na.action = na.omit
+      ),
+      partial = TRUE
+    )
+
+    # preparing the subtitle
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            italic("F"),
+            "(",
+            df1,
+            ",",
+            df2,
+            ") = ",
+            estimate,
+            ", p",
+            eta^2,
+            " = ",
+            effsize,
+            ", log"["e"],
+            "(BF"["10"],
+            ") = ",
+            bf,
+            ", Prior width = ",
+            bf_prior,
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          estimate = ggstatsplot::specify_decimal_p(
+            x = aov_stat$statistic[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          df1 = aov_stat$parameter[[1]],
+          df2 = ggstatsplot::specify_decimal_p(
+            x = aov_stat$parameter[[2]],
+            k = k.df2,
+            p.value = FALSE
+          ),
+          effsize = ggstatsplot::specify_decimal_p(
+            x = aov_effsize_ci$partial.etasq[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          bf = ggstatsplot::specify_decimal_p(
+            x = log(
+              x = bf_results$bf[[1]],
+              base = exp(1)
+            ),
+            k = 1
+          ),
+          bf_prior = ggstatsplot::specify_decimal_p(
+            x = bf_results$bf.prior[[1]],
+            k = 3
+          ),
+          n = sample_size
+        )
+      )
+  }
+
+  # return the subtitle
+  return(subtitle)
+}

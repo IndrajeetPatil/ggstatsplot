@@ -239,7 +239,8 @@ ggstatsplot::ggbetweenstats(
   outlier.label = Run,
   nboot = 10,
   ggtheme = ggthemes::theme_few(),
-  ggstatsplot.layer = FALSE
+  ggstatsplot.layer = FALSE,
+  bf.message = TRUE
 )
 }
 \references{

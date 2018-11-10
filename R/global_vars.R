@@ -142,7 +142,8 @@ utils::globalVariables(
     "value",
     "var",
     "label2",
-    "p.value.label"
+    "p.value.label",
+    "sampling.plan"
   ),
   package = "ggstatsplot",
   add = FALSE

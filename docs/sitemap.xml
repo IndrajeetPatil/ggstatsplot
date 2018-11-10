@@ -7,7 +7,13 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bartlett_message.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_contigency_tab.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_corr_test.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_oneway_anova.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/check_outlier.html</loc>
@@ -122,6 +128,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/set_cwd.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_bayes.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_contigency_tab.html</loc>

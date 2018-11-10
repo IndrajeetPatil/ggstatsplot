@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default theme used in all <code>ggstatsplot</code> package plots — theme_ggstatsplot • ggstatsplot</title>
+<title>Bayesian contingency table analysis. — bf_contigency_tab • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -40,11 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Default theme used in all <code>ggstatsplot</code> package plots — theme_ggstatsplot" />
+<meta property="og:title" content="Bayesian contingency table analysis. — bf_contigency_tab" />
 
-<meta property="og:description" content="Common theme used across all plots generated in ggstatsplot
-and assumed by the author to be aesthetically pleasing to the
-user/reader." />
+<meta property="og:description" content="Bayesian contingency table analysis." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -170,47 +168,72 @@ user/reader." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Default theme used in all <code>ggstatsplot</code> package plots</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/theme_ggstatsplot.R'><code>R/theme_ggstatsplot.R</code></a></small>
-    <div class="hidden name"><code>theme_ggstatsplot.Rd</code></div>
+    <h1>Bayesian contingency table analysis.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggpiestats.R'><code>R/helpers_ggpiestats.R</code></a></small>
+    <div class="hidden name"><code>bf_contigency_tab.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Common theme used across all plots generated in <code>ggstatsplot</code>
-and <em>assumed</em> by the author to be aesthetically pleasing to the
-user/reader.</p>
+    <p>Bayesian contingency table analysis.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_ggstatsplot</span>(<span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>bf_contigency_tab</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='no'>condition</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
+  <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
+      <th>data</th>
+      <td><p>The data as a data frame (matrix or tables will not be accepted).</p></td>
     </tr>
     <tr>
-      <th>ggstatsplot.layer</th>
-      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>).</p></td>
+      <th>main</th>
+      <td><p>The variable to use as the <strong>rows</strong> in the
+contingency table.</p></td>
+    </tr>
+    <tr>
+      <th>condition</th>
+      <td><p>The variable to use as the <strong>columns</strong> in the contingency
+table.</p></td>
+    </tr>
+    <tr>
+      <th>sampling.plan</th>
+      <td><p>Character describing the sampling plan. Possible options
+are <code>"indepMulti"</code> (independent multinomial; default), <code>"poisson"</code>,
+<code>"jointMulti"</code> (joint multinomial), <code>"hypergeom"</code> (hypergeometric). For
+more, see <code>?BayesFactor::contingencyTableBF()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>fixed.margin</th>
+      <td><p>For the independent multinomial sampling plan, which
+margin is fixed (<code>"rows"</code> or <code>"cols"</code>). Defaults to <code>"rows"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>prior.concentration</th>
+      <td><p>Specifies the prior concentration parameter, set
+to <code>1</code> by default. It indexes the expected deviation from the null
+hypothesis under the alternative, and corresponds to Gunel and Dickey's
+(1974) <code>"a"</code> parameter.</p></td>
+    </tr>
+    <tr>
+      <th>caption</th>
+      <td><p>The text for the plot caption.</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>Can either be <code>"caption"</code> (which will contain text for evidence
+in favor of null)  or <code>"results"</code> (which will return the dataframe with
+results).</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>A <code>ggplot2</code> object with the <code>theme_ggstatsplot</code> theme.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html</a></p>
+    <div class='dont-index'><p><code><a href='bf_corr_test.html'>bf_corr_test</a></code>, <code><a href='bf_oneway_anova.html'>bf_oneway_anova</a></code></p></div>
     
 
   </div>
@@ -219,9 +242,7 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
     <h2>Author</h2>

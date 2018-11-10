@@ -113,6 +113,7 @@ ggstatsplot::ggbetweenstats(
   type = "parametric",                                # type of statistical test  
   effsize.type = "biased",                            # type of effect size
   nboot = 10,                                         # number of bootstrap samples used
+  bf.message = TRUE,                                  # display bayes factor in favor of null hypothesis
   outlier.tagging = TRUE,                             # whether outliers should be flagged
   outlier.coef = 1.5,                                 # coefficient for Tukey's rule
   outlier.label = country,                            # label to attach to outlier values
@@ -281,6 +282,9 @@ ggstatsplot::grouped_ggbetweenstats(
   ylab = "Life expectancy", 
   k = 2,
   nboot = 10,
+  pairwise.comparisons = TRUE,
+  pairwise.annotation = "p.value",
+  p.adjust.method = "fdr",
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",

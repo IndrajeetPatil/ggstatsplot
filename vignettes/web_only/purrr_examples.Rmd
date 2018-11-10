@@ -143,9 +143,9 @@ plot_list <- purrr::pmap(
       "Year: 1987",
       "Year: 2007"
     ),
-    type = list("r", "p", "np"),
+    type = list("r", "bf", "np"),
     pairwise.comparisons = TRUE,
-    pairwise.annotation = list("p.value", "asterisk", "p.value"),
+    pairwise.annotation = list("asterisk", "asterisk", "p.value"),
     p.adjust.method = list("hommel", "bonferroni", "BH"),
     nboot = 25,
     mean.label.size = c(3, 4, 5),

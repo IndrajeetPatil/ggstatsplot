@@ -134,10 +134,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -147,7 +147,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#'
+#' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -163,7 +163,8 @@
 #'   outlier.label = Run,
 #'   nboot = 10,
 #'   ggtheme = ggthemes::theme_few(),
-#'   ggstatsplot.layer = FALSE
+#'   ggstatsplot.layer = FALSE,
+#'   bf.message = TRUE
 #' )
 #' @export
 
@@ -215,6 +216,19 @@ ggbetweenstats <- function(data,
                            palette = "Dark2",
                            direction = 1,
                            messages = TRUE) {
+
+  # no pairwise comparisons are available for bayesian t-tests
+  if (type %in% c("bf", "bayes")) {
+    # turn off pairwise comparisons
+    pairwise.comparisons <- FALSE
+
+    # print a message telling the user the same
+    base::message(cat(
+      crayon::red("Warning: "),
+      crayon::blue("No Bayes Factor pairwise comparisons currently available.\n"),
+      sep = ""
+    ))
+  }
 
   # ------------------------------ variable names ----------------------------
 
@@ -414,31 +428,44 @@ ggbetweenstats <- function(data,
             caption = caption
           )
       }
+    } else if (test == "anova") {
+      # preparing the BF message for NULL
+      if (isTRUE(bf.message)) {
+        bf.caption.text <-
+          bf_oneway_anova(
+            data = data,
+            x = x,
+            y = y,
+            bf.prior = bf.prior,
+            caption = caption,
+            output = "caption"
+          )
+      }
     }
 
     # extracting the subtitle using the switch function
-    subtitle <- ggbetweenstats_switch(
-      # switch based on
-      type = type,
-      test = test,
-      # arguments relevant for subtitle helper functions
-      data = data,
-      x = x,
-      y = y,
-      paired = FALSE,
-      effsize.type = effsize.type,
-      effsize.noncentral = effsize.noncentral,
-      var.equal = var.equal,
-      bf.prior = bf.prior,
-      tr = tr,
-      nboot = nboot,
-      k = k,
-      messages = messages
-    )
+    subtitle <-
+      ggbetweenstats_switch(
+        # switch based on
+        type = type,
+        test = test,
+        # arguments relevant for subtitle helper functions
+        data = data,
+        x = x,
+        y = y,
+        paired = FALSE,
+        effsize.type = effsize.type,
+        effsize.noncentral = effsize.noncentral,
+        var.equal = var.equal,
+        bf.prior = bf.prior,
+        tr = tr,
+        nboot = nboot,
+        k = k,
+        messages = messages
+      )
 
     # if bayes factor message needs to be displayed
-    if (test == "t-test" &&
-      type %in% c("parametric", "p") && isTRUE(bf.message)) {
+    if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       caption <- bf.caption.text
     }
   }
@@ -591,6 +618,7 @@ ggbetweenstats <- function(data,
 
         # for ggsignif
         textsize <- 3
+        vjust <- 0
       } else {
         # otherwise just show the asterisks
         df_pairwise %<>%
@@ -598,6 +626,7 @@ ggbetweenstats <- function(data,
 
         # for ggsignif
         textsize <- 4
+        vjust <- 0.2
       }
 
       # arrange the dataframe so that annotations are properly aligned
@@ -632,7 +661,7 @@ ggbetweenstats <- function(data,
           map_signif_level = TRUE,
           textsize = textsize,
           tip_length = 0.01,
-          vjust = 0.2,
+          vjust = vjust,
           y_position = ggsignif_y_position,
           annotations = df_pairwise$label,
           na.rm = TRUE

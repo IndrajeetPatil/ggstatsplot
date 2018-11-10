@@ -263,7 +263,7 @@ ggscatterstats <-
         k = k
       )
 
-      # preparing the BF message for NULL
+      # preparing the BF message for null hypothesis support
       if (isTRUE(bf.message)) {
         bf.caption.text <-
           bf_corr_test(

@@ -12,6 +12,8 @@
 #'
 #' @importFrom BayesFactor correlationBF extractBF
 #'
+#' @seealso \code{\link{bf_contigency_tab}}, \code{\link{bf_oneway_anova}}
+#'
 #' @keywords internal
 
 # function body

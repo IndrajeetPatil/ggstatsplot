@@ -210,10 +210,10 @@ long_to_wide_converter <- function(data, x, y) {
 #'
 #' @examples
 #' \dontrun{
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
@@ -225,7 +225,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#'
+#' 
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -236,7 +236,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#'
+#' 
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -245,7 +245,7 @@ long_to_wide_converter <- function(data, x, y) {
 #'   type = "np",
 #'   p.adjust.method = "none"
 #' )
-#'
+#' 
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -689,7 +689,7 @@ ggsignif_position_calculator <- function(x, y) {
   y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
 
   # steps in which the y values need to increase
-  step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 25
+  step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 20
 
   # end position on y-axis for the ggsignif lines
   y_end <- y_start + (step_length * n_comparions)
@@ -705,3 +705,97 @@ ggsignif_position_calculator <- function(x, y) {
   # return the position vector
   return(ggsignif_position)
 }
+
+
+#' @title Bayesian one-way analysis of variance.
+#' @name bf_oneway_anova
+#' @aliases bf_oneway_anova
+#' @author Indrajeet Patil
+#'
+#' @importFrom BayesFactor anovaBF extractBF
+#'
+#' @inheritParams ggbetweenstats
+#' @inheritParams bf_corr_test
+#'
+#' @seealso \code{\link{bf_contigency_tab}}, \code{\link{bf_corr_test}}
+#'
+#' @keywords internal
+
+# function body
+bf_oneway_anova <-
+  function(data,
+             x,
+             y,
+             bf.prior = 0.707,
+             caption = NULL,
+             output = "caption") {
+
+    # creating a dataframe
+    data <-
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x),
+        y = !!rlang::enquo(y)
+      ) %>%
+      stats::na.omit(.) %>%
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "x",
+        .funs = ~ base::droplevels(x = base::as.factor(x = .))
+      ) %>%
+      tibble::as_data_frame(.)
+
+    # extracting results from bayesian test and creating a dataframe
+    bf_results <-
+      BayesFactor::extractBF(
+        BayesFactor::anovaBF(
+          formula = y ~ x,
+          data = as.data.frame(data),
+          rscaleFixed = bf.prior,
+          progress = FALSE
+        )
+      ) %>% # converting to a tibble dataframe
+      tibble::as_data_frame(.) %>% # removing unnecessary columns
+      dplyr::select(.data = ., -time, -code) %>% # adding prior width column
+      dplyr::mutate(.data = ., bf.prior = bf.prior)
+
+    # prepare the bayes factor message
+    bf_message <-
+      base::substitute(
+        atop(top.text,
+          expr =
+            paste(
+              "In favor of null: ",
+              "log"["e"],
+              "(BF"["01"],
+              ") = ",
+              bf,
+              ", Prior width = ",
+              bf_prior
+            )
+        ),
+        env = base::list(
+          top.text = caption,
+          bf = ggstatsplot::specify_decimal_p(
+            x = log(
+              x = (1 / bf_results$bf[[1]]),
+              base = exp(1)
+            ),
+            k = 1,
+            p.value = FALSE
+          ),
+          bf_prior = ggstatsplot::specify_decimal_p(
+            x = bf_results$bf.prior[[1]],
+            k = 3,
+            p.value = FALSE
+          )
+        )
+      )
+
+    # return the text results or the dataframe with results
+    if (output == "caption") {
+      return(bf_message)
+    } else if (output == "results") {
+      return(bf_results)
+    }
+  }

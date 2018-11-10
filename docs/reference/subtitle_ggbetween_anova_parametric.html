@@ -243,10 +243,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='fu'>subtitle_ggbetween_anova_parametric</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
-)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "11.101", ") = ", "2.633", ", ", 
-#&gt;     italic("p"), " = ", "0.102", ", p", omega^2, " = ", "0.144", 
-#&gt;     ", 95% CI [", "-0.009", ", ", "0.422", "]", ", ", italic("n"), 
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>
+)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "11.10", ") = ", "2.63", ", ", 
+#&gt;     italic("p"), " = ", "0.102", ", p", omega^2, " = ", "0.14", 
+#&gt;     ", 95% CI [", "-0.01", ", ", "0.42", "]", ", ", italic("n"), 
 #&gt;     " = ", 56L)</div><div class='input'>
 <span class='co'># modifying the defaults</span>
 <span class='fu'>subtitle_ggbetween_anova_parametric</span>(
@@ -254,12 +255,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"partial_eta"</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)</div><div class='output co'>#&gt; Note: 95% CI for partial eta-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "52.00", ") = ", "4.14", ", ", 
-#&gt;     italic("p"), " = ", "0.011", ", p", eta^2, " = ", "0.19", 
-#&gt;     ", 95% CI [", "0.01", ", ", "0.34", "]", ", ", italic("n"), 
+)</div><div class='output co'>#&gt; Note: 95% CI for partial eta-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "52", ") = ", "4.136", ", ", 
+#&gt;     italic("p"), " = ", "0.011", ", p", eta^2, " = ", "0.193", 
+#&gt;     ", 95% CI [", "0.013", ", ", "0.339", "]", ", ", italic("n"), 
 #&gt;     " = ", 56L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -271,9 +271,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </ul>
 
     <h2>Author</h2>
-    
-Indrajeet Patil
-
+    <p>Indrajeet Patil</p>
   </div>
 </div>
 
