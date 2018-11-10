@@ -101,7 +101,11 @@ bf_contigency_tab <-
               ") = ",
               bf,
               ", sampling = ",
-              sampling.plan
+              sampling.plan,
+              ", ",
+              italic("a"),
+              " = ",
+              a
             )
         ),
         env = base::list(
@@ -114,7 +118,12 @@ bf_contigency_tab <-
             k = 1,
             p.value = FALSE
           ),
-          sampling.plan = sampling_plan_text
+          sampling.plan = sampling_plan_text,
+          a = ggstatsplot::specify_decimal_p(
+            x = bf_results$prior.concentration[[1]],
+            k = 1,
+            p.value = FALSE
+          )
         )
       )
 

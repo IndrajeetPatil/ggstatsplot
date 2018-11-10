@@ -9,8 +9,8 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)           | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                           | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.6-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                       | [![Covealls Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![manual](https://img.shields.io/badge/manual-0.0.6-darkgreen.svg)](https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf)                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)                      | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--11--09-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
-| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_11_08-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)                      | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--11--10-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
+| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_11_10-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
 
@@ -27,10 +27,10 @@ visualization method, and so on and so forth. The central idea of
 of graphics with statistical details, which makes data exploration
 simpler and faster.
 
-Currently, it supports only the most common types of statistical tests
-(**parametric**, **nonparametric**, and **robust** versions of
-**t-test**, **anova**, and **correlation** analyses, **contingency
-table** analysis, and **regression** analyses).
+Currently, it supports only the most common types of statistical tests:
+**parametric**, **nonparametric**, **robust**, and **bayesian** versions
+of **t-test**/**anova**, **correlation** analyses, **contingency table**
+analysis, and **regression** analyses.
 
 It, therefore, produces a limited kinds of plots for the supported
 analyses:
@@ -52,7 +52,7 @@ plots as well.
 
 # Installation
 
-To get the latest, stable CRAN release (`0.0.6.9000`):
+To get the latest, stable CRAN release (`0.0.6`):
 
 ``` r
 utils::install.packages(pkgs = "ggstatsplot")
@@ -233,7 +233,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002a842f90>
+#> <bytecode: 0x000000002a0cac38>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -383,12 +383,15 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_ggbetweenstats(
-  data = dplyr::filter(ggstatsplot::movies_long, !genre %in% c("Animation", "Documentary")),
+  data = dplyr::filter(.data = ggstatsplot::movies_long, 
+                       !genre %in% c("Animation", "Documentary")),
   x = mpaa, 
   y = length,
+  caption = substitute(paste(italic("Source"), ":IMDb (Internet Movie Database)")), 
   pairwise.comparisons = TRUE,      # display significant pairwise comparisons
   pairwise.annotation = "p.value",  # how do you want to annotate the pairwise comparisons
   p.adjust.method = "bonferroni",   # method for adjusting p-values for multiple comparisons
+  bf.message = TRUE,                # display Bayes Factor in favor of the null hypothesis
   grouping.var = genre,             # grouping variable
   k = 2,
   title.prefix = "Movie genre",
@@ -576,14 +579,15 @@ ggstatsplot::ggpiestats(
   condition = cyl,
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
   stat.title = "interaction: ",                       # title for the results
+  bf.message = TRUE,                                  # display bayes factor in favor of null
   legend.title = "Transmission",                      # title for the legend
   factor.levels = c("1 = manual", "0 = automatic"),   # renaming the factor level names (`main`)
   facet.wrap.name = "No. of cylinders",               # name for the facetting variable
   slice.label = "counts",                             # show counts data instead of percentages 
   package = "ggsci",                                  # package from which color palette is to be taken
   palette = "default_jama",                           # choosing a different color palette 
-  caption = expression(                               # text for the caption
-    paste(italic("Note"), ": this is a demo")
+  caption = substitute(                               # text for the caption
+    paste(italic("Source"), ": 1974 Motor Trend US magazine")
   ),
   messages = FALSE                                    # turn off messages and notes
 ) 

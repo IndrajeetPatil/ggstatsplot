@@ -145,7 +145,8 @@ utils::globalVariables(
     "p.value.label",
     "sampling.plan",
     "displaystyle",
-    "textstyle"
+    "textstyle",
+    "a"
   ),
   package = "ggstatsplot",
   add = FALSE

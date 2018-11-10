@@ -93,6 +93,10 @@ ggstatsplot::ggbetweenstats(
   title = "Figure-1: IMDB rating by film genre",
   xlab = "Genre",
   ylab = "IMDB rating (average)",
+  bf.message = TRUE,
+  pairwise.comparisons = TRUE,
+  pairwise.annotation = "asterisk",
+  p.adjust.method = "bonferroni",
   ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
@@ -122,7 +126,10 @@ ggstatsplot::ggpiestats(
   condition = mpaa,
   title = "Figure-2: Distribution of MPAA ratings by film genre",
   legend.title = "layout",
-  caption = "MPAA: Motion Picture Association of America",
+  caption = substitute(paste(
+    italic("MPAA"), ": Motion Picture Association of America"
+  )),
+  bf.message = TRUE,
   package = "ggsci",
   palette = "default_jama",
   messages = FALSE
@@ -169,7 +176,9 @@ ggstatsplot::combine_plots(
     x = length,
     y = rating,
     grouping.var = genre,
+    bf.message = TRUE,
     marginal = FALSE,
+    messages = FALSE,
     title.prefix = "Genre",
     title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
     title.size = 12
@@ -342,6 +351,28 @@ Functions | Type | Test | Effect size | 95% CI available?
 `gghistostats` | Non-parametric | One-sample Wilcoxon signed rank test | Cohen's *d* | <font color="red">$\times$</font>
 `gghistostats` | Robust | One-sample percentile bootstrap | robust estimator | <font color="green">$\checkmark$</font>
 `ggcoefstats` | Parametric | Regression models | $$\beta$$ | <font color="green">$\checkmark$</font>
+
+For the `ggbetweenstats` function, the following post-hoc tests are available
+for (adjusted) pairwise multiple comparisons:
+
+Type | Design | Equal variance assumed? |  Test | *p*-value adjustment? 
+----------- | ----------- | --------- | ----------------------- | -----
+Parametric | between-subjects | No | Games-Howell test | <font color="green">$\checkmark$</font> 
+Parametric | between-subjects | Yes | Student's *t*-test | <font color="green">$\checkmark$</font> 
+Parametric | within-subjects | `NA` | Student's *t*-test | <font color="green">$\checkmark$</font> 
+Non-parametric | between-subjects | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">$\checkmark$</font> 
+Non-parametric | within-subjects | No | Durbin-Conover test | <font color="green">$\checkmark$</font> 
+Robust | between-subjects | No | Yuen's trimmed means test | <font color="green">$\checkmark$</font> 
+Robust | within-subjects | `NA` | Yuen's trimmed means test | <font color="green">$\checkmark$</font>
+Bayes Factor | between-subjects | No | <font color="red">$\times$</font> | <font color="red">$\times$</font>
+Bayes Factor | between-subjects | Yes | <font color="red">$\times$</font> | <font color="red">$\times$</font>
+Bayes Factor | within-subjects | `NA` | <font color="red">$\times$</font> | <font color="red">$\times$</font>
+
+*Note*- 
+
+  - `NA`: not applicable
+  - available methods for *p*-value adjustment: "holm", "hochberg", "hommel",
+    "bonferroni", "BH", "BY", "fdr", "none"
 
 ## Statistical variation
 

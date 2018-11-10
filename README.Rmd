@@ -68,7 +68,7 @@ Future versions will include other types of statistical analyses and plots as we
 
 # Installation
 
-To get the latest, stable CRAN release (`0.0.6.9000`):
+To get the latest, stable CRAN release (`0.0.6`):
 ```{r installationCRAN, eval = FALSE}
 utils::install.packages(pkgs = "ggstatsplot")
 ```

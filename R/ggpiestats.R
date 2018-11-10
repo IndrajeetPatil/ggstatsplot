@@ -54,10 +54,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -65,7 +65,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#'
+#' 
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -76,10 +76,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#'
+#' 
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -98,10 +98,10 @@ ggpiestats <-
              factor.levels = NULL,
              stat.title = NULL,
              sample.size.label = TRUE,
-           bf.message = FALSE,
-           sampling.plan = "indepMulti",
-           fixed.margin = "rows",
-           prior.concentration = 1,
+             bf.message = FALSE,
+             sampling.plan = "indepMulti",
+             fixed.margin = "rows",
+             prior.concentration = 1,
              title = NULL,
              caption = NULL,
              nboot = 25,
@@ -299,23 +299,23 @@ ggpiestats <-
       if (!base::missing(condition)) {
         df_n_label <-
           dplyr::full_join(
-          x = df,
-          y = df %>%
-            dplyr::group_by(.data = ., condition) %>%
-            dplyr::summarize(.data = ., total_n = sum(counts)) %>%
-            dplyr::ungroup(x = .) %>%
-            dplyr::mutate(
-              .data = .,
-              condition_n_label = paste("(n = ", total_n, ")", sep = "")
-            ) %>%
-            # changing character variables into factors
-            dplyr::mutate_if(
-              .tbl = .,
-              .predicate = purrr::is_bare_character,
-              .funs = ~ base::as.factor(.)
-            ),
-          by = "condition"
-        ) %>%
+            x = df,
+            y = df %>%
+              dplyr::group_by(.data = ., condition) %>%
+              dplyr::summarize(.data = ., total_n = sum(counts)) %>%
+              dplyr::ungroup(x = .) %>%
+              dplyr::mutate(
+                .data = .,
+                condition_n_label = paste("(n = ", total_n, ")", sep = "")
+              ) %>%
+              # changing character variables into factors
+              dplyr::mutate_if(
+                .tbl = .,
+                .predicate = purrr::is_bare_character,
+                .funs = ~ base::as.factor(.)
+              ),
+            by = "condition"
+          ) %>%
           dplyr::mutate(
             .data = .,
             condition_n_label = dplyr::if_else(
