@@ -37,8 +37,9 @@ MAJOR CHANGES
 
 MINOR CHANGES
 
-  - `ggscatterstats` (and its `grouped_` variant) support bayes factor tests and
-    gain two new arguments: `bf.prior` and `bf.message`.
+  - `ggscatterstats`, `ggpiestats`, and their `grouped_` variant support bayes
+    factor tests and gain new arguments relevant to this test.
+  - `ggbetweenstats` supports bayes factor tests for anova designs.
   - `ggpiestats` (and its `grouped_` version) gain `slice.label` argument that
     decides what information needs to be displayed as a label on the slices of
     the pie chart: `"percentage"` (which has been the default thus far),

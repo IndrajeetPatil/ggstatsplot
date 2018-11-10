@@ -132,7 +132,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-11-09</h4>
+            <h4 class="date">2018-11-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggpiestats.Rmd"><code>vignettes/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -231,20 +231,21 @@
 <a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic by gender"</span>,   <span class="co"># title for the entire plot</span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>,            <span class="co"># caption for the entire plot</span></a>
 <a class="sourceLine" id="cb3-15" data-line-number="15">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                              <span class="co"># legend title</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),                         <span class="co"># changing plot theme </span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                               <span class="co"># choosing a different color palette</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                       <span class="co"># package to which color palette belongs</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,             <span class="co"># title for statistical test</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="dt">k =</span> <span class="dv">2</span>,                                                   <span class="co"># decimal places in result</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">perc.k =</span> <span class="dv">1</span>,                                              <span class="co"># decimal places in percentage labels</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">  <span class="dt">nboot =</span> <span class="dv">10</span>,                                              <span class="co"># no. of bootstrap sample for effect size CI</span></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">)  <span class="op">+</span><span class="st">                                                       </span><span class="co"># further modification with `ggplot2` commands</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(</a>
-<a class="sourceLine" id="cb3-26" data-line-number="26">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb3-27" data-line-number="27">    <span class="dt">size =</span> <span class="dv">14</span>,</a>
-<a class="sourceLine" id="cb3-28" data-line-number="28">    <span class="dt">hjust =</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb3-29" data-line-number="29">  ))</a></code></pre></div>
+<a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                       <span class="co"># show resuls from bayes factor in favor of null</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),                         <span class="co"># changing plot theme </span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                               <span class="co"># choosing a different color palette</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                       <span class="co"># package to which color palette belongs</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,             <span class="co"># title for statistical test</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">k =</span> <span class="dv">2</span>,                                                   <span class="co"># decimal places in result</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">  <span class="dt">perc.k =</span> <span class="dv">1</span>,                                              <span class="co"># decimal places in percentage labels</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">  <span class="dt">nboot =</span> <span class="dv">10</span>,                                              <span class="co"># no. of bootstrap sample for effect size CI</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">)  <span class="op">+</span><span class="st">                                                       </span><span class="co"># further modification with `ggplot2` commands</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">    <span class="dt">size =</span> <span class="dv">14</span>,</a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">    <span class="dt">hjust =</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb3-30" data-line-number="30">  ))</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="768"></p>
 <p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s chi-square test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by the <code>***</code> which is equivalent to a goodness of fit test for each gender.</p>
 </div>
@@ -267,18 +268,19 @@
 <a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">main =</span> Survived,</a>
 <a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">condition =</span> Sex,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">perc.k =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,</a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">title.text =</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,</a>
-<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-24" data-line-number="24">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">perc.k =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">title.text =</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="768"></p>
 <p>The resulting pie charts and statistics make the story clear. For adults gender very much matters. Women survived at much higher rates than men. For children gender is not significantly associated with survival and both male and female children have a survival rate that is not significantly different from 50/50.</p>
 </div>

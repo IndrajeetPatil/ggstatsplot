@@ -31,40 +31,42 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#' 
+#'
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   main = cyl
 #' )
-#' 
+#'
 #' # without condition and with count data
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
-#' 
+#'
 #' # the following will take slightly more amount of time
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
 #'   dplyr::sample_frac(tbl = ., size = 0.10)
-#' 
+#'
 #' # plot
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = diamonds_short,
 #'   main = color,
 #'   condition = clarity,
 #'   grouping.var = cut,
+#'   bf.message = TRUE,
+#'   sampling.plan = "poisson",
 #'   title.prefix = "Quality",
 #'   slice.label = "both",
 #'   messages = FALSE,
@@ -86,6 +88,10 @@ grouped_ggpiestats <- function(data,
                                factor.levels = NULL,
                                stat.title = NULL,
                                sample.size.label = TRUE,
+                               bf.message = FALSE,
+                               sampling.plan = "indepMulti",
+                               fixed.margin = "rows",
+                               prior.concentration = 1,
                                caption = NULL,
                                nboot = 25,
                                legend.title = NULL,
@@ -203,6 +209,10 @@ grouped_ggpiestats <- function(data,
                 factor.levels = factor.levels,
                 stat.title = stat.title,
                 sample.size.label = sample.size.label,
+                bf.message = bf.message,
+                sampling.plan = sampling.plan,
+                fixed.margin = fixed.margin,
+                prior.concentration = prior.concentration,
                 caption = caption,
                 nboot = nboot,
                 legend.title = legend.title,
@@ -240,6 +250,10 @@ grouped_ggpiestats <- function(data,
                 factor.levels = factor.levels,
                 stat.title = stat.title,
                 sample.size.label = sample.size.label,
+                bf.message = bf.message,
+                sampling.plan = sampling.plan,
+                fixed.margin = fixed.margin,
+                prior.concentration = prior.concentration,
                 caption = caption,
                 nboot = nboot,
                 legend.title = legend.title,
@@ -276,6 +290,10 @@ grouped_ggpiestats <- function(data,
                 paired = paired,
                 factor.levels = factor.levels,
                 stat.title = stat.title,
+                bf.message = bf.message,
+                sampling.plan = sampling.plan,
+                fixed.margin = fixed.margin,
+                prior.concentration = prior.concentration,
                 caption = caption,
                 nboot = nboot,
                 legend.title = legend.title,
@@ -311,6 +329,10 @@ grouped_ggpiestats <- function(data,
                 paired = paired,
                 factor.levels = factor.levels,
                 stat.title = stat.title,
+                bf.message = bf.message,
+                sampling.plan = sampling.plan,
+                fixed.margin = fixed.margin,
+                prior.concentration = prior.concentration,
                 caption = caption,
                 nboot = nboot,
                 legend.title = legend.title,

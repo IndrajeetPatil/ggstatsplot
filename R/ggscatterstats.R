@@ -538,10 +538,8 @@ ggscatterstats <-
     if (isTRUE(marginal) && isTRUE(messages)) {
       base::message(cat(
         crayon::red("Warning: "),
-        crayon::blue(
-          "The output can't be further modified with `ggplot2` functions.\n
-          In case you want a `ggplot` object, set `marginal = FALSE`.\n"
-        ),
+        crayon::blue("This plot can't be further modified with `ggplot2` functions.\n"),
+        crayon::blue("In case you want a `ggplot` object, set `marginal = FALSE`.\n"),
         sep = ""
       ))
     }

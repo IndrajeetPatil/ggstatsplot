@@ -6,7 +6,9 @@
 \usage{
 ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   paired = FALSE, factor.levels = NULL, stat.title = NULL,
-  sample.size.label = TRUE, title = NULL, caption = NULL,
+  sample.size.label = TRUE, bf.message = FALSE,
+  sampling.plan = "indepMulti", fixed.margin = "rows",
+  prior.concentration = 1, title = NULL, caption = NULL,
   nboot = 25, legend.title = NULL, facet.wrap.name = NULL, k = 3,
   perc.k = 0, slice.label = "percentage", facet.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
@@ -43,6 +45,23 @@ like \code{"main x condition"} or \code{"interaction"}.}
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{condition}
 (Default: \code{TRUE}).}
+
+\item{bf.message}{Logical that decides whether to display a caption with
+results from bayes factor test in favor of the null hypothesis (default:
+\code{FALSE}).}
+
+\item{sampling.plan}{Character describing the sampling plan. Possible options
+are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
+\code{"jointMulti"} (joint multinomial), \code{"hypergeom"} (hypergeometric). For
+more, see \code{?BayesFactor::contingencyTableBF()}.}
+
+\item{fixed.margin}{For the independent multinomial sampling plan, which
+margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
+
+\item{prior.concentration}{Specifies the prior concentration parameter, set
+to \code{1} by default. It indexes the expected deviation from the null
+hypothesis under the alternative, and corresponds to Gunel and Dickey's
+(1974) \code{"a"} parameter.}
 
 \item{title}{The text for the plot title.}
 
@@ -111,6 +130,7 @@ ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = vs,
   condition = cyl,
+  bf.message = TRUE,
   nboot = 10,
   factor.levels = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"

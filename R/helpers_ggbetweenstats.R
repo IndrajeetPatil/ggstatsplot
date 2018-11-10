@@ -650,7 +650,7 @@ pairwise_p_caption <- function(type,
   pairwise_caption <-
     base::substitute(
       atop(
-        top.text,
+        displaystyle(top.text),
         expr =
           paste(
             "Pairwise comparisons: ",
@@ -762,7 +762,7 @@ bf_oneway_anova <-
     # prepare the bayes factor message
     bf_message <-
       base::substitute(
-        atop(top.text,
+        atop(displaystyle(top.text),
           expr =
             paste(
               "In favor of null: ",

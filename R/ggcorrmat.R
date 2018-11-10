@@ -365,11 +365,11 @@ ggcorrmat <-
           legend.title.text <-
             bquote(atop(
               atop(
-                bold("sample size:"),
+                scriptstyle(bold("sample size:")),
                 italic(n) ~ "=" ~ .(nrow(x = data))
               ),
               atop(
-                bold("correlation:"),
+                scriptstyle(bold("correlation:")),
                 .(corr.method)
               )
             ))
@@ -378,7 +378,7 @@ ggcorrmat <-
             bquote(atop(
               atop(
                 atop(
-                  bold("sample size:"),
+                  scriptstyle(bold("sample size:")),
                   italic(n)[min] ~ "=" ~ .(n_summary$n_min[[1]])
                 ),
                 atop(
@@ -387,36 +387,37 @@ ggcorrmat <-
                 )
               ),
               atop(
-                bold("correlation:"),
+                scriptstyle(bold("correlation:")),
                 .(corr.method)
               )
             ))
         }
 
         # plotting the correlalogram
-        plot <- ggcorrplot::ggcorrplot(
-          corr = corr.mat,
-          method = method,
-          p.mat = p.mat,
-          sig.level = sig.level,
-          type = matrix.type,
-          hc.method = hc.method,
-          hc.order = hc.order,
-          lab = lab,
-          outline.color = outline.color,
-          ggtheme = ggtheme,
-          colors = colors,
-          legend.title = legend.title.text,
-          lab_col = lab.col,
-          lab_size = lab.size,
-          insig = insig,
-          pch = pch,
-          pch.col = pch.col,
-          pch.cex = pch.cex,
-          tl.cex = tl.cex,
-          tl.col = tl.col,
-          tl.srt = tl.srt
-        )
+        plot <-
+          ggcorrplot::ggcorrplot(
+            corr = corr.mat,
+            method = method,
+            p.mat = p.mat,
+            sig.level = sig.level,
+            type = matrix.type,
+            hc.method = hc.method,
+            hc.order = hc.order,
+            lab = lab,
+            outline.color = outline.color,
+            ggtheme = ggtheme,
+            colors = colors,
+            legend.title = legend.title.text,
+            lab_col = lab.col,
+            lab_size = lab.size,
+            insig = insig,
+            pch = pch,
+            pch.col = pch.col,
+            pch.cex = pch.cex,
+            tl.cex = tl.cex,
+            tl.col = tl.col,
+            tl.srt = tl.srt
+          )
 
         # =========================== labels ==================================
 

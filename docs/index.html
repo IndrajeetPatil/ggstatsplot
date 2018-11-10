@@ -187,12 +187,12 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg" alt="Coverage Status"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--09-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--10-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://sites.google.com/site/indrajeetspatilmorality/"><img src="https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0" alt="author"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot"><img src="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge" alt="Dependency Status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.html"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_11_09-yellowgreen.svg" alt="Covrpage Summary"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.html"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_11_10-yellowgreen.svg" alt="Covrpage Summary"></a></td>
 <td><a href="https://saythanks.io/to/IndrajeetPatil"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="saythanks"></a></td>
 <td><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></td>
@@ -204,7 +204,7 @@
 <h1 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h1>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/"><code>ggstatsplot</code></a> is an extension of <a href="https://github.com/tidyverse/ggplot2"><code>ggplot2</code></a> package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich plots. In a typical exploratory data analysis workflow, data visualization and statistical modelling are two different phases: visualization informs modelling, and modelling in its turn can suggest a different visualization method, and so on and so forth. The central idea of <em>ggstatsplot</em> is simple: combine these two phases into one in the form of graphics with statistical details, which makes data exploration simpler and faster.</p>
-<p>Currently, it supports only the most common types of statistical tests (<strong>parametric</strong>, <strong>nonparametric</strong>, and <strong>robust</strong> versions of <strong>t-test</strong>, <strong>anova</strong>, and <strong>correlation</strong> analyses, <strong>contingency table</strong> analysis, and <strong>regression</strong> analyses).</p>
+<p>Currently, it supports only the most common types of statistical tests: <strong>parametric</strong>, <strong>nonparametric</strong>, <strong>robust</strong>, and <strong>bayesian</strong> versions of <strong>t-test</strong>/<strong>anova</strong>, <strong>correlation</strong> analyses, <strong>contingency table</strong> analysis, and <strong>regression</strong> analyses.</p>
 <p>It, therefore, produces a limited kinds of plots for the supported analyses:</p>
 <ul>
 <li>
@@ -362,7 +362,7 @@
 <a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb8-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x0000000021be95d8&gt;</span></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x0000000021797390&gt;</span></a>
 <a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -458,23 +458,25 @@
 <a class="sourceLine" id="cb11-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb11-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb11-9" data-line-number="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, <span class="op">!</span>genre <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"Animation"</span>, <span class="st">"Documentary"</span>)),</a>
-<a class="sourceLine" id="cb11-10" data-line-number="10">  <span class="dt">x =</span> mpaa, </a>
-<a class="sourceLine" id="cb11-11" data-line-number="11">  <span class="dt">y =</span> length,</a>
-<a class="sourceLine" id="cb11-12" data-line-number="12">  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,      <span class="co"># display significant pairwise comparisons</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13">  <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>,  <span class="co"># how do you want to annotate the pairwise comparisons</span></a>
-<a class="sourceLine" id="cb11-14" data-line-number="14">  <span class="dt">p.adjust.method =</span> <span class="st">"bonferroni"</span>,   <span class="co"># method for adjusting p-values for multiple comparisons</span></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">grouping.var =</span> genre,             <span class="co"># grouping variable</span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb11-18" data-line-number="18">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
-<a class="sourceLine" id="cb11-19" data-line-number="19">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</a>
-<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb11-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb11-22" data-line-number="22">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb11-23" data-line-number="23">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb11-24" data-line-number="24">  <span class="dt">title.text =</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span></a>
-<a class="sourceLine" id="cb11-25" data-line-number="25">)</a></code></pre></div>
+<a class="sourceLine" id="cb11-9" data-line-number="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">                       <span class="op">!</span>genre <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"Animation"</span>, <span class="st">"Documentary"</span>)),</a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">  <span class="dt">x =</span> mpaa, </a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">  <span class="dt">y =</span> length,</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13">  <span class="dt">caption =</span> <span class="kw">substitute</span>(<span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Source"</span>), <span class="st">":IMDb (Internet Movie Database)"</span>)), </a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,      <span class="co"># display significant pairwise comparisons</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>,  <span class="co"># how do you want to annotate the pairwise comparisons</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">p.adjust.method =</span> <span class="st">"bonferroni"</span>,   <span class="co"># method for adjusting p-values for multiple comparisons</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                <span class="co"># display Bayes Factor in favor of the null hypothesis</span></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18">  <span class="dt">grouping.var =</span> genre,             <span class="co"># grouping variable</span></a>
+<a class="sourceLine" id="cb11-19" data-line-number="19">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
+<a class="sourceLine" id="cb11-21" data-line-number="21">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</a>
+<a class="sourceLine" id="cb11-22" data-line-number="22">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb11-23" data-line-number="23">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb11-24" data-line-number="24">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb11-25" data-line-number="25">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb11-26" data-line-number="26">  <span class="dt">title.text =</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span></a>
+<a class="sourceLine" id="cb11-27" data-line-number="27">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
 <p>For more, see the <code>ggbetweenstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html</a></p>
 <p><strong>This function is not appropriate for within-subjects designs.</strong></p>
@@ -603,17 +605,18 @@
 <a class="sourceLine" id="cb17-8" data-line-number="8">  <span class="dt">condition =</span> cyl,</a>
 <a class="sourceLine" id="cb17-9" data-line-number="9">  <span class="dt">title =</span> <span class="st">"Dataset: Motor Trend Car Road Tests"</span>,      <span class="co"># title for the plot</span></a>
 <a class="sourceLine" id="cb17-10" data-line-number="10">  <span class="dt">stat.title =</span> <span class="st">"interaction: "</span>,                       <span class="co"># title for the results</span></a>
-<a class="sourceLine" id="cb17-11" data-line-number="11">  <span class="dt">legend.title =</span> <span class="st">"Transmission"</span>,                      <span class="co"># title for the legend</span></a>
-<a class="sourceLine" id="cb17-12" data-line-number="12">  <span class="dt">factor.levels =</span> <span class="kw">c</span>(<span class="st">"1 = manual"</span>, <span class="st">"0 = automatic"</span>),   <span class="co"># renaming the factor level names (`main`)</span></a>
-<a class="sourceLine" id="cb17-13" data-line-number="13">  <span class="dt">facet.wrap.name =</span> <span class="st">"No. of cylinders"</span>,               <span class="co"># name for the facetting variable</span></a>
-<a class="sourceLine" id="cb17-14" data-line-number="14">  <span class="dt">slice.label =</span> <span class="st">"counts"</span>,                             <span class="co"># show counts data instead of percentages </span></a>
-<a class="sourceLine" id="cb17-15" data-line-number="15">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                  <span class="co"># package from which color palette is to be taken</span></a>
-<a class="sourceLine" id="cb17-16" data-line-number="16">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,                           <span class="co"># choosing a different color palette </span></a>
-<a class="sourceLine" id="cb17-17" data-line-number="17">  <span class="dt">caption =</span> <span class="kw">expression</span>(                               <span class="co"># text for the caption</span></a>
-<a class="sourceLine" id="cb17-18" data-line-number="18">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": this is a demo"</span>)</a>
-<a class="sourceLine" id="cb17-19" data-line-number="19">  ),</a>
-<a class="sourceLine" id="cb17-20" data-line-number="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
-<a class="sourceLine" id="cb17-21" data-line-number="21">) </a></code></pre></div>
+<a class="sourceLine" id="cb17-11" data-line-number="11">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                  <span class="co"># display bayes factor in favor of null</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12">  <span class="dt">legend.title =</span> <span class="st">"Transmission"</span>,                      <span class="co"># title for the legend</span></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13">  <span class="dt">factor.levels =</span> <span class="kw">c</span>(<span class="st">"1 = manual"</span>, <span class="st">"0 = automatic"</span>),   <span class="co"># renaming the factor level names (`main`)</span></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14">  <span class="dt">facet.wrap.name =</span> <span class="st">"No. of cylinders"</span>,               <span class="co"># name for the facetting variable</span></a>
+<a class="sourceLine" id="cb17-15" data-line-number="15">  <span class="dt">slice.label =</span> <span class="st">"counts"</span>,                             <span class="co"># show counts data instead of percentages </span></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                  <span class="co"># package from which color palette is to be taken</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,                           <span class="co"># choosing a different color palette </span></a>
+<a class="sourceLine" id="cb17-18" data-line-number="18">  <span class="dt">caption =</span> <span class="kw">substitute</span>(                               <span class="co"># text for the caption</span></a>
+<a class="sourceLine" id="cb17-19" data-line-number="19">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Source"</span>), <span class="st">": 1974 Motor Trend US magazine"</span>)</a>
+<a class="sourceLine" id="cb17-20" data-line-number="20">  ),</a>
+<a class="sourceLine" id="cb17-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
+<a class="sourceLine" id="cb17-22" data-line-number="22">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
 <p>In case of within-subjects designs, setting <code>paired = TRUE</code> will produce results from McNemar test-</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># for reproducibility</span></a>

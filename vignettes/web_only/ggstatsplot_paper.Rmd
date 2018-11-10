@@ -322,7 +322,7 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `gghistostats` | Distribution of a numeric variable | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
 `ggcorrmat` | Correlation matrix | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
 `ggscatterstats` | Correlation between two variables | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
-`ggpiestats` | Association between categorical variables | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font>
+`ggpiestats` | Association between categorical variables | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font> | <font color="red">$\times$</font> | <font color="green">$\checkmark$</font>
 `ggcoefstats` | Regression model coefficients | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>| <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
 
 ## Types of statistical tests supported

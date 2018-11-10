@@ -23,6 +23,10 @@
 #' @param slice.label Character decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
+#' @param bf.message Logical that decides whether to display a caption with
+#'   results from bayes factor test in favor of the null hypothesis (default:
+#'   `FALSE`).
+#' @inheritParams bf_contigency_tab
 #' @inheritParams subtitle_contigency_tab
 #' @inheritParams subtitle_onesample_proptest
 #' @inheritParams paletteer::scale_fill_paletteer_d
@@ -41,10 +45,7 @@
 #' @importFrom dplyr if_else
 #' @importFrom dplyr desc
 #' @importFrom rlang !! enquo quo_name
-#' @importFrom crayon green
-#' @importFrom crayon blue
-#' @importFrom crayon yellow
-#' @importFrom crayon red
+#' @importFrom crayon green blue yellow red
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount
@@ -53,10 +54,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -64,20 +65,21 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
 #'   main = vs,
 #'   condition = cyl,
+#'   bf.message = TRUE,
 #'   nboot = 10,
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -96,6 +98,10 @@ ggpiestats <-
              factor.levels = NULL,
              stat.title = NULL,
              sample.size.label = TRUE,
+           bf.message = FALSE,
+           sampling.plan = "indepMulti",
+           fixed.margin = "rows",
+           prior.concentration = 1,
              title = NULL,
              caption = NULL,
              nboot = 25,
@@ -291,7 +297,8 @@ ggpiestats <-
     # for each facet
     if (isTRUE(sample.size.label)) {
       if (!base::missing(condition)) {
-        df_n_label <- dplyr::full_join(
+        df_n_label <-
+          dplyr::full_join(
           x = df,
           y = df %>%
             dplyr::group_by(.data = ., condition) %>%
@@ -397,7 +404,7 @@ ggpiestats <-
             label = slice.label,
             group = factor(get("main"))
           ),
-          position = position_fill(vjust = 0.5),
+          position = ggplot2::position_fill(vjust = 0.5),
           color = "black",
           size = label.text.size,
           show.legend = FALSE
@@ -470,18 +477,39 @@ ggpiestats <-
 
       # running approprate statistical test
       # unpaired: Pearson's Chi-square test of independence
-      subtitle <- subtitle_contigency_tab(
-        data = data,
-        main = main,
-        condition = condition,
-        nboot = nboot,
-        paired = paired,
-        stat.title = stat.title,
-        conf.level = 0.95,
-        conf.type = "norm",
-        messages = messages,
-        k = k
-      )
+      subtitle <-
+        subtitle_contigency_tab(
+          data = data,
+          main = main,
+          condition = condition,
+          nboot = nboot,
+          paired = paired,
+          stat.title = stat.title,
+          conf.level = 0.95,
+          conf.type = "norm",
+          messages = messages,
+          k = k
+        )
+
+      # preparing the BF message for null hypothesis support
+      if (isTRUE(bf.message)) {
+        bf.caption.text <-
+          bf_contigency_tab(
+            data = data,
+            main = main,
+            condition = condition,
+            sampling.plan = sampling.plan,
+            fixed.margin = fixed.margin,
+            prior.concentration = prior.concentration,
+            caption = caption,
+            output = "caption"
+          )
+      }
+
+      # if bayes factor message needs to be displayed
+      if (isTRUE(bf.message)) {
+        caption <- bf.caption.text
+      }
 
       # ====================== facetted proportion test =======================
 

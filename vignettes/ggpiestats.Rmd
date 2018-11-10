@@ -147,6 +147,7 @@ ggstatsplot::ggpiestats(
   title = "Passenger survival on the Titanic by gender",   # title for the entire plot
   caption = "Source: Titanic survival dataset",            # caption for the entire plot
   legend.title = "Survived?",                              # legend title
+  bf.message = TRUE,                                       # show resuls from bayes factor in favor of null
   ggtheme = ggplot2::theme_grey(),                         # changing plot theme 
   palette = "category10_d3",                               # choosing a different color palette
   package = "ggsci",                                       # package to which color palette belongs
@@ -197,6 +198,7 @@ ggstatsplot::grouped_ggpiestats(
   stat.title = "Pearson's chi-squared test: ",
   main = Survived,
   condition = Sex,
+  bf.message = TRUE,
   nboot = 10,
   k = 2,
   perc.k = 1,

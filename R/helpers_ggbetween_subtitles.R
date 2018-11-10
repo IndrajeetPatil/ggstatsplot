@@ -9,7 +9,7 @@ bf_message_ttest <- function(jmv_results,
   bf_message <-
     base::substitute(
       atop(
-        top.text,
+        displaystyle(top.text),
         expr =
           paste(
             "In favor of null: ",

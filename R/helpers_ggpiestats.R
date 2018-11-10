@@ -3,7 +3,7 @@
 #' @aliases bf_contigency_tab
 #' @author Indrajeet Patil
 #'
-#' @inheritParams ggpiestats
+#' @inheritParams subtitle_contigency_tab
 #' @inheritParams bf_corr_test
 #' @param sampling.plan Character describing the sampling plan. Possible options
 #'   are `"indepMulti"` (independent multinomial; default), `"poisson"`,
@@ -92,7 +92,7 @@ bf_contigency_tab <-
     bf_message <-
       base::substitute(
         atop(
-          top.text,
+          displaystyle(top.text),
           expr =
             paste(
               "In favor of null: ",

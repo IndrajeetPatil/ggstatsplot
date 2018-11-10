@@ -186,9 +186,10 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <pre class="usage"><span class='fu'>grouped_ggpiestats</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
+  <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
@@ -252,6 +253,31 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
       <td><p>Logical that decides whether sample size information
 should be displayed for each level of the grouping variable <code>condition</code>
 (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>bf.message</th>
+      <td><p>Logical that decides whether to display a caption with
+results from bayes factor test in favor of the null hypothesis (default:
+<code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>sampling.plan</th>
+      <td><p>Character describing the sampling plan. Possible options
+are <code>"indepMulti"</code> (independent multinomial; default), <code>"poisson"</code>,
+<code>"jointMulti"</code> (joint multinomial), <code>"hypergeom"</code> (hypergeometric). For
+more, see <code>?BayesFactor::contingencyTableBF()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>fixed.margin</th>
+      <td><p>For the independent multinomial sampling plan, which
+margin is fixed (<code>"rows"</code> or <code>"cols"</code>). Defaults to <code>"rows"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>prior.concentration</th>
+      <td><p>Specifies the prior concentration parameter, set
+to <code>1</code> by default. It indexes the expected deviation from the null
+hypothesis under the alternative, and corresponds to Gunel and Dickey's
+(1974) <code>"a"</code> parameter.</p></td>
     </tr>
     <tr>
       <th>caption</th>
@@ -419,6 +445,8 @@ combining (plot, caption).</p></dd>
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>color</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>clarity</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>cut</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"poisson"</span>,
   <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Quality"</span>,
   <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
