@@ -16,6 +16,12 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_oneway_anova.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_one_sample_ttest.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_two_sample_ttest.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/check_outlier.html</loc>
   </url>
   <url>
@@ -31,7 +37,7 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/cor_test_ci.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/games.howell.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/games_howell.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html</loc>

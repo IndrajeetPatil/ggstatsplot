@@ -140,8 +140,9 @@ commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
 ## Help
 
 In `R`, documentation for any function can be accessed with the standard `help`
-command-
+command (e.g., `?ggbetweenstats`).
 
+<!--
 ```{r help, eval = FALSE}
 # primary functions
 ?ggbetweenstats
@@ -175,6 +176,7 @@ command-
 ?subtitle_onesample
 ?subtitle_onesample_proptest
 ```
+-->
 
 Another handy tool to see arguments to any of the functions is `args`. For
 example-
@@ -611,6 +613,7 @@ ggstatsplot::gghistostats(
   data = datasets::iris,                         # dataframe from which variable is to be taken
   x = Sepal.Length,                              # numeric variable whose distribution is of interest
   title = "Distribution of Iris sepal length",   # title for the plot
+  caption = substitute(paste(italic("Source:", "Ronald Fisher's Iris data set"))), 
   type = "parametric",                           # one sample t-test
   bar.measure = "mix",                           # what does the bar length denote
   test.value = 5,                                # default value is 0

@@ -1,47 +1,3 @@
-# adding bayes factor message for null hypothesis for t-test (one-sample,
-# independent, or paired)
-
-bf_message_ttest <- function(jmv_results,
-                             bf.prior,
-                             caption) {
-
-  # prepare the bayes factor message
-  bf_message <-
-    base::substitute(
-      atop(
-        displaystyle(top.text),
-        expr =
-          paste(
-            "In favor of null: ",
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            bf,
-            ", Prior width = ",
-            bf_prior
-          )
-      ),
-      env = base::list(
-        top.text = caption,
-        bf = ggstatsplot::specify_decimal_p(
-          x = log(
-            x = (1 / as.data.frame(jmv_results$ttest)$`stat[bf]`),
-            base = exp(1)
-          ),
-          k = 1,
-          p.value = FALSE
-        ),
-        bf_prior = ggstatsplot::specify_decimal_p(
-          x = bf.prior,
-          k = 3,
-          p.value = FALSE
-        )
-      )
-    )
-
-  # return the message
-  return(bf_message)
-}
 
 #' @title Making text subtitle for the between-subject anova designs.
 #' @name subtitle_ggbetween_anova_parametric
@@ -1069,21 +1025,26 @@ subtitle_ggbetween_t_bayes <- function(data,
   } else if (isTRUE(paired)) {
 
     # jamovi needs data to be wide format and not long format
-    data_wide <- long_to_wide_converter(data = data, x = x, y = y)
+    data_wide <- long_to_wide_converter(
+      data = data,
+      x = x,
+      y = y
+    )
 
     # dependent samples design
-    jmv_results <- jmv::ttestPS(
-      data = na.omit(data_wide),
-      pairs = list(list(
-        i1 = colnames(data_wide)[[3]], i2 = colnames(data_wide)[[2]]
-      )),
-      students = TRUE,
-      effectSize = TRUE,
-      bf = TRUE,
-      bfPrior = bf.prior,
-      hypothesis = "different",
-      miss = "listwise"
-    )
+    jmv_results <-
+      jmv::ttestPS(
+        data = na.omit(data_wide),
+        pairs = list(list(
+          i1 = colnames(data_wide)[[2]], i2 = colnames(data_wide)[[3]]
+        )),
+        students = TRUE,
+        effectSize = TRUE,
+        bf = TRUE,
+        bfPrior = bf.prior,
+        hypothesis = "different",
+        miss = "listwise"
+      )
 
     # sample size
     sample_size <- nrow(data_wide)
@@ -1115,7 +1076,6 @@ subtitle_ggbetween_t_bayes <- function(data,
           n
         ),
       env = base::list(
-        # df is integer value for Student's t-test
         df = as.data.frame(jmv_results$ttest)$`df[stud]`,
         estimate = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
@@ -1126,11 +1086,13 @@ subtitle_ggbetween_t_bayes <- function(data,
             x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
             base = exp(1)
           ),
-          k = 1
+          k = 1,
+          p.value = FALSE
         ),
         bf_prior = ggstatsplot::specify_decimal_p(
           x = bf.prior,
-          k = 3
+          k = 3,
+          p.value = FALSE
         ),
         effsize = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_results$ttest)$`es[stud]`,

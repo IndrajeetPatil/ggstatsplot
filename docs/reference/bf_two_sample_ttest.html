@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian correlation test. — bf_corr_test • ggstatsplot</title>
+<title>Bayesian t-test. — bf_two_sample_ttest • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -40,9 +40,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Bayesian correlation test. — bf_corr_test" />
+<meta property="og:title" content="Bayesian t-test. — bf_two_sample_ttest" />
 
-<meta property="og:description" content="Bayesian correlation test." />
+<meta property="og:description" content="Bayesian t-test." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,19 +168,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian correlation test.</h1>
+    <h1>Bayesian t-test.</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_bf_tests.R'><code>R/helpers_bf_tests.R</code></a></small>
-    <div class="hidden name"><code>bf_corr_test.Rd</code></div>
+    <div class="hidden name"><code>bf_two_sample_ttest.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Bayesian correlation test.</p>
+    <p>Bayesian t-test.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bf_corr_test</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>)</pre>
+    <pre class="usage"><span class='fu'>bf_two_sample_ttest</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,11 +192,15 @@ taken.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>A vector containing the explanatory variable.</p></td>
+      <td><p>The grouping variable.</p></td>
     </tr>
     <tr>
       <th>y</th>
       <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>paired</th>
+      <td><p>if <code>TRUE</code>, observations are paired</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
@@ -217,8 +221,8 @@ results).</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bf_contigency_tab.html'>bf_contigency_tab</a></code>, <code><a href='bf_oneway_anova.html'>bf_oneway_anova</a></code>,
-<code><a href='bf_two_sample_ttest.html'>bf_two_sample_ttest</a></code></p></div>
+    <div class='dont-index'><p><code><a href='bf_contigency_tab.html'>bf_contigency_tab</a></code>, <code><a href='bf_corr_test.html'>bf_corr_test</a></code>,
+<code><a href='bf_oneway_anova.html'>bf_oneway_anova</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -227,24 +231,40 @@ results).</p></td>
 <span class='fu'>set.seed</span>(<span class='fl'>123</span>)
 
 <span class='co'># to get caption (default)</span>
-<span class='fu'>bf_corr_test</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>anscombe</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x1</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y4</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>1</span>
-)</div><div class='output co'>#&gt; atop(NULL, expr = paste("In favor of null: ", "log"["e"], "(BF"["01"], 
-#&gt;     ") = ", "0.6", ", Prior width = ", "1.000"))</div><div class='input'>
+<span class='fu'>bf_two_sample_ttest</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.880</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
+#&gt;     "(BF"["01"], ") = ", "-7.4", ", Prior width = ", "0.880"))</div><div class='input'>
 <span class='co'># to see results</span>
-<span class='fu'>bf_corr_test</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>anscombe</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x1</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y4</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+<span class='fu'>bf_two_sample_ttest</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
 )</div><div class='output co'>#&gt; # A tibble: 1 x 3
-#&gt;       bf error bf.prior
-#&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 0.6071     0      0.8</div></pre>
+#&gt;      bf    error bf.prior
+#&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 1383. 3.411e-9    0.707</div><div class='input'>
+<span class='co'># for paired sample test</span>
+<span class='fu'>bf_two_sample_ttest</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+    <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
+    <span class='no'>condition</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"accidental"</span>, <span class='st'>"attempted"</span>),
+    <span class='no'>harm</span> <span class='kw'>==</span> <span class='st'>"Poisoning"</span>
+  ),
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; # A tibble: 1 x 3
+#&gt;         bf     error bf.prior
+#&gt;      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 1.196e61 1.172e-69    0.707</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

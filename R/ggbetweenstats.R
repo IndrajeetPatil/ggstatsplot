@@ -388,16 +388,17 @@ ggbetweenstats <- function(data,
 
     if (!is.null(effsize.type)) {
       # figuring out which effect size to use
-      effsize.type <- switch(
-        EXPR = effsize.type,
-        d = "biased",
-        g = "unbiased",
-        partial_eta = "biased",
-        partial_omega = "unbiased",
-        biased = "biased",
-        unbiased = "unbiased",
-        "unbiased"
-      )
+      effsize.type <-
+        switch(
+          EXPR = effsize.type,
+          d = "biased",
+          g = "unbiased",
+          partial_eta = "biased",
+          partial_omega = "unbiased",
+          biased = "biased",
+          unbiased = "unbiased",
+          "unbiased"
+        )
     } else {
       effsize.type <- "unbiased"
     }
@@ -405,31 +406,21 @@ ggbetweenstats <- function(data,
     # preparing the bayes factor message
     if (test == "t-test") {
 
-      # running bayesian analysis
-      jmv_results <-
-        jmv::ttestIS(
-          data = data,
-          vars = "y",
-          group = "x",
-          students = TRUE,
-          effectSize = TRUE,
-          bf = TRUE,
-          bfPrior = bf.prior,
-          hypothesis = "different",
-          miss = "listwise"
-        )
-
-      # preparing the BF message for NULL
+      # preparing the BF message for null
       if (isTRUE(bf.message)) {
         bf.caption.text <-
-          bf_message_ttest(
-            jmv_results = jmv_results,
+          bf_two_sample_ttest(
+            data = data,
+            x = x,
+            y = y,
             bf.prior = bf.prior,
-            caption = caption
+            caption = caption,
+            paired = FALSE,
+            output = "caption"
           )
       }
     } else if (test == "anova") {
-      # preparing the BF message for NULL
+      # preparing the BF message for null
       if (isTRUE(bf.message)) {
         bf.caption.text <-
           bf_oneway_anova(

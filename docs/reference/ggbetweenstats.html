@@ -517,31 +517,19 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.</span>
-#&gt; <span class='warning'>Please use the non-prefixed form or `!!!` instead.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Bad:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(rlang::UQS(args)))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Ok:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(UQS(args)))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>  # Good:</span>
-#&gt; <span class='warning'>  rlang::expr(mean(!!!args))</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>This warning is displayed once per session.</span></div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # tibble [10 x 11]
+)</div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # tibble [10 x 11]
 #&gt;    group1 group2 mean.difference low.conf high.conf    se t.value    df p.value
 #&gt;    &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1 1      2                -53     -132.     25.7    19.2   1.95   30.6   0.72 
-#&gt;  2 1      3                -64     -148.     20.4    20.8   2.18   35.3   0.703
-#&gt;  3 1      4                -88.5   -167.    -10.1    19.1   3.27   30.2   0.21 
-#&gt;  4 1      5                -77.5   -154.     -0.641  18.7   2.94   28.5   0.235
-#&gt;  5 2      3                -11      -75.2    53.2    15.8   0.492  35.7   0.988
-#&gt;  6 2      4                -35.5    -90.4    19.4    13.6   1.85   38.0   0.72 
-#&gt;  7 2      5                -24.5    -76.9    27.9    12.9   1.34   37.5   0.988
-#&gt;  8 3      4                -24.5    -88.3    39.3    15.7   1.10   35.4   0.988
-#&gt;  9 3      5                -13.5    -75.3    48.3    15.2   0.63   33.6   0.988
-#&gt; 10 4      5                 11      -40.8    62.8    12.8   0.608  37.6   0.988
+#&gt;  1 1      2                -53    -131.7     25.68  19.20   1.952 30.58  0.72  
+#&gt;  2 1      3                -64    -148.4     20.44  20.78   2.178 35.33  0.7033
+#&gt;  3 1      4                -88.5  -166.9    -10.13  19.11   3.274 30.24  0.21  
+#&gt;  4 1      5                -77.5  -154.4     -0.641 18.67   2.935 28.47  0.235 
+#&gt;  5 2      3                -11     -75.22    53.22  15.81   0.492 35.74  0.988 
+#&gt;  6 2      4                -35.5   -90.37    19.37  13.55   1.852 37.99  0.72  
+#&gt;  7 2      5                -24.5   -76.86    27.86  12.92   1.341 37.46  0.988 
+#&gt;  8 3      4                -24.5   -88.30    39.30  15.70   1.103 35.44  0.988 
+#&gt;  9 3      5                -13.5   -75.29    48.29  15.16   0.63  33.62  0.988 
+#&gt; 10 4      5                 11     -40.82    62.82  12.79   0.608 37.61  0.988 
 #&gt; # ... with 2 more variables: significance &lt;chr&gt;, p.value.label &lt;chr&gt;
 #&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>

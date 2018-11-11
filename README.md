@@ -129,9 +129,11 @@ after every new commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
 ## Help
 
 In `R`, documentation for any function can be accessed with the standard
-`help` command-
+`help` command (e.g., `?ggbetweenstats`).
 
-``` r
+<!--
+
+```r
 # primary functions
 ?ggbetweenstats
 ?ggscatterstats
@@ -164,6 +166,7 @@ In `R`, documentation for any function can be accessed with the standard
 ?subtitle_onesample
 ?subtitle_onesample_proptest
 ```
+-->
 
 Another handy tool to see arguments to any of the functions is `args`.
 For example-
@@ -233,7 +236,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002a0cac38>
+#> <bytecode: 0x000000002a43d4e0>
 #> <environment: namespace:ggstatsplot>
 ```
 

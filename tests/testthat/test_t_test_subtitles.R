@@ -14,7 +14,7 @@ testthat::test_that(
     jmv_df <- jmv::ttestPS(
       data = bugs,
       pairs = list(
-        list(i1 = "HDLF", i2 = "HDHF")
+        list(i2 = "HDLF", i1 = "HDHF")
       ),
       bf = TRUE,
       miss = "listwise"

@@ -196,50 +196,38 @@ gghistostats <-
     }
 
 
-    # ================ stats labels ============================================
+    # ================ stats labels ==========================================
 
     if (isTRUE(results.subtitle)) {
-      # model
-      jmv_results <- jmv::ttestOneS(
-        data = data,
-        vars = "x",
-        students = TRUE,
-        bf = TRUE,
-        bfPrior = bf.prior,
-        wilcoxon = TRUE,
-        # Mann-Whitney U test
-        testValue = test.value,
-        hypothesis = "dt",
-        # two-sided hypothesis-testing
-        effectSize = TRUE,
-        miss = "listwise"
-        # excludes a row from all analyses if one of its entries is missing
-      )
 
       # preparing the BF message for NULL
       if (isTRUE(bf.message)) {
         bf.caption.text <-
-          bf_message_ttest(
-            jmv_results = jmv_results,
+          bf_one_sample_ttest(
+            data = data,
+            x = x,
+            test.value = test.value,
+            bf.prior = bf.prior,
             caption = caption,
-            bf.prior = bf.prior
+            output = "caption"
           )
       }
 
       # preparing the subtitle with statistical results
-      subtitle <- subtitle_onesample(
-        data = data,
-        x = x,
-        type = type,
-        test.value = test.value,
-        bf.prior = bf.prior,
-        robust.estimator = robust.estimator,
-        nboot = nboot,
-        k = k
-      )
+      subtitle <-
+        subtitle_onesample(
+          data = data,
+          x = x,
+          type = type,
+          test.value = test.value,
+          bf.prior = bf.prior,
+          robust.estimator = robust.estimator,
+          nboot = nboot,
+          k = k
+        )
     }
 
-    # ============================= plot =======================================
+    # ============================= plot ====================================
 
     # preparing the basic layout of the plot based on whether counts or density
     # information is needed
@@ -365,7 +353,7 @@ gghistostats <-
         caption = caption
       )
 
-    # ====================== centrality line and label =========================
+    # ====================== centrality line and label ========================
 
     # computing summary statistics needed for displaying labels
     x_mean <- mean(x = data$x, na.rm = TRUE)
@@ -477,7 +465,7 @@ gghistostats <-
         ggplot2::theme(legend.position = "none")
     }
 
-    # ============================= messages ===================================
+    # ============================= messages =================================
     #
     # display normality test result as a message
     if (isTRUE(messages)) {

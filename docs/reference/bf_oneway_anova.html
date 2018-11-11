@@ -169,7 +169,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayesian one-way analysis of variance.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetweenstats.R'><code>R/helpers_ggbetweenstats.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_bf_tests.R'><code>R/helpers_bf_tests.R</code></a></small>
     <div class="hidden name"><code>bf_oneway_anova.Rd</code></div>
     </div>
 
@@ -217,9 +217,31 @@ results).</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bf_contigency_tab.html'>bf_contigency_tab</a></code>, <code><a href='bf_corr_test.html'>bf_corr_test</a></code></p></div>
+    <div class='dont-index'><p><code><a href='bf_contigency_tab.html'>bf_contigency_tab</a></code>, <code><a href='bf_corr_test.html'>bf_corr_test</a></code>,
+<code><a href='bf_two_sample_ttest.html'>bf_two_sample_ttest</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># to get caption (default)</span>
+<span class='fu'>bf_oneway_anova</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
+#&gt;     "(BF"["01"], ") = ", "-65.2", ", Prior width = ", "0.800"))</div><div class='input'>
+<span class='co'># to get results dataframe</span>
+<span class='fu'>bf_oneway_anova</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
+)</div><div class='output co'>#&gt; # A tibble: 1 x 3
+#&gt;         bf         error bf.prior
+#&gt;      &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 2.028e28 0.00000004785      0.8</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -227,7 +249,9 @@ results).</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     <p>Indrajeet Patil</p>
