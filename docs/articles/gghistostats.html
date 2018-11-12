@@ -132,9 +132,9 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-11-11</h4>
+            <h4 class="date">2018-11-12</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/gghistostats.Rmd"><code>vignettes/gghistostats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/gghistostats.Rmd"><code><a href="http://www.rdocumentation.org/packages/base/topics/Arithmetic">vignettes/gghistostats.Rmd</a></code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
 
     </div>
@@ -153,9 +153,9 @@
 </h2>
 <p>Let’s begin with a very simple example from the <code>psych</code> package (<code><a href="http://www.rdocumentation.org/packages/psych/topics/sat.act">psych::sat.act</a></code>), a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National norms have a mean of 20.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># loading needed libraries</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(ggstatsplot)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(psych)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(psych)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># looking at the structure of the data using glimpse</span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> psych<span class="op">::</span>sat.act)</a>
@@ -167,7 +167,7 @@
 <a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; $ ACT       &lt;int&gt; 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, ...</span></a>
 <a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 76...</span></a>
 <a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 71...</span></a></code></pre></div>
-<p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
+<p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code><a href="http://www.rdocumentation.org/packages/base/topics/Arithmetic">max(x) - min(x) / sqrt(N)</a></code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="dt">x =</span> ACT,                                            <span class="co"># numeric variable</span></a>
@@ -185,17 +185,17 @@
 <h2 class="hasAnchor">
 <a href="#statistical-analysis-with-gghistostats" class="anchor"></a>Statistical analysis with <code>gghistostats</code>
 </h2>
-<p>The authors note that “the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores.” Let’s display the national norms (labeled as “Test”) and test (using <code>results.subtitle = TRUE</code>) the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample t-test (<code>type = "p"</code>). To demonstrate some of the options available we’ll also:</p>
+<p>The authors note that “the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores.” Let’s display the national norms (labeled as “Test”) and test (using <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">results.subtitle = TRUE</a></code>) the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample t-test (<code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">type = "p"</a></code>). To demonstrate some of the options available we’ll also:</p>
 <ol style="list-style-type: decimal">
-<li>Change the overall theme with <code>ggtheme = ggthemes::theme_tufte()</code>
+<li>Change the overall theme with <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">ggtheme = ggthemes::theme_tufte()</a></code>
 </li>
-<li>Make the histogram bars a different color with <code>bar.fill = "#D55E00"</code>
+<li>Make the histogram bars a different color with <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">bar.fill = "#D55E00"</a></code>
 </li>
-<li>Plot proportions on the y axes with <code>bar.measure = "proportion"</code>
+<li>Plot proportions on the y axes with <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">bar.measure = "proportion"</a></code>
 </li>
-<li>Turn messages on to receive additional diagnostic information with <code>messages = TRUE</code>
+<li>Turn messages on to receive additional diagnostic information with <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">messages = TRUE</a></code>
 </li>
-<li>Compute information about the Bayes Factor (<code>bf.message = TRUE</code>, see below)</li>
+<li>Compute information about the Bayes Factor (<code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">bf.message = TRUE</a></code>, see below)</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="dt">data =</span> psych<span class="op">::</span>sat.act,                              <span class="co"># data from which variable is to be taken</span></a>
@@ -249,7 +249,7 @@
 <a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">caption.text =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>,</a>
 <a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb4-24" data-line-number="24">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"Male"</span>,<span class="st">"Female"</span>)</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">  <span class="dt">labels =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Male"</span>,<span class="st">"Female"</span>)</a>
 <a class="sourceLine" id="cb4-26" data-line-number="26">)</a>
 <a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.</span></a>
 <a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; Note: 95% CI for robsut location measure median, Huber Psi computed with  500 bootstrap samples.</span></a></code></pre></div>

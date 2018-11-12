@@ -13,9 +13,9 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
+  %\VignetteEncoding{UTF-8}
   %\VignetteIndexEntry{ggstatsplot: ggplot2 Based Plots with Statistical Details}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}

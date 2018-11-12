@@ -178,7 +178,7 @@
 <li>
 <code>ggcoefstats</code> was showing wrong confidence intervals for <code>merMod</code> class objects due to a bug in the <code>broom.mixed</code> package (<a href="https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005" class="uri">https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005</a>). This was fixed in <code>broom.mixed</code> and so <code>ggcoefstats</code> should no longer have any issues.</li>
 <li>
-<code>specify_decimal_p</code> has been modified because it produced incorrect results when <code>k &lt; 3</code> and <code>p.value = TRUE</code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>).</li>
+<code>specify_decimal_p</code> has been modified because it produced incorrect results when <code><a href="http://www.rdocumentation.org/packages/base/topics/Comparison">k &lt; 3</a></code> and <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">p.value = TRUE</a></code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>).</li>
 <li>
 <code>ggpiestats</code> produced incorrect results if some levels of the factor had been filtered out prior to using this function. It now drops unused levels and produces correct results.</li>
 </ul>
@@ -222,7 +222,7 @@
 <li>
 <code>ggscatterstats</code> gains <code>label.var</code> and <code>label.expression</code> arguments to attach labels to points.</li>
 <li>
-<code>gghistostats</code> now defaults to not showing (redundant) color gradient (<code>fill.gradient = FALSE</code>) and shows both <code>"count"</code> and <code>"proportion"</code> data. It also gains a new argument <code>bar.fill</code> that can be used to fill bars with a uniform color.</li>
+<code>gghistostats</code> now defaults to not showing (redundant) color gradient (<code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">fill.gradient = FALSE</a></code>) and shows both <code>"count"</code> and <code>"proportion"</code> data. It also gains a new argument <code>bar.fill</code> that can be used to fill bars with a uniform color.</li>
 <li>
 <code>ggbetweenstats</code>, <code>ggcoefstats</code>, <code>ggcorrmat</code>, <code>ggscatterstats</code>, and <code>ggpiestats</code> now support all palettes contained in the <code>paletteer</code> package. This helps avoid situations where people had large number of groups (&gt; 12) and there were not enough colors in any of the <code>RColorBrewer</code> palettes.</li>
 <li>
@@ -249,7 +249,7 @@
 <code>ggscatterstats</code> gains <code>method</code> and <code>formula</code> arguments to modify smoothing functions.</li>
 <li>
 <code>ggcorrmat</code> can now show <code>robust</code> correlation coefficients in the matrix plot.</li>
-<li>For <code>gghistostats</code>, <code>binwidth</code> value, if not specified, is computed with <code>(max-min)/sqrt(n)</code>. This is basically to get rid of the warnings ggplot2 produces. Thanks to Chuck Powell’s PR (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/43'>#43</a>).</li>
+<li>For <code>gghistostats</code>, <code>binwidth</code> value, if not specified, is computed with <code><a href="http://www.rdocumentation.org/packages/base/topics/Arithmetic">(max-min)/sqrt(n)</a></code>. This is basically to get rid of the warnings ggplot2 produces. Thanks to Chuck Powell’s PR (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/43'>#43</a>).</li>
 <li>
 <code>ggcoefstats</code> gains a new argument <code>partial</code> and can display eta-squared and omega-squared effect sizes for anovas, in addition to the prior partial variants of these effect sizes.</li>
 <li>
@@ -375,7 +375,7 @@
 <li>Function <code>gghistostats</code> no longer displays both density and count since the density information was redundant. The <code>density.plot</code> argument has also been deprecated.</li>
 <li>
 <code>ggscatterstats</code> argument <code>intercept</code> has now been changed to <code>centrality.para</code>. This was due to possible confusion about interpreation of these lines; they show central tendency measures and not intercept for the linear model. Thus the change.</li>
-<li>The default for <code>effsize.type = "biased"</code> effect size for <code>ggbetweenstats</code> in case of ANOVA is <strong>partial</strong> omega-squared, and not omega-squared. Additionally, both partial eta- and omega-squared are not computed using bootstrapping with (default) 100 bootstrap samples.</li>
+<li>The default for <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">effsize.type = "biased"</a></code> effect size for <code>ggbetweenstats</code> in case of ANOVA is <strong>partial</strong> omega-squared, and not omega-squared. Additionally, both partial eta- and omega-squared are not computed using bootstrapping with (default) 100 bootstrap samples.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

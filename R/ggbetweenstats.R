@@ -642,8 +642,10 @@ ggbetweenstats <- function(data,
         tibble::as.tibble(x = .)
 
       # computing y coordinates for ggsgnif bars
+      # ggsignif_y_position <-
+      #   ggsignif_position_calculator(x = data_ggsignif$x, y = data_ggsignif$y)
       ggsignif_y_position <-
-        ggsignif_position_calculator(x = data_ggsignif$x, y = data_ggsignif$y)
+        ggsignif_position_calculator(x = data$x, y = data$y)
 
       # adding ggsignif comparisons to the plot
       plot <- plot +

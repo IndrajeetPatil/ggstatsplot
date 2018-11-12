@@ -253,87 +253,90 @@ subtitle_contigency_tab <- function(data,
     # ============== McNemar's test ===========================================
   } else if (isTRUE(paired)) {
     # carrying out McNemar's test
-    jmv_chi <- jmv::contTablesPaired(
-      data = data,
-      rows = "condition",
-      cols = "main",
-      counts = NULL,
-      chiSq = TRUE,
-      chiSqCorr = FALSE,
-      exact = FALSE,
-      pcRow = FALSE,
-      pcCol = FALSE
-    )
+    jmv_chi <-
+      jmv::contTablesPaired(
+        data = data,
+        rows = "condition",
+        cols = "main",
+        counts = NULL,
+        chiSq = TRUE,
+        chiSqCorr = FALSE,
+        exact = FALSE,
+        pcRow = FALSE,
+        pcCol = FALSE
+      )
 
     # computing exact odds ratio as effect size and their confidence interval
-    or_df <- exact2x2::exact2x2(
-      x = data$main,
-      y = data$condition,
-      or = 1,
-      alternative = "two.sided",
-      tsmethod = NULL,
-      conf.int = TRUE,
-      conf.level = conf.level,
-      tol = 0.00001,
-      conditional = TRUE,
-      paired = TRUE,
-      plot = FALSE,
-      midp = FALSE
-    )
+    or_df <-
+      exact2x2::exact2x2(
+        x = data$main,
+        y = data$condition,
+        or = 1,
+        alternative = "two.sided",
+        tsmethod = NULL,
+        conf.int = TRUE,
+        conf.level = conf.level,
+        tol = 0.00001,
+        conditional = TRUE,
+        paired = TRUE,
+        plot = FALSE,
+        midp = FALSE
+      )
 
     # preparing the subtitle
-    subtitle <- base::substitute(
-      expr =
-        paste(
-          y,
-          italic(chi)^2,
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", ",
-          "log"["e"],
-          "(OR) = ",
-          or,
-          ", 95% CI [",
-          LL,
-          ", ",
-          UL,
-          "]",
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        y = stat.title,
-        estimate = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_chi$test)$`value[mcn]`[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        df = as.data.frame(jmv_chi$test)$`df[mcn]`[[1]],
-        pvalue = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_chi$test)$`p[mcn]`[[1]],
-          k = k,
-          p.value = TRUE
-        ),
-        or = ggstatsplot::specify_decimal_p(x = log(
-          x = or_df$estimate, base = exp(1)
-        ), k),
-        LL = ggstatsplot::specify_decimal_p(x = log(
-          x = or_df$conf.int[1], base = exp(1)
-        ), k),
-        UL = ggstatsplot::specify_decimal_p(x = log(
-          x = or_df$conf.int[2], base = exp(1)
-        ), k),
-        n = as.data.frame(jmv_chi$test)$`value[n]`[[1]]
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            y,
+            italic(chi)^2,
+            "(",
+            df,
+            ") = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue,
+            ", ",
+            "log"["e"],
+            "(OR) = ",
+            or,
+            ", 95% CI [",
+            LL,
+            ", ",
+            UL,
+            "]",
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          y = stat.title,
+          estimate = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_chi$test)$`value[mcn]`[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          df = as.data.frame(jmv_chi$test)$`df[mcn]`[[1]],
+          pvalue = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_chi$test)$`p[mcn]`[[1]],
+            k = k,
+            p.value = TRUE
+          ),
+          or = ggstatsplot::specify_decimal_p(x = log(
+            x = or_df$estimate, base = exp(1)
+          ), k),
+          LL = ggstatsplot::specify_decimal_p(x = log(
+            x = or_df$conf.int[1], base = exp(1)
+          ), k),
+          UL = ggstatsplot::specify_decimal_p(x = log(
+            x = or_df$conf.int[2], base = exp(1)
+          ), k),
+          n = as.data.frame(jmv_chi$test)$`value[n]`[[1]]
+        )
       )
-    )
   }
 
   # return the subtitle
@@ -389,7 +392,7 @@ subtitle_onesample_proptest <-
         ))[1]
     }
 
-    # =================== dataframe ========================================
+    # ============================ dataframe ===============================
 
     if (base::missing(counts)) {
       data <-
@@ -425,11 +428,12 @@ subtitle_onesample_proptest <-
     # ============================= statistical test =========================
 
     # conducting proportion test with jmv::propTestN()
-    jmv_prop <- jmv::propTestN(
-      data = data,
-      var = "main",
-      ratio = ratio
-    )
+    jmv_prop <-
+      jmv::propTestN(
+        data = data,
+        var = "main",
+        ratio = ratio
+      )
 
     # if there is no value corresponding to one of the levels of the 'main'
     # variable, then no subtitle is needed

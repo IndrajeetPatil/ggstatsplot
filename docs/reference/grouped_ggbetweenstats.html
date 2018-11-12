@@ -301,7 +301,7 @@ the plot will be returned.</p></td>
     <tr>
       <th>subtitle</th>
       <td><p>The text for the plot subtitle. Will work only if
-<code>results.subtitle = FALSE</code>.</p></td>
+<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = FALSE</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
@@ -316,7 +316,7 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 3</code>).</p></td>
+(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
     </tr>
     <tr>
       <th>var.equal</th>
@@ -361,7 +361,7 @@ the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"
 displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend <code>1.58 * IQR / sqrt(n)</code>. This gives a roughly <code>95%</code>
+notches extend <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>1.58 * IQR / sqrt(n)</a></code>. This gives a roughly <code>95%</code>
 confidence interval for comparing medians. IQR: Inter-Quartile Range.</p></td>
     </tr>
     <tr>
@@ -462,7 +462,7 @@ type. Default palette is <code>"Dark2"</code>.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
+      <td><p>Either <code>1</code> or <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -524,7 +524,7 @@ combining (plot, caption).</p></dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>For parametric tests, Welch's ANOVA/<em>t</em>-test are used as a default (i.e.,
-<code>var.equal = FALSE</code>).
+<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>var.equal = FALSE</a></code>).
 References:</p><ul>
 <li><p>ANOVA: Delacre, Leys, Mora, &amp; Lakens, <em>PsyArXiv</em>, 2018</p></li>
 <li><p><em>t</em>-test: Delacre, Lakens, &amp; Leys,
@@ -537,7 +537,7 @@ References:</p><ul>
     <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em>
 still use this function just to prepare the <strong>plot</strong> for exploratory data
 analysis, but the statistical details displayed in the subtitle will be
-incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code>.</p>
+incorrect. You can remove them by adding <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>+ ggplot2::labs(subtitle = NULL)</a></code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -551,7 +551,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># to get reproducible results from bootstrapping</span>
-<span class='fu'>set.seed</span>(<span class='fl'>123</span>)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># the most basic function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></span>(

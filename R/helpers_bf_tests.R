@@ -1,3 +1,57 @@
+#' @title Convenience function to extract bayes factors from test
+#' @name bf_extractor
+#'
+#' @param bf.object An object from `BayesFactor` package test results.
+#'
+#' @importFrom BayesFactor extractBF
+#' @importFrom tibble as_data_frame
+#' @importFrom dplyr rename select mutate everything
+#'
+#' @examples
+#' bf_extractor(
+#'   BayesFactor::correlationBF(
+#'     x = iris$Sepal.Length,
+#'     y = iris$Sepal.Width
+#'   )
+#' )
+#' @export
+
+bf_extractor <- function(bf.object) {
+
+  # preparing the dataframe
+  bf_df <-
+    BayesFactor::extractBF(
+      x = bf.object,
+      logbf = FALSE,
+      onlybf = FALSE
+    ) %>%
+    tibble::as_data_frame(.) %>%
+    dplyr::select(.data = ., -time, -code) %>%
+    dplyr::rename(.data = ., bf10 = bf) %>%
+    dplyr::mutate(
+      .data = .,
+      bf01 = 1 / bf10,
+      log_e_bf10 = log(x = bf10, base = exp(1)),
+      log_e_bf01 = log(x = bf01, base = exp(1)),
+      log_10_bf10 = log10(x = bf10),
+      log_10_bf01 = log10(x = bf01)
+    ) %>%
+    dplyr::select(
+      .data = .,
+      bf10,
+      log_e_bf10,
+      log_10_bf10,
+      bf01,
+      log_e_bf01,
+      log_10_bf01,
+      dplyr::everything()
+    )
+
+  # return the dataframe with bayes factors
+  return(bf_df)
+}
+
+
 #' @title Bayesian correlation test.
 #' @name bf_corr_test
 #' @aliases bf_corr_test
@@ -63,18 +117,12 @@ bf_corr_test <-
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-
-      BayesFactor::extractBF(
-        x = BayesFactor::correlationBF(
-          x = data$x,
-          y = data$y,
-          nullInterval = NULL,
-          rscale = bf.prior
-        ),
-        logbf = FALSE,
-        onlybf = FALSE
-      ) %>% # converting to a tibble dataframe
-      tibble::as_data_frame(.) %>% # removing unnecessary columns
-      dplyr::select(.data = ., -time, -code) %>% # adding prior width column
+      bf_extractor(bf.object = BayesFactor::correlationBF(
+        x = data$x,
+        y = data$y,
+        nullInterval = NULL,
+        rscale = bf.prior
+      )) %>% # adding prior width column
       dplyr::mutate(.data = ., bf.prior = bf.prior)
 
     # prepare the bayes factor message
@@ -95,10 +143,7 @@ bf_corr_test <-
         env = base::list(
           top.text = caption,
           bf = ggstatsplot::specify_decimal_p(
-            x = log(
-              x = (1 / bf_results$bf[[1]]),
-              base = exp(1)
-            ),
+            x = bf_results$log_e_bf01[[1]],
             k = 1,
             p.value = FALSE
           ),
@@ -224,15 +269,12 @@ bf_contigency_tab <-
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-
-      BayesFactor::extractBF(
-        BayesFactor::contingencyTableBF(
-          x = table(data$x, data$y),
-          sampleType = sampling.plan,
-          fixedMargin = fixed.margin,
-          priorConcentration = prior.concentration
-        )
-      ) %>%
-      dplyr::select(.data = ., -time, -code) %>% # adding other columns
+      bf_extractor(bf.object = BayesFactor::contingencyTableBF(
+        x = table(data$x, data$y),
+        sampleType = sampling.plan,
+        fixedMargin = fixed.margin,
+        priorConcentration = prior.concentration
+      )) %>%
       dplyr::mutate(
         .data = .,
         sampling.plan = sampling_plan_text,
@@ -263,10 +305,7 @@ bf_contigency_tab <-
         env = base::list(
           top.text = caption,
           bf = ggstatsplot::specify_decimal_p(
-            x = log(
-              x = (1 / bf_results$bf[[1]]),
-              base = exp(1)
-            ),
+            x = bf_results$log_e_bf01[[1]],
             k = 1,
             p.value = FALSE
           ),
@@ -379,15 +418,13 @@ bf_two_sample_ttest <-
         stats::na.omit(.)
 
       # extracting results from bayesian test and creating a dataframe
-      bf_results <-
-        BayesFactor::extractBF(
-          BayesFactor::ttestBF(
-            formula = y ~ x,
-            data = as.data.frame(data),
-            rscale = bf.prior,
-            paired = FALSE,
-            progress = FALSE
-          )
+      bf_object <-
+        BayesFactor::ttestBF(
+          formula = y ~ x,
+          data = as.data.frame(data),
+          rscale = bf.prior,
+          paired = FALSE,
+          progress = FALSE
         )
     } else if (isTRUE(paired)) {
       # the data needs to be in wide format
@@ -402,22 +439,20 @@ bf_two_sample_ttest <-
       colnames(data_wide) <- c("rowid", "col1", "col2")
 
       # extracting results from bayesian test and creating a dataframe
-      bf_results <-
-        BayesFactor::extractBF(
-          BayesFactor::ttestBF(
-            x = data_wide$col1,
-            y = data_wide$col2,
-            rscale = bf.prior,
-            paired = TRUE,
-            progress = FALSE
-          )
+      bf_object <-
+        BayesFactor::ttestBF(
+          x = data_wide$col1,
+          y = data_wide$col2,
+          rscale = bf.prior,
+          paired = TRUE,
+          progress = FALSE
         )
     }
 
-    # cleaning the data further
-    bf_results %<>% # converting to a tibble dataframe
-      tibble::as_data_frame(.) %>% # removing unnecessary columns
-      dplyr::select(.data = ., -time, -code) %>% # adding prior width column
+    # extracting the bayes factors
+    bf_results <- bf_extractor(
+      bf.object = bf_object
+    ) %>%
       dplyr::mutate(.data = ., bf.prior = bf.prior)
 
     # prepare the bayes factor message
@@ -438,10 +473,7 @@ bf_two_sample_ttest <-
         env = base::list(
           top.text = caption,
           bf = ggstatsplot::specify_decimal_p(
-            x = log(
-              x = (1 / bf_results$bf[[1]]),
-              base = exp(1)
-            ),
+            x = bf_results$log_e_bf01[[1]],
             k = 1,
             p.value = FALSE
           ),
@@ -526,16 +558,12 @@ bf_oneway_anova <-
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-
-      BayesFactor::extractBF(
-        BayesFactor::anovaBF(
-          formula = y ~ x,
-          data = as.data.frame(data),
-          rscaleFixed = bf.prior,
-          progress = FALSE
-        )
-      ) %>% # converting to a tibble dataframe
-      tibble::as_data_frame(.) %>% # removing unnecessary columns
-      dplyr::select(.data = ., -time, -code) %>% # adding prior width column
+      bf_extractor(bf.object = BayesFactor::anovaBF(
+        formula = y ~ x,
+        data = as.data.frame(data),
+        rscaleFixed = bf.prior,
+        progress = FALSE
+      )) %>%
       dplyr::mutate(.data = ., bf.prior = bf.prior)
 
     # prepare the bayes factor message
@@ -556,10 +584,7 @@ bf_oneway_anova <-
         env = base::list(
           top.text = caption,
           bf = ggstatsplot::specify_decimal_p(
-            x = log(
-              x = (1 / bf_results$bf[[1]]),
-              base = exp(1)
-            ),
+            x = bf_results$log_e_bf01[[1]],
             k = 1,
             p.value = FALSE
           ),
@@ -624,7 +649,8 @@ bf_one_sample_ttest <-
              caption = NULL,
              output = "caption") {
 
-    # ================================= dataframe ==============================
+    # ================================= dataframe =============================
+
     # preparing a dataframe out of provided inputs
     if (!is.null(data)) {
       # if dataframe is provided
@@ -643,21 +669,16 @@ bf_one_sample_ttest <-
     data %<>%
       tibble::as_data_frame(x = .)
 
-
     # ========================= subtitle preparation ==========================
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-
-      BayesFactor::extractBF(
-        x = BayesFactor::ttestBF(
-          x = data$x,
-          rscale = bf.prior,
-          mu = test.value,
-          nullInterval = NULL
-        )
-      ) %>% # converting to a tibble dataframe
-      tibble::as_data_frame(.) %>% # removing unnecessary columns
-      dplyr::select(.data = ., -time, -code) %>% # adding prior width column
+      bf_extractor(bf.object = BayesFactor::ttestBF(
+        x = data$x,
+        rscale = bf.prior,
+        mu = test.value,
+        nullInterval = NULL
+      )) %>%
       dplyr::mutate(.data = ., bf.prior = bf.prior)
 
     # prepare the bayes factor message
@@ -678,10 +699,7 @@ bf_one_sample_ttest <-
         env = base::list(
           top.text = caption,
           bf = ggstatsplot::specify_decimal_p(
-            x = log(
-              x = (1 / bf_results$bf[[1]]),
-              base = exp(1)
-            ),
+            x = bf_results$log_e_bf01[[1]],
             k = 1,
             p.value = FALSE
           ),

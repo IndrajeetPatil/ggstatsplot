@@ -238,10 +238,11 @@ results).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
-)</div><div class='output co'>#&gt; # A tibble: 1 x 3
-#&gt;         bf         error bf.prior
-#&gt;      &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 2.028e28 0.00000004785      0.8</div></pre>
+)</div><div class='output co'>#&gt; # A tibble: 1 x 8
+#&gt;       bf10 log_e_bf10 log_10_bf10      bf01 log_e_bf01 log_10_bf01    error
+#&gt;      &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 2.028e28      65.18       28.31 4.931e-29     -65.18      -28.31 4.785e-8
+#&gt; # ... with 1 more variable: bf.prior &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -207,7 +207,7 @@ if each row represents a single observation (Default).</p></td>
     <tr>
       <th>ratio</th>
       <td><p>A vector of numbers: the expected proportions for the proportion
-test. Default is <code>NULL</code>, which means if there are two levels <code>ratio = c(1,1)</code>, etc.</p></td>
+test. Default is <code>NULL</code>, which means if there are two levels <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>ratio = c(1,1)</a></code>, etc.</p></td>
     </tr>
     <tr>
       <th>legend.title</th>
@@ -216,7 +216,7 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 3</code>).</p></td>
+(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
     </tr>
     </table>
     
@@ -224,17 +224,17 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># with counts</span>
-<span class='fu'>library</span>(<span class='no'>jmv</span>)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)
 
 <span class='fu'>subtitle_onesample_proptest</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>HairEyeColor</span>),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
 )</div><div class='output co'>#&gt; paste(italic(chi)^2, "(", 3, ") = ", "133.473", ", ", italic("p"), 
 #&gt;     " = ", "&lt; 0.001", ", ", italic("n"), " = ", 592L)</div><div class='input'>
 <span class='co'># in case no variation, only sample size will be shown</span>
 <span class='fu'>subtitle_onesample_proptest</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>cbind.data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='st'>"a"</span>, <span class='fl'>10</span>)),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/cbind'>cbind.data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='st'>"a"</span>, <span class='fl'>10</span>)),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>x</span>
 )</div><div class='output co'>#&gt; Warning: Proportion test will not be run because it requires x to have at least 
 #&gt; 2 levels with non-zero frequencies.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("n"), " = ", 10L)</div></pre>

@@ -187,12 +187,12 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg" alt="Coverage Status"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--11-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--12-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://sites.google.com/site/indrajeetspatilmorality/"><img src="https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0" alt="author"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot"><img src="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge" alt="Dependency Status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.html"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_11_10-yellowgreen.svg" alt="Covrpage Summary"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.html"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_11_12-yellowgreen.svg" alt="Covrpage Summary"></a></td>
 <td><a href="https://saythanks.io/to/IndrajeetPatil"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="saythanks"></a></td>
 <td><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></td>
@@ -245,7 +245,7 @@
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">dependencies =</span> <span class="ot">TRUE</span>,                 <span class="co"># installs packages which ggstatsplot depends on</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">upgrade_dependencies =</span> <span class="ot">TRUE</span>          <span class="co"># updates any out of date dependencies</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">)</a></code></pre></div>
-<p>If you are not using the <a href="https://www.rstudio.com/">RStudio IDE</a> and you get an error related to “pandoc” you will either need to remove the argument <code>build_vignettes = TRUE</code> (to avoid building the vignettes) or install <a href="http://pandoc.org/">pandoc</a>. If you have the <code>rmarkdown</code> R package installed then you can check if you have pandoc by running the following in R:</p>
+<p>If you are not using the <a href="https://www.rstudio.com/">RStudio IDE</a> and you get an error related to “pandoc” you will either need to remove the argument <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">build_vignettes = TRUE</a></code> (to avoid building the vignettes) or install <a href="http://pandoc.org/">pandoc</a>. If you have the <code>rmarkdown</code> R package installed then you can check if you have pandoc by running the following in R:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">rmarkdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rmarkdown/topics/pandoc_available">pandoc_available</a></span>()</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 </div>
@@ -308,7 +308,7 @@
 ```
 -->
 <p>Another handy tool to see arguments to any of the functions is <code>args</code>. For example-</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">args</span>(<span class="dt">name =</span> ggstatsplot<span class="op">::</span>ggscatterstats)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/args">args</a></span>(<span class="dt">name =</span> ggstatsplot<span class="op">::</span>ggscatterstats)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; function (data, x, y, type = "pearson", bf.prior = 0.707, bf.message = FALSE, </span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;     label.var = NULL, label.expression = NULL, xlab = NULL, ylab = NULL, </span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;     method = "lm", method.args = list(), formula = y ~ x, point.color = "black", </span></a>
@@ -367,7 +367,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x00000000217360d8&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x0000000021789ca0&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -378,8 +378,8 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p><code>ggstatsplot</code> relies on non-standard evaluation (NSE), i.e., rather than looking at the values of arguments (<code>x</code>, <code>y</code>), it instead looks at their expressions. This means that you <strong>shouldn’t</strong> enter arguments with the <code>$</code> operator and setting <code>data = NULL</code>: <code>data = NULL, x = data$x, y = data$y</code>. You <strong>must</strong> always specify the <code>data</code> argument for all functions. On the plus side, you can enter arguments either as a string (<code>x = "x", y = "y"</code>) or as a bare expression (<code>x = x, y = y</code>) and it wouldn’t matter. To read more about NSE, see- <a href="http://adv-r.had.co.nz/Computing-on-the-language.html" class="uri">http://adv-r.had.co.nz/Computing-on-the-language.html</a></p>
-<p><code>ggstatsplot</code> is a very chatty package and will by default print helpful notes on assumptions about linear models, warnings, etc. If you don’t want your console to be cluttered with such messages, they can be turned off by setting argument <code>messages = FALSE</code> in the function call.</p>
+<p><code>ggstatsplot</code> relies on non-standard evaluation (NSE), i.e., rather than looking at the values of arguments (<code>x</code>, <code>y</code>), it instead looks at their expressions. This means that you <strong>shouldn’t</strong> enter arguments with the <code>$</code> operator and setting <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">data = NULL</a></code>: <code>data = NULL, x = data$x, y = data$y</code>. You <strong>must</strong> always specify the <code>data</code> argument for all functions. On the plus side, you can enter arguments either as a string (<code>x = "x", y = "y"</code>) or as a bare expression (<code>x = x, y = y</code>) and it wouldn’t matter. To read more about NSE, see- <a href="http://adv-r.had.co.nz/Computing-on-the-language.html" class="uri">http://adv-r.had.co.nz/Computing-on-the-language.html</a></p>
+<p><code>ggstatsplot</code> is a very chatty package and will by default print helpful notes on assumptions about linear models, warnings, etc. If you don’t want your console to be cluttered with such messages, they can be turned off by setting argument <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">messages = FALSE</a></code> in the function call.</p>
 <p>Here are examples of the main functions currently supported in <code>ggstatsplot</code>.</p>
 <p><strong>Note</strong>: If you are reading this on GitHub repository, the documentation below is for the <strong>development</strong> version of the package. So you may see some features available here that are not currently present in the stable version of this package on <strong>CRAN</strong>. For documentation relevant for the CRAN version, see:</p>
 <ul>
@@ -395,10 +395,10 @@
 </h2>
 <p>This function creates either a violin plot, a box plot, or a mix of two for <strong>between</strong>-group or <strong>between</strong>-condition comparisons with results from statistical tests in the subtitle. The simplest function call looks like this-</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># loading needed libraries</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">library</span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb8-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb8-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
@@ -407,16 +407,16 @@
 <a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="dt">y =</span> Sepal.Length,</a>
 <a class="sourceLine" id="cb8-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb8-13" data-line-number="13">) <span class="op">+</span><span class="st">                                               </span><span class="co"># further modification outside of ggstatsplot</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a></code></pre></div>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>Note that this function returns a <code>ggplot2</code> object and thus any of the graphics layers can be further modified.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>).</p>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co"># let's leave out one of the factor levels and see if instead of anova, a t-test will be run</span></a>
 <a class="sourceLine" id="cb9-7" data-line-number="7">iris2 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> datasets<span class="op">::</span>iris, Species <span class="op">!=</span><span class="st"> "setosa"</span>)</a>
@@ -425,7 +425,7 @@
 <a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co"># pipeline, to see if this function respects the new factor levels</span></a>
 <a class="sourceLine" id="cb9-11" data-line-number="11">iris2<span class="op">$</span>Species &lt;-</a>
 <a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/factor">factor</a></span>(<span class="dt">x =</span> iris2<span class="op">$</span>Species,</a>
-<a class="sourceLine" id="cb9-13" data-line-number="13">               <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">"virginica"</span> , <span class="st">"versicolor"</span>))</a>
+<a class="sourceLine" id="cb9-13" data-line-number="13">               <span class="dt">levels =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"virginica"</span> , <span class="st">"versicolor"</span>))</a>
 <a class="sourceLine" id="cb9-14" data-line-number="14"></a>
 <a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb9-16" data-line-number="16">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
@@ -452,11 +452,11 @@
 <a class="sourceLine" id="cb9-37" data-line-number="37">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb9-38" data-line-number="38">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
-<p>In case of a parametric t-test, setting <code>bf.message = TRUE</code> will also attach results from Bayesian Student’s <em>t</em>-test. That way, if the null hypothesis can’t be rejected with the NHST approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <code>BF01</code>).</p>
-<p>By default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., <code>BF10</code> is displayed). Natural logarithms are shown because BF values can be pretty large. This also makes it easy to compare evidence in favor alternative (<code>BF10</code>) versus null (<code>BF01</code>) hypotheses (since <code>log(BF10) = - log(BF01)</code>).</p>
+<p>In case of a parametric t-test, setting <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">bf.message = TRUE</a></code> will also attach results from Bayesian Student’s <em>t</em>-test. That way, if the null hypothesis can’t be rejected with the NHST approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <code>BF01</code>).</p>
+<p>By default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., <code>BF10</code> is displayed). Natural logarithms are shown because BF values can be pretty large. This also makes it easy to compare evidence in favor alternative (<code>BF10</code>) versus null (<code>BF01</code>) hypotheses (since <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">log(BF10) = - log(BF01)</a></code>).</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co"># let's exclude animation and documentary genres since there are not many</span></a>
 <a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co"># datapoints for these genres</span></a>
@@ -464,10 +464,10 @@
 <a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb10-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb10-9" data-line-number="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">                       <span class="op">!</span>genre <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"Animation"</span>, <span class="st">"Documentary"</span>)),</a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">                       <span class="op">!</span>genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Animation"</span>, <span class="st">"Documentary"</span>)),</a>
 <a class="sourceLine" id="cb10-11" data-line-number="11">  <span class="dt">x =</span> mpaa, </a>
 <a class="sourceLine" id="cb10-12" data-line-number="12">  <span class="dt">y =</span> length,</a>
-<a class="sourceLine" id="cb10-13" data-line-number="13">  <span class="dt">caption =</span> <span class="kw">substitute</span>(<span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Source"</span>), <span class="st">":IMDb (Internet Movie Database)"</span>)), </a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">  <span class="dt">caption =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/substitute">substitute</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">"Source"</span>), <span class="st">":IMDb (Internet Movie Database)"</span>)), </a>
 <a class="sourceLine" id="cb10-14" data-line-number="14">  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,      <span class="co"># display significant pairwise comparisons</span></a>
 <a class="sourceLine" id="cb10-15" data-line-number="15">  <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>,  <span class="co"># how do you want to annotate the pairwise comparisons</span></a>
 <a class="sourceLine" id="cb10-16" data-line-number="16">  <span class="dt">p.adjust.method =</span> <span class="st">"bonferroni"</span>,   <span class="co"># method for adjusting p-values for multiple comparisons</span></a>
@@ -485,10 +485,10 @@
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
 <p>For more, see the <code>ggbetweenstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html</a></p>
 <p><strong>This function is not appropriate for within-subjects designs.</strong></p>
-<p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em> still use this function just to prepare the <strong>plot</strong> for exploratory data analysis, but the statistical details displayed in the subtitle will be incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code> to your function call.</p>
+<p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em> still use this function just to prepare the <strong>plot</strong> for exploratory data analysis, but the statistical details displayed in the subtitle will be incorrect. You can remove them by adding <code><a href="http://www.rdocumentation.org/packages/base/topics/Arithmetic">+ ggplot2::labs(subtitle = NULL)</a></code> to your function call.</p>
 <p>As a <strong>temporary solution</strong>, you can use the helper function from <code>ggstatsplot</code> to display results from within-subjects version of the test in question. Here is an example-</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co"># getting text results using a helper function</span></a>
 <a class="sourceLine" id="cb11-5" data-line-number="5">results_subtitle &lt;-<span class="st"> </span></a>
@@ -521,14 +521,15 @@
 <a class="sourceLine" id="cb12-5" data-line-number="5">  <span class="dt">xlab =</span> <span class="st">"REM sleep (in hours)"</span>,</a>
 <a class="sourceLine" id="cb12-6" data-line-number="6">  <span class="dt">ylab =</span> <span class="st">"Amount of time spent awake (in hours)"</span>,</a>
 <a class="sourceLine" id="cb12-7" data-line-number="7">  <span class="dt">title =</span> <span class="st">"Understanding mammalian sleep"</span>,</a>
-<a class="sourceLine" id="cb12-8" data-line-number="8">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">)</a></code></pre></div>
+<a class="sourceLine" id="cb12-8" data-line-number="8">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats1-1.png" width="100%"></p>
 <p>Number of other arguments can be specified to modify this basic plot-</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(datasets)</a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(datasets)</a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb13-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb13-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
@@ -542,8 +543,8 @@
 <a class="sourceLine" id="cb13-15" data-line-number="15">  <span class="dt">label.expression =</span> <span class="st">"rating &lt; 5 &amp; budget &gt; 150"</span>, <span class="co"># expression that decides which points to label</span></a>
 <a class="sourceLine" id="cb13-16" data-line-number="16">  <span class="dt">line.color =</span> <span class="st">"yellow"</span>,                          <span class="co"># changing regression line color line</span></a>
 <a class="sourceLine" id="cb13-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"Movie budget and IMDB rating (action)"</span>,<span class="co"># title text for the plot</span></a>
-<a class="sourceLine" id="cb13-18" data-line-number="18">  <span class="dt">caption =</span> <span class="kw">expression</span>(                           <span class="co"># caption text for the plot</span></a>
-<a class="sourceLine" id="cb13-19" data-line-number="19">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Note"</span>), <span class="st">": IMDB stands for Internet Movie DataBase"</span>)</a>
+<a class="sourceLine" id="cb13-18" data-line-number="18">  <span class="dt">caption =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(                           <span class="co"># caption text for the plot</span></a>
+<a class="sourceLine" id="cb13-19" data-line-number="19">    <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">"Note"</span>), <span class="st">": IMDB stands for Internet Movie DataBase"</span>)</a>
 <a class="sourceLine" id="cb13-20" data-line-number="20">  ),</a>
 <a class="sourceLine" id="cb13-21" data-line-number="21">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps">theme_ipsum_ps</a></span>(),         <span class="co"># choosing a different theme</span></a>
 <a class="sourceLine" id="cb13-22" data-line-number="22">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,                      <span class="co"># turn off ggstatsplot theme layer</span></a>
@@ -560,7 +561,7 @@
 <p><img src="reference/figures/README-ggscatterstats2-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb14-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
@@ -589,7 +590,7 @@
 </h2>
 <p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s chi-squared test for between-subjects design and McNemar’s test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample <strong>proportion test</strong> will be displayed as a subtitle.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb15-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
@@ -601,7 +602,7 @@
 <p><img src="reference/figures/README-ggpiestats1-1.png" width="100%"></p>
 <p>This function can also be used to study an interaction between two categorical variables. Additionally, this basic plot can further be modified with additional arguments and the function returns a <code>ggplot2</code> object that can further be modified with <code>ggplot2</code> syntax:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb16-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb16-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
@@ -612,26 +613,26 @@
 <a class="sourceLine" id="cb16-10" data-line-number="10">  <span class="dt">stat.title =</span> <span class="st">"interaction: "</span>,                       <span class="co"># title for the results</span></a>
 <a class="sourceLine" id="cb16-11" data-line-number="11">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                  <span class="co"># display bayes factor in favor of null</span></a>
 <a class="sourceLine" id="cb16-12" data-line-number="12">  <span class="dt">legend.title =</span> <span class="st">"Transmission"</span>,                      <span class="co"># title for the legend</span></a>
-<a class="sourceLine" id="cb16-13" data-line-number="13">  <span class="dt">factor.levels =</span> <span class="kw">c</span>(<span class="st">"1 = manual"</span>, <span class="st">"0 = automatic"</span>),   <span class="co"># renaming the factor level names (`main`)</span></a>
+<a class="sourceLine" id="cb16-13" data-line-number="13">  <span class="dt">factor.levels =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1 = manual"</span>, <span class="st">"0 = automatic"</span>),   <span class="co"># renaming the factor level names (`main`)</span></a>
 <a class="sourceLine" id="cb16-14" data-line-number="14">  <span class="dt">facet.wrap.name =</span> <span class="st">"No. of cylinders"</span>,               <span class="co"># name for the facetting variable</span></a>
 <a class="sourceLine" id="cb16-15" data-line-number="15">  <span class="dt">slice.label =</span> <span class="st">"counts"</span>,                             <span class="co"># show counts data instead of percentages </span></a>
 <a class="sourceLine" id="cb16-16" data-line-number="16">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                  <span class="co"># package from which color palette is to be taken</span></a>
 <a class="sourceLine" id="cb16-17" data-line-number="17">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,                           <span class="co"># choosing a different color palette </span></a>
-<a class="sourceLine" id="cb16-18" data-line-number="18">  <span class="dt">caption =</span> <span class="kw">substitute</span>(                               <span class="co"># text for the caption</span></a>
-<a class="sourceLine" id="cb16-19" data-line-number="19">    <span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Source"</span>), <span class="st">": 1974 Motor Trend US magazine"</span>)</a>
+<a class="sourceLine" id="cb16-18" data-line-number="18">  <span class="dt">caption =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/substitute">substitute</a></span>(                               <span class="co"># text for the caption</span></a>
+<a class="sourceLine" id="cb16-19" data-line-number="19">    <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">"Source"</span>), <span class="st">": 1974 Motor Trend US magazine"</span>)</a>
 <a class="sourceLine" id="cb16-20" data-line-number="20">  ),</a>
 <a class="sourceLine" id="cb16-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
 <a class="sourceLine" id="cb16-22" data-line-number="22">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
-<p>In case of within-subjects designs, setting <code>paired = TRUE</code> will produce results from McNemar test-</p>
+<p>In case of within-subjects designs, setting <code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">paired = TRUE</a></code> will produce results from McNemar test-</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb17-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co"># data</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">survey.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb17-6" data-line-number="6">  <span class="st">`</span><span class="dt">1st survey</span><span class="st">`</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">'Approve'</span>, <span class="st">'Approve'</span>, <span class="st">'Disapprove'</span>, <span class="st">'Disapprove'</span>),</a>
-<a class="sourceLine" id="cb17-7" data-line-number="7">  <span class="st">`</span><span class="dt">2nd survey</span><span class="st">`</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">'Approve'</span>, <span class="st">'Disapprove'</span>, <span class="st">'Approve'</span>, <span class="st">'Disapprove'</span>),</a>
-<a class="sourceLine" id="cb17-8" data-line-number="8">  <span class="st">`</span><span class="dt">Counts</span><span class="st">`</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">794</span>, <span class="dv">150</span>, <span class="dv">86</span>, <span class="dv">570</span>),</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">survey.data &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">  <span class="st">`</span><span class="dt">1st survey</span><span class="st">`</span> =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'Approve'</span>, <span class="st">'Approve'</span>, <span class="st">'Disapprove'</span>, <span class="st">'Disapprove'</span>),</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">  <span class="st">`</span><span class="dt">2nd survey</span><span class="st">`</span> =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'Approve'</span>, <span class="st">'Disapprove'</span>, <span class="st">'Approve'</span>, <span class="st">'Disapprove'</span>),</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">  <span class="st">`</span><span class="dt">Counts</span><span class="st">`</span> =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">794</span>, <span class="dv">150</span>, <span class="dv">86</span>, <span class="dv">570</span>),</a>
 <a class="sourceLine" id="cb17-9" data-line-number="9">  <span class="dt">check.names =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb17-10" data-line-number="10">)</a>
 <a class="sourceLine" id="cb17-11" data-line-number="11"></a>
@@ -655,7 +656,7 @@
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb18-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb18-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
@@ -695,14 +696,14 @@
 <p><img src="reference/figures/README-gghistostats1-1.png" width="100%"></p>
 <p>The aesthetic defaults can be easily modified-</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb20-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb20-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb20-6" data-line-number="6">  <span class="dt">data =</span> datasets<span class="op">::</span>iris,                         <span class="co"># dataframe from which variable is to be taken</span></a>
 <a class="sourceLine" id="cb20-7" data-line-number="7">  <span class="dt">x =</span> Sepal.Length,                              <span class="co"># numeric variable whose distribution is of interest</span></a>
 <a class="sourceLine" id="cb20-8" data-line-number="8">  <span class="dt">title =</span> <span class="st">"Distribution of Iris sepal length"</span>,   <span class="co"># title for the plot</span></a>
-<a class="sourceLine" id="cb20-9" data-line-number="9">  <span class="dt">caption =</span> <span class="kw">substitute</span>(<span class="kw">paste</span>(<span class="kw">italic</span>(<span class="st">"Source:"</span>, <span class="st">"Ronald Fisher's Iris data set"</span>))), </a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">  <span class="dt">caption =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/substitute">substitute</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">"Source:"</span>, <span class="st">"Ronald Fisher's Iris data set"</span>))), </a>
 <a class="sourceLine" id="cb20-10" data-line-number="10">  <span class="dt">type =</span> <span class="st">"parametric"</span>,                           <span class="co"># one sample t-test</span></a>
 <a class="sourceLine" id="cb20-11" data-line-number="11">  <span class="dt">bar.measure =</span> <span class="st">"mix"</span>,                           <span class="co"># what does the bar length denote</span></a>
 <a class="sourceLine" id="cb20-12" data-line-number="12">  <span class="dt">test.value =</span> <span class="dv">5</span>,                                <span class="co"># default value is 0</span></a>
@@ -718,10 +719,10 @@
 <a class="sourceLine" id="cb20-22" data-line-number="22">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>                      <span class="co"># turn off ggstatsplot theme layer</span></a>
 <a class="sourceLine" id="cb20-23" data-line-number="23">) </a></code></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
-<p>As can be seen from the plot, bayes factor can be attached (<code>bf.message = TRUE</code>) to assess evidence in favor of the null hypothesis.</p>
+<p>As can be seen from the plot, bayes factor can be attached (<code><a href="http://www.rdocumentation.org/packages/base/topics/assignOps">bf.message = TRUE</a></code>) to assess evidence in favor of the null hypothesis.</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb21-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb21-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
@@ -745,7 +746,7 @@
 </h2>
 <p><code>ggcorrmat</code> makes a correlalogram (a matrix of correlation coefficients) with minimal amount of code. Just sticking to the defaults itself produces publication-ready correlation matrices. But, for the sake of exploring the available options, let’s change some of the defaults. For example, multiple aesthetics-related arguments can be modified to change the appearance of the correlation matrix.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb22-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb22-4" data-line-number="4"><span class="co"># as a default this function outputs a correlalogram plot</span></a>
 <a class="sourceLine" id="cb22-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
@@ -753,13 +754,13 @@
 <a class="sourceLine" id="cb22-7" data-line-number="7">  <span class="dt">corr.method =</span> <span class="st">"robust"</span>,                    <span class="co"># correlation method</span></a>
 <a class="sourceLine" id="cb22-8" data-line-number="8">  <span class="dt">sig.level =</span> <span class="fl">0.001</span>,                         <span class="co"># threshold of significance</span></a>
 <a class="sourceLine" id="cb22-9" data-line-number="9">  <span class="dt">p.adjust.method =</span> <span class="st">"holm"</span>,                  <span class="co"># p-value adjustment method for multiple comparisons</span></a>
-<a class="sourceLine" id="cb22-10" data-line-number="10">  <span class="dt">cor.vars =</span> <span class="kw">c</span>(sleep_rem, awake<span class="op">:</span>bodywt),     <span class="co"># a range of variables can be selected  </span></a>
-<a class="sourceLine" id="cb22-11" data-line-number="11">  <span class="dt">cor.vars.names =</span> <span class="kw">c</span>(<span class="st">"REM sleep"</span>,            <span class="co"># variable names</span></a>
+<a class="sourceLine" id="cb22-10" data-line-number="10">  <span class="dt">cor.vars =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(sleep_rem, awake<span class="op">:</span>bodywt),     <span class="co"># a range of variables can be selected  </span></a>
+<a class="sourceLine" id="cb22-11" data-line-number="11">  <span class="dt">cor.vars.names =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"REM sleep"</span>,            <span class="co"># variable names</span></a>
 <a class="sourceLine" id="cb22-12" data-line-number="12">                     <span class="st">"time awake"</span>, </a>
 <a class="sourceLine" id="cb22-13" data-line-number="13">                     <span class="st">"brain weight"</span>, </a>
 <a class="sourceLine" id="cb22-14" data-line-number="14">                     <span class="st">"body weight"</span>), </a>
 <a class="sourceLine" id="cb22-15" data-line-number="15">  <span class="dt">matrix.type =</span> <span class="st">"upper"</span>,                     <span class="co"># type of visualization matrix</span></a>
-<a class="sourceLine" id="cb22-16" data-line-number="16">  <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span>), </a>
+<a class="sourceLine" id="cb22-16" data-line-number="16">  <span class="dt">colors =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span>), </a>
 <a class="sourceLine" id="cb22-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,</a>
 <a class="sourceLine" id="cb22-18" data-line-number="18">  <span class="dt">subtitle =</span> <span class="st">"sleep units: hours; weight units: kilograms"</span></a>
 <a class="sourceLine" id="cb22-19" data-line-number="19">)</a>
@@ -770,10 +771,10 @@
 <p>Note that if there are <code>NA</code>s present in the selected dataframe, the legend will display minimum, median, and maximum number of pairs used for correlation matrices.</p>
 <p>Alternatively, you can use it just to get the correlation matrices and their corresponding <em>p</em>-values (in a <code>tibble</code> format).</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb23-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb23-4" data-line-number="4"><span class="co"># show four digits in a tibble</span></a>
-<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="kw">options</span>(<span class="dt">pillar.sigfig =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">pillar.sigfig =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb23-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb23-7" data-line-number="7"><span class="co"># getting the correlation coefficient matrix</span></a>
 <a class="sourceLine" id="cb23-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
@@ -857,7 +858,7 @@
 <a class="sourceLine" id="cb23-86" data-line-number="86"><span class="co">#&gt; 6 bodywt               83        61          32    83      56     83</span></a></code></pre></div>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb24-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb24-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb24-5" data-line-number="5"><span class="co"># let's use only 50% of the data to speed up the process</span></a>
@@ -865,7 +866,7 @@
 <a class="sourceLine" id="cb24-7" data-line-number="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
 <a class="sourceLine" id="cb24-8" data-line-number="8">  <span class="dt">cor.vars =</span> length<span class="op">:</span>votes,</a>
 <a class="sourceLine" id="cb24-9" data-line-number="9">  <span class="dt">corr.method =</span> <span class="st">"np"</span>,</a>
-<a class="sourceLine" id="cb24-10" data-line-number="10">  <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),</a>
+<a class="sourceLine" id="cb24-10" data-line-number="10">  <span class="dt">colors =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),</a>
 <a class="sourceLine" id="cb24-11" data-line-number="11">  <span class="dt">grouping.var =</span> genre,                      <span class="co"># grouping variable</span></a>
 <a class="sourceLine" id="cb24-12" data-line-number="12">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
 <a class="sourceLine" id="cb24-13" data-line-number="13">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
@@ -881,7 +882,7 @@
 </h2>
 <p><code>ggcoefstats</code> creates a lot with the regression coefficients’ point estimates as dots with confidence interval whiskers.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb25-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb25-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>am <span class="op">*</span><span class="st"> </span>cyl,</a>
@@ -889,7 +890,7 @@
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="80%"></p>
 <p>The basic can be further modified to one’s liking with additional arguments (also, let’s use a robust linear model instead of a simple linear model now):</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb26-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb26-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
@@ -900,7 +901,7 @@
 <a class="sourceLine" id="cb26-10" data-line-number="10">  <span class="dt">vline.color =</span> <span class="st">"#CC79A7"</span>,</a>
 <a class="sourceLine" id="cb26-11" data-line-number="11">  <span class="dt">vline.linetype =</span> <span class="st">"dotdash"</span>,</a>
 <a class="sourceLine" id="cb26-12" data-line-number="12">  <span class="dt">stats.label.size =</span> <span class="fl">3.5</span>,</a>
-<a class="sourceLine" id="cb26-13" data-line-number="13">  <span class="dt">stats.label.color =</span> <span class="kw">c</span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</a>
+<a class="sourceLine" id="cb26-13" data-line-number="13">  <span class="dt">stats.label.color =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"darkgreen"</span>),</a>
 <a class="sourceLine" id="cb26-14" data-line-number="14">  <span class="dt">title =</span> <span class="st">"Car performance predicted by transmission &amp; cylinder count"</span>,</a>
 <a class="sourceLine" id="cb26-15" data-line-number="15">  <span class="dt">subtitle =</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,</a>
 <a class="sourceLine" id="cb26-16" data-line-number="16">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_stata">theme_stata</a></span>(),</a>
@@ -908,20 +909,20 @@
 <a class="sourceLine" id="cb26-18" data-line-number="18">) <span class="op">+</span><span class="st">                                    </span></a>
 <a class="sourceLine" id="cb26-19" data-line-number="19"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb26-20" data-line-number="20"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb26-21" data-line-number="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-21" data-line-number="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb26-22" data-line-number="22"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb26-23" data-line-number="23">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="80%"></p>
 <p>All the regression model classes that are supported in the <code>broom</code> package with <code>tidy</code> and <code>glance</code> methods (<a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a>) are also supported by <code>ggcoefstats</code>. Additionally, we can make a number of aesthetic modifications by changing the defaults for theme and palette.</p>
 <p>Let’s see a couple more examples:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw">library</span>(lme4)</a>
-<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="kw">library</span>(quantreg)</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lme4)</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(quantreg)</a>
 <a class="sourceLine" id="cb27-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb27-6" data-line-number="6"><span class="co"># creating dataframe needed for one of the analyses below</span></a>
-<a class="sourceLine" id="cb27-7" data-line-number="7">d &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(Titanic)</a>
-<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="kw">data</span>(stackloss)</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7">d &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(Titanic)</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="kw"><a href="http://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(stackloss)</a>
 <a class="sourceLine" id="cb27-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb27-10" data-line-number="10"><span class="co"># combining plots together</span></a>
 <a class="sourceLine" id="cb27-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
@@ -938,7 +939,7 @@
 <a class="sourceLine" id="cb27-22" data-line-number="22">  <span class="co"># linear model</span></a>
 <a class="sourceLine" id="cb27-23" data-line-number="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb27-24" data-line-number="24">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
-<a class="sourceLine" id="cb27-25" data-line-number="25">      <span class="dt">formula =</span> <span class="kw">scale</span>(Reaction) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(Days) <span class="op">+</span><span class="st"> </span>(Days <span class="op">|</span><span class="st"> </span>Subject),</a>
+<a class="sourceLine" id="cb27-25" data-line-number="25">      <span class="dt">formula =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(Reaction) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(Days) <span class="op">+</span><span class="st"> </span>(Days <span class="op">|</span><span class="st"> </span>Subject),</a>
 <a class="sourceLine" id="cb27-26" data-line-number="26">      <span class="dt">data =</span> lme4<span class="op">::</span>sleepstudy</a>
 <a class="sourceLine" id="cb27-27" data-line-number="27">    ),</a>
 <a class="sourceLine" id="cb27-28" data-line-number="28">    <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
@@ -948,7 +949,7 @@
 <a class="sourceLine" id="cb27-32" data-line-number="32">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb27-33" data-line-number="33">    <span class="dt">title =</span> <span class="st">"linear mixed-effects model"</span></a>
 <a class="sourceLine" id="cb27-34" data-line-number="34">  ),</a>
-<a class="sourceLine" id="cb27-35" data-line-number="35">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
+<a class="sourceLine" id="cb27-35" data-line-number="35">  <span class="dt">labels =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
 <a class="sourceLine" id="cb27-36" data-line-number="36">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb27-37" data-line-number="37">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
 <a class="sourceLine" id="cb27-38" data-line-number="38">)</a></code></pre></div>
@@ -970,7 +971,7 @@
 <p>All plots from <code>ggstatsplot</code> have a default theme: <code>theme_ggstatsplot</code>. You can change this theme by using the argument <code>ggtheme</code> for all functions.</p>
 <p>It is important to note that irrespective of which <code>ggplot</code> theme you choose, <code>ggstatsplot</code> in the backdrop adds a new layer with its idiosyncratic theme settings, chosen to make the graphs more readable or aesthetically pleasing. Let’s see an example with <code>gghistostats</code> and see how a certain theme from <code>hrbrthemes</code> package looks with and without the <code>ggstatsplot</code> layer.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># to use hrbrthemes themes, first make sure you have all the necessary fonts</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">library</span>(hrbrthemes)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(hrbrthemes)</a>
 <a class="sourceLine" id="cb28-3" data-line-number="3"><span class="co"># extrafont::ttf_import()</span></a>
 <a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># extrafont::font_import()</span></a>
 <a class="sourceLine" id="cb28-5" data-line-number="5"></a>
@@ -997,7 +998,7 @@
 <a class="sourceLine" id="cb28-26" data-line-number="26">    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb28-27" data-line-number="27">  ),</a>
 <a class="sourceLine" id="cb28-28" data-line-number="28">  <span class="dt">nrow =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb28-29" data-line-number="29">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
+<a class="sourceLine" id="cb28-29" data-line-number="29">  <span class="dt">labels =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
 <a class="sourceLine" id="cb28-30" data-line-number="30">  <span class="dt">title.text =</span> <span class="st">"Behavior of ggstatsplot theme layer with chosen ggtheme"</span></a>
 <a class="sourceLine" id="cb28-31" data-line-number="31">)</a></code></pre></div>
 <p><img src="reference/figures/README-theme_ggstatsplot-1.png" width="100%"></p>
@@ -1008,11 +1009,11 @@
 <a href="#using-ggstatsplot-helpers-to-display-text-results" class="anchor"></a>Using <code>ggstatsplot</code> helpers to display text results</h2>
 <p>Sometimes you may not like the default plot produced by <code>ggstatsplot</code>. In such cases, you can use other custom plots (from <code>ggplot2</code> or other plotting packages) and still use <code>ggstatsplot</code> (subtitle) helper functions to display results from relevant statistical test. For example, in the following chunk, we will use pirateplot from <code>yarrr</code> package and use <code>ggstatsplot</code> helper function to display the results.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb29-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb29-4" data-line-number="4"><span class="co"># loading the needed libraries</span></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="kw">library</span>(yarrr)</a>
-<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="kw">library</span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(yarrr)</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb29-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb29-8" data-line-number="8"><span class="co"># using `ggstatsplot` to prepare text with statistical results</span></a>
 <a class="sourceLine" id="cb29-9" data-line-number="9">stats_results &lt;-</a>

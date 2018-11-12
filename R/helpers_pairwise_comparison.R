@@ -189,10 +189,10 @@ games_howell <- function(data,
 #'
 #' @examples
 #' \dontrun{
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
@@ -204,7 +204,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#'
+#' 
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -215,7 +215,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#'
+#' 
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -224,7 +224,7 @@ games_howell <- function(data,
 #'   type = "np",
 #'   p.adjust.method = "none"
 #' )
-#'
+#' 
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
