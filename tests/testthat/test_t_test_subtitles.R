@@ -27,7 +27,7 @@ testthat::test_that(
 
     # output from ggstatsplot helper subtitle
     subtitle <-
-      subtitle_ggbetween_t_bayes(
+      subtitle_t_bayes(
         data = bugs_long,
         x = key,
         y = value,

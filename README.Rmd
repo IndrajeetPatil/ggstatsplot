@@ -142,42 +142,6 @@ commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
 In `R`, documentation for any function can be accessed with the standard `help`
 command (e.g., `?ggbetweenstats`).
 
-<!--
-```{r help, eval = FALSE}
-# primary functions
-?ggbetweenstats
-?ggscatterstats
-?gghistostats
-?ggpiestats
-?ggcorrmat
-?ggcoefstats
-
-# grouped variants of primary functions
-?grouped_ggbetweenstats
-?grouped_ggscatterstats
-?grouped_gghistostats
-?grouped_ggpiestats
-?grouped_ggcorrmat
-
-# helper functions
-?combine_plots
-?theme_ggstatsplot
-
-# helper functions for making text with results from statistical tests
-?subtitle_contigency_tab
-?subtitle_ggbetween_anova_parametric
-?subtitle_ggbetween_kw_nonparametric
-?subtitle_ggbetween_mann_nonparametric
-?subtitle_ggbetween_rob_anova
-?subtitle_ggbetween_t_bayes
-?subtitle_ggbetween_t_parametric
-?subtitle_ggbetween_t_rob
-?subtitle_ggscatterstats
-?subtitle_onesample
-?subtitle_onesample_proptest
-```
--->
-
 Another handy tool to see arguments to any of the functions is `args`. For
 example-
 
@@ -367,8 +331,8 @@ an example-
 set.seed(123)
 
 # getting text results using a helper function
-results_subtitle <- 
-  ggstatsplot::subtitle_ggbetween_t_parametric(
+custom_subtitle <- 
+  ggstatsplot::subtitle_t_parametric(
   data = ggstatsplot::iris_long,
   x = attribute,
   y = value,
@@ -380,9 +344,10 @@ ggstatsplot::ggbetweenstats(
   data = ggstatsplot::iris_long,
   x = attribute,
   y = value,
+  results.subtitle = FALSE,       # turn off the default subtitle
+  subtitle =  custom_subtitle,    # add the custom subtitle prepared using helper function
   messages = FALSE
-) +
-  ggplot2::labs(subtitle = results_subtitle)
+) 
 ```
 
 
@@ -949,7 +914,7 @@ library(ggstatsplot)
 
 # using `ggstatsplot` to prepare text with statistical results
 stats_results <-
-  ggstatsplot::subtitle_ggbetween_anova_parametric(
+  ggstatsplot::subtitle_anova_parametric(
     data = ChickWeight,
     x = Time,
     y = weight,

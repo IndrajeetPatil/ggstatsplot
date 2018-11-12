@@ -1,6 +1,6 @@
 #' @title Making text subtitle for one sample t-test and its nonparametric and
 #'   robust equivalents.
-#' @name subtitle_onesample
+#' @name subtitle_t_onesample
 #' @author Indrajeet Patil
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
@@ -47,21 +47,21 @@
 #' # for reproducibility
 #' set.seed(123)
 #' 
-#' subtitle_onesample(
+#' subtitle_t_onesample(
 #'   x = iris$Sepal.Length,
 #'   type = "r"
 #' )
 #' @export
 
-subtitle_onesample <- function(data = NULL,
-                               x,
-                               type = "parametric",
-                               test.value = 0,
-                               bf.prior = 0.707,
-                               robust.estimator = "onestep",
-                               nboot = 100,
-                               k = 3,
-                               messages = TRUE) {
+subtitle_t_onesample <- function(data = NULL,
+                                 x,
+                                 type = "parametric",
+                                 test.value = 0,
+                                 bf.prior = 0.707,
+                                 robust.estimator = "onestep",
+                                 nboot = 100,
+                                 k = 3,
+                                 messages = TRUE) {
 
   # ====================== dataframe ==========================================
 

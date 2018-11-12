@@ -102,15 +102,15 @@
 #' }
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_data_frame(x = .)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -246,8 +246,9 @@ ggscatterstats <-
           (.)
         }
       }
+
     #----------------------- creating results subtitle ------------------------
-    #
+
     # adding a subtitle with statistical results
     if (isTRUE(results.subtitle)) {
       subtitle <- subtitle_ggscatterstats(

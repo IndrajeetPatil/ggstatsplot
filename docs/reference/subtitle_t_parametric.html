@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default theme used for correlation matrix — theme_corrmat • ggstatsplot</title>
+<title>Making text subtitle for the t-test (between-/within-subjects
+designs). — subtitle_t_parametric • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -40,9 +41,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Default theme used for correlation matrix — theme_corrmat" />
+<meta property="og:title" content="Making text subtitle for the t-test (between-/within-subjects
+designs). — subtitle_t_parametric" />
 
-<meta property="og:description" content="Default theme used for correlation matrix" />
+<meta property="og:description" content="Making text subtitle for the t-test (between-/within-subjects
+designs)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,31 +171,122 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Default theme used for correlation matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/theme_ggstatsplot.R'><code>R/theme_ggstatsplot.R</code></a></small>
-    <div class="hidden name"><code>theme_corrmat.Rd</code></div>
+    <h1>Making text subtitle for the t-test (between-/within-subjects
+designs).</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_subtitles.R'><code>R/helpers_ggbetween_subtitles.R</code></a></small>
+    <div class="hidden name"><code>subtitle_t_parametric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Default theme used for correlation matrix</p>
+    <p>Making text subtitle for the t-test (between-/within-subjects
+designs).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_corrmat</span>()</pre>
-        
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>ggplot2</code> object with the <code>theme_ggstatsplot</code> overlaid.</p>
+    <pre class="usage"><span class='fu'>subtitle_t_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
+  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>The grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>paired</th>
+      <td><p>a logical indicating whether you want a paired
+    t-test.</p></td>
+    </tr>
+    <tr>
+      <th>effsize.type</th>
+      <td><p>Type of effect size needed for <em>parametric</em> tests. The
+argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em> for <strong>t-test</strong>;
+<code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or <code>"unbiased"</code>
+(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>; <code>"partial_omega"</code> for partial
+omega-squared for <strong>anova</strong>)).</p></td>
+    </tr>
+    <tr>
+      <th>effsize.noncentral</th>
+      <td><p>Logical indicating whether to use non-central
+<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
+or Hedge's <em>g</em> (Default: <code>FALSE</code>).
+@param conf.level A scalar value between 0 and 1. If unspecified, the
+default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>confidence level of the interval.</p></td>
+    </tr>
+    <tr>
+      <th>var.equal</th>
+      <td><p>a logical variable indicating whether to treat the
+    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments (ignored).</p></td>
+    </tr>
+    </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># creating a smaller dataset</span>
+<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
+)
+
+<span class='co'># with defaults</span>
+<span class='fu'>subtitle_t_parametric</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
+)</div><div class='output co'>#&gt; paste(italic("t"), "(", c(df = "10.888"), ") = ", c(t = "1.494"), 
+#&gt;     ", ", italic("p"), " = ", "0.164", ", ", italic("g"), " = ", 
+#&gt;     c(carni = "0.716"), ", 95% CI [", "-0.071", ", ", "1.503", 
+#&gt;     "]", ", ", italic("n"), " = ", 34L)</div><div class='input'>
+<span class='co'># changing defaults</span>
+<span class='fu'>subtitle_t_parametric</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
+  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"d"</span>
+)</div><div class='output co'>#&gt; paste(italic("t"), "(", c(df = "32.00"), ") = ", c(t = "1.95"), 
+#&gt;     ", ", italic("p"), " = ", "0.060", ", ", italic("d"), " = ", 
+#&gt;     c(carni = "0.73"), ", 95% CI [", "-0.05", ", ", "1.52", "]", 
+#&gt;     ", ", italic("n"), " = ", 34L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     <p>Indrajeet Patil</p>

@@ -271,42 +271,6 @@
 <h2 class="hasAnchor">
 <a href="#help" class="anchor"></a>Help</h2>
 <p>In <code>R</code>, documentation for any function can be accessed with the standard <code>help</code> command (e.g., <code><a href="reference/ggbetweenstats.html">?ggbetweenstats</a></code>).</p>
-<!--
-
-```r
-# primary functions
-?ggbetweenstats
-?ggscatterstats
-?gghistostats
-?ggpiestats
-?ggcorrmat
-?ggcoefstats
-
-# grouped variants of primary functions
-?grouped_ggbetweenstats
-?grouped_ggscatterstats
-?grouped_gghistostats
-?grouped_ggpiestats
-?grouped_ggcorrmat
-
-# helper functions
-?combine_plots
-?theme_ggstatsplot
-
-# helper functions for making text with results from statistical tests
-?subtitle_contigency_tab
-?subtitle_ggbetween_anova_parametric
-?subtitle_ggbetween_kw_nonparametric
-?subtitle_ggbetween_mann_nonparametric
-?subtitle_ggbetween_rob_anova
-?subtitle_ggbetween_t_bayes
-?subtitle_ggbetween_t_parametric
-?subtitle_ggbetween_t_rob
-?subtitle_ggscatterstats
-?subtitle_onesample
-?subtitle_onesample_proptest
-```
--->
 <p>Another handy tool to see arguments to any of the functions is <code>args</code>. For example-</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/args">args</a></span>(<span class="dt">name =</span> ggstatsplot<span class="op">::</span>ggscatterstats)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; function (data, x, y, type = "pearson", bf.prior = 0.707, bf.message = FALSE, </span></a>
@@ -367,7 +331,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x0000000021789ca0&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x00000000210b49d8&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -491,8 +455,8 @@
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co"># getting text results using a helper function</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">results_subtitle &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_t_parametric.html">subtitle_ggbetween_t_parametric</a></span>(</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">custom_subtitle &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_parametric.html">subtitle_t_parametric</a></span>(</a>
 <a class="sourceLine" id="cb11-7" data-line-number="7">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>iris_long,</a>
 <a class="sourceLine" id="cb11-8" data-line-number="8">  <span class="dt">x =</span> attribute,</a>
 <a class="sourceLine" id="cb11-9" data-line-number="9">  <span class="dt">y =</span> value,</a>
@@ -504,9 +468,10 @@
 <a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>iris_long,</a>
 <a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">x =</span> attribute,</a>
 <a class="sourceLine" id="cb11-17" data-line-number="17">  <span class="dt">y =</span> value,</a>
-<a class="sourceLine" id="cb11-18" data-line-number="18">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">subtitle =</span> results_subtitle)</a></code></pre></div>
+<a class="sourceLine" id="cb11-18" data-line-number="18">  <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,       <span class="co"># turn off the default subtitle</span></a>
+<a class="sourceLine" id="cb11-19" data-line-number="19">  <span class="dt">subtitle =</span>  custom_subtitle,    <span class="co"># add the custom subtitle prepared using helper function</span></a>
+<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb11-21" data-line-number="21">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats4-1.png" width="100%"></p>
 </div>
 <div id="ggscatterstats" class="section level2">
@@ -1017,7 +982,7 @@
 <a class="sourceLine" id="cb29-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb29-8" data-line-number="8"><span class="co"># using `ggstatsplot` to prepare text with statistical results</span></a>
 <a class="sourceLine" id="cb29-9" data-line-number="9">stats_results &lt;-</a>
-<a class="sourceLine" id="cb29-10" data-line-number="10"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_anova_parametric.html">subtitle_ggbetween_anova_parametric</a></span>(</a>
+<a class="sourceLine" id="cb29-10" data-line-number="10"><span class="st">  </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_parametric.html">subtitle_anova_parametric</a></span>(</a>
 <a class="sourceLine" id="cb29-11" data-line-number="11">    <span class="dt">data =</span> ChickWeight,</a>
 <a class="sourceLine" id="cb29-12" data-line-number="12">    <span class="dt">x =</span> Time,</a>
 <a class="sourceLine" id="cb29-13" data-line-number="13">    <span class="dt">y =</span> weight,</a>

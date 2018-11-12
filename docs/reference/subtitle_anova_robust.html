@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default theme used for correlation matrix — theme_corrmat • ggstatsplot</title>
+<title>Making text subtitle for the robust ANOVA
+(between-subjects designs). — subtitle_anova_robust • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -40,9 +41,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Default theme used for correlation matrix — theme_corrmat" />
+<meta property="og:title" content="Making text subtitle for the robust ANOVA
+(between-subjects designs). — subtitle_anova_robust" />
 
-<meta property="og:description" content="Default theme used for correlation matrix" />
+<meta property="og:description" content="Making text subtitle for the robust ANOVA
+(between-subjects designs)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,31 +171,103 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Default theme used for correlation matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/theme_ggstatsplot.R'><code>R/theme_ggstatsplot.R</code></a></small>
-    <div class="hidden name"><code>theme_corrmat.Rd</code></div>
+    <h1>Making text subtitle for the robust ANOVA
+(between-subjects designs).</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_subtitles.R'><code>R/helpers_ggbetween_subtitles.R</code></a></small>
+    <div class="hidden name"><code>subtitle_anova_robust.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Default theme used for correlation matrix</p>
+    <p>Making text subtitle for the robust ANOVA
+(between-subjects designs).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_corrmat</span>()</pre>
-        
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>ggplot2</code> object with the <code>theme_ggstatsplot</code> overlaid.</p>
+    <pre class="usage"><span class='fu'>subtitle_anova_robust</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>The grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tr</th>
+      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of <code>tr</code>, which is by default set to
+<code>0.1</code>. Lowering the value might help.</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for computing effect size (Default:
+<code>100</code>).</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments (ignored).</p></td>
+    </tr>
+    </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+# examples not executed due to time constraints
+</div><div class='input'><span class='co'># for reproducibility</span>
+<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+
+<span class='co'># going with the defaults</span>
+<span class='fu'>subtitle_anova_robust</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/midwest.html'>midwest</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>state</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percbelowpoverty</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
+)</div><div class='output co'>#&gt; Note: 95% CI for explanatory measure of effect size was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In case of error, try reducing the trimming level 0.1 and/or increasing the number of bootstrap samples 10</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 4, ",", "169.734", ") = ", "11.428", 
+#&gt;     ", ", italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", 
+#&gt;     "0.332", ", 95% CI [", "0.187", ", ", "0.402", "]", ", ", 
+#&gt;     italic("n"), " = ", 437L)</div><div class='input'>
+<span class='co'># changing defaults</span>
+<span class='fu'>subtitle_anova_robust</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/midwest.html'>midwest</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>state</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percollege</span>,
+  <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
+)</div><div class='output co'>#&gt; Note: 95% CI for explanatory measure of effect size was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: In case of error, try reducing the trimming level 0.2 and/or increasing the number of bootstrap samples 10</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 4, ",", "127.021", ") = ", "7.669", ", ", 
+#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.310", 
+#&gt;     ", 95% CI [", "0.145", ", ", "0.422", "]", ", ", italic("n"), 
+#&gt;     " = ", 437L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     <p>Indrajeet Patil</p>

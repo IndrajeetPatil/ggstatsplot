@@ -85,8 +85,8 @@
 #'   direction. Defaults to `0.60`.
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams subtitle_ggbetween_anova_parametric
-#' @inheritParams subtitle_ggbetween_t_parametric
+#' @inheritParams subtitle_anova_parametric
+#' @inheritParams subtitle_t_parametric
 #' @inheritParams t1way_ci
 #'
 #' @import ggplot2
@@ -642,8 +642,6 @@ ggbetweenstats <- function(data,
         tibble::as.tibble(x = .)
 
       # computing y coordinates for ggsgnif bars
-      # ggsignif_y_position <-
-      #   ggsignif_position_calculator(x = data_ggsignif$x, y = data_ggsignif$y)
       ggsignif_y_position <-
         ggsignif_position_calculator(x = data$x, y = data$y)
 

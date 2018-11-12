@@ -1,6 +1,6 @@
 
 #' @title Making text subtitle for the between-subject anova designs.
-#' @name subtitle_ggbetween_anova_parametric
+#' @name subtitle_anova_parametric
 #' @author Indrajeet Patil
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
@@ -27,7 +27,7 @@
 #'
 #' @examples
 #' # with defaults
-#' subtitle_ggbetween_anova_parametric(
+#' subtitle_anova_parametric(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = sleep_rem,
@@ -35,7 +35,7 @@
 #' )
 #' 
 #' # modifying the defaults
-#' subtitle_ggbetween_anova_parametric(
+#' subtitle_anova_parametric(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = sleep_rem,
@@ -46,7 +46,7 @@
 #' @export
 
 # function body
-subtitle_ggbetween_anova_parametric <-
+subtitle_anova_parametric <-
   function(data,
              x,
              y,
@@ -286,7 +286,7 @@ subtitle_ggbetween_anova_parametric <-
 
 #' @title Making text subtitle for the t-test (between-/within-subjects
 #'   designs).
-#' @name subtitle_ggbetween_t_parametric
+#' @name subtitle_t_parametric
 #' @author Indrajeet Patil
 #'
 #' @param effsize.noncentral Logical indicating whether to use non-central
@@ -295,7 +295,7 @@ subtitle_ggbetween_anova_parametric <-
 #'  @param conf.level A scalar value between 0 and 1. If unspecified, the
 #'    default is to return `95%` lower and upper confidence intervals (`0.95`).
 #' @param ... Additional arguments (ignored).
-#' @inheritParams subtitle_ggbetween_anova_parametric
+#' @inheritParams subtitle_anova_parametric
 #' @inheritParams stats::t.test
 #' @inheritParams groupedstats::specify_decimal_p
 #'
@@ -313,14 +313,14 @@ subtitle_ggbetween_anova_parametric <-
 #' )
 #' 
 #' # with defaults
-#' subtitle_ggbetween_t_parametric(
+#' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
 #' 
 #' # changing defaults
-#' subtitle_ggbetween_t_parametric(
+#' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem,
@@ -331,7 +331,7 @@ subtitle_ggbetween_anova_parametric <-
 #' @export
 
 # function body
-subtitle_ggbetween_t_parametric <-
+subtitle_t_parametric <-
   function(data,
              x,
              y,
@@ -520,13 +520,13 @@ subtitle_ggbetween_t_parametric <-
 
 #' @title Making text subtitle for the Mann-Whitney U-test
 #'   (between-/within-subjects designs).
-#' @name subtitle_ggbetween_mann_nonparametric
+#' @name subtitle_mann_nonparametric
 #' @author Indrajeet Patil
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @param ... Additional arguments (ignored).
-#' @inheritParams subtitle_ggbetween_t_parametric
+#' @inheritParams subtitle_t_parametric
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
@@ -535,7 +535,7 @@ subtitle_ggbetween_t_parametric <-
 #' @importFrom coin wilcox_test
 #'
 #' @examples
-#' subtitle_ggbetween_mann_nonparametric(
+#' subtitle_mann_nonparametric(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
@@ -543,7 +543,7 @@ subtitle_ggbetween_t_parametric <-
 #' @export
 
 # function body
-subtitle_ggbetween_mann_nonparametric <-
+subtitle_mann_nonparametric <-
   function(data,
              x,
              y,
@@ -667,13 +667,13 @@ subtitle_ggbetween_mann_nonparametric <-
 
 #' @title Making text subtitle for the robust t-test
 #'   (between- and within-subjects designs).
-#' @name subtitle_ggbetween_t_rob
+#' @name subtitle_t_robust
 #' @author Indrajeet Patil
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @param ... Additional arguments (ignored).
-#' @inheritParams subtitle_ggbetween_t_parametric
+#' @inheritParams subtitle_t_parametric
 #' @inheritParams groupedstats::specify_decimal_p
 #' @inheritParams yuend_ci
 #'
@@ -684,14 +684,14 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @examples
 #' 
 #' # with defaults
-#' subtitle_ggbetween_t_rob(
+#' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
 #' 
 #' # changing defaults
-#' subtitle_ggbetween_t_rob(
+#' subtitle_t_robust(
 #'   data = ToothGrowth,
 #'   x = supp,
 #'   y = len,
@@ -701,7 +701,7 @@ subtitle_ggbetween_mann_nonparametric <-
 #' )
 #' 
 #' # within-subjects design
-#' ggstatsplot::subtitle_ggbetween_t_rob(
+#' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
 #'     condition %in% c("accidental", "attempted"),
@@ -715,7 +715,7 @@ subtitle_ggbetween_mann_nonparametric <-
 #' @export
 
 # function body
-subtitle_ggbetween_t_rob <-
+subtitle_t_robust <-
   function(data,
              x,
              y,
@@ -934,13 +934,13 @@ subtitle_ggbetween_t_rob <-
   }
 
 #' @title Making text subtitle for the bayesian t-test.
-#' @name subtitle_ggbetween_t_bayes
+#' @name subtitle_t_bayes
 #' @author Indrajeet Patil
 #'
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
 #' @param ... Additional arguments (ignored).
-#' @inheritParams subtitle_ggbetween_t_parametric
+#' @inheritParams subtitle_t_parametric
 #'
 #' @importFrom jmv ttestIS ttestPS
 #'
@@ -950,7 +950,7 @@ subtitle_ggbetween_t_rob <-
 #' 
 #' # between-subjects design
 #' 
-#' subtitle_ggbetween_t_bayes(
+#' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
@@ -959,7 +959,7 @@ subtitle_ggbetween_t_rob <-
 #' 
 #' # within-subjects design
 #' 
-#' subtitle_ggbetween_t_bayes(
+#' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
 #'     condition %in% c("accidental", "attempted"),
@@ -972,13 +972,13 @@ subtitle_ggbetween_t_rob <-
 #' @export
 
 # function body
-subtitle_ggbetween_t_bayes <- function(data,
-                                       x,
-                                       y,
-                                       bf.prior = 0.707,
-                                       paired = FALSE,
-                                       k = 3,
-                                       ...) {
+subtitle_t_bayes <- function(data,
+                             x,
+                             y,
+                             bf.prior = 0.707,
+                             paired = FALSE,
+                             k = 3,
+                             ...) {
 
   # creating a dataframe
   data <-
@@ -1110,13 +1110,13 @@ subtitle_ggbetween_t_bayes <- function(data,
 
 #' @title Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 #'   (between-subjects designs).
-#' @name subtitle_ggbetween_kw_nonparametric
+#' @name subtitle_kw_nonparametric
 #' @author Indrajeet Patil
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @param ... Additional arguments (ignored).
-#' @inheritParams subtitle_ggbetween_t_parametric
+#' @inheritParams subtitle_t_parametric
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
@@ -1124,7 +1124,7 @@ subtitle_ggbetween_t_bayes <- function(data,
 #' @importFrom stats kruskal.test
 #'
 #' @examples
-#' subtitle_ggbetween_kw_nonparametric(
+#' subtitle_kw_nonparametric(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = sleep_rem
@@ -1132,7 +1132,7 @@ subtitle_ggbetween_t_bayes <- function(data,
 #' @export
 
 # function body
-subtitle_ggbetween_kw_nonparametric <-
+subtitle_kw_nonparametric <-
   function(data,
              x,
              y,
@@ -1221,14 +1221,14 @@ subtitle_ggbetween_kw_nonparametric <-
 
 #' @title Making text subtitle for the robust ANOVA
 #'   (between-subjects designs).
-#' @name subtitle_ggbetween_rob_anova
+#' @name subtitle_anova_robust
 #' @author Indrajeet Patil
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams t1way_ci
-#' @inheritParams subtitle_ggbetween_t_parametric
+#' @inheritParams subtitle_t_parametric
 #' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
@@ -1242,7 +1242,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #' set.seed(123)
 #' 
 #' # going with the defaults
-#' subtitle_ggbetween_rob_anova(
+#' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
 #'   x = state,
 #'   y = percbelowpoverty,
@@ -1250,7 +1250,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #' )
 #' 
 #' # changing defaults
-#' subtitle_ggbetween_rob_anova(
+#' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
 #'   x = state,
 #'   y = percollege,
@@ -1261,7 +1261,7 @@ subtitle_ggbetween_kw_nonparametric <-
 #' @export
 
 # function body
-subtitle_ggbetween_rob_anova <-
+subtitle_anova_robust <-
   function(data,
              x,
              y,
@@ -1406,8 +1406,8 @@ subtitle_ggbetween_rob_anova <-
 #' @name subtitle_anova_bayes
 #' @author Indrajeet Patil
 #'
-#' @inheritParams subtitle_ggbetween_anova_parametric
-#' @inheritParams subtitle_ggbetween_t_bayes
+#' @inheritParams subtitle_anova_parametric
+#' @inheritParams subtitle_t_bayes
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo

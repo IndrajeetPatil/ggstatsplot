@@ -184,8 +184,11 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
+<li>All helper functions for the <code>ggbetweenstats</code> subtitles have been renamed to remove <code>_ggbetween_</code> from their names as this was becoming confusing for the user. Some of these functions work both with the between- and within-subjects designs, so having <code>_ggbetween_</code> in their names made users suspect if they could use these functions for within-subjects designs.</li>
 <li>
 <code>ggstatsplot</code> now depends on <code>R 3.5.0</code>. This is because some of its dependencies require 3.5.0 to work (e.g., <code>broom.mixed</code>).</li>
+<li>All <code>theme_</code> functions are now exported (<code><a href="../reference/theme_pie.html">theme_pie()</a></code>, <code><a href="../reference/theme_corrmat.html">theme_corrmat()</a></code>).<br>
+</li>
 <li>
 <code>ggbetweenstats</code> now supports multiple pairwise comparison tests (parametric, nonparametric, and robust variants). It gains a new dependency <code>ggsignif</code>.</li>
 <li>Following functions are now reexported from the <code>groupedstats</code> package to avoid repeating the same code in two packages: <code>specify_decimal_p</code>, <code>signif_column</code>, <code>lm_effsize_ci</code>. Therefore, <code>groupedstats</code> is now added as a dependency.</li>

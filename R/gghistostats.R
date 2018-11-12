@@ -62,7 +62,7 @@
 #'   your data.
 #'
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams subtitle_onesample
+#' @inheritParams subtitle_t_onesample
 #'
 #' @import ggplot2
 #'
@@ -215,7 +215,7 @@ gghistostats <-
 
       # preparing the subtitle with statistical results
       subtitle <-
-        subtitle_onesample(
+        subtitle_t_onesample(
           data = data,
           x = x,
           type = type,

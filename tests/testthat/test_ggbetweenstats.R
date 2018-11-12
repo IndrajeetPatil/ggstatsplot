@@ -51,6 +51,7 @@ testthat::test_that(
 
 
     # `outlier.label` is character
+    # also x, y, and outlier.label arguments as characters
     set.seed(123)
     movies_long1 <-
       dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25)
@@ -60,11 +61,11 @@ testthat::test_that(
       x =
         ggstatsplot::ggbetweenstats(
           data = movies_long1,
-          x = genre,
-          y = rating,
+          x = "genre",
+          y = "rating",
           messages = FALSE,
           outlier.tagging = TRUE,
-          outlier.label = title,
+          outlier.label = "title",
           outlier.coef = 5
         ),
       what = "gg"

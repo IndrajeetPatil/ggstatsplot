@@ -22,12 +22,6 @@ A \code{ggplot2} object with the \code{theme_ggstatsplot} theme.
 \description{
 Default theme used for pie chart
 }
-\note{
-This is a helper function used internally in the package and not
-exported. In case you want to use it, you can do so by
-\code{ggstatsplot:::theme_pie}. Note that it is \code{:::} and not \code{::}.
-}
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

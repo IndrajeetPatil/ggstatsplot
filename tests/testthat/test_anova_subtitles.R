@@ -16,7 +16,7 @@ testthat::test_that(
 
     # output from ggstatsplot helper subtitle
     subtitle <-
-      suppressWarnings(ggstatsplot::subtitle_ggbetween_anova_parametric(
+      suppressWarnings(ggstatsplot::subtitle_anova_parametric(
         data = ggplot2::msleep,
         x = vore,
         y = sleep_total,

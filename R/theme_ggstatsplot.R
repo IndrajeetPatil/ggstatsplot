@@ -95,11 +95,7 @@ theme_mprl <- theme_ggstatsplot
 #'
 #' @importFrom grid unit
 #'
-#' @note This is a helper function used internally in the package and not
-#' exported. In case you want to use it, you can do so by
-#' `ggstatsplot:::theme_pie`. Note that it is `:::` and not `::`.
-#'
-#' @keywords internal
+#' @export
 
 theme_pie <- function(ggtheme = ggplot2::theme_bw(),
                       ggstatsplot.layer = TRUE) {
@@ -163,17 +159,13 @@ theme_pie <- function(ggtheme = ggplot2::theme_bw(),
 #' @title Default theme used for correlation matrix
 #' @name theme_corrmat
 #' @author Indrajeet Patil
-#' @return A `ggplot2` object with the `theme_mprl` theme.
+#' @return A `ggplot2` object with the `theme_ggstatsplot` overlaid.
 #'
 #' @import ggplot2
 #'
 #' @importFrom grid unit
 #'
-#' @note This is a helper function used internally in the package and not
-#' exported. In case you want to use it, you can do so by
-#' `ggstatsplot:::theme_corrmat`. Note that it is `:::` and not `::`.
-#'
-#' @keywords internal
+#' @export
 
 theme_corrmat <- function() {
   ggplot2::theme(

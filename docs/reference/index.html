@@ -233,18 +233,6 @@ caption.</p></td>
           <p><code><a href="combine_plots.html">combine_plots()</a></code> </p>
         </td>
         <td><p>Combining and arranging multiple plots in a grid</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code> </p>
-        </td>
-        <td><p>Default theme used in all <code>ggstatsplot</code> package plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_mprl.html">theme_mprl()</a></code> </p>
-        </td>
-        <td><p>Default theme used in all <code>ggstatsplot</code> package plots</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -290,7 +278,7 @@ variable</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-helper-functions-for-statistics-subtitles" class="hasAnchor"><a href="#section-helper-functions-for-statistics-subtitles" class="anchor"></a>Helper functions for statistics subtitles</h2>
+          <h2 id="section-helper-functions-for-preparing-statistics-subtitles" class="hasAnchor"><a href="#section-helper-functions-for-preparing-statistics-subtitles" class="anchor"></a>Helper functions for preparing statistics subtitles</h2>
           <p class="section-desc"><p>Functions used to create statistical subtitles that can be used outside of <code>ggstatsplot</code> package.</p></p>
         </th>
       </tr>
@@ -303,58 +291,24 @@ variable</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="subtitle_contigency_tab.html">subtitle_contigency_tab()</a></code> </p>
-        </td>
-        <td><p>Making text subtitle for contingency analysis (Pearson's chi-square
-test for independence for between-subjects design or McNemar's test for
-within-subjects design)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_ggbetween_anova_parametric.html">subtitle_ggbetween_anova_parametric()</a></code> </p>
+          <p><code><a href="subtitle_anova_parametric.html">subtitle_anova_parametric()</a></code> </p>
         </td>
         <td><p>Making text subtitle for the between-subject anova designs.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="subtitle_ggbetween_kw_nonparametric.html">subtitle_ggbetween_kw_nonparametric()</a></code> </p>
-        </td>
-        <td><p>Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
-(between-subjects designs).</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_ggbetween_mann_nonparametric.html">subtitle_ggbetween_mann_nonparametric()</a></code> </p>
-        </td>
-        <td><p>Making text subtitle for the Mann-Whitney U-test
-(between-/within-subjects designs).</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_ggbetween_rob_anova.html">subtitle_ggbetween_rob_anova()</a></code> </p>
+          <p><code><a href="subtitle_anova_robust.html">subtitle_anova_robust()</a></code> </p>
         </td>
         <td><p>Making text subtitle for the robust ANOVA
 (between-subjects designs).</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="subtitle_ggbetween_t_bayes.html">subtitle_ggbetween_t_bayes()</a></code> </p>
+          <p><code><a href="subtitle_contigency_tab.html">subtitle_contigency_tab()</a></code> </p>
         </td>
-        <td><p>Making text subtitle for the bayesian t-test.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_ggbetween_t_parametric.html">subtitle_ggbetween_t_parametric()</a></code> </p>
-        </td>
-        <td><p>Making text subtitle for the t-test (between-/within-subjects
-designs).</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="subtitle_ggbetween_t_rob.html">subtitle_ggbetween_t_rob()</a></code> </p>
-        </td>
-        <td><p>Making text subtitle for the robust t-test
-(between- and within-subjects designs).</p></td>
+        <td><p>Making text subtitle for contingency analysis (Pearson's chi-square
+test for independence for between-subjects design or McNemar's test for
+within-subjects design)</p></td>
       </tr><tr>
         
         <td>
@@ -364,10 +318,17 @@ designs).</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="subtitle_onesample.html">subtitle_onesample()</a></code> </p>
+          <p><code><a href="subtitle_kw_nonparametric.html">subtitle_kw_nonparametric()</a></code> </p>
         </td>
-        <td><p>Making text subtitle for one sample t-test and its nonparametric and
-robust equivalents.</p></td>
+        <td><p>Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
+(between-subjects designs).</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="subtitle_mann_nonparametric.html">subtitle_mann_nonparametric()</a></code> </p>
+        </td>
+        <td><p>Making text subtitle for the Mann-Whitney U-test
+(between-/within-subjects designs).</p></td>
       </tr><tr>
         
         <td>
@@ -378,6 +339,33 @@ Goodness of fit test.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="subtitle_t_bayes.html">subtitle_t_bayes()</a></code> </p>
+        </td>
+        <td><p>Making text subtitle for the bayesian t-test.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="subtitle_t_onesample.html">subtitle_t_onesample()</a></code> </p>
+        </td>
+        <td><p>Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="subtitle_t_parametric.html">subtitle_t_parametric()</a></code> </p>
+        </td>
+        <td><p>Making text subtitle for the t-test (between-/within-subjects
+designs).</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="subtitle_t_robust.html">subtitle_t_robust()</a></code> </p>
+        </td>
+        <td><p>Making text subtitle for the robust t-test
+(between- and within-subjects designs).</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="pairwise_p.html">pairwise_p()</a></code> </p>
         </td>
         <td><p>Pairwise comparison tests</p></td>
@@ -385,7 +373,7 @@ Goodness of fit test.</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-helper-functions-for-bayes-factor-captions" class="hasAnchor"><a href="#section-helper-functions-for-bayes-factor-captions" class="anchor"></a>Helper functions for Bayes Factor captions</h2>
+          <h2 id="section-helper-functions-for-preparing-bayes-factor-captions" class="hasAnchor"><a href="#section-helper-functions-for-preparing-bayes-factor-captions" class="anchor"></a>Helper functions for preparing Bayes Factor captions</h2>
           <p class="section-desc"><p>Functions used to create Bayes Factor (in favor of null) captions that can be used outside of <code>ggstatsplot</code> package.</p></p>
         </th>
       </tr>
@@ -469,6 +457,38 @@ Goodness of fit test.</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-themes-used" class="hasAnchor"><a href="#section-themes-used" class="anchor"></a>Themes used</h2>
+          <p class="section-desc"><p>The <code>ggplot2</code> themes used as default in <code>ggstatsplot</code>.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="theme_corrmat.html">theme_corrmat()</a></code> </p>
+        </td>
+        <td><p>Default theme used for correlation matrix</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code> </p>
+        </td>
+        <td><p>Default theme used in all <code>ggstatsplot</code> package plots</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="theme_mprl.html">theme_mprl()</a></code> </p>
+        </td>
+        <td><p>Default theme used in all <code>ggstatsplot</code> package plots</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="theme_pie.html">theme_pie()</a></code> </p>
+        </td>
+        <td><p>Default theme used for pie chart</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-data" class="hasAnchor"><a href="#section-data" class="anchor"></a>Data</h2>
           <p class="section-desc"><p>Datasets included in the package.</p></p>
         </th>
@@ -513,10 +533,11 @@ Goodness of fit test.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-primary-functions">Primary functions</a></li>
       <li><a href="#section-grouped-variants-of-primary-functions">Grouped variants of primary functions</a></li>
-      <li><a href="#section-helper-functions-for-statistics-subtitles">Helper functions for statistics subtitles</a></li>
-      <li><a href="#section-helper-functions-for-bayes-factor-captions">Helper functions for Bayes Factor captions</a></li>
+      <li><a href="#section-helper-functions-for-preparing-statistics-subtitles">Helper functions for preparing statistics subtitles</a></li>
+      <li><a href="#section-helper-functions-for-preparing-bayes-factor-captions">Helper functions for preparing Bayes Factor captions</a></li>
       <li><a href="#section-reexported-functions">Reexported functions</a></li>
       <li><a href="#section-helper-functions-messages-">Helper functions (messages)</a></li>
+      <li><a href="#section-themes-used">Themes used</a></li>
       <li><a href="#section-data">Data</a></li>
     </ul>
   </div>

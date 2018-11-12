@@ -31,29 +31,29 @@ ggbetweenstats_switch <- function(type, test, ...) {
     subtitle <- switch(
       EXPR = test.type,
       p = {
-        ggstatsplot::subtitle_ggbetween_t_parametric(...)
+        ggstatsplot::subtitle_t_parametric(...)
       },
       np = {
-        ggstatsplot::subtitle_ggbetween_mann_nonparametric(...)
+        ggstatsplot::subtitle_mann_nonparametric(...)
       },
       r = {
-        ggstatsplot::subtitle_ggbetween_t_rob(...)
+        ggstatsplot::subtitle_t_robust(...)
       },
       bf = {
-        ggstatsplot::subtitle_ggbetween_t_bayes(...)
+        ggstatsplot::subtitle_t_bayes(...)
       }
     )
   } else if (test == "anova") {
     subtitle <- switch(
       EXPR = test.type,
       p = {
-        ggstatsplot::subtitle_ggbetween_anova_parametric(...)
+        ggstatsplot::subtitle_anova_parametric(...)
       },
       np = {
-        ggstatsplot::subtitle_ggbetween_kw_nonparametric(...)
+        ggstatsplot::subtitle_kw_nonparametric(...)
       },
       r = {
-        ggstatsplot::subtitle_ggbetween_rob_anova(...)
+        ggstatsplot::subtitle_anova_robust(...)
       },
       bf = {
         ggstatsplot::subtitle_anova_bayes(...)

@@ -15,8 +15,14 @@ BUG FIXES
 
 MAJOR CHANGES
 
+  - All helper functions for the `ggbetweenstats` subtitles have been renamed to
+    remove `_ggbetween_` from their names as this was becoming confusing for the
+    user. Some of these functions work both with the between- and
+    within-subjects designs, so having `_ggbetween_` in their names made users
+    suspect if they could use these functions for within-subjects designs.
   - `ggstatsplot` now depends on `R 3.5.0`. This is because some of its
     dependencies require 3.5.0 to work (e.g., `broom.mixed`).
+  - All `theme_` functions are now exported (`theme_pie()`, `theme_corrmat()`).   
   - `ggbetweenstats` now supports multiple pairwise comparison tests
     (parametric, nonparametric, and robust variants). It gains a new dependency
     `ggsignif`.

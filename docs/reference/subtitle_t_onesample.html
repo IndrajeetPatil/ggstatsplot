@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default theme used for correlation matrix — theme_corrmat • ggstatsplot</title>
+<title>Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents. — subtitle_t_onesample • ggstatsplot</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -40,9 +41,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Default theme used for correlation matrix — theme_corrmat" />
+<meta property="og:title" content="Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents. — subtitle_t_onesample" />
 
-<meta property="og:description" content="Default theme used for correlation matrix" />
+<meta property="og:description" content="Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,31 +171,100 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Default theme used for correlation matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/theme_ggstatsplot.R'><code>R/theme_ggstatsplot.R</code></a></small>
-    <div class="hidden name"><code>theme_corrmat.Rd</code></div>
+    <h1>Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_gghistostats_subtitles.R'><code>R/helpers_gghistostats_subtitles.R</code></a></small>
+    <div class="hidden name"><code>subtitle_t_onesample.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Default theme used for correlation matrix</p>
+    <p>Making text subtitle for one sample t-test and its nonparametric and
+robust equivalents.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_corrmat</span>()</pre>
-        
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='fu'>subtitle_t_onesample</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>Dataframe from which variables specified are preferentially to be
+taken. This argument is optional.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>A numeric variable.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"robust"</code> or <code>"bayes"</code>). Abbreviations accepted are <code>"p"</code> or <code>"np"</code> or
+<code>"r"</code> or <code>"bf"</code>, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>test.value</th>
+      <td><p>A number specifying the value of the null hypothesis
+(Default: <code>0</code>).</p></td>
+    </tr>
+    <tr>
+      <th>bf.prior</th>
+      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
+to use in calculating Bayes factors.</p></td>
+    </tr>
+    <tr>
+      <th>robust.estimator</th>
+      <td><p>If <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>test = "robust"</a></code> robust estimator to be used
+(<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
+<code><a href='http://www.rdocumentation.org/packages/WRS2/topics/onesampb'>?WRS2::onesampb</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for robust one-sample location test
+(Default: <code>100</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>A <code>ggplot2</code> object with the <code>theme_ggstatsplot</code> overlaid.</p>
+    <div class='dont-index'><p><code><a href='gghistostats.html'>gghistostats</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># for reproducibility</span>
+<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+
+<span class='fu'>subtitle_t_onesample</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; Note: 95% CI for robsut location measure median, Huber Psi computed with  100 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste("M"[robust], " = ", "5.820", ", 95% CI [", "5.693", ", ", 
+#&gt;     "5.988", "], ", italic("p"), " = ", "&lt; 0.001", ", ", italic("n"), 
+#&gt;     " = ", 150L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-          </ul>
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     <p>Indrajeet Patil</p>

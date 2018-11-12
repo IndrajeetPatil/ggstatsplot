@@ -22,21 +22,19 @@ reference:
     contents:
       - starts_with("gg")
       - combine_plots
-      - theme_ggstatsplot
-      - theme_mprl
 
   - title: Grouped variants of primary functions
     desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable.
     contents:
       - starts_with("grouped_")
 
-  - title: Helper functions for statistics subtitles
+  - title: Helper functions for preparing statistics subtitles
     desc: Functions used to create statistical subtitles that can be used outside of `ggstatsplot` package.
     contents:
       - starts_with("subtitle_")
       - pairwise_p
 
-  - title: Helper functions for Bayes Factor captions
+  - title: Helper functions for preparing Bayes Factor captions
     desc: Functions used to create Bayes Factor (in favor of null) captions that can be used outside of `ggstatsplot` package.
     contents:
       - starts_with("bf_")
@@ -53,6 +51,11 @@ reference:
     desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests.
     contents:
       - ends_with("_message")
+
+  - title: Themes used
+    desc: The `ggplot2` themes used as default in `ggstatsplot`.
+    contents:
+      - starts_with("theme_")
 
   - title: Data
     desc:  Datasets included in the package.

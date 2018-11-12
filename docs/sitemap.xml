@@ -142,37 +142,37 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_bayes.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_parametric.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_robust.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_contigency_tab.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_anova_parametric.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_kw_nonparametric.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_mann_nonparametric.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_rob_anova.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_t_bayes.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_t_parametric.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggbetween_t_rob.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_ggscatterstats.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_onesample.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_kw_nonparametric.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_mann_nonparametric.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_onesample_proptest.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_bayes.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_onesample.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_parametric.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_robust.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/t1way_ci.html</loc>
