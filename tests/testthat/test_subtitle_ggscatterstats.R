@@ -4,7 +4,7 @@ testthat::test_that(desc = "subtitle_ggscatterstats works",
                     code = {
                       set.seed(123)
                       using_function1 <-
-                        ggstatsplot:::subtitle_ggscatterstats(
+                        suppressWarnings(ggstatsplot:::subtitle_ggscatterstats(
                           data = movies_long,
                           x = rating,
                           y = length,
@@ -14,7 +14,7 @@ testthat::test_that(desc = "subtitle_ggscatterstats works",
                           conf.type = "perc",
                           nboot = 50,
                           messages = FALSE
-                        )
+                        ))
 
                       results1 <-
                         ggplot2::expr(
@@ -46,5 +46,5 @@ testthat::test_that(desc = "subtitle_ggscatterstats works",
                       testthat::expect_identical(as.character(using_function1)[8],
                                                  as.character(results1)[8])
                       testthat::expect_identical(as.character(using_function1)[12],
-                                                 as.character(results1)[13])
+                                                 as.character(results1)[12])
                     })
