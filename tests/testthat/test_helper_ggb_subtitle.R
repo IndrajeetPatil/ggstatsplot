@@ -2,7 +2,6 @@ context("helpers_ggbetween_subtitles")
 
 testthat::test_that(desc = "helpers_ggbetween_subtitles works",
                     code = {
-                      library(ggstatsplot)
                       set.seed(123)
 
                       using_function1 <- ggstatsplot:::subtitle_anova_parametric(
