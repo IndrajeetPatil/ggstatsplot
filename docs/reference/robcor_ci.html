@@ -73,7 +73,7 @@ correlation coefficient." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -202,7 +202,7 @@ taken.</p></td>
     </tr>
     <tr>
       <th>beta</th>
-      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/pbcor'>?WRS2::pbcor</a></code>.</p></td>
+      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/pbcor'>?WRS2::pbcor</a></code>.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -218,16 +218,16 @@ lower and upper confidence intervals (<code>0.95</code>).</p></td>
       <th>conf.type</th>
       <td><p>A vector of character strings representing the type of
 intervals required. The value should be any subset of the values <code>"norm"</code>,
-<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
+<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='https://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='http://www.rdocumentation.org/packages/boot/topics/boot'>boot::boot</a></code></p><dl class='dl-horizontal'>
+      <td><p>Arguments passed on to <code><a href='https://www.rdocumentation.org/packages/boot/topics/boot'>boot::boot</a></code></p><dl class='dl-horizontal'>
   <dt>data</dt><dd><p>The data as a vector, matrix or data frame.  If it is a matrix or
     data frame then each row is considered as one multivariate
     observation.</p></dd>
   <dt>statistic</dt><dd><p>A function which when applied to data returns a vector containing
-    the statistic(s) of interest.  When <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code>, the
+    the statistic(s) of interest.  When <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code>, the
     first argument to <code>statistic</code> must be the data.  For each
     replicate a simulated dataset returned by <code>ran.gen</code> will be
     passed.  In all other cases <code>statistic</code> must take at least two
@@ -254,10 +254,10 @@ intervals required. The value should be any subset of the values <code>"norm"</c
   <dt>stype</dt><dd><p>A character string indicating what the second argument of <code>statistic</code>
     represents.  Possible values of stype are <code>"i"</code> (indices - the
     default), <code>"f"</code> (frequencies), or <code>"w"</code> (weights).  Not
-    used for <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code>.</p></dd>
+    used for <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code>.</p></dd>
   <dt>strata</dt><dd><p>An integer vector or factor specifying the strata for multi-sample
     problems.  This may be specified for any simulation, but is ignored
-    when <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code>.  When <code>strata</code> is
+    when <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code>.  When <code>strata</code> is
     supplied for a nonparametric bootstrap, the simulations are done
     within the specified strata.</p></dd>
   <dt>L</dt><dd><p>Vector of influence values evaluated at the observations.  This is
@@ -280,10 +280,10 @@ intervals required. The value should be any subset of the values <code>"norm"</c
     When simulation from more than one set of weights is required,
     <code>weights</code> should be a matrix where each row of the matrix is
     one set of importance weights.  If <code>weights</code> is a matrix then
-    <code>R</code> must be a vector of length <code><a href='http://www.rdocumentation.org/packages/base/topics/nrow'>nrow(weights)</a></code>.  This
+    <code>R</code> must be a vector of length <code><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow(weights)</a></code>.  This
     parameter is ignored if <code>sim</code> is not <code>"ordinary"</code> or
     <code>"balanced"</code>.</p></dd>
-  <dt>ran.gen</dt><dd><p>This function is used only when <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code>
+  <dt>ran.gen</dt><dd><p>This function is used only when <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code>
     when it describes how random values are to be generated.  It should
     be a function of two arguments.  The first argument should be the
     observed data and the second argument consists of any other
@@ -296,7 +296,7 @@ intervals required. The value should be any subset of the values <code>"norm"</c
     dataset.  If <code>ran.gen</code> is not specified, the default is a
     function which returns the original <code>data</code> in which case all
     simulation should be included as part of <code>statistic</code>.  Use of
-    <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code> with a suitable <code>ran.gen</code> allows the
+    <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>sim = "parametric"</a></code> with a suitable <code>ran.gen</code> allows the
     user to implement any types of nonparametric resampling which are
     not supported directly.</p></dd>
   <dt>mle</dt><dd><p>The second argument to be passed to <code>ran.gen</code>.  Typically these
@@ -307,7 +307,7 @@ intervals required. The value should be any subset of the values <code>"norm"</c
   <dt>simple</dt><dd><p>logical, only allowed to be <code>TRUE</code> for
     <code>sim = "ordinary", stype = "i", n = 0</code> (otherwise ignored with a
     warning).  By default a <code>n</code> by <code>R</code> index array is created:
-    this can be large and if <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>simple = TRUE</a></code> this is avoided by
+    this can be large and if <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>simple = TRUE</a></code> this is avoided by
     sampling separately for each replication, which is slower but uses
     less memory.</p></dd>
   <dt>parallel</dt><dd><p>The type of parallel operation to be used (if any).  If missing, the
@@ -316,7 +316,7 @@ intervals required. The value should be any subset of the values <code>"norm"</c
   <dt>ncpus</dt><dd><p>integer: number of processes to be used in parallel operation:
     typically one would chose this to the number of available CPUs.</p></dd>
   <dt>cl</dt><dd><p>An optional <span class="pkg">parallel</span> or <span class="pkg">snow</span> cluster for use if
-    <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>parallel = "snow"</a></code>.  If not supplied, a cluster on the
+    <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>parallel = "snow"</a></code>.  If not supplied, a cluster on the
     local machine is created for the duration of the <code>boot</code> call.</p></dd>
 </dl></td>
     </tr>
@@ -348,7 +348,7 @@ sample size, bending constant, no. of bootstrap samples, etc.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

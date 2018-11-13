@@ -75,7 +75,7 @@ caption." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -202,7 +202,7 @@ caption.</p>
   <span class='kw'>label.segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>, <span class='kw'>label.segment.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>label.segment.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
   <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
@@ -212,14 +212,14 @@ caption.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A model object to be tidied with <code><a href='http://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy</a></code>.</p></td>
+      <td><p>A model object to be tidied with <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy</a></code>.</p></td>
     </tr>
     <tr>
       <th>output</th>
       <td><p>Character describing the expected output from this function:
 <code>"plot"</code> (visualization of regression coefficients) or <code>"tidy"</code> (tidy
-dataframe of results from <code><a href='http://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy</a></code>) or <code>"glance"</code> (object from
-<code><a href='http://www.rdocumentation.org/packages/broom/topics/reexports'>broom::glance</a></code>) or <code>"augment"</code> (object from <code><a href='http://www.rdocumentation.org/packages/broom/topics/reexports'>broom::augment</a></code>).</p></td>
+dataframe of results from <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy</a></code>) or <code>"glance"</code> (object from
+<code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::glance</a></code>) or <code>"augment"</code> (object from <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::augment</a></code>).</p></td>
     </tr>
     <tr>
       <th>scales</th>
@@ -228,14 +228,14 @@ dataframe of results from <code><a href='http://www.rdocumentation.org/packages/
     <tr>
       <th>conf.method</th>
       <td><p>Character describing method for computing confidence
-intervals (for more, see <code><a href='http://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>lme4::confint.merMod</a></code>). This argument is valid
+intervals (for more, see <code><a href='https://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>lme4::confint.merMod</a></code>). This argument is valid
 only for the <code>merMod</code> class model objects (<code>lmer</code>, <code>glmer</code>, <code>nlmer</code>, etc.).</p></td>
     </tr>
     <tr>
       <th>p.kr</th>
       <td><p>Logical, if <code>TRUE</code>, the computation of p-values for <code>lmer</code> is
 based on conditional F-tests with Kenward-Roger approximation for the df.
-For details, see <code><a href='http://www.rdocumentation.org/packages/sjstats/topics/p_value'>?sjstats::p_value</a></code>.</p></td>
+For details, see <code><a href='https://www.rdocumentation.org/packages/sjstats/topics/p_value'>?sjstats::p_value</a></code>.</p></td>
     </tr>
     <tr>
       <th>coefficient.type</th>
@@ -292,7 +292,7 @@ error bars (Default: <code>TRUE</code>).</p></td>
       <th>se.type</th>
       <td><p>Character specifying the method used to compute standard
 standard errors for quantile regression (Default: <code>"nid"</code>). To see all
-available methods, see <code><a href='http://www.rdocumentation.org/packages/quantreg/topics/summary.rq'>quantreg::summary.rq()</a></code>.</p></td>
+available methods, see <code><a href='https://www.rdocumentation.org/packages/quantreg/topics/summary.rq'>quantreg::summary.rq()</a></code>.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -454,7 +454,7 @@ nudge the starting position of each text label. Defaults to <code>0</code>.</p><
       <th>label.xlim, label.ylim</th>
       <td><p>Limits for the x and y axes. Text labels will be
 constrained to these limits. By default, text labels are constrained to the
-entire plot area. Defaults to <code><a href='http://www.rdocumentation.org/packages/base/topics/c'>c(NA, NA)</a></code>.</p></td>
+entire plot area. Defaults to <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c(NA, NA)</a></code>.</p></td>
     </tr>
     <tr>
       <th>label.direction</th>
@@ -472,14 +472,14 @@ or symbol.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>Either <code>1</code> or <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
+      <td><p>Either <code>1</code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
+extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
+<code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
     </tr>
     <tr>
       <th>ggstatsplot.layer</th>
@@ -489,7 +489,7 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
     </tr>
     <tr>
       <th>&#8230;</th>
-      <td><p>Extra arguments to pass to <code><a href='http://www.rdocumentation.org/packages/broom/topics/reexports'>tidy</a></code>.</p></td>
+      <td><p>Extra arguments to pass to <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>tidy</a></code>.</p></td>
     </tr>
     </table>
     
@@ -505,8 +505,8 @@ confidence interval whiskers.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>mpg</span> ~ <span class='no'>cyl</span> * <span class='no'>am</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>))</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'>ggcoefstats</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>mpg</span> ~ <span class='no'>cyl</span> * <span class='no'>am</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>))</div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -531,7 +531,7 @@ confidence interval whiskers.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

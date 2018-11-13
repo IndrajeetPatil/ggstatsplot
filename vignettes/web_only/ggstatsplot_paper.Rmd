@@ -336,7 +336,7 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 
 ## Types of statistical tests supported
 
-Functions | Type | Test | Effect size | 95% CI available? 
+Functions | Type | Pairwise comparison test | Effect size | 95% CI available? 
 ----------- | ----------- | ------------------ | ------------------ | -----  
 `ggbetweenstats` | Parametric | Independent samples *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Parametric | One-way ANOVA | $$p\eta^2, p\omega^2$$ | <font color="green">$\checkmark$</font> 

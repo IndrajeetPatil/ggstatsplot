@@ -1553,10 +1553,6 @@ subtitle_anova_bayes <- function(data,
             p.value = FALSE
           ),
           bf = ggstatsplot::specify_decimal_p(
-            # x = log(
-            #   x = bf_results$bf[[1]],
-            #   base = exp(1)
-            # ),
             x = bf_results$log_e_bf10[[1]],
             k = 1,
             p.value = FALSE
@@ -1625,10 +1621,6 @@ subtitle_anova_bayes <- function(data,
             p.value = FALSE
           ),
           bf = ggstatsplot::specify_decimal_p(
-            # x = log(
-            #   x = bf_results$bf[[1]],
-            #   base = exp(1)
-            # ),
             x = bf_results$log_e_bf10[[1]],
             k = 1,
             p.value = FALSE

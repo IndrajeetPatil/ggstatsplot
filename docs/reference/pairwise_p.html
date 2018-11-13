@@ -73,7 +73,7 @@ corrections for multiple testing." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -239,7 +239,7 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
+(Default: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -264,7 +264,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># for reproducibility</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># parametric</span>
 <span class='co'># if `var.equal = TRUE`, then Student's *t*-test will be run</span>
@@ -281,12 +281,12 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt;  Adjustment method for p-values: bonferroni</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # tibble [6 x 8]
 #&gt;   group1 group2 mean.difference conf.low conf.high p.value significance
 #&gt;   &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       
-#&gt; 1 herbi  carni          0.5423   -0.5462    1.631   1      ns          
-#&gt; 2 insec~ carni         -0.05771  -1.570     1.455   1      ns          
-#&gt; 3 omni   carni          0.06648  -1.051     1.184   1      ns          
-#&gt; 4 insec~ herbi         -0.6000   -1.956     0.7559  1      ns          
-#&gt; 5 omni   herbi         -0.4759   -1.370     0.4188  0.9790 ns          
-#&gt; 6 omni   insec~         0.1242   -1.255     1.504   1      ns          
+#&gt; 1 herbi  carni           0.542    -0.546     1.63    1     ns          
+#&gt; 2 insec~ carni          -0.0577   -1.57      1.45    1     ns          
+#&gt; 3 omni   carni           0.0665   -1.05      1.18    1     ns          
+#&gt; 4 insec~ herbi          -0.600    -1.96      0.756   1     ns          
+#&gt; 5 omni   herbi          -0.476    -1.37      0.419   0.979 ns          
+#&gt; 6 omni   insec~          0.124    -1.26      1.50    1     ns          
 #&gt; # ... with 1 more variable: p.value.label &lt;chr&gt;</div><div class='input'>
 <span class='co'># if `var.equal = FALSE`, then Games-Howell test will be run</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
@@ -302,12 +302,12 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt;  Adjustment method for p-values: bonferroni</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # tibble [6 x 11]
 #&gt;   group1 group2 mean.difference low.conf high.conf    se t.value    df p.value
 #&gt;   &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 omni   herbi            0.476   -0.529     1.48  0.255   1.321 20.89       1
-#&gt; 2 omni   carni           -0.066   -0.306     0.173 0.061   0.774 21.11       1
-#&gt; 3 omni   insec~          -0.124   -0.352     0.104 0.057   1.547 17.18       1
-#&gt; 4 herbi  carni           -0.542   -1.534     0.449 0.25    1.536 19.36       1
-#&gt; 5 herbi  insec~          -0.6     -1.589     0.389 0.249   1.705 19.08       1
-#&gt; 6 carni  insec~          -0.058   -0.171     0.056 0.027   1.534 10.74       1
+#&gt; 1 omni   herbi            0.476   -0.529     1.48  0.255   1.32   20.9       1
+#&gt; 2 omni   carni           -0.066   -0.306     0.173 0.061   0.774  21.1       1
+#&gt; 3 omni   insec~          -0.124   -0.352     0.104 0.057   1.55   17.2       1
+#&gt; 4 herbi  carni           -0.542   -1.53      0.449 0.25    1.54   19.4       1
+#&gt; 5 herbi  insec~          -0.6     -1.59      0.389 0.249   1.70   19.1       1
+#&gt; 6 carni  insec~          -0.058   -0.171     0.056 0.027   1.53   10.7       1
 #&gt; # ... with 2 more variables: significance &lt;chr&gt;, p.value.label &lt;chr&gt;</div><div class='input'>
 <span class='co'># non-parametric</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
@@ -319,14 +319,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; Note: The nonparametric pairwise multiple comparisons test used-
 #&gt;  Dwass-Steel-Crichtlow-Fligner test.
 #&gt;  Adjustment method for p-values: none</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # tibble [6 x 6]
-#&gt;   group1  group2        W p.value significance p.value.label
-#&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        
-#&gt; 1 carni   herbi   -0.8    0.5717  ns           p  = 0.572   
-#&gt; 2 carni   insecti -2.357  0.09563 ns           p  = 0.096   
-#&gt; 3 carni   omni    -1.715  0.2253  ns           p  = 0.225   
-#&gt; 4 herbi   insecti -2.402  0.08946 ns           p  = 0.089   
-#&gt; 5 herbi   omni    -0.9484 0.5027  ns           p  = 0.503   
-#&gt; 6 insecti omni     1.607  0.2559  ns           p  = 0.256   </div><div class='input'>
+#&gt;   group1  group2       W p.value significance p.value.label
+#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        
+#&gt; 1 carni   herbi   -0.8    0.572  ns           p  = 0.572   
+#&gt; 2 carni   insecti -2.36   0.0956 ns           p  = 0.096   
+#&gt; 3 carni   omni    -1.72   0.225  ns           p  = 0.225   
+#&gt; 4 herbi   insecti -2.40   0.0895 ns           p  = 0.089   
+#&gt; 5 herbi   omni    -0.948  0.503  ns           p  = 0.503   
+#&gt; 6 insecti omni     1.61   0.256  ns           p  = 0.256   </div><div class='input'>
 <span class='co'># robust</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -337,14 +337,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; Note: The robust pairwise multiple comparisons test used-
 #&gt;  Yuen's trimmed means comparisons test.
 #&gt;  Adjustment method for p-values: fdr</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # tibble [6 x 8]
-#&gt;   group1  group2     psihat ci.lower ci.upper p.value significance p.value.label
-#&gt;   &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        
-#&gt; 1 insecti omni    -0.05560  -0.1840   0.07283  0.4383 ns           p  = 0.438   
-#&gt; 2 carni   herbi   -0.05297  -0.2743   0.1683   0.5980 ns           p  = 0.598   
-#&gt; 3 carni   omni     0.002103 -0.1506   0.1548   0.9688 ns           p  = 0.969   
-#&gt; 4 herbi   omni     0.05507  -0.1727   0.2828   0.5980 ns           p  = 0.598   
-#&gt; 5 carni   insecti  0.05771  -0.06088  0.1763   0.4383 ns           p  = 0.438   
-#&gt; 6 herbi   insecti  0.1107   -0.09826  0.3196   0.4383 ns           p  = 0.438   </div></pre>
+#&gt;   group1  group2    psihat ci.lower ci.upper p.value significance p.value.label
+#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        
+#&gt; 1 insecti omni    -0.0556   -0.184    0.0728   0.438 ns           p  = 0.438   
+#&gt; 2 carni   herbi   -0.0530   -0.274    0.168    0.598 ns           p  = 0.598   
+#&gt; 3 carni   omni     0.00210  -0.151    0.155    0.969 ns           p  = 0.969   
+#&gt; 4 herbi   omni     0.0551   -0.173    0.283    0.598 ns           p  = 0.598   
+#&gt; 5 carni   insecti  0.0577   -0.0609   0.176    0.438 ns           p  = 0.438   
+#&gt; 6 herbi   insecti  0.111    -0.0983   0.320    0.438 ns           p  = 0.438   </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -367,7 +367,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

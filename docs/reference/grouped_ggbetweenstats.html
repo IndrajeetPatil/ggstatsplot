@@ -75,7 +75,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -301,7 +301,7 @@ the plot will be returned.</p></td>
     <tr>
       <th>subtitle</th>
       <td><p>The text for the plot subtitle. Will work only if
-<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = FALSE</a></code>.</p></td>
+<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = FALSE</a></code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
@@ -316,7 +316,7 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
+(Default: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
     </tr>
     <tr>
       <th>var.equal</th>
@@ -361,7 +361,7 @@ the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"
 displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>1.58 * IQR / sqrt(n)</a></code>. This gives a roughly <code>95%</code>
+notches extend <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>1.58 * IQR / sqrt(n)</a></code>. This gives a roughly <code>95%</code>
 confidence interval for comparing medians. IQR: Inter-Quartile Range.</p></td>
     </tr>
     <tr>
@@ -440,8 +440,8 @@ direction. Defaults to <code>0.60</code>.</p></td>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
+extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
+<code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
     </tr>
     <tr>
       <th>ggstatsplot.layer</th>
@@ -462,7 +462,7 @@ type. Default palette is <code>"Dark2"</code>.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>Either <code>1</code> or <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
+      <td><p>Either <code>1</code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -505,7 +505,7 @@ Can be a plotmath expression.</p></dd>
   <dt>sub.vpadding</dt><dd><p>Vertical padding. The total vertical space added to the
 label, given in grid units. By default, this is added equally above and
 below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: <code><a href='http://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
+be changed (Default: <code><a href='https://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
   <dt>sub.fontface</dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
 <code>"bold.italic"</code>) for the annotation label.</p></dd>
   <dt>sub.angle</dt><dd><p>Angle at which annotation label is to be drawn (Default:
@@ -524,20 +524,20 @@ combining (plot, caption).</p></dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>For parametric tests, Welch's ANOVA/<em>t</em>-test are used as a default (i.e.,
-<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>var.equal = FALSE</a></code>).
+<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>var.equal = FALSE</a></code>).
 References:</p><ul>
 <li><p>ANOVA: Delacre, Leys, Mora, &amp; Lakens, <em>PsyArXiv</em>, 2018</p></li>
 <li><p><em>t</em>-test: Delacre, Lakens, &amp; Leys,
 <em>International Review of Social Psychology</em>, 2017</p></li>
 </ul>
     <p>If robust tests are selected, following tests are used is .</p><ul>
-<li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/t1way'>?WRS2::t1way</a></code>)</p></li>
-<li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
+<li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/t1way'>?WRS2::t1way</a></code>)</p></li>
+<li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
 </ul>
     <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em>
 still use this function just to prepare the <strong>plot</strong> for exploratory data
 analysis, but the statistical details displayed in the subtitle will be
-incorrect. You can remove them by adding <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>+ ggplot2::labs(subtitle = NULL)</a></code>.</p>
+incorrect. You can remove them by adding <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>+ ggplot2::labs(subtitle = NULL)</a></code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -551,7 +551,7 @@ incorrect. You can remove them by adding <code><a href='http://www.rdocumentatio
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># to get reproducible results from bootstrapping</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># the most basic function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></span>(
@@ -588,7 +588,7 @@ incorrect. You can remove them by adding <code><a href='http://www.rdocumentatio
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

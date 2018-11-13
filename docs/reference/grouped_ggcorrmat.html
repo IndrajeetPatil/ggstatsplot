@@ -76,7 +76,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -192,7 +192,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>continuity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>sig.level</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>hc.order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hc.method</span> <span class='kw'>=</span> <span class='st'>"complete"</span>,
   <span class='kw'>lab</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>),
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#E69F00"</span>, <span class='st'>"white"</span>, <span class='st'>"#009E73"</span>),
   <span class='kw'>outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caption.default</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>lab.size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
@@ -256,7 +256,7 @@ correlation matrix to be used. Allowed values are <code>"square"</code> (default
 coefficient is to be computed (<code>"pearson"</code> (default) or <code>"kendall"</code> or
 <code>"spearman"</code>). <code>"robust"</code> can also be entered but only if <code>output</code> argument
 is set to either <code>"correlations"</code> or <code>"p-values"</code>. The robust correlation
-used is percentage bend correlation (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/pbcor'>?WRS2::pball</a></code>). Abbreviations
+used is percentage bend correlation (see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/pbcor'>?WRS2::pball</a></code>). Abbreviations
 will also work: <code>"p"</code> (for parametric/Pearson's <em>r</em>), <code>"np"</code>
 (nonparametric/Spearman's <em>rho</em>), <code>"r"</code> (robust).</p></td>
     </tr>
@@ -264,7 +264,7 @@ will also work: <code>"p"</code> (for parametric/Pearson's <em>r</em>), <code>"n
       <th>exact</th>
       <td><p>A logical indicating whether an exact <em>p</em>-value should be
 computed. Used for Kendall's <em>tau</em> and Spearman's <em>rho</em>. For more details,
-see <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>?stats::cor.test</a></code>.</p></td>
+see <code><a href='https://www.rdocumentation.org/packages/stats/topics/cor.test'>?stats::cor.test</a></code>.</p></td>
     </tr>
     <tr>
       <th>continuity</th>
@@ -287,13 +287,13 @@ Kendall's <em>tau</em> and Spearman's <em>rho</em> when not computed exactly (De
       <td><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
 <em>p</em>-value matrix is bigger than <code>sig.level</code>, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
-the plot. This argument is relevant only when <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>output = "plot"</a></code>.</p></td>
+the plot. This argument is relevant only when <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>output = "plot"</a></code>.</p></td>
     </tr>
     <tr>
       <th>p.adjust.method</th>
       <td><p>What adjustment for multiple tests should be used?
 (<code>"holm"</code>, <code>"hochberg"</code>, <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>,
-<code>"fdr"</code>, <code>"none"</code>). See <code><a href='http://www.rdocumentation.org/packages/stats/topics/p.adjust'>stats::p.adjust</a></code> for details about why to use
+<code>"fdr"</code>, <code>"none"</code>). See <code><a href='https://www.rdocumentation.org/packages/stats/topics/p.adjust'>stats::p.adjust</a></code> for details about why to use
 <code>"holm"</code> rather than <code>"bonferroni"</code>). Default is <code>"none"</code>. If adjusted
 <em>p</em>-values are displayed in the visualization of correlation matrix, the
 <strong>adjusted</strong> <em>p</em>-values will be used for the <strong>upper</strong> triangle, while
@@ -308,7 +308,7 @@ hc.ordered using <code>hclust</code> function (Default is <code>FALSE</code>).</
     <tr>
       <th>hc.method</th>
       <td><p>The agglomeration method to be used in <code>hclust</code> (see
-<code><a href='http://www.rdocumentation.org/packages/stats/topics/hclust'>?hclust</a></code>).</p></td>
+<code><a href='https://www.rdocumentation.org/packages/stats/topics/hclust'>?hclust</a></code>).</p></td>
     </tr>
     <tr>
       <th>lab</th>
@@ -326,7 +326,7 @@ or symbol.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>Either <code>1</code> or <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
+      <td><p>Either <code>1</code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
     </tr>
     <tr>
       <th>colors</th>
@@ -343,8 +343,8 @@ colors from the specified <code>palette</code> from <code>package</code> will be
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
+extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
+<code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
     </tr>
     <tr>
       <th>ggstatsplot.layer</th>
@@ -369,35 +369,35 @@ shown.</p></td>
     <tr>
       <th>lab.col</th>
       <td><p>Color to be used for the correlation coefficient labels
-(applicable only when <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>lab = TRUE</a></code>).</p></td>
+(applicable only when <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>lab = TRUE</a></code>).</p></td>
     </tr>
     <tr>
       <th>lab.size</th>
       <td><p>Size to be used for the correlation coefficient labels
-(applicable only when <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>lab = TRUE</a></code>).</p></td>
+(applicable only when <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>lab = TRUE</a></code>).</p></td>
     </tr>
     <tr>
       <th>insig</th>
       <td><p>Character used to show specialized insignificant correlation
 coefficients (<code>"pch"</code> (default) or <code>"blank"</code>). If <code>"blank"</code>, the
 corresponding glyphs will be removed; if "pch" is used, characters (see
-<code><a href='http://www.rdocumentation.org/packages/graphics/topics/points'>?pch</a></code> for details) will be added on the corresponding glyphs.</p></td>
+<code><a href='https://www.rdocumentation.org/packages/graphics/topics/points'>?pch</a></code> for details) will be added on the corresponding glyphs.</p></td>
     </tr>
     <tr>
       <th>pch</th>
       <td><p>Decides the glyphs (read point shapes) to be used for
-insignificant correlation coefficients (only valid when <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>insig = "pch"</a></code>).
-Default value is <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>pch = 4</a></code>.</p></td>
+insignificant correlation coefficients (only valid when <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>insig = "pch"</a></code>).
+Default value is <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>pch = 4</a></code>.</p></td>
     </tr>
     <tr>
       <th>pch.col</th>
       <td><p>The color and the cex (size) of <code>pch</code> (only valid when
-<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>insig = "pch"</a></code>). Defaults are <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>pch.col = "#F0E442"</a></code> and <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>pch.cex = 10</a></code>.</p></td>
+<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>insig = "pch"</a></code>). Defaults are <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>pch.col = "#F0E442"</a></code> and <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>pch.cex = 10</a></code>.</p></td>
     </tr>
     <tr>
       <th>pch.cex</th>
       <td><p>The color and the cex (size) of <code>pch</code> (only valid when
-<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>insig = "pch"</a></code>). Defaults are <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>pch.col = "#F0E442"</a></code> and <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>pch.cex = 10</a></code>.</p></td>
+<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>insig = "pch"</a></code>). Defaults are <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>pch.col = "#F0E442"</a></code> and <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>pch.cex = 10</a></code>.</p></td>
     </tr>
     <tr>
       <th>tl.cex</th>
@@ -479,7 +479,7 @@ Can be a plotmath expression.</p></dd>
   <dt>sub.vpadding</dt><dd><p>Vertical padding. The total vertical space added to the
 label, given in grid units. By default, this is added equally above and
 below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: <code><a href='http://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
+be changed (Default: <code><a href='https://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
   <dt>sub.fontface</dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
 <code>"bold.italic"</code>) for the annotation label.</p></dd>
   <dt>sub.angle</dt><dd><p>Angle at which annotation label is to be drawn (Default:
@@ -556,7 +556,7 @@ of p-values.</p>
 <span class='co'># for getting confidence intervals</span>
 <span class='co'># confidence intervals are not available for **robust** correlation</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
@@ -590,7 +590,7 @@ of p-values.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

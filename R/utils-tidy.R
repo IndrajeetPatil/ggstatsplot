@@ -1,27 +1,3 @@
-#' Pipe operator
-#'
-#' See \code{\link[magrittr]{\%>\%}} for details.
-#'
-#' @name %>%
-#' @rdname pipe
-#' @keywords internal
-#' @export
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-
-#' Compound assignment pipe operator
-#'
-#' See \code{\link[magrittr]{\%<>\%}} for details.
-#'
-#' @name %<>%
-#' @rdname compound
-#' @keywords internal
-#' @export
-#' @importFrom magrittr %<>%
-#' @usage lhs \%<>\% rhs
-NULL
-
 #' Anticipate use of tibbles
 #'
 #' See \code{\link[tibble]{tibble}} for details.

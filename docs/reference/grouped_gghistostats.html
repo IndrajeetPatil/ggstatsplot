@@ -74,7 +74,7 @@ resulting plots using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -224,7 +224,7 @@ title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
       <th>binwidth</th>
       <td><p>The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from <code>x</code>. The default is
-to use the <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>max(x) - min(x) / sqrt(N)</a></code>. You should always check this value
+to use the <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>max(x) - min(x) / sqrt(N)</a></code>. You should always check this value
 and explore multiple widths to find the best to illustrate the stories in
 your data.</p></td>
     </tr>
@@ -270,13 +270,13 @@ to use in calculating Bayes factors.</p></td>
     <tr>
       <th>bf.message</th>
       <td><p>Logical. Decides whether to display Bayes Factor in favor
-of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>bf.message = FALSE</a></code>). This will work only if <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = TRUE</a></code>.</p></td>
+of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>bf.message = FALSE</a></code>). This will work only if <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = TRUE</a></code>.</p></td>
     </tr>
     <tr>
       <th>robust.estimator</th>
-      <td><p>If <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>test = "robust"</a></code> robust estimator to be used
+      <td><p>If <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>test = "robust"</a></code> robust estimator to be used
 (<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
-<code><a href='http://www.rdocumentation.org/packages/WRS2/topics/onesampb'>?WRS2::onesampb</a></code>.</p></td>
+<code><a href='https://www.rdocumentation.org/packages/WRS2/topics/onesampb'>?WRS2::onesampb</a></code>.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -286,14 +286,14 @@ of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
+(Default: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
+extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
+<code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
     </tr>
     <tr>
       <th>ggstatsplot.layer</th>
@@ -320,14 +320,14 @@ Defaults are colorblind-friendly.</p></td>
     </tr>
     <tr>
       <th>bar.fill</th>
-      <td><p>If <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>fill.gradient = FALSE</a></code>, then <code>bar.fill</code> decides which
+      <td><p>If <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>fill.gradient = FALSE</a></code>, then <code>bar.fill</code> decides which
 color will uniformly fill all the bars in the histogram (Default:
 <code>"grey50"</code>).</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>
       <td><p>Decides whether the results of statistical tests are
-to be displayed as subtitle (Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = TRUE</a></code>). If set to
+to be displayed as subtitle (Default: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = TRUE</a></code>). If set to
 <code>FALSE</code>, no statistical tests will be run.</p></td>
     </tr>
     <tr>
@@ -433,7 +433,7 @@ Can be a plotmath expression.</p></dd>
   <dt>sub.vpadding</dt><dd><p>Vertical padding. The total vertical space added to the
 label, given in grid units. By default, this is added equally above and
 below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: <code><a href='http://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
+be changed (Default: <code><a href='https://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
   <dt>sub.fontface</dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
 <code>"bold.italic"</code>) for the annotation label.</p></dd>
   <dt>sub.angle</dt><dd><p>Angle at which annotation label is to be drawn (Default:
@@ -494,7 +494,7 @@ combining (plot, caption).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

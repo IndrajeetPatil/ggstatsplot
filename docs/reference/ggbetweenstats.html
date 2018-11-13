@@ -76,7 +76,7 @@ the plot as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -302,7 +302,7 @@ the plot will be returned.</p></td>
     <tr>
       <th>subtitle</th>
       <td><p>The text for the plot subtitle. Will work only if
-<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = FALSE</a></code>.</p></td>
+<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = FALSE</a></code>.</p></td>
     </tr>
     <tr>
       <th>sample.size.label</th>
@@ -313,7 +313,7 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
+(Default: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
     </tr>
     <tr>
       <th>var.equal</th>
@@ -348,7 +348,7 @@ the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"
 displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
 compare groups; if the notches of two boxes do not overlap, this suggests
 that the medians are significantly different. In a notched box plot, the
-notches extend <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>1.58 * IQR / sqrt(n)</a></code>. This gives a roughly <code>95%</code>
+notches extend <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>1.58 * IQR / sqrt(n)</a></code>. This gives a roughly <code>95%</code>
 confidence interval for comparing medians. IQR: Inter-Quartile Range.</p></td>
     </tr>
     <tr>
@@ -427,8 +427,8 @@ direction. Defaults to <code>0.60</code>.</p></td>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
+extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
+<code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
     </tr>
     <tr>
       <th>ggstatsplot.layer</th>
@@ -449,7 +449,7 @@ type. Default palette is <code>"Dark2"</code>.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>Either <code>1</code> or <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
+      <td><p>Either <code>1</code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -461,20 +461,20 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>For parametric tests, Welch's ANOVA/<em>t</em>-test are used as a default (i.e.,
-<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>var.equal = FALSE</a></code>).
+<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>var.equal = FALSE</a></code>).
 References:</p><ul>
 <li><p>ANOVA: Delacre, Leys, Mora, &amp; Lakens, <em>PsyArXiv</em>, 2018</p></li>
 <li><p><em>t</em>-test: Delacre, Lakens, &amp; Leys,
 <em>International Review of Social Psychology</em>, 2017</p></li>
 </ul>
     <p>If robust tests are selected, following tests are used is .</p><ul>
-<li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/t1way'>?WRS2::t1way</a></code>)</p></li>
-<li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
+<li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/t1way'>?WRS2::t1way</a></code>)</p></li>
+<li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
 </ul>
     <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em>
 still use this function just to prepare the <strong>plot</strong> for exploratory data
 analysis, but the statistical details displayed in the subtitle will be
-incorrect. You can remove them by adding <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>+ ggplot2::labs(subtitle = NULL)</a></code>.</p>
+incorrect. You can remove them by adding <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>+ ggplot2::labs(subtitle = NULL)</a></code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -489,7 +489,7 @@ incorrect. You can remove them by adding <code><a href='http://www.rdocumentatio
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># to get reproducible results from bootstrapping</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># simple function call with the defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html'>ggbetweenstats</a></span>(
@@ -502,7 +502,7 @@ incorrect. You can remove them by adding <code><a href='http://www.rdocumentatio
 )</div><div class='output co'>#&gt; Note: Shapiro-Wilk Normality Test for mpg : p-value = 0.123</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor am : p-value = 0.072</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># more detailed function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html'>ggbetweenstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/morley'>morley</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/datasets/topics/morley'>morley</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Expt</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Speed</span>,
   <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"box"</span>,
@@ -514,7 +514,7 @@ incorrect. You can remove them by adding <code><a href='http://www.rdocumentatio
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='no'>Run</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggthemes</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_few'>theme_few</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.</span>
@@ -532,16 +532,16 @@ incorrect. You can remove them by adding <code><a href='http://www.rdocumentatio
 #&gt; <span class='warning'>This warning is displayed once per session.</span></div><div class='output co'>#&gt; Note: 95% CI for partial omega-squared was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # tibble [10 x 11]
 #&gt;    group1 group2 mean.difference low.conf high.conf    se t.value    df p.value
 #&gt;    &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1 1      2                -53    -131.7     25.68  19.20   1.952 30.58  0.72  
-#&gt;  2 1      3                -64    -148.4     20.44  20.78   2.178 35.33  0.7033
-#&gt;  3 1      4                -88.5  -166.9    -10.13  19.11   3.274 30.24  0.21  
-#&gt;  4 1      5                -77.5  -154.4     -0.641 18.67   2.935 28.47  0.235 
-#&gt;  5 2      3                -11     -75.22    53.22  15.81   0.492 35.74  0.988 
-#&gt;  6 2      4                -35.5   -90.37    19.37  13.55   1.852 37.99  0.72  
-#&gt;  7 2      5                -24.5   -76.86    27.86  12.92   1.341 37.46  0.988 
-#&gt;  8 3      4                -24.5   -88.30    39.30  15.70   1.103 35.44  0.988 
-#&gt;  9 3      5                -13.5   -75.29    48.29  15.16   0.63  33.62  0.988 
-#&gt; 10 4      5                 11     -40.82    62.82  12.79   0.608 37.61  0.988 
+#&gt;  1 1      2                -53     -132.     25.7    19.2   1.95   30.6   0.72 
+#&gt;  2 1      3                -64     -148.     20.4    20.8   2.18   35.3   0.703
+#&gt;  3 1      4                -88.5   -167.    -10.1    19.1   3.27   30.2   0.21 
+#&gt;  4 1      5                -77.5   -154.     -0.641  18.7   2.94   28.5   0.235
+#&gt;  5 2      3                -11      -75.2    53.2    15.8   0.492  35.7   0.988
+#&gt;  6 2      4                -35.5    -90.4    19.4    13.6   1.85   38.0   0.72 
+#&gt;  7 2      5                -24.5    -76.9    27.9    12.9   1.34   37.5   0.988
+#&gt;  8 3      4                -24.5    -88.3    39.3    15.7   1.10   35.4   0.988
+#&gt;  9 3      5                -13.5    -75.3    48.3    15.2   0.63   33.6   0.988
+#&gt; 10 4      5                 11      -40.8    62.8    12.8   0.608  37.6   0.988
 #&gt; # ... with 2 more variables: significance &lt;chr&gt;, p.value.label &lt;chr&gt;
 #&gt; Note: Shapiro-Wilk Normality Test for Speed : p-value = 0.514</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Note: Bartlett's test for homogeneity of variances for factor Expt : p-value = 0.021</div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
@@ -570,7 +570,7 @@ incorrect. You can remove them by adding <code><a href='http://www.rdocumentatio
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

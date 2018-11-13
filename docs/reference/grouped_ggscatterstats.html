@@ -76,7 +76,7 @@ subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.6.9000</span>
       </span>
     </div>
 
@@ -189,11 +189,11 @@ subtitle.</p>
     <pre class="usage"><span class='fu'>grouped_ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>, <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>, <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>,
   <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
   <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>point.height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"both"</span>,
+  <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"both"</span>,
   <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wesanderson"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Royal1"</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>, <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>yalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xsize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>ysize</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -270,15 +270,15 @@ title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
       <th>method</th>
       <td><p>Smoothing method (function) to use, accepts either a character vector,
 e.g. <code>"auto"</code>, <code>"lm"</code>, <code>"glm"</code>, <code>"gam"</code>, <code>"loess"</code> or a function, e.g.
-<code><a href='http://www.rdocumentation.org/packages/MASS/topics/rlm'>MASS::rlm</a></code> or <code><a href='http://www.rdocumentation.org/packages/mgcv/topics/gam'>mgcv::gam</a></code>, <code>base::lm</code>, or <code>base::loess</code>.</p>
-<p>For <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>method = "auto"</a></code> the smoothing method is chosen based on the
-size of the largest group (across all panels). <code><a href='http://www.rdocumentation.org/packages/stats/topics/loess'>loess()</a></code> is
-used for less than 1,000 observations; otherwise <code><a href='http://www.rdocumentation.org/packages/mgcv/topics/gam'>mgcv::gam()</a></code> is
-used with <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>formula = y ~ s(x, bs = "cs")</a></code>. Somewhat anecdotally,
+<code><a href='https://www.rdocumentation.org/packages/MASS/topics/rlm'>MASS::rlm</a></code> or <code><a href='https://www.rdocumentation.org/packages/mgcv/topics/gam'>mgcv::gam</a></code>, <code>base::lm</code>, or <code>base::loess</code>.</p>
+<p>For <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>method = "auto"</a></code> the smoothing method is chosen based on the
+size of the largest group (across all panels). <code><a href='https://www.rdocumentation.org/packages/stats/topics/loess'>loess()</a></code> is
+used for less than 1,000 observations; otherwise <code><a href='https://www.rdocumentation.org/packages/mgcv/topics/gam'>mgcv::gam()</a></code> is
+used with <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>formula = y ~ s(x, bs = "cs")</a></code>. Somewhat anecdotally,
 <code>loess</code> gives a better appearance, but is \(O(N^{2})\) in memory,
 so does not work for larger datasets.</p>
 <p>If you have fewer than 1,000 observations but want to use the same <code>gam()</code>
-model that <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>method = "auto"</a></code> would use, then set
+model that <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>method = "auto"</a></code> would use, then set
 <code>method = "gam", formula = y ~ s(x, bs = "cs")</code>.</p></td>
     </tr>
     <tr>
@@ -288,23 +288,23 @@ function defined by <code>method</code>.</p></td>
     </tr>
     <tr>
       <th>formula</th>
-      <td><p>Formula to use in smoothing function, eg. <code><a href='http://www.rdocumentation.org/packages/base/topics/tilde'>y ~ x</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/base/topics/tilde'>y ~ poly(x, 2)</a></code>, <code><a href='http://www.rdocumentation.org/packages/base/topics/tilde'>y ~ log(x)</a></code></p></td>
+      <td><p>Formula to use in smoothing function, eg. <code><a href='https://www.rdocumentation.org/packages/base/topics/tilde'>y ~ x</a></code>,
+<code><a href='https://www.rdocumentation.org/packages/base/topics/tilde'>y ~ poly(x, 2)</a></code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/tilde'>y ~ log(x)</a></code></p></td>
     </tr>
     <tr>
       <th>point.color</th>
       <td><p>Aesthetics specifying geom point
-(defaults: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.color = "black"</a></code>, <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.size = 3</a></code>,<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.alpha = 0.4</a></code>).</p></td>
+(defaults: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.color = "black"</a></code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.size = 3</a></code>,<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.alpha = 0.4</a></code>).</p></td>
     </tr>
     <tr>
       <th>point.size</th>
       <td><p>Aesthetics specifying geom point
-(defaults: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.color = "black"</a></code>, <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.size = 3</a></code>,<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.alpha = 0.4</a></code>).</p></td>
+(defaults: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.color = "black"</a></code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.size = 3</a></code>,<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.alpha = 0.4</a></code>).</p></td>
     </tr>
     <tr>
       <th>point.alpha</th>
       <td><p>Aesthetics specifying geom point
-(defaults: <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.color = "black"</a></code>, <code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.size = 3</a></code>,<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>point.alpha = 0.4</a></code>).</p></td>
+(defaults: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.color = "black"</a></code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.size = 3</a></code>,<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>point.alpha = 0.4</a></code>).</p></td>
     </tr>
     <tr>
       <th>line.size</th>
@@ -326,7 +326,7 @@ of the resolution of the data.</p></td>
     </tr>
     <tr>
       <th>marginal</th>
-      <td><p>Decides whether <code><a href='http://www.rdocumentation.org/packages/ggExtra/topics/ggMarginal'>ggExtra::ggMarginal()</a></code> plots will be
+      <td><p>Decides whether <code><a href='https://www.rdocumentation.org/packages/ggExtra/topics/ggMarginal'>ggExtra::ggMarginal()</a></code> plots will be
 displayed; the default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
@@ -356,7 +356,7 @@ or symbol.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>Either <code>1</code> or <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='http://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
+      <td><p>Either <code>1</code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
     </tr>
     <tr>
       <th>xfill</th>
@@ -413,7 +413,7 @@ the plot will be returned.</p></td>
     <tr>
       <th>subtitle</th>
       <td><p>The text for the plot subtitle. Will work only if
-<code><a href='http://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = FALSE</a></code>.</p></td>
+<code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>results.subtitle = FALSE</a></code>.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -422,7 +422,7 @@ the plot will be returned.</p></td>
     </tr>
     <tr>
       <th>beta</th>
-      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='http://www.rdocumentation.org/packages/WRS2/topics/pbcor'>?WRS2::pbcor</a></code>.</p></td>
+      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/pbcor'>?WRS2::pbcor</a></code>.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -438,8 +438,8 @@ values ranges to min and max values of the <code>x</code> and <code>y</code> var
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
 <code><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
-<code><a href='http://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='http://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
+extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
+<code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
     </tr>
     <tr>
       <th>ggstatsplot.layer</th>
@@ -488,7 +488,7 @@ Can be a plotmath expression.</p></dd>
   <dt>sub.vpadding</dt><dd><p>Vertical padding. The total vertical space added to the
 label, given in grid units. By default, this is added equally above and
 below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: <code><a href='http://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
+be changed (Default: <code><a href='https://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
   <dt>sub.fontface</dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
 <code>"bold.italic"</code>) for the annotation label.</p></dd>
   <dt>sub.angle</dt><dd><p>Angle at which annotation label is to be drawn (Default:
@@ -517,7 +517,7 @@ combining (plot, caption).</p></dd>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># to ensure reproducibility</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'># basic function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
@@ -529,7 +529,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>length</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>,
-  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span> + <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span>(<span class='no'>x</span>^<span class='fl'>3</span>),
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span>(<span class='no'>x</span>^<span class='fl'>3</span>),
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>genre</span>
 )</div><div class='output co'>#&gt; Warning: This plot can't be further modified with `ggplot2` functions.
 #&gt; In case you want a `ggplot` object, set `marginal = FALSE`.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; Warning: This plot can't be further modified with `ggplot2` functions.
@@ -555,7 +555,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
     <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/movies_long.html'>movies_long</a></span>,
     <span class='no'>rating</span> <span class='kw'>==</span> <span class='fl'>8</span>,
-    <span class='no'>genre</span> <span class='kw'>%in%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Drama"</span>, <span class='st'>"Comedy"</span>)
+    <span class='no'>genre</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Drama"</span>, <span class='st'>"Comedy"</span>)
   ),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>budget</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>length</span>,
@@ -591,7 +591,7 @@ combining (plot, caption).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
