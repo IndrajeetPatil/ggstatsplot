@@ -338,8 +338,8 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 
 Functions | Type | Pairwise comparison test | Effect size | 95% CI available? 
 ----------- | ----------- | ------------------ | ------------------ | -----  
-`ggbetweenstats` | Parametric | Independent samples *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
-`ggbetweenstats` | Parametric | One-way ANOVA | $$p\eta^2, p\omega^2$$ | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Parametric | Student's and Welch's *t*-test | Cohen's *d*, Hedge's *g* | <font color="green">$\checkmark$</font> 
+`ggbetweenstats` | Parametric | Fisher's and Welch's one-way ANOVA | $$p\eta^2, p\omega^2$$ | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Robust | Yuen's test for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
 `ggbetweenstats` | Robust | Heteroscedastic one-way ANOVA for trimmed means | $$\xi$$ | <font color="green">$\checkmark$</font> 
 `ggpiestats` | Parametric | $$\text{Pearson's}~ \chi^2 ~\text{test}$$ | Cramer's *V* | <font color="green">$\checkmark$</font>

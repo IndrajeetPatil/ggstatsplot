@@ -50,7 +50,7 @@ bf_corr_test(
 )
 }
 \seealso{
-\code{\link{bf_contigency_tab}}, \code{\link{bf_oneway_anova}},
+\code{\link{bf_contingency_tab}}, \code{\link{bf_oneway_anova}},
 \code{\link{bf_two_sample_ttest}}
 }
 \author{

@@ -6,7 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>'ggplot2' Based Plots with Statistical Details • ggstatsplot</title>
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -183,12 +188,12 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg" alt="Coverage Status"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--12-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--13-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://sites.google.com/site/indrajeetspatilmorality/"><img src="https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0" alt="author"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot"><img src="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge" alt="Dependency Status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_11_12-yellowgreen.svg" alt="Covrpage Summary"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_11_13-yellowgreen.svg" alt="Covrpage Summary"></a></td>
 <td><a href="https://saythanks.io/to/IndrajeetPatil"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="saythanks"></a></td>
 <td><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></td>
@@ -327,7 +332,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x00000000215ae318&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x00000000215d7bf0&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>

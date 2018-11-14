@@ -1,7 +1,7 @@
 #' @title Making text subtitle for contingency analysis (Pearson's chi-square
 #'   test for independence for between-subjects design or McNemar's test for
 #'   within-subjects design)
-#' @name subtitle_contigency_tab
+#' @name subtitle_contingency_tab
 #' @author Indrajeet Patil
 #'
 #' @param data The data as a data frame (matrix or tables will not be accepted).
@@ -31,22 +31,22 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#' 
+#'
 #' # without counts data
-#' subtitle_contigency_tab(
+#' subtitle_contingency_tab(
 #'   data = mtcars,
 #'   main = am,
 #'   condition = cyl,
 #'   nboot = 15
 #' )
-#' 
+#'
 #' # with counts data
 #' # in case of no variation, a `NULL` will be returned.
 #' library(jmv)
-#' 
+#'
 #' as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male") %>%
-#'   subtitle_contigency_tab(
+#'   subtitle_contingency_tab(
 #'     data = .,
 #'     main = Hair,
 #'     condition = Sex,
@@ -55,7 +55,7 @@
 #' @export
 
 # function body
-subtitle_contigency_tab <- function(data,
+subtitle_contingency_tab <- function(data,
                                     main,
                                     condition,
                                     counts = NULL,
@@ -354,19 +354,19 @@ subtitle_contigency_tab <- function(data,
 #'   c(1,1)`, etc.
 #' @param legend.title Title text for the legend.
 #' @inheritParams groupedstats::specify_decimal_p
-#' @inheritParams subtitle_contigency_tab
+#' @inheritParams subtitle_contingency_tab
 #'
 #' @examples
-#' 
+#'
 #' # with counts
 #' library(jmv)
-#' 
+#'
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#' 
+#'
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),

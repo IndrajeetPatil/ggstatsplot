@@ -1,21 +1,20 @@
-context("subtitle_anova_bayes")
+context("helpers_ggbetween_subtitles")
 
 testthat::test_that(
-  desc = "subtitle_anova_bayes works",
+  desc = "helpers_ggbetween_subtitles works",
   code = {
     set.seed(123)
 
     # ggstatsplot output
     using_function1 <-
-      ggstatsplot:::subtitle_anova_bayes(
+      ggstatsplot::subtitle_anova_parametric(
         data = movies_long,
         x = genre,
         y = rating,
-        effsize.type = "unbiased",
+        effsize.type = "partial_eta",
         k = 5,
         var.equal = FALSE,
-        bf.prior = .8,
-        nboot = 100,
+        nboot = 10,
         messages = FALSE
       )
 
@@ -30,16 +29,19 @@ testthat::test_that(
           "135.09275",
           ") = ",
           "29.36078",
-          ", p",
-          omega^2,
+          ", ",
+          italic("p"),
           " = ",
-          "0.05539",
-          ", log"["e"],
-          "(BF"["10"],
-          ") = ",
-          "60.6",
-          ", Prior width = ",
-          "0.800",
+          "< 0.001",
+          ", p",
+          eta^2,
+          " = ",
+          "0.05735",
+          ", 95% CI [",
+          "0.03932",
+          ", ",
+          "0.07442",
+          "]",
           ", ",
           italic("n"),
           " = ",
@@ -47,28 +49,22 @@ testthat::test_that(
         )
       )
 
-    # testing overall call
+    # testing overall call, eta squared and upper CI
     testthat::expect_identical(
       object = using_function1,
       expected = results1
     )
 
-    # testing bayes factor value
+    # testing eta squared
     testthat::expect_identical(
       object = as.character(using_function1)[16],
       expected = as.character(results1)[16]
     )
 
-    # testing omega squared
+    # testing upper CI
     testthat::expect_identical(
-      object = as.character(using_function1)[12],
-      expected = as.character(results1)[12]
-    )
-
-    # testing sample size
-    testthat::expect_identical(
-      object = using_function1[22],
-      expected = results1[22]
+      object = as.character(using_function1)[20],
+      expected = as.character(results1)[20]
     )
   }
 )

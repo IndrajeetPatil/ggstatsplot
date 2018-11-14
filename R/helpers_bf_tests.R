@@ -66,14 +66,14 @@ bf_extractor <- function(bf.object) {
 #'
 #' @importFrom BayesFactor correlationBF extractBF
 #'
-#' @seealso \code{\link{bf_contigency_tab}}, \code{\link{bf_oneway_anova}},
+#' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_oneway_anova}},
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
 #' bf_corr_test(
 #'   data = anscombe,
@@ -81,7 +81,7 @@ bf_extractor <- function(bf.object) {
 #'   y = y4,
 #'   bf.prior = 1
 #' )
-#' 
+#'
 #' # to see results
 #' bf_corr_test(
 #'   data = anscombe,
@@ -167,11 +167,11 @@ bf_corr_test <-
 
 
 #' @title Bayesian contingency table analysis.
-#' @name bf_contigency_tab
-#' @aliases bf_contigency_tab
+#' @name bf_contingency_tab
+#' @aliases bf_contingency_tab
 #' @author Indrajeet Patil
 #'
-#' @inheritParams subtitle_contigency_tab
+#' @inheritParams subtitle_contingency_tab
 #' @inheritParams bf_corr_test
 #' @param sampling.plan Character describing the sampling plan. Possible options
 #'   are `"indepMulti"` (independent multinomial; default), `"poisson"`,
@@ -190,20 +190,20 @@ bf_corr_test <-
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
-#' bf_contigency_tab(
+#' bf_contingency_tab(
 #'   data = mtcars,
 #'   main = am,
 #'   condition = cyl,
 #'   fixed.margin = "cols"
 #' )
-#' 
+#'
 #' # to see results
-#' bf_contigency_tab(
+#' bf_contingency_tab(
 #'   data = mtcars,
 #'   main = am,
 #'   condition = cyl,
@@ -214,7 +214,7 @@ bf_corr_test <-
 #' @export
 
 # function body
-bf_contigency_tab <-
+bf_contingency_tab <-
   function(data,
              main,
              condition,
@@ -340,14 +340,14 @@ bf_contigency_tab <-
 #' @inheritParams bf_corr_test
 #' @inheritParams BayesFactor::ttestBF
 #'
-#' @seealso \code{\link{bf_contigency_tab}}, \code{\link{bf_corr_test}},
+#' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},
 #' \code{\link{bf_oneway_anova}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -356,7 +356,7 @@ bf_contigency_tab <-
 #'   paired = FALSE,
 #'   bf.prior = 0.880
 #' )
-#' 
+#'
 #' # to see results
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -365,7 +365,7 @@ bf_contigency_tab <-
 #'   paired = FALSE,
 #'   output = "results"
 #' )
-#' 
+#'
 #' # for paired sample test
 #' bf_two_sample_ttest(
 #'   data = dplyr::filter(
@@ -505,11 +505,11 @@ bf_two_sample_ttest <-
 #' @inheritParams ggbetweenstats
 #' @inheritParams bf_corr_test
 #'
-#' @seealso \code{\link{bf_contigency_tab}}, \code{\link{bf_corr_test}},
+#' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # to get caption (default)
 #' bf_oneway_anova(
 #'   data = iris,
@@ -517,7 +517,7 @@ bf_two_sample_ttest <-
 #'   y = Sepal.Length,
 #'   bf.prior = 0.8
 #' )
-#' 
+#'
 #' # to get results dataframe
 #' bf_oneway_anova(
 #'   data = iris,
@@ -616,11 +616,11 @@ bf_oneway_anova <-
 #'
 #' @importFrom BayesFactor ttestBF extractBF
 #'
-#' @seealso \code{\link{bf_contigency_tab}}, \code{\link{bf_oneway_anova}},
+#' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_oneway_anova}},
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # to get caption (default)
 #' bf_one_sample_ttest(
 #'   data = iris,
@@ -629,7 +629,7 @@ bf_oneway_anova <-
 #'   bf.prior = 0.8,
 #'   output = "caption"
 #' )
-#' 
+#'
 #' # to get results dataframe
 #' bf_one_sample_ttest(
 #'   data = iris,

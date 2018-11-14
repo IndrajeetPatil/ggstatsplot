@@ -1,53 +1,75 @@
 context("subtitle_anova_robust")
 
-testthat::test_that(desc = "subtitle_anova_robust works",
-                    code = {
-                      set.seed(123)
-                      using_function1 <-
-                        ggstatsplot:::subtitle_anova_robust(
-                          data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.5),
-                          x = genre,
-                          y = length,
-                          k = 5,
-                          tr = 0.00025,
-                          nboot = 2,
-                          messages = FALSE
-                        )
+testthat::test_that(
+  desc = "subtitle_anova_robust works",
+  code = {
+    set.seed(123)
 
-                      results1 <-
-                        ggplot2::expr(
-                          paste(
-                            italic("F"),
-                            "(",
-                            5,
-                            ",",
-                            "53.64047",
-                            ") = ",
-                            "36.02148",
-                            ", ",
-                            italic("p"),
-                            " = ",
-                            "< 0.001",
-                            ", ",
-                            italic(xi),
-                            " = ",
-                            "0.58745",
-                            ", 95% CI [",
-                            "0.55162",
-                            ", ",
-                            "0.62561",
-                            "]",
-                            ", ",
-                            italic("n"),
-                            " = ",
-                            1216L
-                          )
-                        )
+    # ggstatsplot output
+    using_function1 <-
+      ggstatsplot::subtitle_anova_robust(
+        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.5),
+        x = genre,
+        y = length,
+        k = 5,
+        tr = 0.00025,
+        nboot = 2,
+        messages = FALSE
+      )
 
-                      # testing overall, omega squared and bayes factor
-                      testthat::expect_identical(using_function1, results1)
-                      testthat::expect_identical(as.character(using_function1)[8],
-                                                 as.character(results1)[8])
-                      testthat::expect_identical(as.character(using_function1)[18],
-                                                 as.character(results1)[18])
-                    })
+    # expected output
+    results1 <-
+      ggplot2::expr(
+        paste(
+          italic("F"),
+          "(",
+          5,
+          ",",
+          "53.64047",
+          ") = ",
+          "36.02148",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic(xi),
+          " = ",
+          "0.58745",
+          ", 95% CI [",
+          "0.55162",
+          ", ",
+          "0.62561",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          1216L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(
+      object = using_function1,
+      expected = results1
+    )
+
+    # testing denominator degrees of freedom
+    testthat::expect_identical(
+      object = as.character(using_function1)[8],
+      expected = as.character(results1)[8]
+    )
+
+    # testing upper limit for CI
+    testthat::expect_identical(
+      object = as.character(using_function1)[18],
+      expected = as.character(results1)[18]
+    )
+
+    # testing sample size
+    testthat::expect_identical(
+      object = using_function1[25],
+      expected = results1[25]
+    )
+  }
+)

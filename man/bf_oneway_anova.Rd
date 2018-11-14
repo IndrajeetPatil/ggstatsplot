@@ -47,7 +47,7 @@ bf_oneway_anova(
 )
 }
 \seealso{
-\code{\link{bf_contigency_tab}}, \code{\link{bf_corr_test}},
+\code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},
 \code{\link{bf_two_sample_ttest}}
 }
 \author{

@@ -26,8 +26,8 @@
 #' @param bf.message Logical that decides whether to display a caption with
 #'   results from bayes factor test in favor of the null hypothesis (default:
 #'   `FALSE`).
-#' @inheritParams bf_contigency_tab
-#' @inheritParams subtitle_contigency_tab
+#' @inheritParams bf_contingency_tab
+#' @inheritParams subtitle_contingency_tab
 #' @inheritParams subtitle_onesample_proptest
 #' @inheritParams paletteer::scale_fill_paletteer_d
 #' @inheritParams theme_ggstatsplot
@@ -54,10 +54,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -65,7 +65,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -76,10 +76,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -478,7 +478,7 @@ ggpiestats <-
       # running approprate statistical test
       # unpaired: Pearson's Chi-square test of independence
       subtitle <-
-        subtitle_contigency_tab(
+        subtitle_contingency_tab(
           data = data,
           main = main,
           condition = condition,
@@ -494,7 +494,7 @@ ggpiestats <-
       # preparing the BF message for null hypothesis support
       if (isTRUE(bf.message)) {
         bf.caption.text <-
-          bf_contigency_tab(
+          bf_contingency_tab(
             data = data,
             main = main,
             condition = condition,

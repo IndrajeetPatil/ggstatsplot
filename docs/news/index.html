@@ -8,7 +8,12 @@
 
 <title>Changelog • ggstatsplot</title>
 
-<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -197,7 +202,9 @@
 <li>The helper function <code>untable</code> has been depcreated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
 <li>Vignette with <code>purrr</code> examples removed from <code>CRAN</code> to reduce the size of the package. It is now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</li>
 <li>
-<code>subtitle_ggbetween_t_rob</code> function can now handle dependent samples and gains <code>paired</code> argument.</li>
+<code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</li>
+<li>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code>%&gt;%</code>, <code>%&lt;&gt;%</code>, <code>%$%</code>, <code>%|%</code>, <code>%||%</code>
+</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

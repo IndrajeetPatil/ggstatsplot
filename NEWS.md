@@ -38,8 +38,10 @@ MAJOR CHANGES
   - Vignette with `purrr` examples removed from `CRAN` to reduce the size of the
     package. It is now available on the package website:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/>.
-  - `subtitle_ggbetween_t_rob` function can now handle dependent samples and
+  - `subtitle_t_robust` function can now handle dependent samples and
     gains `paired` argument.
+  - A number of tidyverse operators are now reexported by `ggstatsplot`: `%>%`,
+    `%<>%`, `%$%`, `%|%`, `%||%`
 
 MINOR CHANGES
 
