@@ -22,7 +22,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
-#' @importFrom rlang !! enquo quo_name
+#' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest
