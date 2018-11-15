@@ -70,10 +70,10 @@ bf_extractor <- function(bf.object) {
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # to get caption (default)
 #' bf_corr_test(
 #'   data = anscombe,
@@ -81,7 +81,7 @@ bf_extractor <- function(bf.object) {
 #'   y = y4,
 #'   bf.prior = 1
 #' )
-#'
+#' 
 #' # to see results
 #' bf_corr_test(
 #'   data = anscombe,
@@ -190,10 +190,10 @@ bf_corr_test <-
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # to get caption (default)
 #' bf_contingency_tab(
 #'   data = mtcars,
@@ -201,7 +201,7 @@ bf_corr_test <-
 #'   condition = cyl,
 #'   fixed.margin = "cols"
 #' )
-#'
+#' 
 #' # to see results
 #' bf_contingency_tab(
 #'   data = mtcars,
@@ -344,10 +344,10 @@ bf_contingency_tab <-
 #' \code{\link{bf_oneway_anova}}
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # to get caption (default)
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -356,7 +356,7 @@ bf_contingency_tab <-
 #'   paired = FALSE,
 #'   bf.prior = 0.880
 #' )
-#'
+#' 
 #' # to see results
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -365,7 +365,7 @@ bf_contingency_tab <-
 #'   paired = FALSE,
 #'   output = "results"
 #' )
-#'
+#' 
 #' # for paired sample test
 #' bf_two_sample_ttest(
 #'   data = dplyr::filter(
@@ -509,7 +509,7 @@ bf_two_sample_ttest <-
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#'
+#' 
 #' # to get caption (default)
 #' bf_oneway_anova(
 #'   data = iris,
@@ -517,7 +517,7 @@ bf_two_sample_ttest <-
 #'   y = Sepal.Length,
 #'   bf.prior = 0.8
 #' )
-#'
+#' 
 #' # to get results dataframe
 #' bf_oneway_anova(
 #'   data = iris,
@@ -620,7 +620,7 @@ bf_oneway_anova <-
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#'
+#' 
 #' # to get caption (default)
 #' bf_one_sample_ttest(
 #'   data = iris,
@@ -629,7 +629,7 @@ bf_oneway_anova <-
 #'   bf.prior = 0.8,
 #'   output = "caption"
 #' )
-#'
+#' 
 #' # to get results dataframe
 #' bf_one_sample_ttest(
 #'   data = iris,

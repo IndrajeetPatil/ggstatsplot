@@ -21,8 +21,10 @@ testthat::test_that(
     testthat::expect_true(object = inherits(
       x = ggstatsplot::grouped_ggscatterstats(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(.data = ., mpaa %in% c("R", "PG-13"),
-                        genre %in% c("Drama", "Comedy")),
+          dplyr::filter(
+            .data = ., mpaa %in% c("R", "PG-13"),
+            genre %in% c("Drama", "Comedy")
+          ),
         x = length,
         y = rating,
         grouping.var = mpaa,
@@ -37,8 +39,10 @@ testthat::test_that(
     testthat::expect_true(object = inherits(
       x = ggstatsplot::grouped_ggscatterstats(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(.data = ., mpaa %in% c("R", "PG-13"),
-                        genre %in% c("Drama", "Comedy")),
+          dplyr::filter(
+            .data = ., mpaa %in% c("R", "PG-13"),
+            genre %in% c("Drama", "Comedy")
+          ),
         x = "length",
         y = "rating",
         grouping.var = "mpaa",
@@ -47,6 +51,5 @@ testthat::test_that(
       ),
       what = "gg"
     ))
-
   }
 )

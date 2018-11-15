@@ -265,7 +265,6 @@ pairwise_p <-
         .vars = "x",
         .funs = ~ base::droplevels(x = base::as.factor(x = .))
       ) %>%
-      # stats::na.omit(.) %>%
       tibble::as.tibble(x = .)
 
     # ---------------------------- parametric ---------------------------------

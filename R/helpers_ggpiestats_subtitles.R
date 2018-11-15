@@ -31,7 +31,7 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#'
+#' 
 #' # without counts data
 #' subtitle_contingency_tab(
 #'   data = mtcars,
@@ -39,11 +39,11 @@
 #'   condition = cyl,
 #'   nboot = 15
 #' )
-#'
+#' 
 #' # with counts data
 #' # in case of no variation, a `NULL` will be returned.
 #' library(jmv)
-#'
+#' 
 #' as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male") %>%
 #'   subtitle_contingency_tab(
@@ -56,16 +56,16 @@
 
 # function body
 subtitle_contingency_tab <- function(data,
-                                    main,
-                                    condition,
-                                    counts = NULL,
-                                    nboot = 25,
-                                    paired = FALSE,
-                                    stat.title = NULL,
-                                    conf.level = 0.95,
-                                    conf.type = "norm",
-                                    messages = TRUE,
-                                    k = 3) {
+                                     main,
+                                     condition,
+                                     counts = NULL,
+                                     nboot = 25,
+                                     paired = FALSE,
+                                     stat.title = NULL,
+                                     conf.level = 0.95,
+                                     conf.type = "norm",
+                                     messages = TRUE,
+                                     k = 3) {
 
   # =============================== dataframe ================================
 
@@ -357,16 +357,16 @@ subtitle_contingency_tab <- function(data,
 #' @inheritParams subtitle_contingency_tab
 #'
 #' @examples
-#'
+#' 
 #' # with counts
 #' library(jmv)
-#'
+#' 
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#'
+#' 
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),
