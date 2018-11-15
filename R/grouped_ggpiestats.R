@@ -20,7 +20,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate_if
-#' @importFrom rlang !! quo_name enquo
+#' @importFrom rlang !! quo_name enquo ensym
 #' @importFrom glue glue
 #' @importFrom purrr map
 #' @importFrom tidyr nest
@@ -31,34 +31,34 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#' 
+#'
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   main = cyl
 #' )
-#' 
+#'
 #' # without condition and with count data
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
-#' 
+#'
 #' # the following will take slightly more amount of time
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
 #'   dplyr::sample_frac(tbl = ., size = 0.10)
-#' 
+#'
 #' # plot
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = diamonds_short,
@@ -109,6 +109,10 @@ grouped_ggpiestats <- function(data,
                                ...) {
   # ======================== preparing dataframe =============================
 
+  # ensure the grouping variable works quoted or unquoted
+  grouping.var <- rlang::ensym(grouping.var)
+
+  # prearing the dataframe
   if (!missing(condition)) {
 
     # if condition variable *is* provided

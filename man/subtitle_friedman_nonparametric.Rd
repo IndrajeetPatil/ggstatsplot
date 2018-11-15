@@ -33,7 +33,7 @@ ANOVA) (within-subjects designs).
 set.seed(123)
 library(ggstatsplot)
 library(jmv)
-data('bugs', package = 'jmv')
+data("bugs", package = "jmv")
 
 # converting to long format
 data_bugs <- bugs \%>\%

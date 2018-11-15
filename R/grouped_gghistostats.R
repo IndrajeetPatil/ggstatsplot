@@ -32,7 +32,7 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
-#' 
+#'
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
@@ -86,6 +86,9 @@ grouped_gghistostats <- function(data,
                                  ...) {
 
   # ======================== preparing dataframe ============================
+
+  # ensure the grouping variable works quoted or unquoted
+  grouping.var <- rlang::ensym(grouping.var)
 
   # getting the dataframe ready
   df <-

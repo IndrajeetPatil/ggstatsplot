@@ -34,7 +34,7 @@ testthat::test_that(
       what = "gg"
     ))
 
-    # when arguments are entered as bare expressions
+    # when arguments are entered as character
     set.seed(123)
     testthat::expect_true(object = inherits(
       x = ggstatsplot::grouped_ggscatterstats(

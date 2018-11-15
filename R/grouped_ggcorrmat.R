@@ -27,7 +27,7 @@
 #' @inherit ggcorrmat return details
 #'
 #' @examples
-#' 
+#'
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -40,7 +40,7 @@
 #'   palette = "BottleRocket2",
 #'   nrow = 2
 #' )
-#' 
+#'
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -48,7 +48,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#' 
+#'
 #' # for getting confidence intervals
 #' # confidence intervals are not available for **robust** correlation
 #' ggstatsplot::grouped_ggcorrmat(
@@ -106,6 +106,9 @@ grouped_ggcorrmat <- function(data,
                               messages = TRUE,
                               ...) {
   # ========================= preparing dataframe =============================
+
+  # ensure the grouping variable works quoted or unquoted
+  grouping.var <- rlang::ensym(grouping.var)
 
   # getting the dataframe ready
   df <-

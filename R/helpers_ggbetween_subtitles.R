@@ -33,7 +33,7 @@
 #'   y = sleep_rem,
 #'   k = 2
 #' )
-#'
+#' 
 #' # modifying the defaults
 #' subtitle_anova_parametric(
 #'   data = ggplot2::msleep,
@@ -305,20 +305,20 @@ subtitle_anova_parametric <-
 #' @importFrom effsize cohen.d
 #'
 #' @examples
-#'
+#' 
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#'
+#' 
 #' # with defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
@@ -682,14 +682,14 @@ subtitle_mann_nonparametric <-
 #' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
-#'
+#' 
 #' # with defaults
 #' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_t_robust(
 #'   data = ToothGrowth,
@@ -699,7 +699,7 @@ subtitle_mann_nonparametric <-
 #'   k = 1,
 #'   tr = 0.2
 #' )
-#'
+#' 
 #' # within-subjects design
 #' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
@@ -947,18 +947,18 @@ subtitle_t_robust <-
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # between-subjects design
-#'
+#' 
 #' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#'
+#' 
 #' # within-subjects design
-#'
+#' 
 #' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -1238,13 +1238,13 @@ subtitle_kw_nonparametric <-
 #' set.seed(123)
 #' library(ggstatsplot)
 #' library(jmv)
-#' data('bugs', package = 'jmv')
-#'
+#' data("bugs", package = "jmv")
+#' 
 #' # converting to long format
 #' data_bugs <- bugs %>%
 #'   tibble::as.tibble(.) %>%
 #'   tidyr::gather(., key, value, LDLF:HDHF)
-#'
+#' 
 #' # creating the subtitle
 #' ggstatsplot::subtitle_friedman_nonparametric(
 #'   data = data_bugs,
@@ -1255,105 +1255,104 @@ subtitle_kw_nonparametric <-
 #' @export
 
 # function body
-subtitle_friedman_nonparametric <-
-  function(data,
-             x,
-             y,
-             messages = TRUE,
-             k = 3,
-             ...) {
+subtitle_friedman_nonparametric <- function(data,
+                                            x,
+                                            y,
+                                            messages = TRUE,
+                                            k = 3,
+                                            ...) {
 
-    # ---------------------------- data cleanup -------------------------------
+  # ---------------------------- data cleanup -------------------------------
 
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      )
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    )
 
-    # convert the grouping variable to factor and drop unused levels
-    data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      ) %>%
-      tibble::as.tibble(x = .)
+  # convert the grouping variable to factor and drop unused levels
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    ) %>%
+    tibble::as.tibble(x = .)
 
-    # converting to long format and then getting it back in wide so that the
-    # rowid variable can be used as the block variable
-    data_within <-
-      long_to_wide_converter(
-        data = data,
-        x = x,
-        y = y
-      ) %>%
-      tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::arrange(.data = ., rowid)
+  # converting to long format and then getting it back in wide so that the
+  # rowid variable can be used as the block variable
+  data_within <-
+    long_to_wide_converter(
+      data = data,
+      x = x,
+      y = y
+    ) %>%
+    tidyr::gather(data = ., key, value, -rowid) %>%
+    dplyr::arrange(.data = ., rowid)
 
-    # sample size
-    sample_size <- length(unique(data_within$rowid))
+  # sample size
+  sample_size <- length(unique(data_within$rowid))
 
-    # setting up the anova model and getting its summary
-    friedman_stat <-
-      stats::friedman.test(
-        formula = value ~ key | rowid,
-        data = data_within,
-        na.action = na.omit
-      )
+  # setting up the anova model and getting its summary
+  friedman_stat <-
+    stats::friedman.test(
+      formula = value ~ key | rowid,
+      data = data_within,
+      na.action = na.omit
+    )
 
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            "Friedman: ",
-            italic(chi)^2,
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
-            x = friedman_stat$statistic[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          df = friedman_stat$parameter[[1]],
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = friedman_stat$p.value[[1]],
-            k,
-            p.value = TRUE
-          ),
-          n = sample_size
-        )
-      )
-
-    # letting the user know that this test doesn't have agreed upon effect size
-    if (isTRUE(messages)) {
-      base::message(cat(
-        crayon::red("Note: "),
-        crayon::blue(
-          "No effect size available for Friedman Rank Sum Test.\n"
+  # preparing the subtitle
+  subtitle <-
+    base::substitute(
+      expr =
+        paste(
+          "Friedman: ",
+          italic(chi)^2,
+          "(",
+          df,
+          ") = ",
+          estimate,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue,
+          ", ",
+          italic("n"),
+          " = ",
+          n
         ),
-        sep = ""
-      ))
-    }
+      env = base::list(
+        estimate = ggstatsplot::specify_decimal_p(
+          x = friedman_stat$statistic[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        df = friedman_stat$parameter[[1]],
+        pvalue = ggstatsplot::specify_decimal_p(
+          x = friedman_stat$p.value[[1]],
+          k,
+          p.value = TRUE
+        ),
+        n = sample_size
+      )
+    )
 
-    # return the subtitle
-    return(subtitle)
+  # letting the user know that this test doesn't have agreed upon effect size
+  if (isTRUE(messages)) {
+    base::message(cat(
+      crayon::red("Note: "),
+      crayon::blue(
+        "No effect size available for Friedman Rank Sum Test.\n"
+      ),
+      sep = ""
+    ))
   }
+
+  # return the subtitle
+  return(subtitle)
+}
 
 #' @title Making text subtitle for the robust ANOVA
 #'   (between-subjects designs).
@@ -1371,12 +1370,12 @@ subtitle_friedman_nonparametric <-
 #' @importFrom rlang !! enquo
 #'
 #' @examples
-#'
+#' 
 #' # examples not executed due to time constraints
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # going with the defaults
 #' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
@@ -1384,7 +1383,7 @@ subtitle_friedman_nonparametric <-
 #'   y = percbelowpoverty,
 #'   nboot = 10
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
@@ -1559,7 +1558,7 @@ subtitle_anova_robust <-
 #'   k = 2,
 #'   bf.prior = 0.8
 #' )
-#'
+#' 
 #' # modifying the defaults
 #' subtitle_anova_bayes(
 #'   data = ggplot2::msleep,
