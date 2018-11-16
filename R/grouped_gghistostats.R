@@ -32,7 +32,7 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
-#'
+#' 
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,

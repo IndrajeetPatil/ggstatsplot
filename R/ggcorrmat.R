@@ -8,7 +8,8 @@
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
 #' @param cor.vars List of variables for which the correlation matrix is to be
-#'   computed and visualized.
+#'   computed and visualized. If `NULL` (default), all numeric variables from
+#'   `data` will be used.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
 #' @param output Character that decides expected output from this function:
@@ -98,7 +99,7 @@
 #' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select group_by summarize n arrange
 #' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom purrr is_bare_double flatten_dbl
+#' @importFrom purrr is_bare_double flatten_dbl keep
 #' @importFrom stats cor na.omit
 #' @importFrom tibble as_data_frame rownames_to_column
 #' @importFrom rlang !! enquo quo_name
@@ -113,6 +114,12 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
+#' 
+#' # for reproducibility
+#' set.seed(123)
+#' 
+#' # if `cor.vars` not specified, all numeric varibles used
+#' ggstatsplot::ggcorrmat(data = iris)
 #' 
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
@@ -163,7 +170,7 @@
 
 # defining the function
 ggcorrmat <- function(data,
-                      cor.vars,
+                      cor.vars = NULL,
                       cor.vars.names = NULL,
                       output = "plot",
                       matrix.type = "full",
@@ -204,11 +211,15 @@ ggcorrmat <- function(data,
                       axis.text.x.margin.b = 0,
                       messages = TRUE) {
   # ======================= dataframe ========================================
-  #
-  # creating a dataframe out of the entered variables
-  df <- data %>%
-    dplyr::select(.data = ., !!rlang::enquo(cor.vars))
 
+  # creating a dataframe out of the entered variables
+  if (base::missing(cor.vars)) {
+    df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
+  } else {
+    # creating a dataframe out of the entered variables
+    df <- data %>%
+      dplyr::select(.data = ., !!rlang::enquo(cor.vars))
+  }
   # counting number of NAs present in the dataframe
   na_total <- df %>%
     purrr::map_df(.x = ., .f = ~ sum(is.na(.))) %>%

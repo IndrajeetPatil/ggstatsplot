@@ -19,6 +19,9 @@ testthat::test_that(
         x = genre,
         y = rating,
         grouping.var = mpaa,
+        type = "p",
+        bf.message = TRUE,
+        pairwise.comparisons = TRUE,
         messages = FALSE,
         outlier.tagging = TRUE,
         outlier.label = length
@@ -38,6 +41,8 @@ testthat::test_that(
         x = genre,
         y = rating,
         grouping.var = "mpaa",
+        type = "np",
+        pairwise.comparisons = TRUE,
         messages = FALSE,
         outlier.tagging = TRUE,
         outlier.label = title
@@ -65,6 +70,8 @@ testthat::test_that(
           y = "rating",
           grouping.var = mpaa,
           messages = FALSE,
+          type = "r",
+          pairwise.comparisons = TRUE,
           outlier.tagging = TRUE,
           outlier.label = "title",
           outlier.coef = 5

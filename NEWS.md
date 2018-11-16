@@ -52,6 +52,9 @@ MINOR CHANGES
     decides what information needs to be displayed as a label on the slices of
     the pie chart: `"percentage"` (which has been the default thus far),
     `"counts"`, or `"both"`.
+  - `ggcorrmat` can work with `cor.vars = NULL`. In such case, **all** numeric
+    variables from the provided dataframe will be used for computing the
+    correlation matrix.
   - Given the constant changes to the default behavior of functions, the
     lifecycle badge has been changed from `stable` to `maturing`.
   - When the number of colors needed by a function exceeds the number of colors
@@ -62,6 +65,7 @@ MINOR CHANGES
     `gghistostats` with the argument `results.subtitle`), so `ggbetweenstats`
     also gains two new arguments to do this: `results.subtitle` and `subtitle`.
   - New dataset added: `iris_long`.
+  - More tests added and the code coverage has now jumped to over 50%.
 
 # ggstatsplot 0.0.6
 

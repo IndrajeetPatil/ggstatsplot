@@ -4,13 +4,14 @@
 \alias{ggcorrmat}
 \title{Visualization of a correlalogram (or correlation matrix)}
 \usage{
-ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
-  matrix.type = "full", method = "square", corr.method = "pearson",
-  exact = FALSE, continuity = TRUE, beta = 0.1, digits = 2,
-  sig.level = 0.05, p.adjust.method = "none", hc.order = FALSE,
-  hc.method = "complete", lab = TRUE, package = "RColorBrewer",
-  palette = "Dark2", direction = 1, colors = c("#E69F00", "white",
-  "#009E73"), outline.color = "black", ggtheme = ggplot2::theme_bw(),
+ggcorrmat(data, cor.vars = NULL, cor.vars.names = NULL,
+  output = "plot", matrix.type = "full", method = "square",
+  corr.method = "pearson", exact = FALSE, continuity = TRUE,
+  beta = 0.1, digits = 2, sig.level = 0.05,
+  p.adjust.method = "none", hc.order = FALSE, hc.method = "complete",
+  lab = TRUE, package = "RColorBrewer", palette = "Dark2",
+  direction = 1, colors = c("#E69F00", "white", "#009E73"),
+  outline.color = "black", ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, title = NULL, subtitle = NULL,
   caption = NULL, caption.default = TRUE, lab.col = "black",
   lab.size = 5, insig = "pch", pch = 4, pch.col = "black",
@@ -24,7 +25,8 @@ ggcorrmat(data, cor.vars, cor.vars.names = NULL, output = "plot",
 taken.}
 
 \item{cor.vars}{List of variables for which the correlation matrix is to be
-computed and visualized.}
+computed and visualized. If \code{NULL} (default), all numeric variables from
+\code{data} will be used.}
 
 \item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
@@ -158,6 +160,12 @@ of p-values.
 Visualization of a correlalogram (or correlation matrix)
 }
 \examples{
+
+# for reproducibility
+set.seed(123)
+
+# if `cor.vars` not specified, all numeric varibles used
+ggstatsplot::ggcorrmat(data = iris)
 
 # to get the correlalogram
 # note that the function will run even if the vector with variable names is

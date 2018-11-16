@@ -5,14 +5,14 @@
 \title{Visualization of a correlalogram (or correlation matrix) for all
 levels of a grouping variable}
 \usage{
-grouped_ggcorrmat(data, cor.vars, cor.vars.names = NULL, grouping.var,
-  title.prefix = "Group", output = "plot", matrix.type = "full",
-  method = "square", corr.method = "pearson", exact = FALSE,
-  continuity = TRUE, beta = 0.1, digits = 2, sig.level = 0.05,
-  p.adjust.method = "none", hc.order = FALSE, hc.method = "complete",
-  lab = TRUE, package = "RColorBrewer", palette = "Dark2",
-  direction = 1, colors = c("#E69F00", "white", "#009E73"),
-  outline.color = "black", ggtheme = ggplot2::theme_bw(),
+grouped_ggcorrmat(data, cor.vars = NULL, cor.vars.names = NULL,
+  grouping.var, title.prefix = "Group", output = "plot",
+  matrix.type = "full", method = "square", corr.method = "pearson",
+  exact = FALSE, continuity = TRUE, beta = 0.1, digits = 2,
+  sig.level = 0.05, p.adjust.method = "none", hc.order = FALSE,
+  hc.method = "complete", lab = TRUE, package = "RColorBrewer",
+  palette = "Dark2", direction = 1, colors = c("#E69F00", "white",
+  "#009E73"), outline.color = "black", ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, subtitle = NULL, caption = NULL,
   caption.default = TRUE, lab.col = "black", lab.size = 5,
   insig = "pch", pch = 4, pch.col = "black", pch.cex = 11,
@@ -26,7 +26,8 @@ grouped_ggcorrmat(data, cor.vars, cor.vars.names = NULL, grouping.var,
 taken.}
 
 \item{cor.vars}{List of variables for which the correlation matrix is to be
-computed and visualized.}
+computed and visualized. If \code{NULL} (default), all numeric variables from
+\code{data} will be used.}
 
 \item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
@@ -235,6 +236,16 @@ function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
+
+# for reproducibility
+set.seed(123)
+
+# for plot
+# (without specifiying needed variables; all numeric variables will be used)
+ggstatsplot::grouped_ggcorrmat(
+  data = ggplot2::msleep,
+  grouping.var = vore
+)
 
 # for getting plot
 ggstatsplot::grouped_ggcorrmat(

@@ -28,6 +28,7 @@ testthat::test_that(
         x = length,
         y = rating,
         grouping.var = mpaa,
+        type = "p",
         marginal = FALSE,
         messages = FALSE
       ),
@@ -46,6 +47,7 @@ testthat::test_that(
         x = "length",
         y = "rating",
         grouping.var = "mpaa",
+        type = "r",
         messages = FALSE,
         marginal = FALSE
       ),

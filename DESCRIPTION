@@ -16,10 +16,14 @@ Authors@R: c(
   role = "ctb", 
   comment = c(ORCID = "0000-0002-3606-2188")))
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
-Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with details from statistical tests 
-  (parametric, non-parametric, or robust) included in the plots themselves. It is targeted primarily at 
+Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with details 
+  from statistical tests included in the plots themselves. It is targeted primarily at 
   behavioral sciences community to provide a one-line code to generate information-rich plots for 
-  statistical analysis of continuous (violin plots, scatterplots, histograms) or categorical (pie charts) data.
+  statistical analysis. of continuous (violin plots, scatterplots, histograms) or 
+  categorical (pie charts) data. Currently, it supports only the most common types 
+  of statistical tests: parametric, nonparametric, robust, and bayesian 
+  versions of t-test/anova, correlation analyses, contingency table analysis, 
+  and regression analyses.
 License: GPL-3 | file LICENSE
 URL: https://indrajeetpatil.github.io/ggstatsplot/, https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
