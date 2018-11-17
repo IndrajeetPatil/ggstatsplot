@@ -62,11 +62,12 @@ subtitle_anova_parametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+      tibble::as.tibble(x = .)
 
     # convert the grouping variable to factor and drop unused levels
     data %<>%
-      stats::na.omit(.) %>%
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
@@ -292,7 +293,7 @@ subtitle_anova_parametric <-
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence interval for Cohen's *d*
 #'   or Hedge's *g* (Default: `FALSE`).
-#'  @param conf.level A scalar value between 0 and 1. If unspecified, the
+#' @param conf.level A scalar value between 0 and 1. If unspecified, the
 #'    default is to return `95%` lower and upper confidence intervals (`0.95`).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_anova_parametric
@@ -1412,11 +1413,11 @@ subtitle_anova_robust <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      dplyr::filter(.data = ., !is.na(x), !is.na(y))
 
     # convert the grouping variable to factor and drop unused levels
     data %<>%
-      stats::na.omit(.) %>%
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
@@ -1587,11 +1588,11 @@ subtitle_anova_bayes <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
+    ) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y))
 
   # convert the grouping variable to factor and drop unused levels
   data %<>%
-    stats::na.omit(.) %>%
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",

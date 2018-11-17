@@ -308,7 +308,7 @@
 <a class="sourceLine" id="cb4-26" data-line-number="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"genre (comparison level: Action)"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-27" data-line-number="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
-<p>As can be seen from the regression coefficients, compared to the action movies, only romantic movies, animated movies, and dramas fare better with the audiences.</p>
+<p>As can be seen from the regression coefficients, compared to the action movies, only romantic movies, animated movies, and dramas fare better with the audiences. Also, note that the coefficient for <code>"Drama"</code> is statistically significant (<code>*p* = 0.04</code>), but the confidnece interval contains <code>0</code>. This is because we set the confidence interval to <code>0.99</code>.</p>
 </div>
 <div id="linear-mixed-effects-model-lmer" class="section level2">
 <h2 class="hasAnchor">
@@ -820,7 +820,7 @@
 <h2 class="hasAnchor">
 <a href="#and-much-more" class="anchor"></a>And much more…</h2>
 <p>This vignette was supposed to give just a taste for only <em>some</em> of the regression models supported by <code>ggcoefstats</code>. The full list of supported models will keep expanding as additional tidiers are added to the <code>broom</code> package: <a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a></p>
-<p>Note that not <strong>all</strong> models supported by <code>broom</code> will be supported by <code>ggcoefstats</code>. In particular, classes of objects for which there is no estimates present (e.g., <code>kmeans</code>) are not supported.</p>
+<p>Note that not <strong>all</strong> models supported by <code>broom</code> will be supported by <code>ggcoefstats</code>. In particular, classes of objects for which there is no estimates present (e.g., <code>kmeans</code>, <code>optim</code>, etc.) are not supported.</p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">

@@ -204,25 +204,29 @@ a way that the viewer understands the greatest number of ideas in a short amount
 of time all the while not quoting the data out of context. The package follows
 the principles for **graphical integrity** (as outlined in Tufte, 2001):
 
-  * The physical representation of numbers is proportional to the numerical
-  quantities they represent (e.g., Figure-1 and Figure-2 show how means (in
-  `ggbetweenstats`) or percentages (`ggpiestats`) are proportional to the
-  vertical distance or the area, respectively).
+  - The physical representation of numbers is proportional to the numerical
+    quantities they represent (e.g., Figure-1 and Figure-2 show how means (in
+    `ggbetweenstats`) or percentages (`ggpiestats`) are proportional to the
+    vertical distance or the area, respectively).
   
-  * All important events in the data have clear, detailed, and thorough labeling
-  (e.g., Figure-1 plot shows how `ggbetweenstats` labels means, sample size
-  information, and outliers; same can be appreciated for `ggpiestats` in
-  Figure-2).
+  - All important events in the data have clear, detailed, and thorough labeling
+    (e.g., Figure-1 plot shows how `ggbetweenstats` labels means, sample size
+    information, outliers, and pairwise comparisons; same can be appreciated for
+    `ggpiestats` in Figure-2 and `gghistostats` in Figure-5). Note that data
+    labels in the data region are designed in a way that they don't interfere
+    with our ability to assess the overall pattern of the data (Cleveland, 1985;
+    p.44-45). This is achieved by using `ggrepel` package to place labels in a
+    way that reduces their visual prominence.
   
-  * None of the plots have *design* variation (e.g., abrupt change in scales)
-  over the surface of a same graphic because this can lead to a false impression
-  about variation in *data*.
+  - None of the plots have *design* variation (e.g., abrupt change in scales)
+    over the surface of a same graphic because this can lead to a false
+    impression about variation in *data*.
   
-  * The number of information-carrying dimensions never exceed the number of
-  dimensions in the data (e.g., using area to show one-dimensional data).
+  - The number of information-carrying dimensions never exceed the number of
+    dimensions in the data (e.g., using area to show one-dimensional data).
 
-  * All plots are designed to have no **chartjunk** (like moiré vibrations, fake
-  perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
+  - All plots are designed to have no **chartjunk** (like moiré vibrations, fake
+    perspective, dark grid lines, etc.) (Tufte, 2001, Chapter 5).
 
 There are some instances where `ggstatsplot` graphs don't follow principles of
 clean graphics, as formulated in the Tufte theory of data graphics (Tufte, 2001,
@@ -500,5 +504,5 @@ Summarizing session information for reproducibility.
 
 ```{r session_info}
 options(width = 200)
-devtools::session_info()$platform
+devtools::session_info()
 ```

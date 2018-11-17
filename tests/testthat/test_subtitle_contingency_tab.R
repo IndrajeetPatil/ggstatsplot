@@ -3,9 +3,9 @@ context("subtitle_contingency_tab")
 testthat::test_that(
   desc = "subtitle_contingency_tab works",
   code = {
-    set.seed(123)
 
     # ggstatsplot output
+    set.seed(123)
     using_function1 <-
       suppressWarnings(
         ggstatsplot::subtitle_contingency_tab(
@@ -22,6 +22,7 @@ testthat::test_that(
       )
 
     # expected output
+    set.seed(123)
     results1 <-
       ggplot2::expr(
         paste(

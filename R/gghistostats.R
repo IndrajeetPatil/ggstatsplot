@@ -186,15 +186,15 @@ gghistostats <-
         base::cbind.data.frame(x = x)
     }
 
-    # convert to a tibble
+    # convert to a tibble and remove NAs from `x`
     data %<>%
-      tibble::as_data_frame(x = .)
+      tibble::as_data_frame(x = .) %>%
+      dplyr::filter(.data = ., !is.na(x))
 
     # Adding some binwidth sanity checking
     if (is.null(binwidth)) {
       binwidth <- (max(data$x) - min(data$x)) / sqrt(length(data$x))
     }
-
 
     # ================ stats labels ==========================================
 
@@ -223,7 +223,8 @@ gghistostats <-
           bf.prior = bf.prior,
           robust.estimator = robust.estimator,
           nboot = nboot,
-          k = k
+          k = k,
+          messages = messages
         )
     }
 

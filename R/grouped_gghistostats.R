@@ -111,10 +111,11 @@ grouped_gghistostats <- function(data,
     max(x = ., na.rm = TRUE)
 
   # minimum value for x
-  binmin <- dplyr::select(
-    .data = data,
-    !!rlang::enquo(x)
-  ) %>%
+  binmin <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(x)
+    ) %>%
     min(x = ., na.rm = TRUE)
 
   # number of datapoints

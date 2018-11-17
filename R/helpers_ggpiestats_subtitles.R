@@ -77,8 +77,11 @@ subtitle_contingency_tab <- function(data,
         main = !!rlang::enquo(main),
         condition = !!rlang::quo_name(rlang::enquo(condition))
       ) %>%
-      stats::na.omit(.) %>%
-      tibble::as_data_frame(x = .)
+      dplyr::filter(
+        .data = .,
+        !is.na(main), !is.na(condition)
+      ) %>%
+      tibble::as.tibble(x = .)
   } else {
     data <-
       dplyr::select(
@@ -87,8 +90,11 @@ subtitle_contingency_tab <- function(data,
         condition = !!rlang::quo_name(rlang::enquo(condition)),
         counts = !!rlang::quo_name(rlang::enquo(counts))
       ) %>%
-      stats::na.omit(.) %>%
-      tibble::as_data_frame(x = .)
+      dplyr::filter(
+        .data = .,
+        !is.na(main), !is.na(condition), !is.na(counts)
+      ) %>%
+      tibble::as.tibble(x = .)
   }
 
   # main and condition need to be a factor for this analysis
@@ -375,125 +381,124 @@ subtitle_contingency_tab <- function(data,
 #' @export
 
 # defining the function
-subtitle_onesample_proptest <-
-  function(data,
-             main,
-             counts = NULL,
-             ratio = NULL,
-             legend.title = NULL,
-             k = 3) {
+subtitle_onesample_proptest <- function(data,
+                                        main,
+                                        counts = NULL,
+                                        ratio = NULL,
+                                        legend.title = NULL,
+                                        k = 3) {
 
-    # saving the column label for the 'main' variables
-    if (is.null(legend.title)) {
-      legend.title <-
-        colnames(dplyr::select(
-          .data = data,
-          !!rlang::enquo(main)
-        ))[1]
-    }
+  # saving the column label for the 'main' variables
+  if (is.null(legend.title)) {
+    legend.title <-
+      colnames(dplyr::select(
+        .data = data,
+        !!rlang::enquo(main)
+      ))[1]
+  }
 
-    # ============================ dataframe ===============================
+  # ============================ dataframe ===============================
 
-    if (base::missing(counts)) {
-      data <-
-        dplyr::select(
-          .data = data,
-          main = !!rlang::enquo(main)
-        ) %>%
-        tibble::as_data_frame(x = .)
-    } else {
-      data <-
-        dplyr::select(
-          .data = data,
-          main = !!rlang::enquo(main),
-          counts = !!rlang::enquo(counts)
-        ) %>%
-        tibble::as_data_frame(x = .)
-    }
+  if (base::missing(counts)) {
+    data <-
+      dplyr::select(
+        .data = data,
+        main = !!rlang::enquo(main)
+      ) %>%
+      dplyr::filter(.data = ., !is.na(main))
+  } else {
+    data <-
+      dplyr::select(
+        .data = data,
+        main = !!rlang::enquo(main),
+        counts = !!rlang::enquo(counts)
+      ) %>%
+      dplyr::filter(.data = ., !is.na(main), !is.na(counts))
+  }
 
-    # ====================== converting counts ================================
+  # ====================== converting counts ================================
 
-    # untable the dataframe based on the count for each obervation
-    if (!base::missing(counts)) {
-      data %<>%
-        tidyr::uncount(
-          data = .,
-          weights = counts,
-          .remove = TRUE,
-          .id = "id"
-        ) %>%
-        tibble::as_data_frame(.)
-    }
+  # untable the dataframe based on the count for each obervation
+  if (!base::missing(counts)) {
+    data %<>%
+      tidyr::uncount(
+        data = .,
+        weights = counts,
+        .remove = TRUE,
+        .id = "id"
+      ) %>%
+      tibble::as_data_frame(.)
+  }
 
-    # ============================= statistical test =========================
+  # ============================= statistical test =========================
 
-    # conducting proportion test with jmv::propTestN()
-    jmv_prop <-
-      jmv::propTestN(
-        data = data,
-        var = "main",
-        ratio = ratio
+  # conducting proportion test with jmv::propTestN()
+  jmv_prop <-
+    jmv::propTestN(
+      data = data,
+      var = "main",
+      ratio = ratio
+    )
+
+  # if there is no value corresponding to one of the levels of the 'main'
+  # variable, then no subtitle is needed
+  if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(n = nrow(x = data))
       )
 
-    # if there is no value corresponding to one of the levels of the 'main'
-    # variable, then no subtitle is needed
-    if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
-      subtitle <-
-        base::substitute(
-          expr =
-            paste(
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(n = nrow(x = data))
+    # display message
+    base::message(cat(
+      crayon::red("Warning: "),
+      crayon::blue("Proportion test will not be run because it requires "),
+      crayon::yellow(legend.title),
+      crayon::blue(" to have at least \n2 levels with non-zero frequencies.\n"),
+      sep = ""
+    ))
+  } else {
+    # preparing proportion test subtitle for the plot
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            italic(chi)^2,
+            "(",
+            df,
+            ") = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue,
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          estimate = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_prop$tests)[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          df = base::as.data.frame(jmv_prop$tests)[[2]],
+          pvalue = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_prop$tests)[[3]],
+            k = k,
+            p.value = TRUE
+          ),
+          n = nrow(x = data)
         )
-
-      # display message
-      base::message(cat(
-        crayon::red("Warning: "),
-        crayon::blue("Proportion test will not be run because it requires "),
-        crayon::yellow(legend.title),
-        crayon::blue(" to have at least \n2 levels with non-zero frequencies.\n"),
-        sep = ""
-      ))
-    } else {
-      # preparing proportion test subtitle for the plot
-      subtitle <-
-        base::substitute(
-          expr =
-            paste(
-              italic(chi)^2,
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(
-              x = as.data.frame(jmv_prop$tests)[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            df = base::as.data.frame(jmv_prop$tests)[[2]],
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = as.data.frame(jmv_prop$tests)[[3]],
-              k = k,
-              p.value = TRUE
-            ),
-            n = nrow(x = data)
-          )
-        )
-    }
-
-    # return the subtitle text
-    return(subtitle)
+      )
   }
+
+  # return the subtitle text
+  return(subtitle)
+}

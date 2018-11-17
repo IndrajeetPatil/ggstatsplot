@@ -227,7 +227,9 @@ ggstatsplot::ggcoefstats(
 
 As can be seen from the regression coefficients, compared to the action movies,
 only romantic movies, animated movies, and dramas fare better with the
-audiences.
+audiences. Also, note that the coefficient for `"Drama"` is statistically
+significant (`*p* = 0.04`), but the confidnece interval contains `0`. This is
+because we set the confidence interval to `0.99`.
 
 ## linear mixed-effects model (`lmer`)
 
@@ -783,7 +785,7 @@ will keep expanding as additional tidiers are added to the `broom` package:
 
 Note that not **all** models supported by `broom` will be supported by
 `ggcoefstats`. In particular, classes of objects for which there is no estimates
-present (e.g., `kmeans`) are not supported.
+present (e.g., `kmeans`, `optim`, etc.) are not supported.
 
 # Suggestions
 

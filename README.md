@@ -199,6 +199,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
+#> <bytecode: 0x000000003831e2e8>
 #> <environment: namespace:ggstatsplot>
 ```
 

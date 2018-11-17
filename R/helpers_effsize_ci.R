@@ -18,16 +18,15 @@
 #' @param conf.type A vector of character strings representing the type of
 #'   intervals required. The value should be any subset of the values `"norm"`,
 #'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
-#' @param conf.level Scalar between 0 and 1. If unspecified, the defaults return 95%
-#'   lower and upper confidence intervals (`0.95`).
+#' @param conf.level Scalar between 0 and 1. If unspecified, the defaults return
+#'   95% lower and upper confidence intervals (`0.95`).
 #' @inheritDotParams boot::boot
 #'
 #' @importFrom tibble as_data_frame
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
+#' @importFrom rlang !! enquo
 #' @importFrom WRS2 t1way
-#' @importFrom boot boot
-#' @importFrom boot boot.ci
+#' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
 #'
 #' @keywords internal
@@ -46,7 +45,7 @@ t1way_ci <- function(data,
     x = !!rlang::enquo(x),
     y = !!rlang::enquo(y)
   ) %>%
-    stats::na.omit(.) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
     tibble::as.tibble(x = .)
 
   # running robust one-way anova
@@ -181,6 +180,7 @@ yuend_ci <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
     tibble::as.tibble(x = .)
 
   # jamovi needs data to be wide format and not long format
@@ -340,7 +340,7 @@ cor_test_ci <- function(data,
     x = !!rlang::enquo(x),
     y = !!rlang::enquo(y)
   ) %>%
-    stats::na.omit(.) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
     tibble::as.tibble(x = .)
 
   # running correlation and creating a tidy dataframe
@@ -508,7 +508,7 @@ chisq_v_ci <- function(data,
       rows = !!rlang::enquo(rows),
       cols = !!rlang::enquo(cols)
     ) %>%
-    stats::na.omit(.) %>%
+    dplyr::filter(.data = ., !is.na(rows), !is.na(cols)) %>%
     tibble::as.tibble(x = .)
 
   # results from jamovi
@@ -662,7 +662,7 @@ robcor_ci <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    stats::na.omit(.) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
     tibble::as.tibble(x = .)
 
   # getting the p-value for the correlation coefficient

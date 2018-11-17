@@ -15,11 +15,7 @@ tfz_labeller <- function(tidy_df,
                          statistic,
                          effsize = "eta",
                          partial = TRUE,
-                         k) {
-
-  # getting tidy and glance dataframes ready
-  tidy_df <- tidy_df
-  glance_df <- glance_df
+                         k = 3) {
 
   #--------------------------- t-statistic ------------------------------------
 
@@ -194,3 +190,176 @@ tfz_labeller <- function(tidy_df,
   # return the final dataframe
   return(tidy_df)
 }
+
+#' @title Create labels with statistical details for `ggcoefstats`.
+#' @name ggcoefstats_label_maker
+#'
+#' @inheritParams ggcoefstats
+#' @inheritParams tfz_labeller
+#'
+#' @keywords internal
+
+ggcoefstats_label_maker <-
+  function(x,
+             tidy_df,
+             glance_df,
+             k = 3,
+             effsize = "eta",
+             partial = TRUE) {
+
+    # models for which statistic is t-value
+    t.mods <- c("lmerMod", "lm", "nls", "lmRob", "rq", "rlm", "felm")
+
+    # models for which statistic is z-value
+    z.mods <- c("clm", "clmm")
+
+    # models for which statistic is F-value
+    f.mods <- c("aov", "aovlist", "anova")
+
+    # models for which there is no clear t-or z-statistic
+    # which statistic to use will be decided based on the family used
+    g.mods <- c("glm", "glmerMod", "glmRob")
+
+    # formatting the p-values
+    tidy_df %<>%
+      dplyr::mutate_at(
+        .tbl = .,
+        .vars = "statistic",
+        .funs = ~ ggstatsplot::specify_decimal_p(x = ., k = k)
+      ) %>%
+      signif_column(data = ., p = p.value) %>%
+      purrrlyr::by_row(
+        .d = .,
+        ..f = ~ ggstatsplot::specify_decimal_p(
+          x = .$p.value,
+          k = k,
+          p.value = TRUE
+        ),
+        .collate = "rows",
+        .to = "p.value.formatted",
+        .labels = TRUE
+      ) %>%
+      dplyr::mutate(
+        .data = .,
+        p.value.formatted2 = dplyr::case_when(
+          p.value.formatted == "< 0.001" ~ "<= 0.001",
+          p.value.formatted != "< 0.001" ~ paste("==", p.value.formatted,
+            sep = ""
+          )
+        )
+      )
+
+    # ================================ t-statistic labels =====================
+    if (class(x)[[1]] %in% t.mods) {
+      tidy_df %<>%
+        tfz_labeller(
+          tidy_df = .,
+          glance_df = glance_df,
+          statistic = "t",
+          k = k
+        )
+      # ======================= z-statistic labels ============================
+    } else if (class(x)[[1]] %in% z.mods) {
+      tidy_df %<>%
+        tfz_labeller(
+          tidy_df = .,
+          glance_df = glance_df,
+          statistic = "z",
+          k = k
+        )
+
+      # ================ t/z-statistic labels =================================
+    } else if (class(x)[[1]] %in% g.mods) {
+      if (class(x)[[1]] == "glm") {
+        if (summary(x)$family$family[[1]] %in% c(
+          "quasi",
+          "gaussian",
+          "quasibinomial",
+          "quasipoisson",
+          "Gamma",
+          "inverse.gaussian"
+        )) {
+          tidy_df %<>%
+            tfz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "t",
+              k = k
+            )
+        } else if (summary(x)$family$family[[1]] %in%
+          c("binomial", "poisson")) {
+          tidy_df %<>%
+            tfz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "z",
+              k = k
+            )
+        }
+      } else if (class(x)[[1]] == "glmerMod") {
+        if (summary(x)$family[[1]] %in% c(
+          "quasi",
+          "gaussian",
+          "quasibinomial",
+          "quasipoisson",
+          "Gamma",
+          "inverse.gaussian"
+        )) {
+          tidy_df %<>%
+            tfz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "t",
+              k = k
+            )
+        } else if (summary(x)$family[[1]] %in% c("binomial", "poisson")) {
+          tidy_df %<>%
+            tfz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "z",
+              k = k
+            )
+        }
+      } else if (class(x)[[1]] == "glmRob") {
+        if (x$family[[1]] %in% c(
+          "quasi",
+          "gaussian",
+          "quasibinomial",
+          "quasipoisson",
+          "Gamma",
+          "inverse.gaussian"
+        )) {
+          tidy_df %<>%
+            tfz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "t",
+              k = k
+            )
+        } else if (x$family[[1]] %in% c("binomial", "poisson")) {
+          tidy_df %<>%
+            tfz_labeller(
+              tidy_df = .,
+              glance_df = glance_df,
+              statistic = "z",
+              k = k
+            )
+        }
+      }
+      # ====================== F-statistic ====================================
+    } else if (class(x)[[1]] %in% f.mods) {
+      tidy_df %<>%
+        tfz_labeller(
+          tidy_df = .,
+          glance_df = NULL,
+          statistic = "f",
+          effsize = effsize,
+          partial = partial,
+          k = k
+        )
+    }
+
+    # return the dataframe with a column with labels
+    return(tidy_df)
+  }

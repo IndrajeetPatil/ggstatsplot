@@ -219,7 +219,7 @@ subtitle_t_onesample <- function(data = NULL,
       base::message(cat(
         crayon::green("Note: "),
         crayon::blue(
-          "95% CI for robsut location measure",
+          "95% CI for robust location measure",
           crayon::yellow("median, Huber Psi"),
           "computed with ",
           crayon::yellow(nboot),

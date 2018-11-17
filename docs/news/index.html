@@ -186,6 +186,8 @@
 <code>specify_decimal_p</code> has been modified because it produced incorrect results when <code><a href="https://www.rdocumentation.org/packages/base/topics/Comparison">k &lt; 3</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">p.value = TRUE</a></code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>).</li>
 <li>
 <code>ggpiestats</code> produced incorrect results if some levels of the factor had been filtered out prior to using this function. It now drops unused levels and produces correct results.</li>
+<li>
+<code>gghistostats</code> wasn’t filtering out <code>NA</code>s properly. This has been fixed.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>

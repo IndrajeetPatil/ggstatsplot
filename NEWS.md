@@ -12,6 +12,7 @@ BUG FIXES
   - `ggpiestats` produced incorrect results if some levels of the factor had
     been filtered out prior to using this function. It now drops unused levels
     and produces correct results.
+  - `gghistostats` wasn't filtering out `NA`s properly. This has been fixed.
 
 MAJOR CHANGES
 

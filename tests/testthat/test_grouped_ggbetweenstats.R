@@ -20,8 +20,10 @@ testthat::test_that(
         y = rating,
         grouping.var = mpaa,
         type = "p",
+        plot.type = "box",
         bf.message = TRUE,
         pairwise.comparisons = TRUE,
+        pairwise.annotation = "p.value",
         messages = FALSE,
         outlier.tagging = TRUE,
         outlier.label = length
@@ -42,6 +44,7 @@ testthat::test_that(
         y = rating,
         grouping.var = "mpaa",
         type = "np",
+        plot.type = "violin",
         pairwise.comparisons = TRUE,
         messages = FALSE,
         outlier.tagging = TRUE,
