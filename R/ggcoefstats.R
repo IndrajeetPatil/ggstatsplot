@@ -138,7 +138,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#' 
+#'
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -218,20 +218,10 @@ ggcoefstats <- function(x,
   # models for which the diagnostics is not available (AIC, BIC, loglik)
   nodiagnostics.mods <- c("lmRob", "glmRob", "felm")
 
-  # =================== ltypes of models =====================================
-
-  # models for which statistic is t-value
-  t.mods <- c("lmerMod", "lm", "nls", "lmRob", "rq", "rlm", "felm")
-
-  # models for which statistic is z-value
-  z.mods <- c("clm", "clmm")
+  # =================== types of models =====================================
 
   # models for which statistic is F-value
   f.mods <- c("aov", "aovlist", "anova")
-
-  # models for which there is no clear t-or z-statistic
-  # which statistic to use will be decided based on the family used
-  g.mods <- c("glm", "glmerMod", "glmRob")
 
   # =========================== checking if object is supported ==============
 

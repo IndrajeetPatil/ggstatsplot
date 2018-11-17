@@ -37,8 +37,10 @@ taken.}
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}
 
-\item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return 95%
-lower and upper confidence intervals (\code{0.95}).}
+\item{conf.level}{confidence level for the returned confidence
+    interval.  Currently only used for the Pearson product moment
+    correlation coefficient if there are at least 4 complete pairs of
+    observations.}
 
 \item{conf.type}{A vector of character strings representing the type of
 intervals required. The value should be any subset of the values \code{"norm"},

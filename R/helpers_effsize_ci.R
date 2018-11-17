@@ -19,7 +19,7 @@
 #'   intervals required. The value should be any subset of the values `"norm"`,
 #'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
 #' @param conf.level Scalar between 0 and 1. If unspecified, the defaults return
-#'   95% lower and upper confidence intervals (`0.95`).
+#'   `95%` lower and upper confidence intervals (`0.95`).
 #' @inheritDotParams boot::boot
 #'
 #' @importFrom tibble as_data_frame
@@ -303,23 +303,16 @@ yuend_ci <- function(data,
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `100`).
-#' @param conf.type A vector of character strings representing the type of
-#'   intervals required. The value should be any subset of the values `"norm"`,
-#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
-#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
-#'   lower and upper confidence intervals (`0.95`).
-#' @inheritParams stats::cor.test
 #' @inheritDotParams boot::boot
+#' @inheritParams stats::cor.test
+#' @inheritParams t1way_ci
 #'
 #' @importFrom tibble as_data_frame
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
+#' @importFrom rlang !! enquo
 #' @importFrom WRS2 t1way
-#' @importFrom boot boot
-#' @importFrom boot boot.ci
+#' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
-#' @importFrom magrittr "%<>%"
-#' @importFrom magrittr "%>%"
 #'
 #' @keywords internal
 
@@ -476,11 +469,7 @@ cor_test_ci <- function(data,
 #' @param cols the variable to use as the columns in the contingency table.
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `25`).
-#' @param conf.type A vector of character strings representing the type of
-#'   intervals required. The value should be any subset of the values `"norm"`,
-#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
-#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
-#'   lower and upper confidence intervals (`0.95`).
+#' @inheritParams t1way_ci
 #' @inheritDotParams boot::boot
 #'
 #' @importFrom tibble as_data_frame
@@ -630,19 +619,14 @@ chisq_v_ci <- function(data,
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `100`).
 #' @param beta bending constant (Default: `0.1`). For more, see `?WRS2::pbcor`.
-#' @param conf.type A vector of character strings representing the type of
-#'   intervals required. The value should be any subset of the values `"norm"`,
-#'   `"basic"`, `"perc"`, `"bca"`. For more, see `?boot::boot.ci`.
-#' @param conf.level Scalar between 0 and 1. If `NULL`, the defaults return 95%
-#'   lower and upper confidence intervals (`0.95`).
+#' @inheritParams t1way_ci
 #' @inheritDotParams boot::boot
 #'
 #' @importFrom tibble as_data_frame
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
+#' @importFrom rlang !! enquo
 #' @importFrom WRS2 pbcor
-#' @importFrom boot boot
-#' @importFrom boot boot.ci
+#' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
 #'
 #' @keywords internal

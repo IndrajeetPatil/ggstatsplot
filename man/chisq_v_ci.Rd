@@ -19,8 +19,8 @@ taken.}
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{25}).}
 
-\item{conf.level}{Scalar between 0 and 1. If \code{NULL}, the defaults return 95%
-lower and upper confidence intervals (\code{0.95}).}
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{conf.type}{A vector of character strings representing the type of
 intervals required. The value should be any subset of the values \code{"norm"},
