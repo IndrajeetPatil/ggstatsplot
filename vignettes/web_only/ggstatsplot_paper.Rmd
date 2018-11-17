@@ -268,11 +268,12 @@ structure of the data. More specifically,
     each row corresponds to a unique observation (Wickham, 2014).
     
   - All `ggstatsplot` functions remove `NA`s from variables of interest (similar
-    to `ggplot2`; Wickham, 2016, p.207) in the data and display total sample size (*n*) in
-    the subtitle to inform the user/reader about the number of observations
-    included for both the statistical analysis and the visualization. But, when
-    sample sizes differ *across* tests in the same function, `ggstatsplot` makes
-    an effort to inform the user of this aspect (Figure-4).
+    to `ggplot2`; Wickham, 2016, p.207) in the data and display total sample
+    size (*n*) in the subtitle to inform the user/reader about the number of
+    observations included for both the statistical analysis and the
+    visualization. But, when sample sizes differ *across* tests in the same
+    function, `ggstatsplot` makes an effort to inform the user of this aspect
+    (Figure-4).
 
 ```{r example4, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 10, fig.cap = "**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
 

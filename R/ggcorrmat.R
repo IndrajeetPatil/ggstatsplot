@@ -114,13 +114,13 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # if `cor.vars` not specified, all numeric varibles used
 #' ggstatsplot::ggcorrmat(data = iris)
-#' 
+#'
 #' # to get the correlalogram
 #' # note that the function will run even if the vector with variable names is
 #' # not of same length as the number of variables
@@ -129,14 +129,14 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   cor.vars.names = c("total sleep", "REM sleep")
 #' )
-#' 
+#'
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "r"
 #' )
-#' 
+#'
 #' # setting output = "p-values" (or "p") will return the p-value matrix
 #' ggstatsplot::ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -145,7 +145,7 @@
 #'   p.adjust.method = "bonferroni",
 #'   output = "p"
 #' )
-#' 
+#'
 #' # setting `output = "ci"` will return the confidence intervals for unique
 #' # correlation pairs
 #' ggstatsplot::ggcorrmat(
@@ -154,7 +154,7 @@
 #'   p.adjust.method = "BH",
 #'   output = "ci"
 #' )
-#' 
+#'
 #' # modifying elements of the correlation matrix by changing function defaults
 #' ggstatsplot::ggcorrmat(
 #'   data = datasets::iris,
@@ -220,6 +220,7 @@ ggcorrmat <- function(data,
     df <- data %>%
       dplyr::select(.data = ., !!rlang::enquo(cor.vars))
   }
+
   # counting number of NAs present in the dataframe
   na_total <- df %>%
     purrr::map_df(.x = ., .f = ~ sum(is.na(.))) %>%
@@ -259,6 +260,8 @@ ggcorrmat <- function(data,
   # ===================== statistics ========================================
   #
   if (corr.method %in% c("pearson", "spearman", "kendall")) {
+    # confidence interval computation can take some time and also produce
+    # warnings, so compute them only when requested by the user
     if (output == "ci") {
       ci <- TRUE
     } else {
@@ -284,16 +287,10 @@ ggcorrmat <- function(data,
     # compute a correlation matrix of p-values
     p.mat <- corr_df$p
 
-    # in case of NAs, compute minimum and maximum sample sizes of pairs
-    if (na_total != 0) {
-
-      # dataframe with minimum, median, and maximum sample sizes
-      n_summary <- numdf_n_summary(df = corr_df$n)
-    }
   } else if (corr.method == "robust") {
 
     # get matrix of samples sizes to be used later in `corr.p` function (`n`)
-    n_df <-
+    corr_df <-
       psych::corr.test(
         x = base::as.data.frame(df),
         y = NULL,
@@ -303,14 +300,6 @@ ggcorrmat <- function(data,
         ci = FALSE,
         minlength = 20
       )
-
-    # in case of NAs, compute minimum, median, and maximum sample sizes of
-    # pairs
-    if (na_total != 0) {
-
-      # dataframe with minimum, median, and maximum sample sizes
-      n_summary <- numdf_n_summary(df = n_df$n)
-    }
 
     # computing the percentage bend correlation matrix
     rob_cor <- WRS2::pball(x = df, beta = beta)
@@ -326,7 +315,7 @@ ggcorrmat <- function(data,
       p.mat <-
         psych::corr.p(
           r = corr.mat,
-          n = n_df$n,
+          n = corr_df$n,
           adjust = p.adjust.method,
           alpha = 0.05,
           minlength = 20
@@ -368,6 +357,9 @@ ggcorrmat <- function(data,
             )
           ))
       } else {
+        # in case of NAs, compute minimum and maximum sample sizes of pairs
+        n_summary <- numdf_n_summary(df = corr_df$n)
+
         legend.title.text <-
           bquote(atop(
             atop(
@@ -506,7 +498,7 @@ ggcorrmat <- function(data,
       return(sample_size_df)
     } else {
       # sample size matrix
-      sample_size_df <- n_df$n %>%
+      sample_size_df <- corr_df$n %>%
         base::as.data.frame(x = .) %>%
         tibble::rownames_to_column(., var = "variable") %>%
         tibble::as_data_frame(x = .)
@@ -547,7 +539,7 @@ ggcorrmat <- function(data,
       base::message(cat(
         crayon::red("Warning: "),
         crayon::blue(
-          "Confidence intervals currently not available for robust method.\n"
+          "Confidence intervals currently not supported for robust correlation.\n"
         ),
         sep = ""
       ))
