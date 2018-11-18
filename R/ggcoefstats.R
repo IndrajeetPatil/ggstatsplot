@@ -138,7 +138,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#' 
+#'
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -315,7 +315,7 @@ ggcoefstats <- function(x,
       }
     }
     # ================== clm and clmm tidying ================================
-  } else if (class(x)[[1]] == "clm" || class(x)[[1]] == "clmm") {
+  } else if (class(x)[[1]] %in% c("clm", "clmm")) {
     tidy_df <-
       broom::tidy(
         x = x,
