@@ -138,7 +138,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#'
+#' 
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export

@@ -48,6 +48,8 @@ r_binary_packages:
   - psych
   - git2r
   - data.table
+  - Rmpfr
+  - PMCMRplus
 
 r_packages:
   - rlang
@@ -56,8 +58,6 @@ r_packages:
   - tidyr
   - dplyr
   - readr
-  - Rmpfr
-  - PMCMRplus
   - ggthemes
   - jcolors
   - oompaBase
