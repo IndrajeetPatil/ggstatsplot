@@ -315,7 +315,8 @@ ggcoefstats <- function(x,
       }
     }
     # ================== clm and clmm tidying ================================
-  } else if (class(x)[[1]] == "clm" || class(x)[[1]] == "clmm") {
+
+    } else if (class(x)[[1]] == "clm" || class(x)[[1]] == "clmm") {
     tidy_df <-
       broom::tidy(
         x = x,
@@ -475,6 +476,7 @@ ggcoefstats <- function(x,
 
   # ========================== preparing label ================================
 
+  # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
     tidy_df %<>%
       ggcoefstats_label_maker(

@@ -97,7 +97,7 @@ ggstatsplot::ggcoefstats(
     formula = rating ~ mpaa * genre,
     data = movies_10
   ),
-  effsize = "omega",                        # changing the effect size estimate being displayed
+  effsize = "eta",                          # changing the effect size estimate being displayed
   point.color = "red",                      # changing the point color
   point.size = 4,                           # changing the point size
   point.shape = 15,                         # changing the point shape

@@ -15,6 +15,7 @@
 ^revdep$
 publication/*
 ^codecov\.yml$
+^\.coveralls\.yml$
 ^\.travis\.yml$
 ^_pkgdown\.yml$
 ^appveyor\.yml$

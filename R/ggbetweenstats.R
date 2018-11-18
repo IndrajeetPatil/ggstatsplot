@@ -218,7 +218,7 @@ ggbetweenstats <- function(data,
                            messages = TRUE) {
 
   # no pairwise comparisons are available for bayesian t-tests
-  if (type %in% c("bf", "bayes")) {
+  if (type %in% c("bf", "bayes") && isTRUE(pairwise.comparisons)) {
     # turn off pairwise comparisons
     pairwise.comparisons <- FALSE
 

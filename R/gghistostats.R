@@ -343,7 +343,7 @@ gghistostats <-
 
     # adding the theme and labels
     plot <- plot +
-      ggstatsplot::theme_mprl(
+      ggstatsplot::theme_ggstatsplot(
         ggtheme = ggtheme,
         ggstatsplot.layer = ggstatsplot.layer
       ) +

@@ -108,100 +108,103 @@ subtitle_t_onesample <- function(data = NULL,
   if (type == "parametric" || type == "p") {
 
     # confidence intervals for Cohen's d
-    ci_df <- psych::cohen.d.ci(
-      d = as.data.frame(jmv_results$ttest)$`es[stud]`,
-      n1 = length(data$x),
-      alpha = .05
-    ) %>%
+    ci_df <-
+      psych::cohen.d.ci(
+        d = as.data.frame(jmv_results$ttest)$`es[stud]`,
+        n1 = length(data$x),
+        alpha = .05
+      ) %>%
       tibble::as_data_frame(x = .)
 
     # preparing the subtitle
-    subtitle <- base::substitute(
-      expr =
-        paste(
-          italic("t"),
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", ",
-          italic("d"),
-          " = ",
-          effsize,
-          ", 95% CI [",
-          LL,
-          ", ",
-          UL,
-          "]",
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        estimate = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
-          k = k,
-          p.value = FALSE
-        ),
-        df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-        pvalue = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`p[stud]`,
-          k,
-          p.value = TRUE
-        ),
-        effsize = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`es[stud]`,
-          k = k,
-          p.value = FALSE
-        ),
-        LL = ggstatsplot::specify_decimal_p(x = ci_df$lower[[1]], k = k),
-        UL = ggstatsplot::specify_decimal_p(x = ci_df$upper[[1]], k = k),
-        n = nrow(x = data)
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            italic("t"),
+            "(",
+            df,
+            ") = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue,
+            ", ",
+            italic("d"),
+            " = ",
+            effsize,
+            ", 95% CI [",
+            LL,
+            ", ",
+            UL,
+            "]",
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          estimate = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
+            k = k,
+            p.value = FALSE
+          ),
+          df = as.data.frame(jmv_results$ttest)$`df[stud]`,
+          pvalue = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_results$ttest)$`p[stud]`,
+            k,
+            p.value = TRUE
+          ),
+          effsize = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_results$ttest)$`es[stud]`,
+            k = k,
+            p.value = FALSE
+          ),
+          LL = ggstatsplot::specify_decimal_p(x = ci_df$lower[[1]], k = k),
+          UL = ggstatsplot::specify_decimal_p(x = ci_df$upper[[1]], k = k),
+          n = nrow(x = data)
+        )
       )
-    )
 
     # ========================== non-parametric ==============================
   } else if (type == "nonparametric" || type == "np") {
     # preparing the subtitle
-    subtitle <- base::substitute(
-      expr =
-        paste(
-          italic("U"),
-          " = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", ",
-          italic("d"),
-          " = ",
-          effsize,
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        estimate = as.data.frame(jmv_results$ttest)$`stat[wilc]`,
-        pvalue = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`p[wilc]`,
-          k,
-          p.value = TRUE
-        ),
-        effsize = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`es[wilc]`,
-          k = k,
-          p.value = FALSE
-        ),
-        n = nrow(x = data)
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            italic("U"),
+            " = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue,
+            ", ",
+            italic("d"),
+            " = ",
+            effsize,
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          estimate = as.data.frame(jmv_results$ttest)$`stat[wilc]`,
+          pvalue = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_results$ttest)$`p[wilc]`,
+            k,
+            p.value = TRUE
+          ),
+          effsize = ggstatsplot::specify_decimal_p(
+            x = as.data.frame(jmv_results$ttest)$`es[wilc]`,
+            k = k,
+            p.value = FALSE
+          ),
+          n = nrow(x = data)
+        )
       )
-    )
 
     # ======================= robust =========================================
   } else if (type == "robust" || type == "r") {
@@ -276,10 +279,9 @@ subtitle_t_onesample <- function(data = NULL,
           "(BF"["10"],
           ") = ",
           bf,
-          ", log"["e"],
-          "(error) = ",
-          bf_error,
-          "% , ",
+          ", Prior width = ",
+          bf_prior,
+          ", ",
           italic("d"),
           " = ",
           effsize,
@@ -289,7 +291,6 @@ subtitle_t_onesample <- function(data = NULL,
           n
         ),
       env = base::list(
-        # df is integer value for Student's t-test
         df = as.data.frame(jmv_results$ttest)$`df[stud]`,
         estimate = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
@@ -301,14 +302,13 @@ subtitle_t_onesample <- function(data = NULL,
             x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
             base = exp(1)
           ),
-          k = 1
+          k = 1,
+          p.value = FALSE
         ),
-        bf_error = ggstatsplot::specify_decimal_p(
-          x = log(
-            x = as.data.frame(jmv_results$ttest)$`err[bf]`,
-            base = exp(1)
-          ),
-          k = 1
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf.prior,
+          k = 3,
+          p.value = FALSE
         ),
         effsize = ggstatsplot::specify_decimal_p(
           x = as.data.frame(jmv_results$ttest)$`es[stud]`,
