@@ -2,7 +2,8 @@
 % Please edit documentation in R/ggdotplotstats.R
 \name{ggdotplotstats}
 \alias{ggdotplotstats}
-\title{Dot chart for labelled numeric data.}
+\alias{ggdotchartstats}
+\title{Dot plot/chart for labeled numeric data.}
 \usage{
 ggdotplotstats(data, x, y, summarize = TRUE, xlab = NULL,
   ylab = NULL, title = NULL, subtitle = NULL, caption = NULL,

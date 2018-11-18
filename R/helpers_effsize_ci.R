@@ -746,3 +746,166 @@ robcor_ci <- function(data,
   # returning the results
   return(results_df)
 }
+
+#' @title Confidence interval for effect size for Kruskal-Wallis test.
+#' @name kw_eta_h_ci
+#' @description Custom function to get confidence intervals for effect size
+#'   measure for Kruskal-Wallis Rank Sum Test.
+#'
+#' @inheritParams t1way_ci
+#' @inheritDotParams boot::boot
+#'
+#' @importFrom tibble as_data_frame
+#' @importFrom dplyr select
+#' @importFrom rlang !! enquo
+#' @importFrom PMCMRplus kruskalTest
+#' @importFrom boot boot boot.ci
+#' @importFrom stats na.omit
+#'
+#' @keywords internal
+
+# function to get confidence intervals
+kw_eta_h_ci <- function(data,
+                        x,
+                        y,
+                        nboot = 100,
+                        conf.level = 0.95,
+                        conf.type = "norm",
+                        ...) {
+  #---------------------- dataframe ----------------------------------------
+
+  # creating a dataframe from entered data
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    tibble::as.tibble(x = .)
+
+  #---------------------- custom function ------------------------------------
+
+  # custom function to get eta-squared value
+  kw_eta_h <- function(data,
+                         x,
+                         y) {
+    # creating a dataframe from entered data
+    data <-
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x),
+        y = !!rlang::enquo(y)
+      ) %>%
+      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+      tibble::as.tibble(x = .)
+
+    # running the function
+    fit <-
+      PMCMRplus::kruskalTest(
+        formula = y ~ x,
+        data = data,
+        dist = "KruskalWallis"
+      )
+
+    # calculating the eta-squared estimate using the H-statistic
+    # ref. http://www.tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
+    effsize <-
+      (fit$statistic[[1]] - fit$parameter[[1]] + 1) /
+        (fit$parameter[[3]] - fit$parameter[[1]])
+
+    # return the value of interest: effect size
+    return(effsize[[1]])
+  }
+
+  # eta-squared value
+  eta_sq_H <- kw_eta_h(
+    data = data,
+    x = x,
+    y = y
+  )
+
+  #---------------------- bootstrapping --------------------------------------
+
+  # function to obtain 95% CI for for eta-squared
+  eta_h_ci <- function(data, x, y, indices) {
+    # allows boot to select sample
+    d <- data[indices, ]
+
+    # running the function
+    fit <-
+      kw_eta_h(
+        data = d,
+        x = x,
+        y = y
+      )
+
+    # return the value of interest: effect size
+    return(fit)
+  }
+
+  # save the bootstrapped results to an object
+  bootobj <- boot::boot(
+    data = data,
+    x = x,
+    y = y,
+    statistic = eta_h_ci,
+    R = nboot,
+    parallel = "multicore",
+    ...
+  )
+
+  # get 95% CI from the bootstrapped object
+  bootci <- boot::boot.ci(
+    boot.out = bootobj,
+    conf = conf.level,
+    type = conf.type
+  )
+
+  #---------------------- results ----------------------------------------
+
+  # extracting ci part
+  if (conf.type == "norm") {
+    ci <- bootci$normal
+  } else if (conf.type == "basic") {
+    ci <- bootci$basic
+  } else if (conf.type == "perc") {
+    ci <- bootci$perc
+  } else if (conf.type == "bca") {
+    ci <- bootci$bca
+  }
+
+  # preparing a dataframe out of the results
+  results_df <-
+    tibble::as_data_frame(x = cbind.data.frame(
+      "eta_sq_H" = eta_sq_H,
+      ci,
+      "nboot" = bootci$R
+    ))
+
+  # selecting the columns corresponding to the confidence intervals
+  if (conf.type == "norm") {
+    results_df %<>%
+      dplyr::select(
+        .data = .,
+        eta_sq_H,
+        conf.low = V2,
+        conf.high = V3,
+        conf,
+        nboot
+      )
+  } else {
+    results_df %<>%
+      dplyr::select(
+        .data = .,
+        eta_sq_H,
+        conf.low = V4,
+        conf.high = V5,
+        conf,
+        nboot
+      )
+  }
+
+  # returning the results
+  return(results_df)
+}

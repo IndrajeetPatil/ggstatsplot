@@ -1,6 +1,6 @@
-#' @title Dot chart for labelled numeric data.
+#' @title Dot plot/chart for labeled numeric data.
 #' @name ggdotplotstats
-#' @aliases ggdotplotstats
+#' @aliases ggdotchartstats
 #' @description A dot chart with statistical details from one-sample test
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil

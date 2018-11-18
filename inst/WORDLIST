@@ -10,7 +10,6 @@ chisq
 ci
 clm
 clmm
-conf
 correlalogram
 covr
 covrpage
@@ -29,6 +28,7 @@ ggbetween
 ggbetweenstats
 ggcoefstats
 ggcorrmat
+ggdotplotstats
 gghistostats
 ggpiestats
 ggplot
@@ -66,7 +66,6 @@ MPAA
 nd
 nz
 Oneway
-param
 Patil
 pch
 pearson's

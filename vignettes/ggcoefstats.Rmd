@@ -228,7 +228,7 @@ ggstatsplot::ggcoefstats(
 As can be seen from the regression coefficients, compared to the action movies,
 only romantic movies, animated movies, and dramas fare better with the
 audiences. Also, note that the coefficient for `"Drama"` is statistically
-significant (`*p* = 0.04`), but the confidnece interval contains `0`. This is
+significant (`*p* = 0.04`), but the confidence interval contains `0`. This is
 because we set the confidence interval to `0.99`.
 
 ## linear mixed-effects model (`lmer`)
@@ -310,6 +310,29 @@ broom.mixed::tidy(
   conf.level = 0.95
 )
 ```
+
+## robust linear mixed-effects models (`rlmer`)
+
+Robust version of `lmer` (as implemented in `robustlmm` package) is also
+supported-
+
+```{r rlmer, warning = FALSE, message = FALSE}
+set.seed(123)
+library(robustlmm)
+
+# model
+roblmm.mod <- robustlmm::rlmer(
+  formula = scale(Reaction) ~ scale(Days) + (Days | Subject),
+  data = sleepstudy,
+  rho.sigma.e = psi2propII(smoothPsi, k = 2.28),
+  rho.sigma.b = chgDefaults(smoothPsi, k = 5.11, s = 10)
+)
+
+# plot
+ggstatsplot::ggcoefstats(x = roblmm.mod,
+                         title = "Robust Estimation of Linear Mixed-Effects Models")
+```
+
 
 ## non-linear least-squares model (`nls`)
 

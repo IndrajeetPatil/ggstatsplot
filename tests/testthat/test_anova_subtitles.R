@@ -1,7 +1,7 @@
-context("anova_subtitles")
+context("subtitle_anova_parametric")
 
 testthat::test_that(
-  desc = "anova subtitles work",
+  desc = "parametric anova subtitles work",
   code = {
     # the expected result
     r <-

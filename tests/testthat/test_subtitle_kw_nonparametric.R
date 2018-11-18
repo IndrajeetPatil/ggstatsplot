@@ -3,9 +3,9 @@ context("subtitle_kw_nonparametric")
 testthat::test_that(
   desc = "subtitle_kw_nonparametric works",
   code = {
-    set.seed(123)
 
     # ggstatsplot output
+    set.seed(123)
     using_function1 <-
       ggstatsplot::subtitle_kw_nonparametric(
         data = ggstatsplot::movies_long,
@@ -16,6 +16,7 @@ testthat::test_that(
       )
 
     # expected output
+    set.seed(123)
     results1 <-
       ggplot2::expr(
         paste(
@@ -29,6 +30,15 @@ testthat::test_that(
           italic("p"),
           " = ",
           "< 0.001",
+          ", ",
+          eta["H"]^2,
+          " = ",
+          "0.11475",
+          ", 95% CI [",
+          "0.09169",
+          ", ",
+          "0.13793",
+          "]",
           ", ",
           italic("n"),
           " = ",
@@ -56,8 +66,8 @@ testthat::test_that(
 
     # testing sample size
     testthat::expect_identical(
-      object = using_function1[15],
-      expected = results1[15]
+      object = using_function1[24],
+      expected = results1[24]
     )
   }
 )

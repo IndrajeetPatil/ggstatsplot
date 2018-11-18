@@ -138,7 +138,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#'
+#' 
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -207,13 +207,13 @@ ggcoefstats <- function(x,
 
   # creating a list of objects which will have fixed and random "effects"
   # only fixed effects will be selected
-  lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod")
+  lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod", "rlmerMod")
 
   # models which are currently not supported
   unsupported.mods <- c("glht", "kmeans")
 
   # models for which glance is not supported
-  noglance.mods <- c("aovlist", "anova")
+  noglance.mods <- c("aovlist", "anova", "rlmerMod")
 
   # models for which the diagnostics is not available (AIC, BIC, loglik)
   nodiagnostics.mods <- c("lmRob", "glmRob", "felm")
@@ -315,8 +315,7 @@ ggcoefstats <- function(x,
       }
     }
     # ================== clm and clmm tidying ================================
-
-    } else if (class(x)[[1]] == "clm" || class(x)[[1]] == "clmm") {
+  } else if (class(x)[[1]] == "clm" || class(x)[[1]] == "clmm") {
     tidy_df <-
       broom::tidy(
         x = x,

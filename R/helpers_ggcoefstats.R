@@ -43,7 +43,7 @@ tfz_labeller <- function(tidy_df,
       p.value.formatted2 = dplyr::case_when(
         p.value.formatted == "< 0.001" ~ "<= 0.001",
         p.value.formatted != "< 0.001" ~ paste("==", p.value.formatted,
-                                               sep = ""
+          sep = ""
         )
       )
     )

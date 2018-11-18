@@ -1,5 +1,6 @@
 #' @title Default theme used in all `ggstatsplot` package plots
 #' @name theme_ggstatsplot
+#' @aliases theme_mprl
 #' @author Indrajeet Patil
 #' @description Common theme used across all plots generated in `ggstatsplot`
 #'   and *assumed* by the author to be aesthetically pleasing to the
@@ -66,19 +67,7 @@ theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(),
   }
 }
 
-#' @title Default theme used in all `ggstatsplot` package plots
-#' @name theme_mprl
-#' @author Indrajeet Patil
-#' @description Common theme used across all plots generated in `ggstatsplot`
-#'   and *assumed* by the author to be aesthetically pleasing to the
-#'   user/reader.
-#'
-#' @inheritParams theme_ggstatsplot
-#' @note This is just another name for the function `theme_ggstatsplot()`.
-#'
-#' @references
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
-#'
+#' @rdname theme_mprl
 #' @export
 
 theme_mprl <- theme_ggstatsplot

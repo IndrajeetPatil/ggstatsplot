@@ -9,13 +9,6 @@
 <title>Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 (between-subjects designs). — subtitle_kw_nonparametric • ggstatsplot</title>
 
-<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -178,7 +171,7 @@
     <div class="page-header">
     <h1>Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 (between-subjects designs).</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_subtitles.R'><code>R/helpers_ggbetween_subtitles.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_anova_subtitles.R'><code>R/helpers_ggbetween_anova_subtitles.R</code></a></small>
     <div class="hidden name"><code>subtitle_kw_nonparametric.Rd</code></div>
     </div>
 
@@ -189,7 +182,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_kw_nonparametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_kw_nonparametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -218,6 +212,22 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 (Default: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
     </tr>
     <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for computing effect size (Default:
+<code>100</code>).</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>conf.type</th>
+      <td><p>A vector of character strings representing the type of
+intervals required. The value should be any subset of the values <code>"norm"</code>,
+<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='https://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments (ignored).</p></td>
     </tr>
@@ -229,9 +239,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
-)</div><div class='output co'>#&gt; Note: No effect size available for Kruskal-Wallis Rank Sum Test.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste("Kruskal-Wallis: ", italic(chi)^2, "(", 3L, ") = ", "9.063", 
-#&gt;     ", ", italic("p"), " = ", "0.028", ", ", italic("n"), " = ", 
-#&gt;     56L)</div></pre>
+)</div><div class='output co'>#&gt; Note: 95% CI for effect size (H-statistic-based eta-squared) was computed with 100 bootstrap samples 
+#&gt; for Kruskal-Wallis Rank Sum Test.</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste("Kruskal-Wallis: ", italic(chi)^2, "(", 3L, ") = ", "9.063", 
+#&gt;     ", ", italic("p"), " = ", "0.028", ", ", eta["H"]^2, " = ", 
+#&gt;     "0.117", ", 95% CI [", "-0.113", ", ", "0.281", "]", ", ", 
+#&gt;     italic("n"), " = ", 56L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -48,6 +48,10 @@ MINOR CHANGES
 
   - `ggscatterstats`, `ggpiestats`, and their `grouped_` variant support bayes
     factor tests and gain new arguments relevant to this test.
+  - Effect size and their confidence intervals now available for Kruskal-Wallis
+    test.
+  - Minor stylistic changes to how symbols for partial-eta-/omega-squared were
+    being displayed in subtitles.
   - `ggbetweenstats` supports bayes factor tests for anova designs.
   - `ggpiestats` (and its `grouped_` version) gain `slice.label` argument that
     decides what information needs to be displayed as a label on the slices of
