@@ -49,7 +49,6 @@ r_binary_packages:
   - git2r
   - data.table
   - Rmpfr
-  - PMCMRplus
 
 r_packages:
   - rlang

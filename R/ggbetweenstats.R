@@ -1,5 +1,5 @@
-#' @title Violin plots for group or condition comparisons in between-subjects
-#'   designs.
+#' @title Box/Violin plots for group or condition comparisons in
+#'   between-subjects designs.
 #' @name ggbetweenstats
 #' @aliases ggbetweenstats
 #' @description A combination of box and violin plots along with jittered data
@@ -134,10 +134,10 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -147,7 +147,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,

@@ -2,8 +2,8 @@
 % Please edit documentation in R/ggbetweenstats.R
 \name{ggbetweenstats}
 \alias{ggbetweenstats}
-\title{Violin plots for group or condition comparisons in between-subjects
-designs.}
+\title{Box/Violin plots for group or condition comparisons in
+between-subjects designs.}
 \usage{
 ggbetweenstats(data, x, y, plot.type = "boxviolin",
   type = "parametric", pairwise.comparisons = FALSE,
