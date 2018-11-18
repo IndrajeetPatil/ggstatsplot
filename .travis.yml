@@ -56,7 +56,8 @@ r_packages:
   - tidyr
   - dplyr
   - readr
-  #- covr
+  - Rmpfr
+  - PMCMRplus
   - ggthemes
   - jcolors
   - oompaBase
