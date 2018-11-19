@@ -13,7 +13,7 @@ testthat::test_that(
           main = Class,
           legend.title = "Testing",
           k = 5
-          )
+        )
       )
 
     # expected output
@@ -21,7 +21,7 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
-          italic(chi) ^ 2,
+          italic(chi)^2,
           "(",
           4,
           ") = ",

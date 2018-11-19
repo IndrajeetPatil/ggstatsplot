@@ -400,6 +400,17 @@ combining (plot, caption).</p></dd>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Unlike a number of statistical softwares, <code>ggstatsplot</code> doesn't
+provide the option for Yates' correction for the Pearson's chi-squared
+statistic. This is due to compelling amount of Monte-Carlo simulation
+research which suggests that the Yates' correction is overly conservative,
+even in small sample sizes. As such it is recommended that it should not
+ever be applied in practice (Camilli &amp; Hopkins, 1978, 1979; Feinberg, 1980;
+Larntz, 1978; Thompson, 1988). For more, see-
+<a href='http://www.how2stats.net/2011/09/yates-correction.html'>http://www.how2stats.net/2011/09/yates-correction.html</a></p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html'>https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html</a></p>
@@ -457,6 +468,8 @@ combining (plot, caption).</p></dd>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>

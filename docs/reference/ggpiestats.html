@@ -343,6 +343,17 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Unlike a number of statistical softwares, <code>ggstatsplot</code> doesn't
+provide the option for Yates' correction for the Pearson's chi-squared
+statistic. This is due to compelling amount of Monte-Carlo simulation
+research which suggests that the Yates' correction is overly conservative,
+even in small sample sizes. As such it is recommended that it should not
+ever be applied in practice (Camilli &amp; Hopkins, 1978, 1979; Feinberg, 1980;
+Larntz, 1978; Thompson, 1988). For more, see-
+<a href='http://www.how2stats.net/2011/09/yates-correction.html'>http://www.how2stats.net/2011/09/yates-correction.html</a></p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html'>https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html</a></p>
@@ -377,8 +388,10 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; 3 8         100.00% &lt;NA&gt;          14         1     0     ***         
 #&gt; Note: 95% CI for Cramer's V was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># simple function call with the defaults (without condition; with count data)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)
-
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘jmv’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    anova</span></div><div class='input'>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
@@ -390,6 +403,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>

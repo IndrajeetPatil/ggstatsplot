@@ -22,7 +22,7 @@ testthat::test_that(
         Freq = c(65L, 25L, 5L, 5L)
       ),
       class = "data.frame",
-      row.names = c(NA,-4L)
+      row.names = c(NA, -4L)
     )
 
     # ggstatsplot output
@@ -46,7 +46,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           NULL,
-          italic(chi) ^ 2,
+          italic(chi)^2,
           "(",
           1,
           ") = ",

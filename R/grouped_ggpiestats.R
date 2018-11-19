@@ -29,6 +29,7 @@
 #'
 #' @inherit ggpiestats return references
 #' @inherit ggpiestats return details
+#' @inherit ggpiestats return return
 #'
 #' @examples
 #' 
