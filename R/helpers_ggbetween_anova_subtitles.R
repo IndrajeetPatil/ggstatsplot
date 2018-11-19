@@ -33,7 +33,7 @@
 #'   y = sleep_rem,
 #'   k = 2
 #' )
-#' 
+#'
 #' # modifying the defaults
 #' subtitle_anova_parametric(
 #'   data = ggplot2::msleep,
@@ -455,12 +455,12 @@ subtitle_kw_nonparametric <-
 #' library(ggstatsplot)
 #' library(jmv)
 #' data("bugs", package = "jmv")
-#' 
+#'
 #' # converting to long format
 #' data_bugs <- bugs %>%
 #'   tibble::as.tibble(.) %>%
 #'   tidyr::gather(., key, value, LDLF:HDHF)
-#' 
+#'
 #' # creating the subtitle
 #' ggstatsplot::subtitle_friedman_nonparametric(
 #'   data = data_bugs,
@@ -508,6 +508,7 @@ subtitle_friedman_nonparametric <- function(data,
 
   # sample size
   sample_size <- length(unique(data_within$rowid))
+  no_measurements <- length(levels(data$x))
 
   # setting up the anova model and getting its summary
   friedman_stat <-
@@ -516,6 +517,11 @@ subtitle_friedman_nonparametric <- function(data,
       data = data_within,
       na.action = na.omit
     )
+
+  # calculating Kendall's W
+  # ref: http://www.tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
+  kendall_w <- (friedman_stat$statistic[[1]]) /
+    (sample_size * (no_measurements - 1))
 
   # preparing the subtitle
   subtitle <-
@@ -533,6 +539,10 @@ subtitle_friedman_nonparametric <- function(data,
           " = ",
           pvalue,
           ", ",
+          italic("W"),
+          " = ",
+          kendall_w,
+          ", ",
           italic("n"),
           " = ",
           n
@@ -548,6 +558,11 @@ subtitle_friedman_nonparametric <- function(data,
           x = friedman_stat$p.value[[1]],
           k,
           p.value = TRUE
+        ),
+        kendall_w = ggstatsplot::specify_decimal_p(
+          x = kendall_w[[1]],
+          k,
+          p.value = FALSE
         ),
         n = sample_size
       )
@@ -584,12 +599,12 @@ subtitle_friedman_nonparametric <- function(data,
 #' @importFrom rlang !! enquo
 #'
 #' @examples
-#' 
+#'
 #' # examples not executed due to time constraints
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # going with the defaults
 #' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
@@ -597,7 +612,7 @@ subtitle_friedman_nonparametric <- function(data,
 #'   y = percbelowpoverty,
 #'   nboot = 10
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
@@ -774,7 +789,7 @@ subtitle_anova_robust <-
 #'   k = 2,
 #'   bf.prior = 0.8
 #' )
-#' 
+#'
 #' # modifying the defaults
 #' subtitle_anova_bayes(
 #'   data = ggplot2::msleep,
