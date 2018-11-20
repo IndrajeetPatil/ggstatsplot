@@ -552,17 +552,8 @@ ggbetweenstats <- function(data,
 
   # adding sample size labels to the x axes
   if (isTRUE(sample.size.label)) {
-    data_label <-
-      mean_dat %>%
-      dplyr::mutate(
-        .data = .,
-        n_label = paste0(x, "\n(n = ", n, ")", sep = "")
-      ) %>%
-      dplyr::arrange(.data = ., x)
-
-    # adding new labels to the plot
     plot <- plot +
-      ggplot2::scale_x_discrete(labels = c(unique(data_label$n_label)))
+      ggplot2::scale_x_discrete(labels = c(unique(mean_dat$n_label)))
   }
 
   # ggsignif labels -----------------------------------------------------------

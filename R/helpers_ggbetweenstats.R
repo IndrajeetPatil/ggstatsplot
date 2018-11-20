@@ -6,8 +6,8 @@
 #'
 #' @importFrom stats na.omit
 #' @importFrom groupedstats grouped_summary
-#' @importFrom dplyr select group_by vars contains mutate mutate_at
-#' @importFrom rlang enquo
+#' @importFrom dplyr select group_by vars contains mutate mutate_at arrange
+#' @importFrom rlang !! enquo
 #' @importFrom tibble as_data_frame
 #' @importFrom purrrlyr by_row
 #'
@@ -30,7 +30,7 @@ mean_labeller <- function(data,
 
   # convert the grouping variable to factor and drop unused levels
   data %<>%
-    stats::na.omit(.) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",
@@ -83,6 +83,14 @@ mean_labeller <- function(data,
     mean_dat %<>%
       dplyr::mutate(.data = ., label = mean.y)
   }
+
+  # adding sample size labels and arranging by original factor levels
+  mean_dat %<>%
+    dplyr::mutate(
+      .data = .,
+      n_label = paste0(x, "\n(n = ", n, ")", sep = "")
+    ) %>%
+    dplyr::arrange(.data = ., x)
 
   # return the dataframe with mean information
   return(mean_dat)

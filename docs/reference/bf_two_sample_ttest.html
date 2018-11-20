@@ -247,7 +247,7 @@ results).</p></td>
 )</div><div class='output co'>#&gt; # A tibble: 1 x 8
 #&gt;    bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01    error bf.prior
 #&gt;   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 1383.       7.23        3.14 0.000723      -7.23       -3.14  3.41e-9    0.707</div><div class='input'>
+#&gt; 1 1383.      7.232       3.141 7.229e-4     -7.232      -3.141 3.411e-9    0.707</div><div class='input'>
 <span class='co'># for paired sample test</span>
 <span class='fu'>bf_two_sample_ttest</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
@@ -260,9 +260,9 @@ results).</p></td>
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
 )</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; # A tibble: 1 x 8
-#&gt;      bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01    error
-#&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 1.20e61       141.        61.1 8.36e-62      -141.       -61.1 1.17e-69
+#&gt;       bf10 log_e_bf10 log_10_bf10      bf01 log_e_bf01 log_10_bf01     error
+#&gt;      &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+#&gt; 1 1.196e61      140.6       61.08 8.364e-62     -140.6      -61.08 1.172e-69
 #&gt; # ... with 1 more variable: bf.prior &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

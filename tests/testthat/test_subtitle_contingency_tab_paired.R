@@ -5,25 +5,25 @@ testthat::test_that(
   code = {
 
     # create data structure
-    paired_data <- structure(
-      list(
-        response_before =
-          structure(
-            c(1L, 2L, 1L, 2L),
+    paired_data <-
+      structure(
+        list(
+          response_before =
+            structure(
+              c(1L, 2L, 1L, 2L),
+              .Label = c("no", "yes"),
+              class = "factor"
+            ),
+          response_after = structure(
+            c(1L, 1L, 2L, 2L),
             .Label = c("no", "yes"),
             class = "factor"
           ),
-        response_after = structure(
-          c(1L, 1L, 2L, 2L),
-          .Label = c("no", "yes"),
-          class =
-            "factor"
+          Freq = c(65L, 25L, 5L, 5L)
         ),
-        Freq = c(65L, 25L, 5L, 5L)
-      ),
-      class = "data.frame",
-      row.names = c(NA, -4L)
-    )
+        class = "data.frame",
+        row.names = c(NA, -4L)
+      )
 
     # ggstatsplot output
     set.seed(123)
