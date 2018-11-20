@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ggpiestats • ggstatsplot</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
-<link href="../docsearch.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="ggpiestats">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -131,9 +130,9 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-11-19</h4>
+            <h4 class="date">2018-11-20</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggpiestats.Rmd"><code><a href="https://www.rdocumentation.org/packages/base/topics/Arithmetic">vignettes/ggpiestats.Rmd</a></code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggpiestats.Rmd"><code>vignettes/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
 
     </div>
@@ -200,7 +199,7 @@
 <a class="sourceLine" id="cb2-15" data-line-number="15">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                   <span class="co"># turn off messages</span></a>
 <a class="sourceLine" id="cb2-16" data-line-number="16">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="576"></p>
-<p><strong>Note:</strong> equal proportions per category are the default, e.g. 50/50, but you can specify any hypothesized ratio you like with <code>ratio</code> so if our hypothesis was that 80% died and 20% survived we would add <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">ratio = c(.80,.20)</a></code> when we entered the code.</p>
+<p><strong>Note:</strong> equal proportions per category are the default, e.g. 50/50, but you can specify any hypothesized ratio you like with <code>ratio</code> so if our hypothesis was that 80% died and 20% survived we would add <code>ratio = c(.80,.20)</code> when we entered the code.</p>
 <p>Let’s move on to a more complex example statistically and in terms of the features we will use in <code>ggpiestats</code></p>
 </div>
 <div id="independence-or-association-with-ggpiestats" class="section level2">
@@ -210,9 +209,9 @@
 <p>Let’s next investigate whether the passenger’s gender was independent of, or associated with, gender. The test is whether the proportion of people who survived was different between the sexes using <code>ggpiestats</code>.</p>
 <p>We’ll modify a number of arguments to change the appearance of this plot and showcase the flexibility of <code>ggpiestats</code>. We will:</p>
 <ol style="list-style-type: decimal">
-<li><p>Change the plot theme to <code><a href="ggplot2.tidyverse.org/reference/ggtheme.html">ggplot2::theme_grey()</a></code></p></li>
+<li><p>Change the plot theme to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">ggplot2::theme_grey()</a></code></p></li>
 <li><p>Change our color palette to <code>category10_d3</code> from <code>ggsci</code> package</p></li>
-<li><p>We’ll customize the subtitle by being more precise about which chi squared test this is <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">stat.title = "chi squared test of independence: "</a></code></p></li>
+<li><p>We’ll customize the subtitle by being more precise about which chi squared test this is <code>stat.title = "chi squared test of independence: "</code></p></li>
 <li><p>Finally, we’ll make a call to <code>ggplot2</code> to modify the size of our plot title and to make it right justified</p></li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span></a>
@@ -231,7 +230,7 @@
 <a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">caption =</span> <span class="st">"Source: Titanic survival dataset"</span>,            <span class="co"># caption for the entire plot</span></a>
 <a class="sourceLine" id="cb3-15" data-line-number="15">  <span class="dt">legend.title =</span> <span class="st">"Survived?"</span>,                              <span class="co"># legend title</span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                       <span class="co"># show resuls from bayes factor in favor of null</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),                         <span class="co"># changing plot theme </span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),                         <span class="co"># changing plot theme </span></a>
 <a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,                               <span class="co"># choosing a different color palette</span></a>
 <a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,                                       <span class="co"># package to which color palette belongs</span></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,             <span class="co"># title for statistical test</span></a>
@@ -240,7 +239,7 @@
 <a class="sourceLine" id="cb3-23" data-line-number="23">  <span class="dt">nboot =</span> <span class="dv">10</span>,                                              <span class="co"># no. of bootstrap sample for effect size CI</span></a>
 <a class="sourceLine" id="cb3-24" data-line-number="24">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb3-25" data-line-number="25">)  <span class="op">+</span><span class="st">                                                       </span><span class="co"># further modification with `ggplot2` commands</span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.title =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(</a>
 <a class="sourceLine" id="cb3-27" data-line-number="27">    <span class="dt">color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb3-28" data-line-number="28">    <span class="dt">size =</span> <span class="dv">14</span>,</a>
 <a class="sourceLine" id="cb3-29" data-line-number="29">    <span class="dt">hjust =</span> <span class="dv">0</span></a>
@@ -365,7 +364,7 @@
 <div id="within-subjects-designs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h2>
-<p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (N=96), some of them enter the trial already being sick (N=38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">paired = TRUE</a></code>, which will display results from <strong>McNemar test</strong> in the subtitle. (<strong>Note:</strong> If you forget to set <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">paired = TRUE</a></code>, the results you get will be inaccurate.)</p>
+<p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (N=96), some of them enter the trial already being sick (N=38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle. (<strong>Note:</strong> If you forget to set <code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># seed for reproducibility</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"></a>
@@ -445,14 +444,13 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.1.0.9000.</p>
 </div>
-
       </footer>
 </div>
 
   
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
     
     

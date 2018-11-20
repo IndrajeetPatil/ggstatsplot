@@ -11,15 +11,15 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
 <!-- sticky kit -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
@@ -31,8 +31,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
-<link href="../docsearch.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
@@ -47,7 +46,8 @@ included in the plot as a subtitle." />
 
 
 <!-- mathjax -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -186,7 +186,7 @@ included in the plot as a subtitle.</p>
   <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -215,7 +215,7 @@ if each row represents a single observation (Default).</p></td>
     <tr>
       <th>ratio</th>
       <td><p>A vector of numbers: the expected proportions for the proportion
-test. Default is <code>NULL</code>, which means if there are two levels <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>ratio = c(1,1)</a></code>, etc.</p></td>
+test. Default is <code>NULL</code>, which means if there are two levels <code>ratio = c(1,1)</code>, etc.</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -290,7 +290,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code><a href='https://www.rdocumentation.org/packages/base/topics/assignOps'>k = 3</a></code>).</p></td>
+(Default: <code>k = 3</code>).</p></td>
     </tr>
     <tr>
       <th>perc.k</th>
@@ -311,7 +311,7 @@ to be carried out for each level of <code>condition</code> (Default: <code>TRUE<
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_economist'>ggthemes::theme_economist()</a></code>,
 <code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>, etc.).</p></td>
     </tr>
@@ -334,7 +334,7 @@ type. Default palette is <code>"Dark2"</code>.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>Either <code>1</code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code>. If <code><a href='https://www.rdocumentation.org/packages/base/topics/Arithmetic'>-1</a></code> the palette will be reversed.</p></td>
+      <td><p>Either <code>1</code> or <code>-1</code>. If <code>-1</code> the palette will be reversed.</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -366,7 +366,7 @@ Larntz, 1978; Thompson, 1988). For more, see-
 
 <span class='co'># simple function call with the defaults (without condition)</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>
@@ -380,21 +380,25 @@ Larntz, 1978; Thompson, 1988). For more, see-
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"0 = V-shaped"</span>, <span class='st'>"1 = straight"</span>),
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
-)</div><div class='output co'>#&gt; Note: Results from faceted one-sample proportion tests:</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; # A tibble: 3 x 7
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from faceted one-sample proportion tests:
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 7</span><span>
 #&gt;   condition `0`     `1`    `Chi-squared`    df `p-value` significance
-#&gt;   &lt;fct&gt;     &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       
-#&gt; 1 4         9.09%   90.91%         7.364     1     0.007 **          
-#&gt; 2 6         42.86%  57.14%         0.143     1     0.705 ns          
-#&gt; 3 8         100.00% &lt;NA&gt;          14         1     0     ***         
-#&gt; Note: 95% CI for Cramer's V was computed with 10 bootstrap samples.</div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 4         9.09%   90.91%         7.36      1     0.007 **          
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 6         42.86%  57.14%         0.143     1     0.705 ns          
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 8         100.00% </span><span style='color: #BB0000;'>NA</span><span>            14         1     0     ***         
+#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for Cramer's V was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># simple function call with the defaults (without condition; with count data)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)
-
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘jmv’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    anova</span></div><div class='input'>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
-)</div><div class='img'><img src='ggpiestats-3.png' alt='' width='700' height='433' /></div></pre>
+)</div><div class='img'><img src='ggpiestats-3.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -419,14 +423,13 @@ Larntz, 1978; Thompson, 1988). For more, see-
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.1.0.9000.</p>
 </div>
-
       </footer>
    </div>
 
   
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
 <script>
   docsearch({
     

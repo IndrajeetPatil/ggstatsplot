@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>'ggplot2' Based Plots with Statistical Details • ggstatsplot</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><!-- docsearch --><script src="docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
-<link href="docsearch.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><!-- docsearch --><script src="docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="'ggplot2' Based Plots with Statistical Details">
 <meta property="og:description" content="Extension of 'ggplot2', 'ggstatsplot' creates graphics with details 
@@ -22,7 +21,7 @@
   versions of t-test/anova, correlation analyses, contingency table analysis, 
   and regression analyses.">
 <meta name="twitter:card" content="summary">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -186,7 +185,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg" alt="Coverage Status"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--19-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--11--20-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://sites.google.com/site/indrajeetspatilmorality/"><img src="https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0" alt="author"></a></td>
 </tr>
 <tr class="even">
@@ -244,7 +243,7 @@
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">dependencies =</span> <span class="ot">TRUE</span>,                 <span class="co"># installs packages which ggstatsplot depends on</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">upgrade_dependencies =</span> <span class="ot">TRUE</span>          <span class="co"># updates any out of date dependencies</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">)</a></code></pre></div>
-<p>If you are not using the <a href="https://www.rstudio.com/">RStudio IDE</a> and you get an error related to “pandoc” you will either need to remove the argument <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">build_vignettes = TRUE</a></code> (to avoid building the vignettes) or install <a href="http://pandoc.org/">pandoc</a>. If you have the <code>rmarkdown</code> R package installed then you can check if you have pandoc by running the following in R:</p>
+<p>If you are not using the <a href="https://www.rstudio.com/">RStudio IDE</a> and you get an error related to “pandoc” you will either need to remove the argument <code>build_vignettes = TRUE</code> (to avoid building the vignettes) or install <a href="http://pandoc.org/">pandoc</a>. If you have the <code>rmarkdown</code> R package installed then you can check if you have pandoc by running the following in R:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">rmarkdown<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rmarkdown/topics/pandoc_available">pandoc_available</a></span>()</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 </div>
@@ -330,7 +329,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002bc723a8&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002bd441b0&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -341,8 +340,8 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p><code>ggstatsplot</code> relies on non-standard evaluation (NSE), i.e., rather than looking at the values of arguments (<code>x</code>, <code>y</code>), it instead looks at their expressions. This means that you <strong>shouldn’t</strong> enter arguments with the <code>$</code> operator and setting <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">data = NULL</a></code>: <code>data = NULL, x = data$x, y = data$y</code>. You <strong>must</strong> always specify the <code>data</code> argument for all functions. On the plus side, you can enter arguments either as a string (<code>x = "x", y = "y"</code>) or as a bare expression (<code>x = x, y = y</code>) and it wouldn’t matter. To read more about NSE, see- <a href="http://adv-r.had.co.nz/Computing-on-the-language.html" class="uri">http://adv-r.had.co.nz/Computing-on-the-language.html</a></p>
-<p><code>ggstatsplot</code> is a very chatty package and will by default print helpful notes on assumptions about linear models, warnings, etc. If you don’t want your console to be cluttered with such messages, they can be turned off by setting argument <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">messages = FALSE</a></code> in the function call.</p>
+<p><code>ggstatsplot</code> relies on non-standard evaluation (NSE), i.e., rather than looking at the values of arguments (<code>x</code>, <code>y</code>), it instead looks at their expressions. This means that you <strong>shouldn’t</strong> enter arguments with the <code>$</code> operator and setting <code>data = NULL</code>: <code>data = NULL, x = data$x, y = data$y</code>. You <strong>must</strong> always specify the <code>data</code> argument for all functions. On the plus side, you can enter arguments either as a string (<code>x = "x", y = "y"</code>) or as a bare expression (<code>x = x, y = y</code>) and it wouldn’t matter. To read more about NSE, see- <a href="http://adv-r.had.co.nz/Computing-on-the-language.html" class="uri">http://adv-r.had.co.nz/Computing-on-the-language.html</a></p>
+<p><code>ggstatsplot</code> is a very chatty package and will by default print helpful notes on assumptions about linear models, warnings, etc. If you don’t want your console to be cluttered with such messages, they can be turned off by setting argument <code>messages = FALSE</code> in the function call.</p>
 <p>Here are examples of the main functions currently supported in <code>ggstatsplot</code>.</p>
 <p><strong>Note</strong>: If you are reading this on GitHub repository, the documentation below is for the <strong>development</strong> version of the package. So you may see some features available here that are not currently present in the stable version of this package on <strong>CRAN</strong>. For documentation relevant for the CRAN version, see:</p>
 <ul>
@@ -370,8 +369,8 @@
 <a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="dt">y =</span> Sepal.Length,</a>
 <a class="sourceLine" id="cb8-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb8-13" data-line-number="13">) <span class="op">+</span><span class="st">                                               </span><span class="co"># further modification outside of ggstatsplot</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a></code></pre></div>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>Note that this function returns a <code>ggplot2</code> object and thus any of the graphics layers can be further modified.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>).</p>
@@ -415,8 +414,8 @@
 <a class="sourceLine" id="cb9-37" data-line-number="37">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb9-38" data-line-number="38">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
-<p>In case of a parametric t-test, setting <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">bf.message = TRUE</a></code> will also attach results from Bayesian Student’s <em>t</em>-test. That way, if the null hypothesis can’t be rejected with the NHST approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <code>BF01</code>).</p>
-<p>By default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., <code>BF10</code> is displayed). Natural logarithms are shown because BF values can be pretty large. This also makes it easy to compare evidence in favor alternative (<code>BF10</code>) versus null (<code>BF01</code>) hypotheses (since <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">log(BF10) = - log(BF01)</a></code>).</p>
+<p>In case of a parametric t-test, setting <code>bf.message = TRUE</code> will also attach results from Bayesian Student’s <em>t</em>-test. That way, if the null hypothesis can’t be rejected with the NHST approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <code>BF01</code>).</p>
+<p>By default, Bayes Factor quantifies the support for the alternative hypothesis (H1) over the null hypothesis (H0) (i.e., <code>BF10</code> is displayed). Natural logarithms are shown because BF values can be pretty large. This also makes it easy to compare evidence in favor alternative (<code>BF10</code>) versus null (<code>BF01</code>) hypotheses (since <code>log(BF10) = - log(BF01)</code>).</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -448,7 +447,7 @@
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
 <p>For more, see the <code>ggbetweenstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html</a></p>
 <p><strong>This function is not appropriate for within-subjects designs.</strong></p>
-<p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em> still use this function just to prepare the <strong>plot</strong> for exploratory data analysis, but the statistical details displayed in the subtitle will be incorrect. You can remove them by adding <code><a href="https://www.rdocumentation.org/packages/base/topics/Arithmetic">+ ggplot2::labs(subtitle = NULL)</a></code> to your function call.</p>
+<p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em> still use this function just to prepare the <strong>plot</strong> for exploratory data analysis, but the statistical details displayed in the subtitle will be incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code> to your function call.</p>
 <p>As a <strong>temporary solution</strong>, you can use the helper function from <code>ggstatsplot</code> to display results from within-subjects version of the test in question. Here is an example-</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -539,7 +538,7 @@
 <a class="sourceLine" id="cb14-13" data-line-number="13">  <span class="dt">xlab =</span> <span class="st">"IMDB rating"</span>,</a>
 <a class="sourceLine" id="cb14-14" data-line-number="14">  <span class="dt">grouping.var =</span> genre,            <span class="co"># grouping variable</span></a>
 <a class="sourceLine" id="cb14-15" data-line-number="15">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
-<a class="sourceLine" id="cb14-16" data-line-number="16">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb14-16" data-line-number="16">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
 <a class="sourceLine" id="cb14-17" data-line-number="17">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb14-18" data-line-number="18">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb14-19" data-line-number="19">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
@@ -588,7 +587,7 @@
 <a class="sourceLine" id="cb16-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span>                                    <span class="co"># turn off messages and notes</span></a>
 <a class="sourceLine" id="cb16-22" data-line-number="22">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
-<p>In case of within-subjects designs, setting <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">paired = TRUE</a></code> will produce results from McNemar test-</p>
+<p>In case of within-subjects designs, setting <code>paired = TRUE</code> will produce results from McNemar test-</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb17-3" data-line-number="3"></a>
@@ -683,7 +682,7 @@
 <a class="sourceLine" id="cb20-22" data-line-number="22">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>                      <span class="co"># turn off ggstatsplot theme layer</span></a>
 <a class="sourceLine" id="cb20-23" data-line-number="23">) </a></code></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
-<p>As can be seen from the plot, bayes factor can be attached (<code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">bf.message = TRUE</a></code>) to assess evidence in favor of the null hypothesis.</p>
+<p>As can be seen from the plot, bayes factor can be attached (<code>bf.message = TRUE</code>) to assess evidence in favor of the null hypothesis.</p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -872,8 +871,8 @@
 <a class="sourceLine" id="cb26-18" data-line-number="18">) <span class="op">+</span><span class="st">                                    </span></a>
 <a class="sourceLine" id="cb26-19" data-line-number="19"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb26-20" data-line-number="20"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb26-21" data-line-number="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb26-22" data-line-number="22"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb26-21" data-line-number="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-22" data-line-number="22"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb26-23" data-line-number="23">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="80%"></p>
 <p>All the regression model classes that are supported in the <code>broom</code> package with <code>tidy</code> and <code>glance</code> methods (<a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a>) are also supported by <code>ggcoefstats</code>. Additionally, we can make a number of aesthetic modifications by changing the defaults for theme and palette.</p>
@@ -1047,14 +1046,13 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.1.0.9000.</p>
 </div>
-
       </footer>
 </div>
 
   
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
     
     

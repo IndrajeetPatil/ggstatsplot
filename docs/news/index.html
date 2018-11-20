@@ -11,15 +11,15 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
 <!-- sticky kit -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
@@ -31,8 +31,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
-<link href="../docsearch.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
@@ -43,7 +42,8 @@
 
 
 <!-- mathjax -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -176,7 +176,7 @@
 <li>
 <code>ggcoefstats</code> was showing wrong confidence intervals for <code>merMod</code> class objects due to a bug in the <code>broom.mixed</code> package (<a href="https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005" class="uri">https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005</a>). This was fixed in <code>broom.mixed</code> and so <code>ggcoefstats</code> should no longer have any issues.</li>
 <li>
-<code>specify_decimal_p</code> has been modified because it produced incorrect results when <code><a href="https://www.rdocumentation.org/packages/base/topics/Comparison">k &lt; 3</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">p.value = TRUE</a></code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>).</li>
+<code>specify_decimal_p</code> has been modified because it produced incorrect results when <code>k &lt; 3</code> and <code>p.value = TRUE</code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>).</li>
 <li>
 <code>ggpiestats</code> produced incorrect results if some levels of the factor had been filtered out prior to using this function. It now drops unused levels and produces correct results.</li>
 <li>
@@ -212,7 +212,7 @@
 <li>
 <code>ggpiestats</code> (and its <code>grouped_</code> version) gain <code>slice.label</code> argument that decides what information needs to be displayed as a label on the slices of the pie chart: <code>"percentage"</code> (which has been the default thus far), <code>"counts"</code>, or <code>"both"</code>.</li>
 <li>
-<code>ggcorrmat</code> can work with <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">cor.vars = NULL</a></code>. In such case, <strong>all</strong> numeric variables from the provided dataframe will be used for computing the correlation matrix.</li>
+<code>ggcorrmat</code> can work with <code>cor.vars = NULL</code>. In such case, <strong>all</strong> numeric variables from the provided dataframe will be used for computing the correlation matrix.</li>
 <li>Given the constant changes to the default behavior of functions, the lifecycle badge has been changed from <code>stable</code> to <code>maturing</code>.</li>
 <li>When the number of colors needed by a function exceeds the number of colors contained in a given palette, informative message is displayed to the user (with the new internal function <code><a href="../reference/palette_message.html">palette_message()</a></code>).</li>
 <li>Several users had requested an easier way to turn off subtitles with results from tests (which was already implemented in <code>ggscatterstats</code> and <code>gghistostats</code> with the argument <code>results.subtitle</code>), so <code>ggbetweenstats</code> also gains two new arguments to do this: <code>results.subtitle</code> and <code>subtitle</code>.</li>
@@ -232,7 +232,7 @@
 <li>
 <code>ggscatterstats</code> gains <code>label.var</code> and <code>label.expression</code> arguments to attach labels to points.</li>
 <li>
-<code>gghistostats</code> now defaults to not showing (redundant) color gradient (<code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">fill.gradient = FALSE</a></code>) and shows both <code>"count"</code> and <code>"proportion"</code> data. It also gains a new argument <code>bar.fill</code> that can be used to fill bars with a uniform color.</li>
+<code>gghistostats</code> now defaults to not showing (redundant) color gradient (<code>fill.gradient = FALSE</code>) and shows both <code>"count"</code> and <code>"proportion"</code> data. It also gains a new argument <code>bar.fill</code> that can be used to fill bars with a uniform color.</li>
 <li>
 <code>ggbetweenstats</code>, <code>ggcoefstats</code>, <code>ggcorrmat</code>, <code>ggscatterstats</code>, and <code>ggpiestats</code> now support all palettes contained in the <code>paletteer</code> package. This helps avoid situations where people had large number of groups (&gt; 12) and there were not enough colors in any of the <code>RColorBrewer</code> palettes.</li>
 <li>
@@ -259,7 +259,7 @@
 <code>ggscatterstats</code> gains <code>method</code> and <code>formula</code> arguments to modify smoothing functions.</li>
 <li>
 <code>ggcorrmat</code> can now show <code>robust</code> correlation coefficients in the matrix plot.</li>
-<li>For <code>gghistostats</code>, <code>binwidth</code> value, if not specified, is computed with <code><a href="https://www.rdocumentation.org/packages/base/topics/Arithmetic">(max-min)/sqrt(n)</a></code>. This is basically to get rid of the warnings ggplot2 produces. Thanks to Chuck Powell’s PR (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/43'>#43</a>).</li>
+<li>For <code>gghistostats</code>, <code>binwidth</code> value, if not specified, is computed with <code>(max-min)/sqrt(n)</code>. This is basically to get rid of the warnings ggplot2 produces. Thanks to Chuck Powell’s PR (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/43'>#43</a>).</li>
 <li>
 <code>ggcoefstats</code> gains a new argument <code>partial</code> and can display eta-squared and omega-squared effect sizes for anovas, in addition to the prior partial variants of these effect sizes.</li>
 <li>
@@ -385,7 +385,7 @@
 <li>Function <code>gghistostats</code> no longer displays both density and count since the density information was redundant. The <code>density.plot</code> argument has also been deprecated.</li>
 <li>
 <code>ggscatterstats</code> argument <code>intercept</code> has now been changed to <code>centrality.para</code>. This was due to possible confusion about interpreation of these lines; they show central tendency measures and not intercept for the linear model. Thus the change.</li>
-<li>The default for <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">effsize.type = "biased"</a></code> effect size for <code>ggbetweenstats</code> in case of ANOVA is <strong>partial</strong> omega-squared, and not omega-squared. Additionally, both partial eta- and omega-squared are not computed using bootstrapping with (default) 100 bootstrap samples.</li>
+<li>The default for <code>effsize.type = "biased"</code> effect size for <code>ggbetweenstats</code> in case of ANOVA is <strong>partial</strong> omega-squared, and not omega-squared. Additionally, both partial eta- and omega-squared are not computed using bootstrapping with (default) 100 bootstrap samples.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -427,14 +427,13 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.1.0.9000.</p>
 </div>
-
       </footer>
    </div>
 
   
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
 <script>
   docsearch({
     

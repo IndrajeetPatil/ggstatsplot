@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ggstatsplot: ggplot2 Based Plots with Statistical Details • ggstatsplot</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><!-- docsearch --><script src="../../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
-<link href="../../docsearch.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<script src="../../pkgdown.js"></script><!-- docsearch --><script src="../../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../../extra.css" rel="stylesheet">
 <meta property="og:title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -131,9 +130,9 @@
       <h1>ggstatsplot: ggplot2 Based Plots with Statistical Details</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-11-19</h4>
+            <h4 class="date">2018-11-20</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggstatsplot_paper.Rmd"><code><a href="https://www.rdocumentation.org/packages/base/topics/Arithmetic">vignettes/web_only/ggstatsplot_paper.Rmd</a></code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggstatsplot_paper.Rmd"><code>vignettes/web_only/ggstatsplot_paper.Rmd</code></a></small>
       <div class="hidden name"><code>ggstatsplot_paper.Rmd</code></div>
 
     </div>
@@ -230,16 +229,16 @@
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="co"># plot 1: superposition</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">  ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">                           </span>genre <span class="op">==</span><span class="st"> "Drama"</span>),</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> length,</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="dt">mapping =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> length,</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">                           <span class="dt">y =</span> rating,</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">                           <span class="dt">color =</span> genre)</a>
 <a class="sourceLine" id="cb3-13" data-line-number="13">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),</a>
 <a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="co"># plot 2: juxtaposition</span></a>
 <a class="sourceLine" id="cb3-19" data-line-number="19">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
@@ -719,7 +718,7 @@
 <li><p>Default statistical tests:</p></li>
 <li><p>Dealing with <strong>null results</strong>:</p></li>
 <li><p>Avoiding the <strong>“p-value error”</strong>:<br>
-The <em>p</em>-value indexes the probability that the researchers have falsely rejected a true null hypothesis (Type I error, i.e.) and can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on Google Scholar report the <em>p</em>-value to be <code><a href="https://www.rdocumentation.org/packages/base/topics/assignOps">p = 0.000</a></code> (Lilienfeld et al., 2015), putatively due to relying on default computer outputs. All <em>p</em>-values displayed in <code>ggstatsplot</code> plots avoid this mistake. Anything less than <code><a href="https://www.rdocumentation.org/packages/base/topics/Comparison">p &lt; 0.001</a></code> is displayed as such (e.g, Figure-1). The package deems it unimportant how infinitesimally small the <em>p</em>-values are and, instead, puts emphasis on the effect size magnitudes and their 95% CIs.</p></li>
+The <em>p</em>-value indexes the probability that the researchers have falsely rejected a true null hypothesis (Type I error, i.e.) and can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on Google Scholar report the <em>p</em>-value to be <code>p = 0.000</code> (Lilienfeld et al., 2015), putatively due to relying on default computer outputs. All <em>p</em>-values displayed in <code>ggstatsplot</code> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such (e.g, Figure-1). The package deems it unimportant how infinitesimally small the <em>p</em>-values are and, instead, puts emphasis on the effect size magnitudes and their 95% CIs.</p></li>
 </ol>
 </div>
 </div>
@@ -768,7 +767,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252                        </span></a>
 <a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252                        </span></a>
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  tz       America/New_York                                  </span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  date     2018-11-19                                        </span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  date     2018-11-20                                        </span></a>
 <a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;  package      * version    date       lib source                             </span></a>
@@ -784,7 +783,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt;  broom.mixed    0.2.3      2018-10-21 [1] CRAN (R 3.6.0)                     </span></a>
 <a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt;  BWStest        0.2.2      2018-10-18 [1] CRAN (R 3.5.1)                     </span></a>
 <a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt;  ca             0.71       2018-10-10 [1] CRAN (R 3.5.1)                     </span></a>
-<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt;  callr          3.0.0.9001 2018-10-30 [1] Github (r-lib/callr@942ba24)       </span></a>
+<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt;  callr          3.0.0      2018-08-24 [1] CRAN (R 3.5.1)                     </span></a>
 <a class="sourceLine" id="cb7-30" data-line-number="30"><span class="co">#&gt;  cellranger     1.1.0      2016-07-27 [1] CRAN (R 3.5.1)                     </span></a>
 <a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt;  cli            1.0.1.9000 2018-10-30 [1] Github (r-lib/cli@56538e3)         </span></a>
 <a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt;  cluster        2.0.7-1    2018-04-13 [2] CRAN (R 3.6.0)                     </span></a>
@@ -873,7 +872,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-115" data-line-number="115"><span class="co">#&gt;  pillar         1.3.0.9001 2018-11-05 [1] Github (r-lib/pillar@c5bf622)      </span></a>
 <a class="sourceLine" id="cb7-116" data-line-number="116"><span class="co">#&gt;  pkgbuild       1.0.2      2018-10-16 [1] CRAN (R 3.5.1)                     </span></a>
 <a class="sourceLine" id="cb7-117" data-line-number="117"><span class="co">#&gt;  pkgconfig      2.0.2      2018-08-16 [1] CRAN (R 3.5.1)                     </span></a>
-<a class="sourceLine" id="cb7-118" data-line-number="118"><span class="co">#&gt;  pkgdown        1.1.0.9000 2018-11-19 [1] Github (r-lib/pkgdown@5f28dd1)     </span></a>
+<a class="sourceLine" id="cb7-118" data-line-number="118"><span class="co">#&gt;  pkgdown        1.1.0.9000 2018-11-20 [1] Github (r-lib/pkgdown@6d6ad5d)     </span></a>
 <a class="sourceLine" id="cb7-119" data-line-number="119"><span class="co">#&gt;  pkgload        1.0.2      2018-10-29 [1] CRAN (R 3.6.0)                     </span></a>
 <a class="sourceLine" id="cb7-120" data-line-number="120"><span class="co">#&gt;  plyr           1.8.4      2016-06-08 [1] CRAN (R 3.5.1)                     </span></a>
 <a class="sourceLine" id="cb7-121" data-line-number="121"><span class="co">#&gt;  PMCMRplus      1.4.1      2018-11-12 [1] CRAN (R 3.5.1)                     </span></a>
@@ -982,14 +981,13 @@ Vignettes contain probably the most detailed exposition. Every single function i
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.1.0.9000.</p>
 </div>
-
       </footer>
 </div>
 
   
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
     
     
