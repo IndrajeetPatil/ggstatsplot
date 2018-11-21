@@ -48,9 +48,10 @@
 #'   are returned (Default: `TRUE`). If `FALSE`, eta-squared or omega-squared
 #'   will be returned. Valid only for objects of class `aov`, `anova`, or
 #'   `aovlist`.
-#' @param k Number of decimal places expected for results displayed in labels.
+#' @param k Number of decimal places expected for results displayed in labels
+#'   (Default : `k = 2`).
 #' @param k.caption.summary Number of decimal places expected for results
-#'   displayed in captions.
+#'   displayed in captions (Default : `k.caption.summary = 0`).
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `TRUE`).
 #' @param exponentiate If `TRUE`, the `x`-axis will be logarithmic (Default:
@@ -119,20 +120,14 @@
 #'
 #' @importFrom broom tidy glance augment
 #' @importFrom broom.mixed tidy glance augment
-#' @importFrom dplyr select
-#' @importFrom dplyr filter
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr full_join
-#' @importFrom dplyr everything
-#' @importFrom dplyr desc
-#' @importFrom dplyr vars
-#' @importFrom dplyr matches
+#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
+#' @importFrom dplyr group_by arrange full_join vars matches desc everything
 #' @importFrom purrrlyr by_row
 #' @importFrom stats as.formula lm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
 #' @importFrom sjstats p_value
-#' @importFrom tibble as_data_frame rownames_to_column
+#' @importFrom tibble as.tibble as_data_frame rownames_to_column
 #'
 #' @references
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
@@ -159,7 +154,7 @@ ggcoefstats <- function(x,
                         conf.int = TRUE,
                         conf.level = 0.95,
                         se.type = "nid",
-                        k = 3,
+                        k = 2,
                         k.caption.summary = 0,
                         exclude.intercept = TRUE,
                         exponentiate = FALSE,

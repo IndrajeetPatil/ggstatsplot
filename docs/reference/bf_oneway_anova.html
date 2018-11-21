@@ -178,7 +178,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>bf_oneway_anova</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>)</pre>
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -211,6 +211,11 @@ to use in calculating Bayes factors.</p></td>
 in favor of null)  or <code>"results"</code> (which will return the dataframe with
 results).</p></td>
     </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -228,7 +233,7 @@ results).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
-#&gt;     "(BF"["01"], ") = ", "-65.2", ", Prior width = ", "0.800"))</div><div class='input'>
+#&gt;     "(BF"["01"], ") = ", "-65.18", ", Prior width = ", "0.80"))</div><div class='input'>
 <span class='co'># to get results dataframe</span>
 <span class='fu'>bf_oneway_anova</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,

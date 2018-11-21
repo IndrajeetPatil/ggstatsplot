@@ -9,7 +9,7 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   sample.size.label = TRUE, bf.message = FALSE,
   sampling.plan = "indepMulti", fixed.margin = "rows",
   prior.concentration = 1, title = NULL, caption = NULL,
-  nboot = 25, legend.title = NULL, facet.wrap.name = NULL, k = 3,
+  nboot = 25, legend.title = NULL, facet.wrap.name = NULL, k = 2,
   perc.k = 0, slice.label = "percentage", facet.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
@@ -75,7 +75,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{facet.wrap.name}{The text for the facet_wrap variable label.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}

@@ -9,16 +9,17 @@ testthat::test_that(
     using_function1 <-
       suppressWarnings(
         ggstatsplot::subtitle_t_parametric(
-        data = dplyr::filter(movies_long, genre == "Action" | genre == "Drama"),
-        x = genre,
-        y = rating,
-        effsize.type = "d",
-        effsize.noncentral = TRUE,
-        var.equal = TRUE,
-        conf.level = .99,
-        k = 5,
-        messages = FALSE
-      ))
+          data = dplyr::filter(movies_long, genre == "Action" | genre == "Drama"),
+          x = genre,
+          y = rating,
+          effsize.type = "d",
+          effsize.noncentral = TRUE,
+          var.equal = TRUE,
+          conf.level = .99,
+          k = 5,
+          messages = FALSE
+        )
+      )
 
     # expected output
     set.seed(123)
@@ -37,11 +38,11 @@ testthat::test_that(
           ", ",
           italic("d"),
           " = ",
-          c(Action = "0.51775"),
+          c(Action = "-0.56364"),
           ", 95% CI [",
-          "0.36213",
+          "-0.71947",
           ", ",
-          "0.67319",
+          "-0.40762",
           "]",
           ", ",
           italic("n"),

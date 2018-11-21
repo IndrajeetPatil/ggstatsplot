@@ -5,7 +5,7 @@
 \title{Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 (between-subjects designs).}
 \usage{
-subtitle_kw_nonparametric(data, x, y, messages = TRUE, k = 3,
+subtitle_kw_nonparametric(data, x, y, messages = TRUE, k = 2,
   nboot = 100, conf.level = 0.95, conf.type = "norm", ...)
 }
 \arguments{
@@ -20,7 +20,7 @@ taken.}
 to be displayed (Default: \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}

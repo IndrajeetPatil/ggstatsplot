@@ -8,7 +8,7 @@ within-subjects design)}
 \usage{
 subtitle_contingency_tab(data, main, condition, counts = NULL,
   nboot = 25, paired = FALSE, stat.title = NULL, conf.level = 0.95,
-  conf.type = "norm", messages = TRUE, k = 3)
+  conf.type = "norm", messages = TRUE, k = 2)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -45,7 +45,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 to be displayed (Default: \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 }
 \description{
 Making text subtitle for contingency analysis (Pearson's chi-square

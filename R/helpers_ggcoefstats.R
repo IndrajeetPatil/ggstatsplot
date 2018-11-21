@@ -15,7 +15,7 @@ tfz_labeller <- function(tidy_df,
                          statistic,
                          effsize = "eta",
                          partial = TRUE,
-                         k = 3) {
+                         k = 2) {
 
   #----------------------- p-value cleanup ------------------------------------
 
@@ -233,7 +233,7 @@ tfz_labeller <- function(tidy_df,
 ggcoefstats_label_maker <- function(x,
                                     tidy_df,
                                     glance_df,
-                                    k = 3,
+                                    k = 2,
                                     effsize = "eta",
                                     partial = TRUE) {
 

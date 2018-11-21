@@ -6,7 +6,7 @@
 \usage{
 bf_contingency_tab(data, main, condition, sampling.plan = "indepMulti",
   fixed.margin = "rows", prior.concentration = 1, caption = NULL,
-  output = "caption")
+  output = "caption", k = 2)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -35,6 +35,9 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{output}{Can either be \code{"caption"} (which will contain text for evidence
 in favor of null)  or \code{"results"} (which will return the dataframe with
 results).}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
 }
 \description{
 Bayesian contingency table analysis.

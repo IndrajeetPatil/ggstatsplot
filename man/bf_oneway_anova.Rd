@@ -5,7 +5,7 @@
 \title{Bayesian one-way analysis of variance.}
 \usage{
 bf_oneway_anova(data, x, y, bf.prior = 0.707, caption = NULL,
-  output = "caption")
+  output = "caption", k = 2)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -23,6 +23,9 @@ to use in calculating Bayes factors.}
 \item{output}{Can either be \code{"caption"} (which will contain text for evidence
 in favor of null)  or \code{"results"} (which will return the dataframe with
 results).}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
 }
 \description{
 Bayesian one-way analysis of variance.

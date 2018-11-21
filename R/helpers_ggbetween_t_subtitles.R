@@ -8,10 +8,11 @@
 #'   or Hedge's *g* (Default: `FALSE`).
 #' @param conf.level A scalar value between 0 and 1. If unspecified, the
 #'    default is to return `95%` lower and upper confidence intervals (`0.95`).
+#' @param k Number of digits after decimal point (should be an integer)
+#'   (Default: `k = 2`).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams stats::t.test
-#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select mutate_at
 #' @importFrom rlang !! enquo
@@ -54,7 +55,7 @@ subtitle_t_parametric <-
              effsize.noncentral = FALSE,
              conf.level = 0.95,
              var.equal = FALSE,
-             k = 3,
+             k = 2,
              ...) {
 
     # creating a dataframe
@@ -240,7 +241,6 @@ subtitle_t_parametric <-
 #'   to be displayed (Default: `TRUE`).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_t_parametric
-#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -261,7 +261,7 @@ subtitle_mann_nonparametric <-
              x,
              y,
              paired = FALSE,
-             k = 3,
+             k = 2,
              messages = TRUE,
              ...) {
 
@@ -393,7 +393,6 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'   to be displayed (Default: `TRUE`).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_t_parametric
-#' @inheritParams groupedstats::specify_decimal_p
 #' @inheritParams yuend_ci
 #'
 #' @importFrom dplyr select
@@ -443,7 +442,7 @@ subtitle_t_robust <-
              nboot = 100,
              conf.level = 0.95,
              conf.type = "norm",
-             k = 3,
+             k = 2,
              messages = TRUE,
              ...) {
 
@@ -696,7 +695,7 @@ subtitle_t_bayes <- function(data,
                              y,
                              bf.prior = 0.707,
                              paired = FALSE,
-                             k = 3,
+                             k = 2,
                              ...) {
 
   # creating a dataframe

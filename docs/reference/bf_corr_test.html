@@ -178,7 +178,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>bf_corr_test</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>)</pre>
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -211,6 +211,10 @@ to use in calculating Bayes factors.</p></td>
 in favor of null)  or <code>"results"</code> (which will return the dataframe with
 results).</p></td>
     </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of decimal places expected for results.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -231,7 +235,7 @@ results).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y4</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</div><div class='output co'>#&gt; atop(NULL, expr = paste("In favor of null: ", "log"["e"], "(BF"["01"], 
-#&gt;     ") = ", "0.6", ", Prior width = ", "1.000"))</div><div class='input'>
+#&gt;     ") = ", "0.60", ", Prior width = ", "1.00"))</div><div class='input'>
 <span class='co'># to see results</span>
 <span class='fu'>bf_corr_test</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>anscombe</span>,

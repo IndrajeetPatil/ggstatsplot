@@ -8,7 +8,7 @@ gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
   xlab = NULL, title = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = FALSE, robust.estimator = "onestep", nboot = 100,
-  k = 3, ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  k = 2, ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   fill.gradient = FALSE, low.color = "#0072B2",
   high.color = "#D55E00", bar.fill = "grey50",
   results.subtitle = TRUE, centrality.para = "mean",
@@ -49,8 +49,9 @@ to \code{FALSE}).}
 \item{caption}{The text for the plot caption.}
 
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
-or \code{"robust"} or \code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or
-\code{"r"} or \code{"bf"}, respectively.}
+or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
+\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
+\code{"bf"}resp.}
 
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
@@ -69,7 +70,7 @@ of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.messag
 (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from

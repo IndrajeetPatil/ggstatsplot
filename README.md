@@ -9,8 +9,8 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)           | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                           | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.6-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                       | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![manual](https://img.shields.io/badge/manual-0.0.6-darkgreen.svg)](https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf)                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)                      | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--11--20-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
-| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_11_20-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Coverage Status](https://img.shields.io/codecov/c/github/IndrajeetPatil/ggstatsplot/master.svg)](https://codecov.io/github/IndrajeetPatil/ggstatsplot?branch=master)                      | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--11--21-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
+| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_11_21-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
 
@@ -146,7 +146,7 @@ args(name = ggstatsplot::ggscatterstats)
 #>     direction = 1, xfill = "#009E73", yfill = "#D55E00", xalpha = 1, 
 #>     yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL, 
 #>     results.subtitle = TRUE, title = NULL, subtitle = NULL, caption = NULL, 
-#>     nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE, 
+#>     nboot = 100, beta = 0.1, k = 2, axes.range.restrict = FALSE, 
 #>     ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE, 
 #>     messages = TRUE) 
 #> NULL
@@ -199,7 +199,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x0000000013962328>
+#> <bytecode: 0x0000000022d8d0b8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -306,7 +306,7 @@ ggstatsplot::ggbetweenstats(
   mean.label.size = 2.5,                          # size of the label for mean
   type = "p",                                     # which type of test is to be run
   bf.message = TRUE,                              # add a message with bayes factor favoring null
-  k = 2,                                          # number of decimal places for statistical results
+  k = 3,                                          # number of decimal places for statistical results
   outlier.tagging = TRUE,                         # whether outliers need to be tagged
   outlier.label = Sepal.Width,                    # variable to be used for the outlier tag
   outlier.label.color = "darkgreen",              # changing the color for the text label
@@ -359,7 +359,7 @@ ggstatsplot::grouped_ggbetweenstats(
   p.adjust.method = "bonferroni",   # method for adjusting p-values for multiple comparisons
   bf.message = TRUE,                # display Bayes Factor in favor of the null hypothesis
   grouping.var = genre,             # grouping variable
-  k = 2,
+  k = 3,
   title.prefix = "Movie genre",
   palette = "default_jama",
   package = "ggsci",
@@ -488,7 +488,7 @@ ggstatsplot::grouped_ggscatterstats(
   x = rating, 
   y = length,
   bf.message = TRUE,               # display bayes factor message
-  k = 2,                           # no. of decimal places in the results
+  k = 3,                           # no. of decimal places in the results
   xfill = "#E69F00", 
   yfill = "#8b3058",
   xlab = "IMDB rating",
@@ -593,8 +593,8 @@ ggstatsplot::ggpiestats(
 #> # A tibble: 2 x 7
 #>   condition  Approve Disapprove `Chi-squared`    df `p-value` significance
 #>   <fct>      <chr>   <chr>              <dbl> <dbl>     <dbl> <chr>       
-#> 1 Approve    90.23%  9.77%               570.     1         0 ***         
-#> 2 Disapprove 20.83%  79.17%              245      1         0 ***
+#> 1 Approve    90.23%  9.77%              569.6     1         0 ***         
+#> 2 Disapprove 20.83%  79.17%             245       1         0 ***
 ```
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />

@@ -6,37 +6,21 @@
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken. This argument is optional.
 #' @param x A numeric variable.
-#' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
-#'   or `"robust"` or `"bayes"`). Abbreviations accepted are `"p"` or `"np"` or
-#'   `"r"` or `"bf"`, respectively.
 #' @param test.value A number specifying the value of the null hypothesis
 #'   (Default: `0`).
-#' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
-#'   to use in calculating Bayes factors.
 #' @param robust.estimator If `test = "robust"` robust estimator to be used
 #'   (`"onestep"` (Default), `"mom"`, or `"median"`). For more, see
 #'   `?WRS2::onesampb`.
 #' @param nboot Number of bootstrap samples for robust one-sample location test
 #'   (Default: `100`).
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
-#' @inheritParams groupedstats::specify_decimal_p
+#' @inheritParams ggbetweenstats
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
+#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
+#' @importFrom dplyr group_by n arrange
 #' @importFrom jmv ttestOneS
 #' @importFrom WRS2 onesampb
 #' @importFrom scales percent
-#' @importFrom crayon green
-#' @importFrom crayon blue
-#' @importFrom crayon yellow
-#' @importFrom crayon red
+#' @importFrom crayon green blue yellow red
 #' @importFrom psych cohen.d.ci
 #' @importFrom groupedstats specify_decimal_p
 #'
@@ -60,7 +44,7 @@ subtitle_t_onesample <- function(data = NULL,
                                  bf.prior = 0.707,
                                  robust.estimator = "onestep",
                                  nboot = 100,
-                                 k = 3,
+                                 k = 2,
                                  messages = TRUE) {
 
   # ====================== dataframe ==========================================
@@ -302,12 +286,12 @@ subtitle_t_onesample <- function(data = NULL,
             x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
             base = exp(1)
           ),
-          k = 1,
+          k = k,
           p.value = FALSE
         ),
         bf_prior = ggstatsplot::specify_decimal_p(
           x = bf.prior,
-          k = 3,
+          k = k,
           p.value = FALSE
         ),
         effsize = ggstatsplot::specify_decimal_p(

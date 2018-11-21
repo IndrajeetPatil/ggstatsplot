@@ -39,8 +39,8 @@
 #'   `TRUE`).
 #' @param beta A numeric bending constant for robust correlation coefficient
 #'   (Default: `0.1`).
-#' @param digits Decides the number of decimal digits to be displayed (Default:
-#'   `2`).
+#' @param digits,k Decides the number of decimal digits to be displayed
+#'   (Default: `2`).
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
@@ -181,6 +181,7 @@ ggcorrmat <- function(data,
                       continuity = TRUE,
                       beta = 0.1,
                       digits = 2,
+                      k = NULL,
                       sig.level = 0.05,
                       p.adjust.method = "none",
                       hc.order = FALSE,
@@ -252,6 +253,7 @@ ggcorrmat <- function(data,
 
   # see which method was used to specify type of correlation
   corr.method <- type %||% corr.method
+  digits <- k %||% digits
 
   # if any of the abbreviations have been entered, change them
   if (corr.method == "p") {
@@ -406,7 +408,8 @@ ggcorrmat <- function(data,
           pch.cex = pch.cex,
           tl.cex = tl.cex,
           tl.col = tl.col,
-          tl.srt = tl.srt
+          tl.srt = tl.srt,
+          digits = digits
         )
 
       # =========================== labels ==================================

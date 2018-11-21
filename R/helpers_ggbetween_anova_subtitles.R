@@ -18,7 +18,7 @@
 #'   to be displayed (Default: `TRUE`).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams stats::oneway.test
-#' @inheritParams groupedstats::specify_decimal_p
+#' @inheritParams subtitle_t_parametric
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -53,7 +53,7 @@ subtitle_anova_parametric <-
              effsize.type = "partial_omega",
              nboot = 100,
              var.equal = FALSE,
-             k = 3,
+             k = 2,
              messages = TRUE,
              ...) {
     # creating a dataframe
@@ -293,7 +293,7 @@ subtitle_anova_parametric <-
 #'   to be displayed (Default: `TRUE`).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams t1way_ci
-#' @inheritParams groupedstats::specify_decimal_p
+#' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -313,7 +313,7 @@ subtitle_kw_nonparametric <-
              x,
              y,
              messages = TRUE,
-             k = 3,
+             k = 2,
              nboot = 100,
              conf.level = 0.95,
              conf.type = "norm",
@@ -443,7 +443,6 @@ subtitle_kw_nonparametric <-
 #'
 #' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_kw_nonparametric
-#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -475,7 +474,7 @@ subtitle_friedman_nonparametric <- function(data,
                                             x,
                                             y,
                                             messages = TRUE,
-                                            k = 3,
+                                            k = 2,
                                             ...) {
 
   # creating a dataframe
@@ -593,7 +592,6 @@ subtitle_friedman_nonparametric <- function(data,
 #' @param ... Additional arguments (ignored).
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_t_parametric
-#' @inheritParams groupedstats::specify_decimal_p
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -634,7 +632,7 @@ subtitle_anova_robust <-
              conf.level = 0.95,
              conf.type = "norm",
              messages = TRUE,
-             k = 3,
+             k = 2,
              ...) {
 
     # creating a dataframe
@@ -809,7 +807,7 @@ subtitle_anova_bayes <- function(data,
                                  var.equal = FALSE,
                                  bf.prior = 0.707,
                                  paired = FALSE,
-                                 k = 3,
+                                 k = 2,
                                  ...) {
 
   # creating a dataframe

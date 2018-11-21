@@ -7,7 +7,7 @@ robust equivalents.}
 \usage{
 subtitle_t_onesample(data = NULL, x, type = "parametric",
   test.value = 0, bf.prior = 0.707, robust.estimator = "onestep",
-  nboot = 100, k = 3, messages = TRUE)
+  nboot = 100, k = 2, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -16,8 +16,9 @@ taken. This argument is optional.}
 \item{x}{A numeric variable.}
 
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
-or \code{"robust"} or \code{"bayes"}). Abbreviations accepted are \code{"p"} or \code{"np"} or
-\code{"r"} or \code{"bf"}, respectively.}
+or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
+\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
+\code{"bf"}resp.}
 
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
@@ -33,7 +34,7 @@ to use in calculating Bayes factors.}
 (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

@@ -189,7 +189,7 @@ within-subjects design)</p>
 
     <pre class="usage"><span class='fu'>subtitle_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='no'>condition</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -250,7 +250,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 3</code>).</p></td>
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     </table>
     
@@ -268,9 +268,9 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>15</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for Cramer's V was computed with </span><span style='color: #BBBB00;'>15</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", 2L, ") = ", "8.741", ", ", italic("p"), 
-#&gt;     " = ", "0.013", ", ", italic(V), " = ", "0.523", ", 95% CI [", 
-#&gt;     "0.250", ", ", "0.790", "]", ", ", italic("n"), " = ", 32)</div><div class='input'>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", 2L, ") = ", "8.74", ", ", italic("p"), 
+#&gt;     " = ", "0.013", ", ", italic(V), " = ", "0.52", ", 95% CI [", 
+#&gt;     "0.25", ", ", "0.79", "]", ", ", italic("n"), " = ", 32)</div><div class='input'>
 <span class='co'># with counts data</span>
 <span class='co'># in case of no variation, a `NULL` will be returned.</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)

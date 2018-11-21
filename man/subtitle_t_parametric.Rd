@@ -7,7 +7,7 @@ designs).}
 \usage{
 subtitle_t_parametric(data, x, y, paired = FALSE, effsize.type = "g",
   effsize.noncentral = FALSE, conf.level = 0.95, var.equal = FALSE,
-  k = 3, ...)
+  k = 2, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -41,7 +41,7 @@ default is to return \code{95\%} lower and upper confidence intervals (\code{0.9
     the case of arbitrarily many samples.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{...}{Additional arguments (ignored).}
 }

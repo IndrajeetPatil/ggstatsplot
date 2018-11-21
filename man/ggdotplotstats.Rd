@@ -45,6 +45,9 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 A dot chart with statistical details from one-sample test
 included in the plot as a subtitle.
 }
+\note{
+This function is still work in progress.
+}
 \examples{
 ggdotplotstats(
   data = ggplot2::mpg,

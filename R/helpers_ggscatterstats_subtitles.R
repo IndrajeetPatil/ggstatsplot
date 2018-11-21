@@ -13,11 +13,11 @@
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams robcor_ci
 #' @inheritParams cor_test_ci
-#' @inheritParams groupedstats::specify_decimal_p
 #' @inheritParams bf_corr_test
+#' @inheritParams subtitle_t_parametric
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
+#' @importFrom rlang !! enquo
 #' @importFrom stats cor.test
 #'
 #' @examples
@@ -53,7 +53,7 @@ subtitle_ggscatterstats <-
              conf.level = 0.95,
              conf.type = "norm",
              messages = TRUE,
-             k = 3) {
+             k = 2) {
 
     #------------------------ dataframe -------------------------------------
 
@@ -90,8 +90,7 @@ subtitle_ggscatterstats <-
         base::substitute(
           expr =
             paste(
-              "Pearson's ",
-              italic("r"),
+              italic("r")["pearson"],
               "(",
               df,
               ")",
@@ -180,8 +179,7 @@ subtitle_ggscatterstats <-
         base::substitute(
           expr =
             paste(
-              "Spearman's ",
-              italic(rho),
+              italic(rho)["spearman"],
               "(",
               df,
               ")",
@@ -245,8 +243,7 @@ subtitle_ggscatterstats <-
         base::substitute(
           expr =
             paste(
-              "robust ",
-              italic(r),
+              italic(rho)["pb"],
               " = ",
               estimate,
               ", 95% CI [",
@@ -317,8 +314,7 @@ subtitle_ggscatterstats <-
         base::substitute(
           expr =
             paste(
-              "Pearson's ",
-              italic("r"),
+              italic("r")["pearson"],
               "(",
               df,
               ")",

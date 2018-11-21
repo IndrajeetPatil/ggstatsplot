@@ -34,16 +34,8 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
-#' @importFrom dplyr if_else
-#' @importFrom dplyr desc
+#' @importFrom dplyr select group_by summarize n arrange if_else desc
+#' @importFrom dplyr mutate mutate_at mutate_if
 #' @importFrom rlang !! enquo quo_name
 #' @importFrom crayon green blue yellow red
 #' @importFrom paletteer scale_fill_paletteer_d
@@ -115,7 +107,7 @@ ggpiestats <- function(data,
                        nboot = 25,
                        legend.title = NULL,
                        facet.wrap.name = NULL,
-                       k = 3,
+                       k = 2,
                        perc.k = 0,
                        slice.label = "percentage",
                        facet.proptest = TRUE,
@@ -510,7 +502,8 @@ ggpiestats <- function(data,
           fixed.margin = fixed.margin,
           prior.concentration = prior.concentration,
           caption = caption,
-          output = "caption"
+          output = "caption",
+          k = k
         )
     }
 

@@ -167,7 +167,7 @@ ggscatterstats <-
              caption = NULL,
              nboot = 100,
              beta = 0.1,
-             k = 3,
+             k = 2,
              axes.range.restrict = FALSE,
              ggtheme = ggplot2::theme_bw(),
              ggstatsplot.layer = TRUE,
@@ -273,7 +273,8 @@ ggscatterstats <-
             y = y...internal,
             bf.prior = bf.prior,
             caption = caption,
-            output = "caption"
+            output = "caption",
+            k = k
           )
       }
 

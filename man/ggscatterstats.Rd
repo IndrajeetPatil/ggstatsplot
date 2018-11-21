@@ -16,7 +16,7 @@ ggscatterstats(data, x, y, type = "pearson", bf.prior = 0.707,
   yfill = "#D55E00", xalpha = 1, yalpha = 1, xsize = 0.7,
   ysize = 0.7, centrality.para = NULL, results.subtitle = TRUE,
   title = NULL, subtitle = NULL, caption = NULL, nboot = 100,
-  beta = 0.1, k = 3, axes.range.restrict = FALSE,
+  beta = 0.1, k = 2, axes.range.restrict = FALSE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   messages = TRUE)
 }

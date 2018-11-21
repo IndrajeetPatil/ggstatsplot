@@ -14,17 +14,11 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
+#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
+#' @importFrom dplyr group_by n arrange
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
-#' @importFrom purrr map
+#' @importFrom purrr map set_names
 #' @importFrom tidyr nest
 #'
 #' @seealso \code{\link{ggbetweenstats}}
@@ -69,7 +63,7 @@ grouped_ggbetweenstats <- function(data,
                                    subtitle = NULL,
                                    caption = NULL,
                                    sample.size.label = TRUE,
-                                   k = 3,
+                                   k = 2,
                                    var.equal = FALSE,
                                    nboot = 100,
                                    tr = 0.1,

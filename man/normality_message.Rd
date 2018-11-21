@@ -4,7 +4,7 @@
 \alias{normality_message}
 \title{Display normality test result as a message.}
 \usage{
-normality_message(x, lab = NULL, k = 3, output = "message")
+normality_message(x, lab = NULL, k = 2, output = "message")
 }
 \arguments{
 \item{x}{A numeric vector.}
@@ -12,7 +12,7 @@ normality_message(x, lab = NULL, k = 3, output = "message")
 \item{lab}{A character describing label for the variable. If \code{NULL}, a
 generic \code{"x"} label will be used.}
 
-\item{k}{Number of decimal places expected for results (Default: \code{3}).}
+\item{k}{Number of decimal places expected for results (Default: \code{2}).}
 
 \item{output}{What output is desired: \code{"message"} (default) or \code{"stats"}
 objects.}

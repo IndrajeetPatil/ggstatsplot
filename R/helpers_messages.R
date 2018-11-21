@@ -6,7 +6,7 @@
 #' @param x A numeric vector.
 #' @param lab A character describing label for the variable. If `NULL`, a
 #'   generic `"x"` label will be used.
-#' @param k Number of decimal places expected for results (Default: `3`).
+#' @param k Number of decimal places expected for results (Default: `2`).
 #' @param output What output is desired: `"message"` (default) or `"stats"`
 #'   objects.
 #' @description A note to the user about the validity of assumptions for the
@@ -36,7 +36,7 @@
 # function body
 normality_message <- function(x,
                               lab = NULL,
-                              k = 3,
+                              k = 2,
                               output = "message") {
 
   # if label is not provided, use generic "x" variable
@@ -129,7 +129,7 @@ bartlett_message <- function(data,
                              x,
                              y,
                              lab = NULL,
-                             k = 3,
+                             k = 2,
                              output = "message") {
 
   #--------------------------- variable names ---------------------------------
@@ -241,7 +241,9 @@ grouped_message <- function() {
 #' @keywords internal
 
 # function body
-palette_message <- function(package, palette, min_length) {
+palette_message <- function(package,
+                            palette,
+                            min_length) {
   # computing the number of colors in a given palette
   palette_df <- tibble::as.tibble(paletteer::palettes_d_names) %>%
     dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%

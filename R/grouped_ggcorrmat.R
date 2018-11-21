@@ -17,7 +17,7 @@
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
-#' @importFrom purrr map
+#' @importFrom purrr map set_names
 #' @importFrom tidyr nest
 #'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
@@ -86,6 +86,7 @@ grouped_ggcorrmat <- function(data,
                               continuity = TRUE,
                               beta = 0.1,
                               digits = 2,
+                              k = NULL,
                               sig.level = 0.05,
                               p.adjust.method = "none",
                               hc.order = FALSE,
@@ -167,6 +168,7 @@ grouped_ggcorrmat <- function(data,
 
   # see which method was used to specify type of correlation
   corr.method <- type %||% corr.method
+  digits <- k %||% digits
 
   # creating a list of plots
   if (output == "plot") {

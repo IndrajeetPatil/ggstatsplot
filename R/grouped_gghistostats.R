@@ -12,18 +12,11 @@
 #' @inheritParams gghistostats
 #' @inheritDotParams combine_plots
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
+#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
+#' @importFrom dplyr group_by n arrange
+#' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
-#' @importFrom purrr map
+#' @importFrom purrr map set_names
 #' @importFrom tidyr nest
 #'
 #' @seealso \code{\link{gghistostats}}
@@ -62,7 +55,7 @@ grouped_gghistostats <- function(data,
                                  bf.message = FALSE,
                                  robust.estimator = "onestep",
                                  nboot = 500,
-                                 k = 3,
+                                 k = 2,
                                  ggtheme = ggplot2::theme_bw(),
                                  ggstatsplot.layer = TRUE,
                                  fill.gradient = FALSE,

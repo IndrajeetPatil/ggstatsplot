@@ -177,7 +177,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_t_bayes</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+    <pre class="usage"><span class='fu'>subtitle_t_bayes</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -209,7 +209,7 @@ to use in calculating Bayes factors.</p></td>
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 3</code>).</p></td>
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -234,9 +234,9 @@ to use in calculating Bayes factors.</p></td>
 #&gt; <span class='message'>  influence.merMod                lme4</span>
 #&gt; <span class='message'>  cooks.distance.influence.merMod lme4</span>
 #&gt; <span class='message'>  dfbeta.influence.merMod         lme4</span>
-#&gt; <span class='message'>  dfbetas.influence.merMod        lme4</span></div><div class='output co'>#&gt; paste(italic("t"), "(", 30, ") = ", "5.258", ", log"["e"], "(BF"["10"], 
+#&gt; <span class='message'>  dfbetas.influence.merMod        lme4</span></div><div class='output co'>#&gt; paste(italic("t"), "(", 30, ") = ", "5.26", ", log"["e"], "(BF"["10"], 
 #&gt;     ") = ", "7.2", ", Prior width = ", "0.707", ", ", italic("d"), 
-#&gt;     " = ", "1.892", ", ", italic("n"), " = ", 32L)</div><div class='input'>
+#&gt;     " = ", "1.89", ", ", italic("n"), " = ", 32L)</div><div class='input'>
 <span class='co'># within-subjects design</span>
 
 <span class='fu'>subtitle_t_bayes</span>(
@@ -248,9 +248,9 @@ to use in calculating Bayes factors.</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; paste(italic("t"), "(", 249, ") = ", "-23.345", ", log"["e"], 
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; paste(italic("t"), "(", 249, ") = ", "-23.34", ", log"["e"], 
 #&gt;     "(BF"["10"], ") = ", "140.6", ", Prior width = ", "0.707", 
-#&gt;     ", ", italic("d"), " = ", "-1.476", ", ", italic("n"), " = ", 
+#&gt;     ", ", italic("d"), " = ", "-1.48", ", ", italic("n"), " = ", 
 #&gt;     250L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

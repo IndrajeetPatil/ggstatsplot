@@ -448,10 +448,12 @@ statistical reporting and why.
     estimate (beta), whichever was specified by the user, along with the
     statistic (depending on the model, this can be a *t* or *z* statistic) and
     the corresponding significance level (Figure-6).
+  - With the exception of *p*-values, most statistics are rounded to two decimal
+    places.
 
 2. Default statistical tests: 
 
-3. Dealing with **null results**:
+3. Dealing with **null results**: 
 
 4.  Avoiding the **"p-value error"**:  
     The *p*-value indexes the probability that the researchers have falsely

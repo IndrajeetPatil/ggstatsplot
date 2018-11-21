@@ -19,7 +19,7 @@ taken.}
 is to be displayed (Default: \code{FALSE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 }
 \description{
 Create a dataframe with mean per group and a formatted label for

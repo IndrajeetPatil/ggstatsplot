@@ -246,7 +246,7 @@ pairwise_p <-
              paired = FALSE,
              var.equal = FALSE,
              p.adjust.method = "holm",
-             k = 3,
+             k = 2,
              messages = TRUE,
              ...) {
     # ---------------------------- data cleanup -------------------------------

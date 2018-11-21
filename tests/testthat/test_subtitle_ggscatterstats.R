@@ -20,8 +20,7 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
-          "Spearman's ",
-          italic(rho),
+          italic(rho)["spearman"],
           "(",
           2431,
           ")",

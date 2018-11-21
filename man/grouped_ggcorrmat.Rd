@@ -9,7 +9,7 @@ grouped_ggcorrmat(data, cor.vars = NULL, cor.vars.names = NULL,
   grouping.var, title.prefix = "Group", output = "plot",
   matrix.type = "full", method = "square", corr.method = "pearson",
   type = NULL, exact = FALSE, continuity = TRUE, beta = 0.1,
-  digits = 2, sig.level = 0.05, p.adjust.method = "none",
+  digits = 2, k = NULL, sig.level = 0.05, p.adjust.method = "none",
   hc.order = FALSE, hc.method = "complete", lab = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   colors = c("#E69F00", "white", "#009E73"), outline.color = "black",
@@ -79,8 +79,11 @@ Kendall's \emph{tau} and Spearman's \emph{rho} when not computed exactly (Defaul
 \item{beta}{A numeric bending constant for robust correlation coefficient
 (Default: \code{0.1}).}
 
-\item{digits}{Decides the number of decimal digits to be displayed (Default:
-\code{2}).}
+\item{digits}{Decides the number of decimal digits to be displayed
+(Default: \code{2}).}
+
+\item{k}{Decides the number of decimal digits to be displayed
+(Default: \code{2}).}
 
 \item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding

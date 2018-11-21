@@ -178,7 +178,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_anova_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"partial_omega"</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -221,7 +221,7 @@ omega-squared for <strong>anova</strong>)).</p></td>
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 3</code>).</p></td>
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -256,10 +256,9 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for partial eta-squared was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "52", ") = ", "4.136", ", ", 
-#&gt;     italic("p"), " = ", "0.011", ", ", eta["p"]^2, " = ", "0.193", 
-#&gt;     ", 95% CI [", "0.013", ", ", "0.339", "]", ", ", italic("n"), 
-#&gt;     " = ", 56L)</div></span></pre>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "52", ") = ", "4.14", ", ", italic("p"), 
+#&gt;     " = ", "0.011", ", ", eta["p"]^2, " = ", "0.19", ", 95% CI [", 
+#&gt;     "0.01", ", ", "0.34", "]", ", ", italic("n"), " = ", 56L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -6,7 +6,7 @@
 Goodness of fit test.}
 \usage{
 subtitle_onesample_proptest(data, main, counts = NULL, ratio = NULL,
-  legend.title = NULL, k = 3)
+  legend.title = NULL, k = 2)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -23,7 +23,7 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 \item{legend.title}{Title text for the legend.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 }
 \description{
 Making text subtitle for Proportion Test (N Outcomes), a chi-squared

@@ -16,6 +16,9 @@ BUG FIXES
 
 MAJOR CHANGES
 
+  - As per APA guidelines, all results show results with two decimal places.
+    That is, the default value for `k` argument for all functions has been
+    changed from `3` to `2`.
   - All helper functions for the `ggbetweenstats` subtitles have been renamed to
     remove `_ggbetween_` from their names as this was becoming confusing for the
     user. Some of these functions work both with the between- and

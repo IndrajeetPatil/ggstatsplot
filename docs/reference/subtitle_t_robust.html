@@ -183,7 +183,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_t_robust</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -234,7 +234,7 @@ intervals required. The value should be any subset of the values <code>"norm"</c
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 3</code>).</p></td>
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -256,9 +256,9 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>group</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>extra</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for explanatory measure of effect size was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("t"), "(", "13.896", ") = ", "1.568", ", ", italic("p"), 
-#&gt;     " = ", "0.139", ", ", italic(xi), " = ", "0.524", ", 95% CI [", 
-#&gt;     "0.000", ", ", "0.892", "]", ", ", italic("n"), " = ", 20L)</div><div class='input'>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("t"), "(", "13.90", ") = ", "1.57", ", ", italic("p"), 
+#&gt;     " = ", "0.139", ", ", italic(xi), " = ", "0.52", ", 95% CI [", 
+#&gt;     "0.00", ", ", "0.89", "]", ", ", italic("n"), " = ", 20L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_t_robust</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ToothGrowth</span>,
@@ -283,9 +283,9 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for explanatory measure of effect size was computed with </span><span style='color: #BBBB00;'>25</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("t"), "(", "199.000", ") = ", "-26.644", ", ", italic("p"), 
-#&gt;     " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.735", ", 95% CI [", 
-#&gt;     "0.426", ", ", "0.862", "]", ", ", italic("n"), " = ", 250L)</div></span></pre>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("t"), "(", "199.00", ") = ", "-26.64", ", ", italic("p"), 
+#&gt;     " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.73", ", 95% CI [", 
+#&gt;     "0.43", ", ", "0.86", "]", ", ", italic("n"), " = ", 250L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

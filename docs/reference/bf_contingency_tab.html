@@ -179,7 +179,7 @@
 
     <pre class="usage"><span class='fu'>bf_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='no'>condition</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>)</pre>
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -227,6 +227,11 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 in favor of null)  or <code>"results"</code> (which will return the dataframe with
 results).</p></td>
     </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -247,8 +252,8 @@ results).</p></td>
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"cols"</span>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
-#&gt;     "(BF"["01"], ") = ", "-2.7", ", sampling = ", "independent multinomial", 
-#&gt;     ", ", italic("a"), " = ", "1.0"))</div><div class='input'>
+#&gt;     "(BF"["01"], ") = ", "-2.72", ", sampling = ", "independent multinomial", 
+#&gt;     ", ", italic("a"), " = ", "1.00"))</div><div class='input'>
 <span class='co'># to see results</span>
 <span class='fu'>bf_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
@@ -258,8 +263,8 @@ results).</p></td>
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
   <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
-#&gt;     "(BF"["01"], ") = ", "-3.3", ", sampling = ", "joint multinomial", 
-#&gt;     ", ", italic("a"), " = ", "1.0"))</div></pre>
+#&gt;     "(BF"["01"], ") = ", "-3.33", ", sampling = ", "joint multinomial", 
+#&gt;     ", ", italic("a"), " = ", "1.00"))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

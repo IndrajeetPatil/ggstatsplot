@@ -12,7 +12,7 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   effsize.type = "unbiased", effsize.noncentral = FALSE,
   bf.prior = 0.707, bf.message = FALSE, results.subtitle = TRUE,
   xlab = NULL, ylab = NULL, subtitle = NULL, caption = NULL,
-  sample.size.label = TRUE, k = 3, var.equal = FALSE, nboot = 100,
+  sample.size.label = TRUE, k = 2, var.equal = FALSE, nboot = 100,
   tr = 0.1, mean.label.size = 3, mean.label.fontface = "bold",
   mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
   linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
@@ -100,7 +100,7 @@ should be displayed for each level of the grouping variable \code{x} (Default:
 \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{var.equal}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F

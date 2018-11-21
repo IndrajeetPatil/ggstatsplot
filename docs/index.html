@@ -190,7 +190,7 @@
 </tr>
 <tr class="even">
 <td><a href="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot"><img src="https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge" alt="Dependency Status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_11_20-yellowgreen.svg" alt="Covrpage Summary"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_11_21-yellowgreen.svg" alt="Covrpage Summary"></a></td>
 <td><a href="https://saythanks.io/to/IndrajeetPatil"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="saythanks"></a></td>
 <td><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></td>
@@ -281,7 +281,7 @@
 <a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;     direction = 1, xfill = "#009E73", yfill = "#D55E00", xalpha = 1, </span></a>
 <a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;     yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL, </span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;     results.subtitle = TRUE, title = NULL, subtitle = NULL, caption = NULL, </span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;     nboot = 100, beta = 0.1, k = 3, axes.range.restrict = FALSE, </span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;     nboot = 100, beta = 0.1, k = 2, axes.range.restrict = FALSE, </span></a>
 <a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt;     ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE, </span></a>
 <a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt;     messages = TRUE) </span></a>
 <a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; NULL</span></a></code></pre></div>
@@ -329,7 +329,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002bc4b1b8&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002bc041a0&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -400,7 +400,7 @@
 <a class="sourceLine" id="cb9-23" data-line-number="23">  <span class="dt">mean.label.size =</span> <span class="fl">2.5</span>,                          <span class="co"># size of the label for mean</span></a>
 <a class="sourceLine" id="cb9-24" data-line-number="24">  <span class="dt">type =</span> <span class="st">"p"</span>,                                     <span class="co"># which type of test is to be run</span></a>
 <a class="sourceLine" id="cb9-25" data-line-number="25">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                              <span class="co"># add a message with bayes factor favoring null</span></a>
-<a class="sourceLine" id="cb9-26" data-line-number="26">  <span class="dt">k =</span> <span class="dv">2</span>,                                          <span class="co"># number of decimal places for statistical results</span></a>
+<a class="sourceLine" id="cb9-26" data-line-number="26">  <span class="dt">k =</span> <span class="dv">3</span>,                                          <span class="co"># number of decimal places for statistical results</span></a>
 <a class="sourceLine" id="cb9-27" data-line-number="27">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,                         <span class="co"># whether outliers need to be tagged</span></a>
 <a class="sourceLine" id="cb9-28" data-line-number="28">  <span class="dt">outlier.label =</span> Sepal.Width,                    <span class="co"># variable to be used for the outlier tag</span></a>
 <a class="sourceLine" id="cb9-29" data-line-number="29">  <span class="dt">outlier.label.color =</span> <span class="st">"darkgreen"</span>,              <span class="co"># changing the color for the text label</span></a>
@@ -435,7 +435,7 @@
 <a class="sourceLine" id="cb10-16" data-line-number="16">  <span class="dt">p.adjust.method =</span> <span class="st">"bonferroni"</span>,   <span class="co"># method for adjusting p-values for multiple comparisons</span></a>
 <a class="sourceLine" id="cb10-17" data-line-number="17">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                <span class="co"># display Bayes Factor in favor of the null hypothesis</span></a>
 <a class="sourceLine" id="cb10-18" data-line-number="18">  <span class="dt">grouping.var =</span> genre,             <span class="co"># grouping variable</span></a>
-<a class="sourceLine" id="cb10-19" data-line-number="19">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19">  <span class="dt">k =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb10-20" data-line-number="20">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
 <a class="sourceLine" id="cb10-21" data-line-number="21">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</a>
 <a class="sourceLine" id="cb10-22" data-line-number="22">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
@@ -532,7 +532,7 @@
 <a class="sourceLine" id="cb14-7" data-line-number="7">  <span class="dt">x =</span> rating, </a>
 <a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="dt">y =</span> length,</a>
 <a class="sourceLine" id="cb14-9" data-line-number="9">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,               <span class="co"># display bayes factor message</span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10">  <span class="dt">k =</span> <span class="dv">2</span>,                           <span class="co"># no. of decimal places in the results</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">  <span class="dt">k =</span> <span class="dv">3</span>,                           <span class="co"># no. of decimal places in the results</span></a>
 <a class="sourceLine" id="cb14-11" data-line-number="11">  <span class="dt">xfill =</span> <span class="st">"#E69F00"</span>, </a>
 <a class="sourceLine" id="cb14-12" data-line-number="12">  <span class="dt">yfill =</span> <span class="st">"#8b3058"</span>,</a>
 <a class="sourceLine" id="cb14-13" data-line-number="13">  <span class="dt">xlab =</span> <span class="st">"IMDB rating"</span>,</a>

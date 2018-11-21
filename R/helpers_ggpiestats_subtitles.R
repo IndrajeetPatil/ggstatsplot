@@ -21,7 +21,7 @@
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams chisq_v_ci
-#' @inheritParams groupedstats::specify_decimal_p
+#' @inheritParams subtitle_t_parametric
 #'
 #' @importFrom tibble tribble
 #' @importFrom exact2x2 exact2x2
@@ -65,7 +65,7 @@ subtitle_contingency_tab <- function(data,
                                      conf.level = 0.95,
                                      conf.type = "norm",
                                      messages = TRUE,
-                                     k = 3) {
+                                     k = 2) {
 
   # =============================== dataframe ================================
 
@@ -359,7 +359,6 @@ subtitle_contingency_tab <- function(data,
 #'   test. Default is `NULL`, which means if there are two levels `ratio =
 #'   c(1,1)`, etc.
 #' @param legend.title Title text for the legend.
-#' @inheritParams groupedstats::specify_decimal_p
 #' @inheritParams subtitle_contingency_tab
 #'
 #' @examples
@@ -386,7 +385,7 @@ subtitle_onesample_proptest <- function(data,
                                         counts = NULL,
                                         ratio = NULL,
                                         legend.title = NULL,
-                                        k = 3) {
+                                        k = 2) {
 
   # saving the column label for the 'main' variables
   if (is.null(legend.title)) {

@@ -66,21 +66,12 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
+#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
+#' @importFrom dplyr group_by n arrange
 #' @importFrom jmv ttestOneS
 #' @importFrom WRS2 onesampb
 #' @importFrom scales percent
-#' @importFrom crayon green
-#' @importFrom crayon blue
-#' @importFrom crayon yellow
-#' @importFrom crayon red
+#' @importFrom crayon green blue yellow red
 #'
 #' @examples
 #' 
@@ -129,7 +120,7 @@ gghistostats <-
              bf.message = FALSE,
              robust.estimator = "onestep",
              nboot = 100,
-             k = 3,
+             k = 2,
              ggtheme = ggplot2::theme_bw(),
              ggstatsplot.layer = TRUE,
              fill.gradient = FALSE,
@@ -209,7 +200,8 @@ gghistostats <-
             test.value = test.value,
             bf.prior = bf.prior,
             caption = caption,
-            output = "caption"
+            output = "caption",
+            k = k
           )
       }
 

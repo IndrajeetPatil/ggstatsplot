@@ -13,6 +13,8 @@
 #'   grouping variable `y` (Default: `TRUE`).
 #' @inheritParams gghistostats
 #'
+#' @note This function is still work in progress.
+#'
 #' @examples
 #' ggdotplotstats(
 #'   data = ggplot2::mpg,

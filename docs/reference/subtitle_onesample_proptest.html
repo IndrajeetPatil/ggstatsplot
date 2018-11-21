@@ -183,7 +183,7 @@ Goodness of fit test.</p>
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_onesample_proptest</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -214,7 +214,7 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 3</code>).</p></td>
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     </table>
     
@@ -228,7 +228,7 @@ test. Default is <code>NULL</code>, which means if there are two levels <code>ra
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
-)</div><div class='output co'>#&gt; paste(italic(chi)^2, "(", 3, ") = ", "133.473", ", ", italic("p"), 
+)</div><div class='output co'>#&gt; paste(italic(chi)^2, "(", 3, ") = ", "133.47", ", ", italic("p"), 
 #&gt;     " = ", "&lt; 0.001", ", ", italic("n"), " = ", 592L)</div><div class='input'>
 <span class='co'># in case no variation, only sample size will be shown</span>
 <span class='fu'>subtitle_onesample_proptest</span>(

@@ -5,7 +5,7 @@
 \title{Bayesian correlation test.}
 \usage{
 bf_corr_test(data, x, y, bf.prior = 0.707, caption = NULL,
-  output = "caption")
+  output = "caption", k = 2)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -23,6 +23,8 @@ to use in calculating Bayes factors.}
 \item{output}{Can either be \code{"caption"} (which will contain text for evidence
 in favor of null)  or \code{"results"} (which will return the dataframe with
 results).}
+
+\item{k}{Number of decimal places expected for results.}
 }
 \description{
 Bayesian correlation test.

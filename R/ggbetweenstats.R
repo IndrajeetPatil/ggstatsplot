@@ -197,7 +197,7 @@ ggbetweenstats <- function(data,
                            title = NULL,
                            subtitle = NULL,
                            sample.size.label = TRUE,
-                           k = 3,
+                           k = 2,
                            var.equal = FALSE,
                            nboot = 100,
                            tr = 0.1,
@@ -425,7 +425,8 @@ ggbetweenstats <- function(data,
             bf.prior = bf.prior,
             caption = caption,
             paired = FALSE,
-            output = "caption"
+            output = "caption",
+            k = k
           )
       }
     } else if (test == "anova") {

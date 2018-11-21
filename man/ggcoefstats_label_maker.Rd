@@ -4,7 +4,7 @@
 \alias{ggcoefstats_label_maker}
 \title{Create labels with statistical details for \code{ggcoefstats}.}
 \usage{
-ggcoefstats_label_maker(x, tidy_df, glance_df, k = 3, effsize = "eta",
+ggcoefstats_label_maker(x, tidy_df, glance_df, k = 2, effsize = "eta",
   partial = TRUE)
 }
 \arguments{
@@ -14,7 +14,8 @@ ggcoefstats_label_maker(x, tidy_df, glance_df, k = 3, effsize = "eta",
 
 \item{glance_df}{Glance model summary dataframe from \code{broom::glance}.}
 
-\item{k}{Number of decimal places expected for results displayed in labels.}
+\item{k}{Number of decimal places expected for results displayed in labels
+(Default : \code{k = 2}).}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant

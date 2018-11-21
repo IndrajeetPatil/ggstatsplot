@@ -5,7 +5,7 @@
 \title{Making text subtitle for the Friedman Rank Sum Test (nonparametric
 ANOVA) (within-subjects designs).}
 \usage{
-subtitle_friedman_nonparametric(data, x, y, messages = TRUE, k = 3,
+subtitle_friedman_nonparametric(data, x, y, messages = TRUE, k = 2,
   ...)
 }
 \arguments{
@@ -20,7 +20,7 @@ taken.}
 to be displayed (Default: \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{...}{Additional arguments (ignored).}
 }

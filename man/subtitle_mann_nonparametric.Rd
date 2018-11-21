@@ -6,10 +6,10 @@
 \title{Making text subtitle for the Mann-Whitney U-test
 (between-/within-subjects designs).}
 \usage{
-subtitle_mann_nonparametric(data, x, y, paired = FALSE, k = 3,
+subtitle_mann_nonparametric(data, x, y, paired = FALSE, k = 2,
   messages = TRUE, ...)
 
-subtitle_t_nonparametric(data, x, y, paired = FALSE, k = 3,
+subtitle_t_nonparametric(data, x, y, paired = FALSE, k = 2,
   messages = TRUE, ...)
 }
 \arguments{
@@ -24,7 +24,7 @@ taken.}
     t-test.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

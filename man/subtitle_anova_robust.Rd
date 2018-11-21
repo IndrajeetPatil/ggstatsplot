@@ -6,7 +6,7 @@
 (between-subjects designs).}
 \usage{
 subtitle_anova_robust(data, x, y, tr = 0.1, nboot = 100,
-  conf.level = 0.95, conf.type = "norm", messages = TRUE, k = 3,
+  conf.level = 0.95, conf.type = "norm", messages = TRUE, k = 2,
   ...)
 }
 \arguments{
@@ -37,7 +37,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 to be displayed (Default: \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{...}{Additional arguments (ignored).}
 }

@@ -93,77 +93,77 @@ bf_extractor <- function(bf.object) {
 #' @export
 
 # function body
-bf_corr_test <-
-  function(data,
-             x,
-             y,
-             bf.prior = 0.707,
-             caption = NULL,
-             output = "caption") {
+bf_corr_test <- function(data,
+                         x,
+                         y,
+                         bf.prior = 0.707,
+                         caption = NULL,
+                         output = "caption",
+                         k = 2) {
 
-    # ============================ data preparation ==========================
+  # ============================ data preparation ==========================
 
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      ) %>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-      tibble::as_data_frame(.)
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    tibble::as_data_frame(.)
 
-    # ========================= subtitle preparation ==========================
+  # ========================= subtitle preparation ==========================
 
-    # extracting results from bayesian test and creating a dataframe
-    bf_results <-
-      bf_extractor(bf.object = BayesFactor::correlationBF(
-        x = data$x,
-        y = data$y,
-        nullInterval = NULL,
-        rscale = bf.prior
-      )) %>% # adding prior width column
-      dplyr::mutate(.data = ., bf.prior = bf.prior)
+  # extracting results from bayesian test and creating a dataframe
+  bf_results <-
+    bf_extractor(bf.object = BayesFactor::correlationBF(
+      x = data$x,
+      y = data$y,
+      nullInterval = NULL,
+      rscale = bf.prior
+    )) %>% # adding prior width column
+    dplyr::mutate(.data = ., bf.prior = bf.prior)
 
-    # prepare the bayes factor message
-    bf_message <-
-      base::substitute(
-        atop(top.text,
-          expr =
-            paste(
-              "In favor of null: ",
-              "log"["e"],
-              "(BF"["01"],
-              ") = ",
-              bf,
-              ", Prior width = ",
-              bf_prior
-            )
-        ),
-        env = base::list(
-          top.text = caption,
-          bf = ggstatsplot::specify_decimal_p(
-            x = bf_results$log_e_bf01[[1]],
-            k = 1,
-            p.value = FALSE
-          ),
-          bf_prior = ggstatsplot::specify_decimal_p(
-            x = bf_results$bf.prior[[1]],
-            k = 3,
-            p.value = FALSE
+  # prepare the bayes factor message
+  bf_message <-
+    base::substitute(
+      atop(top.text,
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", Prior width = ",
+            bf_prior
           )
+      ),
+      env = base::list(
+        top.text = caption,
+        bf = ggstatsplot::specify_decimal_p(
+          x = bf_results$log_e_bf01[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf_results$bf.prior[[1]],
+          k = k,
+          p.value = FALSE
         )
       )
+    )
 
-    # ============================ return ==================================
+  # ============================ return ==================================
 
-    # return the text results or the dataframe with results
-    if (output == "caption") {
-      return(bf_message)
-    } else if (output == "results") {
-      return(bf_results)
-    }
+  # return the text results or the dataframe with results
+  if (output == "caption") {
+    return(bf_message)
+  } else if (output == "results") {
+    return(bf_results)
   }
+}
 
 
 #' @title Bayesian contingency table analysis.
@@ -214,119 +214,119 @@ bf_corr_test <-
 #' @export
 
 # function body
-bf_contingency_tab <-
-  function(data,
-             main,
-             condition,
-             sampling.plan = "indepMulti",
-             fixed.margin = "rows",
-             prior.concentration = 1,
-             caption = NULL,
-             output = "caption") {
+bf_contingency_tab <- function(data,
+                               main,
+                               condition,
+                               sampling.plan = "indepMulti",
+                               fixed.margin = "rows",
+                               prior.concentration = 1,
+                               caption = NULL,
+                               output = "caption",
+                               k = 2) {
 
-    # ============================ data preparation ==========================
+  # ============================ data preparation ==========================
 
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(main),
-        y = !!rlang::enquo(condition)
-      ) %>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-      tibble::as_data_frame(.)
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(main),
+      y = !!rlang::enquo(condition)
+    ) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    tibble::as_data_frame(.)
 
-    # main and condition need to be a factor for this analysis
-    # also drop the unused levels of the factors
+  # main and condition need to be a factor for this analysis
+  # also drop the unused levels of the factors
 
-    # main
-    data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      )
+  # main
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    )
 
-    # condition
-    data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "y",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      )
+  # condition
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "y",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    )
 
-    # ========================= subtitle preparation ==========================
+  # ========================= subtitle preparation ==========================
 
-    # detailed text of sample plan
-    sampling_plan_text <-
-      switch(
-        EXPR = sampling.plan,
-        "jointMulti" = "joint multinomial",
-        "poisson" = "poisson",
-        "indepMulti" = "independent multinomial",
-        "hypergeom" = "hypergeometric"
-      )
+  # detailed text of sample plan
+  sampling_plan_text <-
+    switch(
+      EXPR = sampling.plan,
+      "jointMulti" = "joint multinomial",
+      "poisson" = "poisson",
+      "indepMulti" = "independent multinomial",
+      "hypergeom" = "hypergeometric"
+    )
 
-    # extracting results from bayesian test and creating a dataframe
-    bf_results <-
-      bf_extractor(bf.object = BayesFactor::contingencyTableBF(
-        x = table(data$x, data$y),
-        sampleType = sampling.plan,
-        fixedMargin = fixed.margin,
-        priorConcentration = prior.concentration
-      )) %>%
-      dplyr::mutate(
-        .data = .,
-        sampling.plan = sampling_plan_text,
-        fixed.margin = fixed.margin,
-        prior.concentration = prior.concentration
-      )
+  # extracting results from bayesian test and creating a dataframe
+  bf_results <-
+    bf_extractor(bf.object = BayesFactor::contingencyTableBF(
+      x = table(data$x, data$y),
+      sampleType = sampling.plan,
+      fixedMargin = fixed.margin,
+      priorConcentration = prior.concentration
+    )) %>%
+    dplyr::mutate(
+      .data = .,
+      sampling.plan = sampling_plan_text,
+      fixed.margin = fixed.margin,
+      prior.concentration = prior.concentration
+    )
 
-    # prepare the bayes factor message
-    bf_message <-
-      base::substitute(
-        atop(
-          displaystyle(top.text),
-          expr =
-            paste(
-              "In favor of null: ",
-              "log"["e"],
-              "(BF"["01"],
-              ") = ",
-              bf,
-              ", sampling = ",
-              sampling.plan,
-              ", ",
-              italic("a"),
-              " = ",
-              a
-            )
-        ),
-        env = base::list(
-          top.text = caption,
-          bf = ggstatsplot::specify_decimal_p(
-            x = bf_results$log_e_bf01[[1]],
-            k = 1,
-            p.value = FALSE
-          ),
-          sampling.plan = sampling_plan_text,
-          a = ggstatsplot::specify_decimal_p(
-            x = bf_results$prior.concentration[[1]],
-            k = 1,
-            p.value = FALSE
+  # prepare the bayes factor message
+  bf_message <-
+    base::substitute(
+      atop(
+        displaystyle(top.text),
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", sampling = ",
+            sampling.plan,
+            ", ",
+            italic("a"),
+            " = ",
+            a
           )
+      ),
+      env = base::list(
+        top.text = caption,
+        bf = ggstatsplot::specify_decimal_p(
+          x = bf_results$log_e_bf01[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        sampling.plan = sampling_plan_text,
+        a = ggstatsplot::specify_decimal_p(
+          x = bf_results$prior.concentration[[1]],
+          k = k,
+          p.value = FALSE
         )
       )
+    )
 
-    # ============================ return ==================================
+  # ============================ return ==================================
 
-    # return the text results or the dataframe with results
-    if (output == "caption") {
-      return(bf_message)
-    } else if (output == "results") {
-      return(bf_results)
-    }
+  # return the text results or the dataframe with results
+  if (output == "caption") {
+    return(bf_message)
+  } else if (output == "results") {
+    return(bf_results)
   }
+}
 
 
 #' @title Bayesian t-test.
@@ -381,119 +381,119 @@ bf_contingency_tab <-
 #' @export
 
 # function body
-bf_two_sample_ttest <-
-  function(data,
-             x,
-             y,
-             paired = FALSE,
-             bf.prior = 0.707,
-             caption = NULL,
-             output = "caption") {
+bf_two_sample_ttest <- function(data,
+                                x,
+                                y,
+                                paired = FALSE,
+                                bf.prior = 0.707,
+                                caption = NULL,
+                                output = "caption",
+                                k = 2) {
 
-    # ============================ data preparation ==========================
+  # ============================ data preparation ==========================
 
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      )
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    )
 
-    # convert the grouping variable to factor and drop unused levels
+  # convert the grouping variable to factor and drop unused levels
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    )
+
+  # -------------------------- between-subjects design -------------------
+
+  # running bayesian analysis
+  if (!isTRUE(paired)) {
+
+    # removing NAs
     data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
+      stats::na.omit(.)
+
+    # extracting results from bayesian test and creating a dataframe
+    bf_object <-
+      BayesFactor::ttestBF(
+        formula = y ~ x,
+        data = as.data.frame(data),
+        rscale = bf.prior,
+        paired = FALSE,
+        progress = FALSE
+      )
+  } else if (isTRUE(paired)) {
+    # the data needs to be in wide format
+    data_wide <-
+      long_to_wide_converter(
+        data = data,
+        x = x,
+        y = y
       )
 
-    # -------------------------- between-subjects design -------------------
+    # change names for convenience
+    colnames(data_wide) <- c("rowid", "col1", "col2")
 
-    # running bayesian analysis
-    if (!isTRUE(paired)) {
-
-      # removing NAs
-      data %<>%
-        stats::na.omit(.)
-
-      # extracting results from bayesian test and creating a dataframe
-      bf_object <-
-        BayesFactor::ttestBF(
-          formula = y ~ x,
-          data = as.data.frame(data),
-          rscale = bf.prior,
-          paired = FALSE,
-          progress = FALSE
-        )
-    } else if (isTRUE(paired)) {
-      # the data needs to be in wide format
-      data_wide <-
-        long_to_wide_converter(
-          data = data,
-          x = x,
-          y = y
-        )
-
-      # change names for convenience
-      colnames(data_wide) <- c("rowid", "col1", "col2")
-
-      # extracting results from bayesian test and creating a dataframe
-      bf_object <-
-        BayesFactor::ttestBF(
-          x = data_wide$col1,
-          y = data_wide$col2,
-          rscale = bf.prior,
-          paired = TRUE,
-          progress = FALSE
-        )
-    }
-
-    # extracting the bayes factors
-    bf_results <- bf_extractor(
-      bf.object = bf_object
-    ) %>%
-      dplyr::mutate(.data = ., bf.prior = bf.prior)
-
-    # prepare the bayes factor message
-    bf_message <-
-      base::substitute(
-        atop(displaystyle(top.text),
-          expr =
-            paste(
-              "In favor of null: ",
-              "log"["e"],
-              "(BF"["01"],
-              ") = ",
-              bf,
-              ", Prior width = ",
-              bf_prior
-            )
-        ),
-        env = base::list(
-          top.text = caption,
-          bf = ggstatsplot::specify_decimal_p(
-            x = bf_results$log_e_bf01[[1]],
-            k = 1,
-            p.value = FALSE
-          ),
-          bf_prior = ggstatsplot::specify_decimal_p(
-            x = bf_results$bf.prior[[1]],
-            k = 3,
-            p.value = FALSE
-          )
-        )
+    # extracting results from bayesian test and creating a dataframe
+    bf_object <-
+      BayesFactor::ttestBF(
+        x = data_wide$col1,
+        y = data_wide$col2,
+        rscale = bf.prior,
+        paired = TRUE,
+        progress = FALSE
       )
-
-    # ============================ return ==================================
-
-    # return the text results or the dataframe with results
-    if (output == "caption") {
-      return(bf_message)
-    } else if (output == "results") {
-      return(bf_results)
-    }
   }
+
+  # extracting the bayes factors
+  bf_results <- bf_extractor(
+    bf.object = bf_object
+  ) %>%
+    dplyr::mutate(.data = ., bf.prior = bf.prior)
+
+  # prepare the bayes factor message
+  bf_message <-
+    base::substitute(
+      atop(displaystyle(top.text),
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", Prior width = ",
+            bf_prior
+          )
+      ),
+      env = base::list(
+        top.text = caption,
+        bf = ggstatsplot::specify_decimal_p(
+          x = bf_results$log_e_bf01[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf_results$bf.prior[[1]],
+          k = k,
+          p.value = FALSE
+        )
+      )
+    )
+
+  # ============================ return ==================================
+
+  # return the text results or the dataframe with results
+  if (output == "caption") {
+    return(bf_message)
+  } else if (output == "results") {
+    return(bf_results)
+  }
+}
 
 #' @title Bayesian one-way analysis of variance.
 #' @name bf_oneway_anova
@@ -529,82 +529,82 @@ bf_two_sample_ttest <-
 #' @export
 
 # function body
-bf_oneway_anova <-
-  function(data,
-             x,
-             y,
-             bf.prior = 0.707,
-             caption = NULL,
-             output = "caption") {
+bf_oneway_anova <- function(data,
+                            x,
+                            y,
+                            bf.prior = 0.707,
+                            caption = NULL,
+                            output = "caption",
+                            k = 2) {
 
-    # ============================ data preparation ==========================
+  # ============================ data preparation ==========================
 
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      ) %>%
-      stats::na.omit(.) %>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      ) %>%
-      tibble::as_data_frame(.)
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    stats::na.omit(.) %>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    ) %>%
+    tibble::as_data_frame(.)
 
-    # ========================= subtitle preparation ==========================
+  # ========================= subtitle preparation ==========================
 
-    # extracting results from bayesian test and creating a dataframe
-    bf_results <-
-      bf_extractor(bf.object = BayesFactor::anovaBF(
-        formula = y ~ x,
-        data = as.data.frame(data),
-        rscaleFixed = bf.prior,
-        progress = FALSE
-      )) %>%
-      dplyr::mutate(.data = ., bf.prior = bf.prior)
+  # extracting results from bayesian test and creating a dataframe
+  bf_results <-
+    bf_extractor(bf.object = BayesFactor::anovaBF(
+      formula = y ~ x,
+      data = as.data.frame(data),
+      rscaleFixed = bf.prior,
+      progress = FALSE
+    )) %>%
+    dplyr::mutate(.data = ., bf.prior = bf.prior)
 
-    # prepare the bayes factor message
-    bf_message <-
-      base::substitute(
-        atop(displaystyle(top.text),
-          expr =
-            paste(
-              "In favor of null: ",
-              "log"["e"],
-              "(BF"["01"],
-              ") = ",
-              bf,
-              ", Prior width = ",
-              bf_prior
-            )
-        ),
-        env = base::list(
-          top.text = caption,
-          bf = ggstatsplot::specify_decimal_p(
-            x = bf_results$log_e_bf01[[1]],
-            k = 1,
-            p.value = FALSE
-          ),
-          bf_prior = ggstatsplot::specify_decimal_p(
-            x = bf_results$bf.prior[[1]],
-            k = 3,
-            p.value = FALSE
+  # prepare the bayes factor message
+  bf_message <-
+    base::substitute(
+      atop(displaystyle(top.text),
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", Prior width = ",
+            bf_prior
           )
+      ),
+      env = base::list(
+        top.text = caption,
+        bf = ggstatsplot::specify_decimal_p(
+          x = bf_results$log_e_bf01[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf_results$bf.prior[[1]],
+          k = k,
+          p.value = FALSE
         )
       )
+    )
 
-    # ============================ return ==================================
+  # ============================ return ==================================
 
-    # return the text results or the dataframe with results
-    if (output == "caption") {
-      return(bf_message)
-    } else if (output == "results") {
-      return(bf_results)
-    }
+  # return the text results or the dataframe with results
+  if (output == "caption") {
+    return(bf_message)
+  } else if (output == "results") {
+    return(bf_results)
   }
+}
 
 #' @title Bayesian one-sample *t*-test.
 #' @name bf_one_sample_ttest
@@ -627,7 +627,7 @@ bf_oneway_anova <-
 #'   x = Sepal.Length,
 #'   test.value = 5.85,
 #'   bf.prior = 0.8,
-#'   output = "caption"
+#'   output = "caption", k = 2
 #' )
 #' 
 #' # to get results dataframe
@@ -641,82 +641,82 @@ bf_oneway_anova <-
 #' @export
 
 # function body
-bf_one_sample_ttest <-
-  function(data,
-             x,
-             test.value = 0,
-             bf.prior = 0.707,
-             caption = NULL,
-             output = "caption") {
+bf_one_sample_ttest <- function(data,
+                                x,
+                                test.value = 0,
+                                bf.prior = 0.707,
+                                caption = NULL,
+                                output = "caption",
+                                k = 2) {
 
-    # ================================= dataframe =============================
+  # ================================= dataframe =============================
 
-    # preparing a dataframe out of provided inputs
-    if (!is.null(data)) {
-      # if dataframe is provided
-      data <-
-        dplyr::select(
-          .data = data,
-          x = !!rlang::enquo(x)
-        )
-    } else {
-      # if vectors are provided
-      data <-
-        base::cbind.data.frame(x = x)
-    }
+  # preparing a dataframe out of provided inputs
+  if (!is.null(data)) {
+    # if dataframe is provided
+    data <-
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x)
+      )
+  } else {
+    # if vectors are provided
+    data <-
+      base::cbind.data.frame(x = x)
+  }
 
-    # convert to a tibble
-    data %<>%
-      tibble::as_data_frame(x = .)
+  # convert to a tibble
+  data %<>%
+    tibble::as_data_frame(x = .)
 
-    # ========================= subtitle preparation ==========================
+  # ========================= subtitle preparation ==========================
 
-    # extracting results from bayesian test and creating a dataframe
-    bf_results <-
-      bf_extractor(bf.object = BayesFactor::ttestBF(
-        x = data$x,
-        rscale = bf.prior,
-        mu = test.value,
-        nullInterval = NULL
-      )) %>%
-      dplyr::mutate(.data = ., bf.prior = bf.prior)
+  # extracting results from bayesian test and creating a dataframe
+  bf_results <-
+    bf_extractor(bf.object = BayesFactor::ttestBF(
+      x = data$x,
+      rscale = bf.prior,
+      mu = test.value,
+      nullInterval = NULL
+    )) %>%
+    dplyr::mutate(.data = ., bf.prior = bf.prior)
 
-    # prepare the bayes factor message
-    bf_message <-
-      base::substitute(
-        atop(top.text,
-          expr =
-            paste(
-              "In favor of null: ",
-              "log"["e"],
-              "(BF"["01"],
-              ") = ",
-              bf,
-              ", Prior width = ",
-              bf_prior
-            )
-        ),
-        env = base::list(
-          top.text = caption,
-          bf = ggstatsplot::specify_decimal_p(
-            x = bf_results$log_e_bf01[[1]],
-            k = 1,
-            p.value = FALSE
-          ),
-          bf_prior = ggstatsplot::specify_decimal_p(
-            x = bf_results$bf.prior[[1]],
-            k = 3,
-            p.value = FALSE
+  # prepare the bayes factor message
+  bf_message <-
+    base::substitute(
+      atop(top.text,
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", Prior width = ",
+            bf_prior
           )
+      ),
+      env = base::list(
+        top.text = caption,
+        bf = ggstatsplot::specify_decimal_p(
+          x = bf_results$log_e_bf01[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf_results$bf.prior[[1]],
+          k = k,
+          p.value = FALSE
         )
       )
+    )
 
-    # ============================ return ==================================
+  # ============================ return ==================================
 
-    # return the text results or the dataframe with results
-    if (output == "caption") {
-      return(bf_message)
-    } else if (output == "results") {
-      return(bf_results)
-    }
+  # return the text results or the dataframe with results
+  if (output == "caption") {
+    return(bf_message)
+  } else if (output == "results") {
+    return(bf_results)
   }
+}

@@ -15,16 +15,12 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
-#' @importFrom rlang !! enquo quo_name
-#' @importFrom purrr set_names
+#' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
+#' @importFrom dplyr group_by n arrange
+#' @importFrom rlang !! enquo quo_name ensym
+#' @importFrom glue glue
+#' @importFrom purrr map set_names
+#' @importFrom tidyr nest
 #'
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -129,7 +125,7 @@ grouped_ggscatterstats <- function(data,
                                    subtitle = NULL,
                                    nboot = 100,
                                    beta = 0.1,
-                                   k = 3,
+                                   k = 2,
                                    axes.range.restrict = FALSE,
                                    ggtheme = ggplot2::theme_bw(),
                                    ggstatsplot.layer = TRUE,

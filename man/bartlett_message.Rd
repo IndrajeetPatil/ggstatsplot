@@ -4,7 +4,7 @@
 \alias{bartlett_message}
 \title{Display homogeneity of variance test as a message}
 \usage{
-bartlett_message(data, x, y, lab = NULL, k = 3, output = "message")
+bartlett_message(data, x, y, lab = NULL, k = 2, output = "message")
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -18,7 +18,7 @@ taken.}
 name will be used.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{output}{What output is desired: \code{"message"} (default) or \code{"stats"}
 objects.}

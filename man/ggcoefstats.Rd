@@ -9,7 +9,7 @@ ggcoefstats(x, output = "plot", scales = NULL, conf.method = "Wald",
   p.kr = TRUE, coefficient.type = "beta", effsize = "eta",
   partial = TRUE, nboot = 500, point.color = "blue",
   point.size = 3, point.shape = 16, conf.int = TRUE,
-  conf.level = 0.95, se.type = "nid", k = 3, k.caption.summary = 0,
+  conf.level = 0.95, se.type = "nid", k = 2, k.caption.summary = 0,
   exclude.intercept = TRUE, exponentiate = FALSE,
   errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
@@ -83,10 +83,11 @@ error bars (Default: \code{TRUE}).}
 standard errors for quantile regression (Default: \code{"nid"}). To see all
 available methods, see \code{quantreg::summary.rq()}.}
 
-\item{k}{Number of decimal places expected for results displayed in labels.}
+\item{k}{Number of decimal places expected for results displayed in labels
+(Default : \code{k = 2}).}
 
 \item{k.caption.summary}{Number of decimal places expected for results
-displayed in captions.}
+displayed in captions (Default : \code{k.caption.summary = 0}).}
 
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{TRUE}).}

@@ -5,7 +5,7 @@
 \title{Making text subtitle for the between-subject one-way anova designs.}
 \usage{
 subtitle_anova_bayes(data, x, y, effsize.type = "partial_omega",
-  var.equal = FALSE, bf.prior = 0.707, paired = FALSE, k = 3, ...)
+  var.equal = FALSE, bf.prior = 0.707, paired = FALSE, k = 2, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -35,7 +35,7 @@ to use in calculating Bayes factors.}
     t-test.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{...}{Additional arguments (ignored).}
 }

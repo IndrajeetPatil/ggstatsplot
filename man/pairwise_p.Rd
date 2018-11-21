@@ -5,7 +5,7 @@
 \title{Pairwise comparison tests}
 \usage{
 pairwise_p(data, x, y, type = "parametric", tr = 0.1, paired = FALSE,
-  var.equal = FALSE, p.adjust.method = "holm", k = 3,
+  var.equal = FALSE, p.adjust.method = "holm", k = 2,
   messages = TRUE, ...)
 }
 \arguments{
@@ -42,7 +42,7 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

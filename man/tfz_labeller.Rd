@@ -5,7 +5,7 @@
 \title{Create text labels}
 \usage{
 tfz_labeller(tidy_df, glance_df = NULL, statistic, effsize = "eta",
-  partial = TRUE, k = 3)
+  partial = TRUE, k = 2)
 }
 \arguments{
 \item{tidy_df}{Tidy dataframe from \code{broom::tidy}.}
@@ -24,7 +24,8 @@ are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squar
 will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 \code{aovlist}.}
 
-\item{k}{Number of decimal places expected for results displayed in labels.}
+\item{k}{Number of decimal places expected for results displayed in labels
+(Default : \code{k = 2}).}
 }
 \description{
 Create text labels

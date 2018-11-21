@@ -20,6 +20,7 @@ testthat::test_that(
         data = ggplot2::msleep,
         x = vore,
         y = sleep_total,
+        k = 3,
         messages = FALSE
       ))
 

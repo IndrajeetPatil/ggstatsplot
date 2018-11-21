@@ -5,7 +5,7 @@
 \title{Bayesian one-sample \emph{t}-test.}
 \usage{
 bf_one_sample_ttest(data, x, test.value = 0, bf.prior = 0.707,
-  caption = NULL, output = "caption")
+  caption = NULL, output = "caption", k = 2)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -24,6 +24,9 @@ to use in calculating Bayes factors.}
 \item{output}{Can either be \code{"caption"} (which will contain text for evidence
 in favor of null)  or \code{"results"} (which will return the dataframe with
 results).}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
 }
 \description{
 Bayesian one-sample \emph{t}-test.
@@ -36,7 +39,7 @@ bf_one_sample_ttest(
   x = Sepal.Length,
   test.value = 5.85,
   bf.prior = 0.8,
-  output = "caption"
+  output = "caption", k = 2
 )
 
 # to get results dataframe

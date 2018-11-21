@@ -184,7 +184,7 @@ designs).</p>
 
     <pre class="usage"><span class='fu'>subtitle_t_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
   <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -238,7 +238,7 @@ default is to return <code>95%</code> lower and upper confidence intervals (<cod
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 3</code>).</p></td>
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -260,10 +260,10 @@ default is to return <code>95%</code> lower and upper confidence intervals (<cod
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
-)</div><div class='output co'>#&gt; paste(italic("t"), "(", c(df = "10.888"), ") = ", c(t = "1.494"), 
+)</div><div class='output co'>#&gt; paste(italic("t"), "(", c(df = "10.89"), ") = ", c(t = "1.49"), 
 #&gt;     ", ", italic("p"), " = ", "0.164", ", ", italic("g"), " = ", 
-#&gt;     c(carni = "0.716"), ", 95% CI [", "-0.071", ", ", "1.503", 
-#&gt;     "]", ", ", italic("n"), " = ", 34L)</div><div class='input'>
+#&gt;     c(carni = "0.72"), ", 95% CI [", "-0.07", ", ", "1.50", "]", 
+#&gt;     ", ", italic("n"), " = ", 34L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_t_parametric</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,

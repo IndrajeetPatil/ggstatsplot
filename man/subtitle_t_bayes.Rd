@@ -4,7 +4,7 @@
 \alias{subtitle_t_bayes}
 \title{Making text subtitle for the bayesian t-test.}
 \usage{
-subtitle_t_bayes(data, x, y, bf.prior = 0.707, paired = FALSE, k = 3,
+subtitle_t_bayes(data, x, y, bf.prior = 0.707, paired = FALSE, k = 2,
   ...)
 }
 \arguments{
@@ -22,7 +22,7 @@ to use in calculating Bayes factors.}
     t-test.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 
 \item{...}{Additional arguments (ignored).}
 }

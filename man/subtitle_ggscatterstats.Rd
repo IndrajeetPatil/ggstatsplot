@@ -6,7 +6,7 @@
 \usage{
 subtitle_ggscatterstats(data, x, y, nboot = 100, beta = 0.1,
   type = "pearson", bf.prior = 0.707, conf.level = 0.95,
-  conf.type = "norm", messages = TRUE, k = 3)
+  conf.type = "norm", messages = TRUE, k = 2)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -43,7 +43,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 to be displayed (Default: \code{TRUE}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 3}).}
+(Default: \code{k = 2}).}
 }
 \description{
 Making text subtitle for the correlation test.
