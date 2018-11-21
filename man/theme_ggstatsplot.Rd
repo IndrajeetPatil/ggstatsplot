@@ -7,6 +7,8 @@
 \usage{
 theme_ggstatsplot(ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE)
+
+theme_mprl(ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE)
 }
 \arguments{
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is

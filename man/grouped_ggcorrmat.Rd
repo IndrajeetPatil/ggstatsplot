@@ -8,16 +8,16 @@ levels of a grouping variable}
 grouped_ggcorrmat(data, cor.vars = NULL, cor.vars.names = NULL,
   grouping.var, title.prefix = "Group", output = "plot",
   matrix.type = "full", method = "square", corr.method = "pearson",
-  exact = FALSE, continuity = TRUE, beta = 0.1, digits = 2,
-  sig.level = 0.05, p.adjust.method = "none", hc.order = FALSE,
-  hc.method = "complete", lab = TRUE, package = "RColorBrewer",
-  palette = "Dark2", direction = 1, colors = c("#E69F00", "white",
-  "#009E73"), outline.color = "black", ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, subtitle = NULL, caption = NULL,
-  caption.default = TRUE, lab.col = "black", lab.size = 5,
-  insig = "pch", pch = 4, pch.col = "black", pch.cex = 11,
-  tl.cex = 12, tl.col = "black", tl.srt = 45,
-  axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
+  type = NULL, exact = FALSE, continuity = TRUE, beta = 0.1,
+  digits = 2, sig.level = 0.05, p.adjust.method = "none",
+  hc.order = FALSE, hc.method = "complete", lab = TRUE,
+  package = "RColorBrewer", palette = "Dark2", direction = 1,
+  colors = c("#E69F00", "white", "#009E73"), outline.color = "black",
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  subtitle = NULL, caption = NULL, caption.default = TRUE,
+  lab.col = "black", lab.size = 5, insig = "pch", pch = 4,
+  pch.col = "black", pch.cex = 11, tl.cex = 12, tl.col = "black",
+  tl.srt = 45, axis.text.x.margin.t = 0, axis.text.x.margin.r = 0,
   axis.text.x.margin.b = 0, axis.text.x.margin.l = 0,
   messages = TRUE, ...)
 }
@@ -53,6 +53,14 @@ correlation matrix to be used. Allowed values are \code{"square"} (default),
 \code{"circle"}}
 
 \item{corr.method}{A character string indicating which correlation
+coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
+\code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
+is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation
+used is percentage bend correlation (see \code{?WRS2::pball}). Abbreviations
+will also work: \code{"p"} (for parametric/Pearson's \emph{r}), \code{"np"}
+(nonparametric/Spearman's \emph{rho}), \code{"r"} (robust).}
+
+\item{type}{A character string indicating which correlation
 coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
 \code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
 is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation

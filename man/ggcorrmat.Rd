@@ -6,8 +6,8 @@
 \usage{
 ggcorrmat(data, cor.vars = NULL, cor.vars.names = NULL,
   output = "plot", matrix.type = "full", method = "square",
-  corr.method = "pearson", exact = FALSE, continuity = TRUE,
-  beta = 0.1, digits = 2, sig.level = 0.05,
+  corr.method = "pearson", type = NULL, exact = FALSE,
+  continuity = TRUE, beta = 0.1, digits = 2, sig.level = 0.05,
   p.adjust.method = "none", hc.order = FALSE, hc.method = "complete",
   lab = TRUE, package = "RColorBrewer", palette = "Dark2",
   direction = 1, colors = c("#E69F00", "white", "#009E73"),
@@ -46,7 +46,7 @@ display full matrix, lower triangular or upper triangular matrix.}
 correlation matrix to be used. Allowed values are \code{"square"} (default),
 \code{"circle"}}
 
-\item{corr.method}{A character string indicating which correlation
+\item{corr.method, type}{A character string indicating which correlation
 coefficient is to be computed (\code{"pearson"} (default) or \code{"kendall"} or
 \code{"spearman"}). \code{"robust"} can also be entered but only if \code{output} argument
 is set to either \code{"correlations"} or \code{"p-values"}. The robust correlation

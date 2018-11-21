@@ -5,6 +5,7 @@ bayes
 bayesian
 binwidth
 boxviolin
+Camilli
 cex
 chisq
 ci
@@ -23,6 +24,7 @@ ds
 effsize
 eg
 eranraviv
+Feinberg
 Gapminder
 ggbetween
 ggbetweenstats
@@ -35,6 +37,7 @@ ggplot
 ggscatterstats
 github
 glyphs
+gof
 Gunel
 hc
 howell
@@ -51,7 +54,9 @@ jitter
 Kass
 Kenward
 knitr
+labeller
 Lakens
+Larntz
 Leys
 Likert
 linetype
@@ -90,6 +95,7 @@ RStudio
 Schlegel
 sdcor
 setosa
+softwares
 spearman
 srt
 stype
@@ -100,6 +106,7 @@ tidiers
 tidyverse
 tl
 toc
+uber
 unadjusted
 vcov
 versicolor

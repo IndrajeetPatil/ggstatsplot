@@ -8,6 +8,9 @@
 \usage{
 subtitle_mann_nonparametric(data, x, y, paired = FALSE, k = 3,
   messages = TRUE, ...)
+
+subtitle_t_nonparametric(data, x, y, paired = FALSE, k = 3,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be

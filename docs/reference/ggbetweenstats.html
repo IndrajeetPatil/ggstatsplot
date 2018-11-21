@@ -186,15 +186,15 @@ the plot as a subtitle.</p>
 
     <pre class="usage"><span class='fu'>ggbetweenstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>plot.type</span> <span class='kw'>=</span> <span class='st'>"boxviolin"</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>pairwise.comparisons</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"asterisk"</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"asterisk"</span>, <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>,
+  <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"holm"</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>,
+  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
+  <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>, <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -235,13 +235,24 @@ or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations ar
     <tr>
       <th>pairwise.comparisons</th>
       <td><p>Logical that decides whether pairwise comparisons
-are to be displayed. <strong>Only significant comparisons</strong> will be shown
-(default: <code>FALSE</code>).</p></td>
+are to be displayed. <strong>Only significant comparisons</strong> will be shown by
+default. (default: <code>FALSE</code>). To change this behavior, select appropriate
+option with <code>pairwise.display</code> argument.</p></td>
     </tr>
     <tr>
       <th>pairwise.annotation</th>
       <td><p>Character that decides the annotations to use for
 pairwise comparisons. Either <code>"p.value"</code> or <code>"asterisk"</code> (default).</p></td>
+    </tr>
+    <tr>
+      <th>pairwise.display</th>
+      <td><p>Decides which pairwise comparisons to display.
+Available options are <code>"significant"</code> (abbreviation accepted: <code>"s"</code>) or
+<code>"non-significant"</code> (abbreviation accepted: <code>"ns"</code>) or
+<code>"everything"</code>/<code>"all"</code>. The default is <code>"significant"</code>. You can use this
+argument to make sure that your plot is not uber-cluttered when you have
+multiple groups being compared and scores of pairwise comparisons being
+displayed.</p></td>
     </tr>
     <tr>
       <th>p.adjust.method</th>
@@ -526,20 +537,20 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 #&gt; <span class='warning'>  rlang::expr(mean(!!!args))</span>
 #&gt; <span class='warning'></span>
 #&gt; <span class='warning'></span><span style='color: #555555;'>This warning is displayed once per session.</span><span></span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for partial omega-squared was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 10 x 11</span><span>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 11</span><span>
 #&gt;    group1 group2 mean.difference low.conf high.conf    se t.value    df p.value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 1      2                -</span><span style='color: #BB0000;'>53</span><span>     -</span><span style='color: #BB0000;'>132.</span><span>     25.7    19.2   1.95   30.6   0.72 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 1      3                -</span><span style='color: #BB0000;'>64</span><span>     -</span><span style='color: #BB0000;'>148.</span><span>     20.4    20.8   2.18   35.3   0.703
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 1      4                -</span><span style='color: #BB0000;'>88.5</span><span>   -</span><span style='color: #BB0000;'>167.</span><span>    -</span><span style='color: #BB0000;'>10.1</span><span>    19.1   3.27   30.2   0.21 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 1      5                -</span><span style='color: #BB0000;'>77.5</span><span>   -</span><span style='color: #BB0000;'>154.</span><span>     -</span><span style='color: #BB0000;'>0.641</span><span>  18.7   2.94   28.5   0.235
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 2      3                -</span><span style='color: #BB0000;'>11</span><span>      -</span><span style='color: #BB0000;'>75.2</span><span>    53.2    15.8   0.492  35.7   0.988
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 2      4                -</span><span style='color: #BB0000;'>35.5</span><span>    -</span><span style='color: #BB0000;'>90.4</span><span>    19.4    13.6   1.85   38.0   0.72 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 2      5                -</span><span style='color: #BB0000;'>24.5</span><span>    -</span><span style='color: #BB0000;'>76.9</span><span>    27.9    12.9   1.34   37.5   0.988
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 3      4                -</span><span style='color: #BB0000;'>24.5</span><span>    -</span><span style='color: #BB0000;'>88.3</span><span>    39.3    15.7   1.10   35.4   0.988
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 3      5                -</span><span style='color: #BB0000;'>13.5</span><span>    -</span><span style='color: #BB0000;'>75.3</span><span>    48.3    15.2   0.63   33.6   0.988
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 4      5                 11      -</span><span style='color: #BB0000;'>40.8</span><span>    62.8    12.8   0.608  37.6   0.988
-#&gt; </span><span style='color: #949494;'># ... with 2 more variables: significance </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, p.value.label </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 1      2                -</span><span style='color: #BB0000;'>53</span><span>     -</span><span style='color: #BB0000;'>132.</span><span>     25.7    19.2   1.95   30.6   0.72 
+#&gt; </span><span style='color: #555555;'> 2</span><span> 1      3                -</span><span style='color: #BB0000;'>64</span><span>     -</span><span style='color: #BB0000;'>148.</span><span>     20.4    20.8   2.18   35.3   0.703
+#&gt; </span><span style='color: #555555;'> 3</span><span> 1      4                -</span><span style='color: #BB0000;'>88.5</span><span>   -</span><span style='color: #BB0000;'>167.</span><span>    -</span><span style='color: #BB0000;'>10.1</span><span>    19.1   3.27   30.2   0.21 
+#&gt; </span><span style='color: #555555;'> 4</span><span> 1      5                -</span><span style='color: #BB0000;'>77.5</span><span>   -</span><span style='color: #BB0000;'>154.</span><span>     -</span><span style='color: #BB0000;'>0.641</span><span>  18.7   2.94   28.5   0.235
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2      3                -</span><span style='color: #BB0000;'>11</span><span>      -</span><span style='color: #BB0000;'>75.2</span><span>    53.2    15.8   0.492  35.7   0.988
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2      4                -</span><span style='color: #BB0000;'>35.5</span><span>    -</span><span style='color: #BB0000;'>90.4</span><span>    19.4    13.6   1.85   38.0   0.72 
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2      5                -</span><span style='color: #BB0000;'>24.5</span><span>    -</span><span style='color: #BB0000;'>76.9</span><span>    27.9    12.9   1.34   37.5   0.988
+#&gt; </span><span style='color: #555555;'> 8</span><span> 3      4                -</span><span style='color: #BB0000;'>24.5</span><span>    -</span><span style='color: #BB0000;'>88.3</span><span>    39.3    15.7   1.10   35.4   0.988
+#&gt; </span><span style='color: #555555;'> 9</span><span> 3      5                -</span><span style='color: #BB0000;'>13.5</span><span>    -</span><span style='color: #BB0000;'>75.3</span><span>    48.3    15.2   0.63   33.6   0.988
+#&gt; </span><span style='color: #555555;'>10</span><span> 4      5                 11      -</span><span style='color: #BB0000;'>40.8</span><span>    62.8    12.8   0.608  37.6   0.988
+#&gt; </span><span style='color: #555555;'># ... with 2 more variables: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, p.value.label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
 #&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Speed</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.514</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Expt</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.021</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -567,7 +578,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.1.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
 </div>
       </footer>
    </div>

@@ -261,7 +261,9 @@ of a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
 
-Let's focus on the same 4 continents and for years: 1967, 1987, 2007.  
+Let's focus on the same 4 continents and for years: 1967, 1987, 2007. Also,
+let's carry out pairwise comparisons to see if there differences between every
+pair of continents. 
 
 ```{r grouped1, warning = FALSE, message = FALSE, fig.height = 15, fig.width = 7}
 # for reproducibility
@@ -282,9 +284,10 @@ ggstatsplot::grouped_ggbetweenstats(
   ylab = "Life expectancy", 
   k = 2,
   nboot = 10,
-  pairwise.comparisons = TRUE,
-  pairwise.annotation = "p.value",
-  p.adjust.method = "fdr",
+  pairwise.comparisons = TRUE,         # display results from pairwise comparisons 
+  pairwise.display = "significant",    # display only significant pairwise comparisons 
+  pairwise.annotation = "p.value",     # annotate the pairwise comparisons using p-values
+  p.adjust.method = "fdr",             # adjust p-values for multiple tests using this method
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
@@ -324,11 +327,12 @@ See the associated vignette here:
 
 ## Within-subjects designs
 
-A variant of this function which will be called `ggwithinstats` is currently
-under development. You *can* still use this function just to prepare the
-**plot** for exploratory data analysis, but the statistical details displayed in
-the subtitle will be incorrect. You can remove them by adding `+
-ggplot2::labs(subtitle = NULL)`.
+A variant of this function, called `ggwithinstats`, is currently under
+development. You *can* still use this function just to prepare the **plot** for,
+but the statistical details displayed in the subtitle will be incorrect. You can
+remove them by adding `+ ggplot2::labs(subtitle = NULL)` and add a new subtitle
+for the within-subjects test using an approprate helper function-
+<https://indrajeetpatil.github.io/ggstatsplot/reference/index.html#section-helper-functions-for-preparing-statistics-subtitles>.
 
 # Suggestions
 

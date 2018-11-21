@@ -24,7 +24,7 @@
 #' @param method Character argument that decides the visualization method of
 #'   correlation matrix to be used. Allowed values are `"square"` (default),
 #'   `"circle"`
-#' @param corr.method A character string indicating which correlation
+#' @param corr.method,type A character string indicating which correlation
 #'   coefficient is to be computed (`"pearson"` (default) or `"kendall"` or
 #'   `"spearman"`). `"robust"` can also be entered but only if `output` argument
 #'   is set to either `"correlations"` or `"p-values"`. The robust correlation
@@ -176,6 +176,7 @@ ggcorrmat <- function(data,
                       matrix.type = "full",
                       method = "square",
                       corr.method = "pearson",
+                      type = NULL,
                       exact = FALSE,
                       continuity = TRUE,
                       beta = 0.1,
@@ -210,6 +211,7 @@ ggcorrmat <- function(data,
                       axis.text.x.margin.r = 0,
                       axis.text.x.margin.b = 0,
                       messages = TRUE) {
+
   # ======================= dataframe ========================================
 
   # creating a dataframe out of the entered variables
@@ -247,6 +249,9 @@ ggcorrmat <- function(data,
   }
 
   # ============================ checking corr.method =======================
+
+  # see which method was used to specify type of correlation
+  corr.method <- type %||% corr.method
 
   # if any of the abbreviations have been entered, change them
   if (corr.method == "p") {

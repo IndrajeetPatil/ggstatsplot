@@ -164,7 +164,7 @@ testthat::test_that(
             60.1
           )
         ),
-        row.names = c(NA,-40L),
+        row.names = c(NA, -40L),
         reshapeLong = list(
           varying = list(c("grade_test1", "grade_test2")),
           v.names = "grade",

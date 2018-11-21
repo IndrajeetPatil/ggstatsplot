@@ -145,6 +145,7 @@ plot_list <- purrr::pmap(
     ),
     type = list("r", "bf", "np"),
     pairwise.comparisons = TRUE,
+    pairwise.display = list("s", "ns", "all"),
     pairwise.annotation = list("asterisk", "asterisk", "p.value"),
     p.adjust.method = list("hommel", "bonferroni", "BH"),
     nboot = 25,

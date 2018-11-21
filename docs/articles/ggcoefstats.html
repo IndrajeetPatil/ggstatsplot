@@ -130,7 +130,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-11-20</h4>
+            <h4 class="date">2018-11-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/ggcoefstats.Rmd"><code>vignettes/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -265,8 +265,7 @@
 <a class="sourceLine" id="cb3-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># plotting estimates</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> car<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/car/topics/Anova">Anova</a></span>(mod, <span class="dt">type =</span> <span class="st">"III"</span>))</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Note: No model diagnostics information available for the object of class anova . </span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; Future release might support this.</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Note: No model diagnostics information available for the object of class anova</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/anova1-1.png" width="768"></p>
 </div>
 <div id="linear-model-lm" class="section level2">
@@ -391,9 +390,7 @@
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb7-13" data-line-number="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> roblmm.mod,</a>
 <a class="sourceLine" id="cb7-14" data-line-number="14">                         <span class="dt">title =</span> <span class="st">"Robust Estimation of Linear Mixed-Effects Models"</span>)</a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; Note: No model diagnostics information available for the object of class rlmerMod . </span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; Future release might support this.</span></a>
-<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; Note: No p-values available for regression coefficients from rlmerMod object, so skipping labels.</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; Note: No model diagnostics information available for the object of class rlmerModNote: No p-values available for regression coefficients from rlmerMod object, so skipping labels.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/rlmer-1.png" width="700"></p>
 </div>
 <div id="non-linear-least-squares-model-nls" class="section level2">
@@ -750,8 +747,7 @@
 <a class="sourceLine" id="cb15-29" data-line-number="29">) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb15-30" data-line-number="30"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb15-31" data-line-number="31"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
-<a class="sourceLine" id="cb15-32" data-line-number="32"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist . </span></a>
-<a class="sourceLine" id="cb15-33" data-line-number="33"><span class="co">#&gt; Future release might support this.</span></a></code></pre></div>
+<a class="sourceLine" id="cb15-32" data-line-number="32"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
 <p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
 </div>
@@ -886,7 +882,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.1.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
 </div>
       </footer>
 </div>

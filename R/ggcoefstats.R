@@ -253,8 +253,7 @@ ggcoefstats <- function(x,
       crayon::green("Note: "),
       crayon::blue(
         "No model diagnostics information available for the object of class",
-        crayon::yellow(class(x)[[1]]),
-        ". \nFuture release might support this.\n"
+        crayon::yellow(class(x)[[1]])
       ),
       sep = ""
     ))

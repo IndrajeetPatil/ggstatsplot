@@ -81,6 +81,7 @@ grouped_ggcorrmat <- function(data,
                               matrix.type = "full",
                               method = "square",
                               corr.method = "pearson",
+                              type = NULL,
                               exact = FALSE,
                               continuity = TRUE,
                               beta = 0.1,
@@ -163,6 +164,9 @@ grouped_ggcorrmat <- function(data,
     tidyr::nest(data = .)
 
   # ===================== grouped plot ===================================
+
+  # see which method was used to specify type of correlation
+  corr.method <- type %||% corr.method
 
   # creating a list of plots
   if (output == "plot") {

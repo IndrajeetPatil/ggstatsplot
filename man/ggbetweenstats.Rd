@@ -7,15 +7,15 @@ between-subjects designs.}
 \usage{
 ggbetweenstats(data, x, y, plot.type = "boxviolin",
   type = "parametric", pairwise.comparisons = FALSE,
-  pairwise.annotation = "asterisk", p.adjust.method = "holm",
-  effsize.type = "unbiased", effsize.noncentral = FALSE,
-  bf.prior = 0.707, bf.message = FALSE, results.subtitle = TRUE,
-  xlab = NULL, ylab = NULL, caption = NULL, title = NULL,
-  subtitle = NULL, sample.size.label = TRUE, k = 3,
-  var.equal = FALSE, nboot = 100, tr = 0.1, mean.label.size = 3,
-  mean.label.fontface = "bold", mean.label.color = "black",
-  notch = FALSE, notchwidth = 0.5, linetype = "solid",
-  outlier.tagging = FALSE, outlier.label = NULL,
+  pairwise.annotation = "asterisk", pairwise.display = "significant",
+  p.adjust.method = "holm", effsize.type = "unbiased",
+  effsize.noncentral = FALSE, bf.prior = 0.707, bf.message = FALSE,
+  results.subtitle = TRUE, xlab = NULL, ylab = NULL,
+  caption = NULL, title = NULL, subtitle = NULL,
+  sample.size.label = TRUE, k = 3, var.equal = FALSE, nboot = 100,
+  tr = 0.1, mean.label.size = 3, mean.label.fontface = "bold",
+  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
+  linetype = "solid", outlier.tagging = FALSE, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
@@ -42,11 +42,20 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \code{"bf"}resp.}
 
 \item{pairwise.comparisons}{Logical that decides whether pairwise comparisons
-are to be displayed. \strong{Only significant comparisons} will be shown
-(default: \code{FALSE}).}
+are to be displayed. \strong{Only significant comparisons} will be shown by
+default. (default: \code{FALSE}). To change this behavior, select appropriate
+option with \code{pairwise.display} argument.}
 
 \item{pairwise.annotation}{Character that decides the annotations to use for
 pairwise comparisons. Either \code{"p.value"} or \code{"asterisk"} (default).}
+
+\item{pairwise.display}{Decides which pairwise comparisons to display.
+Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) or
+\code{"non-significant"} (abbreviation accepted: \code{"ns"}) or
+\code{"everything"}/\code{"all"}. The default is \code{"significant"}. You can use this
+argument to make sure that your plot is not uber-cluttered when you have
+multiple groups being compared and scores of pairwise comparisons being
+displayed.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},

@@ -234,8 +234,6 @@ subtitle_t_parametric <-
 
 #' @title Making text subtitle for the Mann-Whitney U-test
 #'   (between-/within-subjects designs).
-#' @name subtitle_mann_nonparametric
-#' @aliases subtitle_t_nonparametric
 #' @author Indrajeet Patil
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
@@ -380,7 +378,8 @@ subtitle_mann_nonparametric <-
     return(subtitle)
   }
 
-#' @rdname subtitle_t_nonparametric
+#' @rdname subtitle_mann_nonparametric
+#' @aliases subtitle_mann_nonparametric
 #' @export
 
 subtitle_t_nonparametric <- subtitle_mann_nonparametric

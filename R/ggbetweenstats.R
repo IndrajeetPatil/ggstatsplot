@@ -21,13 +21,21 @@
 #'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
 #'   `"bf"`resp.
 #' @param pairwise.comparisons Logical that decides whether pairwise comparisons
-#'   are to be displayed. **Only significant comparisons** will be shown
-#'   (default: `FALSE`).
+#'   are to be displayed. **Only significant comparisons** will be shown by
+#'   default. (default: `FALSE`). To change this behavior, select appropriate
+#'   option with `pairwise.display` argument.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
 #'   `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
 #' @param pairwise.annotation Character that decides the annotations to use for
 #'   pairwise comparisons. Either `"p.value"` or `"asterisk"` (default).
+#' @param pairwise.display Decides which pairwise comparisons to display.
+#'   Available options are `"significant"` (abbreviation accepted: `"s"`) or
+#'   `"non-significant"` (abbreviation accepted: `"ns"`) or
+#'   `"everything"`/`"all"`. The default is `"significant"`. You can use this
+#'   argument to make sure that your plot is not uber-cluttered when you have
+#'   multiple groups being compared and scores of pairwise comparisons being
+#'   displayed.
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
@@ -176,6 +184,7 @@ ggbetweenstats <- function(data,
                            type = "parametric",
                            pairwise.comparisons = FALSE,
                            pairwise.annotation = "asterisk",
+                           pairwise.display = "significant",
                            p.adjust.method = "holm",
                            effsize.type = "unbiased",
                            effsize.noncentral = FALSE,
@@ -586,8 +595,17 @@ ggbetweenstats <- function(data,
         ..f = ~ c(.$group1, .$group2),
         .collate = "list",
         .to = "groups"
-      ) %>%
-      dplyr::filter(.data = ., significance != "ns")
+      )
+
+    # decide what needs to be displayed:
+    # only significant or non-significant comparisons
+    if (pairwise.display %in% c("s", "significant")) {
+      df_pairwise %<>%
+        dplyr::filter(.data = ., significance != "ns")
+    } else if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
+      df_pairwise %<>%
+        dplyr::filter(.data = ., significance == "ns")
+    }
 
     # proceed only if there are any significant comparisons to display
     if (dim(df_pairwise)[[1]] != 0L) {

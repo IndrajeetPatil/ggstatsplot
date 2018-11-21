@@ -130,7 +130,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-11-20</h4>
+            <h4 class="date">2018-11-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -227,32 +227,33 @@
 <a class="sourceLine" id="cb2-18" data-line-number="18">    ),</a>
 <a class="sourceLine" id="cb2-19" data-line-number="19">    <span class="dt">type =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"r"</span>, <span class="st">"bf"</span>, <span class="st">"np"</span>),</a>
 <a class="sourceLine" id="cb2-20" data-line-number="20">    <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">    <span class="dt">pairwise.annotation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"asterisk"</span>, <span class="st">"asterisk"</span>, <span class="st">"p.value"</span>),</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">    <span class="dt">p.adjust.method =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"hommel"</span>, <span class="st">"bonferroni"</span>, <span class="st">"BH"</span>),</a>
-<a class="sourceLine" id="cb2-23" data-line-number="23">    <span class="dt">nboot =</span> <span class="dv">25</span>,</a>
-<a class="sourceLine" id="cb2-24" data-line-number="24">    <span class="dt">mean.label.size =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">    <span class="dt">k =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb2-26" data-line-number="26">    <span class="dt">effsize.type =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb2-27" data-line-number="27">      <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb2-28" data-line-number="28">      <span class="st">"partial_omega"</span>,</a>
-<a class="sourceLine" id="cb2-29" data-line-number="29">       <span class="st">"partial_eta"</span></a>
-<a class="sourceLine" id="cb2-30" data-line-number="30">    ),</a>
-<a class="sourceLine" id="cb2-31" data-line-number="31">    <span class="dt">plot.type =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"violin"</span>),</a>
-<a class="sourceLine" id="cb2-32" data-line-number="32">    <span class="dt">mean.ci =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb2-33" data-line-number="33">    <span class="dt">package =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"nord"</span>, <span class="st">"ochRe"</span>, <span class="st">"awtools"</span>),</a>
-<a class="sourceLine" id="cb2-34" data-line-number="34">    <span class="dt">palette =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"ppalette"</span>),</a>
-<a class="sourceLine" id="cb2-35" data-line-number="35">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb2-36" data-line-number="36">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_stata">theme_stata</a></span>(),</a>
-<a class="sourceLine" id="cb2-37" data-line-number="37">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb2-38" data-line-number="38">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>()</a>
-<a class="sourceLine" id="cb2-39" data-line-number="39">    ),</a>
-<a class="sourceLine" id="cb2-40" data-line-number="40">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb2-41" data-line-number="41">    <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb2-42" data-line-number="42">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb2-43" data-line-number="43">  ),</a>
-<a class="sourceLine" id="cb2-44" data-line-number="44">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
-<a class="sourceLine" id="cb2-45" data-line-number="45">)</a>
-<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="co">#&gt; Warning: No Bayes Factor pairwise comparisons currently available.</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-21" data-line-number="21">    <span class="dt">pairwise.display =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"s"</span>, <span class="st">"ns"</span>, <span class="st">"all"</span>),</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">    <span class="dt">pairwise.annotation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"asterisk"</span>, <span class="st">"asterisk"</span>, <span class="st">"p.value"</span>),</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">    <span class="dt">p.adjust.method =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"hommel"</span>, <span class="st">"bonferroni"</span>, <span class="st">"BH"</span>),</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">    <span class="dt">nboot =</span> <span class="dv">25</span>,</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">    <span class="dt">mean.label.size =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">    <span class="dt">k =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">    <span class="dt">effsize.type =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">      <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb2-29" data-line-number="29">      <span class="st">"partial_omega"</span>,</a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">       <span class="st">"partial_eta"</span></a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">    ),</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32">    <span class="dt">plot.type =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"box"</span>, <span class="st">"boxviolin"</span>, <span class="st">"violin"</span>),</a>
+<a class="sourceLine" id="cb2-33" data-line-number="33">    <span class="dt">mean.ci =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb2-34" data-line-number="34">    <span class="dt">package =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"nord"</span>, <span class="st">"ochRe"</span>, <span class="st">"awtools"</span>),</a>
+<a class="sourceLine" id="cb2-35" data-line-number="35">    <span class="dt">palette =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"ppalette"</span>),</a>
+<a class="sourceLine" id="cb2-36" data-line-number="36">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb2-37" data-line-number="37">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_stata">theme_stata</a></span>(),</a>
+<a class="sourceLine" id="cb2-38" data-line-number="38">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb2-39" data-line-number="39">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>()</a>
+<a class="sourceLine" id="cb2-40" data-line-number="40">    ),</a>
+<a class="sourceLine" id="cb2-41" data-line-number="41">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb2-42" data-line-number="42">    <span class="dt">sample.size.label =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb2-44" data-line-number="44">  ),</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46">)</a>
+<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="co">#&gt; Warning: No Bayes Factor pairwise comparisons currently available.</span></a></code></pre></div>
 <p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
@@ -595,7 +596,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.1.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
 </div>
       </footer>
 </div>
