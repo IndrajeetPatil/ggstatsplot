@@ -9,7 +9,10 @@ testthat::test_that(
     using_function1 <-
       suppressWarnings(
         ggstatsplot::subtitle_t_parametric(
-          data = dplyr::filter(movies_long, genre == "Action" | genre == "Drama"),
+          data = dplyr::filter(
+            ggstatsplot::movies_long,
+            genre == "Action" | genre == "Drama"
+          ),
           x = genre,
           y = rating,
           effsize.type = "d",
