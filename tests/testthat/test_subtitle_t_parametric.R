@@ -25,6 +25,10 @@ testthat::test_that(
       )
 
     # expected output
+    # this test will have to be changed with the next release of `effsize`
+    # d here should be negative but is displayed as positive
+    # this is a bug in effsize and has been fixed in the development version
+    # (https://github.com/mtorchiano/effsize/commit/3561d93f9e9f5a61b3460ba120b316f7e4c3352f)
     set.seed(123)
     results1 <-
       ggplot2::expr(
@@ -41,11 +45,11 @@ testthat::test_that(
           ", ",
           italic("d"),
           " = ",
-          c(Action = "-0.56364"),
+          c(Action = "0.51775"),
           ", 95% CI [",
-          "-0.71947",
+          "0.36213",
           ", ",
-          "-0.40762",
+          "0.67319",
           "]",
           ", ",
           italic("n"),
