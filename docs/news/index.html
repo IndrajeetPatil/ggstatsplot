@@ -32,6 +32,7 @@
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
@@ -184,6 +185,7 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
+<li>New function <code>ggdotplotstats</code> for creating a dot plot/chart for labelled numeric data.</li>
 <li>As per APA guidelines, all results show results with two decimal places. That is, the default value for <code>k</code> argument for all functions has been changed from <code>3</code> to <code>2</code>.</li>
 <li>All helper functions for the <code>ggbetweenstats</code> subtitles have been renamed to remove <code>_ggbetween_</code> from their names as this was becoming confusing for the user. Some of these functions work both with the between- and within-subjects designs, so having <code>_ggbetween_</code> in their names made users suspect if they could use these functions for within-subjects designs.</li>
 <li>
@@ -428,7 +430,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
       </footer>
    </div>

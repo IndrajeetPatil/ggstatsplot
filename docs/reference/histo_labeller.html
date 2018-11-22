@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Display homogeneity of variance test as a message — bartlett_message • ggstatsplot</title>
+<title>Custom function for adding labelled lines for <code>x</code>-axis variable. — histo_labeller • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,10 +38,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Display homogeneity of variance test as a message — bartlett_message" />
+<meta property="og:title" content="Custom function for adding labelled lines for <code>x</code>-axis variable. — histo_labeller" />
 
-<meta property="og:description" content="A note to the user about the validity of assumptions for the
-default linear model." />
+<meta property="og:description" content="Helper function for adding centrality parameter value and/or a
+test value for the continuous, numeric x-axis variable." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,104 +168,131 @@ default linear model." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Display homogeneity of variance test as a message</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_messages.R'><code>R/helpers_messages.R</code></a></small>
-    <div class="hidden name"><code>bartlett_message.Rd</code></div>
+    <h1>Custom function for adding labelled lines for <code>x</code>-axis variable.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_gghistostats.R'><code>R/helpers_gghistostats.R</code></a></small>
+    <div class="hidden name"><code>histo_labeller.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A note to the user about the validity of assumptions for the
-default linear model.</p>
+    <p>Helper function for adding centrality parameter value and/or a
+test value for the continuous, numeric <code>x</code>-axis variable.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bartlett_message</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>)</pre>
+    <pre class="usage"><span class='fu'>histo_labeller</span>(<span class='no'>plot</span>, <span class='no'>x</span>, <span class='no'>y.label.position</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>centrality.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Dataframe from which variables specified are preferentially to be
-taken.</p></td>
+      <th>plot</th>
+      <td><p>A <code>ggplot</code> object for which the labelled lines need to be
+added for a test value and/or a centrality parameter (mean/median) value.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping variable.</p></td>
+      <td><p>A numeric variable.</p></td>
     </tr>
     <tr>
-      <th>y</th>
-      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+      <th>centrality.para</th>
+      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
+or <code>"median"</code>) is to be displayed as a vertical line.</p></td>
     </tr>
     <tr>
-      <th>lab</th>
-      <td><p>A character describing label for the variable. If <code>NULL</code>, variable
-name will be used.</p></td>
+      <th>centrality.color</th>
+      <td><p>Decides color for the vertical line for centrality
+parameter (Default: <code>"blue"</code>).</p></td>
     </tr>
     <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
+      <th>centrality.size</th>
+      <td><p>Decides size for the vertical line for centrality
+parameter (Default: <code>1.2</code>).</p></td>
     </tr>
     <tr>
-      <th>output</th>
-      <td><p>What output is desired: <code>"message"</code> (default) or <code>"stats"</code>
-objects.</p></td>
+      <th>centrality.linetype</th>
+      <td><p>Decides linetype for the vertical line for
+centrality parameter (Default: <code>"dashed"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>centrality.line.labeller</th>
+      <td><p>A logical that decides whether line labels
+should be displayed for the <strong>centrality.para</strong> line (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>centrality.k</th>
+      <td><p>Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: <code>2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value</th>
+      <td><p>A number specifying the value of the null hypothesis
+(Default: <code>0</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.line</th>
+      <td><p>Decides whether test value is to be displayed as a
+vertical line (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.color</th>
+      <td><p>Decides color for the vertical line denoting test
+value (Default: <code>"black"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.size</th>
+      <td><p>Decides size for the vertical line for test value
+(Default: <code>1.2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.linetype</th>
+      <td><p>Decides linetype for the vertical line for test
+value (Default: <code>"dashed"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.line.labeller</th>
+      <td><p>A logical that decides whether line labels should
+be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.k</th>
+      <td><p>Integer denoting the number of decimal places expected for
+<code>test.value</code> label. (Default: <code>0</code> ).</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A list of class <code>"htest"</code> containing the following components:</p>
-<dt>statistic</dt><dd><p>Bartlett's K-squared test statistic.</p></dd>
-  <dt>parameter</dt><dd><p>the degrees of freedom of the approximate chi-squared
-    distribution of the test statistic.</p></dd>
-  <dt>p.value</dt><dd><p>the p-value of the test.</p></dd>
-  <dt>method</dt><dd><p>the character string
-    <code>"Bartlett test of homogeneity of variances"</code>.</p></dd>
-  <dt>data.name</dt><dd><p>a character string giving the names of the data.</p></dd>
-
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p>
-<p>Other helper_messages: <code><a href='grouped_message.html'>grouped_message</a></code>,
-  <code><a href='normality_message.html'>normality_message</a></code>,
-  <code><a href='pairwise_p.html'>pairwise_p</a></code>, <code><a href='palette_message.html'>palette_message</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># getting message</span>
-<span class='fu'>bartlett_message</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Species</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
-  <span class='kw'>lab</span> <span class='kw'>=</span> <span class='st'>"Iris Species"</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>Iris Species</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>&lt; 0.001</span><span></div><div class='output co'>#&gt; </div><div class='input'>
-<span class='co'># getting results from the test</span>
-<span class='fu'>bartlett_message</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"stats"</span>
-)</div><div class='output co'>#&gt; 
-#&gt; 	Bartlett test of homogeneity of variances
-#&gt; 
-#&gt; data:  y by x
-#&gt; Bartlett's K-squared = 0.71483, df = 1, p-value = 0.3978
-#&gt; </div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
+
+<span class='co'># creating a ploton which lines and labels are to be superposed</span>
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()
+
+<span class='co'># computing `y`-axis positions for line labels</span>
+<span class='no'>y_label_pos</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/median'>median</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot_build.html'>layer_scales</a></span>(<span class='no'>p</span>)$<span class='no'>y</span>$<span class='no'>range</span>$<span class='no'>range</span>,
+  <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
+<span class='co'># adding labels</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/histo_labeller.html'>histo_labeller</a></span>(
+  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>p</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtcars</span>$<span class='no'>wt</span>,
+  <span class='kw'>y.label.position</span> <span class='kw'>=</span> <span class='no'>y_label_pos</span>,
+  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='img'><img src='histo_labeller-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

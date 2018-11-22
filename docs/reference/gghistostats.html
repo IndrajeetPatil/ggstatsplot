@@ -32,6 +32,7 @@
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
@@ -233,9 +234,8 @@ proportion in the same plot.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>The text for the plot subtitle <em>if</em> you don't want results
-from one sample test to be displayed (i.e. <code>results.subtitle</code> should be set
-to <code>FALSE</code>).</p></td>
+      <td><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
@@ -260,8 +260,8 @@ to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
-      <td><p>Logical. Decides whether to display Bayes Factor in favor
-of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>bf.message = FALSE</code>). This will work only if <code>results.subtitle = TRUE</code>.</p></td>
+      <td><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>robust.estimator</th>
@@ -313,8 +313,8 @@ color will uniformly fill all the bars in the histogram (Default:
     <tr>
       <th>results.subtitle</th>
       <td><p>Decides whether the results of statistical tests are
-to be displayed as subtitle (Default: <code>results.subtitle = TRUE</code>). If set to
-<code>FALSE</code>, no statistical tests will be run.</p></td>
+to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
+the plot will be returned.</p></td>
     </tr>
     <tr>
       <th>centrality.para</th>
@@ -337,6 +337,16 @@ parameter (Default: <code>1.2</code>).</p></td>
 centrality parameter (Default: <code>"dashed"</code>).</p></td>
     </tr>
     <tr>
+      <th>centrality.line.labeller</th>
+      <td><p>A logical that decides whether line labels
+should be displayed for the <strong>centrality.para</strong> line (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>centrality.k</th>
+      <td><p>Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: <code>2</code>).</p></td>
+    </tr>
+    <tr>
       <th>test.value.line</th>
       <td><p>Decides whether test value is to be displayed as a
 vertical line (Default: <code>FALSE</code>).</p></td>
@@ -357,15 +367,14 @@ value (Default: <code>"black"</code>).</p></td>
 value (Default: <code>"dashed"</code>).</p></td>
     </tr>
     <tr>
-      <th>test.line.labeller, centrality.line.labeller</th>
-      <td><p>A logical that decides
-whether line labels should be displayed (Default: <code>TRUE</code>).</p></td>
+      <th>test.line.labeller</th>
+      <td><p>A logical that decides whether line labels should
+be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
-      <th>test.k, centrality.k</th>
-      <td><p>Integer denoting the number of decimal places
-expected for test and centrality parameters. (Default: <code>0</code> and <code>2</code>,
-respectively).</p></td>
+      <th>test.k</th>
+      <td><p>Integer denoting the number of decimal places expected for
+<code>test.value</code> label. (Default: <code>0</code> ).</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -391,7 +400,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>ToothGrowth</span>$<span class='no'>len</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Tooth length"</span>,
   <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"median"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># a detailed function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html'>gghistostats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
@@ -405,7 +414,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.10</span>,
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Sepal.Length</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.010</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div></span></pre>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Sepal.Length</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.010</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -430,7 +439,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
       </footer>
    </div>

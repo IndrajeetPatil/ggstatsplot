@@ -7,7 +7,16 @@
 \usage{
 ggdotplotstats(data, x, y, summarize = TRUE, xlab = NULL,
   ylab = NULL, title = NULL, subtitle = NULL, caption = NULL,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE)
+  type = "parametric", test.value = 0, bf.prior = 0.707,
+  bf.message = FALSE, robust.estimator = "onestep", nboot = 100,
+  k = 2, results.subtitle = TRUE, ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, centrality.para = "mean",
+  centrality.color = "blue", centrality.size = 1,
+  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
+  centrality.k = 2, test.value.line = FALSE,
+  test.value.color = "black", test.value.size = 1,
+  test.value.linetype = "dashed", test.line.labeller = TRUE,
+  test.k = 0, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -26,11 +35,38 @@ grouping variable \code{y} (Default: \code{TRUE}).}
 
 \item{title}{The text for the plot title.}
 
-\item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
-from one sample test to be displayed (i.e. \code{results.subtitle} should be set
-to \code{FALSE}).}
+\item{subtitle}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption.}
+
+\item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
+or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
+\code{"p"} (for parametric), \code{"np"} (nonparametric), \code{"r"} (robust), or
+\code{"bf"}resp.}
+
+\item{test.value}{A number specifying the value of the null hypothesis
+(Default: \code{0}).}
+
+\item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
+to use in calculating Bayes factors.}
+
+\item{bf.message}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
+
+\item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
+(\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
+\code{?WRS2::onesampb}.}
+
+\item{nboot}{Number of bootstrap samples for robust one-sample location test
+(Default: \code{100}).}
+
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
+
+\item{results.subtitle}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -40,19 +76,74 @@ extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
 \item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}).}
+
+\item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
+or \code{"median"}) is to be displayed as a vertical line.}
+
+\item{centrality.color}{Decides color for the vertical line for centrality
+parameter (Default: \code{"blue"}).}
+
+\item{centrality.size}{Decides size for the vertical line for centrality
+parameter (Default: \code{1.2}).}
+
+\item{centrality.linetype}{Decides linetype for the vertical line for
+centrality parameter (Default: \code{"dashed"}).}
+
+\item{centrality.line.labeller}{A logical that decides whether line labels
+should be displayed for the \strong{centrality.para} line (Default: \code{TRUE}).}
+
+\item{centrality.k}{Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: \code{2}).}
+
+\item{test.value.line}{Decides whether test value is to be displayed as a
+vertical line (Default: \code{FALSE}).}
+
+\item{test.value.color}{Decides color for the vertical line denoting test
+value (Default: \code{"black"}).}
+
+\item{test.value.size}{Decides size for the vertical line for test value
+(Default: \code{1.2}).}
+
+\item{test.value.linetype}{Decides linetype for the vertical line for test
+value (Default: \code{"dashed"}).}
+
+\item{test.line.labeller}{A logical that decides whether line labels should
+be displayed for \strong{test.value} line (Default: \code{TRUE}).}
+
+\item{test.k}{Integer denoting the number of decimal places expected for
+\code{test.value} label. (Default: \code{0} ).}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 }
 \description{
 A dot chart with statistical details from one-sample test
 included in the plot as a subtitle.
 }
 \note{
-This function is still work in progress.
+This function is still \strong{work in progress}.
 }
 \examples{
+# for reproducibility
+set.seed(123)
+
+# plot
 ggdotplotstats(
   data = ggplot2::mpg,
   x = cty,
-  y = manufacturer
+  y = manufacturer,
+  test.value = 15,
+  test.value.line = TRUE,
+  test.line.labeller = TRUE,
+  test.value.color = "red",
+  centrality.para = "median",
+  centrality.k = 0,
+  title = "Fuel economy data",
+  xlab = "city miles per gallon",
+  bf.message = TRUE,
+  caption = substitute(
+    paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
+  )
 )
 }
 \author{

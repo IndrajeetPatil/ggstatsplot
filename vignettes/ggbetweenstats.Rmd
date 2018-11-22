@@ -331,7 +331,7 @@ A variant of this function, called `ggwithinstats`, is currently under
 development. You *can* still use this function just to prepare the **plot** for,
 but the statistical details displayed in the subtitle will be incorrect. You can
 remove them by adding `+ ggplot2::labs(subtitle = NULL)` and add a new subtitle
-for the within-subjects test using an approprate helper function-
+for the within-subjects test using an appropriate helper function-
 <https://indrajeetpatil.github.io/ggstatsplot/reference/index.html#section-helper-functions-for-preparing-statistics-subtitles>.
 
 # Suggestions

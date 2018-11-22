@@ -16,6 +16,8 @@ BUG FIXES
 
 MAJOR CHANGES
 
+  - New function `ggdotplotstats` for creating a dot plot/chart for labelled
+    numeric data.
   - As per APA guidelines, all results show results with two decimal places.
     That is, the default value for `k` argument for all functions has been
     changed from `3` to `2`.

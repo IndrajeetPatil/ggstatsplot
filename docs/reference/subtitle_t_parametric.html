@@ -33,6 +33,7 @@ designs). — subtitle_t_parametric • ggstatsplot</title>
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
@@ -262,8 +263,8 @@ default is to return <code>95%</code> lower and upper confidence intervals (<cod
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
 )</div><div class='output co'>#&gt; paste(italic("t"), "(", c(df = "10.89"), ") = ", c(t = "1.49"), 
 #&gt;     ", ", italic("p"), " = ", "0.164", ", ", italic("g"), " = ", 
-#&gt;     c(carni = "0.72"), ", 95% CI [", "-0.07", ", ", "1.50", "]", 
-#&gt;     ", ", italic("n"), " = ", 34L)</div><div class='input'>
+#&gt;     c(carni = "-0.55"), ", 95% CI [", "-1.32", ", ", "0.23", 
+#&gt;     "]", ", ", italic("n"), " = ", 34L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_t_parametric</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
@@ -274,8 +275,8 @@ default is to return <code>95%</code> lower and upper confidence intervals (<cod
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"d"</span>
 )</div><div class='output co'>#&gt; paste(italic("t"), "(", c(df = "32.00"), ") = ", c(t = "1.95"), 
 #&gt;     ", ", italic("p"), " = ", "0.060", ", ", italic("d"), " = ", 
-#&gt;     c(carni = "0.73"), ", 95% CI [", "-0.05", ", ", "1.52", "]", 
-#&gt;     ", ", italic("n"), " = ", 34L)</div></pre>
+#&gt;     c(carni = "-0.56"), ", 95% CI [", "-1.34", ", ", "0.22", 
+#&gt;     "]", ", ", italic("n"), " = ", 34L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -296,7 +297,7 @@ default is to return <code>95%</code> lower and upper confidence intervals (<cod
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
       </footer>
    </div>

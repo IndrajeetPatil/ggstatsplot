@@ -70,13 +70,20 @@ subtitle_t_onesample <- function(data = NULL,
 
   # ========================== stats ==========================================
 
+  # decide whether to run bayesian tests
+  if (type %in% c("bayes", "bf")) {
+    bf <- TRUE
+  } else {
+    bf <- FALSE
+  }
+
   # common test
   jmv_results <-
     jmv::ttestOneS(
       data = data,
       vars = "x",
       students = TRUE,
-      bf = TRUE,
+      bf = bf,
       bfPrior = bf.prior,
       wilcoxon = TRUE,
       # Mann-Whitney U test
@@ -89,7 +96,7 @@ subtitle_t_onesample <- function(data = NULL,
     )
 
   # ========================= parametric ======================================
-  if (type == "parametric" || type == "p") {
+  if (type %in% c("parametric", "p")) {
 
     # confidence intervals for Cohen's d
     ci_df <-
@@ -152,7 +159,7 @@ subtitle_t_onesample <- function(data = NULL,
       )
 
     # ========================== non-parametric ==============================
-  } else if (type == "nonparametric" || type == "np") {
+  } else if (type %in% c("nonparametric", "np")) {
     # preparing the subtitle
     subtitle <-
       base::substitute(
@@ -191,7 +198,7 @@ subtitle_t_onesample <- function(data = NULL,
       )
 
     # ======================= robust =========================================
-  } else if (type == "robust" || type == "r") {
+  } else if (type %in% c("robust", "r")) {
 
     # running one-sample percentile bootstrap
     rob_os <- WRS2::onesampb(
@@ -249,7 +256,7 @@ subtitle_t_onesample <- function(data = NULL,
       )
     )
     # ===================== bayes ============================================
-  } else if (type == "bayes" || type == "bf") {
+  } else if (type %in% c("bayes", "bf")) {
     # preparing the subtitle
     subtitle <- base::substitute(
       expr =

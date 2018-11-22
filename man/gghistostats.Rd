@@ -42,9 +42,8 @@ proportion in the same plot.}
 
 \item{title}{The text for the plot title.}
 
-\item{subtitle}{The text for the plot subtitle \emph{if} you don't want results
-from one sample test to be displayed (i.e. \code{results.subtitle} should be set
-to \code{FALSE}).}
+\item{subtitle}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption.}
 
@@ -59,8 +58,8 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
 
-\item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
-of \emph{null} hypothesis \strong{for parametric test} (Default: \code{bf.message = FALSE}). This will work only if \code{results.subtitle = TRUE}.}
+\item{bf.message}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
 
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
@@ -94,8 +93,8 @@ color will uniformly fill all the bars in the histogram (Default:
 \code{"grey50"}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as subtitle (Default: \code{results.subtitle = TRUE}). If set to
-\code{FALSE}, no statistical tests will be run.}
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as a vertical line.}
@@ -109,6 +108,12 @@ parameter (Default: \code{1.2}).}
 \item{centrality.linetype}{Decides linetype for the vertical line for
 centrality parameter (Default: \code{"dashed"}).}
 
+\item{centrality.line.labeller}{A logical that decides whether line labels
+should be displayed for the \strong{centrality.para} line (Default: \code{TRUE}).}
+
+\item{centrality.k}{Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: \code{2}).}
+
 \item{test.value.line}{Decides whether test value is to be displayed as a
 vertical line (Default: \code{FALSE}).}
 
@@ -121,12 +126,11 @@ value (Default: \code{"black"}).}
 \item{test.value.linetype}{Decides linetype for the vertical line for test
 value (Default: \code{"dashed"}).}
 
-\item{test.line.labeller, centrality.line.labeller}{A logical that decides
-whether line labels should be displayed (Default: \code{TRUE}).}
+\item{test.line.labeller}{A logical that decides whether line labels should
+be displayed for \strong{test.value} line (Default: \code{TRUE}).}
 
-\item{test.k, centrality.k}{Integer denoting the number of decimal places
-expected for test and centrality parameters. (Default: \code{0} and \code{2},
-respectively).}
+\item{test.k}{Integer denoting the number of decimal places expected for
+\code{test.value} label. (Default: \code{0} ).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

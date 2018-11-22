@@ -32,6 +32,7 @@
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
@@ -181,7 +182,16 @@ included in the plot as a subtitle.</p>
 
     <pre class="usage"><span class='fu'>ggdotplotstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='kw'>centrality.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>centrality.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>centrality.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>centrality.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>test.value.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>test.value.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>test.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -218,13 +228,56 @@ grouping variable <code>y</code> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>The text for the plot subtitle <em>if</em> you don't want results
-from one sample test to be displayed (i.e. <code>results.subtitle</code> should be set
-to <code>FALSE</code>).</p></td>
+      <td><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>caption</th>
       <td><p>The text for the plot caption.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
+or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
+<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
+<code>"bf"</code>resp.</p></td>
+    </tr>
+    <tr>
+      <th>test.value</th>
+      <td><p>A number specifying the value of the null hypothesis
+(Default: <code>0</code>).</p></td>
+    </tr>
+    <tr>
+      <th>bf.prior</th>
+      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
+to use in calculating Bayes factors.</p></td>
+    </tr>
+    <tr>
+      <th>bf.message</th>
+      <td><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>robust.estimator</th>
+      <td><p>If <code>test = "robust"</code> robust estimator to be used
+(<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
+<code><a href='https://www.rdocumentation.org/packages/WRS2/topics/onesampb'>?WRS2::onesampb</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for robust one-sample location test
+(Default: <code>100</code>).</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>results.subtitle</th>
+      <td><p>Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
+the plot will be returned.</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
@@ -239,19 +292,100 @@ extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.
 theme elements are to be displayed along with the selected <code>ggtheme</code>
 (Default: <code>TRUE</code>).</p></td>
     </tr>
+    <tr>
+      <th>centrality.para</th>
+      <td><p>Decides <em>which</em> measure of central tendency (<code>"mean"</code>
+or <code>"median"</code>) is to be displayed as a vertical line.</p></td>
+    </tr>
+    <tr>
+      <th>centrality.color</th>
+      <td><p>Decides color for the vertical line for centrality
+parameter (Default: <code>"blue"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>centrality.size</th>
+      <td><p>Decides size for the vertical line for centrality
+parameter (Default: <code>1.2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>centrality.linetype</th>
+      <td><p>Decides linetype for the vertical line for
+centrality parameter (Default: <code>"dashed"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>centrality.line.labeller</th>
+      <td><p>A logical that decides whether line labels
+should be displayed for the <strong>centrality.para</strong> line (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>centrality.k</th>
+      <td><p>Integer denoting the number of decimal places expected
+for centrality parameter label. (Default: <code>2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.line</th>
+      <td><p>Decides whether test value is to be displayed as a
+vertical line (Default: <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.color</th>
+      <td><p>Decides color for the vertical line denoting test
+value (Default: <code>"black"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.size</th>
+      <td><p>Decides size for the vertical line for test value
+(Default: <code>1.2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.value.linetype</th>
+      <td><p>Decides linetype for the vertical line for test
+value (Default: <code>"dashed"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.line.labeller</th>
+      <td><p>A logical that decides whether line labels should
+be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>test.k</th>
+      <td><p>Integer denoting the number of decimal places expected for
+<code>test.value</code> label. (Default: <code>0</code> ).</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>This function is still work in progress.</p>
+    <p>This function is still <strong>work in progress</strong>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ggdotplotstats</span>(
+    <pre class="examples"><div class='input'><span class='co'># for reproducibility</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+
+<span class='co'># plot</span>
+<span class='fu'>ggdotplotstats</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cty</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>manufacturer</span>
-)</div><div class='img'><img src='ggdotplotstats-1.png' alt='' width='700' height='433' /></div></pre>
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>manufacturer</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>test.value.line</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>test.line.labeller</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>test.value.color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+  <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"median"</span>,
+  <span class='kw'>centrality.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Fuel economy data"</span>,
+  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"city miles per gallon"</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>substitute</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/grDevices/topics/plotmath'>italic</a></span>(<span class='st'>"Source"</span>), <span class='st'>": EPA dataset on http://fueleconomy.gov"</span>)
+  )
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>cty</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.503</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggdotplotstats-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -274,7 +408,7 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
       </footer>
    </div>

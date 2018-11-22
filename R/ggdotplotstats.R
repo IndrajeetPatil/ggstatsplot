@@ -5,21 +5,36 @@
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param x A numeric variable.
 #' @param y Label or grouping variable.
-#' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param summarize Logical that decides whether `x` is to be summarized by a
 #'   grouping variable `y` (Default: `TRUE`).
+#' @inheritParams histo_labeller
 #' @inheritParams gghistostats
 #'
-#' @note This function is still work in progress.
+#' @note This function is still **work in progress**.
 #'
 #' @examples
+#' # for reproducibility
+#' set.seed(123)
+#'
+#' # plot
 #' ggdotplotstats(
 #'   data = ggplot2::mpg,
 #'   x = cty,
-#'   y = manufacturer
+#'   y = manufacturer,
+#'   test.value = 15,
+#'   test.value.line = TRUE,
+#'   test.line.labeller = TRUE,
+#'   test.value.color = "red",
+#'   centrality.para = "median",
+#'   centrality.k = 0,
+#'   title = "Fuel economy data",
+#'   xlab = "city miles per gallon",
+#'   bf.message = TRUE,
+#'   caption = substitute(
+#'     paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
+#'   )
 #' )
 #' @export
 
@@ -33,8 +48,29 @@ ggdotplotstats <- function(data,
                            title = NULL,
                            subtitle = NULL,
                            caption = NULL,
+                           type = "parametric",
+                           test.value = 0,
+                           bf.prior = 0.707,
+                           bf.message = FALSE,
+                           robust.estimator = "onestep",
+                           nboot = 100,
+                           k = 2,
+                           results.subtitle = TRUE,
                            ggtheme = ggplot2::theme_bw(),
-                           ggstatsplot.layer = TRUE) {
+                           ggstatsplot.layer = TRUE,
+                           centrality.para = "mean",
+                           centrality.color = "blue",
+                           centrality.size = 1.0,
+                           centrality.linetype = "dashed",
+                           centrality.line.labeller = TRUE,
+                           centrality.k = 2,
+                           test.value.line = FALSE,
+                           test.value.color = "black",
+                           test.value.size = 1.0,
+                           test.value.linetype = "dashed",
+                           test.line.labeller = TRUE,
+                           test.k = 0,
+                           messages = TRUE) {
   # ------------------------------ variable names ----------------------------
 
   # preparing a dataframe with variable names
@@ -87,7 +123,46 @@ ggdotplotstats <- function(data,
       rank = 1:nrow(.)
     )
 
+  # ================ stats labels ==========================================
+
+  if (isTRUE(results.subtitle)) {
+
+    # preparing the BF message for NULL
+    if (isTRUE(bf.message)) {
+      bf.caption.text <-
+        bf_one_sample_ttest(
+          data = data,
+          x = x,
+          test.value = test.value,
+          bf.prior = bf.prior,
+          caption = caption,
+          output = "caption",
+          k = k
+        )
+    }
+
+    # preparing the subtitle with statistical results
+    subtitle <-
+      subtitle_t_onesample(
+        data = data,
+        x = x,
+        type = type,
+        test.value = test.value,
+        bf.prior = bf.prior,
+        robust.estimator = robust.estimator,
+        nboot = nboot,
+        k = k,
+        messages = messages
+      )
+  }
+
   # ------------------------------ basic plot ----------------------------
+
+  # if bayes factor message needs to be displayed
+  if (isTRUE(results.subtitle) &&
+    type %in% c("parametric", "p") && isTRUE(bf.message)) {
+    caption <- bf.caption.text
+  }
 
   # creating the basic plot
   plot <- ggplot2::ggplot(
@@ -112,14 +187,35 @@ ggdotplotstats <- function(data,
     ggplot2::scale_x_continuous(
       name = xlab,
       sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
-    ) +
-    ggplot2::geom_vline(
-      xintercept = mean(x = data$x, na.rm = TRUE),
-      # linetype = centrality.linetype,
-      # color = centrality.color,
-      # size = centrality.size,
-      na.rm = TRUE
     )
+
+  # ====================== centrality line and label ========================
+
+  # computing statistics needed for displaying labels
+  y_label_pos <- median(
+    x = ggplot2::layer_scales(plot)$y$range$range,
+    na.rm = TRUE
+  )
+
+  # using custom function for adding labels
+  plot <- histo_labeller(
+    plot = plot,
+    x = data$x,
+    y.label.position = y_label_pos,
+    centrality.para = centrality.para,
+    centrality.color = centrality.color,
+    centrality.size = centrality.size,
+    centrality.linetype = centrality.linetype,
+    centrality.line.labeller = centrality.line.labeller,
+    centrality.k = centrality.k,
+    test.value = test.value,
+    test.value.line = test.value.line,
+    test.value.color = test.value.color,
+    test.value.size = test.value.size,
+    test.value.linetype = test.value.linetype,
+    test.line.labeller = test.line.labeller,
+    test.k = test.k
+  )
 
   # ------------------------ annotations and themes -------------------------
 
@@ -144,6 +240,18 @@ ggdotplotstats <- function(data,
         linetype = "dashed"
       )
     )
+
+  # ============================= messages =================================
+
+  # display normality test result as a message
+  if (isTRUE(messages)) {
+    normality_message(
+      x = data$x,
+      lab = lab.df[1],
+      k = k,
+      output = "message"
+    )
+  }
 
   # return the plot
   return(plot)
