@@ -626,6 +626,41 @@ For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html>
 
+## `ggdotplotstats`
+
+This function is similar to `gghistostats`, but is intended to be used when
+numeric variable also has a label.
+
+```{r ggdotplotstats1, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 8}
+# for reproducibility
+set.seed(123)
+
+# plot
+ggdotplotstats(
+  data = dplyr::filter(.data = gapminder::gapminder, continent == "Asia"),
+  y = country,
+  x = lifeExp,
+  summarize = TRUE,
+  test.value = 55,
+  test.value.line = TRUE,
+  test.line.labeller = TRUE,
+  test.value.color = "red",
+  centrality.para = "median",
+  centrality.k = 0,
+  title = "Distribution of life expectancy in Asian continent",
+  xlab = "Life expectancy",
+  bf.message = TRUE,
+  messages = FALSE,
+  caption = substitute(
+    paste(
+      italic("Source"),
+      ": Gapminder dataset from https://www.gapminder.org/"
+    )
+  )
+)
+
+```
+
 ## `ggcorrmat`
 
 `ggcorrmat` makes a correlalogram (a matrix of correlation coefficients) with

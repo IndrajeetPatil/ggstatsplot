@@ -9,15 +9,18 @@
 #' @param ylab Label for `y` axis variable.
 #' @param summarize Logical that decides whether `x` is to be summarized by a
 #'   grouping variable `y` (Default: `TRUE`).
+#' @param point.color Character describing color for the point (Default:
+#'   `"black"`).
 #' @inheritParams histo_labeller
 #' @inheritParams gghistostats
+#' @inheritParams ggcoefstats
 #'
 #' @note This function is still **work in progress**.
 #'
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # plot
 #' ggdotplotstats(
 #'   data = ggplot2::mpg,
@@ -58,6 +61,9 @@ ggdotplotstats <- function(data,
                            results.subtitle = TRUE,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
+                           point.color = "black",
+                           point.size = 3,
+                           point.shape = 16,
                            centrality.para = "mean",
                            centrality.color = "blue",
                            centrality.size = 1.0,
@@ -169,7 +175,12 @@ ggdotplotstats <- function(data,
     data = data,
     mapping = ggplot2::aes(x = x, y = rank)
   ) +
-    ggplot2::geom_point(size = 3, color = "black", na.rm = TRUE) +
+    ggplot2::geom_point(
+      color = point.color,
+      size = point.size,
+      shape = point.shape,
+      na.rm = TRUE
+    ) +
     ggplot2::scale_y_continuous(
       name = ylab,
       labels = data$y,

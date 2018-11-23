@@ -133,7 +133,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#'
+#' 
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -252,7 +252,8 @@ ggcoefstats <- function(x,
       crayon::green("Note: "),
       crayon::blue(
         "No model diagnostics information available for the object of class",
-        crayon::yellow(class(x)[[1]])
+        crayon::yellow(class(x)[[1]]),
+        "."
       ),
       sep = ""
     ))
@@ -358,7 +359,8 @@ ggcoefstats <- function(x,
         x = x,
         conf.int = TRUE,
         conf.level = conf.level,
-        ...),
+        ...
+      ),
       y = stats::confint(x) %>%
         as.data.frame(.) %>%
         tibble::rownames_to_column(., "term") %>%
@@ -366,7 +368,7 @@ ggcoefstats <- function(x,
         dplyr::rename(.data = ., conf.low = `2.5 %`, conf.high = `97.5 %`),
       by = "term"
     )
-      # ==================== tidying everything else ===========================
+    # ==================== tidying everything else ===========================
   } else {
     tidy_df <-
       broom::tidy(
@@ -380,7 +382,7 @@ ggcoefstats <- function(x,
   # =================== p-value computation ==================================
 
   # p-values won't be computed by default for the lmer models
-  if (class(x)[[1]] == "lmerMod" || class(x)[[1]] == "rlm") {
+  if (class(x)[[1]] %in% c("lmerMod", "rlm")) {
     # computing p-values
     tidy_df %<>%
       tibble::as_data_frame(x = .) %>%
@@ -585,7 +587,8 @@ ggcoefstats <- function(x,
   )
 
   # computing the number of colors in a given palette
-  palette_df <- tibble::as.tibble(paletteer::palettes_d_names) %>%
+  palette_df <-
+    tibble::as.tibble(paletteer::palettes_d_names) %>%
     dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
     dplyr::select(.data = ., length)
 
@@ -652,13 +655,14 @@ ggcoefstats <- function(x,
 
   # if user has not specified colors, then use a color palette
   if (is.null(stats.label.color)) {
-    stats.label.color <- paletteer::paletteer_d(
-      package = !!package,
-      palette = !!palette,
-      n = count_term,
-      direction = direction,
-      type = "discrete"
-    )
+    stats.label.color <-
+      paletteer::paletteer_d(
+        package = !!package,
+        palette = !!palette,
+        n = count_term,
+        direction = direction,
+        type = "discrete"
+      )
   }
 
   # adding the labels

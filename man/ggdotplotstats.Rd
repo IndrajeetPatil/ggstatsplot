@@ -10,7 +10,8 @@ ggdotplotstats(data, x, y, summarize = TRUE, xlab = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = FALSE, robust.estimator = "onestep", nboot = 100,
   k = 2, results.subtitle = TRUE, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, centrality.para = "mean",
+  ggstatsplot.layer = TRUE, point.color = "black", point.size = 3,
+  point.shape = 16, centrality.para = "mean",
   centrality.color = "blue", centrality.size = 1,
   centrality.linetype = "dashed", centrality.line.labeller = TRUE,
   centrality.k = 2, test.value.line = FALSE,
@@ -76,6 +77,14 @@ extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
 \item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}).}
+
+\item{point.color}{Character describing color for the point (Default:
+\code{"black"}).}
+
+\item{point.size}{Numeric specifying size for the point (Default: \code{3}).}
+
+\item{point.shape}{Numeric specifying shape to draw the points (Default: \code{16}
+(\strong{a dot})).}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
 or \code{"median"}) is to be displayed as a vertical line.}
