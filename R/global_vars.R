@@ -153,7 +153,9 @@ utils::globalVariables(
     "log_10_bf01",
     "log_10_bf10",
     "log_e_bf01",
-    "log_e_bf10"
+    "log_e_bf10",
+    "2.5 %",
+    "97.5 %"
   ),
   package = "ggstatsplot",
   add = FALSE

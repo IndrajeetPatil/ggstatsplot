@@ -787,6 +787,30 @@ ggstatsplot::ggcoefstats(x = est)
 
 ```
 
+## Fit Linear Model Using Generalized Least Squares (`gls`)
+
+The `nlme` package provides a function to fit a linear model using generalized
+least squares. The errors are allowed to be correlated and/or have unequal
+variances.
+
+```{r gls, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+set.seed(123)
+
+# needed library
+library(nlme)
+
+# creating model object
+fit <-
+  nlme::gls(
+    model = follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time),
+    data = Ovary,
+    correlation = corAR1(form = ~ 1 | Mare)
+  )
+
+# plot
+ggstatsplot::ggcoefstats(x = fit)
+```
+
 ## robust regression using an M estimator (`rlm`)
 
 We have already seen an example of `MASS::rlm()` in the `README` document:

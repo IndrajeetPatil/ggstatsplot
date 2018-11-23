@@ -123,7 +123,7 @@
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
 #' @importFrom dplyr group_by arrange full_join vars matches desc everything
 #' @importFrom purrrlyr by_row
-#' @importFrom stats as.formula lm
+#' @importFrom stats as.formula lm confint
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
 #' @importFrom sjstats p_value
@@ -133,7 +133,7 @@
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
 #'
 #' @examples
-#' 
+#'
 #' set.seed(123)
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 #' @export
@@ -244,6 +244,10 @@ ggcoefstats <- function(x,
         tibble::as_data_frame(x = .)
     }
   } else {
+    # no glance available
+    glance_df <- NULL
+
+    # tell the user
     base::message(cat(
       crayon::green("Note: "),
       crayon::blue(
@@ -330,14 +334,14 @@ ggcoefstats <- function(x,
     }
 
     # ============ tidying robust models =====================================
-  } else if (class(x)[[1]] == "lmRob" || class(x)[[1]] == "glmRob") {
+  } else if (class(x)[[1]] %in% c("lmRob", "glmRob")) {
     tidy_df <-
       broom::tidy(
         x = x,
         ...
       )
     # ===================== quantile regression ==============================
-  } else if (class(x)[[1]] == "rq" || class(x)[[1]] == "rqs") {
+  } else if (class(x)[[1]] %in% c("rq", "rqs")) {
     tidy_df <-
       broom::tidy(
         x = x,
@@ -347,6 +351,22 @@ ggcoefstats <- function(x,
         ...
       )
     # ==================== tidying everything else ===========================
+  } else if (class(x)[[1]] == "gls") {
+    # getting tidy dataframe from broom and then combining it with its CIs
+    tidy_df <- dplyr::full_join(
+      x = broom::tidy(
+        x = x,
+        conf.int = TRUE,
+        conf.level = conf.level,
+        ...),
+      y = stats::confint(x) %>%
+        as.data.frame(.) %>%
+        tibble::rownames_to_column(., "term") %>%
+        tibble::as.tibble(x = .) %>%
+        dplyr::rename(.data = ., conf.low = `2.5 %`, conf.high = `97.5 %`),
+      by = "term"
+    )
+      # ==================== tidying everything else ===========================
   } else {
     tidy_df <-
       broom::tidy(
