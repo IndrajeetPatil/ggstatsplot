@@ -2,21 +2,45 @@
 #' @name bf_extractor
 #'
 #' @param bf.object An object from `BayesFactor` package test results.
+#' @param posterior If `TRUE`, the dataframe will contain mean, median, standard
+#'   deviation, and standard error for the posterior.
+#' @param iterations The number of iterations to sample for computing posterior
+#'   (default: `1000`).
+#' @param cred.int A scalar between 0 and 1, indicating the mass within the
+#'   credible interval that is to be estimated (default: `0.95`).
 #'
-#' @importFrom BayesFactor extractBF
-#' @importFrom tibble as_data_frame
-#' @importFrom dplyr rename select mutate everything
+#' @importFrom BayesFactor extractBF posterior
+#' @importFrom sjstats hdi
+#' @importFrom groupedstats grouped_summary
+#' @importFrom tibble as_data_frame as.tibble tribble
+#' @importFrom dplyr rename select mutate everything bind_cols
 #'
 #' @examples
-#' bf_extractor(
+#'
+#' # getting only bayes factors
+#' ggstatsplot::bf_extractor(BayesFactor::anovaBF(Sepal.Length ~ Species,
+#'                                                data = iris,
+#'                                                progress = FALSE))
+#'
+#' \dontrun{
+#' # getting bayes factors and posteriors
+#' ggstatsplot::bf_extractor(
 #'   BayesFactor::correlationBF(
 #'     x = iris$Sepal.Length,
 #'     y = iris$Sepal.Width
-#'   )
+#'   ),
+#'   posterior = TRUE,
+#'   iterations = 1000,
+#'   cred.int = 0.95
 #' )
+#' }
 #' @export
 
-bf_extractor <- function(bf.object) {
+# function body
+bf_extractor <- function(bf.object,
+                         posterior = FALSE,
+                         iterations = 1000,
+                         cred.int = 0.95) {
 
   # preparing the dataframe
   bf_df <-
@@ -47,6 +71,49 @@ bf_extractor <- function(bf.object) {
       dplyr::everything()
     )
 
+  if (isTRUE(posterior)) {
+
+    # a vector posterior samples
+    posterior_samples <-
+      as.vector(suppressMessages(
+        BayesFactor::posterior(
+          model = bf.object,
+          iterations = iterations,
+          progress = FALSE
+        )
+      ))
+
+    # dataframe with posteriors
+    posterior_df <-
+      posterior_samples %>%
+      tibble::as.tibble(x = .) %>%
+      dplyr::mutate(.data = ., group = "1") %>%
+      groupedstats::grouped_summary(
+        data = .,
+        grouping.vars = group,
+        measures = value
+      ) %>%
+      dplyr::select(
+        .data = .,
+        posterior.mean = mean,
+        posterior.median = median,
+        posterior.sd = sd,
+        posterior.std.error = std.error
+      )
+
+    # computing HDI for posteriors
+    hdi_df <- sjstats::hdi(x = posterior_samples, prob = cred.int)
+
+    # creating a dataframe out of it
+    hdi_df <- tibble::tribble(
+      ~HDI.low, ~HDI.high, ~cred.int,
+      hdi_df[1], hdi_df[2], cred.int
+    )
+
+    # combined dataframe with bayes factors and posterior
+    bf_df <- dplyr::bind_cols(bf_df, posterior_df, hdi_df)
+  }
+
   # return the dataframe with bayes factors
   return(bf_df)
 }
@@ -70,10 +137,10 @@ bf_extractor <- function(bf.object) {
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
 #' bf_corr_test(
 #'   data = anscombe,
@@ -81,7 +148,7 @@ bf_extractor <- function(bf.object) {
 #'   y = y4,
 #'   bf.prior = 1
 #' )
-#' 
+#'
 #' # to see results
 #' bf_corr_test(
 #'   data = anscombe,
@@ -190,10 +257,10 @@ bf_corr_test <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
 #' bf_contingency_tab(
 #'   data = mtcars,
@@ -201,7 +268,7 @@ bf_corr_test <- function(data,
 #'   condition = cyl,
 #'   fixed.margin = "cols"
 #' )
-#' 
+#'
 #' # to see results
 #' bf_contingency_tab(
 #'   data = mtcars,
@@ -344,10 +411,10 @@ bf_contingency_tab <- function(data,
 #' \code{\link{bf_oneway_anova}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -356,7 +423,7 @@ bf_contingency_tab <- function(data,
 #'   paired = FALSE,
 #'   bf.prior = 0.880
 #' )
-#' 
+#'
 #' # to see results
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -365,7 +432,7 @@ bf_contingency_tab <- function(data,
 #'   paired = FALSE,
 #'   output = "results"
 #' )
-#' 
+#'
 #' # for paired sample test
 #' bf_two_sample_ttest(
 #'   data = dplyr::filter(
@@ -509,7 +576,7 @@ bf_two_sample_ttest <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # to get caption (default)
 #' bf_oneway_anova(
 #'   data = iris,
@@ -517,7 +584,7 @@ bf_two_sample_ttest <- function(data,
 #'   y = Sepal.Length,
 #'   bf.prior = 0.8
 #' )
-#' 
+#'
 #' # to get results dataframe
 #' bf_oneway_anova(
 #'   data = iris,
@@ -620,7 +687,7 @@ bf_oneway_anova <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # to get caption (default)
 #' bf_one_sample_ttest(
 #'   data = iris,
@@ -629,7 +696,7 @@ bf_oneway_anova <- function(data,
 #'   bf.prior = 0.8,
 #'   output = "caption", k = 2
 #' )
-#' 
+#'
 #' # to get results dataframe
 #' bf_one_sample_ttest(
 #'   data = iris,

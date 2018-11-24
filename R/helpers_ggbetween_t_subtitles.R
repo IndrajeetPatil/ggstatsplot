@@ -46,191 +46,190 @@
 #' @export
 
 # function body
-subtitle_t_parametric <-
-  function(data,
-             x,
-             y,
-             paired = FALSE,
-             effsize.type = "g",
-             effsize.noncentral = FALSE,
-             conf.level = 0.95,
-             var.equal = FALSE,
-             k = 2,
-             ...) {
+subtitle_t_parametric <- function(data,
+                                  x,
+                                  y,
+                                  paired = FALSE,
+                                  effsize.type = "g",
+                                  effsize.noncentral = FALSE,
+                                  conf.level = 0.95,
+                                  var.equal = FALSE,
+                                  k = 2,
+                                  ...) {
 
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y))
+
+  # convert the grouping variable to factor and drop unused levels
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    )
+
+  # sample size
+  sample_size <- nrow(data)
+
+  # setting up the t-test model and getting its summary
+  t_stat <-
+    stats::t.test(
+      formula = y ~ x,
+      data = data,
+      paired = paired,
+      alternative = "two.sided",
+      var.equal = var.equal,
+      na.action = na.omit
+    )
+
+  # deciding which effect size to use
+  if (effsize.type %in% c("unbiased", "g")) {
+    # Hedge's g is an unbiased estimate of the effect size
+    hedges.correction <- TRUE
+  } else if (effsize.type %in% c("biased", "d")) {
+    hedges.correction <- FALSE
+  }
+
+  # effect size object
+  t_effsize <-
+    effsize::cohen.d(
+      formula = y ~ x,
+      data = data,
+      paired = paired,
+      hedges.correction = hedges.correction,
+      na.rm = TRUE,
+      conf.level = conf.level,
+      noncentral = effsize.noncentral
+    )
+
+  # when paired samples t-test is run df is going to be integer
+  if (isTRUE(paired)) {
+    k.df <- 0
+  } else {
+    k.df <- k
+  }
+
+  # preparing the subtitle
+  if (effsize.type %in% c("unbiased", "g")) {
+
+    # preparing subtitle with Hedge's g
+    subtitle <-
+      # extracting the elements of the statistical object
+      base::substitute(
+        expr =
+          paste(
+            italic("t"),
+            "(",
+            df,
+            ") = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue,
+            ", ",
+            italic("g"),
+            " = ",
+            effsize,
+            ", 95% CI [",
+            LL,
+            ", ",
+            UL,
+            "]",
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          estimate = ggstatsplot::specify_decimal_p(
+            x = t_stat[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          df = ggstatsplot::specify_decimal_p(
+            x = t_stat[[2]],
+            k = k.df,
+            p.value = FALSE
+          ),
+          pvalue = ggstatsplot::specify_decimal_p(
+            x = t_stat[[3]],
+            k = k,
+            p.value = TRUE
+          ),
+          effsize = ggstatsplot::specify_decimal_p(
+            x = t_effsize[[3]],
+            k = k,
+            p.value = FALSE
+          ),
+          LL = ggstatsplot::specify_decimal_p(
+            x = t_effsize$conf.int[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          UL = ggstatsplot::specify_decimal_p(
+            x = t_effsize$conf.int[[2]],
+            k = k,
+            p.value = FALSE
+          ),
+          n = sample_size
+        )
       )
-
-    # convert the grouping variable to factor and drop unused levels
-    data %<>%
-      stats::na.omit(.) %>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      )
-
-    # sample size
-    sample_size <- nrow(data)
-
-    # setting up the t-test model and getting its summary
-    t_stat <-
-      stats::t.test(
-        formula = y ~ x,
-        data = data,
-        paired = paired,
-        alternative = "two.sided",
-        var.equal = var.equal,
-        na.action = na.omit
-      )
-
-    # deciding which effect size to use
-    if (effsize.type %in% c("unbiased", "g")) {
-      # Hedge's g is an unbiased estimate of the effect size
-      hedges.correction <- TRUE
-    } else if (effsize.type %in% c("biased", "d")) {
-      hedges.correction <- FALSE
-    }
-
-    # effect size object
-    t_effsize <-
-      effsize::cohen.d(
-        formula = y ~ x,
-        data = data,
-        paired = paired,
-        hedges.correction = hedges.correction,
-        na.rm = TRUE,
-        conf.level = conf.level,
-        noncentral = effsize.noncentral
-      )
-
-    # when paired samples t-test is run df is going to be integer
-    if (isTRUE(paired)) {
-      k.df <- 0
-    } else {
-      k.df <- k
-    }
+  } else if (effsize.type %in% c("biased", "d")) {
 
     # preparing the subtitle
-    if (effsize.type %in% c("unbiased", "g")) {
-
-      # preparing subtitle with Hedge's g
-      subtitle <-
-        # extracting the elements of the statistical object
-        base::substitute(
-          expr =
-            paste(
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("g"),
-              " = ",
-              effsize,
-              ", 95% CI [",
-              LL,
-              ", ",
-              UL,
-              "]",
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(
-              x = t_stat[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            df = ggstatsplot::specify_decimal_p(
-              x = t_stat[[2]],
-              k = k.df,
-              p.value = FALSE
-            ),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = t_stat[[3]],
-              k = k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(
-              x = t_effsize[[3]],
-              k = k,
-              p.value = FALSE
-            ),
-            LL = ggstatsplot::specify_decimal_p(
-              x = t_effsize$conf.int[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            UL = ggstatsplot::specify_decimal_p(
-              x = t_effsize$conf.int[[2]],
-              k = k,
-              p.value = FALSE
-            ),
-            n = sample_size
-          )
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            italic("t"),
+            "(",
+            df,
+            ") = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue,
+            ", ",
+            italic("d"),
+            " = ",
+            effsize,
+            ", 95% CI [",
+            LL,
+            ", ",
+            UL,
+            "]",
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
+          df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k.df),
+          pvalue = ggstatsplot::specify_decimal_p(
+            x = t_stat[[3]],
+            k,
+            p.value = TRUE
+          ),
+          effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
+          LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
+          UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
+          n = sample_size
         )
-    } else if (effsize.type %in% c("biased", "d")) {
-
-      # preparing the subtitle
-      subtitle <-
-        base::substitute(
-          expr =
-            paste(
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic("d"),
-              " = ",
-              effsize,
-              ", 95% CI [",
-              LL,
-              ", ",
-              UL,
-              "]",
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
-            df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k.df),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = t_stat[[3]],
-              k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
-            LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
-            UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
-            n = sample_size
-          )
-        )
-    }
-
-    # return the subtitle
-    return(subtitle)
+      )
   }
+
+  # return the subtitle
+  return(subtitle)
+}
 
 
 #' @title Making text subtitle for the Mann-Whitney U-test
@@ -727,17 +726,18 @@ subtitle_t_bayes <- function(data,
     sample_size <- nrow(data)
 
     # independent samples design
-    jmv_results <- jmv::ttestIS(
-      data = data,
-      vars = "y",
-      group = "x",
-      students = TRUE,
-      effectSize = TRUE,
-      bf = TRUE,
-      bfPrior = bf.prior,
-      hypothesis = "different",
-      miss = "listwise"
-    )
+    jmv_results <-
+      jmv::ttestIS(
+        data = data,
+        vars = "y",
+        group = "x",
+        students = TRUE,
+        effectSize = TRUE,
+        bf = TRUE,
+        bfPrior = bf.prior,
+        hypothesis = "different",
+        miss = "listwise"
+      )
 
     # --------------------- within-subjects design ---------------------------
   } else if (isTRUE(paired)) {

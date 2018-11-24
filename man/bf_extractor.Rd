@@ -4,19 +4,41 @@
 \alias{bf_extractor}
 \title{Convenience function to extract bayes factors from test}
 \usage{
-bf_extractor(bf.object)
+bf_extractor(bf.object, posterior = FALSE, iterations = 1000,
+  cred.int = 0.95)
 }
 \arguments{
 \item{bf.object}{An object from \code{BayesFactor} package test results.}
+
+\item{posterior}{If \code{TRUE}, the dataframe will contain mean, median, standard
+deviation, and standard error for the posterior.}
+
+\item{iterations}{The number of iterations to sample for computing posterior
+(default: \code{1000}).}
+
+\item{cred.int}{A scalar between 0 and 1, indicating the mass within the
+credible interval that is to be estimated (default: \code{0.95}).}
 }
 \description{
 Convenience function to extract bayes factors from test
 }
 \examples{
-bf_extractor(
+
+# getting only bayes factors
+ggstatsplot::bf_extractor(BayesFactor::anovaBF(Sepal.Length ~ Species,
+                                               data = iris,
+                                               progress = FALSE))
+
+\dontrun{
+# getting bayes factors and posteriors
+ggstatsplot::bf_extractor(
   BayesFactor::correlationBF(
     x = iris$Sepal.Length,
     y = iris$Sepal.Width
-  )
+  ),
+  posterior = TRUE,
+  iterations = 1000,
+  cred.int = 0.95
 )
+}
 }
