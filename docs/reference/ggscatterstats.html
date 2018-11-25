@@ -447,7 +447,7 @@ have a lot of labels that overlap.</p></li>
 <span class='co'># creating dataframe</span>
 <span class='no'>mtcars_new</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/rownames'>rownames_to_column</a></span>(<span class='no'>.</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"car"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_data_frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span>)
+  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span>)
 
 <span class='co'># simple function call with the defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html'>ggscatterstats</a></span>(

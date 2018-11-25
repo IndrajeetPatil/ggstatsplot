@@ -144,7 +144,7 @@ gghistostats <- function(data = NULL,
 
   # convert to a tibble and remove NAs from `x`
   data %<>%
-    tibble::as_data_frame(x = .) %>%
+    tibble::as_tibble(x = .) %>%
     dplyr::filter(.data = ., !is.na(x))
 
   # Adding some binwidth sanity checking

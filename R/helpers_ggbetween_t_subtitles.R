@@ -72,7 +72,8 @@ subtitle_t_parametric <- function(data,
       .tbl = .,
       .vars = "x",
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    ) %>%
+    tibble::as_tibble(x = .)
 
   # sample size
   sample_size <- nrow(data)
@@ -270,16 +271,17 @@ subtitle_mann_nonparametric <-
         .data = data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
-      )
+      ) %>%
+      dplyr::filter(.data = ., !is.na(x), !is.na(y))
 
     # convert the grouping variable to factor and drop unused levels
     data %<>%
-      stats::na.omit(.) %>%
       dplyr::mutate_at(
         .tbl = .,
         .vars = "x",
         .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      )
+      ) %>%
+      tibble::as_tibble(x = .)
 
     # sample size
     sample_size <- nrow(data)

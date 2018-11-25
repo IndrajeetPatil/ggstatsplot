@@ -66,7 +66,7 @@ subtitle_t_onesample <- function(data = NULL,
   # convert to a tibble
   data %<>%
     stats::na.omit(.) %>%
-    tibble::as_data_frame(x = .)
+    tibble::as_tibble(x = .)
 
   # ========================== stats ==========================================
 
@@ -105,7 +105,7 @@ subtitle_t_onesample <- function(data = NULL,
         n1 = length(data$x),
         alpha = .05
       ) %>%
-      tibble::as_data_frame(x = .)
+      tibble::as_tibble(x = .)
 
     # preparing the subtitle
     subtitle <-

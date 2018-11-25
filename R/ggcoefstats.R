@@ -127,7 +127,7 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
 #' @importFrom sjstats p_value
-#' @importFrom tibble as.tibble as_data_frame rownames_to_column
+#' @importFrom tibble as_tibble rownames_to_column
 #'
 #' @references
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
@@ -238,10 +238,10 @@ ggcoefstats <- function(x,
   if (!(class(x)[[1]] %in% noglance.mods)) {
     if (class(x)[[1]] %in% lmm.mods) {
       glance_df <- broom.mixed::glance(x = x) %>%
-        tibble::as_data_frame(x = .)
+        tibble::as_tibble(x = .)
     } else {
       glance_df <- broom::glance(x = x) %>%
-        tibble::as_data_frame(x = .)
+        tibble::as_tibble(x = .)
     }
   } else {
     # no glance available
@@ -364,7 +364,7 @@ ggcoefstats <- function(x,
       y = stats::confint(x) %>%
         as.data.frame(.) %>%
         tibble::rownames_to_column(., "term") %>%
-        tibble::as.tibble(x = .) %>%
+        tibble::as_tibble(x = .) %>%
         dplyr::rename(.data = ., conf.low = `2.5 %`, conf.high = `97.5 %`),
       by = "term"
     )
@@ -385,7 +385,7 @@ ggcoefstats <- function(x,
   if (class(x)[[1]] %in% c("lmerMod", "rlm")) {
     # computing p-values
     tidy_df %<>%
-      tibble::as_data_frame(x = .) %>%
+      tibble::as_tibble(x = .) %>%
       dplyr::mutate_at(
         .tbl = .,
         .vars = "term",
@@ -394,7 +394,7 @@ ggcoefstats <- function(x,
       dplyr::full_join(
         x = .,
         y = sjstats::p_value(fit = x, p.kr = p.kr) %>%
-          tibble::as_data_frame(x = .) %>%
+          tibble::as_tibble(x = .) %>%
           dplyr::select(.data = ., -std.error) %>%
           dplyr::mutate_at(
             .tbl = .,
@@ -588,7 +588,7 @@ ggcoefstats <- function(x,
 
   # computing the number of colors in a given palette
   palette_df <-
-    tibble::as.tibble(paletteer::palettes_d_names) %>%
+    tibble::as_tibble(paletteer::palettes_d_names) %>%
     dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
     dplyr::select(.data = ., length)
 
@@ -731,11 +731,11 @@ ggcoefstats <- function(x,
     if (class(x)[[1]] %in% lmm.mods) {
       # for mixed-effects models
       return(broom::augment(x = x) %>%
-        tibble::as_data_frame(x = .))
+        tibble::as_tibble(x = .))
     } else {
       # everything else
       return(broom.mixed::augment(x = x) %>%
-        tibble::as_data_frame(x = .))
+        tibble::as_tibble(x = .))
     }
   }
 }

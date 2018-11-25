@@ -149,7 +149,7 @@ games_howell <- function(data,
 
   # converting it to tibble
   results %<>%
-    tibble::as.tibble(x = .) %>%
+    tibble::as_tibble(x = .) %>%
     dplyr::select(
       .data = .,
       group1:mean.difference,
@@ -179,7 +179,7 @@ games_howell <- function(data,
 #' @importFrom WRS2 lincon rmmcp
 #' @importFrom tidyr gather spread separate
 #' @importFrom rlang !! enquo
-#' @importFrom tibble as.tibble rowid_to_column
+#' @importFrom tibble as_tibble rowid_to_column
 #' @importFrom broom tidy
 #' @importFrom jmv anovaNP anovaRMNP
 #'
@@ -265,7 +265,7 @@ pairwise_p <-
         .vars = "x",
         .funs = ~ base::droplevels(x = base::as.factor(x = .))
       ) %>%
-      tibble::as.tibble(x = .)
+      tibble::as_tibble(x = .)
 
     # ---------------------------- parametric ---------------------------------
     #
@@ -356,7 +356,7 @@ pairwise_p <-
         # extracting the pairwise tests and formatting the output
         df <-
           as.data.frame(x = jmv_pairs$comparisons[[1]]) %>%
-          tibble::as.tibble(x = .) %>%
+          tibble::as_tibble(x = .) %>%
           dplyr::rename(
             .data = .,
             group1 = p1,
@@ -402,7 +402,7 @@ pairwise_p <-
         # extracting the pairwise tests and formatting the output
         df <-
           as.data.frame(x = jmv_pairs$comp) %>%
-          tibble::as.tibble(x = .) %>%
+          tibble::as_tibble(x = .) %>%
           dplyr::select(.data = ., -sep) %>%
           dplyr::rename(
             .data = .,
@@ -473,7 +473,7 @@ pairwise_p <-
         dplyr::full_join(
           # dataframe comparing comparion details
           x = rob_pairwise_df$comp %>%
-            tibble::as.tibble(x = .) %>%
+            tibble::as_tibble(x = .) %>%
             dplyr::rename(
               .data = .,
               group1 = Group,
@@ -492,7 +492,7 @@ pairwise_p <-
             ),
           # dataframe with factor level codings
           y = rob_pairwise_df$fnames %>%
-            tibble::as.tibble(x = .) %>%
+            tibble::as_tibble(x = .) %>%
             tibble::rowid_to_column(.),
           by = "rowid"
         ) %>%

@@ -64,7 +64,7 @@ subtitle_anova_parametric <-
         y = !!rlang::enquo(y)
       ) %>%
       dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-      tibble::as.tibble(x = .)
+      tibble::as_tibble(x = .)
 
     # convert the grouping variable to factor and drop unused levels
     data %<>%
@@ -327,7 +327,7 @@ subtitle_kw_nonparametric <-
         y = !!rlang::enquo(y)
       ) %>%
       dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-      tibble::as.tibble(x = .)
+      tibble::as_tibble(x = .)
 
     # convert the grouping variable to factor and drop unused levels
     data %<>%
@@ -457,7 +457,7 @@ subtitle_kw_nonparametric <-
 #' 
 #' # converting to long format
 #' data_bugs <- bugs %>%
-#'   tibble::as.tibble(.) %>%
+#'   tibble::as_tibble(.) %>%
 #'   tidyr::gather(., key, value, LDLF:HDHF)
 #' 
 #' # creating the subtitle
@@ -492,7 +492,7 @@ subtitle_friedman_nonparametric <- function(data,
       .vars = "x",
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
     ) %>%
-    tibble::as.tibble(x = .)
+    tibble::as_tibble(x = .)
 
   # converting to long format and then getting it back in wide so that the
   # rowid variable can be used as the block variable

@@ -26,9 +26,9 @@ Convenience function to extract bayes factors from test
 
 # getting only bayes factors
 ggstatsplot::bf_extractor(BayesFactor::anovaBF(Sepal.Length ~ Species,
-                                               data = iris,
-                                               progress = FALSE))
-
+  data = iris,
+  progress = FALSE
+))
 \dontrun{
 # getting bayes factors and posteriors
 ggstatsplot::bf_extractor(

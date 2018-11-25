@@ -1,6 +1,5 @@
 # loading the needed libraries
 library(ggplot2movies)
-library(tibble)
 library(dplyr)
 library(purrr)
 
@@ -8,7 +7,8 @@ library(purrr)
 dplyr::glimpse(x = ggplot2movies::movies)
 
 # converting to wide format
-movies_wide <- ggplot2movies::movies %>%
+movies_wide <-
+  ggplot2movies::movies %>%
   dplyr::select(.data = ., c(title:votes, mpaa:Short)) %>% # `.` is just a placeholder for the data
   dplyr::filter(.data = ., mpaa != "") %>% # removing movies without mpaa ratings
   stats::na.omit(.) %>% # removing NAs
@@ -25,7 +25,8 @@ movies_wide <- ggplot2movies::movies %>%
 dplyr::glimpse(x = movies_wide)
 
 # converting to long format
-movies_long <- movies_wide %>%
+movies_long <-
+  movies_wide %>%
   tidyr::gather(
     data = .,
     key = "genre",
@@ -45,7 +46,9 @@ movies_long <- movies_wide %>%
 movies_long %<>%
   dplyr::full_join(
     x = (.),
-    y = (.) %>% dplyr::group_by(.data = ., genre, mpaa) %>% dplyr::tally(x = .),
+    y = (.) %>%
+      dplyr::group_by(.data = ., genre, mpaa) %>%
+      dplyr::tally(x = .),
     by = c("genre", "mpaa")
   ) %>%
   dplyr::filter(.data = ., n > 1) %>%

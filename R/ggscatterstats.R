@@ -66,22 +66,14 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr summarize
-#' @importFrom dplyr n
-#' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr mutate_if
-#' @importFrom dplyr filter
-#' @importFrom rlang enquo
-#' @importFrom rlang quo_name
-#' @importFrom rlang parse_expr
+#' @importFrom dplyr select group_by summarize n arrange if_else desc
+#' @importFrom dplyr mutate mutate_at mutate_if
+#' @importFrom rlang !! enquo quo_name parse_expr
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
 #' @importFrom stats na.omit
 #' @importFrom ggrepel geom_label_repel
+#' @importFrom tibble as_tibble
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -109,7 +101,7 @@
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
-#'   tibble::as_data_frame(x = .)
+#'   tibble::as_tibble(x = .)
 #' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
@@ -220,7 +212,7 @@ ggscatterstats <-
     ) %>%
       dplyr::select(.data = ., -rowid) %>% # remove NAs only from x & y columns
       dplyr::filter(.data = ., !is.na(x...internal), !is.na(y...internal)) %>%
-      tibble::as_data_frame(x = .)
+      tibble::as_tibble(x = .)
 
     #---------------------------- user expression -------------------------
 

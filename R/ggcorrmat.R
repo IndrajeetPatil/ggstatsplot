@@ -101,7 +101,7 @@
 #' @importFrom dplyr mutate mutate_at mutate_if
 #' @importFrom purrr is_bare_double flatten_dbl keep
 #' @importFrom stats cor na.omit
-#' @importFrom tibble as_data_frame rownames_to_column
+#' @importFrom tibble as_tibble rownames_to_column
 #' @importFrom rlang !! enquo quo_name
 #' @importFrom crayon green blue yellow red
 #' @importFrom WRS2 pball
@@ -490,7 +490,7 @@ ggcorrmat <- function(data,
     corr.mat %<>%
       base::as.data.frame(x = .) %>%
       tibble::rownames_to_column(., var = "variable") %>%
-      tibble::as_data_frame(x = .)
+      tibble::as_tibble(x = .)
 
     # return the tibble
     return(corr.mat)
@@ -500,7 +500,7 @@ ggcorrmat <- function(data,
       sample_size_df <- corr_df$n %>%
         base::as.data.frame(x = .) %>%
         tibble::rownames_to_column(., var = "variable") %>%
-        tibble::as_data_frame(x = .)
+        tibble::as_tibble(x = .)
 
       return(sample_size_df)
     } else {
@@ -508,7 +508,7 @@ ggcorrmat <- function(data,
       sample_size_df <- corr_df$n %>%
         base::as.data.frame(x = .) %>%
         tibble::rownames_to_column(., var = "variable") %>%
-        tibble::as_data_frame(x = .)
+        tibble::as_tibble(x = .)
 
       return(sample_size_df)
     }
@@ -523,7 +523,7 @@ ggcorrmat <- function(data,
     p.mat %<>%
       base::as.data.frame(x = .) %>%
       tibble::rownames_to_column(., var = "variable") %>%
-      tibble::as_data_frame(x = .)
+      tibble::as_tibble(x = .)
 
     # return the final tibble
     return(p.mat)

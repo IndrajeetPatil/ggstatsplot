@@ -289,7 +289,7 @@ ggbetweenstats <- function(data,
 
   # convert the grouping variable to factor and drop unused levels
   data %<>%
-    stats::na.omit(.) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
     dplyr::mutate_at(
       .tbl = .,
       .vars = "x",
@@ -649,7 +649,7 @@ ggbetweenstats <- function(data,
           .funs = ~ as.character(.)
         ) %>%
         dplyr::arrange(.data = ., x) %>%
-        tibble::as.tibble(x = .)
+        tibble::as_tibble(x = .)
 
       # computing y coordinates for ggsgnif bars
       ggsignif_y_position <-

@@ -8,7 +8,7 @@
 #' @importFrom groupedstats grouped_summary
 #' @importFrom dplyr select group_by vars contains mutate mutate_at arrange
 #' @importFrom rlang !! enquo
-#' @importFrom tibble as_data_frame
+#' @importFrom tibble as_tibble
 #' @importFrom purrrlyr by_row
 #'
 #' @keywords internal
@@ -36,7 +36,7 @@ mean_labeller <- function(data,
       .vars = "x",
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
     ) %>%
-    tibble::as_data_frame(x = .)
+    tibble::as_tibble(x = .)
 
   # computing mean and confidence interval for mean
   mean_dat <-

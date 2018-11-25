@@ -65,7 +65,7 @@ subtitle_ggscatterstats <-
         y = !!rlang::enquo(y)
       ) %>%
       stats::na.omit(.) %>%
-      tibble::as.tibble(x = .)
+      tibble::as_tibble(x = .)
 
     # the total sample size for analysis
     sample_size <- nrow(x = data)

@@ -37,7 +37,7 @@ data("bugs", package = "jmv")
 
 # converting to long format
 data_bugs <- bugs \%>\%
-  tibble::as.tibble(.) \%>\%
+  tibble::as_tibble(.) \%>\%
   tidyr::gather(., key, value, LDLF:HDHF)
 
 # creating the subtitle

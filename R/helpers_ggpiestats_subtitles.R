@@ -23,7 +23,7 @@
 #' @inheritParams chisq_v_ci
 #' @inheritParams subtitle_t_parametric
 #'
-#' @importFrom tibble tribble
+#' @importFrom tibble tribble as_tibble
 #' @importFrom exact2x2 exact2x2
 #' @importFrom tidyr uncount
 #' @importFrom jmv propTestN contTables contTablesPaired
@@ -81,7 +81,7 @@ subtitle_contingency_tab <- function(data,
         .data = .,
         !is.na(main), !is.na(condition)
       ) %>%
-      tibble::as.tibble(x = .)
+      tibble::as_tibble(x = .)
   } else {
     data <-
       dplyr::select(
@@ -94,7 +94,7 @@ subtitle_contingency_tab <- function(data,
         .data = .,
         !is.na(main), !is.na(condition), !is.na(counts)
       ) %>%
-      tibble::as.tibble(x = .)
+      tibble::as_tibble(x = .)
   }
 
   # main and condition need to be a factor for this analysis
@@ -146,7 +146,7 @@ subtitle_contingency_tab <- function(data,
         .remove = TRUE,
         .id = "id"
       ) %>%
-      tibble::as_data_frame(.)
+      tibble::as_tibble(.)
   }
 
   # =============================== Pearson's chi-square =====================
@@ -426,7 +426,7 @@ subtitle_onesample_proptest <- function(data,
         .remove = TRUE,
         .id = "id"
       ) %>%
-      tibble::as_data_frame(.)
+      tibble::as_tibble(.)
   }
 
   # ============================= statistical test =========================

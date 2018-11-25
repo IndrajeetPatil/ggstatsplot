@@ -106,7 +106,7 @@ ggdotplotstats <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    tibble::as.tibble(x = .)
+    tibble::as_tibble(x = .)
 
   # if the data hasn't already been summarized, do so
   if (isTRUE(summarize)) {

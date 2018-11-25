@@ -12,16 +12,16 @@
 #' @importFrom BayesFactor extractBF posterior
 #' @importFrom sjstats hdi
 #' @importFrom groupedstats grouped_summary
-#' @importFrom tibble as_data_frame as.tibble tribble
+#' @importFrom tibble as_tibble tribble
 #' @importFrom dplyr rename select mutate everything bind_cols
 #'
 #' @examples
-#'
+#' 
 #' # getting only bayes factors
 #' ggstatsplot::bf_extractor(BayesFactor::anovaBF(Sepal.Length ~ Species,
-#'                                                data = iris,
-#'                                                progress = FALSE))
-#'
+#'   data = iris,
+#'   progress = FALSE
+#' ))
 #' \dontrun{
 #' # getting bayes factors and posteriors
 #' ggstatsplot::bf_extractor(
@@ -49,7 +49,7 @@ bf_extractor <- function(bf.object,
       logbf = FALSE,
       onlybf = FALSE
     ) %>%
-    tibble::as_data_frame(.) %>%
+    tibble::as_tibble(.) %>%
     dplyr::select(.data = ., -time, -code) %>%
     dplyr::rename(.data = ., bf10 = bf) %>%
     dplyr::mutate(
@@ -86,7 +86,7 @@ bf_extractor <- function(bf.object,
     # dataframe with posteriors
     posterior_df <-
       posterior_samples %>%
-      tibble::as.tibble(x = .) %>%
+      tibble::as_tibble(x = .) %>%
       dplyr::mutate(.data = ., group = "1") %>%
       groupedstats::grouped_summary(
         data = .,
@@ -137,10 +137,10 @@ bf_extractor <- function(bf.object,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # to get caption (default)
 #' bf_corr_test(
 #'   data = anscombe,
@@ -148,7 +148,7 @@ bf_extractor <- function(bf.object,
 #'   y = y4,
 #'   bf.prior = 1
 #' )
-#'
+#' 
 #' # to see results
 #' bf_corr_test(
 #'   data = anscombe,
@@ -178,7 +178,7 @@ bf_corr_test <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    tibble::as_data_frame(.)
+    tibble::as_tibble(.)
 
   # ========================= subtitle preparation ==========================
 
@@ -257,10 +257,10 @@ bf_corr_test <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # to get caption (default)
 #' bf_contingency_tab(
 #'   data = mtcars,
@@ -268,7 +268,7 @@ bf_corr_test <- function(data,
 #'   condition = cyl,
 #'   fixed.margin = "cols"
 #' )
-#'
+#' 
 #' # to see results
 #' bf_contingency_tab(
 #'   data = mtcars,
@@ -301,7 +301,7 @@ bf_contingency_tab <- function(data,
       y = !!rlang::enquo(condition)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    tibble::as_data_frame(.)
+    tibble::as_tibble(.)
 
   # main and condition need to be a factor for this analysis
   # also drop the unused levels of the factors
@@ -411,10 +411,10 @@ bf_contingency_tab <- function(data,
 #' \code{\link{bf_oneway_anova}}
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # to get caption (default)
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -423,7 +423,7 @@ bf_contingency_tab <- function(data,
 #'   paired = FALSE,
 #'   bf.prior = 0.880
 #' )
-#'
+#' 
 #' # to see results
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -432,7 +432,7 @@ bf_contingency_tab <- function(data,
 #'   paired = FALSE,
 #'   output = "results"
 #' )
-#'
+#' 
 #' # for paired sample test
 #' bf_two_sample_ttest(
 #'   data = dplyr::filter(
@@ -576,7 +576,7 @@ bf_two_sample_ttest <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#'
+#' 
 #' # to get caption (default)
 #' bf_oneway_anova(
 #'   data = iris,
@@ -584,7 +584,7 @@ bf_two_sample_ttest <- function(data,
 #'   y = Sepal.Length,
 #'   bf.prior = 0.8
 #' )
-#'
+#' 
 #' # to get results dataframe
 #' bf_oneway_anova(
 #'   data = iris,
@@ -619,7 +619,7 @@ bf_oneway_anova <- function(data,
       .vars = "x",
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
     ) %>%
-    tibble::as_data_frame(.)
+    tibble::as_tibble(.)
 
   # ========================= subtitle preparation ==========================
 
@@ -687,7 +687,7 @@ bf_oneway_anova <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#'
+#' 
 #' # to get caption (default)
 #' bf_one_sample_ttest(
 #'   data = iris,
@@ -696,7 +696,7 @@ bf_oneway_anova <- function(data,
 #'   bf.prior = 0.8,
 #'   output = "caption", k = 2
 #' )
-#'
+#' 
 #' # to get results dataframe
 #' bf_one_sample_ttest(
 #'   data = iris,
@@ -734,7 +734,7 @@ bf_one_sample_ttest <- function(data,
 
   # convert to a tibble
   data %<>%
-    tibble::as_data_frame(x = .)
+    tibble::as_tibble(x = .)
 
   # ========================= subtitle preparation ==========================
 

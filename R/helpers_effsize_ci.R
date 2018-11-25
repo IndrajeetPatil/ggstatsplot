@@ -22,7 +22,7 @@
 #'   `95%` lower and upper confidence intervals (`0.95`).
 #' @inheritDotParams boot::boot
 #'
-#' @importFrom tibble as_data_frame
+#' @importFrom tibble as_tibble
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom WRS2 t1way
@@ -46,7 +46,7 @@ t1way_ci <- function(data,
     y = !!rlang::enquo(y)
   ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    tibble::as.tibble(x = .)
+    tibble::as_tibble(x = .)
 
   # running robust one-way anova
   fit <-
@@ -103,7 +103,7 @@ t1way_ci <- function(data,
 
   # preparing a dataframe out of the results
   results_df <-
-    tibble::as_data_frame(
+    tibble::as_tibble(
       x = cbind.data.frame(
         "xi" = bootci$t0,
         ci,
@@ -156,7 +156,7 @@ t1way_ci <- function(data,
 #' @inheritParams t1way_ci
 #' @inheritDotParams boot::boot
 #'
-#' @importFrom tibble as_data_frame
+#' @importFrom tibble as_tibble
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom WRS2 yuend
@@ -181,7 +181,7 @@ yuend_ci <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    tibble::as.tibble(x = .)
+    tibble::as_tibble(x = .)
 
   # jamovi needs data to be wide format and not long format
   data_wide <-
@@ -249,7 +249,7 @@ yuend_ci <- function(data,
 
   # preparing a dataframe out of the results
   results_df <-
-    tibble::as_data_frame(
+    tibble::as_tibble(
       x = cbind.data.frame(
         "xi" = bootci$t0,
         ci,
@@ -307,7 +307,7 @@ yuend_ci <- function(data,
 #' @inheritParams stats::cor.test
 #' @inheritParams t1way_ci
 #'
-#' @importFrom tibble as_data_frame
+#' @importFrom tibble as_tibble
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom WRS2 t1way
@@ -334,7 +334,7 @@ cor_test_ci <- function(data,
     y = !!rlang::enquo(y)
   ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    tibble::as.tibble(x = .)
+    tibble::as_tibble(x = .)
 
   # running correlation and creating a tidy dataframe
   tidy_df <- broom::tidy(
@@ -412,7 +412,7 @@ cor_test_ci <- function(data,
 
   # preparing a dataframe out of the results
   results_df <-
-    tibble::as_data_frame(
+    tibble::as_tibble(
       x = cbind.data.frame(
         "r" = tidy_df$estimate,
         ci,
@@ -472,7 +472,7 @@ cor_test_ci <- function(data,
 #' @inheritParams t1way_ci
 #' @inheritDotParams boot::boot
 #'
-#' @importFrom tibble as_data_frame
+#' @importFrom tibble as_tibble
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom jmv contTables
@@ -498,7 +498,7 @@ chisq_v_ci <- function(data,
       cols = !!rlang::enquo(cols)
     ) %>%
     dplyr::filter(.data = ., !is.na(rows), !is.na(cols)) %>%
-    tibble::as.tibble(x = .)
+    tibble::as_tibble(x = .)
 
   # results from jamovi
   jmv_df <- jmv::contTables(
@@ -560,14 +560,14 @@ chisq_v_ci <- function(data,
 
   # preparing the dataframe
   results_df <-
-    tibble::as_data_frame(
+    tibble::as_tibble(
       x = cbind.data.frame(
         # cramer' V and confidence intervals
         "Cramer's V" = as.data.frame(jmv_df$nom)$`v[cra]`[[1]],
         ci,
         # getting rest of the details from chi-square test
         as.data.frame(jmv_df$chiSq) %>%
-          tibble::as_data_frame()
+          tibble::as_tibble()
       )
     )
 
@@ -622,7 +622,7 @@ chisq_v_ci <- function(data,
 #' @inheritParams t1way_ci
 #' @inheritDotParams boot::boot
 #'
-#' @importFrom tibble as_data_frame
+#' @importFrom tibble as_tibble
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom WRS2 pbcor
@@ -647,7 +647,7 @@ robcor_ci <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    tibble::as.tibble(x = .)
+    tibble::as_tibble(x = .)
 
   # getting the p-value for the correlation coefficient
   fit <-
@@ -705,7 +705,7 @@ robcor_ci <- function(data,
 
   # preparing a dataframe out of the results
   results_df <-
-    tibble::as_data_frame(x = cbind.data.frame(
+    tibble::as_tibble(x = cbind.data.frame(
       "r" = bootci$t0,
       ci,
       "p-value" = fit$p.value,
@@ -755,7 +755,7 @@ robcor_ci <- function(data,
 #' @inheritParams t1way_ci
 #' @inheritDotParams boot::boot
 #'
-#' @importFrom tibble as_data_frame
+#' @importFrom tibble as_tibble
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom PMCMRplus kruskalTest
@@ -782,7 +782,7 @@ kw_eta_h_ci <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    tibble::as.tibble(x = .)
+    tibble::as_tibble(x = .)
 
   #---------------------- custom function ------------------------------------
 
@@ -798,7 +798,7 @@ kw_eta_h_ci <- function(data,
         y = !!rlang::enquo(y)
       ) %>%
       dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-      tibble::as.tibble(x = .)
+      tibble::as_tibble(x = .)
 
     # running the function
     fit <-
@@ -877,7 +877,7 @@ kw_eta_h_ci <- function(data,
 
   # preparing a dataframe out of the results
   results_df <-
-    tibble::as_data_frame(x = cbind.data.frame(
+    tibble::as_tibble(x = cbind.data.frame(
       "eta_sq_H" = eta_sq_H,
       ci,
       "nboot" = bootci$R

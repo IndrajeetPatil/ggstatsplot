@@ -231,10 +231,10 @@ grouped_message <- function() {
 #' @inheritParams paletteer::scale_fill_paletteer_d
 #' @param min_length Minimum number of colors needed.
 #'
-#' @importFrom tibble as.tibble
+#' @importFrom tibble as_tibble
 #' @importFrom dplyr filter select
 #' @importFrom crayon green blue yellow red
-#' @importFrom rlang !!
+#' @importFrom rlang !! enquo
 #'
 #' @family helper_messages
 #'
@@ -245,7 +245,8 @@ palette_message <- function(package,
                             palette,
                             min_length) {
   # computing the number of colors in a given palette
-  palette_df <- tibble::as.tibble(paletteer::palettes_d_names) %>%
+  palette_df <-
+    tibble::as_tibble(paletteer::palettes_d_names) %>%
     dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
     dplyr::select(.data = ., length)
 

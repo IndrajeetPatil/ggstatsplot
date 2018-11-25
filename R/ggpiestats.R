@@ -41,6 +41,7 @@
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom groupedstats grouped_proptest
 #' @importFrom tidyr uncount
+#' @importFrom tibble as_tibble
 #'
 #' @references
 #' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
@@ -157,7 +158,7 @@ ggpiestats <- function(data,
           .data = data,
           main = !!rlang::enquo(main)
         ) %>%
-        tibble::as_data_frame(x = .)
+        tibble::as_tibble(x = .)
     } else {
       data <-
         dplyr::select(
@@ -165,7 +166,7 @@ ggpiestats <- function(data,
           main = !!rlang::enquo(main),
           counts = !!rlang::enquo(counts)
         ) %>%
-        tibble::as_data_frame(x = .)
+        tibble::as_tibble(x = .)
     }
   } else {
     if (base::missing(counts)) {
@@ -175,7 +176,7 @@ ggpiestats <- function(data,
           main = !!rlang::enquo(main),
           condition = !!rlang::quo_name(rlang::enquo(condition))
         ) %>%
-        tibble::as_data_frame(x = .)
+        tibble::as_tibble(x = .)
     } else {
       data <-
         dplyr::select(
@@ -184,7 +185,7 @@ ggpiestats <- function(data,
           condition = !!rlang::quo_name(rlang::enquo(condition)),
           counts = !!rlang::quo_name(rlang::enquo(counts))
         ) %>%
-        tibble::as_data_frame(x = .)
+        tibble::as_tibble(x = .)
     }
   }
 
@@ -199,7 +200,7 @@ ggpiestats <- function(data,
         .remove = TRUE,
         .id = "id"
       ) %>%
-      tibble::as_data_frame(.)
+      tibble::as_tibble(.)
   }
 
   # ============================ percentage dataframe ========================
@@ -470,7 +471,7 @@ ggpiestats <- function(data,
         ))
 
         # print the tibble and leave out unnecessary columns
-        print(tibble::as.tibble(df2) %>%
+        print(tibble::as_tibble(df2) %>%
           dplyr::select(.data = ., -c(main:slice.label)))
       }
     }
