@@ -54,10 +54,12 @@ Calculate pairwise comparisons between group levels with
 corrections for multiple testing.
 }
 \examples{
+# time consuming, so not run on `CRAN` machines
 \dontrun{
-
 # for reproducibility
 set.seed(123)
+
+#------------------- between-subjects design ----------------------------
 
 # parametric
 # if `var.equal = TRUE`, then Student's *t*-test will be run
@@ -88,6 +90,7 @@ ggstatsplot::pairwise_p(
   x = vore,
   y = brainwt,
   type = "np",
+  paired = FALSE,
   p.adjust.method = "none"
 )
 
@@ -97,7 +100,40 @@ ggstatsplot::pairwise_p(
   x = vore,
   y = brainwt,
   type = "r",
+  paired = FALSE,
   p.adjust.method = "fdr"
+)
+
+#------------------- within-subjects design ----------------------------
+
+# parametric
+ggstatsplot::pairwise_p(
+  data = ggstatsplot::intent_morality,
+  x = condition,
+  y = rating,
+  type = "p",
+  paired = FALSE,
+  p.adjust.method = "BH"
+)
+
+# non-parametric
+ggstatsplot::pairwise_p(
+  data = ggstatsplot::intent_morality,
+  x = condition,
+  y = rating,
+  type = "np",
+  paired = FALSE,
+  p.adjust.method = "BY"
+)
+
+# robust
+ggstatsplot::pairwise_p(
+  data = ggstatsplot::intent_morality,
+  x = condition,
+  y = rating,
+  type = "r",
+  paired = FALSE,
+  p.adjust.method = "hommel"
 )
 }
 }

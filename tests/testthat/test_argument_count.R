@@ -11,7 +11,8 @@ testthat::test_that(
 
     # creating a dataframe with namespace from package of interest
     ns_df <- getNamespaceExports(ns = "ggstatsplot") %>%
-      tibble::as_data_frame(.) %>%
+      tibble::enframe(x = .) %>%
+      dplyr::select(.data = ., value) %>%
       dplyr::filter(.data = ., grepl("^gg|^grouped", value)) %>%
       dplyr::filter(.data = ., value != "ggcoefstats") %>%
       dplyr::mutate(

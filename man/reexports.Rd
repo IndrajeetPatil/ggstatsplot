@@ -6,8 +6,6 @@
 \alias{specify_decimal_p}
 \alias{signif_column}
 \alias{lm_effsize_ci}
-\alias{\%||\%}
-\alias{\%|\%}
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{\%$\%}
@@ -21,7 +19,5 @@ below to see their documentation.
   \item{groupedstats}{\code{\link[groupedstats]{specify_decimal_p}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{lm_effsize_ci}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}, \code{\link[magrittr]{\%<>\%}}, \code{\link[magrittr]{\%$\%}}}
-
-  \item{rlang}{\code{\link[rlang]{\%||\%}}, \code{\link[rlang]{\%|\%}}}
 }}
 

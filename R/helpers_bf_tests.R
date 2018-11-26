@@ -16,7 +16,7 @@
 #' @importFrom dplyr rename select mutate everything bind_cols
 #'
 #' @examples
-#' 
+#'
 #' # getting only bayes factors
 #' ggstatsplot::bf_extractor(BayesFactor::anovaBF(Sepal.Length ~ Species,
 #'   data = iris,
@@ -137,10 +137,10 @@ bf_extractor <- function(bf.object,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
 #' bf_corr_test(
 #'   data = anscombe,
@@ -148,7 +148,7 @@ bf_extractor <- function(bf.object,
 #'   y = y4,
 #'   bf.prior = 1
 #' )
-#' 
+#'
 #' # to see results
 #' bf_corr_test(
 #'   data = anscombe,
@@ -257,10 +257,10 @@ bf_corr_test <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
 #' bf_contingency_tab(
 #'   data = mtcars,
@@ -268,7 +268,7 @@ bf_corr_test <- function(data,
 #'   condition = cyl,
 #'   fixed.margin = "cols"
 #' )
-#' 
+#'
 #' # to see results
 #' bf_contingency_tab(
 #'   data = mtcars,
@@ -396,7 +396,7 @@ bf_contingency_tab <- function(data,
 }
 
 
-#' @title Bayesian t-test.
+#' @title Bayesian two-samples *t*-test.
 #' @name bf_two_sample_ttest
 #' @aliases bf_two_sample_ttest
 #' @author Indrajeet Patil
@@ -411,10 +411,10 @@ bf_contingency_tab <- function(data,
 #' \code{\link{bf_oneway_anova}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # to get caption (default)
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -423,7 +423,7 @@ bf_contingency_tab <- function(data,
 #'   paired = FALSE,
 #'   bf.prior = 0.880
 #' )
-#' 
+#'
 #' # to see results
 #' bf_two_sample_ttest(
 #'   data = mtcars,
@@ -432,7 +432,7 @@ bf_contingency_tab <- function(data,
 #'   paired = FALSE,
 #'   output = "results"
 #' )
-#' 
+#'
 #' # for paired sample test
 #' bf_two_sample_ttest(
 #'   data = dplyr::filter(
@@ -576,7 +576,7 @@ bf_two_sample_ttest <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # to get caption (default)
 #' bf_oneway_anova(
 #'   data = iris,
@@ -584,7 +584,7 @@ bf_two_sample_ttest <- function(data,
 #'   y = Sepal.Length,
 #'   bf.prior = 0.8
 #' )
-#' 
+#'
 #' # to get results dataframe
 #' bf_oneway_anova(
 #'   data = iris,
@@ -687,7 +687,7 @@ bf_oneway_anova <- function(data,
 #' \code{\link{bf_two_sample_ttest}}
 #'
 #' @examples
-#' 
+#'
 #' # to get caption (default)
 #' bf_one_sample_ttest(
 #'   data = iris,
@@ -696,7 +696,7 @@ bf_oneway_anova <- function(data,
 #'   bf.prior = 0.8,
 #'   output = "caption", k = 2
 #' )
-#' 
+#'
 #' # to get results dataframe
 #' bf_one_sample_ttest(
 #'   data = iris,

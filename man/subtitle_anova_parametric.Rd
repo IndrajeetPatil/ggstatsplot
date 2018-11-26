@@ -5,7 +5,8 @@
 \title{Making text subtitle for the between-subject anova designs.}
 \usage{
 subtitle_anova_parametric(data, x, y, effsize.type = "partial_omega",
-  nboot = 100, var.equal = FALSE, k = 2, messages = TRUE, ...)
+  conf.level = 0.95, nboot = 100, var.equal = FALSE, k = 2,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -20,6 +21,9 @@ argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-t
 \code{"partial_eta"} for partial eta-squared for \strong{anova}) or \code{"unbiased"}
 (\code{"g"} Hedge's \emph{g} for \strong{t-test}; \code{"partial_omega"} for partial
 omega-squared for \strong{anova})).}
+
+\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
+default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}

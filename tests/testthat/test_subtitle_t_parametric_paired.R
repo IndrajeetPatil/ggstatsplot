@@ -182,7 +182,7 @@ testthat::test_that(
         x = time,
         y = grade,
         var.equal = TRUE,
-        conf.level = .99,
+        conf.level = 0.99,
         k = 5,
         paired = TRUE,
         messages = FALSE
@@ -206,7 +206,8 @@ testthat::test_that(
           italic("g"),
           " = ",
           c(test1 = "-1.41918"),
-          ", 95% CI [",
+          ", CI"["99%"],
+          " [",
           "-2.37854",
           ", ",
           "-0.45983",

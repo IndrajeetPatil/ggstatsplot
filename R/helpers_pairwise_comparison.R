@@ -179,7 +179,7 @@ games_howell <- function(data,
 #' @importFrom WRS2 lincon rmmcp
 #' @importFrom tidyr gather spread separate
 #' @importFrom rlang !! enquo
-#' @importFrom tibble as_tibble rowid_to_column
+#' @importFrom tibble as_tibble rowid_to_column enframe
 #' @importFrom broom tidy
 #' @importFrom jmv anovaNP anovaRMNP
 #'
@@ -188,10 +188,12 @@ games_howell <- function(data,
 #' @family helper_messages
 #'
 #' @examples
+#' # time consuming, so not run on `CRAN` machines
 #' \dontrun{
-#' 
 #' # for reproducibility
 #' set.seed(123)
+#' 
+#' #------------------- between-subjects design ----------------------------
 #' 
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
@@ -222,6 +224,7 @@ games_howell <- function(data,
 #'   x = vore,
 #'   y = brainwt,
 #'   type = "np",
+#'   paired = FALSE,
 #'   p.adjust.method = "none"
 #' )
 #' 
@@ -231,7 +234,40 @@ games_howell <- function(data,
 #'   x = vore,
 #'   y = brainwt,
 #'   type = "r",
+#'   paired = FALSE,
 #'   p.adjust.method = "fdr"
+#' )
+#' 
+#' #------------------- within-subjects design ----------------------------
+#' 
+#' # parametric
+#' ggstatsplot::pairwise_p(
+#'   data = ggstatsplot::intent_morality,
+#'   x = condition,
+#'   y = rating,
+#'   type = "p",
+#'   paired = FALSE,
+#'   p.adjust.method = "BH"
+#' )
+#' 
+#' # non-parametric
+#' ggstatsplot::pairwise_p(
+#'   data = ggstatsplot::intent_morality,
+#'   x = condition,
+#'   y = rating,
+#'   type = "np",
+#'   paired = FALSE,
+#'   p.adjust.method = "BY"
+#' )
+#' 
+#' # robust
+#' ggstatsplot::pairwise_p(
+#'   data = ggstatsplot::intent_morality,
+#'   x = condition,
+#'   y = rating,
+#'   type = "r",
+#'   paired = FALSE,
+#'   p.adjust.method = "hommel"
 #' )
 #' }
 #' @export
@@ -472,12 +508,12 @@ pairwise_p <-
       df <-
         dplyr::full_join(
           # dataframe comparing comparion details
-          x = rob_pairwise_df$comp %>%
-            tibble::as_tibble(x = .) %>%
+          x = suppressMessages(rob_pairwise_df$comp %>%
+            tibble::as_tibble(x = ., .name_repair = "unique")) %>%
             dplyr::rename(
               .data = .,
-              group1 = Group,
-              group2 = Group1
+              group1 = Group..1,
+              group2 = Group..2
             ) %>%
             dplyr::mutate(
               .data = .,
@@ -492,8 +528,7 @@ pairwise_p <-
             ),
           # dataframe with factor level codings
           y = rob_pairwise_df$fnames %>%
-            tibble::as_tibble(x = .) %>%
-            tibble::rowid_to_column(.),
+            tibble::enframe(x = ., name = "rowid"),
           by = "rowid"
         ) %>%
         dplyr::select(.data = ., -rowid) %>%

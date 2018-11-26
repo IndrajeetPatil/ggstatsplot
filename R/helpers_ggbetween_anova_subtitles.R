@@ -1,4 +1,3 @@
-
 #' @title Making text subtitle for the between-subject anova designs.
 #' @name subtitle_anova_parametric
 #' @author Indrajeet Patil
@@ -51,6 +50,7 @@ subtitle_anova_parametric <-
              x,
              y,
              effsize.type = "partial_omega",
+             conf.level = 0.95,
              nboot = 100,
              var.equal = FALSE,
              k = 2,
@@ -103,7 +103,7 @@ subtitle_anova_parametric <-
             na.action = na.omit
           ),
           partial = TRUE,
-          ci.lvl = 0.95,
+          ci.lvl = conf.level,
           n = nboot
         )
 
@@ -112,7 +112,8 @@ subtitle_anova_parametric <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "95% CI for partial omega-squared was computed with",
+            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
+            "CI for partial omega-squared was computed with",
             crayon::yellow(nboot),
             "bootstrap samples.\n"
           ),
@@ -141,7 +142,8 @@ subtitle_anova_parametric <-
               omega["p"]^2,
               " = ",
               effsize,
-              ", 95% CI [",
+              ", CI"[conf.level],
+              " [",
               LL,
               ", ",
               UL,
@@ -173,6 +175,7 @@ subtitle_anova_parametric <-
               k = k,
               p.value = FALSE
             ),
+            conf.level = paste(conf.level * 100, "%", sep = ""),
             LL = ggstatsplot::specify_decimal_p(
               x = aov_effsize_ci$conf.low[[1]],
               k = k,
@@ -195,7 +198,7 @@ subtitle_anova_parametric <-
           na.action = na.omit
         ),
         partial = TRUE,
-        ci.lvl = 0.95,
+        ci.lvl = conf.level,
         n = nboot
       )
 
@@ -204,7 +207,8 @@ subtitle_anova_parametric <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "95% CI for partial eta-squared was computed with",
+            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
+            "CI for partial eta-squared was computed with",
             crayon::yellow(nboot),
             "bootstrap samples.\n"
           ),
@@ -233,7 +237,8 @@ subtitle_anova_parametric <-
               eta["p"]^2,
               " = ",
               effsize,
-              ", 95% CI [",
+              ", CI"[conf.level],
+              " [",
               LL,
               ", ",
               UL,
@@ -265,6 +270,7 @@ subtitle_anova_parametric <-
               k = k,
               p.value = FALSE
             ),
+            conf.level = paste(conf.level * 100, "%", sep = ""),
             LL = ggstatsplot::specify_decimal_p(
               x = aov_effsize_ci$conf.low[[1]],
               k = k,
@@ -364,7 +370,8 @@ subtitle_kw_nonparametric <-
       base::message(cat(
         crayon::green("Note: "),
         crayon::blue(
-          "95% CI for effect size (H-statistic-based eta-squared) was computed with",
+          crayon::yellow(paste(conf.level * 100, "%", sep = "")),
+          "CI for effect size (H-statistic-based eta-squared) was computed with",
           crayon::yellow(nboot),
           "bootstrap samples \nfor Kruskal-Wallis Rank Sum Test.\n"
         ),
@@ -391,7 +398,8 @@ subtitle_kw_nonparametric <-
             eta["H"]^2,
             " = ",
             effsize,
-            ", 95% CI [",
+            ", CI"[conf.level],
+            " [",
             LL,
             ", ",
             UL,
@@ -418,6 +426,7 @@ subtitle_kw_nonparametric <-
             k = k,
             p.value = FALSE
           ),
+          conf.level = paste(conf.level * 100, "%", sep = ""),
           LL = ggstatsplot::specify_decimal_p(
             x = kw_effsize$conf.low[[1]],
             k = k,
@@ -673,7 +682,8 @@ subtitle_anova_robust <-
       base::message(cat(
         crayon::green("Note: "),
         crayon::blue(
-          "95% CI for explanatory measure of effect size was computed with",
+          crayon::yellow(paste(conf.level * 100, "%", sep = "")),
+          "CI for explanatory measure of effect size was computed with",
           crayon::yellow(nboot),
           "bootstrap samples.\n"
         ),
@@ -701,7 +711,8 @@ subtitle_anova_robust <-
             italic(xi),
             " = ",
             effsize,
-            ", 95% CI [",
+            ", CI"[conf.level],
+            " [",
             LL,
             ", ",
             UL,
@@ -733,6 +744,7 @@ subtitle_anova_robust <-
             k = k,
             p.value = FALSE
           ),
+          conf.level = paste(conf.level * 100, "%", sep = ""),
           LL = ggstatsplot::specify_decimal_p(
             x = robust_aov_stat$conf.low[[1]],
             k = k,

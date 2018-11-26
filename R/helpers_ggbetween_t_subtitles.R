@@ -138,7 +138,8 @@ subtitle_t_parametric <- function(data,
             italic("g"),
             " = ",
             effsize,
-            ", 95% CI [",
+            ", CI"[conf.level],
+            " [",
             LL,
             ", ",
             UL,
@@ -169,6 +170,7 @@ subtitle_t_parametric <- function(data,
             k = k,
             p.value = FALSE
           ),
+          conf.level = paste(conf.level * 100, "%", sep = ""),
           LL = ggstatsplot::specify_decimal_p(
             x = t_effsize$conf.int[[1]],
             k = k,
@@ -202,7 +204,8 @@ subtitle_t_parametric <- function(data,
             italic("d"),
             " = ",
             effsize,
-            ", 95% CI [",
+            ", CI"[conf.level],
+            " [",
             LL,
             ", ",
             UL,
@@ -213,16 +216,17 @@ subtitle_t_parametric <- function(data,
             n
           ),
         env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k),
+          estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k = k),
           df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k.df),
           pvalue = ggstatsplot::specify_decimal_p(
             x = t_stat[[3]],
-            k,
+            k = k,
             p.value = TRUE
           ),
-          effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k),
-          LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k),
-          UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k),
+          effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k = k),
+          conf.level = paste(conf.level * 100, "%", sep = ""),
+          LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k = k),
+          UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k = k),
           n = sample_size
         )
       )
@@ -511,7 +515,8 @@ subtitle_t_robust <-
               italic(xi),
               " = ",
               effsize,
-              ", 95% CI [",
+              ", CI"[conf.level],
+              " [",
               LL,
               ", ",
               UL,
@@ -542,6 +547,7 @@ subtitle_t_robust <-
               k = k,
               p.value = FALSE
             ),
+            conf.level = paste(conf.level * 100, "%", sep = ""),
             LL = ggstatsplot::specify_decimal_p(
               x = t_robust_effsize$CI[[1]][[1]],
               k = k,
@@ -589,7 +595,8 @@ subtitle_t_robust <-
               italic(xi),
               " = ",
               effsize,
-              ", 95% CI [",
+              ", CI"[conf.level],
+              " [",
               LL,
               ", ",
               UL,
@@ -620,6 +627,7 @@ subtitle_t_robust <-
               k = k,
               p.value = FALSE
             ),
+            conf.level = paste(conf.level * 100, "%", sep = ""),
             LL = ggstatsplot::specify_decimal_p(
               x = yuend_results$conf.low[[1]],
               k = k,
@@ -640,7 +648,8 @@ subtitle_t_robust <-
       base::message(cat(
         crayon::green("Note: "),
         crayon::blue(
-          "95% CI for explanatory measure of effect size was computed with",
+          crayon::yellow(paste(conf.level * 100, "%", sep = "")),
+          "CI for explanatory measure of effect size was computed with",
           crayon::yellow(nboot),
           "bootstrap samples.\n"
         ),

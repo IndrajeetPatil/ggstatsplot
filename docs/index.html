@@ -215,7 +215,7 @@
 <li>
 <strong>correlation matrices</strong> (for correlations between multiple variables),</li>
 <li>
-<strong>histograms</strong> (for hypothesis about distributions), and</li>
+<strong>histograms</strong> and <strong>dot plots/charts</strong> (for hypothesis about distributions),</li>
 <li>
 <strong>dot-and-whisker plots</strong> (for regression models).</li>
 </ul>
@@ -330,7 +330,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002ba653f8&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002b9cefd0&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -430,21 +430,23 @@
 <a class="sourceLine" id="cb10-10" data-line-number="10">                       <span class="op">!</span>genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Animation"</span>, <span class="st">"Documentary"</span>)),</a>
 <a class="sourceLine" id="cb10-11" data-line-number="11">  <span class="dt">x =</span> mpaa, </a>
 <a class="sourceLine" id="cb10-12" data-line-number="12">  <span class="dt">y =</span> length,</a>
-<a class="sourceLine" id="cb10-13" data-line-number="13">  <span class="dt">caption =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substitute">substitute</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">"Source"</span>), <span class="st">":IMDb (Internet Movie Database)"</span>)), </a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">  <span class="dt">grouping.var =</span> genre,             <span class="co"># grouping variable</span></a>
 <a class="sourceLine" id="cb10-14" data-line-number="14">  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,      <span class="co"># display significant pairwise comparisons</span></a>
 <a class="sourceLine" id="cb10-15" data-line-number="15">  <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>,  <span class="co"># how do you want to annotate the pairwise comparisons</span></a>
 <a class="sourceLine" id="cb10-16" data-line-number="16">  <span class="dt">p.adjust.method =</span> <span class="st">"bonferroni"</span>,   <span class="co"># method for adjusting p-values for multiple comparisons</span></a>
 <a class="sourceLine" id="cb10-17" data-line-number="17">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                <span class="co"># display Bayes Factor in favor of the null hypothesis</span></a>
-<a class="sourceLine" id="cb10-18" data-line-number="18">  <span class="dt">grouping.var =</span> genre,             <span class="co"># grouping variable</span></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>,                <span class="co"># changing confidence level to 99%</span></a>
 <a class="sourceLine" id="cb10-19" data-line-number="19">  <span class="dt">k =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb10-20" data-line-number="20">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
-<a class="sourceLine" id="cb10-21" data-line-number="21">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</a>
-<a class="sourceLine" id="cb10-22" data-line-number="22">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb10-23" data-line-number="23">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb10-24" data-line-number="24">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb10-25" data-line-number="25">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb10-26" data-line-number="26">  <span class="dt">title.text =</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span></a>
-<a class="sourceLine" id="cb10-27" data-line-number="27">)</a></code></pre></div>
+<a class="sourceLine" id="cb10-21" data-line-number="21">  <span class="dt">caption =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substitute">substitute</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">"Source"</span>), </a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">                             <span class="st">":IMDb (Internet Movie Database)"</span>)),</a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">  <span class="dt">palette =</span> <span class="st">"default_jama"</span>,</a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb10-25" data-line-number="25">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb10-26" data-line-number="26">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-28" data-line-number="28">  <span class="dt">title.text =</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span></a>
+<a class="sourceLine" id="cb10-29" data-line-number="29">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
 <p>For more, see the <code>ggbetweenstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html</a></p>
 <p><strong>This function is not appropriate for within-subjects designs.</strong></p>

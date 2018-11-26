@@ -40,7 +40,8 @@ analyses:
   - **scatterplots** (for correlations between two variables),
   - **correlation matrices** (for correlations between multiple
     variables),
-  - **histograms** (for hypothesis about distributions), and
+  - **histograms** and **dot plots/charts** (for hypothesis about
+    distributions),
   - **dot-and-whisker plots** (for regression models).
 
 In addition to these basic plots, `ggstatsplot` also provides
@@ -199,7 +200,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x0000000034995128>
+#> <bytecode: 0x00000000282f3b68>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -353,14 +354,16 @@ ggstatsplot::grouped_ggbetweenstats(
                        !genre %in% c("Animation", "Documentary")),
   x = mpaa, 
   y = length,
-  caption = substitute(paste(italic("Source"), ":IMDb (Internet Movie Database)")), 
+  grouping.var = genre,             # grouping variable
   pairwise.comparisons = TRUE,      # display significant pairwise comparisons
   pairwise.annotation = "p.value",  # how do you want to annotate the pairwise comparisons
   p.adjust.method = "bonferroni",   # method for adjusting p-values for multiple comparisons
   bf.message = TRUE,                # display Bayes Factor in favor of the null hypothesis
-  grouping.var = genre,             # grouping variable
+  conf.level = 0.99,                # changing confidence level to 99%
   k = 3,
   title.prefix = "Movie genre",
+  caption = substitute(paste(italic("Source"), 
+                             ":IMDb (Internet Movie Database)")),
   palette = "default_jama",
   package = "ggsci",
   messages = FALSE,
@@ -1023,9 +1026,8 @@ models supported, see the associated vignette-
 The full power of `ggstatsplot` can be leveraged with a functional
 programming package like [`purrr`](http://purrr.tidyverse.org/) that
 replaces `for` loops with code that is both more succinct and easier to
-read and, therefore, `purrr` should be preferrred \<U+0001F63B\>.
-(Another old school option to do this effectively is using the `plyr`
-package.)
+read and, therefore, `purrr` should be preferrred 😻. (Another old school
+option to do this effectively is using the `plyr` package.)
 
 In such cases, `ggstatsplot` contains a helper function `combine_plots`
 to combine multiple plots, which can be useful for combining a list of

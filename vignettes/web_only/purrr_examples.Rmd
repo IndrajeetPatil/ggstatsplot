@@ -149,6 +149,7 @@ plot_list <- purrr::pmap(
     pairwise.annotation = list("asterisk", "asterisk", "p.value"),
     p.adjust.method = list("hommel", "bonferroni", "BH"),
     nboot = 25,
+    conf.level = list(0.99, 0.95, 0.90),
     mean.label.size = c(3, 4, 5),
     k = list(1, 2, 3),
     effsize.type = list(

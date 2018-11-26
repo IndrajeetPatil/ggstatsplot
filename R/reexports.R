@@ -16,14 +16,6 @@ groupedstats::lm_effsize_ci
 # ----------------------- tidyverse -------------------------------------
 
 #' @export
-#' @importFrom rlang "%||%"
-rlang::`%||%`
-
-#' @export
-#' @importFrom rlang "%|%"
-rlang::`%|%`
-
-#' @export
 #' @importFrom magrittr "%>%"
 magrittr::`%>%`
 

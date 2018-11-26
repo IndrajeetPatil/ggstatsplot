@@ -256,10 +256,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleep</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>group</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>extra</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for explanatory measure of effect size was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for explanatory measure of effect size was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("t"), "(", "13.90", ") = ", "1.57", ", ", italic("p"), 
-#&gt;     " = ", "0.139", ", ", italic(xi), " = ", "0.52", ", 95% CI [", 
-#&gt;     "0.00", ", ", "0.89", "]", ", ", italic("n"), " = ", 20L)</div><div class='input'>
+#&gt;     " = ", "0.139", ", ", italic(xi), " = ", "0.52", ", CI"["95%"], 
+#&gt;     " [", "0.00", ", ", "0.89", "]", ", ", italic("n"), " = ", 
+#&gt;     20L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_t_robust</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ToothGrowth</span>,
@@ -268,10 +269,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.2</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for explanatory measure of effect size was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for explanatory measure of effect size was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("t"), "(", "33.5", ") = ", "2.3", ", ", italic("p"), 
-#&gt;     " = ", "0.029", ", ", italic(xi), " = ", "0.4", ", 95% CI [", 
-#&gt;     "0.1", ", ", "0.5", "]", ", ", italic("n"), " = ", 60L)</div><div class='input'>
+#&gt;     " = ", "0.029", ", ", italic(xi), " = ", "0.4", ", CI"["95%"], 
+#&gt;     " [", "0.1", ", ", "0.5", "]", ", ", italic("n"), " = ", 
+#&gt;     60L)</div><div class='input'>
 <span class='co'># within-subjects design</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_robust.html'>subtitle_t_robust</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
@@ -283,10 +285,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for explanatory measure of effect size was computed with </span><span style='color: #BBBB00;'>25</span><span style='color: #0000BB;'> bootstrap samples.
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for explanatory measure of effect size was computed with </span><span style='color: #BBBB00;'>25</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("t"), "(", "199.00", ") = ", "-26.64", ", ", italic("p"), 
-#&gt;     " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.73", ", 95% CI [", 
-#&gt;     "0.43", ", ", "0.86", "]", ", ", italic("n"), " = ", 250L)</div></span></pre>
+#&gt;     " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.73", ", CI"["95%"], 
+#&gt;     " [", "0.43", ", ", "0.86", "]", ", ", italic("n"), " = ", 
+#&gt;     250L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

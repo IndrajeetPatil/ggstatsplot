@@ -127,6 +127,8 @@ utils::globalVariables(
     "Group1",
     "group1",
     "group2",
+    "Group..1",
+    "Group..2",
     "comparison",
     "p",
     "p1",

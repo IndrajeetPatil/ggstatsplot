@@ -12,10 +12,11 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   effsize.type = "unbiased", effsize.noncentral = FALSE,
   bf.prior = 0.707, bf.message = FALSE, results.subtitle = TRUE,
   xlab = NULL, ylab = NULL, subtitle = NULL, caption = NULL,
-  sample.size.label = TRUE, k = 2, var.equal = FALSE, nboot = 100,
-  tr = 0.1, mean.label.size = 3, mean.label.fontface = "bold",
-  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
-  linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
+  sample.size.label = TRUE, k = 2, var.equal = FALSE,
+  conf.level = 0.95, nboot = 100, tr = 0.1, mean.label.size = 3,
+  mean.label.fontface = "bold", mean.label.color = "black",
+  notch = FALSE, notchwidth = 0.5, linetype = "solid",
+  outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
@@ -108,6 +109,9 @@ should be displayed for each level of the grouping variable \code{x} (Default:
     performed.  If \code{FALSE}, an approximate method of Welch (1951)
     is used, which generalizes the commonly known 2-sample Welch test to
     the case of arbitrarily many samples.}
+
+\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
+default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}
@@ -284,6 +288,7 @@ ggstatsplot::grouped_ggbetweenstats(
   x = year,
   y = hwy,
   grouping.var = drv,
+  conf.level = 0.99,
   bf.message = TRUE
 )
 }

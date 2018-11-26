@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_bf_tests.R
 \name{bf_two_sample_ttest}
 \alias{bf_two_sample_ttest}
-\title{Bayesian t-test.}
+\title{Bayesian two-samples \emph{t}-test.}
 \usage{
 bf_two_sample_ttest(data, x, y, paired = FALSE, bf.prior = 0.707,
   caption = NULL, output = "caption", k = 2)
@@ -30,7 +30,7 @@ results).}
 (Default: \code{k = 2}).}
 }
 \description{
-Bayesian t-test.
+Bayesian two-samples \emph{t}-test.
 }
 \examples{
 

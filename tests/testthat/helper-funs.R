@@ -5,7 +5,8 @@ num_parser <- function(ggstats.obj) {
     x = as.character(ggstats.obj),
     na = "NA"
   )) %>%
-    tibble::as_data_frame(x = .) %>%
+    tibble::enframe(x = .) %>%
+    dplyr::select(.data = ., value) %>%
     dplyr::filter(.data = ., !is.na(value)) %>%
     purrr::flatten_dbl(.x = .)
 }

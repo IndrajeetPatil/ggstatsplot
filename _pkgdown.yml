@@ -40,20 +40,15 @@ reference:
       - starts_with("bf_")
 
   - title: Reexported functions
-    desc:  Some useful functions re-exported from other packages and used in the backdrop.
+    desc:  Useful functions re-exported from other packages.
     contents:
       - specify_decimal_p
       - signif_column
       - lm_effsize_ci
       - set_cwd
-
-  - title: Pipes (from `magrittr` and `rlang` packages)
-    contents:
       - "%>%"
       - "%<>%"
       - "%$%"
-      - "%|%"
-      - "%||%"
 
   - title: Helper functions (messages)
     desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests.
