@@ -9,8 +9,9 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   sample.size.label = TRUE, bf.message = FALSE,
   sampling.plan = "indepMulti", fixed.margin = "rows",
   prior.concentration = 1, title = NULL, caption = NULL,
-  nboot = 25, legend.title = NULL, facet.wrap.name = NULL, k = 2,
-  perc.k = 0, slice.label = "percentage", facet.proptest = TRUE,
+  conf.level = 0.95, nboot = 25, legend.title = NULL,
+  facet.wrap.name = NULL, k = 2, perc.k = 0,
+  slice.label = "percentage", facet.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   messages = TRUE)
@@ -66,6 +67,9 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{title}{The text for the plot title.}
 
 \item{caption}{The text for the plot caption.}
+
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{25}).}

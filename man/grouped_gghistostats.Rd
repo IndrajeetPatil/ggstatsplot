@@ -8,8 +8,8 @@ grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
   binwidth = NULL, bar.measure = "count", xlab = NULL,
   subtitle = NULL, caption = NULL, type = "parametric",
   test.value = 0, bf.prior = 0.707, bf.message = FALSE,
-  robust.estimator = "onestep", nboot = 500, k = 2,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  robust.estimator = "onestep", conf.level = 0.95, nboot = 500,
+  k = 2, ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   fill.gradient = FALSE, low.color = "#0072B2",
   high.color = "#D55E00", bar.fill = "grey50",
   results.subtitle = TRUE, centrality.para = "mean",
@@ -68,6 +68,9 @@ favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
+
+\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
+default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for robust one-sample location test
 (Default: \code{100}).}

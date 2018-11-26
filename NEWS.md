@@ -18,6 +18,8 @@ MAJOR CHANGES
 
   - New function `ggdotplotstats` for creating a dot plot/chart for labelled
     numeric data.
+  - All primary functions gain `conf.level` argument to control confidence level
+    for effect size measures.
   - As per APA guidelines, all results show results with two decimal places.
     That is, the default value for `k` argument for all functions has been
     changed from `3` to `2`.

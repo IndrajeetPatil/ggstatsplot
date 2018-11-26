@@ -375,8 +375,6 @@ ggstatsplot::ggscatterstats(
 Number of other arguments can be specified to modify this basic plot-
 
 ```{r ggscatterstats2, message = FALSE, warning = FALSE}
-library(datasets)
-
 # for reproducibility
 set.seed(123)
 
@@ -386,6 +384,7 @@ ggstatsplot::ggscatterstats(
   x = budget,
   y = rating,
   type = "robust",                                # type of test that needs to be run
+  conf.level = 0.99,                              # confidence level
   xlab = "Movie budget (in million/ US$)",        # label for x axis
   ylab = "IMDB rating",                           # label for y axis 
   label.var = "title",                            # variable for labeling data points
@@ -418,10 +417,12 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_ggscatterstats(
-  data = ggstatsplot::movies_long, 
+  data = dplyr::filter(.data = ggstatsplot::movies_long, 
+                       !genre %in% c("Animation", "Documentary")), 
   x = rating, 
   y = length,
   bf.message = TRUE,               # display bayes factor message
+  conf.level = 0.99,
   k = 3,                           # no. of decimal places in the results
   xfill = "#E69F00", 
   yfill = "#8b3058",
@@ -474,6 +475,7 @@ ggstatsplot::ggpiestats(
   data = datasets::mtcars,
   main = am,
   condition = cyl,
+  conf.level = 0.99,                                  # confidence interval for effect size measure
   title = "Dataset: Motor Trend Car Road Tests",      # title for the plot
   stat.title = "interaction: ",                       # title for the results
   bf.message = TRUE,                                  # display bayes factor in favor of null
@@ -512,6 +514,7 @@ ggstatsplot::ggpiestats(
   condition = `2nd survey`,
   counts = Counts,
   paired = TRUE,                      # within-subjects design
+  conf.level = 0.99,                  # confidence interval for effect size measure
   stat.title = "McNemar Test: ",
   package = "wesanderson",
   palette = "Royal1"
@@ -583,6 +586,7 @@ ggstatsplot::gghistostats(
   title = "Distribution of Iris sepal length",   # title for the plot
   caption = substitute(paste(italic("Source:", "Ronald Fisher's Iris data set"))), 
   type = "parametric",                           # one sample t-test
+  conf.level = 0.99,                             # changing confidence level for effect size
   bar.measure = "mix",                           # what does the bar length denote
   test.value = 5,                                # default value is 0
   test.value.line = TRUE,                        # display a vertical line at test value
@@ -611,15 +615,16 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_gghistostats(
-  data = ggstatsplot::movies_long, 
+  data = dplyr::filter(.data = ggstatsplot::movies_long, 
+                       !genre %in% c("Animation", "Documentary")), 
   x = budget,
   xlab = "Movies budget (in million US$)",
+  type = "robust",                 # use robust location measure   
   grouping.var = genre,            # grouping variable
   title.prefix = "Movie genre",
   ggtheme = ggthemes::theme_tufte(),
   messages = FALSE,
   nrow = 2,
-  ncol = 2,
   title.text = "Movies budgets for different genres"
 )
 ```

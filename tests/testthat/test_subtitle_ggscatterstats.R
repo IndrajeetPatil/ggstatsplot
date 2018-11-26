@@ -26,7 +26,8 @@ testthat::test_that(
           ")",
           " = ",
           "0.43063",
-          ", 95% CI [",
+          ", CI"["99.9%"],
+          " [",
           "0.40225",
           ", ",
           "0.46936",
@@ -41,12 +42,16 @@ testthat::test_that(
         )
       )
 
-    # testing overall, omega squared and bayes factor
+    # testing overall call
     testthat::expect_identical(using_function1, results1)
+
+    # testing
     testthat::expect_identical(
       as.character(using_function1)[8],
       as.character(results1)[8]
     )
+
+    # testing
     testthat::expect_identical(
       as.character(using_function1)[12],
       as.character(results1)[12]

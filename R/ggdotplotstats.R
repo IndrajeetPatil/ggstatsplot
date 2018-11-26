@@ -20,12 +20,13 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # plot
 #' ggdotplotstats(
 #'   data = ggplot2::mpg,
 #'   x = cty,
 #'   y = manufacturer,
+#'   conf.level = 0.99,
 #'   test.value = 15,
 #'   test.value.line = TRUE,
 #'   test.line.labeller = TRUE,
@@ -56,6 +57,7 @@ ggdotplotstats <- function(data,
                            bf.prior = 0.707,
                            bf.message = FALSE,
                            robust.estimator = "onestep",
+                           conf.level = 0.95,
                            nboot = 100,
                            k = 2,
                            results.subtitle = TRUE,
@@ -156,6 +158,7 @@ ggdotplotstats <- function(data,
         test.value = test.value,
         bf.prior = bf.prior,
         robust.estimator = robust.estimator,
+        conf.level = conf.level,
         nboot = nboot,
         k = k,
         messages = messages

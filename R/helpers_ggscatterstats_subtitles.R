@@ -78,6 +78,7 @@ subtitle_ggscatterstats <-
         method = "pearson",
         alternative = "two.sided",
         exact = FALSE,
+        conf.level = conf.level,
         na.action = na.omit
       )
 
@@ -96,7 +97,8 @@ subtitle_ggscatterstats <-
               ")",
               " = ",
               estimate,
-              ", 95% CI [",
+              ", CI"[conf.level],
+              " [",
               LL,
               ", ",
               UL,
@@ -111,6 +113,7 @@ subtitle_ggscatterstats <-
             ),
           env = base::list(
             df = pearson_r_res$parameter[[1]],
+            conf.level = paste(conf.level * 100, "%", sep = ""),
             estimate = ggstatsplot::specify_decimal_p(
               x = pearson_r_res$estimate[[1]],
               k = k,
@@ -166,7 +169,8 @@ subtitle_ggscatterstats <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "95% CI for Spearman's rho was computed with",
+            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
+            "CI for Spearman's rho was computed with",
             crayon::yellow(nboot),
             "bootstrap samples.\n"
           ),
@@ -185,7 +189,8 @@ subtitle_ggscatterstats <-
               ")",
               " = ",
               estimate,
-              ", 95% CI [",
+              ", CI"[conf.level],
+              " [",
               LL,
               ", ",
               UL,
@@ -200,6 +205,7 @@ subtitle_ggscatterstats <-
             ),
           env = base::list(
             df = (sample_size - 2),
+            conf.level = paste(conf.level * 100, "%", sep = ""),
             estimate = ggstatsplot::specify_decimal_p(
               x = c$estimate[[1]],
               k = k,
@@ -246,7 +252,8 @@ subtitle_ggscatterstats <-
               italic(rho)["pb"],
               " = ",
               estimate,
-              ", 95% CI [",
+              ", CI"[conf.level],
+              " [",
               LL,
               ", ",
               UL,
@@ -265,6 +272,7 @@ subtitle_ggscatterstats <-
               k = k,
               p.value = FALSE
             ),
+            conf.level = paste(conf.level * 100, "%", sep = ""),
             LL = ggstatsplot::specify_decimal_p(
               x = rob_res$conf.low[[1]],
               k = k,
@@ -288,7 +296,8 @@ subtitle_ggscatterstats <-
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue(
-            "95% CI for percentage bend correlation was computed with",
+            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
+            "CI for percentage bend correlation was computed with",
             crayon::yellow(nboot),
             "bootstrap samples.\n"
           ),

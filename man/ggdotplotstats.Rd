@@ -8,16 +8,16 @@
 ggdotplotstats(data, x, y, summarize = TRUE, xlab = NULL,
   ylab = NULL, title = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = FALSE, robust.estimator = "onestep", nboot = 100,
-  k = 2, results.subtitle = TRUE, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, point.color = "black", point.size = 3,
-  point.shape = 16, centrality.para = "mean",
-  centrality.color = "blue", centrality.size = 1,
-  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
-  centrality.k = 2, test.value.line = FALSE,
-  test.value.color = "black", test.value.size = 1,
-  test.value.linetype = "dashed", test.line.labeller = TRUE,
-  test.k = 0, messages = TRUE)
+  bf.message = FALSE, robust.estimator = "onestep",
+  conf.level = 0.95, nboot = 100, k = 2, results.subtitle = TRUE,
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  point.color = "black", point.size = 3, point.shape = 16,
+  centrality.para = "mean", centrality.color = "blue",
+  centrality.size = 1, centrality.linetype = "dashed",
+  centrality.line.labeller = TRUE, centrality.k = 2,
+  test.value.line = FALSE, test.value.color = "black",
+  test.value.size = 1, test.value.linetype = "dashed",
+  test.line.labeller = TRUE, test.k = 0, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -58,6 +58,9 @@ favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
+
+\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
+default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for robust one-sample location test
 (Default: \code{100}).}
@@ -141,6 +144,7 @@ ggdotplotstats(
   data = ggplot2::mpg,
   x = cty,
   y = manufacturer,
+  conf.level = 0.99,
   test.value = 15,
   test.value.line = TRUE,
   test.line.labeller = TRUE,

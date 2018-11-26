@@ -7,7 +7,7 @@ robust equivalents.}
 \usage{
 subtitle_t_onesample(data = NULL, x, type = "parametric",
   test.value = 0, bf.prior = 0.707, robust.estimator = "onestep",
-  nboot = 100, k = 2, messages = TRUE)
+  conf.level = 0.95, nboot = 100, k = 2, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -29,6 +29,9 @@ to use in calculating Bayes factors.}
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
+
+\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
+default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for robust one-sample location test
 (Default: \code{100}).}

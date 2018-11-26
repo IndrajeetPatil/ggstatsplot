@@ -262,8 +262,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'># time consuming, so not run on `CRAN` machines
-</div><span class='co'># NOT RUN {</span>
-<span class='co'># for reproducibility</span>
+</div><div class='input'><span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
 <span class='co'>#------------------- between-subjects design ----------------------------</span>
@@ -278,8 +277,18 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>
-)
-
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
+#&gt;  Student's t-test.
+#&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>bonferroni</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 8</span><span>
+#&gt;   group1 group2 mean.difference conf.low conf.high p.value significance
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span> herbi  carni           0.542    -</span><span style='color: #BB0000;'>0.546</span><span>     1.63    1     ns          
+#&gt; </span><span style='color: #555555;'>2</span><span> insec~ carni          -</span><span style='color: #BB0000;'>0.057</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>   -</span><span style='color: #BB0000;'>1.57</span><span>      1.45    1     ns          
+#&gt; </span><span style='color: #555555;'>3</span><span> omni   carni           0.066</span><span style='text-decoration: underline;'>5</span><span>   -</span><span style='color: #BB0000;'>1.05</span><span>      1.18    1     ns          
+#&gt; </span><span style='color: #555555;'>4</span><span> insec~ herbi          -</span><span style='color: #BB0000;'>0.600</span><span>    -</span><span style='color: #BB0000;'>1.96</span><span>      0.756   1     ns          
+#&gt; </span><span style='color: #555555;'>5</span><span> omni   herbi          -</span><span style='color: #BB0000;'>0.476</span><span>    -</span><span style='color: #BB0000;'>1.37</span><span>      0.419   0.979 ns          
+#&gt; </span><span style='color: #555555;'>6</span><span> omni   insec~          0.124    -</span><span style='color: #BB0000;'>1.26</span><span>      1.50    1     ns          
+#&gt; </span><span style='color: #555555;'># ... with 1 more variable: p.value.label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># if `var.equal = FALSE`, then Games-Howell test will be run</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -289,8 +298,18 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"bonferroni"</span>
-)
-
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
+#&gt;  Games-Howell test.
+#&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>bonferroni</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 11</span><span>
+#&gt;   group1 group2 mean.difference low.conf high.conf    se t.value    df p.value
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> omni   herbi            0.476   -</span><span style='color: #BB0000;'>0.529</span><span>     1.48  0.255   1.32   20.9       1
+#&gt; </span><span style='color: #555555;'>2</span><span> omni   carni           -</span><span style='color: #BB0000;'>0.066</span><span>   -</span><span style='color: #BB0000;'>0.306</span><span>     0.173 0.061   0.774  21.1       1
+#&gt; </span><span style='color: #555555;'>3</span><span> omni   insec~          -</span><span style='color: #BB0000;'>0.124</span><span>   -</span><span style='color: #BB0000;'>0.352</span><span>     0.104 0.057   1.55   17.2       1
+#&gt; </span><span style='color: #555555;'>4</span><span> herbi  carni           -</span><span style='color: #BB0000;'>0.542</span><span>   -</span><span style='color: #BB0000;'>1.53</span><span>      0.449 0.25    1.54   19.4       1
+#&gt; </span><span style='color: #555555;'>5</span><span> herbi  insec~          -</span><span style='color: #BB0000;'>0.6</span><span>     -</span><span style='color: #BB0000;'>1.59</span><span>      0.389 0.249   1.70   19.1       1
+#&gt; </span><span style='color: #555555;'>6</span><span> carni  insec~          -</span><span style='color: #BB0000;'>0.058</span><span>   -</span><span style='color: #BB0000;'>0.171</span><span>     0.056 0.027   1.53   10.7       1
+#&gt; </span><span style='color: #555555;'># ... with 2 more variables: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, p.value.label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># non-parametric</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -299,8 +318,17 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>
-)
-
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The nonparametric pairwise multiple comparisons test used-
+#&gt;  Dwass-Steel-Crichtlow-Fligner test.
+#&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>none</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
+#&gt;   group1  group2       W p.value significance p.value.label
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
+#&gt; </span><span style='color: #555555;'>1</span><span> carni   herbi   -</span><span style='color: #BB0000;'>0.8</span><span>    0.572  ns           p  = 0.572   
+#&gt; </span><span style='color: #555555;'>2</span><span> carni   insecti -</span><span style='color: #BB0000;'>2.36</span><span>   0.095</span><span style='text-decoration: underline;'>6</span><span> ns           p  = 0.096   
+#&gt; </span><span style='color: #555555;'>3</span><span> carni   omni    -</span><span style='color: #BB0000;'>1.72</span><span>   0.225  ns           p  = 0.225   
+#&gt; </span><span style='color: #555555;'>4</span><span> herbi   insecti -</span><span style='color: #BB0000;'>2.40</span><span>   0.089</span><span style='text-decoration: underline;'>5</span><span> ns           p  = 0.089   
+#&gt; </span><span style='color: #555555;'>5</span><span> herbi   omni    -</span><span style='color: #BB0000;'>0.948</span><span>  0.503  ns           p  = 0.503   
+#&gt; </span><span style='color: #555555;'>6</span><span> insecti omni     1.61   0.256  ns           p  = 0.256   </div><div class='input'>
 <span class='co'># robust</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -309,8 +337,17 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"fdr"</span>
-)
-
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The robust pairwise multiple comparisons test used-
+#&gt;  Yuen's trimmed means comparisons test.
+#&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>fdr</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 8</span><span>
+#&gt;   group1  group2    psihat ci.lower ci.upper p.value significance p.value.label
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
+#&gt; </span><span style='color: #555555;'>1</span><span> insecti omni    -</span><span style='color: #BB0000;'>0.055</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>   -</span><span style='color: #BB0000;'>0.184</span><span>    0.072</span><span style='text-decoration: underline;'>8</span><span>   0.438 ns           p  = 0.438   
+#&gt; </span><span style='color: #555555;'>2</span><span> carni   herbi   -</span><span style='color: #BB0000;'>0.053</span><span style='color: #BB0000;text-decoration: underline;'>0</span><span>   -</span><span style='color: #BB0000;'>0.274</span><span>    0.168    0.598 ns           p  = 0.598   
+#&gt; </span><span style='color: #555555;'>3</span><span> carni   omni     0.002</span><span style='text-decoration: underline;'>10</span><span>  -</span><span style='color: #BB0000;'>0.151</span><span>    0.155    0.969 ns           p  = 0.969   
+#&gt; </span><span style='color: #555555;'>4</span><span> herbi   omni     0.055</span><span style='text-decoration: underline;'>1</span><span>   -</span><span style='color: #BB0000;'>0.173</span><span>    0.283    0.598 ns           p  = 0.598   
+#&gt; </span><span style='color: #555555;'>5</span><span> carni   insecti  0.057</span><span style='text-decoration: underline;'>7</span><span>   -</span><span style='color: #BB0000;'>0.060</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>   0.176    0.438 ns           p  = 0.438   
+#&gt; </span><span style='color: #555555;'>6</span><span> herbi   insecti  0.111    -</span><span style='color: #BB0000;'>0.098</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>   0.320    0.438 ns           p  = 0.438   </div><div class='input'>
 <span class='co'>#------------------- within-subjects design ----------------------------</span>
 
 <span class='co'># parametric</span>
@@ -321,8 +358,18 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"BH"</span>
-)
-
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
+#&gt;  Games-Howell test.
+#&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>BH</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 11</span><span>
+#&gt;   group1 group2 mean.difference low.conf high.conf    se t.value    df p.value
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> neutr~ accid~            1.20    1.01       1.39 0.051    16.5 </span><span style='text-decoration: underline;'>1</span><span>742.       0
+#&gt; </span><span style='color: #555555;'>2</span><span> neutr~ attem~            2.22    2.02       2.43 0.056    27.9 </span><span style='text-decoration: underline;'>1</span><span>613.       0
+#&gt; </span><span style='color: #555555;'>3</span><span> neutr~ inten~            3.95    3.78       4.12 0.047    58.9 </span><span style='text-decoration: underline;'>1</span><span>855.       0
+#&gt; </span><span style='color: #555555;'>4</span><span> accid~ attem~            1.02    0.786      1.26 0.065    11.2 </span><span style='text-decoration: underline;'>1</span><span>973.       0
+#&gt; </span><span style='color: #555555;'>5</span><span> accid~ inten~            2.75    2.54       2.96 0.057    34.0 </span><span style='text-decoration: underline;'>1</span><span>979.       0
+#&gt; </span><span style='color: #555555;'>6</span><span> attem~ inten~            1.73    1.51       1.96 0.062    19.8 </span><span style='text-decoration: underline;'>1</span><span>895.       0
+#&gt; </span><span style='color: #555555;'># ... with 2 more variables: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, p.value.label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># non-parametric</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
@@ -331,8 +378,17 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"BY"</span>
-)
-
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The nonparametric pairwise multiple comparisons test used-
+#&gt;  Dwass-Steel-Crichtlow-Fligner test.
+#&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>BY</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
+#&gt;   group1      group2          W p.value significance p.value.label
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
+#&gt; </span><span style='color: #555555;'>1</span><span> accidental  attempted    15.1       0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>2</span><span> accidental  intentional  38.3       0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>3</span><span> accidental  neutral     -</span><span style='color: #BB0000;'>24.0</span><span>       0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>4</span><span> attempted   intentional  25.1       0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>5</span><span> attempted   neutral     -</span><span style='color: #BB0000;'>35.3</span><span>       0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>6</span><span> intentional neutral     -</span><span style='color: #BB0000;'>50.6</span><span>       0 ***          p &lt;= 0.001   </div><div class='input'>
 <span class='co'># robust</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
@@ -341,8 +397,17 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"hommel"</span>
-)
-<span class='co'># }</span></pre>
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The robust pairwise multiple comparisons test used-
+#&gt;  Yuen's trimmed means comparisons test.
+#&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>hommel</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 8</span><span>
+#&gt;   group1    group2   psihat ci.lower ci.upper p.value significance p.value.label
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
+#&gt; </span><span style='color: #555555;'>1</span><span> accident~ intenti~  -</span><span style='color: #BB0000;'>3.27</span><span>    -</span><span style='color: #BB0000;'>3.51</span><span>   -</span><span style='color: #BB0000;'>3.03</span><span>        0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>2</span><span> attempted intenti~  -</span><span style='color: #BB0000;'>2.04</span><span>    -</span><span style='color: #BB0000;'>2.32</span><span>   -</span><span style='color: #BB0000;'>1.77</span><span>        0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>3</span><span> accident~ attempt~  -</span><span style='color: #BB0000;'>1.23</span><span>    -</span><span style='color: #BB0000;'>1.52</span><span>   -</span><span style='color: #BB0000;'>0.935</span><span>       0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>4</span><span> accident~ neutral    1.29     1.08    1.50        0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>5</span><span> attempted neutral    2.52     2.27    2.77        0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>6</span><span> intentio~ neutral    4.56     4.38    4.74        0 ***          p &lt;= 0.001   </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

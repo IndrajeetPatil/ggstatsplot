@@ -319,7 +319,8 @@ plot_list <- purrr::pmap(
       ggplot2::theme_classic(),
       ggthemes::theme_fivethirtyeight(),
       ggthemes::theme_tufte()
-    )
+    ),
+    messages = FALSE
   ),
   .f = ggstatsplot::ggcorrmat
 )

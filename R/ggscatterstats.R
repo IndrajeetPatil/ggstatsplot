@@ -94,15 +94,15 @@
 #' }
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_tibble(x = .)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -122,6 +122,7 @@ ggscatterstats <- function(data,
                            x,
                            y,
                            type = "pearson",
+                           conf.level = 0.95,
                            bf.prior = 0.707,
                            bf.message = FALSE,
                            label.var = NULL,
@@ -249,7 +250,7 @@ ggscatterstats <- function(data,
       nboot = nboot,
       beta = beta,
       type = type,
-      conf.level = 0.95,
+      conf.level = conf.level,
       conf.type = "norm",
       messages = messages,
       k = k
@@ -320,7 +321,7 @@ ggscatterstats <- function(data,
       size = line.size,
       color = line.color,
       na.rm = TRUE,
-      level = 0.95
+      level = conf.level
     ) +
     ggstatsplot::theme_mprl(
       ggtheme = ggtheme,

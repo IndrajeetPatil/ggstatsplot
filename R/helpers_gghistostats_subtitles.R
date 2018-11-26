@@ -43,6 +43,7 @@ subtitle_t_onesample <- function(data = NULL,
                                  test.value = 0,
                                  bf.prior = 0.707,
                                  robust.estimator = "onestep",
+                                 conf.level = 0.95,
                                  nboot = 100,
                                  k = 2,
                                  messages = TRUE) {
@@ -103,7 +104,7 @@ subtitle_t_onesample <- function(data = NULL,
       psych::cohen.d.ci(
         d = as.data.frame(jmv_results$ttest)$`es[stud]`,
         n1 = length(data$x),
-        alpha = .05
+        alpha = 1 - conf.level
       ) %>%
       tibble::as_tibble(x = .)
 
@@ -125,7 +126,8 @@ subtitle_t_onesample <- function(data = NULL,
             italic("d"),
             " = ",
             effsize,
-            ", 95% CI [",
+            ", CI"[conf.level],
+            " [",
             LL,
             ", ",
             UL,
@@ -147,6 +149,7 @@ subtitle_t_onesample <- function(data = NULL,
             k,
             p.value = TRUE
           ),
+          conf.level = paste(conf.level * 100, "%", sep = ""),
           effsize = ggstatsplot::specify_decimal_p(
             x = as.data.frame(jmv_results$ttest)$`es[stud]`,
             k = k,
@@ -227,10 +230,11 @@ subtitle_t_onesample <- function(data = NULL,
     subtitle <- base::substitute(
       expr =
         paste(
-          "M"[robust],
+          italic("M")[robust],
           " = ",
           estimate,
-          ", 95% CI [",
+          ", CI"["95%"],
+          " [",
           LL,
           ", ",
           UL,

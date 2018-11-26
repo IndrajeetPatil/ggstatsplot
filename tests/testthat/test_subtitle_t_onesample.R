@@ -36,7 +36,8 @@ testthat::test_that(
           italic("d"),
           " = ",
           "-0.58283",
-          ", 95% CI [",
+          ", CI"["95%"],
+          " [",
           "-0.62575",
           ", ",
           "-0.53980",
@@ -60,7 +61,7 @@ testthat::test_that(
       expected = as.character(results1)[6]
     )
 
-    # testing cohens d size
+    # testing cohen's d size
     testthat::expect_identical(
       object = as.character(using_function1[14]),
       expected = as.character(results1[14])

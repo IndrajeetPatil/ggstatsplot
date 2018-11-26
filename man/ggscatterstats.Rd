@@ -4,11 +4,11 @@
 \alias{ggscatterstats}
 \title{Scatterplot with marginal distributions}
 \usage{
-ggscatterstats(data, x, y, type = "pearson", bf.prior = 0.707,
-  bf.message = FALSE, label.var = NULL, label.expression = NULL,
-  xlab = NULL, ylab = NULL, method = "lm", method.args = list(),
-  formula = y ~ x, point.color = "black", point.size = 3,
-  point.alpha = 0.4, point.width.jitter = NULL,
+ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
+  bf.prior = 0.707, bf.message = FALSE, label.var = NULL,
+  label.expression = NULL, xlab = NULL, ylab = NULL, method = "lm",
+  method.args = list(), formula = y ~ x, point.color = "black",
+  point.size = 3, point.alpha = 0.4, point.width.jitter = NULL,
   point.height.jitter = NULL, line.size = 1.5, line.color = "blue",
   marginal = TRUE, marginal.type = "histogram", marginal.size = 5,
   margins = c("both", "x", "y"), package = "wesanderson",
@@ -35,6 +35,9 @@ correlation coefficient" or "\code{"bayes"}: Bayes Factor for Pearson's \emph{r}
 Corresponding abbreviations are also accepted: \code{"p"} (for
 parametric/pearson's), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
 \code{"bf"} (for bayes factor), resp.}
+
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
