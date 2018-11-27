@@ -1,7 +1,7 @@
-# context ------------------------------------------------------------
+# context -------------------------------------------------------------------
 context(desc = "ggbetweenstats")
 
-# outlier labeling works -------------------------------------------------------
+# outlier labeling works ----------------------------------------------------
 
 suppressPackageStartupMessages(library(rlang))
 
@@ -80,17 +80,32 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels and data from plot",
   code = {
-    set.seed(123)
+
     # creating the plot
+    set.seed(123)
     p <- ggstatsplot::ggbetweenstats(
       data = ggplot2::msleep,
       x = vore,
       y = brainwt,
+      title = "mammalian sleep",
+      caption = "From ggplot2 package",
+      xlab = "vorarephilia",
+      ylab = "brain weight",
       outlier.tagging = TRUE,
       outlier.label = name,
       conf.level = 0.99,
       bf.message = TRUE,
       messages = FALSE
+    )
+
+    # subtitle
+    set.seed(123)
+    p_subtitle <- ggstatsplot::subtitle_anova_parametric(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = FALSE,
+      conf.level = 0.99
     )
 
     # checking dimensions of data
@@ -100,7 +115,6 @@ testthat::test_that(
 
     testthat::expect_equal(data_dims[1], 51L)
     testthat::expect_equal(data_dims[2], 13L)
-
 
     # checking displayed outlier labels
     outlier.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
@@ -128,6 +142,27 @@ testthat::test_that(
     testthat::expect_identical(x_labels[2], "herbi\n(n = 20)")
     testthat::expect_identical(x_labels[3], "insecti\n(n = 5)")
     testthat::expect_identical(x_labels[4], "omni\n(n = 17)")
+
+    # checking plot labels
+    testthat::expect_identical(p$labels$subtitle, p_subtitle)
+    testthat::expect_identical(p$labels$title, "mammalian sleep")
+    testthat::expect_identical(
+      p$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle("From ggplot2 package"),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "1.54",
+          ", Prior width = ",
+          "0.71"
+        )
+      ))
+    )
+    testthat::expect_identical(p$labels$x, "vorarephilia")
+    testthat::expect_identical(p$labels$y, "brain weight")
   }
 )
 

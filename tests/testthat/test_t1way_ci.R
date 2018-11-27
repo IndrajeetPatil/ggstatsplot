@@ -39,7 +39,7 @@ testthat::test_that(
 
     set.seed(123)
 
-    # 3 seconds ????
+    # 3 seconds
     df1 <-
       ggstatsplot:::t1way_ci(
         data = bogusdata,
@@ -51,9 +51,8 @@ testthat::test_that(
         conf.type = c("norm")
       )
 
-
-    set.seed(123)
     # testing 5 conditions
+    set.seed(123)
     testthat::expect_equal(df1$xi, 0.08635324, tolerance = .00002)
     testthat::expect_equal(df1$conf.low, -0.1674259, tolerance = .00002)
     testthat::expect_equal(df1$conf.high, 0.2684582, tolerance = .00002)

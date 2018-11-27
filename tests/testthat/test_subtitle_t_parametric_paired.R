@@ -221,26 +221,26 @@ testthat::test_that(
 
     # testing overall equal
     testthat::expect_equal(
-      object = using_function1,
-      expected = results1
+      using_function1,
+      results1
     )
 
     # testing t value
     testthat::expect_equal(
-      object = using_function1[6],
-      expected = results1[6]
+      using_function1[6],
+      results1[6]
     )
 
     # testing p value
     testthat::expect_identical(
-      object = as.character(using_function1)[10],
-      expected = as.character(results1)[10]
+      as.character(using_function1)[10],
+      as.character(results1)[10]
     )
 
     # testing sample size
     testthat::expect_identical(
-      object = using_function1[23],
-      expected = results1[23]
+      using_function1[23],
+      results1[23]
     )
   }
 )

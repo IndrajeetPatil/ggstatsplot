@@ -216,26 +216,26 @@ testthat::test_that(
 
     # testing overall idenitcal
     testthat::expect_identical(
-      object = using_function1,
-      expected = results1
+      using_function1,
+      results1
     )
 
     # testing t value
     testthat::expect_identical(
-      object = as.character(using_function1)[6],
-      expected = as.character(results1)[6]
+      as.character(using_function1)[6],
+      as.character(results1)[6]
     )
 
     # testing Bayes Factor
     testthat::expect_identical(
-      object = as.character(using_function1)[10],
-      expected = as.character(results1)[10]
+      as.character(using_function1)[10],
+      as.character(results1)[10]
     )
 
     # testing sample size
     testthat::expect_identical(
-      object = using_function1[20],
-      expected = results1[20]
+      using_function1[20],
+      results1[20]
     )
   }
 )

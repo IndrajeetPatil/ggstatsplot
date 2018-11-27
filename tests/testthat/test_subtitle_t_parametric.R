@@ -1,7 +1,7 @@
 context("subtitle_t_parametric")
 
 testthat::test_that(
-  desc = "subtitle_t_parametric works",
+  desc = "parametric t-test works (between-subjects without NAs)",
   code = {
 
     # ggstatsplot output
@@ -82,5 +82,54 @@ testthat::test_that(
       object = using_function1[23],
       expected = results1[23]
     )
+  }
+)
+
+testthat::test_that(
+  desc = "parametric t-test works (between-subjects with NAs)",
+  code = {
+
+    # for reproducibility
+    set.seed(123)
+
+    # loading the dataset
+    data("bugs", package = "jmv")
+
+    # expected output from jamovi
+    jmv_df <-
+      jmv::ttestPS(
+        data = bugs,
+        pairs = list(
+          list(i2 = "HDLF", i1 = "HDHF")
+        ),
+        bf = TRUE,
+        miss = "listwise"
+      )
+
+    # t-value extraction
+    t_statistic <- as.data.frame(jmv_df$ttest)$`stat[stud]`
+
+    # preparing long format dataframe
+    bugs_long <-
+      tibble::as.tibble(x = bugs) %>%
+      dplyr::select(.data = ., HDLF, HDHF) %>%
+      tidyr::gather(data = ., "key", "value", convert = TRUE)
+
+    # output from ggstatsplot helper subtitle
+    subtitle <-
+      subtitle_t_bayes(
+        data = bugs_long,
+        x = key,
+        y = value,
+        paired = TRUE
+      )
+
+    # extracting only the numbers and creating a tibble
+    subtitle_vec <- num_parser(ggstats.obj = subtitle)
+
+    # testing values
+
+    # t-value from student's t-test
+    testthat::expect_equal(t_statistic, subtitle_vec[[2]], tolerance = 1e-3)
   }
 )
