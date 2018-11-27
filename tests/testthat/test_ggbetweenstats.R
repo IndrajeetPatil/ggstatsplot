@@ -3,16 +3,18 @@ context(desc = "ggbetweenstats")
 
 # outlier labeling works -------------------------------------------------------
 
+suppressPackageStartupMessages(library(rlang))
+
 testthat::test_that(
   desc = "error when x and outlier.label are same",
   code = {
     testthat::expect_error(
-      object = ggstatsplot::ggbetweenstats(
+      suppressWarnings(ggstatsplot::ggbetweenstats(
         data = iris,
         x = Species,
         y = Sepal.Length,
         outlier.label = Species
-      )
+      ))
     )
   }
 )
