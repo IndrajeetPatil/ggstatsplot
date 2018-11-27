@@ -73,6 +73,62 @@ testthat::test_that(
   }
 )
 
+# checking labels and data from plot -------------------------------------
+
+testthat::test_that(
+  desc = "checking labels and data from plot",
+  code = {
+    set.seed(123)
+    # creating the plot
+    p <- ggstatsplot::ggbetweenstats(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      outlier.tagging = TRUE,
+      outlier.label = name,
+      conf.level = 0.99,
+      bf.message = TRUE,
+      messages = FALSE
+    )
+
+    # checking dimensions of data
+    data_dims <- ggplot2::layer_data(p) %>%
+      tibble::as_tibble(x = .) %>%
+      dim(.)
+
+    testthat::expect_equal(data_dims[1], 51L)
+    testthat::expect_equal(data_dims[2], 13L)
+
+
+    # checking displayed outlier labels
+    outlier.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
+
+    testthat::expect_equal(length(outlier.labels), 7L)
+    testthat::expect_identical(outlier.labels[1], "Asian elephant")
+    testthat::expect_identical(outlier.labels[7], "Giant armadillo")
+
+    # range of data
+    y_range <- ggplot2::layer_scales(p)$y$range$range
+
+    testthat::expect_equal(y_range[1], -0.09710299, tolerance = 1e-5)
+    testthat::expect_equal(y_range[2], 5.71200000, tolerance = 1e-5)
+
+    # limits of data
+    y_limits <- ggplot2::layer_scales(p)$y$limits
+
+    testthat::expect_equal(y_limits[1], 0.00014, tolerance = 1e-3)
+    testthat::expect_equal(y_limits[2], 5.71200, tolerance = 1e-3)
+
+    # checking x-axis sample size labels
+    x_labels <- ggplot2::layer_scales(p)$x$labels
+
+    testthat::expect_identical(x_labels[1], "carni\n(n = 9)")
+    testthat::expect_identical(x_labels[2], "herbi\n(n = 20)")
+    testthat::expect_identical(x_labels[3], "insecti\n(n = 5)")
+    testthat::expect_identical(x_labels[4], "omni\n(n = 17)")
+  }
+)
+
 
 # visual tests ------------------------------------------------------------
 
