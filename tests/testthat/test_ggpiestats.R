@@ -63,6 +63,9 @@ testthat::test_that(
       condition = "cyl",
       bf.message = TRUE,
       perc.k = 2,
+      legend.title = "transmission",
+      factor.levels = c("0 = automatic", "1 = manual"),
+      facet.wrap.name = "cylinders",
       messages = FALSE
     ))
 
@@ -75,6 +78,9 @@ testthat::test_that(
         condition = "cyl",
         messages = FALSE
       )
+
+    # extracting plot details
+    pb <- ggplot2::ggplot_build(p)
 
     # checking data used to create a plot
     dat <- p$data
@@ -94,11 +100,33 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
+    testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "cylinders")
+    testthat::expect_identical(pb$plot$plot_env$legend.labels[1], "0 = automatic")
+    testthat::expect_identical(pb$plot$plot_env$legend.labels[2], "1 = manual")
+    testthat::expect_identical(pb$plot$labels$caption, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "In favor of null: ",
+        "log"["e"],
+        "(BF"["01"],
+        ") = ",
+        "-2.82",
+        ", sampling = ",
+        "independent multinomial",
+        ", ",
+        italic("a"),
+        " = ",
+        "1.00"
+      )
+    )))
     testthat::expect_null(p$labels$x, NULL)
     testthat::expect_null(p$labels$y, NULL)
+    testthat::expect_null(pb$plot$plot_env$stat.title, NULL)
+    testthat::expect_identical(pb$plot$guides$fill$title[1], "transmission")
   }
 )
 
+# contingency tab (with counts) ----------------------------------------------
 
 testthat::test_that(
   desc = "checking labels with counts",

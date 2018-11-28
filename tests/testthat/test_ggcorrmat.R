@@ -18,7 +18,7 @@ testthat::test_that(
       messages = FALSE
     )
 
-    # checking caption
+    # checking legend title
     pb <- ggplot2::ggplot_build(p)
     p_legend_title <- pb$plot$plot_env$legend.title
 
@@ -90,6 +90,10 @@ testthat::test_that(
       messages = FALSE
     )
 
+    # checking legend title
+    pb <- ggplot2::ggplot_build(p)
+    p_legend_title <- pb$plot$plot_env$legend.title
+
     # checking data used to create a plot
     dat <- tibble::as_tibble(p$data) %>%
       dplyr::mutate_if(
@@ -121,6 +125,19 @@ testthat::test_that(
     testthat::expect_null(p$labels$caption, NULL)
     testthat::expect_null(p$labels$xlab, NULL)
     testthat::expect_null(p$labels$ylab, NULL)
+    testthat::expect_identical(p_legend_title, ggplot2::expr(atop(
+      atop(
+        atop(scriptstyle(bold("sample size:")), italic(n)[min] ~
+        "=" ~ 30),
+        atop(
+          italic(n)[median] ~ "=" ~ 56,
+          italic(n)[max] ~ "=" ~ 83
+        )
+      ), atop(
+        scriptstyle(bold("correlation:")),
+        "robust"
+      )
+    )))
   }
 )
 
