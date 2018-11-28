@@ -18,6 +18,10 @@ testthat::test_that(
       messages = FALSE
     )
 
+    # checking caption
+    pb <- ggplot2::ggplot_build(p)
+    p_legend_title <- pb$plot$plot_env$legend.title
+
     # checking data used to create a plot
     dat <- tibble::as_tibble(p$data) %>%
       dplyr::mutate_if(
@@ -46,6 +50,14 @@ testthat::test_that(
     # checking plot labels
     testthat::expect_identical(p$labels$title, "Iris dataset")
     testthat::expect_identical(p$labels$subtitle, "By Edgar Anderson")
+    testthat::expect_identical(p_legend_title, ggplot2::expr(atop(
+      atop(scriptstyle(bold("sample size:")), italic(n) ~
+      "=" ~ 150L),
+      atop(
+        scriptstyle(bold("correlation:")),
+        "pearson"
+      )
+    )))
     testthat::expect_identical(p$labels$caption, ggplot2::expr(atop(
       expr = paste(
         bold("X"),
