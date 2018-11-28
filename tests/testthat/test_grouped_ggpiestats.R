@@ -3,33 +3,34 @@ context("grouped_ggpiestats")
 testthat::test_that(
   desc = "grouped_ggpiestats works",
   code = {
-
     #--------------------- only main variable -------------------------------
 
     ## without counts
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = suppressWarnings(expr = ggstatsplot::grouped_ggpiestats(
+    testthat::expect_true(inherits(suppressWarnings(
+      ggstatsplot::grouped_ggpiestats(
         data = mtcars,
         grouping.var = am,
         main = cyl,
         messages = FALSE
-      )),
-      what = "gg"
+      )
+    ),
+    what = "gg"
     ))
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = suppressWarnings(expr = ggstatsplot::grouped_ggpiestats(
+    testthat::expect_true(inherits(suppressWarnings(
+      ggstatsplot::grouped_ggpiestats(
         data = mtcars,
         grouping.var = "am",
         main = "cyl",
         messages = FALSE
-      )),
-      what = "gg"
+      )
+    ),
+    what = "gg"
     ))
 
     ## with counts
@@ -38,28 +39,30 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = suppressWarnings(expr = ggstatsplot::grouped_ggpiestats(
+    testthat::expect_true(inherits(suppressWarnings(
+      ggstatsplot::grouped_ggpiestats(
         data = as.data.frame(HairEyeColor),
         main = Hair,
         counts = Freq,
         grouping.var = Sex,
         messages = FALSE
-      )),
-      what = "gg"
+      )
+    ),
+    what = "gg"
     ))
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = suppressWarnings(expr = ggstatsplot::grouped_ggpiestats(
+    testthat::expect_true(inherits(suppressWarnings(
+      ggstatsplot::grouped_ggpiestats(
         data = as.data.frame(HairEyeColor),
         main = "Hair",
         counts = "Freq",
         grouping.var = "Sex",
         messages = FALSE
-      )),
-      what = "gg"
+      )
+    ),
+    what = "gg"
     ))
 
     #------------------ both main and condition variables ------------------
@@ -78,62 +81,62 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = suppressWarnings(expr = ggstatsplot::grouped_ggpiestats(
+    testthat::expect_true(inherits(suppressWarnings(
+      ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
         main = cyl,
         condition = class,
         grouping.var = drv,
         messages = FALSE
-      )),
-      what = "gg"
+      )
+    ),
+    what = "gg"
     ))
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = suppressWarnings(expr = ggstatsplot::grouped_ggpiestats(
+    testthat::expect_true(inherits(suppressWarnings(
+      ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
         main = "cyl",
         condition = "class",
         grouping.var = "drv",
         messages = FALSE
-      )),
-      what = "gg"
+      )
+    ),
+    what = "gg"
     ))
 
     ## with counts
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = suppressWarnings(
-        expr = ggstatsplot::grouped_ggpiestats(
-          data = as.data.frame(Titanic),
-          grouping.var = Class,
-          main = Sex,
-          condition = Survived,
-          counts = Freq,
-          messages = FALSE
-        )
-      ),
-      what = "gg"
+    testthat::expect_true(inherits(suppressWarnings(
+      ggstatsplot::grouped_ggpiestats(
+        data = as.data.frame(Titanic),
+        grouping.var = Class,
+        main = Sex,
+        condition = Survived,
+        counts = Freq,
+        messages = FALSE
+      )
+    ),
+    what = "gg"
     ))
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = suppressWarnings(
-        expr = ggstatsplot::grouped_ggpiestats(
-          data = as.data.frame(Titanic),
-          grouping.var = "Class",
-          main = "Sex",
-          condition = "Survived",
-          counts = "Freq",
-          messages = FALSE
-        )
-      ),
-      what = "gg"
+    testthat::expect_true(inherits(suppressWarnings(
+      ggstatsplot::grouped_ggpiestats(
+        data = as.data.frame(Titanic),
+        grouping.var = "Class",
+        main = "Sex",
+        condition = "Survived",
+        counts = "Freq",
+        messages = FALSE
+      )
+    ),
+    what = "gg"
     ))
   }
 )

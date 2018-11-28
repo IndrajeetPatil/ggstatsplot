@@ -1,4 +1,7 @@
-#' @title Compute minimum, maximum, and median for a dataframe with numbers.
+#' @title Compute minimum, maximum, and median across all numeric columns in a
+#'   dataframe.
+#' @name numdf_summary
+#' @author Indrajeet Patil
 #'
 #' @param df A dataframe.
 #'
@@ -9,9 +12,15 @@
 #' @importFrom purrr is_bare_numeric
 #' @importFrom stats median
 #'
+#' @examples
+#' \dontrun{
+#' ggstatsplot:::numdf_summary(ggplot2::msleep)
+#' }
+#' 
 #' @keywords internal
 
-numdf_n_summary <- function(df) {
+# function body
+numdf_summary <- function(df) {
   # minimum
   n_min <- tibble::as_tibble(x = df) %>%
     dplyr::select_if(.tbl = ., .predicate = purrr::is_bare_numeric) %>%

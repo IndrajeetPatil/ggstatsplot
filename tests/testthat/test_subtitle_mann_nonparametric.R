@@ -44,26 +44,26 @@ testthat::test_that(
 
     # testing overall everything identical
     testthat::expect_identical(
-      object = using_function1,
-      expected = results1
+      using_function1,
+      results1
     )
 
     # testing U statistic
     testthat::expect_identical(
-      object = as.character(using_function1)[4],
-      expected = as.character(results1)[4]
+      as.character(using_function1)[4],
+      as.character(results1)[4]
     )
 
     # testing Z statistic
     testthat::expect_identical(
-      object = as.character(using_function1)[8],
-      expected = as.character(results1)[8]
+      as.character(using_function1)[8],
+      as.character(results1)[8]
     )
 
     # testing sample size
     testthat::expect_identical(
-      object = using_function1[20],
-      expected = results1[20]
+      using_function1[20],
+      results1[20]
     )
   }
 )

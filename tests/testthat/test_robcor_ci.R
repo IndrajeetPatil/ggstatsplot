@@ -36,47 +36,15 @@ testthat::test_that(
     set.seed(123)
 
     # data without NAs
-    testthat::expect_equal(
-      object = df1$r,
-      expected = -0.8042457,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df1$conf.low,
-      expected = -0.9428293,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df1$conf.high,
-      expected = -0.6650366,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df1$`p-value`,
-      expected = 2.933186e-08,
-      tolerance = .00002
-    )
+    testthat::expect_equal(df1$r, -0.8042457, tolerance = .00002)
+    testthat::expect_equal(df1$conf.low, -0.9428293, tolerance = .00002)
+    testthat::expect_equal(df1$conf.high, -0.6650366, tolerance = .00002)
+    testthat::expect_equal(df1$`p-value`, 2.933186e-08, tolerance = .00002)
 
     # data with NAs
-    testthat::expect_equal(
-      object = df2$r,
-      expected = -0.8052814,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df2$conf.low,
-      expected = -0.9328399,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df2$conf.high,
-      expected = -0.686468,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df2$`p-value`,
-      expected = 4.677899e-08,
-      tolerance = .00002
-    )
+    testthat::expect_equal(df2$r, -0.8052814, tolerance = .00002)
+    testthat::expect_equal(df2$conf.low, -0.9328399, tolerance = .00002)
+    testthat::expect_equal(df2$conf.high, -0.686468, tolerance = .00002)
+    testthat::expect_equal(df2$`p-value`, 4.677899e-08, tolerance = .00002)
   }
 )

@@ -296,7 +296,8 @@ ggbetweenstats <- function(data,
       .tbl = .,
       .vars = "x",
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    ) %>%
+    tibble::as_tibble(x = .)
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(

@@ -64,54 +64,18 @@ testthat::test_that(
     # testing 8 conditions
 
     # model-1
-    testthat::expect_equal(
-      object = df1$etasq[1],
-      expected = 0.6024373,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df1$conf.low[1],
-      expected = 0.4675983,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df1$conf.high[1],
-      expected = 0.7821529,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df1$p.value[1],
-      expected = 1.227536e-12,
-      tolerance = .00002
-    )
+    testthat::expect_equal(df1$etasq[1], 0.6024373, tolerance = .00002)
+    testthat::expect_equal(df1$conf.low[1], 0.4675983, tolerance = .00002)
+    testthat::expect_equal(df1$conf.high[1], 0.7821529, tolerance = .00002)
+    testthat::expect_equal(df1$p.value[1], 1.227536e-12, tolerance = .00002)
 
     # model-2
-    testthat::expect_equal(
-      object = df2$p.value[2],
-      expected = 6.423958e-08,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df2$conf.low[2],
-      expected = 0.09086971,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df2$conf.high[2],
-      expected = 0.3558572,
-      tolerance = .00002
-    )
-    testthat::expect_equal(
-      object = df2$p.value[2],
-      expected = 6.423958e-08,
-      tolerance = .00002
-    )
+    testthat::expect_equal(df2$p.value[2], 6.423958e-08, tolerance = .00002)
+    testthat::expect_equal(df2$conf.low[2], 0.09086971, tolerance = .00002)
+    testthat::expect_equal(df2$conf.high[2], 0.3558572, tolerance = .00002)
+    testthat::expect_equal(df2$p.value[2], 6.423958e-08, tolerance = .00002)
 
     # model-3
-    testthat::expect_equal(
-      object = df3$etasq[2],
-      expected = 0.03034323,
-      tolerance = .00002
-    )
+    testthat::expect_equal(df3$etasq[2], 0.03034323, tolerance = .00002)
   }
 )

@@ -364,7 +364,7 @@ ggcorrmat <- function(data,
           ))
       } else {
         # in case of NAs, compute minimum and maximum sample sizes of pairs
-        n_summary <- numdf_n_summary(df = corr_df$n)
+        n_summary <- numdf_summary(df = corr_df$n)
 
         legend.title.text <-
           bquote(atop(

@@ -49,26 +49,26 @@ testthat::test_that(
 
     # testing overall call, omega squared and bayes factor
     testthat::expect_identical(
-      object = using_function1,
-      expected = results1
+      using_function1,
+      results1
     )
 
     # testing degress of freedom for chi-squared statistic
     testthat::expect_identical(
-      object = as.character(using_function1)[5],
-      expected = as.character(results1)[5]
+      as.character(using_function1)[5],
+      as.character(results1)[5]
     )
 
     # testing chi-squared statistic
     testthat::expect_identical(
-      object = as.character(using_function1)[7],
-      expected = as.character(results1)[7]
+      as.character(using_function1)[7],
+      as.character(results1)[7]
     )
 
     # testing sample size
     testthat::expect_identical(
-      object = using_function1[24],
-      expected = results1[24]
+      using_function1[24],
+      results1[24]
     )
   }
 )
