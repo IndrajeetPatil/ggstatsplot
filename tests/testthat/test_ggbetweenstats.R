@@ -3,8 +3,6 @@ context(desc = "ggbetweenstats")
 
 # outlier labeling works ----------------------------------------------------
 
-suppressPackageStartupMessages(library(rlang))
-
 testthat::test_that(
   desc = "error when x and outlier.label are same",
   code = {
@@ -166,25 +164,31 @@ testthat::test_that(
   }
 )
 
+# mean labelling tests work ------------------------------------------
 
-# visual tests ------------------------------------------------------------
+testthat::test_that(
+  desc = "checking mean labels are working",
+  code = {
 
-# haven't yet figured out how to implement tests using `vdiffr` package
+    # creating the plot
+    set.seed(123)
+    p <- ggstatsplot::ggbetweenstats(
+      data = mtcars,
+      x = "cyl",
+      y = "wt",
+      type = "np",
+      mean.ci = TRUE,
+      k = 3,
+      conf.level = 0.90,
+      nboot = 5,
+      messages = FALSE
+    )
 
-# testthat::test_that(
-#   desc = "ggbetweenstats works",
-#   code = {
-#     # plot to compare to
-#     ggbetweenstats_anova <- ggstatsplot::ggbetweenstats(
-#       data = datasets::iris,
-#       x = Species,
-#       y = Sepal.Length,
-#       messages = FALSE
-#     )
-#     # comparison using vdiffr package
-#        vdiffr::expect_doppelganger(
-#          title = "ggbetweenstats_anova",
-#          fig = ggbetweenstats_anova
-#        )
-#   }
-# )
+    # checking displayed mean labels
+    mean.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
+
+    testthat::expect_identical(mean.labels[1], "2.290, 95% CI [1.907, 2.673]")
+    testthat::expect_identical(mean.labels[2], "3.120, 95% CI [2.787, 3.453]")
+    testthat::expect_identical(mean.labels[3], "4.000, 95% CI [3.561, 4.439]")
+  }
+)

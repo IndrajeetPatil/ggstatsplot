@@ -337,7 +337,7 @@ subtitle_contingency_tab <- function(data,
           ),
           conf.level = paste(conf.level * 100, "%", sep = ""),
           or = ggstatsplot::specify_decimal_p(x = log(
-            x = or_df$estimate, base = exp(1)
+            x = or_df$estimate[[1]], base = exp(1)
           ), k),
           LL = ggstatsplot::specify_decimal_p(x = log(
             x = or_df$conf.int[1], base = exp(1)

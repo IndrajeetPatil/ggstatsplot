@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-27 November, 2018 16:46:33
+28 November, 2018 00:07:46
 
 This output is created by
 [covrpage](https://github.com/yonicd/covrpage).
@@ -13,7 +13,7 @@ package.
 
 | Object                                                                               | Coverage (%) |
 | :----------------------------------------------------------------------------------- | :----------: |
-| ggstatsplot                                                                          |    58.12     |
+| ggstatsplot                                                                          |    59.72     |
 | [R/ggcoefstats.R](../R/ggcoefstats.R)                                                |     0.00     |
 | [R/ggdotplotstats.R](../R/ggdotplotstats.R)                                          |     0.00     |
 | [R/helpers\_ggcoefstats.R](../R/helpers_ggcoefstats.R)                               |     0.00     |
@@ -23,22 +23,22 @@ package.
 | [R/helpers\_messages.R](../R/helpers_messages.R)                                     |     5.00     |
 | [R/combine\_plots.R](../R/combine_plots.R)                                           |    10.94     |
 | [R/helpers\_gghistostats.R](../R/helpers_gghistostats.R)                             |    37.80     |
-| [R/helpers\_bf\_tests.R](../R/helpers_bf_tests.R)                                    |    50.82     |
 | [R/ggscatterstats.R](../R/ggscatterstats.R)                                          |    53.87     |
 | [R/helpers\_gghistostats\_subtitles.R](../R/helpers_gghistostats_subtitles.R)        |    55.31     |
 | [R/gghistostats.R](../R/gghistostats.R)                                              |    56.38     |
 | [R/grouped\_ggbetweenstats.R](../R/grouped_ggbetweenstats.R)                         |    57.56     |
 | [R/ggcorrmat.R](../R/ggcorrmat.R)                                                    |    63.20     |
-| [R/ggbetweenstats.R](../R/ggbetweenstats.R)                                          |    67.95     |
 | [R/helpers\_ggbetween\_anova\_subtitles.R](../R/helpers_ggbetween_anova_subtitles.R) |    69.81     |
+| [R/helpers\_bf\_tests.R](../R/helpers_bf_tests.R)                                    |    71.98     |
 | [R/helpers\_effsize\_ci.R](../R/helpers_effsize_ci.R)                                |    72.83     |
 | [R/grouped\_ggcorrmat.R](../R/grouped_ggcorrmat.R)                                   |    73.21     |
 | [R/helpers\_ggscatterstats\_subtitles.R](../R/helpers_ggscatterstats_subtitles.R)    |    73.61     |
 | [R/grouped\_ggscatterstats.R](../R/grouped_ggscatterstats.R)                         |    73.68     |
+| [R/ggbetweenstats.R](../R/ggbetweenstats.R)                                          |    73.70     |
 | [R/helpers\_ggbetween\_t\_subtitles.R](../R/helpers_ggbetween_t_subtitles.R)         |    82.73     |
 | [R/helpers\_ggpiestats\_subtitles.R](../R/helpers_ggpiestats_subtitles.R)            |    85.49     |
-| [R/ggpiestats.R](../R/ggpiestats.R)                                                  |    87.04     |
-| [R/switch\_functions.R](../R/switch_functions.R)                                     |    92.73     |
+| [R/ggpiestats.R](../R/ggpiestats.R)                                                  |    91.05     |
+| [R/switch\_functions.R](../R/switch_functions.R)                                     |    94.55     |
 | [R/theme\_ggstatsplot.R](../R/theme_ggstatsplot.R)                                   |    98.37     |
 | [R/grouped\_gghistostats.R](../R/grouped_gghistostats.R)                             |    98.97     |
 | [R/grouped\_ggpiestats.R](../R/grouped_ggpiestats.R)                                 |    99.58     |
@@ -55,75 +55,79 @@ package.
 | file                                                                                          |  n |  time | error | failed | skipped | warning | icon |
 | :-------------------------------------------------------------------------------------------- | -: | ----: | ----: | -----: | ------: | ------: | :--- |
 | [test\_argument\_count.R](testthat/test_argument_count.R)                                     |  1 |  0.06 |     0 |      0 |       0 |       0 |      |
-| [test\_chisq\_v\_ci.R](testthat/test_chisq_v_ci.R)                                            | 10 |  3.17 |     0 |      0 |       0 |       0 |      |
-| [test\_cor\_test\_ci.R](testthat/test_cor_test_ci.R)                                          | 12 |  0.55 |     0 |      0 |       0 |       0 |      |
-| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R)                                      | 23 |  6.33 |     0 |      0 |       0 |       1 | \-   |
-| [test\_ggpiestats.R](testthat/test_ggpiestats.R)                                              | 11 |  0.14 |     0 |      0 |       0 |       0 |      |
-| [test\_grouped\_ggbetweenstats.R](testthat/test_grouped_ggbetweenstats.R)                     |  3 |  3.45 |     0 |      0 |       0 |       0 |      |
-| [test\_grouped\_ggcorrmat.R](testthat/test_grouped_ggcorrmat.R)                               |  4 |  2.18 |     0 |      0 |       0 |       0 |      |
-| [test\_grouped\_gghistostats.R](testthat/test_grouped_gghistostats.R)                         |  3 |  2.99 |     0 |      0 |       0 |       0 |      |
-| [test\_grouped\_ggpiestats.R](testthat/test_grouped_ggpiestats.R)                             |  8 | 36.33 |     0 |      0 |       0 |       0 |      |
-| [test\_grouped\_ggscatterstats.R](testthat/test_grouped_ggscatterstats.R)                     |  3 |  1.54 |     0 |      0 |       0 |       0 |      |
-| [test\_helpers\_ggbetweenstats.R](testthat/test_helpers_ggbetweenstats.R)                     |  6 |  0.41 |     0 |      0 |       0 |       0 |      |
-| [test\_lm\_effsize\_ci.R](testthat/test_lm_effsize_ci.R)                                      |  9 |  5.44 |     0 |      0 |       0 |       0 |      |
-| [test\_robcor\_ci.R](testthat/test_robcor_ci.R)                                               |  8 |  0.26 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_anova\_bayes.R](testthat/test_subtitle_anova_bayes.R)                        |  4 |  0.08 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_anova\_parametric.R](testthat/test_subtitle_anova_parametric.R)              |  7 |  1.35 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_anova\_robust.R](testthat/test_subtitle_anova_robust.R)                      |  4 |  1.74 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_contingency\_tab.R](testthat/test_subtitle_contingency_tab.R)                |  5 |  1.51 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_contingency\_tab\_gof.R](testthat/test_subtitle_contingency_tab_gof.R)       |  3 |  0.06 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_contingency\_tab\_paired.R](testthat/test_subtitle_contingency_tab_paired.R) |  3 |  0.16 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_ggscatterstats.R](testthat/test_subtitle_ggscatterstats.R)                   |  3 |  0.75 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_kw\_nonparametric.R](testthat/test_subtitle_kw_nonparametric.R)              |  4 |  1.75 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_mann\_nonparametric.R](testthat/test_subtitle_mann_nonparametric.R)          |  4 |  0.28 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_mann\_paired.R](testthat/test_subtitle_mann_paired.R)                        |  4 |  0.06 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_t\_bayes.R](testthat/test_subtitle_t_bayes.R)                                |  4 |  0.42 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_t\_bayes\_paired.R](testthat/test_subtitle_t_bayes_paired.R)                 |  4 |  0.24 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_t\_onesample.R](testthat/test_subtitle_t_onesample.R)                        |  4 |  0.45 |     0 |      0 |       0 |       0 |      |
-| [test\_subtitle\_t\_parametric.R](testthat/test_subtitle_t_parametric.R)                      |  5 |  0.42 |     0 |      0 |       0 |       0 |      |
+| [test\_chisq\_v\_ci.R](testthat/test_chisq_v_ci.R)                                            | 10 |  2.91 |     0 |      0 |       0 |       0 |      |
+| [test\_cor\_test\_ci.R](testthat/test_cor_test_ci.R)                                          | 12 |  0.57 |     0 |      0 |       0 |       0 |      |
+| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R)                                      | 26 |  6.44 |     0 |      0 |       0 |       1 | \-   |
+| [test\_ggpiestats.R](testthat/test_ggpiestats.R)                                              | 38 | 11.78 |     0 |      0 |       0 |       0 |      |
+| [test\_grouped\_ggbetweenstats.R](testthat/test_grouped_ggbetweenstats.R)                     |  3 |  2.32 |     0 |      0 |       0 |       0 |      |
+| [test\_grouped\_ggcorrmat.R](testthat/test_grouped_ggcorrmat.R)                               |  4 |  1.58 |     0 |      0 |       0 |       0 |      |
+| [test\_grouped\_gghistostats.R](testthat/test_grouped_gghistostats.R)                         |  3 |  2.17 |     0 |      0 |       0 |       0 |      |
+| [test\_grouped\_ggpiestats.R](testthat/test_grouped_ggpiestats.R)                             |  8 | 26.45 |     0 |      0 |       0 |       0 |      |
+| [test\_grouped\_ggscatterstats.R](testthat/test_grouped_ggscatterstats.R)                     |  3 |  0.83 |     0 |      0 |       0 |       0 |      |
+| [test\_helpers\_ggbetweenstats.R](testthat/test_helpers_ggbetweenstats.R)                     |  6 |  0.20 |     0 |      0 |       0 |       0 |      |
+| [test\_lm\_effsize\_ci.R](testthat/test_lm_effsize_ci.R)                                      |  9 |  3.32 |     0 |      0 |       0 |       0 |      |
+| [test\_robcor\_ci.R](testthat/test_robcor_ci.R)                                               |  8 |  0.18 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_anova\_bayes.R](testthat/test_subtitle_anova_bayes.R)                        |  4 |  0.05 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_anova\_parametric.R](testthat/test_subtitle_anova_parametric.R)              |  7 |  1.10 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_anova\_robust.R](testthat/test_subtitle_anova_robust.R)                      |  4 |  1.23 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_contingency\_tab.R](testthat/test_subtitle_contingency_tab.R)                |  5 |  1.25 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_contingency\_tab\_gof.R](testthat/test_subtitle_contingency_tab_gof.R)       |  3 |  0.03 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_contingency\_tab\_paired.R](testthat/test_subtitle_contingency_tab_paired.R) |  3 |  0.06 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_ggscatterstats.R](testthat/test_subtitle_ggscatterstats.R)                   |  3 |  0.57 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_kw\_nonparametric.R](testthat/test_subtitle_kw_nonparametric.R)              |  4 |  1.56 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_mann\_nonparametric.R](testthat/test_subtitle_mann_nonparametric.R)          |  4 |  0.22 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_mann\_paired.R](testthat/test_subtitle_mann_paired.R)                        |  4 |  0.03 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_t\_bayes.R](testthat/test_subtitle_t_bayes.R)                                |  4 |  0.36 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_t\_bayes\_paired.R](testthat/test_subtitle_t_bayes_paired.R)                 |  4 |  0.19 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_t\_onesample.R](testthat/test_subtitle_t_onesample.R)                        |  4 |  0.30 |     0 |      0 |       0 |       0 |      |
+| [test\_subtitle\_t\_parametric.R](testthat/test_subtitle_t_parametric.R)                      |  5 |  0.26 |     0 |      0 |       0 |       0 |      |
 | [test\_subtitle\_t\_parametric\_paired.R](testthat/test_subtitle_t_parametric_paired.R)       |  4 |  0.02 |     0 |      0 |       0 |       0 |      |
-| [test\_t1way\_ci.R](testthat/test_t1way_ci.R)                                                 |  5 |  6.03 |     0 |      0 |       0 |       0 |      |
+| [test\_t1way\_ci.R](testthat/test_t1way_ci.R)                                                 |  5 |  4.17 |     0 |      0 |       0 |       0 |      |
 
 <details open>
 
 <summary> Show Detailed Test Results
 </summary>
 
-| file                                                                                                  | context                            | test                                                         | status  |  n |  time | icon |
-| :---------------------------------------------------------------------------------------------------- | :--------------------------------- | :----------------------------------------------------------- | :------ | -: | ----: | :--- |
-| [test\_argument\_count.R](testthat/test_argument_count.R#L57_L60)                                     | argument\_count                    | argument\_count is correct                                   | PASS    |  1 |  0.06 |      |
-| [test\_chisq\_v\_ci.R](testthat/test_chisq_v_ci.R#L46)                                                | chisq\_v\_ci                       | chisq\_v\_ci works                                           | PASS    | 10 |  3.17 |      |
-| [test\_cor\_test\_ci.R](testthat/test_cor_test_ci.R#L45_L49)                                          | cor\_test\_ci                      | cor\_test\_ci works                                          | PASS    | 12 |  0.55 |      |
-| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L11_L18)                                      | ggbetweenstats                     | error when x and outlier.label are same                      | PASS    |  1 |  0.00 |      |
-| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L28_L38)                                      | ggbetweenstats                     | outlier.labeling works across vector types                   | WARNING |  4 |  3.48 | \-   |
-| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L116)                                         | ggbetweenstats                     | checking labels and data from plot                           | PASS    | 18 |  2.85 |      |
-| [test\_ggpiestats.R](testthat/test_ggpiestats.R#L37)                                                  | ggpiestats                         | checking labels and data from plot with only `main` variable | PASS    | 11 |  0.14 |      |
-| [test\_grouped\_ggbetweenstats.R](testthat/test_grouped_ggbetweenstats.R#L12_L32)                     | grouped\_ggbetweenstats            | grouping.var works across vector types                       | PASS    |  3 |  3.45 |      |
-| [test\_grouped\_ggcorrmat.R](testthat/test_grouped_ggcorrmat.R#L18_L27)                               | grouped\_ggcorrmat                 | grouped\_ggcorrmat works                                     | PASS    |  4 |  2.18 |      |
-| [test\_grouped\_gghistostats.R](testthat/test_grouped_gghistostats.R#L9_L19)                          | grouped\_gghistostats              | grouped\_gghistostats works                                  | PASS    |  3 |  2.99 |      |
-| [test\_grouped\_ggpiestats.R](testthat/test_grouped_ggpiestats.R#L13_L21)                             | grouped\_ggpiestats                | grouped\_ggpiestats works                                    | PASS    |  8 | 36.33 |      |
-| [test\_grouped\_ggscatterstats.R](testthat/test_grouped_ggscatterstats.R#L9_L17)                      | grouped\_ggscatterstats            | grouped\_ggscatterstats works                                | PASS    |  3 |  1.54 |      |
-| [test\_helpers\_ggbetweenstats.R](testthat/test_helpers_ggbetweenstats.R#L30_L33)                     | helpers\_ggbetweenstats            | mean\_labeller works                                         | PASS    |  6 |  0.41 |      |
-| [test\_lm\_effsize\_ci.R](testthat/test_lm_effsize_ci.R#L67_L71)                                      | lm\_effsize\_ci                    | lm\_effsize\_ci works                                        | PASS    |  9 |  5.44 |      |
-| [test\_robcor\_ci.R](testthat/test_robcor_ci.R#L39_L43)                                               | robcor\_ci                         | robcor\_ci works                                             | PASS    |  8 |  0.26 |      |
-| [test\_subtitle\_anova\_bayes.R](testthat/test_subtitle_anova_bayes.R#L51_L54)                        | subtitle\_anova\_bayes             | subtitle\_anova\_bayes works                                 | PASS    |  4 |  0.08 |      |
-| [test\_subtitle\_anova\_parametric.R](testthat/test_subtitle_anova_parametric.R#L54_L57)              | subtitle\_anova\_parametric        | parametric anova subtitles work (without NAs)                | PASS    |  3 |  0.03 |      |
-| [test\_subtitle\_anova\_parametric.R](testthat/test_subtitle_anova_parametric.R#L105)                 | subtitle\_anova\_parametric        | parametric anova subtitles work (with NAs)                   | PASS    |  4 |  1.32 |      |
-| [test\_subtitle\_anova\_robust.R](testthat/test_subtitle_anova_robust.R#L53_L56)                      | subtitle\_anova\_robust            | subtitle\_anova\_robust works                                | PASS    |  4 |  1.74 |      |
-| [test\_subtitle\_contingency\_tab.R](testthat/test_subtitle_contingency_tab.R#L57_L60)                | subtitle\_contingency\_tab         | subtitle\_contingency\_tab works                             | PASS    |  5 |  1.51 |      |
-| [test\_subtitle\_contingency\_tab\_gof.R](testthat/test_subtitle_contingency_tab_gof.R#L41_L44)       | subtitle\_contingency\_tab\_gof    | Goodness of Fit subtitle\_contingency\_tab works             | PASS    |  3 |  0.06 |      |
-| [test\_subtitle\_contingency\_tab\_paired.R](testthat/test_subtitle_contingency_tab_paired.R#L76_L79) | subtitle\_contingency\_tab\_paired | Paired subtitle\_contingency\_tab works                      | PASS    |  3 |  0.16 |      |
-| [test\_subtitle\_ggscatterstats.R](testthat/test_subtitle_ggscatterstats.R#L46)                       | subtitle\_ggscatterstats           | subtitle\_ggscatterstats works                               | PASS    |  3 |  0.75 |      |
-| [test\_subtitle\_kw\_nonparametric.R](testthat/test_subtitle_kw_nonparametric.R#L51_L54)              | subtitle\_kw\_nonparametric        | subtitle\_kw\_nonparametric works                            | PASS    |  4 |  1.75 |      |
-| [test\_subtitle\_mann\_nonparametric.R](testthat/test_subtitle_mann_nonparametric.R#L46_L49)          | subtitle\_mann\_nonparametric      | subtitle\_mann\_nonparametric works                          | PASS    |  4 |  0.28 |      |
-| [test\_subtitle\_mann\_paired.R](testthat/test_subtitle_mann_paired.R#L217_L220)                      | subtitle\_mann\_paired             | subtitle\_mann\_paired works                                 | PASS    |  4 |  0.06 |      |
-| [test\_subtitle\_t\_bayes.R](testthat/test_subtitle_t_bayes.R#L47)                                    | subtitle\_t\_bayes                 | subtitle\_t\_bayes works                                     | PASS    |  4 |  0.42 |      |
-| [test\_subtitle\_t\_bayes\_paired.R](testthat/test_subtitle_t_bayes_paired.R#L218_L221)               | subtitle\_t\_bayes\_paired         | subtitle\_t\_bayes\_paired works                             | PASS    |  4 |  0.24 |      |
-| [test\_subtitle\_t\_onesample.R](testthat/test_subtitle_t_onesample.R#L53_L56)                        | subtitle\_t\_onesample             | subtitle\_t\_onesample works                                 | PASS    |  4 |  0.45 |      |
-| [test\_subtitle\_t\_parametric.R](testthat/test_subtitle_t_parametric.R#L63_L66)                      | subtitle\_t\_parametric            | parametric t-test works (between-subjects without NAs)       | PASS    |  4 |  0.03 |      |
-| [test\_subtitle\_t\_parametric.R](testthat/test_subtitle_t_parametric.R#L133)                         | subtitle\_t\_parametric            | parametric t-test works (between-subjects with NAs)          | PASS    |  1 |  0.39 |      |
-| [test\_subtitle\_t\_parametric\_paired.R](testthat/test_subtitle_t_parametric_paired.R#L223_L226)     | subtitle\_t\_parametric\_paired    | subtitle\_t\_parametric\_paired works                        | PASS    |  4 |  0.02 |      |
-| [test\_t1way\_ci.R](testthat/test_t1way_ci.R#L56)                                                     | t1way\_ci                          | t1way\_ci works                                              | PASS    |  5 |  6.03 |      |
+| file                                                                                                  | context                            | test                                                   | status  |  n |  time | icon |
+| :---------------------------------------------------------------------------------------------------- | :--------------------------------- | :----------------------------------------------------- | :------ | -: | ----: | :--- |
+| [test\_argument\_count.R](testthat/test_argument_count.R#L57_L60)                                     | argument\_count                    | argument\_count is correct                             | PASS    |  1 |  0.06 |      |
+| [test\_chisq\_v\_ci.R](testthat/test_chisq_v_ci.R#L46)                                                | chisq\_v\_ci                       | chisq\_v\_ci works                                     | PASS    | 10 |  2.91 |      |
+| [test\_cor\_test\_ci.R](testthat/test_cor_test_ci.R#L45_L49)                                          | cor\_test\_ci                      | cor\_test\_ci works                                    | PASS    | 12 |  0.57 |      |
+| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L9_L16)                                       | ggbetweenstats                     | error when x and outlier.label are same                | PASS    |  1 |  0.00 |      |
+| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L26_L36)                                      | ggbetweenstats                     | outlier.labeling works across vector types             | WARNING |  4 |  3.86 | \-   |
+| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L114)                                         | ggbetweenstats                     | checking labels and data from plot                     | PASS    | 18 |  2.33 |      |
+| [test\_ggbetweenstats.R](testthat/test_ggbetweenstats.R#L190)                                         | ggbetweenstats                     | checking mean labels are working                       | PASS    |  3 |  0.25 |      |
+| [test\_ggpiestats.R](testthat/test_ggpiestats.R#L37)                                                  | ggpiestats                         | checking one sample proportion test                    | PASS    | 11 |  0.10 |      |
+| [test\_ggpiestats.R](testthat/test_ggpiestats.R#L86)                                                  | ggpiestats                         | checking labels with contingency tab                   | PASS    | 11 |  4.54 |      |
+| [test\_ggpiestats.R](testthat/test_ggpiestats.R#L142)                                                 | ggpiestats                         | checking labels with counts                            | PASS    | 15 |  6.91 |      |
+| [test\_ggpiestats.R](testthat/test_ggpiestats.R#L202)                                                 | ggpiestats                         | checking labels with contingency tab (paired)          | PASS    |  1 |  0.23 |      |
+| [test\_grouped\_ggbetweenstats.R](testthat/test_grouped_ggbetweenstats.R#L12_L32)                     | grouped\_ggbetweenstats            | grouping.var works across vector types                 | PASS    |  3 |  2.32 |      |
+| [test\_grouped\_ggcorrmat.R](testthat/test_grouped_ggcorrmat.R#L18_L27)                               | grouped\_ggcorrmat                 | grouped\_ggcorrmat works                               | PASS    |  4 |  1.58 |      |
+| [test\_grouped\_gghistostats.R](testthat/test_grouped_gghistostats.R#L9_L19)                          | grouped\_gghistostats              | grouped\_gghistostats works                            | PASS    |  3 |  2.17 |      |
+| [test\_grouped\_ggpiestats.R](testthat/test_grouped_ggpiestats.R#L13_L21)                             | grouped\_ggpiestats                | grouped\_ggpiestats works                              | PASS    |  8 | 26.45 |      |
+| [test\_grouped\_ggscatterstats.R](testthat/test_grouped_ggscatterstats.R#L9_L17)                      | grouped\_ggscatterstats            | grouped\_ggscatterstats works                          | PASS    |  3 |  0.83 |      |
+| [test\_helpers\_ggbetweenstats.R](testthat/test_helpers_ggbetweenstats.R#L30_L33)                     | helpers\_ggbetweenstats            | mean\_labeller works                                   | PASS    |  6 |  0.20 |      |
+| [test\_lm\_effsize\_ci.R](testthat/test_lm_effsize_ci.R#L67_L71)                                      | lm\_effsize\_ci                    | lm\_effsize\_ci works                                  | PASS    |  9 |  3.32 |      |
+| [test\_robcor\_ci.R](testthat/test_robcor_ci.R#L39_L43)                                               | robcor\_ci                         | robcor\_ci works                                       | PASS    |  8 |  0.18 |      |
+| [test\_subtitle\_anova\_bayes.R](testthat/test_subtitle_anova_bayes.R#L51_L54)                        | subtitle\_anova\_bayes             | subtitle\_anova\_bayes works                           | PASS    |  4 |  0.05 |      |
+| [test\_subtitle\_anova\_parametric.R](testthat/test_subtitle_anova_parametric.R#L54_L57)              | subtitle\_anova\_parametric        | parametric anova subtitles work (without NAs)          | PASS    |  3 |  0.03 |      |
+| [test\_subtitle\_anova\_parametric.R](testthat/test_subtitle_anova_parametric.R#L105)                 | subtitle\_anova\_parametric        | parametric anova subtitles work (with NAs)             | PASS    |  4 |  1.07 |      |
+| [test\_subtitle\_anova\_robust.R](testthat/test_subtitle_anova_robust.R#L53_L56)                      | subtitle\_anova\_robust            | subtitle\_anova\_robust works                          | PASS    |  4 |  1.23 |      |
+| [test\_subtitle\_contingency\_tab.R](testthat/test_subtitle_contingency_tab.R#L57_L60)                | subtitle\_contingency\_tab         | subtitle\_contingency\_tab works                       | PASS    |  5 |  1.25 |      |
+| [test\_subtitle\_contingency\_tab\_gof.R](testthat/test_subtitle_contingency_tab_gof.R#L41_L44)       | subtitle\_contingency\_tab\_gof    | Goodness of Fit subtitle\_contingency\_tab works       | PASS    |  3 |  0.03 |      |
+| [test\_subtitle\_contingency\_tab\_paired.R](testthat/test_subtitle_contingency_tab_paired.R#L76_L79) | subtitle\_contingency\_tab\_paired | Paired subtitle\_contingency\_tab works                | PASS    |  3 |  0.06 |      |
+| [test\_subtitle\_ggscatterstats.R](testthat/test_subtitle_ggscatterstats.R#L46)                       | subtitle\_ggscatterstats           | subtitle\_ggscatterstats works                         | PASS    |  3 |  0.57 |      |
+| [test\_subtitle\_kw\_nonparametric.R](testthat/test_subtitle_kw_nonparametric.R#L51_L54)              | subtitle\_kw\_nonparametric        | subtitle\_kw\_nonparametric works                      | PASS    |  4 |  1.56 |      |
+| [test\_subtitle\_mann\_nonparametric.R](testthat/test_subtitle_mann_nonparametric.R#L46_L49)          | subtitle\_mann\_nonparametric      | subtitle\_mann\_nonparametric works                    | PASS    |  4 |  0.22 |      |
+| [test\_subtitle\_mann\_paired.R](testthat/test_subtitle_mann_paired.R#L217_L220)                      | subtitle\_mann\_paired             | subtitle\_mann\_paired works                           | PASS    |  4 |  0.03 |      |
+| [test\_subtitle\_t\_bayes.R](testthat/test_subtitle_t_bayes.R#L47)                                    | subtitle\_t\_bayes                 | subtitle\_t\_bayes works                               | PASS    |  4 |  0.36 |      |
+| [test\_subtitle\_t\_bayes\_paired.R](testthat/test_subtitle_t_bayes_paired.R#L218_L221)               | subtitle\_t\_bayes\_paired         | subtitle\_t\_bayes\_paired works                       | PASS    |  4 |  0.19 |      |
+| [test\_subtitle\_t\_onesample.R](testthat/test_subtitle_t_onesample.R#L53_L56)                        | subtitle\_t\_onesample             | subtitle\_t\_onesample works                           | PASS    |  4 |  0.30 |      |
+| [test\_subtitle\_t\_parametric.R](testthat/test_subtitle_t_parametric.R#L63_L66)                      | subtitle\_t\_parametric            | parametric t-test works (between-subjects without NAs) | PASS    |  4 |  0.01 |      |
+| [test\_subtitle\_t\_parametric.R](testthat/test_subtitle_t_parametric.R#L133)                         | subtitle\_t\_parametric            | parametric t-test works (between-subjects with NAs)    | PASS    |  1 |  0.25 |      |
+| [test\_subtitle\_t\_parametric\_paired.R](testthat/test_subtitle_t_parametric_paired.R#L223_L226)     | subtitle\_t\_parametric\_paired    | subtitle\_t\_parametric\_paired works                  | PASS    |  4 |  0.02 |      |
+| [test\_t1way\_ci.R](testthat/test_t1way_ci.R#L56)                                                     | t1way\_ci                          | t1way\_ci works                                        | PASS    |  5 |  4.17 |      |
 
 | Failed | Warning | Skipped |
 | :----- | :------ | :------ |
