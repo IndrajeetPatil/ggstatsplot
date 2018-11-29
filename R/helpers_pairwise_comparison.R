@@ -192,9 +192,9 @@ games_howell <- function(data,
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' #------------------- between-subjects design ----------------------------
-#' 
+#'
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
@@ -206,7 +206,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -217,7 +217,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -227,7 +227,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "none"
 #' )
-#' 
+#'
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -237,9 +237,9 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "fdr"
 #' )
-#' 
+#'
 #' #------------------- within-subjects design ----------------------------
-#' 
+#'
 #' # parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggstatsplot::intent_morality,
@@ -249,7 +249,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "BH"
 #' )
-#' 
+#'
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggstatsplot::intent_morality,
@@ -259,7 +259,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "BY"
 #' )
-#' 
+#'
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggstatsplot::intent_morality,
@@ -602,7 +602,7 @@ pairwise_p <-
       dplyr::select(.data = ., -label) %>%
       purrrlyr::by_row(
         .d = .,
-        ..f = ~ paste("p ",
+        ..f = ~ paste("p",
           .$label2,
           sep = ""
         ),
