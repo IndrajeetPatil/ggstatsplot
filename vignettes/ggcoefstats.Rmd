@@ -787,47 +787,31 @@ ggstatsplot::ggcoefstats(x = est)
 
 ```
 
-## Fit Linear Model Using Generalized Least Squares (`gls`)
+## linear model using generalized least squares (`gls`)
 
 The `nlme` package provides a function to fit a linear model using generalized
 least squares. The errors are allowed to be correlated and/or have unequal
-variances.
-
-```{r gls, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
-set.seed(123)
-
-# needed library
-library(nlme)
-
-# creating model object
-fit <-
-  nlme::gls(
-    model = follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time),
-    data = Ovary,
-    correlation = corAR1(form = ~ 1 | Mare)
-  )
-
-# plot
-ggstatsplot::ggcoefstats(x = fit)
-```
+variances. We have already seen an example in the `README` document:
+<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
 ## robust regression using an M estimator (`rlm`)
 
 We have already seen an example of `MASS::rlm()` in the `README` document:
-<https://cran.r-project.org/package=ggstatsplot/readme/README.html>
+<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
 
 ## quantile regression (`rq`)
 
 We have already seen an example of quantile regression (`quantreg::rq()`) in the
 `README` document:
-<https://cran.r-project.org/package=ggstatsplot/readme/README.html>
+<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
 ## And much more...
 
 This vignette was supposed to give just a taste for only *some* of the
 regression models supported by `ggcoefstats`. The full list of supported models
-will keep expanding as additional tidiers are added to the `broom` package:
+will keep expanding as additional tidiers are added to the `broom` (and its
+extension `broom.mixed`) package:
 <https://broom.tidyverse.org/articles/available-methods.html>
 
 Note that not **all** models supported by `broom` will be supported by

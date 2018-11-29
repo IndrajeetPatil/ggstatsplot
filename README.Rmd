@@ -828,41 +828,40 @@ Let's see a couple more examples:
 ```{r ggcoefstats3, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 6}
 # for reproducibility
 set.seed(123)
-library(lme4)
 library(quantreg)
+library(nlme)
 
-# creating dataframe needed for one of the analyses below
-d <- as.data.frame(Titanic)
+# loading dataframe needed for the analyses below
 data(stackloss)
 
 # combining plots together
 ggstatsplot::combine_plots(
   # quantile regression
-ggstatsplot::ggcoefstats(
-  x = quantreg::rq(
-    formula = stack.loss ~ stack.x,
-    data = stackloss,
-    method = "br"
-  ),
-  se.type = "iid",
-  title = "quantile regression"
-),
-  # linear model
   ggstatsplot::ggcoefstats(
-    x = lme4::lmer(
-      formula = scale(Reaction) ~ scale(Days) + (Days | Subject),
-      data = lme4::sleepstudy
+    x = quantreg::rq(
+      formula = stack.loss ~ stack.x,
+      data = stackloss,
+      method = "br"
+    ),
+    se.type = "iid",
+    title = "quantile regression"
+  ),
+  # linear model using generalized least squares
+  ggstatsplot::ggcoefstats(
+    x = nlme::gls(
+      model = follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time),
+      data = Ovary,
+      correlation = corAR1(form = ~ 1 | Mare)
     ),
     point.color = "red",
     stats.label.color = "black",
     ggtheme = hrbrthemes::theme_ipsum_ps(),
     ggstatsplot.layer = FALSE,
     exclude.intercept = FALSE,
-    title = "linear mixed-effects model"
+    title = "generalized least squares model"
   ),
   labels = c("(a)", "(b)"),
-  nrow = 2,
-  ncol = 1
+  nrow = 2
 )
 ```
 

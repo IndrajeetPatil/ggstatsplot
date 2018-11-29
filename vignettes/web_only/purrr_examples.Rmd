@@ -130,6 +130,7 @@ plot_list <- purrr::pmap(
     data = year_list,
     x = "continent",
     y = "lifeExp",
+    outlier.tagging = TRUE,
     outlier.label = "country",
     outlier.label.color = list(
       "#56B4E9",

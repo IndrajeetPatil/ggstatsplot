@@ -330,7 +330,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002ba0afa0&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002ba092c0&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -920,42 +920,41 @@
 <p>Let’s see a couple more examples:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lme4)</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(quantreg)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(quantreg)</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nlme)</a>
 <a class="sourceLine" id="cb28-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="co"># creating dataframe needed for one of the analyses below</span></a>
-<a class="sourceLine" id="cb28-7" data-line-number="7">d &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(Titanic)</a>
-<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(stackloss)</a>
-<a class="sourceLine" id="cb28-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb28-10" data-line-number="10"><span class="co"># combining plots together</span></a>
-<a class="sourceLine" id="cb28-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb28-12" data-line-number="12">  <span class="co"># quantile regression</span></a>
-<a class="sourceLine" id="cb28-13" data-line-number="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb28-14" data-line-number="14">  <span class="dt">x =</span> quantreg<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/quantreg/topics/rq">rq</a></span>(</a>
-<a class="sourceLine" id="cb28-15" data-line-number="15">    <span class="dt">formula =</span> stack.loss <span class="op">~</span><span class="st"> </span>stack.x,</a>
-<a class="sourceLine" id="cb28-16" data-line-number="16">    <span class="dt">data =</span> stackloss,</a>
-<a class="sourceLine" id="cb28-17" data-line-number="17">    <span class="dt">method =</span> <span class="st">"br"</span></a>
-<a class="sourceLine" id="cb28-18" data-line-number="18">  ),</a>
-<a class="sourceLine" id="cb28-19" data-line-number="19">  <span class="dt">se.type =</span> <span class="st">"iid"</span>,</a>
-<a class="sourceLine" id="cb28-20" data-line-number="20">  <span class="dt">title =</span> <span class="st">"quantile regression"</span></a>
-<a class="sourceLine" id="cb28-21" data-line-number="21">),</a>
-<a class="sourceLine" id="cb28-22" data-line-number="22">  <span class="co"># linear model</span></a>
-<a class="sourceLine" id="cb28-23" data-line-number="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb28-24" data-line-number="24">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
-<a class="sourceLine" id="cb28-25" data-line-number="25">      <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(Reaction) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(Days) <span class="op">+</span><span class="st"> </span>(Days <span class="op">|</span><span class="st"> </span>Subject),</a>
-<a class="sourceLine" id="cb28-26" data-line-number="26">      <span class="dt">data =</span> lme4<span class="op">::</span>sleepstudy</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="co"># loading dataframe needed for the analyses below</span></a>
+<a class="sourceLine" id="cb28-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(stackloss)</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb28-9" data-line-number="9"><span class="co"># combining plots together</span></a>
+<a class="sourceLine" id="cb28-10" data-line-number="10">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb28-11" data-line-number="11">  <span class="co"># quantile regression</span></a>
+<a class="sourceLine" id="cb28-12" data-line-number="12">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb28-13" data-line-number="13">    <span class="dt">x =</span> quantreg<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/quantreg/topics/rq">rq</a></span>(</a>
+<a class="sourceLine" id="cb28-14" data-line-number="14">      <span class="dt">formula =</span> stack.loss <span class="op">~</span><span class="st"> </span>stack.x,</a>
+<a class="sourceLine" id="cb28-15" data-line-number="15">      <span class="dt">data =</span> stackloss,</a>
+<a class="sourceLine" id="cb28-16" data-line-number="16">      <span class="dt">method =</span> <span class="st">"br"</span></a>
+<a class="sourceLine" id="cb28-17" data-line-number="17">    ),</a>
+<a class="sourceLine" id="cb28-18" data-line-number="18">    <span class="dt">se.type =</span> <span class="st">"iid"</span>,</a>
+<a class="sourceLine" id="cb28-19" data-line-number="19">    <span class="dt">title =</span> <span class="st">"quantile regression"</span></a>
+<a class="sourceLine" id="cb28-20" data-line-number="20">  ),</a>
+<a class="sourceLine" id="cb28-21" data-line-number="21">  <span class="co"># linear model using generalized least squares</span></a>
+<a class="sourceLine" id="cb28-22" data-line-number="22">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb28-23" data-line-number="23">    <span class="dt">x =</span> nlme<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/nlme/topics/gls">gls</a></span>(</a>
+<a class="sourceLine" id="cb28-24" data-line-number="24">      <span class="dt">model =</span> follicles <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">sin</a></span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">*</span><span class="st"> </span>Time) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">cos</a></span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">*</span><span class="st"> </span>Time),</a>
+<a class="sourceLine" id="cb28-25" data-line-number="25">      <span class="dt">data =</span> Ovary,</a>
+<a class="sourceLine" id="cb28-26" data-line-number="26">      <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Mare)</a>
 <a class="sourceLine" id="cb28-27" data-line-number="27">    ),</a>
 <a class="sourceLine" id="cb28-28" data-line-number="28">    <span class="dt">point.color =</span> <span class="st">"red"</span>,</a>
 <a class="sourceLine" id="cb28-29" data-line-number="29">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb28-30" data-line-number="30">    <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps">theme_ipsum_ps</a></span>(),</a>
 <a class="sourceLine" id="cb28-31" data-line-number="31">    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb28-32" data-line-number="32">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb28-33" data-line-number="33">    <span class="dt">title =</span> <span class="st">"linear mixed-effects model"</span></a>
+<a class="sourceLine" id="cb28-33" data-line-number="33">    <span class="dt">title =</span> <span class="st">"generalized least squares model"</span></a>
 <a class="sourceLine" id="cb28-34" data-line-number="34">  ),</a>
 <a class="sourceLine" id="cb28-35" data-line-number="35">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
-<a class="sourceLine" id="cb28-36" data-line-number="36">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb28-37" data-line-number="37">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb28-38" data-line-number="38">)</a></code></pre></div>
+<a class="sourceLine" id="cb28-36" data-line-number="36">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb28-37" data-line-number="37">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats3-1.png" width="100%"></p>
 <p>This is by no means an exhaustive list of models supported by <code>ggcoefstats</code>. For a more thorough discussion about all regression models supported, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html</a></p>
 </div>

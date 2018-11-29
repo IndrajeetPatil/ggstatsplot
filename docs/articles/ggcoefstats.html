@@ -819,42 +819,25 @@
 <a class="sourceLine" id="cb17-23" data-line-number="23">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> est)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/felm-1.png" width="576"></p>
 </div>
-<div id="fit-linear-model-using-generalized-least-squares-gls" class="section level2">
+<div id="linear-model-using-generalized-least-squares-gls" class="section level2">
 <h2 class="hasAnchor">
-<a href="#fit-linear-model-using-generalized-least-squares-gls" class="anchor"></a>Fit Linear Model Using Generalized Least Squares (<code>gls</code>)</h2>
-<p>The <code>nlme</code> package provides a function to fit a linear model using generalized least squares. The errors are allowed to be correlated and/or have unequal variances.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co"># needed library</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nlme)</a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co"># creating model object</span></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7">fit &lt;-</a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="st">  </span>nlme<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/nlme/topics/gls">gls</a></span>(</a>
-<a class="sourceLine" id="cb18-9" data-line-number="9">    <span class="dt">model =</span> follicles <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">sin</a></span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">*</span><span class="st"> </span>Time) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">cos</a></span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">*</span><span class="st"> </span>Time),</a>
-<a class="sourceLine" id="cb18-10" data-line-number="10">    <span class="dt">data =</span> Ovary,</a>
-<a class="sourceLine" id="cb18-11" data-line-number="11">    <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Mare)</a>
-<a class="sourceLine" id="cb18-12" data-line-number="12">  )</a>
-<a class="sourceLine" id="cb18-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb18-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> fit)</a>
-<a class="sourceLine" id="cb18-16" data-line-number="16"><span class="co">#&gt; Note: No confidence intervals available for regression coefficients from gls object, so skipping whiskers in the plot.</span></a></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/gls-1.png" width="576"></p>
+<a href="#linear-model-using-generalized-least-squares-gls" class="anchor"></a>linear model using generalized least squares (<code>gls</code>)</h2>
+<p>The <code>nlme</code> package provides a function to fit a linear model using generalized least squares. The errors are allowed to be correlated and/or have unequal variances. We have already seen an example in the <code>README</code> document: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md</a></p>
 </div>
 <div id="robust-regression-using-an-m-estimator-rlm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#robust-regression-using-an-m-estimator-rlm" class="anchor"></a>robust regression using an M estimator (<code>rlm</code>)</h2>
-<p>We have already seen an example of <code><a href="https://www.rdocumentation.org/packages/MASS/topics/rlm">MASS::rlm()</a></code> in the <code>README</code> document: <a href="https://cran.r-project.org/package=ggstatsplot/readme/README.html" class="uri">https://cran.r-project.org/package=ggstatsplot/readme/README.html</a></p>
+<p>We have already seen an example of <code><a href="https://www.rdocumentation.org/packages/MASS/topics/rlm">MASS::rlm()</a></code> in the <code>README</code> document: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md</a></p>
 </div>
 <div id="quantile-regression-rq" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quantile-regression-rq" class="anchor"></a>quantile regression (<code>rq</code>)</h2>
-<p>We have already seen an example of quantile regression (<code><a href="https://www.rdocumentation.org/packages/quantreg/topics/rq">quantreg::rq()</a></code>) in the <code>README</code> document: <a href="https://cran.r-project.org/package=ggstatsplot/readme/README.html" class="uri">https://cran.r-project.org/package=ggstatsplot/readme/README.html</a></p>
+<p>We have already seen an example of quantile regression (<code><a href="https://www.rdocumentation.org/packages/quantreg/topics/rq">quantreg::rq()</a></code>) in the <code>README</code> document: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md</a></p>
 </div>
 <div id="and-much-more" class="section level2">
 <h2 class="hasAnchor">
 <a href="#and-much-more" class="anchor"></a>And much more…</h2>
-<p>This vignette was supposed to give just a taste for only <em>some</em> of the regression models supported by <code>ggcoefstats</code>. The full list of supported models will keep expanding as additional tidiers are added to the <code>broom</code> package: <a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a></p>
+<p>This vignette was supposed to give just a taste for only <em>some</em> of the regression models supported by <code>ggcoefstats</code>. The full list of supported models will keep expanding as additional tidiers are added to the <code>broom</code> (and its extension <code>broom.mixed</code>) package: <a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a></p>
 <p>Note that not <strong>all</strong> models supported by <code>broom</code> will be supported by <code>ggcoefstats</code>. In particular, classes of objects for which there is no estimates present (e.g., <code>kmeans</code>, <code>optim</code>, etc.) are not supported.</p>
 </div>
 <div id="suggestions" class="section level1">
@@ -888,7 +871,7 @@
       <li><a href="#repeated-measures-anova-aovlist">repeated measures ANOVA (<code>aovlist</code>)</a></li>
       <li><a href="#robust-regression-lmrob-glmrob">robust regression (<code>lmRob</code>, <code>glmRob</code>)</a></li>
       <li><a href="#fit-a-linear-model-with-multiple-group-fixed-effects-felm">Fit A Linear Model With Multiple Group Fixed Effects (<code>felm</code>)</a></li>
-      <li><a href="#fit-linear-model-using-generalized-least-squares-gls">Fit Linear Model Using Generalized Least Squares (<code>gls</code>)</a></li>
+      <li><a href="#linear-model-using-generalized-least-squares-gls">linear model using generalized least squares (<code>gls</code>)</a></li>
       <li><a href="#robust-regression-using-an-m-estimator-rlm">robust regression using an M estimator (<code>rlm</code>)</a></li>
       <li><a href="#quantile-regression-rq">quantile regression (<code>rq</code>)</a></li>
       <li><a href="#and-much-more">And much more…</a></li>

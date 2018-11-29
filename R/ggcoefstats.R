@@ -354,19 +354,11 @@ ggcoefstats <- function(x,
     # ==================== tidying everything else ===========================
   } else if (class(x)[[1]] == "gls") {
     # getting tidy dataframe from broom and then combining it with its CIs
-    tidy_df <- dplyr::full_join(
-      x = broom::tidy(
-        x = x,
-        conf.int = TRUE,
-        conf.level = conf.level,
-        ...
-      ),
-      y = stats::confint(x) %>%
-        as.data.frame(.) %>%
-        tibble::rownames_to_column(., "term") %>%
-        tibble::as_tibble(x = .) %>%
-        dplyr::rename(.data = ., conf.low = `2.5 %`, conf.high = `97.5 %`),
-      by = "term"
+    tidy_df <- broom.mixed::tidy(
+      x = x,
+      conf.int = TRUE,
+      conf.level = conf.level,
+      ...
     )
     # ==================== tidying everything else ===========================
   } else {

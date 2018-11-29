@@ -30,8 +30,8 @@ testthat::test_that(
           "135.09275",
           ") = ",
           "29.36078",
-          ", p",
-          omega^2,
+          ", ",
+         omega["p"]^2,
           " = ",
           "0.05539",
           ", log"["e"],
@@ -49,26 +49,26 @@ testthat::test_that(
 
     # testing overall call
     testthat::expect_identical(
-      object = using_function1,
-      expected = results1
+      using_function1,
+     results1
     )
 
     # testing bayes factor value
     testthat::expect_identical(
-      object = as.character(using_function1)[16],
-      expected = as.character(results1)[16]
+      as.character(using_function1)[16],
+     as.character(results1)[16]
     )
 
     # testing omega squared
     testthat::expect_identical(
-      object = as.character(using_function1)[12],
-      expected = as.character(results1)[12]
+      as.character(using_function1)[12],
+     as.character(results1)[12]
     )
 
     # testing sample size
     testthat::expect_identical(
-      object = using_function1[22],
-      expected = results1[22]
+      using_function1[22],
+     results1[22]
     )
   }
 )
