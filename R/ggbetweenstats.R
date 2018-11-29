@@ -669,6 +669,7 @@ ggbetweenstats <- function(data,
           vjust = vjust,
           y_position = ggsignif_y_position,
           annotations = df_pairwise$label,
+          test = NULL,
           na.rm = TRUE
         )
     }
