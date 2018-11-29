@@ -270,7 +270,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       ggstatsplot::specify_decimal_p(
-        x = dat$ci.lower[1],
+        x = dat$conf.low[1],
         p.value = FALSE,
         k = 2
       ),
@@ -339,22 +339,24 @@ testthat::test_that(
     testthat::expect_identical(dat$significance[1], "*")
     testthat::expect_identical(dat$significance[2], "***")
     testthat::expect_identical(dat$significance[3], "*")
-    testthat::expect_identical(p$labels$caption,
-                               ggplot2::expr(atop(
-                                 displaystyle(NULL),
-                                 expr = paste(
-                                   "Pairwise comparisons: ",
-                                   bold("Student's t-test"),
-                                   "; Adjustment (p-value): ",
-                                   bold("Bonferroni")
-                                 )
-                               )))
+    testthat::expect_identical(
+      p$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "Pairwise comparisons: ",
+          bold("Student's t-test"),
+          "; Adjustment (p-value): ",
+          bold("Bonferroni")
+        )
+      ))
+    )
 
     # checking values
     testthat::expect_equal(dat$mean.difference[1], 0.831, tolerance = 0.01)
     testthat::expect_equal(dat$mean.difference[3], 0.882, tolerance = 0.01)
     testthat::expect_equal(dat$conf.low[1], 0.0794, tolerance = 0.01)
-    testthat::expect_equal(dat$conf.high[1],1.580, tolerance = 0.01)
+    testthat::expect_equal(dat$conf.high[1], 1.580, tolerance = 0.01)
 
     # checking ggsignif layers
     testthat::expect_equal(ggsignif_stat$y_position[1], 5.559600, tolerance = 0.01)

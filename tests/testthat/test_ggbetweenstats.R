@@ -192,3 +192,38 @@ testthat::test_that(
     testthat::expect_identical(mean.labels[3], "4.000, 95% CI [3.561, 4.439]")
   }
 )
+
+# subtitle works with equal variance -----------------------------------------
+
+testthat::test_that(
+  desc = "subtitle works with equal variance assumption",
+  code = {
+
+    # plot
+    set.seed(123)
+    p <- ggstatsplot::ggbetweenstats(
+      data = mtcars,
+      x = cyl,
+      y = wt,
+      nboot = 50,
+      var.equal = TRUE,
+      messages = FALSE,
+      k = 2
+    )
+
+    # subtitle
+    set.seed(123)
+    p_subtitle <- ggstatsplot::subtitle_anova_parametric(
+      data = mtcars,
+      x = cyl,
+      y = wt,
+      nboot = 50,
+      var.equal = TRUE,
+      messages = FALSE,
+      k = 2
+    )
+
+    # checking if these two are equal
+    testthat::expect_identical(p$labels$subtitle, p_subtitle)
+  }
+)

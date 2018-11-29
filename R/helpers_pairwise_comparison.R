@@ -90,7 +90,7 @@ games_howell <- function(data,
         std[combs[2, x]] / n[combs[2, x]]))
 
     # upper confidence limit for mean difference
-    high.conf <- lapply(X = 1:ncol(combs), FUN = function(x) {
+    conf.high <- lapply(X = 1:ncol(combs), FUN = function(x) {
       mean.diff + stats::qtukey(
         p = 0.95,
         nmeans = groups,
@@ -99,7 +99,7 @@ games_howell <- function(data,
     })[[1]]
 
     # lower confidence limit for mean difference
-    low.conf <- lapply(X = 1:ncol(combs), FUN = function(x) {
+    conf.low <- lapply(X = 1:ncol(combs), FUN = function(x) {
       mean.diff - stats::qtukey(
         p = 0.95,
         nmeans = groups,
@@ -113,7 +113,7 @@ games_howell <- function(data,
 
     # Collect all statistics into list
     stats <-
-      list(group1, group2, mean.diff, se, t, df, p, high.conf, low.conf)
+      list(group1, group2, mean.diff, se, t, df, p, conf.high, conf.low)
   })
 
   # unlist statistics collected earlier
@@ -143,8 +143,8 @@ games_howell <- function(data,
       "t.value",
       "df",
       "p.value",
-      "high.conf",
-      "low.conf"
+      "conf.high",
+      "conf.low"
     )
 
   # converting it to tibble
@@ -153,8 +153,8 @@ games_howell <- function(data,
     dplyr::select(
       .data = .,
       group1:mean.difference,
-      low.conf,
-      high.conf,
+      conf.low,
+      conf.high,
       dplyr::everything()
     )
 
@@ -556,6 +556,13 @@ pairwise_p <-
         df %<>%
           dplyr::select(.data = ., -p.crit)
       }
+
+      # renaming confidence interval names
+      df %<>%
+        dplyr::rename(
+          .data = .,
+          conf.low = ci.lower, conf.high = ci.upper
+        )
 
       # message about which test was run
       if (isTRUE(messages)) {
