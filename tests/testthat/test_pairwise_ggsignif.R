@@ -15,7 +15,8 @@ testthat::test_that(
       y = brainwt,
       messages = FALSE,
       pairwise.comparisons = TRUE,
-      caption = "mammalian sleep"
+      caption = "mammalian sleep",
+      k = 3
     )
 
     # checking dimensions of data
@@ -55,7 +56,8 @@ testthat::test_that(
       pairwise.comparisons = TRUE,
       p.adjust.method = "none",
       pairwise.display = "ns",
-      pairwise.annotation = "p.value"
+      pairwise.annotation = "p.value",
+      k = 3
     )
 
     # data used for pairwise comparisons
