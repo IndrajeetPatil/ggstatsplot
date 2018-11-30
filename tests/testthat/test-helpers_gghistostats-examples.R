@@ -43,7 +43,7 @@ testthat::test_that(
     testthat::expect_equal(y_label_pos, 686.5, tolerance = 0.01)
 
     # adding labels
-    p <- ggstatsplot:::histo_labeller(
+    p <- histo_labeller(
       plot = plot,
       x = dplyr::starwars$height,
       y.label.position = y_label_pos,
