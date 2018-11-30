@@ -105,7 +105,8 @@ histo_labeller <- function(plot,
           ),
           show.legend = FALSE,
           parse = TRUE,
-          color = test.value.color
+          color = test.value.color,
+          na.rm = TRUE
         )
     }
   }
@@ -138,7 +139,8 @@ histo_labeller <- function(plot,
             ),
             show.legend = FALSE,
             parse = TRUE,
-            color = centrality.color
+            color = centrality.color,
+            na.rm = TRUE
           )
       }
     } else if (centrality.para == "median") {
@@ -167,7 +169,8 @@ histo_labeller <- function(plot,
             ),
             show.legend = FALSE,
             parse = TRUE,
-            color = centrality.color
+            color = centrality.color,
+            na.rm = TRUE
           )
       }
     }
