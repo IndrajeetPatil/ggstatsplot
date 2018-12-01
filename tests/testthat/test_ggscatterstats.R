@@ -135,6 +135,7 @@ testthat::test_that(
         x = sleep_total,
         y = bodywt,
         type = "r",
+        centrality.para = "mean",
         conf.level = 0.90,
         marginal = FALSE,
         messages = FALSE
@@ -151,6 +152,55 @@ testthat::test_that(
       messages = FALSE
     )
 
+    # built plot
+    pb <- ggplot2::ggplot_build(p)
+
     testthat::expect_identical(p$plot_env$subtitle, p_subtitle)
+
+    testthat::expect_equal(pb$data[[3]]$xintercept[[1]],
+      mean(ggplot2::msleep$sleep_total, na.rm = TRUE),
+      tolerance = 1e-3
+    )
+    testthat::expect_equal(pb$data[[4]]$yintercept[[1]],
+      mean(ggplot2::msleep$bodywt, na.rm = TRUE),
+      tolerance = 1e-3
+    )
+  }
+)
+
+
+# checking median display ---------------------------------------------
+
+testthat::test_that(
+  desc = "checking median display",
+  code = {
+    # creating the plot
+    set.seed(123)
+
+    # plot
+    p <-
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_cycle,
+        y = awake,
+        marginal = FALSE,
+        centrality.para = "median",
+        messages = FALSE
+      )
+
+    # built plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # checking intercepts
+    testthat::expect_equal(pb$plot$plot_env$x_label_pos, 0.8066451, tolerance = 1e-3)
+    testthat::expect_equal(pb$plot$plot_env$y_label_pos, 13.37923, tolerance = 1e-3)
+    testthat::expect_equal(pb$data[[3]]$xintercept[[1]],
+      median(ggplot2::msleep$sleep_cycle, na.rm = TRUE),
+      tolerance = 1e-3
+    )
+    testthat::expect_equal(pb$data[[4]]$yintercept[[1]],
+      median(ggplot2::msleep$awake, na.rm = TRUE),
+      tolerance = 1e-3
+    )
   }
 )

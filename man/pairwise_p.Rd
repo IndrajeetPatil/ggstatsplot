@@ -135,7 +135,6 @@ ggstatsplot::pairwise_p(
   paired = TRUE,
   p.adjust.method = "hommel"
 )
-
 }
 \seealso{
 \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}

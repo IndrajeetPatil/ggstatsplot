@@ -12,18 +12,22 @@ testthat::test_that(
 
     # plot
     p <-
-      ggstatsplot::ggcoefstats(x = mod,
-                               conf.level = 0.99,
-                               exclude.intercept = FALSE,
-                               k = 3)
+      ggstatsplot::ggcoefstats(
+        x = mod,
+        conf.level = 0.99,
+        exclude.intercept = FALSE,
+        k = 3
+      )
 
     # tidy dataframe from the function
     tidy_df <- p$plot_env$tidy_df
 
     # dataframe from `broom` package
-    broom_df <- broom::tidy(x = mod,
-                            conf.int = TRUE,
-                            conf.level = 0.99)
+    broom_df <- broom::tidy(
+      x = mod,
+      conf.int = TRUE,
+      conf.level = 0.99
+    )
 
     testthat::expect_equal(tidy_df$estimate, broom_df$estimate, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
@@ -32,6 +36,63 @@ testthat::test_that(
     testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)
 
     testthat::expect_identical(tidy_df$significance, c("***", "***", "*", "ns"))
-    testthat::expect_identical(tidy_df$p.value.formatted,
-                               c("< 0.001", "< 0.001", "0.014", "0.064"))
-  })
+    testthat::expect_identical(
+      tidy_df$p.value.formatted,
+      c("< 0.001", "< 0.001", "0.014", "0.064")
+    )
+  }
+)
+
+
+# stats::lm --------------------------------------------------
+
+testthat::test_that(
+  desc = "ggcoefstats with glmer model",
+  code = {
+    set.seed(123)
+    library(lme4)
+
+    # model
+    mod <-
+      lme4::glmer(
+        formula = cbind(incidence, size - incidence) ~ period + (1 | herd),
+        data = cbpp,
+        family = binomial
+      )
+
+    # plot
+    p <-
+      ggstatsplot::ggcoefstats(
+        x = mod,
+        conf.level = 0.90,
+        exclude.intercept = FALSE
+      )
+
+    # tidy dataframe from the function
+    tidy_df <- p$plot_env$tidy_df
+
+    # dataframe from `broom` package
+    broom_df <- broom.mixed::tidy(
+      x = mod,
+      conf.int = TRUE,
+      conf.level = 0.90,
+      effects = "fixed"
+    )
+
+    testthat::expect_equal(tidy_df$estimate, broom_df$estimate, tolerance = 1e-3)
+    testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
+    testthat::expect_equal(tidy_df$conf.low, broom_df$conf.low, tolerance = 1e-3)
+    testthat::expect_equal(tidy_df$conf.high, broom_df$conf.high, tolerance = 1e-3)
+    testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)
+
+    testthat::expect_identical(tidy_df$significance, c("***", "**", "***", "***"))
+    testthat::expect_identical(
+      tidy_df$p.value.formatted,
+      c("< 0.001", "0.001", "< 0.001", "< 0.001")
+    )
+    testthat::expect_identical(
+      tidy_df$statistic,
+      as.character(round(broom_df$statistic, 2))
+    )
+  }
+)
