@@ -87,10 +87,6 @@ testthat::test_that(
 
     testthat::expect_identical(tidy_df$significance, c("***", "**", "***", "***"))
     testthat::expect_identical(
-      tidy_df$p.value.formatted,
-      c("< 0.001", "0.001", "< 0.001", "< 0.001")
-    )
-    testthat::expect_identical(
       tidy_df$statistic,
       as.character(round(broom_df$statistic, 2))
     )

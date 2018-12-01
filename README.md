@@ -200,6 +200,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
+#> <bytecode: 0x00000000303cf580>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -598,8 +599,8 @@ ggstatsplot::ggpiestats(
 #> # A tibble: 2 x 7
 #>   condition  Approve Disapprove `Chi-squared`    df `p-value` significance
 #>   <fct>      <chr>   <chr>              <dbl> <dbl>     <dbl> <chr>       
-#> 1 Approve    90.23%  9.77%              569.6     1         0 ***         
-#> 2 Disapprove 20.83%  79.17%             245       1         0 ***
+#> 1 Approve    90.23%  9.77%               570.     1         0 ***         
+#> 2 Disapprove 20.83%  79.17%              245      1         0 ***
 ```
 
 <img src="man/figures/README-ggpiestats3-1.png" width="100%" />
