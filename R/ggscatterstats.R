@@ -391,7 +391,8 @@ ggscatterstats <- function(data,
         alpha = 0.5,
         show.legend = FALSE,
         parse = TRUE,
-        color = xfill
+        color = xfill,
+        na.rm = TRUE
       ) +
       # label for horizontal line
       ggplot2::geom_label(
@@ -407,7 +408,8 @@ ggscatterstats <- function(data,
         alpha = 0.5,
         show.legend = FALSE,
         parse = TRUE,
-        color = yfill
+        color = yfill,
+        na.rm = TRUE
       )
   } else if (centrality.para == "median") {
     plot <-
@@ -442,7 +444,8 @@ ggscatterstats <- function(data,
         alpha = 0.5,
         show.legend = FALSE,
         parse = TRUE,
-        color = xfill
+        color = xfill,
+        na.rm = TRUE
       ) +
       # label for horizontal line
       ggplot2::geom_label(
@@ -458,7 +461,8 @@ ggscatterstats <- function(data,
         alpha = 0.5,
         show.legend = FALSE,
         parse = TRUE,
-        color = yfill
+        color = yfill,
+        na.rm = TRUE
       )
   }
 

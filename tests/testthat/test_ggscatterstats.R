@@ -1,7 +1,7 @@
 # context ------------------------------------------------------------
 context(desc = "ggscatterstats")
 
-# pearson's r without NAs ---------------------------------------------
+# pearson's r with NAs ---------------------------------------------
 
 testthat::test_that(
   desc = "checking ggscatterstats - without NAs - pearson's r",
@@ -18,6 +18,7 @@ testthat::test_that(
         xlab = "sleep (total)",
         ylab = "body weight",
         type = "p",
+        messages = FALSE,
         centrality.para = "mean",
         marginal = FALSE,
         bf.message = TRUE,
@@ -84,5 +85,72 @@ testthat::test_that(
     testthat::expect_identical(pb$plot$labels$y, "body weight")
     testthat::expect_identical(p$plot_env$label_data$name[1], "Asian elephant")
     testthat::expect_identical(p$plot_env$label_data$name[2], "African elephant")
+  }
+)
+
+# spearman's rho with NAs ---------------------------------------------
+
+testthat::test_that(
+  desc = "checking ggscatterstats - without NAs - spearman's rho",
+  code = {
+    # creating the plot
+    set.seed(123)
+    p <-
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        type = "np",
+        conf.level = 0.99,
+        marginal = FALSE,
+        messages = FALSE
+      )
+
+    # subtitle
+    set.seed(123)
+    p_subtitle <- ggstatsplot::subtitle_ggscatterstats(
+      data = ggplot2::msleep,
+      x = sleep_total,
+      y = bodywt,
+      type = "np",
+      conf.level = 0.99,
+      messages = FALSE
+    )
+
+    testthat::expect_identical(p$plot_env$subtitle, p_subtitle)
+  }
+)
+
+
+# percentage bend with NAs ---------------------------------------------
+
+testthat::test_that(
+  desc = "checking ggscatterstats - without NAs - percentage bend",
+  code = {
+    # creating the plot
+    set.seed(123)
+    p <-
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        type = "r",
+        conf.level = 0.90,
+        marginal = FALSE,
+        messages = FALSE
+      )
+
+    # subtitle
+    set.seed(123)
+    p_subtitle <- ggstatsplot::subtitle_ggscatterstats(
+      data = ggplot2::msleep,
+      x = sleep_total,
+      y = bodywt,
+      type = "r",
+      conf.level = 0.90,
+      messages = FALSE
+    )
+
+    testthat::expect_identical(p$plot_env$subtitle, p_subtitle)
   }
 )

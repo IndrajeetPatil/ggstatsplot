@@ -347,8 +347,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; </span><span style='color: #555555;'>3</span><span> carni   omni     0.002</span><span style='text-decoration: underline;'>10</span><span>  -</span><span style='color: #BB0000;'>0.151</span><span>     0.155    0.969 ns           p = 0.969    
 #&gt; </span><span style='color: #555555;'>4</span><span> herbi   omni     0.055</span><span style='text-decoration: underline;'>1</span><span>   -</span><span style='color: #BB0000;'>0.173</span><span>     0.283    0.598 ns           p = 0.598    
 #&gt; </span><span style='color: #555555;'>5</span><span> carni   insecti  0.057</span><span style='text-decoration: underline;'>7</span><span>   -</span><span style='color: #BB0000;'>0.060</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>    0.176    0.438 ns           p = 0.438    
-#&gt; </span><span style='color: #555555;'>6</span><span> herbi   insecti  0.111    -</span><span style='color: #BB0000;'>0.098</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>    0.320    0.438 ns           p = 0.438    </div><div class='input'>
-<span class='co'>#------------------- within-subjects design ----------------------------</span>
+#&gt; </span><span style='color: #555555;'>6</span><span> herbi   insecti  0.111    -</span><span style='color: #BB0000;'>0.098</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>    0.320    0.438 ns           p = 0.438    </div></span><div class='input'><span class='co'>#------------------- within-subjects design ----------------------------</span>
 
 <span class='co'># parametric</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
@@ -356,9 +355,9 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"BH"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
 #&gt;  Games-Howell test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>BH</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 11</span><span>
 #&gt;   group1 group2 mean.difference conf.low conf.high    se t.value    df p.value
@@ -376,38 +375,42 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
-  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"BY"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The nonparametric pairwise multiple comparisons test used-
-#&gt;  Dwass-Steel-Crichtlow-Fligner test.
+)</div><div class='output co'>#&gt; <span class='message'>Registered S3 methods overwritten by 'PMCMR':</span>
+#&gt; <span class='message'>  method        from     </span>
+#&gt; <span class='message'>  print.PMCMR   PMCMRplus</span>
+#&gt; <span class='message'>  summary.PMCMR PMCMRplus</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The nonparametric pairwise multiple comparisons test used-
+#&gt;  Durbin-Conover test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>BY</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
-#&gt;   group1      group2          W p.value significance p.value.label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> accidental  attempted    15.1       0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>2</span><span> accidental  intentional  38.3       0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>3</span><span> accidental  neutral     -</span><span style='color: #BB0000;'>24.0</span><span>       0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>4</span><span> attempted   intentional  25.1       0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>5</span><span> attempted   neutral     -</span><span style='color: #BB0000;'>35.3</span><span>       0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>6</span><span> intentional neutral     -</span><span style='color: #BB0000;'>50.6</span><span>       0 ***          p &lt;= 0.001   </div><div class='input'>
+#&gt;   group1      group2      statistic   p.value significance p.value.label
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
+#&gt; </span><span style='color: #555555;'>1</span><span> accidental  attempted        10.4 1.37</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 24</span><span> ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>2</span><span> accidental  intentional      31.7 3.80</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-190</span><span> ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>3</span><span> accidental  neutral          17.6 8.84</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 66</span><span> ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>4</span><span> attempted   intentional      21.3 1.44</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 93</span><span> ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>5</span><span> attempted   neutral          28.0 3.25</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-153</span><span> ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>6</span><span> intentional neutral          49.4 0.  </span><span style='color: #555555;'> </span><span>     ***          p &lt;= 0.001   </div><div class='input'>
 <span class='co'># robust</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
-  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"hommel"</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The robust pairwise multiple comparisons test used-
 #&gt;  Yuen's trimmed means comparisons test.
 #&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>hommel</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 8</span><span>
 #&gt;   group1   group2   psihat conf.low conf.high p.value significance p.value.label
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-#&gt; </span><span style='color: #555555;'>1</span><span> acciden~ intenti~  -</span><span style='color: #BB0000;'>3.27</span><span>    -</span><span style='color: #BB0000;'>3.51</span><span>    -</span><span style='color: #BB0000;'>3.03</span><span>        0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>2</span><span> attempt~ intenti~  -</span><span style='color: #BB0000;'>2.04</span><span>    -</span><span style='color: #BB0000;'>2.32</span><span>    -</span><span style='color: #BB0000;'>1.77</span><span>        0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>3</span><span> acciden~ attempt~  -</span><span style='color: #BB0000;'>1.23</span><span>    -</span><span style='color: #BB0000;'>1.52</span><span>    -</span><span style='color: #BB0000;'>0.935</span><span>       0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>4</span><span> acciden~ neutral    1.29     1.08     1.50        0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>5</span><span> attempt~ neutral    2.52     2.27     2.77        0 ***          p &lt;= 0.001   
-#&gt; </span><span style='color: #555555;'>6</span><span> intenti~ neutral    4.56     4.38     4.74        0 ***          p &lt;= 0.001   </div></span></pre>
+#&gt; </span><span style='color: #555555;'>1</span><span> acciden~ intenti~  -</span><span style='color: #BB0000;'>2.96</span><span>    -</span><span style='color: #BB0000;'>3.20</span><span>    -</span><span style='color: #BB0000;'>2.71</span><span>        0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>2</span><span> attempt~ intenti~  -</span><span style='color: #BB0000;'>1.76</span><span>    -</span><span style='color: #BB0000;'>1.98</span><span>    -</span><span style='color: #BB0000;'>1.55</span><span>        0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>3</span><span> acciden~ attempt~  -</span><span style='color: #BB0000;'>1.02</span><span>    -</span><span style='color: #BB0000;'>1.32</span><span>    -</span><span style='color: #BB0000;'>0.725</span><span>       0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>4</span><span> acciden~ neutral    1.19     1.01     1.36        0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>5</span><span> attempt~ neutral    2.27     2.05     2.50        0 ***          p &lt;= 0.001   
+#&gt; </span><span style='color: #555555;'>6</span><span> intenti~ neutral    4.24     4.05     4.43        0 ***          p &lt;= 0.001   </div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

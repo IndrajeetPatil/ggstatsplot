@@ -237,7 +237,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "fdr"
 #' )
-#' 
+#' }
 #' #------------------- within-subjects design ----------------------------
 #' 
 #' # parametric
@@ -246,7 +246,7 @@ games_howell <- function(data,
 #'   x = condition,
 #'   y = rating,
 #'   type = "p",
-#'   paired = FALSE,
+#'   paired = TRUE,
 #'   p.adjust.method = "BH"
 #' )
 #' 
@@ -256,7 +256,7 @@ games_howell <- function(data,
 #'   x = condition,
 #'   y = rating,
 #'   type = "np",
-#'   paired = FALSE,
+#'   paired = TRUE,
 #'   p.adjust.method = "BY"
 #' )
 #' 
@@ -266,10 +266,9 @@ games_howell <- function(data,
 #'   x = condition,
 #'   y = rating,
 #'   type = "r",
-#'   paired = FALSE,
+#'   paired = TRUE,
 #'   p.adjust.method = "hommel"
 #' )
-#' }
 #' @export
 
 # function body

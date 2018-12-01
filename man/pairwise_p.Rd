@@ -103,7 +103,7 @@ ggstatsplot::pairwise_p(
   paired = FALSE,
   p.adjust.method = "fdr"
 )
-
+}
 #------------------- within-subjects design ----------------------------
 
 # parametric
@@ -112,7 +112,7 @@ ggstatsplot::pairwise_p(
   x = condition,
   y = rating,
   type = "p",
-  paired = FALSE,
+  paired = TRUE,
   p.adjust.method = "BH"
 )
 
@@ -122,7 +122,7 @@ ggstatsplot::pairwise_p(
   x = condition,
   y = rating,
   type = "np",
-  paired = FALSE,
+  paired = TRUE,
   p.adjust.method = "BY"
 )
 
@@ -132,10 +132,10 @@ ggstatsplot::pairwise_p(
   x = condition,
   y = rating,
   type = "r",
-  paired = FALSE,
+  paired = TRUE,
   p.adjust.method = "hommel"
 )
-}
+
 }
 \seealso{
 \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}
