@@ -120,12 +120,14 @@ testthat::test_that(
       x = key,
       y = value,
       type = "p",
+      k = 3,
       paired = TRUE,
       messages = FALSE,
       p.adjust.method = "BH"
     )
 
-    testthat::expect_equal(df1$mean.difference,
+    testthat::expect_equal(
+      df1$mean.difference,
       c(1.664, 1.027, 2.138, -0.637, 0.474, 1.112),
       tolerance = 0.001
     )
@@ -153,6 +155,7 @@ testthat::test_that(
       x = key,
       y = value,
       type = "np",
+      k = 3,
       paired = TRUE,
       messages = FALSE,
       p.adjust.method = "BY"
@@ -187,6 +190,7 @@ testthat::test_that(
       x = key,
       y = value,
       type = "r",
+      k = 3,
       paired = TRUE,
       messages = FALSE,
       p.adjust.method = "hommel"
