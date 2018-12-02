@@ -6,6 +6,7 @@
 \alias{specify_decimal_p}
 \alias{signif_column}
 \alias{lm_effsize_ci}
+\alias{set_cwd}
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{\%$\%}
@@ -16,7 +17,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{groupedstats}{\code{\link[groupedstats]{specify_decimal_p}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{lm_effsize_ci}}}
+  \item{groupedstats}{\code{\link[groupedstats]{specify_decimal_p}}, \code{\link[groupedstats]{signif_column}}, \code{\link[groupedstats]{lm_effsize_ci}}, \code{\link[groupedstats]{set_cwd}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}, \code{\link[magrittr]{\%<>\%}}, \code{\link[magrittr]{\%$\%}}}
 }}

@@ -13,6 +13,10 @@ groupedstats::signif_column
 #' @importFrom groupedstats lm_effsize_ci
 groupedstats::lm_effsize_ci
 
+#' @export
+#' @importFrom groupedstats set_cwd
+groupedstats::set_cwd
+
 # ----------------------- tidyverse -------------------------------------
 
 #' @export

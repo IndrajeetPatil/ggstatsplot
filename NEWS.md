@@ -36,8 +36,8 @@ MAJOR CHANGES
     `ggsignif`.
   - Following functions are now reexported from the `groupedstats` package to
     avoid repeating the same code in two packages: `specify_decimal_p`,
-    `signif_column`, `lm_effsize_ci`. Therefore, `groupedstats` is now added as
-    a dependency.
+    `signif_column`, `lm_effsize_ci`, and `set_cwd`. Therefore, `groupedstats`
+    is now added as a dependency.
   - `gghistostats` can now show both counts and proportions information on the
     same plot when `bar.measure` argument is set to `"mix"`.
   - The helper function `untable` has been depcreated in light of
