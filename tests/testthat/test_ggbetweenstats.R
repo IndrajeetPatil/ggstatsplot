@@ -118,8 +118,18 @@ testthat::test_that(
     outlier.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
 
     testthat::expect_equal(length(outlier.labels), 7L)
-    testthat::expect_identical(outlier.labels[1], "Asian elephant")
-    testthat::expect_identical(outlier.labels[7], "Giant armadillo")
+    testthat::expect_identical(
+      outlier.labels,
+      c(
+        "Asian elephant",
+        "Horse",
+        "Gray seal",
+        "Human",
+        "African elephant",
+        "Jaguar",
+        "Giant armadillo"
+      )
+    )
 
     # range of data
     y_range <- ggplot2::layer_scales(p)$y$range$range
@@ -136,10 +146,15 @@ testthat::test_that(
     # checking x-axis sample size labels
     x_labels <- ggplot2::layer_scales(p)$x$labels
 
-    testthat::expect_identical(x_labels[1], "carni\n(n = 9)")
-    testthat::expect_identical(x_labels[2], "herbi\n(n = 20)")
-    testthat::expect_identical(x_labels[3], "insecti\n(n = 5)")
-    testthat::expect_identical(x_labels[4], "omni\n(n = 17)")
+    testthat::expect_identical(
+      x_labels,
+      c(
+        "carni\n(n = 9)",
+        "herbi\n(n = 20)",
+        "insecti\n(n = 5)",
+        "omni\n(n = 17)"
+      )
+    )
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
@@ -187,9 +202,14 @@ testthat::test_that(
     # checking displayed mean labels
     mean.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
 
-    testthat::expect_identical(mean.labels[1], "2.290, 95% CI [1.907, 2.673]")
-    testthat::expect_identical(mean.labels[2], "3.120, 95% CI [2.787, 3.453]")
-    testthat::expect_identical(mean.labels[3], "4.000, 95% CI [3.561, 4.439]")
+    testthat::expect_identical(
+      mean.labels,
+      c(
+        "2.290, 95% CI [1.907, 2.673]",
+        "3.120, 95% CI [2.787, 3.453]",
+        "4.000, 95% CI [3.561, 4.439]"
+      )
+    )
   }
 )
 

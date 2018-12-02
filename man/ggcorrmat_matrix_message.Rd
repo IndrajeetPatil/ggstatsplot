@@ -11,4 +11,15 @@ ggcorrmat_matrix_message()
 Message to display when adjusted p-values are displayed in correlation
 matrix.
 }
+\seealso{
+Other helper_messages: \code{\link{bartlett_message}},
+  \code{\link{effsize_ci_message}},
+  \code{\link{grouped_message}},
+  \code{\link{normality_message}},
+  \code{\link{pairwise_p}}, \code{\link{palette_message}}
+}
+\author{
+Indrajeet Patil
+}
+\concept{helper_messages}
 \keyword{internal}

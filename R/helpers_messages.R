@@ -22,10 +22,10 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#' 
+#'
 #' # message
 #' normality_message(x = datasets::anscombe$x1)
-#' 
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -106,7 +106,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -114,7 +114,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,
@@ -268,11 +268,14 @@ palette_message <- function(package,
 
 #' @title Message to display when adjusted p-values are displayed in correlation
 #'   matrix.
-#'
 #' @name ggcorrmat_matrix_message
+#' @author Indrajeet Patil
+#'
+#' @family helper_messages
 #'
 #' @keywords internal
 
+# function body
 ggcorrmat_matrix_message <- function() {
   base::message(
     cat(
@@ -285,4 +288,28 @@ ggcorrmat_matrix_message <- function() {
       sep = ""
     )
   )
+}
+
+
+#' @title Message to display when bootstrapped confidence intervals are shown
+#'   for effect size measure.
+#' @name effsize_ci_message
+#' @author Indrajeet Patil
+#'
+#' @inheritParams t1way_ci
+#' @family helper_messages
+#' @keywords internal
+
+# displaying message about bootstrap
+effsize_ci_message <- function(nboot = 100, conf.level = 0.95) {
+  base::message(cat(
+    crayon::green("Note: "),
+    crayon::blue(
+      crayon::yellow(paste(conf.level * 100, "%", sep = "")),
+      "CI for effect size estimate was computed with",
+      crayon::yellow(nboot),
+      "bootstrap samples.\n"
+    ),
+    sep = ""
+  ))
 }

@@ -52,7 +52,7 @@ subtitle_anova_parametric(
   data = ggplot2::msleep,
   x = vore,
   y = sleep_rem,
-  k = 2
+  k = 3
 )
 
 # modifying the defaults

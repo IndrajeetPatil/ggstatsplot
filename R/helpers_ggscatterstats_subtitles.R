@@ -164,18 +164,9 @@ subtitle_ggscatterstats <-
           conf.type = conf.type
         )
 
-      # displaying message about bootstrap
+      # message about effect size measure
       if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue(
-            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
-            "CI for Spearman's rho was computed with",
-            crayon::yellow(nboot),
-            "bootstrap samples.\n"
-          ),
-          sep = ""
-        ))
+        effsize_ci_message(nboot = nboot, conf.level = conf.level)
       }
 
       # preparing the label
@@ -291,18 +282,9 @@ subtitle_ggscatterstats <-
           )
         )
 
-      # displaying message about bootstrap
+      # message about effect size measure
       if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue(
-            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
-            "CI for percentage bend correlation was computed with",
-            crayon::yellow(nboot),
-            "bootstrap samples.\n"
-          ),
-          sep = ""
-        ))
+        effsize_ci_message(nboot = nboot, conf.level = conf.level)
       }
       #---------------------- bayes factor -----------------------------------
     } else if (type == "bayes" || type == "bf") {

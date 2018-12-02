@@ -643,18 +643,9 @@ subtitle_t_robust <-
         )
     }
 
-    # displaying message about bootstrap
+    # message about effect size measure
     if (isTRUE(messages)) {
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue(
-          crayon::yellow(paste(conf.level * 100, "%", sep = "")),
-          "CI for explanatory measure of effect size was computed with",
-          crayon::yellow(nboot),
-          "bootstrap samples.\n"
-        ),
-        sep = ""
-      ))
+      effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
 
     # return the subtitle

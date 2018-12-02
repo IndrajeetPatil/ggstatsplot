@@ -21,6 +21,8 @@ colors allowed by \code{"Dark2"} palette from the \code{RColorBrewer} package.
 }
 \seealso{
 Other helper_messages: \code{\link{bartlett_message}},
+  \code{\link{effsize_ci_message}},
+  \code{\link{ggcorrmat_matrix_message}},
   \code{\link{grouped_message}},
   \code{\link{normality_message}}, \code{\link{pairwise_p}}
 }

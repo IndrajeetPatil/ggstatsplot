@@ -30,7 +30,7 @@
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = sleep_rem,
-#'   k = 2
+#'   k = 3
 #' )
 #' 
 #' # modifying the defaults
@@ -106,20 +106,6 @@ subtitle_anova_parametric <-
           ci.lvl = conf.level,
           n = nboot
         )
-
-      # displaying message about bootstrap
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue(
-            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
-            "CI for partial omega-squared was computed with",
-            crayon::yellow(nboot),
-            "bootstrap samples.\n"
-          ),
-          sep = ""
-        ))
-      }
 
       # preparing the subtitle
       subtitle <-
@@ -202,20 +188,6 @@ subtitle_anova_parametric <-
         n = nboot
       )
 
-      # displaying message about bootstrap
-      if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue(
-            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
-            "CI for partial eta-squared was computed with",
-            crayon::yellow(nboot),
-            "bootstrap samples.\n"
-          ),
-          sep = ""
-        ))
-      }
-
       # preparing the subtitle
       subtitle <-
         # extracting the elements of the statistical object
@@ -284,6 +256,11 @@ subtitle_anova_parametric <-
             n = nrow(x = data)
           )
         )
+    }
+
+    # message about effect size measure
+    if (isTRUE(messages)) {
+      effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
 
     # return the subtitle
@@ -365,18 +342,9 @@ subtitle_kw_nonparametric <-
         conf.type = conf.type
       ))
 
-    # displaying message about bootstrap
+    # message about effect size measure
     if (isTRUE(messages)) {
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue(
-          crayon::yellow(paste(conf.level * 100, "%", sep = "")),
-          "CI for effect size (H-statistic-based eta-squared) was computed with",
-          crayon::yellow(nboot),
-          "bootstrap samples \nfor Kruskal-Wallis Rank Sum Test.\n"
-        ),
-        sep = ""
-      ))
+      effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
 
     # preparing the subtitle
@@ -576,17 +544,6 @@ subtitle_friedman_nonparametric <- function(data,
       )
     )
 
-  # letting the user know that this test doesn't have agreed upon effect size
-  if (isTRUE(messages)) {
-    base::message(cat(
-      crayon::red("Note: "),
-      crayon::blue(
-        "No effect size available for Friedman Rank Sum Test.\n"
-      ),
-      sep = ""
-    ))
-  }
-
   # return the subtitle
   return(subtitle)
 }
@@ -677,18 +634,9 @@ subtitle_anova_robust <-
         conf.type = conf.type
       )
 
-    # displaying message about bootstrap
+    # message about effect size measure
     if (isTRUE(messages)) {
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue(
-          crayon::yellow(paste(conf.level * 100, "%", sep = "")),
-          "CI for explanatory measure of effect size was computed with",
-          crayon::yellow(nboot),
-          "bootstrap samples.\n"
-        ),
-        sep = ""
-      ))
+      effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
 
     # preparing the subtitle

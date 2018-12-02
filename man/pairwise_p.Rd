@@ -140,6 +140,8 @@ ggstatsplot::pairwise_p(
 \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}
 
 Other helper_messages: \code{\link{bartlett_message}},
+  \code{\link{effsize_ci_message}},
+  \code{\link{ggcorrmat_matrix_message}},
   \code{\link{grouped_message}},
   \code{\link{normality_message}},
   \code{\link{palette_message}}

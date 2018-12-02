@@ -182,18 +182,9 @@ subtitle_contingency_tab <- function(data,
         conf.type = conf.type
       )
 
-      # displaying message about bootstrap
+      # message about effect size measure
       if (isTRUE(messages)) {
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue(
-            crayon::yellow(paste(conf.level * 100, "%", sep = "")),
-            "CI for Cramer's V was computed with",
-            crayon::yellow(nboot),
-            "bootstrap samples.\n"
-          ),
-          sep = ""
-        ))
+        effsize_ci_message(nboot = nboot, conf.level = conf.level)
       }
     }
 
