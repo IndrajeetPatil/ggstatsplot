@@ -43,7 +43,7 @@ testthat::test_that(
         )
       )
 
-    # testing overall idenitcal
+    # testing overall call
     testthat::expect_identical(using_function1, results1)
 
     # testing t value
