@@ -22,10 +22,10 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#' 
+#'
 #' # message
 #' normality_message(x = datasets::anscombe$x1)
-#' 
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -74,8 +74,8 @@ normality_message <- function(x,
       ))
     } else if (output == "stats") {
 
-      # other return the stats object
-      return(sw_norm)
+      # other return the tidy output
+      return(broom::tidy(sw_norm))
     }
   }
 }
@@ -106,7 +106,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -114,7 +114,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,
@@ -195,7 +195,7 @@ bartlett_message <- function(data,
       sep = ""
     ))
   } else if (output == "stats") {
-    return(bartlett)
+    return(broom::tidy(bartlett))
   }
 }
 
@@ -237,6 +237,15 @@ grouped_message <- function() {
 #' @importFrom rlang !! enquo
 #'
 #' @family helper_messages
+#'
+#' @examples
+#' \dontrun{
+#' palette_message(
+#'   package = "RColorBrewer",
+#'   palette = "Dark2",
+#'   min_length = 20
+#' )
+#' }
 #'
 #' @keywords internal
 
