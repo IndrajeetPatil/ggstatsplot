@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_ggcoefstats.R
 \name{tfz_labeller}
 \alias{tfz_labeller}
-\title{Create text labels}
+\title{Prepare labels with statistic for \code{ggcoefstats} function.}
 \usage{
 tfz_labeller(tidy_df, glance_df = NULL, statistic, effsize = "eta",
   partial = TRUE, k = 2)
@@ -28,6 +28,7 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 (Default : \code{k = 2}).}
 }
 \description{
-Create text labels
+Creates text labels for \code{ggcoefstats} plot with the appropriate
+statistic (\emph{t}, \emph{z}, or \emph{f}) displayed in the label.
 }
 \keyword{internal}

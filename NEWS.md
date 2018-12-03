@@ -77,7 +77,10 @@ MINOR CHANGES
     `gghistostats` with the argument `results.subtitle`), so `ggbetweenstats`
     also gains two new arguments to do this: `results.subtitle` and `subtitle`.
   - New dataset added: `iris_long`.
-  - More tests added and the code coverage has now jumped to over 50%.
+  - More tests added and the code coverage has now jumped to over 75%.
+  - To avoid code repitition, there is a now a function that produces a generic
+    message any time confidence intervals for effect size estimate are computed
+    using bootstrapping.
 
 # ggstatsplot 0.0.6
 

@@ -1,4 +1,6 @@
-#' @title Create text labels
+#' @title Prepare labels with statistic for `ggcoefstats` function.
+#' @description Creates text labels for `ggcoefstats` plot with the appropriate
+#'   statistic (*t*, *z*, or *f*) displayed in the label.
 #' @name tfz_labeller
 #'
 #' @param tidy_df Tidy dataframe from `broom::tidy`.

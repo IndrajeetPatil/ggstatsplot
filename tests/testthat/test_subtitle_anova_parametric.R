@@ -1,5 +1,7 @@
 context("subtitle_anova_parametric")
 
+# parametric anova subtitles (without NAs) -----------------------------------
+
 testthat::test_that(
   desc = "parametric anova subtitles work (without NAs)",
   code = {
@@ -50,7 +52,7 @@ testthat::test_that(
         )
       )
 
-    # testing overall call, eta squared and upper CI
+    # testing overall call
     testthat::expect_identical(
       object = using_function1,
       expected = results1
@@ -69,6 +71,8 @@ testthat::test_that(
     )
   }
 )
+
+# parametric anova subtitles (with NAs) --------------------------------------
 
 testthat::test_that(
   desc = "parametric anova subtitles work (with NAs)",
@@ -112,5 +116,64 @@ testthat::test_that(
 
     # p-value
     testthat::expect_equal(r$p.value[[1]], subtitle_vec[[4]], tolerance = 1e-3)
+  }
+)
+
+# parametric anova subtitles (partial omega) ----------------------------------
+
+testthat::test_that(
+  desc = "parametric anova subtitles with partial omega-squared",
+  code = {
+    set.seed(123)
+
+    # ggstatsplot output
+    using_function1 <-
+      ggstatsplot::subtitle_anova_parametric(
+        data = ggplot2::msleep,
+        x = vore,
+        y = sleep_rem,
+        effsize.type = "partial_omega",
+        k = 4,
+        nboot = 10,
+        messages = FALSE
+      )
+
+    # expected output
+    results1 <-
+      ggplot2::expr(
+        paste(
+          italic("F"),
+          "(",
+          3,
+          ",",
+          "11.1010",
+          ") = ",
+          "2.6325",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.1017",
+          ", ",
+          omega["p"] ^ 2,
+          " = ",
+          "0.1438",
+          ", CI"["95%"],
+          " [",
+          "-0.0159",
+          ", ",
+          "0.4279",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          56L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(
+      object = using_function1,
+      expected = results1
+    )
   }
 )
