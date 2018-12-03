@@ -2,7 +2,8 @@
 % Please edit documentation in R/helpers_bf_tests.R
 \name{bf_extractor}
 \alias{bf_extractor}
-\title{Convenience function to extract bayes factors from test}
+\title{Convenience function to extract bayes factors and details about
+posterior (mean, median, HDI, etc.) from \code{BayesFactor} model object.}
 \usage{
 bf_extractor(bf.object, posterior = FALSE, iterations = 1000,
   cred.int = 0.95)
@@ -20,7 +21,8 @@ deviation, and standard error for the posterior.}
 credible interval that is to be estimated (default: \code{0.95}).}
 }
 \description{
-Convenience function to extract bayes factors from test
+Convenience function to extract bayes factors and details about
+posterior (mean, median, HDI, etc.) from \code{BayesFactor} model object.
 }
 \examples{
 
@@ -30,6 +32,9 @@ ggstatsplot::bf_extractor(BayesFactor::anovaBF(Sepal.Length ~ Species,
   progress = FALSE
 ))
 \dontrun{
+# show all columns in a tibble
+options(tibble.width = Inf)
+
 # getting bayes factors and posteriors
 ggstatsplot::bf_extractor(
   BayesFactor::correlationBF(

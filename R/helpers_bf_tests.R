@@ -1,4 +1,5 @@
-#' @title Convenience function to extract bayes factors from test
+#' @title Convenience function to extract bayes factors and details about
+#'   posterior (mean, median, HDI, etc.) from `BayesFactor` model object.
 #' @name bf_extractor
 #'
 #' @param bf.object An object from `BayesFactor` package test results.
@@ -12,7 +13,7 @@
 #' @importFrom BayesFactor extractBF posterior
 #' @importFrom sjstats hdi
 #' @importFrom groupedstats grouped_summary
-#' @importFrom tibble as_tibble tribble
+#' @importFrom tibble as_tibble tribble enframe
 #' @importFrom dplyr rename select mutate everything bind_cols
 #'
 #' @examples
@@ -23,6 +24,9 @@
 #'   progress = FALSE
 #' ))
 #' \dontrun{
+#' # show all columns in a tibble
+#' options(tibble.width = Inf)
+#' 
 #' # getting bayes factors and posteriors
 #' ggstatsplot::bf_extractor(
 #'   BayesFactor::correlationBF(
@@ -86,7 +90,8 @@ bf_extractor <- function(bf.object,
     # dataframe with posteriors
     posterior_df <-
       posterior_samples %>%
-      tibble::as_tibble(x = .) %>%
+      tibble::enframe(x = .) %>%
+      dplyr::select(.data = ., -name) %>%
       dplyr::mutate(.data = ., group = "1") %>%
       groupedstats::grouped_summary(
         data = .,

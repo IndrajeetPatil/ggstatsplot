@@ -49,10 +49,10 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with glmer model",
   code = {
-    set.seed(123)
     library(lme4)
 
     # model
+    set.seed(123)
     mod <-
       lme4::glmer(
         formula = cbind(incidence, size - incidence) ~ period + (1 | herd),
@@ -61,6 +61,7 @@ testthat::test_that(
       )
 
     # plot
+    set.seed(123)
     p <-
       ggstatsplot::ggcoefstats(
         x = mod,
@@ -68,10 +69,15 @@ testthat::test_that(
         exclude.intercept = FALSE
       )
 
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
+
     # tidy dataframe from the function
     tidy_df <- p$plot_env$tidy_df
+    pb_df <- pb$data[[4]]
 
     # dataframe from `broom` package
+    set.seed(123)
     broom_df <- broom.mixed::tidy(
       x = mod,
       conf.int = TRUE,
@@ -88,17 +94,9 @@ testthat::test_that(
     testthat::expect_identical(tidy_df$significance, c("***", "**", "***", "***"))
     testthat::expect_identical(
       tidy_df$statistic,
-      as.character(round(broom_df$statistic, 2))
+      trimws(as.character(format(broom_df$statistic, digits = 3)))
     )
-    testthat::expect_identical(
-      tidy_df$label,
-      c(
-        "list(~italic(beta)==-1.40, ~italic(z)==-6.05, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-0.99, ~italic(z)==-3.27, ~italic(p)==0.001)",
-        "list(~italic(beta)==-1.13, ~italic(z)==-3.49, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1.58, ~italic(z)==-3.74, ~italic(p)<= 0.001)"
-      )
-    )
+    testthat::expect_identical(tidy_df$label, pb_df$label)
   }
 )
 
@@ -248,5 +246,67 @@ testthat::test_that(
       tidy_df$p.value.formatted2,
       c("==0.001", "==0.163", "==0.015")
     )
+  }
+)
+
+# dataframe as input ----------------------------------------------------
+
+testthat::test_that(
+  desc = "ggcoefstats works with data frames",
+  code = {
+    set.seed(123)
+
+    # creating dataframe
+    df1 <- tibble::tribble(
+      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value,
+      "level2", 0.158, 0.0665, -0.778, 0.911, 0.875,
+      "level1", 1.33, 0.542, -0.280, 1.36, 0.191,
+      "level3", 1.24, 0.045, 0.030, 0.65, 0.001
+    )
+    df2 <- dplyr::select(.data = df1, -p.value)
+    df3 <- dplyr::select(.data = df1, -statistic)
+
+    # plotting the dataframe
+    p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t")
+    p2 <- ggstatsplot::ggcoefstats(x = df1, statistic = "z", sort = "descending")
+    p3 <- ggstatsplot::ggcoefstats(x = df2, statistic = "t")
+    p4 <- ggstatsplot::ggcoefstats(x = df3, statistic = "t")
+
+    # build plots
+    pb1 <- ggplot2::ggplot_build(p1)
+    pb2 <- ggplot2::ggplot_build(p2)
+    pb3 <- ggplot2::ggplot_build(p3)
+    pb4 <- ggplot2::ggplot_build(p4)
+
+    testthat::expect_identical(
+      pb1$data[[4]]$label,
+      c(
+        "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)==0.875)",
+        "list(~italic(beta)==0.54, ~italic(t)==1.33, ~italic(p)==0.191)",
+        "list(~italic(beta)==0.04, ~italic(t)==1.24, ~italic(p)==0.001)"
+      )
+    )
+
+    testthat::expect_equal(pb2$data[[3]]$y, c(2L, 1L, 3L))
+    testthat::expect_identical(
+      pb2$data[[4]]$label,
+      c(
+        "list(~italic(beta)==0.07, ~italic(z)==0.16, ~italic(p)==0.875)",
+        "list(~italic(beta)==0.54, ~italic(z)==1.33, ~italic(p)==0.191)",
+        "list(~italic(beta)==0.04, ~italic(z)==1.24, ~italic(p)==0.001)"
+      )
+    )
+
+    # checking number of data layers
+    testthat::expect_equal(length(pb1$data), 4L)
+    testthat::expect_equal(length(pb2$data), 4L)
+    testthat::expect_equal(length(pb3$data), 3L)
+    testthat::expect_equal(length(pb4$data), 3L)
+
+    # confidence intervals used for each layer should be the same as df
+    testthat::expect_equal(pb3$data[[2]]$xmin, df1$conf.low)
+    testthat::expect_equal(pb3$data[[2]]$xmax, df2$conf.high)
+    testthat::expect_equal(pb2$data[[2]]$xmin, df3$conf.low)
+    testthat::expect_equal(pb2$data[[2]]$xmax, df3$conf.high)
   }
 )

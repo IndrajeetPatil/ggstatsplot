@@ -10,10 +10,14 @@ tfz_labeller(tidy_df, glance_df = NULL, statistic, effsize = "eta",
 \arguments{
 \item{tidy_df}{Tidy dataframe from \code{broom::tidy}.}
 
-\item{glance_df}{Glance model summary dataframe from \code{broom::glance}.}
+\item{glance_df}{Glance model summary dataframe from \code{broom::glance}
+(default: \code{NULL}). This is optional argument. If provide, the \code{glance}
+summary will be used to write \code{caption} for the final plot.}
 
 \item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
-\code{"z"}).}
+\code{"z"}) in the label. This is especially important if the \code{x} argument in
+\code{ggcoefstats} is a dataframe in which case the function wouldn't know what
+kind of model it is dealing with.}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant

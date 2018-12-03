@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convenience function to extract bayes factors from test — bf_extractor • ggstatsplot</title>
+<title>Convenience function to extract bayes factors and details about
+posterior (mean, median, HDI, etc.) from <code>BayesFactor</code> model object. — bf_extractor • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,9 +39,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Convenience function to extract bayes factors from test — bf_extractor" />
+<meta property="og:title" content="Convenience function to extract bayes factors and details about
+posterior (mean, median, HDI, etc.) from <code>BayesFactor</code> model object. — bf_extractor" />
 
-<meta property="og:description" content="Convenience function to extract bayes factors from test" />
+<meta property="og:description" content="Convenience function to extract bayes factors and details about
+posterior (mean, median, HDI, etc.) from BayesFactor model object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -167,14 +170,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convenience function to extract bayes factors from test</h1>
+    <h1>Convenience function to extract bayes factors and details about
+posterior (mean, median, HDI, etc.) from <code>BayesFactor</code> model object.</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_bf_tests.R'><code>R/helpers_bf_tests.R</code></a></small>
     <div class="hidden name"><code>bf_extractor.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Convenience function to extract bayes factors from test</p>
+    <p>Convenience function to extract bayes factors and details about
+posterior (mean, median, HDI, etc.) from <code>BayesFactor</code> model object.</p>
     
     </div>
 
@@ -213,9 +218,13 @@ credible interval that is to be estimated (default: <code>0.95</code>).</p></td>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
   <span class='kw'>progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 ))</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 7</span><span>
-#&gt;       bf10 log_e_bf10 log_10_bf10      bf01 log_e_bf01 log_10_bf01         error
-#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1.425</span><span style='color: #949494;'>e</span><span>28      64.83       28.15 7.016</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-29</span><span>     -</span><span style='color: #BB0000;'>64.83</span><span>      -</span><span style='color: #BB0000;'>28.15</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>065</span><span style='text-decoration: underline;'>07</span><span></div></span><div class='input'><span class='co'># getting bayes factors and posteriors</span>
+#&gt;      bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01        error
+#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1.43</span><span style='color: #949494;'>e</span><span>28       64.8        28.2 7.02</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-29</span><span>      -</span><span style='color: #BB0000;'>64.8</span><span>       -</span><span style='color: #BB0000;'>28.2</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>065</span><span style='text-decoration: underline;'>1</span><span></div><div class='input'>
+</div></span><div class='input'><span class='co'># show all columns in a tibble</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>options</a></span>(<span class='kw'>tibble.width</span> <span class='kw'>=</span> <span class='fl'>Inf</span>)
+
+<span class='co'># getting bayes factors and posteriors</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_extractor.html'>bf_extractor</a></span>(
   <span class='kw pkg'>BayesFactor</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BayesFactor/topics/correlationBF'>correlationBF</a></span>(
     <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>,
@@ -224,13 +233,13 @@ credible interval that is to be estimated (default: <code>0.95</code>).</p></td>
   <span class='kw'>posterior</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
   <span class='kw'>cred.int</span> <span class='kw'>=</span> <span class='fl'>0.95</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Calling `as_tibble()` on a vector is discouraged, because the behavior is likely to change in the future. Use `enframe(name = NULL)` instead.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 14</span><span>
-#&gt;     bf10 log_e_bf10 log_10_bf10  bf01 log_e_bf01 log_10_bf01 error
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.509</span><span style='text-decoration: underline;'>0</span><span>    -</span><span style='color: #BB0000;'>0.675</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span>     -</span><span style='color: #BB0000;'>0.293</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> 1.965     0.675</span><span style='text-decoration: underline;'>3</span><span>      0.293</span><span style='text-decoration: underline;'>3</span><span>     0
-#&gt; </span><span style='color: #949494;'># ... with 7 more variables: posterior.mean </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, posterior.median </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   posterior.sd </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, posterior.std.error </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, HDI.low </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   HDI.high </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, cred.int </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 14</span><span>
+#&gt;    bf10 log_e_bf10 log_10_bf10  bf01 log_e_bf01 log_10_bf01 error posterior.mean
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.509     -</span><span style='color: #BB0000;'>0.675</span><span>      -</span><span style='color: #BB0000;'>0.293</span><span>  1.96      0.675       0.293     0          -</span><span style='color: #BB0000;'>0.11</span><span>
+#&gt;   posterior.median posterior.sd posterior.std.error HDI.low HDI.high cred.int
+#&gt;              </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>            -</span><span style='color: #BB0000;'>0.12</span><span>        0.081             0.001</span><span style='text-decoration: underline;'>81</span><span>  -</span><span style='color: #BB0000;'>0.268</span><span>   0.046</span><span style='text-decoration: underline;'>8</span><span>     0.95</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -22,8 +22,7 @@ testthat::test_that(
     # checking dimensions of data
     data_dims <- dim(p$plot_env$df_pairwise)
 
-    testthat::expect_equal(data_dims[1], 0L)
-    testthat::expect_equal(data_dims[2], 12L)
+    testthat::expect_equal(data_dims, c(0L, 12L))
 
     # checking caption
     testthat::expect_identical(
@@ -71,8 +70,7 @@ testthat::test_that(
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims[1], 6L)
-    testthat::expect_equal(data_dims[2], 12L)
+    testthat::expect_equal(data_dims, c(6L, 12L))
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1[1], "PG")
@@ -152,8 +150,7 @@ testthat::test_that(
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims[1], 15L)
-    testthat::expect_equal(data_dims[2], 7L)
+    testthat::expect_equal(data_dims, c(15L, 7L))
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1[1], "Action")
@@ -248,8 +245,7 @@ testthat::test_that(
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims[1], 2L)
-    testthat::expect_equal(data_dims[2], 9L)
+    testthat::expect_equal(data_dims, c(2L, 9L))
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1[1], "4")
@@ -282,9 +278,10 @@ testthat::test_that(
     testthat::expect_equal(dat$psihat[2], 5.57, tolerance = 0.01)
 
     # checking ggsignif layers
-    testthat::expect_equal(ggsignif_stat$y_position[1], 35.875, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[2], 37.825, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[3], 39.775, tolerance = 0.01)
+    testthat::expect_equal(ggsignif_stat$y_position,
+      c(35.875, 37.825, 39.775),
+      tolerance = 0.001
+    )
     testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("f", "r"))
     testthat::expect_equal(
       ggsignif_stat$annotations,
@@ -329,16 +326,13 @@ testthat::test_that(
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims[1], 3L)
-    testthat::expect_equal(data_dims[2], 9L)
+    testthat::expect_equal(data_dims, c(3L, 9L))
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1[1], "6")
     testthat::expect_identical(dat$group2[2], "4")
     testthat::expect_identical(dat$groups[[1]], c("6", "4"))
-    testthat::expect_identical(dat$significance[1], "*")
-    testthat::expect_identical(dat$significance[2], "***")
-    testthat::expect_identical(dat$significance[3], "*")
+    testthat::expect_identical(dat$significance, c("*", "***", "*"))
     testthat::expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
@@ -359,9 +353,10 @@ testthat::test_that(
     testthat::expect_equal(dat$conf.high[1], 1.580, tolerance = 0.01)
 
     # checking ggsignif layers
-    testthat::expect_equal(ggsignif_stat$y_position[1], 5.559600, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[2], 5.852925, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[3], 6.146250, tolerance = 0.01)
+    testthat::expect_equal(ggsignif_stat$y_position,
+      c(5.559600, 5.852925, 6.146250),
+      tolerance = 0.001
+    )
     testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("8", "4"))
     testthat::expect_equal(
       ggsignif_stat$annotations,

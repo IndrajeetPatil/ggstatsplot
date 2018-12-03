@@ -5,36 +5,47 @@
 \title{Model coefficients for fitted models with the model summary as a
 caption.}
 \usage{
-ggcoefstats(x, output = "plot", scales = NULL, conf.method = "Wald",
-  p.kr = TRUE, coefficient.type = "beta", effsize = "eta",
-  partial = TRUE, nboot = 500, point.color = "blue",
-  point.size = 3, point.shape = 16, conf.int = TRUE,
-  conf.level = 0.95, se.type = "nid", k = 2, k.caption.summary = 0,
-  exclude.intercept = TRUE, exponentiate = FALSE,
-  errorbar.color = "black", errorbar.height = 0,
-  errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
-  vline.color = "black", vline.linetype = "dashed", vline.size = 1,
-  sort = "none", xlab = "regression coefficient", ylab = "term",
-  title = NULL, subtitle = NULL, stats.labels = TRUE,
-  caption.summary = TRUE, stats.label.size = 3,
-  stats.label.fontface = "bold", stats.label.color = NULL,
-  label.r = 0.15, label.size = 0.25, label.box.padding = 1,
-  label.label.padding = 0.25, label.point.padding = 0.5,
-  label.segment.color = "grey50", label.segment.size = 0.5,
-  label.segment.alpha = NULL, label.min.segment.length = 0.5,
-  label.force = 1, label.max.iter = 2000, label.nudge.x = 0,
-  label.nudge.y = 0, label.xlim = c(NA, NA), label.ylim = c(NA, NA),
+ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
+  conf.method = "Wald", p.kr = TRUE, coefficient.type = "beta",
+  effsize = "eta", partial = TRUE, nboot = 500,
+  point.color = "blue", point.size = 3, point.shape = 16,
+  conf.int = TRUE, conf.level = 0.95, se.type = "nid", k = 2,
+  k.caption.summary = 0, exclude.intercept = TRUE,
+  exponentiate = FALSE, errorbar.color = "black",
+  errorbar.height = 0, errorbar.linetype = "solid",
+  errorbar.size = 0.5, vline = TRUE, vline.color = "black",
+  vline.linetype = "dashed", vline.size = 1, sort = "none",
+  xlab = "regression coefficient", ylab = "term", title = NULL,
+  subtitle = NULL, stats.labels = TRUE, caption.summary = TRUE,
+  stats.label.size = 3, stats.label.fontface = "bold",
+  stats.label.color = NULL, label.r = 0.15, label.size = 0.25,
+  label.box.padding = 1, label.label.padding = 0.25,
+  label.point.padding = 0.5, label.segment.color = "grey50",
+  label.segment.size = 0.5, label.segment.alpha = NULL,
+  label.min.segment.length = 0.5, label.force = 1,
+  label.max.iter = 2000, label.nudge.x = 0, label.nudge.y = 0,
+  label.xlim = c(NA, NA), label.ylim = c(NA, NA),
   label.direction = "y", package = "RColorBrewer", palette = "Dark2",
   direction = 1, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, ...)
 }
 \arguments{
-\item{x}{A model object to be tidied with \code{broom::tidy}.}
+\item{x}{A model object to be tidied with \code{broom::tidy}, or a tidy data frame
+containing results. If a data frame is to be plotted, it \emph{must} contain
+columns named \code{term} (names of predictors), or \code{estimate} (corresponding
+estimates of coefficients or other quantities of interest). Other optional
+columns are \code{conf.low} and \code{conf.high} (for confidence intervals);
+\code{p.value}.}
 
 \item{output}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
 dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{broom::glance}) or \code{"augment"} (object from \code{broom::augment}).}
+
+\item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
+\code{"z"}) in the label. This is especially important if the \code{x} argument in
+\code{ggcoefstats} is a dataframe in which case the function wouldn't know what
+kind of model it is dealing with.}
 
 \item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.}
 
@@ -210,9 +221,23 @@ Model coefficients for fitted models with the model summary as a
 caption.
 }
 \examples{
-
+# for reproducibility
 set.seed(123)
+
+# with model object
 ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
+
+# with custom dataframe
+
+# creating a dataframe
+df <- tibble::tribble(
+  ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value,
+  "level1", 1.33, 0.542, -0.280, 1.36, 0.191,
+  "level2", 0.158, 0.0665, -0.778, 0.911, 0.875
+)
+
+# plotting the dataframe
+ggstatsplot::ggcoefstats(x = df, statistic = "t")
 }
 \references{
 \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}

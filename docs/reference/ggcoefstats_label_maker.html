@@ -178,15 +178,20 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggcoefstats_label_maker</span>(<span class='no'>x</span>, <span class='no'>tidy_df</span>, <span class='no'>glance_df</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>ggcoefstats_label_maker</span>(<span class='no'>x</span>, <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>glance_df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A model object to be tidied with <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy</a></code>.</p></td>
+      <td><p>A model object to be tidied with <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy</a></code>, or a tidy data frame
+containing results. If a data frame is to be plotted, it <em>must</em> contain
+columns named <code>term</code> (names of predictors), or <code>estimate</code> (corresponding
+estimates of coefficients or other quantities of interest). Other optional
+columns are <code>conf.low</code> and <code>conf.high</code> (for confidence intervals);
+<code>p.value</code>.</p></td>
     </tr>
     <tr>
       <th>tidy_df</th>
@@ -194,7 +199,16 @@
     </tr>
     <tr>
       <th>glance_df</th>
-      <td><p>Glance model summary dataframe from <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::glance</a></code>.</p></td>
+      <td><p>Glance model summary dataframe from <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::glance</a></code>
+(default: <code>NULL</code>). This is optional argument. If provide, the <code>glance</code>
+summary will be used to write <code>caption</code> for the final plot.</p></td>
+    </tr>
+    <tr>
+      <th>statistic</th>
+      <td><p>Which statistic is to be displayed (either <code>"t"</code> or <code>"f"</code>or
+<code>"z"</code>) in the label. This is especially important if the <code>x</code> argument in
+<code>ggcoefstats</code> is a dataframe in which case the function wouldn't know what
+kind of model it is dealing with.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -217,12 +231,172 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># show all columns in a tibble</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>options</a></span>(<span class='kw'>tibble.width</span> <span class='kw'>=</span> <span class='fl'>Inf</span>)
+
+<span class='co'># for reproducibility</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+
+<span class='co'>#------------------------- models with *t*-statistic ------------------</span>
+<span class='co'># model with t-statistic</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>broom</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>tidy</a></span>(<span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>, <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>wt</span> ~ <span class='no'>cyl</span> * <span class='no'>mpg</span>
+)), <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 9</span><span>
+#&gt;   term        estimate std.error statistic p.value significance
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)  2.98       1.57   1.90       0.068</span><span style='text-decoration: underline;'>3</span><span> ns          
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> cyl          0.478      0.233  2.05       0.050</span><span style='text-decoration: underline;'>3</span><span> ns          
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> mpg         -</span><span style='color: #BB0000;'>0.009</span><span style='color: #BB0000;text-decoration: underline;'>47</span><span>    0.066</span><span style='text-decoration: underline;'>0</span><span> -0.14      0.887  ns          
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> cyl:mpg     -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>     0.012</span><span style='text-decoration: underline;'>0</span><span> -1.82      0.079</span><span style='text-decoration: underline;'>0</span><span> ns          
+#&gt;   p.value.formatted p.value.formatted2
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.068             ==0.068           
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0.050             ==0.050           
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 0.887             ==0.887           
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 0.079             ==0.079           
+#&gt;   label                                                           
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                           
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==2.98, ~italic(t)==1.90, ~italic(p)==0.068)  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==0.48, ~italic(t)==2.05, ~italic(p)==0.050)  
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(beta)==-0.01, ~italic(t)==-0.14, ~italic(p)==0.887)
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> list(~italic(beta)==-0.02, ~italic(t)==-1.82, ~italic(p)==0.079)</div><div class='input'>
+<span class='co'># (in case `x` is not a dataframe, no need to specify `statistic` argument;</span>
+<span class='co'># this will be figured out by the function itself)</span>
+
+<span class='co'>#------------------------- models with *t*-statistic ------------------</span>
+
+<span class='co'># dataframe</span>
+<span class='no'>clotting</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>u</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>15</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>, <span class='fl'>100</span>),
+  <span class='kw'>lot1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>118</span>, <span class='fl'>58</span>, <span class='fl'>42</span>, <span class='fl'>35</span>, <span class='fl'>27</span>, <span class='fl'>25</span>, <span class='fl'>21</span>, <span class='fl'>19</span>, <span class='fl'>18</span>),
+  <span class='kw'>lot2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>69</span>, <span class='fl'>35</span>, <span class='fl'>26</span>, <span class='fl'>21</span>, <span class='fl'>18</span>, <span class='fl'>16</span>, <span class='fl'>13</span>, <span class='fl'>12</span>, <span class='fl'>12</span>)
+)
+
+<span class='co'># model</span>
+<span class='no'>mod</span> <span class='kw'>&lt;-</span>
+  <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(
+    <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>lot1</span> ~ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='no'>u</span>),
+    <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>clotting</span>,
+    <span class='kw'>family</span> <span class='kw'>=</span> <span class='no'>Gamma</span>
+  )
+
+<span class='co'># model with t-statistic</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>,
+  <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw pkg'>broom</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>tidy</a></span>(
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>,
+    <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>
+  )
+)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2 x 11</span><span>
+#&gt;   term        estimate std.error statistic conf.low conf.high       p.value
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)  -</span><span style='color: #BB0000;'>0.016</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>  0.000</span><span style='text-decoration: underline;'>928</span><span> -17.85     -</span><span style='color: #BB0000;'>0.018</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>   -</span><span style='color: #BB0000;'>0.014</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>428  
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> log(u)        0.015</span><span style='text-decoration: underline;'>3</span><span>  0.000</span><span style='text-decoration: underline;'>415</span><span> 36.97       0.014</span><span style='text-decoration: underline;'>5</span><span>    0.016</span><span style='text-decoration: underline;'>2</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>002</span><span style='text-decoration: underline;'>75</span><span>
+#&gt;   significance p.value.formatted p.value.formatted2
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ***          &lt; 0.001           &lt;= 0.001          
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> ***          &lt; 0.001           &lt;= 0.001          
+#&gt;   label                                                             
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==-0.02, ~italic(t)==-17.85, ~italic(p)&lt;= 0.001)
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==0.02, ~italic(t)==36.97, ~italic(p)&lt;= 0.001)  </div><div class='input'>
+<span class='co'>#------------------------- models with *z*-statistic --------------------</span>
+
+<span class='co'># preparing dataframe</span>
+<span class='no'>counts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>18</span>, <span class='fl'>17</span>, <span class='fl'>15</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>25</span>, <span class='fl'>13</span>, <span class='fl'>12</span>)
+<span class='no'>outcome</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/gl'>gl</a></span>(<span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>9</span>)
+<span class='no'>treatment</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/gl'>gl</a></span>(<span class='fl'>3</span>, <span class='fl'>3</span>)
+<span class='no'>d.AD</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='no'>treatment</span>, <span class='no'>outcome</span>, <span class='no'>counts</span>)
+
+<span class='co'># model</span>
+<span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>counts</span> ~ <span class='no'>outcome</span> + <span class='no'>treatment</span>,
+  <span class='kw'>family</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/family'>poisson</a></span>(),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d.AD</span>
+)
+
+<span class='co'># creating tidy dataframe with label column</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mod</span>, <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='kw pkg'>broom</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>tidy</a></span>(<span class='no'>mod</span>))</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 9</span><span>
+#&gt;   term         estimate std.error statistic   p.value significance
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)  3.04</span><span style='color: #949494;'>e</span><span>+ 0     0.171 17.81      5.43</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-71</span><span> ***         
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> outcome2    -</span><span style='color: #BB0000;'>4.54</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>     0.202 -2.25      2.46</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span> *           
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> outcome3    -</span><span style='color: #BB0000;'>2.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span>     0.193 -1.52      1.28</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> treatment2   1.34</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>     0.200 0.00      10.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> treatment3   1.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>     0.200 0.00      10.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 1</span><span> ns          
+#&gt;   p.value.formatted p.value.formatted2
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> &lt; 0.001           &lt;= 0.001          
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0.025             ==0.025           
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 0.128             ==0.128           
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 1.000             ==1.000           
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 1.000             ==1.000           
+#&gt;   label                                                           
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                           
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> list(~italic(beta)==3.04, ~italic(z)==17.81, ~italic(p)&lt;= 0.001)
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> list(~italic(beta)==-0.45, ~italic(z)==-2.25, ~italic(p)==0.025)
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> list(~italic(beta)==-0.29, ~italic(z)==-1.52, ~italic(p)==0.128)
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)==1.000)  
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> list(~italic(beta)==0.00, ~italic(z)==0.00, ~italic(p)==1.000)  </div><div class='input'>
+<span class='co'>#------------------------- models with *f*-statistic --------------------</span>
+<span class='co'># creating a model object</span>
+<span class='no'>op</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>options</a></span>(<span class='kw'>contrasts</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"contr.helmert"</span>, <span class='st'>"contr.poly"</span>))
+<span class='no'>npk.aov</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/aov'>aov</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>yield</span> ~ <span class='no'>block</span> + <span class='no'>N</span> * <span class='no'>P</span> * <span class='no'>K</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>npk</span>)
+
+<span class='co'># converting to a dataframe using</span>
+<span class='no'>tidy_df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/reexports.html'>lm_effsize_ci</a></span>(
+  <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>npk.aov</span>,
+  <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"omega"</span>,
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>50</span>
+) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>rename</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='no'>omegasq</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='no'>F.value</span>)
+
+<span class='co'># including a new column with a label</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats_label_maker.html'>ggcoefstats_label_maker</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>npk.aov</span>,
+  <span class='kw'>tidy_df</span> <span class='kw'>=</span> <span class='no'>tidy_df</span>,
+  <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"omega"</span>,
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 7 x 12</span><span>
+#&gt;   term  statistic   df1   df2 estimate conf.low conf.high p.value significance
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> block 4.45          5    12  0.298     0.029</span><span style='text-decoration: underline;'>8</span><span>     0.675 0.015</span><span style='text-decoration: underline;'>9</span><span>  *           
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> N     12.26         1    12  0.195     0.044</span><span style='text-decoration: underline;'>0</span><span>     0.588 0.004</span><span style='text-decoration: underline;'>37</span><span> **          
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> P     0.54          1    12 -</span><span style='color: #BB0000;'>0.007</span><span style='color: #BB0000;text-decoration: underline;'>89</span><span>  </span><span style='color: #BB0000;'>NA</span><span>          0.233 0.475   ns          
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> K     6.17          1    12  0.089</span><span style='text-decoration: underline;'>4</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.472 0.028</span><span style='text-decoration: underline;'>8</span><span>  *           
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> N:P   1.38          1    12  0.006</span><span style='text-decoration: underline;'>55</span><span>  </span><span style='color: #BB0000;'>NA</span><span>          0.294 0.263   ns          
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> N:K   2.15          1    12  0.019</span><span style='text-decoration: underline;'>8</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.336 0.169   ns          
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> P:K   0.03          1    12 -</span><span style='color: #BB0000;'>0.016</span><span style='color: #BB0000;text-decoration: underline;'>8</span><span>   </span><span style='color: #BB0000;'>NA</span><span>          0.126 0.863   ns          
+#&gt;   p.value.formatted p.value.formatted2
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.016             ==0.016           
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0.004             ==0.004           
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 0.475             ==0.475           
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 0.029             ==0.029           
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 0.263             ==0.263           
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 0.169             ==0.169           
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> 0.863             ==0.863           
+#&gt;   label                                                                         
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                                         
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(5*\",\"*12)==4.45, ~italic(p)==0.016, ~italic(omega)^2==0.30~
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==12.26, ~italic(p)==0.004, ~italic(omega)^2==0.1~
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==0.54, ~italic(p)==0.475, ~italic(omega)^2==-0.0~
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==6.17, ~italic(p)==0.029, ~italic(omega)^2==0.09~
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==1.38, ~italic(p)==0.263, ~italic(omega)^2==0.01~
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==2.15, ~italic(p)==0.169, ~italic(omega)^2==0.02~
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> </span><span style='color: #949494;'>"</span><span>list(~italic(F)(1*\",\"*12)==0.03, ~italic(p)==0.863, ~italic(omega)^2==-0.0~</div></span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -40,6 +40,7 @@ MAJOR CHANGES
     is now added as a dependency.
   - `gghistostats` can now show both counts and proportions information on the
     same plot when `bar.measure` argument is set to `"mix"`.
+  - `ggcoefstats` works with tidy dataframes.
   - The helper function `untable` has been depcreated in light of
     `tidyr::uncount`, which does exactly what `untable` was doing. The author
     wasn't aware of this function when `untable` was written.
@@ -49,7 +50,7 @@ MAJOR CHANGES
   - `subtitle_t_robust` function can now handle dependent samples and
     gains `paired` argument.
   - A number of tidyverse operators are now reexported by `ggstatsplot`: `%>%`,
-    `%<>%`, `%$%`, `%|%`, `%||%`
+    `%<>%`, `%$%`.
 
 MINOR CHANGES
 

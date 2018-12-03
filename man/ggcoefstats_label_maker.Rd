@@ -4,15 +4,27 @@
 \alias{ggcoefstats_label_maker}
 \title{Create labels with statistical details for \code{ggcoefstats}.}
 \usage{
-ggcoefstats_label_maker(x, tidy_df, glance_df, k = 2, effsize = "eta",
-  partial = TRUE)
+ggcoefstats_label_maker(x, tidy_df = NULL, glance_df = NULL,
+  statistic = NULL, k = 2, effsize = "eta", partial = TRUE)
 }
 \arguments{
-\item{x}{A model object to be tidied with \code{broom::tidy}.}
+\item{x}{A model object to be tidied with \code{broom::tidy}, or a tidy data frame
+containing results. If a data frame is to be plotted, it \emph{must} contain
+columns named \code{term} (names of predictors), or \code{estimate} (corresponding
+estimates of coefficients or other quantities of interest). Other optional
+columns are \code{conf.low} and \code{conf.high} (for confidence intervals);
+\code{p.value}.}
 
 \item{tidy_df}{Tidy dataframe from \code{broom::tidy}.}
 
-\item{glance_df}{Glance model summary dataframe from \code{broom::glance}.}
+\item{glance_df}{Glance model summary dataframe from \code{broom::glance}
+(default: \code{NULL}). This is optional argument. If provide, the \code{glance}
+summary will be used to write \code{caption} for the final plot.}
+
+\item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
+\code{"z"}) in the label. This is especially important if the \code{x} argument in
+\code{ggcoefstats} is a dataframe in which case the function wouldn't know what
+kind of model it is dealing with.}
 
 \item{k}{Number of decimal places expected for results displayed in labels
 (Default : \code{k = 2}).}
@@ -28,5 +40,91 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 }
 \description{
 Create labels with statistical details for \code{ggcoefstats}.
+}
+\examples{
+\dontrun{
+# show all columns in a tibble
+options(tibble.width = Inf)
+
+# for reproducibility
+set.seed(123)
+
+#------------------------- models with *t*-statistic ------------------
+# model with t-statistic
+ggstatsplot:::ggcoefstats_label_maker(x = broom::tidy(stats::lm(
+  data = mtcars, formula = wt ~ cyl * mpg
+)), statistic = "t")
+
+# (in case `x` is not a dataframe, no need to specify `statistic` argument;
+# this will be figured out by the function itself)
+
+#------------------------- models with *t*-statistic ------------------
+
+# dataframe
+clotting <- data.frame(
+  u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
+  lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
+  lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
+)
+
+# model
+mod <-
+  stats::glm(
+    formula = lot1 ~ log(u),
+    data = clotting,
+    family = Gamma
+  )
+
+# model with t-statistic
+ggstatsplot:::ggcoefstats_label_maker(
+  x = mod,
+  tidy_df = broom::tidy(
+    x = mod,
+    conf.int = TRUE,
+    conf.level = 0.95
+  )
+)
+
+#------------------------- models with *z*-statistic --------------------
+
+# preparing dataframe
+counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+outcome <- gl(3, 1, 9)
+treatment <- gl(3, 3)
+d.AD <- data.frame(treatment, outcome, counts)
+
+# model
+mod <- stats::glm(
+  formula = counts ~ outcome + treatment,
+  family = poisson(),
+  data = d.AD
+)
+
+# creating tidy dataframe with label column
+ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broom::tidy(mod))
+
+#------------------------- models with *f*-statistic --------------------
+# creating a model object
+op <- options(contrasts = c("contr.helmert", "contr.poly"))
+npk.aov <- stats::aov(formula = yield ~ block + N * P * K, data = npk)
+
+# converting to a dataframe using
+tidy_df <- ggstatsplot::lm_effsize_ci(
+  object = npk.aov,
+  effsize = "omega",
+  partial = FALSE,
+  nboot = 50
+) \%>\%
+  dplyr::rename(.data = ., estimate = omegasq, statistic = F.value)
+
+# including a new column with a label
+ggstatsplot:::ggcoefstats_label_maker(
+  x = npk.aov,
+  tidy_df = tidy_df,
+  effsize = "omega",
+  partial = FALSE
+)
+}
+
 }
 \keyword{internal}

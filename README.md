@@ -200,7 +200,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x00000000269c9168>
+#> <bytecode: 0x0000000026bfedc8>
 #> <environment: namespace:ggstatsplot>
 ```
 

@@ -54,8 +54,12 @@ Calculate pairwise comparisons between group levels with
 corrections for multiple testing.
 }
 \examples{
+
 # time consuming, so not run on `CRAN` machines
 \dontrun{
+# show all columns in a tibble
+options(tibble.width = Inf)
+
 # for reproducibility
 set.seed(123)
 

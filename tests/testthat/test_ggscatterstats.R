@@ -42,8 +42,7 @@ testthat::test_that(
     ggrepel_dims <- dim(p$plot_env$label_data)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims[1], 83L)
-    testthat::expect_equal(data_dims[2], 13L)
+    testthat::expect_equal(data_dims, c(83L, 13L))
     testthat::expect_equal(
       ggrepel_dims[1],
       dim(dplyr::filter(ggplot2::msleep, bodywt > 2000))[1]

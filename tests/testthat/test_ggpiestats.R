@@ -89,8 +89,7 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims[1], 6L)
-    testthat::expect_equal(data_dims[2], 5L)
+    testthat::expect_equal(data_dims, c(6L, 5L))
     testthat::expect_equal(dat$perc[1], 72.73, tolerance = 1e-3)
     testthat::expect_equal(dat$perc[2], 42.86, tolerance = 1e-3)
     testthat::expect_equal(dat$perc[3], 14.29, tolerance = 1e-3)
@@ -167,8 +166,7 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims[1], 4L)
-    testthat::expect_equal(data_dims[2], 5L)
+    testthat::expect_equal(data_dims, c(4L, 5L))
     testthat::expect_equal(dat$perc[1], 8.46, tolerance = 1e-3)
     testthat::expect_equal(dat$perc[2], 48.38, tolerance = 1e-3)
     testthat::expect_equal(dat$perc[3], 91.54, tolerance = 1e-3)

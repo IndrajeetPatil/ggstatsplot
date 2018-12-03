@@ -106,13 +106,24 @@ testthat::test_that(
       conf.level = 0.99
     )
 
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
+
     # checking dimensions of data
     data_dims <- ggplot2::layer_data(p) %>%
       tibble::as_tibble(x = .) %>%
       dim(.)
 
-    testthat::expect_equal(data_dims[1], 51L)
-    testthat::expect_equal(data_dims[2], 13L)
+    # dataframe used for visualization
+    testthat::expect_equal(data_dims, c(51L, 13L))
+
+    # data from difference layers
+    testthat::expect_equal(length(pb$data), 7L)
+    testthat::expect_equal(pb$data[[5]]$x, c(2L, 2L, 1L, 4L, 2L, 1L, 3L))
+    testthat::expect_equal(pb$data[[5]]$y,
+      c(4.603, 0.655, 0.325, 1.320, 5.712, 0.157, 0.081),
+      tolerance = 0.001
+    )
 
     # checking displayed outlier labels
     outlier.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
@@ -188,26 +199,47 @@ testthat::test_that(
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggbetweenstats(
-      data = mtcars,
+      data = tibble::as_tibble(mtcars, rownames = "name"),
       x = "cyl",
       y = "wt",
       type = "np",
       mean.ci = TRUE,
       k = 3,
       conf.level = 0.90,
+      outlier.tagging = TRUE,
+      outlier.label = "name",
+      outlier.coef = 2.5,
       nboot = 5,
       messages = FALSE
     )
 
-    # checking displayed mean labels
-    mean.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
 
+    # checking dimensions of data
+    data_dims <- ggplot2::layer_data(p) %>%
+      tibble::as_tibble(x = .) %>%
+      dim(.)
+
+    # dataframe used for visualization
+    testthat::expect_equal(data_dims, c(32L, 13L))
+
+    # checking displayed mean labels
     testthat::expect_identical(
-      mean.labels,
+      pb$data[[7]]$label,
       c(
         "2.290, 95% CI [1.907, 2.673]",
         "3.120, 95% CI [2.787, 3.453]",
         "4.000, 95% CI [3.561, 4.439]"
+      )
+    )
+
+    testthat::expect_identical(
+      pb$data[[5]]$label,
+      c(
+        "Cadillac Fleetwood",
+        "Lincoln Continental",
+        "Chrysler Imperial"
       )
     )
   }

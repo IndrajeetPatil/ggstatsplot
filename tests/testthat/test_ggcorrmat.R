@@ -34,8 +34,7 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims[1], 16L)
-    testthat::expect_equal(data_dims[2], 7L)
+    testthat::expect_equal(data_dims, c(16L, 7L))
     testthat::expect_equal(dat$coef[1], 1, tolerance = 1e-3)
     testthat::expect_equal(dat$coef[5], -0.12, tolerance = 1e-3)
     testthat::expect_equal(dat$coef[9], 0.87, tolerance = 1e-3)
@@ -106,8 +105,7 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims[1], 36L)
-    testthat::expect_equal(data_dims[2], 7L)
+    testthat::expect_equal(data_dims, c(36L, 7L))
     testthat::expect_equal(dat$coef[2], 0.77, tolerance = 1e-3)
     testthat::expect_equal(dat$coef[7], 0.77, tolerance = 1e-3)
     testthat::expect_equal(dat$coef[9], -0.41, tolerance = 1e-3)
@@ -171,8 +169,7 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims[1], 16L)
-    testthat::expect_equal(data_dims[2], 7L)
+    testthat::expect_equal(data_dims, c(16L, 7L))
     testthat::expect_equal(dat$coef[2], 0.76, tolerance = 1e-3)
     testthat::expect_equal(dat$coef[7], -0.33, tolerance = 1e-3)
     testthat::expect_equal(dat$coef[9], -0.49, tolerance = 1e-3)

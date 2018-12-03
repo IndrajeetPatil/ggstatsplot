@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create text labels — tfz_labeller • ggstatsplot</title>
+<title>Prepare labels with statistic for <code>ggcoefstats</code> function. — tfz_labeller • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,9 +38,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create text labels — tfz_labeller" />
+<meta property="og:title" content="Prepare labels with statistic for <code>ggcoefstats</code> function. — tfz_labeller" />
 
-<meta property="og:description" content="Create text labels" />
+<meta property="og:description" content="Creates text labels for ggcoefstats plot with the appropriate
+statistic (t, z, or f) displayed in the label." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -167,14 +168,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create text labels</h1>
+    <h1>Prepare labels with statistic for <code>ggcoefstats</code> function.</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcoefstats.R'><code>R/helpers_ggcoefstats.R</code></a></small>
     <div class="hidden name"><code>tfz_labeller.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create text labels</p>
+    <p>Creates text labels for <code>ggcoefstats</code> plot with the appropriate
+statistic (<em>t</em>, <em>z</em>, or <em>f</em>) displayed in the label.</p>
     
     </div>
 
@@ -190,12 +192,16 @@
     </tr>
     <tr>
       <th>glance_df</th>
-      <td><p>Glance model summary dataframe from <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::glance</a></code>.</p></td>
+      <td><p>Glance model summary dataframe from <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::glance</a></code>
+(default: <code>NULL</code>). This is optional argument. If provide, the <code>glance</code>
+summary will be used to write <code>caption</code> for the final plot.</p></td>
     </tr>
     <tr>
       <th>statistic</th>
       <td><p>Which statistic is to be displayed (either <code>"t"</code> or <code>"f"</code>or
-<code>"z"</code>).</p></td>
+<code>"z"</code>) in the label. This is especially important if the <code>x</code> argument in
+<code>ggcoefstats</code> is a dataframe in which case the function wouldn't know what
+kind of model it is dealing with.</p></td>
     </tr>
     <tr>
       <th>effsize</th>

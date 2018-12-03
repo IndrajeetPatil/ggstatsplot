@@ -214,14 +214,22 @@ rated by at least one imdb user.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>movies_long</span>)</div><div class='output co'>#&gt; [1] 2433    8</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>movies_long</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 8</span><span>
-#&gt;   title                             year length budget rating  votes mpaa  genre
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>                            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Shawshank Redemption, The         </span><span style='text-decoration: underline;'>1</span><span>994    142     25    9.1 </span><span style='text-decoration: underline;'>149</span><span>494 R     Drama
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Lord of the Rings: The Return o~  </span><span style='text-decoration: underline;'>2</span><span>003    251     94    9   </span><span style='text-decoration: underline;'>103</span><span>631 PG-13 Acti~
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Lord of the Rings: The Fellowsh~  </span><span style='text-decoration: underline;'>2</span><span>001    208     93    8.8 </span><span style='text-decoration: underline;'>157</span><span>608 PG-13 Acti~
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Lord of the Rings: The Two Towe~  </span><span style='text-decoration: underline;'>2</span><span>002    223     94    8.8 </span><span style='text-decoration: underline;'>114</span><span>797 PG-13 Acti~
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Pulp Fiction                      </span><span style='text-decoration: underline;'>1</span><span>994    168      8    8.8 </span><span style='text-decoration: underline;'>132</span><span>745 R     Drama
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> Schindler's List                  </span><span style='text-decoration: underline;'>1</span><span>993    195     25    8.8  </span><span style='text-decoration: underline;'>97</span><span>667 R     Drama</div></span></pre>
+#&gt;   title                                               year length budget rating
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>                                              </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Shawshank Redemption, The                           </span><span style='text-decoration: underline;'>1</span><span>994    142     25    9.1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Lord of the Rings: The Return of the King, The      </span><span style='text-decoration: underline;'>2</span><span>003    251     94    9  
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Lord of the Rings: The Fellowship of the Ring, The  </span><span style='text-decoration: underline;'>2</span><span>001    208     93    8.8
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Lord of the Rings: The Two Towers, The              </span><span style='text-decoration: underline;'>2</span><span>002    223     94    8.8
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Pulp Fiction                                        </span><span style='text-decoration: underline;'>1</span><span>994    168      8    8.8
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> Schindler's List                                    </span><span style='text-decoration: underline;'>1</span><span>993    195     25    8.8
+#&gt;    votes mpaa  genre 
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='text-decoration: underline;'>149</span><span>494 R     Drama 
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='text-decoration: underline;'>103</span><span>631 PG-13 Action
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='text-decoration: underline;'>157</span><span>608 PG-13 Action
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> </span><span style='text-decoration: underline;'>114</span><span>797 PG-13 Action
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> </span><span style='text-decoration: underline;'>132</span><span>745 R     Drama 
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>  </span><span style='text-decoration: underline;'>97</span><span>667 R     Drama </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
