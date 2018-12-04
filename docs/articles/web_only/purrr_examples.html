@@ -131,7 +131,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-12-03</h4>
+            <h4 class="date">2018-12-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -255,8 +255,7 @@
 <a class="sourceLine" id="cb2-45" data-line-number="45">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb2-46" data-line-number="46">  ),</a>
 <a class="sourceLine" id="cb2-47" data-line-number="47">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggbetweenstats</a>
-<a class="sourceLine" id="cb2-48" data-line-number="48">)</a>
-<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="co">#&gt; Warning: No Bayes Factor pairwise comparisons currently available.</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-48" data-line-number="48">)</a></code></pre></div>
 <p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>

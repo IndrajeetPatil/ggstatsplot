@@ -257,7 +257,9 @@ ggcoefstats <- function(x,
         "aren't currently supported.\n"
       ),
       sep = ""
-    )))
+    )),
+    call. = FALSE
+    )
   }
   # ============================= model and its summary ======================
 

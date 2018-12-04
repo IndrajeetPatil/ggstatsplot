@@ -203,3 +203,56 @@ testthat::test_that(
     )
   }
 )
+
+# class of object -------------------------------------------------
+
+testthat::test_that(
+  desc = "class of object",
+  code = {
+    # creating the plot
+    set.seed(123)
+    p <-
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        xlab = "total sleep",
+        ylab = "body weight",
+        title = "mammalian sleep dataset",
+        caption = "source: ggplot2 package",
+        type = "bf",
+        messages = FALSE
+      )
+
+    # subtitle
+    p_subtitle <- ggstatsplot::subtitle_ggscatterstats(
+      data = ggplot2::msleep,
+      x = sleep_total,
+      y = bodywt,
+      type = "bf",
+      messages = FALSE
+    )
+
+    testthat::expect_identical(class(p)[[1]], "ggExtraPlot")
+    testthat::expect_identical(
+      tibble::enframe(p$grobs[[23]]$children)$value[[1]][[1]],
+      "mammalian sleep dataset"
+    )
+    testthat::expect_identical(
+      tibble::enframe(p$grobs[[17]]$children)$value[[1]][[1]],
+      "source: ggplot2 package"
+    )
+    testthat::expect_identical(
+      tibble::enframe(p$grobs[[12]]$children)$value[[1]][[1]],
+      "total sleep"
+    )
+    testthat::expect_identical(
+      tibble::enframe(p$grobs[[13]]$children)$value[[1]][[1]],
+      "body weight"
+    )
+    testthat::expect_identical(
+      tibble::enframe(p$grobs[[22]]$children)$value[[1]][[1]],
+      p_subtitle
+    )
+  }
+)

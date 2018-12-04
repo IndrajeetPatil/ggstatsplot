@@ -110,11 +110,20 @@ ggstatsplot::pairwise_p(
 }
 #------------------- within-subjects design ----------------------------
 
+set.seed(123)
+library(jmv)
+data("bugs", package = "jmv")
+
+# converting to long format
+bugs_long <- bugs \%>\%
+  tibble::as_tibble(.) \%>\%
+  tidyr::gather(., key, value, LDLF:HDHF)
+
 # parametric
 ggstatsplot::pairwise_p(
-  data = ggstatsplot::intent_morality,
-  x = condition,
-  y = rating,
+  data = bugs_long,
+  x = key,
+  y = value,
   type = "p",
   paired = TRUE,
   p.adjust.method = "BH"
@@ -122,9 +131,9 @@ ggstatsplot::pairwise_p(
 
 # non-parametric
 ggstatsplot::pairwise_p(
-  data = ggstatsplot::intent_morality,
-  x = condition,
-  y = rating,
+  data = bugs_long,
+  x = key,
+  y = value,
   type = "np",
   paired = TRUE,
   p.adjust.method = "BY"
@@ -132,9 +141,9 @@ ggstatsplot::pairwise_p(
 
 # robust
 ggstatsplot::pairwise_p(
-  data = ggstatsplot::intent_morality,
-  x = condition,
-  y = rating,
+  data = bugs_long,
+  x = key,
+  y = value,
   type = "r",
   paired = TRUE,
   p.adjust.method = "hommel"

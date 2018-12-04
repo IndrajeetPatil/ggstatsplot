@@ -188,17 +188,17 @@ games_howell <- function(data,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # time consuming, so not run on `CRAN` machines
 #' \dontrun{
 #' # show all columns in a tibble
 #' options(tibble.width = Inf)
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' #------------------- between-subjects design ----------------------------
-#' 
+#'
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
@@ -210,7 +210,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -221,7 +221,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -231,7 +231,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "none"
 #' )
-#' 
+#'
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -243,32 +243,41 @@ games_howell <- function(data,
 #' )
 #' }
 #' #------------------- within-subjects design ----------------------------
-#' 
+#'
+#' set.seed(123)
+#' library(jmv)
+#' data("bugs", package = "jmv")
+#'
+#' # converting to long format
+#' bugs_long <- bugs %>%
+#'   tibble::as_tibble(.) %>%
+#'   tidyr::gather(., key, value, LDLF:HDHF)
+#'
 #' # parametric
 #' ggstatsplot::pairwise_p(
-#'   data = ggstatsplot::intent_morality,
-#'   x = condition,
-#'   y = rating,
+#'   data = bugs_long,
+#'   x = key,
+#'   y = value,
 #'   type = "p",
 #'   paired = TRUE,
 #'   p.adjust.method = "BH"
 #' )
-#' 
+#'
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
-#'   data = ggstatsplot::intent_morality,
-#'   x = condition,
-#'   y = rating,
+#'   data = bugs_long,
+#'   x = key,
+#'   y = value,
 #'   type = "np",
 #'   paired = TRUE,
 #'   p.adjust.method = "BY"
 #' )
-#' 
+#'
 #' # robust
 #' ggstatsplot::pairwise_p(
-#'   data = ggstatsplot::intent_morality,
-#'   x = condition,
-#'   y = rating,
+#'   data = bugs_long,
+#'   x = key,
+#'   y = value,
 #'   type = "r",
 #'   paired = TRUE,
 #'   p.adjust.method = "hommel"
@@ -308,7 +317,7 @@ pairwise_p <- function(data,
   # ---------------------------- parametric ---------------------------------
   #
   if (type %in% c("parametric", "p")) {
-    if (isTRUE(var.equal)) {
+    if (isTRUE(var.equal) || isTRUE(paired)) {
       df <-
         dplyr::full_join(
           # mean difference and its confidence intervals
@@ -420,7 +429,7 @@ pairwise_p <- function(data,
           sep = ""
         ))
       }
-    } else if (isTRUE(paired)) {
+    } else {
 
       # converting the entered long format data to wide format
       data_wide <- long_to_wide_converter(
@@ -481,7 +490,7 @@ pairwise_p <- function(data,
           data = data,
           tr = tr
         )
-    } else if (isTRUE(paired)) {
+    } else {
       # converting to long format and then getting it back in wide so that the
       # rowid variable can be used as the block variable for WRS2 functions
       data_within <-
@@ -579,6 +588,15 @@ pairwise_p <- function(data,
         sep = ""
       ))
     }
+  } else if (type %in% c("bf", "bayes")) {
+    # print a message telling the user that this is currently not supported
+    base::stop(base::message(cat(
+      crayon::red("Warning: "),
+      crayon::blue("No Bayes Factor pairwise comparisons currently available.\n"),
+      sep = ""
+    )),
+    call. = FALSE
+    )
   }
 
   # if there are factors, covert them to character to make life easy
@@ -659,7 +677,7 @@ pairwise_p_caption <- function(type,
   if (test.type == "p") {
     if (isTRUE(paired)) {
       test.description <- "Student's t-test"
-    } else if (!isTRUE(paired)) {
+    } else {
       if (!isTRUE(var.equal)) {
         test.description <- "Games-Howell test"
       } else {

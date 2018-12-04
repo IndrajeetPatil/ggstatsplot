@@ -123,30 +123,37 @@ testthat::test_that(
       k = 3,
       paired = TRUE,
       messages = FALSE,
-      p.adjust.method = "BH"
+      p.adjust.method = "bonferroni"
     )
 
     testthat::expect_equal(
       df1$mean.difference,
-      c(1.664, 1.027, 2.138, -0.637, 0.474, 1.112),
+      c(
+        -1.1115026,
+        -0.4741400,
+        -2.1382071,
+        0.6373626,
+        -1.0267045,
+        -1.6640671
+      ),
       tolerance = 0.001
     )
 
     testthat::expect_identical(
       df1$p.value.label,
       c(
+        "p = 0.003",
+        "p = 0.424",
         "p <= 0.001",
-        "p = 0.126",
-        "p <= 0.001",
-        "p = 0.515",
-        "p = 0.574",
-        "p = 0.082"
+        "p = 0.274",
+        "p = 0.006",
+        "p <= 0.001"
       )
     )
 
     testthat::expect_identical(
       df1$significance,
-      c("***", "ns", "***", "ns", "ns", "ns")
+      c("**", "ns", "***", "ns", "**", "***")
     )
 
     # Durbin-Conover test
@@ -198,7 +205,14 @@ testthat::test_that(
 
     testthat::expect_equal(
       df3$psihat,
-      c(-0.7013889, 0.5000000, 0.9375000, 1.1597222, 1.5416667, 2.0972222),
+      c(
+        -0.7013889,
+        0.5000000,
+        0.9375000,
+        1.1597222,
+        1.5416667,
+        2.0972222
+      ),
       tolerance = 0.001
     )
 
@@ -217,6 +231,157 @@ testthat::test_that(
     testthat::expect_identical(
       df3$significance,
       c("ns", "ns", "*", "**", "***", "***")
+    )
+  }
+)
+
+# messages - between subjects --------------------------------------------------
+
+testthat::test_that(
+  desc = "`pairwise_p()` messages are correct for between-subjects",
+  code = {
+    set.seed(123)
+
+    # student's t
+    messages1 <- capture.output(ggstatsplot::pairwise_p(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = TRUE,
+      type = "p",
+      var.equal = TRUE,
+      paired = FALSE,
+      p.adjust.method = "BH"
+    ))
+
+    testthat::expect_match(messages1[2], "Student's t-test", fixed = TRUE)
+    testthat::expect_match(messages1[3], "BH", fixed = TRUE)
+
+    # games-howell
+    messages2 <- capture.output(ggstatsplot::pairwise_p(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = TRUE,
+      type = "p",
+      var.equal = FALSE,
+      paired = FALSE,
+      p.adjust.method = "bonferroni"
+    ))
+
+    testthat::expect_match(messages2[2], "Games-Howell test", fixed = TRUE)
+    testthat::expect_match(messages2[3], "bonferroni", fixed = TRUE)
+
+    # Dwass-Steel-Crichtlow-Fligner test
+    messages3 <- capture.output(ggstatsplot::pairwise_p(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = TRUE,
+      type = "np",
+      paired = FALSE,
+      p.adjust.method = "none"
+    ))
+
+    testthat::expect_match(messages3[2], "Dwass-Steel-Crichtlow-Fligner test", fixed = TRUE)
+    testthat::expect_match(messages3[3], "none", fixed = TRUE)
+
+    # robust t test
+    messages4 <- capture.output(ggstatsplot::pairwise_p(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = TRUE,
+      type = "r",
+      paired = FALSE,
+      p.adjust.method = "hochberg"
+    ))
+
+    testthat::expect_match(messages4[2], "Yuen's trimmed means", fixed = TRUE)
+    testthat::expect_match(messages4[3], "hochberg", fixed = TRUE)
+
+    # bayes factor
+    testthat::expect_error(
+      ggstatsplot::pairwise_p(
+        data = ggplot2::msleep,
+        x = vore,
+        y = brainwt,
+        messages = TRUE,
+        type = "bf",
+        p.adjust.method = "hochberg"
+      )
+    )
+  }
+)
+
+
+# messages - within subjects --------------------------------------------------
+
+testthat::test_that(
+  desc = "`pairwise_p()` messages are correct for within-subjects",
+  code = {
+    set.seed(123)
+    library(jmv)
+    data("bugs", package = "jmv")
+
+    # converting to long format
+    bugs_long <- bugs %>%
+      tibble::as_tibble(.) %>%
+      tidyr::gather(., key, value, LDLF:HDHF)
+
+    # student's t test
+    messages1 <- capture.output(ggstatsplot::pairwise_p(
+      data = bugs_long,
+      x = key,
+      y = value,
+      type = "p",
+      paired = TRUE,
+      messages = TRUE,
+      p.adjust.method = "fdr"
+    ))
+
+    testthat::expect_match(messages1[2], "Student's t-test", fixed = TRUE)
+    testthat::expect_match(messages1[3], "fdr", fixed = TRUE)
+
+    # Durbin-Conover test
+    messages2 <- capture.output(ggstatsplot::pairwise_p(
+      data = bugs_long,
+      x = key,
+      y = value,
+      type = "np",
+      paired = TRUE,
+      messages = TRUE,
+      p.adjust.method = "BY"
+    ))
+
+    testthat::expect_match(messages2[2], "Durbin-Conover test", fixed = TRUE)
+    testthat::expect_match(messages2[3], "BY", fixed = TRUE)
+
+    # robust t test
+    messages3 <- capture.output(ggstatsplot::pairwise_p(
+      data = bugs_long,
+      x = key,
+      y = value,
+      type = "r",
+      paired = TRUE,
+      messages = TRUE,
+      p.adjust.method = "hommel"
+    ))
+
+    testthat::expect_match(messages3[2], "Yuen's trimmed means", fixed = TRUE)
+    testthat::expect_match(messages3[3], "hommel", fixed = TRUE)
+
+    # bayes factor
+    testthat::expect_error(
+      ggstatsplot::pairwise_p(
+        data = bugs_long,
+        x = key,
+        y = value,
+        paired = TRUE,
+        messages = TRUE,
+        type = "bf",
+        p.adjust.method = "hochberg"
+      )
     )
   }
 )

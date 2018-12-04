@@ -413,3 +413,18 @@ testthat::test_that(
     testthat::expect_null(p4$labels$caption, NULL)
   }
 )
+
+# unsupported model objects -------------------------------------
+
+testthat::test_that(
+  desc = "unsupported model objects",
+  code = {
+    set.seed(123)
+    testthat::expect_error(
+      ggstatsplot::ggcoefstats(x = stats::kmeans(
+        x = dplyr::select(iris, -Species),
+        centers = 3
+      ))
+    )
+  }
+)

@@ -233,13 +233,6 @@ ggbetweenstats <- function(data,
   if (type %in% c("bf", "bayes") && isTRUE(pairwise.comparisons)) {
     # turn off pairwise comparisons
     pairwise.comparisons <- FALSE
-
-    # print a message telling the user the same
-    base::message(cat(
-      crayon::red("Warning: "),
-      crayon::blue("No Bayes Factor pairwise comparisons currently available.\n"),
-      sep = ""
-    ))
   }
 
   # ------------------------------ variable names ----------------------------
