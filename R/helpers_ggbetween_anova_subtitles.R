@@ -18,6 +18,7 @@
 #' @param ... Additional arguments (ignored).
 #' @inheritParams stats::oneway.test
 #' @inheritParams subtitle_t_parametric
+#' @inheritParams lm_effsize_standardizer
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -38,7 +39,8 @@
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = sleep_rem,
-#'   effsize.type = "partial_eta",
+#'   effsize.type = "biased",
+#'   partial = FALSE,
 #'   var.equal = TRUE,
 #'   nboot = 10
 #' )
@@ -49,7 +51,8 @@ subtitle_anova_parametric <-
   function(data,
              x,
              y,
-             effsize.type = "partial_omega",
+             effsize.type = "unbiased",
+             partial = TRUE,
              conf.level = 0.95,
              nboot = 100,
              var.equal = FALSE,
@@ -91,172 +94,109 @@ subtitle_anova_parametric <-
       k.df2 <- 0
     }
 
+    # figuring out which effect size to use
+    effsize.type <- effsize_type_switch(effsize.type)
+
     # preparing the subtitles with appropriate effect sizes
-    if (effsize.type %in% c("unbiased", "partial_omega", "partial.omega")) {
-      # partial omega-squared is the biased estimate of effect size for
-      # parametric ANOVA
-      aov_effsize_ci <-
-        sjstats::omega_sq(
-          model = stats::lm(
-            formula = y ~ x,
-            data = data,
-            na.action = na.omit
-          ),
-          partial = TRUE,
-          ci.lvl = conf.level,
-          n = nboot
-        )
-
-      # preparing the subtitle
-      subtitle <-
-        # extracting the elements of the statistical object
-        base::substitute(
-          expr =
-            paste(
-              italic("F"),
-              "(",
-              df1,
-              ",",
-              df2,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              omega["p"]^2,
-              " = ",
-              effsize,
-              ", CI"[conf.level],
-              " [",
-              LL,
-              ", ",
-              UL,
-              "]",
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(
-              x = aov_stat$statistic[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            df1 = aov_stat$parameter[[1]],
-            df2 = ggstatsplot::specify_decimal_p(
-              x = aov_stat$parameter[[2]],
-              k = k.df2,
-              p.value = FALSE
-            ),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = aov_stat$p.value[[1]],
-              k = k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(
-              x = aov_effsize_ci$partial.omegasq[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            conf.level = paste(conf.level * 100, "%", sep = ""),
-            LL = ggstatsplot::specify_decimal_p(
-              x = aov_effsize_ci$conf.low[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            UL = ggstatsplot::specify_decimal_p(
-              x = aov_effsize_ci$conf.high[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            n = nrow(x = data)
-          )
-        )
-    } else if (effsize.type %in% c("biased", "partial_eta", "partial.eta")) {
-      # getting confidence interval for partial eta-squared
-      aov_effsize_ci <- sjstats::eta_sq(
-        model = stats::lm(
-          formula = y ~ x,
-          data = data,
-          na.action = na.omit
-        ),
-        partial = TRUE,
-        ci.lvl = conf.level,
-        n = nboot
-      )
-
-      # preparing the subtitle
-      subtitle <-
-        # extracting the elements of the statistical object
-        base::substitute(
-          expr =
-            paste(
-              italic("F"),
-              "(",
-              df1,
-              ",",
-              df2,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              eta["p"]^2,
-              " = ",
-              effsize,
-              ", CI"[conf.level],
-              " [",
-              LL,
-              ", ",
-              UL,
-              "]",
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(
-              x = aov_stat$statistic[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            df1 = aov_stat$parameter[[1]],
-            df2 = ggstatsplot::specify_decimal_p(
-              x = aov_stat$parameter[[2]],
-              k = k.df2,
-              p.value = FALSE
-            ),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = aov_stat$p.value[[1]],
-              k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(
-              x = aov_effsize_ci$partial.etasq[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            conf.level = paste(conf.level * 100, "%", sep = ""),
-            LL = ggstatsplot::specify_decimal_p(
-              x = aov_effsize_ci$conf.low[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            UL = ggstatsplot::specify_decimal_p(
-              x = aov_effsize_ci$conf.high[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            n = nrow(x = data)
-          )
-        )
+    if (effsize.type == "unbiased") {
+      effsize <- "omega"
+      if (isTRUE(partial)) {
+        effsize.text <- quote(omega["p"])
+      } else {
+        effsize.text <- quote(omega)
+      }
+    } else if (effsize.type == "biased") {
+      effsize <- "eta"
+      if (isTRUE(partial)) {
+        effsize.text <- quote(eta["p"])
+      } else {
+        effsize.text <- quote(eta)
+      }
     }
+
+    # creating a standardized dataframe with effect size and its confidence
+    # intervals
+    aov_effsize_ci <- lm_effsize_standardizer(
+      object = stats::lm(
+        formula = y ~ x,
+        data = data,
+        na.action = na.omit
+      ),
+      effsize = effsize,
+      partial = partial,
+      conf.level = conf.level,
+      nboot = nboot
+    )
+
+    # preparing the subtitle
+    subtitle <-
+      # extracting the elements of the statistical object
+      base::substitute(
+        expr =
+          paste(
+            italic("F"),
+            "(",
+            df1,
+            ",",
+            df2,
+            ") = ",
+            estimate,
+            ", ",
+            italic("p"),
+            " = ",
+            pvalue,
+            ", ",
+            effsize.text^2,
+            " = ",
+            effsize,
+            ", CI"[conf.level],
+            " [",
+            LL,
+            ", ",
+            UL,
+            "]",
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          estimate = ggstatsplot::specify_decimal_p(
+            x = aov_stat$statistic[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          df1 = aov_stat$parameter[[1]],
+          df2 = ggstatsplot::specify_decimal_p(
+            x = aov_stat$parameter[[2]],
+            k = k.df2,
+            p.value = FALSE
+          ),
+          pvalue = ggstatsplot::specify_decimal_p(
+            x = aov_stat$p.value[[1]],
+            k = k,
+            p.value = TRUE
+          ),
+          effsize.text = effsize.text,
+          effsize = ggstatsplot::specify_decimal_p(
+            x = aov_effsize_ci$estimate[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          conf.level = paste(conf.level * 100, "%", sep = ""),
+          LL = ggstatsplot::specify_decimal_p(
+            x = aov_effsize_ci$conf.low[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          UL = ggstatsplot::specify_decimal_p(
+            x = aov_effsize_ci$conf.high[[1]],
+            k = k,
+            p.value = FALSE
+          ),
+          n = nrow(x = data)
+        )
+      )
 
     # message about effect size measure
     if (isTRUE(messages)) {
@@ -763,7 +703,8 @@ subtitle_anova_robust <-
 subtitle_anova_bayes <- function(data,
                                  x,
                                  y,
-                                 effsize.type = "partial_omega",
+                                 effsize.type = "unbiased",
+                                 partial = TRUE,
                                  var.equal = FALSE,
                                  bf.prior = 0.707,
                                  paired = FALSE,
@@ -818,146 +759,99 @@ subtitle_anova_bayes <- function(data,
     k.df2 <- 0
   }
 
+  # figuring out which effect size to use
+  effsize.type <- effsize_type_switch(effsize.type)
+
+  # figuring out which effect size to use
+  effsize.type <- effsize_type_switch(effsize.type)
+
   # preparing the subtitles with appropriate effect sizes
-  if (effsize.type %in% c("unbiased", "partial_omega", "partial.omega")) {
-    # partial omega-squared is the biased estimate of effect size for
-    # parametric ANOVA
-    aov_effsize_ci <-
-      sjstats::omega_sq(
-        model = stats::lm(
-          formula = y ~ x,
-          data = data,
-          na.action = na.omit
-        ),
-        partial = TRUE
-      )
-
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            italic("F"),
-            "(",
-            df1,
-            ",",
-            df2,
-            ") = ",
-            estimate,
-            ", ",
-            omega["p"]^2,
-            " = ",
-            effsize,
-            ", log"["e"],
-            "(BF"["10"],
-            ") = ",
-            bf,
-            ", Prior width = ",
-            bf_prior,
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
-            x = aov_stat$statistic[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          df1 = aov_stat$parameter[[1]],
-          df2 = ggstatsplot::specify_decimal_p(
-            x = aov_stat$parameter[[2]],
-            k = k.df2,
-            p.value = FALSE
-          ),
-          effsize = ggstatsplot::specify_decimal_p(
-            x = aov_effsize_ci$partial.omegasq[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          bf = ggstatsplot::specify_decimal_p(
-            x = bf_results$log_e_bf10[[1]],
-            k = 1,
-            p.value = FALSE
-          ),
-          bf_prior = ggstatsplot::specify_decimal_p(
-            x = bf_results$bf.prior[[1]],
-            k = 3,
-            p.value = FALSE
-          ),
-          n = sample_size
-        )
-      )
-  } else if (effsize.type %in% c("biased", "partial_eta", "partial.eta")) {
-    # getting confidence interval for partial eta-squared
-    aov_effsize_ci <- sjstats::eta_sq(
-      model = stats::lm(
-        formula = y ~ x,
-        data = data,
-        na.action = na.omit
-      ),
-      partial = TRUE
-    )
-
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            italic("F"),
-            "(",
-            df1,
-            ",",
-            df2,
-            ") = ",
-            estimate,
-            ", ",
-            eta["p"]^2,
-            " = ",
-            effsize,
-            ", log"["e"],
-            "(BF"["10"],
-            ") = ",
-            bf,
-            ", Prior width = ",
-            bf_prior,
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
-            x = aov_stat$statistic[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          df1 = aov_stat$parameter[[1]],
-          df2 = ggstatsplot::specify_decimal_p(
-            x = aov_stat$parameter[[2]],
-            k = k.df2,
-            p.value = FALSE
-          ),
-          effsize = ggstatsplot::specify_decimal_p(
-            x = aov_effsize_ci$partial.etasq[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          bf = ggstatsplot::specify_decimal_p(
-            x = bf_results$log_e_bf10[[1]],
-            k = 1,
-            p.value = FALSE
-          ),
-          bf_prior = ggstatsplot::specify_decimal_p(
-            x = bf_results$bf.prior[[1]],
-            k = 3,
-            p.value = FALSE
-          ),
-          n = sample_size
-        )
-      )
+  if (effsize.type == "unbiased") {
+    effsize <- "omega"
+    if (isTRUE(partial)) {
+      effsize.text <- quote(omega["p"])
+    } else {
+      effsize.text <- quote(omega)
+    }
+  } else if (effsize.type == "biased") {
+    effsize <- "eta"
+    if (isTRUE(partial)) {
+      effsize.text <- quote(eta["p"])
+    } else {
+      effsize.text <- quote(eta)
+    }
   }
+
+  # creating a standardized dataframe with effect size and its confidence
+  # intervals
+  aov_effsize_ci <- lm_effsize_standardizer(
+    object = stats::lm(
+      formula = y ~ x,
+      data = data,
+      na.action = na.omit
+    ),
+    effsize = effsize,
+    partial = partial
+  )
+
+  # preparing the subtitle
+  subtitle <-
+    base::substitute(
+      expr =
+        paste(
+          italic("F"),
+          "(",
+          df1,
+          ",",
+          df2,
+          ") = ",
+          estimate,
+          ", ",
+          effsize.text^2,
+          " = ",
+          effsize,
+          ", log"["e"],
+          "(BF"["10"],
+          ") = ",
+          bf,
+          ", Prior width = ",
+          bf_prior,
+          ", ",
+          italic("n"),
+          " = ",
+          n
+        ),
+      env = base::list(
+        effsize.text = effsize.text,
+        estimate = ggstatsplot::specify_decimal_p(
+          x = aov_stat$statistic[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        df1 = aov_stat$parameter[[1]],
+        df2 = ggstatsplot::specify_decimal_p(
+          x = aov_stat$parameter[[2]],
+          k = k.df2,
+          p.value = FALSE
+        ),
+        effsize = ggstatsplot::specify_decimal_p(
+          x = aov_effsize_ci$estimate[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        bf = ggstatsplot::specify_decimal_p(
+          x = bf_results$log_e_bf10[[1]],
+          k = 1,
+          p.value = FALSE
+        ),
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf_results$bf.prior[[1]],
+          k = 3,
+          p.value = FALSE
+        ),
+        n = sample_size
+      )
+    )
 
   # return the subtitle
   return(subtitle)

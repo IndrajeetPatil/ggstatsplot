@@ -287,6 +287,8 @@ ggstatsplot::grouped_ggbetweenstats(
   ylab = "Life expectancy", 
   k = 2,
   nboot = 10,
+  effsize.type = "unbiased",           # type of effect size (unbiased = omega)
+  partial = FALSE,                     # partial omega or omega?
   pairwise.comparisons = TRUE,         # display results from pairwise comparisons 
   pairwise.display = "significant",    # display only significant pairwise comparisons 
   pairwise.annotation = "p.value",     # annotate the pairwise comparisons using p-values

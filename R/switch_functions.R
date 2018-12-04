@@ -1,7 +1,6 @@
 #' @title Switch function to use helper function to create subtitle for the
 #'   `ggbetweenstats` plot.
 #' @name ggbetweenstats_switch
-#' @aliases ggbetweenstats_switch
 #'
 #' @inheritParams ggbetweenstats
 #' @param test Decides which test to run (can be either `"t-test"` or
@@ -83,6 +82,47 @@ p.adjust.method.description <- function(p.adjust.method) {
     hommel = "Hommel",
     BH = "Benjamini & Hochberg",
     fdr = "Benjamini & Hochberg",
-    BY = "Benjamini & Yekutieli"
+    BY = "Benjamini & Yekutieli",
+    "Holm"
   )
+}
+
+#' @title Switch function to determine which effect size is to computed.
+#' @name effsize_type_switch
+#' @description Takes in all allowed characters describing the needed effect
+#'   size (e.g., `"d"`, `"partial_eta"`, etc.) and converts it into standard
+#'   terms (`"biased"` or `"unbiased"`) to reduce the complexity of conditional
+#'   statements.
+#' @author Indrajeet Patil
+#'
+#' @param effsize.type Character describing the needed effect size.
+#'
+#' @keywords internal
+
+effsize_type_switch <- function(effsize.type = NULL) {
+  # figuring out which effect size to use
+  if (!is.null(effsize.type)) {
+    effsize.type <-
+      switch(
+        EXPR = effsize.type,
+        d = "biased",
+        g = "unbiased",
+        eta = "biased",
+        omega = "unbiased",
+        partial_eta = "biased",
+        partial_omega = "unbiased",
+        partial.eta = "biased",
+        partial.omega = "unbiased",
+        p_eta = "biased",
+        p_omega = "unbiased",
+        biased = "biased",
+        unbiased = "unbiased",
+        "unbiased"
+      )
+  } else {
+    effsize.type <- "unbiased"
+  }
+
+  # return the value
+  return(effsize.type)
 }

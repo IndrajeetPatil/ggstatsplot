@@ -190,3 +190,63 @@ long_to_wide_converter <- function(data, x, y) {
   # return the dataframe in wide format
   return(data_wide)
 }
+
+#' @title Standardize a dataframe with effect sizes for `aov`, `lm`, `aovlist`,
+#'   etc. objects.
+#' @name lm_effsize_standardizer
+#'
+#' @inheritParams groupedstats::lm_effsize_ci
+#'
+#' @examples
+#' \dontrun{
+#' ggstatsplot:::lm_effsize_standardizer(
+#'   stats::lm(formula = brainwt ~ vore, data = ggplot2::msleep),
+#'   partial = FALSE,
+#'   conf.level = 0.99,
+#'   nboot = 50
+#' )
+#' }
+#' @keywords internal
+
+# function body
+lm_effsize_standardizer <- function(object,
+                                    effsize = "eta",
+                                    partial = TRUE,
+                                    conf.level = 0.95,
+                                    nboot = 500) {
+
+  # creating a dataframe with effect size and its CI
+  df <- groupedstats::lm_effsize_ci(
+    object = object,
+    effsize = effsize,
+    partial = partial,
+    conf.level = conf.level,
+    nboot = nboot
+  )
+
+  # renaming the particular effect size to standard term 'estimate'
+  if (effsize == "eta") {
+    # partial eta-squared
+    if (isTRUE(partial)) {
+      df %<>%
+        dplyr::rename(.data = ., estimate = partial.etasq)
+    } else {
+      # eta-squared
+      df %<>%
+        dplyr::rename(.data = ., estimate = etasq)
+    }
+  } else if (effsize == "omega") {
+    # partial omega-squared
+    if (isTRUE(partial)) {
+      df %<>%
+        dplyr::rename(.data = ., estimate = partial.omegasq)
+    } else {
+      # omega-squared
+      df %<>%
+        dplyr::rename(.data = ., estimate = omegasq)
+    }
+  }
+
+  # return the dataframe in standard format
+  return(df)
+}

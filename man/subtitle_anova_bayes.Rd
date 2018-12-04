@@ -4,8 +4,9 @@
 \alias{subtitle_anova_bayes}
 \title{Making text subtitle for the between-subject one-way anova designs.}
 \usage{
-subtitle_anova_bayes(data, x, y, effsize.type = "partial_omega",
-  var.equal = FALSE, bf.prior = 0.707, paired = FALSE, k = 2, ...)
+subtitle_anova_bayes(data, x, y, effsize.type = "unbiased",
+  partial = TRUE, var.equal = FALSE, bf.prior = 0.707,
+  paired = FALSE, k = 2, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -20,6 +21,11 @@ argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-t
 \code{"partial_eta"} for partial eta-squared for \strong{anova}) or \code{"unbiased"}
 (\code{"g"} Hedge's \emph{g} for \strong{t-test}; \code{"partial_omega"} for partial
 omega-squared for \strong{anova})).}
+
+\item{partial}{Logical that decides if partial eta-squared or omega-squared
+are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
+will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
+\code{aovlist}.}
 
 \item{var.equal}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F

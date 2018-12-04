@@ -19,6 +19,9 @@ testthat::test_that(
         k = 3
       )
 
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
+
     # tidy dataframe from the function
     tidy_df <- p$plot_env$tidy_df
 
@@ -39,6 +42,24 @@ testthat::test_that(
     testthat::expect_identical(
       tidy_df$p.value.formatted,
       c("< 0.001", "< 0.001", "0.014", "0.064")
+    )
+
+    # checking panel parameters
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+      c(-4.292139, 8.302817),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      c("-4", "0", "4", "8")
+    )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+      c(0.4, 4.6),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$y.labels,
+      c("(Intercept)", "mpg", "am", "mpg:am")
     )
   }
 )
@@ -97,6 +118,24 @@ testthat::test_that(
       trimws(as.character(format(broom_df$statistic, digits = 3)))
     )
     testthat::expect_identical(tidy_df$label, pb_df$label)
+
+    # checking panel parameters
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+      c(-2.3876522, 0.1136977),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      c("-2.0", "-1.5", "-1.0", "-0.5", "0.0")
+    )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+      c(0.4, 4.6),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$y.labels,
+      c("(Intercept)", "period2", "period3", "period4")
+    )
   }
 )
 
@@ -118,6 +157,9 @@ testthat::test_that(
         k = 2,
         ylab = "effect"
       )
+
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
 
     # tidy dataframe from the function
     tidy_df <- p$plot_env$tidy_df
@@ -170,9 +212,26 @@ testthat::test_that(
         "list(~italic(F)(1*\",\"*28)==3.73, ~italic(p)==0.064, ~italic(eta)[p]^2==0.12)"
       )
     )
+
+    # checking panel parameters
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+      c(-0.04362035, 0.91602734),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      c("0.00", "0.25", "0.50", "0.75")
+    )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+      c(0.4, 3.6),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$y.labels,
+      c("mpg", "am", "mpg:am")
+    )
   }
 )
-
 
 # f-statistic - partial omega-squared -------------------------------------
 
@@ -246,6 +305,24 @@ testthat::test_that(
       tidy_df$p.value.formatted2,
       c("==0.001", "==0.163", "==0.015")
     )
+
+    # checking panel parameters
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+      c(-0.02576079, 0.54097650),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      c("0.0", "0.1", "0.2", "0.3", "0.4", "0.5")
+    )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+      c(0.4, 3.6),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$y.labels,
+      c("brainwt", "vore:brainwt", "vore")
+    )
   }
 )
 
@@ -267,10 +344,12 @@ testthat::test_that(
     df3 <- dplyr::select(.data = df1, -statistic)
 
     # plotting the dataframe
-    p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t")
+    p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t", sort = "none")
     p2 <- ggstatsplot::ggcoefstats(x = df1, statistic = "z", sort = "descending")
     p3 <- ggstatsplot::ggcoefstats(x = df2, statistic = "t")
-    p4 <- ggstatsplot::ggcoefstats(x = df3, statistic = "t")
+    p4 <- ggstatsplot::ggcoefstats(x = df3, statistic = "t") +
+      ggplot2::scale_y_discrete(labels = c("x1", "x2", "x3")) +
+      ggplot2::labs(x = "beta", y = NULL)
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -278,6 +357,7 @@ testthat::test_that(
     pb3 <- ggplot2::ggplot_build(p3)
     pb4 <- ggplot2::ggplot_build(p4)
 
+    # stats labels
     testthat::expect_identical(
       pb1$data[[4]]$label,
       c(
@@ -308,5 +388,28 @@ testthat::test_that(
     testthat::expect_equal(pb3$data[[2]]$xmax, df2$conf.high)
     testthat::expect_equal(pb2$data[[2]]$xmin, df3$conf.low)
     testthat::expect_equal(pb2$data[[2]]$xmax, df3$conf.high)
+
+    # checking labels (order)
+    testthat::expect_identical(
+      pb1$layout$panel_params[[1]]$y.labels,
+      c("level2", "level1", "level3")
+    )
+
+    testthat::expect_identical(
+      pb2$layout$panel_params[[1]]$y.labels,
+      c("level1", "level2", "level3")
+    )
+
+    testthat::expect_identical(
+      pb4$layout$panel_params[[1]]$y.labels,
+      c("x1", "x2", "x3")
+    )
+
+    # annotations
+    testthat::expect_identical(p4$labels$x, "beta")
+    testthat::expect_null(p4$labels$y, NULL)
+    testthat::expect_null(p4$labels$title, NULL)
+    testthat::expect_null(p4$labels$subtitle, NULL)
+    testthat::expect_null(p4$labels$caption, NULL)
   }
 )

@@ -40,6 +40,9 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_ci_message.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_type_switch.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/games_howell.html</loc>
   </url>
   <url>
@@ -107,6 +110,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/kw_eta_h_ci.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/lm_effsize_standardizer.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/long_to_wide_converter.html</loc>

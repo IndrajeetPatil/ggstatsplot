@@ -188,6 +188,7 @@ ggbetweenstats <- function(data,
                            pairwise.display = "significant",
                            p.adjust.method = "holm",
                            effsize.type = "unbiased",
+                           partial = TRUE,
                            effsize.noncentral = FALSE,
                            bf.prior = 0.707,
                            bf.message = FALSE,
@@ -398,22 +399,8 @@ ggbetweenstats <- function(data,
       test <- "anova"
     }
 
-    if (!is.null(effsize.type)) {
-      # figuring out which effect size to use
-      effsize.type <-
-        switch(
-          EXPR = effsize.type,
-          d = "biased",
-          g = "unbiased",
-          partial_eta = "biased",
-          partial_omega = "unbiased",
-          biased = "biased",
-          unbiased = "unbiased",
-          "unbiased"
-        )
-    } else {
-      effsize.type <- "unbiased"
-    }
+    # figuring out which effect size to use
+    effsize.type <- effsize_type_switch(effsize.type)
 
     # preparing the bayes factor message
     if (test == "t-test") {
@@ -459,6 +446,7 @@ ggbetweenstats <- function(data,
         y = y,
         paired = FALSE,
         effsize.type = effsize.type,
+        partial = partial,
         effsize.noncentral = effsize.noncentral,
         var.equal = var.equal,
         bf.prior = bf.prior,

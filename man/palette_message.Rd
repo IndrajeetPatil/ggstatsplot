@@ -21,7 +21,7 @@ colors allowed by \code{"Dark2"} palette from the \code{RColorBrewer} package.
 }
 \examples{
 \dontrun{
-palette_message(
+ggstatsplot:::palette_message(
   package = "RColorBrewer",
   palette = "Dark2",
   min_length = 20

@@ -34,6 +34,8 @@ MAJOR CHANGES
   - `ggbetweenstats` now supports multiple pairwise comparison tests
     (parametric, nonparametric, and robust variants). It gains a new dependency
     `ggsignif`.
+  - `ggbetweenstats` now supports eta-squared and omega-squared effect sizes for
+    anova models. TThis function gains a new argument `partial`. 
   - Following functions are now reexported from the `groupedstats` package to
     avoid repeating the same code in two packages: `specify_decimal_p`,
     `signif_column`, `lm_effsize_ci`, and `set_cwd`. Therefore, `groupedstats`

@@ -9,14 +9,14 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   plot.type = "boxviolin", type = "parametric",
   pairwise.comparisons = FALSE, pairwise.annotation = "asterisk",
   pairwise.display = "significant", p.adjust.method = "holm",
-  effsize.type = "unbiased", effsize.noncentral = FALSE,
-  bf.prior = 0.707, bf.message = FALSE, results.subtitle = TRUE,
-  xlab = NULL, ylab = NULL, subtitle = NULL, caption = NULL,
-  sample.size.label = TRUE, k = 2, var.equal = FALSE,
-  conf.level = 0.95, nboot = 100, tr = 0.1, mean.label.size = 3,
-  mean.label.fontface = "bold", mean.label.color = "black",
-  notch = FALSE, notchwidth = 0.5, linetype = "solid",
-  outlier.tagging = NULL, outlier.label = NULL,
+  effsize.type = "unbiased", partial = TRUE,
+  effsize.noncentral = FALSE, bf.prior = 0.707, bf.message = FALSE,
+  results.subtitle = TRUE, xlab = NULL, ylab = NULL,
+  subtitle = NULL, caption = NULL, sample.size.label = TRUE, k = 2,
+  var.equal = FALSE, conf.level = 0.95, nboot = 100, tr = 0.1,
+  mean.label.size = 3, mean.label.fontface = "bold",
+  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
+  linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
@@ -72,6 +72,11 @@ argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-t
 \code{"partial_eta"} for partial eta-squared for \strong{anova}) or \code{"unbiased"}
 (\code{"g"} Hedge's \emph{g} for \strong{t-test}; \code{"partial_omega"} for partial
 omega-squared for \strong{anova})).}
+
+\item{partial}{Logical that decides if partial eta-squared or omega-squared
+are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
+will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
+\code{aovlist}.}
 
 \item{effsize.noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}

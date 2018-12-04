@@ -343,25 +343,27 @@
 <a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">ylab =</span> <span class="st">"Life expectancy"</span>, </a>
 <a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,         <span class="co"># display results from pairwise comparisons </span></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">pairwise.display =</span> <span class="st">"significant"</span>,    <span class="co"># display only significant pairwise comparisons </span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>,     <span class="co"># annotate the pairwise comparisons using p-values</span></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="dt">p.adjust.method =</span> <span class="st">"fdr"</span>,             <span class="co"># adjust p-values for multiple tests using this method</span></a>
-<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">palette =</span> <span class="st">"default_jco"</span>,</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb5-27" data-line-number="27">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb5-28" data-line-number="28">  <span class="dt">outlier.label =</span> country,</a>
-<a class="sourceLine" id="cb5-29" data-line-number="29">  <span class="dt">grouping.var =</span> year,</a>
-<a class="sourceLine" id="cb5-30" data-line-number="30">  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</a>
-<a class="sourceLine" id="cb5-31" data-line-number="31">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb5-32" data-line-number="32">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb5-33" data-line-number="33">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,</a>
-<a class="sourceLine" id="cb5-34" data-line-number="34">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb5-35" data-line-number="35">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb5-36" data-line-number="36">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>)</a>
-<a class="sourceLine" id="cb5-37" data-line-number="37">)</a></code></pre></div>
+<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">effsize.type =</span> <span class="st">"unbiased"</span>,           <span class="co"># type of effect size (unbiased = omega)</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">partial =</span> <span class="ot">FALSE</span>,                     <span class="co"># partial omega or omega?</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">pairwise.comparisons =</span> <span class="ot">TRUE</span>,         <span class="co"># display results from pairwise comparisons </span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="dt">pairwise.display =</span> <span class="st">"significant"</span>,    <span class="co"># display only significant pairwise comparisons </span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">pairwise.annotation =</span> <span class="st">"p.value"</span>,     <span class="co"># annotate the pairwise comparisons using p-values</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">p.adjust.method =</span> <span class="st">"fdr"</span>,             <span class="co"># adjust p-values for multiple tests using this method</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
+<a class="sourceLine" id="cb5-26" data-line-number="26">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">  <span class="dt">palette =</span> <span class="st">"default_jco"</span>,</a>
+<a class="sourceLine" id="cb5-28" data-line-number="28">  <span class="dt">outlier.tagging =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb5-29" data-line-number="29">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb5-30" data-line-number="30">  <span class="dt">outlier.label =</span> country,</a>
+<a class="sourceLine" id="cb5-31" data-line-number="31">  <span class="dt">grouping.var =</span> year,</a>
+<a class="sourceLine" id="cb5-32" data-line-number="32">  <span class="dt">title.prefix =</span> <span class="st">"Year"</span>,</a>
+<a class="sourceLine" id="cb5-33" data-line-number="33">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb5-34" data-line-number="34">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb5-35" data-line-number="35">  <span class="dt">title.text =</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,</a>
+<a class="sourceLine" id="cb5-36" data-line-number="36">  <span class="dt">nrow =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb5-37" data-line-number="37">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb5-38" data-line-number="38">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>,<span class="st">"(b)"</span>,<span class="st">"(c)"</span>)</a>
+<a class="sourceLine" id="cb5-39" data-line-number="39">)</a></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="672"></p>
 <p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1967 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
 </div>

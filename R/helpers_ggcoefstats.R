@@ -127,7 +127,7 @@ ggcoefstats_label_maker <- function(x,
   # which statistic to use will be decided based on the family used
   g.mods <- c("glm", "glmerMod", "glmRob")
 
-  # ================================ dataframe ==============================
+  # ================================ dataframe ================================
   if (class(x)[[1]] %in% df.mods) {
     tidy_df <- tfz_labeller(
       tidy_df = x,
@@ -146,7 +146,7 @@ ggcoefstats_label_maker <- function(x,
         statistic = "t",
         k = k
       )
-    # ======================= z-statistic labels ============================
+    # ======================= z-statistic labels ==============================
   } else if (class(x)[[1]] %in% z.mods) {
     tidy_df %<>%
       tfz_labeller(
@@ -156,7 +156,7 @@ ggcoefstats_label_maker <- function(x,
         k = k
       )
 
-    # ================ t/z-statistic labels =================================
+    # ================ t/z-statistic labels ===================================
   } else if (class(x)[[1]] %in% g.mods) {
     if (class(x)[[1]] == "glm") {
       if (summary(x)$family$family[[1]] %in% c(

@@ -4,9 +4,9 @@
 \alias{subtitle_anova_parametric}
 \title{Making text subtitle for the between-subject anova designs.}
 \usage{
-subtitle_anova_parametric(data, x, y, effsize.type = "partial_omega",
-  conf.level = 0.95, nboot = 100, var.equal = FALSE, k = 2,
-  messages = TRUE, ...)
+subtitle_anova_parametric(data, x, y, effsize.type = "unbiased",
+  partial = TRUE, conf.level = 0.95, nboot = 100,
+  var.equal = FALSE, k = 2, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -21,6 +21,11 @@ argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-t
 \code{"partial_eta"} for partial eta-squared for \strong{anova}) or \code{"unbiased"}
 (\code{"g"} Hedge's \emph{g} for \strong{t-test}; \code{"partial_omega"} for partial
 omega-squared for \strong{anova})).}
+
+\item{partial}{Logical that decides if partial eta-squared or omega-squared
+are returned (Default: \code{TRUE}). If \code{FALSE}, eta-squared or omega-squared
+will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{anova}, or
+\code{aovlist}.}
 
 \item{conf.level}{A scalar value between 0 and 1. If unspecified, the
 default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
@@ -60,7 +65,8 @@ subtitle_anova_parametric(
   data = ggplot2::msleep,
   x = vore,
   y = sleep_rem,
-  effsize.type = "partial_eta",
+  effsize.type = "biased",
+  partial = FALSE,
   var.equal = TRUE,
   nboot = 10
 )

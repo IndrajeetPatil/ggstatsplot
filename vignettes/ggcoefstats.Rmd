@@ -806,6 +806,54 @@ We have already seen an example of quantile regression (`quantreg::rq()`) in the
 `README` document:
 <https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
+## dataframes (`tbl_df`, `tbl`, `data.frame`)
+
+Sometimes you don't have a model object but a custom dataframe that you want
+display using this function. If a data frame is to be plotted, it **must**
+contain columns named `term` (names of predictors), and `estimate`
+(corresponding estimates of coefficients or other quantities of interest). Other
+optional columns are `conf.low` and `conf.high` (for confidence intervals), and
+`p.value`. You will also have to specify the type of statistic relevant for
+regression models (`"t"`, `"z"`, `"f"`) in case you want to display statistical
+labels.
+
+```{r dataframe, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# set up
+set.seed(123)
+library(ggstatsplot)
+library(gapminder)
+
+# data for running regression models
+df <-
+  dplyr::filter(.data = gapminder::gapminder, continent != "Oceania")
+
+# saving results from regression and modifying the results so to be compatible
+# with the `ggcoefstats` requirement
+df_results <- groupedstats::grouped_lmer(
+  data = df,
+  formula = scale(lifeExp) ~ scale(gdpPercap) + (gdpPercap |
+                                                   country),
+  grouping.vars = continent,
+  output = "tidy"
+) %>%
+  dplyr::filter(.data = ., term != "(Intercept)") %>%
+  dplyr::select(.data = .,
+                -effect,
+                -term,
+                term = continent,
+                statistic = t.value)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = df_results,
+  statistic = "t",
+  sort = "ascending",
+  title = "Relationship between life expectancy and GDP",
+  subtitle = "Source: Gapminder foundation",
+  caption = "Data from Oceania continent not included"
+)
+```
+
 ## And much more...
 
 This vignette was supposed to give just a taste for only *some* of the

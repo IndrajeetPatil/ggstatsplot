@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Message if palette doesn't have enough number of colors. — palette_message • ggstatsplot</title>
+<title>Switch function to determine which effect size is to computed. — effsize_type_switch • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,11 +38,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Message if palette doesn't have enough number of colors. — palette_message" />
+<meta property="og:title" content="Switch function to determine which effect size is to computed. — effsize_type_switch" />
 
-<meta property="og:description" content="A note to the user about not using the default color palette
-when the number of factor levels is greater than 8, the maximum number of
-colors allowed by &quot;Dark2&quot; palette from the RColorBrewer package." />
+<meta property="og:description" content="Takes in all allowed characters describing the needed effect
+size (e.g., &quot;d&quot;, &quot;partial_eta&quot;, etc.) and converts it into standard
+terms (&quot;biased&quot; or &quot;unbiased&quot;) to reduce the complexity of conditional
+statements." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -169,67 +170,38 @@ colors allowed by &quot;Dark2&quot; palette from the RColorBrewer package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Message if palette doesn't have enough number of colors.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_messages.R'><code>R/helpers_messages.R</code></a></small>
-    <div class="hidden name"><code>palette_message.Rd</code></div>
+    <h1>Switch function to determine which effect size is to computed.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/switch_functions.R'><code>R/switch_functions.R</code></a></small>
+    <div class="hidden name"><code>effsize_type_switch.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A note to the user about not using the default color palette
-when the number of factor levels is greater than 8, the maximum number of
-colors allowed by <code>"Dark2"</code> palette from the <code>RColorBrewer</code> package.</p>
+    <p>Takes in all allowed characters describing the needed effect
+size (e.g., <code>"d"</code>, <code>"partial_eta"</code>, etc.) and converts it into standard
+terms (<code>"biased"</code> or <code>"unbiased"</code>) to reduce the complexity of conditional
+statements.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>palette_message</span>(<span class='no'>package</span>, <span class='no'>palette</span>, <span class='no'>min_length</span>)</pre>
+    <pre class="usage"><span class='fu'>effsize_type_switch</span>(<span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>package</th>
-      <td><p>Name of package from which the palette is desired as string
-or symbol.</p></td>
-    </tr>
-    <tr>
-      <th>palette</th>
-      <td><p>Name of palette as string or symbol.</p></td>
-    </tr>
-    <tr>
-      <th>min_length</th>
-      <td><p>Minimum number of colors needed.</p></td>
+      <th>effsize.type</th>
+      <td><p>Character describing the needed effect size.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other helper_messages: <code><a href='bartlett_message.html'>bartlett_message</a></code>,
-  <code><a href='effsize_ci_message.html'>effsize_ci_message</a></code>,
-  <code><a href='ggcorrmat_matrix_message.html'>ggcorrmat_matrix_message</a></code>,
-  <code><a href='grouped_message.html'>grouped_message</a></code>,
-  <code><a href='normality_message.html'>normality_message</a></code>, <code><a href='pairwise_p.html'>pairwise_p</a></code></p></div>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/palette_message.html'>palette_message</a></span>(
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>min_length</span> <span class='kw'>=</span> <span class='fl'>20</span>
-)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span> </span><span style='color: #0000BB;'>No. of factor levels is greater than specified palette color count.
-#&gt; </span><span> </span><span style='color: #0000BB;'>Try using another color `palette` (and/or `package`).
-#&gt; </span><span></div><div class='output co'>#&gt; </div></span><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
     <h2>Author</h2>
     <p>Indrajeet Patil</p>

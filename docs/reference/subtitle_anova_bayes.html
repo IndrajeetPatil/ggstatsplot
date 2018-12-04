@@ -178,8 +178,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_anova_bayes</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"partial_omega"</span>,
-  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_anova_bayes</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>,
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -204,6 +205,13 @@ argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em> f
 <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or <code>"unbiased"</code>
 (<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>; <code>"partial_omega"</code> for partial
 omega-squared for <strong>anova</strong>)).</p></td>
+    </tr>
+    <tr>
+      <th>partial</th>
+      <td><p>Logical that decides if partial eta-squared or omega-squared
+are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
+will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+<code>aovlist</code>.</p></td>
     </tr>
     <tr>
       <th>var.equal</th>

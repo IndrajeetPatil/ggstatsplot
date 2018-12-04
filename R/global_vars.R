@@ -3,6 +3,8 @@
 utils::globalVariables(
   names = c(
     ".",
+    "conf.level",
+    "nboot",
     "U",
     "V",
     "Z",

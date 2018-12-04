@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Message if palette doesn't have enough number of colors. — palette_message • ggstatsplot</title>
+<title>Standardize a dataframe with effect sizes for <code>aov</code>, <code>lm</code>, <code>aovlist</code>,
+etc. objects. — lm_effsize_standardizer • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,11 +39,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Message if palette doesn't have enough number of colors. — palette_message" />
+<meta property="og:title" content="Standardize a dataframe with effect sizes for <code>aov</code>, <code>lm</code>, <code>aovlist</code>,
+etc. objects. — lm_effsize_standardizer" />
 
-<meta property="og:description" content="A note to the user about not using the default color palette
-when the number of factor levels is greater than 8, the maximum number of
-colors allowed by &quot;Dark2&quot; palette from the RColorBrewer package." />
+<meta property="og:description" content="Standardize a dataframe with effect sizes for aov, lm, aovlist,
+etc. objects." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -169,70 +170,74 @@ colors allowed by &quot;Dark2&quot; palette from the RColorBrewer package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Message if palette doesn't have enough number of colors.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_messages.R'><code>R/helpers_messages.R</code></a></small>
-    <div class="hidden name"><code>palette_message.Rd</code></div>
+    <h1>Standardize a dataframe with effect sizes for <code>aov</code>, <code>lm</code>, <code>aovlist</code>,
+etc. objects.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetweenstats.R'><code>R/helpers_ggbetweenstats.R</code></a></small>
+    <div class="hidden name"><code>lm_effsize_standardizer.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A note to the user about not using the default color palette
-when the number of factor levels is greater than 8, the maximum number of
-colors allowed by <code>"Dark2"</code> palette from the <code>RColorBrewer</code> package.</p>
+    <p>Standardize a dataframe with effect sizes for <code>aov</code>, <code>lm</code>, <code>aovlist</code>,
+etc. objects.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>palette_message</span>(<span class='no'>package</span>, <span class='no'>palette</span>, <span class='no'>min_length</span>)</pre>
+    <pre class="usage"><span class='fu'>lm_effsize_standardizer</span>(<span class='no'>object</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>package</th>
-      <td><p>Name of package from which the palette is desired as string
-or symbol.</p></td>
+      <th>object</th>
+      <td><p>The linear model object (can be of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+<code>aovlist</code>).</p></td>
     </tr>
     <tr>
-      <th>palette</th>
-      <td><p>Name of palette as string or symbol.</p></td>
+      <th>effsize</th>
+      <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
+(default) or <code>"omega"</code>.</p></td>
     </tr>
     <tr>
-      <th>min_length</th>
-      <td><p>Minimum number of colors needed.</p></td>
+      <th>partial</th>
+      <td><p>Logical that decides if partial eta-squared or omega-squared
+are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
+will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+<code>aovlist</code>.</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>Numeric specifying Level of confidence for the confidence
+interval (Default: <code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>nboot</th>
+      <td><p>Number of bootstrap samples for confidence intervals for partial
+eta-squared and omega-squared (Default: <code>500</code>).</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other helper_messages: <code><a href='bartlett_message.html'>bartlett_message</a></code>,
-  <code><a href='effsize_ci_message.html'>effsize_ci_message</a></code>,
-  <code><a href='ggcorrmat_matrix_message.html'>ggcorrmat_matrix_message</a></code>,
-  <code><a href='grouped_message.html'>grouped_message</a></code>,
-  <code><a href='normality_message.html'>normality_message</a></code>, <code><a href='pairwise_p.html'>pairwise_p</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/palette_message.html'>palette_message</a></span>(
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
-  <span class='kw'>min_length</span> <span class='kw'>=</span> <span class='fl'>20</span>
-)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span> </span><span style='color: #0000BB;'>No. of factor levels is greater than specified palette color count.
-#&gt; </span><span> </span><span style='color: #0000BB;'>Try using another color `palette` (and/or `package`).
-#&gt; </span><span></div><div class='output co'>#&gt; </div></span><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/lm_effsize_standardizer.html'>lm_effsize_standardizer</a></span>(
+  <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>brainwt</span> ~ <span class='no'>vore</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>),
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>50</span>
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 8</span><span>
+#&gt;   term  F.value   df1   df2 p.value estimate conf.low conf.high
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> vore     1.06     3    47   0.375   0.063</span><span style='text-decoration: underline;'>3</span><span>  0.005</span><span style='text-decoration: underline;'>80</span><span>     0.108</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#see-also">See also</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Indrajeet Patil</p>
   </div>
 </div>
 

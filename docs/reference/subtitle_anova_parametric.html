@@ -178,9 +178,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_anova_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"partial_omega"</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_anova_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>,
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -205,6 +205,13 @@ argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em> f
 <code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or <code>"unbiased"</code>
 (<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>; <code>"partial_omega"</code> for partial
 omega-squared for <strong>anova</strong>)).</p></td>
+    </tr>
+    <tr>
+      <th>partial</th>
+      <td><p>Logical that decides if partial eta-squared or omega-squared
+are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
+will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
+<code>aovlist</code>.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -252,20 +259,21 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "11.101", ") = ", "2.633", ", ", 
 #&gt;     italic("p"), " = ", "0.102", ", ", omega["p"]^2, " = ", "0.144", 
-#&gt;     ", CI"["95%"], " [", "-0.021", ", ", "0.445", "]", ", ", 
+#&gt;     ", CI"["95%"], " [", "-0.025", ", ", "0.445", "]", ", ", 
 #&gt;     italic("n"), " = ", 56L)</div><div class='input'>
 <span class='co'># modifying the defaults</span>
 <span class='fu'>subtitle_anova_parametric</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"partial_eta"</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"biased"</span>,
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "52", ") = ", "4.14", ", ", italic("p"), 
-#&gt;     " = ", "0.011", ", ", eta["p"]^2, " = ", "0.19", ", CI"["95%"], 
-#&gt;     " [", "0.01", ", ", "0.34", "]", ", ", italic("n"), " = ", 
+#&gt;     " = ", "0.011", ", ", eta^2, " = ", "0.19", ", CI"["95%"], 
+#&gt;     " [", "0.01", ", ", "0.45", "]", ", ", italic("n"), " = ", 
 #&gt;     56L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
