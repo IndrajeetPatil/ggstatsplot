@@ -116,7 +116,7 @@ testthat::test_that(
     using_function1 <-
       suppressWarnings(
         ggstatsplot::subtitle_t_onesample(
-x = anscombe$x1,
+          x = anscombe$x1,
           test.value = 8,
           type = "r",
           k = 4,

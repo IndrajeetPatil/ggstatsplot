@@ -16,8 +16,12 @@ testthat::test_that(
       legend.title = "vorarephilia",
       caption = "From ggplot2 package",
       perc.k = 2,
+      slice.label = "both",
       messages = FALSE
     )
+
+    # built plot
+    pb <- ggplot2::ggplot_build(p)
 
     # checking data used to create a plot
     dat <- p$data
@@ -38,6 +42,24 @@ testthat::test_that(
     testthat::expect_equal(dat$perc,
       c(26.30, 6.58, 42.10, 25.00),
       tolerance = 1e-3
+    )
+    testthat::expect_equal(dat$counts, c(20L, 5L, 32L, 19))
+    testthat::expect_equal(
+      as.character(dat$main),
+      c("omni", "insecti", "herbi", "carni")
+    )
+    testthat::expect_identical(
+      pb$data[[2]]$label,
+      c(
+        "n = 19\n(25%)",
+        "n = 32\n(42.11%)",
+        "n = 5\n(6.58%)",
+        "n = 20\n(26.32%)"
+      )
+    )
+    testthat::expect_identical(
+      dplyr::arrange(pb$data[[2]], group)$label,
+      dat$slice.label
     )
 
     # checking plot labels
@@ -63,12 +85,16 @@ testthat::test_that(
         condition = "cyl",
         bf.message = TRUE,
         perc.k = 2,
+        slice.label = "counts",
         legend.title = "transmission",
         factor.levels = c("0 = automatic", "1 = manual"),
         facet.wrap.name = "cylinders",
         messages = FALSE
       )
     )
+
+    # build plot
+    pb <- ggplot2::ggplot_build(p)
 
     # subtitle used
     set.seed(123)
@@ -79,9 +105,6 @@ testthat::test_that(
         condition = "cyl",
         messages = FALSE
       )
-
-    # extracting plot details
-    pb <- ggplot2::ggplot_build(p)
 
     # checking data used to create a plot
     dat <- p$data
@@ -121,6 +144,21 @@ testthat::test_that(
     testthat::expect_null(p$labels$y, NULL)
     testthat::expect_null(pb$plot$plot_env$stat.title, NULL)
     testthat::expect_identical(pb$plot$guides$fill$title[1], "transmission")
+
+    # checking labels
+    testthat::expect_identical(
+      pb$data[[2]]$label,
+      c("n = 3", "n = 8", "n = 4", "n = 3", "n = 12", "n = 2")
+    )
+    testthat::expect_identical(pb$data[[3]]$label, c("ns", "ns", "**"))
+    testthat::expect_identical(
+      pb$data[[4]]$label,
+      c("(n = 11)", "(n = 7)", "(n = 14)")
+    )
+    testthat::expect_identical(
+      dplyr::arrange(pb$data[[2]], group, PANEL)$label,
+      dat$slice.label
+    )
   }
 )
 
@@ -225,7 +263,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if functions work without enough data",
   code = {
-
     set.seed(123)
 
     # creating a dataframe

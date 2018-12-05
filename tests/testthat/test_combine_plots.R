@@ -4,7 +4,7 @@ testthat::test_that(
   desc = "checking if combining plots works",
   code = {
 
-    # plots
+    # setup
     set.seed(123)
     library(ggplot2)
 
@@ -12,7 +12,7 @@ testthat::test_that(
     p1 <- ggplot(aes(x = as.factor(am), y = wt), data = mtcars) + geom_point()
     p2 <- ggplot(aes(x = Species, y = Sepal.Length), data = iris) + geom_point()
 
-    # combined plot
+    # combined plot with everything
     p <- ggstatsplot::combine_plots(p1, p2,
       title.text = "combined plot",
       title.color = "blue",
@@ -23,7 +23,17 @@ testthat::test_that(
       labels = c("(a)", "(b)")
     )
 
+    # only title
+    p1 <- ggstatsplot::combine_plots(p1, p2,
+      title.text = "combined plot"
+    )
 
+    # only caption
+    p2 <- ggstatsplot::combine_plots(p1, p2,
+      caption.text = "combined caption"
+    )
+
+    # built plot
     pb <- ggplot2::ggplot_build(p)
 
     # testing labels
@@ -32,8 +42,11 @@ testthat::test_that(
       "additional text"
     )
     testthat::expect_identical(
-      class(p$layers[[1]]$geom_params$grob)[[1]],
-      "gtable"
+      class(p$layers[[1]]$geom_params$grob),
+      c("gtable", "gTree", "grob", "gDesc")
     )
+    testthat::expect_identical(class(p), c("gg", "ggplot"))
+    testthat::expect_identical(class(p1), c("gg", "ggplot"))
+    testthat::expect_identical(class(p2), c("gg", "ggplot"))
   }
 )

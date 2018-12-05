@@ -123,7 +123,7 @@
 #' @inheritParams broom::tidy.clm
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d
-#' @param \dots Extra arguments to pass to \code{\link[broom]{tidy}}.
+#' @param ... Additional arguments to tidying method.
 #'
 #' @import ggplot2
 #'

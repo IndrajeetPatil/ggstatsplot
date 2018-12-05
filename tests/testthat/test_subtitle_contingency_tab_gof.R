@@ -68,7 +68,7 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
-          italic(chi) ^ 2,
+          italic(chi)^2,
           "(",
           1,
           ") = ",
@@ -95,7 +95,6 @@ testthat::test_that(
 testthat::test_that(
   desc = " works",
   code = {
-
     set.seed(123)
 
     # creating a dataframe

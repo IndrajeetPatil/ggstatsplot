@@ -210,7 +210,7 @@ extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}).}
 
-\item{\dots}{Extra arguments to pass to \code{\link[broom]{tidy}}.}
+\item{...}{Additional arguments to tidying method.}
 }
 \value{
 Plot with the regression coefficients' point estimates as dots with

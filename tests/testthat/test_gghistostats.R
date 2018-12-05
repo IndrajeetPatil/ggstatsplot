@@ -271,10 +271,27 @@ testthat::test_that(
     # checking different data layers
     testthat::expect_equal(length(pb$data), 1L)
     testthat::expect_equal(nrow(pb$data[[1]]), 11L)
-    testthat::expect_equal(pb$data[[1]]$y[1], 0.00000, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[1]]$y[5], 0.21875, tolerance = 0.001)
-    testthat::expect_equal(pb$data[[1]]$x[1], 1.0, tolerance = 0.01)
-    testthat::expect_equal(pb$data[[1]]$x[5], 3.0, tolerance = 0.01)
+    testthat::expect_equal(
+      pb$data[[1]]$y,
+      c(
+        0.00000,
+        0.06250,
+        0.12500,
+        0.09375,
+        0.21875,
+        0.28125,
+        0.12500,
+        0.00000,
+        0.03125,
+        0.06250,
+        0.00000
+      ),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(pb$data[[1]]$x,
+      c(1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0),
+      tolerance = 0.01
+    )
 
     # checking panel parameters
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
@@ -295,7 +312,6 @@ testthat::test_that(
     )
   }
 )
-
 
 # checking bayes stats and density -----------------------------------
 

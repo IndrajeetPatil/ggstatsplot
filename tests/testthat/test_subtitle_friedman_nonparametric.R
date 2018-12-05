@@ -3,7 +3,6 @@ context("subtitle_friedman_nonparametric")
 testthat::test_that(
   desc = "subtitle_friedman_nonparametric works",
   code = {
-
     library(jmv)
     data("bugs", package = "jmv")
 
@@ -28,7 +27,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           "Friedman: ",
-          italic(chi) ^ 2,
+          italic(chi)^2,
           "(",
           3,
           ") = ",
