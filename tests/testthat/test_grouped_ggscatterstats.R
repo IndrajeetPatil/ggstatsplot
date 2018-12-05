@@ -7,7 +7,7 @@ testthat::test_that(
     # when the grouping and labelling variable are the same, the function
     # shouldn't work
     testthat::expect_error(
-      object = grouped_ggscatterstats(
+      grouped_ggscatterstats(
         data = iris,
         x = Sepal.Length,
         y = Petal.Width,
@@ -18,8 +18,8 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = ggstatsplot::grouped_ggscatterstats(
+    testthat::expect_true(inherits(
+      ggstatsplot::grouped_ggscatterstats(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
           dplyr::filter(
             .data = ., mpaa %in% c("R", "PG-13"),
@@ -27,6 +27,8 @@ testthat::test_that(
           ),
         x = length,
         y = rating,
+        label.expression = "budget > 150",
+        label.var = "title",
         grouping.var = mpaa,
         type = "p",
         marginal = FALSE,
@@ -37,8 +39,8 @@ testthat::test_that(
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = ggstatsplot::grouped_ggscatterstats(
+    testthat::expect_true(inherits(
+      ggstatsplot::grouped_ggscatterstats(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
           dplyr::filter(
             .data = ., mpaa %in% c("R", "PG-13"),

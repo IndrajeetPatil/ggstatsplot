@@ -495,23 +495,13 @@ ggcorrmat <- function(data,
     # return the tibble
     return(corr.mat)
   } else if (output %in% c("n", "sample.size")) {
-    if (corr.method %in% c("pearson", "spearman", "kendall")) {
-      # sample size matrix
-      sample_size_df <- corr_df$n %>%
-        base::as.data.frame(x = .) %>%
-        tibble::rownames_to_column(., var = "variable") %>%
-        tibble::as_tibble(x = .)
+    # sample size matrix
+    sample_size_df <- corr_df$n %>%
+      base::as.data.frame(x = .) %>%
+      tibble::rownames_to_column(., var = "variable") %>%
+      tibble::as_tibble(x = .)
 
-      return(sample_size_df)
-    } else {
-      # sample size matrix
-      sample_size_df <- corr_df$n %>%
-        base::as.data.frame(x = .) %>%
-        tibble::rownames_to_column(., var = "variable") %>%
-        tibble::as_tibble(x = .)
-
-      return(sample_size_df)
-    }
+    return(sample_size_df)
   } else if (output %in% c("p-values", "p.values", "p")) {
 
     # if p-values were adjusted, notify how they are going to be displayed

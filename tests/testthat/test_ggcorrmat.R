@@ -35,10 +35,30 @@ testthat::test_that(
 
     # testing everything is okay with data
     testthat::expect_equal(data_dims, c(16L, 7L))
-    testthat::expect_equal(dat$coef[1], 1, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[5], -0.12, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[9], 0.87, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[14], -0.37, tolerance = 1e-3)
+    testthat::expect_equal(dim(pb$data[[1]]), c(16L, 15L))
+    testthat::expect_equal(length(pb$data), 3L)
+    testthat::expect_equal(
+      dat$coef,
+      c(
+        1.00,
+        -0.12,
+        0.87,
+        0.82,
+        -0.12,
+        1.00,
+        -0.43,
+        -0.37,
+        0.87,
+        -0.43,
+        1.00,
+        0.96,
+        0.82,
+        -0.37,
+        0.96,
+        1.00
+      ),
+      tolerance = 1e-3
+    )
     testthat::expect_equal(dat$Var1[3], "Petal.Length")
     testthat::expect_equal(dat$Var2[4], "Sepal.Length")
     testthat::expect_equal(dat$signif[1], 1L)
@@ -85,6 +105,7 @@ testthat::test_that(
       type = "r",
       sig.level = 0.01,
       p.adjust.method = "hommel",
+      matrix.type = "upper",
       caption.default = FALSE,
       messages = FALSE
     )
@@ -105,17 +126,34 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims, c(36L, 7L))
-    testthat::expect_equal(dat$coef[2], 0.77, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[7], 0.77, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[9], -0.41, tolerance = 1e-3)
-    testthat::expect_equal(dat$coef[36], 1.00, tolerance = 1e-3)
-    testthat::expect_equal(dat$Var1[3], "sleep_cycle")
-    testthat::expect_equal(dat$Var2[4], "sleep_total")
+    testthat::expect_equal(data_dims, c(15L, 7L))
+    testthat::expect_equal(dim(pb$data[[1]]), c(15L, 15L))
+    testthat::expect_equal(length(pb$data), 3L)
+    testthat::expect_equal(
+      dat$coef,
+      c(
+        0.77,
+        -0.52,
+        -0.41,
+        -1.00,
+        -0.77,
+        0.52,
+        -0.57,
+        -0.40,
+        0.88,
+        0.57,
+        -0.53,
+        -0.42,
+        0.73,
+        0.53,
+        0.87
+      ),
+      tolerance = 1e-3
+    )
+    testthat::expect_equal(dat$Var1[3], "sleep_rem")
+    testthat::expect_equal(dat$Var2[4], "awake")
     testthat::expect_equal(dat$signif[1], 1L)
-    testthat::expect_equal(dat$signif[9], 0L)
-    testthat::expect_equal(dat$signif[14], 0L)
-    testthat::expect_equal(dat$signif[15], 1L)
+    testthat::expect_equal(dat$signif[3], 0L)
 
     # checking plot labels
     testthat::expect_null(p$labels$title, NULL)
@@ -180,5 +218,159 @@ testthat::test_that(
     testthat::expect_equal(dat$signif[7], 0L)
     testthat::expect_equal(dat$signif[10], 0L)
     testthat::expect_equal(dat$signif[11], 1L)
+  }
+)
+
+# checking sample sizes ---------------------------------------------------
+
+testthat::test_that(
+  desc = "checking sample sizes",
+  code = {
+    # dataframe with sample sizes
+    set.seed(123)
+    df <- ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = sleep_total:awake,
+      type = "r",
+      output = "n",
+      p.adjust.method = "fdr",
+      messages = FALSE
+    )
+
+    testthat::expect_identical(
+      df$variable,
+      c("sleep_total", "sleep_rem", "sleep_cycle", "awake")
+    )
+    testthat::expect_equal(df$sleep_total, c(83L, 61L, 32L, 83L))
+    testthat::expect_equal(df$sleep_rem, c(61L, 61L, 32L, 61L))
+    testthat::expect_equal(df$sleep_cycle, c(32L, 32L, 32L, 32L))
+    testthat::expect_equal(df$awake, c(83L, 61L, 32L, 83L))
+  }
+)
+
+# checking p-values ---------------------------------------------------
+
+testthat::test_that(
+  desc = "checking p-values",
+  code = {
+    # dataframe with sample sizes
+    set.seed(123)
+    df <- ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = sleep_total:awake,
+      type = "np",
+      output = "p",
+      p.adjust.method = "none",
+      messages = FALSE
+    )
+
+    testthat::expect_equal(df$sleep_cycle[1], 0.00453, tolerance = 0.001)
+    testthat::expect_equal(df$sleep_cycle[2], 0.0614, tolerance = 0.001)
+  }
+)
+
+
+
+
+# checking confidence intervals ----------------------------------------------
+
+testthat::test_that(
+  desc = "checking confidence intervals",
+  code = {
+    # dataframe with sample sizes
+    set.seed(123)
+    df <- ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = sleep_total:awake,
+      type = "p",
+      output = "ci",
+      p.adjust.method = "none",
+      messages = FALSE
+    )
+
+    testthat::expect_equal(
+      df$r,
+      c(
+        0.7517550,
+        -0.4737127,
+        -0.9999986,
+        -0.3381235,
+        -0.7517713,
+        0.4737127
+      ),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      df$lower,
+      c(
+        0.6166756,
+        -0.7058189,
+        -0.9999991,
+        -0.6143809,
+        -0.8438428,
+        0.1497554
+      ),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(
+      df$upper,
+      c(
+        0.84383201,
+        -0.14975542,
+        -0.99999779,
+        0.01198335,
+        -0.61669876,
+        0.70581894
+      ),
+      tolerance = 0.001
+    )
+  }
+)
+
+# checking messages -------------------------------------------------------
+
+testthat::test_that(
+  desc = "checking messages",
+  code = {
+    # capturing the message
+    set.seed(123)
+    p_message1 <- capture.output(ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = sleep_total:awake,
+      type = "r",
+      output = "ci",
+      cor.vars.names = "awake",
+      sig.level = 0.01,
+      p.adjust.method = "hommel",
+      caption.default = FALSE,
+      messages = TRUE
+    ))
+
+    p_message2 <- capture.output(ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = sleep_total:awake,
+      output = "p",
+      p.adjust.method = "hommel",
+      caption.default = FALSE,
+      messages = TRUE
+    ))
+
+    # checking messages
+    testthat::expect_match(
+      p_message1[1],
+      "Number of variable names does not equal"
+    )
+    testthat::expect_match(
+      p_message1[2],
+      "Confidence intervals currently not supported"
+    )
+    testthat::expect_match(
+      p_message2[2],
+      "the upper triangle: p-values adjusted for multiple comparisons"
+    )
+    testthat::expect_match(
+      p_message2[3],
+      "the lower triangle: unadjusted p-values"
+    )
   }
 )

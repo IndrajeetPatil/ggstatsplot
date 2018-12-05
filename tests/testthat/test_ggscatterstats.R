@@ -178,7 +178,7 @@ testthat::test_that(
 
     # plot
     p <-
-      ggstatsplot::ggscatterstats(
+      suppressMessages(ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_cycle,
         y = awake,
@@ -187,15 +187,22 @@ testthat::test_that(
         package = "wesanderson",
         marginal = FALSE,
         centrality.para = "median",
+        axes.range.restrict = TRUE,
         messages = FALSE
-      )
+      ))
 
     # built plot
     pb <- ggplot2::ggplot_build(p)
 
     # checking intercepts
-    testthat::expect_equal(pb$plot$plot_env$x_label_pos, 0.8066451, tolerance = 1e-3)
-    testthat::expect_equal(pb$plot$plot_env$y_label_pos, 13.37923, tolerance = 1e-3)
+    testthat::expect_equal(pb$plot$plot_env$x_label_pos,
+      0.8066451,
+      tolerance = 1e-3
+    )
+    testthat::expect_equal(pb$plot$plot_env$y_label_pos,
+      13.37923,
+      tolerance = 1e-3
+    )
     testthat::expect_equal(pb$data[[3]]$xintercept[[1]],
       median(ggplot2::msleep$sleep_cycle, na.rm = TRUE),
       tolerance = 1e-3
@@ -203,6 +210,24 @@ testthat::test_that(
     testthat::expect_equal(pb$data[[4]]$yintercept[[1]],
       median(ggplot2::msleep$awake, na.rm = TRUE),
       tolerance = 1e-3
+    )
+
+    # checking panel parameters
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+      c(0.0405715, 1.5722818),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      c("0.4", "0.8", "1.2")
+    )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+      c(3.25, 21.95),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      as.character(pb$layout$panel_params[[1]]$y.labels),
+      c("5", "10", "15", "20")
     )
   }
 )

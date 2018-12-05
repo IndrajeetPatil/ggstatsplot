@@ -96,14 +96,17 @@ testthat::test_that(
           60.1
         )
       ),
-      row.names = c(NA,-40L),
-      class = "data.frame")
+      row.names = c(NA, -40L),
+      class = "data.frame"
+      )
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
-      ggstatsplot:::yuend_ci(data=mydata,
-                             time,
-                             grade)
+      ggstatsplot:::yuend_ci(
+        data = mydata,
+        time,
+        grade
+      )
 
 
     # testing 5 conditions
