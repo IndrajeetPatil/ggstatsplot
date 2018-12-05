@@ -35,9 +35,9 @@ testthat::test_that(
         paste(
           italic("t"),
           "(",
-          c(df = "1317.00000"),
+          "1317.00000",
           ") = ",
-          c(t = "-9.46816"),
+          "-9.46816",
           ", ",
           italic("p"),
           " = ",
@@ -45,7 +45,7 @@ testthat::test_that(
           ", ",
           italic("d"),
           " = ",
-          c(Action = "0.51775"),
+          "0.51775",
           ", CI"["99%"],
           " [",
           "0.36213",
@@ -59,29 +59,8 @@ testthat::test_that(
         )
       )
 
-    # testing overall idenitcal
-    testthat::expect_equal(
-      object = using_function1,
-      expected = results1
-    )
-
-    # testing t value
-    testthat::expect_equal(
-      object = using_function1[6],
-      expected = results1[6]
-    )
-
-    # testing p value
-    testthat::expect_identical(
-      object = as.character(using_function1)[10],
-      expected = as.character(results1)[10]
-    )
-
-    # testing sample size
-    testthat::expect_identical(
-      object = using_function1[23],
-      expected = results1[23]
-    )
+    # testing overall call
+    testthat::expect_equal(using_function1, results1)
   }
 )
 
@@ -95,20 +74,6 @@ testthat::test_that(
     # loading the dataset
     data("bugs", package = "jmv")
 
-    # expected output from jamovi
-    jmv_df <-
-      jmv::ttestPS(
-        data = bugs,
-        pairs = list(
-          list(i2 = "HDLF", i1 = "HDHF")
-        ),
-        bf = TRUE,
-        miss = "listwise"
-      )
-
-    # t-value extraction
-    t_statistic <- as.data.frame(jmv_df$ttest)$`stat[stud]`
-
     # preparing long format dataframe
     bugs_long <-
       tibble::as.tibble(x = bugs) %>%
@@ -117,19 +82,37 @@ testthat::test_that(
 
     # output from ggstatsplot helper subtitle
     subtitle <-
-      subtitle_t_bayes(
+      ggstatsplot::subtitle_t_bayes(
         data = bugs_long,
         x = key,
         y = value,
         paired = TRUE
       )
 
-    # extracting only the numbers and creating a tibble
-    subtitle_vec <- num_parser(ggstats.obj = subtitle)
+    # expected
+    expected <- ggplot2::expr(paste(
+      italic("t"),
+      "(",
+      89,
+      ") = ",
+      "3.61",
+      ", log"["e"],
+      "(BF"["10"],
+      ") = ",
+      "3.8",
+      ", Prior width = ",
+      "0.707",
+      ", ",
+      italic("d"),
+      " = ",
+      "0.38",
+      ", ",
+      italic("n"),
+      " = ",
+      90L
+    ))
 
-    # testing values
-
-    # t-value from student's t-test
-    testthat::expect_equal(t_statistic, subtitle_vec[[2]], tolerance = 1e-3)
+    # testing overall call
+    testthat::expect_identical(subtitle, expected)
   }
 )

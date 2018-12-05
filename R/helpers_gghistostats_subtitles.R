@@ -87,13 +87,10 @@ subtitle_t_onesample <- function(data = NULL,
       bf = bf,
       bfPrior = bf.prior,
       wilcoxon = TRUE,
-      # Mann-Whitney U test
       testValue = test.value,
       hypothesis = "dt",
-      # two-sided hypothesis-testing
       effectSize = TRUE,
       miss = "listwise"
-      # excludes a row from all analyses if one of its entries is missing
     )
 
   # ========================= parametric ======================================
@@ -217,8 +214,8 @@ subtitle_t_onesample <- function(data = NULL,
         crayon::green("Note: "),
         crayon::blue(
           "95% CI for robust location measure",
-          crayon::yellow("median, Huber Psi"),
-          "computed with ",
+          crayon::yellow(robust.estimator),
+          "computed with",
           crayon::yellow(nboot),
           "bootstrap samples.\n"
         ),

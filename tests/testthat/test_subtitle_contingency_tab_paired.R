@@ -61,9 +61,9 @@ testthat::test_that(
           "-1.60944",
           ", CI"["95%"],
           " [",
-          "-2.817",
+          "-2.81683",
           ", ",
-          "-0.631",
+          "-0.63132",
           "]",
           ", ",
           italic("n"),
@@ -72,22 +72,7 @@ testthat::test_that(
         )
       )
 
-    # testing chi-squared value
-    testthat::expect_identical(
-      object = as.character(using_function1)[7],
-      expected = as.character(results1)[7]
-    )
-
-    # testing log odds ratio
-    testthat::expect_identical(
-      object = as.character(using_function1)[15],
-      expected = as.character(results1)[15]
-    )
-
-    # testing sample size
-    testthat::expect_identical(
-      object = using_function1[24],
-      expected = results1[24]
-    )
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
   }
 )

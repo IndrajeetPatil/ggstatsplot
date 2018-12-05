@@ -245,6 +245,62 @@ testthat::test_that(
   }
 )
 
+# subtitles with bayesian tests work -----------------------------------------
+
+testthat::test_that(
+  desc = "subtitles with bayesian tests work",
+  code = {
+
+    # plot
+    set.seed(123)
+    p1 <- ggstatsplot::ggbetweenstats(
+      data = ggplot2::mpg,
+      x = drv,
+      y = cty,
+      bf.prior = 0.8,
+      messages = FALSE,
+      k = 4,
+      type = "bf"
+    )
+
+    # subtitle
+    set.seed(123)
+    p1_subtitle <- ggstatsplot::subtitle_anova_bayes(
+      data = ggplot2::mpg,
+      x = drv,
+      y = cty,
+      bf.prior = 0.8,
+      messages = FALSE,
+      k = 4
+    )
+
+    # plot
+    set.seed(123)
+    p2 <- ggstatsplot::ggbetweenstats(
+      data = ToothGrowth,
+      x = supp,
+      y = len,
+      messages = FALSE,
+      k = 3,
+      type = "bayes"
+    )
+
+    # subtitle
+    set.seed(123)
+    p2_subtitle <- ggstatsplot::subtitle_t_bayes(
+      data = ToothGrowth,
+      x = supp,
+      y = len,
+      messages = FALSE,
+      k = 3
+    )
+
+    # checking if these two are equal
+    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
+    testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
+  }
+)
+
 # subtitle works with equal variance -----------------------------------------
 
 testthat::test_that(

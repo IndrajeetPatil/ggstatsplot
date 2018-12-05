@@ -1,8 +1,12 @@
 context("subtitle_t_onesample")
 
+# subtitle ---------------------------------------------------------
+
 testthat::test_that(
   desc = "subtitle_t_onesample works",
   code = {
+
+    # parametric
 
     # ggstatsplot output
     set.seed(123)
@@ -54,23 +58,59 @@ testthat::test_that(
       object = using_function1,
       expected = results1
     )
+  }
+)
 
-    # testing t test value
-    testthat::expect_identical(
-      object = as.character(using_function1)[6],
-      expected = as.character(results1)[6]
+# message checks ---------------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle_t_onesample works",
+  code = {
+
+    # message
+    set.seed(123)
+    p_message1 <- capture.output(
+      ggstatsplot::subtitle_t_onesample(
+        x = ToothGrowth$len,
+        nboot = 10,
+        type = "r",
+        robust.estimator = "median"
+      )
     )
 
-    # testing cohen's d size
-    testthat::expect_identical(
-      object = as.character(using_function1[14]),
-      expected = as.character(results1[14])
+    p_message2 <- capture.output(
+      ggstatsplot::subtitle_t_onesample(
+        x = ToothGrowth$len,
+        nboot = 25,
+        type = "r",
+        robust.estimator = "mom"
+      )
     )
 
-    # testing sample size
-    testthat::expect_identical(
-      object = using_function1[23],
-      expected = results1[23]
+    p_message3 <- capture.output(
+      ggstatsplot::subtitle_t_onesample(
+        x = ToothGrowth$len,
+        conf.level = 0.95,
+        nboot = 20,
+        type = "r",
+        robust.estimator = "onestep"
+      )
+    )
+
+    # checking captured messages
+    testthat::expect_match(p_message1[1],
+      "median computed with 10",
+      fixed = TRUE
+    )
+
+    testthat::expect_match(p_message2[1],
+      "mom computed with 25",
+      fixed = TRUE
+    )
+
+    testthat::expect_match(p_message3[1],
+      "onestep computed with 20",
+      fixed = TRUE
     )
   }
 )

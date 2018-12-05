@@ -91,33 +91,54 @@ testthat::test_that(
 
     # output from ggstatsplot helper subtitle
     set.seed(123)
-    subtitle <-
+    using_function1 <-
       suppressWarnings(
         ggstatsplot::subtitle_anova_parametric(
           data = ggplot2::msleep,
           x = vore,
           y = sleep_total,
           k = 3,
+          effsize.type = "biased",
+          partial = FALSE,
+          conf.level = 0.99,
           messages = FALSE
         )
       )
 
-    # extracting only the numbers and creating a tibble
-    subtitle_vec <- num_parser(ggstats.obj = subtitle)
+    # expected output
+    results1 <-
+      ggplot2::expr(
+        paste(
+          italic("F"),
+          "(",
+          3,
+          ",",
+          "16.586",
+          ") = ",
+          "1.405",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.277",
+          ", ",
+          eta^2,
+          " = ",
+          "0.085",
+          ", CI"["99%"],
+          " [",
+          "-0.023",
+          ", ",
+          "0.247",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          76L
+        )
+      )
 
-    # testing values
-
-    # numerator degress of freedom
-    testthat::expect_equal(r$`num df`[[1]], subtitle_vec[[1]])
-
-    # denominator degress of freedom
-    testthat::expect_equal(r$`denom df`[[1]], subtitle_vec[[2]], tolerance = 1e-3)
-
-    # F-value
-    testthat::expect_equal(r$statistic[[1]], subtitle_vec[[3]], tolerance = 1e-3)
-
-    # p-value
-    testthat::expect_equal(r$p.value[[1]], subtitle_vec[[4]], tolerance = 1e-3)
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
   }
 )
 

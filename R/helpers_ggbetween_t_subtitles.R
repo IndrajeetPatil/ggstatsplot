@@ -89,9 +89,8 @@ subtitle_t_parametric <- function(data,
       na.action = na.omit
     )
 
-  # deciding which effect size to use
+  # deciding which effect size to use (Hedge's g or Cohen's d)
   if (effsize.type %in% c("unbiased", "g")) {
-    # Hedge's g is an unbiased estimate of the effect size
     hedges.correction <- TRUE
   } else if (effsize.type %in% c("biased", "d")) {
     hedges.correction <- FALSE
@@ -118,119 +117,76 @@ subtitle_t_parametric <- function(data,
 
   # preparing the subtitle
   if (effsize.type %in% c("unbiased", "g")) {
-
-    # preparing subtitle with Hedge's g
-    subtitle <-
-      # extracting the elements of the statistical object
-      base::substitute(
-        expr =
-          paste(
-            italic("t"),
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic("g"),
-            " = ",
-            effsize,
-            ", CI"[conf.level],
-            " [",
-            LL,
-            ", ",
-            UL,
-            "]",
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
-            x = t_stat[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          df = ggstatsplot::specify_decimal_p(
-            x = t_stat[[2]],
-            k = k.df,
-            p.value = FALSE
-          ),
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = t_stat[[3]],
-            k = k,
-            p.value = TRUE
-          ),
-          effsize = ggstatsplot::specify_decimal_p(
-            x = t_effsize[[3]],
-            k = k,
-            p.value = FALSE
-          ),
-          conf.level = paste(conf.level * 100, "%", sep = ""),
-          LL = ggstatsplot::specify_decimal_p(
-            x = t_effsize$conf.int[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          UL = ggstatsplot::specify_decimal_p(
-            x = t_effsize$conf.int[[2]],
-            k = k,
-            p.value = FALSE
-          ),
-          n = sample_size
-        )
-      )
+    effsize.text <- quote("g")
   } else if (effsize.type %in% c("biased", "d")) {
-
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            italic("t"),
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic("d"),
-            " = ",
-            effsize,
-            ", CI"[conf.level],
-            " [",
-            LL,
-            ", ",
-            UL,
-            "]",
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(x = t_stat[[1]], k = k),
-          df = ggstatsplot::specify_decimal_p(x = t_stat[[2]], k.df),
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = t_stat[[3]],
-            k = k,
-            p.value = TRUE
-          ),
-          effsize = ggstatsplot::specify_decimal_p(x = t_effsize[[3]], k = k),
-          conf.level = paste(conf.level * 100, "%", sep = ""),
-          LL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[1]], k = k),
-          UL = ggstatsplot::specify_decimal_p(x = t_effsize$conf.int[[2]], k = k),
-          n = sample_size
-        )
-      )
+    effsize.text <- quote("d")
   }
+
+  # preparing subtitle
+  subtitle <-
+    base::substitute(
+      expr =
+        paste(
+          italic("t"),
+          "(",
+          df,
+          ") = ",
+          estimate,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue,
+          ", ",
+          italic(effsize.text),
+          " = ",
+          effsize,
+          ", CI"[conf.level],
+          " [",
+          LL,
+          ", ",
+          UL,
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          n
+        ),
+      env = base::list(
+        estimate = ggstatsplot::specify_decimal_p(
+          x = t_stat[[1]][[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        df = ggstatsplot::specify_decimal_p(
+          x = t_stat[[2]][[1]],
+          k = k.df,
+          p.value = FALSE
+        ),
+        pvalue = ggstatsplot::specify_decimal_p(
+          x = t_stat[[3]],
+          k = k,
+          p.value = TRUE
+        ),
+        effsize.text = effsize.text,
+        effsize = ggstatsplot::specify_decimal_p(
+          x = t_effsize[[3]][[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        conf.level = paste(conf.level * 100, "%", sep = ""),
+        LL = ggstatsplot::specify_decimal_p(
+          x = t_effsize$conf.int[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        UL = ggstatsplot::specify_decimal_p(
+          x = t_effsize$conf.int[[2]],
+          k = k,
+          p.value = FALSE
+        ),
+        n = sample_size
+      )
+    )
 
   # return the subtitle
   return(subtitle)

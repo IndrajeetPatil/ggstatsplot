@@ -54,33 +54,6 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(
-      object = using_function1,
-      expected = results1
-    )
-
-    # testing overall, omega squared and bayes factor
-    testthat::expect_identical(
-      object = as.character(using_function1)[6],
-      expected = as.character(results1)[6]
-    )
-
-    # testing chi-squared value
-    testthat::expect_identical(
-      object = as.character(using_function1)[7],
-      expected = as.character(results1)[7]
-    )
-
-    # testing Cramer's V
-    testthat::expect_identical(
-      object = as.character(using_function1)[15],
-      expected = as.character(results1)[15]
-    )
-
-    # testing sample size
-    testthat::expect_identical(
-      object = using_function1[24],
-      expected = results1[24]
-    )
+    testthat::expect_identical(using_function1, results1)
   }
 )

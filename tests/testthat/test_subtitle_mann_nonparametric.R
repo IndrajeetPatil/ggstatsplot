@@ -43,27 +43,6 @@ testthat::test_that(
       )
 
     # testing overall everything identical
-    testthat::expect_identical(
-      using_function1,
-      results1
-    )
-
-    # testing U statistic
-    testthat::expect_identical(
-      as.character(using_function1)[4],
-      as.character(results1)[4]
-    )
-
-    # testing Z statistic
-    testthat::expect_identical(
-      as.character(using_function1)[8],
-      as.character(results1)[8]
-    )
-
-    # testing sample size
-    testthat::expect_identical(
-      using_function1[20],
-      results1[20]
-    )
+    testthat::expect_identical(using_function1, results1)
   }
 )

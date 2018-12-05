@@ -1,7 +1,9 @@
 context("subtitle_t_parametric_paired")
 
+# Hedge's g -----------------------------------------------------------------
+
 testthat::test_that(
-  desc = "subtitle_t_parametric_paired works",
+  desc = "subtitle_t_parametric_paired works (Hedge's g)",
   code = {
 
     # made up data
@@ -195,9 +197,9 @@ testthat::test_that(
         paste(
           italic("t"),
           "(",
-          c(df = "19"),
+          "19",
           ") = ",
-          c(t = "-6.47544"),
+          "-6.47544",
           ", ",
           italic("p"),
           " = ",
@@ -205,7 +207,7 @@ testthat::test_that(
           ", ",
           italic("g"),
           " = ",
-          c(test1 = "-1.41918"),
+          "-1.41918",
           ", CI"["99%"],
           " [",
           "-2.37854",
@@ -219,28 +221,64 @@ testthat::test_that(
         )
       )
 
-    # testing overall equal
-    testthat::expect_equal(
-      using_function1,
-      results1
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
+  }
+)
+
+# Cohen's d -----------------------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle_t_parametric_paired works (Cohen's d)",
+  code = {
+
+    # creating a dataframe
+    df <- iris %>%
+      tidyr::gather(key, value, Sepal.Length, Sepal.Width) %>%
+      tibble::as_tibble()
+
+    # subtitle
+    set.seed(123)
+    using_function1 <- subtitle_t_parametric(
+      data = df,
+      x = key,
+      y = value,
+      effsize.type = "d",
+      conf.level = 0.99,
+      k = 3,
+      paired = TRUE
     )
 
-    # testing t value
-    testthat::expect_equal(
-      using_function1[6],
-      results1[6]
+    # expected
+    results1 <- ggplot2::expr(
+      paste(
+        italic("t"),
+        "(",
+        "149",
+        ") = ",
+        "34.815",
+        ", ",
+        italic("p"),
+        " = ",
+        "< 0.001",
+        ", ",
+        italic("d"),
+        " = ",
+        "2.843",
+        ", CI"["99%"],
+        " [",
+        "2.418",
+        ", ",
+        "3.267",
+        "]",
+        ", ",
+        italic("n"),
+        " = ",
+        300L
+      )
     )
 
-    # testing p value
-    testthat::expect_identical(
-      as.character(using_function1)[10],
-      as.character(results1)[10]
-    )
-
-    # testing sample size
-    testthat::expect_identical(
-      using_function1[23],
-      results1[23]
-    )
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
   }
 )

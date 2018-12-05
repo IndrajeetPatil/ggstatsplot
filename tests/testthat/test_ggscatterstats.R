@@ -256,3 +256,77 @@ testthat::test_that(
     )
   }
 )
+
+# message checks -------------------------------------------------
+
+testthat::test_that(
+  desc = "class of object",
+  code = {
+    # creating the messages
+    set.seed(123)
+    p_message1 <- capture.output(
+      ggstatsplot::ggscatterstats(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        conf.level = 0.99,
+        nboot = 25,
+        type = "np"
+      )
+    )
+
+    p_message2 <- capture.output(
+      ggstatsplot::ggscatterstats(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        conf.level = 0.90,
+        nboot = 15,
+        type = "r"
+      )
+    )
+
+    p_message3 <- capture.output(
+      ggstatsplot::subtitle_ggscatterstats(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        conf.level = 0.50,
+        nboot = 10,
+        type = "np"
+      )
+    )
+
+    p_message4 <- capture.output(
+      ggstatsplot::subtitle_ggscatterstats(
+        data = dplyr::starwars,
+        x = mass,
+        y = height,
+        conf.level = 0.90,
+        nboot = 10,
+        type = "r"
+      )
+    )
+
+    # checking captured messages
+    testthat::expect_match(p_message1[1],
+      "99% CI for effect size estimate was computed with 25",
+      fixed = TRUE
+    )
+
+    testthat::expect_match(p_message2[1],
+      "90% CI for effect size estimate was computed with 15",
+      fixed = TRUE
+    )
+
+    testthat::expect_match(p_message3[1],
+      "50% CI for effect size estimate was computed with 10",
+      fixed = TRUE
+    )
+
+    testthat::expect_match(p_message4[1],
+      "90% CI for effect size estimate was computed with 10",
+      fixed = TRUE
+    )
+  }
+)

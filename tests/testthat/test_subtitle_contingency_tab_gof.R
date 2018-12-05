@@ -38,21 +38,6 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(
-      object = using_function1,
-      expected = results1
-    )
-
-    # testing chi-squared value
-    testthat::expect_identical(
-      object = as.character(using_function1)[6],
-      expected = as.character(results1)[6]
-    )
-
-    # testing sample size
-    testthat::expect_identical(
-      object = using_function1[14],
-      expected = results1[14]
-    )
+    testthat::expect_identical(using_function1, results1)
   }
 )
