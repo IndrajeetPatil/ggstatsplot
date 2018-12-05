@@ -34,12 +34,11 @@ testthat::test_that(
     data_dims <- dim(dat)
 
     # testing everything is okay with data
-    testthat::expect_equal(data_dims[1], 4L)
-    testthat::expect_equal(data_dims[2], 4L)
-    testthat::expect_equal(dat$perc[1], 26.30, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[2], 6.58, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[3], 42.10, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[4], 25.00, tolerance = 1e-3)
+    testthat::expect_equal(data_dims, c(4L, 4L))
+    testthat::expect_equal(dat$perc,
+      c(26.30, 6.58, 42.10, 25.00),
+      tolerance = 1e-3
+    )
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
@@ -57,17 +56,19 @@ testthat::test_that(
   code = {
     # creating the plot
     set.seed(123)
-    p <- suppressWarnings(ggstatsplot::ggpiestats(
-      data = mtcars,
-      main = "am",
-      condition = "cyl",
-      bf.message = TRUE,
-      perc.k = 2,
-      legend.title = "transmission",
-      factor.levels = c("0 = automatic", "1 = manual"),
-      facet.wrap.name = "cylinders",
-      messages = FALSE
-    ))
+    p <- suppressWarnings(
+      ggstatsplot::ggpiestats(
+        data = mtcars,
+        main = "am",
+        condition = "cyl",
+        bf.message = TRUE,
+        perc.k = 2,
+        legend.title = "transmission",
+        factor.levels = c("0 = automatic", "1 = manual"),
+        facet.wrap.name = "cylinders",
+        messages = FALSE
+      )
+    )
 
     # subtitle used
     set.seed(123)
@@ -90,12 +91,10 @@ testthat::test_that(
 
     # testing everything is okay with data
     testthat::expect_equal(data_dims, c(6L, 5L))
-    testthat::expect_equal(dat$perc[1], 72.73, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[2], 42.86, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[3], 14.29, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[4], 27.27, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[5], 57.14, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[6], 85.71, tolerance = 1e-3)
+    testthat::expect_equal(dat$perc,
+      c(72.73, 42.86, 14.29, 27.27, 57.14, 85.71),
+      tolerance = 1e-3
+    )
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
@@ -130,7 +129,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with counts",
   code = {
-
     # plot
     set.seed(123)
     p <- ggstatsplot::ggpiestats(
@@ -167,24 +165,17 @@ testthat::test_that(
 
     # testing everything is okay with data
     testthat::expect_equal(data_dims, c(4L, 5L))
-    testthat::expect_equal(dat$perc[1], 8.46, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[2], 48.38, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[3], 91.54, tolerance = 1e-3)
-    testthat::expect_equal(dat$perc[4], 51.62, tolerance = 1e-3)
+    testthat::expect_equal(dat$perc, c(8.46, 48.38, 91.54, 51.62), tolerance = 1e-3)
     testthat::expect_equal(dat$condition[1], "No")
     testthat::expect_equal(dat$condition[4], "Yes")
     testthat::expect_equal(dat$main[2], "Female")
     testthat::expect_equal(dat$main[3], "Male")
-    testthat::expect_identical(dat$counts[1], 126L)
-    testthat::expect_identical(dat$counts[2], 344L)
-    testthat::expect_identical(dat$counts[3], 1364L)
-    testthat::expect_identical(dat$counts[4], 367L)
+    testthat::expect_identical(dat$counts, c(126L, 344L, 1364L, 367L))
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
   }
 )
-
 
 # mcnemar test ---------------------------------------------------------
 
@@ -226,5 +217,35 @@ testthat::test_that(
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
+  }
+)
+
+# without enough data ---------------------------------------------------------
+
+testthat::test_that(
+  desc = "checking if functions work without enough data",
+  code = {
+
+    set.seed(123)
+
+    # creating a dataframe
+    df <- tibble::tribble(
+      ~x, ~y,
+      "one", "one"
+    )
+
+    # subtitle
+    p1 <- ggstatsplot::ggpiestats(data = df, main = x)
+
+    # expected output
+    p_subtitle1 <- ggplot2::expr(paste(italic("n"), " = ", 1L))
+
+    # testing overall call
+    testthat::expect_identical(p1$labels$subtitle, p_subtitle1)
+    testthat::expect_error(ggstatsplot::ggpiestats(
+      data = df,
+      main = x,
+      condition = y
+    ))
   }
 )

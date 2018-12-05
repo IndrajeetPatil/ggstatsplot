@@ -182,6 +182,9 @@ testthat::test_that(
         data = ggplot2::msleep,
         x = sleep_cycle,
         y = awake,
+        xfill = NULL,
+        palette = "Royal1",
+        package = "wesanderson",
         marginal = FALSE,
         centrality.para = "median",
         messages = FALSE
@@ -204,10 +207,10 @@ testthat::test_that(
   }
 )
 
-# class of object -------------------------------------------------
+# bayes factor plus class of object -----------------------------------------
 
 testthat::test_that(
-  desc = "class of object",
+  desc = "bayes factor plus class of object",
   code = {
     # creating the plot
     set.seed(123)

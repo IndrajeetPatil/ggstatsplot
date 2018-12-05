@@ -31,7 +31,7 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#' 
+#'
 #' # without counts data
 #' subtitle_contingency_tab(
 #'   data = mtcars,
@@ -39,11 +39,11 @@
 #'   condition = cyl,
 #'   nboot = 15
 #' )
-#' 
+#'
 #' # with counts data
 #' # in case of no variation, a `NULL` will be returned.
 #' library(jmv)
-#' 
+#'
 #' as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male") %>%
 #'   subtitle_contingency_tab(
@@ -358,16 +358,16 @@ subtitle_contingency_tab <- function(data,
 #' @inheritParams subtitle_contingency_tab
 #'
 #' @examples
-#' 
+#'
 #' # with counts
 #' library(jmv)
-#' 
+#'
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#' 
+#'
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),

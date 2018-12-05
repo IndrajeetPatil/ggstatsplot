@@ -215,5 +215,23 @@ testthat::test_that(
 
     # testing overall call
     testthat::expect_identical(using_function1, results1)
+
+    # capturing message
+    set.seed(123)
+    p_message <-
+      capture.output(ggstatsplot::subtitle_mann_nonparametric(
+        data = mydata,
+        x = time,
+        y = grade,
+        k = 5,
+        paired = TRUE,
+        messages = TRUE
+      ))
+
+    # checking captured messages
+    testthat::expect_match(p_message[1],
+      "Two-sample Wilcoxon test, also known as Mann-Whitney test",
+      fixed = TRUE
+    )
   }
 )

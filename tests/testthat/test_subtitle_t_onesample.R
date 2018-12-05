@@ -1,12 +1,10 @@
 context("subtitle_t_onesample")
 
-# subtitle ---------------------------------------------------------
+# parametric -----------------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle_t_onesample works",
+  desc = "subtitle_t_onesample parametric works",
   code = {
-
-    # parametric
 
     # ggstatsplot output
     set.seed(123)
@@ -54,12 +52,160 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(
-      object = using_function1,
-      expected = results1
-    )
+    testthat::expect_identical(using_function1, results1)
   }
 )
+
+# non-parametric -----------------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle_t_onesample non-parametric works",
+  code = {
+
+    # ggstatsplot output
+    set.seed(123)
+    using_function1 <-
+      suppressWarnings(
+        ggstatsplot::subtitle_t_onesample(
+          data = ToothGrowth,
+          x = len,
+          test.value = 20,
+          type = "np",
+          k = 4,
+          messages = FALSE
+        )
+      )
+
+    # expected output
+    set.seed(123)
+    results1 <-
+      ggplot2::expr(
+        paste(
+          italic("U"),
+          " = ",
+          753.5,
+          ", ",
+          italic("p"),
+          " = ",
+          "0.3227",
+          ", ",
+          italic("d"),
+          " = ",
+          "-0.1551",
+          ", ",
+          italic("n"),
+          " = ",
+          60L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
+  }
+)
+
+
+# robust -----------------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle_t_onesample robust works",
+  code = {
+
+    # ggstatsplot output
+    set.seed(123)
+    using_function1 <-
+      suppressWarnings(
+        ggstatsplot::subtitle_t_onesample(
+x = anscombe$x1,
+          test.value = 8,
+          type = "r",
+          k = 4,
+          messages = FALSE
+        )
+      )
+
+    # expected output
+    set.seed(123)
+    results1 <-
+      ggplot2::expr(
+        paste(
+          italic("M")[robust],
+          " = ",
+          "9.0000",
+          ", CI"["95%"],
+          " [",
+          "6.8434",
+          ", ",
+          "11.3163",
+          "], ",
+          italic("p"),
+          " = ",
+          "0.3000",
+          ", ",
+          italic("n"),
+          " = ",
+          11L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
+  }
+)
+
+
+
+# bayes factor -----------------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle_t_onesample bayes factor works",
+  code = {
+
+    # ggstatsplot output
+    set.seed(123)
+    using_function1 <-
+      suppressWarnings(
+        ggstatsplot::subtitle_t_onesample(
+          x = anscombe$x2,
+          test.value = 8,
+          type = "bf",
+          messages = FALSE
+        )
+      )
+
+    # expected output
+    set.seed(123)
+    results1 <-
+      ggplot2::expr(
+        paste(
+          italic("t"),
+          "(",
+          10,
+          ") = ",
+          "1.00",
+          ", log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "-0.80",
+          ", Prior width = ",
+          "0.71",
+          ", ",
+          italic("d"),
+          " = ",
+          "0.30",
+          ", ",
+          italic("n"),
+          " = ",
+          11L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
+  }
+)
+
+
 
 # message checks ---------------------------------------------------------
 

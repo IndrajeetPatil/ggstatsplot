@@ -20,20 +20,20 @@
 #' @importFrom effsize cohen.d
 #'
 #' @examples
-#' 
+#'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#' 
+#'
 #' # with defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
@@ -361,14 +361,14 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
-#' 
+#'
 #' # with defaults
 #' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_t_robust(
 #'   data = ToothGrowth,
@@ -378,7 +378,7 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'   k = 1,
 #'   tr = 0.2
 #' )
-#' 
+#'
 #' # within-subjects design
 #' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
@@ -422,6 +422,13 @@ subtitle_t_robust <-
         .vars = "x",
         .funs = ~ base::droplevels(x = base::as.factor(x = .))
       )
+
+    # when paired robust t-test is run, df is going to be an integer
+    if (isTRUE(paired)) {
+      k.df <- 0
+    } else {
+      k.df <- k
+    }
 
     # ---------------------------- between-subjects design --------------------
 
@@ -490,7 +497,7 @@ subtitle_t_robust <-
             ),
             df = ggstatsplot::specify_decimal_p(
               x = t_robust_stat$df[[1]],
-              k = k,
+              k = k.df,
               p.value = FALSE
             ),
             pvalue = ggstatsplot::specify_decimal_p(
@@ -570,7 +577,7 @@ subtitle_t_robust <-
             ),
             df = ggstatsplot::specify_decimal_p(
               x = yuend_results$df[[1]],
-              k = k,
+              k = k.df,
               p.value = FALSE
             ),
             pvalue = ggstatsplot::specify_decimal_p(
@@ -622,18 +629,18 @@ subtitle_t_robust <-
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # between-subjects design
-#' 
+#'
 #' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#' 
+#'
 #' # within-subjects design
-#' 
+#'
 #' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
