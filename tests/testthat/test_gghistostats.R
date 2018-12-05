@@ -21,7 +21,7 @@ testthat::test_that(
         test.k = 0,
         centrality.k = 0,
         test.value.line = TRUE,
-        messages = FALSE
+        messages = TRUE
       )
 
     # build the plot

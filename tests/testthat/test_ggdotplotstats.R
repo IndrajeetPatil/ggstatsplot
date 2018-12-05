@@ -40,7 +40,7 @@ testthat::test_that(
         bf.prior = 0.88,
         test.value.line = TRUE,
         centrality.para = TRUE,
-        messages = FALSE
+        messages = TRUE
       )
 
     # build the plot

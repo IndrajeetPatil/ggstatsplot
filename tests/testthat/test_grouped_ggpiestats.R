@@ -87,7 +87,7 @@ testthat::test_that(
         main = cyl,
         condition = class,
         grouping.var = drv,
-        messages = FALSE
+        messages = TRUE
       )
     ),
     what = "gg"

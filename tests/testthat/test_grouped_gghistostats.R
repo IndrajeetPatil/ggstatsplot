@@ -6,7 +6,7 @@ testthat::test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    testthat::expect_true(object = inherits(
+    testthat::expect_true(inherits(
       x = ggstatsplot::grouped_gghistostats(
         data = ggplot2::msleep,
         x = brainwt,
@@ -20,7 +20,7 @@ testthat::test_that(
 
     # when arguments are entered as character
     set.seed(123)
-    testthat::expect_true(object = inherits(
+    testthat::expect_true(inherits(
       x = ggstatsplot::grouped_gghistostats(
         data = ggplot2::msleep,
         x = "brainwt",
@@ -36,11 +36,11 @@ testthat::test_that(
     # `grouped_` variant
     set.seed(123)
     testthat::expect_error(
-      object = ggstatsplot::grouped_gghistostats(
+      ggstatsplot::grouped_gghistostats(
         x = ggplot2::msleep$brainwt,
         grouping.var = "vore",
         type = "np",
-        messages = FALSE
+        messages = TRUE
       )
     )
   }

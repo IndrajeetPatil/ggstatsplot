@@ -258,9 +258,10 @@ testthat::test_that(
       x = drv,
       y = cty,
       bf.prior = 0.8,
-      messages = FALSE,
+      messages = TRUE,
       k = 4,
-      type = "bf"
+      type = "bf",
+      pairwise.comparisons = TRUE
     )
 
     # subtitle

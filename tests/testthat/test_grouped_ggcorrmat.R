@@ -61,7 +61,7 @@ testthat::test_that(
         data = movies_filtered,
         grouping.var = "mpaa",
         corr.method = "r",
-        messages = FALSE
+        messages = TRUE
       )),
       what = "gg"
     ))

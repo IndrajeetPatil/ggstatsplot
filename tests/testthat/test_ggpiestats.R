@@ -176,7 +176,7 @@ testthat::test_that(
       counts = Freq,
       perc.k = 2,
       conf.level = 0.95,
-      messages = FALSE
+      messages = TRUE
     )
 
     # subtitle

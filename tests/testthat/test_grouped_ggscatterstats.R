@@ -32,7 +32,7 @@ testthat::test_that(
         grouping.var = mpaa,
         type = "p",
         marginal = FALSE,
-        messages = FALSE
+        messages = TRUE
       ),
       what = "gg"
     ))

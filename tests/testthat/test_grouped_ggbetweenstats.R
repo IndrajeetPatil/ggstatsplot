@@ -24,7 +24,7 @@ testthat::test_that(
         bf.message = TRUE,
         pairwise.comparisons = TRUE,
         pairwise.annotation = "p.value",
-        messages = FALSE
+        messages = TRUE
       ),
       what = "gg"
     ))
@@ -64,19 +64,18 @@ testthat::test_that(
     movies_long1$title <- as.character(movies_long1$title)
 
     testthat::expect_true(inherits(
-      x =
-        ggstatsplot::grouped_ggbetweenstats(
-          data = movies_long1,
-          x = "genre",
-          y = "rating",
-          grouping.var = mpaa,
-          messages = FALSE,
-          type = "r",
-          pairwise.comparisons = TRUE,
-          outlier.tagging = TRUE,
-          outlier.label = "title",
-          outlier.coef = 5
-        ),
+      ggstatsplot::grouped_ggbetweenstats(
+        data = movies_long1,
+        x = "genre",
+        y = "rating",
+        grouping.var = mpaa,
+        messages = FALSE,
+        type = "r",
+        pairwise.comparisons = TRUE,
+        outlier.tagging = TRUE,
+        outlier.label = "title",
+        outlier.coef = 5
+      ),
       what = "gg"
     ))
   }
