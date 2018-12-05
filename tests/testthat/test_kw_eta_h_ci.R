@@ -1,7 +1,7 @@
 context("test_kw_eta_h_ci")
 
 testthat::test_that(
-  desc = "Confidence interval for effect size for Kruskal-Wallis test",
+  desc = "Confidence interval for effect size for Kruskal-Wallis test ",
   code = {
 
     # function output
@@ -12,7 +12,8 @@ testthat::test_that(
         genre,
         budget,
         nboot = 50,
-        conf.level = 0.999
+        conf.level = 0.999,
+        conf.type = "perc"
       ))
 
 
