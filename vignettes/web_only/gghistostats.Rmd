@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 200
+    dpi: 300
     toc: true
     warning: FALSE
     message: FALSE
