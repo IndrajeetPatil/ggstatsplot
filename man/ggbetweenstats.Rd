@@ -261,7 +261,7 @@ ggstatsplot::ggbetweenstats(
 )
 }
 \references{
-\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 }
 \seealso{
 \code{\link{grouped_ggbetweenstats}},

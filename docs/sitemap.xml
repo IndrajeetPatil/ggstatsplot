@@ -220,22 +220,10 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/additional.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/ggbetweenstats.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/ggcoefstats.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/ggcorrmat.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/gghistostats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/ggpiestats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/ggscatterstats.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/purrr_examples.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/tests_and_coverage.html</loc>
@@ -247,10 +235,22 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/gallery.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggstatsplot_paper.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggbetweenstats.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/purrr_examples.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggcorrmat.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/gghistostats.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggpiestats.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggscatterstats.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/ggstatsplot_paper.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//articles/web_only/session_info.html</loc>

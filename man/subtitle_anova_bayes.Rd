@@ -57,16 +57,16 @@ subtitle_anova_bayes(
   k = 2,
   bf.prior = 0.8
 )
-
+\dontrun{
 # modifying the defaults
 subtitle_anova_bayes(
   data = ggplot2::msleep,
   x = vore,
   y = sleep_rem,
   effsize.type = "partial_eta",
-  var.equal = TRUE,
-  nboot = 10
+  var.equal = TRUE
 )
+}
 }
 \author{
 Indrajeet Patil

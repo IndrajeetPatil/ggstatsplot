@@ -139,7 +139,7 @@
 #' incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
 #'
 #' @references
-#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggbetweenstats.html}
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
 #' 

@@ -214,7 +214,7 @@ ggstatsplot::ggcorrmat(
 )
 }
 \references{
-\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcorrmat.html}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \seealso{
 \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}

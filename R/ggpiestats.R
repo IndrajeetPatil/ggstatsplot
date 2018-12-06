@@ -44,7 +44,7 @@
 #' @importFrom tibble as_tibble
 #'
 #' @references
-#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 #'
 #' @return Unlike a number of statistical softwares, `ggstatsplot` doesn't
 #'   provide the option for Yates' correction for the Pearson's chi-squared

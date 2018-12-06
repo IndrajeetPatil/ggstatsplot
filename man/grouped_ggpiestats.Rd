@@ -225,7 +225,7 @@ ggstatsplot::grouped_ggpiestats(
 }
 }
 \references{
-\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggpiestats.html}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \seealso{
 \code{\link{ggpiestats}}

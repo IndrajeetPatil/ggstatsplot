@@ -672,16 +672,16 @@ subtitle_anova_robust <-
 #'   k = 2,
 #'   bf.prior = 0.8
 #' )
-#' 
+#' \dontrun{
 #' # modifying the defaults
 #' subtitle_anova_bayes(
 #'   data = ggplot2::msleep,
 #'   x = vore,
 #'   y = sleep_rem,
 #'   effsize.type = "partial_eta",
-#'   var.equal = TRUE,
-#'   nboot = 10
+#'   var.equal = TRUE
 #' )
+#' }
 #' @export
 
 # function body
@@ -743,9 +743,6 @@ subtitle_anova_bayes <- function(data,
   } else if (isTRUE(var.equal)) {
     k.df2 <- 0
   }
-
-  # figuring out which effect size to use
-  effsize.type <- effsize_type_switch(effsize.type)
 
   # figuring out which effect size to use
   effsize.type <- effsize_type_switch(effsize.type)

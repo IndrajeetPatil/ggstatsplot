@@ -35,6 +35,8 @@ Due to constraints on the size of the `R` package, all available vignettes are
 not included in the package and thus can't be accessed on `CRAN`. There are few
 additional vignettes that are only available on the website for this package:
 
+## General vignettes
+
   - Introduction to `ggstatsplot` (publication describing philosophy and
     principles behind this package):
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggstatsplot_paper.html>)
@@ -42,20 +44,34 @@ additional vignettes that are only available on the website for this package:
   - Gallery of `ggstatsplot` examples (shows how `ggstatsplot` can be further
     modified using `ggplot2` functions):
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gallery.html>)
+
+## Vignettes for individual functions
+
+  - `ggbetweenstats`:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>)
     
-  - Using `ggstatsplot` with the `purrr` package:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
+  - `ggcorrmat`:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>)
+    
+  - `gghistostats`:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>)    
+
+  - `ggpiestats`:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>)
+    
+  - `ggscatterstats`:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>)    
     
   - How to arrange multiple plots in a single plot along with annotations using
     the `combine_plots` helper function:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html>)
     
-  - Default theme used for the package and how it can be modified:
+  - Default theme (`theme_ggstatsplot`) used for the package and how it can be
+    modified:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html>)
     
   - Session information:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
-    
     
 # Suggestions
 
