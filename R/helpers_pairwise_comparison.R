@@ -653,9 +653,9 @@ pairwise_p <- function(data,
 #' @keywords internal
 
 pairwise_p_caption <- function(type,
-                               var.equal,
-                               paired,
-                               p.adjust.method,
+                               var.equal = FALSE,
+                               paired = FALSE,
+                               p.adjust.method = "holm",
                                caption = NULL) {
 
   # ======================= pairwise test run ==============================

@@ -8,7 +8,7 @@ testthat::test_that(
   code = {
     testthat::expect_output(
       ggstatsplot:::grouped_message(),
-      "Warning: Plots from `grouped_` functions",
+      "Warning: Individual plots in the combined",
       fixed = TRUE
     )
   }

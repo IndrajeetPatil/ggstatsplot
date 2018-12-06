@@ -772,7 +772,6 @@ kw_eta_h_ci <- function(data,
                         conf.level = 0.95,
                         conf.type = "norm",
                         ...) {
-  #---------------------- dataframe ----------------------------------------
 
   # creating a dataframe from entered data
   data <-
@@ -783,8 +782,6 @@ kw_eta_h_ci <- function(data,
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
     tibble::as_tibble(x = .)
-
-  #---------------------- custom function ------------------------------------
 
   # custom function to get eta-squared value
   kw_eta_h <- function(data,
@@ -825,8 +822,6 @@ kw_eta_h_ci <- function(data,
     y = y
   )
 
-  #---------------------- bootstrapping --------------------------------------
-
   # function to obtain 95% CI for for eta-squared
   eta_h_ci <- function(data, x, y, indices) {
     # allows boot to select sample
@@ -861,8 +856,6 @@ kw_eta_h_ci <- function(data,
     conf = conf.level,
     type = conf.type
   )
-
-  #---------------------- results ----------------------------------------
 
   # extracting ci part
   if (conf.type == "norm") {

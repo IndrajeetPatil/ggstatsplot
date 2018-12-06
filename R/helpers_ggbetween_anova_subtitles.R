@@ -47,165 +47,164 @@
 #' @export
 
 # function body
-subtitle_anova_parametric <-
-  function(data,
-             x,
-             y,
-             effsize.type = "unbiased",
-             partial = TRUE,
-             conf.level = 0.95,
-             nboot = 100,
-             var.equal = FALSE,
-             k = 2,
-             messages = TRUE,
-             ...) {
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      ) %>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-      tibble::as_tibble(x = .)
+subtitle_anova_parametric <- function(data,
+                                      x,
+                                      y,
+                                      effsize.type = "unbiased",
+                                      partial = TRUE,
+                                      conf.level = 0.95,
+                                      nboot = 100,
+                                      var.equal = FALSE,
+                                      k = 2,
+                                      messages = TRUE,
+                                      ...) {
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    tibble::as_tibble(x = .)
 
-    # convert the grouping variable to factor and drop unused levels
-    data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      )
-
-    # Welch's ANOVA run by default
-    aov_stat <-
-      stats::oneway.test(
-        formula = y ~ x,
-        data = data,
-        subset = NULL,
-        na.action = na.omit,
-        var.equal = var.equal
-      )
-
-    # number of decimal places for degree of freedom
-    if (!isTRUE(var.equal)) {
-      k.df2 <- k
-    } else if (isTRUE(var.equal)) {
-      k.df2 <- 0
-    }
-
-    # figuring out which effect size to use
-    effsize.type <- effsize_type_switch(effsize.type)
-
-    # preparing the subtitles with appropriate effect sizes
-    if (effsize.type == "unbiased") {
-      effsize <- "omega"
-      if (isTRUE(partial)) {
-        effsize.text <- quote(omega["p"])
-      } else {
-        effsize.text <- quote(omega)
-      }
-    } else if (effsize.type == "biased") {
-      effsize <- "eta"
-      if (isTRUE(partial)) {
-        effsize.text <- quote(eta["p"])
-      } else {
-        effsize.text <- quote(eta)
-      }
-    }
-
-    # creating a standardized dataframe with effect size and its confidence
-    # intervals
-    aov_effsize_ci <- lm_effsize_standardizer(
-      object = stats::lm(
-        formula = y ~ x,
-        data = data,
-        na.action = na.omit
-      ),
-      effsize = effsize,
-      partial = partial,
-      conf.level = conf.level,
-      nboot = nboot
+  # convert the grouping variable to factor and drop unused levels
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
-    # preparing the subtitle
-    subtitle <-
-      # extracting the elements of the statistical object
-      base::substitute(
-        expr =
-          paste(
-            italic("F"),
-            "(",
-            df1,
-            ",",
-            df2,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            effsize.text^2,
-            " = ",
-            effsize,
-            ", CI"[conf.level],
-            " [",
-            LL,
-            ", ",
-            UL,
-            "]",
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
-            x = aov_stat$statistic[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          df1 = aov_stat$parameter[[1]],
-          df2 = ggstatsplot::specify_decimal_p(
-            x = aov_stat$parameter[[2]],
-            k = k.df2,
-            p.value = FALSE
-          ),
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = aov_stat$p.value[[1]],
-            k = k,
-            p.value = TRUE
-          ),
-          effsize.text = effsize.text,
-          effsize = ggstatsplot::specify_decimal_p(
-            x = aov_effsize_ci$estimate[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          conf.level = paste(conf.level * 100, "%", sep = ""),
-          LL = ggstatsplot::specify_decimal_p(
-            x = aov_effsize_ci$conf.low[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          UL = ggstatsplot::specify_decimal_p(
-            x = aov_effsize_ci$conf.high[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          n = nrow(x = data)
-        )
-      )
+  # Welch's ANOVA run by default
+  aov_stat <-
+    stats::oneway.test(
+      formula = y ~ x,
+      data = data,
+      subset = NULL,
+      na.action = na.omit,
+      var.equal = var.equal
+    )
 
-    # message about effect size measure
-    if (isTRUE(messages)) {
-      effsize_ci_message(nboot = nboot, conf.level = conf.level)
-    }
-
-    # return the subtitle
-    return(subtitle)
+  # number of decimal places for degree of freedom
+  if (!isTRUE(var.equal)) {
+    k.df2 <- k
+  } else if (isTRUE(var.equal)) {
+    k.df2 <- 0
   }
+
+  # figuring out which effect size to use
+  effsize.type <- effsize_type_switch(effsize.type)
+
+  # preparing the subtitles with appropriate effect sizes
+  if (effsize.type == "unbiased") {
+    effsize <- "omega"
+    if (isTRUE(partial)) {
+      effsize.text <- quote(omega["p"])
+    } else {
+      effsize.text <- quote(omega)
+    }
+  } else if (effsize.type == "biased") {
+    effsize <- "eta"
+    if (isTRUE(partial)) {
+      effsize.text <- quote(eta["p"])
+    } else {
+      effsize.text <- quote(eta)
+    }
+  }
+
+  # creating a standardized dataframe with effect size and its confidence
+  # intervals
+  aov_effsize_ci <- lm_effsize_standardizer(
+    object = stats::lm(
+      formula = y ~ x,
+      data = data,
+      na.action = na.omit
+    ),
+    effsize = effsize,
+    partial = partial,
+    conf.level = conf.level,
+    nboot = nboot
+  )
+
+  # preparing the subtitle
+  subtitle <-
+    # extracting the elements of the statistical object
+    base::substitute(
+      expr =
+        paste(
+          italic("F"),
+          "(",
+          df1,
+          ",",
+          df2,
+          ") = ",
+          estimate,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue,
+          ", ",
+          effsize.text^2,
+          " = ",
+          effsize,
+          ", CI"[conf.level],
+          " [",
+          LL,
+          ", ",
+          UL,
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          n
+        ),
+      env = base::list(
+        estimate = ggstatsplot::specify_decimal_p(
+          x = aov_stat$statistic[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        df1 = aov_stat$parameter[[1]],
+        df2 = ggstatsplot::specify_decimal_p(
+          x = aov_stat$parameter[[2]],
+          k = k.df2,
+          p.value = FALSE
+        ),
+        pvalue = ggstatsplot::specify_decimal_p(
+          x = aov_stat$p.value[[1]],
+          k = k,
+          p.value = TRUE
+        ),
+        effsize.text = effsize.text,
+        effsize = ggstatsplot::specify_decimal_p(
+          x = aov_effsize_ci$estimate[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        conf.level = paste(conf.level * 100, "%", sep = ""),
+        LL = ggstatsplot::specify_decimal_p(
+          x = aov_effsize_ci$conf.low[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        UL = ggstatsplot::specify_decimal_p(
+          x = aov_effsize_ci$conf.high[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        n = nrow(x = data)
+      )
+    )
+
+  # message about effect size measure
+  if (isTRUE(messages)) {
+    effsize_ci_message(nboot = nboot, conf.level = conf.level)
+  }
+
+  # return the subtitle
+  return(subtitle)
+}
 
 #' @title Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
 #'   (between-subjects designs).

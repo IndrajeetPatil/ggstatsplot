@@ -5,19 +5,19 @@
 \alias{ggdotchartstats}
 \title{Dot plot/chart for labeled numeric data.}
 \usage{
-ggdotplotstats(data, x, y, summarize = TRUE, xlab = NULL,
-  ylab = NULL, title = NULL, subtitle = NULL, caption = NULL,
-  type = "parametric", test.value = 0, bf.prior = 0.707,
-  bf.message = FALSE, robust.estimator = "onestep",
-  conf.level = 0.95, nboot = 100, k = 2, results.subtitle = TRUE,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
-  point.color = "black", point.size = 3, point.shape = 16,
-  centrality.para = "mean", centrality.color = "blue",
-  centrality.size = 1, centrality.linetype = "dashed",
-  centrality.line.labeller = TRUE, centrality.k = 2,
-  test.value.line = FALSE, test.value.color = "black",
-  test.value.size = 1, test.value.linetype = "dashed",
-  test.line.labeller = TRUE, test.k = 0, messages = TRUE)
+ggdotplotstats(data, x, y, xlab = NULL, ylab = NULL, title = NULL,
+  subtitle = NULL, caption = NULL, type = "parametric",
+  test.value = 0, bf.prior = 0.707, bf.message = FALSE,
+  robust.estimator = "onestep", conf.level = 0.95, nboot = 100,
+  k = 2, results.subtitle = TRUE, ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, point.color = "black", point.size = 3,
+  point.shape = 16, centrality.para = "mean",
+  centrality.color = "blue", centrality.size = 1,
+  centrality.linetype = "dashed", centrality.line.labeller = TRUE,
+  centrality.k = 2, test.value.line = FALSE,
+  test.value.color = "black", test.value.size = 1,
+  test.value.linetype = "dashed", test.line.labeller = TRUE,
+  test.k = 0, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -26,9 +26,6 @@ taken. This argument is optional.}
 \item{x}{A numeric variable.}
 
 \item{y}{Label or grouping variable.}
-
-\item{summarize}{Logical that decides whether \code{x} is to be summarized by a
-grouping variable \code{y} (Default: \code{TRUE}).}
 
 \item{xlab}{Label for \code{x} axis variable.}
 
@@ -131,9 +128,6 @@ to be displayed (Default: \code{TRUE}).}
 \description{
 A dot chart with statistical details from one-sample test
 included in the plot as a subtitle.
-}
-\note{
-This function is still \strong{work in progress}.
 }
 \examples{
 # for reproducibility

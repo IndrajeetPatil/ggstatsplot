@@ -4,8 +4,8 @@
 \alias{pairwise_p_caption}
 \title{Preparing caption in case pairwise comparisons are displayed.}
 \usage{
-pairwise_p_caption(type, var.equal, paired, p.adjust.method,
-  caption = NULL)
+pairwise_p_caption(type, var.equal = FALSE, paired = FALSE,
+  p.adjust.method = "holm", caption = NULL)
 }
 \arguments{
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}

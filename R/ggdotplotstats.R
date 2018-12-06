@@ -7,15 +7,11 @@
 #'
 #' @param y Label or grouping variable.
 #' @param ylab Label for `y` axis variable.
-#' @param summarize Logical that decides whether `x` is to be summarized by a
-#'   grouping variable `y` (Default: `TRUE`).
 #' @param point.color Character describing color for the point (Default:
 #'   `"black"`).
 #' @inheritParams histo_labeller
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
-#'
-#' @note This function is still **work in progress**.
 #'
 #' @examples
 #' # for reproducibility
@@ -46,7 +42,6 @@
 ggdotplotstats <- function(data,
                            x,
                            y,
-                           summarize = TRUE,
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
@@ -111,12 +106,10 @@ ggdotplotstats <- function(data,
     tibble::as_tibble(x = .)
 
   # if the data hasn't already been summarized, do so
-  if (isTRUE(summarize)) {
-    data %<>%
-      dplyr::group_by(.data = ., y) %>%
-      dplyr::summarise(.data = ., x = mean(x = x, na.rm = TRUE)) %>%
-      dplyr::ungroup(x = .)
-  }
+  data %<>%
+    dplyr::group_by(.data = ., y) %>%
+    dplyr::summarise(.data = ., x = mean(x = x, na.rm = TRUE)) %>%
+    dplyr::ungroup(x = .)
 
   # rank ordering the data
   data %<>%

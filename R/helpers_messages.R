@@ -215,8 +215,8 @@ bartlett_message <- function(data,
 grouped_message <- function() {
   base::message(cat(
     crayon::red("Warning: "),
-    crayon::blue("Plots from `grouped_` functions are not `ggplot` objects \n"),
-    crayon::blue("and can't be further modified with `ggplot2` functions.\n"),
+    crayon::blue("Individual plots in the combined `grouped_` plots\n"),
+    crayon::blue("can't be further modified with `ggplot2` functions.\n"),
     sep = ""
   ))
 }

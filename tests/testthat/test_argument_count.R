@@ -53,10 +53,8 @@ testthat::test_that(
       ) %>%
       stats::na.omit(.)
 
-    # sum of difference should be exactly 0
-    testthat::expect_equal(
-      object = sum(ns_df$difference),
-      expected = 0L
-    )
+    # testing if formals are as expected
+    testthat::expect_equal(sum(ns_df$difference), 0L)
+    testthat::expect_equal(ns_df$basic + 2L, ns_df$grouped)
   }
 )

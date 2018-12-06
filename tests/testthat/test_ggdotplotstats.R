@@ -28,7 +28,6 @@ testthat::test_that(
         data = morley_new,
         x = Speed,
         y = Expt,
-        summarize = TRUE,
         test.value = 800,
         type = "p",
         k = 4,
@@ -141,5 +140,69 @@ testthat::test_that(
       pb$layout$panel_params[[1]]$y.sec.range,
       tolerance = 0.001
     )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      pb$layout$panel_params[[1]]$x.sec.labels
+    )
+  }
+)
+
+# ggdotplotstats works with summarized data -----------------------------------
+
+testthat::test_that(
+  desc = "ggdotplotstats works with summarized data",
+  code = {
+
+    # creating a summary data
+    set.seed(123)
+    df <-
+      groupedstats::grouped_summary(
+        data = iris,
+        grouping.vars = Species,
+        measures = Sepal.Length
+      )
+
+    # plot
+    p <- ggstatsplot::ggdotplotstats(
+      data = df,
+      x = mean,
+      y = Species,
+      results.subtitle = FALSE,
+      messages = FALSE
+    )
+
+    # build plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # checking panel parameters
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+      c(4.931, 6.669),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      c("5.0", "5.5", "6.0", "6.5")
+    )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+      c(0.9, 3.1),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      as.character(pb$layout$panel_params[[1]]$y.labels),
+      c("setosa", "versicolor", "virginica")
+    )
+    testthat::expect_identical(
+      as.character(pb$layout$panel_params[[1]]$y.sec.labels),
+      c("0", "25", "50", "75", "100")
+    )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+      pb$layout$panel_params[[1]]$y.sec.range,
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      pb$layout$panel_params[[1]]$x.sec.labels
+    )
+    testthat::expect_null(p$labels$subtitle, NULL)
   }
 )
