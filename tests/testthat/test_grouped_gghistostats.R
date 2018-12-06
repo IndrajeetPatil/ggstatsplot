@@ -13,7 +13,7 @@ testthat::test_that(
         grouping.var = vore,
         type = "p",
         bf.message = TRUE,
-        messages = FALSE
+        messages = TRUE
       ),
       what = "gg"
     ))

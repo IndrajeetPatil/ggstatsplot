@@ -285,7 +285,29 @@ testthat::test_that(
   }
 )
 
-# message checks -------------------------------------------------
+# with marginals ----------------------------------------------------------
+
+testthat::test_that(
+  desc = "with marginals",
+  code = {
+    # creating the plot
+    set.seed(123)
+    p <-
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        messages = TRUE
+      )
+
+    testthat::expect_identical(
+      class(p),
+      c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
+    )
+  }
+)
+
+# message checks ----------------------------------------------------------
 
 testthat::test_that(
   desc = "class of object",

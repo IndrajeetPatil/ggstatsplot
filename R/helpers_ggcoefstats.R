@@ -118,7 +118,7 @@ ggcoefstats_label_maker <- function(x,
     )
 
   # models for which statistic is z-value
-  z.mods <- c("clm", "clmm")
+  z.mods <- c("clm", "clmm", "glmmTMB")
 
   # models for which statistic is F-value
   f.mods <- c("aov", "aovlist", "anova")

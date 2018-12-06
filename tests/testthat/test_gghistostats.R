@@ -376,3 +376,41 @@ testthat::test_that(
     )
   }
 )
+
+# checking with default binwidth -----------------------------------
+
+testthat::test_that(
+  desc = "checking with default binwidth",
+  code = {
+    # creating the plot
+    set.seed(123)
+    p <-
+      suppressMessages(ggstatsplot::gghistostats(
+        x = morley$Speed,
+        results.subtitle = FALSE,
+        messages = FALSE
+      ))
+
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # tests
+    testthat::expect_null(pb$plot$labels$subtitle, NULL)
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+      c(582.75, 1127.25),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      c("600", "700", "800", "900", "1000", "1100")
+    )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
+      c(-1.15, 24.15),
+      tolerance = 0.001
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$y.labels,
+      c("0", "5", "10", "15", "20")
+    )
+  }
+)

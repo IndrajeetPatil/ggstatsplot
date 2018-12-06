@@ -229,7 +229,7 @@ ggcoefstats <- function(x,
 
   # creating a list of objects which will have fixed and random "effects"
   # only fixed effects will be selected
-  lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod", "rlmerMod")
+  lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod", "rlmerMod", "glmmTMB")
 
   # models which are currently not supported
   unsupported.mods <- c("glht", "kmeans")

@@ -563,6 +563,31 @@ only the sex factor remain a significant predictor. In other words, being a
 female was the strongest predictor of whether someone survived the tragedy that
 befell the Titanic.
 
+## generalized linear mixed models using Template Model Builder (`glmmTMB`)
+
+`glmmTMB` package allows for flexibly fitting generalized linear mixed models
+(GLMMs) and extensions. Model objects from this package are also supported.
+
+```{r glmmTMB, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+# set up
+library(glmmTMB)
+library(lme4)
+set.seed(123)
+
+# model
+mod <-
+  glmmTMB::glmmTMB(
+    formula = Reaction ~ Days + (Days |
+                                   Subject),
+    data = sleepstudy,
+    family = glmmTMB::truncated_poisson()
+  )
+
+# plotting the model
+ggstatsplot::ggcoefstats(x = mod,
+                         conf.method = "uniroot")
+```
+
 ## cumulative link models (`clm`)
 
 **clm and clmm examples are too time-consuming; thus not evaluated in vignette**

@@ -15,7 +15,8 @@ testthat::test_that(
       subtitle = "By Edgar Anderson",
       sig.level = 0.001,
       p.adjust.method = "fdr",
-      messages = FALSE
+      colors = NULL,
+      messages = TRUE
     )
 
     # checking legend title
