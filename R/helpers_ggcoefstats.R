@@ -309,7 +309,15 @@ tfz_labeller <- function(tidy_df,
 
   # if the statistic is t-value
   if (statistic == "t") {
-    if ("df.residual" %in% names(glance_df)) {
+    if ("df.residual" %in% names(glance_df) ||
+      "df.residual" %in% names(tidy_df)) {
+
+      # if glance object is available, insert df.residual as a new column
+      if ("df.residual" %in% names(glance_df)) {
+        tidy_df$df.residual <- glance_df$df.residual
+      }
+
+      # adding a new column with residual df
       tidy_df %<>%
         purrrlyr::by_row(
           .d = .,
@@ -318,7 +326,7 @@ tfz_labeller <- function(tidy_df,
             ggstatsplot::specify_decimal_p(x = .$estimate, k = k),
             ", ~italic(t)",
             "(",
-            glance_df$df.residual,
+            ggstatsplot::specify_decimal_p(x = .$df.residual, k = 0),
             ")==",
             .$statistic,
             ", ~italic(p)",

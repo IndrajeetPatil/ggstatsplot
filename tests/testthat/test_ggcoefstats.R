@@ -394,13 +394,14 @@ testthat::test_that(
 
     # creating dataframe
     df1 <- tibble::tribble(
-      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value,
-      "level2", 0.158, 0.0665, -0.778, 0.911, 0.875,
-      "level1", 1.33, 0.542, -0.280, 1.36, 0.191,
-      "level3", 1.24, 0.045, 0.030, 0.65, 0.001
+      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.residual,
+      "level2", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
+      "level1", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
+      "level3", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
     )
     df2 <- dplyr::select(.data = df1, -p.value)
     df3 <- dplyr::select(.data = df1, -statistic)
+    df4 <- dplyr::select(.data = df1, -df.residual)
 
     # plotting the dataframe
     p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t", sort = "none")
@@ -409,16 +410,26 @@ testthat::test_that(
     p4 <- ggstatsplot::ggcoefstats(x = df3, statistic = "t") +
       ggplot2::scale_y_discrete(labels = c("x1", "x2", "x3")) +
       ggplot2::labs(x = "beta", y = NULL)
+    p5 <- ggstatsplot::ggcoefstats(x = df4, statistic = "t")
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
     pb2 <- ggplot2::ggplot_build(p2)
     pb3 <- ggplot2::ggplot_build(p3)
     pb4 <- ggplot2::ggplot_build(p4)
+    pb5 <- ggplot2::ggplot_build(p5)
 
     # stats labels
     testthat::expect_identical(
       pb1$data[[4]]$label,
+      c(
+        "list(~italic(beta)==0.07, ~italic(t)(5)==0.16, ~italic(p)==0.875)",
+        "list(~italic(beta)==0.54, ~italic(t)(10)==1.33, ~italic(p)==0.191)",
+        "list(~italic(beta)==0.04, ~italic(t)(12)==1.24, ~italic(p)==0.001)"
+      )
+    )
+    testthat::expect_identical(
+      pb5$data[[4]]$label,
       c(
         "list(~italic(beta)==0.07, ~italic(t)==0.16, ~italic(p)==0.875)",
         "list(~italic(beta)==0.54, ~italic(t)==1.33, ~italic(p)==0.191)",

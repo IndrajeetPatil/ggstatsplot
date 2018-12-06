@@ -852,21 +852,27 @@ library(gapminder)
 df <-
   dplyr::filter(.data = gapminder::gapminder, continent != "Oceania")
 
-# saving results from regression and modifying the results so to be compatible
-# with the `ggcoefstats` requirement
-df_results <- groupedstats::grouped_lmer(
-  data = df,
-  formula = scale(lifeExp) ~ scale(gdpPercap) + (gdpPercap |
-                                                   country),
-  grouping.vars = continent,
-  output = "tidy"
+# saving results from regression  
+df_results <- purrr::pmap(
+  .l = list(
+    data = list(df),
+    formula = list(scale(lifeExp) ~ scale(gdpPercap) + (gdpPercap |
+                                                          country)),
+    grouping.vars = alist(continent),
+    output = list("tidy", "glance")
+  ),
+  .f = groupedstats::grouped_lmer
 ) %>%
+  dplyr::full_join(x = .[[1]], y = .[[2]], by = "continent")
+
+# modifying the results so to be compatible with the `ggcoefstats` requirement
+(df_results %<>%
   dplyr::filter(.data = ., term != "(Intercept)") %>%
   dplyr::select(.data = .,
                 -effect,
                 -term,
                 term = continent,
-                statistic = t.value)
+                statistic = t.value))
 
 # plot
 ggstatsplot::ggcoefstats(

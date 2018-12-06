@@ -2,6 +2,7 @@ aaronsc
 anova
 aov
 ascender
+bartlett
 bayes
 bayesian
 binwidth
@@ -12,6 +13,7 @@ chisq
 ci
 clm
 clmm
+Cohenâ
 correlalogram
 covr
 covrpage
@@ -20,9 +22,11 @@ customizable
 Delacre
 df
 ds
+effct
 effsize
 eg
 Feinberg
+friedman
 Gapminder
 ggbetween
 ggbetweenstats
@@ -36,11 +40,13 @@ ggscatterstats
 ggsignif
 github
 glmer
+GLMMs
 glyphs
 gof
 Gunel
 hc
 HDI
+Hedgeâ
 histo
 howell
 http
@@ -128,3 +134,5 @@ Welch's
 Wilk
 Winsorized
 Yuen's
+Yuenâ
+yuend
