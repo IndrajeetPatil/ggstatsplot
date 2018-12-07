@@ -5,6 +5,7 @@ context("grouped_ggcorrmat")
 testthat::test_that(
   desc = "grouped_ggcorrmat plots work",
   code = {
+    skip_on_cran()
 
     # with cor.vars specified -----------------------------------------------
 

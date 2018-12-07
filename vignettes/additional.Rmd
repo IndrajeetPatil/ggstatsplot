@@ -35,16 +35,6 @@ Due to constraints on the size of the `R` package, all available vignettes are
 not included in the package and thus can't be accessed on `CRAN`. There are few
 additional vignettes that are only available on the website for this package:
 
-## General vignettes
-
-  - Introduction to `ggstatsplot` (publication describing philosophy and
-    principles behind this package):
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggstatsplot_paper.html>)
-    
-  - Gallery of `ggstatsplot` examples (shows how `ggstatsplot` can be further
-    modified using `ggplot2` functions):
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gallery.html>)
-
 ## Vignettes for individual functions
 
   - `ggbetweenstats`:
@@ -60,7 +50,10 @@ additional vignettes that are only available on the website for this package:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>)
     
   - `ggscatterstats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>)    
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>) 
+    
+  - `ggcoefstats`:
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>) 
     
   - How to arrange multiple plots in a single plot along with annotations using
     the `combine_plots` helper function:
@@ -70,9 +63,23 @@ additional vignettes that are only available on the website for this package:
     modified:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html>)
     
+## General vignettes
+
+  - Introduction to `ggstatsplot` (publication describing philosophy and
+    principles behind this package):
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggstatsplot_paper.html>)
+    
+  - Gallery of `ggstatsplot` examples (shows how `ggstatsplot` can be further
+    modified using `ggplot2` functions):
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gallery.html>)
+
+  - Examples illustrating how to use functional programming package like `purrr`
+    to extend `ggstatsplot` functionality-
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
+
   - Session information:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
-    
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

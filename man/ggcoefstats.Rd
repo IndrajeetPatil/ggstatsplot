@@ -240,7 +240,7 @@ df <- tibble::tribble(
 ggstatsplot::ggcoefstats(x = df, statistic = "t")
 }
 \references{
-\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 }
 \author{
 Indrajeet Patil

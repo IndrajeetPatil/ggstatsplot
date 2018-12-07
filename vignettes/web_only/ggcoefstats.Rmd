@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 100
+    dpi: 300
     toc: true
     warning: FALSE
     message: FALSE
@@ -24,8 +24,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** of
-regression models saved in tidy data frames (produced with the `broom` package).
+The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
+regression models saved in tidy data frames (produced with the `broom` package
+and its mixed-effects modeling variant `broom.mixed` package).
+
 By default, the plot displays `95%` confidence intervals for the regression
 coefficients. The function currently supports only those classes of object that
 are supported by the `broom` package. For an exhaustive list, see-

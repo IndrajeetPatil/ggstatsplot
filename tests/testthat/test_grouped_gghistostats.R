@@ -3,6 +3,7 @@ context("grouped_gghistostats")
 testthat::test_that(
   desc = "grouped_gghistostats works",
   code = {
+    skip_on_cran()
 
     # when arguments are entered as bare expressions
     set.seed(123)

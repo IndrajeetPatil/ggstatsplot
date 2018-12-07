@@ -139,7 +139,7 @@
 #' @importFrom tibble as_tibble rownames_to_column
 #'
 #' @references
-#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 #'
 #' @examples
 #' # for reproducibility
