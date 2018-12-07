@@ -3,6 +3,8 @@ context("t1way_ci")
 testthat::test_that(
   desc = "t1way_ci works",
   code = {
+    testthat::skip_on_cran()
+
     # make a bogus dataframe to test against
     # some plausible numbers, a negative value and an NA
     bogusdata <- structure(list(

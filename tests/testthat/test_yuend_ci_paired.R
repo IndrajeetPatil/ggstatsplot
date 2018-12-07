@@ -3,6 +3,7 @@ context("test_yuend_ci_paired")
 testthat::test_that(
   desc = "Yuen's test on trimmed means for dependent samples works",
   code = {
+    testthat::skip_on_cran()
 
     # made up data
     mydata <-

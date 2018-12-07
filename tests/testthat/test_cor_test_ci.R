@@ -3,6 +3,7 @@ context("cor_test_ci")
 testthat::test_that(
   desc = "cor_test_ci works",
   code = {
+    testthat::skip_on_cran()
 
     # using mtcars dataset
     set.seed(123)
