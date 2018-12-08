@@ -3,7 +3,6 @@ pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
   additional: additional.html
-  tests_and_coverage: tests_and_coverage.html
   combine_plots: web_only/combine_plots.html
   gallery: web_only/gallery.html
   ggbetweenstats: web_only/ggbetweenstats.html

@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.7
+Version: 0.0.7.9000
 Authors@R: c(
   person(
   given = "Indrajeet", 
@@ -46,7 +46,6 @@ Imports:
     ggrepel (>= 0.8.0),
     ggsignif (>= 0.4.0) ,
     glue (>= 1.3.0),
-    glmmTMB (>= 0.2.2.0),
     grid,
     groupedstats (>= 0.0.4),
     jmv (>= 0.9.5),
@@ -68,6 +67,7 @@ Suggests:
     devtools,
     ggthemes (>= 4.0.0),
     gapminder (>= 0.3.0),
+    glmmTMB (>= 0.2.2.0),
     hrbrthemes (>= 0.5.0.1),
     knitr,
     lfe (>= 2.8-2),
