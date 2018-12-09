@@ -484,7 +484,50 @@ testthat::test_that(
   }
 )
 
-# unsupported model objects -------------------------------------
+# check confidence intervals ----------------------------------------------
+
+testthat::test_that(
+  desc = "check computing confidence intervals",
+  code = {
+    set.seed(123)
+
+    # creating broom dataframes
+    mod <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
+    df1 <- broom::tidy(
+      x = mod,
+      conf.int = TRUE,
+      conf.level = 0.95
+    )
+    df2 <- broom::tidy(
+      x = mod,
+      conf.int = TRUE,
+      conf.level = 0.50
+    )
+
+    # computed dataframes
+    tidy_df1 <-
+      ggstatsplot::ggcoefstats(
+        x = dplyr::select(df1, -conf.low, -conf.high),
+        exclude.intercept = FALSE,
+        statistic = "t",
+        output = "tidy"
+      )
+    tidy_df2 <-
+      ggstatsplot::ggcoefstats(
+        x = dplyr::select(df2, -conf.low, -conf.high),
+        exclude.intercept = FALSE,
+        statistic = "t",
+        output = "tidy",
+        conf.level = 0.50
+      )
+
+    # checking confidence intervals
+    testthat::expect_equal(df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
+    testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
+  }
+)
+
+# unsupported model objects -----------------------------------------------
 
 testthat::test_that(
   desc = "unsupported model objects",

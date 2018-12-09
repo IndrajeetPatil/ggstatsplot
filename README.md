@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)           | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                           | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.7-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                       | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/116717490.svg)](https://zenodo.org/badge/latestdoi/116717490)                                                                  |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--12--08-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--12--09-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
 | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_12_06-brightgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
@@ -200,7 +200,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002a88e4c8>
+#> <bytecode: 0x000000002a899fe8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -258,7 +258,7 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggbetweenstats(
-  data = datasets::iris, 
+  data = iris, 
   x = Species, 
   y = Sepal.Length,
   messages = FALSE
@@ -288,7 +288,7 @@ library(ggplot2)
 set.seed(123)
 
 # let's leave out one of the factor levels and see if instead of anova, a t-test will be run
-iris2 <- dplyr::filter(.data = datasets::iris, Species != "setosa")
+iris2 <- dplyr::filter(.data = iris, Species != "setosa")
 
 # let's change the levels of our factors, a common routine in data analysis
 # pipeline, to see if this function respects the new factor levels
@@ -546,7 +546,7 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggpiestats(
-  data = datasets::mtcars,
+  data = mtcars,
   main = am,
   condition = cyl,
   conf.level = 0.99,                                  # confidence interval for effect size measure
@@ -648,7 +648,7 @@ The `type` (of test) argument also accepts the following abbreviations:
 
 ``` r
 ggstatsplot::gghistostats(
-  data = datasets::ToothGrowth,             # dataframe from which variable is to be taken
+  data = ToothGrowth,             # dataframe from which variable is to be taken
   x = len,                                  # numeric variable whose distribution is of interest
   title = "Distribution of Sepal.Length",   # title for the plot
   fill.gradient = TRUE,                     # use color gradient
@@ -670,7 +670,7 @@ set.seed(123)
 
 # plot
 ggstatsplot::gghistostats(
-  data = datasets::iris,                         # dataframe from which variable is to be taken
+  data = iris,                         # dataframe from which variable is to be taken
   x = Sepal.Length,                              # numeric variable whose distribution is of interest
   title = "Distribution of Iris sepal length",   # title for the plot
   caption = substitute(paste(italic("Source:", "Ronald Fisher's Iris data set"))), 
@@ -848,7 +848,7 @@ options(pillar.sigfig = 4)
 
 # getting the correlation coefficient matrix 
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,               # all numeric variables from data will be used
+  data = iris,               # all numeric variables from data will be used
   corr.method = "robust",
   output = "correlations",             # specifying the needed output ("r" or "corr" will also work)
   digits = 3                           # number of digits to be dispayed for correlation coefficient
@@ -966,7 +966,7 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
-                                       data = datasets::mtcars)) 
+                                       data = mtcars)) 
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="80%" />
@@ -982,7 +982,7 @@ set.seed(123)
 # plot
 ggstatsplot::ggcoefstats(
   x = MASS::rlm(formula = mpg ~ am * cyl,
-                data = datasets::mtcars),
+                data = mtcars),
   point.color = "red",                
   point.shape = 15,
   vline.color = "#CC79A7",
@@ -1101,7 +1101,7 @@ library(hrbrthemes)
 ggstatsplot::combine_plots(
   # with the ggstatsplot layer
   ggstatsplot::gghistostats(
-    data = datasets::iris,
+    data = iris,
     x = Sepal.Width,
     messages = FALSE,
     title = "Distribution of Sepal Width",
@@ -1111,7 +1111,7 @@ ggstatsplot::combine_plots(
   ),
   # without the ggstatsplot layer
   ggstatsplot::gghistostats(
-    data = datasets::iris,
+    data = iris,
     x = Sepal.Width,
     messages = FALSE,
     title = "Distribution of Sepal Width",

@@ -205,7 +205,7 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggbetweenstats(
-  data = datasets::iris, 
+  data = iris, 
   x = Species, 
   y = Sepal.Length,
   messages = FALSE
@@ -233,7 +233,7 @@ library(ggplot2)
 set.seed(123)
 
 # let's leave out one of the factor levels and see if instead of anova, a t-test will be run
-iris2 <- dplyr::filter(.data = datasets::iris, Species != "setosa")
+iris2 <- dplyr::filter(.data = iris, Species != "setosa")
 
 # let's change the levels of our factors, a common routine in data analysis
 # pipeline, to see if this function respects the new factor levels
@@ -472,7 +472,7 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggpiestats(
-  data = datasets::mtcars,
+  data = mtcars,
   main = am,
   condition = cyl,
   conf.level = 0.99,                                  # confidence interval for effect size measure
@@ -561,7 +561,7 @@ The `type` (of test) argument also accepts the following abbreviations: `"p"`
 
 ```{r gghistostats1, message = FALSE, warning = FALSE}
 ggstatsplot::gghistostats(
-  data = datasets::ToothGrowth,             # dataframe from which variable is to be taken
+  data = ToothGrowth,             # dataframe from which variable is to be taken
   x = len,                                  # numeric variable whose distribution is of interest
   title = "Distribution of Sepal.Length",   # title for the plot
   fill.gradient = TRUE,                     # use color gradient
@@ -581,7 +581,7 @@ set.seed(123)
 
 # plot
 ggstatsplot::gghistostats(
-  data = datasets::iris,                         # dataframe from which variable is to be taken
+  data = iris,                         # dataframe from which variable is to be taken
   x = Sepal.Length,                              # numeric variable whose distribution is of interest
   title = "Distribution of Iris sepal length",   # title for the plot
   caption = substitute(paste(italic("Source:", "Ronald Fisher's Iris data set"))), 
@@ -746,7 +746,7 @@ options(pillar.sigfig = 4)
 
 # getting the correlation coefficient matrix 
 ggstatsplot::ggcorrmat(
-  data = datasets::iris,               # all numeric variables from data will be used
+  data = iris,               # all numeric variables from data will be used
   corr.method = "robust",
   output = "correlations",             # specifying the needed output ("r" or "corr" will also work)
   digits = 3                           # number of digits to be dispayed for correlation coefficient
@@ -815,7 +815,7 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
-                                       data = datasets::mtcars)) 
+                                       data = mtcars)) 
 ```
 
 The basic can be further modified to one's liking with additional arguments
@@ -828,7 +828,7 @@ set.seed(123)
 # plot
 ggstatsplot::ggcoefstats(
   x = MASS::rlm(formula = mpg ~ am * cyl,
-                data = datasets::mtcars),
+                data = mtcars),
   point.color = "red",                
   point.shape = 15,
   vline.color = "#CC79A7",
@@ -939,7 +939,7 @@ library(hrbrthemes)
 ggstatsplot::combine_plots(
   # with the ggstatsplot layer
   ggstatsplot::gghistostats(
-    data = datasets::iris,
+    data = iris,
     x = Sepal.Width,
     messages = FALSE,
     title = "Distribution of Sepal Width",
@@ -949,7 +949,7 @@ ggstatsplot::combine_plots(
   ),
   # without the ggstatsplot layer
   ggstatsplot::gghistostats(
-    data = datasets::iris,
+    data = iris,
     x = Sepal.Width,
     messages = FALSE,
     title = "Distribution of Sepal Width",

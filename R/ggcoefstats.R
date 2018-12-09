@@ -132,7 +132,7 @@
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
 #' @importFrom dplyr group_by arrange full_join vars matches desc everything
 #' @importFrom purrrlyr by_row
-#' @importFrom stats as.formula lm confint
+#' @importFrom stats as.formula lm confint qnorm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
 #' @importFrom sjstats p_value
@@ -459,7 +459,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # =============================== p-value and CI check =====================
+  # =============================== p-value check ===========================
 
   # if broom output doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2) {
@@ -478,29 +478,47 @@ ggcoefstats <- function(x,
     ))
   }
 
+  # ==================== confidence intervals check ===========================
+
   # if broom output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
-    # add NAs so that only dots will be shown
-    tidy_df %<>%
-      dplyr::mutate(
-        .data = .,
-        conf.low = NA_character_,
-        conf.high = NA_character_
-      )
 
-    # stop displaying whiskers
-    conf.int <- FALSE
+    # if standard error is present, create confidence intervals
+    if ("std.error" %in% names(tidy_df)) {
+      # probability for computing confidence intervals
+      prob <- 1 - ((1 - conf.level) / 2)
 
-    # inform the user that skipping labels for the same reason
-    base::message(cat(
-      crayon::green("Note: "),
-      crayon::blue(
-        "No confidence intervals available for regression coefficients from",
-        crayon::yellow(class(x)[[1]]),
-        "object, so skipping whiskers in the plot.\n"
-      ),
-      sep = ""
-    ))
+      # computing confidence intervals
+      tidy_df %<>%
+        dplyr::mutate(
+          .data = .,
+          conf.low = estimate - stats::qnorm(prob) * std.error,
+          conf.high = estimate + stats::qnorm(prob) * std.error
+        )
+    } else {
+
+      # add NAs so that only dots will be shown
+      tidy_df %<>%
+        dplyr::mutate(
+          .data = .,
+          conf.low = NA_character_,
+          conf.high = NA_character_
+        )
+
+      # stop displaying whiskers
+      conf.int <- FALSE
+
+      # inform the user that skipping labels for the same reason
+      base::message(cat(
+        crayon::green("Note: "),
+        crayon::blue(
+          "No confidence intervals available for regression coefficients from",
+          crayon::yellow(class(x)[[1]]),
+          "object, so skipping whiskers in the plot.\n"
+        ),
+        sep = ""
+      ))
+    }
   }
 
   # ============= intercept, exponentiation, and final tidy dataframe =========
@@ -547,16 +565,29 @@ ggcoefstats <- function(x,
 
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
-    tidy_df %<>%
-      ggcoefstats_label_maker(
-        x = x,
-        statistic = statistic,
-        tidy_df = .,
-        glance_df = glance_df,
-        k = k,
-        effsize = effsize,
-        partial = partial
-      )
+    if (class(x)[[1]] %in% df.mods) {
+      tidy_df %<>%
+        ggcoefstats_label_maker(
+          x = .,
+          statistic = statistic,
+          tidy_df = .,
+          glance_df = glance_df,
+          k = k,
+          effsize = effsize,
+          partial = partial
+        )
+    } else {
+      tidy_df %<>%
+        ggcoefstats_label_maker(
+          x = x,
+          statistic = statistic,
+          tidy_df = .,
+          glance_df = glance_df,
+          k = k,
+          effsize = effsize,
+          partial = partial
+        )
+    }
   }
 
   # ========================== summary caption ================================
@@ -644,7 +675,7 @@ ggcoefstats <- function(x,
 
   # computing the number of colors in a given palette
   palette_df <-
-    tibble::as_tibble(paletteer::palettes_d_names) %>%
+    tibble::as_tibble(x = paletteer::palettes_d_names) %>%
     dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
     dplyr::select(.data = ., length)
 
