@@ -486,3 +486,109 @@ tfz_labeller <- function(tidy_df,
   # return the final dataframe
   return(tidy_df)
 }
+
+#' @title Making text subtitle for meta-analysis via linear (mixed-effects)
+#'   models as implemented in the `metafor` package.
+#' @name subtitle_meta
+#' @author Indrajeet Patil
+#'
+#' @param data A dataframe. It **must** contain columns named `estimate`
+#'   (corresponding estimates of coefficients or other quantities of interest)
+#'   and `std.error` (the standard error of the regression term).
+#' @inheritParams ggbetweenstats
+#'
+#' @importFrom metafor rma
+#'
+#' @examples
+#' # set up
+#' set.seed(123)
+#' library(ggstatsplot)
+#' library(gapminder)
+#' 
+#' # saving results from regression
+#' df_results <- purrr::pmap(
+#'   .l = list(
+#'     data = list(gapminder::gapminder),
+#'     formula = list(scale(lifeExp) ~ scale(gdpPercap)),
+#'     grouping.vars = alist(continent),
+#'     output = list("tidy", "glance")
+#'   ),
+#'   .f = groupedstats::grouped_lm
+#' ) %>%
+#'   dplyr::full_join(x = .[[1]], y = .[[2]], by = "continent") %>%
+#'   dplyr::filter(.data = ., term != "(Intercept)")
+#' 
+#' # making subtitle
+#' ggstatsplot:::subtitle_meta(data = df_results, k = 3, messages = FALSE)
+#' @keywords internal
+
+# function body
+subtitle_meta <- function(data,
+                          k = 2,
+                          messages = TRUE,
+                          ...) {
+
+  # object from meta-analysis
+  meta_res <- metafor::rma(
+    yi = estimate,
+    sei = std.error,
+    measure = "GEN",
+    intercept = TRUE,
+    data = data,
+    vtype = "LS",
+    method = "REML",
+    weighted = TRUE,
+    test = "z",
+    level = 95,
+    digits = 4,
+    ...
+  )
+
+  # print the results
+  if (isTRUE(messages)) {
+    print(summary(meta_res))
+  }
+
+  # create a dataframe with coeffcients
+  df_coef <- coef(summary(meta_res))
+
+  # preparing the subtitle
+  subtitle <-
+    base::substitute(
+      expr =
+        paste(
+          "Meta-analytic effect: ",
+          beta,
+          " = ",
+          estimate,
+          ", CI"["95%"],
+          " [",
+          LL,
+          ", ",
+          UL,
+          "]",
+          ", ",
+          italic("z"),
+          " = ",
+          zvalue,
+          ", ",
+          "se = ",
+          se,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue
+        ),
+      env = base::list(
+        estimate = ggstatsplot::specify_decimal_p(df_coef$estimate, k),
+        LL = ggstatsplot::specify_decimal_p(df_coef$ci.lb, k),
+        UL = ggstatsplot::specify_decimal_p(df_coef$ci.ub, k),
+        zvalue = ggstatsplot::specify_decimal_p(df_coef$zval, k),
+        se = ggstatsplot::specify_decimal_p(df_coef$se, k),
+        pvalue = ggstatsplot::specify_decimal_p(df_coef$pval, k, p.value = TRUE)
+      )
+    )
+
+  # return the subtitle
+  return(subtitle)
+}

@@ -385,6 +385,143 @@ testthat::test_that(
   }
 )
 
+# check glmer output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check glmer output",
+  code = {
+    # setup
+    set.seed(123)
+    library(lme4)
+
+    # model
+    mod1 <-
+      lme4::glmer(
+        cbind(incidence, size - incidence) ~ period + (1 | herd),
+        data = cbpp,
+        family = binomial()
+      )
+
+    set.seed(123)
+    d <- data.frame(
+      y = rpois(1000, lambda = 3),
+      x = runif(1000),
+      f = factor(sample(
+        1:10,
+        size = 1000, replace = TRUE
+      ))
+    )
+    mod2 <- lme4::glmer(y ~ x + (1 | f), data = d, family = poisson)
+
+    # broom output
+    broom_df1 <- broom.mixed::tidy(
+      x = mod1,
+      conf.int = TRUE,
+      conf.level = 0.99,
+      effects = "fixed"
+    )
+
+    broom_df2 <- broom.mixed::tidy(
+      x = mod2,
+      conf.int = TRUE,
+      conf.level = 0.50,
+      effects = "fixed"
+    )
+
+    # ggstatsplot output
+    tidy_df1 <- ggstatsplot::ggcoefstats(
+      x = mod1,
+      conf.int = TRUE,
+      conf.level = 0.99,
+      output = "tidy",
+      exclude.intercept = FALSE
+    )
+
+    tidy_df2 <- ggstatsplot::ggcoefstats(
+      x = mod2,
+      conf.int = TRUE,
+      conf.level = 0.50,
+      output = "tidy",
+      exclude.intercept = FALSE
+    )
+
+    # testing
+    testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$conf.low, tidy_df2$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$conf.high, tidy_df1$conf.high, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$estimate, tidy_df1$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
+  }
+)
+
+
+# check glm output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check glm output",
+  code = {
+
+    # set up
+    set.seed(123)
+
+    # dataframe-1
+    counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+    outcome <- gl(3, 1, 9)
+    treatment <- gl(3, 3)
+    d.AD <- data.frame(treatment, outcome, counts)
+
+    # dataframe-2
+    x1 <- stats::rnorm(50)
+    y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
+    df <- data.frame(x = x1, y = y1) %>%
+      tibble::as_data_frame(x = .)
+
+    # models
+    mod1 <- stats::glm(counts ~ outcome + treatment, family = poisson())
+    mod2 <- stats::glm(
+      formula = y ~ x,
+      family = quasi(variance = "mu", link = "log"),
+      data = df
+    )
+
+    # broom outputs
+    broom_df1 <- broom::tidy(mod1, conf.int = 0.90)
+    broom_df2 <- broom::tidy(mod2, conf.int = 0.99)
+
+    # ggcoefstats outputs
+    tidy_df1 <- ggstatsplot::ggcoefstats(
+      x = mod1,
+      exclude.intercept = FALSE,
+      conf.int = 0.90,
+      output = "tidy"
+    )
+    tidy_df2 <- ggstatsplot::ggcoefstats(
+      x = mod2,
+      exclude.intercept = FALSE,
+      conf.int = 0.99,
+      output = "tidy"
+    )
+
+    # testing
+    testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$conf.low, tidy_df2$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$conf.high, tidy_df1$conf.high, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$estimate, tidy_df1$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
+  }
+)
+
+
 # dataframe as input ----------------------------------------------------
 
 testthat::test_that(
@@ -520,10 +657,20 @@ testthat::test_that(
         output = "tidy",
         conf.level = 0.50
       )
+    tidy_df3 <-
+      ggstatsplot::ggcoefstats(
+        x = dplyr::select(df2, -conf.low, -conf.high, -std.error),
+        exclude.intercept = FALSE,
+        statistic = "t",
+        output = "tidy",
+        conf.level = 0.50
+      )
 
     # checking confidence intervals
     testthat::expect_equal(df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
     testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
+    testthat::expect_identical(tidy_df3$conf.low[1], NA_character_)
+    testthat::expect_identical(tidy_df3$conf.high[1], NA_character_)
   }
 )
 

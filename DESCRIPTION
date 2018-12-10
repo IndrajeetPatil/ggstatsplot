@@ -50,6 +50,7 @@ Imports:
     groupedstats (>= 0.0.4),
     jmv (>= 0.9.5),
     magrittr (>= 1.5),
+    metafor (>= 2.0-0),
     paletteer (>= 0.1.0),
     PMCMRplus (>= 1.4.1),
     psych (>= 1.8.10),
