@@ -8,26 +8,26 @@ caption.}
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   conf.method = "Wald", p.kr = TRUE, coefficient.type = "beta",
   effsize = "eta", partial = TRUE, nboot = 500,
-  point.color = "blue", point.size = 3, point.shape = 16,
-  conf.int = TRUE, conf.level = 0.95, se.type = "nid", k = 2,
-  k.caption.summary = 0, exclude.intercept = TRUE,
-  exponentiate = FALSE, errorbar.color = "black",
-  errorbar.height = 0, errorbar.linetype = "solid",
-  errorbar.size = 0.5, vline = TRUE, vline.color = "black",
-  vline.linetype = "dashed", vline.size = 1, sort = "none",
-  xlab = "regression coefficient", ylab = "term", title = NULL,
-  subtitle = NULL, stats.labels = TRUE, caption.summary = TRUE,
-  stats.label.size = 3, stats.label.fontface = "bold",
-  stats.label.color = NULL, label.r = 0.15, label.size = 0.25,
-  label.box.padding = 1, label.label.padding = 0.25,
-  label.point.padding = 0.5, label.segment.color = "grey50",
-  label.segment.size = 0.5, label.segment.alpha = NULL,
-  label.min.segment.length = 0.5, label.force = 1,
-  label.max.iter = 2000, label.nudge.x = 0, label.nudge.y = 0,
-  label.xlim = c(NA, NA), label.ylim = c(NA, NA),
+  meta.analysis.subtitle = FALSE, point.color = "blue",
+  point.size = 3, point.shape = 16, conf.int = TRUE,
+  conf.level = 0.95, se.type = "nid", k = 2, k.caption.summary = 0,
+  exclude.intercept = TRUE, exponentiate = FALSE,
+  errorbar.color = "black", errorbar.height = 0,
+  errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
+  vline.color = "black", vline.linetype = "dashed", vline.size = 1,
+  sort = "none", xlab = "regression coefficient", ylab = "term",
+  title = NULL, subtitle = NULL, stats.labels = TRUE,
+  caption.summary = TRUE, stats.label.size = 3,
+  stats.label.fontface = "bold", stats.label.color = NULL,
+  label.r = 0.15, label.size = 0.25, label.box.padding = 1,
+  label.label.padding = 0.25, label.point.padding = 0.5,
+  label.segment.color = "grey50", label.segment.size = 0.5,
+  label.segment.alpha = NULL, label.min.segment.length = 0.5,
+  label.force = 1, label.max.iter = 2000, label.nudge.x = 0,
+  label.nudge.y = 0, label.xlim = c(NA, NA), label.ylim = c(NA, NA),
   label.direction = "y", package = "RColorBrewer", palette = "Dark2",
   direction = 1, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, ...)
+  ggstatsplot.layer = TRUE, messages = FALSE, ...)
 }
 \arguments{
 \item{x}{A model object to be tidied with \code{broom::tidy}, or a tidy data frame
@@ -75,6 +75,11 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 \item{nboot}{Number of bootstrap samples for confidence intervals for partial
 eta-squared and omega-squared (Default: \code{500}). This argument is relevant
 only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
+
+\item{meta.analysis.subtitle}{Logical that decides whether subtitle for
+meta-analysis via linear (mixed-effects) models - as implemented in the
+\code{metafor} package - is to be displayed (default: \code{FALSE}). If \code{TRUE}, input
+to argument \code{subtitle} will be ignored.}
 
 \item{point.color}{Character describing color for the point (Default:
 \code{"blue"}).}
@@ -138,7 +143,8 @@ coefficient value.}
 
 \item{title}{The text for the plot title.}
 
-\item{subtitle}{The text for the plot subtitle.}
+\item{subtitle}{The text for the plot subtitle. The input to this argument
+will be ignored if \code{meta.analysis.subtitle} is set to \code{TRUE}.}
 
 \item{stats.labels}{Logical. Decides whether the statistic and p-values for
 each coefficient are to be attached to each dot as a text label using
@@ -210,6 +216,9 @@ extension packages are allowed (e.g., \code{ggthemes::theme_economist()},
 theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}).}
 
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
+
 \item{...}{Additional arguments to tidying method.}
 }
 \value{
@@ -230,17 +239,80 @@ ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
 # with custom dataframe
 
 # creating a dataframe
-df <- tibble::tribble(
-  ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value,
-  "level1", 1.33, 0.542, -0.280, 1.36, 0.191,
-  "level2", 0.158, 0.0665, -0.778, 0.911, 0.875
-)
+df <-
+  structure(
+    list(
+      term = structure(
+        c(3L, 4L, 1L, 2L, 5L),
+        .Label = c(
+          "Africa",
+          "Americas", "Asia", "Europe", "Oceania"
+        ),
+        class = "factor"
+      ),
+      estimate = c(
+        0.382047603321706,
+        0.780783111514665,
+        0.425607573765058,
+        0.558365541235078,
+        0.956473848429961
+      ),
+      std.error = c(
+        0.0465576338644502,
+        0.0330218199731529,
+        0.0362834986178494,
+        0.0480571500648261,
+        0.062215818388157
+      ),
+      statistic = c(
+        8.20590677855356,
+        23.6444603038067,
+        11.7300588415607,
+        11.6187818146078,
+        15.3734833553524
+      ),
+      conf.low = c(
+        0.290515146096969,
+        0.715841986960399,
+        0.354354575031406,
+        0.46379116008131,
+        0.827446138277154
+      ),
+      conf.high = c(
+        0.473580060546444,
+        0.845724236068931,
+        0.496860572498711,
+        0.652939922388847,
+        1.08550155858277
+      ),
+      p.value = c(
+        3.28679518728519e-15,
+        4.04778497135963e-75,
+        7.59757330804449e-29,
+        5.45155840151592e-26,
+        2.99171217913312e-13
+      ),
+      df.residual = c(
+        394L, 358L, 622L,
+        298L, 22L
+      )
+    ),
+    row.names = c(NA, -5L),
+    class = c(
+      "tbl_df",
+      "tbl", "data.frame"
+    )
+  )
 
 # plotting the dataframe
-ggstatsplot::ggcoefstats(x = df, statistic = "t")
+ggstatsplot::ggcoefstats(
+  x = df,
+  statistic = "t",
+  meta.analysis.subtitle = TRUE
+)
 }
 \references{
-\url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 }
 \author{
 Indrajeet Patil

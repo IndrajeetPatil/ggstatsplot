@@ -8,28 +8,28 @@
 #' \dontrun{
 #' # show all columns in a tibble
 #' options(tibble.width = Inf)
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' #------------------------- models with *t*-statistic ------------------
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(x = broom::tidy(stats::lm(
 #'   data = mtcars, formula = wt ~ cyl * mpg
 #' )), statistic = "t")
-#' 
+#'
 #' # (in case `x` is not a dataframe, no need to specify `statistic` argument;
 #' # this will be figured out by the function itself)
-#' 
+#'
 #' #------------------------- models with *t*-statistic ------------------
-#' 
+#'
 #' # dataframe
 #' clotting <- data.frame(
 #'   u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
 #'   lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
 #'   lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
 #' )
-#' 
+#'
 #' # model
 #' mod <-
 #'   stats::glm(
@@ -37,7 +37,7 @@
 #'     data = clotting,
 #'     family = Gamma
 #'   )
-#' 
+#'
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = mod,
@@ -47,30 +47,30 @@
 #'     conf.level = 0.95
 #'   )
 #' )
-#' 
+#'
 #' #------------------------- models with *z*-statistic --------------------
-#' 
+#'
 #' # preparing dataframe
 #' counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
 #' outcome <- gl(3, 1, 9)
 #' treatment <- gl(3, 3)
 #' d.AD <- data.frame(treatment, outcome, counts)
-#' 
+#'
 #' # model
 #' mod <- stats::glm(
 #'   formula = counts ~ outcome + treatment,
 #'   family = poisson(),
 #'   data = d.AD
 #' )
-#' 
+#'
 #' # creating tidy dataframe with label column
 #' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broom::tidy(mod))
-#' 
+#'
 #' #------------------------- models with *f*-statistic --------------------
 #' # creating a model object
 #' op <- options(contrasts = c("contr.helmert", "contr.poly"))
 #' npk.aov <- stats::aov(formula = yield ~ block + N * P * K, data = npk)
-#' 
+#'
 #' # converting to a dataframe using
 #' tidy_df <- ggstatsplot::lm_effsize_ci(
 #'   object = npk.aov,
@@ -79,7 +79,7 @@
 #'   nboot = 50
 #' ) %>%
 #'   dplyr::rename(.data = ., estimate = omegasq, statistic = F.value)
-#' 
+#'
 #' # including a new column with a label
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = npk.aov,
@@ -88,7 +88,7 @@
 #'   partial = FALSE
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -485,4 +485,129 @@ tfz_labeller <- function(tidy_df,
 
   # return the final dataframe
   return(tidy_df)
+}
+
+#' @title Prepare subtitle with meta-analysis results
+#' @description Making text subtitle for meta-analysis via linear (mixed-effects)
+#'   models as implemented in the `metafor` package.
+#' @name subtitle_meta_ggcoefstats
+#' @author Indrajeet Patil
+#'
+#' @param data A dataframe. It **must** contain columns named `estimate`
+#'   (corresponding estimates of coefficients or other quantities of interest)
+#'   and `std.error` (the standard error of the regression term).
+#' @inheritParams ggbetweenstats
+#' @param ... Additional arguments (ignored).
+#'
+#' @importFrom metafor rma
+#'
+#' @examples
+#' # set up
+#' set.seed(123)
+#' library(ggstatsplot)
+#' library(gapminder)
+#'
+#' # saving results from regression
+#' df_results <- purrr::pmap(
+#'   .l = list(
+#'     data = list(gapminder::gapminder),
+#'     formula = list(scale(lifeExp) ~ scale(gdpPercap)),
+#'     grouping.vars = alist(continent),
+#'     output = list("tidy", "glance")
+#'   ),
+#'   .f = groupedstats::grouped_lm
+#' ) %>%
+#'   dplyr::full_join(x = .[[1]], y = .[[2]], by = "continent") %>%
+#'   dplyr::filter(.data = ., term != "(Intercept)")
+#'
+#' # making subtitle
+#' ggstatsplot::subtitle_meta_ggcoefstats(
+#'   data = df_results,
+#'   k = 3,
+#'   messages = FALSE
+#' )
+#' @export
+
+# function body
+subtitle_meta_ggcoefstats <- function(data,
+                                      k = 2,
+                                      messages = TRUE,
+                                      ...) {
+
+  # check if the two columns needed are present
+  if (sum(c("estimate", "std.error") %in% names(data)) != 2) {
+    # inform the user that skipping labels for the same reason
+    base::stop(base::message(cat(
+      crayon::red("Error"),
+      crayon::blue(": The dataframe **must** contain the following two columns:\n"),
+      crayon::blue("`estimate` and `std.error`."),
+      sep = ""
+    )),
+    call. = FALSE
+    )
+  }
+
+  # object from meta-analysis
+  meta_res <- metafor::rma(
+    yi = estimate,
+    sei = std.error,
+    measure = "GEN",
+    intercept = TRUE,
+    data = data,
+    vtype = "LS",
+    method = "REML",
+    weighted = TRUE,
+    test = "z",
+    level = 95,
+    digits = 4,
+    ...
+  )
+
+  # print the results
+  if (isTRUE(messages)) {
+    print(summary(meta_res))
+  }
+
+  # create a dataframe with coeffcients
+  df_coef <- coef(summary(meta_res))
+
+  # preparing the subtitle
+  subtitle <-
+    base::substitute(
+      expr =
+        paste(
+          "Meta-analytic effect: ",
+          beta,
+          " = ",
+          estimate,
+          ", CI"["95%"],
+          " [",
+          LL,
+          ", ",
+          UL,
+          "]",
+          ", ",
+          italic("z"),
+          " = ",
+          zvalue,
+          ", ",
+          "se = ",
+          se,
+          ", ",
+          italic("p"),
+          " = ",
+          pvalue
+        ),
+      env = base::list(
+        estimate = ggstatsplot::specify_decimal_p(df_coef$estimate, k),
+        LL = ggstatsplot::specify_decimal_p(df_coef$ci.lb, k),
+        UL = ggstatsplot::specify_decimal_p(df_coef$ci.ub, k),
+        zvalue = ggstatsplot::specify_decimal_p(df_coef$zval, k),
+        se = ggstatsplot::specify_decimal_p(df_coef$se, k),
+        pvalue = ggstatsplot::specify_decimal_p(df_coef$pval, k, p.value = TRUE)
+      )
+    )
+
+  # return the subtitle
+  return(subtitle)
 }

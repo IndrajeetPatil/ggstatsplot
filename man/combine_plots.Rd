@@ -131,7 +131,7 @@ combine_plots(
 )
 }
 \references{
-\url{https://cran.r-project.org/package=ggstatsplot/vignettes/combine_plots.html}
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
 }
 \author{
 Indrajeet Patil

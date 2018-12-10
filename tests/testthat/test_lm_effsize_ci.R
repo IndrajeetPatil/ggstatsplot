@@ -3,6 +3,7 @@ context("lm_effsize_ci")
 testthat::test_that(
   desc = "lm_effsize_ci works",
   code = {
+    testthat::skip_on_cran()
 
     # for reproducibility
     set.seed(123)

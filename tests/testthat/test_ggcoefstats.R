@@ -385,6 +385,171 @@ testthat::test_that(
   }
 )
 
+# check merMod output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check merMod output",
+  code = {
+    # setup
+    set.seed(123)
+    library(lme4)
+
+    # model
+    mod1 <-
+      lme4::glmer(
+        cbind(incidence, size - incidence) ~ period + (1 | herd),
+        data = cbpp,
+        family = binomial()
+      )
+
+    set.seed(123)
+    d <- data.frame(
+      y = rpois(1000, lambda = 3),
+      x = runif(1000),
+      f = factor(sample(
+        1:10,
+        size = 1000, replace = TRUE
+      ))
+    )
+    mod2 <- lme4::glmer(y ~ x + (1 | f), data = d, family = poisson)
+    mod3 <-
+      lme4::lmer(weight ~ Time * Diet + (1 + Time |
+        Chick),
+      data = ChickWeight,
+      REML = FALSE
+      )
+
+    # broom output
+    broom_df1 <- broom.mixed::tidy(
+      x = mod1,
+      conf.int = TRUE,
+      conf.level = 0.99,
+      effects = "fixed"
+    )
+
+    broom_df2 <- broom.mixed::tidy(
+      x = mod2,
+      conf.int = TRUE,
+      conf.level = 0.50,
+      effects = "fixed"
+    )
+
+    # ggstatsplot output
+    tidy_df1 <- ggstatsplot::ggcoefstats(
+      x = mod1,
+      conf.int = TRUE,
+      conf.level = 0.99,
+      output = "tidy",
+      exclude.intercept = FALSE
+    )
+
+    tidy_df2 <- ggstatsplot::ggcoefstats(
+      x = mod2,
+      conf.int = TRUE,
+      conf.level = 0.50,
+      output = "tidy",
+      exclude.intercept = FALSE
+    )
+
+    tidy_df3 <- ggstatsplot::ggcoefstats(
+      x = mod3,
+      exclude.intercept = FALSE,
+      exponentiate = TRUE,
+      output = "tidy"
+    )
+
+    # testing glmer
+    testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$conf.low, tidy_df2$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$conf.high, tidy_df1$conf.high, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$estimate, tidy_df1$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
+
+    # testing lmer
+    testthat::expect_identical(
+      tidy_df3$label,
+      c(
+        "list(~italic(beta)==4.128529e+14, ~italic(t)(566)==12.01, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==533.71, ~italic(t)(566)==8.60, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==0.01, ~italic(t)(566)==-1.04, ~italic(p)==0.321)",
+        "list(~italic(beta)==0.00, ~italic(t)(566)==-3.20, ~italic(p)==0.003)",
+        "list(~italic(beta)==0.17, ~italic(t)(566)==-0.36, ~italic(p)==0.729)",
+        "list(~italic(beta)==10.27, ~italic(t)(566)==1.86, ~italic(p)==0.080)",
+        "list(~italic(beta)==171.23, ~italic(t)(566)==4.11, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==25.86, ~italic(t)(566)==2.60, ~italic(p)==0.016)"
+      )
+    )
+  }
+)
+
+
+# check glm output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check glm output",
+  code = {
+
+    # set up
+    set.seed(123)
+
+    # dataframe-1
+    counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+    outcome <- gl(3, 1, 9)
+    treatment <- gl(3, 3)
+    d.AD <- data.frame(treatment, outcome, counts)
+
+    # dataframe-2
+    x1 <- stats::rnorm(50)
+    y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
+    df <- data.frame(x = x1, y = y1) %>%
+      tibble::as_data_frame(x = .)
+
+    # models
+    mod1 <- stats::glm(counts ~ outcome + treatment, family = poisson())
+    mod2 <- stats::glm(
+      formula = y ~ x,
+      family = quasi(variance = "mu", link = "log"),
+      data = df
+    )
+
+    # broom outputs
+    broom_df1 <- broom::tidy(mod1, conf.int = 0.90)
+    broom_df2 <- broom::tidy(mod2, conf.int = 0.99)
+
+    # ggcoefstats outputs
+    tidy_df1 <- ggstatsplot::ggcoefstats(
+      x = mod1,
+      exclude.intercept = FALSE,
+      conf.int = 0.90,
+      output = "tidy"
+    )
+    tidy_df2 <- ggstatsplot::ggcoefstats(
+      x = mod2,
+      exclude.intercept = FALSE,
+      conf.int = 0.99,
+      output = "tidy"
+    )
+
+    # testing
+    testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$conf.low, tidy_df2$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$conf.high, tidy_df1$conf.high, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$estimate, tidy_df1$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
+    testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
+  }
+)
+
+
 # dataframe as input ----------------------------------------------------
 
 testthat::test_that(
@@ -402,6 +567,7 @@ testthat::test_that(
     df2 <- dplyr::select(.data = df1, -p.value)
     df3 <- dplyr::select(.data = df1, -statistic)
     df4 <- dplyr::select(.data = df1, -df.residual)
+    df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
 
     # plotting the dataframe
     p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t", sort = "none")
@@ -411,6 +577,18 @@ testthat::test_that(
       ggplot2::scale_y_discrete(labels = c("x1", "x2", "x3")) +
       ggplot2::labs(x = "beta", y = NULL)
     p5 <- ggstatsplot::ggcoefstats(x = df4, statistic = "t")
+    p6 <-
+      ggstatsplot::ggcoefstats(
+        x = df5,
+        statistic = "t",
+        k = 3,
+        meta.analysis.subtitle = TRUE,
+        messages = FALSE
+      )
+
+    # meta subtitle
+    meta_subtitle <-
+      ggstatsplot::subtitle_meta_ggcoefstats(data = df5, k = 3, messages = FALSE)
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -418,6 +596,7 @@ testthat::test_that(
     pb3 <- ggplot2::ggplot_build(p3)
     pb4 <- ggplot2::ggplot_build(p4)
     pb5 <- ggplot2::ggplot_build(p5)
+    pb6 <- ggplot2::ggplot_build(p6)
 
     # stats labels
     testthat::expect_identical(
@@ -481,10 +660,100 @@ testthat::test_that(
     testthat::expect_null(p4$labels$title, NULL)
     testthat::expect_null(p4$labels$subtitle, NULL)
     testthat::expect_null(p4$labels$caption, NULL)
+
+    # checking meta-analysis
+    testthat::expect_error(ggstatsplot::ggcoefstats(
+      x = df1,
+      statistic = "t",
+      meta.analysis.subtitle = TRUE
+    ))
+
+    testthat::expect_identical(pb6$plot$labels$subtitle, meta_subtitle)
   }
 )
 
-# unsupported model objects -------------------------------------
+# check confidence intervals ----------------------------------------------
+
+testthat::test_that(
+  desc = "check computing confidence intervals",
+  code = {
+    set.seed(123)
+
+    # creating broom dataframes
+    mod <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
+    df1 <- broom::tidy(
+      x = mod,
+      conf.int = TRUE,
+      conf.level = 0.95
+    )
+    df2 <- broom::tidy(
+      x = mod,
+      conf.int = TRUE,
+      conf.level = 0.50
+    )
+
+    # computed dataframes
+    tidy_df1 <-
+      ggstatsplot::ggcoefstats(
+        x = dplyr::select(df1, -conf.low, -conf.high),
+        exclude.intercept = FALSE,
+        statistic = "t",
+        output = "tidy"
+      )
+    tidy_df2 <-
+      ggstatsplot::ggcoefstats(
+        x = dplyr::select(df2, -conf.low, -conf.high),
+        exclude.intercept = FALSE,
+        statistic = "t",
+        output = "tidy",
+        conf.level = 0.50
+      )
+    tidy_df3 <-
+      ggstatsplot::ggcoefstats(
+        x = dplyr::select(df2, -conf.low, -conf.high, -std.error),
+        exclude.intercept = FALSE,
+        statistic = "t",
+        output = "tidy",
+        conf.level = 0.50
+      )
+
+    # checking confidence intervals
+    testthat::expect_equal(df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
+    testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
+    testthat::expect_identical(tidy_df3$conf.low[1], NA_character_)
+    testthat::expect_identical(tidy_df3$conf.high[1], NA_character_)
+  }
+)
+
+# check if glance works ----------------------------------------------
+
+testthat::test_that(
+  desc = "check if glance works",
+  code = {
+    set.seed(123)
+
+    # creating broom and ggstatsplot output
+    # lm
+    mod1 <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
+    broom_df1 <- broom::glance(mod1)
+    glance_df1 <- ggstatsplot::ggcoefstats(x = mod1, output = "glance")
+
+    # lmer
+    mod2 <-
+      lme4::lmer(
+        formula = Reaction ~ Days + (Days | Subject),
+        data = sleepstudy
+      )
+    broom_df2 <- broom::glance(mod2)
+    glance_df2 <- ggstatsplot::ggcoefstats(x = mod2, output = "glance")
+
+    # checking if they are equal
+    testthat::expect_identical(broom_df1, glance_df1)
+    testthat::expect_identical(broom_df2, glance_df2)
+  }
+)
+
+# unsupported model objects -----------------------------------------------
 
 testthat::test_that(
   desc = "unsupported model objects",

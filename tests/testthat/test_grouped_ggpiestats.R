@@ -3,6 +3,8 @@ context("grouped_ggpiestats")
 testthat::test_that(
   desc = "grouped_ggpiestats works",
   code = {
+    skip_on_cran()
+
     #--------------------- only main variable -------------------------------
 
     ## without counts

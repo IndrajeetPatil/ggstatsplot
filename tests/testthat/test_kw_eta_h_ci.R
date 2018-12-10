@@ -3,6 +3,7 @@ context("test_kw_eta_h_ci")
 testthat::test_that(
   desc = "Confidence interval for effect size for Kruskal-Wallis test ",
   code = {
+    testthat::skip_on_cran()
 
     # function output
     set.seed(123)

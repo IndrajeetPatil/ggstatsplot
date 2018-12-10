@@ -57,7 +57,7 @@
 #' @importFrom grid unit
 #'
 #' @references
-#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/combine_plots.html}
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
 #'
 #' @examples
 #' # loading the necessary libraries
@@ -94,116 +94,115 @@
 #' @export
 
 # function body
-combine_plots <-
-  function(...,
-             title.text = NULL,
-             title.color = "black",
-             title.size = 16,
-             title.vjust = 0.5,
-             title.hjust = 0.5,
-             title.fontface = "bold",
-             caption.text = NULL,
-             caption.color = "black",
-             caption.size = 10,
-             caption.vjust = 0.5,
-             caption.hjust = 0.5,
-             caption.fontface = "plain",
-             sub.text = NULL,
-             sub.color = "black",
-             sub.size = 12,
-             sub.vjust = 0.5,
-             sub.hjust = 0.5,
-             sub.fontface = "plain",
-             sub.x = 0.5,
-             sub.y = 0.5,
-             sub.vpadding = grid::unit(1, "lines"),
-             sub.angle = 0,
-             sub.lineheight = 0.9,
-             title.rel.heights = c(0.1, 1.2),
-             caption.rel.heights = c(1.2, 0.1),
-             title.caption.rel.heights = c(0.1, 1.2, 0.1)) {
-    # preparing the basic plot
-    plot <- cowplot::plot_grid(...)
+combine_plots <- function(...,
+                          title.text = NULL,
+                          title.color = "black",
+                          title.size = 16,
+                          title.vjust = 0.5,
+                          title.hjust = 0.5,
+                          title.fontface = "bold",
+                          caption.text = NULL,
+                          caption.color = "black",
+                          caption.size = 10,
+                          caption.vjust = 0.5,
+                          caption.hjust = 0.5,
+                          caption.fontface = "plain",
+                          sub.text = NULL,
+                          sub.color = "black",
+                          sub.size = 12,
+                          sub.vjust = 0.5,
+                          sub.hjust = 0.5,
+                          sub.fontface = "plain",
+                          sub.x = 0.5,
+                          sub.y = 0.5,
+                          sub.vpadding = grid::unit(1, "lines"),
+                          sub.angle = 0,
+                          sub.lineheight = 0.9,
+                          title.rel.heights = c(0.1, 1.2),
+                          caption.rel.heights = c(1.2, 0.1),
+                          title.caption.rel.heights = c(0.1, 1.2, 0.1)) {
+  # preparing the basic plot
+  plot <- cowplot::plot_grid(...)
 
-    # preparing the title
-    if (!is.null(title.text)) {
-      title <-
-        cowplot::ggdraw() +
-        cowplot::draw_label(
-          label = title.text,
-          colour = title.color,
-          size = title.size,
-          vjust = title.vjust,
-          hjust = title.hjust,
-          fontface = title.fontface
-        )
-    }
-    # preparing the caption
+  # preparing the title
+  if (!is.null(title.text)) {
+    title <-
+      cowplot::ggdraw() +
+      cowplot::draw_label(
+        label = title.text,
+        colour = title.color,
+        size = title.size,
+        vjust = title.vjust,
+        hjust = title.hjust,
+        fontface = title.fontface
+      )
+  }
+  # preparing the caption
+  if (!is.null(caption.text)) {
+    caption <-
+      cowplot::ggdraw() +
+      cowplot::draw_label(
+        label = caption.text,
+        colour = caption.color,
+        size = caption.size,
+        vjust = caption.vjust,
+        hjust = caption.hjust,
+        fontface = caption.fontface
+      )
+  }
+
+  # combining the basic plot with the either title or caption or title and
+  # caption
+  if (!is.null(title.text)) {
     if (!is.null(caption.text)) {
-      caption <-
-        cowplot::ggdraw() +
-        cowplot::draw_label(
-          label = caption.text,
-          colour = caption.color,
-          size = caption.size,
-          vjust = caption.vjust,
-          hjust = caption.hjust,
-          fontface = caption.fontface
-        )
-    }
-
-    # combining the basic plot with the either title or caption or title and
-    # caption
-    if (!is.null(title.text)) {
-      if (!is.null(caption.text)) {
-        # if both title and caption are needed
-        plot <-
-          cowplot::plot_grid(title,
-            plot,
-            caption,
-            ncol = 1,
-            rel_heights = title.caption.rel.heights
-          )
-      } else {
-        # if only title is needed
-        plot <-
-          cowplot::plot_grid(title,
-            plot,
-            ncol = 1,
-            rel_heights = title.rel.heights
-          )
-      }
-    } else if (!is.null(caption.text)) {
-      # if only caption is needed
+      # if both title and caption are needed
       plot <-
-        cowplot::plot_grid(plot,
+        cowplot::plot_grid(title,
+          plot,
           caption,
           ncol = 1,
-          rel_heights = caption.rel.heights
+          rel_heights = title.caption.rel.heights
         )
-    }
-
-    # finally adding sub if it's needed
-    if (!is.null(sub.text)) {
+    } else {
+      # if only title is needed
       plot <-
-        cowplot::ggdraw(
-          cowplot::add_sub(
-            plot = plot,
-            label = sub.text,
-            x = sub.x,
-            y = sub.y,
-            vpadding = sub.vpadding,
-            colour = sub.color,
-            size = sub.size,
-            vjust = sub.vjust,
-            hjust = sub.hjust,
-            fontface = sub.fontface,
-            angle = sub.angle,
-            lineheight = sub.lineheight
-          )
+        cowplot::plot_grid(title,
+          plot,
+          ncol = 1,
+          rel_heights = title.rel.heights
         )
     }
-
-    # return the final, combined plot
-    return(plot)
+  } else if (!is.null(caption.text)) {
+    # if only caption is needed
+    plot <-
+      cowplot::plot_grid(plot,
+        caption,
+        ncol = 1,
+        rel_heights = caption.rel.heights
+      )
   }
+
+  # finally adding sub if it's needed
+  if (!is.null(sub.text)) {
+    plot <-
+      cowplot::ggdraw(
+        cowplot::add_sub(
+          plot = plot,
+          label = sub.text,
+          x = sub.x,
+          y = sub.y,
+          vpadding = sub.vpadding,
+          colour = sub.color,
+          size = sub.size,
+          vjust = sub.vjust,
+          hjust = sub.hjust,
+          fontface = sub.fontface,
+          angle = sub.angle,
+          lineheight = sub.lineheight
+        )
+      )
+  }
+
+  # return the final, combined plot
+  return(plot)
+}

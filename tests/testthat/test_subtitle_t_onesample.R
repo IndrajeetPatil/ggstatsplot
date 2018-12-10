@@ -153,8 +153,6 @@ testthat::test_that(
   }
 )
 
-
-
 # bayes factor -----------------------------------------------------------
 
 testthat::test_that(
@@ -204,8 +202,6 @@ testthat::test_that(
     testthat::expect_identical(using_function1, results1)
   }
 )
-
-
 
 # message checks ---------------------------------------------------------
 

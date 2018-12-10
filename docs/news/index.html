@@ -68,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.7</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.7.9000</span>
       </span>
     </div>
 
@@ -94,15 +94,6 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/ggcoefstats.html">ggcoefstats</a>
-    </li>
-    <li>
-      <a href="../articles/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
-      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
-    </li>
-    <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
     <li>
@@ -110,6 +101,9 @@
     </li>
     <li>
       <a href="../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     </li>
     <li>
       <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
@@ -125,6 +119,9 @@
     </li>
     <li>
       <a href="../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
       <a href="../articles/web_only/session_info.html">session information</a>
@@ -168,9 +165,19 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ggstatsplot-0-0-7-9000" class="section level1">
+<h1 class="page-header">
+<a href="#ggstatsplot-0-0-7-9000" class="anchor"></a>ggstatsplot 0.0.7.9000<small> Unreleased </small>
+</h1>
+<p>NEW FEATURES</p>
+<ul>
+<li>
+<code>ggcoefstats</code> gains <code>meta.analysis.subtitle</code> that can be used to carry out meta-analysis on regression estimates. This especially useful when a dataframe with regression estimates and standard error is available from prior analyses. The <code>subtitle</code> is prepared with the new function <code>subtitle_meta_ggcoefstats</code> which is also exported.</li>
+</ul>
+</div>
     <div id="ggstatsplot-0-0-7" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-7" class="anchor"></a>ggstatsplot 0.0.7<small> Unreleased </small>
+<a href="#ggstatsplot-0-0-7" class="anchor"></a>ggstatsplot 0.0.7<small> 2018-12-08 </small>
 </h1>
 <p>BUG FIXES</p>
 <ul>
@@ -203,7 +210,7 @@
 <li>
 <code>ggcoefstats</code> works with tidy dataframes.</li>
 <li>The helper function <code>untable</code> has been depcreated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</li>
-<li>Vignette with <code>purrr</code> examples removed from <code>CRAN</code> to reduce the size of the package. It is now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</li>
+<li>All vignettes have been removed from <code>CRAN</code> to reduce the size of the package. They are now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</li>
 <li>
 <code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</li>
 <li>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code>%&gt;%</code>, <code>%&lt;&gt;%</code>, <code>%$%</code>.</li>
@@ -416,6 +423,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#ggstatsplot-0-0-7-9000">0.0.7.9000</a></li>
         <li><a href="#ggstatsplot-0-0-7">0.0.7</a></li>
         <li><a href="#ggstatsplot-0-0-6">0.0.6</a></li>
         <li><a href="#ggstatsplot-0-0-5">0.0.5</a></li>
@@ -435,7 +443,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

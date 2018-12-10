@@ -3,6 +3,7 @@ context("chisq_v_ci")
 testthat::test_that(
   desc = "chisq_v_ci works",
   code = {
+    testthat::skip_on_cran()
 
     # using sampled 25% Titanic_full dataset
     set.seed(123)

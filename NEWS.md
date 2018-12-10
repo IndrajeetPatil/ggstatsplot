@@ -1,3 +1,13 @@
+# ggstatsplot 0.0.7.9000
+
+NEW FEATURES
+
+  - `ggcoefstats` gains `meta.analysis.subtitle` that can be used to carry out
+    meta-analysis on regression estimates. This especially useful when a
+    dataframe with regression estimates and standard error is available from
+    prior analyses. The `subtitle` is prepared with the new function
+    `subtitle_meta_ggcoefstats` which is also exported.
+  
 # ggstatsplot 0.0.7
 
 BUG FIXES
@@ -46,8 +56,8 @@ MAJOR CHANGES
   - The helper function `untable` has been depcreated in light of
     `tidyr::uncount`, which does exactly what `untable` was doing. The author
     wasn't aware of this function when `untable` was written.
-  - Vignette with `purrr` examples removed from `CRAN` to reduce the size of the
-    package. It is now available on the package website:
+  - All vignettes have been removed from `CRAN` to reduce the size of the
+    package. They are now available on the package website:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/>.
   - `subtitle_t_robust` function can now handle dependent samples and
     gains `paired` argument.

@@ -23,7 +23,8 @@
 #' @param xlab Label for `x` axis variable (Default: `"estimate"`).
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param title The text for the plot title.
-#' @param subtitle The text for the plot subtitle.
+#' @param subtitle The text for the plot subtitle. The input to this argument
+#'   will be ignored if `meta.analysis.subtitle` is set to `TRUE`.
 #' @param conf.method Character describing method for computing confidence
 #'   intervals (for more, see `lme4::confint.merMod`). This argument is valid
 #'   only for the `merMod` class model objects (`lmer`, `glmer`, `nlmer`, etc.).
@@ -57,6 +58,10 @@
 #'   are returned (Default: `TRUE`). If `FALSE`, eta-squared or omega-squared
 #'   will be returned. Valid only for objects of class `aov`, `anova`, or
 #'   `aovlist`.
+#' @param meta.analysis.subtitle Logical that decides whether subtitle for
+#'   meta-analysis via linear (mixed-effects) models - as implemented in the
+#'   `metafor` package - is to be displayed (default: `FALSE`). If `TRUE`, input
+#'   to argument `subtitle` will be ignored.
 #' @param k Number of decimal places expected for results displayed in labels
 #'   (Default : `k = 2`).
 #' @param k.caption.summary Number of decimal places expected for results
@@ -123,6 +128,7 @@
 #' @inheritParams broom::tidy.clm
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d
+#' @inheritParams subtitle_meta_ggcoefstats
 #' @param ... Additional arguments to tidying method.
 #'
 #' @import ggplot2
@@ -132,14 +138,14 @@
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
 #' @importFrom dplyr group_by arrange full_join vars matches desc everything
 #' @importFrom purrrlyr by_row
-#' @importFrom stats as.formula lm confint
+#' @importFrom stats as.formula lm confint qnorm
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid unit
 #' @importFrom sjstats p_value
 #' @importFrom tibble as_tibble rownames_to_column
 #'
 #' @references
-#' \url{https://cran.r-project.org/package=ggstatsplot/vignettes/ggcoefstats.html}
+#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 #'
 #' @examples
 #' # for reproducibility
@@ -151,14 +157,77 @@
 #' # with custom dataframe
 #' 
 #' # creating a dataframe
-#' df <- tibble::tribble(
-#'   ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value,
-#'   "level1", 1.33, 0.542, -0.280, 1.36, 0.191,
-#'   "level2", 0.158, 0.0665, -0.778, 0.911, 0.875
-#' )
+#' df <-
+#'   structure(
+#'     list(
+#'       term = structure(
+#'         c(3L, 4L, 1L, 2L, 5L),
+#'         .Label = c(
+#'           "Africa",
+#'           "Americas", "Asia", "Europe", "Oceania"
+#'         ),
+#'         class = "factor"
+#'       ),
+#'       estimate = c(
+#'         0.382047603321706,
+#'         0.780783111514665,
+#'         0.425607573765058,
+#'         0.558365541235078,
+#'         0.956473848429961
+#'       ),
+#'       std.error = c(
+#'         0.0465576338644502,
+#'         0.0330218199731529,
+#'         0.0362834986178494,
+#'         0.0480571500648261,
+#'         0.062215818388157
+#'       ),
+#'       statistic = c(
+#'         8.20590677855356,
+#'         23.6444603038067,
+#'         11.7300588415607,
+#'         11.6187818146078,
+#'         15.3734833553524
+#'       ),
+#'       conf.low = c(
+#'         0.290515146096969,
+#'         0.715841986960399,
+#'         0.354354575031406,
+#'         0.46379116008131,
+#'         0.827446138277154
+#'       ),
+#'       conf.high = c(
+#'         0.473580060546444,
+#'         0.845724236068931,
+#'         0.496860572498711,
+#'         0.652939922388847,
+#'         1.08550155858277
+#'       ),
+#'       p.value = c(
+#'         3.28679518728519e-15,
+#'         4.04778497135963e-75,
+#'         7.59757330804449e-29,
+#'         5.45155840151592e-26,
+#'         2.99171217913312e-13
+#'       ),
+#'       df.residual = c(
+#'         394L, 358L, 622L,
+#'         298L, 22L
+#'       )
+#'     ),
+#'     row.names = c(NA, -5L),
+#'     class = c(
+#'       "tbl_df",
+#'       "tbl", "data.frame"
+#'     )
+#'   )
 #' 
 #' # plotting the dataframe
-#' ggstatsplot::ggcoefstats(x = df, statistic = "t")
+#' ggstatsplot::ggcoefstats(
+#'   x = df,
+#'   statistic = "t",
+#'   meta.analysis.subtitle = TRUE
+#' )
 #' @export
 
 # function body
@@ -172,6 +241,7 @@ ggcoefstats <- function(x,
                         effsize = "eta",
                         partial = TRUE,
                         nboot = 500,
+                        meta.analysis.subtitle = FALSE,
                         point.color = "blue",
                         point.size = 3,
                         point.shape = 16,
@@ -221,6 +291,7 @@ ggcoefstats <- function(x,
                         direction = 1,
                         ggtheme = ggplot2::theme_bw(),
                         ggstatsplot.layer = TRUE,
+                        messages = FALSE,
                         ...) {
   # =================== list of objects (for tidy and glance) ================
 
@@ -459,7 +530,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # =============================== p-value and CI check =====================
+  # =============================== p-value check ===========================
 
   # if broom output doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2) {
@@ -478,29 +549,47 @@ ggcoefstats <- function(x,
     ))
   }
 
+  # ==================== confidence intervals check ===========================
+
   # if broom output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
-    # add NAs so that only dots will be shown
-    tidy_df %<>%
-      dplyr::mutate(
-        .data = .,
-        conf.low = NA_character_,
-        conf.high = NA_character_
-      )
 
-    # stop displaying whiskers
-    conf.int <- FALSE
+    # if standard error is present, create confidence intervals
+    if ("std.error" %in% names(tidy_df)) {
+      # probability for computing confidence intervals
+      prob <- 1 - ((1 - conf.level) / 2)
 
-    # inform the user that skipping labels for the same reason
-    base::message(cat(
-      crayon::green("Note: "),
-      crayon::blue(
-        "No confidence intervals available for regression coefficients from",
-        crayon::yellow(class(x)[[1]]),
-        "object, so skipping whiskers in the plot.\n"
-      ),
-      sep = ""
-    ))
+      # computing confidence intervals
+      tidy_df %<>%
+        dplyr::mutate(
+          .data = .,
+          conf.low = estimate - stats::qnorm(prob) * std.error,
+          conf.high = estimate + stats::qnorm(prob) * std.error
+        )
+    } else {
+
+      # add NAs so that only dots will be shown
+      tidy_df %<>%
+        dplyr::mutate(
+          .data = .,
+          conf.low = NA_character_,
+          conf.high = NA_character_
+        )
+
+      # stop displaying whiskers
+      conf.int <- FALSE
+
+      # inform the user that skipping labels for the same reason
+      base::message(cat(
+        crayon::green("Note: "),
+        crayon::blue(
+          "No confidence intervals available for regression coefficients from",
+          crayon::yellow(class(x)[[1]]),
+          "object, so skipping whiskers in the plot.\n"
+        ),
+        sep = ""
+      ))
+    }
   }
 
   # ============= intercept, exponentiation, and final tidy dataframe =========
@@ -547,15 +636,39 @@ ggcoefstats <- function(x,
 
   # adding a column with labels to be used with `ggrepel`
   if (isTRUE(stats.labels)) {
-    tidy_df %<>%
-      ggcoefstats_label_maker(
-        x = x,
-        statistic = statistic,
-        tidy_df = .,
-        glance_df = glance_df,
+    if (class(x)[[1]] %in% df.mods) {
+      tidy_df %<>%
+        ggcoefstats_label_maker(
+          x = .,
+          statistic = statistic,
+          tidy_df = .,
+          glance_df = glance_df,
+          k = k,
+          effsize = effsize,
+          partial = partial
+        )
+    } else {
+      tidy_df %<>%
+        ggcoefstats_label_maker(
+          x = x,
+          statistic = statistic,
+          tidy_df = .,
+          glance_df = glance_df,
+          k = k,
+          effsize = effsize,
+          partial = partial
+        )
+    }
+  }
+
+  # =================== meta-analytic subtitle ================================
+
+  if (isTRUE(meta.analysis.subtitle)) {
+    subtitle <-
+      subtitle_meta_ggcoefstats(
+        data = tidy_df,
         k = k,
-        effsize = effsize,
-        partial = partial
+        messages = messages
       )
   }
 
@@ -644,7 +757,7 @@ ggcoefstats <- function(x,
 
   # computing the number of colors in a given palette
   palette_df <-
-    tibble::as_tibble(paletteer::palettes_d_names) %>%
+    tibble::as_tibble(x = paletteer::palettes_d_names) %>%
     dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
     dplyr::select(.data = ., length)
 

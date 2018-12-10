@@ -1,19 +1,18 @@
 pandoc: 2.2.3.2
-pkgdown: 1.2.0.9000
-pkgdown_sha: 62f07bc8e39786975daf260c4be59595e9ee0488
+pkgdown: 1.3.0
+pkgdown_sha: ~
 articles:
   additional: additional.html
-  ggcoefstats: ggcoefstats.html
-  purrr_examples: purrr_examples.html
-  tests_and_coverage: tests_and_coverage.html
   combine_plots: web_only/combine_plots.html
   gallery: web_only/gallery.html
   ggbetweenstats: web_only/ggbetweenstats.html
+  ggcoefstats: web_only/ggcoefstats.html
   ggcorrmat: web_only/ggcorrmat.html
   gghistostats: web_only/gghistostats.html
   ggpiestats: web_only/ggpiestats.html
   ggscatterstats: web_only/ggscatterstats.html
   ggstatsplot_paper: web_only/ggstatsplot_paper.html
+  purrr_examples: web_only/purrr_examples.html
   session_info: web_only/session_info.html
   theme_ggstatsplot: web_only/theme_ggstatsplot.html
 urls:

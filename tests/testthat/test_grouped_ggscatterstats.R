@@ -3,6 +3,7 @@ context("grouped_ggscatterstats")
 testthat::test_that(
   desc = "grouped_ggscatterstats works",
   code = {
+    skip_on_cran()
 
     # when the grouping and labelling variable are the same, the function
     # shouldn't work

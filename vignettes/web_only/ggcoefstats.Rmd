@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 100
+    dpi: 300
     toc: true
     warning: FALSE
     message: FALSE
@@ -24,8 +24,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** of
-regression models saved in tidy data frames (produced with the `broom` package).
+The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
+regression models saved in tidy data frames (produced with the `broom` package
+and its mixed-effects modeling variant `broom.mixed` package).
+
 By default, the plot displays `95%` confidence intervals for the regression
 coefficients. The function currently supports only those classes of object that
 are supported by the `broom` package. For an exhaustive list, see-
@@ -740,9 +742,8 @@ in measurement is accounted for by the interaction between these two factors.
 
 ## robust regression (`lmRob`, `glmRob`)
 
-The robust regression models, as implemented in robust package are also
-supported. But since no 95% CI are available in this case, only the dots for
-estimates will be shown.
+The robust regression models, as implemented in the `robust` package are also
+supported. 
 
 ```{r robust, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
 ggstatsplot::combine_plots(
@@ -771,7 +772,7 @@ ggstatsplot::combine_plots(
   ),
   # arguments relevant for `combine_plots` function
   labels = c("(a)", "(b)"),
-  title.text = "Robust variants of lm and glm",
+  title.text = "Robust variants of lmRob and glmRob",
   nrow = 2,
   ncol = 1
 )

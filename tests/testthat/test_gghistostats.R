@@ -94,7 +94,7 @@ testthat::test_that(
     testthat::expect_identical(p$labels$title, "starwars: character heights")
     testthat::expect_identical(p$labels$x, "character height")
     testthat::expect_identical(p$labels$caption, ggplot2::expr(atop(
-      NULL,
+      displaystyle(NULL),
       expr = paste(
         "In favor of null: ",
         "log"["e"],
