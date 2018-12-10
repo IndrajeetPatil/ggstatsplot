@@ -71,7 +71,7 @@ testthat::test_that(
     testthat::expect_identical(p$labels$title, "Michelson-Morley experiment")
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(p$labels$caption, ggplot2::expr(atop(
-      "Studies carried out in 1887",
+      displaystyle("Studies carried out in 1887"),
       expr = paste(
         "In favor of null: ",
         "log"["e"],

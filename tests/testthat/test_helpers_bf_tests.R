@@ -92,3 +92,38 @@ testthat::test_that(
     testthat::expect_equal(df$cred.int, 0.95, tolerance = 0.01)
   }
 )
+
+# bayes factor caption maker check --------------------------
+
+testthat::test_that(
+  desc = "bayes factor caption maker check",
+  code = {
+
+    # bayes factor results
+    bf_results <- tibble::tribble( ~ log_e_bf01, ~ bf.prior,
+                                   1.1, 0.88)
+
+    # expected
+    using1 <- ggstatsplot::bf_caption_maker(
+      bf.df = bf_results,
+      k = 3,
+      caption = substitute(paste(italic("Note", ": made up data")))
+    )
+
+    testthat::expect_identical(using1,
+                               ggplot2::expr(atop(
+                                 displaystyle(paste(italic(
+                                   "Note", ": made up data"
+                                 ))),
+                                 expr = paste(
+                                   "In favor of null: ",
+                                   "log"["e"],
+                                   "(BF"["01"],
+                                   ") = ",
+                                   "1.100",
+                                   ", Prior width = ",
+                                   "0.880"
+                                 )
+                               )))
+
+  })

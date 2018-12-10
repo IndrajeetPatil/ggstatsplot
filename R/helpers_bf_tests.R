@@ -123,6 +123,75 @@ bf_extractor <- function(bf.object,
   return(bf_df)
 }
 
+#' @title Prepare caption with bayes factor in favor of null
+#' @name bf_caption_maker
+#' @description Convenience function to write a caption message with bayes
+#'   factors in favor of the null hypothesis.
+#'
+#' @param bf.df A dataframe containing two columns `log_e_bf01` and `bf.prior`.
+#'   If dataframe contains more than two rows, only the first row will be used.
+#' @param caption Text to display as caption (will be displayed on top of the
+#'   bayes factor caption/message).
+#' @inheritParams ggbetweenstats
+#'
+#' @examples
+#' 
+#' set.seed(123)
+#' 
+#' # dataframe containing results
+#' bf_results <-
+#'   bf_extractor(BayesFactor::correlationBF(
+#'     x = iris$Sepal.Length,
+#'     y = iris$Petal.Length
+#'   )) %>%
+#'   dplyr::mutate(.data = ., bf.prior = 0.707)
+#' 
+#' # creating caption
+#' ggstatsplot::bf_caption_maker(
+#'   bf.df = bf_results,
+#'   k = 3,
+#'   caption = "Note: Iris dataset"
+#' )
+#' @export
+
+# function body
+bf_caption_maker <- function(bf.df,
+                             k = 2,
+                             caption = NULL) {
+
+  # prepare the bayes factor message
+  bf_caption <-
+    base::substitute(
+      atop(displaystyle(top.text),
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", Prior width = ",
+            bf_prior
+          )
+      ),
+      env = base::list(
+        top.text = caption,
+        bf = ggstatsplot::specify_decimal_p(
+          x = bf.df$log_e_bf01[[1]],
+          k = k,
+          p.value = FALSE
+        ),
+        bf_prior = ggstatsplot::specify_decimal_p(
+          x = bf.df$bf.prior[[1]],
+          k = k,
+          p.value = FALSE
+        )
+      )
+    )
+
+  # return the caption
+  return(bf_caption)
+}
 
 #' @title Bayesian correlation test.
 #' @name bf_corr_test
@@ -199,32 +268,10 @@ bf_corr_test <- function(data,
 
   # prepare the bayes factor message
   bf_message <-
-    base::substitute(
-      atop(top.text,
-        expr =
-          paste(
-            "In favor of null: ",
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            bf,
-            ", Prior width = ",
-            bf_prior
-          )
-      ),
-      env = base::list(
-        top.text = caption,
-        bf = ggstatsplot::specify_decimal_p(
-          x = bf_results$log_e_bf01[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        bf_prior = ggstatsplot::specify_decimal_p(
-          x = bf_results$bf.prior[[1]],
-          k = k,
-          p.value = FALSE
-        )
-      )
+    bf_caption_maker(
+      bf.df = bf_results,
+      k = k,
+      caption = caption
     )
 
   # ============================ return ==================================
@@ -529,32 +576,10 @@ bf_two_sample_ttest <- function(data,
 
   # prepare the bayes factor message
   bf_message <-
-    base::substitute(
-      atop(displaystyle(top.text),
-        expr =
-          paste(
-            "In favor of null: ",
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            bf,
-            ", Prior width = ",
-            bf_prior
-          )
-      ),
-      env = base::list(
-        top.text = caption,
-        bf = ggstatsplot::specify_decimal_p(
-          x = bf_results$log_e_bf01[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        bf_prior = ggstatsplot::specify_decimal_p(
-          x = bf_results$bf.prior[[1]],
-          k = k,
-          p.value = FALSE
-        )
-      )
+    bf_caption_maker(
+      bf.df = bf_results,
+      k = k,
+      caption = caption
     )
 
   # ============================ return ==================================
@@ -640,32 +665,10 @@ bf_oneway_anova <- function(data,
 
   # prepare the bayes factor message
   bf_message <-
-    base::substitute(
-      atop(displaystyle(top.text),
-        expr =
-          paste(
-            "In favor of null: ",
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            bf,
-            ", Prior width = ",
-            bf_prior
-          )
-      ),
-      env = base::list(
-        top.text = caption,
-        bf = ggstatsplot::specify_decimal_p(
-          x = bf_results$log_e_bf01[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        bf_prior = ggstatsplot::specify_decimal_p(
-          x = bf_results$bf.prior[[1]],
-          k = k,
-          p.value = FALSE
-        )
-      )
+    bf_caption_maker(
+      bf.df = bf_results,
+      k = k,
+      caption = caption
     )
 
   # ============================ return ==================================
@@ -755,32 +758,10 @@ bf_one_sample_ttest <- function(data,
 
   # prepare the bayes factor message
   bf_message <-
-    base::substitute(
-      atop(top.text,
-        expr =
-          paste(
-            "In favor of null: ",
-            "log"["e"],
-            "(BF"["01"],
-            ") = ",
-            bf,
-            ", Prior width = ",
-            bf_prior
-          )
-      ),
-      env = base::list(
-        top.text = caption,
-        bf = ggstatsplot::specify_decimal_p(
-          x = bf_results$log_e_bf01[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        bf_prior = ggstatsplot::specify_decimal_p(
-          x = bf_results$bf.prior[[1]],
-          k = k,
-          p.value = FALSE
-        )
-      )
+    bf_caption_maker(
+      bf.df = bf_results,
+      k = k,
+      caption = caption
     )
 
   # ============================ return ==================================

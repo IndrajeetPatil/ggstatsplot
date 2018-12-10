@@ -66,18 +66,21 @@ testthat::test_that(
     )
 
     # checking plot labels
-    testthat::expect_identical(p$plot_env$caption, ggplot2::expr(atop(
-      "ggplot2 dataset",
-      expr = paste(
-        "In favor of null: ",
-        "log"["e"],
-        "(BF"["01"],
-        ") = ",
-        "-2.23",
-        ", Prior width = ",
-        "0.71"
-      )
-    )))
+    testthat::expect_identical(
+      p$plot_env$caption,
+      ggplot2::expr(atop(
+        displaystyle("ggplot2 dataset"),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "-2.23",
+          ", Prior width = ",
+          "0.71"
+        )
+      ))
+    )
     testthat::expect_identical(p$plot_env$title, "Mammalian sleep")
     testthat::expect_identical(p$plot_env$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$labels$x, "sleep (total)")

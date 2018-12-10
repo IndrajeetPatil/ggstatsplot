@@ -385,10 +385,10 @@ testthat::test_that(
   }
 )
 
-# check glmer output ----------------------------------------------
+# check merMod output ----------------------------------------------
 
 testthat::test_that(
-  desc = "check glmer output",
+  desc = "check merMod output",
   code = {
     # setup
     set.seed(123)
@@ -412,6 +412,12 @@ testthat::test_that(
       ))
     )
     mod2 <- lme4::glmer(y ~ x + (1 | f), data = d, family = poisson)
+    mod3 <-
+      lme4::lmer(weight ~ Time * Diet + (1 + Time |
+        Chick),
+      data = ChickWeight,
+      REML = FALSE
+      )
 
     # broom output
     broom_df1 <- broom.mixed::tidy(
@@ -445,7 +451,14 @@ testthat::test_that(
       exclude.intercept = FALSE
     )
 
-    # testing
+    tidy_df3 <- ggstatsplot::ggcoefstats(
+      x = mod3,
+      exclude.intercept = FALSE,
+      exponentiate = TRUE,
+      output = "tidy"
+    )
+
+    # testing glmer
     testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
     testthat::expect_equal(broom_df2$conf.low, tidy_df2$conf.low, tolerance = 0.001)
     testthat::expect_equal(broom_df1$conf.high, tidy_df1$conf.high, tolerance = 0.001)
@@ -456,6 +469,21 @@ testthat::test_that(
     testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
     testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
     testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
+
+    # testing lmer
+    testthat::expect_identical(
+      tidy_df3$label,
+      c(
+        "list(~italic(beta)==4.128529e+14, ~italic(t)(566)==12.01, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==533.71, ~italic(t)(566)==8.60, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==0.01, ~italic(t)(566)==-1.04, ~italic(p)==0.321)",
+        "list(~italic(beta)==0.00, ~italic(t)(566)==-3.20, ~italic(p)==0.003)",
+        "list(~italic(beta)==0.17, ~italic(t)(566)==-0.36, ~italic(p)==0.729)",
+        "list(~italic(beta)==10.27, ~italic(t)(566)==1.86, ~italic(p)==0.080)",
+        "list(~italic(beta)==171.23, ~italic(t)(566)==4.11, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==25.86, ~italic(t)(566)==2.60, ~italic(p)==0.016)"
+      )
+    )
   }
 )
 
