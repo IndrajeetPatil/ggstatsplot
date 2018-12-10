@@ -19,7 +19,7 @@ testthat::test_that(
 
 
     # testing 4 conditions
-    testthat::expect_equal(using_function1$eta_sq_H, 0.126, tolerance = 0.0001)
+    testthat::expect_equal(using_function1$eta_sq_H, 0.126, tolerance = 0.001)
     testthat::expect_equal(using_function1$conf.low, 0.0978, tolerance = 0.0001)
     testthat::expect_equal(using_function1$conf.high, 0.178, tolerance = 0.0003)
     testthat::expect_equal(using_function1$nboot, 50)
