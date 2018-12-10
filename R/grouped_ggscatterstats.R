@@ -29,10 +29,10 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -46,7 +46,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -62,13 +62,13 @@
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
 #' \dontrun{
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::movies_long,
-#'     rating == 8,
+#'     rating == 7,
 #'     genre %in% c("Drama", "Comedy")
 #'   ),
 #'   x = budget,
@@ -78,7 +78,7 @@
 #'   label.var = "title",
 #'   marginal = FALSE,
 #'   title.prefix = "Genre",
-#'   caption.text = "All movies have IMDB rating greater than 8."
+#'   caption.text = "All movies have IMDB rating equal to 7."
 #' )
 #' }
 #' @export
