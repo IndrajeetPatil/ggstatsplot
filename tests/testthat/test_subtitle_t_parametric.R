@@ -35,9 +35,9 @@ testthat::test_that(
         paste(
           italic("t"),
           "(",
-          "1317.00000",
+          "612.00000",
           ") = ",
-          "-9.46816",
+          "-10.52948",
           ", ",
           italic("p"),
           " = ",
@@ -45,20 +45,19 @@ testthat::test_that(
           ", ",
           italic("d"),
           " = ",
-          "0.51775",
+          "0.81440",
           ", CI"["99%"],
           " [",
-          "0.36213",
+          "0.58009",
           ", ",
-          "0.67319",
+          "1.04814",
           "]",
           ", ",
           italic("n"),
           " = ",
-          1319L
+          614L
         )
       )
-
     # testing overall call
     testthat::expect_equal(using_function1, results1)
   }
