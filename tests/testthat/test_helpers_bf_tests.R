@@ -100,8 +100,10 @@ testthat::test_that(
   code = {
 
     # bayes factor results
-    bf_results <- tibble::tribble( ~ log_e_bf01, ~ bf.prior,
-                                   1.1, 0.88)
+    bf_results <- tibble::tribble(
+      ~log_e_bf01, ~bf.prior,
+      1.1, 0.88
+    )
 
     # expected
     using1 <- ggstatsplot::bf_caption_maker(
@@ -110,20 +112,22 @@ testthat::test_that(
       caption = substitute(paste(italic("Note", ": made up data")))
     )
 
-    testthat::expect_identical(using1,
-                               ggplot2::expr(atop(
-                                 displaystyle(paste(italic(
-                                   "Note", ": made up data"
-                                 ))),
-                                 expr = paste(
-                                   "In favor of null: ",
-                                   "log"["e"],
-                                   "(BF"["01"],
-                                   ") = ",
-                                   "1.100",
-                                   ", Prior width = ",
-                                   "0.880"
-                                 )
-                               )))
-
-  })
+    testthat::expect_identical(
+      using1,
+      ggplot2::expr(atop(
+        displaystyle(paste(italic(
+          "Note", ": made up data"
+        ))),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "1.100",
+          ", Prior width = ",
+          "0.880"
+        )
+      ))
+    )
+  }
+)

@@ -1,9 +1,9 @@
-context("subtitle_meta")
+context("subtitle_meta_ggcoefstats")
 
 # subtitle from meta-analysis -------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle_meta works",
+  desc = "subtitle_meta_ggcoefstats works",
   code = {
 
     # dataframe
@@ -17,7 +17,7 @@ testthat::test_that(
     )
 
     # ggstatsplot output
-    using_function1 <- ggstatsplot:::subtitle_meta(
+    using_function1 <- ggstatsplot:::subtitle_meta_ggcoefstats(
       data = df,
       k = 4,
       messages = FALSE

@@ -567,6 +567,7 @@ testthat::test_that(
     df2 <- dplyr::select(.data = df1, -p.value)
     df3 <- dplyr::select(.data = df1, -statistic)
     df4 <- dplyr::select(.data = df1, -df.residual)
+    df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
 
     # plotting the dataframe
     p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t", sort = "none")
@@ -576,6 +577,18 @@ testthat::test_that(
       ggplot2::scale_y_discrete(labels = c("x1", "x2", "x3")) +
       ggplot2::labs(x = "beta", y = NULL)
     p5 <- ggstatsplot::ggcoefstats(x = df4, statistic = "t")
+    p6 <-
+      ggstatsplot::ggcoefstats(
+        x = df5,
+        statistic = "t",
+        k = 3,
+        meta.analysis.subtitle = TRUE,
+        messages = FALSE
+      )
+
+    # meta subtitle
+    meta_subtitle <-
+      ggstatsplot::subtitle_meta_ggcoefstats(data = df5, k = 3, messages = FALSE)
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -583,6 +596,7 @@ testthat::test_that(
     pb3 <- ggplot2::ggplot_build(p3)
     pb4 <- ggplot2::ggplot_build(p4)
     pb5 <- ggplot2::ggplot_build(p5)
+    pb6 <- ggplot2::ggplot_build(p6)
 
     # stats labels
     testthat::expect_identical(
@@ -646,6 +660,15 @@ testthat::test_that(
     testthat::expect_null(p4$labels$title, NULL)
     testthat::expect_null(p4$labels$subtitle, NULL)
     testthat::expect_null(p4$labels$caption, NULL)
+
+    # checking meta-analysis
+    testthat::expect_error(ggstatsplot::ggcoefstats(
+      x = df1,
+      statistic = "t",
+      meta.analysis.subtitle = TRUE
+    ))
+
+    testthat::expect_identical(pb6$plot$labels$subtitle, meta_subtitle)
   }
 )
 
@@ -699,6 +722,34 @@ testthat::test_that(
     testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
     testthat::expect_identical(tidy_df3$conf.low[1], NA_character_)
     testthat::expect_identical(tidy_df3$conf.high[1], NA_character_)
+  }
+)
+
+# check if glance works ----------------------------------------------
+
+testthat::test_that(
+  desc = "check if glance works",
+  code = {
+    set.seed(123)
+
+    # creating broom and ggstatsplot output
+    # lm
+    mod1 <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
+    broom_df1 <- broom::glance(mod1)
+    glance_df1 <- ggstatsplot::ggcoefstats(x = mod1, output = "glance")
+
+    # lmer
+    mod2 <-
+      lme4::lmer(
+        formula = Reaction ~ Days + (Days | Subject),
+        data = sleepstudy
+      )
+    broom_df2 <- broom::glance(mod2)
+    glance_df2 <- ggstatsplot::ggcoefstats(x = mod2, output = "glance")
+
+    # checking if they are equal
+    testthat::expect_identical(broom_df1, glance_df1)
+    testthat::expect_identical(broom_df2, glance_df2)
   }
 )
 

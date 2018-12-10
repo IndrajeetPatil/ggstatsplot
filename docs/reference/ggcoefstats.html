@@ -183,26 +183,26 @@ caption.</p>
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='st'>"beta"</span>,
   <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-  <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>se.type</span> <span class='kw'>=</span> <span class='st'>"nid"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>stats.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>label.box.padding</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>label.segment.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.segment.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>meta.analysis.subtitle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>se.type</span> <span class='kw'>=</span> <span class='st'>"nid"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>stats.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.box.padding</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>label.segment.color</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>, <span class='kw'>label.segment.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>label.segment.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label.min.segment.length</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>label.force</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label.max.iter</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>label.nudge.x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>label.nudge.y</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label.xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>label.ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>),
   <span class='kw'>label.direction</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -272,6 +272,13 @@ will be returned. Valid only for objects of class <code>aov</code>, <code>anova<
       <td><p>Number of bootstrap samples for confidence intervals for partial
 eta-squared and omega-squared (Default: <code>500</code>). This argument is relevant
 only for models objects of class <code>aov</code>, <code>anova</code>, and <code>aovlist</code>.</p></td>
+    </tr>
+    <tr>
+      <th>meta.analysis.subtitle</th>
+      <td><p>Logical that decides whether subtitle for
+meta-analysis via linear (mixed-effects) models - as implemented in the
+<code>metafor</code> package - is to be displayed (default: <code>FALSE</code>). If <code>TRUE</code>, input
+to argument <code>subtitle</code> will be ignored.</p></td>
     </tr>
     <tr>
       <th>point.color</th>
@@ -381,7 +388,8 @@ coefficient value.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>The text for the plot subtitle.</p></td>
+      <td><p>The text for the plot subtitle. The input to this argument
+will be ignored if <code>meta.analysis.subtitle</code> is set to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>stats.labels</th>
@@ -498,6 +506,11 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
 (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments to tidying method.</p></td>
     </tr>
@@ -522,14 +535,77 @@ confidence interval whiskers.</p>
 <span class='co'># with custom dataframe</span>
 
 <span class='co'># creating a dataframe</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/tribble'>tribble</a></span>(
-  ~<span class='no'>term</span>, ~<span class='no'>statistic</span>, ~<span class='no'>estimate</span>, ~<span class='no'>conf.low</span>, ~<span class='no'>conf.high</span>, ~<span class='no'>p.value</span>,
-  <span class='st'>"level1"</span>, <span class='fl'>1.33</span>, <span class='fl'>0.542</span>, -<span class='fl'>0.280</span>, <span class='fl'>1.36</span>, <span class='fl'>0.191</span>,
-  <span class='st'>"level2"</span>, <span class='fl'>0.158</span>, <span class='fl'>0.0665</span>, -<span class='fl'>0.778</span>, <span class='fl'>0.911</span>, <span class='fl'>0.875</span>
-)
+<span class='no'>df</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/structure'>structure</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+      <span class='kw'>term</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/structure'>structure</a></span>(
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>4L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>5L</span>),
+        <span class='kw'>.Label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+          <span class='st'>"Africa"</span>,
+          <span class='st'>"Americas"</span>, <span class='st'>"Asia"</span>, <span class='st'>"Europe"</span>, <span class='st'>"Oceania"</span>
+        ),
+        <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"factor"</span>
+      ),
+      <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='fl'>0.382047603321706</span>,
+        <span class='fl'>0.780783111514665</span>,
+        <span class='fl'>0.425607573765058</span>,
+        <span class='fl'>0.558365541235078</span>,
+        <span class='fl'>0.956473848429961</span>
+      ),
+      <span class='kw'>std.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='fl'>0.0465576338644502</span>,
+        <span class='fl'>0.0330218199731529</span>,
+        <span class='fl'>0.0362834986178494</span>,
+        <span class='fl'>0.0480571500648261</span>,
+        <span class='fl'>0.062215818388157</span>
+      ),
+      <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='fl'>8.20590677855356</span>,
+        <span class='fl'>23.6444603038067</span>,
+        <span class='fl'>11.7300588415607</span>,
+        <span class='fl'>11.6187818146078</span>,
+        <span class='fl'>15.3734833553524</span>
+      ),
+      <span class='kw'>conf.low</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='fl'>0.290515146096969</span>,
+        <span class='fl'>0.715841986960399</span>,
+        <span class='fl'>0.354354575031406</span>,
+        <span class='fl'>0.46379116008131</span>,
+        <span class='fl'>0.827446138277154</span>
+      ),
+      <span class='kw'>conf.high</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='fl'>0.473580060546444</span>,
+        <span class='fl'>0.845724236068931</span>,
+        <span class='fl'>0.496860572498711</span>,
+        <span class='fl'>0.652939922388847</span>,
+        <span class='fl'>1.08550155858277</span>
+      ),
+      <span class='kw'>p.value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='fl'>3.28679518728519e-15</span>,
+        <span class='fl'>4.04778497135963e-75</span>,
+        <span class='fl'>7.59757330804449e-29</span>,
+        <span class='fl'>5.45155840151592e-26</span>,
+        <span class='fl'>2.99171217913312e-13</span>
+      ),
+      <span class='kw'>df.residual</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='fl'>394L</span>, <span class='fl'>358L</span>, <span class='fl'>622L</span>,
+        <span class='fl'>298L</span>, <span class='fl'>22L</span>
+      )
+    ),
+    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>),
+    <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='st'>"tbl_df"</span>,
+      <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>
+    )
+  )
 
 <span class='co'># plotting the dataframe</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>df</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>No model diagnostics information available for the object of class </span><span style='color: #BBBB00;'>tbl_df</span><span style='color: #0000BB;'> .
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>df</span>,
+  <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>,
+  <span class='kw'>meta.analysis.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>No model diagnostics information available for the object of class </span><span style='color: #BBBB00;'>tbl_df</span><span style='color: #0000BB;'> .
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

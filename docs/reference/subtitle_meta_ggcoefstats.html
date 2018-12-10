@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prepare subtitle with meta-analysis results — subtitle_meta • ggstatsplot</title>
+<title>Prepare subtitle with meta-analysis results — subtitle_meta_ggcoefstats • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,7 +38,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Prepare subtitle with meta-analysis results — subtitle_meta" />
+<meta property="og:title" content="Prepare subtitle with meta-analysis results — subtitle_meta_ggcoefstats" />
 
 <meta property="og:description" content="Making text subtitle for meta-analysis via linear (mixed-effects)
 models as implemented in the metafor package." />
@@ -167,7 +167,7 @@ models as implemented in the metafor package." />
     <div class="page-header">
     <h1>Prepare subtitle with meta-analysis results</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcoefstats.R'><code>R/helpers_ggcoefstats.R</code></a></small>
-    <div class="hidden name"><code>subtitle_meta.Rd</code></div>
+    <div class="hidden name"><code>subtitle_meta_ggcoefstats.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -177,7 +177,7 @@ models as implemented in the <code>metafor</code> package.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_meta</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_meta_ggcoefstats</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,6 +197,10 @@ and <code>std.error</code> (the standard error of the regression term).</p></td>
       <th>messages</th>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments (ignored).</p></td>
     </tr>
     </table>
     
@@ -221,7 +225,11 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>term</span> <span class='kw'>!=</span> <span class='st'>"(Intercept)"</span>)
 
 <span class='co'># making subtitle</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta.html'>subtitle_meta</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; paste("Meta-analytic effect: ", beta, " = ", "0.619", ", CI"["95%"], 
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_ggcoefstats.html'>subtitle_meta_ggcoefstats</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; paste("Meta-analytic effect: ", beta, " = ", "0.619", ", CI"["95%"], 
 #&gt;     " [", "0.407", ", ", "0.830", "]", ", ", italic("z"), " = ", 
 #&gt;     "5.736", ", ", "se = ", "0.108", ", ", italic("p"), " = ", 
 #&gt;     "&lt; 0.001")</div></pre>

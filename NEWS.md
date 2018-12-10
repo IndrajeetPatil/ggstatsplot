@@ -1,5 +1,13 @@
 # ggstatsplot 0.0.7.9000
 
+NEW FEATURES
+
+  - `ggcoefstats` gains `meta.analysis.subtitle` that can be used to carry out
+    meta-analysis on regression estimates. This especially useful when a
+    dataframe with regression estimates and standard error is available from
+    prior analyses. The `subtitle` is prepared with the new function
+    `subtitle_meta_ggcoefstats` which is also exported.
+  
 # ggstatsplot 0.0.7
 
 BUG FIXES
