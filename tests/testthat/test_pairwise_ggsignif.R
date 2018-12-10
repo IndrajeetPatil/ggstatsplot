@@ -70,13 +70,13 @@ testthat::test_that(
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims, c(6L, 12L))
+    testthat::expect_equal(data_dims, c(3L, 12L))
 
     # checking comparison groups and labels
-    testthat::expect_identical(dat$group1[1], "PG")
-    testthat::expect_identical(dat$group2[1], "NC-17")
-    testthat::expect_identical(dat$groups[[1]], c("PG", "NC-17"))
-    testthat::expect_identical(dat$label[6], "p = 0.482")
+    testthat::expect_identical(dat$group1[1], "PG-13")
+    testthat::expect_identical(dat$group2[1], "R")
+    testthat::expect_identical(dat$groups[[1]], c("PG-13", "R"))
+    testthat::expect_identical(dat$label[3], "p = 0.825")
     testthat::expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
@@ -95,27 +95,24 @@ testthat::test_that(
         p.value = TRUE,
         k = 4
       ),
-      "0.6400"
+      "0.0790"
     )
 
     # checking values
-    testthat::expect_equal(dat$mean.difference[1], -2756.112, tolerance = 1e-3)
-    testthat::expect_equal(dat$mean.difference[6], -3059.195, tolerance = 1e-3)
+    testthat::expect_equal(dat$mean.difference[1], -1904.886, tolerance = 1e-3)
+    testthat::expect_equal(dat$mean.difference[3], -803.034, tolerance = 1e-3)
 
     # checking ggsignif layers
     testthat::expect_equal(ggsignif_stat$y_position[1], 161548.2, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[3], 180460.6, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[6], 208829.1, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$comparisons[[4]], c("PG-13", "NC-17"))
+    testthat::expect_equal(ggsignif_stat$y_position[3], 185188.2, tolerance = 0.01)
+    testthat::expect_equal(ggsignif_stat$y_position[2], 173368.2, tolerance = 0.01)
+    testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("PG-13", "PG"))
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
-        "p = 0.640",
-        "p = 0.063",
-        "p = 0.313",
-        "p = 0.149",
-        "p = 0.995",
-        "p = 0.482"
+        "p = 0.079",
+        "p = 0.139",
+        "p = 0.825"
       )
     )
   }
@@ -150,17 +147,17 @@ testthat::test_that(
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims, c(15L, 7L))
+    testthat::expect_equal(data_dims, c(36L, 7L))
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1[1], "Action")
-    testthat::expect_identical(dat$group2[12], "Romance")
-    testthat::expect_identical(dat$groups[[1]], c("Action", "Animation"))
+    testthat::expect_identical(dat$group2[12], "Comedy Drama")
+    testthat::expect_identical(dat$groups[[1]], c("Action", "Action Comedy"))
     testthat::expect_identical(dat$label[1], "ns")
-    testthat::expect_identical(dat$label[4], "***")
-    testthat::expect_identical(dat$label[15], "***")
-    testthat::expect_identical(dat$p.value.label[15], "p <= 0.001")
-    testthat::expect_identical(dat$p.value.label[6], "p = 0.058")
+    testthat::expect_identical(dat$label[2], "***")
+    testthat::expect_identical(dat$label[15], "ns")
+    testthat::expect_identical(dat$p.value.label[15], "p = 0.147")
+    testthat::expect_identical(dat$p.value.label[6], "p <= 0.001")
     testthat::expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
@@ -179,37 +176,58 @@ testthat::test_that(
         p.value = TRUE,
         k = 4
       ),
-      "0.0577"
+      "< 0.001"
     )
 
     # checking values
-    testthat::expect_equal(dat$W[1], 2.82, tolerance = 0.01)
-    testthat::expect_equal(dat$W[6], -3.37, tolerance = 0.01)
+    testthat::expect_equal(dat$W[1], 2.05, tolerance = 0.01)
+    testthat::expect_equal(dat$W[6], 11.3, tolerance = 0.01)
 
     # checking ggsignif layers
     testthat::expect_equal(ggsignif_stat$y_position[1], 9.327500, tolerance = 0.01)
     testthat::expect_equal(ggsignif_stat$y_position[3], 10.120357, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[15], 14.877500, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$comparisons[[15]], c("Drama", "Romance"))
+    testthat::expect_equal(ggsignif_stat$y_position[15], 14.3, tolerance = 0.01)
+    testthat::expect_equal(ggsignif_stat$comparisons[[15]], c("Action Comedy", "RomCom"))
     testthat::expect_equal(
       ggsignif_stat$annotations,
       c(
         "ns",
+        "***",
+        "**",
         "ns",
+        "***",
+        "***",
+        "***",
+        "**",
+        "*",
+        "*",
         "ns",
+        "***",
+        "***",
         "***",
         "ns",
         "ns",
+        "*",
+        "ns",
+        "*",
+        "ns",
+        "ns",
+        "**",
         "ns",
         "ns",
         "ns",
         "ns",
         "***",
+        "***",
+        "***",
+        "*",
+        "*",
         "ns",
+        "*",
         "ns",
-        "ns",
-        "***"
-      )
+        "***",
+        "*"
+        )
     )
   }
 )
@@ -368,3 +386,4 @@ testthat::test_that(
     )
   }
 )
+
