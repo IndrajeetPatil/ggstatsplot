@@ -68,6 +68,10 @@
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
 #' @param outlier.label Label to put on the outliers that have been tagged.
+#' @param outlier.shape Hiding the outliers can be achieved by setting
+#'   outlier.shape = NA. Importantly, this does not remove the outliers,
+#'   it only hides them, so the range calculated for the y-axis will be
+#'   the same with outliers shown and outliers hidden.
 #' @param outlier.label.color Color for the label to to put on the outliers that
 #'   have been tagged (Default: `"black"`).
 #' @param outlier.coef Coefficient for outlier detection using Tukey's method.
@@ -142,10 +146,10 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -155,7 +159,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -211,6 +215,7 @@ ggbetweenstats <- function(data,
                            notchwidth = 0.5,
                            linetype = "solid",
                            outlier.tagging = FALSE,
+                           outlier.shape = 19,
                            outlier.label = NULL,
                            outlier.label.color = "black",
                            outlier.color = "black",
@@ -334,17 +339,17 @@ ggbetweenstats <- function(data,
     # adding a boxplot
     if (isTRUE(outlier.tagging)) {
       plot <- plot +
-        ggplot2::geom_boxplot(
-          notch = notch,
-          notchwidth = notchwidth,
-          linetype = linetype,
-          width = 0.3,
-          alpha = 0.2,
-          fill = "white",
-          position = ggplot2::position_dodge(width = NULL),
-          na.rm = TRUE,
-          outlier.color = outlier.color
-        ) +
+#        ggplot2::geom_boxplot(
+#          notch = notch,
+#          notchwidth = notchwidth,
+#          linetype = linetype,
+#          width = 0.3,
+#          alpha = 0.2,
+#          fill = "white",
+#          position = ggplot2::position_dodge(width = NULL),
+#          na.rm = TRUE,
+#          outlier.color = outlier.color
+#        ) +
         ggplot2::stat_boxplot(
           notch = notch,
           notchwidth = notchwidth,
@@ -353,7 +358,7 @@ ggbetweenstats <- function(data,
           width = 0.3,
           alpha = 0.2,
           fill = "white",
-          outlier.shape = 16,
+          outlier.shape = outlier.shape,
           outlier.size = 3,
           outlier.alpha = 0.7,
           coef = outlier.coef,
@@ -368,6 +373,7 @@ ggbetweenstats <- function(data,
           width = 0.3,
           alpha = 0.2,
           fill = "white",
+          outlier.shape = NA,
           position = ggplot2::position_dodge(width = NULL),
           na.rm = TRUE
         )
