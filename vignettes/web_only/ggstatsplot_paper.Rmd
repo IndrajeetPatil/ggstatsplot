@@ -97,7 +97,7 @@ ggstatsplot::ggbetweenstats(
   pairwise.comparisons = TRUE,
   pairwise.annotation = "asterisk",
   p.adjust.method = "bonferroni",
-  ggtheme = hrbrthemes::theme_ipsum_tw(),
+  palette = "Set3",
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
   outlier.label = title,
@@ -130,8 +130,7 @@ ggstatsplot::ggpiestats(
     italic("MPAA"), ": Motion Picture Association of America"
   )),
   bf.message = TRUE,
-  package = "ggsci",
-  palette = "default_jama",
+  palette = "Paired",
   messages = FALSE
 )
 ```
