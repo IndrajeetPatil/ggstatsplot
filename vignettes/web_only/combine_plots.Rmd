@@ -223,9 +223,5 @@ If you find any bugs or have any suggestions/remarks, please file an issue on `G
 
 # Session Information
 
-Summarizing session information for reproducibility.
-
-```{r session_info, eval = TRUE}
-options(width = 200)
-devtools::session_info()
-```
+For details, see-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>

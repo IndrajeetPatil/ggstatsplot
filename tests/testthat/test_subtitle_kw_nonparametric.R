@@ -21,7 +21,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           "Kruskal-Wallis: ",
-          italic(chi) ^ 2,
+          italic(chi)^2,
           "(",
           8L,
           ") = ",
@@ -31,7 +31,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          eta["H"] ^ 2,
+          eta["H"]^2,
           " = ",
           "0.21331",
           ", CI"["95%"],

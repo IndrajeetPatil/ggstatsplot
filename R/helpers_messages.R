@@ -22,10 +22,10 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#' 
+#'
 #' # message
 #' normality_message(x = datasets::anscombe$x1)
-#' 
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -44,8 +44,7 @@ normality_message <- function(x,
     lab <- "x"
   }
 
-  # for SW test of normality, sample size must be greater than 3 and less than
-  # 5000
+  # works only if sample size is greater than 3 and less than 5000
   if (length(x) > 3 && length(x) < 5000) {
 
     # test object
@@ -106,7 +105,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -114,7 +113,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,
@@ -246,7 +245,7 @@ grouped_message <- function() {
 #'   min_length = 20
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body

@@ -4,7 +4,7 @@
 \name{movies_long}
 \alias{movies_long}
 \title{Movie information and user ratings from IMDB.com (long format).}
-\format{A data frame with 2433 rows and 8 variables
+\format{A data frame with 1,579 rows and 8 variables
 \itemize{
 \item title.  Title of the movie.
 \item year.  Year of release.
@@ -36,11 +36,13 @@ information imdb.com can be found online,
 the data collection process,
 \url{http://imdb.com/help/show_leaf?infosource}.
 
-Movies were selected for inclusion if they had a known length and had been
-rated by at least one imdb user.
+Movies were are identical to those selected for inclusion in movies_wide but this
+dataset has been constructed such that every movie appears in one and only one
+genre category.
 }
 \examples{
 dim(movies_long)
 head(movies_long)
+dplyr::glimpse(movies_long)
 }
 \keyword{datasets}

@@ -73,7 +73,8 @@ library(ggpomological)
 # plot
 ggpomological::paint_pomological(
   pomo_gg = ggstatsplot::ggbetweenstats(
-    data = ggstatsplot::movies_long,
+    data = dplyr::filter(.data = ggstatsplot::movies_long,
+                         genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")), 
     x = genre,
     y = rating,
     messages = FALSE,

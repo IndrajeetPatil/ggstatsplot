@@ -12,7 +12,7 @@ movies_wide <-
   dplyr::filter(.data = ., mpaa != "", mpaa != "NC-17") %>% # removing movies without mpaa ratings & NC-17
   dplyr::filter(.data = ., Short != 1, Documentary != 1) %>% # removing Shorts and Documentaries
   dplyr::select(.data = ., -c(Short, Documentary)) %>% # remove the now useless columns
-  stats::na.omit(.) %>%                                 # removing NAs
+  stats::na.omit(.) %>% # removing NAs
   dplyr::mutate(.data = ., budget = budget / 1000000) %>% # convert the budget to millions of dollars
   dplyr::mutate(.data = ., mpaa = factor(mpaa)) %>% # convert mpaa rating to a factor
   dplyr::mutate(.data = ., NumGenre = as.integer(rowSums(select(., Action:Romance)))) %>% # calculate number of genres a film appears in
@@ -52,4 +52,3 @@ readr::write_csv(x = movies_wide, path = "data-raw/movies_wide.csv")
 base::save(movies_wide, file = "data/movies_wide.rdata")
 readr::write_csv(x = movies_long, path = "data-raw/movies_long.csv")
 base::save(movies_long, file = "data/movies_long.rdata")
-

@@ -38,6 +38,9 @@ with details from the statistical tests in the subtitle.
 \item \code{\link[ggstatsplot]{gghistostats}} function to produce histogram
 for a single variable with results from one sample test displayed in the
 subtitle.
+\item \code{\link[ggstatsplot]{ggdotplotstats}} function to produce
+Cleveland-style dot plots/charts for a single variable with labels and
+results from one sample test displayed in the subtitle.
 \item \code{\link[ggstatsplot]{ggcorrmat}} function to visualize the
 correlation matrix.
 \item \code{\link[ggstatsplot]{ggcoefstats}} function to visualize

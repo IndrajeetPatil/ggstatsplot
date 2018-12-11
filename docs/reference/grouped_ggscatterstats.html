@@ -558,7 +558,7 @@ combining (plot, caption).</p></dd>
 </div></span><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html'>grouped_ggscatterstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
     <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/movies_long.html'>movies_long</a></span>,
-    <span class='no'>rating</span> <span class='kw'>==</span> <span class='fl'>8</span>,
+    <span class='no'>rating</span> <span class='kw'>==</span> <span class='fl'>7</span>,
     <span class='no'>genre</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Drama"</span>, <span class='st'>"Comedy"</span>)
   ),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>budget</span>,
@@ -568,7 +568,7 @@ combining (plot, caption).</p></dd>
   <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='st'>"title"</span>,
   <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Genre"</span>,
-  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"All movies have IMDB rating greater than 8."</span>
+  <span class='kw'>caption.text</span> <span class='kw'>=</span> <span class='st'>"All movies have IMDB rating equal to 7."</span>
 )</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plots
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggscatterstats-3.png' alt='' width='700' height='433' /></div></span></pre>

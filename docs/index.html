@@ -187,7 +187,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--12--09-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--12--11-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://sites.google.com/site/indrajeetspatilmorality/"><img src="https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0" alt="author"></a></td>
 </tr>
 <tr class="even">
@@ -331,7 +331,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002db43e48&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002e3b27e0&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -427,8 +427,8 @@
 <a class="sourceLine" id="cb10-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb10-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">                       <span class="op">!</span>genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Animation"</span>, <span class="st">"Documentary"</span>)),</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">                       genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)), </a>
 <a class="sourceLine" id="cb10-11" data-line-number="11">  <span class="dt">x =</span> mpaa, </a>
 <a class="sourceLine" id="cb10-12" data-line-number="12">  <span class="dt">y =</span> length,</a>
 <a class="sourceLine" id="cb10-13" data-line-number="13">  <span class="dt">grouping.var =</span> genre,             <span class="co"># grouping variable</span></a>
@@ -532,7 +532,7 @@
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb14-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
-<a class="sourceLine" id="cb14-7" data-line-number="7">                       <span class="op">!</span>genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Animation"</span>, <span class="st">"Documentary"</span>)), </a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">                       genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)),</a>
 <a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="dt">x =</span> rating, </a>
 <a class="sourceLine" id="cb14-9" data-line-number="9">  <span class="dt">y =</span> length,</a>
 <a class="sourceLine" id="cb14-10" data-line-number="10">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,               <span class="co"># display bayes factor message</span></a>
@@ -698,7 +698,7 @@
 <a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb21-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb21-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
-<a class="sourceLine" id="cb21-7" data-line-number="7">                       <span class="op">!</span>genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Animation"</span>, <span class="st">"Documentary"</span>)), </a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">                       genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)),</a>
 <a class="sourceLine" id="cb21-8" data-line-number="8">  <span class="dt">x =</span> budget,</a>
 <a class="sourceLine" id="cb21-9" data-line-number="9">  <span class="dt">xlab =</span> <span class="st">"Movies budget (in million US$)"</span>,</a>
 <a class="sourceLine" id="cb21-10" data-line-number="10">  <span class="dt">type =</span> <span class="st">"robust"</span>,                 <span class="co"># use robust location measure   </span></a>

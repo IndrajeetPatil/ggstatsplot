@@ -109,13 +109,14 @@ testthat::test_that(
     # plot build
     pb <- ggplot2::ggplot_build(p)
 
-    # checking dimensions of data
-    data_dims <- ggplot2::layer_data(p) %>%
-      tibble::as_tibble(x = .) %>%
-      dim(.)
-
     # dataframe used for visualization
-    testthat::expect_equal(data_dims, c(51L, 13L))
+    testthat::expect_equal(dim(pb$data[[1]]), c(51L, 13L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 22L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(4L, 25L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(2048L, 20L))
+    testthat::expect_equal(dim(pb$data[[5]]), c(7L, 15L))
+    testthat::expect_equal(dim(pb$data[[6]]), c(4L, 12L))
+    testthat::expect_equal(dim(pb$data[[7]]), c(4L, 15L))
 
     # data from difference layers
     testthat::expect_equal(length(pb$data), 7L)

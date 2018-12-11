@@ -227,7 +227,7 @@ testthat::test_that(
         "ns",
         "***",
         "*"
-        )
+      )
     )
   }
 )
@@ -386,4 +386,3 @@ testthat::test_that(
     )
   }
 )
-

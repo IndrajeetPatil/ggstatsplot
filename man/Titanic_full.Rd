@@ -31,5 +31,6 @@ This is a modified dataset from \code{datasets} package.
 \examples{
 dim(Titanic_full)
 head(Titanic_full)
+dplyr::glimpse(Titanic_full)
 }
 \keyword{datasets}

@@ -4,17 +4,19 @@
 \name{movies_wide}
 \alias{movies_wide}
 \title{Movie information and user ratings from IMDB.com (wide format).}
-\format{A data frame with 1813 rows and 14 variables
+\format{A data frame with 1,579 rows and 13 variables
 \itemize{
 \item title.  Title of the movie.
 \item year.  Year of release.
-\item budget.  Total budget (if known) in US dollars
+\item budget.  Total budget in millions of US dollars
 \item length.  Length in minutes.
 \item rating.  Average IMDB user rating.
 \item votes.  Number of IMDB users who rated this movie.
 \item mpaa.  MPAA rating.
 \item action, animation, comedy, drama, documentary, romance, short. Binary
 variables representing if movie was classified as belonging to that genre.
+\item NumGenre.  The number of different genres a film was classified in an
+integer between one and four
 }}
 \source{
 \url{https://CRAN.R-project.org/package=ggplot2movies}
@@ -30,17 +32,19 @@ Modified dataset from \code{ggplot2movies} package.
 
 The internet movie database, \url{http://imdb.com/}, is a website devoted
 to collecting movie data supplied by studios and fans.  It claims to be the
-biggest movie database on the web and is run by amazon.  More about
-information imdb.com can be found online,
+biggest movie database on the web and is run by amazon.  More information
+about imdb.com can be found online,
 \url{http://imdb.com/help/show_leaf?about}, including information about
 the data collection process,
 \url{http://imdb.com/help/show_leaf?infosource}.
 
 Movies were selected for inclusion if they had a known length and had been
-rated by at least one imdb user.
+rated by at least one imdb user.  Small categories such as documentaries
+and NC-17 movies were removed.
 }
 \examples{
 dim(movies_wide)
 head(movies_wide)
+dplyr::glimpse(movies_wide)
 }
 \keyword{datasets}

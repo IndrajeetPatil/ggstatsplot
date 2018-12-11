@@ -290,8 +290,8 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_ggbetweenstats(
-  data = dplyr::filter(.data = ggstatsplot::movies_long, 
-                       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")),
+  data = dplyr::filter(.data = ggstatsplot::movies_long,
+                       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")), 
   x = mpaa, 
   y = length,
   grouping.var = genre,             # grouping variable
@@ -929,7 +929,7 @@ settings, chosen to make the graphs more readable or aesthetically pleasing.
 Let's see an example with `gghistostats` and see how a certain theme from
 `hrbrthemes` package looks with and without the `ggstatsplot` layer.
 
-```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 12}
+```{r theme_ggstatsplot, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 13}
 # to use hrbrthemes themes, first make sure you have all the necessary fonts
 library(hrbrthemes)
 # extrafont::ttf_import()

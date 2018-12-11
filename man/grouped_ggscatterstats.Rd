@@ -276,7 +276,7 @@ ggstatsplot::grouped_ggscatterstats(
 ggstatsplot::grouped_ggscatterstats(
   data = dplyr::filter(
     .data = ggstatsplot::movies_long,
-    rating == 8,
+    rating == 7,
     genre \%in\% c("Drama", "Comedy")
   ),
   x = budget,
@@ -286,7 +286,7 @@ ggstatsplot::grouped_ggscatterstats(
   label.var = "title",
   marginal = FALSE,
   title.prefix = "Genre",
-  caption.text = "All movies have IMDB rating greater than 8."
+  caption.text = "All movies have IMDB rating equal to 7."
 )
 }
 }

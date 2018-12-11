@@ -87,7 +87,8 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggbetweenstats(
-  data = dplyr::sample_frac(ggstatsplot::movies_long, size = 0.5),
+  data = dplyr::filter(.data = ggstatsplot::movies_long,
+                       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")), 
   x = genre,
   y = rating,
   title = "Figure-1: IMDB rating by film genre",
@@ -95,9 +96,8 @@ ggstatsplot::ggbetweenstats(
   ylab = "IMDB rating (average)",
   bf.message = TRUE,
   pairwise.comparisons = TRUE,
-  pairwise.annotation = "asterisk",
   p.adjust.method = "bonferroni",
-  palette = "Set3",
+  ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE,
   outlier.tagging = TRUE,
   outlier.label = title,

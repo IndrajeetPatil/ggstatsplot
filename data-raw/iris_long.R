@@ -24,6 +24,7 @@ iris_long <- datasets::iris %>%
   tidyr::separate(
     col = "condition",
     into = c("attribute", "measure"),
+    remove = FALSE,
     sep = "\\.",
     convert = TRUE
   ) %>% # converting column types
@@ -45,4 +46,4 @@ dplyr::glimpse(x = iris_long)
 
 # saving the files
 readr::write_csv(x = iris_long, path = "data-raw/iris_long.csv")
-base::save(iris_long, file = "data/iris_long.rdata", version = 2)
+base::save(iris_long, file = "data/iris_long.rdata")

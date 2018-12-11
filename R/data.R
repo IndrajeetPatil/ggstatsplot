@@ -34,6 +34,7 @@
 #' @examples
 #' dim(movies_wide)
 #' head(movies_wide)
+#' dplyr::glimpse(movies_wide)
 "movies_wide"
 
 #' @title Movie information and user ratings from IMDB.com (long format).
@@ -70,6 +71,7 @@
 #' @examples
 #' dim(movies_long)
 #' head(movies_long)
+#' dplyr::glimpse(movies_long)
 "movies_long"
 
 #' @title Titanic dataset.
@@ -94,6 +96,7 @@
 #' @examples
 #' dim(Titanic_full)
 #' head(Titanic_full)
+#' dplyr::glimpse(Titanic_full)
 "Titanic_full"
 
 #' @title Moral judgments about third-party moral behavior.
@@ -135,6 +138,7 @@
 #' @examples
 #' dim(intent_morality)
 #' head(intent_morality)
+#' dplyr::glimpse(intent_morality)
 "intent_morality"
 
 #' @title Edgar Anderson's Iris Data in long format.
@@ -151,6 +155,9 @@
 #'   \item id. Dummy identity number for each flower (150 flowers in total).
 #'   \item Species.	The species are *Iris setosa*, *versicolor*, and
 #'   *virginica*.
+#'   \item condition. Factor giving a detailed description of the attribute
+#'   (Four levels: `"Petal.Length"`, `"Petal.Width"`,  `"Sepal.Length"`,
+#'   `"Sepal.Width"`).
 #'   \item attribute.	What attribute is being measured (`"Sepal"` or `"Pepal"`).
 #'   \item measure.	What aspect of the attribute is being measured (`"Length"`
 #'   or `"Width"`).
@@ -163,4 +170,5 @@
 #' @examples
 #' dim(iris_long)
 #' head(iris_long)
+#' dplyr::glimpse(iris_long)
 "iris_long"
