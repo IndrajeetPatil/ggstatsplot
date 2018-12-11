@@ -73,8 +73,8 @@ itself.
 ## omnibus ANOVA (`aov`)
 
 For this analysis, let's use the `movies_long` dataset, which provides
-information about IMDB ratings, budget, length, MPAA ratings (e.g., R-rated,
-NC-17, PG-13, etc.), and genre for a number of movies. Let's say our hypothesis
+information about IMDB ratings, budget, length, MPAA ratings (R-rated,
+PG, or PG-13), and genre for a number of movies. Let's say our hypothesis
 is that the IMDB ratings for a movie are predicted by a multiplicative effect of
 the genre and the MPAA rating it got. Let's carry out an omnibus
 ANOVA to see if this is the case.
@@ -195,23 +195,24 @@ ggstatsplot::ggcoefstats(x = car::Anova(mod, type = "III"))
 
 ## linear model (`lm`)
 
-Now that we have figured out that the movie `genre` best explains a fair deal of
-variation in how good people rate the movie to be on IMDB. Let's run a linear
-regression model to see how different types of genres compare with each other-
+Now that we have figured out that the movie's `genre` explains a fair amount of
+the variation in how people rate the movie on IMDB, let's run a linear
+regression model to see how different types of genres compare with each other
+using **Action** movies as our comparison point.
 
 ```{r lm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
-# let's check all the levels for the genre variable
-levels(ggstatsplot::movies_long$genre)
-
-# to speed up the calculation, let's use only 10% of the data
-movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
-
 # plot
 ggstatsplot::ggcoefstats(
   x = stats::lm(
     formula = rating ~ genre,
-    data = movies_10
-  ),
+    data = dplyr::filter(.data = ggstatsplot::movies_long, 
+                         genre %in% c("Action", 
+                                      "Action Comedy", 
+                                      "Action Drama", 
+                                      "Comedy", 
+                                      "Drama", 
+                                      "Comedy Drama"))
+    ),
   conf.level = 0.99,                      # changing the confidence levels for confidence intervals
   sort = "ascending",                     # sorting the terms of the model based on estimate values
   label.direction = "both",               # direction in which to adjust position of labels (both x and y)
@@ -222,16 +223,12 @@ ggstatsplot::ggcoefstats(
 ) +                                    
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
-  ggplot2::scale_y_discrete(labels = c("Comedy", "Romance", "Documentary", "Animation", "Drama")) +
-  ggplot2::labs(y = "genre (comparison level: Action)") +
+  ggplot2::scale_y_discrete(labels = c("Comedy", "Action Comedy", "Action Drama", "Comedy Drama", "Drama")) +
+  ggplot2::labs(y = "Genre compared to Action movies)") +
   ggplot2::theme(axis.title.y = ggplot2::element_text(size = 14, face = "bold"))
 ```
 
-As can be seen from the regression coefficients, compared to the action movies,
-only romantic movies, animated movies, and dramas fare better with the
-audiences. Also, note that the coefficient for `"Drama"` is statistically
-significant (`*p* = 0.04`), but the confidence interval contains `0`. This is
-because we set the confidence interval to `0.99`.
+As can be seen from the regression coefficients, compared to action movies, comedies and action comedies are not rated significantly better. All three of the "drama" types (pure, action or comedy dramas) have statistical significantly higher regression coefficients.  This finding occurs even with our more conservative  `0.99` confidence interval.
 
 ## linear mixed-effects model (`lmer`)
 
