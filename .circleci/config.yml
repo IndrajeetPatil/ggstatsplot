@@ -50,7 +50,7 @@ defaults: &steps
         command: |
           Rscript \
             -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")' \
-            -e 'devtools::install_deps(dependencies = TRUE, upgrade = FALSE, type = "source", quiet = TRUE)'
+            -e 'devtools::install_deps(dependencies = TRUE, upgrade = FALSE, type = "source")'
 
     ## build and test -----------------
 
