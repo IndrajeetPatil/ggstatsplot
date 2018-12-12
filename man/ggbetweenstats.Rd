@@ -16,7 +16,7 @@ ggbetweenstats(data, x, y, plot.type = "boxviolin",
   conf.level = 0.95, nboot = 100, tr = 0.1, mean.label.size = 3,
   mean.label.fontface = "bold", mean.label.color = "black",
   notch = FALSE, notchwidth = 0.5, linetype = "solid",
-  outlier.tagging = FALSE, outlier.label = NULL,
+  outlier.tagging = FALSE, outlier.shape = 19, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
@@ -144,6 +144,11 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
+
+\item{outlier.shape}{Hiding the outliers can be achieved by setting
+outlier.shape = NA. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the y-axis will be
+the same with outliers shown and outliers hidden.}
 
 \item{outlier.label}{Label to put on the outliers that have been tagged.}
 
