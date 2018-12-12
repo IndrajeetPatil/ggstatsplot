@@ -48,7 +48,6 @@ r_binary_packages:
   - psych
   - git2r
   - data.table
-  - Rmpfr
 
 r_packages:
   - rlang

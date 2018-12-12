@@ -7,6 +7,11 @@ NEW FEATURES
     dataframe with regression estimates and standard error is available from
     prior analyses. The `subtitle` is prepared with the new function
     `subtitle_meta_ggcoefstats` which is also exported.
+
+MINOR CHANGES
+
+  - Confidence interval for Kendall's W is now computed using
+    `stats::kruskal.test`. As a result, `PMCMRplus` removed from dependencies.
   
 # ggstatsplot 0.0.7
 
