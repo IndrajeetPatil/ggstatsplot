@@ -111,37 +111,36 @@ testthat::test_that(
 
     # dataframe used for visualization
     testthat::expect_equal(dim(pb$data[[1]]), c(51L, 13L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 22L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(4L, 25L))
-    testthat::expect_equal(dim(pb$data[[4]]), c(2048L, 20L))
-    testthat::expect_equal(dim(pb$data[[5]]), c(7L, 15L))
-    testthat::expect_equal(dim(pb$data[[6]]), c(4L, 12L))
-    testthat::expect_equal(dim(pb$data[[7]]), c(4L, 15L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 25L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 20L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(7L, 15L))
+    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 12L))
+    testthat::expect_equal(dim(pb$data[[6]]), c(4L, 15L))
 
     # data from difference layers
-    testthat::expect_equal(length(pb$data), 7L)
-    testthat::expect_equal(pb$data[[5]]$x, c(2L, 2L, 1L, 4L, 2L, 1L, 3L))
+    testthat::expect_equal(length(pb$data), 6L)
+    testthat::expect_equal(pb$data[[5]]$x, c(1L, 2L, 3L, 4L))
     testthat::expect_equal(pb$data[[5]]$y,
-      c(4.603, 0.655, 0.325, 1.320, 5.712, 0.157, 0.081),
+      c(0.07925556, 0.62159750, 0.02155000, 0.14573118),
       tolerance = 0.001
     )
 
     # checking displayed outlier labels
-    outlier.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
+#    outlier.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
 
-    testthat::expect_equal(length(outlier.labels), 7L)
-    testthat::expect_identical(
-      outlier.labels,
-      c(
-        "Asian elephant",
-        "Horse",
-        "Gray seal",
-        "Human",
-        "African elephant",
-        "Jaguar",
-        "Giant armadillo"
-      )
-    )
+#    testthat::expect_equal(length(outlier.labels), 0L)
+#    testthat::expect_identical(
+#      outlier.labels,
+#      c(
+#        "Asian elephant",
+#        "Horse",
+#        "Gray seal",
+#        "Human",
+#        "African elephant",
+#        "Jaguar",
+#        "Giant armadillo"
+#      )
+#    )
 
     # range of data
     y_range <- ggplot2::layer_scales(p)$y$range$range
@@ -227,7 +226,7 @@ testthat::test_that(
 
     # checking displayed mean labels
     testthat::expect_identical(
-      pb$data[[7]]$label,
+      pb$data[[6]]$label,
       c(
         "2.290, 95% CI [1.907, 2.673]",
         "3.120, 95% CI [2.787, 3.453]",
@@ -236,7 +235,7 @@ testthat::test_that(
     )
 
     testthat::expect_identical(
-      pb$data[[5]]$label,
+      pb$data[[4]]$label,
       c(
         "Cadillac Fleetwood",
         "Lincoln Continental",
@@ -337,3 +336,4 @@ testthat::test_that(
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
   }
 )
+

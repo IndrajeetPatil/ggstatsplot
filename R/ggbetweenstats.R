@@ -361,6 +361,7 @@ ggbetweenstats <- function(data,
           outlier.shape = outlier.shape,
           outlier.size = 3,
           outlier.alpha = 0.7,
+          outlier.color = outlier.color,
           coef = outlier.coef,
           na.rm = TRUE
         )
