@@ -52,7 +52,6 @@ Imports:
     magrittr (>= 1.5),
     metafor (>= 2.0-0),
     paletteer (>= 0.1.0),
-    PMCMRplus (>= 1.4.1),
     psych (>= 1.8.10),
     purrr (>= 0.2.5),
     purrrlyr (>= 0.0.3),

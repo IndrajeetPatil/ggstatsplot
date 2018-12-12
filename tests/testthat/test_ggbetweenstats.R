@@ -336,6 +336,7 @@ testthat::test_that(
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
   }
 )
+
   # checking if plot.type argument works --------------------------------------
 
 testthat::test_that(
@@ -386,6 +387,7 @@ testthat::test_that(
     testthat::expect_null(p1$labels$subtitle, NULL)
     testthat::expect_null(p2$labels$subtitle, NULL)
     testthat::expect_identical(length(pb1$data), 5L)
+
     testthat::expect_identical(length(pb2$data), 3L)
     testthat::expect_identical(
       unique(pb1$data[[1]]$colour),
