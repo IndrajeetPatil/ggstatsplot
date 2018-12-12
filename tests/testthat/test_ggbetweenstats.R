@@ -337,7 +337,11 @@ testthat::test_that(
   }
 )
 
+<<<<<<< HEAD
 # checking if plot.type argument works --------------------------------------
+=======
+  # checking if plot.type argument works --------------------------------------
+>>>>>>> e7fb3ea4a5d8be7fe9194809f119577c6ee8b405
 
 testthat::test_that(
   desc = "checking if plot.type argument works",
@@ -386,7 +390,12 @@ testthat::test_that(
     # tests for labels
     testthat::expect_null(p1$labels$subtitle, NULL)
     testthat::expect_null(p2$labels$subtitle, NULL)
+<<<<<<< HEAD
     testthat::expect_identical(length(pb1$data), 6L)
+=======
+    testthat::expect_identical(length(pb1$data), 5L)
+
+>>>>>>> e7fb3ea4a5d8be7fe9194809f119577c6ee8b405
     testthat::expect_identical(length(pb2$data), 3L)
     testthat::expect_identical(
       unique(pb1$data[[1]]$colour),
@@ -407,6 +416,7 @@ testthat::test_that(
 
     # tests for data
     testthat::expect_equal(dim(pb1$data[[1]]), c(60L, 13L))
+<<<<<<< HEAD
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 22L))
     testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 25L))
     testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 15L))
@@ -421,6 +431,21 @@ testthat::test_that(
     testthat::expect_identical(pb1$data[[4]]$colour[1], "black")
     testthat::expect_identical(pb1$data[[5]]$colour[1], "darkgreen")
     testthat::expect_identical(pb1$data[[6]]$colour[1], "blue")
+=======
+    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 15L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
+    testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 15L))
+    testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
+#    testthat::expect_equal(pb1$data[[4]]$y, pb1$data[[3]]$label, tolerance = 0.001)
+#    testthat::expect_identical(
+#      as.character(round(pb1$data[[5]]$y, 2)),
+#      pb1$data[[6]]$label
+#    )
+    testthat::expect_identical(pb1$data[[3]]$colour[1], "black")
+    testthat::expect_identical(pb1$data[[4]]$colour[1], "darkgreen")
+    testthat::expect_identical(pb1$data[[5]]$colour[1], "blue")
+>>>>>>> e7fb3ea4a5d8be7fe9194809f119577c6ee8b405
 
     testthat::expect_equal(dim(pb2$data[[1]]), c(60L, 13L))
     testthat::expect_equal(dim(pb2$data[[2]]), c(1024L, 20L))
