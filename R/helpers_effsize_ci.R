@@ -758,7 +758,7 @@ robcor_ci <- function(data,
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
-#' @importFrom PMCMRplus kruskalTest
+#' @importFrom stats kruskal.test
 #' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
 #'
@@ -797,19 +797,24 @@ kw_eta_h_ci <- function(data,
       dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
       tibble::as_tibble(x = .)
 
+    # no. of levels (parameter; k)
+    parameter <- length(levels(as.factor(data$x)))
+
+    # no. of observations (n)
+    sample_size <- nrow(data)
+
     # running the function
     fit <-
-      PMCMRplus::kruskalTest(
+      stats::kruskal.test(
         formula = y ~ x,
-        data = data,
-        dist = "KruskalWallis"
+        data = data
       )
 
     # calculating the eta-squared estimate using the H-statistic
     # ref. http://www.tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
     effsize <-
-      (fit$statistic[[1]] - fit$parameter[[1]] + 1) /
-        (fit$parameter[[3]] - fit$parameter[[1]])
+      (fit$statistic[[1]] - parameter + 1) /
+        (sample_size - parameter)
 
     # return the value of interest: effect size
     return(effsize[[1]])

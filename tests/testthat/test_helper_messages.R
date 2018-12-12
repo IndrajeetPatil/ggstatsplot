@@ -6,6 +6,8 @@ context(desc = "helper_messages")
 testthat::test_that(
   desc = "grouped_message is working",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_output(
       ggstatsplot:::grouped_message(),
       "Warning: Individual plots in the combined",
@@ -19,6 +21,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "effsize_ci_message is working",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_output(
       ggstatsplot:::effsize_ci_message(),
       "CI for effect size estimate was computed with",
@@ -39,6 +43,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcorrmat_matrix_message is working",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_output(
       ggstatsplot:::ggcorrmat_matrix_message(),
       "the upper triangle: p-values adjusted for multiple comparisons",
@@ -52,6 +58,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "palette_message is working",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_output(
       ggstatsplot:::palette_message(
         package = "RColorBrewer",
@@ -69,6 +77,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "normality_message is working",
   code = {
+    testthat::skip_on_cran()
+
     # message
     testthat::expect_output(
       ggstatsplot::normality_message(x = iris$Sepal.Length, k = 4),
@@ -96,6 +106,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "bartlett_message is working",
   code = {
+    testthat::skip_on_cran()
+
     # message
     testthat::expect_output(
       ggstatsplot::bartlett_message(data = morley, x = Expt, y = Speed, k = 4),
