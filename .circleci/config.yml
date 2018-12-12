@@ -1,0 +1,147 @@
+defaults: &steps
+  steps:
+    - checkout
+
+    ## insert dummy data -----------------------------------
+
+    - run:
+        name: Install PostgreSQL CLI
+        command: apt-get install -y postgresql-client
+    - run:
+        name: Install dockerize
+        command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+        environment:
+          DOCKERIZE_VERSION: v0.3.0
+    - run:
+        name: Wait for db
+        command: dockerize -wait tcp://localhost:5432 -timeout 1m
+    - run:
+        name: Load dummy data
+        command: |
+          time_limit="$(date --date='+120 seconds' +%s)"
+          while ! psql -h localhost -p 5432 -U postgres --dbname postgres -c "CREATE DATABASE test;"; do
+            echo "Retry creating a database for testing once more..."
+            sleep 1
+            if [ "$(date +%s)" -gt "$time_limit" ]; then
+              echo "Timeout!"
+              exit 10
+            fi
+          done
+          zcat .circleci/pg_dump.sql.gz | psql -h localhost -p 5432 -U postgres --dbname postgres
+        environment:
+          PGPASSWORD: postgres
+
+
+    ## setup -------------------------------
+
+    - run:
+        name: Set environmental variables
+        command: |
+          Rscript --vanilla \
+            -e 'dsc <- read.dcf("DESCRIPTION")' \
+            -e 'cat(sprintf("export PKG_TARBALL=%s_%s.tar.gz\n", dsc[,"Package"], dsc[,"Version"]))' \
+            -e 'cat(sprintf("export RCHECK_DIR=%s.Rcheck\n", dsc[,"Package"]))' \
+            >> ${BASH_ENV}
+
+    ## install dependencies ------------------
+
+    - run:
+        name: Install devtools and dependencies
+        command: |
+          Rscript \
+            -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")' \
+            -e 'devtools::install_deps(dependencies = TRUE)'
+
+    ## build and test -----------------
+
+    - run:
+        name: Build package
+        command: R CMD build .
+
+    - run:
+        name: Check package
+        command: R CMD check "${PKG_TARBALL}" --as-cran --no-manual
+    - run:
+        name: Check failures
+        command: |
+          Rscript -e "message(devtools::check_failures(path = '${RCHECK_DIR}'))"
+          # warnings are errors
+          # - run: if grep -q -R "WARNING" "${RCHECK_DIR}/00check.log"; then exit 1; fi
+
+    ## store artifacts -----------------
+
+    - run:
+        command: mv ${RCHECK_DIR} /tmp/Rcheck
+        when: always
+    - store_artifacts:
+        path: /tmp/Rcheck
+        when: always
+
+version: 2
+jobs:
+   "r-release":
+     docker:
+       - image: rocker/tidyverse:latest
+
+       - image: redis:3.0-alpine
+
+       - image: postgres:9.5.6-alpine
+
+       - image: redash/redash:latest
+         command: [server]
+         environment:
+           PYTHONUNBUFFERED: 0
+           REDASH_LOG_LEVEL: "INFO"
+           REDASH_REDIS_URL: "redis://localhost:6379/0"
+           REDASH_DATABASE_URL: "postgresql://postgres@localhost/postgres"
+           REDASH_COOKIE_SECRET: veryverysecret
+           REDASH_WEB_WORKERS: 4
+
+       - image: redash/redash:latest
+         command: [scheduler]
+         environment:
+           PYTHONUNBUFFERED: 0
+           REDASH_LOG_LEVEL: "INFO"
+           REDASH_REDIS_URL: "redis://localhost:6379/0"
+           REDASH_DATABASE_URL: "postgresql://postgres@localhost/postgres"
+           QUEUES: "queries,scheduled_queries,celery"
+           WORKERS_COUNT: 2
+
+     <<: *steps
+
+   "r-devel":
+     docker:
+       - image: rocker/tidyverse:devel
+
+       - image: redis:3.0-alpine
+
+       - image: postgres:9.5.6-alpine
+
+       - image: redash/redash:latest
+         command: [server]
+         environment:
+           PYTHONUNBUFFERED: 0
+           REDASH_LOG_LEVEL: "INFO"
+           REDASH_REDIS_URL: "redis://localhost:6379/0"
+           REDASH_DATABASE_URL: "postgresql://postgres@localhost/postgres"
+           REDASH_COOKIE_SECRET: veryverysecret
+           REDASH_WEB_WORKERS: 4
+
+       - image: redash/redash:latest
+         command: [scheduler]
+         environment:
+           PYTHONUNBUFFERED: 0
+           REDASH_LOG_LEVEL: "INFO"
+           REDASH_REDIS_URL: "redis://localhost:6379/0"
+           REDASH_DATABASE_URL: "postgresql://postgres@localhost/postgres"
+           QUEUES: "queries,scheduled_queries,celery"
+           WORKERS_COUNT: 2
+
+     <<: *steps
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - "r-release"
+      - "r-devel"
