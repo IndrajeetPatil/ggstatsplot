@@ -336,4 +336,92 @@ testthat::test_that(
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
   }
 )
+  # checking if plot.type argument works --------------------------------------
 
+testthat::test_that(
+  desc = "checking if plot.type argument works",
+  code = {
+    set.seed(123)
+
+    # boxplot
+    p1 <-
+      ggstatsplot::ggbetweenstats(
+        data = ToothGrowth,
+        x = supp,
+        y = len,
+        plot.type = "box",
+        results.subtitle = FALSE,
+        outlier.tagging = TRUE,
+        outlier.coef = 0.75,
+        outlier.color = "blue",
+        mean.color = "darkgreen",
+        mean.label.color = "blue",
+        messages = FALSE
+      )
+
+    # violin
+    p2 <-
+      ggstatsplot::ggbetweenstats(
+        data = ToothGrowth,
+        x = supp,
+        y = len,
+        plot.type = "violin",
+        results.subtitle = FALSE,
+        outlier.tagging = TRUE,
+        outlier.coef = 0.75,
+        outlier.color = "blue",
+        mean.plotting = FALSE,
+        sample.size.label = FALSE,
+        package = "wesanderson",
+        palette = "Royal1",
+        messages = FALSE
+      ) +
+      ggplot2::scale_y_continuous(breaks = seq(0, 30, 5))
+
+    # build the plots
+    pb1 <- ggplot2::ggplot_build(p1)
+    pb2 <- ggplot2::ggplot_build(p2)
+
+    # tests for labels
+    testthat::expect_null(p1$labels$subtitle, NULL)
+    testthat::expect_null(p2$labels$subtitle, NULL)
+    testthat::expect_identical(length(pb1$data), 5L)
+    testthat::expect_identical(length(pb2$data), 3L)
+    testthat::expect_identical(
+      unique(pb1$data[[1]]$colour),
+      c("#1B9E77", "#D95F02")
+    )
+    testthat::expect_identical(
+      unique(pb2$data[[1]]$colour),
+      c("#899DA4", "#C93312")
+    )
+    testthat::expect_identical(
+      pb2$layout$panel_params[[1]]$x.labels,
+      c("OJ", "VC")
+    )
+    testthat::expect_identical(
+      pb2$layout$panel_params[[1]]$y.labels,
+      c("5", "10", "15", "20", "25", "30")
+    )
+
+    # tests for data
+    testthat::expect_equal(dim(pb1$data[[1]]), c(60L, 13L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 15L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
+    testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 15L))
+    testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
+#    testthat::expect_equal(pb1$data[[4]]$y, pb1$data[[3]]$label, tolerance = 0.001)
+#    testthat::expect_identical(
+#      as.character(round(pb1$data[[5]]$y, 2)),
+#      pb1$data[[6]]$label
+#    )
+    testthat::expect_identical(pb1$data[[3]]$colour[1], "black")
+    testthat::expect_identical(pb1$data[[4]]$colour[1], "darkgreen")
+    testthat::expect_identical(pb1$data[[5]]$colour[1], "blue")
+
+    testthat::expect_equal(dim(pb2$data[[1]]), c(60L, 13L))
+    testthat::expect_equal(dim(pb2$data[[2]]), c(1024L, 20L))
+    testthat::expect_equal(dim(pb2$data[[3]]), c(2L, 15L))
+  }
+)
