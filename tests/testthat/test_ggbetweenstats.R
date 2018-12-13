@@ -129,21 +129,21 @@ testthat::test_that(
     )
 
     # checking displayed outlier labels
-#    outlier.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
+    outlier.labels <- ggplot2::layer_grob(p, i = 4L)$`1`$lab
 
-#    testthat::expect_equal(length(outlier.labels), 0L)
-#    testthat::expect_identical(
-#      outlier.labels,
-#      c(
-#        "Asian elephant",
-#        "Horse",
-#        "Gray seal",
-#        "Human",
-#        "African elephant",
-#        "Jaguar",
-#        "Giant armadillo"
-#      )
-#    )
+    testthat::expect_equal(length(outlier.labels), 7L)
+    testthat::expect_identical(
+      outlier.labels,
+      c(
+        "Asian elephant",
+        "Horse",
+        "Gray seal",
+        "Human",
+        "African elephant",
+        "Jaguar",
+        "Giant armadillo"
+      )
+    )
 
     # range of data
     y_range <- ggplot2::layer_scales(p)$y$range$range
