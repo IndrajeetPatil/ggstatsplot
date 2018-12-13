@@ -65,7 +65,7 @@ testthat::test_that(
     dat <- p$plot_env$df_pairwise
 
     # ggsignif layer parameters
-    ggsignif_stat <- p$layers[[6]]$stat_params
+    ggsignif_stat <- p$layers[[7]]$stat_params
 
     # checking dimensions of data
     data_dims <- dim(dat)
@@ -135,14 +135,15 @@ testthat::test_that(
       pairwise.comparisons = TRUE,
       p.adjust.method = "fdr",
       pairwise.display = "all",
-      k = 3
+      k = 3,
+      palette = "Set3"
     )
 
     # data used for pairwise comparisons
     dat <- p$plot_env$df_pairwise
 
     # ggsignif layer parameters
-    ggsignif_stat <- p$layers[[6]]$stat_params
+    ggsignif_stat <- p$layers[[7]]$stat_params
 
     # checking dimensions of data
     data_dims <- dim(dat)
@@ -258,7 +259,7 @@ testthat::test_that(
     dat <- p$plot_env$df_pairwise
 
     # ggsignif layer parameters
-    ggsignif_stat <- p$layers[[6]]$stat_params
+    ggsignif_stat <- p$layers[[7]]$stat_params
 
     # checking dimensions of data
     data_dims <- dim(dat)
@@ -339,7 +340,7 @@ testthat::test_that(
     dat <- p$plot_env$df_pairwise
 
     # ggsignif layer parameters
-    ggsignif_stat <- p$layers[[6]]$stat_params
+    ggsignif_stat <- p$layers[[7]]$stat_params
 
     # checking dimensions of data
     data_dims <- dim(dat)

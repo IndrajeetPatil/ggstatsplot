@@ -29,6 +29,7 @@ testthat::test_that(
         x = genre,
         y = rating,
         messages = FALSE,
+        palette = "Set3",
         outlier.tagging = TRUE,
         outlier.label = length
       ),
@@ -43,6 +44,7 @@ testthat::test_that(
         x = genre,
         y = rating,
         messages = FALSE,
+        palette = "Set3",
         outlier.tagging = TRUE,
         outlier.label = "title"
       ),
@@ -64,6 +66,7 @@ testthat::test_that(
           x = "genre",
           y = "rating",
           messages = FALSE,
+          palette = "Set3",
           outlier.tagging = TRUE,
           outlier.label = "title",
           outlier.coef = 5
@@ -110,7 +113,7 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # dataframe used for visualization
-    testthat::expect_equal(dim(pb$data[[1]]), c(51L, 13L))
+    testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 25L))
     testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 20L))
     testthat::expect_equal(dim(pb$data[[4]]), c(7L, 15L))
@@ -145,7 +148,7 @@ testthat::test_that(
     # range of data
     y_range <- ggplot2::layer_scales(p)$y$range$range
 
-    testthat::expect_equal(y_range[1], -0.09710299, tolerance = 1e-5)
+    testthat::expect_equal(y_range[1], -0.0949, tolerance = 1e-5)
     testthat::expect_equal(y_range[2], 5.71200000, tolerance = 1e-5)
 
     # limits of data
@@ -222,7 +225,7 @@ testthat::test_that(
       dim(.)
 
     # dataframe used for visualization
-    testthat::expect_equal(data_dims, c(32L, 13L))
+    testthat::expect_equal(data_dims, c(29L, 13L))
 
     # checking displayed mean labels
     testthat::expect_identical(
@@ -388,7 +391,7 @@ testthat::test_that(
     testthat::expect_null(p2$labels$subtitle, NULL)
     testthat::expect_identical(length(pb1$data), 5L)
     testthat::expect_identical(length(pb1$data), 5L)
-    testthat::expect_identical(length(pb2$data), 3L)
+    testthat::expect_identical(length(pb2$data), 4L)
     testthat::expect_identical(
       unique(pb1$data[[1]]$colour),
       c("#1B9E77", "#D95F02")
@@ -407,7 +410,7 @@ testthat::test_that(
     )
 
     # tests for data
-    testthat::expect_equal(dim(pb1$data[[1]]), c(60L, 13L))
+    testthat::expect_equal(dim(pb1$data[[1]]), c(58L, 13L))
     testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
     testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 15L))
     testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
@@ -425,8 +428,8 @@ testthat::test_that(
     testthat::expect_identical(pb1$data[[3]]$colour[1], "black")
     testthat::expect_identical(pb1$data[[4]]$colour[1], "darkgreen")
     testthat::expect_identical(pb1$data[[5]]$colour[1], "blue")
-    testthat::expect_equal(dim(pb2$data[[1]]), c(60L, 13L))
-    testthat::expect_equal(dim(pb2$data[[2]]), c(1024L, 20L))
-    testthat::expect_equal(dim(pb2$data[[3]]), c(2L, 15L))
+    testthat::expect_equal(dim(pb2$data[[1]]), c(58L, 13L))
+    testthat::expect_equal(dim(pb2$data[[2]]), c(2L, 10L))
+    testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 20L))
   }
 )

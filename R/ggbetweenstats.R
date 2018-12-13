@@ -305,6 +305,22 @@ ggbetweenstats <- function(data,
     min_length = length(unique(levels(data$x)))[[1]]
   )
 
+  # add a logical column indicating whether a point is or is not an outlier
+  data %<>%
+    dplyr::group_by(.data = ., x) %>%
+    dplyr::mutate(
+      .data = .,
+      isanoutlier = base::ifelse(
+        test = check_outlier(
+          var = y,
+          coef = outlier.coef
+        ),
+        yes = TRUE,
+        no = FALSE
+      )
+    ) %>%
+    dplyr::ungroup(x = .)
+# return(data)
   # -------------------------------- plot -----------------------------------
 
   # create the basic plot
@@ -313,7 +329,9 @@ ggbetweenstats <- function(data,
       data = data,
       mapping = ggplot2::aes(x = x, y = y)
     ) +
+  # add all points which are not outliers
     ggplot2::geom_point(
+      data = data %>% dplyr::filter(.data = ., !isanoutlier),
       position = ggplot2::position_jitterdodge(
         jitter.width = point.jitter.width,
         dodge.width = point.dodge.width,
@@ -325,6 +343,39 @@ ggbetweenstats <- function(data,
       na.rm = TRUE,
       ggplot2::aes(color = factor(x))
     )
+
+  # decide how to plot outliers
+  if(isFALSE(outlier.tagging)) { #we're not tagging outliers
+    plot <- plot +
+      # add all outliers in using same method
+      ggplot2::geom_point(
+        data = data %>% dplyr::filter(.data = ., isanoutlier),
+        position = ggplot2::position_jitterdodge(
+          jitter.width = point.jitter.width,
+          dodge.width = point.dodge.width,
+          jitter.height = point.jitter.height
+        ),
+        alpha = 0.4,
+        size = 3,
+        stroke = 0,
+        na.rm = TRUE,
+        ggplot2::aes(color = factor(x))
+      )
+  } else { #we ARE tagging outliers
+		if (plot.type == "violin") { #the plot type is just violin
+			    plot <- plot +
+      			# add all outliers in 
+      			ggplot2::geom_point(
+        			data = data %>% dplyr::filter(.data = ., isanoutlier),
+        			size = 3,
+        			stroke = 0,
+        			alpha = 0.7,
+        			na.rm = TRUE,
+        			color = outlier.color,
+        			shape = outlier.shape
+      			)
+		}
+  }
 
   # single component for creating geom_violin
   ggbetweenstats_geom_violin <-
@@ -339,17 +390,6 @@ ggbetweenstats <- function(data,
     # adding a boxplot
     if (isTRUE(outlier.tagging)) {
       plot <- plot +
-#        ggplot2::geom_boxplot(
-#          notch = notch,
-#          notchwidth = notchwidth,
-#          linetype = linetype,
-#          width = 0.3,
-#          alpha = 0.2,
-#          fill = "white",
-#          position = ggplot2::position_dodge(width = NULL),
-#          na.rm = TRUE,
-#          outlier.color = outlier.color
-#        ) +
         ggplot2::stat_boxplot(
           notch = notch,
           notchwidth = notchwidth,
