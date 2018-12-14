@@ -1,5 +1,5 @@
 # context ------------------------------------------------------------
-context(desc = "helpers_ggbetweenstats")
+context(desc = "mean_labeller")
 
 # mean labelling works -------------------------------------------------------
 

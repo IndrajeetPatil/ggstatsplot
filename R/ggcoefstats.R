@@ -150,12 +150,12 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # with model object
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
-#' 
+#'
 #' # with custom dataframe
-#' 
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -221,7 +221,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#' 
+#'
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -368,7 +368,7 @@ ggcoefstats <- function(x,
         crayon::blue(
           "The object of class",
           crayon::yellow(class(x)[[1]]),
-          "*must* contain the following two columns: 'term' and 'estmate'.\n"
+          "*must* contain the following two columns: 'term' and 'estimate'.\n"
         ),
         sep = ""
       )),

@@ -4,10 +4,29 @@
 \alias{long_to_wide_converter}
 \title{Converts long-format dataframe to wide-format dataframe}
 \usage{
-long_to_wide_converter(data, x, y)
+long_to_wide_converter(data, x, y, paired = TRUE)
+}
+\arguments{
+\item{data}{Dataframe from which variables specified are preferentially to be
+taken.}
+
+\item{x}{The grouping variable.}
+
+\item{y}{The response - a vector of length the number of rows of \code{x}.}
+
+\item{paired}{A logical that indicates whether the design was repeated
+measures (within-subjects) or between-subjects (default: \code{TRUE}).}
 }
 \description{
-Converts long-format dataframe to wide-format dataframe
+This conversion is helpful mostly for repeated measures design.
+}
+\examples{
+ggstatsplot:::long_to_wide_converter(
+  data = iris_long,
+  x = condition,
+  y = value,
+  paired = TRUE
+)
 }
 \author{
 Indrajeet Patil
