@@ -48,6 +48,7 @@ r_binary_packages:
   - psych
   - git2r
   - data.table
+  - lattice
 
 r_packages:
   - rlang

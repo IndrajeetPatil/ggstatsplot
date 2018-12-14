@@ -120,7 +120,8 @@ check_outlier <- function(var, coef = 1.5) {
   # compute the quantiles
   quantiles <- stats::quantile(
     x = var,
-    probs = c(0.25, 0.75)
+    probs = c(0.25, 0.75),
+    na.rm = TRUE
   )
 
   # compute the interquartile range

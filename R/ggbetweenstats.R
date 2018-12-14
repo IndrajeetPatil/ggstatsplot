@@ -320,7 +320,7 @@ ggbetweenstats <- function(data,
       )
     ) %>%
     dplyr::ungroup(x = .)
-# return(data)
+
   # -------------------------------- plot -----------------------------------
 
   # create the basic plot
@@ -329,7 +329,7 @@ ggbetweenstats <- function(data,
       data = data,
       mapping = ggplot2::aes(x = x, y = y)
     ) +
-  # add all points which are not outliers
+    # add all points which are not outliers
     ggplot2::geom_point(
       data = data %>% dplyr::filter(.data = ., !isanoutlier),
       position = ggplot2::position_jitterdodge(
@@ -344,8 +344,8 @@ ggbetweenstats <- function(data,
       ggplot2::aes(color = factor(x))
     )
 
-  # decide how to plot outliers
-  if(isFALSE(outlier.tagging)) { #we're not tagging outliers
+  # decide how to plot outliers if it's desired
+  if (isFALSE(outlier.tagging)) {
     plot <- plot +
       # add all outliers in using same method
       ggplot2::geom_point(
@@ -361,20 +361,20 @@ ggbetweenstats <- function(data,
         na.rm = TRUE,
         ggplot2::aes(color = factor(x))
       )
-  } else { #we ARE tagging outliers
-		if (plot.type == "violin") { #the plot type is just violin
-			    plot <- plot +
-      			# add all outliers in 
-      			ggplot2::geom_point(
-        			data = data %>% dplyr::filter(.data = ., isanoutlier),
-        			size = 3,
-        			stroke = 0,
-        			alpha = 0.7,
-        			na.rm = TRUE,
-        			color = outlier.color,
-        			shape = outlier.shape
-      			)
-		}
+  } else {
+    if (plot.type == "violin") {
+      plot <- plot +
+        # add all outliers in
+        ggplot2::geom_point(
+          data = data %>% dplyr::filter(.data = ., isanoutlier),
+          size = 3,
+          stroke = 0,
+          alpha = 0.7,
+          na.rm = TRUE,
+          color = outlier.color,
+          shape = outlier.shape
+        )
+    }
   }
 
   # single component for creating geom_violin
