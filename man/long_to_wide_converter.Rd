@@ -7,12 +7,13 @@
 long_to_wide_converter(data, x, y, paired = TRUE)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{A dataframe from which variables specified are preferentially to
+be taken.}
 
-\item{x}{The grouping variable.}
+\item{x}{The grouping variable from the dataframe \code{data}.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{paired}{A logical that indicates whether the design was repeated
 measures (within-subjects) or between-subjects (default: \code{TRUE}).}

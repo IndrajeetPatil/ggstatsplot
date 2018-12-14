@@ -9,12 +9,13 @@ pairwise_p(data, x, y, type = "parametric", tr = 0.1, paired = FALSE,
   messages = TRUE, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{A dataframe from which variables specified are preferentially to
+be taken.}
 
-\item{x}{The grouping variable.}
+\item{x}{The grouping variable from the dataframe \code{data}.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
 or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:

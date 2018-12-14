@@ -7,9 +7,10 @@
 ggsignif_position_calculator(x, y)
 }
 \arguments{
-\item{x}{The grouping variable.}
+\item{x}{The grouping variable from the dataframe \code{data}.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 }
 \description{
 Calculating \code{y} coordinates for the \code{ggsignif} comparison bars.

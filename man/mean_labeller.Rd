@@ -8,12 +8,13 @@ display in \code{ggbetweenstats} plot.}
 mean_labeller(data, x, y, mean.ci = FALSE, k = 3)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{A dataframe from which variables specified are preferentially to
+be taken.}
 
-\item{x}{The grouping variable.}
+\item{x}{The grouping variable from the dataframe \code{data}.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{mean.ci}{Logical that decides whether 95% confidence interval for mean
 is to be displayed (Default: \code{FALSE}).}

@@ -26,12 +26,13 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   palette = "Dark2", direction = 1, messages = TRUE, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{A dataframe from which variables specified are preferentially to
+be taken.}
 
-\item{x}{The grouping variable.}
+\item{x}{The grouping variable from the dataframe \code{data}.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{grouping.var}{Grouping variable.}
 
@@ -40,7 +41,7 @@ title (name of each factor level) (Default: \code{"Group"}).}
 
 \item{plot.type}{Character describing the \emph{type} of plot. Currently supported
 plots are \code{"box"} (for pure boxplots), \code{"violin"} (for pure violin plots),
-and \code{"boxviolin"} (for a mix of box and violin plots; default).}
+and \code{"boxviolin"} (for a combination of box and violin plots; default).}
 
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
 or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accepted:
@@ -282,7 +283,7 @@ If robust tests are selected, following tests are used is .
 \item \emph{t}-test: Yuen's test for trimmed means (see \code{?WRS2::yuen})
 }
 
-Variant of this function \code{ggwithinstats} is currently under work. You \emph{can}
+Variant of this function \code{ggwithinstats} is currently in progress. You \emph{can}
 still use this function just to prepare the \strong{plot} for exploratory data
 analysis, but the statistical details displayed in the subtitle will be
 incorrect. You can remove them by adding \code{+ ggplot2::labs(subtitle = NULL)}.

@@ -7,10 +7,11 @@
 #'   the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
-#' @param x The grouping variable from the Dataframe `data`.
-#' @param y The response (a.k.a. outcome or dependent) variable from the Dataframe `data`.
+#' @param data A dataframe from which variables specified are preferentially to
+#'   be taken.
+#' @param x The grouping variable from the dataframe `data`.
+#' @param y The response (a.k.a. outcome or dependent) variable from the
+#'   dataframe `data`.
 #' @param plot.type Character describing the *type* of plot. Currently supported
 #'   plots are `"box"` (for pure boxplots), `"violin"` (for pure violin plots),
 #'   and `"boxviolin"` (for a combination of box and violin plots; default).
@@ -239,9 +240,6 @@ ggbetweenstats <- function(data,
     # turn off pairwise comparisons
     pairwise.comparisons <- FALSE
   }
-
-  # adding this for now to avoid note in RCmd checks
-  isanoutlier <- NULL
 
   # ------------------------------ variable names ----------------------------
 
@@ -519,7 +517,7 @@ ggbetweenstats <- function(data,
       dplyr::mutate(
         .data = .,
         outlier = base::ifelse(
-          test = isanoutlier, # use test results from above
+          test = isanoutlier,
           yes = outlier.label,
           no = NA
         )

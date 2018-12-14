@@ -165,7 +165,8 @@ utils::globalVariables(
     "group",
     "name",
     "se",
-    "zvalue"
+    "zvalue",
+    "isanoutlier"
   ),
   package = "ggstatsplot",
   add = FALSE
