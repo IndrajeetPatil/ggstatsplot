@@ -29,6 +29,7 @@ testthat::test_that(
         x = genre,
         y = rating,
         messages = FALSE,
+        palette = "Set3",
         outlier.tagging = TRUE,
         outlier.label = length
       ),
@@ -43,6 +44,7 @@ testthat::test_that(
         x = genre,
         y = rating,
         messages = FALSE,
+        palette = "Set3",
         outlier.tagging = TRUE,
         outlier.label = "title"
       ),
@@ -64,6 +66,7 @@ testthat::test_that(
           x = "genre",
           y = "rating",
           messages = FALSE,
+          palette = "Set3",
           outlier.tagging = TRUE,
           outlier.label = "title",
           outlier.coef = 5
@@ -110,24 +113,23 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # dataframe used for visualization
-    testthat::expect_equal(dim(pb$data[[1]]), c(51L, 13L))
-    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 22L))
-    testthat::expect_equal(dim(pb$data[[3]]), c(4L, 25L))
-    testthat::expect_equal(dim(pb$data[[4]]), c(2048L, 20L))
-    testthat::expect_equal(dim(pb$data[[5]]), c(7L, 15L))
-    testthat::expect_equal(dim(pb$data[[6]]), c(4L, 12L))
-    testthat::expect_equal(dim(pb$data[[7]]), c(4L, 15L))
+    testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 25L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 20L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(7L, 15L))
+    testthat::expect_equal(dim(pb$data[[5]]), c(4L, 12L))
+    testthat::expect_equal(dim(pb$data[[6]]), c(4L, 15L))
 
     # data from difference layers
-    testthat::expect_equal(length(pb$data), 7L)
-    testthat::expect_equal(pb$data[[5]]$x, c(2L, 2L, 1L, 4L, 2L, 1L, 3L))
+    testthat::expect_equal(length(pb$data), 6L)
+    testthat::expect_equal(pb$data[[5]]$x, c(1L, 2L, 3L, 4L))
     testthat::expect_equal(pb$data[[5]]$y,
-      c(4.603, 0.655, 0.325, 1.320, 5.712, 0.157, 0.081),
+      c(0.07925556, 0.62159750, 0.02155000, 0.14573118),
       tolerance = 0.001
     )
 
     # checking displayed outlier labels
-    outlier.labels <- ggplot2::layer_grob(p, i = 5L)$`1`$lab
+    outlier.labels <- ggplot2::layer_grob(p, i = 4L)$`1`$lab
 
     testthat::expect_equal(length(outlier.labels), 7L)
     testthat::expect_identical(
@@ -146,7 +148,7 @@ testthat::test_that(
     # range of data
     y_range <- ggplot2::layer_scales(p)$y$range$range
 
-    testthat::expect_equal(y_range[1], -0.09710299, tolerance = 1e-5)
+    testthat::expect_equal(y_range[1], -0.0949, tolerance = 1e-5)
     testthat::expect_equal(y_range[2], 5.71200000, tolerance = 1e-5)
 
     # limits of data
@@ -223,11 +225,11 @@ testthat::test_that(
       dim(.)
 
     # dataframe used for visualization
-    testthat::expect_equal(data_dims, c(32L, 13L))
+    testthat::expect_equal(data_dims, c(29L, 13L))
 
     # checking displayed mean labels
     testthat::expect_identical(
-      pb$data[[7]]$label,
+      pb$data[[6]]$label,
       c(
         "2.290, 95% CI [1.907, 2.673]",
         "3.120, 95% CI [2.787, 3.453]",
@@ -236,7 +238,7 @@ testthat::test_that(
     )
 
     testthat::expect_identical(
-      pb$data[[5]]$label,
+      pb$data[[4]]$label,
       c(
         "Cadillac Fleetwood",
         "Lincoln Continental",
@@ -387,8 +389,9 @@ testthat::test_that(
     # tests for labels
     testthat::expect_null(p1$labels$subtitle, NULL)
     testthat::expect_null(p2$labels$subtitle, NULL)
-    testthat::expect_identical(length(pb1$data), 6L)
-    testthat::expect_identical(length(pb2$data), 3L)
+    testthat::expect_identical(length(pb1$data), 5L)
+    testthat::expect_identical(length(pb1$data), 5L)
+    testthat::expect_identical(length(pb2$data), 4L)
     testthat::expect_identical(
       unique(pb1$data[[1]]$colour),
       c("#1B9E77", "#D95F02")
@@ -407,24 +410,26 @@ testthat::test_that(
     )
 
     # tests for data
-    testthat::expect_equal(dim(pb1$data[[1]]), c(60L, 13L))
-    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 22L))
-    testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 25L))
-    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 15L))
-    testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 12L))
-    testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 15L))
-    testthat::expect_equal(pb1$data[[4]]$x, c(2L, 2L))
-    testthat::expect_equal(pb1$data[[4]]$y, pb1$data[[4]]$label, tolerance = 0.001)
+    testthat::expect_equal(dim(pb1$data[[1]]), c(58L, 13L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 15L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
+    testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 15L))
+    testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
     testthat::expect_identical(
-      as.character(round(pb1$data[[5]]$y, 2)),
-      pb1$data[[6]]$label
+      as.character(round(pb1$data[[4]]$y, 2)),
+      pb1$data[[5]]$label
     )
-    testthat::expect_identical(pb1$data[[4]]$colour[1], "black")
-    testthat::expect_identical(pb1$data[[5]]$colour[1], "darkgreen")
-    testthat::expect_identical(pb1$data[[6]]$colour[1], "blue")
-
-    testthat::expect_equal(dim(pb2$data[[1]]), c(60L, 13L))
-    testthat::expect_equal(dim(pb2$data[[2]]), c(1024L, 20L))
-    testthat::expect_equal(dim(pb2$data[[3]]), c(2L, 15L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(2L, 15L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(2L, 12L))
+    testthat::expect_equal(dim(pb1$data[[5]]), c(2L, 15L))
+    testthat::expect_equal(pb1$data[[4]]$x, c(1L, 2L))
+    testthat::expect_identical(pb1$data[[3]]$colour[1], "black")
+    testthat::expect_identical(pb1$data[[4]]$colour[1], "darkgreen")
+    testthat::expect_identical(pb1$data[[5]]$colour[1], "blue")
+    testthat::expect_equal(dim(pb2$data[[1]]), c(58L, 13L))
+    testthat::expect_equal(dim(pb2$data[[2]]), c(2L, 10L))
+    testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 20L))
   }
 )

@@ -27,10 +27,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
@@ -80,6 +80,7 @@ grouped_ggbetweenstats <- function(data,
                                    outlier.label = NULL,
                                    outlier.label.color = "black",
                                    outlier.color = "black",
+                                   outlier.shape = 19,
                                    outlier.coef = 1.5,
                                    mean.plotting = TRUE,
                                    mean.ci = FALSE,
@@ -192,6 +193,7 @@ grouped_ggbetweenstats <- function(data,
               outlier.label = !!rlang::enquo(outlier.label),
               outlier.label.color = outlier.label.color,
               outlier.color = outlier.color,
+              outlier.shape = outlier.shape,
               outlier.coef = outlier.coef,
               mean.plotting = mean.plotting,
               mean.ci = mean.ci,
@@ -254,6 +256,7 @@ grouped_ggbetweenstats <- function(data,
               outlier.tagging = outlier.tagging,
               outlier.label.color = outlier.label.color,
               outlier.color = outlier.color,
+              outlier.shape = outlier.shape,
               outlier.coef = outlier.coef,
               mean.plotting = mean.plotting,
               mean.ci = mean.ci,

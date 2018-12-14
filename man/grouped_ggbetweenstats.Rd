@@ -18,12 +18,12 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
   linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
-  outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
-  mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
-  point.jitter.height = 0.2, point.dodge.width = 0.75,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
-  package = "RColorBrewer", palette = "Dark2", direction = 1,
-  messages = TRUE, ...)
+  outlier.shape = 19, outlier.coef = 1.5, mean.plotting = TRUE,
+  mean.ci = FALSE, mean.size = 5, mean.color = "darkred",
+  point.jitter.width = NULL, point.jitter.height = 0.2,
+  point.dodge.width = 0.75, ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, package = "RColorBrewer",
+  palette = "Dark2", direction = 1, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -160,6 +160,11 @@ of line to draw box plots (Default: \code{"solid"}). Alternatively, the numbers
 have been tagged (Default: \code{"black"}).}
 
 \item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
+
+\item{outlier.shape}{Hiding the outliers can be achieved by setting
+outlier.shape = NA. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the y-axis will be
+the same with outliers shown and outliers hidden.}
 
 \item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
