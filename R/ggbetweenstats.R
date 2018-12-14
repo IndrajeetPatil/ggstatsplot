@@ -9,11 +9,11 @@
 #'
 #' @param data Dataframe from which variables specified are preferentially to be
 #'   taken.
-#' @param x The grouping variable.
-#' @param y The response - a vector of length the number of rows of `x`.
+#' @param x The grouping variable from the Dataframe `data`.
+#' @param y The response (a.k.a. outcome or dependent) variable from the Dataframe `data`.
 #' @param plot.type Character describing the *type* of plot. Currently supported
 #'   plots are `"box"` (for pure boxplots), `"violin"` (for pure violin plots),
-#'   and `"boxviolin"` (for a mix of box and violin plots; default).
+#'   and `"boxviolin"` (for a combination of box and violin plots; default).
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
@@ -137,7 +137,7 @@
 #'  \item *t*-test: Yuen's test for trimmed means (see `?WRS2::yuen`)
 #'  }
 #'
-#' Variant of this function `ggwithinstats` is currently under work. You *can*
+#' Variant of this function `ggwithinstats` is currently in progress. You *can*
 #' still use this function just to prepare the **plot** for exploratory data
 #' analysis, but the statistical details displayed in the subtitle will be
 #' incorrect. You can remove them by adding `+ ggplot2::labs(subtitle = NULL)`.
@@ -239,6 +239,9 @@ ggbetweenstats <- function(data,
     # turn off pairwise comparisons
     pairwise.comparisons <- FALSE
   }
+
+  # adding this for now to avoid note in RCmd checks
+  isanoutlier <- NULL
 
   # ------------------------------ variable names ----------------------------
 
@@ -516,10 +519,7 @@ ggbetweenstats <- function(data,
       dplyr::mutate(
         .data = .,
         outlier = base::ifelse(
-          test = check_outlier(
-            var = y,
-            coef = outlier.coef
-          ),
+          test = isanoutlier, # use test results from above
           yes = outlier.label,
           no = NA
         )
