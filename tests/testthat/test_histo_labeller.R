@@ -5,6 +5,8 @@ context("Helpers gghistostats")
 testthat::test_that(
   desc = "y coordinate for labeller works",
   code = {
+    testthat::skip_on_cran()
+
     set.seed(123)
     library(ggplot2)
 

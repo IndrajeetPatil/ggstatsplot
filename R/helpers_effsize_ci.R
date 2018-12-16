@@ -562,12 +562,9 @@ chisq_v_ci <- function(data,
   results_df <-
     tibble::as_tibble(
       x = cbind.data.frame(
-        # cramer' V and confidence intervals
         "Cramer's V" = as.data.frame(jmv_df$nom)$`v[cra]`[[1]],
         ci,
-        # getting rest of the details from chi-square test
-        as.data.frame(jmv_df$chiSq) %>%
-          tibble::as_tibble()
+        tibble::as_tibble(as.data.frame(jmv_df$chiSq))
       )
     )
 

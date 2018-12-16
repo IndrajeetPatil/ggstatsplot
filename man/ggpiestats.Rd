@@ -9,9 +9,9 @@ ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   sample.size.label = TRUE, bf.message = FALSE,
   sampling.plan = "indepMulti", fixed.margin = "rows",
   prior.concentration = 1, title = NULL, caption = NULL,
-  conf.level = 0.95, nboot = 25, legend.title = NULL,
-  facet.wrap.name = NULL, k = 2, perc.k = 0,
-  slice.label = "percentage", facet.proptest = TRUE,
+  conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
+  B = 2000, legend.title = NULL, facet.wrap.name = NULL, k = 2,
+  perc.k = 0, slice.label = "percentage", facet.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   messages = TRUE)
@@ -73,6 +73,12 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{25}).}
+
+\item{simulate.p.value}{a logical indicating whether to compute
+    p-values by Monte Carlo simulation.}
+
+\item{B}{an integer specifying the number of replicates used in the
+    Monte Carlo test.}
 
 \item{legend.title}{Title text for the legend.}
 

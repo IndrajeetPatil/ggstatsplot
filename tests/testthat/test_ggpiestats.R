@@ -89,6 +89,8 @@ testthat::test_that(
         legend.title = "transmission",
         factor.levels = c("0 = automatic", "1 = manual"),
         facet.wrap.name = "cylinders",
+        simulate.p.value = TRUE,
+        B = 3000,
         messages = FALSE
       )
     )
@@ -103,6 +105,8 @@ testthat::test_that(
         data = mtcars,
         main = "am",
         condition = "cyl",
+        simulate.p.value = TRUE,
+        B = 3000,
         messages = FALSE
       )
 

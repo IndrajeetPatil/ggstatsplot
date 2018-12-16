@@ -1,7 +1,9 @@
 context("subtitle_contingency_tab_paired")
 
+# paired data without NAs and counts data -------------------------------------
+
 testthat::test_that(
-  desc = "Paired subtitle_contingency_tab works",
+  desc = "paired subtitle_contingency_tab works - counts data without NAs",
   code = {
 
     # create data structure
@@ -48,7 +50,7 @@ testthat::test_that(
           NULL,
           italic(chi)^2,
           "(",
-          1,
+          "1",
           ") = ",
           "13.33333",
           ", ",
@@ -56,8 +58,8 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          "log"["e"],
-          "(OR) = ",
+          "log"["e"](OR),
+          " = ",
           "-1.60944",
           ", CI"["95%"],
           " [",

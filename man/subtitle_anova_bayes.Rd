@@ -49,6 +49,7 @@ to use in calculating Bayes factors.}
 Making text subtitle for the between-subject one-way anova designs.
 }
 \examples{
+\dontrun{
 # with defaults
 subtitle_anova_bayes(
   data = ggplot2::msleep,
@@ -57,7 +58,7 @@ subtitle_anova_bayes(
   k = 2,
   bf.prior = 0.8
 )
-\dontrun{
+
 # modifying the defaults
 subtitle_anova_bayes(
   data = ggplot2::msleep,

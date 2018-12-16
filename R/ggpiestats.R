@@ -107,6 +107,8 @@ ggpiestats <- function(data,
                        caption = NULL,
                        conf.level = 0.95,
                        nboot = 25,
+                       simulate.p.value = FALSE,
+                       B = 2000,
                        legend.title = NULL,
                        facet.wrap.name = NULL,
                        k = 2,
@@ -119,6 +121,7 @@ ggpiestats <- function(data,
                        palette = "Dark2",
                        direction = 1,
                        messages = TRUE) {
+
   # ================= extracting column names as labels  =====================
 
   if (base::missing(condition)) {
@@ -489,6 +492,8 @@ ggpiestats <- function(data,
         stat.title = stat.title,
         conf.level = conf.level,
         conf.type = "norm",
+        simulate.p.value = simulate.p.value,
+        B = B,
         messages = messages,
         k = k
       )

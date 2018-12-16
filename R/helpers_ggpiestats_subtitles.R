@@ -22,10 +22,12 @@
 #'   to be displayed (Default: `TRUE`).
 #' @inheritParams chisq_v_ci
 #' @inheritParams subtitle_t_parametric
+#' @inheritParams stats::chisq.test
 #'
 #' @importFrom tibble tribble as_tibble
 #' @importFrom exact2x2 exact2x2
 #' @importFrom tidyr uncount
+#' @importFrom broom tidy
 #' @importFrom jmv propTestN contTables contTablesPaired
 #'
 #' @seealso \code{\link{ggpiestats}}
@@ -64,8 +66,10 @@ subtitle_contingency_tab <- function(data,
                                      stat.title = NULL,
                                      conf.level = 0.95,
                                      conf.type = "norm",
-                                     messages = TRUE,
-                                     k = 2) {
+                                     simulate.p.value = FALSE,
+                                     B = 2000,
+                                     k = 2,
+                                     messages = TRUE) {
 
   # =============================== dataframe ================================
 
@@ -151,29 +155,45 @@ subtitle_contingency_tab <- function(data,
 
   # =============================== Pearson's chi-square =====================
 
-  # running Pearson's Chi-square test of independence using jmv::contTables
+  # sample size
+  sample_size <- nrow(data)
+
+  # running Pearson's Chi-square test of independence
   if (!isTRUE(paired)) {
-    jmv_chi <- jmv::contTables(
+
+    # object contatining stats
+    stats_df <-
+      broom::tidy(stats::chisq.test(
+        x = data$main,
+        y = data$condition,
+        correct = FALSE,
+        rescale.p = FALSE,
+        simulate.p.value = simulate.p.value,
+        B = B
+      ))
+
+    # object with Cramer's V
+    jmv_df <- jmv::contTables(
       data = data,
       rows = "condition",
       cols = "main",
-      phiCra = TRUE # provides Phi and Cramer's V, the latter will be displayed
+      phiCra = TRUE,
+      chiSq = TRUE,
+      chiSqCorr = FALSE
     )
 
     # preparing Cramer's V object depending on whether V is NaN or not it will
     # be NaN in cases where there are no values of one categorial variable for
     # level of another categorial variable
-    if (is.nan(as.data.frame(jmv_chi$nom)[[4]])) {
-
+    if (is.nan(as.data.frame(jmv_df$nom)[[4]])) {
       # in case Cramer's V is aNaN
-      cramer_ci <- tibble::tribble(
-        ~estimate, ~conf.low, ~conf.high,
+      effsize_df <- tibble::tribble(
+        ~`Cramer's V`, ~conf.low, ~conf.high,
         NaN, NaN, NaN
       )
     } else {
-
       # results for confidence interval of Cramer's V
-      cramer_ci <- chisq_v_ci(
+      effsize_df <- chisq_v_ci(
         data = data,
         rows = main,
         cols = condition,
@@ -188,72 +208,27 @@ subtitle_contingency_tab <- function(data,
       }
     }
 
-    # preparing the subtitle
-    subtitle <- base::substitute(
-      expr =
-        paste(
-          y,
-          italic(chi)^2,
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", ",
-          italic(V),
-          " = ",
-          cramer,
-          ", CI"[conf.level],
-          " [",
-          LL,
-          ", ",
-          UL,
-          "]",
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        y = stat.title,
-        estimate = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_chi$chiSq)[[2]],
-          k = k,
-          p.value = FALSE
-        ),
-        df = as.data.frame(jmv_chi$chiSq)[[3]],
-        pvalue = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_chi$chiSq)[[4]],
-          k = k,
-          p.value = TRUE
-        ),
-        conf.level = paste(conf.level * 100, "%", sep = ""),
-        cramer = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_chi$nom)[[4]],
-          k = k,
-          p.value = FALSE
-        ),
-        LL = ggstatsplot::specify_decimal_p(
-          x = cramer_ci$conf.low[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        UL = ggstatsplot::specify_decimal_p(
-          x = cramer_ci$conf.high[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        n = as.data.frame(jmv_chi$chiSq)$`value[N]`[[1]]
-      )
+    # preparing subtitle
+    subtitle <- subtitle_template_1(
+      stat.title = stat.title,
+      statistic.text = quote(italic(chi)^2),
+      statistic = stats_df$statistic[[1]],
+      parameter = stats_df$parameter[[1]],
+      p.value = stats_df$p.value[[1]],
+      effsize.text = quote(italic("V")),
+      effsize.estimate = effsize_df$`Cramer's V`[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
+      n = sample_size,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = 0L
     )
 
     # ============== McNemar's test ===========================================
   } else if (isTRUE(paired)) {
     # carrying out McNemar's test
-    jmv_chi <-
+    stats_df <-
       jmv::contTablesPaired(
         data = data,
         rows = "condition",
@@ -266,8 +241,11 @@ subtitle_contingency_tab <- function(data,
         pcCol = FALSE
       )
 
+    # extracting needed information from jamovi object
+    stats_df <- as.data.frame(stats_df$test)
+
     # computing exact odds ratio as effect size and their confidence interval
-    or_df <-
+    effsize_df <-
       exact2x2::exact2x2(
         x = data$main,
         y = data$condition,
@@ -283,62 +261,32 @@ subtitle_contingency_tab <- function(data,
         midp = FALSE
       )
 
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            y,
-            italic(chi)^2,
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            "log"["e"],
-            "(OR) = ",
-            or,
-            ", CI"[conf.level],
-            " [",
-            LL,
-            ", ",
-            UL,
-            "]",
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          y = stat.title,
-          estimate = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_chi$test)$`value[mcn]`[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          df = as.data.frame(jmv_chi$test)$`df[mcn]`[[1]],
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_chi$test)$`p[mcn]`[[1]],
-            k = k,
-            p.value = TRUE
-          ),
-          conf.level = paste(conf.level * 100, "%", sep = ""),
-          or = ggstatsplot::specify_decimal_p(x = log(
-            x = or_df$estimate[[1]], base = exp(1)
-          ), k),
-          LL = ggstatsplot::specify_decimal_p(x = log(
-            x = or_df$conf.int[1], base = exp(1)
-          ), k),
-          UL = ggstatsplot::specify_decimal_p(x = log(
-            x = or_df$conf.int[2], base = exp(1)
-          ), k),
-          n = as.data.frame(jmv_chi$test)$`value[n]`[[1]]
-        )
-      )
+    # converting to log odds
+    effsize_df <- tibble::tribble(
+      ~`estimate`,
+      ~conf.low,
+      ~conf.high,
+      log(effsize_df$estimate[[1]]),
+      log(effsize_df$conf.int[1]),
+      log(effsize_df$conf.int[2])
+    )
+
+    # preparing subtitle
+    subtitle <- subtitle_template_1(
+      stat.title = stat.title,
+      statistic.text = quote(italic(chi)^2),
+      statistic = stats_df$`value[mcn]`[[1]],
+      parameter = stats_df$`df[mcn]`[[1]],
+      p.value = stats_df$`p[mcn]`[[1]],
+      effsize.text = quote("log"["e"](OR)),
+      effsize.estimate = effsize_df$estimate[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
+      n = sample_size,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = 0L
+    )
   }
 
   # return the subtitle
@@ -427,8 +375,11 @@ subtitle_onesample_proptest <- function(data,
 
   # ============================= statistical test =========================
 
+  # sample size
+  sample_size <- nrow(data)
+
   # conducting proportion test with jmv::propTestN()
-  jmv_prop <-
+  stats_df <-
     jmv::propTestN(
       data = data,
       var = "main",
@@ -437,7 +388,7 @@ subtitle_onesample_proptest <- function(data,
 
   # if there is no value corresponding to one of the levels of the 'main'
   # variable, then no subtitle is needed
-  if (is.nan(as.data.frame(jmv_prop$tests)$chi[[1]])) {
+  if (is.nan(as.data.frame(stats_df$tests)$chi[[1]])) {
     subtitle <-
       base::substitute(
         expr =
@@ -446,7 +397,7 @@ subtitle_onesample_proptest <- function(data,
             " = ",
             n
           ),
-        env = base::list(n = nrow(x = data))
+        env = base::list(n = sample_size)
       )
 
     # display message
@@ -479,17 +430,17 @@ subtitle_onesample_proptest <- function(data,
           ),
         env = base::list(
           estimate = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_prop$tests)[[1]],
+            x = as.data.frame(stats_df$tests)[[1]],
             k = k,
             p.value = FALSE
           ),
-          df = base::as.data.frame(jmv_prop$tests)[[2]],
+          df = base::as.data.frame(stats_df$tests)[[2]],
           pvalue = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_prop$tests)[[3]],
+            x = as.data.frame(stats_df$tests)[[3]],
             k = k,
             p.value = TRUE
           ),
-          n = nrow(x = data)
+          n = sample_size
         )
       )
   }

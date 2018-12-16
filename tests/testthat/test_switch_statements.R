@@ -21,6 +21,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "switch for effct size type works",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_identical(effsize_type_switch(NULL), "unbiased")
     testthat::expect_identical(effsize_type_switch("none"), "unbiased")
     testthat::expect_identical(effsize_type_switch("d"), "biased")

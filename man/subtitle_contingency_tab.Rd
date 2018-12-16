@@ -8,7 +8,8 @@ within-subjects design)}
 \usage{
 subtitle_contingency_tab(data, main, condition, counts = NULL,
   nboot = 25, paired = FALSE, stat.title = NULL, conf.level = 0.95,
-  conf.type = "norm", messages = TRUE, k = 2)
+  conf.type = "norm", simulate.p.value = FALSE, B = 2000, k = 2,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -41,11 +42,17 @@ like \code{"main x condition"} or \code{"interaction"}.}
 intervals required. The value should be any subset of the values \code{"norm"},
 \code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
 
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
+\item{simulate.p.value}{a logical indicating whether to compute
+    p-values by Monte Carlo simulation.}
+
+\item{B}{an integer specifying the number of replicates used in the
+    Monte Carlo test.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Making text subtitle for contingency analysis (Pearson's chi-square

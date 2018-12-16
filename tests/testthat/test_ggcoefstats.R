@@ -549,6 +549,101 @@ testthat::test_that(
   }
 )
 
+# check clm models ----------------------------------------------
+
+testthat::test_that(
+  desc = "check clm models",
+  code = {
+
+    testthat::skip_on_cran()
+    testthat::skip_on_appveyor()
+    testthat::skip_on_travis()
+
+    # creating broom dataframes
+    set.seed(123)
+        mod <- ordinal::clm(data = ggstatsplot::intent_morality,
+                        formula = as.factor(rating) ~ belief * outcome * question)
+
+    # selecting alpha terms
+    df1 <- broom::tidy(
+      x = mod,
+      conf.int = TRUE
+    ) %>%
+      dplyr::filter(.data = ., coefficient_type == "alpha")
+
+    # selecting beta terms
+    df2 <- broom::tidy(
+      x = mod,
+      conf.int = TRUE,
+      exponentiate = TRUE
+    ) %>%
+      dplyr::filter(.data = ., coefficient_type == "beta")
+
+    # computed dataframes
+    tidy_df1 <-
+      ggstatsplot::ggcoefstats(
+        x = df1,
+        statistic = "z",
+        output = "tidy"
+      )
+    tidy_df2 <-
+      ggstatsplot::ggcoefstats(
+        x = df2,
+        exponentiate = TRUE,
+        statistic = "z",
+        output = "tidy"
+      )
+
+    # checking confidence intervals
+    testthat::expect_identical(df1$conf.low[1], NA_real_)
+    testthat::expect_identical(df1$conf.high[1], NA_real_)
+    testthat::expect_identical(tidy_df1$conf.low[1], NA_real_)
+    testthat::expect_identical(tidy_df1$conf.high[1], NA_real_)
+    testthat::expect_identical(
+      tidy_df1$label,
+      c(
+        "list(~italic(beta)==-2.49, ~italic(z)==-27.31, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-1.86, ~italic(z)==-21.29, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-1.41, ~italic(z)==-16.57, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-0.59, ~italic(z)==-7.21, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-0.08, ~italic(z)==-0.95, ~italic(p)==0.343)",
+        "list(~italic(beta)==0.61, ~italic(z)==7.39, ~italic(p)<= 0.001)"
+      )
+    )
+
+    testthat::expect_identical(
+      tidy_df2$label,
+      c(
+        "list(~italic(beta)==1.11, ~italic(z)==-19.34, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==1.20, ~italic(z)==-14.85, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==9.04, ~italic(z)==6.84, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==3.31, ~italic(z)==1.03, ~italic(p)==0.305)",
+        "list(~italic(beta)==2.00, ~italic(z)==-2.26, ~italic(p)==0.024)",
+        "list(~italic(beta)==4.02, ~italic(z)==2.04, ~italic(p)==0.041)",
+        "list(~italic(beta)==1.85, ~italic(z)==-1.96, ~italic(p)==0.050)"
+      )
+    )
+
+    # checking statistics
+    testthat::expect_equal(df1$estimate, tidy_df1$estimate, tolerance = 0.001)
+    testthat::expect_equal(df1$std.error, tidy_df1$std.error, tolerance = 0.001)
+    testthat::expect_equal(df1$p.value, tidy_df1$p.value, tolerance = 0.001)
+    testthat::expect_identical(tidy_df1$significance,
+                               c("***", "***", "***", "***", "ns",  "***"))
+    testthat::expect_identical(
+      tidy_df1$p.value.formatted2,
+      c(
+        "<= 0.001",
+        "<= 0.001",
+        "<= 0.001",
+        "<= 0.001",
+        "==0.343",
+        "<= 0.001"
+      )
+    )
+  }
+)
+
 
 # dataframe as input ----------------------------------------------------
 

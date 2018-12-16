@@ -6,6 +6,9 @@ context(desc = "ggsignif_position_calculator")
 testthat::test_that(
   desc = "y coordinates for ggsignif are accurate",
   code = {
+    testthat::skip_on_cran()
+
+    # shouldn't work with NAs
     testthat::expect_error(ggstatsplot:::ggsignif_position_calculator(NA, NA))
 
     # creating needed data

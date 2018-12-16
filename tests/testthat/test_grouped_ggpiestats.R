@@ -16,6 +16,8 @@ testthat::test_that(
         data = mtcars,
         grouping.var = am,
         main = cyl,
+        simulate.p.value = TRUE,
+        B = 3000,
         messages = FALSE
       )
     ),
