@@ -207,22 +207,23 @@ the plot as a subtitle.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Dataframe from which variables specified are preferentially to be
-taken.</p></td>
+      <td><p>A dataframe from which variables specified are preferentially to
+be taken.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping variable.</p></td>
+      <td><p>The grouping variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+      <td><p>The response (a.k.a. outcome or dependent) variable from the
+dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>plot.type</th>
       <td><p>Character describing the <em>type</em> of plot. Currently supported
 plots are <code>"box"</code> (for pure boxplots), <code>"violin"</code> (for pure violin plots),
-and <code>"boxviolin"</code> (for a mix of box and violin plots; default).</p></td>
+and <code>"boxviolin"</code> (for a combination of box and violin plots; default).</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -496,7 +497,7 @@ References:</p><ul>
 <li><p>ANOVA: one-way ANOVA on trimmed means (see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/t1way'>?WRS2::t1way</a></code>)</p></li>
 <li><p><em>t</em>-test: Yuen's test for trimmed means (see <code><a href='https://www.rdocumentation.org/packages/WRS2/topics/yuen'>?WRS2::yuen</a></code>)</p></li>
 </ul>
-    <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em>
+    <p>Variant of this function <code>ggwithinstats</code> is currently in progress. You <em>can</em>
 still use this function just to prepare the <strong>plot</strong> for exploratory data
 analysis, but the statistical details displayed in the subtitle will be
 incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code>.</p>

@@ -92,8 +92,10 @@ subtitle_t_parametric <- function(data,
   # deciding which effect size to use (Hedge's g or Cohen's d)
   if (effsize.type %in% c("unbiased", "g")) {
     hedges.correction <- TRUE
+    effsize.text <- quote("g")
   } else if (effsize.type %in% c("biased", "d")) {
     hedges.correction <- FALSE
+    effsize.text <- quote("d")
   }
 
   # effect size object
@@ -113,13 +115,6 @@ subtitle_t_parametric <- function(data,
     k.df <- 0
   } else {
     k.df <- k
-  }
-
-  # preparing the subtitle
-  if (effsize.type %in% c("unbiased", "g")) {
-    effsize.text <- quote("g")
-  } else if (effsize.type %in% c("biased", "d")) {
-    effsize.text <- quote("d")
   }
 
   # preparing subtitle
