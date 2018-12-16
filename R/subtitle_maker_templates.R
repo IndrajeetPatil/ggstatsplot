@@ -18,9 +18,8 @@
 #'   For example, for Cohen's *d* statistic, `effsize.text = "d"`. If you
 #'   want to use plotmath, you will have to quote the argument (e.g.,
 #'   `quote(italic("d"))`).
-#' @param effsize.estimate The estimated value of the effect size.
-#' @param effsize.LL The estimated value of the lower bound of effect size.
-#' @param effsize.UL The estimated value of the upper bound of effect size.
+#' @param effsize.estimate,effsize.LL,effsize.UL The estimated value of the
+#'   effect size, its lower bound, and its upper.
 #' @param k Number of decimal places to display (default: `3`).
 #' @param k.parameter Number of decimal places to display for the parameter
 #'   (default: `0`).

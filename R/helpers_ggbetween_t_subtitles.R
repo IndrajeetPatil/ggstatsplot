@@ -20,20 +20,20 @@
 #' @importFrom effsize cohen.d
 #'
 #' @examples
-#' 
+#'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#' 
+#'
 #' # with defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
@@ -78,28 +78,28 @@ subtitle_t_parametric <- function(data,
   # sample size
   sample_size <- nrow(data)
 
+  # deciding which effect size to use (Hedge's g or Cohen's d)
+  if (effsize.type %in% c("unbiased", "g")) {
+    hedges.correction <- TRUE
+    effsize.text <- quote(italic("g"))
+  } else if (effsize.type %in% c("biased", "d")) {
+    hedges.correction <- FALSE
+    effsize.text <- quote(italic("d"))
+  }
+
   # setting up the t-test model and getting its summary
-  t_stat <-
-    stats::t.test(
+  stats_df <-
+    broom::tidy(stats::t.test(
       formula = y ~ x,
       data = data,
       paired = paired,
       alternative = "two.sided",
       var.equal = var.equal,
       na.action = na.omit
-    )
-
-  # deciding which effect size to use (Hedge's g or Cohen's d)
-  if (effsize.type %in% c("unbiased", "g")) {
-    hedges.correction <- TRUE
-    effsize.text <- quote("g")
-  } else if (effsize.type %in% c("biased", "d")) {
-    hedges.correction <- FALSE
-    effsize.text <- quote("d")
-  }
+    ))
 
   # effect size object
-  t_effsize <-
+  effsize_df <-
     effsize::cohen.d(
       formula = y ~ x,
       data = data,
@@ -118,70 +118,21 @@ subtitle_t_parametric <- function(data,
   }
 
   # preparing subtitle
-  subtitle <-
-    base::substitute(
-      expr =
-        paste(
-          italic("t"),
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", ",
-          italic(effsize.text),
-          " = ",
-          effsize,
-          ", CI"[conf.level],
-          " [",
-          LL,
-          ", ",
-          UL,
-          "]",
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        estimate = ggstatsplot::specify_decimal_p(
-          x = t_stat[[1]][[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        df = ggstatsplot::specify_decimal_p(
-          x = t_stat[[2]][[1]],
-          k = k.df,
-          p.value = FALSE
-        ),
-        pvalue = ggstatsplot::specify_decimal_p(
-          x = t_stat[[3]],
-          k = k,
-          p.value = TRUE
-        ),
-        effsize.text = effsize.text,
-        effsize = ggstatsplot::specify_decimal_p(
-          x = t_effsize[[3]][[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        conf.level = paste(conf.level * 100, "%", sep = ""),
-        LL = ggstatsplot::specify_decimal_p(
-          x = t_effsize$conf.int[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        UL = ggstatsplot::specify_decimal_p(
-          x = t_effsize$conf.int[[2]],
-          k = k,
-          p.value = FALSE
-        ),
-        n = sample_size
-      )
-    )
+  subtitle <- subtitle_template_1(
+    stat.title = NULL,
+    statistic.text = quote(italic("t")),
+    statistic = stats_df$statistic[[1]],
+    parameter = stats_df$parameter[[1]],
+    p.value = stats_df$p.value[[1]],
+    effsize.text = effsize.text,
+    effsize.estimate = effsize_df[[3]][[1]],
+    effsize.LL = effsize_df$conf.int[[1]],
+    effsize.UL = effsize_df$conf.int[[2]],
+    n = sample_size,
+    conf.level = conf.level,
+    k = k,
+    k.parameter = k.df
+  )
 
   # return the subtitle
   return(subtitle)
@@ -356,14 +307,14 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
-#' 
+#'
 #' # with defaults
 #' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_t_robust(
 #'   data = ToothGrowth,
@@ -373,7 +324,7 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'   k = 1,
 #'   tr = 0.2
 #' )
-#' 
+#'
 #' # within-subjects design
 #' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
@@ -624,18 +575,18 @@ subtitle_t_robust <-
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # between-subjects design
-#' 
+#'
 #' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#' 
+#'
 #' # within-subjects design
-#' 
+#'
 #' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,

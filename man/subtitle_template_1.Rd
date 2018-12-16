@@ -31,11 +31,8 @@ For example, for Cohen's \emph{d} statistic, \code{effsize.text = "d"}. If you
 want to use plotmath, you will have to quote the argument (e.g.,
 \code{quote(italic("d"))}).}
 
-\item{effsize.estimate}{The estimated value of the effect size.}
-
-\item{effsize.LL}{The estimated value of the lower bound of effect size.}
-
-\item{effsize.UL}{The estimated value of the upper bound of effect size.}
+\item{effsize.estimate, effsize.LL, effsize.UL}{The estimated value of the
+effect size, its lower bound, and its upper.}
 
 \item{n}{An integer specifying the sample size used for the test.}
 

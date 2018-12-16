@@ -33,6 +33,7 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
+          NULL,
           italic("t"),
           "(",
           "612.00000",

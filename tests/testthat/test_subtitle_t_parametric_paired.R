@@ -195,6 +195,7 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
+          NULL,
           italic("t"),
           "(",
           "19",
@@ -252,6 +253,7 @@ testthat::test_that(
     # expected
     results1 <- ggplot2::expr(
       paste(
+        NULL,
         italic("t"),
         "(",
         "149",
