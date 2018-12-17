@@ -203,6 +203,14 @@ grouped_ggscatterstats <- function(data,
 
   if (isTRUE(point.labelling)) {
     if (isTRUE(expression.present)) {
+      if (typeof(param_list$label.expression)=="language") {
+        label.expression <- rlang::enquo(label.expression) #unquoted case
+      } else {
+        label.expression <- rlang::parse_expr(label.expression) # quoted case
+        label.expression <- rlang::as_quosure(label.expression, env = sys.frame(which = 0)) #the environment is essential
+      }
+#      return(label.expression)
+
       plotlist_purrr <-
         df %>%
         dplyr::mutate(
