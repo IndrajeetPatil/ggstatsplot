@@ -14,7 +14,7 @@ subtitle_template_1(stat.title = NULL, statistic.text, statistic,
 added as a prefix in the subtitle. The default is \code{NULL}. An example of a
 \code{stat.title} argument will be something like \code{"Student's t-test: "}.}
 
-\item{statistic.text}{A character specifiying the relevant test statistic.
+\item{statistic.text}{A character that specifies the relevant test statistic.
 For example, for tests with \emph{t}-statistic, \code{statistic.text = "t"}. If you
 want to use plotmath, you will have to quote the argument (e.g.,
 \code{quote(italic("t"))}).}
@@ -26,7 +26,7 @@ degrees of freedom for the test).}
 
 \item{p.value}{The two-sided p-value associated with the observed statistic.}
 
-\item{effsize.text}{A character specifiying the relevant effect size.
+\item{effsize.text}{A character that specifies the relevant effect size.
 For example, for Cohen's \emph{d} statistic, \code{effsize.text = "d"}. If you
 want to use plotmath, you will have to quote the argument (e.g.,
 \code{quote(italic("d"))}).}

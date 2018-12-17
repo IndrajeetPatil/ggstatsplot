@@ -671,7 +671,7 @@ ggdotplotstats(
 ```
 
 As with the rest of the functions in this package, there is also a `grouped_`
-variant of this function to faciliate to repeat the same operation across a
+variant of this function to facilitateto repeat the same operation across a
 grouping variable.
 
 ```{r ggdotplotstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}

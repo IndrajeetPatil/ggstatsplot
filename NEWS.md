@@ -50,7 +50,7 @@ MAJOR CHANGES
     (parametric, nonparametric, and robust variants). It gains a new dependency
     `ggsignif`.
   - `ggbetweenstats` now supports eta-squared and omega-squared effect sizes for
-    anova models. TThis function gains a new argument `partial`. 
+    anova models. This function gains a new argument `partial`. 
   - Following functions are now reexported from the `groupedstats` package to
     avoid repeating the same code in two packages: `specify_decimal_p`,
     `signif_column`, `lm_effsize_ci`, and `set_cwd`. Therefore, `groupedstats`
@@ -58,7 +58,7 @@ MAJOR CHANGES
   - `gghistostats` can now show both counts and proportions information on the
     same plot when `bar.measure` argument is set to `"mix"`.
   - `ggcoefstats` works with tidy dataframes.
-  - The helper function `untable` has been depcreated in light of
+  - The helper function `untable` has been deprecated in light of
     `tidyr::uncount`, which does exactly what `untable` was doing. The author
     wasn't aware of this function when `untable` was written.
   - All vignettes have been removed from `CRAN` to reduce the size of the
@@ -96,7 +96,7 @@ MINOR CHANGES
     also gains two new arguments to do this: `results.subtitle` and `subtitle`.
   - New dataset added: `iris_long`.
   - More tests added and the code coverage has now jumped to over 75%.
-  - To avoid code repitition, there is a now a function that produces a generic
+  - To avoid code repetition, there is a now a function that produces a generic
     message any time confidence intervals for effect size estimate are computed
     using bootstrapping.
 
@@ -127,7 +127,7 @@ MAJOR CHANGES
 
 BREAKING CHANGES
 
-  - `legend.title.margin` function has been depcrecated since `ggplot2 3.0.0`
+  - `legend.title.margin` function has been deprecated since `ggplot2 3.0.0`
     has improved on the margin issues from previous versions. All functions that
     wrapped around this function now lose the relevant arguments
     (`legend.title.margin`, `t.margin`, `b.margin`).
@@ -139,7 +139,7 @@ BREAKING CHANGES
     arguments were relevant only for `robust` tests anyway.
   - `ggocorrmat` argument `type` has been changed to `matrix.type` because for
     all other functions `type` argument specifies the type of the test, while
-    for this function it specified the display of the virsualization matrix.
+    for this function it specified the display of the visualization matrix.
     This will make the syntax more consistent across functions.
   - `ggscatterstats` gains new arguments to specify aesthetics for geom point
     (`point.color`, `point.size`, `point.alpha`). To be consistent with this
@@ -272,7 +272,7 @@ MAJOR CHANGES
   - To be internally consistent, all functions in `ggstatsplot` use the spelling
     `color`, rather than `colour` in some functions, while `color` in others.
   - Removed the redundant argument `binwidth.adjust` from `gghistostats`
-    function. This argument was relevant for the first avatar of this fucntion,
+    function. This argument was relevant for the first avatar of this function,
     but is no longer playing any role.
   - To be internally consistent, the argument `lab_col` and `lab_size` in
     `ggcorrmat` have been changed to `lab.col` and `lab.size`, respectively.
@@ -318,7 +318,7 @@ MAJOR CHANGES
     density information was redundant. The `density.plot` argument has also been
     deprecated.
   - `ggscatterstats` argument `intercept` has now been changed to
-    `centrality.para`. This was due to possible confusion about interpreation of
+    `centrality.para`. This was due to possible confusion about interpretation of
     these lines; they show central tendency measures and not intercept for the
     linear model. Thus the change.
   - The default for `effsize.type = "biased"` effect size for `ggbetweenstats`

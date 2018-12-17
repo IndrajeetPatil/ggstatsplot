@@ -126,3 +126,43 @@ effsize_type_switch <- function(effsize.type = NULL) {
   # return the value
   return(effsize.type)
 }
+
+#' @title Switch function to determine which type of statistics is to be run.
+#' @name stats_type_switch
+#' @description Takes in all allowed characters describing the needed type of
+#'   test and converts it into standard terms to reduce the complexity of
+#'   conditional statements.
+#' @author Indrajeet Patil
+#'
+#' @param stats.type Character describing the needed type of statistics (e.g.,
+#'   `"parametric"`, `"nonparametric"`, `"robust"`, `"bayes"``, etc.).
+#'
+#' @keywords internal
+
+stats_type_switch <- function(stats.type) {
+  # figuring out which effect size to use
+  if (!is.null(stats.type)) {
+    stats.type <-
+      switch(
+        EXPR = stats.type,
+        parametric = "parametric",
+        p = "parametric",
+        pearson = "parametric",
+        nonparametric = "nonparametric",
+        np = "nonparametric",
+        "non-parametric" = "nonparametric",
+        spearman = "nonparametric",
+        robust = "robust",
+        r = "robust",
+        pb = "robust",
+        bayes = "bayes",
+        bf = "bayes",
+        "parametric"
+      )
+  } else {
+    stats.type <- "parametric"
+  }
+
+  # return the value
+  return(stats.type)
+}
