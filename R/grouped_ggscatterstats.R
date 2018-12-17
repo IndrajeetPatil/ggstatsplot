@@ -29,10 +29,10 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -46,7 +46,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -56,13 +56,13 @@
 #'   title.prefix = "Cylinder count",
 #'   type = "robust",
 #'   label.var = "manufacturer",
-#'   label.expression = "hwy > 25 & displ > 2.5",
+#'   label.expression = hwy > 25 & displ > 2.5,
 #'   xfill = NULL,
 #'   package = "yarrr",
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
 #' \dontrun{
 #' ggstatsplot::grouped_ggscatterstats(
@@ -202,7 +202,19 @@ grouped_ggscatterstats <- function(data,
     tidyr::nest(data = .)
 
   if (isTRUE(point.labelling)) {
+    if (typeof(param_list$label.var)=="symbol") {
+      label.var <- deparse(substitute(label.var)) #unquoted case
+    }
+
     if (isTRUE(expression.present)) {
+      if (typeof(param_list$label.expression)=="language") {
+        label.expression <- rlang::enquo(label.expression) #unquoted case
+      } else {
+        label.expression <- rlang::parse_expr(label.expression) # quoted case
+        label.expression <- rlang::as_quosure(label.expression, env = sys.frame(which = 0)) #the environment is essential
+      }
+#      return(label.var)
+
       plotlist_purrr <-
         df %>%
         dplyr::mutate(

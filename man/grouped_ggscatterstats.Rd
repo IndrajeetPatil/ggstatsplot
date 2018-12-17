@@ -264,7 +264,7 @@ ggstatsplot::grouped_ggscatterstats(
   title.prefix = "Cylinder count",
   type = "robust",
   label.var = "manufacturer",
-  label.expression = "hwy > 25 & displ > 2.5",
+  label.expression = hwy > 25 & displ > 2.5,
   xfill = NULL,
   package = "yarrr",
   palette = "appletv",

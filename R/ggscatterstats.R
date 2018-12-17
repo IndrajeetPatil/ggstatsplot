@@ -94,15 +94,15 @@
 #' }
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_tibble(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -231,7 +231,12 @@ ggscatterstats <- function(data,
     data %>%
     {
       if ("label.expression" %in% names(param_list)) {
-        dplyr::filter(.data = ., !!rlang::parse_expr(label.expression))
+        # testing for whether we received bare or quoted
+        if (typeof(param_list$label.expression)=="language") {
+          dplyr::filter(.data = ., !!rlang::enquo(label.expression)) #unquoted case
+        } else {
+          dplyr::filter(.data = ., !!rlang::parse_expr(label.expression)) # quoted case
+        }
       } else {
         (.)
       }
@@ -482,6 +487,11 @@ ggscatterstats <- function(data,
   #-------------------- adding point labels --------------------------------
 
   if (isTRUE(point.labelling)) {
+  #   If we were passed a bare variable convert to char string for ggrepel
+    if (typeof(param_list$label.var)=="symbol") {
+      label.var <- deparse(substitute(label.var)) #unquoted case
+    }
+
     # using geom_repel_label
     plot <-
       plot +
