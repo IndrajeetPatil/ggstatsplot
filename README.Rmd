@@ -73,6 +73,10 @@ To get the latest, stable CRAN release (`0.0.7`):
 utils::install.packages(pkgs = "ggstatsplot")
 ```
 
+*Note*: If you are on a linux machine, you will need to have OpenGL libraries
+installed (specifically, `libx11`, `mesa` and Mesa OpenGL Utility library -
+`glu`) for the dependency package `rgl` to work.
+
 You can get the **development** version of the package from GitHub
 (`0.0.7.9000`). To see what new changes (and bug fixes) have been made to the
 package since the last release on `CRAN`, you can check the detailed log of

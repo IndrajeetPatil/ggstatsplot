@@ -17,7 +17,7 @@ testthat::test_that(
     ))
 
     # created using a template maker
-    template_1 <- ggstatsplot:::subtitle_template_1(
+    template_1 <- ggstatsplot::subtitle_template_1(
       statistic.text = quote(italic(chi)^2),
       statistic = 8.74,
       parameter = 2,

@@ -150,12 +150,12 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # with model object
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
-#' 
+#'
 #' # with custom dataframe
-#' 
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -221,7 +221,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#' 
+#'
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -484,15 +484,6 @@ ggcoefstats <- function(x,
         se.type = se.type,
         ...
       )
-    # ==================== tidying gls models ===========================
-  } else if (class(x)[[1]] == "gls") {
-    # getting tidy dataframe from broom and then combining it with its CIs
-    tidy_df <- broom.mixed::tidy(
-      x = x,
-      conf.int = TRUE,
-      conf.level = conf.level,
-      ...
-    )
     # ==================== tidying everything else ===========================
   } else {
     tidy_df <-

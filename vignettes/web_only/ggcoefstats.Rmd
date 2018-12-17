@@ -810,6 +810,33 @@ ggstatsplot::ggcoefstats(x = est)
 
 ```
 
+## Cox proportional hazards regression model (`coxph`)
+
+Fitted proportional hazards regression model - as implemented in the `survival`
+package - can also be displayed in dot-whisker plot.
+
+```{r coxph, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# for reproducibility
+set.seed(123)
+library(survival)
+
+# create the simplest test data set
+test1 <- list(
+  time = c(4, 3, 1, 1, 2, 2, 3),
+  status = c(1, 1, 1, 0, 1, 1, 0),
+  x = c(0, 2, 1, 1, 1, 0, 0),
+  sex = c(0, 0, 0, 0, 1, 1, 1)
+)
+
+# fit a stratified model
+mod <- survival::coxph(formula = Surv(time, status) ~ x + strata(sex), 
+                       data = test1)
+
+# plot
+ggstatsplot::ggcoefstats(x = mod, exponentiate = TRUE)
+```
+
+
 ## linear model using generalized least squares (`gls`)
 
 The `nlme` package provides a function to fit a linear model using generalized

@@ -27,7 +27,7 @@
 #'
 #' @examples
 #' set.seed(123)
-#' 
+#'
 #' # subtitle for *t*-statistic with Cohen's *d* as effect size
 #' ggstatsplot:::subtitle_template_1(
 #'   statistic.text = quote(italic("t")),
@@ -43,7 +43,8 @@
 #'   k = 3L,
 #'   k.parameter = 3L
 #' )
-#' @keywords internal
+#'
+#' @export
 
 # function body
 subtitle_template_1 <- function(stat.title = NULL,

@@ -838,6 +838,30 @@
 <a class="sourceLine" id="cb18-23" data-line-number="23">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> est)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/felm-1.png" width="576"></p>
 </div>
+<div id="cox-proportional-hazards-regression-model-coxph" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cox-proportional-hazards-regression-model-coxph" class="anchor"></a>Cox proportional hazards regression model (<code>coxph</code>)</h2>
+<p>Fitted proportional hazards regression model - as implemented in the <code>survival</code> package - can also be displayed in dot-whisker plot.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># for reproducibility</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(survival)</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co"># create the simplest test data set</span></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">test1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">  <span class="dt">time =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">  <span class="dt">status =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">  <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb19-10" data-line-number="10">  <span class="dt">sex =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb19-11" data-line-number="11">)</a>
+<a class="sourceLine" id="cb19-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb19-13" data-line-number="13"><span class="co"># fit a stratified model</span></a>
+<a class="sourceLine" id="cb19-14" data-line-number="14">mod &lt;-<span class="st"> </span>survival<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/survival/topics/coxph">coxph</a></span>(<span class="dt">formula =</span> <span class="kw">Surv</span>(time, status) <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">strata</span>(sex), </a>
+<a class="sourceLine" id="cb19-15" data-line-number="15">                       <span class="dt">data =</span> test1)</a>
+<a class="sourceLine" id="cb19-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb19-17" data-line-number="17"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb19-18" data-line-number="18">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod, <span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/coxph-1.png" width="384"></p>
+</div>
 <div id="linear-model-using-generalized-least-squares-gls" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-model-using-generalized-least-squares-gls" class="anchor"></a>linear model using generalized least squares (<code>gls</code>)</h2>
@@ -857,56 +881,56 @@
 <h2 class="hasAnchor">
 <a href="#dataframes-tbl_df-tbl-data-frame" class="anchor"></a>dataframes (<code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>)</h2>
 <p>Sometimes you don’t have a model object but a custom dataframe that you want display using this function. If a data frame is to be plotted, it <strong>must</strong> contain columns named <code>term</code> (names of predictors), and <code>estimate</code> (corresponding estimates of coefficients or other quantities of interest). Other optional columns are <code>conf.low</code> and <code>conf.high</code> (for confidence intervals), and <code>p.value</code>. You will also have to specify the type of statistic relevant for regression models (<code>"t"</code>, <code>"z"</code>, <code>"f"</code>) in case you want to display statistical labels.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># set up</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gapminder)</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="co"># data for running regression models</span></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">df &lt;-</a>
-<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">!=</span><span class="st"> "Oceania"</span>)</a>
-<a class="sourceLine" id="cb19-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="co"># saving results from regression  </span></a>
-<a class="sourceLine" id="cb19-11" data-line-number="11">df_results &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
-<a class="sourceLine" id="cb19-12" data-line-number="12">  <span class="dt">.l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb19-13" data-line-number="13">    <span class="dt">data =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(df),</a>
-<a class="sourceLine" id="cb19-14" data-line-number="14">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(lifeExp) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(gdpPercap) <span class="op">+</span><span class="st"> </span>(gdpPercap <span class="op">|</span></a>
-<a class="sourceLine" id="cb19-15" data-line-number="15"><span class="st">                                                          </span>country)),</a>
-<a class="sourceLine" id="cb19-16" data-line-number="16">    <span class="dt">grouping.vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">alist</a></span>(continent),</a>
-<a class="sourceLine" id="cb19-17" data-line-number="17">    <span class="dt">output =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"tidy"</span>, <span class="st">"glance"</span>)</a>
-<a class="sourceLine" id="cb19-18" data-line-number="18">  ),</a>
-<a class="sourceLine" id="cb19-19" data-line-number="19">  <span class="dt">.f =</span> groupedstats<span class="op">::</span>grouped_lmer</a>
-<a class="sourceLine" id="cb19-20" data-line-number="20">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">full_join</a></span>(<span class="dt">x =</span> .[[<span class="dv">1</span>]], <span class="dt">y =</span> .[[<span class="dv">2</span>]], <span class="dt">by =</span> <span class="st">"continent"</span>)</a>
-<a class="sourceLine" id="cb19-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb19-23" data-line-number="23"><span class="co"># modifying the results so to be compatible with the `ggcoefstats` requirement</span></a>
-<a class="sourceLine" id="cb19-24" data-line-number="24">(df_results <span class="op">%&lt;&gt;%</span></a>
-<a class="sourceLine" id="cb19-25" data-line-number="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-26" data-line-number="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">.data =</span> .,</a>
-<a class="sourceLine" id="cb19-27" data-line-number="27">                <span class="op">-</span>effect,</a>
-<a class="sourceLine" id="cb19-28" data-line-number="28">                <span class="op">-</span>term,</a>
-<a class="sourceLine" id="cb19-29" data-line-number="29">                <span class="dt">term =</span> continent,</a>
-<a class="sourceLine" id="cb19-30" data-line-number="30">                <span class="dt">statistic =</span> t.value))</a>
-<a class="sourceLine" id="cb19-31" data-line-number="31"><span class="co">#&gt; # A tibble: 4 x 14</span></a>
-<a class="sourceLine" id="cb19-32" data-line-number="32"><span class="co">#&gt;   term  estimate std.error statistic conf.low conf.high  p.value</span></a>
-<a class="sourceLine" id="cb19-33" data-line-number="33"><span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb19-34" data-line-number="34"><span class="co">#&gt; 1 Asia      7.35     1.27       5.79    4.86       9.84 7.00e- 9</span></a>
-<a class="sourceLine" id="cb19-35" data-line-number="35"><span class="co">#&gt; 2 Euro~     1.52     0.238      6.36    1.05       1.98 2.02e-10</span></a>
-<a class="sourceLine" id="cb19-36" data-line-number="36"><span class="co">#&gt; 3 Afri~     1.54     0.348      4.43    0.860      2.22 9.49e- 6</span></a>
-<a class="sourceLine" id="cb19-37" data-line-number="37"><span class="co">#&gt; 4 Amer~     1.88     0.233      8.06    1.42       2.34 7.64e-16</span></a>
-<a class="sourceLine" id="cb19-38" data-line-number="38"><span class="co">#&gt; # ... with 7 more variables: significance &lt;chr&gt;, sigma &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb19-39" data-line-number="39"><span class="co">#&gt; #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, REMLcrit &lt;dbl&gt;, df.residual &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb19-40" data-line-number="40"></a>
-<a class="sourceLine" id="cb19-41" data-line-number="41"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb19-42" data-line-number="42">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb19-43" data-line-number="43">  <span class="dt">x =</span> df_results,</a>
-<a class="sourceLine" id="cb19-44" data-line-number="44">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
-<a class="sourceLine" id="cb19-45" data-line-number="45">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,</a>
-<a class="sourceLine" id="cb19-46" data-line-number="46">  <span class="dt">title =</span> <span class="st">"Relationship between life expectancy and GDP"</span>,</a>
-<a class="sourceLine" id="cb19-47" data-line-number="47">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder foundation"</span>,</a>
-<a class="sourceLine" id="cb19-48" data-line-number="48">  <span class="dt">caption =</span> <span class="st">"Data from Oceania continent not included"</span></a>
-<a class="sourceLine" id="cb19-49" data-line-number="49">)</a>
-<a class="sourceLine" id="cb19-50" data-line-number="50"><span class="co">#&gt; Note: No model diagnostics information available for the object of class tbl_df .</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># set up</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gapminder)</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="co"># data for running regression models</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">df &lt;-</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">!=</span><span class="st"> "Oceania"</span>)</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="co"># saving results from regression  </span></a>
+<a class="sourceLine" id="cb20-11" data-line-number="11">df_results &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12">  <span class="dt">.l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb20-13" data-line-number="13">    <span class="dt">data =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(df),</a>
+<a class="sourceLine" id="cb20-14" data-line-number="14">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(lifeExp) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(gdpPercap) <span class="op">+</span><span class="st"> </span>(gdpPercap <span class="op">|</span></a>
+<a class="sourceLine" id="cb20-15" data-line-number="15"><span class="st">                                                          </span>country)),</a>
+<a class="sourceLine" id="cb20-16" data-line-number="16">    <span class="dt">grouping.vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">alist</a></span>(continent),</a>
+<a class="sourceLine" id="cb20-17" data-line-number="17">    <span class="dt">output =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"tidy"</span>, <span class="st">"glance"</span>)</a>
+<a class="sourceLine" id="cb20-18" data-line-number="18">  ),</a>
+<a class="sourceLine" id="cb20-19" data-line-number="19">  <span class="dt">.f =</span> groupedstats<span class="op">::</span>grouped_lmer</a>
+<a class="sourceLine" id="cb20-20" data-line-number="20">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">full_join</a></span>(<span class="dt">x =</span> .[[<span class="dv">1</span>]], <span class="dt">y =</span> .[[<span class="dv">2</span>]], <span class="dt">by =</span> <span class="st">"continent"</span>)</a>
+<a class="sourceLine" id="cb20-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb20-23" data-line-number="23"><span class="co"># modifying the results so to be compatible with the `ggcoefstats` requirement</span></a>
+<a class="sourceLine" id="cb20-24" data-line-number="24">(df_results <span class="op">%&lt;&gt;%</span></a>
+<a class="sourceLine" id="cb20-25" data-line-number="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-26" data-line-number="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">.data =</span> .,</a>
+<a class="sourceLine" id="cb20-27" data-line-number="27">                <span class="op">-</span>effect,</a>
+<a class="sourceLine" id="cb20-28" data-line-number="28">                <span class="op">-</span>term,</a>
+<a class="sourceLine" id="cb20-29" data-line-number="29">                <span class="dt">term =</span> continent,</a>
+<a class="sourceLine" id="cb20-30" data-line-number="30">                <span class="dt">statistic =</span> t.value))</a>
+<a class="sourceLine" id="cb20-31" data-line-number="31"><span class="co">#&gt; # A tibble: 4 x 14</span></a>
+<a class="sourceLine" id="cb20-32" data-line-number="32"><span class="co">#&gt;   term  estimate std.error statistic conf.low conf.high  p.value</span></a>
+<a class="sourceLine" id="cb20-33" data-line-number="33"><span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb20-34" data-line-number="34"><span class="co">#&gt; 1 Asia      7.35     1.27       5.79    4.86       9.84 7.00e- 9</span></a>
+<a class="sourceLine" id="cb20-35" data-line-number="35"><span class="co">#&gt; 2 Euro~     1.52     0.238      6.36    1.05       1.98 2.02e-10</span></a>
+<a class="sourceLine" id="cb20-36" data-line-number="36"><span class="co">#&gt; 3 Afri~     1.54     0.348      4.43    0.860      2.22 9.49e- 6</span></a>
+<a class="sourceLine" id="cb20-37" data-line-number="37"><span class="co">#&gt; 4 Amer~     1.88     0.233      8.06    1.42       2.34 7.64e-16</span></a>
+<a class="sourceLine" id="cb20-38" data-line-number="38"><span class="co">#&gt; # ... with 7 more variables: significance &lt;chr&gt;, sigma &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb20-39" data-line-number="39"><span class="co">#&gt; #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, REMLcrit &lt;dbl&gt;, df.residual &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb20-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb20-41" data-line-number="41"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb20-42" data-line-number="42">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb20-43" data-line-number="43">  <span class="dt">x =</span> df_results,</a>
+<a class="sourceLine" id="cb20-44" data-line-number="44">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
+<a class="sourceLine" id="cb20-45" data-line-number="45">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,</a>
+<a class="sourceLine" id="cb20-46" data-line-number="46">  <span class="dt">title =</span> <span class="st">"Relationship between life expectancy and GDP"</span>,</a>
+<a class="sourceLine" id="cb20-47" data-line-number="47">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder foundation"</span>,</a>
+<a class="sourceLine" id="cb20-48" data-line-number="48">  <span class="dt">caption =</span> <span class="st">"Data from Oceania continent not included"</span></a>
+<a class="sourceLine" id="cb20-49" data-line-number="49">)</a>
+<a class="sourceLine" id="cb20-50" data-line-number="50"><span class="co">#&gt; Note: No model diagnostics information available for the object of class tbl_df .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/dataframe-1.png" width="576"></p>
 </div>
 <div id="and-much-more" class="section level2">
@@ -947,6 +971,7 @@
       <li><a href="#repeated-measures-anova-aovlist">repeated measures ANOVA (<code>aovlist</code>)</a></li>
       <li><a href="#robust-regression-lmrob-glmrob">robust regression (<code>lmRob</code>, <code>glmRob</code>)</a></li>
       <li><a href="#fit-a-linear-model-with-multiple-group-fixed-effects-felm">Fit A Linear Model With Multiple Group Fixed Effects (<code>felm</code>)</a></li>
+      <li><a href="#cox-proportional-hazards-regression-model-coxph">Cox proportional hazards regression model (<code>coxph</code>)</a></li>
       <li><a href="#linear-model-using-generalized-least-squares-gls">linear model using generalized least squares (<code>gls</code>)</a></li>
       <li><a href="#robust-regression-using-an-m-estimator-rlm">robust regression using an M estimator (<code>rlm</code>)</a></li>
       <li><a href="#quantile-regression-rq">quantile regression (<code>rq</code>)</a></li>

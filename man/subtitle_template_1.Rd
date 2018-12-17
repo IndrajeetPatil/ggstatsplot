@@ -63,8 +63,8 @@ ggstatsplot:::subtitle_template_1(
   k = 3L,
   k.parameter = 3L
 )
+
 }
 \author{
 Indrajeet Patil
 }
-\keyword{internal}
