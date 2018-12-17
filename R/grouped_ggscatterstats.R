@@ -202,6 +202,10 @@ grouped_ggscatterstats <- function(data,
     tidyr::nest(data = .)
 
   if (isTRUE(point.labelling)) {
+    if (typeof(param_list$label.var)=="symbol") {
+      label.var <- deparse(substitute(label.var)) #unquoted case
+    }
+
     if (isTRUE(expression.present)) {
       if (typeof(param_list$label.expression)=="language") {
         label.expression <- rlang::enquo(label.expression) #unquoted case
@@ -209,7 +213,7 @@ grouped_ggscatterstats <- function(data,
         label.expression <- rlang::parse_expr(label.expression) # quoted case
         label.expression <- rlang::as_quosure(label.expression, env = sys.frame(which = 0)) #the environment is essential
       }
-#      return(label.expression)
+#      return(label.var)
 
       plotlist_purrr <-
         df %>%
