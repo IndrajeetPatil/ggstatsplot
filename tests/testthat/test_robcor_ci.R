@@ -22,15 +22,16 @@ testthat::test_that(
     set.seed(123)
 
     # this also makes sure that the quoted arguments work
-    df2 <- ggstatsplot:::robcor_ci(
-      data = mtcars2,
-      x = "hp",
-      y = "mpg",
-      beta = .01,
-      nboot = 125,
-      conf.level = .99,
-      conf.type = c("norm")
-    )
+    df2 <-
+      suppressWarnings(ggstatsplot:::robcor_ci(
+        data = mtcars2,
+        x = "hp",
+        y = "mpg",
+        beta = .01,
+        nboot = 125,
+        conf.level = .99,
+        conf.type = c("basic")
+      ))
 
     # testing 8 conditions
     set.seed(123)
@@ -43,8 +44,8 @@ testthat::test_that(
 
     # data with NAs
     testthat::expect_equal(df2$r, -0.8052814, tolerance = .00002)
-    testthat::expect_equal(df2$conf.low, -0.9328399, tolerance = .00002)
-    testthat::expect_equal(df2$conf.high, -0.686468, tolerance = .00002)
+    testthat::expect_equal(df2$conf.low, -0.9346235, tolerance = .00002)
+    testthat::expect_equal(df2$conf.high, -0.6943768, tolerance = .00002)
     testthat::expect_equal(df2$`p-value`, 4.677899e-08, tolerance = .00002)
   }
 )

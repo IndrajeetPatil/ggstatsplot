@@ -1,7 +1,9 @@
 context("subtitle_anova_robust")
 
+# conf.type = "norm" -------------------------------------------------------
+
 testthat::test_that(
-  desc = "subtitle_anova_robust works",
+  desc = "subtitle_anova_robust works - conf.type = norm",
   code = {
     set.seed(123)
 
@@ -50,27 +52,63 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(
-      object = using_function1,
-      expected = results1
-    )
+    testthat::expect_identical(using_function1, results1)
+  }
+)
 
-    # testing denominator degrees of freedom
-    testthat::expect_identical(
-      object = as.character(using_function1)[8],
-      expected = as.character(results1)[8]
-    )
+# conf.type = "perc" -------------------------------------------------------
 
-    # testing upper limit for CI
-    testthat::expect_identical(
-      object = as.character(using_function1)[18],
-      expected = as.character(results1)[18]
-    )
+testthat::test_that(
+  desc = "subtitle_anova_robust works - conf.type = perc",
+  code = {
 
-    # testing sample size
-    testthat::expect_identical(
-      object = using_function1[25],
-      expected = results1[25]
-    )
+    # ggstatsplot output
+    set.seed(123)
+    using_function1 <-
+      suppressWarnings(ggstatsplot::subtitle_anova_robust(
+        data = dplyr::filter(ggplot2::msleep, vore != "insecti"),
+        x = vore,
+        y = sleep_total,
+        k = 4,
+        nboot = 15,
+        conf.level = 0.99,
+        conf.type = "basic",
+        messages = FALSE
+      ))
+
+    # expected output
+    results1 <-
+      ggplot2::expr(
+        paste(
+          italic("F"),
+          "(",
+          2,
+          ",",
+          "35.1708",
+          ") = ",
+          "0.2695",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.7653",
+          ", ",
+          italic(xi),
+          " = ",
+          "0.1393",
+          ", CI"["99%"],
+          " [",
+          "-0.1692",
+          ", ",
+          "0.2128",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          71L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
   }
 )

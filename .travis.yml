@@ -78,6 +78,6 @@ notifications:
 
 after_success:
   - Rscript -e 'covr::codecov()'
-  - Rscript -e 'covr::coveralls(type = "all")'
+  - Rscript -e 'covr::coveralls()'
   - R CMD INSTALL $PKG_TARBALL
   - Rscript -e 'lintr::lint_package()'

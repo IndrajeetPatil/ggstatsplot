@@ -103,19 +103,42 @@ testthat::test_that(
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
-      ggstatsplot:::yuend_ci(
-        data = mydata,
-        time,
-        grade
-      )
+      ggstatsplot:::yuend_ci(data = mydata,
+                             x = time,
+                             y = grade)
 
+    # creating a dataframe with NAs
+    mydata1 <-  purrr::map_df(
+      .x = mydata,
+      .f = ~ .[sample(
+        x = c(TRUE, NA),
+        prob = c(0.8, 0.2),
+        size = length(.),
+        replace = TRUE
+      )]
+    )
 
-    # testing 5 conditions
-    # dataframe without NAs
+    # creating a dataframe
+    set.seed(123)
+    using_function2 <-
+      ggstatsplot:::yuend_ci(data = mydata1,
+                             x = time,
+                             y = grade,
+                             conf.level = 0.90,
+                             conf.type = "basic")
+
+    # testing 5 conditions (dataframe without NAs)
     testthat::expect_equal(using_function1$`t-value`, -5.27, tolerance = .001)
     testthat::expect_equal(using_function1$conf.low, 0.0952, tolerance = 0.0001)
     testthat::expect_equal(using_function1$conf.high, 0.248, tolerance = 0.001)
-    testthat::expect_equal(using_function1$df, 15)
+    testthat::expect_equal(using_function1$df, 15L)
     testthat::expect_equal(using_function1$`p-value`, 0.0000945, tolerance = 0.000001)
+
+    # testing 5 conditions (dataframe with NAs)
+    testthat::expect_equal(using_function2$`t-value`, -1.356716 , tolerance = .001)
+    testthat::expect_equal(using_function2$conf.low, -0.084208, tolerance = 0.0001)
+    testthat::expect_equal(using_function2$conf.high, 0.6691399, tolerance = 0.001)
+    testthat::expect_equal(using_function2$df, 8L)
+    testthat::expect_equal(using_function2$`p-value`, 0.2119125, tolerance = 0.000001)
   }
 )
