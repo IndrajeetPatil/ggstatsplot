@@ -96,6 +96,35 @@ testthat::test_that(
       ),
       tolerance = 0.001
     )
+
+    # checking the edge case where factor level names contain `-`
+    set.seed(123)
+    df5 <- ggstatsplot::pairwise_p(
+      data = movies_wide,
+      x = mpaa,
+      y = rating,
+      var.equal = TRUE,
+      messages = FALSE
+    )
+
+    testthat::expect_equal(df5$group1, c("PG-13", "R", "R"))
+    testthat::expect_equal(df5$group2, c("PG", "PG", "PG-13"))
+    testthat::expect_equal(df5$mean.difference,
+      c(0.1042746, 0.3234094, 0.2191348),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(df5$conf.low,
+      c(-0.13957173, 0.09444830, 0.05700094),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(df5$conf.high,
+      c(0.3481209, 0.5523704, 0.3812686),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(df5$p.value,
+      c(0.315931518, 0.002825407, 0.003100279),
+      tolerance = 0.001
+    )
   }
 )
 

@@ -389,15 +389,15 @@ subtitle_t_robust <-
       sample_size <- nrow(data)
 
       # Yuen's test for trimmed means
-      t_robust_stat <-
+      stats_df <-
         WRS2::yuen(
           formula = y ~ x,
           data = data,
           tr = tr
         )
 
-      # computing effect sizes
-      t_robust_effsize <-
+      # computing effect size and its confidence interval
+      effsize_df <-
         WRS2::yuen.effect.ci(
           formula = y ~ x,
           data = data,
@@ -406,76 +406,28 @@ subtitle_t_robust <-
           alpha = 1 - conf.level
         )
 
-      # preparing the subtitle
-      subtitle <-
-        base::substitute(
-          expr =
-            paste(
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic(xi),
-              " = ",
-              effsize,
-              ", CI"[conf.level],
-              " [",
-              LL,
-              ", ",
-              UL,
-              "]",
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(
-              x = t_robust_stat$test[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            df = ggstatsplot::specify_decimal_p(
-              x = t_robust_stat$df[[1]],
-              k = k.df,
-              p.value = FALSE
-            ),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = t_robust_stat$p.value[[1]],
-              k = k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(
-              x = t_robust_effsize$effsize[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            conf.level = paste(conf.level * 100, "%", sep = ""),
-            LL = ggstatsplot::specify_decimal_p(
-              x = t_robust_effsize$CI[[1]][[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            UL = ggstatsplot::specify_decimal_p(
-              x = t_robust_effsize$CI[[2]][[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            n = sample_size
-          )
-        )
+      # preparing subtitle
+      subtitle <- subtitle_template_1(
+        stat.title = NULL,
+        statistic.text = quote(italic("t")),
+        statistic = stats_df$test[[1]],
+        parameter = stats_df$df[[1]],
+        p.value = stats_df$p.value[[1]],
+        effsize.text = quote(italic(xi)),
+        effsize.estimate = effsize_df$effsize[[1]],
+        effsize.LL = effsize_df$CI[[1]][[1]],
+        effsize.UL = effsize_df$CI[[2]][[1]],
+        n = sample_size,
+        conf.level = conf.level,
+        k = k,
+        k.parameter = k.df
+      )
 
       # ---------------------------- within-subjects design -------------------
     } else {
 
       # getting dataframe of results from the custom function
-      yuend_results <-
+      stats_df <-
         yuend_ci(
           data = data,
           x = x,
@@ -486,70 +438,22 @@ subtitle_t_robust <-
           conf.type = conf.type
         )
 
-      # preparing the subtitle
-      subtitle <-
-        base::substitute(
-          expr =
-            paste(
-              italic("t"),
-              "(",
-              df,
-              ") = ",
-              estimate,
-              ", ",
-              italic("p"),
-              " = ",
-              pvalue,
-              ", ",
-              italic(xi),
-              " = ",
-              effsize,
-              ", CI"[conf.level],
-              " [",
-              LL,
-              ", ",
-              UL,
-              "]",
-              ", ",
-              italic("n"),
-              " = ",
-              n
-            ),
-          env = base::list(
-            estimate = ggstatsplot::specify_decimal_p(
-              x = yuend_results$`t-value`[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            df = ggstatsplot::specify_decimal_p(
-              x = yuend_results$df[[1]],
-              k = k.df,
-              p.value = FALSE
-            ),
-            pvalue = ggstatsplot::specify_decimal_p(
-              x = yuend_results$`p-value`[[1]],
-              k,
-              p.value = TRUE
-            ),
-            effsize = ggstatsplot::specify_decimal_p(
-              x = yuend_results$xi[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            conf.level = paste(conf.level * 100, "%", sep = ""),
-            LL = ggstatsplot::specify_decimal_p(
-              x = yuend_results$conf.low[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            UL = ggstatsplot::specify_decimal_p(
-              x = yuend_results$conf.high[[1]],
-              k = k,
-              p.value = FALSE
-            ),
-            n = yuend_results$n[[1]]
-          )
-        )
+      # preparing subtitle
+      subtitle <- subtitle_template_1(
+        stat.title = NULL,
+        statistic.text = quote(italic("t")),
+        statistic = stats_df$`t-value`[[1]],
+        parameter = stats_df$df[[1]],
+        p.value = stats_df$`p-value`[[1]],
+        effsize.text = quote(italic(xi)),
+        effsize.estimate = stats_df$xi[[1]],
+        effsize.LL = stats_df$conf.low[[1]],
+        effsize.UL = stats_df$conf.high[[1]],
+        n = stats_df$n[[1]],
+        conf.level = conf.level,
+        k = k,
+        k.parameter = k.df
+      )
     }
 
     # message about effect size measure

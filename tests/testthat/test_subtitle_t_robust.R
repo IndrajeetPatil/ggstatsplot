@@ -1,15 +1,15 @@
-context("subtitle_t_robust_paired")
+context("subtitle_t_robust")
 
-# function works ------------------------------------------------------------
+# within-subjects ------------------------------------------------------------
 
 testthat::test_that(
-  desc = "subtitle_t_robust_paired works",
+  desc = "subtitle_t_robust - within-subjects",
   code = {
 
     # creating a dataframe
     df <- iris %>%
       tidyr::gather(key, value, Sepal.Length, Sepal.Width) %>%
-      tibble::as_tibble()
+      tibble::as_tibble(x = .)
 
     # subtitle
     set.seed(123)
@@ -26,6 +26,7 @@ testthat::test_that(
     # expected
     results1 <- ggplot2::expr(
       paste(
+        NULL,
         italic("t"),
         "(",
         "119",
@@ -75,5 +76,59 @@ testthat::test_that(
       "99% CI for effect size estimate was computed with 20",
       fixed = TRUE
     )
+  }
+)
+
+
+# between-subjects ------------------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle_t_robust - between-subjects",
+  code = {
+
+    # subtitle
+    set.seed(123)
+    using_function1 <- subtitle_t_robust(
+      data = mtcars,
+      x = am,
+      y = wt,
+      paired = FALSE,
+      conf.level = 0.99,
+      k = 3,
+      messages = FALSE
+    )
+
+    # expected
+    results1 <- ggplot2::expr(
+      paste(
+        NULL,
+        italic("t"),
+        "(",
+        "24.816",
+        ") = ",
+        "5.255",
+        ", ",
+        italic("p"),
+        " = ",
+        "< 0.001",
+        ", ",
+        italic(xi),
+        " = ",
+        "0.814",
+        ", CI"["99%"],
+        " [",
+        "0.685",
+        ", ",
+        "0.992",
+        "]",
+        ", ",
+        italic("n"),
+        " = ",
+        32L
+      )
+    )
+
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
   }
 )

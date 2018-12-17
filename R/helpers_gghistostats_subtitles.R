@@ -69,6 +69,9 @@ subtitle_t_onesample <- function(data = NULL,
     stats::na.omit(.) %>%
     tibble::as_tibble(x = .)
 
+  # sample size
+  sample_size <- nrow(data)
+
   # ========================== stats ==========================================
 
   # decide whether to run bayesian tests
@@ -79,7 +82,7 @@ subtitle_t_onesample <- function(data = NULL,
   }
 
   # common test
-  jmv_results <-
+  stats_df <-
     jmv::ttestOneS(
       data = data,
       vars = "x",
@@ -93,70 +96,37 @@ subtitle_t_onesample <- function(data = NULL,
       miss = "listwise"
     )
 
+  # extracting the relevant information
+  stats_df <- as.data.frame(stats_df$ttest)
+
   # ========================= parametric ======================================
   if (type %in% c("parametric", "p")) {
 
     # confidence intervals for Cohen's d
-    ci_df <-
+    effsize_df <-
       psych::cohen.d.ci(
-        d = as.data.frame(jmv_results$ttest)$`es[stud]`,
-        n1 = length(data$x),
+        d = stats_df$`es[stud]`,
+        n1 = sample_size,
         alpha = 1 - conf.level
       ) %>%
       tibble::as_tibble(x = .)
 
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            italic("t"),
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic("d"),
-            " = ",
-            effsize,
-            ", CI"[conf.level],
-            " [",
-            LL,
-            ", ",
-            UL,
-            "]",
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
-            k = k,
-            p.value = FALSE
-          ),
-          df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_results$ttest)$`p[stud]`,
-            k,
-            p.value = TRUE
-          ),
-          conf.level = paste(conf.level * 100, "%", sep = ""),
-          effsize = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_results$ttest)$`es[stud]`,
-            k = k,
-            p.value = FALSE
-          ),
-          LL = ggstatsplot::specify_decimal_p(x = ci_df$lower[[1]], k = k),
-          UL = ggstatsplot::specify_decimal_p(x = ci_df$upper[[1]], k = k),
-          n = nrow(x = data)
-        )
-      )
+    # preparing subtitle
+    subtitle <- subtitle_template_1(
+      stat.title = NULL,
+      statistic.text = quote(italic("t")),
+      statistic = stats_df$`stat[stud]`,
+      parameter = stats_df$`df[stud]`,
+      p.value = stats_df$`p[stud]`,
+      effsize.text = quote(italic("d")),
+      effsize.estimate = stats_df$`es[stud]`,
+      effsize.LL = effsize_df$lower[[1]],
+      effsize.UL = effsize_df$upper[[1]],
+      n = sample_size,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = 0L
+    )
 
     # ========================== non-parametric ==============================
   } else if (type %in% c("nonparametric", "np")) {
@@ -182,18 +152,18 @@ subtitle_t_onesample <- function(data = NULL,
             n
           ),
         env = base::list(
-          estimate = as.data.frame(jmv_results$ttest)$`stat[wilc]`,
+          estimate = stats_df$`stat[wilc]`,
           pvalue = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_results$ttest)$`p[wilc]`,
+            x = stats_df$`p[wilc]`,
             k,
             p.value = TRUE
           ),
           effsize = ggstatsplot::specify_decimal_p(
-            x = as.data.frame(jmv_results$ttest)$`es[wilc]`,
+            x = stats_df$`es[wilc]`,
             k = k,
             p.value = FALSE
           ),
-          n = nrow(x = data)
+          n = sample_size
         )
       )
 
@@ -253,7 +223,7 @@ subtitle_t_onesample <- function(data = NULL,
           k,
           p.value = TRUE
         ),
-        n = rob_os$n[[1]]
+        n = sample_size
       )
     )
     # ===================== bayes ============================================
@@ -283,15 +253,15 @@ subtitle_t_onesample <- function(data = NULL,
           n
         ),
       env = base::list(
-        df = as.data.frame(jmv_results$ttest)$`df[stud]`,
+        df = stats_df$`df[stud]`,
         estimate = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
+          x = stats_df$`stat[stud]`,
           k = k,
           p.value = FALSE
         ),
         bf = ggstatsplot::specify_decimal_p(
           x = log(
-            x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
+            x = stats_df$`stat[bf]`,
             base = exp(1)
           ),
           k = k,
@@ -303,7 +273,7 @@ subtitle_t_onesample <- function(data = NULL,
           p.value = FALSE
         ),
         effsize = ggstatsplot::specify_decimal_p(
-          x = as.data.frame(jmv_results$ttest)$`es[stud]`,
+          x = stats_df$`es[stud]`,
           k = k,
           p.value = FALSE
         ),

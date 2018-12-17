@@ -57,14 +57,13 @@ testthat::test_that(
 testthat::test_that(
   desc = "glmmTMB works",
   code = {
-
     library(glmmTMB)
 
     # model
     set.seed(123)
     m1 <- glmmTMB::glmmTMB(
       formula = count ~ mined + (1 | site),
-      ziformula =  ~ mined,
+      ziformula = ~mined,
       family = poisson,
       data = Salamanders
     )
@@ -75,7 +74,8 @@ testthat::test_that(
         x = m1,
         tidy_df = broom.mixed::tidy(m1),
         glance_df = broom.mixed::glance(m1)
-      )
+      ) %>%
+      dplyr::filter(.data = ., !is.na(std.error))
 
     # checking the labels
     testthat::expect_equal(
@@ -84,9 +84,8 @@ testthat::test_that(
         "list(~italic(beta)==0.09, ~italic(z)==0.38, ~italic(p)==0.706)",
         "list(~italic(beta)==1.14, ~italic(z)==4.64, ~italic(p)<= 0.001)",
         "list(~italic(beta)==1.14, ~italic(z)==4.85, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1.74, ~italic(z)==-6.63, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==0.28, ~italic(z)==NA, ~italic(p)==NA)"
+        "list(~italic(beta)==-1.74, ~italic(z)==-6.63, ~italic(p)<= 0.001)"
       )
     )
-
-  })
+  }
+)

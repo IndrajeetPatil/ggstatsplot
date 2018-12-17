@@ -554,15 +554,16 @@ testthat::test_that(
 testthat::test_that(
   desc = "check clm models",
   code = {
-
     testthat::skip_on_cran()
     testthat::skip_on_appveyor()
     testthat::skip_on_travis()
 
     # creating broom dataframes
     set.seed(123)
-        mod <- ordinal::clm(data = ggstatsplot::intent_morality,
-                        formula = as.factor(rating) ~ belief * outcome * question)
+    mod <- ordinal::clm(
+      data = ggstatsplot::intent_morality,
+      formula = as.factor(rating) ~ belief * outcome * question
+    )
 
     # selecting alpha terms
     df1 <- broom::tidy(
@@ -628,8 +629,10 @@ testthat::test_that(
     testthat::expect_equal(df1$estimate, tidy_df1$estimate, tolerance = 0.001)
     testthat::expect_equal(df1$std.error, tidy_df1$std.error, tolerance = 0.001)
     testthat::expect_equal(df1$p.value, tidy_df1$p.value, tolerance = 0.001)
-    testthat::expect_identical(tidy_df1$significance,
-                               c("***", "***", "***", "***", "ns",  "***"))
+    testthat::expect_identical(
+      tidy_df1$significance,
+      c("***", "***", "***", "***", "ns", "***")
+    )
     testthat::expect_identical(
       tidy_df1$p.value.formatted2,
       c(
@@ -643,7 +646,6 @@ testthat::test_that(
     )
   }
 )
-
 
 # dataframe as input ----------------------------------------------------
 
@@ -663,6 +665,14 @@ testthat::test_that(
     df3 <- dplyr::select(.data = df1, -statistic)
     df4 <- dplyr::select(.data = df1, -df.residual)
     df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
+    df6 <- dplyr::select(.data = df5, -estimate, -std.error)
+
+    # expect errors
+    testthat::expect_error(ggstatsplot::ggcoefstats(x = df1))
+    testthat::expect_error(ggstatsplot::ggcoefstats(
+      x = df6,
+      meta.analysis.subtitle = TRUE
+    ))
 
     # plotting the dataframe
     p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t", sort = "none")

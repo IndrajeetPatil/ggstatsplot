@@ -25,9 +25,10 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
+          NULL,
           italic("t"),
           "(",
-          1578,
+          "1578",
           ") = ",
           "-23.04633",
           ", ",
