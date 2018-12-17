@@ -6,7 +6,7 @@
 #' @param stat.title A character describing the test being run, which will be
 #'   added as a prefix in the subtitle. The default is `NULL`. An example of a
 #'   `stat.title` argument will be something like `"Student's t-test: "`.
-#' @param statistic.text A character specifiying the relevant test statistic.
+#' @param statistic.text A character that specifies the relevant test statistic.
 #'   For example, for tests with *t*-statistic, `statistic.text = "t"`. If you
 #'   want to use plotmath, you will have to quote the argument (e.g.,
 #'   `quote(italic("t"))`).
@@ -14,7 +14,7 @@
 #' @param parameter The numeric value of a parameter being modeled (often
 #'   degrees of freedom for the test).
 #' @param p.value The two-sided p-value associated with the observed statistic.
-#' @param effsize.text A character specifiying the relevant effect size.
+#' @param effsize.text A character that specifies the relevant effect size.
 #'   For example, for Cohen's *d* statistic, `effsize.text = "d"`. If you
 #'   want to use plotmath, you will have to quote the argument (e.g.,
 #'   `quote(italic("d"))`).

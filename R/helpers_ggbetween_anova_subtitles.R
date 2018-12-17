@@ -33,7 +33,7 @@
 #'   y = sleep_rem,
 #'   k = 3
 #' )
-#' 
+#'
 #' # modifying the defaults
 #' subtitle_anova_parametric(
 #'   data = ggplot2::msleep,
@@ -263,7 +263,7 @@ subtitle_kw_nonparametric <-
     sample_size <- nrow(data)
 
     # setting up the anova model and getting its summary
-    kw_stat <-
+    stats_df <-
       stats::kruskal.test(
         formula = y ~ x,
         data = data,
@@ -271,7 +271,7 @@ subtitle_kw_nonparametric <-
       )
 
     # getting partial eta-squared based on H-statistic
-    kw_effsize <-
+    effsize_df <-
       suppressWarnings(kw_eta_h_ci(
         data = data,
         x = x,
@@ -286,67 +286,22 @@ subtitle_kw_nonparametric <-
       effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
 
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            "Kruskal-Wallis: ",
-            italic(chi)^2,
-            "(",
-            df,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            eta["H"]^2,
-            " = ",
-            effsize,
-            ", CI"[conf.level],
-            " [",
-            LL,
-            ", ",
-            UL,
-            "]",
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
-            x = kw_stat$statistic[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          df = kw_stat$parameter[[1]],
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = kw_stat$p.value[[1]],
-            k,
-            p.value = TRUE
-          ),
-          effsize = ggstatsplot::specify_decimal_p(
-            x = kw_effsize$eta_sq_H[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          conf.level = paste(conf.level * 100, "%", sep = ""),
-          LL = ggstatsplot::specify_decimal_p(
-            x = kw_effsize$conf.low[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          UL = ggstatsplot::specify_decimal_p(
-            x = kw_effsize$conf.high[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          n = sample_size
-        )
-      )
+    # preparing subtitle
+    subtitle <- subtitle_template_1(
+      stat.title = "Kruskal-Wallis: ",
+      statistic.text = quote(italic(chi)^2),
+      statistic = stats_df$statistic[[1]],
+      parameter = stats_df$parameter[[1]],
+      p.value = stats_df$p.value[[1]],
+      effsize.text = quote(eta["H"]^2),
+      effsize.estimate = effsize_df$eta_sq_H[[1]],
+      effsize.LL = effsize_df$conf.low[[1]],
+      effsize.UL = effsize_df$conf.high[[1]],
+      n = sample_size,
+      conf.level = conf.level,
+      k = k,
+      k.parameter = 0L
+    )
 
     # return the subtitle
     return(subtitle)
@@ -370,12 +325,12 @@ subtitle_kw_nonparametric <-
 #' library(ggstatsplot)
 #' library(jmv)
 #' data("bugs", package = "jmv")
-#' 
+#'
 #' # converting to long format
 #' data_bugs <- bugs %>%
 #'   tibble::as_tibble(.) %>%
 #'   tidyr::gather(., key, value, LDLF:HDHF)
-#' 
+#'
 #' # creating the subtitle
 #' ggstatsplot::subtitle_friedman_nonparametric(
 #'   data = data_bugs,
@@ -502,12 +457,12 @@ subtitle_friedman_nonparametric <- function(data,
 #' @importFrom rlang !! enquo
 #'
 #' @examples
-#' 
+#'
 #' # examples not executed due to time constraints
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # going with the defaults
 #' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
@@ -515,7 +470,7 @@ subtitle_friedman_nonparametric <- function(data,
 #'   y = percbelowpoverty,
 #'   nboot = 10
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
@@ -673,7 +628,7 @@ subtitle_anova_robust <-
 #'   k = 2,
 #'   bf.prior = 0.8
 #' )
-#' 
+#'
 #' # modifying the defaults
 #' subtitle_anova_bayes(
 #'   data = ggplot2::msleep,

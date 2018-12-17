@@ -21,14 +21,14 @@
 #' @importFrom stats cor.test
 #'
 #' @examples
-#' 
+#'
 #' # without changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
 #'   x = area,
 #'   y = percblack
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
@@ -70,6 +70,9 @@ subtitle_ggscatterstats <-
     # the total sample size for analysis
     sample_size <- nrow(x = data)
 
+    # standardize the type of statistics
+    stats.type <- stats_type_switch(stats.type = type)
+
     # Pearson's r (will also be used for Bayes tests)
     pearson_r_res <-
       stats::cor.test(
@@ -84,7 +87,7 @@ subtitle_ggscatterstats <-
 
     #------------------------ Pearson's r -------------------------------------
     #
-    if (type == "pearson" || type == "parametric" || type == "p") {
+    if (stats.type == "parametric") {
 
       # preparing the label
       subtitle <-
@@ -139,7 +142,7 @@ subtitle_ggscatterstats <-
         )
 
       #--------------------- Spearnman's rho ---------------------------------
-    } else if (type == "spearman" || type == "nonparametric" || type == "np") {
+    } else if (stats.type == "nonparametric") {
 
       # note that stats::cor.test doesn't give degress of freedom; it's
       # calculated as df = (no. of pairs - 2)
@@ -222,7 +225,7 @@ subtitle_ggscatterstats <-
         )
 
       #---------------------- robust percentage bend --------------------------
-    } else if (type == "robust" || type == "r") {
+    } else if (stats.type == "robust") {
       # running robust correlation
       rob_res <-
         robcor_ci(
@@ -287,7 +290,7 @@ subtitle_ggscatterstats <-
         effsize_ci_message(nboot = nboot, conf.level = conf.level)
       }
       #---------------------- bayes factor -----------------------------------
-    } else if (type == "bayes" || type == "bf") {
+    } else if (stats.type == "bayes") {
 
       # bayes factor results
       bf_results <-
