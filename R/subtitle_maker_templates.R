@@ -24,6 +24,7 @@
 #' @param k.parameter Number of decimal places to display for the parameter
 #'   (default: `0`).
 #' @param n An integer specifying the sample size used for the test.
+#' @inheritParams ggbetweenstats
 #'
 #' @examples
 #' set.seed(123)
