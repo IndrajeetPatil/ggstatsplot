@@ -188,17 +188,17 @@ games_howell <- function(data,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # time consuming, so not run on `CRAN` machines
 #' \dontrun{
 #' # show all columns in a tibble
 #' options(tibble.width = Inf)
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' #------------------- between-subjects design ----------------------------
-#' 
+#'
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's *t*-test will be run
 #' ggstatsplot::pairwise_p(
@@ -210,7 +210,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -221,7 +221,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
-#' 
+#'
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -231,7 +231,7 @@ games_howell <- function(data,
 #'   paired = FALSE,
 #'   p.adjust.method = "none"
 #' )
-#' 
+#'
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = ggplot2::msleep,
@@ -243,16 +243,16 @@ games_howell <- function(data,
 #' )
 #' }
 #' #------------------- within-subjects design ----------------------------
-#' 
+#'
 #' set.seed(123)
 #' library(jmv)
 #' data("bugs", package = "jmv")
-#' 
+#'
 #' # converting to long format
 #' bugs_long <- bugs %>%
 #'   tibble::as_tibble(.) %>%
 #'   tidyr::gather(., key, value, LDLF:HDHF)
-#' 
+#'
 #' # parametric
 #' ggstatsplot::pairwise_p(
 #'   data = bugs_long,
@@ -262,7 +262,7 @@ games_howell <- function(data,
 #'   paired = TRUE,
 #'   p.adjust.method = "BH"
 #' )
-#' 
+#'
 #' # non-parametric
 #' ggstatsplot::pairwise_p(
 #'   data = bugs_long,
@@ -272,7 +272,7 @@ games_howell <- function(data,
 #'   paired = TRUE,
 #'   p.adjust.method = "BY"
 #' )
-#' 
+#'
 #' # robust
 #' ggstatsplot::pairwise_p(
 #'   data = bugs_long,
@@ -318,23 +318,25 @@ pairwise_p <- function(data,
   #
   if (type %in% c("parametric", "p")) {
     if (isTRUE(var.equal) || isTRUE(paired)) {
+      aovmodel <- stats::aov(formula = y ~ x, data = data)
+      aovmodel$model$x <- stringr::str_replace(aovmodel$model$x,"-","_")
+      blah3 <- TukeyHSD(aovmodel) %>%
+               broom::tidy() %>%
+               dplyr::select(comparison, estimate, conf.low, conf.high) %>%
+        tidyr::separate(
+          data = .,
+          col = comparison,
+          into = c("group1", "group2"),
+          sep = "-"
+        ) %>%
+        dplyr::rename(.data = ., mean.difference = estimate)
+      blah3$group1 <- stringr::str_replace(blah3$group1,"_","-")
+      blah3$group2 <- stringr::str_replace(blah3$group2,"_","-")
+#      return(blah3)
       df <-
         dplyr::full_join(
           # mean difference and its confidence intervals
-          x = stats::aov(formula = y ~ x, data = data) %>%
-            stats::TukeyHSD(x = .) %>%
-            broom::tidy(x = .) %>%
-            dplyr::select(
-              .data = .,
-              comparison, estimate, conf.low, conf.high
-            ) %>%
-            tidyr::separate(
-              data = .,
-              col = comparison,
-              into = c("group1", "group2"),
-              sep = "-"
-            ) %>%
-            dplyr::rename(.data = ., mean.difference = estimate),
+          x = blah3,
           y = broom::tidy(
             stats::pairwise.t.test(
               x = data$y,
