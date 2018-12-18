@@ -46,12 +46,13 @@ to use in calculating Bayes factors.}
 \item{bf.message}{Logical. Decides whether to display Bayes Factor in favor
 of \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
 
-\item{label.var}{Variable to use for points labels. \strong{Must} be entered as a
-character string e.g. \code{"y"}.}
+\item{label.var}{Variable to use for points labels. Can be entered either as
+a character string (e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label. \strong{Must} be entered as a
-character string e.g. \code{"y < 4 & z < 20"}.}
+determines the subset of data points to label. This argument can be entered
+either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
+expression (e.g., \code{y < 4 & z < 20}).}
 
 \item{grouping.var}{Grouping variable.}
 
@@ -263,7 +264,7 @@ ggstatsplot::grouped_ggscatterstats(
   grouping.var = cyl,
   title.prefix = "Cylinder count",
   type = "robust",
-  label.var = "manufacturer",
+  label.var = manufacturer,
   label.expression = hwy > 25 & displ > 2.5,
   xfill = NULL,
   package = "yarrr",

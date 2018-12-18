@@ -549,6 +549,84 @@ testthat::test_that(
   }
 )
 
+# check lmRob output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check lmRob output",
+  code = {
+
+    # set up
+    set.seed(123)
+    library(robust)
+    data(stack.dat)
+
+    # model
+    stack.rob <- robust::lmRob(formula = Loss ~ ., data = stack.dat)
+
+    # broom outputs
+    broom_df <- broom::tidy(stack.rob)
+
+    # ggcoefstats outputs
+    tidy_df <- ggstatsplot::ggcoefstats(
+      x = stack.rob,
+      exclude.intercept = FALSE,
+      conf.int = 0.90,
+      output = "tidy"
+    )
+
+    # testing
+    testthat::expect_identical(broom_df$term, as.character(tidy_df$term))
+    testthat::expect_equal(broom_df$estimate, tidy_df$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df$std.error, tidy_df$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df$p.value, tidy_df$p.value, tolerance = 0.001)
+  }
+)
+
+# check quantreg output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check quantreg output",
+  code = {
+
+    # set up
+    set.seed(123)
+    library(quantreg)
+    data(stackloss)
+
+    # model
+    mod <-
+      quantreg::rq(
+        formula = stack.loss ~ stack.x,
+        data = stackloss,
+        method = "br"
+      )
+
+    # broom outputs
+    broom_df <-
+      broom::tidy(x = mod,
+                  se.type = "iid",
+                  conf.int = TRUE,
+                  conf.level = 0.90)
+
+    # ggcoefstats outputs
+    tidy_df <- ggstatsplot::ggcoefstats(
+      x = mod,
+      se.type = "iid",
+      exclude.intercept = FALSE,
+      conf.level = 0.90,
+      output = "tidy"
+    )
+
+    # testing
+    testthat::expect_identical(broom_df$term, as.character(tidy_df$term))
+    testthat::expect_equal(broom_df$estimate, tidy_df$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df$std.error, tidy_df$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df$p.value, tidy_df$p.value, tolerance = 0.001)
+    testthat::expect_equal(broom_df$conf.low, tidy_df$conf.low, tolerance = 0.001)
+    testthat::expect_equal(broom_df$conf.high, tidy_df$conf.high, tolerance = 0.001)
+  }
+)
+
 # check clm models ----------------------------------------------
 
 testthat::test_that(
@@ -665,7 +743,7 @@ testthat::test_that(
     df3 <- dplyr::select(.data = df1, -statistic)
     df4 <- dplyr::select(.data = df1, -df.residual)
     df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
-    df6 <- dplyr::select(.data = df5, -estimate, -std.error)
+    df6 <- dplyr::select(.data = df5, -term, -estimate, -std.error)
 
     # expect errors
     testthat::expect_error(ggstatsplot::ggcoefstats(x = df1))

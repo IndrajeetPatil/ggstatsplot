@@ -55,7 +55,7 @@
 #'   grouping.var = cyl,
 #'   title.prefix = "Cylinder count",
 #'   type = "robust",
-#'   label.var = "manufacturer",
+#'   label.var = manufacturer,
 #'   label.expression = hwy > 25 & displ > 2.5,
 #'   xfill = NULL,
 #'   package = "yarrr",
@@ -167,6 +167,7 @@ grouped_ggscatterstats <- function(data,
   }
 
   # ======================== preparing dataframe =============================
+
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
 
@@ -202,19 +203,26 @@ grouped_ggscatterstats <- function(data,
     tidyr::nest(data = .)
 
   if (isTRUE(point.labelling)) {
-    if (typeof(param_list$label.var)=="symbol") {
-      label.var <- deparse(substitute(label.var)) #unquoted case
+    if (typeof(param_list$label.var) == "symbol") {
+      # unquoted case
+      label.var <- deparse(substitute(label.var))
     }
 
     if (isTRUE(expression.present)) {
-      if (typeof(param_list$label.expression)=="language") {
-        label.expression <- rlang::enquo(label.expression) #unquoted case
+      if (typeof(param_list$label.expression) == "language") {
+        # unquoted case
+        label.expression <- rlang::enquo(label.expression)
       } else {
-        label.expression <- rlang::parse_expr(label.expression) # quoted case
-        label.expression <- rlang::as_quosure(label.expression, env = sys.frame(which = 0)) #the environment is essential
+        # quoted case
+        label.expression <- rlang::parse_expr(x = label.expression)
+        # the environment is essential
+        label.expression <- rlang::as_quosure(
+          x = label.expression,
+          env = sys.frame(which = 0)
+        )
       }
-#      return(label.var)
 
+      # creating a list of plots
       plotlist_purrr <-
         df %>%
         dplyr::mutate(

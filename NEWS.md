@@ -8,6 +8,11 @@ NEW FEATURES
     prior analyses. The `subtitle` is prepared with the new function
     `subtitle_meta_ggcoefstats` which is also exported.
 
+MAJOR CHANGES
+
+  - `ggscatterstats` and its `grouped_` variant accept both character and bare
+    exressions as input to arguments `label.var` and `labe.expression` (#110).
+
 MINOR CHANGES
 
   - Confidence interval for Kendall's W is now computed using

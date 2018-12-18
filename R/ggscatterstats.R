@@ -12,11 +12,12 @@
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
 #'   of *null* hypothesis **for parametric test** (Default: `FALSE`).
-#' @param label.var Variable to use for points labels. **Must** be entered as a
-#'   character string e.g. `"y"`.
+#' @param label.var Variable to use for points labels. Can be entered either as
+#'   a character string (e.g., `"y"`) or as a bare expression (e.g, `y`).
 #' @param label.expression An expression evaluating to a logical vector that
-#'   determines the subset of data points to label. **Must** be entered as a
-#'   character string e.g. `"y < 4 & z < 20"`.
+#'   determines the subset of data points to label. This argument can be entered
+#'   either as a character string (e.g., `"y < 4 & z < 20"`) or as a bare
+#'   expression (e.g., `y < 4 & z < 20`).
 #' @param xlab Label for `x` axis variable.
 #' @param ylab Label for `y` axis variable.
 #' @param line.color color for the regression line.
@@ -109,8 +110,8 @@
 #'   x = wt,
 #'   y = mpg,
 #'   type = "np",
-#'   label.var = "car",
-#'   label.expression = "wt < 4 & mpg < 20",
+#'   label.var = car,
+#'   label.expression = wt < 4 & mpg < 20,
 #'   axes.range.restrict = TRUE,
 #'   centrality.para = "median",
 #'   xfill = NULL
@@ -232,10 +233,12 @@ ggscatterstats <- function(data,
     {
       if ("label.expression" %in% names(param_list)) {
         # testing for whether we received bare or quoted
-        if (typeof(param_list$label.expression)=="language") {
-          dplyr::filter(.data = ., !!rlang::enquo(label.expression)) #unquoted case
+        if (typeof(param_list$label.expression) == "language") {
+          # unquoted case
+          dplyr::filter(.data = ., !!rlang::enquo(label.expression))
         } else {
-          dplyr::filter(.data = ., !!rlang::parse_expr(label.expression)) # quoted case
+          # quoted case
+          dplyr::filter(.data = ., !!rlang::parse_expr(label.expression))
         }
       } else {
         (.)
@@ -487,9 +490,9 @@ ggscatterstats <- function(data,
   #-------------------- adding point labels --------------------------------
 
   if (isTRUE(point.labelling)) {
-  #   If we were passed a bare variable convert to char string for ggrepel
-    if (typeof(param_list$label.var)=="symbol") {
-      label.var <- deparse(substitute(label.var)) #unquoted case
+    #   If we were passed a bare variable convert to char string for ggrepel
+    if (typeof(param_list$label.var) == "symbol") {
+      label.var <- deparse(substitute(label.var)) # unquoted case
     }
 
     # using geom_repel_label

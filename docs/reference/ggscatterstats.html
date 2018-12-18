@@ -238,14 +238,15 @@ of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code
     </tr>
     <tr>
       <th>label.var</th>
-      <td><p>Variable to use for points labels. <strong>Must</strong> be entered as a
-character string e.g. <code>"y"</code>.</p></td>
+      <td><p>Variable to use for points labels. Can be entered either as
+a character string (e.g., <code>"y"</code>) or as a bare expression (e.g, <code>y</code>).</p></td>
     </tr>
     <tr>
       <th>label.expression</th>
       <td><p>An expression evaluating to a logical vector that
-determines the subset of data points to label. <strong>Must</strong> be entered as a
-character string e.g. <code>"y &lt; 4 &amp; z &lt; 20"</code>.</p></td>
+determines the subset of data points to label. This argument can be entered
+either as a character string (e.g., <code>"y &lt; 4 &amp; z &lt; 20"</code>) or as a bare
+expression (e.g., <code>y &lt; 4 &amp; z &lt; 20</code>).</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -457,8 +458,8 @@ have a lot of labels that overlap.</p></li>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>,
-  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='st'>"car"</span>,
-  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='st'>"wt &lt; 4 &amp; mpg &lt; 20"</span>,
+  <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='no'>car</span>,
+  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='no'>wt</span> <span class='kw'>&lt;</span> <span class='fl'>4</span> <span class='kw'>&amp;</span> <span class='no'>mpg</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>,
   <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"median"</span>,
   <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='kw'>NULL</span>

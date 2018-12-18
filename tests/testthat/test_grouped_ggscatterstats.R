@@ -3,19 +3,6 @@ context("grouped_ggscatterstats")
 testthat::test_that(
   desc = "grouped_ggscatterstats works",
   code = {
-    skip_on_cran()
-
-    # when the grouping and labelling variable are the same, the function
-    # shouldn't work
-    testthat::expect_error(
-      grouped_ggscatterstats(
-        data = iris,
-        x = Sepal.Length,
-        y = Petal.Width,
-        grouping.var = Species,
-        label.var = Species
-      )
-    )
 
     # when arguments are entered as bare expressions
     set.seed(123)
@@ -28,7 +15,7 @@ testthat::test_that(
           ),
         x = length,
         y = rating,
-        label.expression = "budget > 150",
+        label.expression = budget > 150,
         label.var = "title",
         grouping.var = mpaa,
         type = "p",
@@ -51,6 +38,8 @@ testthat::test_that(
         y = "rating",
         grouping.var = "mpaa",
         type = "r",
+        label.expression = "budget > 150",
+        label.var = title,
         messages = FALSE,
         marginal = FALSE
       ),

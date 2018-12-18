@@ -33,7 +33,7 @@
 #'   y = sleep_rem,
 #'   k = 3
 #' )
-#'
+#' 
 #' # modifying the defaults
 #' subtitle_anova_parametric(
 #'   data = ggplot2::msleep,
@@ -325,12 +325,12 @@ subtitle_kw_nonparametric <-
 #' library(ggstatsplot)
 #' library(jmv)
 #' data("bugs", package = "jmv")
-#'
+#' 
 #' # converting to long format
 #' data_bugs <- bugs %>%
 #'   tibble::as_tibble(.) %>%
 #'   tidyr::gather(., key, value, LDLF:HDHF)
-#'
+#' 
 #' # creating the subtitle
 #' ggstatsplot::subtitle_friedman_nonparametric(
 #'   data = data_bugs,
@@ -457,12 +457,12 @@ subtitle_friedman_nonparametric <- function(data,
 #' @importFrom rlang !! enquo
 #'
 #' @examples
-#'
+#' 
 #' # examples not executed due to time constraints
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # going with the defaults
 #' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
@@ -470,7 +470,7 @@ subtitle_friedman_nonparametric <- function(data,
 #'   y = percbelowpoverty,
 #'   nboot = 10
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_anova_robust(
 #'   data = ggplot2::midwest,
@@ -628,7 +628,7 @@ subtitle_anova_robust <-
 #'   k = 2,
 #'   bf.prior = 0.8
 #' )
-#'
+#' 
 #' # modifying the defaults
 #' subtitle_anova_bayes(
 #'   data = ggplot2::msleep,

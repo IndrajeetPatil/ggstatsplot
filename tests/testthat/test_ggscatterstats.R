@@ -14,7 +14,7 @@ testthat::test_that(
         x = sleep_total,
         y = bodywt,
         label.var = "name",
-        label.expression = "bodywt > 2000",
+        label.expression = bodywt > 2000,
         xlab = "sleep (total)",
         ylab = "body weight",
         type = "p",
@@ -285,6 +285,76 @@ testthat::test_that(
       tibble::enframe(p$grobs[[22]]$children)$value[[1]][[1]],
       p_subtitle
     )
+  }
+)
+
+# labeling input variations ---------------------------------------------
+
+testthat::test_that(
+  desc = "checking ggscatterstats with different kinds of inputs to labeling",
+  code = {
+    # creating the plot
+    set.seed(123)
+
+    # both quoted
+    testthat::expect_true(inherits(
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = "sleep_total > 17",
+        label.var = "order",
+        results.subtitle = FALSE,
+        marginal = FALSE,
+        messages = TRUE
+      ),
+      what = "gg"
+    ))
+
+    # both unquoted
+    testthat::expect_true(inherits(
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = sleep_total > 17,
+        label.var = order,
+        results.subtitle = FALSE,
+        marginal = FALSE,
+        messages = TRUE
+      ),
+      what = "gg"
+    ))
+
+    # one unquoted, one quoted
+    testthat::expect_true(inherits(
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = sleep_total > 17,
+        label.var = "order",
+        results.subtitle = FALSE,
+        marginal = FALSE,
+        messages = TRUE
+      ),
+      what = "gg"
+    ))
+
+    # one unquoted, one quoted
+    testthat::expect_true(inherits(
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = "sleep_total > 17",
+        label.var = order,
+        results.subtitle = FALSE,
+        marginal = FALSE,
+        messages = TRUE
+      ),
+      what = "gg"
+    ))
   }
 )
 
