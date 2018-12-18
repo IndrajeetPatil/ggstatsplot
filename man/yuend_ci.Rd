@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers_effsize_ci.R
 \name{yuend_ci}
 \alias{yuend_ci}
-\title{Paired samples robust t-tests with confidence
+\title{Paired samples robust \emph{t}-tests with confidence
 interval for effect size.}
 \usage{
 yuend_ci(data, x, y, tr = 0.1, nboot = 100, conf.level = 0.95,

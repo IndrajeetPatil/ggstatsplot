@@ -132,17 +132,17 @@ testthat::test_that(
       )
 
     # testing 5 conditions (dataframe without NAs)
-    testthat::expect_equal(using_function1$`t-value`, -5.27, tolerance = .001)
+    testthat::expect_equal(using_function1$t.value, -5.27, tolerance = .001)
     testthat::expect_equal(using_function1$conf.low, 0.0952, tolerance = 0.0001)
     testthat::expect_equal(using_function1$conf.high, 0.248, tolerance = 0.001)
     testthat::expect_equal(using_function1$df, 15L)
-    testthat::expect_equal(using_function1$`p-value`, 0.0000945, tolerance = 0.000001)
+    testthat::expect_equal(using_function1$p.value, 0.0000945, tolerance = 0.000001)
 
     # testing 5 conditions (dataframe with NAs)
-    testthat::expect_equal(using_function2$`t-value`, -1.356716, tolerance = .001)
+    testthat::expect_equal(using_function2$t.value, -1.356716, tolerance = .001)
     testthat::expect_equal(using_function2$conf.low, -0.084208, tolerance = 0.0001)
     testthat::expect_equal(using_function2$conf.high, 0.6691399, tolerance = 0.001)
     testthat::expect_equal(using_function2$df, 8L)
-    testthat::expect_equal(using_function2$`p-value`, 0.2119125, tolerance = 0.000001)
+    testthat::expect_equal(using_function2$p.value, 0.2119125, tolerance = 0.000001)
   }
 )

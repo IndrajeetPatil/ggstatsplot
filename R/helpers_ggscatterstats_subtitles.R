@@ -21,14 +21,14 @@
 #' @importFrom stats cor.test
 #'
 #' @examples
-#' 
+#'
 #' # without changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
 #'   x = area,
 #'   y = percblack
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
@@ -86,7 +86,7 @@ subtitle_ggscatterstats <-
       )
 
     #------------------------ Pearson's r -------------------------------------
-    #
+
     if (stats.type == "parametric") {
 
       # preparing the label
@@ -277,7 +277,7 @@ subtitle_ggscatterstats <-
               k = k,
               p.value = FALSE
             ),
-            pvalue = ggstatsplot::specify_decimal_p(rob_res$`p-value`[[1]],
+            pvalue = ggstatsplot::specify_decimal_p(rob_res$p.value[[1]],
               k,
               p.value = TRUE
             ),

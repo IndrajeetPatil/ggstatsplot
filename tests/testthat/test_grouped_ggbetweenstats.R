@@ -6,7 +6,7 @@ context(desc = "grouped_ggbetweenstats")
 testthat::test_that(
   desc = "grouping.var works across vector types",
   code = {
-    skip_on_cran()
+    testthat::skip_on_cran()
 
     # `outlier.label` is numeric
     set.seed(123)

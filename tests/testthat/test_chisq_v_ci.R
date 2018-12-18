@@ -47,14 +47,14 @@ testthat::test_that(
     testthat::expect_equal(df1$chi.sq, 114.9119, tolerance = .0002)
     testthat::expect_equal(df1$conf.low, 0.3805465, tolerance = 0.00002)
     testthat::expect_equal(df1$conf.high, 0.5513931, tolerance = 0.00002)
-    testthat::expect_equal(df1$`Cramer's V`, 0.4570895, tolerance = 0.00002)
-    testthat::expect_equal(df1$`p-value`, 8.227133e-27, tolerance = 0.00002)
+    testthat::expect_equal(df1$Cramer.V, 0.4570895, tolerance = 0.00002)
+    testthat::expect_equal(df1$p.value, 8.227133e-27, tolerance = 0.00002)
 
     # dataframe with NAs
     testthat::expect_equal(df2$chi.sq, 112.9901, tolerance = 0.00002)
     testthat::expect_equal(df2$conf.low, 0.3591983, tolerance = 0.00002)
     testthat::expect_equal(df2$conf.high, 0.5200487, tolerance = 0.00002)
-    testthat::expect_equal(df2$`Cramer's V`, 0.4540774, tolerance = 0.00002)
-    testthat::expect_equal(df2$`p-value`, 2.168544e-26, tolerance = 0.00002)
+    testthat::expect_equal(df2$Cramer.V, 0.4540774, tolerance = 0.00002)
+    testthat::expect_equal(df2$p.value, 2.168544e-26, tolerance = 0.00002)
   }
 )
