@@ -17,7 +17,7 @@
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
-#' @importFrom rlang !! enquo quo_name ensym
+#' @importFrom rlang !! enquo quo_name ensym as_quosure parse_expr
 #' @importFrom glue glue
 #' @importFrom purrr map set_names
 #' @importFrom tidyr nest
@@ -29,10 +29,10 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#'
+#' 
 #' # to ensure reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -46,7 +46,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#'
+#' 
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -62,7 +62,7 @@
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#'
+#' 
 #' # labeling without expression
 #' \dontrun{
 #' ggstatsplot::grouped_ggscatterstats(
@@ -218,7 +218,7 @@ grouped_ggscatterstats <- function(data,
         # the environment is essential
         label.expression <- rlang::as_quosure(
           x = label.expression,
-          env = sys.frame(which = 0)
+          env = base::sys.frame(which = 0)
         )
       }
 

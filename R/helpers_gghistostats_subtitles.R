@@ -112,7 +112,8 @@ subtitle_t_onesample <- function(data = NULL,
       tibble::as_tibble(x = .)
 
     # preparing subtitle
-    subtitle <- subtitle_template_1(
+    subtitle <- subtitle_template(
+      no.parameters = 1L,
       stat.title = NULL,
       statistic.text = quote(italic("t")),
       statistic = stats_df$`stat[stud]`,

@@ -603,10 +603,12 @@ testthat::test_that(
 
     # broom outputs
     broom_df <-
-      broom::tidy(x = mod,
-                  se.type = "iid",
-                  conf.int = TRUE,
-                  conf.level = 0.90)
+      broom::tidy(
+        x = mod,
+        se.type = "iid",
+        conf.int = TRUE,
+        conf.level = 0.90
+      )
 
     # ggcoefstats outputs
     tidy_df <- ggstatsplot::ggcoefstats(

@@ -5,6 +5,9 @@ context("pairwise_p")
 testthat::test_that(
   desc = "`pairwise_p()` works for between-subjects design",
   code = {
+
+    testthat::skip_on_cran()
+
     set.seed(123)
 
     # student's t
@@ -134,6 +137,9 @@ testthat::test_that(
 testthat::test_that(
   desc = "`pairwise_p()` works for within-subjects design",
   code = {
+
+    testthat::skip_on_cran()
+
     set.seed(123)
     library(jmv)
     data("bugs", package = "jmv")

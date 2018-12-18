@@ -23,9 +23,10 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
+          NULL,
           italic("F"),
           "(",
-          8,
+          "8",
           ",",
           "171.38458",
           ") = ",
@@ -80,9 +81,10 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
+          NULL,
           italic("F"),
           "(",
-          2,
+          "2",
           ",",
           "35.1708",
           ") = ",

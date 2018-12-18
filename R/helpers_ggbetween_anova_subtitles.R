@@ -76,21 +76,14 @@ subtitle_anova_parametric <- function(data,
       .funs = ~ base::droplevels(x = base::as.factor(x = .))
     )
 
-  # Welch's ANOVA run by default
-  aov_stat <-
-    stats::oneway.test(
-      formula = y ~ x,
-      data = data,
-      subset = NULL,
-      na.action = na.omit,
-      var.equal = var.equal
-    )
+  # sample size
+  sample_size <- nrow(data)
 
   # number of decimal places for degree of freedom
-  if (!isTRUE(var.equal)) {
-    k.df2 <- k
-  } else if (isTRUE(var.equal)) {
-    k.df2 <- 0
+  if (isTRUE(var.equal)) {
+    k.df <- 0
+  } else {
+    k.df <- k
   }
 
   # figuring out which effect size to use
@@ -100,22 +93,32 @@ subtitle_anova_parametric <- function(data,
   if (effsize.type == "unbiased") {
     effsize <- "omega"
     if (isTRUE(partial)) {
-      effsize.text <- quote(omega["p"])
+      effsize.text <- quote(omega["p"]^2)
     } else {
-      effsize.text <- quote(omega)
+      effsize.text <- quote(omega^2)
     }
   } else if (effsize.type == "biased") {
     effsize <- "eta"
     if (isTRUE(partial)) {
-      effsize.text <- quote(eta["p"])
+      effsize.text <- quote(eta["p"]^2)
     } else {
-      effsize.text <- quote(eta)
+      effsize.text <- quote(eta^2)
     }
   }
 
+  # Welch's ANOVA run by default
+  stats_df <-
+    stats::oneway.test(
+      formula = y ~ x,
+      data = data,
+      subset = NULL,
+      na.action = na.omit,
+      var.equal = var.equal
+    )
+
   # creating a standardized dataframe with effect size and its confidence
   # intervals
-  aov_effsize_ci <- lm_effsize_standardizer(
+  effsize_df <- lm_effsize_standardizer(
     object = stats::lm(
       formula = y ~ x,
       data = data,
@@ -127,75 +130,24 @@ subtitle_anova_parametric <- function(data,
     nboot = nboot
   )
 
-  # preparing the subtitle
-  subtitle <-
-    # extracting the elements of the statistical object
-    base::substitute(
-      expr =
-        paste(
-          italic("F"),
-          "(",
-          df1,
-          ",",
-          df2,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", ",
-          effsize.text^2,
-          " = ",
-          effsize,
-          ", CI"[conf.level],
-          " [",
-          LL,
-          ", ",
-          UL,
-          "]",
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        estimate = ggstatsplot::specify_decimal_p(
-          x = aov_stat$statistic[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        df1 = aov_stat$parameter[[1]],
-        df2 = ggstatsplot::specify_decimal_p(
-          x = aov_stat$parameter[[2]],
-          k = k.df2,
-          p.value = FALSE
-        ),
-        pvalue = ggstatsplot::specify_decimal_p(
-          x = aov_stat$p.value[[1]],
-          k = k,
-          p.value = TRUE
-        ),
-        effsize.text = effsize.text,
-        effsize = ggstatsplot::specify_decimal_p(
-          x = aov_effsize_ci$estimate[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        conf.level = paste(conf.level * 100, "%", sep = ""),
-        LL = ggstatsplot::specify_decimal_p(
-          x = aov_effsize_ci$conf.low[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        UL = ggstatsplot::specify_decimal_p(
-          x = aov_effsize_ci$conf.high[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        n = nrow(x = data)
-      )
-    )
+  # preparing subtitle
+  subtitle <- subtitle_template(
+    no.parameters = 2L,
+    stat.title = NULL,
+    statistic.text = quote(italic("F")),
+    statistic = stats_df$statistic[[1]],
+    parameter = stats_df$parameter[[1]],
+    parameter2 = stats_df$parameter[[2]],
+    p.value = stats_df$p.value[[1]],
+    effsize.text = effsize.text,
+    effsize.estimate = effsize_df$estimate[[1]],
+    effsize.LL = effsize_df$conf.low[[1]],
+    effsize.UL = effsize_df$conf.high[[1]],
+    n = sample_size,
+    conf.level = conf.level,
+    k = k,
+    k.parameter = k.df
+  )
 
   # message about effect size measure
   if (isTRUE(messages)) {
@@ -287,7 +239,8 @@ subtitle_kw_nonparametric <-
     }
 
     # preparing subtitle
-    subtitle <- subtitle_template_1(
+    subtitle <- subtitle_template(
+      no.parameters = 1L,
       stat.title = "Kruskal-Wallis: ",
       statistic.text = quote(italic(chi)^2),
       statistic = stats_df$statistic[[1]],
@@ -483,127 +436,78 @@ subtitle_friedman_nonparametric <- function(data,
 #' @export
 
 # function body
-subtitle_anova_robust <-
-  function(data,
-             x,
-             y,
-             tr = 0.1,
-             nboot = 100,
-             conf.level = 0.95,
-             conf.type = "norm",
-             messages = TRUE,
-             k = 2,
-             ...) {
+subtitle_anova_robust <- function(data,
+                                  x,
+                                  y,
+                                  tr = 0.1,
+                                  nboot = 100,
+                                  conf.level = 0.95,
+                                  conf.type = "norm",
+                                  messages = TRUE,
+                                  k = 2,
+                                  ...) {
 
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      ) %>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y))
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    dplyr::filter(.data = ., !is.na(x), !is.na(y))
 
-    # convert the grouping variable to factor and drop unused levels
-    data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      )
+  # convert the grouping variable to factor and drop unused levels
+  data %<>%
+    dplyr::mutate_at(
+      .tbl = .,
+      .vars = "x",
+      .funs = ~ base::droplevels(x = base::as.factor(x = .))
+    )
 
-    # sample size
-    sample_size <- nrow(data)
+  # sample size
+  sample_size <- nrow(data)
 
-    # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for
-    # trimmed means
-    robust_aov_stat <-
-      t1way_ci(
-        data = data,
-        x = x,
-        y = y,
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        conf.type = conf.type
-      )
+  # setting up the Bootstrap version of the heteroscedastic one-way ANOVA for
+  # trimmed means
+  stats_df <-
+    t1way_ci(
+      data = data,
+      x = x,
+      y = y,
+      tr = tr,
+      nboot = nboot,
+      conf.level = conf.level,
+      conf.type = conf.type
+    )
 
-    # message about effect size measure
-    if (isTRUE(messages)) {
-      effsize_ci_message(nboot = nboot, conf.level = conf.level)
-    }
+  # preparing subtitle
+  subtitle <- subtitle_template(
+    no.parameters = 2L,
+    stat.title = NULL,
+    statistic.text = quote(italic("F")),
+    statistic = stats_df$F.value[[1]],
+    parameter = stats_df$df1[[1]],
+    parameter2 = stats_df$df2[[1]],
+    p.value = stats_df$p.value[[1]],
+    effsize.text = quote(italic(xi)),
+    effsize.estimate = stats_df$xi[[1]][[1]],
+    effsize.LL = stats_df$conf.low[[1]],
+    effsize.UL = stats_df$conf.high[[1]],
+    n = sample_size,
+    conf.level = conf.level,
+    k = k,
+    k.parameter = k
+  )
 
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            italic("F"),
-            "(",
-            df1,
-            ",",
-            df2,
-            ") = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic(xi),
-            " = ",
-            effsize,
-            ", CI"[conf.level],
-            " [",
-            LL,
-            ", ",
-            UL,
-            "]",
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
-            x = robust_aov_stat$F.value[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          df1 = robust_aov_stat$df1[[1]],
-          df2 = ggstatsplot::specify_decimal_p(
-            x = robust_aov_stat$df2[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = robust_aov_stat$p.value[[1]],
-            k = k,
-            p.value = TRUE
-          ),
-          effsize = ggstatsplot::specify_decimal_p(
-            x = robust_aov_stat$xi[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          conf.level = paste(conf.level * 100, "%", sep = ""),
-          LL = ggstatsplot::specify_decimal_p(
-            x = robust_aov_stat$conf.low[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          UL = ggstatsplot::specify_decimal_p(
-            x = robust_aov_stat$conf.high[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          n = sample_size
-        )
-      )
 
-    # return the subtitle
-    return(subtitle)
+  # message about effect size measure
+  if (isTRUE(messages)) {
+    effsize_ci_message(nboot = nboot, conf.level = conf.level)
   }
+
+  # return the subtitle
+  return(subtitle)
+}
 
 
 #' @title Making text subtitle for the between-subject one-way anova designs.
@@ -673,7 +577,7 @@ subtitle_anova_bayes <- function(data,
   sample_size <- nrow(data)
 
   # Welch's ANOVA run by default
-  aov_stat <-
+  stats_df <-
     stats::oneway.test(
       formula = y ~ x,
       data = data,
@@ -695,9 +599,9 @@ subtitle_anova_bayes <- function(data,
 
   # number of decimal places for degree of freedom
   if (!isTRUE(var.equal)) {
-    k.df2 <- k
+    k.df <- k
   } else if (isTRUE(var.equal)) {
-    k.df2 <- 0
+    k.df <- 0
   }
 
   # figuring out which effect size to use
@@ -722,7 +626,7 @@ subtitle_anova_bayes <- function(data,
 
   # creating a standardized dataframe with effect size and its confidence
   # intervals
-  aov_effsize_ci <- lm_effsize_standardizer(
+  effsize_df <- lm_effsize_standardizer(
     object = stats::lm(
       formula = y ~ x,
       data = data,
@@ -762,18 +666,18 @@ subtitle_anova_bayes <- function(data,
       env = base::list(
         effsize.text = effsize.text,
         estimate = ggstatsplot::specify_decimal_p(
-          x = aov_stat$statistic[[1]],
+          x = stats_df$statistic[[1]],
           k = k,
           p.value = FALSE
         ),
-        df1 = aov_stat$parameter[[1]],
+        df1 = stats_df$parameter[[1]],
         df2 = ggstatsplot::specify_decimal_p(
-          x = aov_stat$parameter[[2]],
-          k = k.df2,
+          x = stats_df$parameter[[2]],
+          k = k.df,
           p.value = FALSE
         ),
         effsize = ggstatsplot::specify_decimal_p(
-          x = aov_effsize_ci$estimate[[1]],
+          x = effsize_df$estimate[[1]],
           k = k,
           p.value = FALSE
         ),

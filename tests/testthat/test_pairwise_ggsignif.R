@@ -312,7 +312,6 @@ testthat::test_that(
   }
 )
 
-
 # student's t test works -------------------------------------------------
 
 testthat::test_that(
