@@ -100,6 +100,7 @@ ggstatsplot::ggcoefstats(
     data = movies_10
   ),
   effsize = "eta",                          # changing the effect size estimate being displayed
+  partial = FALSE,                          # just eta-squared 
   point.color = "red",                      # changing the point color
   point.size = 4,                           # changing the point size
   point.shape = 15,                         # changing the point shape
