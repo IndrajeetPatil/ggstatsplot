@@ -271,7 +271,9 @@ structure of the data. More specifically,
     size (*n*) in the subtitle to inform the user/reader about the number of
     observations included for both the statistical analysis and the
     visualization. But, when sample sizes differ *across* tests in the same
-    function, `ggstatsplot` makes an effort to inform the user of this aspect
+    function, `ggstatsplot` makes an effort to inform the user of this aspect.
+    For example, `ggcorrmat` features several correlation test pairs and,
+    depending on variables in a given pair, the sample sizes may vary
     (Figure-4).
 
 ```{r example4, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 10, fig.cap = "**Figure-4**. `ggstatsplot` functions remove `NA`s from variables of interest and display total sample size *n*, but they can give more nuanced information about sample sizes when *n* differs across tests. For example, `ggcorrmat` will display (a) only one total sample size once when no `NA`s present, but (b) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
@@ -466,9 +468,23 @@ statistical reporting and why.
     infinitesimally small the *p*-values are and, instead, puts emphasis on the
     effect size magnitudes and their 95% CIs.
 
+# Overall consistency in API
+
+Attempt has been made to make the API consistent enough that no struggle is
+expected while thinking about specifying function calls-
+
+  - When a given function depends on variables in a dataframe, `data` argument
+    must always be specified.
+  - Often, package functions relevant for between-subjects versus
+    within-subjects design expect tidy/long versus Cartesian/wide format data,
+    respectively. `ggstatsplot` functions consistently expect tidy/long form
+    data. 
+  - All functions accept both quoted (`x = "var1"`) and unquoted (`x = var1`)
+    arguments.
+
 # Conclusion
 
-
+# Acknowlegdments
 
 # References
    

@@ -17,7 +17,7 @@ ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   vline.color = "black", vline.linetype = "dashed", vline.size = 1,
   sort = "none", xlab = "regression coefficient", ylab = "term",
   title = NULL, subtitle = NULL, stats.labels = TRUE,
-  caption.summary = TRUE, stats.label.size = 3,
+  caption = NULL, caption.summary = TRUE, stats.label.size = 3,
   stats.label.fontface = "bold", stats.label.color = NULL,
   label.r = 0.15, label.size = 0.25, label.box.padding = 1,
   label.label.padding = 0.25, label.point.padding = 0.5,
@@ -149,6 +149,8 @@ will be ignored if \code{meta.analysis.subtitle} is set to \code{TRUE}.}
 \item{stats.labels}{Logical. Decides whether the statistic and p-values for
 each coefficient are to be attached to each dot as a text label using
 \code{ggrepel} (Default: \code{TRUE}).}
+
+\item{caption}{The text for the plot caption.}
 
 \item{caption.summary}{Logical. Decides whether the model summary should be
 displayed as a cation to the plot (Default: \code{TRUE}). Color of the line

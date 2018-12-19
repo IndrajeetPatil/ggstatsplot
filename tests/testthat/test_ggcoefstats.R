@@ -139,11 +139,14 @@ testthat::test_that(
   }
 )
 
-# f-statistic - partial eta-squared -------------------------------------
+# f-statistic and partial eta- and omega-squared -----------------------------
 
 testthat::test_that(
-  desc = "ggcoefstats with aov model",
+  desc = "ggcoefstats with partial variants of effect size for f-statistic",
   code = {
+
+    ## partial eta-squared
+
     set.seed(123)
 
     # model
@@ -154,6 +157,8 @@ testthat::test_that(
       ggstatsplot::ggcoefstats(
         x = mod,
         exclude.intercept = FALSE,
+        effsize = "eta",
+        partial = TRUE,
         k = 2,
         ylab = "effect"
       )
@@ -187,9 +192,16 @@ testthat::test_that(
     testthat::expect_identical(p$labels$y, "effect")
     testthat::expect_identical(
       p$labels$caption,
-      ggplot2::expr(paste(
-        "AIC = ", "43", ", BIC = ", "50",
-        ", log-likelihood = ", "-17"
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "AIC = ",
+          "43",
+          ", BIC = ",
+          "50",
+          ", log-likelihood = ",
+          "-17"
+        )
       ))
     )
     testthat::expect_null(p$labels$title, NULL)
@@ -230,14 +242,9 @@ testthat::test_that(
       pb$layout$panel_params[[1]]$y.labels,
       c("mpg", "am", "mpg:am")
     )
-  }
-)
 
-# f-statistic - partial omega-squared -------------------------------------
+    ## partial omega-squared
 
-testthat::test_that(
-  desc = "ggcoefstats with aov model",
-  code = {
     set.seed(123)
 
     # model
@@ -254,9 +261,11 @@ testthat::test_that(
         exclude.intercept = FALSE,
         sort = "ascending",
         effsize = "omega",
-        partial = FALSE,
+        partial = TRUE,
         title = "mammalian sleep",
         subtitle = "Source: `ggplot2` package",
+        caption = substitute(paste(italic("Note"), ": From `tidyverse`")),
+        caption.summary = FALSE,
         k = 3
       )
 
@@ -266,14 +275,11 @@ testthat::test_that(
     # tidy dataframe from the function
     tidy_df <- p$plot_env$tidy_df
 
-    testthat::expect_identical(p$labels$x, "omega-squared")
+    testthat::expect_identical(p$labels$x, "partial omega-squared")
     testthat::expect_identical(p$labels$y, "term")
     testthat::expect_identical(
       p$labels$caption,
-      ggplot2::expr(paste(
-        "AIC = ", "126", ", BIC = ", "142",
-        ", log-likelihood = ", "-54"
-      ))
+      ggplot2::expr(paste(italic("Note"), ": From `tidyverse`"))
     )
     testthat::expect_identical(p$labels$title, "mammalian sleep")
     testthat::expect_identical(p$labels$subtitle, "Source: `ggplot2` package")
@@ -286,7 +292,7 @@ testthat::test_that(
     testthat::expect_identical(tidy_df$label, pb$data[[4]]$label)
 
     testthat::expect_equal(tidy_df$estimate,
-      c(0.26531121, 0.01431375, 0.12509318),
+      c(0.30828881, 0.02348073, 0.17365008),
       tolerance = 1e-3
     )
     testthat::expect_equal(tidy_df$df1[1], 3L)
@@ -308,12 +314,12 @@ testthat::test_that(
 
     # checking panel parameters
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(-0.02576079, 0.54097650),
+      c(-0.1754901, 0.7496432),
       tolerance = 0.001
     )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$x.labels,
-      c("0.0", "0.1", "0.2", "0.3", "0.4", "0.5")
+      c("0.00", "0.25", "0.50")
     )
     testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
       c(0.4, 3.6),

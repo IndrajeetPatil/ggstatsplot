@@ -249,27 +249,27 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 
 <span class='co'># going with the defaults</span>
 <span class='fu'>subtitle_anova_robust</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/midwest.html'>midwest</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/midwest'>midwest</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>state</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percbelowpoverty</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 4, ",", "169.73", ") = ", "11.43", ", ", 
-#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.33", 
-#&gt;     ", CI"["95%"], " [", "0.19", ", ", "0.40", "]", ", ", italic("n"), 
-#&gt;     " = ", 437L)</div><div class='input'>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("F"), "(", "4", ",", "169.73", ") = ", "11.43", 
+#&gt;     ", ", italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", 
+#&gt;     "0.33", ", CI"["95%"], " [", "0.19", ", ", "0.40", "]", ", ", 
+#&gt;     italic("n"), " = ", 437L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_anova_robust</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/midwest.html'>midwest</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/midwest'>midwest</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>state</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>percollege</span>,
   <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("F"), "(", 4, ",", "127.02", ") = ", "7.67", ", ", 
-#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.31", 
-#&gt;     ", CI"["95%"], " [", "0.15", ", ", "0.42", "]", ", ", italic("n"), 
-#&gt;     " = ", 437L)</div></span></pre>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("F"), "(", "4", ",", "127.02", ") = ", "7.67", 
+#&gt;     ", ", italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", 
+#&gt;     "0.31", ", CI"["95%"], " [", "0.15", ", ", "0.42", "]", ", ", 
+#&gt;     italic("n"), " = ", 437L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

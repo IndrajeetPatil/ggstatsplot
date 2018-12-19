@@ -29,7 +29,7 @@ want to use plotmath, you will have to quote the argument (e.g.,
 \item{parameter}{The numeric value of a parameter being modeled (often
 degrees of freedom for the test).}
 
-\item{parameter2}{Relevant only if the statistic in question has two degress
+\item{parameter2}{Relevant only if the statistic in question has two degrees
 of freedom (default: \code{NULL}).}
 
 \item{p.value}{The two-sided p-value associated with the observed statistic.}

@@ -16,7 +16,7 @@
 #' @param statistic The numeric value of a statistic.
 #' @param parameter The numeric value of a parameter being modeled (often
 #'   degrees of freedom for the test).
-#' @param parameter2 Relevant only if the statistic in question has two degress
+#' @param parameter2 Relevant only if the statistic in question has two degrees
 #'   of freedom (default: `NULL`).
 #' @param p.value The two-sided p-value associated with the observed statistic.
 #' @param effsize.text A character that specifies the relevant effect size.
@@ -33,7 +33,7 @@
 #'
 #' @examples
 #' set.seed(123)
-#' 
+#'
 #' # subtitle for *t*-statistic with Cohen's *d* as effect size
 #' ggstatsplot::subtitle_template(
 #'   no.parameters = 1L,

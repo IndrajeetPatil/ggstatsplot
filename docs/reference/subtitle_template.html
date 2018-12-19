@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Display normality test result as a message. — normality_message • ggstatsplot</title>
+<title>Template for subtitles with statistical details for tests with a
+single parameter (e.g., t, chi-squared, etc.) — subtitle_template • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,10 +39,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Display normality test result as a message. — normality_message" />
+<meta property="og:title" content="Template for subtitles with statistical details for tests with a
+single parameter (e.g., t, chi-squared, etc.) — subtitle_template" />
 
-<meta property="og:description" content="A note to the user about the validity of assumptions for the
-default linear model." />
+<meta property="og:description" content="Template for subtitles with statistical details for tests with a
+single parameter (e.g., t, chi-squared, etc.)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -165,85 +167,125 @@ default linear model." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Display normality test result as a message.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_messages.R'><code>R/helpers_messages.R</code></a></small>
-    <div class="hidden name"><code>normality_message.Rd</code></div>
+    <h1>Template for subtitles with statistical details for tests with a
+single parameter (e.g., t, chi-squared, etc.)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/subtitle_maker_templates.R'><code>R/subtitle_maker_templates.R</code></a></small>
+    <div class="hidden name"><code>subtitle_template.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A note to the user about the validity of assumptions for the
-default linear model.</p>
+    <p>Template for subtitles with statistical details for tests with a
+single parameter (e.g., t, chi-squared, etc.)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>normality_message</span>(<span class='no'>x</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_template</span>(<span class='no'>no.parameters</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>statistic.text</span>,
+  <span class='no'>statistic</span>, <span class='no'>parameter</span>, <span class='kw'>parameter2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>p.value</span>, <span class='no'>effsize.text</span>,
+  <span class='no'>effsize.estimate</span>, <span class='no'>effsize.LL</span>, <span class='no'>effsize.UL</span>, <span class='no'>n</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3L</span>, <span class='kw'>k.parameter</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A numeric vector.</p></td>
+      <th>no.parameters</th>
+      <td><p>An integer that specifies that the number of parameters
+for the statistical test. Can be <code>1</code> for tests based on <em>t</em>-statistic or
+chi-squared statistic, <code>2</code> for tests based on <em>F</em>-statistic.</p></td>
     </tr>
     <tr>
-      <th>lab</th>
-      <td><p>A character describing label for the variable. If <code>NULL</code>, a
-generic <code>"x"</code> label will be used.</p></td>
+      <th>stat.title</th>
+      <td><p>A character describing the test being run, which will be
+added as a prefix in the subtitle. The default is <code>NULL</code>. An example of a
+<code>stat.title</code> argument will be something like <code>"Student's t-test: "</code>.</p></td>
+    </tr>
+    <tr>
+      <th>statistic.text</th>
+      <td><p>A character that specifies the relevant test statistic.
+For example, for tests with <em>t</em>-statistic, <code>statistic.text = "t"</code>. If you
+want to use plotmath, you will have to quote the argument (e.g.,
+<code><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote(italic("t"))</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>statistic</th>
+      <td><p>The numeric value of a statistic.</p></td>
+    </tr>
+    <tr>
+      <th>parameter</th>
+      <td><p>The numeric value of a parameter being modeled (often
+degrees of freedom for the test).</p></td>
+    </tr>
+    <tr>
+      <th>parameter2</th>
+      <td><p>Relevant only if the statistic in question has two degrees
+of freedom (default: <code>NULL</code>).</p></td>
+    </tr>
+    <tr>
+      <th>p.value</th>
+      <td><p>The two-sided p-value associated with the observed statistic.</p></td>
+    </tr>
+    <tr>
+      <th>effsize.text</th>
+      <td><p>A character that specifies the relevant effect size.
+For example, for Cohen's <em>d</em> statistic, <code>effsize.text = "d"</code>. If you
+want to use plotmath, you will have to quote the argument (e.g.,
+<code><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote(italic("d"))</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>effsize.estimate, effsize.LL, effsize.UL</th>
+      <td><p>The estimated value of the
+effect size, its lower bound, and its upper.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>An integer specifying the sample size used for the test.</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>A scalar value between 0 and 1. If unspecified, the
+default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Number of decimal places expected for results (Default: <code>2</code>).</p></td>
+      <td><p>Number of decimal places to display (default: <code>3</code>).</p></td>
     </tr>
     <tr>
-      <th>output</th>
-      <td><p>What output is desired: <code>"message"</code> (default) or <code>"stats"</code>
-objects.</p></td>
+      <th>k.parameter</th>
+      <td><p>Number of decimal places to display for the parameter
+(default: <code>0</code>).</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A list with class <code>"htest"</code> containing the following components:</p>
-<dt>statistic</dt><dd><p>the value of the Shapiro-Wilk statistic.</p></dd>
-  <dt>p.value</dt><dd><p>an approximate p-value for the test.  This is
-    said in Royston (1995) to be adequate for <code>p.value &lt; 0.1</code>.</p></dd>
-  <dt>method</dt><dd><p>the character string <code>"Shapiro-Wilk normality test"</code>.</p></dd>
-  <dt>data.name</dt><dd><p>a character string giving the name(s) of the data.</p></dd>
-
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p>
-<p>Other helper_messages: <code><a href='bartlett_message.html'>bartlett_message</a></code>,
-  <code><a href='effsize_ci_message.html'>effsize_ci_message</a></code>,
-  <code><a href='ggcorrmat_matrix_message.html'>ggcorrmat_matrix_message</a></code>,
-  <code><a href='grouped_message.html'>grouped_message</a></code>, <code><a href='pairwise_p.html'>pairwise_p</a></code>,
-  <code><a href='palette_message.html'>palette_message</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># message</span>
-<span class='fu'>normality_message</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/datasets/topics/anscombe'>anscombe</a></span>$<span class='no'>x1</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>x</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.870</span><span></div><div class='output co'>#&gt; </div><div class='input'>
-<span class='co'># statistical test object</span>
-<span class='fu'>normality_message</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/datasets/topics/anscombe'>anscombe</a></span>$<span class='no'>x2</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"stats"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 3</span><span>
-#&gt;   statistic p.value method                     
-#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                      
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0.968   0.870 Shapiro-Wilk normality test</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+
+<span class='co'># subtitle for *t*-statistic with Cohen's *d* as effect size</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_template.html'>subtitle_template</a></span>(
+  <span class='kw'>no.parameters</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>statistic.text</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/grDevices/topics/plotmath'>italic</a></span>(<span class='st'>"t"</span>)),
+  <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='fl'>5.494</span>,
+  <span class='kw'>parameter</span> <span class='kw'>=</span> <span class='fl'>29.234</span>,
+  <span class='kw'>p.value</span> <span class='kw'>=</span> <span class='fl'>0.00001</span>,
+  <span class='kw'>effsize.text</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/grDevices/topics/plotmath'>italic</a></span>(<span class='st'>"d"</span>)),
+  <span class='kw'>effsize.estimate</span> <span class='kw'>=</span> -<span class='fl'>1.980</span>,
+  <span class='kw'>effsize.LL</span> <span class='kw'>=</span> -<span class='fl'>2.873</span>,
+  <span class='kw'>effsize.UL</span> <span class='kw'>=</span> -<span class='fl'>1.088</span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>32L</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3L</span>,
+  <span class='kw'>k.parameter</span> <span class='kw'>=</span> <span class='fl'>3L</span>
+)</div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "29.234", ") = ", "5.494", ", ", 
+#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic("d"), " = ", 
+#&gt;     "-1.980", ", CI"["95%"], " [", "-2.873", ", ", "-1.088", 
+#&gt;     "]", ", ", italic("n"), " = ", 32L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -22,7 +22,6 @@
 #'   kind of model it is dealing with.
 #' @param xlab Label for `x` axis variable (Default: `"estimate"`).
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
-#' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analysis.subtitle` is set to `TRUE`.
 #' @param conf.method Character describing method for computing confidence
@@ -129,6 +128,7 @@
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d
 #' @inheritParams subtitle_meta_ggcoefstats
+#' @inheritParams ggbetweenstats
 #' @param ... Additional arguments to tidying method.
 #'
 #' @import ggplot2
@@ -150,12 +150,12 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # with model object
 #' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
-#' 
+#'
 #' # with custom dataframe
-#' 
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -221,7 +221,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#' 
+#'
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -266,6 +266,7 @@ ggcoefstats <- function(x,
                         title = NULL,
                         subtitle = NULL,
                         stats.labels = TRUE,
+                        caption = NULL,
                         caption.summary = TRUE,
                         stats.label.size = 3,
                         stats.label.fontface = "bold",
@@ -308,7 +309,7 @@ ggcoefstats <- function(x,
   # models for which glance is not supported
   noglance.mods <- c("aovlist", "anova", "rlmerMod")
 
-  # models for which the diagnostics is not available (AIC, BIC, loglik)
+  # models for which the diagnostics is not available (AIC, BIC, LL)
   nodiagnostics.mods <- c("lmRob", "glmRob", "felm")
 
   # =================== types of models =====================================
@@ -667,48 +668,31 @@ ggcoefstats <- function(x,
 
   # caption containing model diagnostics
   if (isTRUE(caption.summary)) {
-    if (!(class(x)[[1]] %in% noglance.mods) &&
-      !(class(x)[[1]] %in% nodiagnostics.mods) &&
-      !(class(x)[[1]] %in% df.mods)) {
+    if (!class(x)[[1]] %in% c(noglance.mods, nodiagnostics.mods, df.mods)) {
       if (!is.na(glance_df$AIC[[1]])) {
         # preparing caption with model diagnostics
         caption <-
-          base::substitute(
-            expr =
-              paste(
-                "AIC = ",
-                AIC,
-                ", BIC = ",
-                BIC,
-                ", log-likelihood = ",
-                loglik
-              ),
-            env = base::list(
-              AIC = ggstatsplot::specify_decimal_p(
-                x = glance_df$AIC[[1]],
-                k = k.caption.summary,
-                p.value = FALSE
-              ),
-              BIC = ggstatsplot::specify_decimal_p(
-                x = glance_df$BIC[[1]],
-                k = k.caption.summary,
-                p.value = FALSE
-              ),
-              loglik = ggstatsplot::specify_decimal_p(
-                x = glance_df$logLik[[1]],
-                k = k.caption.summary,
-                p.value = FALSE
-              )
+          substitute(
+            atop(displaystyle(top.text),
+              expr =
+                paste(
+                  "AIC = ",
+                  AIC,
+                  ", BIC = ",
+                  BIC,
+                  ", log-likelihood = ",
+                  LL
+                )
+            ),
+            env = list(
+              top.text = caption,
+              AIC = specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
+              BIC = specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary),
+              LL = specify_decimal_p(x = glance_df$logLik[[1]], k = k.caption.summary)
             )
           )
-      } else {
-        caption <- NULL
       }
-    } else {
-      caption <- NULL
     }
-  } else {
-    caption <- NULL
   }
 
   # ========================== basic plot ===================================
@@ -764,8 +748,8 @@ ggcoefstats <- function(x,
       mapping = ggplot2::aes(x = estimate, y = factor(term))
     )
 
-  # adding the vertical line, either at 1 if coefficients are exponentiated or
-  # to 0 if not
+  # if needed, adding the vertical line
+  # either at 1 - if coefficients are exponentiated - or at 0
   if (isTRUE(vline)) {
     if (isTRUE(exponentiate)) {
       plot <- plot +

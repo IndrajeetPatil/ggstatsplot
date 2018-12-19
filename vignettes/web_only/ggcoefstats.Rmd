@@ -726,9 +726,9 @@ ggstatsplot::ggcoefstats(
   ggstatsplot.layer = FALSE,
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Variation in measurements for Iris species",
-  subtitle = "Source: Iris data set (by Fisher or Anderson)"
+  subtitle = "Source: Iris data set (by Fisher or Anderson)",
+  caption = "Results from 2 by 2 RM ANOVA"
 ) + 
-  ggplot2::labs(caption = "Results from 2 by 2 RM ANOVA") + 
   ggplot2::theme(plot.subtitle = ggplot2::element_text(size = 11, face = "plain"))
 ```
 

@@ -212,20 +212,20 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>gapminder</span>)
 
 <span class='co'># saving results from regression</span>
-<span class='no'>df_results</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map2.html'>pmap</a></span>(
+<span class='no'>df_results</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/purrr/topics/map2'>pmap</a></span>(
   <span class='kw'>.l</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
     <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw pkg'>gapminder</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/gapminder/topics/gapminder'>gapminder</a></span>),
     <span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/scale'>scale</a></span>(<span class='no'>lifeExp</span>) ~ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/scale'>scale</a></span>(<span class='no'>gdpPercap</span>)),
     <span class='kw'>grouping.vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>alist</a></span>(<span class='no'>continent</span>),
     <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"tidy"</span>, <span class='st'>"glance"</span>)
   ),
-  <span class='kw'>.f</span> <span class='kw'>=</span> <span class='kw pkg'>groupedstats</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/groupedstats//reference/grouped_lm.html'>grouped_lm</a></span>
+  <span class='kw'>.f</span> <span class='kw'>=</span> <span class='kw pkg'>groupedstats</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/groupedstats/topics/grouped_lm'>grouped_lm</a></span>
 ) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/join.html'>full_join</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"continent"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>term</span> <span class='kw'>!=</span> <span class='st'>"(Intercept)"</span>)
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/dplyr/topics/join'>full_join</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"continent"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>term</span> <span class='kw'>!=</span> <span class='st'>"(Intercept)"</span>)
 
 <span class='co'># making subtitle</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_ggcoefstats.html'>subtitle_meta_ggcoefstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/subtitle_meta_ggcoefstats'>subtitle_meta_ggcoefstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>

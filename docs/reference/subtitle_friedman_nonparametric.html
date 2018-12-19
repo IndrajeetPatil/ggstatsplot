@@ -226,10 +226,10 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='co'># converting to long format</span>
 <span class='no'>data_bugs</span> <span class='kw'>&lt;-</span> <span class='no'>bugs</span> <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='no'>.</span>, <span class='no'>key</span>, <span class='no'>value</span>, <span class='no'>LDLF</span>:<span class='no'>HDHF</span>)
+  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tidyr/topics/gather'>gather</a></span>(<span class='no'>.</span>, <span class='no'>key</span>, <span class='no'>value</span>, <span class='no'>LDLF</span>:<span class='no'>HDHF</span>)
 
 <span class='co'># creating the subtitle</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_friedman_nonparametric.html'>subtitle_friedman_nonparametric</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/subtitle_friedman_nonparametric'>subtitle_friedman_nonparametric</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data_bugs</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
