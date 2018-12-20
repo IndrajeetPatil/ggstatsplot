@@ -21,12 +21,11 @@ ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
   messages = TRUE)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{Dataframe from which variables are to be taken.}
 
-\item{x}{A vector containing the explanatory variable.}
+\item{x}{The column in \code{data} containing the explanatory variable to be plotted on the x axis.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The column in \code{data} containing the response (outcome) variable to be plotted on the y axis.}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
@@ -53,9 +52,9 @@ determines the subset of data points to label. This argument can be entered
 either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
 expression (e.g., \code{y < 4 & z < 20}).}
 
-\item{xlab}{Label for \code{x} axis variable.}
+\item{xlab}{Label for \code{x} axis variable. The default is the variable name.}
 
-\item{ylab}{Label for \code{y} axis variable.}
+\item{ylab}{Label for \code{y} axis variable. The default is the variable name.}
 
 \item{method}{Smoothing method (function) to use, accepts either a character vector,
 e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.

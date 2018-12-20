@@ -6,10 +6,9 @@
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
-#' @param x A vector containing the explanatory variable.
-#' @param y The response - a vector of length the number of rows of `x`.
+#' @param data Dataframe from which variables are to be taken.
+#' @param x The column in `data` containing the explanatory variable to be plotted on the x axis.
+#' @param y The column in `data` containing the response (outcome) variable to be plotted on the y axis.
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
 #'   of *null* hypothesis **for parametric test** (Default: `FALSE`).
 #' @param label.var Variable to use for points labels. Can be entered either as
@@ -18,8 +17,8 @@
 #'   determines the subset of data points to label. This argument can be entered
 #'   either as a character string (e.g., `"y < 4 & z < 20"`) or as a bare
 #'   expression (e.g., `y < 4 & z < 20`).
-#' @param xlab Label for `x` axis variable.
-#' @param ylab Label for `y` axis variable.
+#' @param xlab Label for `x` axis variable. The default is the variable name.
+#' @param ylab Label for `y` axis variable. The default is the variable name.
 #' @param line.color color for the regression line.
 #' @param line.size Size for the regression line.
 #' @param point.color,point.size,point.alpha Aesthetics specifying geom point
@@ -95,15 +94,15 @@
 #' }
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_tibble(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
