@@ -128,7 +128,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-12-17</h4>
+            <h4 class="date">2018-12-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -169,7 +169,7 @@
 <h1 class="hasAnchor">
 <a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
 </h1>
-<p>Following our methodology above let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item named <code>list</code> called <code>data_list</code> using <code><a href="http://dplyr.tidyverse.org/reference/filter.html">dplyr::filter</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/split">base::split</a></code>.</p>
+<p>Following our methodology above let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item named <code>list</code> called <code>data_list</code> using <code><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">dplyr::filter</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/split">base::split</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># for reproducibility</span></a>
@@ -177,7 +177,7 @@
 <a class="sourceLine" id="cb1-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># let's split the dataframe and create a list by years of interest</span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">year_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="dt">.data =</span> .,</a>
 <a class="sourceLine" id="cb1-10" data-line-number="10">    year <span class="op">==</span><span class="st"> </span><span class="dv">1967</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="st">    </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1987</span> <span class="op">|</span></a>
@@ -244,7 +244,7 @@
 <a class="sourceLine" id="cb2-37" data-line-number="37">    <span class="dt">palette =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"aurora"</span>, <span class="st">"parliament"</span>, <span class="st">"ppalette"</span>),</a>
 <a class="sourceLine" id="cb2-38" data-line-number="38">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
 <a class="sourceLine" id="cb2-39" data-line-number="39">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_stata">theme_stata</a></span>(),</a>
-<a class="sourceLine" id="cb2-40" data-line-number="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb2-40" data-line-number="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb2-41" data-line-number="41">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>()</a>
 <a class="sourceLine" id="cb2-42" data-line-number="42">    ),</a>
 <a class="sourceLine" id="cb2-43" data-line-number="43">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
@@ -275,8 +275,8 @@
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">mpaa_list &lt;-<span class="st"> </span>ggstatsplot<span class="op">::</span>movies_wide <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., mpaa <span class="op">!=</span><span class="st"> "NC-17"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.25</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ., mpaa <span class="op">!=</span><span class="st"> "NC-17"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.25</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-7" data-line-number="7"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>mpaa, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb4-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">plot_list &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
@@ -307,8 +307,8 @@
 <a class="sourceLine" id="cb4-34" data-line-number="34">    <span class="dt">yfill =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#D55E00"</span>),</a>
 <a class="sourceLine" id="cb4-35" data-line-number="35">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
 <a class="sourceLine" id="cb4-36" data-line-number="36">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
-<a class="sourceLine" id="cb4-37" data-line-number="37">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>()</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>()</a>
 <a class="sourceLine" id="cb4-39" data-line-number="39">    ),</a>
 <a class="sourceLine" id="cb4-40" data-line-number="40">    <span class="dt">ggstatsplot.layer =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb4-41" data-line-number="41">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
@@ -339,8 +339,8 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># let's leave out "fair" cut</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># also, to make this fast, let's only use 5% of the sample</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">cut_list &lt;-<span class="st"> </span>ggplot2<span class="op">::</span>diamonds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., cut <span class="op">!=</span><span class="st"> "Fair"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ., cut <span class="op">!=</span><span class="st"> "Fair"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>cut, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co"># this created a list with 4 elements, one for each quality of cut</span></a>
@@ -382,8 +382,8 @@
 <a class="sourceLine" id="cb5-45" data-line-number="45">    ),</a>
 <a class="sourceLine" id="cb5-46" data-line-number="46">    <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb5-47" data-line-number="47">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb5-48" data-line-number="48">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb5-49" data-line-number="49">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb5-48" data-line-number="48">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb5-49" data-line-number="49">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb5-50" data-line-number="50">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
 <a class="sourceLine" id="cb5-51" data-line-number="51">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>()</a>
 <a class="sourceLine" id="cb5-52" data-line-number="52">    ),</a>
@@ -419,7 +419,7 @@
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co"># let's split the dataframe and create a list by continent</span></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co"># let's leave out Oceania because it has just two data points</span></a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">continent_list &lt;-<span class="st"> </span>gapminder<span class="op">::</span>gapminder <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ., year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">  </span>base<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/split">split</a></span>(<span class="dt">x =</span> ., <span class="dt">f =</span> .<span class="op">$</span>continent, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb6-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co"># this created a list with 4 elements, one for each continent</span></a>
@@ -459,9 +459,9 @@
 <a class="sourceLine" id="cb6-47" data-line-number="47">    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb6-48" data-line-number="48">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
 <a class="sourceLine" id="cb6-49" data-line-number="49">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb6-50" data-line-number="50">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb6-50" data-line-number="50">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
 <a class="sourceLine" id="cb6-51" data-line-number="51">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
-<a class="sourceLine" id="cb6-52" data-line-number="52">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</a>
+<a class="sourceLine" id="cb6-52" data-line-number="52">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
 <a class="sourceLine" id="cb6-53" data-line-number="53">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_few">theme_few</a></span>()</a>
 <a class="sourceLine" id="cb6-54" data-line-number="54">    ),</a>
 <a class="sourceLine" id="cb6-55" data-line-number="55">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
@@ -523,8 +523,8 @@
 <a class="sourceLine" id="cb7-37" data-line-number="37">    <span class="dt">package =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"RColorBrewer"</span>, <span class="st">"ghibli"</span>, <span class="st">"palettetown"</span>, <span class="st">"yarrr"</span>),</a>
 <a class="sourceLine" id="cb7-38" data-line-number="38">    <span class="dt">palette =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"Accent"</span>, <span class="st">"MarnieMedium1"</span>, <span class="st">"pikachu"</span>, <span class="st">"nemo"</span>),</a>
 <a class="sourceLine" id="cb7-39" data-line-number="39">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb7-40" data-line-number="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
-<a class="sourceLine" id="cb7-41" data-line-number="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>(),</a>
+<a class="sourceLine" id="cb7-40" data-line-number="40">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb7-41" data-line-number="41">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>(),</a>
 <a class="sourceLine" id="cb7-42" data-line-number="42">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
 <a class="sourceLine" id="cb7-43" data-line-number="43">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_economist">theme_economist</a></span>()</a>
 <a class="sourceLine" id="cb7-44" data-line-number="44">    ),</a>

@@ -239,6 +239,7 @@ subtitle.
 }
 \examples{
 
+\dontrun{
 # to ensure reproducibility
 set.seed(123)
 
@@ -273,7 +274,7 @@ ggstatsplot::grouped_ggscatterstats(
 )
 
 # labeling without expression
-\dontrun{
+
 ggstatsplot::grouped_ggscatterstats(
   data = dplyr::filter(
     .data = ggstatsplot::movies_long,
@@ -299,5 +300,5 @@ ggstatsplot::grouped_ggscatterstats(
 \code{\link{grouped_ggcorrmat}}
 }
 \author{
-Indrajeet Patil
+Indrajeet Patil, Chuck Powell
 }

@@ -440,49 +440,49 @@ combining (plot, caption).</p></dd>
 
 <span class='co'># creating a dataframe with summary</span>
 (<span class='no'>df_summarized</span> <span class='kw'>&lt;-</span>
-  <span class='kw pkg'>groupedstats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/groupedstats/topics/grouped_summary'>grouped_summary</a></span>(
-    <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/intent_morality'>intent_morality</a></span>,
+  <span class='kw pkg'>groupedstats</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/groupedstats//reference/grouped_summary.html'>grouped_summary</a></span>(
+    <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
     <span class='kw'>grouping.vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>condition</span>, <span class='no'>harm</span>),
     <span class='kw'>measures</span> <span class='kw'>=</span> <span class='no'>rating</span>
-  ))</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 16 x 17</span><span>
+  ))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 16 x 17</span><span>
 #&gt;    condition   harm       type    variable missing complete     n  mean    sd
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> neutral     Poisoning  integer rating         0      252   252  1.65  1.43
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> neutral     Burn       integer rating         0      250   250  1.69  1.3 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> neutral     Nerve Pain integer rating         0      250   250  1.42  1.03
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> neutral     Sting      integer rating         0      252   252  1.56  1.28
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> accidental  Poisoning  integer rating         0      250   250  1.79  1.57
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> accidental  Burn       integer rating         0      252   252  2.5   1.74
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> accidental  Nerve Pain integer rating         0      252   252  3.98  1.79
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> accidental  Sting      integer rating         0      250   250  2.83  1.87
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> attempted   Poisoning  integer rating         0      252   252  5.52  1.86
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> attempted   Burn       integer rating         0      250   250  3.4   1.9 
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> attempted   Nerve Pain integer rating         0      250   250  3.22  1.89
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> attempted   Sting      integer rating         0      252   252  3.03  2.09
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> intentional Poisoning  integer rating         0      250   250  6.66  0.96
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> intentional Burn       integer rating         0      252   252  4.49  1.65
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> intentional Nerve Pain integer rating         0      252   252  5.86  1.46
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> intentional Sting      integer rating         0      250   250  5.11  1.8 
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> neutral     Poisoning  integer rating         0      252   252  1.65  1.43
+#&gt; </span><span style='color: #555555;'> 2</span><span> neutral     Burn       integer rating         0      250   250  1.69  1.3 
+#&gt; </span><span style='color: #555555;'> 3</span><span> neutral     Nerve Pain integer rating         0      250   250  1.42  1.03
+#&gt; </span><span style='color: #555555;'> 4</span><span> neutral     Sting      integer rating         0      252   252  1.56  1.28
+#&gt; </span><span style='color: #555555;'> 5</span><span> accidental  Poisoning  integer rating         0      250   250  1.79  1.57
+#&gt; </span><span style='color: #555555;'> 6</span><span> accidental  Burn       integer rating         0      252   252  2.5   1.74
+#&gt; </span><span style='color: #555555;'> 7</span><span> accidental  Nerve Pain integer rating         0      252   252  3.98  1.79
+#&gt; </span><span style='color: #555555;'> 8</span><span> accidental  Sting      integer rating         0      250   250  2.83  1.87
+#&gt; </span><span style='color: #555555;'> 9</span><span> attempted   Poisoning  integer rating         0      252   252  5.52  1.86
+#&gt; </span><span style='color: #555555;'>10</span><span> attempted   Burn       integer rating         0      250   250  3.4   1.9 
+#&gt; </span><span style='color: #555555;'>11</span><span> attempted   Nerve Pain integer rating         0      250   250  3.22  1.89
+#&gt; </span><span style='color: #555555;'>12</span><span> attempted   Sting      integer rating         0      252   252  3.03  2.09
+#&gt; </span><span style='color: #555555;'>13</span><span> intentional Poisoning  integer rating         0      250   250  6.66  0.96
+#&gt; </span><span style='color: #555555;'>14</span><span> intentional Burn       integer rating         0      252   252  4.49  1.65
+#&gt; </span><span style='color: #555555;'>15</span><span> intentional Nerve Pain integer rating         0      252   252  5.86  1.46
+#&gt; </span><span style='color: #555555;'>16</span><span> intentional Sting      integer rating         0      250   250  5.11  1.8 
 #&gt;      min   p25 median   p75   max std.error mean.low.conf mean.high.conf
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1  1         1  1        7    0.090</span><span style='text-decoration: underline;'>1</span><span>          1.47           1.83
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     1  1         1  2        7    0.082</span><span style='text-decoration: underline;'>2</span><span>          1.53           1.85
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     1  1         1  1        6    0.065</span><span style='text-decoration: underline;'>1</span><span>          1.29           1.55
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     1  1         1  1        7    0.080</span><span style='text-decoration: underline;'>6</span><span>          1.40           1.72
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     1  1         1  2        7    0.099</span><span style='text-decoration: underline;'>3</span><span>          1.59           1.99
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     1  1         2  4        7    0.110           2.28           2.72
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     1  3         4  5        7    0.113           3.76           4.20
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     1  1         2  4        7    0.118           2.60           3.06
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     1  4         6  7        7    0.117           5.29           5.75
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     1  2         3  5        7    0.120           3.16           3.64
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span>     1  1.25      3  4.75     7    0.120           2.98           3.46
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span>     1  1         3  4.25     7    0.132           2.77           3.29
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span>     1  7         7  7        7    0.060</span><span style='text-decoration: underline;'>7</span><span>          6.54           6.78
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span>     1  4         4  6        7    0.104           4.29           4.69
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span>     1  5         7  7        7    0.092</span><span style='text-decoration: underline;'>0</span><span>          5.68           6.04
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span>     1  4         5  7        7    0.114           4.89           5.33</div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>     1  1         1  1        7    0.090</span><span style='text-decoration: underline;'>1</span><span>          1.47           1.83
+#&gt; </span><span style='color: #555555;'> 2</span><span>     1  1         1  2        7    0.082</span><span style='text-decoration: underline;'>2</span><span>          1.53           1.85
+#&gt; </span><span style='color: #555555;'> 3</span><span>     1  1         1  1        6    0.065</span><span style='text-decoration: underline;'>1</span><span>          1.29           1.55
+#&gt; </span><span style='color: #555555;'> 4</span><span>     1  1         1  1        7    0.080</span><span style='text-decoration: underline;'>6</span><span>          1.40           1.72
+#&gt; </span><span style='color: #555555;'> 5</span><span>     1  1         1  2        7    0.099</span><span style='text-decoration: underline;'>3</span><span>          1.59           1.99
+#&gt; </span><span style='color: #555555;'> 6</span><span>     1  1         2  4        7    0.110           2.28           2.72
+#&gt; </span><span style='color: #555555;'> 7</span><span>     1  3         4  5        7    0.113           3.76           4.20
+#&gt; </span><span style='color: #555555;'> 8</span><span>     1  1         2  4        7    0.118           2.60           3.06
+#&gt; </span><span style='color: #555555;'> 9</span><span>     1  4         6  7        7    0.117           5.29           5.75
+#&gt; </span><span style='color: #555555;'>10</span><span>     1  2         3  5        7    0.120           3.16           3.64
+#&gt; </span><span style='color: #555555;'>11</span><span>     1  1.25      3  4.75     7    0.120           2.98           3.46
+#&gt; </span><span style='color: #555555;'>12</span><span>     1  1         3  4.25     7    0.132           2.77           3.29
+#&gt; </span><span style='color: #555555;'>13</span><span>     1  7         7  7        7    0.060</span><span style='text-decoration: underline;'>7</span><span>          6.54           6.78
+#&gt; </span><span style='color: #555555;'>14</span><span>     1  4         4  6        7    0.104           4.29           4.69
+#&gt; </span><span style='color: #555555;'>15</span><span>     1  5         7  7        7    0.092</span><span style='text-decoration: underline;'>0</span><span>          5.68           6.04
+#&gt; </span><span style='color: #555555;'>16</span><span>     1  4         5  7        7    0.114           4.89           5.33</div><div class='input'>
 <span class='co'># plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggdotplotstats'>grouped_ggdotplotstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggdotplotstats.html'>grouped_ggdotplotstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_summarized</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mean</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>harm</span>,

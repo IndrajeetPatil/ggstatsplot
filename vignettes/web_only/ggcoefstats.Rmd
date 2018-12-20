@@ -590,8 +590,6 @@ ggstatsplot::ggcoefstats(x = mod,
 
 ## cumulative link models (`clm`)
 
-**clm and clmm examples are too time-consuming; thus not evaluated in vignette**
-
 So far we have dealt either with continuous or nominal/factor responses (or
 output variables), but sometimes we will encounter **ordinal** data (e.g.,
 Likert scale measurement in behavioral sciences). In these cases, ordinal
@@ -605,7 +603,7 @@ four different vignettes, each featuring a different type of harm. The question
 we are interested in is what explains variation in participants' rating:
 information about intentionality, consequences, or their interaction?
 
-```{r clm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
+```{r clm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -639,7 +637,7 @@ different types of harm)? For this, we can use ordinal mixed-effects regression
 model (with random effects for type of harm) to see how intent and outcome
 contribute towards variation in moral judgment ratings-
 
-```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
+```{r clmm1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # for reproducibility
 set.seed(123)
 

@@ -209,5 +209,5 @@ ggstatsplot::ggscatterstats(
 \code{\link{grouped_ggcorrmat}}
 }
 \author{
-Indrajeet Patil
+Indrajeet Patil, Chuck Powell
 }

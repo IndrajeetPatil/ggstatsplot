@@ -1,7 +1,7 @@
 #' @title Scatterplot with marginal distributions
 #' @name ggscatterstats
 #' @aliases ggscatterstats
-#' @author Indrajeet Patil
+#' @author Indrajeet Patil, Chuck Powell
 #' @description Scatterplots from `ggplot2` combined with marginal
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
@@ -228,18 +228,18 @@ ggscatterstats <- function(data,
   }
 
   # creating a new dataframe for showing labels
-  xxx <- enexpr(label.expression)
+  label_expr_enxpr <- rlang::enexpr(label.expression)
   label_data <-
     data %>%
     {
       if ("label.expression" %in% names(param_list)) {
         # testing for whether we received bare or quoted
-        if (typeof(xxx) == "language") {
+        if (typeof(label_expr_enxpr) == "language") {
           # unquoted case
-          dplyr::filter(.data = ., !!xxx)
+          dplyr::filter(.data = ., !!label_expr_enxpr)
         } else {
           # quoted case
-          dplyr::filter(.data = ., !!rlang::parse_expr(xxx))
+          dplyr::filter(.data = ., !!rlang::parse_expr(label_expr_enxpr))
         }
       } else {
         (.)
