@@ -835,6 +835,30 @@ mod <- survival::coxph(formula = Surv(time, status) ~ x + strata(sex),
 ggstatsplot::ggcoefstats(x = mod, exponentiate = TRUE)
 ```
 
+## autoregressive integrated moving average (`Arima`)
+
+```{r arima, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# for reproducibility
+set.seed(123)
+
+# model
+fit <- stats::arima(x = lh, order = c(1, 0, 0))
+
+# plot
+ggstatsplot::ggcoefstats(x = fit)
+```
+
+## bounded memory linear regression (`biglm`)
+
+```{r biglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# model
+set.seed(123)
+bfit <- biglm::biglm(formula = scale(mpg) ~ scale(wt) + scale(disp), 
+                     data = mtcars)
+
+# plot
+ggstatsplot::ggcoefstats(x = bfit, exclude.intercept = FALSE)
+```
 
 ## linear model using generalized least squares (`gls`)
 

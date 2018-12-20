@@ -235,10 +235,24 @@ caption.
 # for reproducibility
 set.seed(123)
 
-# with model object
-ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
+# -------------- with model object --------------------------------------
 
-# with custom dataframe
+# model object
+mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
+
+# to get a plot
+ggstatsplot::ggcoefstats(x = mod, output = "plot")
+
+# to get a tidy dataframe
+ggstatsplot::ggcoefstats(x = mod, output = "tidy")
+
+# to get a glance summary
+ggstatsplot::ggcoefstats(x = mod, output = "glance")
+
+# to get augmented dataframe
+ggstatsplot::ggcoefstats(x = mod, output = "augment")
+
+# -------------- with custom dataframe -----------------------------------
 
 # creating a dataframe
 df <-

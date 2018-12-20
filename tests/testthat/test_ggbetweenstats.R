@@ -23,23 +23,24 @@ testthat::test_that(
 
     # `outlier.label` is numeric
     set.seed(123)
-    testthat::expect_true(object = inherits(
+    testthat::expect_true(inherits(
       x = ggstatsplot::ggbetweenstats(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25),
         x = genre,
         y = rating,
-        messages = FALSE,
+        messages = TRUE,
         palette = "Set3",
         outlier.tagging = TRUE,
-        outlier.label = length
+        outlier.label = length,
+        pairwise.comparisons = TRUE
       ),
       what = "gg"
     ))
 
     # `outlier.label` is factor
     set.seed(123)
-    testthat::expect_true(object = inherits(
-      x = ggstatsplot::ggbetweenstats(
+    testthat::expect_true(inherits(
+      ggstatsplot::ggbetweenstats(
         data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25),
         x = genre,
         y = rating,
@@ -59,7 +60,7 @@ testthat::test_that(
       dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25)
     movies_long1$title <- as.character(movies_long1$title)
 
-    testthat::expect_true(object = inherits(
+    testthat::expect_true(inherits(
       x =
         ggstatsplot::ggbetweenstats(
           data = movies_long1,

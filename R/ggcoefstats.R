@@ -150,12 +150,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
-#' # with model object
-#' ggcoefstats(x = lm(formula = mpg ~ cyl * am, data = mtcars))
-#' 
-#' # with custom dataframe
-#' 
+#'
+#' # -------------- with model object --------------------------------------
+#'
+#' # model object
+#' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
+#'
+#' # to get a plot
+#' ggstatsplot::ggcoefstats(x = mod, output = "plot")
+#'
+#' # to get a tidy dataframe
+#' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
+#'
+#' # to get a glance summary
+#' ggstatsplot::ggcoefstats(x = mod, output = "glance")
+#'
+#' # to get augmented dataframe
+#' ggstatsplot::ggcoefstats(x = mod, output = "augment")
+#'
+#' # -------------- with custom dataframe -----------------------------------
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -221,7 +235,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#' 
+#'
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -310,7 +324,7 @@ ggcoefstats <- function(x,
   noglance.mods <- c("aovlist", "anova", "rlmerMod")
 
   # models for which the diagnostics is not available (AIC, BIC, LL)
-  nodiagnostics.mods <- c("lmRob", "glmRob", "felm")
+  nodiagnostics.mods <- c("lmRob", "glmRob", "felm", "biglm")
 
   # =================== types of models =====================================
 
@@ -877,7 +891,7 @@ ggcoefstats <- function(x,
       return(broom.mixed::augment(x = x) %>%
         tibble::as_tibble(x = .))
     } else if (class(x)[[1]] %in% df.mods) {
-      # for mixed-effects models
+      # no augment available when dataframes are entered
       return(tidy_df)
     } else {
       # everything else

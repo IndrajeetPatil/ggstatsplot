@@ -302,6 +302,14 @@ testthat::test_that(
       tolerance = 1e-3
     )
 
+    testthat::expect_identical(
+      tidy_df$label,
+      c(
+        "list(~italic(F)(3*\",\"*35)==7.388, ~italic(p)==0.001, ~italic(omega)[p]^2==0.308)",
+        "list(~italic(F)(1*\",\"*35)==2.034, ~italic(p)==0.163, ~italic(omega)[p]^2==0.023)",
+        "list(~italic(F)(3*\",\"*35)==4.012, ~italic(p)==0.015, ~italic(omega)[p]^2==0.174)"
+      )
+    )
     testthat::expect_identical(tidy_df$significance, c("***", "ns", "*"))
     testthat::expect_identical(
       tidy_df$p.value.formatted,
@@ -921,21 +929,22 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if glance works",
   code = {
-    set.seed(123)
 
     # creating broom and ggstatsplot output
     # lm
+    set.seed(123)
     mod1 <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
     broom_df1 <- broom::glance(mod1)
     glance_df1 <- ggstatsplot::ggcoefstats(x = mod1, output = "glance")
 
     # lmer
+    set.seed(123)
     mod2 <-
       lme4::lmer(
         formula = Reaction ~ Days + (Days | Subject),
         data = sleepstudy
       )
-    broom_df2 <- broom::glance(mod2)
+    broom_df2 <- broom.mixed::glance(x = mod2)
     glance_df2 <- ggstatsplot::ggcoefstats(x = mod2, output = "glance")
 
     # checking if they are equal
@@ -943,6 +952,40 @@ testthat::test_that(
     testthat::expect_identical(broom_df2, glance_df2)
   }
 )
+
+
+# check if augment works ----------------------------------------------
+
+testthat::test_that(
+  desc = "check if augment works",
+  code = {
+    # set up
+    library(lme4)
+
+    # linear model
+    set.seed(123)
+    mod1 <- stats::lm(
+      formula = mpg ~ wt + qsec,
+      data = mtcars
+    )
+    df1.broom <- broom::augment(mod1)
+    df1.ggstats <- ggstatsplot::ggcoefstats(x = mod1, output = "augment")
+
+    # mixed-effects model
+    set.seed(123)
+    mod2 <- lme4::lmer(
+      formula = Reaction ~ Days + (Days | Subject),
+      data = sleepstudy
+    )
+    df2.broom <- tibble::as_tibble(broom.mixed::augment(mod2))
+    df2.ggstats <- ggstatsplot::ggcoefstats(x = mod2, output = "augment")
+
+    # checking if they are equal
+    testthat::expect_identical(df1.broom, df1.ggstats)
+    testthat::expect_identical(df2.broom, df2.ggstats)
+  }
+)
+
 
 # unsupported model objects -----------------------------------------------
 

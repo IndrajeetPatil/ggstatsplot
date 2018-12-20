@@ -186,9 +186,9 @@ subtitle_contingency_tab <- function(data,
     # be NaN in cases where there are no values of one categorial variable for
     # level of another categorial variable
     if (is.nan(as.data.frame(jmv_df$nom)[[4]])) {
-      # in case Cramer's V is aNaN
+      # in case Cramer's V is a NaN
       effsize_df <- tibble::tribble(
-        ~`Cramer's V`, ~conf.low, ~conf.high,
+        ~Cramer.V, ~conf.low, ~conf.high,
         NaN, NaN, NaN
       )
     } else {

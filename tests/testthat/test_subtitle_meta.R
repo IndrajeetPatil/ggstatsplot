@@ -17,7 +17,7 @@ testthat::test_that(
     )
 
     # ggstatsplot output
-    using_function1 <- ggstatsplot:::subtitle_meta_ggcoefstats(
+    using_function1 <- ggstatsplot::subtitle_meta_ggcoefstats(
       data = df,
       k = 4,
       messages = FALSE
@@ -54,5 +54,36 @@ testthat::test_that(
 
     # testing overall call
     testthat::expect_identical(using_function1, results1)
+  }
+)
+
+
+# checking meta-analysis results object -----------------------------------
+
+testthat::test_that(
+  desc = "checking meta-analysis results object",
+  code = {
+
+    # dataframe
+    df <- tibble::tribble(
+      ~estimate, ~std.error,
+      0.111, 0.05,
+      0.245, 0.111,
+      0.8, 0.001,
+      1.1, 0.2,
+      0.03, 0.01
+    )
+
+    # output message
+    message <- capture.output(ggstatsplot::subtitle_meta_ggcoefstats(
+      data = df,
+      messages = TRUE
+    ))
+
+    # test the ouput
+    testthat::expect_identical(
+      message[2],
+      "Random-Effects Model (k = 5; tau^2 estimator: REML)"
+    )
   }
 )
