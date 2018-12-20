@@ -123,16 +123,28 @@ or symbol.}
 
 \item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
-\item{xfill}{yfill Character describing color fill for \code{x} and \code{y} axes
+\item{xfill}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
 \code{y})). If set to \code{NULL}, manual specification of colors will be turned off
 and 2 colors from the specified \code{palette} from \code{package} will be selected.}
 
-\item{xalpha}{yalpha Numeric deciding transparency levels for the marginal
+\item{yfill}{Character describing color fill for \code{x} and \code{y} axes
+marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
+\code{y})). If set to \code{NULL}, manual specification of colors will be turned off
+and 2 colors from the specified \code{palette} from \code{package} will be selected.}
+
+\item{xalpha}{Numeric deciding transparency levels for the marginal
 distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
 default is \code{1} for both axes.}
 
-\item{xsize}{ysize Size for the marginal distribution boundaries (Default:
+\item{yalpha}{Numeric deciding transparency levels for the marginal
+distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
+default is \code{1} for both axes.}
+
+\item{xsize}{Size for the marginal distribution boundaries (Default:
+\code{0.7}).}
+
+\item{ysize}{Size for the marginal distribution boundaries (Default:
 \code{0.7}).}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}
