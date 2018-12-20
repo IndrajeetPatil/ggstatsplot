@@ -32,14 +32,14 @@
 #'   5x wider and 5x taller than the marginal plots.
 #' @param margins Character describing along which margins to show the plots.
 #'   Any of the following arguments are accepted: `"both"`, `"x"`, `"y"`.
-#' @param xfill, yfill Character describing color fill for `x` and `y` axes
+#' @param xfill,yfill Character describing color fill for `x` and `y` axes
 #'   marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
 #'   `y`)). If set to `NULL`, manual specification of colors will be turned off
 #'   and 2 colors from the specified `palette` from `package` will be selected.
-#' @param xalpha, yalpha Numeric deciding transparency levels for the marginal
+#' @param xalpha,yalpha Numeric deciding transparency levels for the marginal
 #'   distributions. Any numbers from `0` (transparent) to `1` (opaque). The
 #'   default is `1` for both axes.
-#' @param xsize, ysize Size for the marginal distribution boundaries (Default:
+#' @param xsize,ysize Size for the marginal distribution boundaries (Default:
 #'   `0.7`).
 #' @param results.subtitle Decides whether the results of statistical tests are
 #'   to be displayed as a subtitle (Default: `TRUE`). If set to `FALSE`, only
