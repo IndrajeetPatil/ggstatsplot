@@ -7,7 +7,8 @@
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
 #'
-#' @param grouping.var Grouping variable.
+#' @param grouping.var Grouping variable.Can be entered either as
+#'   a character string (e.g., `"group"`) or as a bare expression (e.g, `group`).
 #' @param title.prefix Character specifying the prefix text for the fixed plot
 #'   title (name of each factor level) (Default: `"Group"`).
 #' @inheritParams ggscatterstats
@@ -29,11 +30,11 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' \dontrun{
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -47,7 +48,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -63,9 +64,9 @@
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
-#' 
+#'
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::movies_long,

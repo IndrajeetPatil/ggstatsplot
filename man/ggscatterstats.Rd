@@ -21,12 +21,11 @@ ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
   messages = TRUE)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{Dataframe from which variables are to be taken.}
 
-\item{x}{A vector containing the explanatory variable.}
+\item{x}{The column in \code{data} containing the explanatory variable to be plotted on the x axis.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The column in \code{data} containing the response (outcome) variable to be plotted on the y axis.}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
@@ -53,9 +52,9 @@ determines the subset of data points to label. This argument can be entered
 either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
 expression (e.g., \code{y < 4 & z < 20}).}
 
-\item{xlab}{Label for \code{x} axis variable.}
+\item{xlab}{Label for \code{x} axis variable. The default is the variable name.}
 
-\item{ylab}{Label for \code{y} axis variable.}
+\item{ylab}{Label for \code{y} axis variable. The default is the variable name.}
 
 \item{method}{Smoothing method (function) to use, accepts either a character vector,
 e.g. \code{"auto"}, \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"} or a function, e.g.
@@ -111,16 +110,16 @@ or symbol.}
 
 \item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
-\item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
+\item{xfill, }{yfill Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
 \code{y})). If set to \code{NULL}, manual specification of colors will be turned off
 and 2 colors from the specified \code{palette} from \code{package} will be selected.}
 
-\item{xalpha, yalpha}{Numeric deciding transparency levels for the marginal
+\item{xalpha, }{yalpha Numeric deciding transparency levels for the marginal
 distributions. Any numbers from \code{0} (transparent) to \code{1} (opaque). The
 default is \code{1} for both axes.}
 
-\item{xsize, ysize}{Size for the marginal distribution boundaries (Default:
+\item{xsize, }{ysize Size for the marginal distribution boundaries (Default:
 \code{0.7}).}
 
 \item{centrality.para}{Decides \emph{which} measure of central tendency (\code{"mean"}

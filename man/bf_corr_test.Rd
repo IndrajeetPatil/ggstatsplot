@@ -8,12 +8,11 @@ bf_corr_test(data, x, y, bf.prior = 0.707, caption = NULL,
   output = "caption", k = 2)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{Dataframe from which variables are to be taken.}
 
-\item{x}{A vector containing the explanatory variable.}
+\item{x}{The column in \code{data} containing the explanatory variable to be plotted on the x axis.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The column in \code{data} containing the response (outcome) variable to be plotted on the y axis.}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
