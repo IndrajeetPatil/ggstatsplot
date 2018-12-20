@@ -4,7 +4,8 @@
 \alias{subtitle_meta_ggcoefstats}
 \title{Prepare subtitle with meta-analysis results}
 \usage{
-subtitle_meta_ggcoefstats(data, k = 2, messages = TRUE, ...)
+subtitle_meta_ggcoefstats(data, k = 2, messages = TRUE,
+  output = "subtitle", ...)
 }
 \arguments{
 \item{data}{A dataframe. It \strong{must} contain columns named \code{estimate}
@@ -16,6 +17,10 @@ and \code{std.error} (the standard error of the regression term).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{output}{Character describing the desired output. If \code{"subtitle"}, a
+formatted subtitle will be returned. The other option is to return \code{"tidy"}
+data frame with coefficients.}
 
 \item{...}{Additional arguments (ignored).}
 }
@@ -47,6 +52,13 @@ ggstatsplot::subtitle_meta_ggcoefstats(
   data = df_results,
   k = 3,
   messages = FALSE
+)
+
+# getting tidy data frame with coefficients
+ggstatsplot::subtitle_meta_ggcoefstats(
+  data = df_results,
+  messages = FALSE,
+  output = "tidy"
 )
 }
 \author{

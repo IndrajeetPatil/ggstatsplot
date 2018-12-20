@@ -762,10 +762,10 @@ testthat::test_that(
     df6 <- dplyr::select(.data = df5, -term, -estimate, -std.error)
 
     # expect errors
-    testthat::expect_error(ggstatsplot::ggcoefstats(x = df1))
+    testthat::expect_message(ggstatsplot::ggcoefstats(x = df1))
     testthat::expect_error(ggstatsplot::ggcoefstats(
       x = df6,
-      meta.analysis.subtitle = TRUE
+      meta.analytic.effect = TRUE
     ))
 
     # plotting the dataframe
@@ -781,7 +781,7 @@ testthat::test_that(
         x = df5,
         statistic = "t",
         k = 3,
-        meta.analysis.subtitle = TRUE,
+        meta.analytic.effect = TRUE,
         messages = FALSE
       )
 
@@ -864,7 +864,7 @@ testthat::test_that(
     testthat::expect_error(ggstatsplot::ggcoefstats(
       x = df1,
       statistic = "t",
-      meta.analysis.subtitle = TRUE
+      meta.analytic.effect = TRUE
     ))
 
     testthat::expect_identical(pb6$plot$labels$subtitle, meta_subtitle)
@@ -986,6 +986,34 @@ testthat::test_that(
   }
 )
 
+# check if p-value adjustment works ----------------------------------------
+
+testthat::test_that(
+  desc = "check if p-value adjustment works",
+  code = {
+    set.seed(123)
+
+    # model
+    mod <- stats::aov(
+      data = mtcars,
+      formula = wt ~ am * cyl * carb
+    )
+
+    # tidy output
+    df <-
+      ggstatsplot::ggcoefstats(
+        x = mod,
+        output = "tidy",
+        p.adjust.method = "holm"
+      )
+
+    # checking adjusted p-values
+    testthat::expect_identical(
+      df$p.value.formatted,
+      c("< 0.001", "< 0.001", "0.200", "0.570", "0.570", "0.570", "0.570")
+    )
+  }
+)
 
 # unsupported model objects -----------------------------------------------
 

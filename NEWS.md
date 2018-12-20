@@ -2,11 +2,17 @@
 
 NEW FEATURES
 
-  - `ggcoefstats` gains `meta.analysis.subtitle` that can be used to carry out
+  - `ggcoefstats` gains `meta.analytic.effect` that can be used to carry out
     meta-analysis on regression estimates. This especially useful when a
     dataframe with regression estimates and standard error is available from
     prior analyses. The `subtitle` is prepared with the new function
     `subtitle_meta_ggcoefstats` which is also exported.
+
+BUG FIXES
+
+  - `ggcoefstats` didn't work when `statistic` argument was set to `NULL`. This
+    was not expected behavior. This has been fixed. Now, if `statistic` is not
+    specified, only the dot-and-whiskers will be shown without any labels.
 
 MAJOR CHANGES
 

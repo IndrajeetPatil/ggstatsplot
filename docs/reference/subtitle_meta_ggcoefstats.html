@@ -177,7 +177,8 @@ models as implemented in the <code>metafor</code> package.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_meta_ggcoefstats</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_meta_ggcoefstats</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"subtitle"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,6 +198,12 @@ and <code>std.error</code> (the standard error of the regression term).</p></td>
       <th>messages</th>
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>Character describing the desired output. If <code>"subtitle"</code>, a
+formatted subtitle will be returned. The other option is to return <code>"tidy"</code>
+data frame with coefficients.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -221,8 +228,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   ),
   <span class='kw'>.f</span> <span class='kw'>=</span> <span class='kw pkg'>groupedstats</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/groupedstats//reference/grouped_lm.html'>grouped_lm</a></span>
 ) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/dplyr/topics/join'>full_join</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"continent"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>term</span> <span class='kw'>!=</span> <span class='st'>"(Intercept)"</span>)
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/join.html'>full_join</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"continent"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>term</span> <span class='kw'>!=</span> <span class='st'>"(Intercept)"</span>)
 
 <span class='co'># making subtitle</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_ggcoefstats.html'>subtitle_meta_ggcoefstats</a></span>(
@@ -232,7 +239,16 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 )</div><div class='output co'>#&gt; paste("Meta-analytic effect: ", beta, " = ", "0.619", ", CI"["95%"], 
 #&gt;     " [", "0.407", ", ", "0.830", "]", ", ", italic("z"), " = ", 
 #&gt;     "5.736", ", ", "se = ", "0.108", ", ", italic("p"), " = ", 
-#&gt;     "&lt; 0.001")</div></pre>
+#&gt;     "&lt; 0.001")</div><div class='input'>
+<span class='co'># getting tidy data frame with coefficients</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_ggcoefstats.html'>subtitle_meta_ggcoefstats</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 7</span><span>
+#&gt;   term           estimate conf.low conf.high std.error z.value       p.value
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> summary effect    0.619    0.407     0.830     0.108    5.74 0.000</span><span style='text-decoration: underline;'>000</span><span>009</span><span style='text-decoration: underline;'>68</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

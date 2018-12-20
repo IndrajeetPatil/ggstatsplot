@@ -172,7 +172,12 @@
 <p>NEW FEATURES</p>
 <ul>
 <li>
-<code>ggcoefstats</code> gains <code>meta.analysis.subtitle</code> that can be used to carry out meta-analysis on regression estimates. This especially useful when a dataframe with regression estimates and standard error is available from prior analyses. The <code>subtitle</code> is prepared with the new function <code>subtitle_meta_ggcoefstats</code> which is also exported.</li>
+<code>ggcoefstats</code> gains <code>meta.analytic.effect</code> that can be used to carry out meta-analysis on regression estimates. This especially useful when a dataframe with regression estimates and standard error is available from prior analyses. The <code>subtitle</code> is prepared with the new function <code>subtitle_meta_ggcoefstats</code> which is also exported.</li>
+</ul>
+<p>BUG FIXES</p>
+<ul>
+<li>
+<code>ggcoefstats</code> didn’t work when <code>statistic</code> argument was set to <code>NULL</code>. This was not expected behavior. This has been fixed. Now, if <code>statistic</code> is not specified, only the dot-and-whiskers will be shown without any labels.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
