@@ -11,7 +11,7 @@
 #'   columns named `term` (names of predictors), or `estimate` (corresponding
 #'   estimates of coefficients or other quantities of interest). Other optional
 #'   columns are `conf.low` and `conf.high` (for confidence intervals);
-#'   `p.value`.
+#'   `p.value`. It is important that all `term` names should be unique.
 #' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
 #'   dataframe of results from `broom::tidy`) or `"glance"` (object from
@@ -156,26 +156,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # -------------- with model object --------------------------------------
-#' 
+#'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#' 
+#'
 #' # to get a plot
 #' ggstatsplot::ggcoefstats(x = mod, output = "plot")
-#' 
+#'
 #' # to get a tidy dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
-#' 
+#'
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#' 
+#'
 #' # to get augmented dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
-#' 
+#'
 #' # -------------- with custom dataframe -----------------------------------
-#' 
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -241,7 +241,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#' 
+#'
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -406,7 +406,7 @@ ggcoefstats <- function(x,
           ": For the object of class",
           crayon::yellow(class(x)[[1]]),
           ", the argument `statistic` is not specified ('t', 'z', or 'f'),\n",
-          "so no labels will be displayed."
+          "so no labels will be displayed.\n"
         ),
         sep = ""
       ))
@@ -517,6 +517,25 @@ ggcoefstats <- function(x,
         conf.level = conf.level,
         ...
       )
+  }
+
+  # =================== p-value computation ==================================
+
+  # checking if there are any terms that are repeated
+  term_df <- tidy_df %>%
+    dplyr::count(term) %>%
+    dplyr::filter(.data = ., n != 1L)
+
+  # halt if there are repeated terms
+  if (dim(term_df)[1] != 0L) {
+    base::stop(base::message(cat(
+      crayon::red("Error: "),
+      crayon::blue(
+        "All elements in the column `term` should be unique."
+      ),
+      sep = ""
+    )),
+    call. = FALSE)
   }
 
   # =================== p-value computation ==================================

@@ -13,7 +13,7 @@ containing results. If a data frame is to be plotted, it \emph{must} contain
 columns named \code{term} (names of predictors), or \code{estimate} (corresponding
 estimates of coefficients or other quantities of interest). Other optional
 columns are \code{conf.low} and \code{conf.high} (for confidence intervals);
-\code{p.value}.}
+\code{p.value}. It is important that all \code{term} names should be unique.}
 
 \item{tidy_df}{Tidy dataframe from \code{broom::tidy}.}
 

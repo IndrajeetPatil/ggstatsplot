@@ -761,12 +761,21 @@ testthat::test_that(
     df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
     df6 <- dplyr::select(.data = df5, -term, -estimate, -std.error)
 
+    # repeated term dataframe
+    df7 <- tibble::tribble(
+      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.residual,
+      "x", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
+      "x", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
+      "x", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
+    )
+
     # expect errors
     testthat::expect_message(ggstatsplot::ggcoefstats(x = df1))
     testthat::expect_error(ggstatsplot::ggcoefstats(
       x = df6,
       meta.analytic.effect = TRUE
     ))
+    testthat::expect_error(ggstatsplot::ggcoefstats(x = df7))
 
     # plotting the dataframe
     p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t", sort = "none")
