@@ -187,7 +187,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--12--20-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--12--21-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://sites.google.com/site/indrajeetspatilmorality/"><img src="https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0" alt="author"></a></td>
 </tr>
 <tr class="even">
@@ -332,7 +332,7 @@
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x0000000030296878&gt;</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x000000002fb9bc70&gt;</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -372,8 +372,8 @@
 <a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="dt">y =</span> Sepal.Length,</a>
 <a class="sourceLine" id="cb8-12" data-line-number="12">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb8-13" data-line-number="13">) <span class="op">+</span><span class="st">                                               </span><span class="co"># further modification outside of ggstatsplot</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_cartesian">coord_cartesian</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a></code></pre></div>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">1</span>)) </a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>Note that this function returns a <code>ggplot2</code> object and thus any of the graphics layers can be further modified.</p>
 <p>The <code>type</code> (of test) argument also accepts the following abbreviations: <code>"p"</code> (for <em>parametric</em>) or <code>"np"</code> (for <em>nonparametric</em>) or <code>"r"</code> (for <em>robust</em>) or <code>"bf"</code> (for <em>Bayes Factor</em>). Additionally, the type of plot to be displayed can also be modified (<code>"box"</code>, <code>"violin"</code>, or <code>"boxviolin"</code>).</p>
@@ -384,7 +384,7 @@
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co"># let's leave out one of the factor levels and see if instead of anova, a t-test will be run</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">iris2 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> iris, Species <span class="op">!=</span><span class="st"> "setosa"</span>)</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">iris2 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> iris, Species <span class="op">!=</span><span class="st"> "setosa"</span>)</a>
 <a class="sourceLine" id="cb9-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co"># let's change the levels of our factors, a common routine in data analysis</span></a>
 <a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co"># pipeline, to see if this function respects the new factor levels</span></a>
@@ -428,7 +428,7 @@
 <a class="sourceLine" id="cb10-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb10-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span>(</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb10-10" data-line-number="10">                       genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)), </a>
 <a class="sourceLine" id="cb10-11" data-line-number="11">  <span class="dt">x =</span> mpaa, </a>
 <a class="sourceLine" id="cb10-12" data-line-number="12">  <span class="dt">y =</span> length,</a>
@@ -450,7 +450,7 @@
 <a class="sourceLine" id="cb10-28" data-line-number="28">  <span class="dt">title.text =</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span></a>
 <a class="sourceLine" id="cb10-29" data-line-number="29">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
-<p>For more, see the <code>ggbetweenstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html</a></p>
+<p>For more, see the <code>ggbetweenstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
 <p><strong>This function is not appropriate for within-subjects designs.</strong></p>
 <p>Variant of this function <code>ggwithinstats</code> is currently under work. You <em>can</em> still use this function just to prepare the <strong>plot</strong> for exploratory data analysis, but the statistical details displayed in the subtitle will be incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)</code> to your function call.</p>
 <p>As a <strong>temporary solution</strong>, you can use the helper function from <code>ggstatsplot</code> to display results from within-subjects version of the test in question. Here is an example-</p>
@@ -499,7 +499,7 @@
 <a class="sourceLine" id="cb13-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb13-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Action"</span>),</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Action"</span>),</a>
 <a class="sourceLine" id="cb13-7" data-line-number="7">  <span class="dt">x =</span> budget,</a>
 <a class="sourceLine" id="cb13-8" data-line-number="8">  <span class="dt">y =</span> rating,</a>
 <a class="sourceLine" id="cb13-9" data-line-number="9">  <span class="dt">type =</span> <span class="st">"robust"</span>,                                <span class="co"># type of test that needs to be run</span></a>
@@ -532,7 +532,7 @@
 <a class="sourceLine" id="cb14-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
 <a class="sourceLine" id="cb14-7" data-line-number="7">                       genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)),</a>
 <a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="dt">x =</span> rating, </a>
 <a class="sourceLine" id="cb14-9" data-line-number="9">  <span class="dt">y =</span> length,</a>
@@ -544,14 +544,14 @@
 <a class="sourceLine" id="cb14-15" data-line-number="15">  <span class="dt">xlab =</span> <span class="st">"IMDB rating"</span>,</a>
 <a class="sourceLine" id="cb14-16" data-line-number="16">  <span class="dt">grouping.var =</span> genre,            <span class="co"># grouping variable</span></a>
 <a class="sourceLine" id="cb14-17" data-line-number="17">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,</a>
-<a class="sourceLine" id="cb14-18" data-line-number="18">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_grey</a></span>(),</a>
+<a class="sourceLine" id="cb14-18" data-line-number="18">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span>(),</a>
 <a class="sourceLine" id="cb14-19" data-line-number="19">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb14-20" data-line-number="20">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb14-21" data-line-number="21">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb14-22" data-line-number="22">  <span class="dt">title.text =</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span></a>
 <a class="sourceLine" id="cb14-23" data-line-number="23">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
-<p>For more, see the <code>ggscatterstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html</a></p>
+<p>For more, see the <code>ggscatterstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</a></p>
 </div>
 <div id="ggpiestats" class="section level2">
 <h2 class="hasAnchor">
@@ -645,7 +645,7 @@
 <a class="sourceLine" id="cb18-17" data-line-number="17">  <span class="dt">title.text =</span> <span class="st">"Composition of MPAA ratings for different genres"</span></a>
 <a class="sourceLine" id="cb18-18" data-line-number="18">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats4-1.png" width="100%"></p>
-<p>For more, including information about the variant of this function <code>grouped_ggpiestats</code>, see the <code>ggpiestats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html</a></p>
+<p>For more, including information about the variant of this function <code>grouped_ggpiestats</code>, see the <code>ggpiestats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
 </div>
 <div id="gghistostats" class="section level2">
 <h2 class="hasAnchor">
@@ -698,7 +698,7 @@
 <a class="sourceLine" id="cb21-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb21-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_gghistostats.html">grouped_gghistostats</a></span>(</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
 <a class="sourceLine" id="cb21-7" data-line-number="7">                       genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)),</a>
 <a class="sourceLine" id="cb21-8" data-line-number="8">  <span class="dt">x =</span> budget,</a>
 <a class="sourceLine" id="cb21-9" data-line-number="9">  <span class="dt">xlab =</span> <span class="st">"Movies budget (in million US$)"</span>,</a>
@@ -711,7 +711,7 @@
 <a class="sourceLine" id="cb21-16" data-line-number="16">  <span class="dt">title.text =</span> <span class="st">"Movies budgets for different genres"</span></a>
 <a class="sourceLine" id="cb21-17" data-line-number="17">)</a></code></pre></div>
 <p><img src="reference/figures/README-gghistostats4-1.png" width="100%"></p>
-<p>For more, including information about the variant of this function <code>grouped_gghistostats</code>, see the <code>gghistostats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html</a></p>
+<p>For more, including information about the variant of this function <code>grouped_gghistostats</code>, see the <code>gghistostats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
 </div>
 <div id="ggdotplotstats" class="section level2">
 <h2 class="hasAnchor">
@@ -723,7 +723,7 @@
 <a class="sourceLine" id="cb22-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb22-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb22-5" data-line-number="5"><span class="kw"><a href="reference/ggdotplotstats.html">ggdotplotstats</a></span>(</a>
-<a class="sourceLine" id="cb22-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">==</span><span class="st"> "Asia"</span>),</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">==</span><span class="st"> "Asia"</span>),</a>
 <a class="sourceLine" id="cb22-7" data-line-number="7">  <span class="dt">y =</span> country,</a>
 <a class="sourceLine" id="cb22-8" data-line-number="8">  <span class="dt">x =</span> lifeExp,</a>
 <a class="sourceLine" id="cb22-9" data-line-number="9">  <span class="dt">test.value =</span> <span class="dv">55</span>,</a>
@@ -749,7 +749,7 @@
 <a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb23-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb23-4" data-line-number="4"><span class="co"># removing factor level with very few no. of observations</span></a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggplot2<span class="op">::</span>mpg, cyl <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"4"</span>, <span class="st">"6"</span>))</a>
 <a class="sourceLine" id="cb23-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb23-7" data-line-number="7"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb23-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span>(</a>
@@ -894,7 +894,7 @@
 <a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb26-5" data-line-number="5"><span class="co"># let's use only 50% of the data to speed up the process</span></a>
 <a class="sourceLine" id="cb26-6" data-line-number="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span>(</a>
-<a class="sourceLine" id="cb26-7" data-line-number="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
+<a class="sourceLine" id="cb26-7" data-line-number="7">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.5</span>),</a>
 <a class="sourceLine" id="cb26-8" data-line-number="8">  <span class="dt">cor.vars =</span> length<span class="op">:</span>votes,</a>
 <a class="sourceLine" id="cb26-9" data-line-number="9">  <span class="dt">corr.method =</span> <span class="st">"np"</span>,</a>
 <a class="sourceLine" id="cb26-10" data-line-number="10">  <span class="dt">colors =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span>),</a>
@@ -905,7 +905,7 @@
 <a class="sourceLine" id="cb26-15" data-line-number="15">  <span class="dt">ncol =</span> <span class="dv">2</span></a>
 <a class="sourceLine" id="cb26-16" data-line-number="16">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat3-1.png" width="100%"></p>
-<p>For examples and more information, see the <code>ggcorrmat</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html</a></p>
+<p>For examples and more information, see the <code>ggcorrmat</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p>
 </div>
 <div id="ggcoefstats" class="section level2">
 <h2 class="hasAnchor">
@@ -940,8 +940,8 @@
 <a class="sourceLine" id="cb28-18" data-line-number="18">) <span class="op">+</span><span class="st">                                    </span></a>
 <a class="sourceLine" id="cb28-19" data-line-number="19"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb28-20" data-line-number="20"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb28-21" data-line-number="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-22" data-line-number="22"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb28-21" data-line-number="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-22" data-line-number="22"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb28-23" data-line-number="23">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="80%"></p>
 <p>All the regression model classes that are supported in the <code>broom</code> package with <code>tidy</code> and <code>glance</code> methods (<a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a>) are also supported by <code>ggcoefstats</code>. Additionally, we can make a number of aesthetic modifications by changing the defaults for theme and palette.</p>
@@ -984,7 +984,7 @@
 <a class="sourceLine" id="cb29-36" data-line-number="36">  <span class="dt">nrow =</span> <span class="dv">2</span></a>
 <a class="sourceLine" id="cb29-37" data-line-number="37">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats3-1.png" width="100%"></p>
-<p>This is by no means an exhaustive list of models supported by <code>ggcoefstats</code>. For a more thorough discussion about all regression models supported, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html</a></p>
+<p>This is by no means an exhaustive list of models supported by <code>ggcoefstats</code>. For a more thorough discussion about all regression models supported, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>
 </div>
 <div id="combine_plots" class="section level2">
 <h2 class="hasAnchor">
@@ -992,7 +992,7 @@
 </h2>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="http://purrr.tidyverse.org/"><code>purrr</code></a> that replaces <code>for</code> loops with code that is both more succinct and easier to read and, therefore, <code>purrr</code> should be preferrred 😻. (Another old school option to do this effectively is using the <code>plyr</code> package.)</p>
 <p>In such cases, <code>ggstatsplot</code> contains a helper function <code>combine_plots</code> to combine multiple plots, which can be useful for combining a list of plots produced with <code>purrr</code>. This is a wrapper around <code><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">cowplot::plot_grid</a></code> and lets you combine multiple plots and add a combination of title, caption, and annotation texts with suitable defaults.</p>
-<p>For examples (both with <code>plyr</code> and <code>purrr</code>), see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html</a></p>
+<p>For examples (both with <code>plyr</code> and <code>purrr</code>), see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html</a></p>
 </div>
 <div id="theme_ggstatsplot" class="section level2">
 <h2 class="hasAnchor">
@@ -1032,7 +1032,7 @@
 <a class="sourceLine" id="cb30-30" data-line-number="30">  <span class="dt">title.text =</span> <span class="st">"Behavior of ggstatsplot theme layer with chosen ggtheme"</span></a>
 <a class="sourceLine" id="cb30-31" data-line-number="31">)</a></code></pre></div>
 <p><img src="reference/figures/README-theme_ggstatsplot-1.png" width="100%"></p>
-<p>For more on how to modify it, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html</a></p>
+<p>For more on how to modify it, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html</a></p>
 </div>
 <div id="using-ggstatsplot-helpers-to-display-text-results" class="section level2">
 <h2 class="hasAnchor">

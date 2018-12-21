@@ -6,9 +6,9 @@
 caption.}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
-  conf.method = "Wald", p.kr = TRUE, coefficient.type = "beta",
-  effsize = "eta", partial = TRUE, nboot = 500,
-  meta.analysis.subtitle = FALSE, point.color = "blue",
+  conf.method = "Wald", p.kr = TRUE, p.adjust.method = "none",
+  coefficient.type = "beta", effsize = "eta", partial = TRUE,
+  nboot = 500, meta.analytic.effect = FALSE, point.color = "blue",
   point.size = 3, point.shape = 16, conf.int = TRUE,
   conf.level = 0.95, se.type = "nid", k = 2, k.caption.summary = 0,
   exclude.intercept = TRUE, exponentiate = FALSE,
@@ -35,7 +35,7 @@ containing results. If a data frame is to be plotted, it \emph{must} contain
 columns named \code{term} (names of predictors), or \code{estimate} (corresponding
 estimates of coefficients or other quantities of interest). Other optional
 columns are \code{conf.low} and \code{conf.high} (for confidence intervals);
-\code{p.value}.}
+\code{p.value}. It is important that all \code{term} names should be unique.}
 
 \item{output}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
@@ -57,6 +57,11 @@ only for the \code{merMod} class model objects (\code{lmer}, \code{glmer}, \code
 based on conditional F-tests with Kenward-Roger approximation for the df.
 For details, see \code{?sjstats::p_value}.}
 
+\item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},
+\code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}. Default is no correction
+(\code{"none"}).}
+
 \item{coefficient.type}{Relevant only for ordinal regression models (\code{clm}
 and \code{clmm}), this argument decides which parameters to display in the plot.
 By default only \code{"beta"} (a vector of regression parameters) parameters
@@ -76,10 +81,12 @@ will be returned. Valid only for objects of class \code{aov}, \code{anova}, or
 eta-squared and omega-squared (Default: \code{500}). This argument is relevant
 only for models objects of class \code{aov}, \code{anova}, and \code{aovlist}.}
 
-\item{meta.analysis.subtitle}{Logical that decides whether subtitle for
+\item{meta.analytic.effect}{Logical that decides whether subtitle for
 meta-analysis via linear (mixed-effects) models - as implemented in the
 \code{metafor} package - is to be displayed (default: \code{FALSE}). If \code{TRUE}, input
-to argument \code{subtitle} will be ignored.}
+to argument \code{subtitle} will be ignored. This will be mostly relevant if a
+data frame with estimates and their standard errors is entered as input to
+\code{x} argument.}
 
 \item{point.color}{Character describing color for the point (Default:
 \code{"blue"}).}
@@ -144,7 +151,7 @@ coefficient value.}
 \item{title}{The text for the plot title.}
 
 \item{subtitle}{The text for the plot subtitle. The input to this argument
-will be ignored if \code{meta.analysis.subtitle} is set to \code{TRUE}.}
+will be ignored if \code{meta.analytic.effect} is set to \code{TRUE}.}
 
 \item{stats.labels}{Logical. Decides whether the statistic and p-values for
 each coefficient are to be attached to each dot as a text label using
@@ -324,7 +331,7 @@ df <-
 ggstatsplot::ggcoefstats(
   x = df,
   statistic = "t",
-  meta.analysis.subtitle = TRUE
+  meta.analytic.effect = TRUE
 )
 }
 \references{

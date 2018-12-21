@@ -12,6 +12,7 @@ testthat::test_that(
     dat <- ggstatsplot:::numdf_summary(ggplot2::msleep)
 
     # checking values
+    testthat::expect_true(inherits(dat, what = "tbl_df"))
     testthat::expect_equal(dat$n_min[1], 0.000140, tolerance = 1e-3)
     testthat::expect_equal(dat$n_median[1], 3.50, tolerance = 1e-2)
     testthat::expect_equal(dat$n_max[1], 6654L)

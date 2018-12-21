@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for the t-test (between-/within-subjects
-designs). — subtitle_t_parametric • ggstatsplot</title>
+<title>Convert a matrix to a tibble dataframe. — matrix_to_tibble • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,11 +38,9 @@ designs). — subtitle_t_parametric • ggstatsplot</title>
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for the t-test (between-/within-subjects
-designs). — subtitle_t_parametric" />
+<meta property="og:title" content="Convert a matrix to a tibble dataframe. — matrix_to_tibble" />
 
-<meta property="og:description" content="Making text subtitle for the t-test (between-/within-subjects
-designs)." />
+<meta property="og:description" content="Convert a matrix to a tibble dataframe." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -167,113 +164,43 @@ designs)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for the t-test (between-/within-subjects
-designs).</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_t_subtitles.R'><code>R/helpers_ggbetween_t_subtitles.R</code></a></small>
-    <div class="hidden name"><code>subtitle_t_parametric.Rd</code></div>
+    <h1>Convert a matrix to a tibble dataframe.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcorrmat.R'><code>R/helpers_ggcorrmat.R</code></a></small>
+    <div class="hidden name"><code>matrix_to_tibble.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for the t-test (between-/within-subjects
-designs).</p>
+    <p>Convert a matrix to a tibble dataframe.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_t_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
-  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>matrix_to_tibble</span>(<span class='no'>df</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"variable"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Dataframe from which variables specified are preferentially to be
-taken.</p></td>
+      <th>df</th>
+      <td><p>A matrix.</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>The grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
-    </tr>
-    <tr>
-      <th>paired</th>
-      <td><p>a logical indicating whether you want a paired
-    t-test.</p></td>
-    </tr>
-    <tr>
-      <th>effsize.type</th>
-      <td><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"biased"</code> (<code>"d"</code> for Cohen's <em>d</em> for <strong>t-test</strong>;
-<code>"partial_eta"</code> for partial eta-squared for <strong>anova</strong>) or <code>"unbiased"</code>
-(<code>"g"</code> Hedge's <em>g</em> for <strong>t-test</strong>; <code>"partial_omega"</code> for partial
-omega-squared for <strong>anova</strong>)).</p></td>
-    </tr>
-    <tr>
-      <th>effsize.noncentral</th>
-      <td><p>Logical indicating whether to use non-central
-<em>t</em>-distributions for computing the confidence interval for Cohen's <em>d</em>
-or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>conf.level</th>
-      <td><p>A scalar value between 0 and 1. If unspecified, the
-default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>var.equal</th>
-      <td><p>a logical variable indicating whether to treat the
-    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
-    test for the equality of means in a one-way analysis of variance is
-    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
-    is used, which generalizes the commonly known 2-sample Welch test to
-    the case of arbitrarily many samples.</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments (ignored).</p></td>
+      <th>var</th>
+      <td><p>Name of column to use for rownames.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># creating a smaller dataset</span>
-<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
-  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
-)
-
-<span class='co'># with defaults</span>
-<span class='fu'>subtitle_t_parametric</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
-)</div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "10.89", ") = ", "1.49", ", ", 
-#&gt;     italic("p"), " = ", "0.164", ", ", italic("g"), " = ", "-0.55", 
-#&gt;     ", CI"["95%"], " [", "-1.32", ", ", "0.23", "]", ", ", italic("n"), 
-#&gt;     " = ", 34L)</div><div class='input'>
-<span class='co'># changing defaults</span>
-<span class='fu'>subtitle_t_parametric</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
-  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"d"</span>
-)</div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "32.00", ") = ", "1.95", ", ", 
-#&gt;     italic("p"), " = ", "0.060", ", ", italic("d"), " = ", "-0.56", 
-#&gt;     ", CI"["95%"], " [", "-1.34", ", ", "0.22", "]", ", ", italic("n"), 
-#&gt;     " = ", 34L)</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='no'>cor_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/keep.html'>keep</a></span>(<span class='no'>iris</span>, <span class='no'>is.numeric</span>))
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/matrix_to_tibble.html'>matrix_to_tibble</a></span>(<span class='no'>cor_df</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span><span>
+#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Sepal.Length        1          -</span><span style='color: #BB0000;'>0.118</span><span>        0.872       0.818
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Sepal.Width        -</span><span style='color: #BB0000;'>0.118</span><span>       1           -</span><span style='color: #BB0000;'>0.428</span><span>      -</span><span style='color: #BB0000;'>0.366</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Petal.Length        0.872      -</span><span style='color: #BB0000;'>0.428</span><span>        1           0.963
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Petal.Width         0.818      -</span><span style='color: #BB0000;'>0.366</span><span>        0.963       1    </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

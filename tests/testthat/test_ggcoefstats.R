@@ -761,12 +761,21 @@ testthat::test_that(
     df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
     df6 <- dplyr::select(.data = df5, -term, -estimate, -std.error)
 
+    # repeated term dataframe
+    df7 <- tibble::tribble(
+      ~term, ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.residual,
+      "x", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
+      "x", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
+      "x", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
+    )
+
     # expect errors
-    testthat::expect_error(ggstatsplot::ggcoefstats(x = df1))
+    testthat::expect_message(ggstatsplot::ggcoefstats(x = df1))
     testthat::expect_error(ggstatsplot::ggcoefstats(
       x = df6,
-      meta.analysis.subtitle = TRUE
+      meta.analytic.effect = TRUE
     ))
+    testthat::expect_error(ggstatsplot::ggcoefstats(x = df7))
 
     # plotting the dataframe
     p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t", sort = "none")
@@ -781,7 +790,7 @@ testthat::test_that(
         x = df5,
         statistic = "t",
         k = 3,
-        meta.analysis.subtitle = TRUE,
+        meta.analytic.effect = TRUE,
         messages = FALSE
       )
 
@@ -864,7 +873,7 @@ testthat::test_that(
     testthat::expect_error(ggstatsplot::ggcoefstats(
       x = df1,
       statistic = "t",
-      meta.analysis.subtitle = TRUE
+      meta.analytic.effect = TRUE
     ))
 
     testthat::expect_identical(pb6$plot$labels$subtitle, meta_subtitle)
@@ -921,6 +930,8 @@ testthat::test_that(
     testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
     testthat::expect_identical(tidy_df3$conf.low[1], NA_character_)
     testthat::expect_identical(tidy_df3$conf.high[1], NA_character_)
+    testthat::expect_true(inherits(tidy_df1, what = "tbl_df"))
+    testthat::expect_true(inherits(tidy_df2, what = "tbl_df"))
   }
 )
 
@@ -950,6 +961,9 @@ testthat::test_that(
     # checking if they are equal
     testthat::expect_identical(broom_df1, glance_df1)
     testthat::expect_identical(broom_df2, glance_df2)
+
+    testthat::expect_true(inherits(glance_df1, what = "tbl_df"))
+    testthat::expect_true(inherits(glance_df2, what = "tbl_df"))
   }
 )
 
@@ -983,9 +997,39 @@ testthat::test_that(
     # checking if they are equal
     testthat::expect_identical(df1.broom, df1.ggstats)
     testthat::expect_identical(df2.broom, df2.ggstats)
+    testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
+    testthat::expect_true(inherits(df2.ggstats, what = "tbl_df"))
   }
 )
 
+# check if p-value adjustment works ----------------------------------------
+
+testthat::test_that(
+  desc = "check if p-value adjustment works",
+  code = {
+    set.seed(123)
+
+    # model
+    mod <- stats::aov(
+      data = mtcars,
+      formula = wt ~ am * cyl * carb
+    )
+
+    # tidy output
+    df <-
+      ggstatsplot::ggcoefstats(
+        x = mod,
+        output = "tidy",
+        p.adjust.method = "holm"
+      )
+
+    # checking adjusted p-values
+    testthat::expect_identical(
+      df$p.value.formatted,
+      c("< 0.001", "< 0.001", "0.200", "0.570", "0.570", "0.570", "0.570")
+    )
+  }
+)
 
 # unsupported model objects -----------------------------------------------
 

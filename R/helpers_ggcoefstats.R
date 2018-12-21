@@ -483,6 +483,10 @@ tfz_labeller <- function(tidy_df,
       }
     }
   }
+
+  # convert to tibble
+  tidy_df %<>% tibble::as_tibble(.)
+
   # return the final dataframe
   return(tidy_df)
 }
@@ -496,6 +500,9 @@ tfz_labeller <- function(tidy_df,
 #' @param data A dataframe. It **must** contain columns named `estimate`
 #'   (corresponding estimates of coefficients or other quantities of interest)
 #'   and `std.error` (the standard error of the regression term).
+#' @param output  Character describing the desired output. If `"subtitle"`, a
+#'   formatted subtitle will be returned. The other option is to return `"tidy"`
+#'   data frame with coefficients.
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments (ignored).
 #'
@@ -526,12 +533,20 @@ tfz_labeller <- function(tidy_df,
 #'   k = 3,
 #'   messages = FALSE
 #' )
+#' 
+#' # getting tidy data frame with coefficients
+#' ggstatsplot::subtitle_meta_ggcoefstats(
+#'   data = df_results,
+#'   messages = FALSE,
+#'   output = "tidy"
+#' )
 #' @export
 
 # function body
 subtitle_meta_ggcoefstats <- function(data,
                                       k = 2,
                                       messages = TRUE,
+                                      output = "subtitle",
                                       ...) {
 
   # check if the two columns needed are present
@@ -569,7 +584,25 @@ subtitle_meta_ggcoefstats <- function(data,
   }
 
   # create a dataframe with coeffcients
-  df_coef <- coef(summary(meta_res))
+  df_coef <- coef(summary(meta_res)) %>%
+    tibble::as_tibble(x = .) %>%
+    dplyr::rename(
+      .data = .,
+      std.error = se,
+      z.value = zval,
+      p.value = pval,
+      conf.low = ci.lb,
+      conf.high = ci.ub
+    ) %>%
+    dplyr::mutate(.data = ., term = "summary effect") %>%
+    dplyr::select(
+      .data = .,
+      term,
+      estimate,
+      conf.low,
+      conf.high,
+      dplyr::everything()
+    )
 
   # preparing the subtitle
   subtitle <-
@@ -600,14 +633,19 @@ subtitle_meta_ggcoefstats <- function(data,
         ),
       env = base::list(
         estimate = specify_decimal_p(x = df_coef$estimate, k = k),
-        LL = specify_decimal_p(x = df_coef$ci.lb, k = k),
-        UL = specify_decimal_p(x = df_coef$ci.ub, k = k),
-        zvalue = specify_decimal_p(x = df_coef$zval, k = k),
-        se = specify_decimal_p(x = df_coef$se, k = k),
-        pvalue = specify_decimal_p(x = df_coef$pval, k = k, p.value = TRUE)
+        LL = specify_decimal_p(x = df_coef$conf.low, k = k),
+        UL = specify_decimal_p(x = df_coef$conf.high, k = k),
+        zvalue = specify_decimal_p(x = df_coef$z.value, k = k),
+        se = specify_decimal_p(x = df_coef$std.error, k = k),
+        pvalue = specify_decimal_p(x = df_coef$p.value, k = k, p.value = TRUE)
       )
     )
 
-  # return the subtitle
-  return(subtitle)
+  if (output == "subtitle") {
+    # return the subtitle
+    return(subtitle)
+  } else if (output == "tidy") {
+    # tidy data frame with coefficients
+    return(df_coef)
+  }
 }

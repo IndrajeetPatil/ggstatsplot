@@ -63,8 +63,7 @@ subtitle_t_parametric <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    ) %>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y))
+    )
 
   # convert the grouping variable to factor and drop unused levels
   data %<>%
@@ -75,8 +74,33 @@ subtitle_t_parametric <- function(data,
     ) %>%
     tibble::as_tibble(x = .)
 
-  # sample size
-  sample_size <- nrow(data)
+  # properly removing NAs if it's a paired design
+  if (isTRUE(paired)) {
+    data %<>%
+      long_to_wide_converter(
+        data = .,
+        x = x,
+        y = y
+      ) %>%
+      tidyr::gather(data = ., key, value, -rowid) %>%
+      dplyr::rename(.data = ., x = key, y = value)
+
+    # sample size
+    sample_size <- length(unique(data$rowid))
+
+    # removing the unnecessary `rowid` column
+    data %<>%
+      dplyr::select(.data = ., -rowid)
+  } else {
+    # remove NAs listwise for between-subjects design
+    data %<>%
+      dplyr::filter(.data = ., !is.na(x), !is.na(y))
+
+    # sample size
+    sample_size <- nrow(data)
+  }
+
+
 
   # deciding which effect size to use (Hedge's g or Cohen's d)
   if (effsize.type %in% c("unbiased", "g")) {
@@ -111,8 +135,9 @@ subtitle_t_parametric <- function(data,
     )
 
   # when paired samples t-test is run df is going to be integer
-  if (isTRUE(paired)) {
-    k.df <- 0
+  # ditto for when variance is assumed to be equal
+  if (isTRUE(paired) || isTRUE(var.equal)) {
+    k.df <- 0L
   } else {
     k.df <- k
   }

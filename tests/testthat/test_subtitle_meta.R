@@ -16,11 +16,12 @@ testthat::test_that(
       0.03, 0.01
     )
 
-    # ggstatsplot output
+    # subtitle output
     using_function1 <- ggstatsplot::subtitle_meta_ggcoefstats(
       data = df,
       k = 4,
-      messages = FALSE
+      messages = FALSE,
+      output = "subtitle"
     )
 
     # expected output
@@ -54,6 +55,21 @@ testthat::test_that(
 
     # testing overall call
     testthat::expect_identical(using_function1, results1)
+
+    # tidy dataframe
+    set.seed(123)
+    tidy_df <- ggstatsplot::subtitle_meta_ggcoefstats(
+      data = df,
+      k = 4,
+      messages = FALSE,
+      output = "tidy"
+    )
+
+    # checking if the output is expected
+    testthat::expect_equal(dim(tidy_df), c(1L, 7L))
+    testthat::expect_equal(tidy_df$estimate, 0.4376927, tolerance = 0.0001)
+    testthat::expect_equal(tidy_df$conf.low, 0.04231262, tolerance = 0.0001)
+    testthat::expect_equal(tidy_df$conf.high, 0.8330728, tolerance = 0.0001)
   }
 )
 

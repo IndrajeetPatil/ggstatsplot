@@ -38,7 +38,7 @@ Imports:
     cowplot (>= 0.9.3),
     crayon (>= 1.3.4),
     dplyr (>= 0.7.8),
-    effsize (>= 0.7.1),
+    effsize (>= 0.7.4),
     exact2x2 (>= 1.6.3),
     ggcorrplot (>= 0.1.2),
     ggExtra (>= 0.8),

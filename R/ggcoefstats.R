@@ -11,7 +11,7 @@
 #'   columns named `term` (names of predictors), or `estimate` (corresponding
 #'   estimates of coefficients or other quantities of interest). Other optional
 #'   columns are `conf.low` and `conf.high` (for confidence intervals);
-#'   `p.value`.
+#'   `p.value`. It is important that all `term` names should be unique.
 #' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
 #'   dataframe of results from `broom::tidy`) or `"glance"` (object from
@@ -23,13 +23,17 @@
 #' @param xlab Label for `x` axis variable (Default: `"estimate"`).
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param subtitle The text for the plot subtitle. The input to this argument
-#'   will be ignored if `meta.analysis.subtitle` is set to `TRUE`.
+#'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
 #' @param conf.method Character describing method for computing confidence
 #'   intervals (for more, see `lme4::confint.merMod`). This argument is valid
 #'   only for the `merMod` class model objects (`lmer`, `glmer`, `nlmer`, etc.).
 #' @param p.kr Logical, if `TRUE`, the computation of p-values for `lmer` is
 #'   based on conditional F-tests with Kenward-Roger approximation for the df.
 #'   For details, see `?sjstats::p_value`.
+#' @param p.adjust.method Adjustment method for *p*-values for multiple
+#'   comparisons. Possible methods are: `"holm"`, `"hochberg"`, `"hommel"`,
+#'   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`. Default is no correction
+#'   (`"none"`).
 #' @param point.color Character describing color for the point (Default:
 #'   `"blue"`).
 #' @param point.size Numeric specifying size for the point (Default: `3`).
@@ -57,10 +61,12 @@
 #'   are returned (Default: `TRUE`). If `FALSE`, eta-squared or omega-squared
 #'   will be returned. Valid only for objects of class `aov`, `anova`, or
 #'   `aovlist`.
-#' @param meta.analysis.subtitle Logical that decides whether subtitle for
+#' @param meta.analytic.effect Logical that decides whether subtitle for
 #'   meta-analysis via linear (mixed-effects) models - as implemented in the
 #'   `metafor` package - is to be displayed (default: `FALSE`). If `TRUE`, input
-#'   to argument `subtitle` will be ignored.
+#'   to argument `subtitle` will be ignored. This will be mostly relevant if a
+#'   data frame with estimates and their standard errors is entered as input to
+#'   `x` argument.
 #' @param k Number of decimal places expected for results displayed in labels
 #'   (Default : `k = 2`).
 #' @param k.caption.summary Number of decimal places expected for results
@@ -150,26 +156,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # -------------- with model object --------------------------------------
-#'
+#' 
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#'
+#' 
 #' # to get a plot
 #' ggstatsplot::ggcoefstats(x = mod, output = "plot")
-#'
+#' 
 #' # to get a tidy dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
-#'
+#' 
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#'
+#' 
 #' # to get augmented dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
-#'
+#' 
 #' # -------------- with custom dataframe -----------------------------------
-#'
+#' 
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -235,12 +241,12 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#'
+#' 
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
 #'   statistic = "t",
-#'   meta.analysis.subtitle = TRUE
+#'   meta.analytic.effect = TRUE
 #' )
 #' @export
 
@@ -251,11 +257,12 @@ ggcoefstats <- function(x,
                         scales = NULL,
                         conf.method = "Wald",
                         p.kr = TRUE,
+                        p.adjust.method = "none",
                         coefficient.type = "beta",
                         effsize = "eta",
                         partial = TRUE,
                         nboot = 500,
-                        meta.analysis.subtitle = FALSE,
+                        meta.analytic.effect = FALSE,
                         point.color = "blue",
                         point.size = 3,
                         point.shape = 16,
@@ -393,17 +400,19 @@ ggcoefstats <- function(x,
 
     # check that statistic is specified
     if (purrr::is_null(statistic)) {
-      base::stop(base::message(cat(
-        crayon::red("Error: "),
+      base::message(cat(
+        crayon::red("Note"),
         crayon::blue(
-          "For the object of class",
+          ": For the object of class",
           crayon::yellow(class(x)[[1]]),
-          ", the argument `statistic` should be specified ('t', 'z', or 'f').\n"
+          ", the argument `statistic` is not specified ('t', 'z', or 'f'),\n",
+          "so no labels will be displayed.\n"
         ),
         sep = ""
-      )),
-      call. = FALSE
-      )
+      ))
+
+      # skip labels
+      stats.labels <- FALSE
     }
 
     # set tidy_df to entered dataframe
@@ -508,6 +517,26 @@ ggcoefstats <- function(x,
         conf.level = conf.level,
         ...
       )
+  }
+
+  # =================== p-value computation ==================================
+
+  # checking if there are any terms that are repeated
+  term_df <- tidy_df %>%
+    dplyr::count(term) %>%
+    dplyr::filter(.data = ., n != 1L)
+
+  # halt if there are repeated terms
+  if (dim(term_df)[1] != 0L) {
+    base::stop(base::message(cat(
+      crayon::red("Error: "),
+      crayon::blue(
+        "All elements in the column `term` should be unique."
+      ),
+      sep = ""
+    )),
+    call. = FALSE
+    )
   }
 
   # =================== p-value computation ==================================
@@ -638,6 +667,17 @@ ggcoefstats <- function(x,
       )
   }
 
+  # ========================== p-value adjustment ===========================
+
+  # adjust the p-values based on the adjustment used
+  if ("p.value" %in% names(tidy_df)) {
+    tidy_df %<>%
+      dplyr::mutate(
+        .data = .,
+        p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
+      )
+  }
+
   # ========================== preparing label ================================
 
   # adding a column with labels to be used with `ggrepel`
@@ -669,7 +709,7 @@ ggcoefstats <- function(x,
 
   # =================== meta-analytic subtitle ================================
 
-  if (isTRUE(meta.analysis.subtitle)) {
+  if (isTRUE(meta.analytic.effect)) {
     subtitle <-
       subtitle_meta_ggcoefstats(
         data = tidy_df,

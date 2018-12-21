@@ -168,7 +168,11 @@ utils::globalVariables(
     "zvalue",
     "isanoutlier",
     "Cramer.V",
-    "t.value"
+    "t.value",
+    "ci.lb",
+    "ci.ub",
+    "pval",
+    "zval"
   ),
   package = "ggstatsplot",
   add = FALSE

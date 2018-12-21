@@ -246,6 +246,7 @@ testthat::test_that(
     testthat::expect_equal(df$sleep_rem, c(61L, 61L, 32L, 61L))
     testthat::expect_equal(df$sleep_cycle, c(32L, 32L, 32L, 32L))
     testthat::expect_equal(df$awake, c(83L, 61L, 32L, 83L))
+    testthat::expect_true(inherits(df, what = "tbl_df"))
   }
 )
 
@@ -267,6 +268,7 @@ testthat::test_that(
 
     testthat::expect_equal(df$sleep_cycle[1], 0.00453, tolerance = 0.001)
     testthat::expect_equal(df$sleep_cycle[2], 0.0614, tolerance = 0.001)
+    testthat::expect_true(inherits(df, what = "tbl_df"))
   }
 )
 
@@ -289,6 +291,7 @@ testthat::test_that(
       messages = FALSE
     )
 
+    testthat::expect_true(inherits(df, what = "tbl_df"))
     testthat::expect_equal(
       df$r,
       c(
