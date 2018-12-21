@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)           | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                           | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.7-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                       | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/116717490.svg)](https://zenodo.org/badge/latestdoi/116717490)                                                                  |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--12--17-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2018--12--21-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
 | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_12_06-brightgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
@@ -58,6 +58,10 @@ To get the latest, stable CRAN release (`0.0.7`):
 ``` r
 utils::install.packages(pkgs = "ggstatsplot")
 ```
+
+*Note*: If you are on a linux machine, you will need to have OpenGL
+libraries installed (specifically, `libx11`, `mesa` and Mesa OpenGL
+Utility library - `glu`) for the dependency package `rgl` to work.
 
 You can get the **development** version of the package from GitHub
 (`0.0.7.9000`). To see what new changes (and bug fixes) have been made
@@ -200,7 +204,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002bfde7b0>
+#> <bytecode: 0x000000002bf95808>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -376,7 +380,7 @@ ggstatsplot::grouped_ggbetweenstats(
 <img src="man/figures/README-ggbetweenstats3-1.png" width="100%" />
 
 For more, see the `ggbetweenstats` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/ggbetweenstats.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
 **This function is not appropriate for within-subjects designs.**
 
@@ -509,7 +513,7 @@ ggstatsplot::grouped_ggscatterstats(
 <img src="man/figures/README-ggscatterstats3-1.png" width="100%" />
 
 For more, see the `ggscatterstats` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/ggscatterstats.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 
 ## `ggpiestats`
 
@@ -634,7 +638,7 @@ ggstatsplot::grouped_ggpiestats(
 
 For more, including information about the variant of this function
 `grouped_ggpiestats`, see the `ggpiestats` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/ggpiestats.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
 ## `gghistostats`
 
@@ -724,7 +728,7 @@ ggstatsplot::grouped_gghistostats(
 
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/gghistostats.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 
 ## `ggdotplotstats`
 
@@ -762,7 +766,7 @@ ggdotplotstats(
 <img src="man/figures/README-ggdotplotstats1-1.png" width="100%" />
 
 As with the rest of the functions in this package, there is also a
-`grouped_` variant of this function to faciliate to repeat the same
+`grouped_` variant of this function to facilitateto repeat the same
 operation across a grouping variable.
 
 ``` r
@@ -953,7 +957,7 @@ ggstatsplot::grouped_ggcorrmat(
 <img src="man/figures/README-ggcorrmat3-1.png" width="100%" />
 
 For examples and more information, see the `ggcorrmat` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/ggcorrmat.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 
 ## `ggcoefstats`
 
@@ -1056,7 +1060,7 @@ ggstatsplot::combine_plots(
 This is by no means an exhaustive list of models supported by
 `ggcoefstats`. For a more thorough discussion about all regression
 models supported, see the associated vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/ggcoefstats.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
 ## `combine_plots`
 
@@ -1075,7 +1079,7 @@ defaults.
 
 For examples (both with `plyr` and `purrr`), see the associated
 vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/combine_plots.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html>
 
 ## `theme_ggstatsplot`
 
@@ -1128,7 +1132,7 @@ ggstatsplot::combine_plots(
 <img src="man/figures/README-theme_ggstatsplot-1.png" width="100%" />
 
 For more on how to modify it, see the associated vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/theme_ggstatsplot.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html>
 
 ## Using `ggstatsplot` helpers to display text results
 
