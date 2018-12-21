@@ -161,20 +161,12 @@ grouped_ggscatterstats <- function(data,
 
   # check labeling variable has been entered
   if ("label.var" %in% names(param_list)) {
+    labelvar.present <- TRUE
     label.var <- rlang::ensym(label.var)
     label.var <- deparse(substitute(label.var))
-#    return(label.var)
   } else {
-    label.var <- NULL
+    labelvar.present <- FALSE
   }
-
-  #  if (isTRUE(point.labelling)) {
-  #    if (typeof(param_list$label.var) == "symbol") {
-  #      # unquoted case
-  #      label.var <- deparse(substitute(label.var))
-  #    }
-  #  }
-
 
   # check labeling expression has been specified
   if ("label.expression" %in% names(param_list)) {
@@ -187,7 +179,7 @@ grouped_ggscatterstats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
-# return(grouping.var)
+
   # getting the dataframe ready
   df <-
     dplyr::select(
@@ -201,7 +193,7 @@ grouped_ggscatterstats <- function(data,
       .data = .,
       title.text = !!rlang::enquo(grouping.var)
     )
-#  return(df)
+
   # creating dataframe per level of grouping
   df %<>%
     dplyr::mutate_if(
@@ -216,42 +208,62 @@ grouped_ggscatterstats <- function(data,
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     base::split(.[[rlang::quo_text(grouping.var)]])
-#    return(df)
 
-    if (isTRUE(expression.present)) {
-      if (typeof(param_list$label.expression) == "language") {
-        # unquoted case
-        label.expression <- rlang::enquo(label.expression)
-      } else {
-        # quoted case
-        label.expression <- rlang::parse_expr(x = label.expression)
-        # the environment is essential
-        label.expression <- rlang::as_quosure(
-          x = label.expression,
-          env = base::sys.frame(which = 0)
-        )
-      }
+  if (isTRUE(expression.present)) {
+    if (typeof(param_list$label.expression) == "language") {
+      # unquoted case
+      label.expression <- rlang::enquo(label.expression)
+    } else {
+      # quoted case
+      label.expression <- rlang::parse_expr(x = label.expression)
+      # the environment is essential
+      label.expression <- rlang::as_quosure(x = label.expression,
+                                            env = base::sys.frame(which = 0))
     }
+  }
 
-  wakawaka <- list(data = df,
+
+  # ==================== build pmap list based on conditions =======================
+
+  if (isTRUE(expression.present) && isTRUE(labelvar.present)) {
+  flexiblelist <- list(data = df,
                    x = rlang::quo_text(enquo(x)),
                    y = rlang::quo_text(enquo(y)),
-                   #                title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                   #  title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
                    label.var = label.var,
                    label.expression = rlang::quo_text(label.expression))
-# return(param_list)
-# return(label.expression)
-      # creating a list of plots
+  }
+
+  if (isTRUE(expression.present) && isFALSE(labelvar.present)) {
+    flexiblelist <- list(data = df,
+                         x = rlang::quo_text(enquo(x)),
+                         y = rlang::quo_text(enquo(y)),
+                         #  title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                         label.expression = rlang::quo_text(label.expression))
+  }
+
+  if (isFALSE(expression.present) && isTRUE(labelvar.present)) {
+    flexiblelist <- list(data = df,
+                         x = rlang::quo_text(enquo(x)),
+                         y = rlang::quo_text(enquo(y)),
+                         #  title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                         label.var = label.var)
+  }
+
+  if (isFALSE(expression.present) && isFALSE(labelvar.present)) {
+    flexiblelist <- list(data = df,
+                         x = rlang::quo_text(enquo(x)),
+                         y = rlang::quo_text(enquo(y))
+                         #  title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                          )
+  }
+
+
+  # ==================== creating a list of plots =======================
+
       plotlist_purrr <-
             purrr::pmap(
-              .l = list(
-                data = df,
-                x = rlang::quo_text(enquo(x)),
-                y = rlang::quo_text(enquo(y)),
-#                title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
-                label.var = label.var,
-                label.expression = rlang::quo_text(label.expression)
-              ), #end of lists
+              .l = flexiblelist, #end of lists
               .f = ggstatsplot::ggscatterstats,
                 # put common parameters here
                 type = type,
@@ -297,7 +309,6 @@ grouped_ggscatterstats <- function(data,
                 messages = messages
             )
 
-#  return(plotlist_purrr)
 
   # combining the list of plots into a single plot
   combined_plot <-
