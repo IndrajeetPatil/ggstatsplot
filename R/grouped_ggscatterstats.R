@@ -161,10 +161,20 @@ grouped_ggscatterstats <- function(data,
 
   # check labeling variable has been entered
   if ("label.var" %in% names(param_list)) {
-    point.labelling <- TRUE
+    label.var <- rlang::ensym(label.var)
+    label.var <- deparse(substitute(label.var))
+#    return(label.var)
   } else {
-    point.labelling <- FALSE
+    label.var <- NULL
   }
+
+  #  if (isTRUE(point.labelling)) {
+  #    if (typeof(param_list$label.var) == "symbol") {
+  #      # unquoted case
+  #      label.var <- deparse(substitute(label.var))
+  #    }
+  #  }
+
 
   # check labeling expression has been specified
   if ("label.expression" %in% names(param_list)) {
@@ -192,7 +202,7 @@ grouped_ggscatterstats <- function(data,
       title.text = !!rlang::enquo(grouping.var)
     )
 #  return(df)
-  # creating a nested dataframe
+  # creating dataframe per level of grouping
   df %<>%
     dplyr::mutate_if(
       .tbl = .,
@@ -208,20 +218,6 @@ grouped_ggscatterstats <- function(data,
     base::split(.[[rlang::quo_text(grouping.var)]])
 #    return(df)
 
-#    dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
-#    dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
-#    tidyr::nest(data = .)
-
-# return(df)
-
-  if (isTRUE(point.labelling)) {
-    if (typeof(param_list$label.var) == "symbol") {
-      # unquoted case
-      label.var <- deparse(substitute(label.var))
-    }
-  }
-
-
     if (isTRUE(expression.present)) {
       if (typeof(param_list$label.expression) == "language") {
         # unquoted case
@@ -236,6 +232,13 @@ grouped_ggscatterstats <- function(data,
         )
       }
     }
+
+  wakawaka <- list(data = df,
+                   x = rlang::quo_text(enquo(x)),
+                   y = rlang::quo_text(enquo(y)),
+                   #                title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                   label.var = label.var,
+                   label.expression = rlang::quo_text(label.expression))
 # return(param_list)
 # return(label.expression)
       # creating a list of plots
@@ -248,11 +251,10 @@ grouped_ggscatterstats <- function(data,
 #                title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
                 label.var = label.var,
                 label.expression = rlang::quo_text(label.expression)
-#                label.expression = NULL
               ), #end of lists
               .f = ggstatsplot::ggscatterstats,
                 # put common parameters here
-                type,
+                type = type,
                 conf.level = conf.level,
                 bf.prior = bf.prior,
                 bf.message = bf.message,
