@@ -248,10 +248,11 @@ grouped_ggscatterstats <- function(data,
 #                title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
                 label.var = label.var,
                 label.expression = rlang::quo_text(label.expression)
-                ), #end of lists
+#                label.expression = NULL
+              ), #end of lists
               .f = ggstatsplot::ggscatterstats,
                 # put common parameters here
-                type = type,
+                type,
                 conf.level = conf.level,
                 bf.prior = bf.prior,
                 bf.message = bf.message,
@@ -259,6 +260,8 @@ grouped_ggscatterstats <- function(data,
                 method = method,
                 xlab = xlab,
                 ylab = ylab,
+                method.args = method.args,
+                formula = formula,
                 point.color = point.color,
                 point.size = point.size,
                 point.alpha = point.alpha,
