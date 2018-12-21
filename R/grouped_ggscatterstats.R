@@ -30,11 +30,11 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' \dontrun{
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -48,7 +48,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -64,9 +64,9 @@
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
-#' 
+#'
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::movies_long,
@@ -222,14 +222,13 @@ grouped_ggscatterstats <- function(data,
     }
   }
 
-
   # ==================== build pmap list based on conditions =======================
 
   if (isTRUE(expression.present) && isTRUE(labelvar.present)) {
   flexiblelist <- list(data = df,
                    x = rlang::quo_text(enquo(x)),
                    y = rlang::quo_text(enquo(y)),
-                   #  title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                   title = glue::glue("{title.prefix}: {names(df)}"),
                    label.var = label.var,
                    label.expression = rlang::quo_text(label.expression))
   }
@@ -238,7 +237,7 @@ grouped_ggscatterstats <- function(data,
     flexiblelist <- list(data = df,
                          x = rlang::quo_text(enquo(x)),
                          y = rlang::quo_text(enquo(y)),
-                         #  title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                         title = glue::glue("{title.prefix}: {names(df)}"),
                          label.expression = rlang::quo_text(label.expression))
   }
 
@@ -246,18 +245,17 @@ grouped_ggscatterstats <- function(data,
     flexiblelist <- list(data = df,
                          x = rlang::quo_text(enquo(x)),
                          y = rlang::quo_text(enquo(y)),
-                         # title = glue::glue("{title.prefix}: {rlang::quo_text(title.text)}"),
+                         title = glue::glue("{title.prefix}: {names(df)}"),
                          label.var = label.var)
   }
 
   if (isFALSE(expression.present) && isFALSE(labelvar.present)) {
     flexiblelist <- list(data = df,
                          x = rlang::quo_text(enquo(x)),
-                         y = rlang::quo_text(enquo(y))
-                         #  title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                         y = rlang::quo_text(enquo(y)),
+                         title = glue::glue("{title.prefix}: {names(df)}")
                           )
   }
-
 
   # ==================== creating a list of plots =======================
 
@@ -270,7 +268,7 @@ grouped_ggscatterstats <- function(data,
                 conf.level = conf.level,
                 bf.prior = bf.prior,
                 bf.message = bf.message,
-                title = title.prefix,
+#                title = title.prefix,
                 method = method,
                 xlab = xlab,
                 ylab = ylab,
