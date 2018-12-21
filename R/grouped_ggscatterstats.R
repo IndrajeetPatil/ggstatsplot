@@ -246,7 +246,7 @@ grouped_ggscatterstats <- function(data,
     flexiblelist <- list(data = df,
                          x = rlang::quo_text(enquo(x)),
                          y = rlang::quo_text(enquo(y)),
-                         #  title = glue::glue("{title.prefix}: {rlang::quo_text(enquo(title.text))}"),
+                         # title = glue::glue("{title.prefix}: {rlang::quo_text(title.text)}"),
                          label.var = label.var)
   }
 
