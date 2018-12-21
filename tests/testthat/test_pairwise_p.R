@@ -159,6 +159,8 @@ testthat::test_that(
       p.adjust.method = "bonferroni"
     )
 
+    testthat::expect_true(inherits(df1, what = "tbl_df"))
+
     testthat::expect_equal(
       df1$mean.difference,
       c(

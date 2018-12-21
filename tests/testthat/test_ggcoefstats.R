@@ -930,6 +930,8 @@ testthat::test_that(
     testthat::expect_equal(df2$conf.high, tidy_df2$conf.high, tolerance = 0.001)
     testthat::expect_identical(tidy_df3$conf.low[1], NA_character_)
     testthat::expect_identical(tidy_df3$conf.high[1], NA_character_)
+    testthat::expect_true(inherits(tidy_df1, what = "tbl_df"))
+    testthat::expect_true(inherits(tidy_df2, what = "tbl_df"))
   }
 )
 
@@ -959,6 +961,9 @@ testthat::test_that(
     # checking if they are equal
     testthat::expect_identical(broom_df1, glance_df1)
     testthat::expect_identical(broom_df2, glance_df2)
+
+    testthat::expect_true(inherits(glance_df1, what = "tbl_df"))
+    testthat::expect_true(inherits(glance_df2, what = "tbl_df"))
   }
 )
 
@@ -992,6 +997,8 @@ testthat::test_that(
     # checking if they are equal
     testthat::expect_identical(df1.broom, df1.ggstats)
     testthat::expect_identical(df2.broom, df2.ggstats)
+    testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
+    testthat::expect_true(inherits(df2.ggstats, what = "tbl_df"))
   }
 )
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian correlation test. — bf_corr_test • ggstatsplot</title>
+<title>Convert a matrix to a tibble dataframe. — matrix_to_tibble • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,9 +38,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Bayesian correlation test. — bf_corr_test" />
+<meta property="og:title" content="Convert a matrix to a tibble dataframe. — matrix_to_tibble" />
 
-<meta property="og:description" content="Bayesian correlation test." />
+<meta property="og:description" content="Convert a matrix to a tibble dataframe." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -164,94 +164,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian correlation test.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_bf_tests.R'><code>R/helpers_bf_tests.R</code></a></small>
-    <div class="hidden name"><code>bf_corr_test.Rd</code></div>
+    <h1>Convert a matrix to a tibble dataframe.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcorrmat.R'><code>R/helpers_ggcorrmat.R</code></a></small>
+    <div class="hidden name"><code>matrix_to_tibble.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Bayesian correlation test.</p>
+    <p>Convert a matrix to a tibble dataframe.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bf_corr_test</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+    <pre class="usage"><span class='fu'>matrix_to_tibble</span>(<span class='no'>df</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"variable"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Dataframe from which variables are to be taken.</p></td>
+      <th>df</th>
+      <td><p>A matrix.</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>The column in <code>data</code> containing the explanatory variable to be plotted on the x axis.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>The column in <code>data</code> containing the response (outcome) variable to be plotted on the y axis.</p></td>
-    </tr>
-    <tr>
-      <th>bf.prior</th>
-      <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
-to use in calculating Bayes factors.</p></td>
-    </tr>
-    <tr>
-      <th>caption</th>
-      <td><p>The text for the plot caption.</p></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td><p>Can either be <code>"caption"</code> (which will contain text for evidence
-in favor of null)  or <code>"results"</code> (which will return the dataframe with
-results).</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of decimal places expected for results.</p></td>
+      <th>var</th>
+      <td><p>Name of column to use for rownames.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='bf_contingency_tab.html'>bf_contingency_tab</a></code>, <code><a href='bf_oneway_anova.html'>bf_oneway_anova</a></code>,
-<code><a href='bf_two_sample_ttest.html'>bf_two_sample_ttest</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># for reproducibility</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
-
-<span class='co'># to get caption (default)</span>
-<span class='fu'>bf_corr_test</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>anscombe</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x1</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y4</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>1</span>
-)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
-#&gt;     "(BF"["01"], ") = ", "0.60", ", Prior width = ", "1.00"))</div><div class='input'>
-<span class='co'># to see results</span>
-<span class='fu'>bf_corr_test</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>anscombe</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x1</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y4</span>,
-  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
-)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 8</span><span>
-#&gt;    bf10 log_e_bf10 log_10_bf10  bf01 log_e_bf01 log_10_bf01 error bf.prior
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.607     -</span><span style='color: #BB0000;'>0.499</span><span>      -</span><span style='color: #BB0000;'>0.217</span><span>  1.65      0.499       0.217     0      0.8</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='no'>cor_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>cor</a></span>(<span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/keep.html'>keep</a></span>(<span class='no'>iris</span>, <span class='no'>is.numeric</span>))
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/matrix_to_tibble.html'>matrix_to_tibble</a></span>(<span class='no'>cor_df</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 5</span><span>
+#&gt;   variable     Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Sepal.Length        1          -</span><span style='color: #BB0000;'>0.118</span><span>        0.872       0.818
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Sepal.Width        -</span><span style='color: #BB0000;'>0.118</span><span>       1           -</span><span style='color: #BB0000;'>0.428</span><span>      -</span><span style='color: #BB0000;'>0.366</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Petal.Length        0.872      -</span><span style='color: #BB0000;'>0.428</span><span>        1           0.963
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Petal.Width         0.818      -</span><span style='color: #BB0000;'>0.366</span><span>        0.963       1    </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#see-also">See also</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

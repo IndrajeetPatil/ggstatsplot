@@ -18,7 +18,6 @@ Convert a matrix to a tibble dataframe.
 set.seed(123)
 cor_df <- cor(purrr::keep(iris, is.numeric))
 ggstatsplot:::matrix_to_tibble(cor_df)
-
 }
 \author{
 Indrajeet Patil

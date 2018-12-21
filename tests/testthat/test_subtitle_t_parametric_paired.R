@@ -218,7 +218,7 @@ testthat::test_that(
           ", ",
           italic("n"),
           " = ",
-          40L
+          20L
         )
       )
 
@@ -276,7 +276,7 @@ testthat::test_that(
         ", ",
         italic("n"),
         " = ",
-        300L
+        150L
       )
     )
 
