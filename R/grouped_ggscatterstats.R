@@ -222,12 +222,24 @@ grouped_ggscatterstats <- function(data,
     }
   }
 
+  if (typeof(param_list$x) == "symbol") {
+    x <- deparse(substitute(x)) # unquoted case
+  }
+
+  if (typeof(param_list$y) == "symbol") {
+    y <- deparse(substitute(y)) # unquoted case
+  }
+
+#  return(x)
+
+
+
   # ==================== build pmap list based on conditions =======================
 
   if (isTRUE(expression.present) && isTRUE(labelvar.present)) {
   flexiblelist <- list(data = df,
-                   x = rlang::quo_text(enquo(x)),
-                   y = rlang::quo_text(enquo(y)),
+                   x = x,
+                   y = y,
                    title = glue::glue("{title.prefix}: {names(df)}"),
                    label.var = label.var,
                    label.expression = rlang::quo_text(label.expression))
@@ -235,24 +247,24 @@ grouped_ggscatterstats <- function(data,
 
   if (isTRUE(expression.present) && isFALSE(labelvar.present)) {
     flexiblelist <- list(data = df,
-                         x = rlang::quo_text(enquo(x)),
-                         y = rlang::quo_text(enquo(y)),
+                         x = x,
+                         y = y,
                          title = glue::glue("{title.prefix}: {names(df)}"),
                          label.expression = rlang::quo_text(label.expression))
   }
 
   if (isFALSE(expression.present) && isTRUE(labelvar.present)) {
     flexiblelist <- list(data = df,
-                         x = rlang::quo_text(enquo(x)),
-                         y = rlang::quo_text(enquo(y)),
+                         x = x,
+                         y = y,
                          title = glue::glue("{title.prefix}: {names(df)}"),
                          label.var = label.var)
   }
 
   if (isFALSE(expression.present) && isFALSE(labelvar.present)) {
     flexiblelist <- list(data = df,
-                         x = rlang::quo_text(enquo(x)),
-                         y = rlang::quo_text(enquo(y)),
+                         x = x,
+                         y = y,
                          title = glue::glue("{title.prefix}: {names(df)}")
                           )
   }
