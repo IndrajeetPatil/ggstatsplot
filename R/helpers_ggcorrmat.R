@@ -47,3 +47,30 @@ numdf_summary <- function(df) {
   # return the tibble
   return(n_summary)
 }
+
+#' @title Convert a matrix to a tibble dataframe.
+#' @name matrix_to_tibble
+#' @author Indrajeet Patil
+#'
+#' @param df A matrix.
+#' @inheritParams tibble::rownames_to_column
+#'
+#' @importFrom tibble as_tibble rownames_to_column
+#'
+#' @examples
+#' set.seed(123)
+#' cor_df <- cor(purrr::keep(iris, is.numeric))
+#' ggstatsplot:::matrix_to_tibble(cor_df)
+#' @keywords internal
+
+# function body
+matrix_to_tibble <- function(df, var = "variable") {
+  # convert to tibble
+  df %<>%
+    base::as.data.frame(x = .) %>%
+    tibble::rownames_to_column(., var = var) %>%
+    tibble::as_tibble(x = .)
+
+  # return the tibble
+  return(df)
+}

@@ -662,7 +662,7 @@ pairwise_p <- function(data,
     dplyr::select(.data = ., -label2)
 
   # return
-  return(df)
+  return(tibble::as_tibble(df))
 }
 
 
