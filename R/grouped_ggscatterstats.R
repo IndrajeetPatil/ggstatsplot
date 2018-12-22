@@ -7,7 +7,7 @@
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
 #'
-#' @param grouping.var Grouping variable.Can be entered either as
+#' @param grouping.var Grouping variable. Can be entered either as
 #'   a character string (e.g., `"group"`) or as a bare expression (e.g, `group`).
 #' @param title.prefix Character specifying the prefix text for the fixed plot
 #'   title (name of each factor level) (Default: `"Group"`).
@@ -30,11 +30,11 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' \dontrun{
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -48,7 +48,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -64,9 +64,9 @@
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
-#' 
+#'
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::movies_long,
@@ -138,12 +138,16 @@ grouped_ggscatterstats <- function(data,
   # create a list of function call to check for label.expression
   param_list <- base::as.list(base::match.call())
 
+  # check that there is a grouping.var
+  if(!"grouping.var" %in% names(param_list)) {
+    base::stop("You must specify a grouping variable")
+  }
+
   # check that label.var and grouping.var are different
-  if (("label.var" %in% names(param_list)) &&
-    ("grouping.var" %in% names(param_list))) {
+  if ("label.var" %in% names(param_list)) {
     if (as.character(param_list$label.var) == as.character(param_list$grouping.var)) {
       base::message(cat(
-        crayon::red("Error: "),
+        crayon::red("\nError: "),
         crayon::blue(
           "Identical variable (",
           crayon::yellow(param_list$label.var),
@@ -151,14 +155,17 @@ grouped_ggscatterstats <- function(data,
         ),
         sep = ""
       ))
+      base::return(base::invisible(param_list$label.var))
     }
   }
 
   # check labeling variable has been entered
   if ("label.var" %in% names(param_list)) {
-    point.labelling <- TRUE
+    labelvar.present <- TRUE
+    label.var <- rlang::ensym(label.var)
+    label.var <- deparse(substitute(label.var))
   } else {
-    point.labelling <- FALSE
+    labelvar.present <- FALSE
   }
 
   # check labeling expression has been specified
@@ -187,7 +194,7 @@ grouped_ggscatterstats <- function(data,
       title.text = !!rlang::enquo(grouping.var)
     )
 
-  # creating a nested dataframe
+  # creating dataframe per level of grouping
   df %<>%
     dplyr::mutate_if(
       .tbl = .,
@@ -200,118 +207,91 @@ grouped_ggscatterstats <- function(data,
       .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
-    dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
-    tidyr::nest(data = .)
+    base::split(.[[rlang::quo_text(grouping.var)]])
 
-  if (isTRUE(point.labelling)) {
-    if (typeof(param_list$label.var) == "symbol") {
+  if (isTRUE(expression.present)) {
+    if (typeof(param_list$label.expression) == "language") {
       # unquoted case
-      label.var <- deparse(substitute(label.var))
-    }
-
-    if (isTRUE(expression.present)) {
-      if (typeof(param_list$label.expression) == "language") {
-        # unquoted case
-        label.expression <- rlang::enquo(label.expression)
-      } else {
-        # quoted case
-        label.expression <- rlang::parse_expr(x = label.expression)
-        # the environment is essential
-        label.expression <- rlang::as_quosure(
-          x = label.expression,
-          env = base::sys.frame(which = 0)
-        )
-      }
-
-      # creating a list of plots
-      plotlist_purrr <-
-        df %>%
-        dplyr::mutate(
-          .data = .,
-          plots = data %>%
-            purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-            purrr::map(
-              .x = .,
-              .f = ~ ggstatsplot::ggscatterstats(
-                data = .,
-                x = !!rlang::enquo(x),
-                y = !!rlang::enquo(y),
-                bf.prior = bf.prior,
-                bf.message = bf.message,
-                conf.level = conf.level,
-                label.var = !!rlang::enquo(label.var),
-                label.expression = !!rlang::enquo(label.expression),
-                title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
-                xlab = xlab,
-                ylab = ylab,
-                method = method,
-                method.args = method.args,
-                formula = formula,
-                point.color = point.color,
-                point.size = point.size,
-                point.alpha = point.alpha,
-                point.width.jitter = point.width.jitter,
-                point.height.jitter = point.height.jitter,
-                line.size = line.size,
-                line.color = line.color,
-                marginal = marginal,
-                marginal.type = marginal.type,
-                marginal.size = marginal.size,
-                margins = margins,
-                package = package,
-                palette = palette,
-                direction = direction,
-                xfill = xfill,
-                yfill = yfill,
-                xalpha = xalpha,
-                yalpha = yalpha,
-                xsize = xsize,
-                ysize = ysize,
-                centrality.para = centrality.para,
-                type = type,
-                results.subtitle = results.subtitle,
-                subtitle = subtitle,
-                caption = caption,
-                nboot = nboot,
-                beta = beta,
-                k = k,
-                axes.range.restrict = axes.range.restrict,
-                ggtheme = ggtheme,
-                ggstatsplot.layer = ggstatsplot.layer,
-                messages = messages
-              )
-            )
-        )
+      label.expression <- rlang::enquo(label.expression)
     } else {
+      # quoted case
+      label.expression <- rlang::parse_expr(x = label.expression)
+      # the environment is essential
+      label.expression <- rlang::as_quosure(x = label.expression,
+                                            env = base::sys.frame(which = 0))
+    }
+  }
+
+  if (typeof(param_list$x) == "symbol") {
+    x <- deparse(substitute(x)) # unquoted case
+  }
+
+  if (typeof(param_list$y) == "symbol") {
+    y <- deparse(substitute(y)) # unquoted case
+  }
+
+#  return(x)
+
+
+
+  # ==================== build pmap list based on conditions =======================
+
+  if (isTRUE(expression.present) && isTRUE(labelvar.present)) {
+  flexiblelist <- list(data = df,
+                   x = x,
+                   y = y,
+                   title = glue::glue("{title.prefix}: {names(df)}"),
+                   label.var = label.var,
+                   label.expression = rlang::quo_text(label.expression))
+  }
+
+  if (isTRUE(expression.present) && isFALSE(labelvar.present)) {
+    flexiblelist <- list(data = df,
+                         x = x,
+                         y = y,
+                         title = glue::glue("{title.prefix}: {names(df)}"),
+                         label.expression = rlang::quo_text(label.expression))
+  }
+
+  if (isFALSE(expression.present) && isTRUE(labelvar.present)) {
+    flexiblelist <- list(data = df,
+                         x = x,
+                         y = y,
+                         title = glue::glue("{title.prefix}: {names(df)}"),
+                         label.var = label.var)
+  }
+
+  if (isFALSE(expression.present) && isFALSE(labelvar.present)) {
+    flexiblelist <- list(data = df,
+                         x = x,
+                         y = y,
+                         title = glue::glue("{title.prefix}: {names(df)}")
+                          )
+  }
+
+  # ==================== creating a list of plots =======================
+
       plotlist_purrr <-
-        df %>%
-        dplyr::mutate(
-          .data = .,
-          plots = data %>%
-            purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-            purrr::map(
-              .x = .,
-              .f = ~ ggstatsplot::ggscatterstats(
-                data = .,
-                x = !!rlang::enquo(x),
-                y = !!rlang::enquo(y),
+            purrr::pmap(
+              .l = flexiblelist, #end of lists
+              .f = ggstatsplot::ggscatterstats,
+                # put common parameters here
+                type = type,
+                conf.level = conf.level,
                 bf.prior = bf.prior,
                 bf.message = bf.message,
-                conf.level = conf.level,
-                label.var = !!rlang::enquo(label.var),
-                title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
+#                title = title.prefix,
+                method = method,
                 xlab = xlab,
                 ylab = ylab,
-                method = method,
                 method.args = method.args,
                 formula = formula,
                 point.color = point.color,
                 point.size = point.size,
                 point.alpha = point.alpha,
+                line.size = line.size,
                 point.width.jitter = point.width.jitter,
                 point.height.jitter = point.height.jitter,
-                line.size = line.size,
                 line.color = line.color,
                 marginal = marginal,
                 marginal.type = marginal.type,
@@ -327,83 +307,23 @@ grouped_ggscatterstats <- function(data,
                 xsize = xsize,
                 ysize = ysize,
                 centrality.para = centrality.para,
-                type = type,
                 results.subtitle = results.subtitle,
-                subtitle = subtitle,
                 caption = caption,
+                subtitle = subtitle,
                 nboot = nboot,
                 beta = beta,
                 k = k,
                 axes.range.restrict = axes.range.restrict,
-                ggtheme = ggtheme,
+                ggtheme = ggplot2::theme_bw(),
                 ggstatsplot.layer = ggstatsplot.layer,
                 messages = messages
-              )
             )
-        )
-    }
-  } else {
-    plotlist_purrr <-
-      df %>%
-      dplyr::mutate(
-        .data = .,
-        plots = data %>%
-          purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-          purrr::map(
-            .x = .,
-            .f = ~ ggstatsplot::ggscatterstats(
-              data = .,
-              x = !!rlang::enquo(x),
-              y = !!rlang::enquo(y),
-              bf.prior = bf.prior,
-              bf.message = bf.message,
-              conf.level = conf.level,
-              title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
-              xlab = xlab,
-              ylab = ylab,
-              method = method,
-              method.args = method.args,
-              formula = formula,
-              point.color = point.color,
-              point.size = point.size,
-              point.alpha = point.alpha,
-              point.width.jitter = point.width.jitter,
-              point.height.jitter = point.height.jitter,
-              line.size = line.size,
-              line.color = line.color,
-              marginal = marginal,
-              marginal.type = marginal.type,
-              marginal.size = marginal.size,
-              margins = margins,
-              package = package,
-              palette = palette,
-              direction = direction,
-              xfill = xfill,
-              yfill = yfill,
-              xalpha = xalpha,
-              yalpha = yalpha,
-              xsize = xsize,
-              ysize = ysize,
-              centrality.para = centrality.para,
-              type = type,
-              results.subtitle = results.subtitle,
-              subtitle = subtitle,
-              caption = caption,
-              nboot = nboot,
-              beta = beta,
-              k = k,
-              axes.range.restrict = axes.range.restrict,
-              ggtheme = ggtheme,
-              ggstatsplot.layer = ggstatsplot.layer,
-              messages = messages
-            )
-          )
-      )
-  }
+
+
   # combining the list of plots into a single plot
   combined_plot <-
     ggstatsplot::combine_plots(
-      plotlist = plotlist_purrr$plots,
+      plotlist = plotlist_purrr,
       ...
     )
 

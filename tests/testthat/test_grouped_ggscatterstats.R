@@ -7,14 +7,14 @@ testthat::test_that(
 
     # when the grouping and labelling variable are the same, the function
     # shouldn't work
-    testthat::expect_error(
+    testthat::expect_output(
       grouped_ggscatterstats(
         data = iris,
         x = Sepal.Length,
         y = Petal.Width,
         grouping.var = Species,
         label.var = Species
-      )
+      ), "Error:"
     )
 
     # both quoted

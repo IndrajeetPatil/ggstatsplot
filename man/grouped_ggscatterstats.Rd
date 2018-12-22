@@ -53,7 +53,7 @@ determines the subset of data points to label. This argument can be entered
 either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
 expression (e.g., \code{y < 4 & z < 20}).}
 
-\item{grouping.var}{Grouping variable.Can be entered either as
+\item{grouping.var}{Grouping variable. Can be entered either as
 a character string (e.g., \code{"group"}) or as a bare expression (e.g, \code{group}).}
 
 \item{title.prefix}{Character specifying the prefix text for the fixed plot
