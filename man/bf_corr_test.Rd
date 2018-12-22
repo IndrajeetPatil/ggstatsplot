@@ -10,9 +10,13 @@ bf_corr_test(data, x, y, bf.prior = 0.707, caption = NULL,
 \arguments{
 \item{data}{Dataframe from which variables are to be taken.}
 
-\item{x}{The column in \code{data} containing the explanatory variable to be plotted on the x axis.}
+\item{x}{The column in \code{data} containing the explanatory variable to be
+plotted on the x axis. Can be entered either as
+a character string (e.g., \code{"x"}) or as a bare expression (e.g, \code{x}).}
 
-\item{y}{The column in \code{data} containing the response (outcome) variable to be plotted on the y axis.}
+\item{y}{The column in \code{data} containing the response (outcome) variable to
+be plotted on the y axis. Can be entered either as
+a character string (e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}

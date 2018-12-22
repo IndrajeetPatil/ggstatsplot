@@ -5,8 +5,16 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # when the grouping and labelling variable are the same, the function
-    # shouldn't work
+    # expect error if no grouping variable is specified
+    testthat::expect_error(
+      grouped_ggscatterstats(
+        data = iris,
+        x = Sepal.Length,
+        y = Petal.Width
+      )
+    )
+
+    # when the grouping and labelling variable are the same, expect error message
     testthat::expect_output(
       grouped_ggscatterstats(
         data = iris,
@@ -17,15 +25,19 @@ testthat::test_that(
       ), "Error:"
     )
 
+    # create a smaller dataset
+    set.seed(123)
+    df <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
+      dplyr::filter(
+        .data = ., mpaa %in% c("R", "PG-13"),
+        genre %in% c("Drama", "Comedy")
+      )
+
     # both quoted
     set.seed(123)
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(
-            .data = ., mpaa %in% c("R", "PG-13"),
-            genre %in% c("Drama", "Comedy")
-          ),
+        data = df,
         x = length,
         y = rating,
         label.expression = "budget > 150",
@@ -42,11 +54,7 @@ testthat::test_that(
     set.seed(123)
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(
-            .data = ., mpaa %in% c("R", "PG-13"),
-            genre %in% c("Drama", "Comedy")
-          ),
+        data = df,
         x = length,
         y = rating,
         label.expression = budget > 150,
@@ -63,11 +71,7 @@ testthat::test_that(
     set.seed(123)
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(
-            .data = ., mpaa %in% c("R", "PG-13"),
-            genre %in% c("Drama", "Comedy")
-          ),
+        data = df,
         x = length,
         y = rating,
         label.expression = budget > 150,
@@ -83,17 +87,14 @@ testthat::test_that(
     set.seed(123)
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(
-            .data = ., mpaa %in% c("R", "PG-13"),
-            genre %in% c("Drama", "Comedy")
-          ),
+        data = df,
         x = "length",
         y = "rating",
         grouping.var = "mpaa",
         type = "r",
         label.expression = "budget > 150",
         label.var = title,
+        results.subtitle = FALSE,
         messages = FALSE,
         marginal = FALSE
       ),
@@ -104,15 +105,30 @@ testthat::test_that(
     set.seed(123)
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggscatterstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(
-            .data = ., mpaa %in% c("R", "PG-13"),
-            genre %in% c("Drama", "Comedy")
-          ),
+        data = df,
         x = "length",
         y = rating,
         grouping.var = mpaa,
+        label.expression = "budget > 150",
         type = "np",
+        results.subtitle = FALSE,
+        messages = FALSE,
+        marginal = FALSE
+      ),
+      what = "gg"
+    ))
+
+    # labeling all points (without expression, i.e.)
+    set.seed(123)
+    testthat::expect_true(inherits(
+      ggstatsplot::grouped_ggscatterstats(
+        data = dplyr::sample_frac(tbl = df, size = 0.1),
+        x = "length",
+        y = rating,
+        grouping.var = mpaa,
+        label.var = title,
+        type = "np",
+        results.subtitle = FALSE,
         messages = FALSE,
         marginal = FALSE
       ),

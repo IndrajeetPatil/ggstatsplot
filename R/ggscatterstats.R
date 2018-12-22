@@ -7,12 +7,16 @@
 #'   subtitle.
 #'
 #' @param data Dataframe from which variables are to be taken.
-#' @param x The column in `data` containing the explanatory variable to be plotted on the x axis.
-#' @param y The column in `data` containing the response (outcome) variable to be plotted on the y axis.
+#' @param x The column in `data` containing the explanatory variable to be
+#'   plotted on the x axis. Can be entered either as
+#'   a character string (e.g., `"x"`) or as a bare expression (e.g, `x`).
+#' @param y The column in `data` containing the response (outcome) variable to
+#'   be plotted on the y axis. Can be entered either as
+#'   a character string (e.g., `"y"`) or as a bare expression (e.g, `y`).
 #' @param bf.message Logical. Decides whether to display Bayes Factor in favor
 #'   of *null* hypothesis **for parametric test** (Default: `FALSE`).
 #' @param label.var Variable to use for points labels. Can be entered either as
-#'   a character string (e.g., `"y"`) or as a bare expression (e.g, `y`).
+#'   a character string (e.g., `"var1"`) or as a bare expression (e.g, `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
 #'   determines the subset of data points to label. This argument can be entered
 #'   either as a character string (e.g., `"y < 4 & z < 20"`) or as a bare

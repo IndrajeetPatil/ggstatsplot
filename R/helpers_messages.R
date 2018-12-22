@@ -22,10 +22,10 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#' 
+#'
 #' # message
 #' normality_message(x = datasets::anscombe$x1)
-#' 
+#'
 #' # statistical test object
 #' normality_message(
 #'   x = datasets::anscombe$x2,
@@ -105,7 +105,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
 #' bartlett_message(
 #'   data = iris,
@@ -113,7 +113,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
 #' bartlett_message(
 #'   data = mtcars,
@@ -214,7 +214,7 @@ bartlett_message <- function(data,
 grouped_message <- function() {
   base::message(cat(
     crayon::red("Warning: "),
-    crayon::blue("Individual plots in the combined `grouped_` plots\n"),
+    crayon::blue("Individual plots in the combined `grouped_` plot\n"),
     crayon::blue("can't be further modified with `ggplot2` functions.\n"),
     sep = ""
   ))
@@ -245,7 +245,7 @@ grouped_message <- function() {
 #'   min_length = 20
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body

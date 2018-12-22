@@ -24,9 +24,13 @@ grouped_ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
 \arguments{
 \item{data}{Dataframe from which variables are to be taken.}
 
-\item{x}{The column in \code{data} containing the explanatory variable to be plotted on the x axis.}
+\item{x}{The column in \code{data} containing the explanatory variable to be
+plotted on the x axis. Can be entered either as
+a character string (e.g., \code{"x"}) or as a bare expression (e.g, \code{x}).}
 
-\item{y}{The column in \code{data} containing the response (outcome) variable to be plotted on the y axis.}
+\item{y}{The column in \code{data} containing the response (outcome) variable to
+be plotted on the y axis. Can be entered either as
+a character string (e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
 
 \item{type}{Type of association between paired samples required
 ("\code{"parametric"}: Pearson's product moment correlation coefficient" or
@@ -46,7 +50,7 @@ to use in calculating Bayes factors.}
 of \emph{null} hypothesis \strong{for parametric test} (Default: \code{FALSE}).}
 
 \item{label.var}{Variable to use for points labels. Can be entered either as
-a character string (e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
+a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var1}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
 determines the subset of data points to label. This argument can be entered

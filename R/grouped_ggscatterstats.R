@@ -18,9 +18,9 @@
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
-#' @importFrom rlang !! enquo quo_name ensym as_quosure parse_expr
+#' @importFrom rlang !! enquo quo_name ensym as_quosure parse_expr quo_text
 #' @importFrom glue glue
-#' @importFrom purrr map set_names
+#' @importFrom purrr map set_names pmap
 #' @importFrom tidyr nest
 #'
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
@@ -139,7 +139,7 @@ grouped_ggscatterstats <- function(data,
   param_list <- base::as.list(base::match.call())
 
   # check that there is a grouping.var
-  if(!"grouping.var" %in% names(param_list)) {
+  if (!"grouping.var" %in% names(param_list)) {
     base::stop("You must specify a grouping variable")
   }
 
@@ -159,7 +159,7 @@ grouped_ggscatterstats <- function(data,
     }
   }
 
-  # check labeling variable has been entered
+  # check if labeling variable has been specified
   if ("label.var" %in% names(param_list)) {
     labelvar.present <- TRUE
     label.var <- rlang::ensym(label.var)
@@ -168,7 +168,7 @@ grouped_ggscatterstats <- function(data,
     labelvar.present <- FALSE
   }
 
-  # check labeling expression has been specified
+  # check if labeling expression has been specified
   if ("label.expression" %in% names(param_list)) {
     expression.present <- TRUE
   } else {
@@ -209,6 +209,7 @@ grouped_ggscatterstats <- function(data,
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     base::split(.[[rlang::quo_text(grouping.var)]])
 
+  # if labeling expression has been specified, format the arguments accordingly
   if (isTRUE(expression.present)) {
     if (typeof(param_list$label.expression) == "language") {
       # unquoted case
@@ -217,107 +218,114 @@ grouped_ggscatterstats <- function(data,
       # quoted case
       label.expression <- rlang::parse_expr(x = label.expression)
       # the environment is essential
-      label.expression <- rlang::as_quosure(x = label.expression,
-                                            env = base::sys.frame(which = 0))
+      label.expression <- rlang::as_quosure(
+        x = label.expression,
+        env = base::sys.frame(which = 0)
+      )
     }
   }
 
+  # unquoted case
   if (typeof(param_list$x) == "symbol") {
-    x <- deparse(substitute(x)) # unquoted case
+    x <- deparse(substitute(x))
   }
 
+  # unquoted case
   if (typeof(param_list$y) == "symbol") {
-    y <- deparse(substitute(y)) # unquoted case
+    y <- deparse(substitute(y))
   }
 
-#  return(x)
-
-
-
-  # ==================== build pmap list based on conditions =======================
+  # ============== build pmap list based on conditions =====================
 
   if (isTRUE(expression.present) && isTRUE(labelvar.present)) {
-  flexiblelist <- list(data = df,
-                   x = x,
-                   y = y,
-                   title = glue::glue("{title.prefix}: {names(df)}"),
-                   label.var = label.var,
-                   label.expression = rlang::quo_text(label.expression))
+    flexiblelist <- list(
+      data = df,
+      x = x,
+      y = y,
+      title = glue::glue("{title.prefix}: {names(df)}"),
+      label.var = label.var,
+      label.expression = rlang::quo_text(label.expression)
+    )
   }
 
   if (isTRUE(expression.present) && isFALSE(labelvar.present)) {
-    flexiblelist <- list(data = df,
-                         x = x,
-                         y = y,
-                         title = glue::glue("{title.prefix}: {names(df)}"),
-                         label.expression = rlang::quo_text(label.expression))
+    flexiblelist <- list(
+      data = df,
+      x = x,
+      y = y,
+      title = glue::glue("{title.prefix}: {names(df)}"),
+      label.expression = rlang::quo_text(label.expression)
+    )
   }
 
   if (isFALSE(expression.present) && isTRUE(labelvar.present)) {
-    flexiblelist <- list(data = df,
-                         x = x,
-                         y = y,
-                         title = glue::glue("{title.prefix}: {names(df)}"),
-                         label.var = label.var)
+    flexiblelist <- list(
+      data = df,
+      x = x,
+      y = y,
+      title = glue::glue("{title.prefix}: {names(df)}"),
+      label.var = label.var
+    )
   }
 
   if (isFALSE(expression.present) && isFALSE(labelvar.present)) {
-    flexiblelist <- list(data = df,
-                         x = x,
-                         y = y,
-                         title = glue::glue("{title.prefix}: {names(df)}")
-                          )
+    flexiblelist <- list(
+      data = df,
+      x = x,
+      y = y,
+      title = glue::glue("{title.prefix}: {names(df)}")
+    )
   }
 
   # ==================== creating a list of plots =======================
 
-      plotlist_purrr <-
-            purrr::pmap(
-              .l = flexiblelist, #end of lists
-              .f = ggstatsplot::ggscatterstats,
-                # put common parameters here
-                type = type,
-                conf.level = conf.level,
-                bf.prior = bf.prior,
-                bf.message = bf.message,
-#                title = title.prefix,
-                method = method,
-                xlab = xlab,
-                ylab = ylab,
-                method.args = method.args,
-                formula = formula,
-                point.color = point.color,
-                point.size = point.size,
-                point.alpha = point.alpha,
-                line.size = line.size,
-                point.width.jitter = point.width.jitter,
-                point.height.jitter = point.height.jitter,
-                line.color = line.color,
-                marginal = marginal,
-                marginal.type = marginal.type,
-                marginal.size = marginal.size,
-                margins = margins,
-                package = package,
-                palette = palette,
-                direction = direction,
-                xfill = xfill,
-                yfill = yfill,
-                xalpha = xalpha,
-                yalpha = yalpha,
-                xsize = xsize,
-                ysize = ysize,
-                centrality.para = centrality.para,
-                results.subtitle = results.subtitle,
-                caption = caption,
-                subtitle = subtitle,
-                nboot = nboot,
-                beta = beta,
-                k = k,
-                axes.range.restrict = axes.range.restrict,
-                ggtheme = ggplot2::theme_bw(),
-                ggstatsplot.layer = ggstatsplot.layer,
-                messages = messages
-            )
+  # creating a list of plots using `pmap`
+  plotlist_purrr <-
+    purrr::pmap(
+      .l = flexiblelist,
+      .f = ggstatsplot::ggscatterstats,
+      # put common parameters here
+      type = type,
+      conf.level = conf.level,
+      bf.prior = bf.prior,
+      bf.message = bf.message,
+      method = method,
+      xlab = xlab,
+      ylab = ylab,
+      method.args = method.args,
+      formula = formula,
+      point.color = point.color,
+      point.size = point.size,
+      point.alpha = point.alpha,
+      line.size = line.size,
+      point.width.jitter = point.width.jitter,
+      point.height.jitter = point.height.jitter,
+      line.color = line.color,
+      marginal = marginal,
+      marginal.type = marginal.type,
+      marginal.size = marginal.size,
+      margins = margins,
+      package = package,
+      palette = palette,
+      direction = direction,
+      xfill = xfill,
+      yfill = yfill,
+      xalpha = xalpha,
+      yalpha = yalpha,
+      xsize = xsize,
+      ysize = ysize,
+      centrality.para = centrality.para,
+      results.subtitle = results.subtitle,
+      caption = caption,
+      subtitle = subtitle,
+      nboot = nboot,
+      beta = beta,
+      k = k,
+      axes.range.restrict = axes.range.restrict,
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer,
+      messages = messages
+    )
 
 
   # combining the list of plots into a single plot
@@ -327,7 +335,7 @@ grouped_ggscatterstats <- function(data,
       ...
     )
 
-  # show the note about grouped_ variant producing object which is not of
+  # show the note about `grouped_` variant producing object which is not of
   # class ggplot
   if (isTRUE(messages)) {
     grouped_message()
