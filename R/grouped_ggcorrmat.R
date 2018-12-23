@@ -27,17 +27,17 @@
 #' @inherit ggcorrmat return details
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # for plot
 #' # (without specifiying needed variables; all numeric variables will be used)
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore
 #' )
-#' 
+#'
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -50,7 +50,7 @@
 #'   palette = "BottleRocket2",
 #'   nrow = 2
 #' )
-#' 
+#'
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -58,7 +58,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#' 
+#'
 #' # for getting confidence intervals
 #' # confidence intervals are not available for **robust** correlation
 #' ggstatsplot::grouped_ggcorrmat(
@@ -117,35 +117,32 @@ grouped_ggcorrmat <- function(data,
                               axis.text.x.margin.l = 0,
                               messages = TRUE,
                               ...) {
+
+  # create a list of function call to check for label.expression
+  param_list <- base::as.list(base::match.call())
+
+  # check that there is a grouping.var
+  if (!"grouping.var" %in% names(param_list)) {
+    base::stop("You must specify a grouping variable")
+  }
+
   # ========================= preparing dataframe =============================
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
 
   # getting the dataframe ready
-  if (!base::missing(cor.vars)) {
-    df <-
-      dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(cor.vars)
-      ) %>%
-      dplyr::mutate(
-        .data = .,
-        title.text = !!rlang::enquo(grouping.var)
-      )
-  } else {
-    df <-
-      dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        dplyr::everything()
-      ) %>%
-      dplyr::mutate(
-        .data = .,
-        title.text = !!rlang::enquo(grouping.var)
-      )
-  }
+  df <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(grouping.var),
+      !!rlang::enquo(cor.vars),
+      dplyr::everything()
+    ) %>%
+    dplyr::mutate(
+      .data = .,
+      title.text = !!rlang::enquo(grouping.var)
+    )
 
   # creating a nested dataframe
   df %<>%

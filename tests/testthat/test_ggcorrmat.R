@@ -16,6 +16,9 @@ testthat::test_that(
       sig.level = 0.001,
       p.adjust.method = "fdr",
       colors = NULL,
+      lab.col = "white",
+      pch.col = "white",
+      pch.cex = 14,
       messages = TRUE
     )
 
@@ -91,6 +94,26 @@ testthat::test_that(
     )))
     testthat::expect_null(p$labels$xlab, NULL)
     testthat::expect_null(p$labels$ylab, NULL)
+
+    # checking layer data
+    testthat::expect_equal(dim(pb$data[[1]]), c(16L, 15L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(16L, 15L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(2L, 10L))
+
+    # check if number of cells is equal to number of correlations
+    testthat::expect_equal(
+      length(unique(dat$Var1))^2,
+      max(pb$data[[1]]$group)
+    )
+
+    # checking unique number of correlations
+    testthat::expect_equal(length(unique(pb$data[[1]]$fill)), 7L)
+
+    # checking if aesthetic modifications worked
+    testthat::expect_equal(pb$data[[3]]$shape[1], 4L)
+    testthat::expect_equal(pb$data[[3]]$size[1], 14L)
+    testthat::expect_identical(pb$data[[2]]$colour[1], "white")
+    testthat::expect_identical(pb$data[[3]]$colour[1], "white")
   }
 )
 
@@ -129,6 +152,8 @@ testthat::test_that(
     # testing everything is okay with data
     testthat::expect_equal(data_dims, c(15L, 7L))
     testthat::expect_equal(dim(pb$data[[1]]), c(15L, 15L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(15L, 15L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(1L, 10L))
     testthat::expect_equal(length(pb$data), 3L)
     testthat::expect_equal(
       dat$coef,
@@ -153,8 +178,10 @@ testthat::test_that(
     )
     testthat::expect_equal(dat$Var1[3], "sleep_rem")
     testthat::expect_equal(dat$Var2[4], "awake")
-    testthat::expect_equal(dat$signif[1], 1L)
-    testthat::expect_equal(dat$signif[3], 0L)
+    testthat::expect_equal(
+      dat$signif,
+      c(1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+    )
 
     # checking plot labels
     testthat::expect_null(p$labels$title, NULL)
@@ -175,6 +202,11 @@ testthat::test_that(
         "robust"
       )
     )))
+
+    # check if number of cells is *not* equal to number of correlations
+    testthat::expect_false(
+      length(unique(dat$Var1))^2 == max(pb$data[[1]]$group)
+    )
   }
 )
 
@@ -271,9 +303,6 @@ testthat::test_that(
     testthat::expect_true(inherits(df, what = "tbl_df"))
   }
 )
-
-
-
 
 # checking confidence intervals ----------------------------------------------
 

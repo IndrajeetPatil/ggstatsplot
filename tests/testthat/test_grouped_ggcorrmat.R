@@ -5,7 +5,12 @@ context("grouped_ggcorrmat")
 testthat::test_that(
   desc = "grouped_ggcorrmat plots work",
   code = {
-    skip_on_cran()
+
+    testthat::skip_on_cran()
+
+    # with grouping.var missing ---------------------------------------------
+
+    testthat::expect_error(ggstatsplot::grouped_ggcorrmat(iris))
 
     # with cor.vars specified -----------------------------------------------
 

@@ -25,6 +25,21 @@ testthat::test_that(
       ), "Error:"
     )
 
+    # without any labelling
+    set.seed(123)
+    testthat::expect_true(inherits(
+      ggstatsplot::grouped_ggscatterstats(
+        data = iris,
+        x = Sepal.Length,
+        y = Petal.Width,
+        grouping.var = Species,
+        results.subtitle = FALSE,
+        marginal = FALSE,
+        messages = TRUE
+      ),
+      what = "gg"
+    ))
+
     # create a smaller dataset
     set.seed(123)
     df <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%

@@ -43,7 +43,12 @@ testthat::test_that(
 
     # checking different data layers
     testthat::expect_equal(length(pb$data), 5L)
-    testthat::expect_equal(nrow(pb$data[[1]]), 11L)
+    testthat::expect_equal(dim(pb$data[[1]]), c(11L, 17L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(1L, 7L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(81L, 15L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(1L, 7L))
+    testthat::expect_equal(dim(pb$data[[5]]), c(81L, 15L))
+
     testthat::expect_equal(pb$data[[4]]$xintercept,
       mean(dplyr::starwars$height, na.rm = TRUE),
       tolerance = 0.001
@@ -68,10 +73,14 @@ testthat::test_that(
       pb$data[[5]]$label[[1]],
       ggplot2::expr("mean" == "174")
     )
-    testthat::expect_equal(pb$data[[1]]$y[1], 1L)
-    testthat::expect_equal(pb$data[[1]]$y[7], 32L)
-    testthat::expect_equal(pb$data[[1]]$x[1], 60L)
-    testthat::expect_equal(pb$data[[1]]$x[7], 180L)
+    testthat::expect_equal(
+      pb$data[[1]]$y,
+      c(1L, 2L, 4L, 2L, 3L, 15L, 32L, 15L, 5L, 1L, 1L)
+    )
+    testthat::expect_equal(
+      pb$data[[1]]$x,
+      c(60L, 80L, 100L, 120L, 140L, 160L, 180L, 200L, 220L, 240L, 260L)
+    )
     testthat::expect_equal(pb$data[[1]]$xmin[1], 50L)
     testthat::expect_equal(pb$data[[1]]$xmax[1], 70L)
     testthat::expect_equal(pb$data[[1]]$xmin[7], 170L)

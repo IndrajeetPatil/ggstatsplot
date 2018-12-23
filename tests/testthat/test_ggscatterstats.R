@@ -23,7 +23,10 @@ testthat::test_that(
         marginal = FALSE,
         bf.message = TRUE,
         caption = "ggplot2 dataset",
-        title = "Mammalian sleep"
+        title = "Mammalian sleep",
+        xfill = NULL,
+        package = "wesanderson",
+        palette = "BottleRocket1"
       )
 
     # plot build
@@ -41,13 +44,31 @@ testthat::test_that(
     data_dims <- dim(dat)
     ggrepel_dims <- dim(p$plot_env$label_data)
 
-    # testing everything is okay with data
+    # testing everything is okay with imported and ggrepel data
     testthat::expect_equal(data_dims, c(83L, 13L))
     testthat::expect_equal(
       ggrepel_dims[1],
       dim(dplyr::filter(ggplot2::msleep, bodywt > 2000))[1]
     )
     testthat::expect_equal(ggrepel_dims[2], 13L)
+
+    # checking layer data
+    testthat::expect_equal(length(pb$data), 7L)
+    testthat::expect_equal(dim(pb$data[[1]]), c(83L, 10L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(80L, 13L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(1L, 7L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(1L, 7L))
+    testthat::expect_equal(dim(pb$data[[5]]), c(83L, 15L))
+    testthat::expect_equal(dim(pb$data[[6]]), c(83L, 15L))
+    testthat::expect_equal(dim(pb$data[[7]]), c(2L, 15L))
+
+    # checking intercepts
+    testthat::expect_equal(pb$data[[3]]$xintercept, 10.43373, tolerance = 0.001)
+    testthat::expect_equal(pb$data[[4]]$yintercept, 166.1363, tolerance = 0.001)
+    testthat::expect_equal(pb$data[[3]]$colour, "#A42820")
+    testthat::expect_equal(pb$data[[4]]$colour, "#5F5647")
+
+    # check labels
     testthat::expect_equal(p$plot_env$x_label_pos, 10.88401, tolerance = 0.002)
     testthat::expect_equal(p$plot_env$x_median, 10.1000, tolerance = 0.002)
     testthat::expect_equal(p$plot_env$x_mean, 10.43373, tolerance = 0.002)
@@ -85,8 +106,10 @@ testthat::test_that(
     testthat::expect_identical(p$plot_env$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$labels$x, "sleep (total)")
     testthat::expect_identical(pb$plot$labels$y, "body weight")
-    testthat::expect_identical(p$plot_env$label_data$name[1], "Asian elephant")
-    testthat::expect_identical(p$plot_env$label_data$name[2], "African elephant")
+    testthat::expect_identical(
+      pb$data[[7]]$label,
+      c("Asian elephant", "African elephant")
+    )
   }
 )
 
@@ -288,13 +311,45 @@ testthat::test_that(
   }
 )
 
+# aesthetic modifications work ---------------------------------------------
+
+testthat::test_that(
+  desc = "aesthetic modifications work",
+  code = {
+    # creating the plot
+    set.seed(123)
+    p <- ggstatsplot::ggscatterstats(
+      data = ggplot2::msleep,
+      x = sleep_total,
+      y = sleep_cycle,
+      label.expression = "sleep_total > 17",
+      label.var = "order",
+      results.subtitle = FALSE,
+      marginal = FALSE,
+      messages = TRUE
+    ) +
+      ggplot2::coord_cartesian(ylim = c(0, 7000)) +
+      ggplot2::scale_y_continuous(breaks = seq(0, 7000, 1000))
+
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$y.labels,
+      c("0", "1000", "2000", "3000", "4000", "5000", "6000", "7000")
+    )
+
+    # both quoted
+    testthat::expect_true(inherits(p, what = "gg"))
+  })
+
 # labeling input variations ---------------------------------------------
 
 testthat::test_that(
   desc = "checking ggscatterstats with different kinds of inputs to labeling",
   code = {
-    # creating the plot
-    set.seed(123)
+
+    testthat::skip_on_cran()
 
     # both quoted
     testthat::expect_true(inherits(
@@ -404,7 +459,7 @@ testthat::test_that(
         x = mass,
         y = height,
         conf.level = 0.90,
-        nboot = 10,
+        nboot = 15,
         type = "r"
       )
     )
@@ -416,7 +471,7 @@ testthat::test_that(
     )
 
     testthat::expect_match(p_message2[1],
-      "90% CI for effect size estimate was computed with 10",
+      "90% CI for effect size estimate was computed with 15",
       fixed = TRUE
     )
   }

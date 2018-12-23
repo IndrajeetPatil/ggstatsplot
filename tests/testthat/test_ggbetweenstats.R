@@ -114,6 +114,7 @@ testthat::test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # dataframe used for visualization
+    testthat::expect_equal(length(pb$data), 6L)
     testthat::expect_equal(dim(pb$data[[1]]), c(44L, 13L))
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 25L))
     testthat::expect_equal(dim(pb$data[[3]]), c(2048L, 20L))
@@ -146,23 +147,19 @@ testthat::test_that(
       )
     )
 
-    # range of data
-    y_range <- ggplot2::layer_scales(p)$y$range$range
-
-    testthat::expect_equal(y_range[1], -0.0949, tolerance = 1e-5)
-    testthat::expect_equal(y_range[2], 5.71200000, tolerance = 1e-5)
+    # range of y variable
+    testthat::expect_equal(ggplot2::layer_scales(p)$y$range$range,
+                           c(-0.0949, 5.71200000),
+                           tolerance = 1e-5)
 
     # limits of data
-    y_limits <- ggplot2::layer_scales(p)$y$limits
-
-    testthat::expect_equal(y_limits[1], 0.00014, tolerance = 1e-3)
-    testthat::expect_equal(y_limits[2], 5.71200, tolerance = 1e-3)
+    testthat::expect_equal(ggplot2::layer_scales(p)$y$limits,
+                           c(0.00014, 5.71200),
+                           tolerance = 1e-3)
 
     # checking x-axis sample size labels
-    x_labels <- ggplot2::layer_scales(p)$x$labels
-
     testthat::expect_identical(
-      x_labels,
+      ggplot2::layer_scales(p)$x$labels,
       c(
         "carni\n(n = 9)",
         "herbi\n(n = 20)",
@@ -215,18 +212,17 @@ testthat::test_that(
       outlier.coef = 2.5,
       nboot = 5,
       messages = FALSE
-    )
+    ) +
+      ggplot2::coord_cartesian(ylim = c(1, 6)) +
+      ggplot2::scale_y_continuous(limits = c(1,6), breaks = seq(1,6,1))
 
     # plot build
     pb <- ggplot2::ggplot_build(p)
 
-    # checking dimensions of data
-    data_dims <- ggplot2::layer_data(p) %>%
-      tibble::as_tibble(x = .) %>%
-      dim(.)
-
-    # dataframe used for visualization
-    testthat::expect_equal(data_dims, c(29L, 13L))
+    # checking dimensions of data for `geom_point`
+    # since there are outliers, there should be 3 less no. of points than sample
+    # size (which is 32L here)
+    testthat::expect_equal(dim(pb$data[[1]]), c(29L, 13L))
 
     # checking displayed mean labels
     testthat::expect_identical(
@@ -246,6 +242,13 @@ testthat::test_that(
         "Chrysler Imperial"
       )
     )
+
+    # check if the y-axis labels have changed
+    testthat::expect_identical(pb$layout$panel_params[[1]]$x.labels,
+                               c("4\n(n = 11)", "6\n(n = 7)",  "8\n(n = 14)"))
+
+    testthat::expect_identical(pb$layout$panel_params[[1]]$y.labels,
+                               c("1", "2", "3", "4", "5", "6"))
   }
 )
 
