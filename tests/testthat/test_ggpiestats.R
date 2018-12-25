@@ -73,8 +73,10 @@ testthat::test_that(
     testthat::expect_equal(length(pb$data), 2L)
     testthat::expect_equal(dim(pb$data[[1]]), c(4L, 13L))
     testthat::expect_equal(dim(pb$data[[2]]), c(4L, 19L))
-    testthat::expect_identical(pb$data[[1]]$fill,
-                               c("#E7298A", "#7570B3", "#D95F02", "#1B9E77"))
+    testthat::expect_identical(
+      pb$data[[1]]$fill,
+      c("#E7298A", "#7570B3", "#D95F02", "#1B9E77")
+    )
   }
 )
 
@@ -174,15 +176,17 @@ testthat::test_that(
     )
 
     # check if palette changed
-    testthat::expect_identical(pb$data[[1]]$fill,
-                               c(
-                                 "#F5CDB4",
-                                 "#9A8822",
-                                 "#F5CDB4",
-                                 "#9A8822",
-                                 "#F5CDB4",
-                                 "#9A8822"
-                               ))
+    testthat::expect_identical(
+      pb$data[[1]]$fill,
+      c(
+        "#F5CDB4",
+        "#9A8822",
+        "#F5CDB4",
+        "#9A8822",
+        "#F5CDB4",
+        "#9A8822"
+      )
+    )
   }
 )
 

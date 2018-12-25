@@ -87,8 +87,10 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = ggstatsplot::movies_long,
-                       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")), 
+  data = dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+  ),
   x = genre,
   y = rating,
   title = "Figure-1: IMDB rating by film genre",
@@ -159,10 +161,12 @@ ggstatsplot::combine_plots(
   # plot 1: superposition
   ggplot2::ggplot(
     data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
-                           genre == "Drama"),
-    mapping = ggplot2::aes(x = length,
-                           y = rating,
-                           color = genre)
+      genre == "Drama"),
+    mapping = ggplot2::aes(
+      x = length,
+      y = rating,
+      color = genre
+    )
   ) +
     ggplot2::geom_jitter(size = 3, alpha = 0.5) +
     ggplot2::geom_smooth(method = "lm") +
@@ -171,7 +175,7 @@ ggstatsplot::combine_plots(
   # plot 2: juxtaposition
   ggstatsplot::grouped_ggscatterstats(
     data = dplyr::filter(ggstatsplot::movies_long, genre == "Comedy" |
-                           genre == "Drama"),
+      genre == "Drama"),
     x = length,
     y = rating,
     grouping.var = genre,
@@ -289,10 +293,12 @@ msleep_no_na <-
   )
 
 # variable names vector
-var_names <- c("REM sleep",
-               "time awake",
-               "brain weight",
-               "body weight")
+var_names <- c(
+  "REM sleep",
+  "time awake",
+  "brain weight",
+  "body weight"
+)
 
 # combining two plots
 ggstatsplot::combine_plots(
@@ -387,12 +393,13 @@ Bayes Factor | within-subjects | `NA` | <font color="red">$\times$</font> | <fon
 One of the important functions of a plot is to show the variation in the data,
 which comes in two forms:
 
-  - **Measurement noise**: In `ggstatsplot`, the actual variation in measurements
-    is shown by plotting a combination of (jittered) raw data points with a
-    boxplot laid on top (Figure-1) or a histogram (Figure-5). None of the plots,
-    where empirical distribution of the data is concerned, show the sample
-    standard deviation because they are poor at conveying information about
-    limits of the sample and presence of outliers (Cleveland, 1985, p.220).
+  - **Measurement noise**: In `ggstatsplot`, the actual variation in
+    measurements is shown by plotting a combination of (jittered) raw data
+    points with a boxplot laid on top (Figure-1) or a histogram (Figure-5). None
+    of the plots, where empirical distribution of the data is concerned, show
+    the sample standard deviation because they are poor at conveying information
+    about limits of the sample and presence of outliers (Cleveland, 1985,
+    p.220).
 
 ```{r example5, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "**Figure-5**. Distribution of a variable shown using `gghistostats`."}
 # for reproducibility
@@ -424,12 +431,14 @@ ggstatsplot::gghistostats(
 set.seed(123)
 
 # plot
-ggstatsplot::ggcoefstats(x = lme4::lmer(
-  total.fruits ~ nutrient + rack + (nutrient |
-                               popu / gen),
-  data = lme4::Arabidopsis
-),
-p.kr = FALSE)
+ggstatsplot::ggcoefstats(
+  x = lme4::lmer(
+    total.fruits ~ nutrient + rack + (nutrient |
+      popu / gen),
+    data = lme4::Arabidopsis
+  ),
+  p.kr = FALSE
+)
 ```
 
 ## Reporting results
@@ -470,8 +479,9 @@ statistical reporting and why.
 
 # Overall consistency in API
 
-Attempt has been made to make the API consistent enough that no struggle is
-expected while thinking about specifying function calls-
+Attempt has been made to make the application program interface (API) consistent
+enough that no struggle is expected while thinking about specifying function
+calls-
 
   - When a given function depends on variables in a dataframe, `data` argument
     must always be specified.
@@ -485,6 +495,8 @@ expected while thinking about specifying function calls-
 # Conclusion
 
 # Acknowlegdments
+
+
 
 # References
    

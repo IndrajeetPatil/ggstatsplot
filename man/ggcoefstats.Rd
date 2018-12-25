@@ -7,7 +7,7 @@ caption.}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   conf.method = "Wald", p.kr = TRUE, p.adjust.method = "none",
-  coefficient.type = "beta", effsize = "eta", partial = TRUE,
+  coefficient.type = NULL, effsize = "eta", partial = TRUE,
   nboot = 500, meta.analytic.effect = FALSE, point.color = "blue",
   point.size = 3, point.shape = 16, conf.int = TRUE,
   conf.level = 0.95, se.type = "nid", k = 2, k.caption.summary = 0,
@@ -62,11 +62,16 @@ comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"homm
 \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}. Default is no correction
 (\code{"none"}).}
 
-\item{coefficient.type}{Relevant only for ordinal regression models (\code{clm}
-and \code{clmm}), this argument decides which parameters to display in the plot.
-By default only \code{"beta"} (a vector of regression parameters) parameters
-will be show. Other options are \code{"alpha"} (a vector of threshold
-parameters) or \code{"both"}.}
+\item{coefficient.type}{Relevant only for ordinal regression models (\code{clm} ,
+\code{clmm}, and \code{polr}), this argument decides which parameters to display in
+the plot. This determines whether parameter measures the intercept, i.e.
+the log-odds distance between response values (\code{"alpha"}); effects on the
+location (\code{"beta"}); or effects on the scale (\code{"zeta"}). For \code{clm} and
+\code{clmm} models, if this is \code{NULL}, only \code{"beta"} (a vector of regression
+parameters) parameters will be show. Other options are \code{"alpha"} (a vector
+of threshold parameters) or \code{"both"}. For \code{polr} models, if this argument
+is \code{NULL}, only \code{"coefficient"} will be shown. Other option is to show
+\code{"zeta"} parameters.}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant

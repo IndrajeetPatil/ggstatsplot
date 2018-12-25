@@ -30,11 +30,11 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#'
+#' 
 #' \dontrun{
 #' # to ensure reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -48,7 +48,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#'
+#' 
 #' # using labeling
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
@@ -64,9 +64,9 @@
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#'
+#' 
 #' # labeling without expression
-#'
+#' 
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::movies_long,

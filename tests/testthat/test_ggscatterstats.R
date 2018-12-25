@@ -341,14 +341,14 @@ testthat::test_that(
 
     # both quoted
     testthat::expect_true(inherits(p, what = "gg"))
-  })
+  }
+)
 
 # labeling input variations ---------------------------------------------
 
 testthat::test_that(
   desc = "checking ggscatterstats with different kinds of inputs to labeling",
   code = {
-
     testthat::skip_on_cran()
 
     # both quoted

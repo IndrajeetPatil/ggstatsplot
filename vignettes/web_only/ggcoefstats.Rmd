@@ -692,6 +692,20 @@ ggstatsplot::ggcoefstats(
                 y = "threshold parameters")
 ```
 
+## ordered logistic or probit regression (`polr`)
+
+```{r polr, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+# polr model
+set.seed(123)
+library(MASS)
+polr.mod <- MASS::polr(formula = Sat ~ Infl + Type + Cont, 
+                       weights = Freq, 
+                       data = housing)
+
+# plot
+ggstatsplot::ggcoefstats(x = polr.mod, coefficient.type = "both")
+```
+
 ## repeated measures ANOVA (`aovlist`)
 
 Let's now consider an example of a repeated measures design where we want to run
@@ -858,6 +872,68 @@ bfit <- biglm::biglm(formula = scale(mpg) ~ scale(wt) + scale(disp),
 
 # plot
 ggstatsplot::ggcoefstats(x = bfit, exclude.intercept = FALSE)
+```
+
+## parametric survival regression model (`survreg`)
+
+```{r survreg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(survival)
+
+# model
+mod <- survival::survreg(
+  formula = Surv(futime, fustat) ~ ecog.ps + rx,
+  data = ovarian,
+  dist = "logistic"
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  exclude.intercept = FALSE,
+  ggtheme = hrbrthemes::theme_ipsum_rc(),
+  package = "ggsci",
+  palette = "legacy_tron",
+  title = "parametric survival regression model"
+)
+```
+
+## relative risk regression model for case-cohort studies (`cch`)
+
+
+```{r cch, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+
+# setup
+set.seed(123)
+library(survival)
+
+# examples come from cch documentation
+subcoh <- nwtco$in.subcohort
+selccoh <- with(nwtco, rel == 1 | subcoh == 1)
+ccoh.data <- nwtco[selccoh, ]
+ccoh.data$subcohort <- subcoh[selccoh]
+
+## central-lab histology
+ccoh.data$histol <- factor(ccoh.data$histol, labels = c("FH", "UH"))
+
+## tumour stage
+ccoh.data$stage <-
+  factor(ccoh.data$stage, labels = c("I", "II", "III" , "IV"))
+ccoh.data$age <- ccoh.data$age / 12 # Age in years
+
+# model
+fit.ccP <-
+  survival::cch(
+    formula = Surv(edrel, rel) ~ stage + histol + age,
+    data = ccoh.data,
+    subcoh = ~ subcohort,
+    id = ~ seqno,
+    cohort.size = 4028
+  )
+
+# plot
+ggstatsplot::ggcoefstats(x = fit.ccP, conf.level = 0.99)
 ```
 
 ## linear model using generalized least squares (`gls`)

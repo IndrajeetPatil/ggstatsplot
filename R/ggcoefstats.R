@@ -43,11 +43,16 @@
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
 #'   `0.95`).
-#' @param coefficient.type Relevant only for ordinal regression models (`clm`
-#'   and `clmm`), this argument decides which parameters to display in the plot.
-#'   By default only `"beta"` (a vector of regression parameters) parameters
-#'   will be show. Other options are `"alpha"` (a vector of threshold
-#'   parameters) or `"both"`.
+#' @param coefficient.type Relevant only for ordinal regression models (`clm` ,
+#'   `clmm`, and `polr`), this argument decides which parameters to display in
+#'   the plot. This determines whether parameter measures the intercept, i.e.
+#'   the log-odds distance between response values (`"alpha"`); effects on the
+#'   location (`"beta"`); or effects on the scale (`"zeta"`). For `clm` and
+#'   `clmm` models, if this is `NULL`, only `"beta"` (a vector of regression
+#'   parameters) parameters will be show. Other options are `"alpha"` (a vector
+#'   of threshold parameters) or `"both"`. For `polr` models, if this argument
+#'   is `NULL`, only `"coefficient"` will be shown. Other option is to show
+#'   `"zeta"` parameters.
 #' @param se.type Character specifying the method used to compute standard
 #'   standard errors for quantile regression (Default: `"nid"`). To see all
 #'   available methods, see `quantreg::summary.rq()`.
@@ -258,7 +263,7 @@ ggcoefstats <- function(x,
                         conf.method = "Wald",
                         p.kr = TRUE,
                         p.adjust.method = "none",
-                        coefficient.type = "beta",
+                        coefficient.type = NULL,
                         effsize = "eta",
                         partial = TRUE,
                         nboot = 500,
@@ -328,10 +333,10 @@ ggcoefstats <- function(x,
   unsupported.mods <- c("glht", "kmeans")
 
   # models for which glance is not supported
-  noglance.mods <- c("aovlist", "anova", "rlmerMod")
+  noglance.mods <- c("aovlist", "anova", "rlmerMod", "TukeyHSD")
 
   # models for which the diagnostics is not available (AIC, BIC, LL)
-  nodiagnostics.mods <- c("lmRob", "glmRob", "felm", "biglm")
+  nodiagnostics.mods <- c("lmRob", "glmRob", "felm", "biglm", "cch")
 
   # =================== types of models =====================================
 
@@ -471,7 +476,7 @@ ggcoefstats <- function(x,
       }
     }
     # ================== clm and clmm tidying ================================
-  } else if (class(x)[[1]] %in% c("clm", "clmm")) {
+  } else if (class(x)[[1]] %in% c("clm", "clmm", "polr")) {
     tidy_df <-
       broom::tidy(
         x = x,
@@ -482,13 +487,19 @@ ggcoefstats <- function(x,
         ...
       )
 
-    # selecting which coeffiecients to display
-    if (coefficient.type == "alpha") {
+    # if type of coefficients for ordinal models are not selected, defaults-
+    if (is.null(coefficient.type)) {
+      if (class(x)[[1]] %in% c("clm", "clmm")) {
+        coefficient.type <- "beta"
+      } else if (class(x)[[1]] == "polr") {
+        coefficient.type <- "coefficient"
+      }
+    }
+
+    # subset the dataframe, only if not all coefficients are to be retained
+    if (coefficient.type != "both") {
       tidy_df %<>%
-        dplyr::filter(.data = ., coefficient_type == "alpha")
-    } else if (coefficient.type == "beta") {
-      tidy_df %<>%
-        dplyr::filter(.data = ., coefficient_type == "beta")
+        dplyr::filter(.data = ., coefficient_type == coefficient.type)
     }
 
     # ============ tidying robust models =====================================
@@ -519,7 +530,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # =================== p-value computation ==================================
+  # =================== check for duplicate terms ============================
 
   # checking if there are any terms that are repeated
   term_df <- tidy_df %>%
@@ -542,7 +553,7 @@ ggcoefstats <- function(x,
   # =================== p-value computation ==================================
 
   # p-values won't be computed by default for the lmer models
-  if (class(x)[[1]] %in% c("lmerMod", "rlm")) {
+  if (class(x)[[1]] %in% c("lmerMod", "rlm", "polr")) {
     # computing p-values
     tidy_df %<>%
       tibble::as_tibble(x = .) %>%
@@ -563,6 +574,11 @@ ggcoefstats <- function(x,
           ),
         by = "term"
       )
+
+    # sometimes unwanted rows will percolate into merged dataframe
+    # remove such rows
+    tidy_df %<>%
+      dplyr::filter(.data = ., !is.na(estimate))
   }
 
   # =============================== p-value check ===========================
@@ -749,7 +765,7 @@ ggcoefstats <- function(x,
     }
   }
 
-  # ========================== basic plot ===================================
+  # ========================== sorting ===================================
 
   # whether the term need to be arranged in any specified order
   if (sort != "none") {
@@ -774,26 +790,46 @@ ggcoefstats <- function(x,
       dplyr::select(.data = ., -rowid)
   }
 
-  # counting the number of terms in the tidy dataframe
-  count_term <- length(tidy_df$term)
+  # ========================== palette check =================================
 
-  # if no. of factor levels is greater than the default palette color count
-  palette_message(
-    package = package,
-    palette = palette,
-    min_length = count_term
-  )
+  # palette check is necessary only if output is a plot
+  if (output == "plot") {
 
-  # computing the number of colors in a given palette
-  palette_df <-
-    tibble::as_tibble(x = paletteer::palettes_d_names) %>%
-    dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
-    dplyr::select(.data = ., length)
+    # counting the number of terms in the tidy dataframe
+    count_term <- length(tidy_df$term)
 
-  # if insufficient number of colors are available in a given palette
-  if (palette_df$length[[1]] < count_term) {
-    stats.label.color <- "black"
+    # if no. of factor levels is greater than the default palette color count
+    palette_message(
+      package = package,
+      palette = palette,
+      min_length = count_term
+    )
+
+    # computing the number of colors in a given palette
+    palette_df <-
+      tibble::as_tibble(x = paletteer::palettes_d_names) %>%
+      dplyr::filter(.data = ., package == !!package, palette == !!palette) %>%
+      dplyr::select(.data = ., length)
+
+    # if insufficient number of colors are available in a given palette
+    if (palette_df$length[[1]] < count_term) {
+      stats.label.color <- "black"
+    }
+
+    # if user has not specified colors, then use a color palette
+    if (is.null(stats.label.color)) {
+      stats.label.color <-
+        paletteer::paletteer_d(
+          package = !!package,
+          palette = !!palette,
+          n = count_term,
+          direction = direction,
+          type = "discrete"
+        )
+    }
   }
+
+  # ========================== basic plot ===================================
 
   # setting up the basic architecture
   plot <-
@@ -849,19 +885,9 @@ ggcoefstats <- function(x,
       na.rm = TRUE
     )
 
-  # ========================= ggrepel labels ================================
 
-  # if user has not specified colors, then use a color palette
-  if (is.null(stats.label.color)) {
-    stats.label.color <-
-      paletteer::paletteer_d(
-        package = !!package,
-        palette = !!palette,
-        n = count_term,
-        direction = direction,
-        type = "discrete"
-      )
-  }
+
+  # ========================= ggrepel labels ================================
 
   # adding the labels
   if (isTRUE(stats.labels)) {

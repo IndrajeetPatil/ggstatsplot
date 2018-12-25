@@ -643,7 +643,124 @@ testthat::test_that(
   }
 )
 
-# check clm models ----------------------------------------------
+# check clm and polr models (minimal) ----------------------------------------
+
+testthat::test_that(
+  desc = "check clm and polr models (minimal)",
+  code = {
+
+    # clm model
+    set.seed(123)
+    library(ordinal)
+    mod.clm <- ordinal::clm(
+      formula = as.factor(rating) ~ belief * outcome,
+      data = ggstatsplot::intent_morality
+    )
+
+    # dataframes
+    df.clm1 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.clm,
+        coefficient.type = "both",
+        output = "tidy"
+      )
+    df.clm2 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.clm,
+        coefficient.type = "alpha",
+        output = "tidy"
+      )
+    df.clm3 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.clm,
+        coefficient.type = "beta",
+        output = "tidy"
+      )
+    df.clm4 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.clm,
+        coefficient.type = NULL,
+        output = "tidy"
+      )
+
+    # tests
+    testthat::expect_equal(dim(df.clm1), c(9L, 12L))
+    testthat::expect_equal(dim(df.clm2), c(6L, 12L))
+    testthat::expect_equal(dim(df.clm3), c(3L, 12L))
+    testthat::expect_equal(dim(df.clm4), c(3L, 12L))
+    testthat::expect_identical(
+      unique(df.clm1$coefficient_type),
+      c("alpha", "beta")
+    )
+    testthat::expect_identical(unique(df.clm2$coefficient_type), "alpha")
+    testthat::expect_identical(unique(df.clm3$coefficient_type), "beta")
+    testthat::expect_identical(
+      unique(df.clm4$coefficient_type),
+      unique(df.clm3$coefficient_type)
+    )
+    testthat::expect_error(ggstatsplot::ggcoefstats(
+      x = mod.clm,
+      coefficient.type = "xyz"
+    ))
+
+    # polr model
+    set.seed(123)
+    library(MASS)
+    mod.polr <- MASS::polr(
+      formula = Sat ~ Infl + Type + Cont,
+      weights = Freq,
+      data = housing
+    )
+
+    # dataframes
+    df.polr1 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.polr,
+        coefficient.type = "both",
+        output = "tidy"
+      )
+    df.polr2 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.polr,
+        coefficient.type = "zeta",
+        output = "tidy"
+      )
+    df.polr3 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.polr,
+        coefficient.type = "coefficient",
+        output = "tidy"
+      )
+    df.polr4 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.polr,
+        coefficient.type = NULL,
+        output = "tidy"
+      )
+
+    # tests
+    testthat::expect_equal(dim(df.polr1), c(8L, 13L))
+    testthat::expect_equal(dim(df.polr2), c(2L, 13L))
+    testthat::expect_equal(dim(df.polr3), c(6L, 13L))
+    testthat::expect_equal(dim(df.polr4), c(6L, 13L))
+    testthat::expect_identical(
+      unique(df.polr1$coefficient_type),
+      c("coefficient", "zeta")
+    )
+    testthat::expect_identical(unique(df.polr2$coefficient_type), "zeta")
+    testthat::expect_identical(unique(df.polr3$coefficient_type), "coefficient")
+    testthat::expect_identical(
+      unique(df.polr4$coefficient_type),
+      unique(df.polr3$coefficient_type)
+    )
+    testthat::expect_error(ggstatsplot::ggcoefstats(
+      x = mod.polr,
+      coefficient.type = "xyz"
+    ))
+  }
+)
+
+# check clm models (detailed) -------------------------------------------------
 
 testthat::test_that(
   desc = "check clm models",

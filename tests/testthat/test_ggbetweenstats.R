@@ -149,13 +149,15 @@ testthat::test_that(
 
     # range of y variable
     testthat::expect_equal(ggplot2::layer_scales(p)$y$range$range,
-                           c(-0.0949, 5.71200000),
-                           tolerance = 1e-5)
+      c(-0.0949, 5.71200000),
+      tolerance = 1e-5
+    )
 
     # limits of data
     testthat::expect_equal(ggplot2::layer_scales(p)$y$limits,
-                           c(0.00014, 5.71200),
-                           tolerance = 1e-3)
+      c(0.00014, 5.71200),
+      tolerance = 1e-3
+    )
 
     # checking x-axis sample size labels
     testthat::expect_identical(
@@ -214,7 +216,7 @@ testthat::test_that(
       messages = FALSE
     ) +
       ggplot2::coord_cartesian(ylim = c(1, 6)) +
-      ggplot2::scale_y_continuous(limits = c(1,6), breaks = seq(1,6,1))
+      ggplot2::scale_y_continuous(limits = c(1, 6), breaks = seq(1, 6, 1))
 
     # plot build
     pb <- ggplot2::ggplot_build(p)
@@ -244,11 +246,15 @@ testthat::test_that(
     )
 
     # check if the y-axis labels have changed
-    testthat::expect_identical(pb$layout$panel_params[[1]]$x.labels,
-                               c("4\n(n = 11)", "6\n(n = 7)",  "8\n(n = 14)"))
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      c("4\n(n = 11)", "6\n(n = 7)", "8\n(n = 14)")
+    )
 
-    testthat::expect_identical(pb$layout$panel_params[[1]]$y.labels,
-                               c("1", "2", "3", "4", "5", "6"))
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$y.labels,
+      c("1", "2", "3", "4", "5", "6")
+    )
   }
 )
 

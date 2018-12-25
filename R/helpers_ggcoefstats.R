@@ -106,6 +106,7 @@ ggcoefstats_label_maker <- function(x,
   # models for which statistic is t-value
   t.mods <-
     c(
+      "cch",
       "gls",
       "lmerMod",
       "lm",
@@ -115,11 +116,13 @@ ggcoefstats_label_maker <- function(x,
       "rq",
       "rlm",
       "rlmerMod",
-      "felm"
+      "felm",
+      "polr",
+      "gamlss"
     )
 
   # models for which statistic is z-value
-  z.mods <- c("clm", "clmm", "glmmTMB", "coxph")
+  z.mods <- c("clm", "clmm", "glmmTMB", "coxph", "survreg")
 
   # models for which statistic is F-value
   f.mods <- c("aov", "aovlist", "anova")

@@ -23,10 +23,12 @@ MAJOR CHANGES
 
 MINOR CHANGES
 
-  - Confidence interval for Kendall's W is now computed using
+  - Confidence interval for Kendall's *W* is now computed using
     `stats::kruskal.test`. As a result, `PMCMRplus` removed from dependencies.
   - `ggcoefstats` gains a `caption` argument. If `caption.summary` is set to
     `TRUE`, the specified caption will be added on top of the `caption.summary`.
+  - `ggcoefstats` can support following new regression model objects: `polr`,
+    `survreg`, `cch`, `Arima`, `biglm`, `glmmTMB`, `coxph`.
   
 # ggstatsplot 0.0.7
 
