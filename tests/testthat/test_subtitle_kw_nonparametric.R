@@ -14,7 +14,7 @@ testthat::test_that(
         x = genre,
         y = length,
         k = 5,
-        messages = FALSE
+        messages = TRUE
       )
 
     # expected output

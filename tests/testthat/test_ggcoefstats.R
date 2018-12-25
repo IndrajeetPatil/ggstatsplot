@@ -32,12 +32,12 @@ testthat::test_that(
       conf.level = 0.99
     )
 
+    # testing statistical details
     testthat::expect_equal(tidy_df$estimate, broom_df$estimate, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$std.error, broom_df$std.error, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$conf.low, broom_df$conf.low, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$conf.high, broom_df$conf.high, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)
-
     testthat::expect_identical(tidy_df$significance, c("***", "***", "*", "ns"))
     testthat::expect_identical(
       tidy_df$p.value.formatted,
@@ -60,6 +60,27 @@ testthat::test_that(
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$y.labels,
       c("(Intercept)", "mpg", "am", "mpg:am")
+    )
+
+    # checking layered data
+    testthat::expect_equal(dim(pb$data[[1]]), c(1L, 7L))
+    testthat::expect_equal(dim(pb$data[[2]]), c(4L, 13L))
+    testthat::expect_equal(dim(pb$data[[3]]), c(4L, 10L))
+    testthat::expect_equal(dim(pb$data[[4]]), c(4L, 15L))
+
+    # checking ggrepel label layer
+    testthat::expect_identical(
+      pb$data[[4]]$label,
+      c(
+        "list(~italic(beta)==6.438, ~italic(t)(28)==13.765, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-0.156, ~italic(t)(28)==-5.840, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-1.809, ~italic(t)(28)==-2.615, ~italic(p)==0.014)",
+        "list(~italic(beta)==0.065, ~italic(t)(28)==1.932, ~italic(p)==0.064)"
+      )
+    )
+    testthat::expect_identical(
+      pb$data[[4]]$colour,
+      c("#1B9E77", "#D95F02", "#7570B3", "#E7298A")
     )
   }
 )
@@ -265,6 +286,8 @@ testthat::test_that(
         title = "mammalian sleep",
         subtitle = "Source: `ggplot2` package",
         caption = substitute(paste(italic("Note"), ": From `tidyverse`")),
+        package = "wesanderson",
+        palette = "BottleRocket2",
         caption.summary = FALSE,
         k = 3
       )
@@ -336,6 +359,10 @@ testthat::test_that(
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$y.labels,
       c("brainwt", "vore:brainwt", "vore")
+    )
+    testthat::expect_identical(
+      pb$data[[4]]$colour,
+      c("#FAD510", "#CB2314", "#273046")
     )
   }
 )
@@ -1145,6 +1172,41 @@ testthat::test_that(
       df$p.value.formatted,
       c("< 0.001", "< 0.001", "0.200", "0.570", "0.570", "0.570", "0.570")
     )
+  }
+)
+
+# testing aesthetic modifications --------------------------------------------
+
+testthat::test_that(
+  desc = "testing aesthetic modifications",
+  code = {
+
+    # model
+    set.seed(123)
+    mod <-
+      stats::lm(
+        formula = rating ~ belief * outcome * question * item,
+        data = ggstatsplot::intent_morality
+      )
+
+    # plot
+    p <-
+      ggstatsplot::ggcoefstats(
+        x = mod,
+        exclude.intercept = FALSE,
+        point.shape = 5,
+        point.color = "red",
+        point.size = 6
+      )
+
+    # plot build
+    pb <- ggplot2::ggplot_build(p)
+
+    # checking layered data
+    testthat::expect_identical(unique(pb$data[[4]]$colour), "black")
+    testthat::expect_identical(unique(pb$data[[3]]$colour), "red")
+    testthat::expect_equal(unique(pb$data[[3]]$shape), 5L)
+    testthat::expect_equal(unique(pb$data[[3]]$size), 6L)
   }
 )
 

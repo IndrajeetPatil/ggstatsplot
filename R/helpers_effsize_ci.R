@@ -703,9 +703,10 @@ robcor_ci <- function(data,
   # preparing a dataframe out of the results
   results_df <-
     tibble::as_tibble(x = cbind.data.frame(
-      "r" = bootci$t0,
+      "estimate" = bootci$t0,
       ci,
       "p.value" = fit$p.value,
+      "statistic" = fit$test[[1]],
       "n" = fit$n,
       "nboot" = bootci$R,
       beta
@@ -716,27 +717,19 @@ robcor_ci <- function(data,
     results_df %<>%
       dplyr::select(
         .data = .,
-        r,
+        estimate,
         conf.low = V2,
         conf.high = V3,
-        p.value,
-        conf,
-        n,
-        beta,
-        nboot
+        dplyr::everything()
       )
   } else {
     results_df %<>%
       dplyr::select(
         .data = .,
-        r,
+        estimate,
         conf.low = V4,
         conf.high = V5,
-        p.value,
-        conf,
-        n,
-        beta,
-        nboot
+        dplyr::everything()
       )
   }
 

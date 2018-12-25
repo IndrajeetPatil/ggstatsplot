@@ -119,6 +119,7 @@ gghistostats <- function(data = NULL,
   }
 
   # ================================= dataframe ==============================
+
   # preparing a dataframe out of provided inputs
   if (!is.null(data)) {
     # preparing labels from given dataframe

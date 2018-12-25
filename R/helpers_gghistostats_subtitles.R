@@ -74,8 +74,11 @@ subtitle_t_onesample <- function(data = NULL,
 
   # ========================== stats ==========================================
 
+  # standardize the type of statistics
+  stats.type <- stats_type_switch(stats.type = type)
+
   # decide whether to run bayesian tests
-  if (type %in% c("bayes", "bf")) {
+  if (stats.type == "bayes") {
     bf <- TRUE
   } else {
     bf <- FALSE
@@ -100,7 +103,7 @@ subtitle_t_onesample <- function(data = NULL,
   stats_df <- as.data.frame(stats_df$ttest)
 
   # ========================= parametric ======================================
-  if (type %in% c("parametric", "p")) {
+  if (stats.type == "parametric") {
 
     # confidence intervals for Cohen's d
     effsize_df <-
@@ -130,7 +133,7 @@ subtitle_t_onesample <- function(data = NULL,
     )
 
     # ========================== non-parametric ==============================
-  } else if (type %in% c("nonparametric", "np")) {
+  } else if (stats.type == "nonparametric") {
     # preparing the subtitle
     subtitle <-
       base::substitute(
@@ -169,7 +172,7 @@ subtitle_t_onesample <- function(data = NULL,
       )
 
     # ======================= robust =========================================
-  } else if (type %in% c("robust", "r")) {
+  } else if (stats.type == "robust") {
 
     # running one-sample percentile bootstrap
     rob_os <- WRS2::onesampb(
@@ -228,7 +231,7 @@ subtitle_t_onesample <- function(data = NULL,
       )
     )
     # ===================== bayes ============================================
-  } else if (type %in% c("bayes", "bf")) {
+  } else if (stats.type == "bayes") {
     # preparing the subtitle
     subtitle <- base::substitute(
       expr =

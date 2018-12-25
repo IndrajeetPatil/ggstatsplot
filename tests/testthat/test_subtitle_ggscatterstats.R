@@ -5,6 +5,8 @@ context("subtitle_ggscatterstats")
 testthat::test_that(
   desc = "subtitle_ggscatterstats works - nonparametric",
   code = {
+
+    # ggstatsplot output
     set.seed(123)
     using_function1 <-
       suppressWarnings(ggstatsplot::subtitle_ggscatterstats(
@@ -13,19 +15,28 @@ testthat::test_that(
         y = length,
         type = "nonparametric",
         k = 5,
-        conf.level = .999,
+        conf.level = 0.999,
         conf.type = "perc",
         nboot = 50,
         messages = FALSE
       ))
 
+    # expected
     results1 <-
       ggplot2::expr(
         paste(
-          italic(rho)["spearman"],
+          NULL,
+          "log"["e"](italic("S")),
           "(",
-          1577,
-          ")",
+          "1577",
+          ") = ",
+          "19.67322",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
+          italic(rho)["spearman"],
           " = ",
           "0.46669",
           ", CI"["99.9%"],
@@ -33,10 +44,7 @@ testthat::test_that(
           "0.40415",
           ", ",
           "0.50080",
-          "], ",
-          italic("p"),
-          " = ",
-          "< 0.001",
+          "]",
           ", ",
           italic("n"),
           " = ",
@@ -49,11 +57,13 @@ testthat::test_that(
   }
 )
 
-# parametric ----------------------------------------------------------
+# parametric --------------------------------------------------------------
 
 testthat::test_that(
   desc = "subtitle_ggscatterstats works - parametric",
   code = {
+
+    # ggstatsplot output
     set.seed(123)
     using_function1 <-
       suppressWarnings(ggstatsplot::subtitle_ggscatterstats(
@@ -62,19 +72,28 @@ testthat::test_that(
         y = sleep_rem,
         type = "parametric",
         k = 3,
-        conf.level = .90,
+        conf.level = 0.90,
         conf.type = "bca",
         nboot = 25,
         messages = FALSE
       ))
 
+    # expected
     results1 <-
       ggplot2::expr(
         paste(
-          italic("r")["pearson"],
+          NULL,
+          italic("t"),
           "(",
-          46L,
-          ")",
+          "46",
+          ") = ",
+          "-1.539",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.131",
+          ", ",
+          italic("r")["pearson"],
           " = ",
           "-0.221",
           ", CI"["90%"],
@@ -82,10 +101,7 @@ testthat::test_that(
           "-0.438",
           ", ",
           "0.020",
-          "], ",
-          italic("p"),
-          " = ",
-          "0.131",
+          "]",
           ", ",
           italic("n"),
           " = ",
@@ -99,11 +115,13 @@ testthat::test_that(
 )
 
 
-# robust ----------------------------------------------------------
+# robust ----------------------------------------------------------------
 
 testthat::test_that(
   desc = "subtitle_ggscatterstats works - robust",
   code = {
+
+    # using function
     set.seed(123)
     using_function1 <-
       suppressWarnings(ggstatsplot::subtitle_ggscatterstats(
@@ -118,9 +136,21 @@ testthat::test_that(
         messages = FALSE
       ))
 
+    # expected
     results1 <-
       ggplot2::expr(
         paste(
+          NULL,
+          italic("t"),
+          "(",
+          "54",
+          ") = ",
+          "-5.0929",
+          ", ",
+          italic("p"),
+          " = ",
+          "< 0.001",
+          ", ",
           italic(rho)["pb"],
           " = ",
           "-0.5696",
@@ -129,10 +159,7 @@ testthat::test_that(
           "-0.6047",
           ", ",
           "-0.5283",
-          "], ",
-          italic("p"),
-          " = ",
-          "< 0.001",
+          "]",
           ", ",
           italic("n"),
           " = ",

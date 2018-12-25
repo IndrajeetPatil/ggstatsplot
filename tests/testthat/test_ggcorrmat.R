@@ -69,6 +69,10 @@ testthat::test_that(
     testthat::expect_equal(dat$signif[2], 0L)
     testthat::expect_equal(dat$signif[4], 1L)
     testthat::expect_equal(dat$signif[5], 0L)
+    testthat::expect_identical(
+      p$plot_env$colors,
+      c("#1B9E77", "#D95F02", "#7570B3")
+    )
 
     # checking plot labels
     testthat::expect_identical(p$labels$title, "Iris dataset")
@@ -182,6 +186,10 @@ testthat::test_that(
       dat$signif,
       c(1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     )
+    testthat::expect_identical(
+      p$plot_env$colors,
+      c("#E69F00", "white", "#009E73")
+    )
 
     # checking plot labels
     testthat::expect_null(p$labels$title, NULL)
@@ -225,7 +233,10 @@ testthat::test_that(
       sig.level = 0.01,
       p.adjust.method = "hommel",
       caption.default = FALSE,
-      messages = FALSE
+      messages = FALSE,
+      colors = NULL,
+      package = "wesanderson",
+      palette = "Rushmore1"
     )
 
     # checking data used to create a plot
@@ -251,6 +262,10 @@ testthat::test_that(
     testthat::expect_equal(dat$signif[7], 0L)
     testthat::expect_equal(dat$signif[10], 0L)
     testthat::expect_equal(dat$signif[11], 1L)
+    testthat::expect_identical(
+      p$plot_env$colors,
+      c("#E1BD6D", "#EABE94", "#0B775E")
+    )
   }
 )
 

@@ -20,6 +20,9 @@ MAJOR CHANGES
 
   - `ggscatterstats` and its `grouped_` variant accept both character and bare
     exressions as input to arguments `label.var` and `labe.expression` (#110).
+  - To be consistent with rest of the functions in the package, both Pearson's
+    *r*, Spearman's *rho*, and robust percentage bend correlations also display
+    information about statistic associated with these tests.
 
 MINOR CHANGES
 

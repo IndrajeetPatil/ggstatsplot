@@ -74,7 +74,7 @@ testthat::test_that(
         nboot = 15,
         conf.level = 0.99,
         conf.type = "basic",
-        messages = FALSE
+        messages = TRUE
       ))
 
     # expected output
