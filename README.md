@@ -204,7 +204,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002b7c52d0>
+#> <bytecode: 0x000000002bfea168>
 #> <environment: namespace:ggstatsplot>
 ```
 

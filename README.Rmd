@@ -415,7 +415,7 @@ ggstatsplot::ggscatterstats(
 Additionally, there is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r ggscatterstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+```{r ggscatterstats3, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 14}
 # for reproducibility
 set.seed(123)
 

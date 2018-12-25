@@ -13,8 +13,8 @@ BUG FIXES
   - `ggcoefstats` didn't work when `statistic` argument was set to `NULL`. This
     was not expected behavior. This has been fixed. Now, if `statistic` is not
     specified, only the dot-and-whiskers will be shown without any labels.
-  - `subtitle_t_parametric` produced incorrect sample size info when `paired =
-    TRUE` and the data contained `NA`s. This has been fixed.
+  - `subtitle_t_parametric` was producing incorrect sample size information when
+    `paired = TRUE` and the data contained `NA`s. This has been fixed.
 
 MAJOR CHANGES
 

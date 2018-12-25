@@ -21,14 +21,14 @@
 #' @importFrom stats cor.test
 #'
 #' @examples
-#' 
+#'
 #' # without changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
 #'   x = area,
 #'   y = percblack
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_ggscatterstats(
 #'   data = ggplot2::midwest,
@@ -186,41 +186,6 @@ subtitle_ggscatterstats <- function(data,
       k = k,
       k.parameter = 0L
     )
-
-    # preparing the subtitle
-    # subtitle <-
-    #   base::substitute(
-    #     expr =
-    #       paste(
-    #         italic(rho)["pb"],
-    #         " = ",
-    #         estimate,
-    #         ", CI"[conf.level],
-    #         " [",
-    #         LL,
-    #         ", ",
-    #         UL,
-    #         "], ",
-    #         italic("p"),
-    #         " = ",
-    #         pvalue,
-    #         ", ",
-    #         italic("n"),
-    #         " = ",
-    #         n
-    #       ),
-    #     env = base::list(
-    #       estimate = specify_decimal_p(x = stats_df$r[[1]], k = k),
-    #       conf.level = paste(conf.level * 100, "%", sep = ""),
-    #       LL = specify_decimal_p(x = stats_df$conf.low[[1]], k = k),
-    #       UL = specify_decimal_p(x = stats_df$conf.high[[1]], k = k),
-    #       pvalue = specify_decimal_p(stats_df$p.value[[1]],
-    #         k = k,
-    #         p.value = TRUE
-    #       ),
-    #       n = stats_df$n[[1]]
-    #     )
-    #   )
 
     # message about effect size measure
     if (isTRUE(messages)) {
