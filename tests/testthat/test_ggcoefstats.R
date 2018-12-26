@@ -670,6 +670,46 @@ testthat::test_that(
   }
 )
 
+
+# check aareg output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check aareg output",
+  code = {
+
+    # model
+    library(survival)
+    set.seed(123)
+    afit <- survival::aareg(
+      formula = Surv(time, status) ~ age + sex + ph.ecog,
+      data = lung,
+      dfbeta = TRUE
+    )
+
+    # broom outputs
+    broom_df <- broom::tidy(afit)
+
+    # ggcoefstats outputs
+    tidy_df <- ggstatsplot::ggcoefstats(
+      x = afit,
+      output = "tidy",
+      exclude.intercept = FALSE
+    )
+
+    # testing
+    testthat::expect_identical(broom_df$term, as.character(tidy_df$term))
+    testthat::expect_equal(broom_df$estimate, tidy_df$estimate, tolerance = 0.001)
+    testthat::expect_equal(broom_df$std.error, tidy_df$std.error, tolerance = 0.001)
+    testthat::expect_equal(broom_df$p.value, tidy_df$p.value, tolerance = 0.001)
+    testthat::expect_equal(broom_df$statistic, tidy_df$coefficient, tolerance = 0.001)
+    testthat::expect_identical(
+      as.character(round(broom_df$statistic.z, 2)),
+      tidy_df$statistic
+    )
+  }
+)
+
+
 # check clm and polr models (minimal) ----------------------------------------
 
 testthat::test_that(

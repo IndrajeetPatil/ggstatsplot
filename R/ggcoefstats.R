@@ -336,7 +336,18 @@ ggcoefstats <- function(x,
   noglance.mods <- c("aovlist", "anova", "rlmerMod", "TukeyHSD")
 
   # models for which the diagnostics is not available (AIC, BIC, LL)
-  nodiagnostics.mods <- c("lmRob", "glmRob", "felm", "biglm", "cch")
+  nodiagnostics.mods <-
+    c(
+      "lmRob",
+      "glmRob",
+      "felm",
+      "biglm",
+      "cch",
+      "ridgelm",
+      "aareg",
+      "plm",
+      "ivreg"
+    )
 
   # =================== types of models =====================================
 
@@ -502,6 +513,18 @@ ggcoefstats <- function(x,
         dplyr::filter(.data = ., coefficient_type == coefficient.type)
     }
 
+    # ============ tidying aareg models =====================================
+  } else if (class(x)[[1]] == "aareg") {
+    tidy_df <-
+      broom::tidy(
+        x = x,
+        ...
+      ) %>%
+      dplyr::rename(
+        .data = .,
+        coefficient = statistic,
+        statistic = statistic.z
+      )
     # ============ tidying robust models =====================================
   } else if (class(x)[[1]] %in% c("lmRob", "glmRob")) {
     tidy_df <-

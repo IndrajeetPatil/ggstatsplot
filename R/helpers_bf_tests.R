@@ -716,7 +716,7 @@ bf_oneway_anova <- function(data,
 #' @export
 
 # function body
-bf_one_sample_ttest <- function(data,
+bf_one_sample_ttest <- function(data = NULL,
                                 x,
                                 test.value = 0,
                                 bf.prior = 0.707,

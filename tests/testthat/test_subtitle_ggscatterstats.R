@@ -8,7 +8,7 @@ testthat::test_that(
 
     # ggstatsplot output
     set.seed(123)
-    using_function1 <-
+    using_function <-
       suppressWarnings(ggstatsplot::subtitle_ggscatterstats(
         data = movies_long,
         x = rating,
@@ -22,7 +22,7 @@ testthat::test_that(
       ))
 
     # expected
-    results1 <-
+    expected <-
       ggplot2::expr(
         paste(
           NULL,
@@ -53,7 +53,7 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(using_function1, results1)
+    testthat::expect_identical(using_function, expected)
   }
 )
 
@@ -65,7 +65,7 @@ testthat::test_that(
 
     # ggstatsplot output
     set.seed(123)
-    using_function1 <-
+    using_function <-
       suppressWarnings(ggstatsplot::subtitle_ggscatterstats(
         data = ggplot2::msleep,
         x = brainwt,
@@ -79,7 +79,7 @@ testthat::test_that(
       ))
 
     # expected
-    results1 <-
+    expected <-
       ggplot2::expr(
         paste(
           NULL,
@@ -110,10 +110,9 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(using_function1, results1)
+    testthat::expect_identical(using_function, expected)
   }
 )
-
 
 # robust ----------------------------------------------------------------
 
@@ -123,7 +122,7 @@ testthat::test_that(
 
     # using function
     set.seed(123)
-    using_function1 <-
+    using_function <-
       suppressWarnings(ggstatsplot::subtitle_ggscatterstats(
         data = ggplot2::msleep,
         x = "brainwt",
@@ -137,7 +136,7 @@ testthat::test_that(
       ))
 
     # expected
-    results1 <-
+    expected <-
       ggplot2::expr(
         paste(
           NULL,
@@ -168,6 +167,56 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(using_function1, results1)
+    testthat::expect_identical(using_function, expected)
+  }
+)
+
+
+# bayes ----------------------------------------------------------------
+
+testthat::test_that(
+  desc = "subtitle_ggscatterstats works - bayes",
+  code = {
+
+    # using function
+    set.seed(123)
+    using_function <-
+      suppressWarnings(ggstatsplot::subtitle_ggscatterstats(
+        data = ggplot2::msleep,
+        x = "brainwt",
+        y = sleep_rem,
+        type = "bf",
+        k = 3,
+        conf.level = 0.95,
+        conf.type = "perc",
+        nboot = 25,
+        messages = FALSE
+      ))
+
+    # expected
+    expected <-
+      ggplot2::expr(
+        paste(
+          italic("r")["pearson"],
+          "(",
+          46L,
+          ")",
+          " = ",
+          "-0.221",
+          ", log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "-0.425",
+          ", Prior width = ",
+          "0.707",
+          ", ",
+          italic("n"),
+          " = ",
+          48L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(using_function, expected)
   }
 )

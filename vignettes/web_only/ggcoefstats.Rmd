@@ -788,7 +788,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Fit A Linear Model With Multiple Group Fixed Effects (`felm`)
+## fit a linear model with multiple group fixed effects (`felm`)
 
 Models of class `felm` from `lfe` package are also supported. This method is
 used to fit linear models with multiple group fixed effects, similarly to `lm`.
@@ -796,7 +796,7 @@ It uses the Method of Alternating projections to sweep out multiple group
 effects from the normal equations before estimating the remaining coefficients
 with OLS.
 
-```{r felm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+```{r felm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 library(lfe)
 
 # create covariates
@@ -820,7 +820,22 @@ est <- lfe::felm(formula = y ~ x + x2 | id + firm)
 
 # plot
 ggstatsplot::ggcoefstats(x = est)
+```
 
+## linear models for panel data (`plm`)
+
+```{r plm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# data
+set.seed(123)
+library(plm)
+data("Produc", package = "plm")
+
+# model
+plm.mod <- plm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,
+          data = Produc, index = c("state","year"))
+
+# plot
+ggstatsplot::ggcoefstats(plm.mod)
 ```
 
 ## Cox proportional hazards regression model (`coxph`)
@@ -899,6 +914,22 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## Aalen's additive regression model for censored data (`aareg`)
+
+```{r aareg, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# model
+library(survival)
+set.seed(123)
+afit <- survival::aareg(
+  formula = Surv(time, status) ~ age + sex + ph.ecog,
+  data = lung,
+  dfbeta = TRUE
+)
+
+# plot
+ggstatsplot::ggcoefstats(x = afit, k = 3)
+```
+
 ## relative risk regression model for case-cohort studies (`cch`)
 
 
@@ -936,6 +967,29 @@ fit.ccP <-
 ggstatsplot::ggcoefstats(x = fit.ccP, conf.level = 0.99)
 ```
 
+## ridge regression (`ridgelm`)
+
+For ridge regression, neither statistic values nor confidence intervals for
+estimates are available, so only estimates will be displayed.
+
+```{r ridgelm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(MASS)
+
+# model
+names(longley)[1] <- "y"
+mod <- MASS::lm.ridge(formula = y ~ ., data = longley)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  point.color = "red",
+  point.shape = 6,
+  point.size = 5
+)
+```
+
 ## linear model using generalized least squares (`gls`)
 
 The `nlme` package provides a function to fit a linear model using generalized
@@ -954,6 +1008,50 @@ We have already seen an example of `MASS::rlm()` in the `README` document:
 We have already seen an example of quantile regression (`quantreg::rq()`) in the
 `README` document:
 <https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
+
+## nonlinear quantile regression estimates (`nlrq`)
+
+```{r nlrq, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+library(quantreg)
+
+# preparing data
+Dat <- NULL
+Dat$x <- rep(1:25, 20)
+set.seed(123)
+Dat$y <- stats::SSlogis(Dat$x, 10, 12, 2) * rnorm(500, 1, 0.1)
+
+# then fit the median using nlrq
+Dat.nlrq <-
+  quantreg::nlrq(
+    formula = y ~ SSlogis(x, Asym, mid, scal),
+    data = Dat,
+    tau = 0.5,
+    trace = FALSE
+  )
+
+# plot
+ggstatsplot::ggcoefstats(Dat.nlrq)
+```
+
+## instrumental-variable regression (`ivreg`)
+
+```{r ivreg, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+suppressPackageStartupMessages(library(AER))
+set.seed(123)
+data("CigarettesSW", package = "AER")
+
+# model
+ivr <- AER::ivreg(
+  formula = log(packs) ~ income | population,
+  data = CigarettesSW,
+  subset = year == "1995"
+)
+
+# plot
+ggstatsplot::ggcoefstats(ivr)
+```
+
 
 ## dataframes (`tbl_df`, `tbl`, `data.frame`)
 

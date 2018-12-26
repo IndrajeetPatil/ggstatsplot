@@ -4,7 +4,7 @@
 \alias{bf_one_sample_ttest}
 \title{Bayesian one-sample \emph{t}-test.}
 \usage{
-bf_one_sample_ttest(data, x, test.value = 0, bf.prior = 0.707,
+bf_one_sample_ttest(data = NULL, x, test.value = 0, bf.prior = 0.707,
   caption = NULL, output = "caption", k = 2)
 }
 \arguments{
