@@ -97,10 +97,29 @@ grouped_ggbetweenstats <- function(data,
                                    messages = TRUE,
                                    ...) {
 
-  # ======================== check user input =============================
+  # =================== check user input and prep =========================
 
   # create a list of function call to check
   param_list <- base::as.list(base::match.call())
+
+  # check that there is a grouping.var
+  if (!"grouping.var" %in% names(param_list)) {
+    base::stop("You must specify a grouping variable")
+  }
+
+  # check that conditioning and grouping.var are different
+    if (as.character(param_list$x) == as.character(param_list$grouping.var)) {
+      base::message(cat(
+        crayon::red("\nError: "),
+        crayon::blue(
+          "Identical variable (",
+          crayon::yellow(param_list$x),
+          ") was used for both grouping and x axis, which is not allowed.\n"
+        ),
+        sep = ""
+      ))
+      base::return(base::invisible(param_list$x))
+    }
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
