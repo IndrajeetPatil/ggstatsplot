@@ -122,7 +122,8 @@ grouped_ggbetweenstats <- function(data,
         .data = .,
         title.text = !!rlang::enquo(grouping.var)
       ) %>%
-      stats::na.omit(.)
+#      stats::na.omit(.)
+      dplyr::filter(.data = ., !is.na(!!rlang::enquo(x)), !is.na(!!rlang::enquo(y)), !is.na(!!rlang::enquo(grouping.var)))
   } else {
     df <-
       dplyr::select(
