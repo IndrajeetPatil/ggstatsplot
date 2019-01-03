@@ -27,10 +27,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
@@ -96,11 +96,16 @@ grouped_ggbetweenstats <- function(data,
                                    direction = 1,
                                    messages = TRUE,
                                    ...) {
-  # ======================== preparing dataframe ==========================
+
+  # ======================== check user input =============================
+
+  # create a list of function call to check
+  param_list <- base::as.list(base::match.call())
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
 
-  if (!base::missing(outlier.label)) {
+  # ======================== preparing dataframe ==========================
+  if (!base::missing(outlier.label) && "outlier.tagging" %in% names(param_list)) {
     df <-
       dplyr::select(
         .data = data,
@@ -147,7 +152,7 @@ grouped_ggbetweenstats <- function(data,
     tidyr::nest(data = .)
 
   # creating a list of plots
-  if (!base::missing(outlier.label)) {
+  if (!base::missing(outlier.label) && "outlier.tagging" %in% names(param_list)) {
     plotlist_purrr <-
       df %>%
       dplyr::mutate(
