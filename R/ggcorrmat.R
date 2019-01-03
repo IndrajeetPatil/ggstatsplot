@@ -128,7 +128,8 @@
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   cor.vars.names = c("total sleep", "REM sleep")
-#' )
+#' ) + # further modification using `ggplot2`
+#'   ggplot2::scale_y_discrete(position = "right")
 #' 
 #' # to get the correlation matrix
 #' ggstatsplot::ggcorrmat(
@@ -264,6 +265,17 @@ ggcorrmat <- function(data,
     corr.method <- "robust"
   }
 
+  # create unique name for each method
+  if (corr.method == "pearson") {
+    corr.method.text <- "Pearson"
+  } else if (corr.method == "spearman") {
+    corr.method.text <- "Spearman"
+  } else if (corr.method == "robust") {
+    corr.method.text <- "robust (% bend)"
+  } else if (corr.method == "kendall") {
+    corr.method.text <- "Kendall"
+  }
+
   # ===================== statistics ========================================
   #
   if (corr.method %in% c("pearson", "spearman", "kendall")) {
@@ -359,7 +371,7 @@ ggcorrmat <- function(data,
             ),
             atop(
               scriptstyle(bold("correlation:")),
-              .(corr.method)
+              .(corr.method.text)
             )
           ))
       } else {
@@ -380,7 +392,7 @@ ggcorrmat <- function(data,
             ),
             atop(
               scriptstyle(bold("correlation:")),
-              .(corr.method)
+              .(corr.method.text)
             )
           ))
       }
@@ -422,9 +434,8 @@ ggcorrmat <- function(data,
         # p value adjustment method description
         p.adjust.method.text <-
           paste(
-            " (Adjustment: ",
+            "Adjustment (p-value): ",
             p.adjust.method.description(p.adjust.method = p.adjust.method),
-            ")",
             sep = ""
           )
 

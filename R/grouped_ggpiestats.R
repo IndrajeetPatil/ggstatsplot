@@ -4,7 +4,7 @@
 #' @description Helper function for `ggstatsplot::ggpiestats` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.
-#' @author Indrajeet Patil
+#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @param grouping.var Grouping variable.
 #' @param title.prefix Character specifying the prefix text for the fixed plot
@@ -26,34 +26,34 @@
 #' @inherit ggpiestats return return
 #'
 #' @examples
-#'
+#' 
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   main = cyl
 #' )
-#'
+#' 
 #' # without condition and with count data
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
-#'
+#' 
 #' # the following will take slightly more amount of time
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
 #'   dplyr::sample_frac(tbl = ., size = 0.10)
-#'
+#' 
 #' # plot
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = diamonds_short,
@@ -137,8 +137,8 @@ grouped_ggpiestats <- function(data,
   grouping.var <- rlang::ensym(grouping.var)
 
   # ======================== preparing dataframe =============================
-  if (!missing(condition)) {    # if condition variable *is* provided
-    if (missing(counts)) {      # if the data is not tabled
+  if (!missing(condition)) { # if condition variable *is* provided
+    if (missing(counts)) { # if the data is not tabled
       df <-
         dplyr::select(
           .data = data,
@@ -207,7 +207,7 @@ grouped_ggpiestats <- function(data,
       .predicate = is.factor,
       .funs = ~ base::droplevels(.)
     ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var)))  %>%
+    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     base::split(.[[rlang::quo_text(grouping.var)]])
 
   # ============== build pmap list based on conditions =====================

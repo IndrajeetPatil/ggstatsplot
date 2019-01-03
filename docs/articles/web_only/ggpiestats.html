@@ -128,7 +128,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-12-26</h4>
+            <h4 class="date">2019-01-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -188,7 +188,7 @@
 <a class="sourceLine" id="cb2-6" data-line-number="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb2-10" data-line-number="10">  <span class="dt">data =</span> Titanic_full_<span class="dv">50</span>,                          </a>
 <a class="sourceLine" id="cb2-11" data-line-number="11">  <span class="dt">main =</span> Survived,</a>
 <a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="dt">title =</span> <span class="st">"Passenger survival on the Titanic"</span>,       <span class="co"># title for the entire plot</span></a>
@@ -220,7 +220,7 @@
 <a class="sourceLine" id="cb3-6" data-line-number="6">Titanic_full_<span class="dv">50</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">data =</span> Titanic_full_<span class="dv">50</span>,</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">main =</span> Survived,</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">condition =</span> Sex,</a>
@@ -256,7 +256,7 @@
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggpiestats">grouped_ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="co"># arguments relevant for ggstatsplot::gghistostats</span></a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">grouping.var =</span> Age,</a>
@@ -344,7 +344,7 @@
 <a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">#&gt; 16 B     March    Catfish          20</span></a></code></pre></div>
 <p>When the data is organized this way, we make a slightly different call to the <code>ggpiestats</code> function: we use the <code>counts</code> argument. If we want to investigate the relationship of type of fish by month (a test of independence), our command would be:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># running `ggpiestats` with counts information</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="dt">data =</span> fishing,</a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="dt">main =</span> Fish,</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">condition =</span> Month,</a>
@@ -388,7 +388,7 @@
 <a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt;        Yes 25  13</span></a>
 <a class="sourceLine" id="cb7-24" data-line-number="24"></a>
 <a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb7-26" data-line-number="26">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb7-26" data-line-number="26">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb7-27" data-line-number="27">  <span class="dt">data =</span> clinical_trial,</a>
 <a class="sourceLine" id="cb7-28" data-line-number="28">  <span class="dt">condition =</span> SickBefore,</a>
 <a class="sourceLine" id="cb7-29" data-line-number="29">  <span class="dt">main =</span> SickAfter,</a>

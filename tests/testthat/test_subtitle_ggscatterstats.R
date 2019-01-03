@@ -36,7 +36,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic(rho)["spearman"],
+          italic(rho)["Spearman"],
           " = ",
           "0.46669",
           ", CI"["99.9%"],
@@ -93,7 +93,7 @@ testthat::test_that(
           " = ",
           "0.131",
           ", ",
-          italic("r")["pearson"],
+          italic("r")["Pearson"],
           " = ",
           "-0.221",
           ", CI"["90%"],
@@ -197,7 +197,7 @@ testthat::test_that(
     expected <-
       ggplot2::expr(
         paste(
-          italic("r")["pearson"],
+          italic("r")["Pearson"],
           "(",
           46L,
           ")",

@@ -128,7 +128,7 @@
       <h1>ggstatsplot: ggplot2 Based Plots with Statistical Details</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2018-12-26</h4>
+            <h4 class="date">2019-01-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggstatsplot_paper.Rmd"><code>vignettes/web_only/ggstatsplot_paper.Rmd</code></a></small>
       <div class="hidden name"><code>ggstatsplot_paper.Rmd</code></div>
@@ -169,7 +169,7 @@
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggbetweenstats.html">ggbetweenstats</a></span>(</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggbetweenstats">ggbetweenstats</a></span>(</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb1-8" data-line-number="8">    genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span>)</a>
@@ -201,7 +201,7 @@
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html">ggpiestats</a></span>(</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggpiestats">ggpiestats</a></span>(</a>
 <a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_long,</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="dt">main =</span> genre,</a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">  <span class="dt">condition =</span> mpaa,</a>
@@ -226,7 +226,7 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="co"># plot 1: superposition</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">  ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
@@ -240,9 +240,9 @@
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb3-18" data-line-number="18"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span>(),</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">    </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/theme_ggstatsplot">theme_ggstatsplot</a></span>(),</a>
 <a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="co"># plot 2: juxtaposition</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggscatterstats">grouped_ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ggstatsplot<span class="op">::</span>movies_long, genre <span class="op">==</span><span class="st"> "Comedy"</span> <span class="op">|</span></a>
 <a class="sourceLine" id="cb3-23" data-line-number="23"><span class="st">      </span>genre <span class="op">==</span><span class="st"> "Drama"</span>),</a>
 <a class="sourceLine" id="cb3-24" data-line-number="24">    <span class="dt">x =</span> length,</a>
@@ -316,9 +316,9 @@
 <a class="sourceLine" id="cb4-18" data-line-number="18">)</a>
 <a class="sourceLine" id="cb4-19" data-line-number="19"></a>
 <a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co"># combining two plots</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="co"># plot *without* any NAs</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb4-24" data-line-number="24">    <span class="dt">data =</span> msleep_no_na,</a>
 <a class="sourceLine" id="cb4-25" data-line-number="25">    <span class="dt">corr.method =</span> <span class="st">"kendall"</span>,</a>
 <a class="sourceLine" id="cb4-26" data-line-number="26">    <span class="dt">sig.level =</span> <span class="fl">0.001</span>,</a>
@@ -332,7 +332,7 @@
 <a class="sourceLine" id="cb4-34" data-line-number="34">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb4-35" data-line-number="35">  ),</a>
 <a class="sourceLine" id="cb4-36" data-line-number="36">  <span class="co"># plot *with* NAs</span></a>
-<a class="sourceLine" id="cb4-37" data-line-number="37">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcorrmat">ggcorrmat</a></span>(</a>
 <a class="sourceLine" id="cb4-38" data-line-number="38">    <span class="dt">data =</span> ggplot2<span class="op">::</span>msleep,</a>
 <a class="sourceLine" id="cb4-39" data-line-number="39">    <span class="dt">corr.method =</span> <span class="st">"kendall"</span>,</a>
 <a class="sourceLine" id="cb4-40" data-line-number="40">    <span class="dt">sig.level =</span> <span class="fl">0.001</span>,</a>
@@ -677,7 +677,7 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/gghistostats.html">gghistostats</a></span>(</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/gghistostats">gghistostats</a></span>(</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">data =</span> morley,</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="dt">x =</span> Speed,</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">test.value =</span> <span class="dv">792</span>,</a>
@@ -701,7 +701,7 @@
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
 <a class="sourceLine" id="cb6-7" data-line-number="7">    total.fruits <span class="op">~</span><span class="st"> </span>nutrient <span class="op">+</span><span class="st"> </span>rack <span class="op">+</span><span class="st"> </span>(nutrient <span class="op">|</span></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">      </span>popu <span class="op">/</span><span class="st"> </span>gen),</a>
@@ -800,7 +800,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  collate  English_United States.1252                        </span></a>
 <a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  ctype    English_United States.1252                        </span></a>
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  tz       Asia/Calcutta                                     </span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  date     2018-12-26                                        </span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  date     2019-01-03                                        </span></a>
 <a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;  package      * version     date       lib source                              </span></a>
@@ -850,7 +850,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-60" data-line-number="60"><span class="co">#&gt;  ggrepel        0.8.0       2018-05-09 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb7-61" data-line-number="61"><span class="co">#&gt;  ggridges       0.5.1       2018-09-27 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb7-62" data-line-number="62"><span class="co">#&gt;  ggsignif       0.4.0       2017-08-03 [1] CRAN (R 3.5.1)                      </span></a>
-<a class="sourceLine" id="cb7-63" data-line-number="63"><span class="co">#&gt;  ggstatsplot  * 0.0.7.9000  2018-12-26 [1] local                               </span></a>
+<a class="sourceLine" id="cb7-63" data-line-number="63"><span class="co">#&gt;  ggstatsplot  * 0.0.7.9000  2019-01-03 [1] local                               </span></a>
 <a class="sourceLine" id="cb7-64" data-line-number="64"><span class="co">#&gt;  glmmTMB        0.2.2.0     2018-07-03 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb7-65" data-line-number="65"><span class="co">#&gt;  glue           1.3.0       2018-07-17 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb7-66" data-line-number="66"><span class="co">#&gt;  gnm            1.1-0       2018-06-21 [1] CRAN (R 3.5.1)                      </span></a>
@@ -937,7 +937,7 @@ Vignettes contain probably the most detailed exposition. Every single function i
 <a class="sourceLine" id="cb7-147" data-line-number="147"><span class="co">#&gt;  sessioninfo    1.1.1       2018-11-05 [1] CRAN (R 3.6.0)                      </span></a>
 <a class="sourceLine" id="cb7-148" data-line-number="148"><span class="co">#&gt;  shiny          1.2.0       2018-11-02 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb7-149" data-line-number="149"><span class="co">#&gt;  sjlabelled     1.0.15      2018-11-22 [1] CRAN (R 3.6.0)                      </span></a>
-<a class="sourceLine" id="cb7-150" data-line-number="150"><span class="co">#&gt;  sjmisc         2.7.6       2018-11-06 [1] CRAN (R 3.6.0)                      </span></a>
+<a class="sourceLine" id="cb7-150" data-line-number="150"><span class="co">#&gt;  sjmisc         2.7.7       2019-01-02 [1] CRAN (R 3.6.0)                      </span></a>
 <a class="sourceLine" id="cb7-151" data-line-number="151"><span class="co">#&gt;  sjstats        0.17.2      2018-11-15 [1] CRAN (R 3.6.0)                      </span></a>
 <a class="sourceLine" id="cb7-152" data-line-number="152"><span class="co">#&gt;  skimr          1.0.3       2018-06-07 [1] CRAN (R 3.5.1)                      </span></a>
 <a class="sourceLine" id="cb7-153" data-line-number="153"><span class="co">#&gt;  snakecase      0.9.2       2018-08-14 [1] CRAN (R 3.5.1)                      </span></a>

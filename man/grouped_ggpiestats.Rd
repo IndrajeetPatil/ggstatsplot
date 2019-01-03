@@ -237,5 +237,5 @@ ggstatsplot::grouped_ggpiestats(
 \code{\link{ggpiestats}}
 }
 \author{
-Indrajeet Patil
+Indrajeet Patil, Chuck Powell
 }

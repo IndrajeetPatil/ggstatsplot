@@ -174,7 +174,8 @@ ggstatsplot::ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
   cor.vars.names = c("total sleep", "REM sleep")
-)
+) + # further modification using `ggplot2`
+  ggplot2::scale_y_discrete(position = "right")
 
 # to get the correlation matrix
 ggstatsplot::ggcorrmat(

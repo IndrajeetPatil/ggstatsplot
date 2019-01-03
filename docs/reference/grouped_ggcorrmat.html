@@ -529,14 +529,14 @@ of p-values.</p>
 
 <span class='co'># for plot</span>
 <span class='co'># (without specifiying needed variables; all numeric variables will be used)</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggcorrmat'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>
 )</div><div class='output co'>#&gt; <span style='color: #BB0000;'>Warning: </span><span style='color: #0000BB;'>Individual plots in the combined `grouped_` plot
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggcorrmat'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
@@ -550,7 +550,7 @@ of p-values.</p>
 #&gt; can't be further modified with `ggplot2` functions.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='grouped_ggcorrmat-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for getting correlations</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggcorrmat'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>cor.vars</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>:<span class='no'>bodywt</span>,
@@ -571,7 +571,7 @@ of p-values.</p>
 #&gt; </span><span style='color: #555555;'># ... with 14 more rows</span><span></div><div class='input'>
 <span class='co'># for getting confidence intervals</span>
 <span class='co'># confidence intervals are not available for **robust** correlation</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggcorrmat.html'>grouped_ggcorrmat</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggcorrmat'>grouped_ggcorrmat</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/datasets/topics/iris'>iris</a></span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>corr.method</span> <span class='kw'>=</span> <span class='st'>"r"</span>,
