@@ -160,7 +160,7 @@ grouped_ggbetweenstats <- function(data,
       stats::na.omit(.)
   }
 
-  # creating a nested dataframe
+  # make a list of dataframes by grouping variable
   df %<>%
     dplyr::mutate_if(
       .tbl = .,
@@ -173,144 +173,98 @@ grouped_ggbetweenstats <- function(data,
       .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
-    dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
-    tidyr::nest(data = .)
+    base::split(.[[rlang::quo_text(grouping.var)]])
 
-  # creating a list of plots
-  if (!base::missing(outlier.label) && "outlier.tagging" %in% names(param_list)) {
-    plotlist_purrr <-
-      df %>%
-      dplyr::mutate(
-        .data = .,
-        plots = data %>%
-          purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-          purrr::map(
-            .x = .,
-            .f = ~ ggstatsplot::ggbetweenstats(
-              data = .,
-              x = !!rlang::enquo(x),
-              y = !!rlang::enquo(y),
-              title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
-              plot.type = plot.type,
-              type = type,
-              pairwise.comparisons = pairwise.comparisons,
-              pairwise.annotation = pairwise.annotation,
-              pairwise.display = pairwise.display,
-              p.adjust.method = p.adjust.method,
-              effsize.type = effsize.type,
-              partial = partial,
-              effsize.noncentral = effsize.noncentral,
-              bf.prior = bf.prior,
-              bf.message = bf.message,
-              results.subtitle = results.subtitle,
-              xlab = xlab,
-              ylab = ylab,
-              subtitle = subtitle,
-              caption = caption,
-              sample.size.label = sample.size.label,
-              k = k,
-              var.equal = var.equal,
-              conf.level = conf.level,
-              nboot = nboot,
-              tr = tr,
-              mean.label.size = mean.label.size,
-              mean.label.fontface = mean.label.fontface,
-              mean.label.color = mean.label.color,
-              notch = notch,
-              notchwidth = notchwidth,
-              linetype = linetype,
-              outlier.tagging = outlier.tagging,
-              outlier.label = !!rlang::enquo(outlier.label),
-              outlier.label.color = outlier.label.color,
-              outlier.color = outlier.color,
-              outlier.shape = outlier.shape,
-              outlier.coef = outlier.coef,
-              mean.plotting = mean.plotting,
-              mean.ci = mean.ci,
-              mean.size = mean.size,
-              mean.color = mean.color,
-              ggtheme = ggtheme,
-              ggstatsplot.layer = ggstatsplot.layer,
-              package = package,
-              palette = palette,
-              direction = direction,
-              messages = messages,
-              point.jitter.width = point.jitter.width,
-              point.dodge.width = point.dodge.width,
-              point.jitter.height = point.jitter.height
-            )
-          )
-      )
-  } else {
-    plotlist_purrr <-
-      df %>%
-      dplyr::mutate(
-        .data = .,
-        plots = data %>%
-          purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-          purrr::map(
-            .x = .,
-            .f = ~ ggstatsplot::ggbetweenstats(
-              data = .,
-              x = !!rlang::enquo(x),
-              y = !!rlang::enquo(y),
-              title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
-              plot.type = plot.type,
-              type = type,
-              pairwise.comparisons = pairwise.comparisons,
-              pairwise.annotation = pairwise.annotation,
-              pairwise.display = pairwise.display,
-              p.adjust.method = p.adjust.method,
-              effsize.type = effsize.type,
-              partial = partial,
-              effsize.noncentral = effsize.noncentral,
-              bf.prior = bf.prior,
-              bf.message = bf.message,
-              results.subtitle = results.subtitle,
-              xlab = xlab,
-              ylab = ylab,
-              subtitle = subtitle,
-              caption = caption,
-              sample.size.label = sample.size.label,
-              k = k,
-              var.equal = var.equal,
-              conf.level = conf.level,
-              nboot = nboot,
-              tr = tr,
-              mean.label.size = mean.label.size,
-              mean.label.fontface = mean.label.fontface,
-              mean.label.color = mean.label.color,
-              notch = notch,
-              notchwidth = notchwidth,
-              linetype = linetype,
-              outlier.tagging = outlier.tagging,
-              outlier.label.color = outlier.label.color,
-              outlier.color = outlier.color,
-              outlier.shape = outlier.shape,
-              outlier.coef = outlier.coef,
-              mean.plotting = mean.plotting,
-              mean.ci = mean.ci,
-              mean.size = mean.size,
-              mean.color = mean.color,
-              ggtheme = ggtheme,
-              ggstatsplot.layer = ggstatsplot.layer,
-              package = package,
-              palette = palette,
-              direction = direction,
-              messages = messages,
-              point.jitter.width = point.jitter.width,
-              point.dodge.width = point.dodge.width,
-              point.jitter.height = point.jitter.height
-            )
-          )
-      )
+  # ============== build pmap list based on conditions =====================
+
+  if (!"outlier.tagging" %in% names(param_list) || isFALSE(outlier.tagging)) {
+    flexiblelist <- list(
+      data = df,
+      x = rlang::quo_text(ensym(x)),
+      y = rlang::quo_text(ensym(y)),
+      title = glue::glue("{title.prefix}: {names(df)}")
+    )
   }
+
+  if (isTRUE(outlier.tagging) && !"outlier.label" %in% names(param_list)) {
+    flexiblelist <- list(
+      data = df,
+      x = rlang::quo_text(ensym(x)),
+      y = rlang::quo_text(ensym(y)),
+      outlier.tagging = TRUE,
+      title = glue::glue("{title.prefix}: {names(df)}")
+    )
+  }
+
+  if (isTRUE(outlier.tagging) && "outlier.label" %in% names(param_list)) {
+    flexiblelist <- list(
+      data = df,
+      x = rlang::quo_text(ensym(x)),
+      y = rlang::quo_text(ensym(y)),
+      outlier.label = rlang::quo_text(ensym(outlier.label)),
+      outlier.tagging = TRUE,
+      title = glue::glue("{title.prefix}: {names(df)}")
+    )
+  }
+
+  # ============== creating a list of plots using `pmap`=======================
+
+  plotlist_purrr <-
+    purrr::pmap(
+      .l = flexiblelist,
+      .f = ggstatsplot::ggbetweenstats,
+      # put common parameters here
+      plot.type = plot.type,
+      type = type,
+      pairwise.comparisons = pairwise.comparisons,
+      pairwise.annotation = pairwise.annotation,
+      pairwise.display = pairwise.display,
+      p.adjust.method = p.adjust.method,
+      effsize.type = effsize.type,
+      partial = partial,
+      effsize.noncentral = effsize.noncentral,
+      bf.prior = bf.prior,
+      bf.message = bf.message,
+      results.subtitle = results.subtitle,
+      xlab = xlab,
+      ylab = ylab,
+      subtitle = subtitle,
+      caption = caption,
+      sample.size.label = sample.size.label,
+      k = k,
+      var.equal = var.equal,
+      conf.level = conf.level,
+      nboot = nboot,
+      tr = tr,
+      mean.label.size = mean.label.size,
+      mean.label.fontface = mean.label.fontface,
+      mean.label.color = mean.label.color,
+      notch = notch,
+      notchwidth = notchwidth,
+      linetype = linetype,
+      outlier.label.color = outlier.label.color,
+      outlier.color = outlier.color,
+      outlier.shape = outlier.shape,
+      outlier.coef = outlier.coef,
+      mean.plotting = mean.plotting,
+      mean.ci = mean.ci,
+      mean.size = mean.size,
+      mean.color = mean.color,
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer,
+      package = package,
+      palette = palette,
+      direction = direction,
+      messages = messages,
+      point.jitter.width = point.jitter.width,
+      point.dodge.width = point.dodge.width,
+      point.jitter.height = point.jitter.height
+    )
 
   # combining the list of plots into a single plot
   combined_plot <-
     ggstatsplot::combine_plots(
-      plotlist = plotlist_purrr$plots,
+      plotlist = plotlist_purrr,
       ...
     )
 
