@@ -164,7 +164,7 @@
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># to speed up the calculation, let's use only 10% of the data</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb1-10" data-line-number="10">  </a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb1-12" data-line-number="12">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
@@ -183,8 +183,8 @@
 <a class="sourceLine" id="cb1-25" data-line-number="25">) <span class="op">+</span><span class="st">                                    </span></a>
 <a class="sourceLine" id="cb1-26" data-line-number="26"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb1-27" data-line-number="27"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb1-28" data-line-number="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-29" data-line-number="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"effect size estimate (partial omega-squared)"</span>,</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-29" data-line-number="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"effect size estimate (partial omega-squared)"</span>,</a>
 <a class="sourceLine" id="cb1-30" data-line-number="30">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aov1-1.png" width="768"></p>
 <p>As this plot shows, there is no interaction effect between these two factors.</p>
@@ -192,7 +192,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># to speed up the calculation, let's use only 10% of the data</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -264,7 +264,7 @@
 <a class="sourceLine" id="cb4-2" data-line-number="2">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="dt">formula =</span> rating <span class="op">~</span><span class="st"> </span>genre,</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ggstatsplot<span class="op">::</span>movies_long, </a>
 <a class="sourceLine" id="cb4-6" data-line-number="6">                         genre <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Action"</span>, </a>
 <a class="sourceLine" id="cb4-7" data-line-number="7">                                      <span class="st">"Action Comedy"</span>, </a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">                                      <span class="st">"Action Drama"</span>, </a>
@@ -275,16 +275,16 @@
 <a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>,                      <span class="co"># changing the confidence levels for confidence intervals</span></a>
 <a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,                     <span class="co"># sorting the terms of the model based on estimate values</span></a>
 <a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">label.direction =</span> <span class="st">"both"</span>,               <span class="co"># direction in which to adjust position of labels (both x and y)</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(),        <span class="co"># changing the default theme</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_gray</a></span>(),        <span class="co"># changing the default theme</span></a>
 <a class="sourceLine" id="cb4-17" data-line-number="17">  <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"darkgreen"</span>, <span class="st">"#0072B2"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>),</a>
 <a class="sourceLine" id="cb4-18" data-line-number="18">  <span class="dt">title =</span> <span class="st">"Movie ratings by their genre"</span>,</a>
 <a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="dt">subtitle =</span> <span class="st">"Source: www.imdb.com"</span></a>
 <a class="sourceLine" id="cb4-20" data-line-number="20">) <span class="op">+</span><span class="st">                                    </span></a>
 <a class="sourceLine" id="cb4-21" data-line-number="21"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb4-22" data-line-number="22"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Comedy"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy Drama"</span>, <span class="st">"Drama"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"Genre compared to Action movies)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Comedy"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy Drama"</span>, <span class="st">"Drama"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">y =</span> <span class="st">"Genre compared to Action movies)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
 <p>As can be seen from the regression coefficients, compared to action movies, comedies and action comedies are not rated significantly better. All three of the “drama” types (pure, action or comedy dramas) have statistical significantly higher regression coefficients. This finding occurs even with our more conservative <code>0.99</code> confidence interval.</p>
 </div>
@@ -298,7 +298,7 @@
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co"># to speed up the calculation, let's use only 10% of the data</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co"># combining the two different plots</span></a>
 <a class="sourceLine" id="cb5-10" data-line-number="10">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
@@ -312,7 +312,7 @@
 <a class="sourceLine" id="cb5-18" data-line-number="18">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb5-19" data-line-number="19">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>              <span class="co"># show the intercept</span></a>
 <a class="sourceLine" id="cb5-20" data-line-number="20">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/parse">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/parse">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),</a>
 <a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="co"># model 2: linear mixed-effects model</span></a>
 <a class="sourceLine" id="cb5-23" data-line-number="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb5-24" data-line-number="24">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
@@ -325,7 +325,7 @@
 <a class="sourceLine" id="cb5-31" data-line-number="31">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb5-32" data-line-number="32">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>              <span class="co"># show the intercept</span></a>
 <a class="sourceLine" id="cb5-33" data-line-number="33">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/parse">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>), </a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/parse">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>), </a>
 <a class="sourceLine" id="cb5-35" data-line-number="35">                  <span class="dt">y =</span> <span class="st">"fixed effects"</span>),</a>
 <a class="sourceLine" id="cb5-36" data-line-number="36">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>),</a>
 <a class="sourceLine" id="cb5-37" data-line-number="37">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
@@ -338,7 +338,7 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># to speed up the calculation, let's use only 10% of the data</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co"># tidy output</span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7">broom.mixed<span class="op">::</span><span class="kw">tidy</span>(</a>
@@ -379,7 +379,8 @@
 <a class="sourceLine" id="cb7-13" data-line-number="13">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(<span class="dt">x =</span> roblmm.mod,</a>
 <a class="sourceLine" id="cb7-14" data-line-number="14">                         <span class="dt">title =</span> <span class="st">"robust estimation of linear mixed-effects model"</span>)</a>
 <a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; Note: No model diagnostics information available for the object of class rlmerMod .</span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from rlmerMod object, so skipping labels.</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from rlmerMod object; </span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/rlmer-1.png" width="700"></p>
 </div>
 <div id="non-linear-least-squares-model-nls" class="section level2">
@@ -389,7 +390,7 @@
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co"># to speed up the calculation, let's use only 10% of the data</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb8-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
@@ -613,7 +614,7 @@
 <a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(</a>
 <a class="sourceLine" id="cb11-4" data-line-number="4">    <span class="dt">formula =</span> Survived <span class="op">~</span><span class="st"> </span>Sex <span class="op">+</span><span class="st"> </span>Age <span class="op">+</span><span class="st"> </span>(Sex <span class="op">+</span><span class="st"> </span>Age <span class="op">|</span><span class="st"> </span>Class),</a>
 <a class="sourceLine" id="cb11-5" data-line-number="5">    <span class="co"># select 20% of the sample to reduce the time of execution</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.2</span>),</a>
 <a class="sourceLine" id="cb11-7" data-line-number="7">    <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"logit"</span>),</a>
 <a class="sourceLine" id="cb11-8" data-line-number="8">    <span class="dt">control =</span> lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmerControl">glmerControl</a></span>(</a>
 <a class="sourceLine" id="cb11-9" data-line-number="9">      <span class="dt">optimizer =</span> <span class="st">"Nelder_Mead"</span>,</a>
@@ -664,7 +665,7 @@
 <a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="dt">x =</span> ordinal<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ordinal/topics/clm">clm</a></span>(</a>
 <a class="sourceLine" id="cb13-7" data-line-number="7">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome,</a>
 <a class="sourceLine" id="cb13-8" data-line-number="8">    <span class="dt">link =</span> <span class="st">"logit"</span>,</a>
-<a class="sourceLine" id="cb13-9" data-line-number="9">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>intent_morality, <span class="dt">size =</span> <span class="fl">0.10</span>),</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>intent_morality, <span class="dt">size =</span> <span class="fl">0.10</span>),</a>
 <a class="sourceLine" id="cb13-10" data-line-number="10">    <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ordinal/topics/clm.control">clm.control</a></span>(<span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
 <a class="sourceLine" id="cb13-11" data-line-number="11">                                   <span class="dt">convergence =</span> <span class="st">"silent"</span>)</a>
 <a class="sourceLine" id="cb13-12" data-line-number="12">  ),</a>
@@ -673,7 +674,7 @@
 <a class="sourceLine" id="cb13-15" data-line-number="15">  <span class="dt">subtitle =</span> <span class="st">"(using `ordinal` package)"</span>,</a>
 <a class="sourceLine" id="cb13-16" data-line-number="16">  <span class="dt">caption.summary =</span> <span class="ot">FALSE</span>                            <span class="co"># suppress model diagnostics</span></a>
 <a class="sourceLine" id="cb13-17" data-line-number="17">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
+<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb13-19" data-line-number="19">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/clm-1.png" width="576"></p>
 <p>As can be seen from this plot, both factors (intentionality and consequences) were significant, and so was their interaction.</p>
@@ -690,7 +691,7 @@
 <a class="sourceLine" id="cb14-6" data-line-number="6">  <span class="dt">x =</span> ordinal<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ordinal/topics/clmm">clmm</a></span>(</a>
 <a class="sourceLine" id="cb14-7" data-line-number="7">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>(belief <span class="op">+</span><span class="st"> </span>outcome <span class="op">|</span></a>
 <a class="sourceLine" id="cb14-8" data-line-number="8"><span class="st">                                                        </span>harm),</a>
-<a class="sourceLine" id="cb14-9" data-line-number="9">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>intent_morality, <span class="dt">size =</span> <span class="fl">0.10</span>),</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>intent_morality, <span class="dt">size =</span> <span class="fl">0.10</span>),</a>
 <a class="sourceLine" id="cb14-10" data-line-number="10">    <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ordinal/topics/clmm.control">clmm.control</a></span>(</a>
 <a class="sourceLine" id="cb14-11" data-line-number="11">      <span class="dt">method =</span> <span class="st">"nlminb"</span>,</a>
 <a class="sourceLine" id="cb14-12" data-line-number="12">      <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
@@ -701,7 +702,7 @@
 <a class="sourceLine" id="cb14-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"cumulative link mixed model (clmm)"</span>,</a>
 <a class="sourceLine" id="cb14-18" data-line-number="18">    <span class="dt">subtitle =</span> <span class="st">"(using `ordinal` package)"</span></a>
 <a class="sourceLine" id="cb14-19" data-line-number="19">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
+<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
 <a class="sourceLine" id="cb14-21" data-line-number="21">                <span class="dt">y =</span> <span class="st">"fixed effects"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/clmm1-1.png" width="576"></p>
 <p>Mixed effects regression didn’t reveal any interaction effect. That is, most of the variance was accounted for by the information about whether there was harmful intent and whether there was harm, at least this is the effect we found with these four types of (minor) harms.</p>
@@ -715,7 +716,7 @@
 <a class="sourceLine" id="cb15-7" data-line-number="7">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(rating) <span class="op">~</span><span class="st"> </span>belief <span class="op">*</span><span class="st"> </span>outcome <span class="op">+</span><span class="st"> </span>(belief <span class="op">+</span><span class="st"> </span>outcome <span class="op">|</span></a>
 <a class="sourceLine" id="cb15-8" data-line-number="8"><span class="st">                                                        </span>harm),</a>
 <a class="sourceLine" id="cb15-9" data-line-number="9">    <span class="dt">link =</span> <span class="st">"logit"</span>,</a>
-<a class="sourceLine" id="cb15-10" data-line-number="10">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>intent_morality, <span class="dt">size =</span> <span class="fl">0.10</span>),</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">    <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>intent_morality, <span class="dt">size =</span> <span class="fl">0.10</span>),</a>
 <a class="sourceLine" id="cb15-11" data-line-number="11">    <span class="dt">control =</span> ordinal<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ordinal/topics/clmm.control">clmm.control</a></span>(</a>
 <a class="sourceLine" id="cb15-12" data-line-number="12">      <span class="dt">maxIter =</span> <span class="dv">50</span>,</a>
 <a class="sourceLine" id="cb15-13" data-line-number="13">      <span class="dt">gradTol =</span> <span class="fl">1e-4</span>,</a>
@@ -724,7 +725,7 @@
 <a class="sourceLine" id="cb15-16" data-line-number="16">  ),</a>
 <a class="sourceLine" id="cb15-17" data-line-number="17">  <span class="dt">coefficient.type =</span> <span class="st">"alpha"</span></a>
 <a class="sourceLine" id="cb15-18" data-line-number="18">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-19" data-line-number="19"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
+<a class="sourceLine" id="cb15-19" data-line-number="19"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
 <a class="sourceLine" id="cb15-20" data-line-number="20">                <span class="dt">y =</span> <span class="st">"threshold parameters"</span>)</a></code></pre></div>
 </div>
 <div id="ordered-logistic-or-probit-regression-polr" class="section level2">
@@ -752,7 +753,7 @@
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb17-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co"># having a look at iris before converting to long format</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(ggstatsplot<span class="op">::</span>iris_long)</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/reexports">glimpse</a></span>(ggstatsplot<span class="op">::</span>iris_long)</a>
 <a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt; Observations: 600</span></a>
 <a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt; $ id        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1...</span></a>
@@ -763,7 +764,7 @@
 <a class="sourceLine" id="cb17-13" data-line-number="13"><span class="co">#&gt; $ value     &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5....</span></a>
 <a class="sourceLine" id="cb17-14" data-line-number="14"></a>
 <a class="sourceLine" id="cb17-15" data-line-number="15"><span class="co"># let's use 20% of the sample to speed up the analysis</span></a>
-<a class="sourceLine" id="cb17-16" data-line-number="16">iris_long_<span class="dv">20</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>iris_long, <span class="dt">size =</span> <span class="fl">0.20</span>)</a>
+<a class="sourceLine" id="cb17-16" data-line-number="16">iris_long_<span class="dv">20</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>iris_long, <span class="dt">size =</span> <span class="fl">0.20</span>)</a>
 <a class="sourceLine" id="cb17-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb17-18" data-line-number="18"><span class="co"># specifying the model (note the error structure)</span></a>
 <a class="sourceLine" id="cb17-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
@@ -779,7 +780,7 @@
 <a class="sourceLine" id="cb17-29" data-line-number="29">  <span class="dt">subtitle =</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span>,</a>
 <a class="sourceLine" id="cb17-30" data-line-number="30">  <span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span></a>
 <a class="sourceLine" id="cb17-31" data-line-number="31">) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-32" data-line-number="32"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
+<a class="sourceLine" id="cb17-32" data-line-number="32"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
 <a class="sourceLine" id="cb17-33" data-line-number="33"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
 <p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
@@ -793,7 +794,7 @@
 <a class="sourceLine" id="cb18-3" data-line-number="3">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb18-4" data-line-number="4">    <span class="dt">x =</span> robust<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/robust/topics/glmRob">glmRob</a></span>(</a>
 <a class="sourceLine" id="cb18-5" data-line-number="5">      <span class="dt">formula =</span> Survived <span class="op">~</span><span class="st"> </span>Sex,</a>
-<a class="sourceLine" id="cb18-6" data-line-number="6">      <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.20</span>),</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">      <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>Titanic_full, <span class="dt">size =</span> <span class="fl">0.20</span>),</a>
 <a class="sourceLine" id="cb18-7" data-line-number="7">      <span class="dt">family =</span> stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"logit"</span>)</a>
 <a class="sourceLine" id="cb18-8" data-line-number="8">    ),</a>
 <a class="sourceLine" id="cb18-9" data-line-number="9">    <span class="dt">title =</span> <span class="st">"generalized robust linear model"</span>,</a>
@@ -905,7 +906,8 @@
 <a class="sourceLine" id="cb22-7" data-line-number="7"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb22-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(<span class="dt">x =</span> fit,</a>
 <a class="sourceLine" id="cb22-9" data-line-number="9">                         <span class="dt">title =</span> <span class="st">"autoregressive integrated moving average"</span>)</a>
-<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from Arima object, so skipping labels.</span></a></code></pre></div>
+<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from Arima object; </span></a>
+<a class="sourceLine" id="cb22-11" data-line-number="11"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/arima-1.png" width="480"></p>
 </div>
 <div id="bounded-memory-linear-regression-biglm" class="section level2">
@@ -920,7 +922,8 @@
 <a class="sourceLine" id="cb23-7" data-line-number="7">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(<span class="dt">x =</span> bfit, </a>
 <a class="sourceLine" id="cb23-8" data-line-number="8">                         <span class="dt">title =</span> <span class="st">"bounded memory linear regression"</span>,</a>
 <a class="sourceLine" id="cb23-9" data-line-number="9">                         <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from biglm object, so skipping labels.</span></a></code></pre></div>
+<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from biglm object; </span></a>
+<a class="sourceLine" id="cb23-11" data-line-number="11"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/biglm-1.png" width="384"></p>
 </div>
 <div id="parametric-survival-regression-model-survreg" class="section level2">
@@ -1026,8 +1029,9 @@
 <a class="sourceLine" id="cb27-14" data-line-number="14">  <span class="dt">point.shape =</span> <span class="dv">6</span>,</a>
 <a class="sourceLine" id="cb27-15" data-line-number="15">  <span class="dt">point.size =</span> <span class="dv">5</span></a>
 <a class="sourceLine" id="cb27-16" data-line-number="16">)</a>
-<a class="sourceLine" id="cb27-17" data-line-number="17"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from ridgelm object, so skipping labels.</span></a>
-<a class="sourceLine" id="cb27-18" data-line-number="18"><span class="co">#&gt; Note: No confidence intervals available for regression coefficients from ridgelm object, so skipping whiskers in the plot.</span></a></code></pre></div>
+<a class="sourceLine" id="cb27-17" data-line-number="17"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from ridgelm object; </span></a>
+<a class="sourceLine" id="cb27-18" data-line-number="18"><span class="co">#&gt; skipping labels with stats.</span></a>
+<a class="sourceLine" id="cb27-19" data-line-number="19"><span class="co">#&gt; Note: No confidence intervals available for regression coefficients from ridgelm object, so skipping whiskers in the plot.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/ridgelm-1.png" width="480"></p>
 </div>
 <div id="linear-model-using-generalized-least-squares-gls" class="section level2">
@@ -1090,60 +1094,95 @@
 <a class="sourceLine" id="cb29-15" data-line-number="15">                         <span class="dt">title =</span> <span class="st">"instrumental-variable regression"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/ivreg-1.png" width="480"></p>
 </div>
+<div id="exponential-family-random-graph-models-ergm" class="section level2">
+<h2 class="hasAnchor">
+<a href="#exponential-family-random-graph-models-ergm" class="anchor"></a>exponential-family random graph models (<code>ergm</code>)</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="co"># load the Florentine marriage network data</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/message">suppressPackageStartupMessages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ergm))</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(florentine)</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="co"># fit a model where the propensity to form ties between</span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="co"># families depends on the absolute difference in wealth</span></a>
+<a class="sourceLine" id="cb30-8" data-line-number="8">gest &lt;-<span class="st"> </span><span class="kw">ergm</span>(flomarriage <span class="op">~</span><span class="st"> </span>edges <span class="op">+</span><span class="st"> </span><span class="kw">absdiff</span>(<span class="st">"wealth"</span>))</a>
+<a class="sourceLine" id="cb30-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb30-10" data-line-number="10"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb30-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(<span class="dt">x =</span> gest,</a>
+<a class="sourceLine" id="cb30-12" data-line-number="12">                         <span class="dt">conf.level =</span> <span class="fl">0.99</span>,</a>
+<a class="sourceLine" id="cb30-13" data-line-number="13">                         <span class="dt">title =</span> <span class="st">"exponential-family random graph models"</span>)</a>
+<a class="sourceLine" id="cb30-14" data-line-number="14"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from ergm object; </span></a>
+<a class="sourceLine" id="cb30-15" data-line-number="15"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/ergm-1.png" width="480"></p>
+</div>
+<div id="generalized-autoregressive-conditional-heteroscedastic-garch" class="section level2">
+<h2 class="hasAnchor">
+<a href="#generalized-autoregressive-conditional-heteroscedastic-garch" class="anchor"></a>generalized autoregressive conditional heteroscedastic (<code>garch</code>)</h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tseries)</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(EuStockMarkets)</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">dax &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(EuStockMarkets))[,<span class="st">"DAX"</span>]</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">dax.garch &lt;-<span class="st"> </span>tseries<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tseries/topics/garch">garch</a></span>(<span class="dt">x =</span> dax, <span class="dt">trace =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb31-9" data-line-number="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(<span class="dt">x =</span> dax.garch,</a>
+<a class="sourceLine" id="cb31-10" data-line-number="10">                         <span class="dt">title =</span> <span class="st">"generalized autoregressive </span><span class="ch">\n</span><span class="st">conditional heteroscedastic (GARCH)"</span>)</a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/garch-1.png" width="480"></p>
+</div>
 <div id="dataframes-tbl_df-tbl-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dataframes-tbl_df-tbl-data-frame" class="anchor"></a>dataframes (<code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>)</h2>
 <p>Sometimes you don’t have a model object but a custom dataframe that you want display using this function. If a data frame is to be plotted, it <strong>must</strong> contain columns named <code>term</code> (names of predictors), and <code>estimate</code> (corresponding estimates of coefficients or other quantities of interest). Other optional columns are <code>conf.low</code> and <code>conf.high</code> (for confidence intervals), and <code>p.value</code>. You will also have to specify the type of statistic relevant for regression models (<code>"t"</code>, <code>"z"</code>, <code>"f"</code>) in case you want to display statistical labels.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="co"># set up</span></a>
-<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gapminder)</a>
-<a class="sourceLine" id="cb30-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="co"># data for running regression models</span></a>
-<a class="sourceLine" id="cb30-7" data-line-number="7">df &lt;-</a>
-<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">!=</span><span class="st"> "Oceania"</span>)</a>
-<a class="sourceLine" id="cb30-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb30-10" data-line-number="10"><span class="co"># saving results from regression  </span></a>
-<a class="sourceLine" id="cb30-11" data-line-number="11">df_results &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
-<a class="sourceLine" id="cb30-12" data-line-number="12">  <span class="dt">.l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb30-13" data-line-number="13">    <span class="dt">data =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(df),</a>
-<a class="sourceLine" id="cb30-14" data-line-number="14">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(lifeExp) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(gdpPercap) <span class="op">+</span><span class="st"> </span>(gdpPercap <span class="op">|</span></a>
-<a class="sourceLine" id="cb30-15" data-line-number="15"><span class="st">                                                          </span>country)),</a>
-<a class="sourceLine" id="cb30-16" data-line-number="16">    <span class="dt">grouping.vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">alist</a></span>(continent),</a>
-<a class="sourceLine" id="cb30-17" data-line-number="17">    <span class="dt">output =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"tidy"</span>, <span class="st">"glance"</span>)</a>
-<a class="sourceLine" id="cb30-18" data-line-number="18">  ),</a>
-<a class="sourceLine" id="cb30-19" data-line-number="19">  <span class="dt">.f =</span> groupedstats<span class="op">::</span>grouped_lmer</a>
-<a class="sourceLine" id="cb30-20" data-line-number="20">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">full_join</a></span>(<span class="dt">x =</span> .[[<span class="dv">1</span>]], <span class="dt">y =</span> .[[<span class="dv">2</span>]], <span class="dt">by =</span> <span class="st">"continent"</span>)</a>
-<a class="sourceLine" id="cb30-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb30-23" data-line-number="23"><span class="co"># modifying the results so to be compatible with the `ggcoefstats` requirement</span></a>
-<a class="sourceLine" id="cb30-24" data-line-number="24">(df_results <span class="op">%&lt;&gt;%</span></a>
-<a class="sourceLine" id="cb30-25" data-line-number="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-26" data-line-number="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">.data =</span> .,</a>
-<a class="sourceLine" id="cb30-27" data-line-number="27">                <span class="op">-</span>effect,</a>
-<a class="sourceLine" id="cb30-28" data-line-number="28">                <span class="op">-</span>term,</a>
-<a class="sourceLine" id="cb30-29" data-line-number="29">                <span class="dt">term =</span> continent,</a>
-<a class="sourceLine" id="cb30-30" data-line-number="30">                <span class="dt">statistic =</span> t.value))</a>
-<a class="sourceLine" id="cb30-31" data-line-number="31"><span class="co">#&gt; # A tibble: 4 x 14</span></a>
-<a class="sourceLine" id="cb30-32" data-line-number="32"><span class="co">#&gt;   term  estimate std.error statistic conf.low conf.high  p.value</span></a>
-<a class="sourceLine" id="cb30-33" data-line-number="33"><span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb30-34" data-line-number="34"><span class="co">#&gt; 1 Asia      7.35     1.27       5.79    4.86       9.84 7.00e- 9</span></a>
-<a class="sourceLine" id="cb30-35" data-line-number="35"><span class="co">#&gt; 2 Euro~     1.52     0.238      6.36    1.05       1.98 2.02e-10</span></a>
-<a class="sourceLine" id="cb30-36" data-line-number="36"><span class="co">#&gt; 3 Afri~     1.54     0.348      4.43    0.860      2.22 9.49e- 6</span></a>
-<a class="sourceLine" id="cb30-37" data-line-number="37"><span class="co">#&gt; 4 Amer~     1.88     0.233      8.06    1.42       2.34 7.64e-16</span></a>
-<a class="sourceLine" id="cb30-38" data-line-number="38"><span class="co">#&gt; # ... with 7 more variables: significance &lt;chr&gt;, sigma &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb30-39" data-line-number="39"><span class="co">#&gt; #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, REMLcrit &lt;dbl&gt;, df.residual &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb30-40" data-line-number="40"></a>
-<a class="sourceLine" id="cb30-41" data-line-number="41"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb30-42" data-line-number="42">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb30-43" data-line-number="43">  <span class="dt">x =</span> df_results,</a>
-<a class="sourceLine" id="cb30-44" data-line-number="44">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
-<a class="sourceLine" id="cb30-45" data-line-number="45">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,</a>
-<a class="sourceLine" id="cb30-46" data-line-number="46">  <span class="dt">title =</span> <span class="st">"Relationship between life expectancy and GDP"</span>,</a>
-<a class="sourceLine" id="cb30-47" data-line-number="47">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder foundation"</span>,</a>
-<a class="sourceLine" id="cb30-48" data-line-number="48">  <span class="dt">caption =</span> <span class="st">"Data from Oceania continent not included"</span></a>
-<a class="sourceLine" id="cb30-49" data-line-number="49">)</a>
-<a class="sourceLine" id="cb30-50" data-line-number="50"><span class="co">#&gt; Note: No model diagnostics information available for the object of class tbl_df .</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># set up</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gapminder)</a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="co"># data for running regression models</span></a>
+<a class="sourceLine" id="cb32-7" data-line-number="7">df &lt;-</a>
+<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">!=</span><span class="st"> "Oceania"</span>)</a>
+<a class="sourceLine" id="cb32-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb32-10" data-line-number="10"><span class="co"># saving results from regression  </span></a>
+<a class="sourceLine" id="cb32-11" data-line-number="11">df_results &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(</a>
+<a class="sourceLine" id="cb32-12" data-line-number="12">  <span class="dt">.l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb32-13" data-line-number="13">    <span class="dt">data =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(df),</a>
+<a class="sourceLine" id="cb32-14" data-line-number="14">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(lifeExp) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(gdpPercap) <span class="op">+</span><span class="st"> </span>(gdpPercap <span class="op">|</span></a>
+<a class="sourceLine" id="cb32-15" data-line-number="15"><span class="st">                                                          </span>country)),</a>
+<a class="sourceLine" id="cb32-16" data-line-number="16">    <span class="dt">grouping.vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">alist</a></span>(continent),</a>
+<a class="sourceLine" id="cb32-17" data-line-number="17">    <span class="dt">output =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"tidy"</span>, <span class="st">"glance"</span>)</a>
+<a class="sourceLine" id="cb32-18" data-line-number="18">  ),</a>
+<a class="sourceLine" id="cb32-19" data-line-number="19">  <span class="dt">.f =</span> groupedstats<span class="op">::</span>grouped_lmer</a>
+<a class="sourceLine" id="cb32-20" data-line-number="20">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/join">full_join</a></span>(<span class="dt">x =</span> .[[<span class="dv">1</span>]], <span class="dt">y =</span> .[[<span class="dv">2</span>]], <span class="dt">by =</span> <span class="st">"continent"</span>)</a>
+<a class="sourceLine" id="cb32-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb32-23" data-line-number="23"><span class="co"># modifying the results so to be compatible with the `ggcoefstats` requirement</span></a>
+<a class="sourceLine" id="cb32-24" data-line-number="24">(df_results <span class="op">%&lt;&gt;%</span></a>
+<a class="sourceLine" id="cb32-25" data-line-number="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="dt">.data =</span> ., term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-26" data-line-number="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(<span class="dt">.data =</span> .,</a>
+<a class="sourceLine" id="cb32-27" data-line-number="27">                <span class="op">-</span>effect,</a>
+<a class="sourceLine" id="cb32-28" data-line-number="28">                <span class="op">-</span>term,</a>
+<a class="sourceLine" id="cb32-29" data-line-number="29">                <span class="dt">term =</span> continent,</a>
+<a class="sourceLine" id="cb32-30" data-line-number="30">                <span class="dt">statistic =</span> t.value))</a>
+<a class="sourceLine" id="cb32-31" data-line-number="31"><span class="co">#&gt; # A tibble: 4 x 14</span></a>
+<a class="sourceLine" id="cb32-32" data-line-number="32"><span class="co">#&gt;   term  estimate std.error statistic conf.low conf.high  p.value</span></a>
+<a class="sourceLine" id="cb32-33" data-line-number="33"><span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb32-34" data-line-number="34"><span class="co">#&gt; 1 Asia      7.35     1.27       5.79    4.86       9.84 7.00e- 9</span></a>
+<a class="sourceLine" id="cb32-35" data-line-number="35"><span class="co">#&gt; 2 Euro~     1.52     0.238      6.36    1.05       1.98 2.02e-10</span></a>
+<a class="sourceLine" id="cb32-36" data-line-number="36"><span class="co">#&gt; 3 Afri~     1.54     0.348      4.43    0.860      2.22 9.49e- 6</span></a>
+<a class="sourceLine" id="cb32-37" data-line-number="37"><span class="co">#&gt; 4 Amer~     1.88     0.233      8.06    1.42       2.34 7.64e-16</span></a>
+<a class="sourceLine" id="cb32-38" data-line-number="38"><span class="co">#&gt; # ... with 7 more variables: significance &lt;chr&gt;, sigma &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb32-39" data-line-number="39"><span class="co">#&gt; #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, REMLcrit &lt;dbl&gt;, df.residual &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb32-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb32-41" data-line-number="41"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb32-42" data-line-number="42">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggcoefstats">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb32-43" data-line-number="43">  <span class="dt">x =</span> df_results,</a>
+<a class="sourceLine" id="cb32-44" data-line-number="44">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
+<a class="sourceLine" id="cb32-45" data-line-number="45">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,</a>
+<a class="sourceLine" id="cb32-46" data-line-number="46">  <span class="dt">title =</span> <span class="st">"Relationship between life expectancy and GDP"</span>,</a>
+<a class="sourceLine" id="cb32-47" data-line-number="47">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder foundation"</span>,</a>
+<a class="sourceLine" id="cb32-48" data-line-number="48">  <span class="dt">caption =</span> <span class="st">"Data from Oceania continent not included"</span></a>
+<a class="sourceLine" id="cb32-49" data-line-number="49">)</a>
+<a class="sourceLine" id="cb32-50" data-line-number="50"><span class="co">#&gt; Note: No model diagnostics information available for the object of class tbl_df .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/dataframe-1.png" width="576"></p>
 </div>
 <div id="and-much-more" class="section level2">
@@ -1198,6 +1237,8 @@
       <li><a href="#quantile-regression-rq">quantile regression (<code>rq</code>)</a></li>
       <li><a href="#nonlinear-quantile-regression-estimates-nlrq">nonlinear quantile regression estimates (<code>nlrq</code>)</a></li>
       <li><a href="#instrumental-variable-regression-ivreg">instrumental-variable regression (<code>ivreg</code>)</a></li>
+      <li><a href="#exponential-family-random-graph-models-ergm">exponential-family random graph models (<code>ergm</code>)</a></li>
+      <li><a href="#generalized-autoregressive-conditional-heteroscedastic-garch">generalized autoregressive conditional heteroscedastic (<code>garch</code>)</a></li>
       <li><a href="#dataframes-tbl_df-tbl-data-frame">dataframes (<code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>)</a></li>
       <li><a href="#and-much-more">And much more…</a></li>
       <li><a href="#suggestions">Suggestions</a></li>

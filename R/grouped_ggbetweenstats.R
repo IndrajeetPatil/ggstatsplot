@@ -101,11 +101,15 @@ grouped_ggbetweenstats <- function(data,
 
   # create a list of function call to check
   param_list <- base::as.list(base::match.call())
+
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
 
   # ======================== preparing dataframe ==========================
-  if (!base::missing(outlier.label) && "outlier.tagging" %in% names(param_list)) {
+
+  # prepare dataframe based on outlier tagging requirements
+  if (!base::missing(outlier.label) &&
+      "outlier.tagging" %in% names(param_list)) {
     df <-
       dplyr::select(
         .data = data,

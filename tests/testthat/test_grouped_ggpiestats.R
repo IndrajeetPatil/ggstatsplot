@@ -7,6 +7,17 @@ testthat::test_that(
 
     #--------------------- only main variable -------------------------------
 
+    ## expecting error
+    testthat::expect_error(
+      ggstatsplot::grouped_ggpiestats(
+        data = mtcars,
+        main = cyl,
+        simulate.p.value = TRUE,
+        B = 3000,
+        messages = FALSE
+      )
+    )
+
     ## without counts
 
     # when arguments are entered as bare expressions
@@ -82,6 +93,17 @@ testthat::test_that(
         class %in% c("suv", "midsize"),
         trans %in% c("auto(l4)", "auto(l5)")
       )
+
+    ## expecting error message
+    testthat::expect_output(
+      ggstatsplot::grouped_ggpiestats(
+        data = mpg_short,
+        main = cyl,
+        condition = class,
+        grouping.var = class,
+        messages = TRUE
+      )
+    )
 
     # when arguments are entered as bare expressions
     set.seed(123)

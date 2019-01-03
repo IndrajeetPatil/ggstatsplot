@@ -1074,6 +1074,43 @@ ggstatsplot::ggcoefstats(x = ivr,
 ```
 
 
+
+## exponential-family random graph models (`ergm`)
+
+```{r ergm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# load the Florentine marriage network data
+set.seed(123)
+suppressPackageStartupMessages(library(ergm))
+data(florentine)
+
+# fit a model where the propensity to form ties between
+# families depends on the absolute difference in wealth
+gest <- ergm(flomarriage ~ edges + absdiff("wealth"))
+
+# plot
+ggstatsplot::ggcoefstats(x = gest,
+                         conf.level = 0.99,
+                         title = "exponential-family random graph models")
+```
+
+## generalized autoregressive conditional heteroscedastic (`garch`)
+
+```{r garch, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(tseries)
+data(EuStockMarkets)
+dax <- diff(log(EuStockMarkets))[,"DAX"]
+dax.garch <- tseries::garch(x = dax, trace = FALSE)
+
+# plot
+ggstatsplot::ggcoefstats(x = dax.garch,
+                         title = "generalized autoregressive \nconditional heteroscedastic (GARCH)")
+```
+
+
+
+
 ## dataframes (`tbl_df`, `tbl`, `data.frame`)
 
 Sometimes you don't have a model object but a custom dataframe that you want

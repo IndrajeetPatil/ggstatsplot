@@ -161,26 +161,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # -------------- with model object --------------------------------------
-#' 
+#'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#' 
+#'
 #' # to get a plot
 #' ggstatsplot::ggcoefstats(x = mod, output = "plot")
-#' 
+#'
 #' # to get a tidy dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
-#' 
+#'
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#' 
+#'
 #' # to get augmented dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
-#' 
+#'
 #' # -------------- with custom dataframe -----------------------------------
-#' 
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -246,7 +246,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#' 
+#'
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -333,7 +333,7 @@ ggcoefstats <- function(x,
   unsupported.mods <- c("glht", "kmeans")
 
   # models for which glance is not supported
-  noglance.mods <- c("aovlist", "anova", "rlmerMod", "TukeyHSD")
+  noglance.mods <- c("aovlist", "anova", "rlmerMod", "TukeyHSD", "coeftest")
 
   # models for which the diagnostics is not available (AIC, BIC, LL)
   nodiagnostics.mods <-
@@ -352,7 +352,7 @@ ggcoefstats <- function(x,
   # =================== types of models =====================================
 
   # models for which statistic is F-value
-  f.mods <- c("aov", "aovlist", "anova")
+  f.mods <- c("aov", "aovlist", "anova", "Gam")
 
   # =========================== checking if object is supported ==============
 
@@ -397,7 +397,7 @@ ggcoefstats <- function(x,
     ))
   }
 
-  # ===================================== dataframe =========================
+  # ============================= dataframe ===============================
   if (class(x)[[1]] %in% df.mods) {
     # check for the two necessary columns
     if (!any(names(x) %in% c("term", "estimate"))) {
@@ -433,7 +433,8 @@ ggcoefstats <- function(x,
 
     # set tidy_df to entered dataframe
     tidy_df <- tibble::as_tibble(x)
-    # ===================================== lmm tidying =========================
+
+    # ===================================== lmm tidying =======================
   } else if (class(x)[[1]] %in% lmm.mods) {
     tidy_df <-
       broom.mixed::tidy(
@@ -617,7 +618,7 @@ ggcoefstats <- function(x,
       crayon::blue(
         "No p-values and/or statistic available for regression coefficients from",
         crayon::yellow(class(x)[[1]]),
-        "object, so skipping labels.\n"
+        "object; \nskipping labels with stats.\n"
       ),
       sep = ""
     ))

@@ -137,8 +137,11 @@ grouped_ggpiestats <- function(data,
   grouping.var <- rlang::ensym(grouping.var)
 
   # ======================== preparing dataframe =============================
-  if (!missing(condition)) { # if condition variable *is* provided
-    if (missing(counts)) { # if the data is not tabled
+
+  # if condition variable *is* provided
+  if (!missing(condition)) {
+    # if the data is not tabled
+    if (missing(counts)) {
       df <-
         dplyr::select(
           .data = data,
@@ -151,7 +154,6 @@ grouped_ggpiestats <- function(data,
           title.text = !!rlang::enquo(grouping.var)
         )
     } else if (!missing(counts)) {
-
       # if data is tabled
       df <-
         dplyr::select(
@@ -167,7 +169,6 @@ grouped_ggpiestats <- function(data,
         )
     }
   } else if (missing(condition)) {
-
     # if condition variable is *not* provided
     if (base::missing(counts)) {
       df <-
@@ -181,6 +182,7 @@ grouped_ggpiestats <- function(data,
           title.text = !!rlang::enquo(grouping.var)
         )
     } else if (!missing(counts)) {
+      # if data is tabled
       df <-
         dplyr::select(
           .data = data,
@@ -247,7 +249,6 @@ grouped_ggpiestats <- function(data,
       title = glue::glue("{title.prefix}: {names(df)}")
     )
   }
-
 
   # ==================== creating a list of plots =======================
 
