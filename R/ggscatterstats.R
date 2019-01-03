@@ -98,15 +98,15 @@
 #' }
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_tibble(x = .)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -287,6 +287,9 @@ ggscatterstats <- function(data,
   }
 
   #--------------------------------- basic plot ---------------------------
+  pos <- position_jitter(width = point.width.jitter,
+                         height = point.height.jitter,
+                         seed = 123)
 
   # if user has not specified colors, then use a color palette
   if (is.null(xfill) || is.null(yfill)) {
@@ -317,10 +320,7 @@ ggscatterstats <- function(data,
       size = point.size,
       alpha = point.alpha,
       stroke = 0,
-      position = ggplot2::position_jitter(
-        width = point.width.jitter,
-        height = point.height.jitter
-      ),
+      position = pos,
       na.rm = TRUE
     ) +
     ggplot2::geom_smooth(
@@ -514,7 +514,7 @@ ggscatterstats <- function(data,
         point.padding = 0.5,
         segment.color = "black",
         force = 2,
-        seed = 123,
+        position = pos,
         na.rm = TRUE
       )
   }
