@@ -130,7 +130,6 @@ grouped_ggcorrmat <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
-#  cor.vars <- rlang::enexpr(cor.vars)
 
   # getting the dataframe ready
   if("cor.vars" %in% names(param_list)) {
@@ -144,15 +143,14 @@ grouped_ggcorrmat <- function(data,
         .data = .,
         title.text = !!rlang::enquo(grouping.var)
       )
-#    return(df)
   } else {
     df <- data %>%
       dplyr::mutate(
         .data = .,
         title.text = !!rlang::enquo(grouping.var)
       )
-#    return(df)
   }
+
   # creating a nested dataframe
   df %<>%
     dplyr::mutate_if(
@@ -169,7 +167,7 @@ grouped_ggcorrmat <- function(data,
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
-# return(df)
+
   # ===================== grouped plot ===================================
 
   # see which method was used to specify type of correlation
