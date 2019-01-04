@@ -222,12 +222,12 @@ testthat::test_that(
 
     # checking intercepts
     testthat::expect_equal(pb$plot$plot_env$x_label_pos,
-      0.8066451,
+      0.811,
       tolerance = 1e-3
     )
     testthat::expect_equal(pb$plot$plot_env$y_label_pos,
-      13.37923,
-      tolerance = 1e-3
+      13.4,
+      tolerance = 1e-1
     )
     testthat::expect_equal(pb$data[[3]]$xintercept[[1]],
       median(ggplot2::msleep$sleep_cycle, na.rm = TRUE),
@@ -240,8 +240,8 @@ testthat::test_that(
 
     # checking panel parameters
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(0.0405715, 1.5722818),
-      tolerance = 0.001
+      c(0.0472, 1.5748),
+      tolerance = 0.01
     )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$x.labels,
