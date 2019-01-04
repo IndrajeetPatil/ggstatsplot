@@ -123,6 +123,23 @@ testthat::test_that(
     testthat::expect_equal(pb$data[[3]]$size[1], 14L)
     testthat::expect_identical(pb$data[[2]]$colour[1], "white")
     testthat::expect_identical(pb$data[[3]]$colour[1], "white")
+
+    # checking if correlation variable names are being read properly
+    set.seed(123)
+    df2 <- ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = sleep_total:awake,
+      cor.vars.names = c("sleep (total)", "sleep (REM)", "sleep (cycle)", "awake"),
+      type = "r",
+      output = "p",
+      p.adjust.method = "fdr",
+      messages = FALSE
+    )
+
+    testthat::expect_identical(
+      df2$variable,
+      c("sleep (total)", "sleep (REM)", "sleep (cycle)", "awake")
+    )
   }
 )
 
@@ -383,6 +400,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking sample sizes",
   code = {
+
     # dataframe with sample sizes
     set.seed(123)
     df <- ggstatsplot::ggcorrmat(

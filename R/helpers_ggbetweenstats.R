@@ -225,7 +225,8 @@ long_to_wide_converter <- function(data,
 #' @examples
 #' \dontrun{
 #' ggstatsplot:::lm_effsize_standardizer(
-#'   stats::lm(formula = brainwt ~ vore, data = ggplot2::msleep),
+#'   object = stats::lm(formula = brainwt ~ vore, data = ggplot2::msleep),
+#'   effsize = "eta",
 #'   partial = FALSE,
 #'   conf.level = 0.99,
 #'   nboot = 50

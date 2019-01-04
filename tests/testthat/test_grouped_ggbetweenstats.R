@@ -35,7 +35,17 @@ testthat::test_that(
       )
     )
 
-    # `outlier.label` is numeric
+    # outlier tagging is not required
+    ggstatsplot::grouped_ggbetweenstats(
+      data = dat,
+      x = genre,
+      y = rating,
+      grouping.var = mpaa,
+      outlier.tagging = FALSE,
+      messages = TRUE
+    )
+
+    # `outlier.label` is not specified
     set.seed(123)
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggbetweenstats(

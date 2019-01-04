@@ -372,9 +372,9 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with non-partial variants of effect size for f-statistic",
   code = {
-    set.seed(123)
 
     # model
+    set.seed(123)
     mod <- stats::aov(
       data = ggplot2::msleep,
       formula = sleep_rem ~ brainwt * vore
@@ -1175,11 +1175,22 @@ testthat::test_that(
     df2.broom <- tibble::as_tibble(broom.mixed::augment(mod2))
     df2.ggstats <- ggstatsplot::ggcoefstats(x = mod2, output = "augment")
 
+    # model with F-statistic
+    set.seed(123)
+    mod3 <- stats::aov(
+      data = ggplot2::msleep,
+      formula = sleep_rem ~ brainwt * vore
+    )
+    df3.broom <- tibble::as_tibble(broom::augment(mod3))
+    df3.ggstats <- ggstatsplot::ggcoefstats(x = mod3, output = "augment")
+
     # checking if they are equal
     testthat::expect_identical(df1.broom, df1.ggstats)
     testthat::expect_identical(df2.broom, df2.ggstats)
+    testthat::expect_identical(df3.broom, df3.ggstats)
     testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
     testthat::expect_true(inherits(df2.ggstats, what = "tbl_df"))
+    testthat::expect_true(inherits(df3.ggstats, what = "tbl_df"))
   }
 )
 

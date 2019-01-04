@@ -320,6 +320,7 @@ ggcoefstats <- function(x,
                         ggstatsplot.layer = TRUE,
                         messages = FALSE,
                         ...) {
+
   # =================== list of objects (for tidy and glance) ================
 
   # dataframe objects
@@ -398,6 +399,7 @@ ggcoefstats <- function(x,
   }
 
   # ============================= dataframe ===============================
+
   if (class(x)[[1]] %in% df.mods) {
     # check for the two necessary columns
     if (!any(names(x) %in% c("term", "estimate"))) {
@@ -452,7 +454,7 @@ ggcoefstats <- function(x,
 
     # creating dataframe
     tidy_df <-
-      lm_effsize_ci(
+      lm_effsize_standardizer(
         object = x,
         effsize = effsize,
         partial = partial,
@@ -461,29 +463,17 @@ ggcoefstats <- function(x,
       ) %>%
       dplyr::rename(.data = ., statistic = F.value)
 
-    # renaming the effect size to estimate
+    # renaming the xlab according to the estimate chosen
     if (effsize == "eta") {
-      # partial eta-squared
       if (isTRUE(partial)) {
-        tidy_df %<>%
-          dplyr::rename(.data = ., estimate = partial.etasq)
         xlab <- "partial eta-squared"
       } else {
-        # eta-squared
-        tidy_df %<>%
-          dplyr::rename(.data = ., estimate = etasq)
         xlab <- "eta-squared"
       }
     } else if (effsize == "omega") {
-      # partial omega-squared
       if (isTRUE(partial)) {
-        tidy_df %<>%
-          dplyr::rename(.data = ., estimate = partial.omegasq)
         xlab <- "partial omega-squared"
       } else {
-        # omega-squared
-        tidy_df %<>%
-          dplyr::rename(.data = ., estimate = omegasq)
         xlab <- "omega-squared"
       }
     }
@@ -980,9 +970,6 @@ ggcoefstats <- function(x,
       # for mixed-effects models
       return(broom.mixed::augment(x = x) %>%
         tibble::as_tibble(x = .))
-    } else if (class(x)[[1]] %in% df.mods) {
-      # no augment available when dataframes are entered
-      return(tidy_df)
     } else {
       # everything else
       return(broom::augment(x = x) %>%
