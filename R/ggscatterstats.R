@@ -56,10 +56,9 @@
 #'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption.
 #' @param k Number of decimal places expected for results.
-#' @param point.width.jitter Degree of jitter in `x` direction. Defaults to 40\%
-#'   of the resolution of the data.
-#' @param point.height.jitter Degree of jitter in `y` direction. Defaults to
-#'   40\% of the resolution of the data.
+#' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
+#'   direction, respectively. Defaults to `0` (0%) of the resolution of the
+#'   data.
 #' @param axes.range.restrict Logical decides whether to restrict the axes
 #'   values ranges to min and max values of the `x` and `y` variables (Default:
 #'   `FALSE`).
@@ -98,15 +97,15 @@
 #' }
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # creating dataframe
 #' mtcars_new <- mtcars %>%
 #'   tibble::rownames_to_column(., var = "car") %>%
 #'   tibble::as_tibble(x = .)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggscatterstats(
 #'   data = mtcars_new,
@@ -139,8 +138,8 @@ ggscatterstats <- function(data,
                            point.color = "black",
                            point.size = 3,
                            point.alpha = 0.4,
-                           point.width.jitter = NULL,
-                           point.height.jitter = NULL,
+                           point.width.jitter = 0,
+                           point.height.jitter = 0,
                            line.size = 1.5,
                            line.color = "blue",
                            marginal = TRUE,
@@ -287,9 +286,11 @@ ggscatterstats <- function(data,
   }
 
   #--------------------------------- basic plot ---------------------------
-  pos <- position_jitter(width = point.width.jitter,
-                         height = point.height.jitter,
-                         seed = 123)
+  pos <- position_jitter(
+    width = point.width.jitter,
+    height = point.height.jitter,
+    seed = 123
+  )
 
   # if user has not specified colors, then use a color palette
   if (is.null(xfill) || is.null(yfill)) {

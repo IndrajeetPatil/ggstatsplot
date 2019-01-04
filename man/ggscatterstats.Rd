@@ -8,8 +8,8 @@ ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
   bf.prior = 0.707, bf.message = FALSE, label.var = NULL,
   label.expression = NULL, xlab = NULL, ylab = NULL, method = "lm",
   method.args = list(), formula = y ~ x, point.color = "black",
-  point.size = 3, point.alpha = 0.4, point.width.jitter = NULL,
-  point.height.jitter = NULL, line.size = 1.5, line.color = "blue",
+  point.size = 3, point.alpha = 0.4, point.width.jitter = 0,
+  point.height.jitter = 0, line.size = 1.5, line.color = "blue",
   marginal = TRUE, marginal.type = "histogram", marginal.size = 5,
   margins = c("both", "x", "y"), package = "wesanderson",
   palette = "Royal1", direction = 1, xfill = "#009E73",
@@ -84,11 +84,9 @@ function defined by \code{method}.}
 \item{point.color, point.size, point.alpha}{Aesthetics specifying geom point
 (defaults: \code{point.color = "black"}, \code{point.size = 3},\code{point.alpha = 0.4}).}
 
-\item{point.width.jitter}{Degree of jitter in \code{x} direction. Defaults to 40\%
-of the resolution of the data.}
-
-\item{point.height.jitter}{Degree of jitter in \code{y} direction. Defaults to
-40\% of the resolution of the data.}
+\item{point.width.jitter, point.height.jitter}{Degree of jitter in \code{x} and \code{y}
+direction, respectively. Defaults to \code{0} (0%) of the resolution of the
+data.}
 
 \item{line.size}{Size for the regression line.}
 

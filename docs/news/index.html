@@ -186,6 +186,8 @@
 <li>
 <code>ggscatterstats</code> and its <code>grouped_</code> variant accept both character and bare exressions as input to arguments <code>label.var</code> and <code>labe.expression</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/110'>#110</a>).</li>
 <li>To be consistent with rest of the functions in the package, both Pearson’s <em>r</em>, Spearman’s <em>rho</em>, and robust percentage bend correlations also display information about statistic associated with these tests.</li>
+<li>
+<code>ggscatterstats</code>, by default, showed jittered data points (because it relied on <code>position_jitter</code> defaults). This could be visually inaccurate and, therefore, <code>ggscatterstats</code> now displays points without any jitter. The user can introduce jitter if they wish to using <code>point.width.jitter</code> and <code>point.height.jitter</code> arguments.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

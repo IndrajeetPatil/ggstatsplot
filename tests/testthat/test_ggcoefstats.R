@@ -528,7 +528,6 @@ testthat::test_that(
   }
 )
 
-
 # check glm output ----------------------------------------------
 
 testthat::test_that(
@@ -548,7 +547,7 @@ testthat::test_that(
     x1 <- stats::rnorm(50)
     y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
     df <- data.frame(x = x1, y = y1) %>%
-      tibble::as_data_frame(x = .)
+      tibble::as_tibble(x = .)
 
     # models
     mod1 <- stats::glm(counts ~ outcome + treatment, family = poisson())
@@ -670,7 +669,6 @@ testthat::test_that(
   }
 )
 
-
 # check aareg output ----------------------------------------------
 
 testthat::test_that(
@@ -708,7 +706,6 @@ testthat::test_that(
     )
   }
 )
-
 
 # check clm and polr models (minimal) ----------------------------------------
 

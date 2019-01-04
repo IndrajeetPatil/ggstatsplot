@@ -9,41 +9,43 @@ testthat::test_that(
 
     # data
     data(breslow.dat)
+
+    # new data
+    set.seed(123)
     x1 <- stats::rnorm(50)
     y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
     df_quasi <- data.frame(x = x1, y = y1) %>%
-      tibble::as_data_frame(x = .)
+      tibble::as_tibble(x = .)
 
     # model
     set.seed(123)
     mod <-
       robust::glmRob(
-        formula = sumY ~ Age10 + Base4 * Trt,
+        formula = sumY ~ Base4 * Trt,
         family = poisson(),
         data = breslow.dat,
         method = "cubif"
       )
 
-
     # create a dataframe with labels column
     df <- ggstatsplot:::ggcoefstats_label_maker(
       x = mod,
       tidy_df = broom::tidy(mod),
-      broom::glance(mod)
+      glance_df = broom::glance(mod)
     )
 
     # checking the label
     testthat::expect_equal(
       df$label,
       c(
-        "list(~italic(beta)==9560.74, ~italic(z)==1.167672e+12, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-3867.83, ~italic(z)==-1.923114e+19, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==416.31, ~italic(z)==8.012557e+17, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==14153.05, ~italic(z)==2.111098e+20, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-1978.37, ~italic(z)==-3.807709e+18, ~italic(p)<= 0.001)"
+        "list(~italic(beta)==2.01, ~italic(z)==12.19, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==0.19, ~italic(z)==5.59, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-0.22, ~italic(z)==-1.01, ~italic(p)==0.312)",
+        "list(~italic(beta)==-0.03, ~italic(z)==-0.82, ~italic(p)==0.411)"
       )
     )
 
+    # certain families are still not supported in robust package
     testthat::expect_error(ggstatsplot:::ggcoefstats_label_maker(robust::glmRob(
       formula = y ~ x,
       family = quasi(variance = "mu", link = "log"),

@@ -23,6 +23,11 @@ MAJOR CHANGES
   - To be consistent with rest of the functions in the package, both Pearson's
     *r*, Spearman's *rho*, and robust percentage bend correlations also display
     information about statistic associated with these tests.
+  - `ggscatterstats`, by default, showed jittered data points (because it relied
+    on `position_jitter` defaults). This could be visually inaccurate and,
+    therefore, `ggscatterstats` now displays points without any jitter. The user
+    can introduce jitter if they wish to using `point.width.jitter` and
+    `point.height.jitter` arguments.
 
 MINOR CHANGES
 

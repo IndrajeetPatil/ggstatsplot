@@ -27,10 +27,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
@@ -108,18 +108,18 @@ grouped_ggbetweenstats <- function(data,
   }
 
   # check that conditioning and grouping.var are different
-    if (as.character(param_list$x) == as.character(param_list$grouping.var)) {
-      base::message(cat(
-        crayon::red("\nError: "),
-        crayon::blue(
-          "Identical variable (",
-          crayon::yellow(param_list$x),
-          ") was used for both grouping and x axis, which is not allowed.\n"
-        ),
-        sep = ""
-      ))
-      base::return(base::invisible(param_list$x))
-    }
+  if (as.character(param_list$x) == as.character(param_list$grouping.var)) {
+    base::message(cat(
+      crayon::red("\nError: "),
+      crayon::blue(
+        "Identical variable (",
+        crayon::yellow(param_list$x),
+        ") was used for both grouping and x axis, which is not allowed.\n"
+      ),
+      sep = ""
+    ))
+    base::return(base::invisible(param_list$x))
+  }
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
@@ -128,7 +128,7 @@ grouped_ggbetweenstats <- function(data,
 
   # prepare dataframe based on outlier tagging requirements
   if (!base::missing(outlier.label) &&
-      "outlier.tagging" %in% names(param_list)) {
+    "outlier.tagging" %in% names(param_list)) {
     df <-
       dplyr::select(
         .data = data,
@@ -141,10 +141,12 @@ grouped_ggbetweenstats <- function(data,
         .data = .,
         title.text = !!rlang::enquo(grouping.var)
       ) %>%
-      dplyr::filter(.data = .,
-                    !is.na(!!rlang::enquo(x)),
-                    !is.na(!!rlang::enquo(y)),
-                    !is.na(!!rlang::enquo(grouping.var)))
+      dplyr::filter(
+        .data = .,
+        !is.na(!!rlang::enquo(x)),
+        !is.na(!!rlang::enquo(y)),
+        !is.na(!!rlang::enquo(grouping.var))
+      )
   } else {
     df <-
       dplyr::select(

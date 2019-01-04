@@ -187,8 +187,8 @@ subtitle.</p>
   <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>, <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>point.height.jitter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>point.height.jitter</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>line.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>marginal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>marginal.type</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>, <span class='kw'>marginal.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>margins</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"both"</span>,
   <span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"wesanderson"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Royal1"</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>xfill</span> <span class='kw'>=</span> <span class='st'>"#009E73"</span>, <span class='kw'>yfill</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>xalpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -318,13 +318,15 @@ function defined by <code>method</code>.</p></td>
     </tr>
     <tr>
       <th>point.width.jitter</th>
-      <td><p>Degree of jitter in <code>x</code> direction. Defaults to 40%
-of the resolution of the data.</p></td>
+      <td><p>Degree of jitter in <code>x</code> and <code>y</code>
+direction, respectively. Defaults to <code>0</code> (0<!-- %) of the resolution of the -->
+data.</p></td>
     </tr>
     <tr>
       <th>point.height.jitter</th>
-      <td><p>Degree of jitter in <code>y</code> direction. Defaults to
-40% of the resolution of the data.</p></td>
+      <td><p>Degree of jitter in <code>x</code> and <code>y</code>
+direction, respectively. Defaults to <code>0</code> (0<!-- %) of the resolution of the -->
+data.</p></td>
     </tr>
     <tr>
       <th>line.color</th>

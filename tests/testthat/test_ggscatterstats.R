@@ -162,6 +162,10 @@ testthat::test_that(
         type = "r",
         centrality.para = "mean",
         conf.level = 0.90,
+        point.color = "red",
+        point.size = 5,
+        point.height.jitter = 0.40,
+        point.width.jitter = 0.20,
         marginal = FALSE,
         messages = FALSE
       )
@@ -190,6 +194,15 @@ testthat::test_that(
       mean(ggplot2::msleep$bodywt, na.rm = TRUE),
       tolerance = 1e-3
     )
+
+    # checking layered data
+    testthat::expect_equal(unique(pb$data[[1]]$size), 5L)
+    testthat::expect_equal(unique(pb$data[[1]]$shape), 19L)
+    testthat::expect_identical(unique(pb$data[[1]]$colour), "red")
+
+    testthat::expect_equal(pb$plot$plot_env$pos$height, 0.4, tolerance = 0.01)
+    testthat::expect_equal(pb$plot$plot_env$pos$width, 0.2, tolerance = 0.01)
+    testthat::expect_equal(pb$plot$plot_env$pos$seed, 123L)
   }
 )
 
@@ -199,10 +212,9 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking median display",
   code = {
+
     # creating the plot
     set.seed(123)
-
-    # plot
     p <-
       suppressMessages(ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
@@ -222,12 +234,12 @@ testthat::test_that(
 
     # checking intercepts
     testthat::expect_equal(pb$plot$plot_env$x_label_pos,
-      0.811,
+      0.8083333,
       tolerance = 1e-3
     )
     testthat::expect_equal(pb$plot$plot_env$y_label_pos,
-      13.4,
-      tolerance = 1e-1
+      13.39839,
+      tolerance = 1e-3
     )
     testthat::expect_equal(pb$data[[3]]$xintercept[[1]],
       median(ggplot2::msleep$sleep_cycle, na.rm = TRUE),
@@ -418,18 +430,47 @@ testthat::test_that(
 testthat::test_that(
   desc = "with marginals",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
-    p <-
+    p1 <-
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
         y = bodywt,
+        margins = "both",
+        messages = TRUE
+      )
+
+    p2 <-
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        margins = "x",
+        messages = TRUE
+      )
+
+    p3 <-
+      ggstatsplot::ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        margins = "y",
         messages = TRUE
       )
 
     testthat::expect_identical(
-      class(p),
+      class(p1),
+      c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
+    )
+    testthat::expect_identical(
+      class(p2),
+      c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
+    )
+    testthat::expect_identical(
+      class(p3),
       c("ggExtraPlot", "gtable", "gTree", "grob", "gDesc")
     )
   }

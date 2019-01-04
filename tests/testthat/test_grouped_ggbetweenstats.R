@@ -1,28 +1,52 @@
-# context ------------------------------------------------------------
+# context -----------------------------------------------------------------
 context(desc = "grouped_ggbetweenstats")
 
-# outlier labeling works -----------------------------------------------------
+# outlier labeling works --------------------------------------------------
 
 testthat::test_that(
   desc = "grouping.var works across vector types",
   code = {
     testthat::skip_on_cran()
 
+    # creating a smaller dataframe
+    set.seed(123)
+    dat <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
+      dplyr::filter(
+        .data = ., mpaa %in% c("R", "PG-13"),
+        genre %in% c("Drama", "Comedy")
+      )
+
+    # expect error when no grouping.var is specified
+    testthat::expect_error(
+      ggstatsplot::grouped_ggbetweenstats(
+        data = dat,
+        x = genre,
+        y = rating
+      )
+    )
+
+    # expect error when x and grouping.var are same
+    testthat::expect_output(
+      ggstatsplot::grouped_ggbetweenstats(
+        data = dat,
+        x = genre,
+        y = rating,
+        grouping.var = genre
+      )
+    )
+
     # `outlier.label` is numeric
     set.seed(123)
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggbetweenstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(
-            .data = ., mpaa %in% c("R", "PG-13"),
-            genre %in% c("Drama", "Comedy")
-          ),
+        data = dat,
         x = genre,
         y = rating,
         grouping.var = mpaa,
         type = "p",
         plot.type = "box",
         bf.message = TRUE,
+        outlier.tagging = TRUE,
         pairwise.comparisons = TRUE,
         pairwise.annotation = "p.value",
         messages = TRUE
@@ -34,11 +58,7 @@ testthat::test_that(
     set.seed(123)
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggbetweenstats(
-        data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-          dplyr::filter(
-            .data = ., mpaa %in% c("R", "PG-13"),
-            genre %in% c("Drama", "Comedy")
-          ),
+        data = dat,
         x = genre,
         y = rating,
         grouping.var = "mpaa",
@@ -56,17 +76,11 @@ testthat::test_that(
     # `outlier.label` is character
     # also x, y, and outlier.label arguments as characters
     set.seed(123)
-    movies_long1 <-
-      dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
-      dplyr::filter(
-        .data = ., mpaa %in% c("R", "PG-13"),
-        genre %in% c("Drama", "Comedy")
-      )
-    movies_long1$title <- as.character(movies_long1$title)
+    dat$title <- as.character(dat$title)
 
     testthat::expect_true(inherits(
       ggstatsplot::grouped_ggbetweenstats(
-        data = movies_long1,
+        data = dat,
         x = "genre",
         y = "rating",
         grouping.var = mpaa,

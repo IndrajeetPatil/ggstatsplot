@@ -226,12 +226,12 @@ plot_list <- purrr::pmap(
       "MPAA Rating: PG-13",
       "MPAA Rating: R"
     ),
-    label.var = list("title", "year", "length"),
+    label.var = list("title"),
     label.expression = list(
-       "rating > 8.5 &
+       "rating > 7.5 &
          budget < 100",
        "rating > 8 & budget < 50",
-       "rating > 9 & budget < 10"
+       "rating > 8 & budget < 10"
      ),
     type = list("r", "np", "bf"),
     method = list(MASS::rlm, "lm", "lm"),

@@ -147,10 +147,10 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -160,7 +160,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#'
+#' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -525,7 +525,13 @@ ggbetweenstats <- function(data,
       dplyr::ungroup(x = .) %>%
       dplyr::filter(.data = ., isanoutlier) %>%
       dplyr::select(.data = ., -outlier)
-      data_outlier_label$outlier.label <- stringr::str_replace_na(string = data_outlier_label$outlier.label, replacement = "NA")
+
+    # if there is no value for outlier.label
+    data_outlier_label$outlier.label <-
+      stringr::str_replace_na(
+        string = data_outlier_label$outlier.label,
+        replacement = "NA"
+      )
 
     # applying the labels to tagged outliers with ggrepel
     plot <-
