@@ -1073,7 +1073,32 @@ ggstatsplot::ggcoefstats(x = ivr,
                          title = "instrumental-variable regression")
 ```
 
+## generalized method of moment estimation (`gmm`)
 
+```{r gmm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+# setup
+set.seed(123)
+library(gmm)
+
+# examples come from the "gmm" package
+## CAPM test with GMM
+data(Finance)
+r <- Finance[1:300, 1:10]
+rm <- Finance[1:300, "rm"]
+rf <- Finance[1:300, "rf"]
+
+z <- as.matrix(r - rf)
+t <- nrow(z)
+zm <- rm - rf
+h <- matrix(zm, t, 1)
+res <- gmm::gmm(z ~ zm, x = h)
+
+# plot
+ggstatsplot::ggcoefstats(x = res, 
+                         package = "palettetown",
+                         palette = "victreebel",
+                         title = "generalized method of moment estimation")
+```
 
 ## exponential-family random graph models (`ergm`)
 

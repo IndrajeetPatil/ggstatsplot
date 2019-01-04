@@ -65,6 +65,7 @@ Imports:
 Suggests:
     devtools,
     ggthemes (>= 4.0.0),
+    gmm,
     gapminder (>= 0.3.0),
     glmmTMB (>= 0.2.2.0),
     hrbrthemes (>= 0.5.0.1),

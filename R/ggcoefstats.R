@@ -154,6 +154,7 @@
 #' @importFrom grid unit
 #' @importFrom sjstats p_value
 #' @importFrom tibble as_tibble rownames_to_column
+#' @importFrom tidyr unite
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
@@ -331,7 +332,7 @@ ggcoefstats <- function(x,
   lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod", "rlmerMod", "glmmTMB")
 
   # models which are currently not supported
-  unsupported.mods <- c("glht", "kmeans")
+  unsupported.mods <- c("glht", "kmeans", "muhaz")
 
   # models for which glance is not supported
   noglance.mods <- c("aovlist", "anova", "rlmerMod", "TukeyHSD", "coeftest")
@@ -347,7 +348,8 @@ ggcoefstats <- function(x,
       "ridgelm",
       "aareg",
       "plm",
-      "ivreg"
+      "ivreg",
+      "gmm"
     )
 
   # =================== types of models =====================================
@@ -545,6 +547,19 @@ ggcoefstats <- function(x,
   }
 
   # =================== check for duplicate terms ============================
+
+  # for `gmm` class objects, there are going to be duplicate terms
+  # create a new column by collapsing orignal `variable` and `term` columns
+  if (class(x)[[1]] == "gmm") {
+    tidy_df %<>%
+      tidyr::unite(
+        data = .,
+        col = "term",
+        variable:term,
+        remove = TRUE,
+        sep = "_"
+      )
+  }
 
   # checking if there are any terms that are repeated
   term_df <- tidy_df %>%

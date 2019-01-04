@@ -669,6 +669,41 @@ testthat::test_that(
   }
 )
 
+# check gmm output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check gmm output",
+  code = {
+
+    # setup
+    set.seed(123)
+    library(gmm)
+
+    # examples come from the "gmm" package
+    ## CAPM test with GMM
+    data(Finance)
+    r <- Finance[1:300, 1:10]
+    rm <- Finance[1:300, "rm"]
+    rf <- Finance[1:300, "rf"]
+
+    z <- as.matrix(r - rf)
+    t <- nrow(z)
+    zm <- rm - rf
+    h <- matrix(zm, t, 1)
+    res <- gmm::gmm(z ~ zm, x = h)
+
+    # plot
+    df <- ggstatsplot::ggcoefstats(
+      x = res,
+      output = "tidy"
+    )
+
+    # tests
+    testthat::expect_equal(dim(df), c(10L, 12L))
+    testthat::expect_identical(as.character(df$term[[1]]), "WMK_zm")
+  }
+)
+
 # check aareg output ----------------------------------------------
 
 testthat::test_that(

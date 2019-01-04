@@ -1,7 +1,56 @@
-# context ------------------------------------------------------------
+# context ----------------------------------------------------------------
 context(desc = "ggcorrmat")
 
-# pearson's r without NAs ---------------------------------------------
+# cor.vars works with different methods of inputs ------------------------
+
+testthat::test_that(
+  desc = "cor.vars works with different methods of inputs",
+  code = {
+    testthat::skip_on_cran()
+
+    set.seed(123)
+
+    # method 1
+    df1 <- ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = "sleep_total":"bodywt",
+      p.adjust.method = "BH",
+      output = "ci"
+    )
+
+    # method 2
+    df2 <- ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = c("sleep_total":"bodywt"),
+      p.adjust.method = "BH",
+      output = "ci"
+    )
+
+    # method 3
+    df3 <- ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = sleep_total:bodywt,
+      p.adjust.method = "BH",
+      output = "ci"
+    )
+
+    # method 4
+    df4 <- ggstatsplot::ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = c(sleep_total:bodywt),
+      p.adjust.method = "BH",
+      output = "ci"
+    )
+
+    # check dimensions
+    testthat::expect_equal(dim(df1), c(15L, 7L))
+    testthat::expect_equal(dim(df2), c(15L, 7L))
+    testthat::expect_equal(dim(df3), c(15L, 7L))
+    testthat::expect_equal(dim(df4), c(15L, 7L))
+  }
+)
+
+# pearson's r without NAs ------------------------------------------------
 
 testthat::test_that(
   desc = "checking ggcorrmat - without NAs - pearson's r",

@@ -173,7 +173,8 @@ utils::globalVariables(
     "ci.ub",
     "pval",
     "zval",
-    "statistic.z"
+    "statistic.z",
+    "variable"
   ),
   package = "ggstatsplot",
   add = FALSE
