@@ -86,7 +86,7 @@ testthat::test_that(
           k = 3,
           effsize.type = "biased",
           partial = FALSE,
-          conf.level = 0.99,
+          conf.level = 0.95,
           messages = FALSE
         )
       )
@@ -111,7 +111,7 @@ testthat::test_that(
           eta^2,
           " = ",
           "0.085",
-          ", CI"["99%"],
+          ", CI"["95%"],
           " [",
           "-0.023",
           ", ",
@@ -262,7 +262,7 @@ testthat::test_that(
         x = vore,
         y = sleep_rem,
         effsize.type = "biased",
-        conf.level = 0.90,
+        conf.level = 0.95,
         partial = FALSE,
         k = 4,
         nboot = 10,
@@ -305,7 +305,7 @@ testthat::test_that(
           eta^2,
           " = ",
           "0.1926",
-          ", CI"["90%"],
+          ", CI"["95%"],
           " [",
           "0.0399",
           ", ",

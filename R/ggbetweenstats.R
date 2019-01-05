@@ -96,6 +96,10 @@
 #'   direction. Defaults to `0.1`.
 #' @param point.dodge.width Numeric specifying the amount to dodge in the `x`
 #'   direction. Defaults to `0.60`.
+#' @param ggplot.component A `ggplot` component to be added to the plot prepared
+#'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
+#'   of the current function. Default is `NULL`. The argument should be entered
+#'   as a function.
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams subtitle_anova_parametric
@@ -147,10 +151,10 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -160,7 +164,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#'
+#' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -233,6 +237,7 @@ ggbetweenstats <- function(data,
                            package = "RColorBrewer",
                            palette = "Dark2",
                            direction = 1,
+                           ggplot.component = NULL,
                            messages = TRUE) {
 
   # no pairwise comparisons are available for bayesian t-tests
@@ -756,7 +761,11 @@ ggbetweenstats <- function(data,
       direction = direction
     )
 
+  # ---------------- adding ggplot component ---------------------------------
 
+  # if any additional modification needs to be made to the plot
+  # this is primarily useful for grouped_ variant of this function
+  plot <- plot + ggplot.component
 
   # --------------------- messages ------------------------------------------
 

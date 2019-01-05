@@ -40,6 +40,23 @@
 #'   conf.level = 0.99,
 #'   bf.message = TRUE
 #' )
+#' \dontrun{
+#' # modifying individual plots using `ggplot.component` argument
+#' ggstatsplot::grouped_ggbetweenstats(
+#'   data = dplyr::filter(
+#'     ggstatsplot::movies_long,
+#'     genre %in% c("Action", "Comedy"),
+#'     mpaa %in% c("R", "PG")
+#'   ),
+#'   x = genre,
+#'   y = rating,
+#'   grouping.var = mpaa,
+#'   results.subtitle = FALSE,
+#'   ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
+#'   messages = FALSE
+#' )
+#' }
+#' 
 #' @export
 
 # defining the function
@@ -94,6 +111,7 @@ grouped_ggbetweenstats <- function(data,
                                    package = "RColorBrewer",
                                    palette = "Dark2",
                                    direction = 1,
+                                   ggplot.component = NULL,
                                    messages = TRUE,
                                    ...) {
 
@@ -252,15 +270,16 @@ grouped_ggbetweenstats <- function(data,
       mean.ci = mean.ci,
       mean.size = mean.size,
       mean.color = mean.color,
+      point.jitter.width = point.jitter.width,
+      point.dodge.width = point.dodge.width,
+      point.jitter.height = point.jitter.height,
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer,
       package = package,
       palette = palette,
       direction = direction,
       messages = messages,
-      point.jitter.width = point.jitter.width,
-      point.dodge.width = point.dodge.width,
-      point.jitter.height = point.jitter.height
+      ggplot.component = ggplot.component
     )
 
   # combining the list of plots into a single plot

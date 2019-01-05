@@ -105,3 +105,29 @@ testthat::test_that(
     ))
   }
 )
+
+# outlier labeling works --------------------------------------------------
+
+testthat::test_that(
+  desc = "grouping.var works across vector types",
+  code = {
+    testthat::skip_on_cran()
+
+    testthat::expect_true(inherits(
+      ggstatsplot::grouped_ggbetweenstats(
+        data = dplyr::filter(
+          ggstatsplot::movies_long,
+          genre %in% c("Action", "Comedy"),
+          mpaa %in% c("R", "PG")
+        ),
+        x = genre,
+        y = rating,
+        grouping.var = mpaa,
+        results.subtitle = FALSE,
+        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
+        messages = FALSE
+      ),
+      what = "gg"
+    ))
+  }
+)

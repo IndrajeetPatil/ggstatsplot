@@ -37,7 +37,8 @@ MINOR CHANGES
     `TRUE`, the specified caption will be added on top of the `caption.summary`.
   - `ggcoefstats` can support following new regression model objects: `polr`,
     `survreg`, `cch`, `Arima`, `biglm`, `glmmTMB`, `coxph`, `ridgelm`, `aareg`,
-    `plm`, `nlrq`, `ivreg`, `ergm`, `btergm`, `garch`, `gmm`, `lmodel2`.
+    `plm`, `nlrq`, `ivreg`, `ergm`, `btergm`, `garch`, `gmm`, `lmodel2`,
+    `svyolr`.
   
 # ggstatsplot 0.0.7
 

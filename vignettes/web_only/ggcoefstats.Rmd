@@ -711,6 +711,34 @@ ggstatsplot::ggcoefstats(x = polr.mod,
                          subtitle = "using `MASS` package")
 ```
 
+
+## proportional odds and related models (`svyolr`)
+
+```{r svyolr, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+# setup
+set.seed(123)
+library(survey)
+data(api)
+
+# preparing data
+dclus1 <- survey::svydesign(
+  id =  ~ dnum,
+  weights =  ~ pw,
+  data = apiclus1,
+  fpc =  ~ fpc
+)
+dclus1 <-
+  update(dclus1, mealcat = cut(meals, c(0, 25, 50, 75, 100)))
+
+# model
+m <- survey::svyolr(formula = mealcat ~ avg.ed + mobility + stype,
+                    design = dclus1)
+
+# plot
+ggstatsplot::ggcoefstats(x = m,
+                         title = "proportional odds and related models")
+```
+
 ## repeated measures ANOVA (`aovlist`)
 
 Let's now consider an example of a repeated measures design where we want to run

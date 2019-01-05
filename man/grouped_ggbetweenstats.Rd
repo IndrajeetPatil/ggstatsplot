@@ -23,7 +23,8 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   point.jitter.width = NULL, point.jitter.height = 0.2,
   point.dodge.width = 0.75, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, package = "RColorBrewer",
-  palette = "Dark2", direction = 1, messages = TRUE, ...)
+  palette = "Dark2", direction = 1, ggplot.component = NULL,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe from which variables specified are preferentially to
@@ -211,6 +212,11 @@ type. Default palette is \code{"Dark2"}.}
 
 \item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
 
+\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function.}
+
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
@@ -302,6 +308,23 @@ ggstatsplot::grouped_ggbetweenstats(
   conf.level = 0.99,
   bf.message = TRUE
 )
+\dontrun{
+# modifying individual plots using `ggplot.component` argument
+ggstatsplot::grouped_ggbetweenstats(
+  data = dplyr::filter(
+    ggstatsplot::movies_long,
+    genre \%in\% c("Action", "Comedy"),
+    mpaa \%in\% c("R", "PG")
+  ),
+  x = genre,
+  y = rating,
+  grouping.var = mpaa,
+  results.subtitle = FALSE,
+  ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
+  messages = FALSE
+)
+}
+
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}

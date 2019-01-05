@@ -443,3 +443,27 @@ testthat::test_that(
     testthat::expect_equal(dim(pb2$data[[3]]), c(1024L, 20L))
   }
 )
+
+# ggplot component addition works ------------------------------------------
+
+testthat::test_that(
+  desc = "ggplot component addition works",
+  code = {
+
+    # plot
+    p <- ggstatsplot::ggbetweenstats(
+      data = iris,
+      x = Species,
+      y = Sepal.Length,
+      results.subtitle = FALSE,
+      messages = FALSE,
+      ggplot.component = ggplot2::labs(y = "SL")
+    )
+
+    # build plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # test
+    testthat::expect_identical(p$labels$y, "SL")
+  }
+)

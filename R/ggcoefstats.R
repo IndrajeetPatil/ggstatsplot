@@ -162,26 +162,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # -------------- with model object --------------------------------------
-#'
+#' 
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#'
+#' 
 #' # to get a plot
 #' ggstatsplot::ggcoefstats(x = mod, output = "plot")
-#'
+#' 
 #' # to get a tidy dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
-#'
+#' 
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#'
+#' 
 #' # to get augmented dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
-#'
+#' 
 #' # -------------- with custom dataframe -----------------------------------
-#'
+#' 
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -247,7 +247,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#'
+#' 
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -372,7 +372,8 @@ ggcoefstats <- function(x,
       "plm",
       "ivreg",
       "gmm",
-      "lmodel2"
+      "lmodel2",
+      "svyolr"
     )
 
   # =================== types of models =====================================
