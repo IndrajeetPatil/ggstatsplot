@@ -431,13 +431,12 @@ subtitle_onesample_proptest <- function(data,
             n
           ),
         env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
+          estimate = specify_decimal_p(
             x = as.data.frame(stats_df$tests)[[1]],
-            k = k,
-            p.value = FALSE
+            k = k
           ),
-          df = base::as.data.frame(stats_df$tests)[[2]],
-          pvalue = ggstatsplot::specify_decimal_p(
+          df = as.data.frame(stats_df$tests)[[2]],
+          pvalue = specify_decimal_p(
             x = as.data.frame(stats_df$tests)[[3]],
             k = k,
             p.value = TRUE

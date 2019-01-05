@@ -332,10 +332,31 @@ ggcoefstats <- function(x,
   lmm.mods <- c("lmerMod", "glmerMod", "nlmerMod", "rlmerMod", "glmmTMB")
 
   # models which are currently not supported
-  unsupported.mods <- c("glht", "kmeans", "muhaz")
+  unsupported.mods <-
+    c(
+      "glht",
+      "kmeans",
+      "muhaz",
+      "survdiff",
+      "zoo",
+      "optim",
+      "elnet",
+      "glmnet",
+      "cv.glmnet",
+      "kde"
+    )
 
   # models for which glance is not supported
-  noglance.mods <- c("aovlist", "anova", "rlmerMod", "TukeyHSD", "coeftest")
+  noglance.mods <-
+    c(
+      "aovlist",
+      "anova",
+      "rlmerMod",
+      "TukeyHSD",
+      "coeftest",
+      "mediate",
+      "btergm"
+    )
 
   # models for which the diagnostics is not available (AIC, BIC, LL)
   nodiagnostics.mods <-
@@ -349,7 +370,8 @@ ggcoefstats <- function(x,
       "aareg",
       "plm",
       "ivreg",
-      "gmm"
+      "gmm",
+      "lmodel2"
     )
 
   # =================== types of models =====================================
@@ -480,7 +502,7 @@ ggcoefstats <- function(x,
       }
     }
     # ================== clm and clmm tidying ================================
-  } else if (class(x)[[1]] %in% c("clm", "clmm", "polr")) {
+  } else if (class(x)[[1]] %in% c("clm", "clmm", "polr", "svyolr")) {
     tidy_df <-
       broom::tidy(
         x = x,
@@ -495,7 +517,7 @@ ggcoefstats <- function(x,
     if (is.null(coefficient.type)) {
       if (class(x)[[1]] %in% c("clm", "clmm")) {
         coefficient.type <- "beta"
-      } else if (class(x)[[1]] == "polr") {
+      } else if (class(x)[[1]] %in% c("polr", "svyolr")) {
         coefficient.type <- "coefficient"
       }
     }
@@ -582,7 +604,7 @@ ggcoefstats <- function(x,
   # =================== p-value computation ==================================
 
   # p-values won't be computed by default for the lmer models
-  if (class(x)[[1]] %in% c("lmerMod", "rlm", "polr")) {
+  if (class(x)[[1]] %in% c("lmerMod", "rlm", "polr", "svyolr")) {
     # computing p-values
     tidy_df %<>%
       tibble::as_tibble(x = .) %>%

@@ -128,7 +128,7 @@
       <h1>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-01-04</h4>
+            <h4 class="date">2019-01-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -177,7 +177,7 @@
 <a class="sourceLine" id="cb2-5" data-line-number="5">movies_<span class="dv">10</span> &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb2-9" data-line-number="9">  <span class="dt">data =</span> movies_<span class="dv">10</span>,                                            <span class="co"># dataframe from which variables are taken</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10">  <span class="dt">x =</span> budget,                                                  <span class="co"># predictor/independent variable </span></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11">  <span class="dt">y =</span> rating,                                                  <span class="co"># dependent variable</span></a>
@@ -212,7 +212,7 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># include the following code in your code chunk inside R Notebook or Markdown</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">grid<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/grid.newpage">grid.newpage</a></span>()</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">grid<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/grid.draw">grid.draw</a></span>(</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/ggscatterstats">ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">data =</span> ggstatsplot<span class="op">::</span>movies_wide,</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">x =</span> budget,</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="dt">y =</span> rating,</a>
@@ -239,7 +239,7 @@
 <a class="sourceLine" id="cb4-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ., <span class="dt">size =</span> <span class="fl">0.2</span>)</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggscatterstats">grouped_ggscatterstats</a></span>(</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="co"># arguments relevant for ggstatsplot::ggscatterstats</span></a>
 <a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="dt">data =</span> movies_<span class="dv">10</span>,</a>
 <a class="sourceLine" id="cb4-14" data-line-number="14">  <span class="dt">title.prefix =</span> <span class="st">"MPAA Rating"</span>,</a>
@@ -312,7 +312,7 @@
 <a class="sourceLine" id="cb5-33" data-line-number="33">)</a>
 <a class="sourceLine" id="cb5-34" data-line-number="34"></a>
 <a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb5-36" data-line-number="36">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggstatsplot/topics/combine_plots">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb5-36" data-line-number="36">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
 <a class="sourceLine" id="cb5-37" data-line-number="37">  <span class="dt">plotlist =</span> plot_list2,</a>
 <a class="sourceLine" id="cb5-38" data-line-number="38">  <span class="dt">title.text =</span> <span class="st">"Trying out different smoothing functions with ggscatterstats"</span>,</a>
 <a class="sourceLine" id="cb5-39" data-line-number="39">  <span class="dt">caption.text =</span> <span class="st">"Source: www.imdb.com"</span>,</a>

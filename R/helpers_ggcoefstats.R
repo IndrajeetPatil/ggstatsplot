@@ -124,7 +124,8 @@ ggcoefstats_label_maker <- function(x,
       "felm",
       "polr",
       "gamlss",
-      "gmm"
+      "gmm",
+      "svyolr"
     )
 
   # models for which statistic is z-value

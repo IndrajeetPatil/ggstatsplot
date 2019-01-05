@@ -1073,6 +1073,36 @@ ggstatsplot::ggcoefstats(x = ivr,
                          title = "instrumental-variable regression")
 ```
 
+## causal mediation analysis (`mediate`)
+
+```{r mediate, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(mediation)
+data(jobs)
+
+# base models
+b <-
+  stats::lm(formula = job_seek ~ treat + econ_hard + sex + age, data = jobs)
+c <-
+  stats::lm(formula = depress2 ~ treat + job_seek + econ_hard + sex + age,
+            data = jobs)
+
+# mediation model
+mod <-
+  mediation::mediate(
+    model.m = b,
+    model.y = c,
+    sims = 50,
+    treat = "treat",
+    mediator = "job_seek"
+  )
+
+# plot
+ggstatsplot::ggcoefstats(x = mod,
+                         title = "causal mediation analysis")
+```
+
 ## generalized method of moment estimation (`gmm`)
 
 ```{r gmm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
@@ -1116,6 +1146,41 @@ gest <- ergm(flomarriage ~ edges + absdiff("wealth"))
 ggstatsplot::ggcoefstats(x = gest,
                          conf.level = 0.99,
                          title = "exponential-family random graph models")
+```
+
+
+## TERGM by bootstrapped pseudolikelihood or MCMC MLE (`btergm`)
+
+```{r btergm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+# setup
+library(network)
+library(btergm)
+set.seed(123)
+
+networks <- list()
+for (i in 1:10) { # create 10 random networks with 10 actors
+  mat <- matrix(rbinom(100, 1, .25), nrow = 10, ncol = 10)
+  diag(mat) <- 0 # loops are excluded
+  nw <- network(mat) # create network object
+  networks[[i]] <- nw # add network to the list
+}
+
+covariates <- list()
+for (i in 1:10) { # create 10 matrices as covariate
+  mat <- matrix(rnorm(100), nrow = 10, ncol = 10)
+  covariates[[i]] <- mat # add matrix to the list
+}
+
+# model
+fit <- btergm::btergm(networks ~ edges + istar(2) +
+  edgecov(covariates), R = 100)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "Terms used in Exponential Family Random Graph Models",
+  subtitle = "by bootstrapped pseudolikelihood or MCMC MLE"
+)
 ```
 
 ## generalized autoregressive conditional heteroscedastic (`garch`)
@@ -1199,8 +1264,9 @@ extension `broom.mixed`) package:
 <https://broom.tidyverse.org/articles/available-methods.html>
 
 Note that not **all** models supported by `broom` will be supported by
-`ggcoefstats`. In particular, classes of objects for which there is no estimates
-present (e.g., `kmeans`, `optim`, etc.) are not supported.
+`ggcoefstats`. In particular, classes of objects for which there is no column
+for `estimate`s present (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`,
+etc.) are not supported.
 
 # Suggestions
 

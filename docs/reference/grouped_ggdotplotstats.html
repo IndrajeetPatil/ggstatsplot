@@ -441,7 +441,7 @@ combining (plot, caption).</p></dd>
 <span class='co'># creating a dataframe with summary</span>
 (<span class='no'>df_summarized</span> <span class='kw'>&lt;-</span>
   <span class='kw pkg'>groupedstats</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/groupedstats//reference/grouped_summary.html'>grouped_summary</a></span>(
-    <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/intent_morality'>intent_morality</a></span>,
+    <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
     <span class='kw'>grouping.vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>condition</span>, <span class='no'>harm</span>),
     <span class='kw'>measures</span> <span class='kw'>=</span> <span class='no'>rating</span>
   ))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 16 x 17</span><span>
@@ -482,7 +482,7 @@ combining (plot, caption).</p></dd>
 #&gt; </span><span style='color: #555555;'>15</span><span>     1  5         7  7        7    0.092</span><span style='text-decoration: underline;'>0</span><span>          5.68           6.04
 #&gt; </span><span style='color: #555555;'>16</span><span>     1  4         5  7        7    0.114           4.89           5.33</div><div class='input'>
 <span class='co'># plot</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/grouped_ggdotplotstats'>grouped_ggdotplotstats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggdotplotstats.html'>grouped_ggdotplotstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_summarized</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mean</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>harm</span>,
