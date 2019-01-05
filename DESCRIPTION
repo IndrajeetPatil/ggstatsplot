@@ -71,6 +71,7 @@ Suggests:
     hrbrthemes (>= 0.5.0.1),
     knitr,
     lme4 (>= 1.1-19),
+    lmodel2,
     MASS,
     ordinal (>= 2018.8-25),
     plyr (>= 1.8.4),

@@ -704,6 +704,43 @@ testthat::test_that(
   }
 )
 
+
+# check lmodel2 output ----------------------------------------------
+
+testthat::test_that(
+  desc = "check lmodel2 output",
+  code = {
+
+    # setup
+    set.seed(123)
+    library(lmodel2)
+    data(mod2ex2)
+
+    # model
+    Ex2.res <-
+      lmodel2::lmodel2(
+        formula = Prey ~ Predators,
+        data = mod2ex2,
+        range.y = "relative",
+        range.x = "relative",
+        nperm = 99
+      )
+
+    # plot
+    df <- ggstatsplot::ggcoefstats(
+      x = Ex2.res,
+      output = "tidy",
+      exclude.intercept = FALSE
+    )
+
+    # tests
+    testthat::expect_equal(dim(df), c(8L, 4L))
+    testthat::expect_identical(as.character(df$term[[1]]), "MA_Intercept")
+    testthat::expect_identical(as.character(df$term[[2]]), "MA_Slope")
+  }
+)
+
+
 # check aareg output ----------------------------------------------
 
 testthat::test_that(

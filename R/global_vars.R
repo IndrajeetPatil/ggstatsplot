@@ -174,7 +174,8 @@ utils::globalVariables(
     "pval",
     "zval",
     "statistic.z",
-    "variable"
+    "variable",
+    "method"
   ),
   package = "ggstatsplot",
   add = FALSE

@@ -1103,6 +1103,31 @@ ggstatsplot::ggcoefstats(x = mod,
                          title = "causal mediation analysis")
 ```
 
+## Model II regression (`lmodel2`)
+
+```{r lmodel2, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+# setup
+set.seed(123)
+library(lmodel2)
+data(mod2ex2)
+
+# model
+Ex2.res <-
+  lmodel2::lmodel2(
+    formula = Prey ~ Predators,
+    data = mod2ex2,
+    range.y = "relative",
+    range.x = "relative",
+    nperm = 99
+  )
+
+# plot
+ggstatsplot::ggcoefstats(x = Ex2.res,
+                         exclude.intercept = FALSE,
+                         title = "Model II regression")
+```
+
+
 ## generalized method of moment estimation (`gmm`)
 
 ```{r gmm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
