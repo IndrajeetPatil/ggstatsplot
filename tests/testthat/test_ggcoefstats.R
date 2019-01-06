@@ -627,6 +627,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check quantreg output",
   code = {
+    testthat::skip_on_cran()
 
     # set up
     set.seed(123)
@@ -1335,12 +1336,26 @@ testthat::test_that(
 testthat::test_that(
   desc = "unsupported model objects",
   code = {
+
+    # mod-1
     set.seed(123)
+    mod1 <- stats::kmeans(
+      x = dplyr::select(iris, -Species),
+      centers = 3
+    )
+
+    # mod-2
+    set.seed(123)
+    library(survival)
+    cfit <- coxph(Surv(time, status) ~ age + sex, lung)
+    mod2 <- survfit(cfit)
+
+    # test failures
     testthat::expect_error(
-      ggstatsplot::ggcoefstats(x = stats::kmeans(
-        x = dplyr::select(iris, -Species),
-        centers = 3
-      ))
+      ggstatsplot::ggcoefstats(x = mod1)
+    )
+    testthat::expect_error(
+      ggstatsplot::ggcoefstats(x = mod2)
     )
   }
 )

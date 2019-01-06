@@ -128,7 +128,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-01-05</h4>
+            <h4 class="date">2019-01-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -156,10 +156,10 @@
 <a class="sourceLine" id="cb1-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># creating a list column with `ggstatsplot` plots</span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">plots &lt;-<span class="st"> </span>datasets<span class="op">::</span>iris <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">Species2 =</span> Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># just creates a copy of this variable</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., Species) <span class="op">%&gt;%</span><span class="st">                </span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">.data =</span> ., <span class="dt">Species2 =</span> Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># just creates a copy of this variable</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="dt">.data =</span> ., Species) <span class="op">%&gt;%</span><span class="st">                </span></a>
 <a class="sourceLine" id="cb1-10" data-line-number="10"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st">                        </span><span class="co"># a nested dataframe with list column called `data`</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(                                   <span class="co"># creating a new list column of ggstatsplot outputs</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(                                   <span class="co"># creating a new list column of ggstatsplot outputs</span></a>
 <a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="dt">.data =</span> .,</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="dt">plot =</span> data <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-14" data-line-number="14"><span class="st">      </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(</a>
@@ -221,7 +221,7 @@
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># let's have a look at the structure of the data</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="dt">x =</span> gapminder<span class="op">::</span>gapminder)</a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; Observations: 1,704</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, ...</span></a>
@@ -233,7 +233,7 @@
 <a class="sourceLine" id="cb2-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co"># creating a list of plots</span></a>
 <a class="sourceLine" id="cb2-19" data-line-number="19">plots &lt;-<span class="st"> </span>plyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/plyr/topics/dlply">dlply</a></span>(</a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">  <span class="dt">.data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(gapminder<span class="op">::</span>gapminder, </a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">  <span class="dt">.data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(gapminder<span class="op">::</span>gapminder, </a>
 <a class="sourceLine" id="cb2-21" data-line-number="21">                        year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, continent <span class="op">!=</span><span class="st"> "Oceania"</span>),</a>
 <a class="sourceLine" id="cb2-22" data-line-number="22">  <span class="dt">.variables =</span> .(continent),</a>
 <a class="sourceLine" id="cb2-23" data-line-number="23">  <span class="dt">.fun =</span> <span class="cf">function</span>(data)</a>
@@ -273,7 +273,7 @@
 <a class="sourceLine" id="cb3-6" data-line-number="6">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="dt">x =</span> stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">      <span class="dt">formula =</span> rating <span class="op">~</span><span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/poly">poly</a></span>(budget, <span class="dt">degree =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">      <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">      <span class="dt">data =</span> dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_long, <span class="dt">size =</span> <span class="fl">0.2</span>),</a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">      <span class="dt">na.action =</span> na.omit</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">    ),</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>

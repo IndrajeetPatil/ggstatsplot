@@ -42,7 +42,7 @@ MINOR CHANGES
   - `ggcoefstats` can support following new regression model objects: `polr`,
     `survreg`, `cch`, `Arima`, `biglm`, `glmmTMB`, `coxph`, `ridgelm`, `aareg`,
     `plm`, `nlrq`, `ivreg`, `ergm`, `btergm`, `garch`, `gmm`, `lmodel2`,
-    `svyolr`.
+    `svyolr`, `confusionMatrix`, `multinom`, `nlmerMod`.
   
 # ggstatsplot 0.0.7
 

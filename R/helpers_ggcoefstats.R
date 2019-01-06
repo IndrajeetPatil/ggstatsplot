@@ -8,28 +8,28 @@
 #' \dontrun{
 #' # show all columns in a tibble
 #' options(tibble.width = Inf)
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' #------------------------- models with *t*-statistic ------------------
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(x = broom::tidy(stats::lm(
 #'   data = mtcars, formula = wt ~ cyl * mpg
 #' )), statistic = "t")
-#' 
+#'
 #' # (in case `x` is not a dataframe, no need to specify `statistic` argument;
 #' # this will be figured out by the function itself)
-#' 
+#'
 #' #------------------------- models with *t*-statistic ------------------
-#' 
+#'
 #' # dataframe
 #' clotting <- data.frame(
 #'   u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
 #'   lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
 #'   lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
 #' )
-#' 
+#'
 #' # model
 #' mod <-
 #'   stats::glm(
@@ -37,7 +37,7 @@
 #'     data = clotting,
 #'     family = Gamma
 #'   )
-#' 
+#'
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = mod,
@@ -47,30 +47,30 @@
 #'     conf.level = 0.95
 #'   )
 #' )
-#' 
+#'
 #' #------------------------- models with *z*-statistic --------------------
-#' 
+#'
 #' # preparing dataframe
 #' counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
 #' outcome <- gl(3, 1, 9)
 #' treatment <- gl(3, 3)
 #' d.AD <- data.frame(treatment, outcome, counts)
-#' 
+#'
 #' # model
 #' mod <- stats::glm(
 #'   formula = counts ~ outcome + treatment,
 #'   family = poisson(),
 #'   data = d.AD
 #' )
-#' 
+#'
 #' # creating tidy dataframe with label column
 #' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broom::tidy(mod))
-#' 
+#'
 #' #------------------------- models with *f*-statistic --------------------
 #' # creating a model object
 #' op <- options(contrasts = c("contr.helmert", "contr.poly"))
 #' npk.aov <- stats::aov(formula = yield ~ block + N * P * K, data = npk)
-#' 
+#'
 #' # converting to a dataframe using
 #' tidy_df <- ggstatsplot::lm_effsize_ci(
 #'   object = npk.aov,
@@ -79,7 +79,7 @@
 #'   nboot = 50
 #' ) %>%
 #'   dplyr::rename(.data = ., estimate = omegasq, statistic = F.value)
-#' 
+#'
 #' # including a new column with a label
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = npk.aov,
@@ -88,7 +88,7 @@
 #'   partial = FALSE
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -101,43 +101,66 @@ ggcoefstats_label_maker <- function(x,
                                     partial = TRUE) {
 
   # dataframe objects
-  df.mods <- c("tbl_df", "tbl", "data.frame", "grouped_df")
+  df.mods <- c("data.frame",
+               "grouped_df",
+               "tbl",
+               "tbl_df")
 
   # models for which statistic is t-value
   t.mods <-
     c(
+      "biglm",
       "cch",
+      "coeftest",
+      "felm",
+      "gamlss",
       "garch",
       "gls",
-      "lmerMod",
-      "lm",
-      "coeftest",
-      "plm",
-      "nlrq",
+      "gmm",
       "ivreg",
-      "biglm",
-      "nls",
+      "lm",
+      "lmerMod",
       "lmRob",
-      "rq",
+      "multinom",
+      "nlmerMod",
+      "nlrq",
+      "nls",
+      "plm",
+      "polr",
       "rlm",
       "rlmerMod",
-      "felm",
-      "polr",
-      "gamlss",
-      "gmm",
+      "rq",
       "svyolr"
     )
 
   # models for which statistic is z-value
   z.mods <-
-    c("clm", "clmm", "glmmTMB", "coxph", "survreg", "aareg", "ergm")
+    c(
+      "aareg",
+      "clm",
+      "clmm",
+      "coxph",
+      "ergm",
+      "glmmTMB",
+      "survreg"
+    )
 
   # models for which statistic is F-value
-  f.mods <- c("aov", "aovlist", "anova", "Gam")
+  f.mods <- c(
+    "aov",
+    "aovlist",
+    "anova",
+    "Gam",
+    "gam"
+  )
 
   # models for which there is no clear t-or z-statistic
   # which statistic to use will be decided based on the family used
-  g.mods <- c("glm", "glmerMod", "glmRob")
+  g.mods <- c(
+    "glm",
+    "glmerMod",
+    "glmRob"
+  )
 
   # ================================ dataframe ================================
   if (class(x)[[1]] %in% df.mods) {
@@ -524,7 +547,7 @@ tfz_labeller <- function(tidy_df,
 #' set.seed(123)
 #' library(ggstatsplot)
 #' library(gapminder)
-#' 
+#'
 #' # saving results from regression
 #' df_results <- purrr::pmap(
 #'   .l = list(
@@ -537,14 +560,14 @@ tfz_labeller <- function(tidy_df,
 #' ) %>%
 #'   dplyr::full_join(x = .[[1]], y = .[[2]], by = "continent") %>%
 #'   dplyr::filter(.data = ., term != "(Intercept)")
-#' 
+#'
 #' # making subtitle
 #' ggstatsplot::subtitle_meta_ggcoefstats(
 #'   data = df_results,
 #'   k = 3,
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # getting tidy data frame with coefficients
 #' ggstatsplot::subtitle_meta_ggcoefstats(
 #'   data = df_results,

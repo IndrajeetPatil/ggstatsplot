@@ -6,11 +6,12 @@
 caption.}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
-  conf.method = "Wald", p.kr = TRUE, p.adjust.method = "none",
-  coefficient.type = NULL, effsize = "eta", partial = TRUE,
-  nboot = 500, meta.analytic.effect = FALSE, point.color = "blue",
-  point.size = 3, point.shape = 16, conf.int = TRUE,
-  conf.level = 0.95, se.type = "nid", k = 2, k.caption.summary = 0,
+  conf.method = "Wald", conf.type = "Wald", quick = FALSE,
+  p.kr = TRUE, p.adjust.method = "none", coefficient.type = NULL,
+  by.class = FALSE, effsize = "eta", partial = TRUE, nboot = 500,
+  meta.analytic.effect = FALSE, point.color = "blue", point.size = 3,
+  point.shape = 16, conf.int = TRUE, conf.level = 0.95,
+  se.type = "nid", k = 2, k.caption.summary = 0,
   exclude.intercept = TRUE, exponentiate = FALSE,
   errorbar.color = "black", errorbar.height = 0,
   errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
@@ -53,6 +54,13 @@ kind of model it is dealing with.}
 intervals (for more, see \code{lme4::confint.merMod}). This argument is valid
 only for the \code{merMod} class model objects (\code{lmer}, \code{glmer}, \code{nlmer}, etc.).}
 
+\item{conf.type}{the type of confidence interval
+(see \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}})}
+
+\item{quick}{Logical indiciating if the only the \code{term} and \code{estimate}
+columns should be returned. Often useful to avoid time consuming
+covariance and standard error calculations. Defaults to \code{FALSE}.}
+
 \item{p.kr}{Logical, if \code{TRUE}, the computation of p-values for \code{lmer} is
 based on conditional F-tests with Kenward-Roger approximation for the df.
 For details, see \code{?sjstats::p_value}.}
@@ -72,6 +80,11 @@ parameters) parameters will be show. Other options are \code{"alpha"} (a vector
 of threshold parameters) or \code{"both"}. For \code{polr} models, if this argument
 is \code{NULL}, only \code{"coefficient"} will be shown. Other option is to show
 \code{"zeta"} parameters.}
+
+\item{by.class}{A logical indicating whether or not to show performance
+measures broken down by class. Defaults to \code{FALSE}. When \code{by.class = FALSE}
+only returns a tibble with accuracy and kappa statistics. Mostly relevant
+for an object of class \code{"confusionMatrix"}.}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant

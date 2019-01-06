@@ -187,10 +187,11 @@ long_to_wide_converter <- function(data,
   # wide format
   data_wide <-
     data %>%
+    dplyr::filter(.data = ., !is.na(x)) %>%
     dplyr::group_by(.data = ., x) %>%
     dplyr::mutate(.data = ., rowid = dplyr::row_number()) %>%
     dplyr::ungroup(x = .) %>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::filter(.data = ., !is.na(y)) %>%
     tibble::as_tibble(x = .)
 
   # clean up for repeated measures design

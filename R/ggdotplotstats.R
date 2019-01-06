@@ -16,7 +16,7 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # plot
 #' ggdotplotstats(
 #'   data = ggplot2::mpg,
@@ -104,12 +104,13 @@ ggdotplotstats <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::mutate(.data = ., y = droplevels(as.factor(y))) %>%
     tibble::as_tibble(x = .)
 
   # if the data hasn't already been summarized, do so
   data %<>%
     dplyr::group_by(.data = ., y) %>%
-    dplyr::summarise(.data = ., x = mean(x = x, na.rm = TRUE)) %>%
+    dplyr::summarise(.data = ., x = mean(x, na.rm = TRUE)) %>%
     dplyr::ungroup(x = .)
 
   # rank ordering the data

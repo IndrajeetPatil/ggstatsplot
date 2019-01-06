@@ -229,7 +229,7 @@ ggstatsplot::ggcoefstats(
 
 As can be seen from the regression coefficients, compared to action movies, comedies and action comedies are not rated significantly better. All three of the "drama" types (pure, action or comedy dramas) have statistical significantly higher regression coefficients.  This finding occurs even with our more conservative  `0.99` confidence interval.
 
-## linear mixed-effects model (`lmer`)
+## linear mixed-effects model (`lmer`/`lmerMod`)
 
 Now let's say we want to see how movie's budget relates to how good the movie is
 rated to be on IMDB (e.g., more money, better ratings?). But we have reasons to
@@ -333,6 +333,20 @@ ggstatsplot::ggcoefstats(x = roblmm.mod,
                          title = "robust estimation of linear mixed-effects model")
 ```
 
+## non-linear mixed-effects model (`nlmer`/`nlmerMod`)
+
+```{r nlmer, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 6}
+# model
+library(lme4)
+set.seed(123)
+startvec <- c(Asym = 200, xmid = 725, scal = 350)
+nm1 <- lme4::nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym|Tree,
+             Orange, start = startvec)
+
+# plot
+ggstatsplot::ggcoefstats(x = nm1,
+                         title = "non-linear mixed-effects model")
+```
 
 ## non-linear least-squares model (`nls`)
 
@@ -527,7 +541,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## generalized linear mixed-effects model (`glmer`)
+## generalized linear mixed-effects model (`glmer`/`glmerMod`)
 
 In the previous example, we saw how being a female and being a child was
 predictive of surviving the Titanic disaster. But in that analysis, we didn't
@@ -711,6 +725,22 @@ ggstatsplot::ggcoefstats(x = polr.mod,
                          subtitle = "using `MASS` package")
 ```
 
+## multinomial logistic regression models (`multinom`)
+
+```{r multinom, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+# model
+set.seed(123)
+library(nnet)
+library(MASS)
+utils::example(topic = birthwt, echo = FALSE)
+bwt.mu <- nnet::multinom(formula = low ~ ., data = bwt)
+
+# plot
+ggstatsplot::ggcoefstats(x = bwt.mu,
+                         title = "multinomial logistic regression models",
+                         package = "ggthemes",
+                         palette = "tableau_cyclic")
+```
 
 ## proportional odds and related models (`svyolr`)
 
@@ -1251,8 +1281,27 @@ ggstatsplot::ggcoefstats(x = dax.garch,
                          title = "generalized autoregressive \nconditional heteroscedastic (GARCH)")
 ```
 
+## confusion matrix (`confusionMatrix`)
 
+```{r confusionMatrix, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# setup
+library(caret)
+set.seed(123)
 
+# setting up confusion matrix
+two_class_sample1 <- as.factor(sample(letters[1:2], 100, TRUE))
+two_class_sample2 <- as.factor(sample(letters[1:2], 100, TRUE))
+
+two_class_cm <- caret::confusionMatrix(
+  two_class_sample1,
+  two_class_sample2
+)
+
+# plot
+ggstatsplot::ggcoefstats(x = two_class_cm,
+                         by.class = TRUE,
+                         title = "confusion matrix")
+```
 
 ## dataframes (`tbl_df`, `tbl`, `data.frame`)
 
