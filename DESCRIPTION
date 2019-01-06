@@ -59,7 +59,7 @@ Imports:
     scales (>= 1.0.0),
     sjstats (>= 0.17.2),
     stats,
-    tibble (>= 1.4.2),
+    tibble (>= 2.0.0),
     tidyr (>= 0.8.2),
     WRS2 (>= 0.10-0)
 Suggests:

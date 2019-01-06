@@ -3,6 +3,7 @@ context("grouped_ggdotplotstats")
 testthat::test_that(
   desc = "grouped_ggdotplotstats works",
   code = {
+    testthat::skip_on_cran()
 
     # for reproducibility
     set.seed(123)
@@ -39,6 +40,10 @@ testthat::test_that(
       grouping.var = "cyl",
       test.value = 15.5,
       title.prefix = "cylinder count",
+      ggplot.component = ggplot2::scale_y_continuous(
+        sec.axis = ggplot2::dup_axis(name = "percentile score"),
+        breaks = seq(0, 12, 2)
+      ),
       messages = FALSE
     )
 

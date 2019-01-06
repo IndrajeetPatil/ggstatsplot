@@ -76,6 +76,7 @@ grouped_gghistostats <- function(data,
                                  test.value.linetype = "dashed",
                                  test.line.labeller = TRUE,
                                  test.k = 0,
+                                 ggplot.component = NULL,
                                  messages = TRUE,
                                  ...) {
 
@@ -182,6 +183,7 @@ grouped_gghistostats <- function(data,
             ggtheme = ggtheme,
             ggstatsplot.layer = ggstatsplot.layer,
             fill.gradient = fill.gradient,
+            ggplot.component = ggplot.component,
             messages = messages
           )
         )

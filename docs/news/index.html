@@ -145,7 +145,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -173,6 +173,8 @@
 <ul>
 <li>
 <code>ggcoefstats</code> gains <code>meta.analytic.effect</code> that can be used to carry out meta-analysis on regression estimates. This especially useful when a dataframe with regression estimates and standard error is available from prior analyses. The <code>subtitle</code> is prepared with the new function <code>subtitle_meta_ggcoefstats</code> which is also exported.</li>
+<li>
+<code>ggbetweenstats</code>, <code>ggscatterstats</code>, <code>gghistostats</code>, and <code>ggdotplotstats</code> (and their <code>grouped_</code> variants) all gain a new <code>ggplot.component</code> argument. This argument will primarily be helpful to change the individual plots in a <code>grouped_</code> plot.</li>
 </ul>
 <p>BUG FIXES</p>
 <ul>
@@ -466,7 +468,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>

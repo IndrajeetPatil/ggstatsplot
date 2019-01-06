@@ -18,7 +18,7 @@ gghistostats(data = NULL, x, binwidth = NULL, bar.measure = "count",
   centrality.k = 2, test.value.line = FALSE,
   test.value.color = "black", test.value.size = 1,
   test.value.linetype = "dashed", test.line.labeller = TRUE,
-  test.k = 0, messages = TRUE)
+  test.k = 0, ggplot.component = NULL, messages = TRUE)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -135,6 +135,11 @@ be displayed for \strong{test.value} line (Default: \code{TRUE}).}
 
 \item{test.k}{Integer denoting the number of decimal places expected for
 \code{test.value} label. (Default: \code{0} ).}
+
+\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

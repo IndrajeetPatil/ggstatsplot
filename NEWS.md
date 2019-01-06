@@ -7,6 +7,10 @@ NEW FEATURES
     dataframe with regression estimates and standard error is available from
     prior analyses. The `subtitle` is prepared with the new function
     `subtitle_meta_ggcoefstats` which is also exported.
+  - `ggbetweenstats`, `ggscatterstats`, `gghistostats`, and `ggdotplotstats`
+    (and their `grouped_` variants) all gain a new `ggplot.component` argument.
+    This argument will primarily be helpful to change the individual plots in a
+    `grouped_` plot.
 
 BUG FIXES
 

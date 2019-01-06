@@ -538,26 +538,14 @@ pairwise_p <- function(data,
     }
 
     # extracting the robust pairwise comparisons and tidying up names
-    # depends on which version of tibble is available
-    if (as.character(utils::packageVersion("tibble")[[1]]) == "1.4.2") {
-      rob_df_tidy <-
-        rob_pairwise_df$comp %>%
-        tibble::as_tibble(x = .) %>%
-        dplyr::rename(
-          .data = .,
-          group1 = Group,
-          group2 = Group1
-        )
-    } else {
-      rob_df_tidy <-
-        suppressMessages(rob_pairwise_df$comp %>%
-          tibble::as_tibble(x = ., .name_repair = "unique")) %>%
-        dplyr::rename(
-          .data = .,
-          group1 = Group..1,
-          group2 = Group..2
-        )
-    }
+    rob_df_tidy <-
+      suppressMessages(rob_pairwise_df$comp %>%
+        tibble::as_tibble(x = ., .name_repair = "unique")) %>%
+      dplyr::rename(
+        .data = .,
+        group1 = Group..1,
+        group2 = Group..2
+      )
 
     # cleaning the raw object and getting it in the right format
     df <-

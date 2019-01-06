@@ -278,8 +278,8 @@ grouped_ggbetweenstats <- function(data,
       package = package,
       palette = palette,
       direction = direction,
-      messages = messages,
-      ggplot.component = ggplot.component
+      ggplot.component = ggplot.component,
+      messages = messages
     )
 
   # combining the list of plots into a single plot

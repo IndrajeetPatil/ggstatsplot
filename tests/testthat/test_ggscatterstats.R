@@ -216,7 +216,7 @@ testthat::test_that(
     # creating the plot
     set.seed(123)
     p <-
-      suppressMessages(ggstatsplot::ggscatterstats(
+      ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_cycle,
         y = awake,
@@ -226,8 +226,9 @@ testthat::test_that(
         marginal = FALSE,
         centrality.para = "median",
         axes.range.restrict = TRUE,
+        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 20, 2)),
         messages = FALSE
-      ))
+      )
 
     # built plot
     pb <- ggplot2::ggplot_build(p)
@@ -264,8 +265,8 @@ testthat::test_that(
       tolerance = 0.001
     )
     testthat::expect_identical(
-      as.character(pb$layout$panel_params[[1]]$y.labels),
-      c("5", "10", "15", "20")
+      pb$layout$panel_params[[1]]$y.labels,
+      c("4", "6", "8", "10", "12", "14", "16", "18", "20")
     )
   }
 )
@@ -287,6 +288,7 @@ testthat::test_that(
         title = "mammalian sleep dataset",
         caption = "source: ggplot2 package",
         type = "bf",
+        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 6000, 1000)),
         messages = FALSE
       )
 

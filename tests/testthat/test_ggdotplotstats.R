@@ -36,6 +36,10 @@ testthat::test_that(
         xlab = substitute(paste("Speed of light (", italic("c"), ")")),
         ylab = "Experimental run",
         bf.message = TRUE,
+        ggplot.component = ggplot2::scale_x_continuous(
+          breaks = seq(800, 900, 10),
+          sec.axis = ggplot2::dup_axis()
+        ),
         bf.prior = 0.88,
         test.value.line = TRUE,
         centrality.para = TRUE,
@@ -122,7 +126,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$x.labels,
-      c("800", "840", "880")
+      c("800", "810", "820", "830", "840", "850", "860", "870", "880", "890", "900")
     )
     testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
       c(0.8, 5.2),

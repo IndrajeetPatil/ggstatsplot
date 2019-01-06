@@ -50,6 +50,7 @@
 #' )
 #' 
 #' # using labeling
+#' # (also show how to modify basic plot from within function call)
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
 #'   x = displ,
@@ -60,6 +61,7 @@
 #'   label.var = manufacturer,
 #'   label.expression = hwy > 25 & displ > 2.5,
 #'   xfill = NULL,
+#'   ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis()),
 #'   package = "yarrr",
 #'   palette = "appletv",
 #'   messages = FALSE
@@ -132,6 +134,7 @@ grouped_ggscatterstats <- function(data,
                                    axes.range.restrict = FALSE,
                                    ggtheme = ggplot2::theme_bw(),
                                    ggstatsplot.layer = TRUE,
+                                   ggplot.component = NULL,
                                    messages = TRUE,
                                    ...) {
 
@@ -324,6 +327,7 @@ grouped_ggscatterstats <- function(data,
       axes.range.restrict = axes.range.restrict,
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer,
+      ggplot.component = ggplot.component,
       messages = messages
     )
 

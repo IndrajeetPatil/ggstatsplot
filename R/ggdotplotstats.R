@@ -73,6 +73,7 @@ ggdotplotstats <- function(data,
                            test.value.linetype = "dashed",
                            test.line.labeller = TRUE,
                            test.k = 0,
+                           ggplot.component = NULL,
                            messages = TRUE) {
   # ------------------------------ variable names ----------------------------
 
@@ -247,6 +248,12 @@ ggdotplotstats <- function(data,
         linetype = "dashed"
       )
     )
+
+  # ---------------- adding ggplot component ---------------------------------
+
+  # if any additional modification needs to be made to the plot
+  # this is primarily useful for grouped_ variant of this function
+  plot <- plot + ggplot.component
 
   # ============================= messages =================================
 

@@ -26,32 +26,27 @@
 #'
 #' @examples
 #' 
+#' # for reproducibility
 #' set.seed(123)
 #' 
-#' # creating a dataframe with summary
-#' (df_summarized <-
-#'   groupedstats::grouped_summary(
-#'     data = ggstatsplot::intent_morality,
-#'     grouping.vars = c(condition, harm),
-#'     measures = rating
-#'   ))
+#' # removing factor level with very few no. of observations
+#' df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6", "8"))
 #' 
 #' # plot
 #' ggstatsplot::grouped_ggdotplotstats(
-#'   data = df_summarized,
-#'   x = mean,
-#'   y = harm,
-#'   grouping.var = condition,
-#'   xlab = "moral judgment (average)",
-#'   ylab = "type of harm",
-#'   title.prefix = "intentional status",
-#'   point.color = "red",
-#'   point.shape = 18,
-#'   point.size = 5,
-#'   centrality.para = FALSE
+#'   data = df,
+#'   x = "cty",
+#'   y = "manufacturer",
+#'   grouping.var = "cyl",
+#'   test.value = 15.5,
+#'   title.prefix = "cylinder count",
+#'   ggplot.component = ggplot2::scale_y_continuous(
+#'     sec.axis = ggplot2::dup_axis(name = "percentile score"),
+#'     breaks = seq(0, 12, 2)
+#'   ),
+#'   messages = FALSE
 #' )
 #' @export
-#'
 
 # defining the function
 grouped_ggdotplotstats <- function(data,
@@ -89,6 +84,7 @@ grouped_ggdotplotstats <- function(data,
                                    test.value.linetype = "dashed",
                                    test.line.labeller = TRUE,
                                    test.k = 0,
+                                   ggplot.component = NULL,
                                    messages = TRUE,
                                    ...) {
 
@@ -171,6 +167,7 @@ grouped_ggdotplotstats <- function(data,
             point.color = point.color,
             point.size = point.size,
             point.shape = point.shape,
+            ggplot.component = ggplot.component,
             messages = messages
           )
         )

@@ -17,7 +17,7 @@ grouped_ggdotplotstats(data, x, y, grouping.var, title.prefix = "Group",
   centrality.k = 2, test.value.line = FALSE,
   test.value.color = "black", test.value.size = 1,
   test.value.linetype = "dashed", test.line.labeller = TRUE,
-  test.k = 0, messages = TRUE, ...)
+  test.k = 0, ggplot.component = NULL, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -125,6 +125,11 @@ be displayed for \strong{test.value} line (Default: \code{TRUE}).}
 \item{test.k}{Integer denoting the number of decimal places expected for
 \code{test.value} label. (Default: \code{0} ).}
 
+\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function.}
+
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
@@ -184,29 +189,25 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 
+# for reproducibility
 set.seed(123)
 
-# creating a dataframe with summary
-(df_summarized <-
-  groupedstats::grouped_summary(
-    data = ggstatsplot::intent_morality,
-    grouping.vars = c(condition, harm),
-    measures = rating
-  ))
+# removing factor level with very few no. of observations
+df <- dplyr::filter(.data = ggplot2::mpg, cyl \%in\% c("4", "6", "8"))
 
 # plot
 ggstatsplot::grouped_ggdotplotstats(
-  data = df_summarized,
-  x = mean,
-  y = harm,
-  grouping.var = condition,
-  xlab = "moral judgment (average)",
-  ylab = "type of harm",
-  title.prefix = "intentional status",
-  point.color = "red",
-  point.shape = 18,
-  point.size = 5,
-  centrality.para = FALSE
+  data = df,
+  x = "cty",
+  y = "manufacturer",
+  grouping.var = "cyl",
+  test.value = 15.5,
+  title.prefix = "cylinder count",
+  ggplot.component = ggplot2::scale_y_continuous(
+    sec.axis = ggplot2::dup_axis(name = "percentile score"),
+    breaks = seq(0, 12, 2)
+  ),
+  messages = FALSE
 )
 }
 \seealso{

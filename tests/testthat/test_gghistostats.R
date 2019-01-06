@@ -394,11 +394,14 @@ testthat::test_that(
     # creating the plot
     set.seed(123)
     p <-
-      suppressMessages(ggstatsplot::gghistostats(
+      ggstatsplot::gghistostats(
         x = morley$Speed,
         results.subtitle = FALSE,
+        ggplot.component = ggplot2::scale_x_continuous(
+          sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
+        ),
         messages = FALSE
-      ))
+      )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -409,9 +412,17 @@ testthat::test_that(
       c(582.75, 1127.25),
       tolerance = 0.001
     )
+    testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
+      pb$layout$panel_params[[1]]$x.sec.range,
+      tolerance = 0.001
+    )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$x.labels,
       c("600", "700", "800", "900", "1000", "1100")
+    )
+    testthat::expect_identical(
+      pb$layout$panel_params[[1]]$x.labels,
+      pb$layout$panel_params[[1]]$x.sec.labels
     )
     testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
       c(-1.15, 24.15),

@@ -108,7 +108,7 @@ year_list <- gapminder::gapminder %>%
 
 # this created a list with 3 elements, one for each year we want
 # you can check the structure of the file for yourself
-str(year_list[1])
+# str(year_list[1])
 
 # checking the length of the list and the names of each element
 length(year_list)

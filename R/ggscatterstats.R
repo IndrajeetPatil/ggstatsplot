@@ -66,6 +66,7 @@
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d
+#' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
 #'
@@ -166,6 +167,7 @@ ggscatterstats <- function(data,
                            axes.range.restrict = FALSE,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
+                           ggplot.component = NULL,
                            messages = TRUE) {
 
   #---------------------- variable names --------------------------------
@@ -519,6 +521,13 @@ ggscatterstats <- function(data,
         na.rm = TRUE
       )
   }
+
+  # ---------------- adding ggplot component ---------------------------------
+
+  # if any additional modification needs to be made to the plot
+  # this is primarily useful for grouped_ variant of this function
+  plot <- plot + ggplot.component
+
   #------------------------- ggMarginal  ---------------------------------
 
   # creating the ggMarginal plot of a given marginal.type

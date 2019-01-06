@@ -149,5 +149,26 @@ testthat::test_that(
       ),
       what = "gg"
     ))
+
+    # checking if ggplot component addition works
+    set.seed(123)
+    testthat::expect_true(inherits(
+      ggstatsplot::grouped_ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        marginal = FALSE,
+        results.subtitle = FALSE,
+        grouping.var = "vore",
+        xlab = "total sleep",
+        ylab = "body weight",
+        title = "mammalian sleep dataset",
+        caption = "source: ggplot2 package",
+        type = "bf",
+        ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000)),
+        messages = FALSE
+      ),
+      what = "gg"
+    ))
   }
 )

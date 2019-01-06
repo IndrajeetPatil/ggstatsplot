@@ -3,7 +3,7 @@ context("grouped_gghistostats")
 testthat::test_that(
   desc = "grouped_gghistostats works",
   code = {
-    skip_on_cran()
+    testthat::skip_on_cran()
 
     # when arguments are entered as bare expressions
     set.seed(123)
@@ -27,6 +27,9 @@ testthat::test_that(
         x = "brainwt",
         grouping.var = "vore",
         type = "r",
+        ggplot.component = ggplot2::scale_x_continuous(
+          sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
+        ),
         messages = FALSE
       ),
       what = "gg"
