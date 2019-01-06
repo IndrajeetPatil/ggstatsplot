@@ -16,7 +16,7 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # plot
 #' ggdotplotstats(
 #'   data = ggplot2::mpg,

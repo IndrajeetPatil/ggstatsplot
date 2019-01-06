@@ -769,6 +769,34 @@ ggstatsplot::ggcoefstats(x = m,
                          title = "proportional odds and related models")
 ```
 
+## survey-weighted generalised linear models (`svyglm`)
+
+```{r svyglm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# data
+library(survey)
+set.seed(123)
+data(api)
+dstrat <-
+  survey::svydesign(
+    id =  ~ 1,
+    strata =  ~ stype,
+    weights =  ~ pw,
+    data = apistrat,
+    fpc =  ~ fpc
+  )
+
+# model
+mod <- survey::svyglm(
+  formula = sch.wide ~ ell + meals + mobility,
+  design = dstrat,
+  family = quasibinomial()
+)
+
+# plot
+ggstatsplot::ggcoefstats(x = mod,
+                         title = "survey-weighted generalised linear model")
+```
+
 ## repeated measures ANOVA (`aovlist`)
 
 Let's now consider an example of a repeated measures design where we want to run
@@ -1301,6 +1329,33 @@ two_class_cm <- caret::confusionMatrix(
 ggstatsplot::ggcoefstats(x = two_class_cm,
                          by.class = TRUE,
                          title = "confusion matrix")
+```
+
+## multivariate generalised linear mixed models (`MCMCglmm`)
+
+```{r MCMCglmm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(MCMCglmm)
+
+# model
+mm0 <- MCMCglmm::MCMCglmm(
+  fixed = scale(Reaction) ~ scale(Days),
+  random = ~Subject, data = sleepstudy,
+  nitt = 4000,
+  pr = TRUE,
+  verbose = FALSE
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mm0,
+  title = "multivariate generalised linear mixed model",
+  conf.method = "HPDinterval",
+  exclude.intercept = FALSE,
+  rhat = TRUE,
+  robust = TRUE
+)
 ```
 
 ## dataframes (`tbl_df`, `tbl`, `data.frame`)

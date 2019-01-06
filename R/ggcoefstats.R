@@ -27,7 +27,9 @@
 #' @param conf.method Character describing method for computing confidence
 #'   intervals (for more, see `lme4::confint.merMod`). This argument is valid
 #'   only for the `merMod` class model objects (`lmer`, `glmer`, `nlmer`, etc.).
-#' @param p.kr Logical, if `TRUE`, the computation of p-values for `lmer` is
+#'   For MCMC model objects (Stan, JAGS, etc.), the allowed options are
+#'   `"quantile"` or `"HPDinterval"`.
+#' @param p.kr Logical, if `TRUE`, the computation of *p*-values for `lmer` is
 #'   based on conditional F-tests with Kenward-Roger approximation for the df.
 #'   For details, see `?sjstats::p_value`.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
@@ -42,7 +44,8 @@
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence intervals (Default:
-#'   `0.95`).
+#'   `0.95`). For MCMC model objects (Stan, JAGS, etc.), this will be
+#'   probability level for CI.
 #' @param coefficient.type Relevant only for ordinal regression models (`clm` ,
 #'   `clmm`, and `polr`), this argument decides which parameters to display in
 #'   the plot. This determines whether parameter measures the intercept, i.e.
@@ -167,26 +170,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # -------------- with model object --------------------------------------
-#'
+#' 
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#'
+#' 
 #' # to get a plot
 #' ggstatsplot::ggcoefstats(x = mod, output = "plot")
-#'
+#' 
 #' # to get a tidy dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
-#'
+#' 
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#'
+#' 
 #' # to get augmented dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
-#'
+#' 
 #' # -------------- with custom dataframe -----------------------------------
-#'
+#' 
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -252,7 +255,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#'
+#' 
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -389,8 +392,10 @@ ggcoefstats <- function(x,
       "btergm",
       "coeftest",
       "confusionMatrix",
+      "MCMCglmm",
       "mediate",
       "rlmerMod",
+      "svyglm",
       "TukeyHSD"
     )
 
