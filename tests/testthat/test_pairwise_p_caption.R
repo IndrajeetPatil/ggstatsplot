@@ -5,6 +5,8 @@ context("pairwise_p_caption")
 testthat::test_that(
   desc = "`pairwise_p_caption()` works",
   code = {
+    testthat::skip_on_cran()
+
     set.seed(123)
 
     p_message1 <- ggstatsplot:::pairwise_p_caption(

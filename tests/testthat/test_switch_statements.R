@@ -5,6 +5,8 @@ context("switch statements")
 testthat::test_that(
   desc = "switch for p adjustment works",
   code = {
+    testthat::skip_on_cran()
+
     testthat::expect_error(p.adjust.method.description(NULL))
     testthat::expect_identical(p.adjust.method.description("none"), "None")
     testthat::expect_identical(

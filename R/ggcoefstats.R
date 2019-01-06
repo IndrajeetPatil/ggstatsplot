@@ -369,18 +369,28 @@ ggcoefstats <- function(x,
   # models which are currently not supported
   unsupported.mods <-
     c(
+      "AUC",
       "cv.glmnet",
+      "density",
+      "dist",
       "durbinWatsonTest",
       "elnet",
+      "emmGrid",
+      "ftable",
       "glht",
       "glmnet",
       "kde",
+      "Kendall",
       "kmeans",
+      "list",
+      "mts",
       "muhaz",
       "optim",
+      "spec",
       "survdiff",
       "survexp",
       "survfit",
+      "ts",
       "zoo"
     )
 
@@ -392,8 +402,10 @@ ggcoefstats <- function(x,
       "btergm",
       "coeftest",
       "confusionMatrix",
+      "manova",
       "MCMCglmm",
       "mediate",
+      "mle2",
       "rlmerMod",
       "svyglm",
       "TukeyHSD"
@@ -412,6 +424,7 @@ ggcoefstats <- function(x,
       "lmodel2",
       "lmRob",
       "multinom",
+      "orcutt",
       "plm",
       "ridgelm",
       "svyolr"
@@ -434,7 +447,8 @@ ggcoefstats <- function(x,
     "aovlist",
     "anova",
     "Gam",
-    "gam"
+    "gam",
+    "manova"
   )
 
   # ordinal regression models

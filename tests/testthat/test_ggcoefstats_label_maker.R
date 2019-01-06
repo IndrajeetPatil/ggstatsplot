@@ -5,6 +5,8 @@ context("ggcoefstats_label_maker")
 testthat::test_that(
   desc = "glmRob works",
   code = {
+    testthat::skip_on_cran()
+
     library(robust)
 
     # data
@@ -59,6 +61,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "glmmTMB works",
   code = {
+    testthat::skip_on_cran()
+
     library(glmmTMB)
 
     # model

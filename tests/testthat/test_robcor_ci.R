@@ -3,6 +3,8 @@ context("robcor_ci")
 testthat::test_that(
   desc = "robcor_ci works",
   code = {
+    testthat::skip_on_cran()
+
     # using mtcars dataset
     set.seed(123)
     df1 <- ggstatsplot:::robcor_ci(

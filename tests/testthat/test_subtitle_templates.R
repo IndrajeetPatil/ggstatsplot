@@ -5,6 +5,7 @@ context("subtitle_templates")
 testthat::test_that(
   desc = "checking if subtitle template works with a single parameter",
   code = {
+    testthat::skip_on_cran()
 
     # subtitle
     set.seed(123)
@@ -64,6 +65,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if subtitle template works with two parameters",
   code = {
+    testthat::skip_on_cran()
 
     # subtitle
     set.seed(123)

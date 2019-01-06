@@ -52,7 +52,9 @@ kind of model it is dealing with.}
 
 \item{conf.method}{Character describing method for computing confidence
 intervals (for more, see \code{lme4::confint.merMod}). This argument is valid
-only for the \code{merMod} class model objects (\code{lmer}, \code{glmer}, \code{nlmer}, etc.).}
+only for the \code{merMod} class model objects (\code{lmer}, \code{glmer}, \code{nlmer}, etc.).
+For MCMC model objects (Stan, JAGS, etc.), the allowed options are
+\code{"quantile"} or \code{"HPDinterval"}.}
 
 \item{conf.type}{the type of confidence interval
 (see \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}})}
@@ -61,7 +63,7 @@ only for the \code{merMod} class model objects (\code{lmer}, \code{glmer}, \code
 columns should be returned. Often useful to avoid time consuming
 covariance and standard error calculations. Defaults to \code{FALSE}.}
 
-\item{p.kr}{Logical, if \code{TRUE}, the computation of p-values for \code{lmer} is
+\item{p.kr}{Logical, if \code{TRUE}, the computation of \emph{p}-values for \code{lmer} is
 based on conditional F-tests with Kenward-Roger approximation for the df.
 For details, see \code{?sjstats::p_value}.}
 
@@ -118,7 +120,8 @@ data frame with estimates and their standard errors is entered as input to
 error bars (Default: \code{TRUE}).}
 
 \item{conf.level}{Numeric deciding level of confidence intervals (Default:
-\code{0.95}).}
+\code{0.95}). For MCMC model objects (Stan, JAGS, etc.), this will be
+probability level for CI.}
 
 \item{se.type}{Character specifying the method used to compute standard
 standard errors for quantile regression (Default: \code{"nid"}). To see all

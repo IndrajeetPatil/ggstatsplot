@@ -972,6 +972,21 @@ fit <- stats::arima(x = lh, order = c(1, 0, 0))
 ggstatsplot::ggcoefstats(x = fit,
                          title = "autoregressive integrated moving average")
 ```
+## high performance linear model (`speedlm`)
+
+```{r speedlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# model
+set.seed(123)
+mod <-
+  speedglm::speedlm(formula = mpg ~ wt + qsec,
+                    data = mtcars,
+                    fitted = TRUE)
+
+# plot
+ggstatsplot::ggcoefstats(x = mod, 
+                         title = "high performance linear model",
+                         exclude.intercept = FALSE)
+```
 
 ## bounded memory linear regression (`biglm`)
 
@@ -1307,6 +1322,63 @@ dax.garch <- tseries::garch(x = dax, trace = FALSE)
 # plot
 ggstatsplot::ggcoefstats(x = dax.garch,
                          title = "generalized autoregressive \nconditional heteroscedastic (GARCH)")
+```
+
+## maximum-likelihood fitting of univariate distributions (`fitdistr`)
+
+```{r fitdistr, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# model
+set.seed(123)
+library(MASS)
+x <- rnorm(100, 5, 2)
+fit <- MASS::fitdistr(x, dnorm, list(mean = 3, sd = 1))
+
+# plot
+ggstatsplot::ggcoefstats(x = fit,
+                         title = "maximum-likelihood fitting of \nunivariate distributions",
+                         ggtheme = ggthemes::theme_pander())
+```
+
+## maximum likelihood estimation (`mle2`)
+
+```{r mle2, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+set.seed(123)
+library(bbmle)
+
+# data
+x <- 0:10
+y <- c(26, 17, 13, 12, 20, 5, 9, 8, 5, 4, 8)
+d <- data.frame(x, y)
+
+# custom function
+LL <- function(ymax = 15, xhalf = 6) {
+  -sum(stats::dpois(y, lambda = ymax / (1 + x / xhalf), log = TRUE))
+}
+
+# use default parameters of LL
+fit <- bbmle::mle2(LL, fixed = list(xhalf = 6))
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "maximum likelihood estimation",
+  ggtheme = ggthemes::theme_excel_new()
+)
+```
+
+## Cochrane-Orcutt estimation (`orcutt`)
+
+```{r orcutt, eval = FALSE, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# model
+library(orcutt)
+set.seed(123)
+reg <- stats::lm(formula = mpg ~ wt + qsec + disp, data = mtcars)
+co <- orcutt::cochrane.orcutt(reg)
+
+# plot
+ggstatsplot::ggcoefstats(x = co, 
+                         title = "Cochrane-Orcutt estimation")
 ```
 
 ## confusion matrix (`confusionMatrix`)

@@ -121,17 +121,20 @@ ggcoefstats_label_maker <- function(x,
       "gmm",
       "ivreg",
       "lm",
+      "lm.beta",
       "lmerMod",
       "lmRob",
       "multinom",
       "nlmerMod",
       "nlrq",
       "nls",
+      "orcutt",
       "plm",
       "polr",
       "rlm",
       "rlmerMod",
       "rq",
+      "speedlm",
       "svyglm",
       "svyolr"
     )
@@ -145,6 +148,7 @@ ggcoefstats_label_maker <- function(x,
       "coxph",
       "ergm",
       "glmmTMB",
+      "mle2",
       "survreg"
     )
 
@@ -154,7 +158,8 @@ ggcoefstats_label_maker <- function(x,
     "aovlist",
     "anova",
     "Gam",
-    "gam"
+    "gam",
+    "manova"
   )
 
   # models for which there is no clear t-or z-statistic
