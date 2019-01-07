@@ -604,6 +604,40 @@ ggstatsplot::ggcoefstats(x = mod,
                          title = "generalized linear mixed models \nusing Template Model Builder")
 ```
 
+## generalized linear mixed models using AD Model Builder (`glmmadmb`)
+
+Another option is to use `glmmadmb` package.
+
+```{r glmmadmb, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+library(glmmADMB)
+set.seed(123)
+
+# simulate values
+set.seed(101)
+d <- data.frame(f = factor(rep(LETTERS[1:10], each = 10)), x = runif(100))
+u <- rnorm(10, sd = 2)
+d$eta <- with(d, u[f] + 1 + 4 * x)
+pz <- 0.3
+zi <- rbinom(100, size = 1, prob = pz)
+d$y <- ifelse(zi, 0, rpois(100, lambda = exp(d$eta)))
+
+# fit
+zipmodel <-
+  glmmADMB::glmmadmb(
+    formula = y ~ x + (1 | f),
+    data = d,
+    family = "poisson",
+    zeroInflation = TRUE
+  )
+
+# plotting the model
+ggstatsplot::ggcoefstats(
+  x = zipmodel,
+  title = "generalized linear mixed models \nusing AD Model Builder"
+)
+```
+
 ## cumulative link models (`clm`)
 
 So far we have dealt either with continuous or nominal/factor responses (or

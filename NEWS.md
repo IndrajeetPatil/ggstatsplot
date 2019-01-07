@@ -43,7 +43,7 @@ MINOR CHANGES
     `survreg`, `cch`, `Arima`, `biglm`, `glmmTMB`, `coxph`, `ridgelm`, `aareg`,
     `plm`, `nlrq`, `ivreg`, `ergm`, `btergm`, `garch`, `gmm`, `lmodel2`,
     `svyolr`, `confusionMatrix`, `multinom`, `nlmerMod`, `svyglm`, `MCMCglmm`,
-    `lm.beta`, `speedlm`, `fitdistr`, `mle2`, `orcutt`.
+    `lm.beta`, `speedlm`, `fitdistr`, `mle2`, `orcutt`, `glmmadmb`.
   
 # ggstatsplot 0.0.7
 
