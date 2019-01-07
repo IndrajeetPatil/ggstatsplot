@@ -6,6 +6,7 @@ context(desc = "matrix_to_tibble")
 testthat::test_that(
   desc = "checking matrix_to_tibble works",
   code = {
+    testthat::skip_on_cran()
 
     # creating correlation matrix
     set.seed(123)

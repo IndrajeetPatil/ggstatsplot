@@ -494,7 +494,7 @@ testthat::test_that(
 
     tidy_df3 <- ggstatsplot::ggcoefstats(
       x = mod3,
-      exclude.intercept = FALSE,
+      exclude.intercept = TRUE,
       exponentiate = TRUE,
       output = "tidy"
     )
@@ -515,7 +515,6 @@ testthat::test_that(
     testthat::expect_identical(
       tidy_df3$label,
       c(
-        "list(~italic(beta)==4.128529e+14, ~italic(t)(566)==12.01, ~italic(p)<= 0.001)",
         "list(~italic(beta)==533.71, ~italic(t)(566)==8.60, ~italic(p)<= 0.001)",
         "list(~italic(beta)==0.01, ~italic(t)(566)==-1.04, ~italic(p)==0.321)",
         "list(~italic(beta)==0.00, ~italic(t)(566)==-3.20, ~italic(p)==0.003)",
@@ -675,6 +674,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check gmm output",
   code = {
+    testthat::skip_on_cran()
 
     # setup
     set.seed(123)
@@ -785,6 +785,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check clm and polr models (minimal)",
   code = {
+    testthat::skip_on_cran()
 
     # clm model
     set.seed(123)
@@ -1139,9 +1140,10 @@ testthat::test_that(
 testthat::test_that(
   desc = "check computing confidence intervals",
   code = {
-    set.seed(123)
+    testthat::skip_on_cran()
 
     # creating broom dataframes
+    set.seed(123)
     mod <- stats::lm(data = iris, formula = Sepal.Length ~ Species)
     df1 <- broom::tidy(
       x = mod,
@@ -1272,6 +1274,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if p-value adjustment works",
   code = {
+    testthat::skip_on_cran()
+
     set.seed(123)
 
     # model
@@ -1301,6 +1305,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "testing aesthetic modifications",
   code = {
+    testthat::skip_on_cran()
 
     # model
     set.seed(123)

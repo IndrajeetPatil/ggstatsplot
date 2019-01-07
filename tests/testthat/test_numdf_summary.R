@@ -6,6 +6,7 @@ context(desc = "numdf_summary")
 testthat::test_that(
   desc = "checking numdf_summary - with NAs",
   code = {
+    testthat::skip_on_cran()
 
     # creating a dataframe with summaries
     set.seed(123)
@@ -25,6 +26,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking numdf_summary - without NAs",
   code = {
+    testthat::skip_on_cran()
 
     # creating a dataframe with summaries
     set.seed(123)

@@ -1,4 +1,4 @@
-# ggstatsplot 0.0.7.9000
+# ggstatsplot 0.0.8
 
 NEW FEATURES
 
@@ -11,6 +11,11 @@ NEW FEATURES
     (and their `grouped_` variants) all gain a new `ggplot.component` argument.
     This argument will primarily be helpful to change the individual plots in a
     `grouped_` plot.
+  - `ggcoefstats` can support following new regression model objects: `polr`,
+    `survreg`, `cch`, `Arima`, `biglm`, `glmmTMB`, `coxph`, `ridgelm`, `aareg`,
+    `plm`, `nlrq`, `ivreg`, `ergm`, `btergm`, `garch`, `gmm`, `lmodel2`,
+    `svyolr`, `confusionMatrix`, `multinom`, `nlmerMod`, `svyglm`, `MCMCglmm`,
+    `lm.beta`, `speedlm`, `fitdistr`, `mle2`, `orcutt`, `glmmadmb`.
 
 BUG FIXES
 
@@ -31,7 +36,9 @@ MAJOR CHANGES
     on `position_jitter` defaults). This could be visually inaccurate and,
     therefore, `ggscatterstats` now displays points without any jitter. The user
     can introduce jitter if they wish to using `point.width.jitter` and
-    `point.height.jitter` arguments.
+    `point.height.jitter` arguments. For similar reasons, for `ggbetweenstats`
+    and its `grouped_` variant, `point.jitter.height` default has been changed
+    from `0.1` to `0` (no vertical jitter, i.e.).
 
 MINOR CHANGES
 
@@ -39,11 +46,6 @@ MINOR CHANGES
     `stats::kruskal.test`. As a result, `PMCMRplus` removed from dependencies.
   - `ggcoefstats` gains a `caption` argument. If `caption.summary` is set to
     `TRUE`, the specified caption will be added on top of the `caption.summary`.
-  - `ggcoefstats` can support following new regression model objects: `polr`,
-    `survreg`, `cch`, `Arima`, `biglm`, `glmmTMB`, `coxph`, `ridgelm`, `aareg`,
-    `plm`, `nlrq`, `ivreg`, `ergm`, `btergm`, `garch`, `gmm`, `lmodel2`,
-    `svyolr`, `confusionMatrix`, `multinom`, `nlmerMod`, `svyglm`, `MCMCglmm`,
-    `lm.beta`, `speedlm`, `fitdistr`, `mle2`, `orcutt`, `glmmadmb`.
   
 # ggstatsplot 0.0.7
 

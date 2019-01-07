@@ -74,7 +74,7 @@ caption." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.7.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.8</span>
       </span>
     </div>
 
@@ -239,7 +239,9 @@ kind of model it is dealing with.</p></td>
       <th>conf.method</th>
       <td><p>Character describing method for computing confidence
 intervals (for more, see <code><a href='https://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>lme4::confint.merMod</a></code>). This argument is valid
-only for the <code>merMod</code> class model objects (<code>lmer</code>, <code>glmer</code>, <code>nlmer</code>, etc.).</p></td>
+only for the <code>merMod</code> class model objects (<code>lmer</code>, <code>glmer</code>, <code>nlmer</code>, etc.).
+For MCMC model objects (Stan, JAGS, etc.), the allowed options are
+<code>"quantile"</code> or <code>"HPDinterval"</code>.</p></td>
     </tr>
     <tr>
       <th>conf.type</th>
@@ -254,7 +256,7 @@ covariance and standard error calculations. Defaults to <code>FALSE</code>.</p><
     </tr>
     <tr>
       <th>p.kr</th>
-      <td><p>Logical, if <code>TRUE</code>, the computation of p-values for <code>lmer</code> is
+      <td><p>Logical, if <code>TRUE</code>, the computation of <em>p</em>-values for <code>lmer</code> is
 based on conditional F-tests with Kenward-Roger approximation for the df.
 For details, see <code><a href='https://www.rdocumentation.org/packages/sjstats/topics/p_value'>?sjstats::p_value</a></code>.</p></td>
     </tr>
@@ -335,7 +337,8 @@ error bars (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>conf.level</th>
       <td><p>Numeric deciding level of confidence intervals (Default:
-<code>0.95</code>).</p></td>
+<code>0.95</code>). For MCMC model objects (Stan, JAGS, etc.), this will be
+probability level for CI.</p></td>
     </tr>
     <tr>
       <th>se.type</th>

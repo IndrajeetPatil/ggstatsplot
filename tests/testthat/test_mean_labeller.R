@@ -6,6 +6,7 @@ context(desc = "mean_labeller")
 testthat::test_that(
   desc = "mean_labeller works",
   code = {
+    testthat::skip_on_cran()
 
     # ----------------------- data without NAs ------------------------------
 

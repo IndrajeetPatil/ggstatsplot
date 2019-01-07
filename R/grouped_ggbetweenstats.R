@@ -27,10 +27,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
@@ -56,7 +56,7 @@
 #'   messages = FALSE
 #' )
 #' }
-#' 
+#'
 #' @export
 
 # defining the function
@@ -104,7 +104,7 @@ grouped_ggbetweenstats <- function(data,
                                    mean.size = 5,
                                    mean.color = "darkred",
                                    point.jitter.width = NULL,
-                                   point.jitter.height = 0.2,
+                                   point.jitter.height = 0,
                                    point.dodge.width = 0.75,
                                    ggtheme = ggplot2::theme_bw(),
                                    ggstatsplot.layer = TRUE,
