@@ -27,10 +27,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
@@ -56,7 +56,7 @@
 #'   messages = FALSE
 #' )
 #' }
-#'
+#' 
 #' @export
 
 # defining the function

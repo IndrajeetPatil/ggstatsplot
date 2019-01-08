@@ -72,7 +72,7 @@ models as implemented in the metafor package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.8.9000</span>
       </span>
     </div>
 
@@ -219,7 +219,7 @@ data frame with coefficients.</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>gapminder</span>)
 
 <span class='co'># saving results from regression</span>
-<span class='no'>df_results</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map2.html'>pmap</a></span>(
+<span class='no'>df_results</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/purrr/topics/map2'>pmap</a></span>(
   <span class='kw'>.l</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
     <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw pkg'>gapminder</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/gapminder/topics/gapminder'>gapminder</a></span>),
     <span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/scale'>scale</a></span>(<span class='no'>lifeExp</span>) ~ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/scale'>scale</a></span>(<span class='no'>gdpPercap</span>)),

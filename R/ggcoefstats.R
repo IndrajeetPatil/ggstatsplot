@@ -407,6 +407,7 @@ ggcoefstats <- function(x,
       "mediate",
       "mle2",
       "rlmerMod",
+      "stanfit",
       "svyglm",
       "TukeyHSD"
     )

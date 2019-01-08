@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.8
+Version: 0.0.8.9000
 Authors@R: c(
   person(
   given = "Indrajeet", 
@@ -57,7 +57,7 @@ Imports:
     purrrlyr (>= 0.0.3),
     rlang (>= 0.3.0.1),
     scales (>= 1.0.0),
-    sjstats (>= 0.17.2),
+    sjstats (>= 0.17.3),
     stats,
     tibble (>= 2.0.0),
     tidyr (>= 0.8.2),

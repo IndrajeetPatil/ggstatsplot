@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.8.9000</span>
       </span>
     </div>
 
@@ -128,7 +128,7 @@
       <h1>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-01-07</h4>
+            <h4 class="date">2019-01-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -148,7 +148,7 @@
 <a href="#combining-multiple-plots-example-1-using-purrr" class="anchor"></a>Combining multiple plots: Example #1 using <code>purrr</code>
 </h2>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="http://purrr.tidyverse.org/"><code>purrr</code></a> which can replace many <code>for</code> loops, is more succinct, and easier to read. Consider <code>purrr</code> as your first choice for combining multiple plots.</p>
-<p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>cowplot</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
+<p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>cowplot</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://www.rdocumentation.org/packages/purrr/topics/map">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># for reproducibility</span></a>
@@ -162,7 +162,7 @@
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(                                   <span class="co"># creating a new list column of ggstatsplot outputs</span></a>
 <a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="dt">.data =</span> .,</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="dt">plot =</span> data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="st">      </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="st">      </span>purrr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(</a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">        <span class="dt">.x =</span> .,</a>
 <a class="sourceLine" id="cb1-16" data-line-number="16">        <span class="dt">.f =</span> <span class="op">~</span><span class="st"> </span>ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggscatterstats.html">ggscatterstats</a></span>(</a>
 <a class="sourceLine" id="cb1-17" data-line-number="17">          <span class="dt">data =</span> .,</a>
