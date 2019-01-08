@@ -46,6 +46,7 @@ t1way_ci <- function(data,
     y = !!rlang::enquo(y)
   ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
   # running robust one-way anova
@@ -181,6 +182,7 @@ yuend_ci <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
   # jamovi needs data to be wide format and not long format
@@ -771,6 +773,7 @@ kw_eta_h_ci <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
   # custom function to get eta-squared value

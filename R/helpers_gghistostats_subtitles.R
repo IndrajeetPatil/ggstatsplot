@@ -27,10 +27,10 @@
 #' @seealso \code{\link{gghistostats}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' subtitle_t_onesample(
 #'   x = iris$Sepal.Length,
 #'   type = "r"
@@ -66,7 +66,7 @@ subtitle_t_onesample <- function(data = NULL,
 
   # convert to a tibble
   data %<>%
-    stats::na.omit(.) %>%
+    dplyr::filter(.data = ., !is.na(x)) %>%
     tibble::as_tibble(x = .)
 
   # sample size
@@ -145,7 +145,7 @@ subtitle_t_onesample <- function(data = NULL,
             ", ",
             italic("p"),
             " = ",
-            pvalue,
+            p.value,
             ", ",
             italic("d"),
             " = ",
@@ -157,16 +157,8 @@ subtitle_t_onesample <- function(data = NULL,
           ),
         env = base::list(
           estimate = stats_df$`stat[wilc]`,
-          pvalue = ggstatsplot::specify_decimal_p(
-            x = stats_df$`p[wilc]`,
-            k,
-            p.value = TRUE
-          ),
-          effsize = ggstatsplot::specify_decimal_p(
-            x = stats_df$`es[wilc]`,
-            k = k,
-            p.value = FALSE
-          ),
+          p.value = specify_decimal_p(x = stats_df$`p[wilc]`, k = k, p.value = TRUE),
+          effsize = specify_decimal_p(x = stats_df$`es[wilc]`, k = k),
           n = sample_size
         )
       )
@@ -212,21 +204,17 @@ subtitle_t_onesample <- function(data = NULL,
           "], ",
           italic("p"),
           " = ",
-          pvalue,
+          p.value,
           ", ",
           italic("n"),
           " = ",
           n
         ),
       env = base::list(
-        estimate = ggstatsplot::specify_decimal_p(x = rob_os$estimate[[1]], k),
-        LL = ggstatsplot::specify_decimal_p(x = rob_os$ci[[1]], k),
-        UL = ggstatsplot::specify_decimal_p(x = rob_os$ci[[2]], k),
-        pvalue = ggstatsplot::specify_decimal_p(
-          x = rob_os$p.value[[1]],
-          k,
-          p.value = TRUE
-        ),
+        estimate = specify_decimal_p(x = rob_os$estimate[[1]], k = k),
+        LL = specify_decimal_p(x = rob_os$ci[[1]], k = k),
+        UL = specify_decimal_p(x = rob_os$ci[[2]], k = k),
+        p.value = specify_decimal_p(x = rob_os$p.value[[1]], k = k, p.value = TRUE),
         n = sample_size
       )
     )
@@ -258,30 +246,11 @@ subtitle_t_onesample <- function(data = NULL,
         ),
       env = base::list(
         df = stats_df$`df[stud]`,
-        estimate = ggstatsplot::specify_decimal_p(
-          x = stats_df$`stat[stud]`,
-          k = k,
-          p.value = FALSE
-        ),
-        bf = ggstatsplot::specify_decimal_p(
-          x = log(
-            x = stats_df$`stat[bf]`,
-            base = exp(1)
-          ),
-          k = k,
-          p.value = FALSE
-        ),
-        bf_prior = ggstatsplot::specify_decimal_p(
-          x = bf.prior,
-          k = k,
-          p.value = FALSE
-        ),
-        effsize = ggstatsplot::specify_decimal_p(
-          x = stats_df$`es[stud]`,
-          k = k,
-          p.value = FALSE
-        ),
-        n = nrow(x = data)
+        estimate = specify_decimal_p(x = stats_df$`stat[stud]`, k = k),
+        bf = specify_decimal_p(x = log(stats_df$`stat[bf]`), k = k),
+        bf_prior = specify_decimal_p(x = bf.prior, k = k),
+        effsize = specify_decimal_p(x = stats_df$`es[stud]`, k = k),
+        n = sample_size
       )
     )
   }

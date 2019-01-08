@@ -115,7 +115,7 @@
 #' @importFrom sjstats eta_sq omega_sq
 #' @importFrom stats na.omit t.test oneway.test
 #' @importFrom coin wilcox_test statistic
-#' @importFrom rlang enquo quo_name !!
+#' @importFrom rlang enquo quo_name as_name !!
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon blue green red yellow
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
@@ -248,21 +248,14 @@ ggbetweenstats <- function(data,
 
   # ------------------------------ variable names ----------------------------
 
-  # preparing a dataframe with variable names
-  lab.df <- colnames(x = dplyr::select(
-    .data = data,
-    !!rlang::enquo(x),
-    !!rlang::enquo(y)
-  ))
-
   # if `xlab` is not provided, use the variable `x` name
   if (is.null(xlab)) {
-    xlab <- lab.df[1]
+    xlab <- rlang::as_name(rlang::ensym(x))
   }
 
   # if `ylab` is not provided, use the variable `y` name
   if (is.null(ylab)) {
-    ylab <- lab.df[2]
+    ylab <- rlang::as_name(rlang::ensym(y))
   }
 
   # --------------------------------- data -----------------------------------
@@ -278,10 +271,7 @@ ggbetweenstats <- function(data,
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      dplyr::mutate(
-        .data = .,
-        outlier.label = y
-      )
+      dplyr::mutate(.data = ., outlier.label = y)
   } else {
 
     # if outlier label is provided then include it to make a dataframe
@@ -294,14 +284,10 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # convert the grouping variable to factor and drop unused levels
+  # removing NAs and any dropped factor levels
   data %<>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    ) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
   # if no. of factor levels is greater than the default palette color count
@@ -733,7 +719,7 @@ ggbetweenstats <- function(data,
       title = title,
       subtitle = subtitle,
       caption = caption,
-      color = lab.df[1]
+      color = xlab
     ) +
     ggstatsplot::theme_mprl(
       ggtheme = ggtheme,
@@ -774,7 +760,7 @@ ggbetweenstats <- function(data,
     # display normality test result as a message
     normality_message(
       x = data$y,
-      lab = lab.df[2],
+      lab = ylab,
       k = k,
       output = "message"
     )
@@ -784,7 +770,7 @@ ggbetweenstats <- function(data,
       data = data,
       x = x,
       y = y,
-      lab = lab.df[1],
+      lab = xlab,
       k = k,
       output = "message"
     )

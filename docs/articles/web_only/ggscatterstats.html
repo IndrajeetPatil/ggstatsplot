@@ -283,7 +283,7 @@
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co"># creating a list of plots with different smoothing functions</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">plot_list2 &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/purrr/topics/map2">pmap</a></span>(</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">plot_list2 &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="dt">.l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="co"># let's use only 5% of the data to speed up the calculations</span></a>
 <a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="dt">data =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">tbl =</span> ggstatsplot<span class="op">::</span>movies_wide, <span class="dt">size =</span> <span class="fl">0.05</span>)),</a>

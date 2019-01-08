@@ -72,7 +72,7 @@
 #'
 #' @importFrom dplyr select group_by summarize n arrange if_else desc
 #' @importFrom dplyr mutate mutate_at mutate_if
-#' @importFrom rlang !! enquo quo_name parse_expr
+#' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr
 #' @importFrom ggExtra ggMarginal
 #' @importFrom stats cor.test
 #' @importFrom stats na.omit
@@ -172,21 +172,14 @@ ggscatterstats <- function(data,
 
   #---------------------- variable names --------------------------------
 
-  # preparing a dataframe with variable names
-  lab.df <- colnames(dplyr::select(
-    .data = data,
-    !!rlang::enquo(x),
-    !!rlang::enquo(y)
-  ))
-
   # if `xlab` is not provided, use the variable `x` name
   if (is.null(xlab)) {
-    xlab <- lab.df[1]
+    xlab <- rlang::as_name(rlang::ensym(x))
   }
 
   # if `ylab` is not provided, use the variable `y` name
   if (is.null(ylab)) {
-    ylab <- lab.df[2]
+    ylab <- rlang::as_name(rlang::ensym(y))
   }
 
   #----------------------- dataframe --------------------------------------

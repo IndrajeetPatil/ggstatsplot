@@ -108,10 +108,17 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
+    # without NA ------------------------------------------------------
+
     # message
     testthat::expect_output(
-      ggstatsplot::bartlett_message(data = morley, x = Expt, y = Speed, k = 4),
-      "0.0210",
+      ggstatsplot::bartlett_message(
+        data = morley,
+        x = Expt,
+        y = Speed,
+        k = 4
+      ),
+      "Expt : p-value = 0.0210",
       fixed = TRUE
     )
 
@@ -126,6 +133,75 @@ testthat::test_that(
 
     df_broom <-
       broom::tidy(stats::bartlett.test(formula = Speed ~ Expt, data = morley))
+
+    testthat::expect_equal(df$p.value, df_broom$p.value, tolerance = 0.001)
+    testthat::expect_equal(df$statistic, df_broom$statistic, tolerance = 0.001)
+    testthat::expect_equal(df$parameter, df_broom$parameter)
+
+    # with NA ------------------------------------------------------
+
+    # message
+    testthat::expect_output(
+      ggstatsplot::bartlett_message(
+        data = ggplot2::msleep,
+        x = vore,
+        y = sleep_rem,
+        k = 4
+      ),
+      "vore : p-value = 0.0225",
+      fixed = TRUE
+    )
+
+    # stats results
+    df <- ggstatsplot::bartlett_message(
+      data = ggplot2::msleep,
+      x = vore,
+      y = sleep_rem,
+      k = 4,
+      output = "stats"
+    )
+
+    df_broom <-
+      broom::tidy(stats::bartlett.test(
+        formula = sleep_rem ~ vore,
+        data = ggplot2::msleep
+      ))
+
+    testthat::expect_equal(df$p.value, df_broom$p.value, tolerance = 0.001)
+    testthat::expect_equal(df$statistic, df_broom$statistic, tolerance = 0.001)
+    testthat::expect_equal(df$parameter, df_broom$parameter)
+
+    # with dropped factor level -------------------------------------------------
+
+    # drop a factor level
+    msleep_short <- dplyr::filter(.data = ggplot2::msleep, vore != "omni")
+
+    # message
+    testthat::expect_output(
+      ggstatsplot::bartlett_message(
+        data = msleep_short,
+        x = vore,
+        y = sleep_rem,
+        k = 4
+      ),
+      "vore : p-value = 0.0188",
+      fixed = TRUE
+    )
+
+    # stats results
+    df <- ggstatsplot::bartlett_message(
+      data = msleep_short,
+      x = vore,
+      y = sleep_rem,
+      k = 4,
+      output = "stats"
+    )
+
+    df_broom <-
+      broom::tidy(stats::bartlett.test(
+        formula = sleep_rem ~ vore,
+        data = msleep_short
+      ))
 
     testthat::expect_equal(df$p.value, df_broom$p.value, tolerance = 0.001)
     testthat::expect_equal(df$statistic, df_broom$statistic, tolerance = 0.001)

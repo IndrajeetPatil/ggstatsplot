@@ -66,15 +66,8 @@ subtitle_anova_parametric <- function(data,
       y = !!rlang::enquo(y)
     ) %>%
     dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
 
   # sample size
   sample_size <- nrow(data)
@@ -201,15 +194,8 @@ subtitle_kw_nonparametric <-
         y = !!rlang::enquo(y)
       ) %>%
       dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+      dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
       tibble::as_tibble(x = .)
-
-    # convert the grouping variable to factor and drop unused levels
-    data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "x",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      )
 
     # sample size
     sample_size <- nrow(data)
@@ -307,15 +293,8 @@ subtitle_friedman_nonparametric <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
     ) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
   # converting to long format and then getting it back in wide so that the
@@ -371,18 +350,18 @@ subtitle_friedman_nonparametric <- function(data,
           n
         ),
       env = base::list(
-        estimate = ggstatsplot::specify_decimal_p(
+        estimate = specify_decimal_p(
           x = friedman_stat$statistic[[1]],
           k = k,
           p.value = FALSE
         ),
         df = friedman_stat$parameter[[1]],
-        pvalue = ggstatsplot::specify_decimal_p(
+        pvalue = specify_decimal_p(
           x = friedman_stat$p.value[[1]],
           k,
           p.value = TRUE
         ),
-        kendall_w = ggstatsplot::specify_decimal_p(
+        kendall_w = specify_decimal_p(
           x = kendall_w[[1]],
           k,
           p.value = FALSE
@@ -454,15 +433,9 @@ subtitle_anova_robust <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y))
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    tibble::as_tibble(x = .)
 
   # sample size
   sample_size <- nrow(data)
@@ -563,15 +536,9 @@ subtitle_anova_bayes <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y))
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    tibble::as_tibble(x = .)
 
   # sample size
   sample_size <- nrow(data)
@@ -665,32 +632,12 @@ subtitle_anova_bayes <- function(data,
         ),
       env = base::list(
         effsize.text = effsize.text,
-        estimate = ggstatsplot::specify_decimal_p(
-          x = stats_df$statistic[[1]],
-          k = k,
-          p.value = FALSE
-        ),
+        estimate = specify_decimal_p(x = stats_df$statistic[[1]], k = k),
         df1 = stats_df$parameter[[1]],
-        df2 = ggstatsplot::specify_decimal_p(
-          x = stats_df$parameter[[2]],
-          k = k.df,
-          p.value = FALSE
-        ),
-        effsize = ggstatsplot::specify_decimal_p(
-          x = effsize_df$estimate[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        bf = ggstatsplot::specify_decimal_p(
-          x = bf_results$log_e_bf10[[1]],
-          k = 1,
-          p.value = FALSE
-        ),
-        bf_prior = ggstatsplot::specify_decimal_p(
-          x = bf_results$bf.prior[[1]],
-          k = 3,
-          p.value = FALSE
-        ),
+        df2 = specify_decimal_p(x = stats_df$parameter[[2]], k = k.df),
+        effsize = specify_decimal_p(x = effsize_df$estimate[[1]], k = k),
+        bf = specify_decimal_p(x = bf_results$log_e_bf10[[1]], k = 1),
+        bf_prior = specify_decimal_p(x = bf_results$bf.prior[[1]], k = 3),
         n = sample_size
       )
     )

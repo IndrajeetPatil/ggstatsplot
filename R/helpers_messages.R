@@ -94,7 +94,7 @@ normality_message <- function(x,
 #' @description A note to the user about the validity of assumptions for the
 #'   default linear model.
 #'
-#' @importFrom rlang enquo quo_name !!
+#' @importFrom rlang enquo quo_name !! as_name ensym
 #' @importFrom stats bartlett.test
 #' @importFrom crayon green blue yellow red
 #'
@@ -133,16 +133,9 @@ bartlett_message <- function(data,
 
   #--------------------------- variable names ---------------------------------
 
-  # preparing a dataframe with variable names
-  lab.df <- colnames(x = dplyr::select(
-    .data = data,
-    !!rlang::enquo(x),
-    !!rlang::enquo(y)
-  ))
-
   # if `lab` is not provided, use the variable `x` name
   if (is.null(lab)) {
-    lab <- lab.df[1]
+    lab <- rlang::as_name(rlang::ensym(x))
   }
 
   #-------------------------- data -------------------------------------------
@@ -153,16 +146,9 @@ bartlett_message <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    stats::na.omit(.) %>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    ) %>% # removing NAs and any dropped factor levels
+    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
 
   #------------------------------ bartlett's test ----------------------------
 
@@ -186,7 +172,7 @@ bartlett_message <- function(data,
       crayon::yellow(
         ggstatsplot::specify_decimal_p(
           x = bartlett$p.value[[1]],
-          k,
+          k = k,
           p.value = TRUE
         )
       ),

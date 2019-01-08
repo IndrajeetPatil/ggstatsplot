@@ -5,6 +5,8 @@ context("helpers_bf_tests")
 testthat::test_that(
   desc = "bayes factor plus posterior checks (correlation)",
   code = {
+    testthat::skip_on_cran()
+
     # creating a dataframe
     set.seed(123)
     df <- suppressMessages(ggstatsplot::bf_extractor(
@@ -39,6 +41,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "bayes factor plus posterior checks (paired t-test)",
   code = {
+    testthat::skip_on_cran()
+
     # creating a dataframe
     set.seed(123)
     data("bugs", package = "jmv")
@@ -99,6 +103,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "bayes factor plus posterior checks (paired t-test)",
   code = {
+    testthat::skip_on_cran()
+
     # creating a dataframe
     set.seed(123)
     df <- suppressMessages(ggstatsplot::bf_extractor(
@@ -149,6 +155,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "bayes factor plus posterior checks (contingency tab)",
   code = {
+    testthat::skip_on_cran()
 
     # extracting results from where this function is implemented
     set.seed(123)
@@ -201,6 +208,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "bayes factor caption maker check",
   code = {
+    testthat::skip_on_cran()
 
     # bayes factor results
     bf_results <- tibble::tribble(

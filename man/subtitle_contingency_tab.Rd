@@ -9,7 +9,7 @@ within-subjects design)}
 subtitle_contingency_tab(data, main, condition, counts = NULL,
   nboot = 25, paired = FALSE, stat.title = NULL, conf.level = 0.95,
   conf.type = "norm", simulate.p.value = FALSE, B = 2000, k = 2,
-  messages = TRUE)
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -53,6 +53,8 @@ intervals required. The value should be any subset of the values \code{"norm"},
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
 Making text subtitle for contingency analysis (Pearson's chi-square

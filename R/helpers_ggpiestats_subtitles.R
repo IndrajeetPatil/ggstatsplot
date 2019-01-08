@@ -23,6 +23,7 @@
 #' @inheritParams chisq_v_ci
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams stats::chisq.test
+#' @param ... Additional arguments (currently ignored).
 #'
 #' @importFrom tibble tribble as_tibble
 #' @importFrom exact2x2 exact2x2
@@ -33,7 +34,7 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#' 
+#'
 #' # without counts data
 #' subtitle_contingency_tab(
 #'   data = mtcars,
@@ -41,11 +42,11 @@
 #'   condition = cyl,
 #'   nboot = 15
 #' )
-#' 
+#'
 #' # with counts data
 #' # in case of no variation, a `NULL` will be returned.
 #' library(jmv)
-#' 
+#'
 #' as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male") %>%
 #'   subtitle_contingency_tab(
@@ -69,7 +70,8 @@ subtitle_contingency_tab <- function(data,
                                      simulate.p.value = FALSE,
                                      B = 2000,
                                      k = 2,
-                                     messages = TRUE) {
+                                     messages = TRUE,
+                                     ...) {
 
   # =============================== dataframe ================================
 
@@ -81,11 +83,7 @@ subtitle_contingency_tab <- function(data,
         main = !!rlang::enquo(main),
         condition = !!rlang::quo_name(rlang::enquo(condition))
       ) %>%
-      dplyr::filter(
-        .data = .,
-        !is.na(main), !is.na(condition)
-      ) %>%
-      tibble::as_tibble(x = .)
+      dplyr::filter(.data = ., !is.na(main), !is.na(condition))
   } else {
     data <-
       dplyr::select(
@@ -94,11 +92,7 @@ subtitle_contingency_tab <- function(data,
         condition = !!rlang::quo_name(rlang::enquo(condition)),
         counts = !!rlang::quo_name(rlang::enquo(counts))
       ) %>%
-      dplyr::filter(
-        .data = .,
-        !is.na(main), !is.na(condition), !is.na(counts)
-      ) %>%
-      tibble::as_tibble(x = .)
+      dplyr::filter(.data = ., !is.na(main), !is.na(condition), !is.na(counts))
   }
 
   # main and condition need to be a factor for this analysis
@@ -106,20 +100,13 @@ subtitle_contingency_tab <- function(data,
 
   # main
   data %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "main",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    dplyr::mutate(.data = ., main = droplevels(as.factor(main))) %>%
+    tibble::as_tibble(x = .)
 
   # condition
   if (!base::missing(condition)) {
     data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "condition",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      )
+      dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
 
     # in case there is no variation, no subtitle will be shown
     if (length(unique(levels(data$condition))) == 1L) {
@@ -306,18 +293,19 @@ subtitle_contingency_tab <- function(data,
 #'   c(1,1)`, etc.
 #' @param legend.title Title text for the legend.
 #' @inheritParams subtitle_contingency_tab
+#' @param ... Additional arguments (currently ignored).
 #'
 #' @examples
-#' 
+#'
 #' # with counts
 #' library(jmv)
-#' 
+#'
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#' 
+#'
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),
@@ -331,15 +319,12 @@ subtitle_onesample_proptest <- function(data,
                                         counts = NULL,
                                         ratio = NULL,
                                         legend.title = NULL,
-                                        k = 2) {
+                                        k = 2,
+                                        ...) {
 
   # saving the column label for the 'main' variables
   if (is.null(legend.title)) {
-    legend.title <-
-      colnames(dplyr::select(
-        .data = data,
-        !!rlang::enquo(main)
-      ))[1]
+    legend.title <- rlang::as_name(rlang::ensym(main))
   }
 
   # ============================ dataframe ===============================
@@ -424,7 +409,7 @@ subtitle_onesample_proptest <- function(data,
             ", ",
             italic("p"),
             " = ",
-            pvalue,
+            p.value,
             ", ",
             italic("n"),
             " = ",
@@ -436,7 +421,7 @@ subtitle_onesample_proptest <- function(data,
             k = k
           ),
           df = as.data.frame(stats_df$tests)[[2]],
-          pvalue = specify_decimal_p(
+          p.value = specify_decimal_p(
             x = as.data.frame(stats_df$tests)[[3]],
             k = k,
             p.value = TRUE

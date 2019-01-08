@@ -34,6 +34,7 @@
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
+#' @importFrom rlang enquo as_name !!
 #' @importFrom jmv ttestOneS
 #' @importFrom WRS2 onesampb
 #' @importFrom scales percent
@@ -123,14 +124,9 @@ gghistostats <- function(data = NULL,
 
   # preparing a dataframe out of provided inputs
   if (!is.null(data)) {
-    # preparing labels from given dataframe
-    lab.df <- colnames(dplyr::select(
-      .data = data,
-      !!rlang::enquo(x)
-    ))
     # if xlab is not provided, use the variable x name
     if (is.null(xlab)) {
-      xlab <- lab.df[1]
+      xlab <- rlang::as_name(rlang::ensym(x))
     }
 
     # if dataframe is provided
@@ -147,8 +143,8 @@ gghistostats <- function(data = NULL,
 
   # convert to a tibble and remove NAs from `x`
   data %<>%
-    tibble::as_tibble(x = .) %>%
-    dplyr::filter(.data = ., !is.na(x))
+    dplyr::filter(.data = ., !is.na(x)) %>%
+    tibble::as_tibble(x = .)
 
   # Adding some binwidth sanity checking
   if (is.null(binwidth)) {
@@ -356,12 +352,12 @@ gghistostats <- function(data = NULL,
   plot <- plot + ggplot.component
 
   # ============================= messages =================================
-  #
+
   # display normality test result as a message
   if (isTRUE(messages)) {
     normality_message(
       x = data$x,
-      lab = lab.df[1],
+      lab = xlab,
       k = k,
       output = "message"
     )

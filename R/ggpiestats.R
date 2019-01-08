@@ -56,10 +56,10 @@
 #'   \url{http://www.how2stats.net/2011/09/yates-correction.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -67,7 +67,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -78,10 +78,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -127,28 +127,18 @@ ggpiestats <- function(data,
   if (base::missing(condition)) {
     # saving the column label for the 'main' variables
     if (is.null(legend.title)) {
-      legend.title <-
-        colnames(x = dplyr::select(
-          .data = data,
-          !!rlang::enquo(main)
-        ))[1]
+      legend.title <- rlang::as_name(rlang::ensym(main))
     }
   } else {
-    # saving the column labels for the 'main' and the 'condition' variables
-    lab.df <- colnames(dplyr::select(
-      .data = data,
-      !!rlang::enquo(main),
-      !!rlang::enquo(condition)
-    ))
     # if legend title is not provided, use the variable name for 'main'
     # argument
     if (is.null(legend.title)) {
-      legend.title <- lab.df[1]
+      legend.title <- rlang::as_name(rlang::ensym(main))
     }
     # if facetting variable name is not specified, use the variable name for
     # 'condition' argument
     if (is.null(facet.wrap.name)) {
-      facet.wrap.name <- lab.df[2]
+      facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
     }
   }
 
@@ -161,16 +151,14 @@ ggpiestats <- function(data,
         dplyr::select(
           .data = data,
           main = !!rlang::enquo(main)
-        ) %>%
-        tibble::as_tibble(x = .)
+        )
     } else {
       data <-
         dplyr::select(
           .data = data,
           main = !!rlang::enquo(main),
           counts = !!rlang::enquo(counts)
-        ) %>%
-        tibble::as_tibble(x = .)
+        )
     }
   } else {
     if (base::missing(counts)) {
@@ -179,8 +167,7 @@ ggpiestats <- function(data,
           .data = data,
           main = !!rlang::enquo(main),
           condition = !!rlang::quo_name(rlang::enquo(condition))
-        ) %>%
-        tibble::as_tibble(x = .)
+        )
     } else {
       data <-
         dplyr::select(
@@ -188,8 +175,7 @@ ggpiestats <- function(data,
           main = !!rlang::enquo(main),
           condition = !!rlang::quo_name(rlang::enquo(condition)),
           counts = !!rlang::quo_name(rlang::enquo(counts))
-        ) %>%
-        tibble::as_tibble(x = .)
+        )
     }
   }
 
@@ -203,41 +189,29 @@ ggpiestats <- function(data,
         weights = counts,
         .remove = TRUE,
         .id = "id"
-      ) %>%
-      tibble::as_tibble(.)
+      )
   }
 
   # ============================ percentage dataframe ========================
-  #
+
   # main and condition need to be a factor for this analysis
   # also drop the unused levels of the factors
 
   # main
   data %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "main",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    ) %>%
-    stats::na.omit(.)
+    dplyr::mutate(.data = ., main = droplevels(as.factor(main))) %>%
+    dplyr::filter(.data = ., !is.na(main))
 
   # condition
   if (!base::missing(condition)) {
     data %<>%
-      dplyr::mutate_at(
-        .tbl = .,
-        .vars = "condition",
-        .funs = ~ base::droplevels(x = base::as.factor(x = .))
-      ) %>%
-      stats::na.omit(.)
+      dplyr::mutate(.data = ., condition = droplevels(as.factor(condition))) %>%
+      dplyr::filter(.data = ., !is.na(condition))
   }
 
-  # if no. of factor levels is greater than the default palette color count
-  palette_message(
-    package = package,
-    palette = palette,
-    min_length = length(unique(levels(data$main)))[[1]]
-  )
+  # converting to tibble
+  data %<>%
+    tibble::as_tibble(x = .)
 
   # convert the data into percentages; group by conditional variable if needed
   if (base::missing(condition)) {
@@ -358,6 +332,13 @@ ggpiestats <- function(data,
   }
 
   # =================================== plot =================================
+
+  # if no. of factor levels is greater than the default palette color count
+  palette_message(
+    package = package,
+    palette = palette,
+    min_length = length(unique(levels(data$main)))[[1]]
+  )
 
   # if facet_wrap is *not* happening
   if (base::missing(condition)) {

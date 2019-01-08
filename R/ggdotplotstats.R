@@ -77,21 +77,14 @@ ggdotplotstats <- function(data,
                            messages = TRUE) {
   # ------------------------------ variable names ----------------------------
 
-  # preparing a dataframe with variable names
-  lab.df <- colnames(x = dplyr::select(
-    .data = data,
-    !!rlang::enquo(x),
-    !!rlang::enquo(y)
-  ))
-
   # if `xlab` is not provided, use the variable `x` name
   if (is.null(xlab)) {
-    xlab <- lab.df[1]
+    xlab <- rlang::as_name(rlang::ensym(x))
   }
 
   # if `ylab` is not provided, use the variable `y` name
   if (is.null(ylab)) {
-    ylab <- lab.df[2]
+    ylab <- rlang::as_name(rlang::ensym(y))
   }
 
   # --------------------------- data preparation ----------------------------
@@ -116,10 +109,7 @@ ggdotplotstats <- function(data,
   # rank ordering the data
   data %<>%
     dplyr::arrange(.data = ., x) %>%
-    dplyr::mutate(
-      .data = .,
-      y = factor(x = y, levels = .$y)
-    ) %>%
+    dplyr::mutate(.data = ., y = factor(y, levels = .$y)) %>%
     dplyr::mutate(
       .data = .,
       percent_rank = (trunc(rank(x)) / length(x)) * 100,
@@ -262,7 +252,7 @@ ggdotplotstats <- function(data,
   if (isTRUE(messages)) {
     normality_message(
       x = data$x,
-      lab = lab.df[1],
+      lab = xlab,
       k = k,
       output = "message"
     )
