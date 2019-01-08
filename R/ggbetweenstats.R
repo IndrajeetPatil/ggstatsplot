@@ -151,10 +151,10 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -164,7 +164,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#' 
+#'
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -467,6 +467,7 @@ ggbetweenstats <- function(data,
     }
 
     # extracting the subtitle using the switch function
+    if (isTRUE(results.subtitle)) {
     subtitle <-
       ggbetweenstats_switch(
         # switch based on
@@ -488,11 +489,14 @@ ggbetweenstats <- function(data,
         k = k,
         messages = messages
       )
+    }
 
     # if bayes factor message needs to be displayed
     if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       caption <- bf.caption.text
     }
+  } else {
+    test <- "none"
   }
 
   # ---------------------------- outlier tagging -----------------------------
