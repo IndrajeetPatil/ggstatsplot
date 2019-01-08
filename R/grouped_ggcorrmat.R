@@ -27,17 +27,17 @@
 #' @inherit ggcorrmat return details
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # for plot
 #' # (without specifiying needed variables; all numeric variables will be used)
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore
 #' )
-#' 
+#'
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -50,7 +50,7 @@
 #'   palette = "BottleRocket2",
 #'   nrow = 2
 #' )
-#' 
+#'
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -58,7 +58,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#' 
+#'
 #' # for getting confidence intervals
 #' # confidence intervals are not available for **robust** correlation
 #' ggstatsplot::grouped_ggcorrmat(
@@ -247,35 +247,6 @@ grouped_ggcorrmat <- function(data,
   } else {
     # ======================== grouped stats dataframe ======================
 
-    if (!base::missing(cor.vars)) {
-      # creating a list of statistical objects
-      statsdf_purrr <-
-        df %>%
-        dplyr::mutate(
-          .data = .,
-          statsdf = data %>%
-            purrr::set_names(!!rlang::enquo(grouping.var)) %>%
-            purrr::map(
-              .x = .,
-              .f = ~ ggstatsplot::ggcorrmat(
-                data = .,
-                cor.vars = !!rlang::enquo(cor.vars),
-                cor.vars.names = cor.vars.names,
-                output = output,
-                matrix.type = matrix.type,
-                method = method,
-                corr.method = corr.method,
-                p.adjust.method = p.adjust.method,
-                exact = exact,
-                continuity = continuity,
-                beta = beta,
-                digits = digits,
-                sig.level = sig.level,
-                messages = messages
-              )
-            )
-        )
-    } else {
       statsdf_purrr <-
         df %>%
         dplyr::mutate(
@@ -301,7 +272,7 @@ grouped_ggcorrmat <- function(data,
               )
             )
         )
-    }
+
 
     # combining all
     final_statsdf <-
