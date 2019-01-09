@@ -468,27 +468,27 @@ ggbetweenstats <- function(data,
 
     # extracting the subtitle using the switch function
     if (isTRUE(results.subtitle)) {
-    subtitle <-
-      ggbetweenstats_switch(
-        # switch based on
-        type = type,
-        test = test,
-        # arguments relevant for subtitle helper functions
-        data = data,
-        x = x,
-        y = y,
-        paired = FALSE,
-        effsize.type = effsize.type,
-        partial = partial,
-        effsize.noncentral = effsize.noncentral,
-        var.equal = var.equal,
-        bf.prior = bf.prior,
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        k = k,
-        messages = messages
-      )
+      subtitle <-
+        ggbetweenstats_switch(
+          # switch based on
+          type = type,
+          test = test,
+          # arguments relevant for subtitle helper functions
+          data = data,
+          x = x,
+          y = y,
+          paired = FALSE,
+          effsize.type = effsize.type,
+          partial = partial,
+          effsize.noncentral = effsize.noncentral,
+          var.equal = var.equal,
+          bf.prior = bf.prior,
+          tr = tr,
+          nboot = nboot,
+          conf.level = conf.level,
+          k = k,
+          messages = messages
+        )
     }
 
     # if bayes factor message needs to be displayed
