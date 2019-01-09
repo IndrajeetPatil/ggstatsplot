@@ -154,10 +154,7 @@ testthat::test_that(
     )
 
     # limits of data
-    testthat::expect_equal(ggplot2::layer_scales(p)$y$limits,
-      c(0.00014, 5.71200),
-      tolerance = 1e-3
-    )
+    testthat::expect_null(ggplot2::layer_scales(p)$y$limits)
 
     # checking x-axis sample size labels
     testthat::expect_identical(
