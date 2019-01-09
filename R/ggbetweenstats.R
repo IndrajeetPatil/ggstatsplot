@@ -732,11 +732,11 @@ ggbetweenstats <- function(data,
     ggplot2::theme(legend.position = "none")
 
   # don't do scale restriction in case of post hoc comparisons
-  if (!isTRUE(pairwise.comparisons)) {
-    plot <- plot +
-      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
-      ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
-  }
+#  if (!isTRUE(pairwise.comparisons)) {
+#    plot <- plot +
+#      ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
+#      ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
+#  }
 
   # choosing palette
   plot <- plot +
