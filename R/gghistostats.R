@@ -306,7 +306,7 @@ gghistostats <- function(data = NULL,
     ggplot2::stat_function(
       fun = dnorm,
       color = normal.curve.color,
-      args = list(mean=mean(data$x), sd=sd(data$x))
+      args = list(mean = mean(data$x), sd = sd(data$x))
       )
   }
 
