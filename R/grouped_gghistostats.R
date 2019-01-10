@@ -25,7 +25,7 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
-#' 
+#'
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
@@ -76,6 +76,8 @@ grouped_gghistostats <- function(data,
                                  test.value.linetype = "dashed",
                                  test.line.labeller = TRUE,
                                  test.k = 0,
+                                 normal.curve = FALSE,
+                                 normal.curve.color = "green",
                                  ggplot.component = NULL,
                                  messages = TRUE,
                                  ...) {
@@ -179,6 +181,8 @@ grouped_gghistostats <- function(data,
             test.value.linetype = test.value.linetype,
             test.line.labeller = test.line.labeller,
             test.k = test.k,
+            normal.curve = normal.curve,
+            normal.curve.color = normal.curve.color,
             binwidth = binwidth,
             ggtheme = ggtheme,
             ggstatsplot.layer = ggstatsplot.layer,
