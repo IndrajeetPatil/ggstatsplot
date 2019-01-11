@@ -1,5 +1,18 @@
 # ggstatsplot 0.0.8.9000
 
+NEW FEATURES
+
+  - `gghistostats` and its `grouped_` variant has a new argument `normal.curve`
+    to superpose a normal distribution curve on top of the histogram (#138).
+
+MINOR CHANGES
+
+  - `ggbetweenstats` and its `grouped_` variant gain a new argument
+    `axes.range.restrict` (which defaults to `FALSE`). This restricts `y`-axes
+    limits to minimum and maximum of `y` variable. This is what these functions
+    were doing by default in the past versions, which created issues for
+    additional ggplot components using the `ggplot.component` argument.
+
 # ggstatsplot 0.0.8
 
 NEW FEATURES

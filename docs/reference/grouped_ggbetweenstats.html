@@ -189,9 +189,10 @@ grouping variable.</p>
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
+  <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>outlier.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
@@ -361,6 +362,13 @@ try to play around with the value of <code>tr</code>, which is by default set to
 <code>0.1</code>. Lowering the value might help.</p></td>
     </tr>
     <tr>
+      <th>axes.range.restrict</th>
+      <td><p>Logical that decides whether to restrict the axes
+values ranges to <code>min</code> and <code>max</code> values of the axes variables (Default:
+<code>FALSE</code>), only relevant for functions where axes variables are of numeric
+type.</p></td>
+    </tr>
+    <tr>
       <th>mean.label.size</th>
       <td><p>Aesthetics for
 the label displaying mean. Defaults: <code>3</code>, <code>"bold"</code>,<code>"black"</code>, respectively.</p></td>
@@ -496,7 +504,9 @@ type. Default palette is <code>"Dark2"</code>.</p></td>
       <td><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function.</p></td>
+as a function. If the given function has an argument <code>axes.range.restrict</code>
+and if it has been set to <code>TRUE</code>, the added ggplot component <em>might</em> not
+work as expected.</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -610,9 +620,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>9</span>, <span class='fl'>1</span>)),
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='message'>Scale for 'y' is already present. Adding another scale for 'y', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'y' is already present. Adding another scale for 'y', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='img'><img src='grouped_ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+)</div><div class='img'><img src='grouped_ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -146,9 +146,10 @@ the plot will be returned.}
 
 \item{k}{Number of decimal places expected for results.}
 
-\item{axes.range.restrict}{Logical decides whether to restrict the axes
-values ranges to min and max values of the \code{x} and \code{y} variables (Default:
-\code{FALSE}).}
+\item{axes.range.restrict}{Logical that decides whether to restrict the axes
+values ranges to \code{min} and \code{max} values of the axes variables (Default:
+\code{FALSE}), only relevant for functions where axes variables are of numeric
+type.}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -162,7 +163,9 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function.}
+as a function. If the given function has an argument \code{axes.range.restrict}
+and if it has been set to \code{TRUE}, the added ggplot component \emph{might} not
+work as expected.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

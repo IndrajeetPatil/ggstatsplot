@@ -102,6 +102,8 @@ ggstatsplot::gghistostats(
     bf.message = TRUE,                                  # display Bayes method results
     ggtheme = ggthemes::theme_tufte(),                  # changing default theme
     bar.fill = "#D55E00",                               # change fill color
+    normal.curve = TRUE,                                # disply a normal distribution curve
+    normal.curve.color = "black",
     test.value = 20,                                    # test value 
     test.value.line = TRUE,                             # show a vertical line at `test.value`
     caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot

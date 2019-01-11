@@ -99,12 +99,15 @@
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
 #'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
 #'   of the current function. Default is `NULL`. The argument should be entered
-#'   as a function.
+#'   as a function. If the given function has an argument `axes.range.restrict`
+#'   and if it has been set to `TRUE`, the added ggplot component *might* not
+#'   work as expected.
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams t1way_ci
+#' @inheritParams ggscatterstats
 #'
 #' @import ggplot2
 #'
@@ -151,10 +154,10 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
-#'
+#' 
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults
 #' ggstatsplot::ggbetweenstats(
 #'   data = mtcars,
@@ -164,7 +167,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#'
+#' 
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -213,6 +216,7 @@ ggbetweenstats <- function(data,
                            conf.level = 0.95,
                            nboot = 100,
                            tr = 0.1,
+                           axes.range.restrict = FALSE,
                            mean.label.size = 3,
                            mean.label.fontface = "bold",
                            mean.label.color = "black",
@@ -732,7 +736,7 @@ ggbetweenstats <- function(data,
     ggplot2::theme(legend.position = "none")
 
   # don't do scale restriction in case of post hoc comparisons
-  if (!isTRUE(pairwise.comparisons)) {
+  if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
     plot <- plot +
       ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
       ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))

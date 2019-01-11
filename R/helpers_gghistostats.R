@@ -37,10 +37,10 @@
 #' @examples
 #' \dontrun{
 #' library(ggplot2)
-#' 
+#'
 #' # creating a ploton which lines and labels are to be superposed
 #' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
-#' 
+#'
 #' # computing `y`-axis positions for line labels
 #' y_label_pos <- median(
 #'   x = ggplot2::layer_scales(p)$y$range$range,
@@ -54,7 +54,7 @@
 #'   test.value.line = TRUE
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -75,8 +75,8 @@ histo_labeller <- function(plot,
                            test.line.labeller = TRUE,
                            test.k = 0) {
   # computing summary statistics needed for displaying labels
-  x_mean <- mean(x = x, na.rm = TRUE)
-  x_median <- median(x = x, na.rm = TRUE)
+  x_mean <- mean(x, na.rm = TRUE)
+  x_median <- median(x, na.rm = TRUE)
 
   # if test value is to be added
   if (isTRUE(test.value.line)) {
@@ -97,7 +97,7 @@ histo_labeller <- function(plot,
           mapping = ggplot2::aes(
             label = list(bquote(
               "test" == .(
-                ggstatsplot::specify_decimal_p(x = test.value, k = test.k)
+                specify_decimal_p(x = test.value, k = test.k)
               )
             )),
             x = test.value,
@@ -131,7 +131,7 @@ histo_labeller <- function(plot,
             mapping = ggplot2::aes(
               label = list(bquote(
                 "mean" == .(
-                  ggstatsplot::specify_decimal_p(x = x_mean, k = centrality.k)
+                  specify_decimal_p(x = x_mean, k = centrality.k)
                 )
               )),
               x = x_mean,
@@ -161,7 +161,7 @@ histo_labeller <- function(plot,
             mapping = ggplot2::aes(
               label = list(bquote(
                 "median" == .(
-                  ggstatsplot::specify_decimal_p(x = x_median, k = centrality.k)
+                  specify_decimal_p(x = x_median, k = centrality.k)
                 )
               )),
               x = x_median,

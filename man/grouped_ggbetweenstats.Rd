@@ -14,9 +14,10 @@ grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
   results.subtitle = TRUE, xlab = NULL, ylab = NULL,
   subtitle = NULL, caption = NULL, sample.size.label = TRUE, k = 2,
   var.equal = FALSE, conf.level = 0.95, nboot = 100, tr = 0.1,
-  mean.label.size = 3, mean.label.fontface = "bold",
-  mean.label.color = "black", notch = FALSE, notchwidth = 0.5,
-  linetype = "solid", outlier.tagging = NULL, outlier.label = NULL,
+  axes.range.restrict = FALSE, mean.label.size = 3,
+  mean.label.fontface = "bold", mean.label.color = "black",
+  notch = FALSE, notchwidth = 0.5, linetype = "solid",
+  outlier.tagging = NULL, outlier.label = NULL,
   outlier.label.color = "black", outlier.color = "black",
   outlier.shape = 19, outlier.coef = 1.5, mean.plotting = TRUE,
   mean.ci = FALSE, mean.size = 5, mean.color = "darkred",
@@ -129,6 +130,11 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
+\item{axes.range.restrict}{Logical that decides whether to restrict the axes
+values ranges to \code{min} and \code{max} values of the axes variables (Default:
+\code{FALSE}), only relevant for functions where axes variables are of numeric
+type.}
+
 \item{mean.label.size}{Aesthetics for
 the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
 
@@ -215,7 +221,9 @@ type. Default palette is \code{"Dark2"}.}
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function.}
+as a function. If the given function has an argument \code{axes.range.restrict}
+and if it has been set to \code{TRUE}, the added ggplot component \emph{might} not
+work as expected.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

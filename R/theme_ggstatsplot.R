@@ -22,8 +22,11 @@
 #'
 #' @export
 
+# function body
 theme_ggstatsplot <- function(ggtheme = ggplot2::theme_bw(),
                               ggstatsplot.layer = TRUE) {
+
+  # if ggstatsplot-specific layer is to be added on top of the default theme
   if (isTRUE(ggstatsplot.layer)) {
     ggtheme +
       ggplot2::theme(

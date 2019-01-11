@@ -93,6 +93,7 @@ testthat::test_that(
       caption = "From ggplot2 package",
       xlab = "vorarephilia",
       ylab = "brain weight",
+      axes.range.restrict = TRUE,
       outlier.tagging = TRUE,
       outlier.label = name,
       conf.level = 0.99,

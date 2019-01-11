@@ -350,8 +350,9 @@ ggstatsplot::ggbetweenstats(
   data = ggstatsplot::iris_long,
   x = attribute,
   y = value,
-  results.subtitle = FALSE,       # turn off the default subtitle
-  subtitle =  custom_subtitle,    # add the custom subtitle prepared using helper function
+  title = "repeated measures design",
+  results.subtitle = FALSE,           # turn off the default subtitle
+  subtitle =  custom_subtitle,        # add the custom subtitle prepared using helper function
   messages = FALSE
 ) 
 ```

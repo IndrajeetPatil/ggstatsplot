@@ -13,6 +13,8 @@ testthat::test_that(
         x = brainwt,
         grouping.var = vore,
         type = "p",
+        normal.curve = TRUE,
+        bar.measure = "mix",
         bf.message = TRUE,
         messages = TRUE
       ),
@@ -27,6 +29,8 @@ testthat::test_that(
         x = "brainwt",
         grouping.var = "vore",
         type = "r",
+        normal.curve = TRUE,
+        bar.measure = "proportion",
         ggplot.component = ggplot2::scale_x_continuous(
           sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
         ),
@@ -44,6 +48,8 @@ testthat::test_that(
         x = ggplot2::msleep$brainwt,
         grouping.var = "vore",
         type = "np",
+        normal.curve = TRUE,
+        bar.measure = "density",
         messages = TRUE
       )
     )

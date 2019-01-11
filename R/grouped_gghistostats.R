@@ -34,6 +34,10 @@
 #'   grouping.var = Species,
 #'   bar.fill = "orange",
 #'   nrow = 1,
+#'   ggplot.component = list(
+#'     ggplot2::scale_x_continuous(breaks = seq(3, 9, 1), limits = (c(3, 9))),
+#'     ggplot2::scale_y_continuous(breaks = seq(0, 25, 5), limits = (c(0, 25)))
+#'   ),
 #'   messages = FALSE
 #' )
 #' @export
@@ -77,7 +81,9 @@ grouped_gghistostats <- function(data,
                                  test.line.labeller = TRUE,
                                  test.k = 0,
                                  normal.curve = FALSE,
-                                 normal.curve.color = "green",
+                                 normal.curve.color = "black",
+                                 normal.curve.linetype = "solid",
+                                 normal.curve.size = 1.0,
                                  ggplot.component = NULL,
                                  messages = TRUE,
                                  ...) {
@@ -183,6 +189,8 @@ grouped_gghistostats <- function(data,
             test.k = test.k,
             normal.curve = normal.curve,
             normal.curve.color = normal.curve.color,
+            normal.curve.linetype = normal.curve.linetype,
+            normal.curve.size = normal.curve.size,
             binwidth = binwidth,
             ggtheme = ggtheme,
             ggstatsplot.layer = ggstatsplot.layer,

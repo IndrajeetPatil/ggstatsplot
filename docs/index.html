@@ -187,7 +187,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--01--08-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--01--11-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://sites.google.com/site/indrajeetspatilmorality/"><img src="https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0" alt="author"></a></td>
 </tr>
 <tr class="even">
@@ -292,48 +292,50 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">ggstatsplot<span class="op">::</span>theme_ggstatsplot</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; function(ggtheme = ggplot2::theme_bw(),</span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;                               ggstatsplot.layer = TRUE) {</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt;   if (isTRUE(ggstatsplot.layer)) {</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;     ggtheme +</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;       ggplot2::theme(</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;         axis.title.x = ggplot2::element_text(size = 11, face = "bold"),</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;         strip.text.x = ggplot2::element_text(size = 11, face = "bold"),</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;         strip.text.y = ggplot2::element_text(size = 11, face = "bold"),</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;         strip.text = ggplot2::element_text(size = 11, face = "bold"),</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;         axis.title.y = ggplot2::element_text(size = 11, face = "bold"),</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;         axis.text.x = ggplot2::element_text(size = 11, face = "bold"),</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;         axis.text.y = ggplot2::element_text(size = 11, face = "bold"),</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;         axis.line = ggplot2::element_line(),</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt;         legend.text = ggplot2::element_text(size = 11),</span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;         legend.title = ggplot2::element_text(size = 11, face = "bold"),</span></a>
-<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt;         legend.title.align = 0.5,</span></a>
-<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt;         legend.text.align = 0.5,</span></a>
-<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt;         legend.key.height = grid::unit(x = 1, units = "line"),</span></a>
-<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt;         legend.key.width = grid::unit(x = 1, units = "line"),</span></a>
-<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt;         plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),</span></a>
-<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt;         panel.border = ggplot2::element_rect(</span></a>
-<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt;           color = "black",</span></a>
-<a class="sourceLine" id="cb7-24" data-line-number="24"><span class="co">#&gt;           fill = NA,</span></a>
-<a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co">#&gt;           size = 1</span></a>
-<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt;         ),</span></a>
-<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt;         plot.title = ggplot2::element_text(</span></a>
-<a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt;           color = "black",</span></a>
-<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt;           size = 13,</span></a>
-<a class="sourceLine" id="cb7-30" data-line-number="30"><span class="co">#&gt;           face = "bold",</span></a>
-<a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt;           hjust = 0.5</span></a>
-<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt;         ),</span></a>
-<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt;         plot.subtitle = ggplot2::element_text(</span></a>
-<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt;           color = "black",</span></a>
-<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt;           size = 11,</span></a>
-<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt;           face = "plain",</span></a>
-<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt;           hjust = 0.5</span></a>
-<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt;         )</span></a>
-<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt;       )</span></a>
-<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt;   } else {</span></a>
-<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;     ggtheme</span></a>
-<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   }</span></a>
-<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; &lt;bytecode: 0x0000000023d4b140&gt;</span></a>
-<a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;   # if ggstatsplot-specific layer is to be added on top of the default theme</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;   if (isTRUE(ggstatsplot.layer)) {</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;     ggtheme +</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;       ggplot2::theme(</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;         axis.title.x = ggplot2::element_text(size = 11, face = "bold"),</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;         strip.text.x = ggplot2::element_text(size = 11, face = "bold"),</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;         strip.text.y = ggplot2::element_text(size = 11, face = "bold"),</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;         strip.text = ggplot2::element_text(size = 11, face = "bold"),</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;         axis.title.y = ggplot2::element_text(size = 11, face = "bold"),</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;         axis.text.x = ggplot2::element_text(size = 11, face = "bold"),</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt;         axis.text.y = ggplot2::element_text(size = 11, face = "bold"),</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;         axis.line = ggplot2::element_line(),</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt;         legend.text = ggplot2::element_text(size = 11),</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt;         legend.title = ggplot2::element_text(size = 11, face = "bold"),</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt;         legend.title.align = 0.5,</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt;         legend.text.align = 0.5,</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt;         legend.key.height = grid::unit(x = 1, units = "line"),</span></a>
+<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt;         legend.key.width = grid::unit(x = 1, units = "line"),</span></a>
+<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt;         plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),</span></a>
+<a class="sourceLine" id="cb7-24" data-line-number="24"><span class="co">#&gt;         panel.border = ggplot2::element_rect(</span></a>
+<a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co">#&gt;           color = "black",</span></a>
+<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt;           fill = NA,</span></a>
+<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt;           size = 1</span></a>
+<a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt;         ),</span></a>
+<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt;         plot.title = ggplot2::element_text(</span></a>
+<a class="sourceLine" id="cb7-30" data-line-number="30"><span class="co">#&gt;           color = "black",</span></a>
+<a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt;           size = 13,</span></a>
+<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt;           face = "bold",</span></a>
+<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt;           hjust = 0.5</span></a>
+<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt;         ),</span></a>
+<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt;         plot.subtitle = ggplot2::element_text(</span></a>
+<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt;           color = "black",</span></a>
+<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt;           size = 11,</span></a>
+<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt;           face = "plain",</span></a>
+<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt;           hjust = 0.5</span></a>
+<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt;         )</span></a>
+<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt;       )</span></a>
+<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt;   } else {</span></a>
+<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt;     ggtheme</span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt;   }</span></a>
+<a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; }</span></a>
+<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; &lt;bytecode: 0x0000000023d50e20&gt;</span></a>
+<a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
 <li><a href="http://r-pkgs.had.co.nz/namespace.html" class="uri">http://r-pkgs.had.co.nz/namespace.html</a></li>
@@ -471,10 +473,11 @@
 <a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>iris_long,</a>
 <a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="dt">x =</span> attribute,</a>
 <a class="sourceLine" id="cb11-17" data-line-number="17">  <span class="dt">y =</span> value,</a>
-<a class="sourceLine" id="cb11-18" data-line-number="18">  <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,       <span class="co"># turn off the default subtitle</span></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19">  <span class="dt">subtitle =</span>  custom_subtitle,    <span class="co"># add the custom subtitle prepared using helper function</span></a>
-<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb11-21" data-line-number="21">) </a></code></pre></div>
+<a class="sourceLine" id="cb11-18" data-line-number="18">  <span class="dt">title =</span> <span class="st">"repeated measures design"</span>,</a>
+<a class="sourceLine" id="cb11-19" data-line-number="19">  <span class="dt">results.subtitle =</span> <span class="ot">FALSE</span>,           <span class="co"># turn off the default subtitle</span></a>
+<a class="sourceLine" id="cb11-20" data-line-number="20">  <span class="dt">subtitle =</span>  custom_subtitle,        <span class="co"># add the custom subtitle prepared using helper function</span></a>
+<a class="sourceLine" id="cb11-21" data-line-number="21">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb11-22" data-line-number="22">) </a></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats4-1.png" width="100%"></p>
 </div>
 <div id="ggscatterstats" class="section level2">

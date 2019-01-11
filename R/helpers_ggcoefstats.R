@@ -8,28 +8,28 @@
 #' \dontrun{
 #' # show all columns in a tibble
 #' options(tibble.width = Inf)
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' #------------------------- models with *t*-statistic ------------------
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(x = broom::tidy(stats::lm(
 #'   data = mtcars, formula = wt ~ cyl * mpg
 #' )), statistic = "t")
-#' 
+#'
 #' # (in case `x` is not a dataframe, no need to specify `statistic` argument;
 #' # this will be figured out by the function itself)
-#' 
+#'
 #' #------------------------- models with *t*-statistic ------------------
-#' 
+#'
 #' # dataframe
 #' clotting <- data.frame(
 #'   u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
 #'   lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
 #'   lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
 #' )
-#' 
+#'
 #' # model
 #' mod <-
 #'   stats::glm(
@@ -37,7 +37,7 @@
 #'     data = clotting,
 #'     family = Gamma
 #'   )
-#' 
+#'
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = mod,
@@ -47,30 +47,30 @@
 #'     conf.level = 0.95
 #'   )
 #' )
-#' 
+#'
 #' #------------------------- models with *z*-statistic --------------------
-#' 
+#'
 #' # preparing dataframe
 #' counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
 #' outcome <- gl(3, 1, 9)
 #' treatment <- gl(3, 3)
 #' d.AD <- data.frame(treatment, outcome, counts)
-#' 
+#'
 #' # model
 #' mod <- stats::glm(
 #'   formula = counts ~ outcome + treatment,
 #'   family = poisson(),
 #'   data = d.AD
 #' )
-#' 
+#'
 #' # creating tidy dataframe with label column
 #' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broom::tidy(mod))
-#' 
+#'
 #' #------------------------- models with *f*-statistic --------------------
 #' # creating a model object
 #' op <- options(contrasts = c("contr.helmert", "contr.poly"))
 #' npk.aov <- stats::aov(formula = yield ~ block + N * P * K, data = npk)
-#' 
+#'
 #' # converting to a dataframe using
 #' tidy_df <- ggstatsplot::lm_effsize_ci(
 #'   object = npk.aov,
@@ -79,7 +79,7 @@
 #'   nboot = 50
 #' ) %>%
 #'   dplyr::rename(.data = ., estimate = omegasq, statistic = F.value)
-#' 
+#'
 #' # including a new column with a label
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = npk.aov,
@@ -88,7 +88,7 @@
 #'   partial = FALSE
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -172,6 +172,20 @@ ggcoefstats_label_maker <- function(x,
     "glmRob"
   )
 
+  # t-statistic
+  g.t.mods <- c(
+    "quasi",
+    "gaussian",
+    "quasibinomial",
+    "quasipoisson",
+    "Gamma",
+    "inverse.gaussian"
+  )
+
+  # z-statistic
+  g.z.mods <- c("binomial",
+                "poisson")
+
   # ================================ dataframe ================================
   if (class(x)[[1]] %in% df.mods) {
     tidy_df <- tfz_labeller(
@@ -204,14 +218,7 @@ ggcoefstats_label_maker <- function(x,
     # ================ t/z-statistic labels ===================================
   } else if (class(x)[[1]] %in% g.mods) {
     if (class(x)[[1]] == "glm") {
-      if (summary(x)$family$family[[1]] %in% c(
-        "quasi",
-        "gaussian",
-        "quasibinomial",
-        "quasipoisson",
-        "Gamma",
-        "inverse.gaussian"
-      )) {
+      if (summary(x)$family$family[[1]] %in% g.t.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,
@@ -219,8 +226,7 @@ ggcoefstats_label_maker <- function(x,
             statistic = "t",
             k = k
           )
-      } else if (summary(x)$family$family[[1]] %in%
-        c("binomial", "poisson")) {
+      } else if (summary(x)$family$family[[1]] %in% g.z.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,
@@ -230,14 +236,7 @@ ggcoefstats_label_maker <- function(x,
           )
       }
     } else if (class(x)[[1]] == "glmerMod") {
-      if (summary(x)$family[[1]] %in% c(
-        "quasi",
-        "gaussian",
-        "quasibinomial",
-        "quasipoisson",
-        "Gamma",
-        "inverse.gaussian"
-      )) {
+      if (summary(x)$family[[1]] %in% g.t.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,
@@ -245,7 +244,7 @@ ggcoefstats_label_maker <- function(x,
             statistic = "t",
             k = k
           )
-      } else if (summary(x)$family[[1]] %in% c("binomial", "poisson")) {
+      } else if (summary(x)$family[[1]] %in% g.z.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,
@@ -255,14 +254,7 @@ ggcoefstats_label_maker <- function(x,
           )
       }
     } else if (class(x)[[1]] == "glmRob") {
-      if (x$family[[1]] %in% c(
-        "quasi",
-        "gaussian",
-        "quasibinomial",
-        "quasipoisson",
-        "Gamma",
-        "inverse.gaussian"
-      )) {
+      if (x$family[[1]] %in% g.t.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,
@@ -270,7 +262,7 @@ ggcoefstats_label_maker <- function(x,
             statistic = "t",
             k = k
           )
-      } else if (x$family[[1]] %in% c("binomial", "poisson")) {
+      } else if (x$family[[1]] %in% g.z.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,
@@ -557,7 +549,7 @@ tfz_labeller <- function(tidy_df,
 #' set.seed(123)
 #' library(ggstatsplot)
 #' library(gapminder)
-#' 
+#'
 #' # saving results from regression
 #' df_results <- purrr::pmap(
 #'   .l = list(
@@ -570,14 +562,14 @@ tfz_labeller <- function(tidy_df,
 #' ) %>%
 #'   dplyr::full_join(x = .[[1]], y = .[[2]], by = "continent") %>%
 #'   dplyr::filter(.data = ., term != "(Intercept)")
-#' 
+#'
 #' # making subtitle
 #' ggstatsplot::subtitle_meta_ggcoefstats(
 #'   data = df_results,
 #'   k = 3,
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # getting tidy data frame with coefficients
 #' ggstatsplot::subtitle_meta_ggcoefstats(
 #'   data = df_results,

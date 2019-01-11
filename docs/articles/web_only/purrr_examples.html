@@ -128,7 +128,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-01-08</h4>
+            <h4 class="date">2019-01-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -450,26 +450,27 @@
 <a class="sourceLine" id="cb6-46" data-line-number="46">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb6-47" data-line-number="47">    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb6-48" data-line-number="48">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
-<a class="sourceLine" id="cb6-49" data-line-number="49">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb6-50" data-line-number="50">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb6-51" data-line-number="51">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
-<a class="sourceLine" id="cb6-52" data-line-number="52">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</a>
-<a class="sourceLine" id="cb6-53" data-line-number="53">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_few">theme_few</a></span>()</a>
-<a class="sourceLine" id="cb6-54" data-line-number="54">    ),</a>
-<a class="sourceLine" id="cb6-55" data-line-number="55">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb6-56" data-line-number="56">  ),</a>
-<a class="sourceLine" id="cb6-57" data-line-number="57">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
-<a class="sourceLine" id="cb6-58" data-line-number="58">)</a>
-<a class="sourceLine" id="cb6-59" data-line-number="59">  </a>
-<a class="sourceLine" id="cb6-60" data-line-number="60"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb6-61" data-line-number="61">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb6-62" data-line-number="62">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb6-63" data-line-number="63">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
-<a class="sourceLine" id="cb6-64" data-line-number="64">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb6-65" data-line-number="65">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb6-66" data-line-number="66">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-67" data-line-number="67">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
-<a class="sourceLine" id="cb6-68" data-line-number="68">)</a></code></pre></div>
+<a class="sourceLine" id="cb6-49" data-line-number="49">    <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-50" data-line-number="50">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb6-51" data-line-number="51">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb6-52" data-line-number="52">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
+<a class="sourceLine" id="cb6-53" data-line-number="53">      ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>(),</a>
+<a class="sourceLine" id="cb6-54" data-line-number="54">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_few">theme_few</a></span>()</a>
+<a class="sourceLine" id="cb6-55" data-line-number="55">    ),</a>
+<a class="sourceLine" id="cb6-56" data-line-number="56">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb6-57" data-line-number="57">  ),</a>
+<a class="sourceLine" id="cb6-58" data-line-number="58">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
+<a class="sourceLine" id="cb6-59" data-line-number="59">)</a>
+<a class="sourceLine" id="cb6-60" data-line-number="60">  </a>
+<a class="sourceLine" id="cb6-61" data-line-number="61"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb6-62" data-line-number="62">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb6-63" data-line-number="63">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb6-64" data-line-number="64">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
+<a class="sourceLine" id="cb6-65" data-line-number="65">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb6-66" data-line-number="66">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb6-67" data-line-number="67">  <span class="dt">ncol =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb6-68" data-line-number="68">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
+<a class="sourceLine" id="cb6-69" data-line-number="69">)</a></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_gghistostats-1.png" width="576"></p>
 </div>
 <div id="ggpiestats" class="section level1">

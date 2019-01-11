@@ -438,9 +438,10 @@ the plot will be returned.</p></td>
     </tr>
     <tr>
       <th>axes.range.restrict</th>
-      <td><p>Logical decides whether to restrict the axes
-values ranges to min and max values of the <code>x</code> and <code>y</code> variables (Default:
-<code>FALSE</code>).</p></td>
+      <td><p>Logical that decides whether to restrict the axes
+values ranges to <code>min</code> and <code>max</code> values of the axes variables (Default:
+<code>FALSE</code>), only relevant for functions where axes variables are of numeric
+type.</p></td>
     </tr>
     <tr>
       <th>ggtheme</th>
@@ -460,7 +461,9 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
       <td><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code> variant
 of the current function. Default is <code>NULL</code>. The argument should be entered
-as a function.</p></td>
+as a function. If the given function has an argument <code>axes.range.restrict</code>
+and if it has been set to <code>TRUE</code>, the added ggplot component <em>might</em> not
+work as expected.</p></td>
     </tr>
     <tr>
       <th>messages</th>

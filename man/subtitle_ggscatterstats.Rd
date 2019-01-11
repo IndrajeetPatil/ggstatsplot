@@ -42,8 +42,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+\item{k}{Number of decimal places expected for results.}
 }
 \description{
 Making text subtitle for the correlation test.

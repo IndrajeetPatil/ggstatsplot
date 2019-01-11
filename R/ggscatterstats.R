@@ -59,9 +59,10 @@
 #' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
 #'   direction, respectively. Defaults to `0` (0%) of the resolution of the
 #'   data.
-#' @param axes.range.restrict Logical decides whether to restrict the axes
-#'   values ranges to min and max values of the `x` and `y` variables (Default:
-#'   `FALSE`).
+#' @param axes.range.restrict Logical that decides whether to restrict the axes
+#'   values ranges to `min` and `max` values of the axes variables (Default:
+#'   `FALSE`), only relevant for functions where axes variables are of numeric
+#'   type.
 #' @inheritParams subtitle_ggscatterstats
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot

@@ -18,7 +18,8 @@ grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
   centrality.k = 2, test.value.line = FALSE,
   test.value.color = "black", test.value.size = 1,
   test.value.linetype = "dashed", test.line.labeller = TRUE,
-  test.k = 0, normal.curve = FALSE, normal.curve.color = "green",
+  test.k = 0, normal.curve = FALSE, normal.curve.color = "black",
+  normal.curve.linetype = "solid", normal.curve.size = 1,
   ggplot.component = NULL, messages = TRUE, ...)
 }
 \arguments{
@@ -144,15 +145,26 @@ be displayed for \strong{test.value} line (Default: \code{TRUE}).}
 \code{test.value} label. (Default: \code{0} ).}
 
 \item{normal.curve}{Logical decides whether to super-impose a normal curve
-using \code{dnorm(mean(x), sd(x))}.}
+using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.}
 
-\item{normal.curve.color}{If \code{normal.curve = TRUE}, then this
-color will be used (Default: \code{"green"}).}
+\item{normal.curve.color}{If
+\code{normal.curve = TRUE}, then these arguments can be used to modify color
+(Default: \code{"black"}), size (default: \code{1.0}), linetype (default: \code{"solid"}).}
+
+\item{normal.curve.linetype}{If
+\code{normal.curve = TRUE}, then these arguments can be used to modify color
+(Default: \code{"black"}), size (default: \code{1.0}), linetype (default: \code{"solid"}).}
+
+\item{normal.curve.size}{If
+\code{normal.curve = TRUE}, then these arguments can be used to modify color
+(Default: \code{"black"}), size (default: \code{1.0}), linetype (default: \code{"solid"}).}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
 of the current function. Default is \code{NULL}. The argument should be entered
-as a function.}
+as a function. If the given function has an argument \code{axes.range.restrict}
+and if it has been set to \code{TRUE}, the added ggplot component \emph{might} not
+work as expected.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
@@ -221,6 +233,10 @@ ggstatsplot::grouped_gghistostats(
   grouping.var = Species,
   bar.fill = "orange",
   nrow = 1,
+  ggplot.component = list(
+    ggplot2::scale_x_continuous(breaks = seq(3, 9, 1), limits = (c(3, 9))),
+    ggplot2::scale_y_continuous(breaks = seq(0, 25, 5), limits = (c(0, 25)))
+  ),
   messages = FALSE
 )
 }

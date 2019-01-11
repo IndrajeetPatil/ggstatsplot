@@ -205,7 +205,7 @@ of lists via `.l` and for `.f` we'll specify `.f = ggstatsplot::ggscatterstats`.
 
 This time we'll put all the code in one block...
 
-```{r purrr_ggscatterstats, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 7}
+```{r purrr_ggscatterstats, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
 # for reproducibility
 set.seed(123)
 
@@ -389,6 +389,7 @@ plot_list <- purrr::pmap(
     test.value.line = TRUE,
     test.value.color = "black",
     centrality.para = "mean",
+    normal.curve = TRUE,
     ggtheme = list(
       ggplot2::theme_classic(),
       ggthemes::theme_fivethirtyeight(),

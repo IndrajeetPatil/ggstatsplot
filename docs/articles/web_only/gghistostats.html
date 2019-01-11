@@ -128,7 +128,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-01-08</h4>
+            <h4 class="date">2019-01-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -205,12 +205,14 @@
 <a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,                                  <span class="co"># display Bayes method results</span></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),                  <span class="co"># changing default theme</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">    <span class="dt">bar.fill =</span> <span class="st">"#D55E00"</span>,                               <span class="co"># change fill color</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="dt">test.value =</span> <span class="dv">20</span>,                                    <span class="co"># test value </span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                             <span class="co"># show a vertical line at `test.value`</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">    <span class="dt">centrality.k =</span> <span class="dv">1</span>                                    <span class="co"># show 1 decimal places for centrality label</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">  )</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; Note: Shapiro-Wilk Normality Test for ACT Score : p-value = &lt; 0.001</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,                                <span class="co"># disply a normal distribution curve</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="dt">normal.curve.color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">    <span class="dt">test.value =</span> <span class="dv">20</span>,                                    <span class="co"># test value </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,                             <span class="co"># show a vertical line at `test.value`</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">    <span class="dt">caption =</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">    <span class="dt">centrality.k =</span> <span class="dv">1</span>                                    <span class="co"># show 1 decimal places for centrality label</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">  )</a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; Note: Shapiro-Wilk Normality Test for ACT Score : p-value = &lt; 0.001</span></a></code></pre></div>
 <p><img src="gghistostats_files/figure-html/psychact3-1.png" width="672"></p>
 <p><code>gghistostats</code> computed Bayes Factors to quantify the likelihood of the <strong>research</strong> (BF10) and the <strong>null</strong> hypothesis (BF01). In our current example, the Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf">(Kass and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT scores are much higher than the national average. The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.</p>
 </div>
