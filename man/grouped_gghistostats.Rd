@@ -18,7 +18,8 @@ grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
   centrality.k = 2, test.value.line = FALSE,
   test.value.color = "black", test.value.size = 1,
   test.value.linetype = "dashed", test.line.labeller = TRUE,
-  test.k = 0, ggplot.component = NULL, messages = TRUE, ...)
+  test.k = 0, normal.curve = FALSE, normal.curve.color = "green",
+  ggplot.component = NULL, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -141,6 +142,12 @@ be displayed for \strong{test.value} line (Default: \code{TRUE}).}
 
 \item{test.k}{Integer denoting the number of decimal places expected for
 \code{test.value} label. (Default: \code{0} ).}
+
+\item{normal.curve}{Logical decides whether to super-impose a normal curve
+using \code{dnorm(mean(x), sd(x))}.}
+
+\item{normal.curve.color}{If \code{normal.curve = TRUE}, then this
+color will be used (Default: \code{"green"}).}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant

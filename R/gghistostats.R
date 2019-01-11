@@ -17,6 +17,10 @@
 #'   provides redundant information in light of y-axis labels.
 #' @param low.color,high.color Colors for low and high ends of the gradient.
 #'   Defaults are colorblind-friendly.
+#' @param normal.curve Logical decides whether to super-impose a normal curve
+#'   using `dnorm(mean(x), sd(x))`.
+#' @param normal.curve.color If `normal.curve = TRUE`, then this
+#'   color will be used (Default: `"green"`).
 #' @param bar.fill If `fill.gradient = FALSE`, then `bar.fill` decides which
 #'   color will uniformly fill all the bars in the histogram (Default:
 #'   `"grey50"`).
@@ -41,7 +45,7 @@
 #' @importFrom crayon green blue yellow red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' # this is the only function where data argument can be `NULL`.
 #' ggstatsplot::gghistostats(
@@ -49,7 +53,7 @@
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = datasets::iris,
@@ -107,6 +111,8 @@ gghistostats <- function(data = NULL,
                          test.value.linetype = "dashed",
                          test.line.labeller = TRUE,
                          test.k = 0,
+                         normal.curve = FALSE,
+                         normal.curve.color = "green",
                          ggplot.component = NULL,
                          messages = TRUE) {
   # if data is not available then don't display any messages
@@ -290,6 +296,49 @@ gghistostats <- function(data = NULL,
       ) +
       ggplot2::ylab("count") +
       ggplot2::guides(fill = FALSE)
+  }
+
+  # if normal curve overlay  needs to be displayed
+  if (isTRUE(normal.curve)) {
+  # adding normal curve density
+  if (bar.measure == "density") {
+    plot <- plot +
+    ggplot2::stat_function(
+      fun = dnorm,
+      color = normal.curve.color,
+      args = list(mean = mean(data$x), sd = sd(data$x))
+      )
+  }
+
+  # adding normal curve count & mix
+  if (bar.measure %in% c("mix", "count")) {
+    plot <- plot +
+    ggplot2::stat_function(
+      fun = function(x, mean, sd, n, bw){
+        dnorm(x = x, mean = mean, sd = sd) * n * bw
+      },
+      color = normal.curve.color,
+      args = c(mean = mean(data$x),
+               sd = sd(data$x),
+               n = length(data$x),
+               bw = binwidth)
+      )
+  }
+
+  # adding normal curve proportion
+  if (bar.measure == "proportion") {
+    plot <- plot +
+      ggplot2::stat_function(
+        fun = function(x, mean, sd, n, bw){
+          dnorm(x = x, mean = mean, sd = sd) * bw
+        },
+        color = normal.curve.color,
+        args = c(mean = mean(data$x),
+                 sd = sd(data$x),
+                 n = length(data$x),
+                 bw = binwidth)
+      )
+  }
   }
 
   # if bayes factor message needs to be displayed
