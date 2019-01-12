@@ -114,10 +114,15 @@ testthat::test_that(
       lme4::glmer(
         formula = Postwt ~ Prewt + (1 | Treat),
         family = stats::Gamma(),
-        control = lme4::glmerControl("Nelder_Mead",
-                                     check.conv.grad     = .makeCC(action = "message", tol = 0.01, relTol = NULL),
-                                     check.conv.singular = .makeCC(action = "message",  tol = 0.01),
-                                     check.conv.hess     = .makeCC(action = "message", tol = 0.01)
+        control = lme4::glmerControl(
+          "Nelder_Mead",
+          check.conv.grad = .makeCC(
+            action = "message",
+            tol = 0.01,
+            relTol = NULL
+          ),
+          check.conv.singular = .makeCC(action = "message", tol = 0.01),
+          check.conv.hess = .makeCC(action = "message", tol = 0.01)
         ),
         data = anorexia
       )
@@ -125,7 +130,7 @@ testthat::test_that(
     # dataframe with labels
     df <- ggstatsplot:::ggcoefstats_label_maker(
       x = mod,
-      tidy_df = broom.mixed::tidy(mod),
+      tidy_df = broom.mixed::tidy(x = mod, effects = "fixed"),
       glance_df = broom.mixed::glance(mod)
     )
 
@@ -134,9 +139,7 @@ testthat::test_that(
       df$label,
       c(
         "list(~italic(beta)==0.02, ~italic(t)(68)==41.12, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==0.00, ~italic(t)(68)==-7.27, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==0.00, ~italic(t)(68)==NA, ~italic(p)==NA)",
-        "list(~italic(beta)==0.08, ~italic(t)(68)==NA, ~italic(p)==NA)"
+        "list(~italic(beta)==0.00, ~italic(t)(68)==-7.27, ~italic(p)<= 0.001)"
       )
     )
   }

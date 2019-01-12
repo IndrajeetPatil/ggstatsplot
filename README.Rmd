@@ -29,7 +29,7 @@ Package | Status | Usage | GitHub | References
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/) | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/) | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues) | [![vignettes](https://img.shields.io/badge/vignettes-0.0.8-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master) | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/116717490.svg)](https://zenodo.org/badge/latestdoi/116717490)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master) | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot) | [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master) | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)
-[![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_12_06-brightgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md) | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil) | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
+[![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_12-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md) | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil) | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
 
 
 # Overview
@@ -289,9 +289,6 @@ easy to repeat the same operation across a **single** grouping variable:
 # for reproducibility
 set.seed(123)
 
-# let's exclude animation and documentary genres since there are not many
-# datapoints for these genres
-
 # plot
 ggstatsplot::grouped_ggbetweenstats(
   data = dplyr::filter(.data = ggstatsplot::movies_long,
@@ -304,6 +301,9 @@ ggstatsplot::grouped_ggbetweenstats(
   p.adjust.method = "bonferroni",   # method for adjusting p-values for multiple comparisons
   bf.message = TRUE,                # display Bayes Factor in favor of the null hypothesis
   conf.level = 0.99,                # changing confidence level to 99%
+  ggplot.component = list(          # adding new components to `ggstatsplot` default
+    ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
+    ),
   k = 3,
   title.prefix = "Movie genre",
   caption = substitute(paste(italic("Source"), 
@@ -422,19 +422,24 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_ggscatterstats(
-  data = dplyr::filter(.data = ggstatsplot::movies_long, 
-                       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")),
-  x = rating, 
+  data = dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+  ),
+  x = rating,
   y = length,
-  bf.message = TRUE,               # display bayes factor message
+  bf.message = TRUE,      # display bayes factor message
   conf.level = 0.99,
-  k = 3,                           # no. of decimal places in the results
-  xfill = "#E69F00", 
+  k = 3,                  # no. of decimal places in the results
+  xfill = "#E69F00",
   yfill = "#8b3058",
   xlab = "IMDB rating",
-  grouping.var = genre,            # grouping variable
+  grouping.var = genre,   # grouping variable
   title.prefix = "Movie genre",
   ggtheme = ggplot2::theme_grey(),
+  ggplot.component = list(
+    ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
+  ),
   messages = FALSE,
   nrow = 2,
   ncol = 2,
@@ -620,14 +625,21 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_gghistostats(
-  data = dplyr::filter(.data = ggstatsplot::movies_long, 
-                       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")),
+  data = dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+  ),
   x = budget,
   xlab = "Movies budget (in million US$)",
-  type = "robust",                 # use robust location measure   
-  grouping.var = genre,            # grouping variable
+  type = "robust",                        # use robust location measure
+  grouping.var = genre,                   # grouping variable
+  normal.curve = TRUE,                    # superimpose a normal distribution curve
+  normal.curve.color = "red",
   title.prefix = "Movie genre",
   ggtheme = ggthemes::theme_tufte(),
+  ggplot.component = list(                # modify the defaults from `ggstatsplot` for each plot
+    ggplot2::scale_x_continuous(breaks = seq(0, 200, 50), limits = (c(0, 200)))
+  ),
   messages = FALSE,
   nrow = 2,
   title.text = "Movies budgets for different genres"

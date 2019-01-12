@@ -412,7 +412,7 @@ ggcoefstats <- function(x,
       "TukeyHSD"
     )
 
-  # models for which the diagnostics is not available (AIC, BIC, LL)
+  # models for which the full diagnostics is not available (AIC, BIC, LL)
   nodiagnostics.mods <-
     c(
       "aareg",
@@ -422,6 +422,7 @@ ggcoefstats <- function(x,
       "glmRob",
       "gmm",
       "ivreg",
+      "lavaan",
       "lmodel2",
       "lmRob",
       "multinom",

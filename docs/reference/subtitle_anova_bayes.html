@@ -242,17 +242,16 @@ to use in calculating Bayes factors.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># with defaults</span>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># with defaults</span>
 <span class='fu'>subtitle_anova_bayes</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>
-)</div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "11.10", ") = ", "2.63", ", ", 
-#&gt;     omega["p"]^2, " = ", "0.14", ", log"["e"], "(BF"["10"], ") = ", 
-#&gt;     "1.2", ", Prior width = ", "0.800", ", ", italic("n"), " = ", 
-#&gt;     56L)</div><div class='input'>
+)
+
 <span class='co'># modifying the defaults</span>
 <span class='fu'>subtitle_anova_bayes</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
@@ -260,9 +259,8 @@ to use in calculating Bayes factors.</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"partial_eta"</span>,
   <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; paste(italic("F"), "(", 3, ",", "52", ") = ", "4.14", ", ", eta["p"]^2, 
-#&gt;     " = ", "0.19", ", log"["e"], "(BF"["10"], ") = ", "1.2", 
-#&gt;     ", Prior width = ", "0.707", ", ", italic("n"), " = ", 56L)</div></pre>
+)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

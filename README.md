@@ -9,8 +9,8 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)           | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                           | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.8-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                       | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/116717490.svg)](https://zenodo.org/badge/latestdoi/116717490)                                                                  |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--01--08-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
-| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_12_06-brightgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                     | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--01--12-yellowgreen.svg)](/commits/master)                                                  | [![author](https://img.shields.io/badge/Author-I._Patil-purple.svg?colorB=9C27B0)](https://sites.google.com/site/indrajeetspatilmorality/)                      |
+| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_12-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
 
@@ -164,6 +164,8 @@ just type the name of the function without the parentheses:
 ggstatsplot::theme_ggstatsplot
 #> function(ggtheme = ggplot2::theme_bw(),
 #>                               ggstatsplot.layer = TRUE) {
+#> 
+#>   # if ggstatsplot-specific layer is to be added on top of the default theme
 #>   if (isTRUE(ggstatsplot.layer)) {
 #>     ggtheme +
 #>       ggplot2::theme(
@@ -204,7 +206,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002c6f4c58>
+#> <bytecode: 0x0000000033994650>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -349,9 +351,6 @@ variable:
 # for reproducibility
 set.seed(123)
 
-# let's exclude animation and documentary genres since there are not many
-# datapoints for these genres
-
 # plot
 ggstatsplot::grouped_ggbetweenstats(
   data = dplyr::filter(.data = ggstatsplot::movies_long,
@@ -364,6 +363,9 @@ ggstatsplot::grouped_ggbetweenstats(
   p.adjust.method = "bonferroni",   # method for adjusting p-values for multiple comparisons
   bf.message = TRUE,                # display Bayes Factor in favor of the null hypothesis
   conf.level = 0.99,                # changing confidence level to 99%
+  ggplot.component = list(          # adding new components to `ggstatsplot` default
+    ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
+    ),
   k = 3,
   title.prefix = "Movie genre",
   caption = substitute(paste(italic("Source"), 
@@ -412,8 +414,9 @@ ggstatsplot::ggbetweenstats(
   data = ggstatsplot::iris_long,
   x = attribute,
   y = value,
-  results.subtitle = FALSE,       # turn off the default subtitle
-  subtitle =  custom_subtitle,    # add the custom subtitle prepared using helper function
+  title = "repeated measures design",
+  results.subtitle = FALSE,           # turn off the default subtitle
+  subtitle =  custom_subtitle,        # add the custom subtitle prepared using helper function
   messages = FALSE
 ) 
 ```
@@ -490,19 +493,24 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_ggscatterstats(
-  data = dplyr::filter(.data = ggstatsplot::movies_long, 
-                       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")),
-  x = rating, 
+  data = dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+  ),
+  x = rating,
   y = length,
-  bf.message = TRUE,               # display bayes factor message
+  bf.message = TRUE,      # display bayes factor message
   conf.level = 0.99,
-  k = 3,                           # no. of decimal places in the results
-  xfill = "#E69F00", 
+  k = 3,                  # no. of decimal places in the results
+  xfill = "#E69F00",
   yfill = "#8b3058",
   xlab = "IMDB rating",
-  grouping.var = genre,            # grouping variable
+  grouping.var = genre,   # grouping variable
   title.prefix = "Movie genre",
   ggtheme = ggplot2::theme_grey(),
+  ggplot.component = list(
+    ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
+  ),
   messages = FALSE,
   nrow = 2,
   ncol = 2,
@@ -710,14 +718,21 @@ set.seed(123)
 
 # plot
 ggstatsplot::grouped_gghistostats(
-  data = dplyr::filter(.data = ggstatsplot::movies_long, 
-                       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")),
+  data = dplyr::filter(
+    .data = ggstatsplot::movies_long,
+    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
+  ),
   x = budget,
   xlab = "Movies budget (in million US$)",
-  type = "robust",                 # use robust location measure   
-  grouping.var = genre,            # grouping variable
+  type = "robust",                        # use robust location measure
+  grouping.var = genre,                   # grouping variable
+  normal.curve = TRUE,                    # superimpose a normal distribution curve
+  normal.curve.color = "red",
   title.prefix = "Movie genre",
   ggtheme = ggthemes::theme_tufte(),
+  ggplot.component = list(                # modify the defaults from `ggstatsplot` for each plot
+    ggplot2::scale_x_continuous(breaks = seq(0, 200, 50), limits = (c(0, 200)))
+  ),
   messages = FALSE,
   nrow = 2,
   title.text = "Movies budgets for different genres"
@@ -1064,8 +1079,9 @@ models supported, see the associated vignette-
 The full power of `ggstatsplot` can be leveraged with a functional
 programming package like [`purrr`](http://purrr.tidyverse.org/) that
 replaces `for` loops with code that is both more succinct and easier to
-read and, therefore, `purrr` should be preferrred 😻. (Another old school
-option to do this effectively is using the `plyr` package.)
+read and, therefore, `purrr` should be preferrred \<U+0001F63B\>.
+(Another old school option to do this effectively is using the `plyr`
+package.)
 
 In such cases, `ggstatsplot` contains a helper function `combine_plots`
 to combine multiple plots, which can be useful for combining a list of
