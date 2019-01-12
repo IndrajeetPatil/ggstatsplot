@@ -170,26 +170,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # -------------- with model object --------------------------------------
-#' 
+#'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#' 
+#'
 #' # to get a plot
 #' ggstatsplot::ggcoefstats(x = mod, output = "plot")
-#' 
+#'
 #' # to get a tidy dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
-#' 
+#'
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#' 
+#'
 #' # to get augmented dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
-#' 
+#'
 #' # -------------- with custom dataframe -----------------------------------
-#' 
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -255,7 +255,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#' 
+#'
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -449,7 +449,6 @@ ggcoefstats <- function(x,
     "aovlist",
     "anova",
     "Gam",
-    "gam",
     "manova"
   )
 
@@ -640,27 +639,14 @@ ggcoefstats <- function(x,
 
   # =================== check for duplicate terms ============================
 
-  # for `gmm` class objects, there are going to be duplicate terms
+  # for some class of objects, there are going to be duplicate terms
   # create a new column by collapsing orignal `variable` and `term` columns
-  if (class(x)[[1]] == "gmm") {
+  if (class(x)[[1]] %in% c("gmm", "lmodel2", "gamlss")) {
     tidy_df %<>%
       tidyr::unite(
         data = .,
         col = "term",
-        variable:term,
-        remove = TRUE,
-        sep = "_"
-      )
-  }
-
-  # for `lmodel2` class objects, there are going to be duplicate terms
-  # create a new column by collapsing orignal `model` and `term` columns
-  if (class(x)[[1]] == "lmodel2") {
-    tidy_df %<>%
-      tidyr::unite(
-        data = .,
-        col = "term",
-        method:term,
+        dplyr::matches("term|variable|parameter|method"),
         remove = TRUE,
         sep = "_"
       )

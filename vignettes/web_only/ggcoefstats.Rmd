@@ -1144,6 +1144,23 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## generalized additive model (`Gam`)
+
+```{r Gam, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(gam)
+
+# model
+g <- gam::gam(formula = mpg ~ s(hp, 4) + am + qsec, 
+              data = mtcars)
+
+# plot
+ggstatsplot::ggcoefstats(x = g, 
+                         title = "generalized additive model",
+                         subtite = "(using `gam` package)")
+```
+
 ## linear model using generalized least squares (`gls`)
 
 The `nlme` package provides a function to fit a linear model using generalized
@@ -1262,6 +1279,26 @@ ggstatsplot::ggcoefstats(x = Ex2.res,
                          title = "Model II regression")
 ```
 
+## generalized additive models for location scale and shape (`gamlss`)
+
+```{r gamlss, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(gamlss)
+
+# model
+g <- gamlss::gamlss(
+  formula = y ~ pb(x),
+  sigma.fo = ~ pb(x),
+  family = BCT,
+  data = abdom,
+  method = mixed(1, 20)
+)
+
+# plot
+ggstatsplot::ggcoefstats(x = g, 
+                         title = "generalized additive models \nfor location scale and shape")
+```
 
 ## generalized method of moment estimation (`gmm`)
 

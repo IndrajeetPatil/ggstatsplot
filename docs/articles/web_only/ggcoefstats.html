@@ -1172,6 +1172,23 @@
 <a class="sourceLine" id="cb33-19" data-line-number="19"><span class="co">#&gt; Note: No confidence intervals available for regression coefficients from ridgelm object, so skipping whiskers in the plot.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/ridgelm-1.png" width="480"></p>
 </div>
+<div id="generalized-additive-model-gam" class="section level2">
+<h2 class="hasAnchor">
+<a href="#generalized-additive-model-gam" class="anchor"></a>generalized additive model (<code>Gam</code>)</h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gam)</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">g &lt;-<span class="st"> </span>gam<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/gam/topics/gam">gam</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(hp, <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>qsec, </a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">              <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb34-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb34-10" data-line-number="10">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> g, </a>
+<a class="sourceLine" id="cb34-11" data-line-number="11">                         <span class="dt">title =</span> <span class="st">"generalized additive model"</span>,</a>
+<a class="sourceLine" id="cb34-12" data-line-number="12">                         <span class="dt">subtite =</span> <span class="st">"(using `gam` package)"</span>)</a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/Gam-1.png" width="480"></p>
+</div>
 <div id="linear-model-using-generalized-least-squares-gls" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-model-using-generalized-least-squares-gls" class="anchor"></a>linear model using generalized least squares (<code>gls</code>)</h2>
@@ -1190,384 +1207,409 @@
 <div id="nonlinear-quantile-regression-estimates-nlrq" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nonlinear-quantile-regression-estimates-nlrq" class="anchor"></a>nonlinear quantile regression estimates (<code>nlrq</code>)</h2>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(quantreg)</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co"># preparing data</span></a>
-<a class="sourceLine" id="cb34-4" data-line-number="4">Dat &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb34-5" data-line-number="5">Dat<span class="op">$</span>x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb34-7" data-line-number="7">Dat<span class="op">$</span>y &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/SSlogis">SSlogis</a></span>(Dat<span class="op">$</span>x, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">500</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb34-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="co"># then fit the median using nlrq</span></a>
-<a class="sourceLine" id="cb34-10" data-line-number="10">Dat.nlrq &lt;-</a>
-<a class="sourceLine" id="cb34-11" data-line-number="11"><span class="st">  </span>quantreg<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/quantreg/topics/nlrq">nlrq</a></span>(</a>
-<a class="sourceLine" id="cb34-12" data-line-number="12">    <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/SSlogis">SSlogis</a></span>(x, Asym, mid, scal),</a>
-<a class="sourceLine" id="cb34-13" data-line-number="13">    <span class="dt">data =</span> Dat,</a>
-<a class="sourceLine" id="cb34-14" data-line-number="14">    <span class="dt">tau =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb34-15" data-line-number="15">    <span class="dt">trace =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb34-16" data-line-number="16">  )</a>
-<a class="sourceLine" id="cb34-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb34-18" data-line-number="18"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb34-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> Dat.nlrq,</a>
-<a class="sourceLine" id="cb34-20" data-line-number="20">                         <span class="dt">title =</span> <span class="st">"non-linear quantile regression"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(quantreg)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co"># preparing data</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">Dat &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">Dat<span class="op">$</span>x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">Dat<span class="op">$</span>y &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/SSlogis">SSlogis</a></span>(Dat<span class="op">$</span>x, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">500</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb35-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="co"># then fit the median using nlrq</span></a>
+<a class="sourceLine" id="cb35-10" data-line-number="10">Dat.nlrq &lt;-</a>
+<a class="sourceLine" id="cb35-11" data-line-number="11"><span class="st">  </span>quantreg<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/quantreg/topics/nlrq">nlrq</a></span>(</a>
+<a class="sourceLine" id="cb35-12" data-line-number="12">    <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/SSlogis">SSlogis</a></span>(x, Asym, mid, scal),</a>
+<a class="sourceLine" id="cb35-13" data-line-number="13">    <span class="dt">data =</span> Dat,</a>
+<a class="sourceLine" id="cb35-14" data-line-number="14">    <span class="dt">tau =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb35-15" data-line-number="15">    <span class="dt">trace =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb35-16" data-line-number="16">  )</a>
+<a class="sourceLine" id="cb35-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb35-18" data-line-number="18"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb35-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> Dat.nlrq,</a>
+<a class="sourceLine" id="cb35-20" data-line-number="20">                         <span class="dt">title =</span> <span class="st">"non-linear quantile regression"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/nlrq-1.png" width="480"></p>
 </div>
 <div id="instrumental-variable-regression-ivreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#instrumental-variable-regression-ivreg" class="anchor"></a>instrumental-variable regression (<code>ivreg</code>)</h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/message">suppressPackageStartupMessages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(AER))</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"CigarettesSW"</span>, <span class="dt">package =</span> <span class="st">"AER"</span>)</a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb35-7" data-line-number="7">ivr &lt;-<span class="st"> </span>AER<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/AER/topics/ivreg">ivreg</a></span>(</a>
-<a class="sourceLine" id="cb35-8" data-line-number="8">  <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(packs) <span class="op">~</span><span class="st"> </span>income <span class="op">|</span><span class="st"> </span>population,</a>
-<a class="sourceLine" id="cb35-9" data-line-number="9">  <span class="dt">data =</span> CigarettesSW,</a>
-<a class="sourceLine" id="cb35-10" data-line-number="10">  <span class="dt">subset =</span> year <span class="op">==</span><span class="st"> "1995"</span></a>
-<a class="sourceLine" id="cb35-11" data-line-number="11">)</a>
-<a class="sourceLine" id="cb35-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb35-13" data-line-number="13"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb35-14" data-line-number="14">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> ivr,</a>
-<a class="sourceLine" id="cb35-15" data-line-number="15">                         <span class="dt">title =</span> <span class="st">"instrumental-variable regression"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/message">suppressPackageStartupMessages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(AER))</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"CigarettesSW"</span>, <span class="dt">package =</span> <span class="st">"AER"</span>)</a>
+<a class="sourceLine" id="cb36-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb36-7" data-line-number="7">ivr &lt;-<span class="st"> </span>AER<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/AER/topics/ivreg">ivreg</a></span>(</a>
+<a class="sourceLine" id="cb36-8" data-line-number="8">  <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(packs) <span class="op">~</span><span class="st"> </span>income <span class="op">|</span><span class="st"> </span>population,</a>
+<a class="sourceLine" id="cb36-9" data-line-number="9">  <span class="dt">data =</span> CigarettesSW,</a>
+<a class="sourceLine" id="cb36-10" data-line-number="10">  <span class="dt">subset =</span> year <span class="op">==</span><span class="st"> "1995"</span></a>
+<a class="sourceLine" id="cb36-11" data-line-number="11">)</a>
+<a class="sourceLine" id="cb36-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb36-13" data-line-number="13"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb36-14" data-line-number="14">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> ivr,</a>
+<a class="sourceLine" id="cb36-15" data-line-number="15">                         <span class="dt">title =</span> <span class="st">"instrumental-variable regression"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/ivreg-1.png" width="480"></p>
 </div>
 <div id="causal-mediation-analysis-mediate" class="section level2">
 <h2 class="hasAnchor">
 <a href="#causal-mediation-analysis-mediate" class="anchor"></a>causal mediation analysis (<code>mediate</code>)</h2>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(mediation)</a>
-<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(jobs)</a>
-<a class="sourceLine" id="cb36-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="co"># base models</span></a>
-<a class="sourceLine" id="cb36-7" data-line-number="7">b &lt;-</a>
-<a class="sourceLine" id="cb36-8" data-line-number="8"><span class="st">  </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> job_seek <span class="op">~</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>econ_hard <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age, <span class="dt">data =</span> jobs)</a>
-<a class="sourceLine" id="cb36-9" data-line-number="9">c &lt;-</a>
-<a class="sourceLine" id="cb36-10" data-line-number="10"><span class="st">  </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> depress2 <span class="op">~</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>job_seek <span class="op">+</span><span class="st"> </span>econ_hard <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age,</a>
-<a class="sourceLine" id="cb36-11" data-line-number="11">            <span class="dt">data =</span> jobs)</a>
-<a class="sourceLine" id="cb36-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb36-13" data-line-number="13"><span class="co"># mediation model</span></a>
-<a class="sourceLine" id="cb36-14" data-line-number="14">mod &lt;-</a>
-<a class="sourceLine" id="cb36-15" data-line-number="15"><span class="st">  </span>mediation<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/mediation/topics/mediate">mediate</a></span>(</a>
-<a class="sourceLine" id="cb36-16" data-line-number="16">    <span class="dt">model.m =</span> b,</a>
-<a class="sourceLine" id="cb36-17" data-line-number="17">    <span class="dt">model.y =</span> c,</a>
-<a class="sourceLine" id="cb36-18" data-line-number="18">    <span class="dt">sims =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb36-19" data-line-number="19">    <span class="dt">treat =</span> <span class="st">"treat"</span>,</a>
-<a class="sourceLine" id="cb36-20" data-line-number="20">    <span class="dt">mediator =</span> <span class="st">"job_seek"</span></a>
-<a class="sourceLine" id="cb36-21" data-line-number="21">  )</a>
-<a class="sourceLine" id="cb36-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb36-23" data-line-number="23"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb36-24" data-line-number="24">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod,</a>
-<a class="sourceLine" id="cb36-25" data-line-number="25">                         <span class="dt">title =</span> <span class="st">"causal mediation analysis"</span>)</a>
-<a class="sourceLine" id="cb36-26" data-line-number="26"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mediate .</span></a>
-<a class="sourceLine" id="cb36-27" data-line-number="27"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from mediate object; </span></a>
-<a class="sourceLine" id="cb36-28" data-line-number="28"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(mediation)</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(jobs)</a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="co"># base models</span></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">b &lt;-</a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="st">  </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> job_seek <span class="op">~</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>econ_hard <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age, <span class="dt">data =</span> jobs)</a>
+<a class="sourceLine" id="cb37-9" data-line-number="9">c &lt;-</a>
+<a class="sourceLine" id="cb37-10" data-line-number="10"><span class="st">  </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> depress2 <span class="op">~</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>job_seek <span class="op">+</span><span class="st"> </span>econ_hard <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age,</a>
+<a class="sourceLine" id="cb37-11" data-line-number="11">            <span class="dt">data =</span> jobs)</a>
+<a class="sourceLine" id="cb37-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb37-13" data-line-number="13"><span class="co"># mediation model</span></a>
+<a class="sourceLine" id="cb37-14" data-line-number="14">mod &lt;-</a>
+<a class="sourceLine" id="cb37-15" data-line-number="15"><span class="st">  </span>mediation<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/mediation/topics/mediate">mediate</a></span>(</a>
+<a class="sourceLine" id="cb37-16" data-line-number="16">    <span class="dt">model.m =</span> b,</a>
+<a class="sourceLine" id="cb37-17" data-line-number="17">    <span class="dt">model.y =</span> c,</a>
+<a class="sourceLine" id="cb37-18" data-line-number="18">    <span class="dt">sims =</span> <span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb37-19" data-line-number="19">    <span class="dt">treat =</span> <span class="st">"treat"</span>,</a>
+<a class="sourceLine" id="cb37-20" data-line-number="20">    <span class="dt">mediator =</span> <span class="st">"job_seek"</span></a>
+<a class="sourceLine" id="cb37-21" data-line-number="21">  )</a>
+<a class="sourceLine" id="cb37-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb37-23" data-line-number="23"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb37-24" data-line-number="24">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod,</a>
+<a class="sourceLine" id="cb37-25" data-line-number="25">                         <span class="dt">title =</span> <span class="st">"causal mediation analysis"</span>)</a>
+<a class="sourceLine" id="cb37-26" data-line-number="26"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mediate .</span></a>
+<a class="sourceLine" id="cb37-27" data-line-number="27"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from mediate object; </span></a>
+<a class="sourceLine" id="cb37-28" data-line-number="28"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/mediate-1.png" width="480"></p>
 </div>
 <div id="model-ii-regression-lmodel2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#model-ii-regression-lmodel2" class="anchor"></a>Model II regression (<code>lmodel2</code>)</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lmodel2)</a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(mod2ex2)</a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb37-7" data-line-number="7">Ex2.res &lt;-</a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="st">  </span>lmodel2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lmodel2/topics/lmodel2">lmodel2</a></span>(</a>
-<a class="sourceLine" id="cb37-9" data-line-number="9">    <span class="dt">formula =</span> Prey <span class="op">~</span><span class="st"> </span>Predators,</a>
-<a class="sourceLine" id="cb37-10" data-line-number="10">    <span class="dt">data =</span> mod2ex2,</a>
-<a class="sourceLine" id="cb37-11" data-line-number="11">    <span class="dt">range.y =</span> <span class="st">"relative"</span>,</a>
-<a class="sourceLine" id="cb37-12" data-line-number="12">    <span class="dt">range.x =</span> <span class="st">"relative"</span>,</a>
-<a class="sourceLine" id="cb37-13" data-line-number="13">    <span class="dt">nperm =</span> <span class="dv">99</span></a>
-<a class="sourceLine" id="cb37-14" data-line-number="14">  )</a>
-<a class="sourceLine" id="cb37-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb37-16" data-line-number="16"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb37-17" data-line-number="17">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> Ex2.res,</a>
-<a class="sourceLine" id="cb37-18" data-line-number="18">                         <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb37-19" data-line-number="19">                         <span class="dt">title =</span> <span class="st">"Model II regression"</span>)</a>
-<a class="sourceLine" id="cb37-20" data-line-number="20"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from lmodel2 object; </span></a>
-<a class="sourceLine" id="cb37-21" data-line-number="21"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lmodel2)</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(mod2ex2)</a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7">Ex2.res &lt;-</a>
+<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="st">  </span>lmodel2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lmodel2/topics/lmodel2">lmodel2</a></span>(</a>
+<a class="sourceLine" id="cb38-9" data-line-number="9">    <span class="dt">formula =</span> Prey <span class="op">~</span><span class="st"> </span>Predators,</a>
+<a class="sourceLine" id="cb38-10" data-line-number="10">    <span class="dt">data =</span> mod2ex2,</a>
+<a class="sourceLine" id="cb38-11" data-line-number="11">    <span class="dt">range.y =</span> <span class="st">"relative"</span>,</a>
+<a class="sourceLine" id="cb38-12" data-line-number="12">    <span class="dt">range.x =</span> <span class="st">"relative"</span>,</a>
+<a class="sourceLine" id="cb38-13" data-line-number="13">    <span class="dt">nperm =</span> <span class="dv">99</span></a>
+<a class="sourceLine" id="cb38-14" data-line-number="14">  )</a>
+<a class="sourceLine" id="cb38-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb38-16" data-line-number="16"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb38-17" data-line-number="17">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> Ex2.res,</a>
+<a class="sourceLine" id="cb38-18" data-line-number="18">                         <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb38-19" data-line-number="19">                         <span class="dt">title =</span> <span class="st">"Model II regression"</span>)</a>
+<a class="sourceLine" id="cb38-20" data-line-number="20"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from lmodel2 object; </span></a>
+<a class="sourceLine" id="cb38-21" data-line-number="21"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lmodel2-1.png" width="576"></p>
+</div>
+<div id="generalized-additive-models-for-location-scale-and-shape-gamlss" class="section level2">
+<h2 class="hasAnchor">
+<a href="#generalized-additive-models-for-location-scale-and-shape-gamlss" class="anchor"></a>generalized additive models for location scale and shape (<code>gamlss</code>)</h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gamlss)</a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6">g &lt;-<span class="st"> </span>gamlss<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/gamlss/topics/gamlss">gamlss</a></span>(</a>
+<a class="sourceLine" id="cb39-7" data-line-number="7">  <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span><span class="kw">pb</span>(x),</a>
+<a class="sourceLine" id="cb39-8" data-line-number="8">  <span class="dt">sigma.fo =</span> <span class="op">~</span><span class="st"> </span><span class="kw">pb</span>(x),</a>
+<a class="sourceLine" id="cb39-9" data-line-number="9">  <span class="dt">family =</span> BCT,</a>
+<a class="sourceLine" id="cb39-10" data-line-number="10">  <span class="dt">data =</span> abdom,</a>
+<a class="sourceLine" id="cb39-11" data-line-number="11">  <span class="dt">method =</span> <span class="kw">mixed</span>(<span class="dv">1</span>, <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb39-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb39-13" data-line-number="13"><span class="co">#&gt; GAMLSS-RS iteration 1: Global Deviance = 4771.925 </span></a>
+<a class="sourceLine" id="cb39-14" data-line-number="14"><span class="co">#&gt; GAMLSS-CG iteration 1: Global Deviance = 4771.013 </span></a>
+<a class="sourceLine" id="cb39-15" data-line-number="15"><span class="co">#&gt; GAMLSS-CG iteration 2: Global Deviance = 4770.994 </span></a>
+<a class="sourceLine" id="cb39-16" data-line-number="16"><span class="co">#&gt; GAMLSS-CG iteration 3: Global Deviance = 4770.994</span></a>
+<a class="sourceLine" id="cb39-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb39-18" data-line-number="18"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb39-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> g, </a>
+<a class="sourceLine" id="cb39-20" data-line-number="20">                         <span class="dt">title =</span> <span class="st">"generalized additive models </span><span class="ch">\n</span><span class="st">for location scale and shape"</span>)</a></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/gamlss-1.png" width="480"></p>
 </div>
 <div id="generalized-method-of-moment-estimation-gmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-method-of-moment-estimation-gmm" class="anchor"></a>generalized method of moment estimation (<code>gmm</code>)</h2>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gmm)</a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="co"># examples come from the "gmm" package</span></a>
-<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="co">## CAPM test with GMM</span></a>
-<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(Finance)</a>
-<a class="sourceLine" id="cb38-8" data-line-number="8">r &lt;-<span class="st"> </span>Finance[<span class="dv">1</span><span class="op">:</span><span class="dv">300</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
-<a class="sourceLine" id="cb38-9" data-line-number="9">rm &lt;-<span class="st"> </span>Finance[<span class="dv">1</span><span class="op">:</span><span class="dv">300</span>, <span class="st">"rm"</span>]</a>
-<a class="sourceLine" id="cb38-10" data-line-number="10">rf &lt;-<span class="st"> </span>Finance[<span class="dv">1</span><span class="op">:</span><span class="dv">300</span>, <span class="st">"rf"</span>]</a>
-<a class="sourceLine" id="cb38-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb38-12" data-line-number="12">z &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(r <span class="op">-</span><span class="st"> </span>rf)</a>
-<a class="sourceLine" id="cb38-13" data-line-number="13">t &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(z)</a>
-<a class="sourceLine" id="cb38-14" data-line-number="14">zm &lt;-<span class="st"> </span>rm <span class="op">-</span><span class="st"> </span>rf</a>
-<a class="sourceLine" id="cb38-15" data-line-number="15">h &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(zm, t, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb38-16" data-line-number="16">res &lt;-<span class="st"> </span>gmm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/gmm/topics/gmm">gmm</a></span>(z <span class="op">~</span><span class="st"> </span>zm, <span class="dt">x =</span> h)</a>
-<a class="sourceLine" id="cb38-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb38-18" data-line-number="18"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb38-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> res, </a>
-<a class="sourceLine" id="cb38-20" data-line-number="20">                         <span class="dt">package =</span> <span class="st">"palettetown"</span>,</a>
-<a class="sourceLine" id="cb38-21" data-line-number="21">                         <span class="dt">palette =</span> <span class="st">"victreebel"</span>,</a>
-<a class="sourceLine" id="cb38-22" data-line-number="22">                         <span class="dt">title =</span> <span class="st">"generalized method of moment estimation"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gmm)</a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="co"># examples come from the "gmm" package</span></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="co">## CAPM test with GMM</span></a>
+<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(Finance)</a>
+<a class="sourceLine" id="cb40-8" data-line-number="8">r &lt;-<span class="st"> </span>Finance[<span class="dv">1</span><span class="op">:</span><span class="dv">300</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb40-9" data-line-number="9">rm &lt;-<span class="st"> </span>Finance[<span class="dv">1</span><span class="op">:</span><span class="dv">300</span>, <span class="st">"rm"</span>]</a>
+<a class="sourceLine" id="cb40-10" data-line-number="10">rf &lt;-<span class="st"> </span>Finance[<span class="dv">1</span><span class="op">:</span><span class="dv">300</span>, <span class="st">"rf"</span>]</a>
+<a class="sourceLine" id="cb40-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb40-12" data-line-number="12">z &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(r <span class="op">-</span><span class="st"> </span>rf)</a>
+<a class="sourceLine" id="cb40-13" data-line-number="13">t &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(z)</a>
+<a class="sourceLine" id="cb40-14" data-line-number="14">zm &lt;-<span class="st"> </span>rm <span class="op">-</span><span class="st"> </span>rf</a>
+<a class="sourceLine" id="cb40-15" data-line-number="15">h &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(zm, t, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb40-16" data-line-number="16">res &lt;-<span class="st"> </span>gmm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/gmm/topics/gmm">gmm</a></span>(z <span class="op">~</span><span class="st"> </span>zm, <span class="dt">x =</span> h)</a>
+<a class="sourceLine" id="cb40-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb40-18" data-line-number="18"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb40-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> res, </a>
+<a class="sourceLine" id="cb40-20" data-line-number="20">                         <span class="dt">package =</span> <span class="st">"palettetown"</span>,</a>
+<a class="sourceLine" id="cb40-21" data-line-number="21">                         <span class="dt">palette =</span> <span class="st">"victreebel"</span>,</a>
+<a class="sourceLine" id="cb40-22" data-line-number="22">                         <span class="dt">title =</span> <span class="st">"generalized method of moment estimation"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/gmm-1.png" width="576"></p>
 </div>
 <div id="exponential-family-random-graph-models-ergm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exponential-family-random-graph-models-ergm" class="anchor"></a>exponential-family random graph models (<code>ergm</code>)</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># load the Florentine marriage network data</span></a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/message">suppressPackageStartupMessages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ergm))</a>
-<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(florentine)</a>
-<a class="sourceLine" id="cb39-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="co"># fit a model where the propensity to form ties between</span></a>
-<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="co"># families depends on the absolute difference in wealth</span></a>
-<a class="sourceLine" id="cb39-8" data-line-number="8">gest &lt;-<span class="st"> </span><span class="kw">ergm</span>(flomarriage <span class="op">~</span><span class="st"> </span>edges <span class="op">+</span><span class="st"> </span><span class="kw">absdiff</span>(<span class="st">"wealth"</span>))</a>
-<a class="sourceLine" id="cb39-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb39-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> gest,</a>
-<a class="sourceLine" id="cb39-12" data-line-number="12">                         <span class="dt">conf.level =</span> <span class="fl">0.99</span>,</a>
-<a class="sourceLine" id="cb39-13" data-line-number="13">                         <span class="dt">title =</span> <span class="st">"exponential-family random graph models"</span>)</a>
-<a class="sourceLine" id="cb39-14" data-line-number="14"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from ergm object; </span></a>
-<a class="sourceLine" id="cb39-15" data-line-number="15"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># load the Florentine marriage network data</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/message">suppressPackageStartupMessages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ergm))</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(florentine)</a>
+<a class="sourceLine" id="cb41-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="co"># fit a model where the propensity to form ties between</span></a>
+<a class="sourceLine" id="cb41-7" data-line-number="7"><span class="co"># families depends on the absolute difference in wealth</span></a>
+<a class="sourceLine" id="cb41-8" data-line-number="8">gest &lt;-<span class="st"> </span><span class="kw">ergm</span>(flomarriage <span class="op">~</span><span class="st"> </span>edges <span class="op">+</span><span class="st"> </span><span class="kw">absdiff</span>(<span class="st">"wealth"</span>))</a>
+<a class="sourceLine" id="cb41-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb41-10" data-line-number="10"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb41-11" data-line-number="11">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> gest,</a>
+<a class="sourceLine" id="cb41-12" data-line-number="12">                         <span class="dt">conf.level =</span> <span class="fl">0.99</span>,</a>
+<a class="sourceLine" id="cb41-13" data-line-number="13">                         <span class="dt">title =</span> <span class="st">"exponential-family random graph models"</span>)</a>
+<a class="sourceLine" id="cb41-14" data-line-number="14"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from ergm object; </span></a>
+<a class="sourceLine" id="cb41-15" data-line-number="15"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/ergm-1.png" width="480"></p>
 </div>
 <div id="tergm-by-bootstrapped-pseudolikelihood-or-mcmc-mle-btergm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tergm-by-bootstrapped-pseudolikelihood-or-mcmc-mle-btergm" class="anchor"></a>TERGM by bootstrapped pseudolikelihood or MCMC MLE (<code>btergm</code>)</h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(network)</a>
-<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(btergm)</a>
-<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb40-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb40-6" data-line-number="6">networks &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>()</a>
-<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) { <span class="co"># create 10 random networks with 10 actors</span></a>
-<a class="sourceLine" id="cb40-8" data-line-number="8">  mat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Binomial">rbinom</a></span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="fl">.25</span>), <span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb40-9" data-line-number="9">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diag">diag</a></span>(mat) &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># loops are excluded</span></a>
-<a class="sourceLine" id="cb40-10" data-line-number="10">  nw &lt;-<span class="st"> </span><span class="kw">network</span>(mat) <span class="co"># create network object</span></a>
-<a class="sourceLine" id="cb40-11" data-line-number="11">  networks[[i]] &lt;-<span class="st"> </span>nw <span class="co"># add network to the list</span></a>
-<a class="sourceLine" id="cb40-12" data-line-number="12">}</a>
-<a class="sourceLine" id="cb40-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb40-14" data-line-number="14">covariates &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>()</a>
-<a class="sourceLine" id="cb40-15" data-line-number="15"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) { <span class="co"># create 10 matrices as covariate</span></a>
-<a class="sourceLine" id="cb40-16" data-line-number="16">  mat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">100</span>), <span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb40-17" data-line-number="17">  covariates[[i]] &lt;-<span class="st"> </span>mat <span class="co"># add matrix to the list</span></a>
-<a class="sourceLine" id="cb40-18" data-line-number="18">}</a>
-<a class="sourceLine" id="cb40-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb40-20" data-line-number="20"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb40-21" data-line-number="21">fit &lt;-<span class="st"> </span>btergm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/btergm/topics/btergm">btergm</a></span>(networks <span class="op">~</span><span class="st"> </span>edges <span class="op">+</span><span class="st"> </span><span class="kw">istar</span>(<span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb40-22" data-line-number="22"><span class="st">  </span><span class="kw">edgecov</span>(covariates), <span class="dt">R =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb40-23" data-line-number="23"><span class="co">#&gt;                  t=1 t=2 t=3 t=4 t=5 t=6 t=7 t=8 t=9 t=10</span></a>
-<a class="sourceLine" id="cb40-24" data-line-number="24"><span class="co">#&gt; networks (row)    10  10  10  10  10  10  10  10  10   10</span></a>
-<a class="sourceLine" id="cb40-25" data-line-number="25"><span class="co">#&gt; networks (col)    10  10  10  10  10  10  10  10  10   10</span></a>
-<a class="sourceLine" id="cb40-26" data-line-number="26"><span class="co">#&gt; covariates (row)  10  10  10  10  10  10  10  10  10   10</span></a>
-<a class="sourceLine" id="cb40-27" data-line-number="27"><span class="co">#&gt; covariates (col)  10  10  10  10  10  10  10  10  10   10</span></a>
-<a class="sourceLine" id="cb40-28" data-line-number="28"><span class="co">#&gt;                  t=1 t=2 t=3 t=4 t=5 t=6 t=7 t=8 t=9 t=10</span></a>
-<a class="sourceLine" id="cb40-29" data-line-number="29"><span class="co">#&gt; networks (row)    10  10  10  10  10  10  10  10  10   10</span></a>
-<a class="sourceLine" id="cb40-30" data-line-number="30"><span class="co">#&gt; networks (col)    10  10  10  10  10  10  10  10  10   10</span></a>
-<a class="sourceLine" id="cb40-31" data-line-number="31"><span class="co">#&gt; covariates (row)  10  10  10  10  10  10  10  10  10   10</span></a>
-<a class="sourceLine" id="cb40-32" data-line-number="32"><span class="co">#&gt; covariates (col)  10  10  10  10  10  10  10  10  10   10</span></a>
-<a class="sourceLine" id="cb40-33" data-line-number="33"></a>
-<a class="sourceLine" id="cb40-34" data-line-number="34"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb40-35" data-line-number="35">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb40-36" data-line-number="36">  <span class="dt">x =</span> fit,</a>
-<a class="sourceLine" id="cb40-37" data-line-number="37">  <span class="dt">title =</span> <span class="st">"Terms used in Exponential Family Random Graph Models"</span>,</a>
-<a class="sourceLine" id="cb40-38" data-line-number="38">  <span class="dt">subtitle =</span> <span class="st">"by bootstrapped pseudolikelihood or MCMC MLE"</span></a>
-<a class="sourceLine" id="cb40-39" data-line-number="39">)</a>
-<a class="sourceLine" id="cb40-40" data-line-number="40"><span class="co">#&gt; Note: No model diagnostics information available for the object of class btergm .</span></a>
-<a class="sourceLine" id="cb40-41" data-line-number="41"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from btergm object; </span></a>
-<a class="sourceLine" id="cb40-42" data-line-number="42"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(network)</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(btergm)</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb42-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">networks &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>()</a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) { <span class="co"># create 10 random networks with 10 actors</span></a>
+<a class="sourceLine" id="cb42-8" data-line-number="8">  mat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Binomial">rbinom</a></span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="fl">.25</span>), <span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb42-9" data-line-number="9">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diag">diag</a></span>(mat) &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># loops are excluded</span></a>
+<a class="sourceLine" id="cb42-10" data-line-number="10">  nw &lt;-<span class="st"> </span><span class="kw">network</span>(mat) <span class="co"># create network object</span></a>
+<a class="sourceLine" id="cb42-11" data-line-number="11">  networks[[i]] &lt;-<span class="st"> </span>nw <span class="co"># add network to the list</span></a>
+<a class="sourceLine" id="cb42-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb42-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb42-14" data-line-number="14">covariates &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>()</a>
+<a class="sourceLine" id="cb42-15" data-line-number="15"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) { <span class="co"># create 10 matrices as covariate</span></a>
+<a class="sourceLine" id="cb42-16" data-line-number="16">  mat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">100</span>), <span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb42-17" data-line-number="17">  covariates[[i]] &lt;-<span class="st"> </span>mat <span class="co"># add matrix to the list</span></a>
+<a class="sourceLine" id="cb42-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb42-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb42-20" data-line-number="20"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb42-21" data-line-number="21">fit &lt;-<span class="st"> </span>btergm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/btergm/topics/btergm">btergm</a></span>(networks <span class="op">~</span><span class="st"> </span>edges <span class="op">+</span><span class="st"> </span><span class="kw">istar</span>(<span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-22" data-line-number="22"><span class="st">  </span><span class="kw">edgecov</span>(covariates), <span class="dt">R =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb42-23" data-line-number="23"><span class="co">#&gt;                  t=1 t=2 t=3 t=4 t=5 t=6 t=7 t=8 t=9 t=10</span></a>
+<a class="sourceLine" id="cb42-24" data-line-number="24"><span class="co">#&gt; networks (row)    10  10  10  10  10  10  10  10  10   10</span></a>
+<a class="sourceLine" id="cb42-25" data-line-number="25"><span class="co">#&gt; networks (col)    10  10  10  10  10  10  10  10  10   10</span></a>
+<a class="sourceLine" id="cb42-26" data-line-number="26"><span class="co">#&gt; covariates (row)  10  10  10  10  10  10  10  10  10   10</span></a>
+<a class="sourceLine" id="cb42-27" data-line-number="27"><span class="co">#&gt; covariates (col)  10  10  10  10  10  10  10  10  10   10</span></a>
+<a class="sourceLine" id="cb42-28" data-line-number="28"><span class="co">#&gt;                  t=1 t=2 t=3 t=4 t=5 t=6 t=7 t=8 t=9 t=10</span></a>
+<a class="sourceLine" id="cb42-29" data-line-number="29"><span class="co">#&gt; networks (row)    10  10  10  10  10  10  10  10  10   10</span></a>
+<a class="sourceLine" id="cb42-30" data-line-number="30"><span class="co">#&gt; networks (col)    10  10  10  10  10  10  10  10  10   10</span></a>
+<a class="sourceLine" id="cb42-31" data-line-number="31"><span class="co">#&gt; covariates (row)  10  10  10  10  10  10  10  10  10   10</span></a>
+<a class="sourceLine" id="cb42-32" data-line-number="32"><span class="co">#&gt; covariates (col)  10  10  10  10  10  10  10  10  10   10</span></a>
+<a class="sourceLine" id="cb42-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb42-34" data-line-number="34"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb42-35" data-line-number="35">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb42-36" data-line-number="36">  <span class="dt">x =</span> fit,</a>
+<a class="sourceLine" id="cb42-37" data-line-number="37">  <span class="dt">title =</span> <span class="st">"Terms used in Exponential Family Random Graph Models"</span>,</a>
+<a class="sourceLine" id="cb42-38" data-line-number="38">  <span class="dt">subtitle =</span> <span class="st">"by bootstrapped pseudolikelihood or MCMC MLE"</span></a>
+<a class="sourceLine" id="cb42-39" data-line-number="39">)</a>
+<a class="sourceLine" id="cb42-40" data-line-number="40"><span class="co">#&gt; Note: No model diagnostics information available for the object of class btergm .</span></a>
+<a class="sourceLine" id="cb42-41" data-line-number="41"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from btergm object; </span></a>
+<a class="sourceLine" id="cb42-42" data-line-number="42"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/btergm-1.png" width="576"></p>
 </div>
 <div id="generalized-autoregressive-conditional-heteroscedastic-garch" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-autoregressive-conditional-heteroscedastic-garch" class="anchor"></a>generalized autoregressive conditional heteroscedastic (<code>garch</code>)</h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tseries)</a>
-<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(EuStockMarkets)</a>
-<a class="sourceLine" id="cb41-5" data-line-number="5">dax &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(EuStockMarkets))[,<span class="st">"DAX"</span>]</a>
-<a class="sourceLine" id="cb41-6" data-line-number="6">dax.garch &lt;-<span class="st"> </span>tseries<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tseries/topics/garch">garch</a></span>(<span class="dt">x =</span> dax, <span class="dt">trace =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb41-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb41-8" data-line-number="8"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb41-9" data-line-number="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> dax.garch,</a>
-<a class="sourceLine" id="cb41-10" data-line-number="10">                         <span class="dt">title =</span> <span class="st">"generalized autoregressive </span><span class="ch">\n</span><span class="st">conditional heteroscedastic (GARCH)"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tseries)</a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(EuStockMarkets)</a>
+<a class="sourceLine" id="cb43-5" data-line-number="5">dax &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(EuStockMarkets))[,<span class="st">"DAX"</span>]</a>
+<a class="sourceLine" id="cb43-6" data-line-number="6">dax.garch &lt;-<span class="st"> </span>tseries<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tseries/topics/garch">garch</a></span>(<span class="dt">x =</span> dax, <span class="dt">trace =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb43-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb43-8" data-line-number="8"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb43-9" data-line-number="9">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> dax.garch,</a>
+<a class="sourceLine" id="cb43-10" data-line-number="10">                         <span class="dt">title =</span> <span class="st">"generalized autoregressive </span><span class="ch">\n</span><span class="st">conditional heteroscedastic (GARCH)"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/garch-1.png" width="480"></p>
 </div>
 <div id="maximum-likelihood-fitting-of-univariate-distributions-fitdistr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#maximum-likelihood-fitting-of-univariate-distributions-fitdistr" class="anchor"></a>maximum-likelihood fitting of univariate distributions (<code>fitdistr</code>)</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(MASS)</a>
-<a class="sourceLine" id="cb42-4" data-line-number="4">x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb42-5" data-line-number="5">fit &lt;-<span class="st"> </span>MASS<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/MASS/topics/fitdistr">fitdistr</a></span>(x, dnorm, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">mean =</span> <span class="dv">3</span>, <span class="dt">sd =</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb42-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb42-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> fit,</a>
-<a class="sourceLine" id="cb42-9" data-line-number="9">                         <span class="dt">title =</span> <span class="st">"maximum-likelihood fitting of </span><span class="ch">\n</span><span class="st">univariate distributions"</span>,</a>
-<a class="sourceLine" id="cb42-10" data-line-number="10">                         <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_pander">theme_pander</a></span>())</a>
-<a class="sourceLine" id="cb42-11" data-line-number="11"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from fitdistr object; </span></a>
-<a class="sourceLine" id="cb42-12" data-line-number="12"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(MASS)</a>
+<a class="sourceLine" id="cb44-4" data-line-number="4">x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb44-5" data-line-number="5">fit &lt;-<span class="st"> </span>MASS<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/MASS/topics/fitdistr">fitdistr</a></span>(x, dnorm, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">mean =</span> <span class="dv">3</span>, <span class="dt">sd =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb44-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb44-7" data-line-number="7"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb44-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> fit,</a>
+<a class="sourceLine" id="cb44-9" data-line-number="9">                         <span class="dt">title =</span> <span class="st">"maximum-likelihood fitting of </span><span class="ch">\n</span><span class="st">univariate distributions"</span>,</a>
+<a class="sourceLine" id="cb44-10" data-line-number="10">                         <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_pander">theme_pander</a></span>())</a>
+<a class="sourceLine" id="cb44-11" data-line-number="11"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from fitdistr object; </span></a>
+<a class="sourceLine" id="cb44-12" data-line-number="12"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/fitdistr-1.png" width="576"></p>
 </div>
 <div id="maximum-likelihood-estimation-mle2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#maximum-likelihood-estimation-mle2" class="anchor"></a>maximum likelihood estimation (<code>mle2</code>)</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(bbmle)</a>
-<a class="sourceLine" id="cb43-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="co"># data</span></a>
-<a class="sourceLine" id="cb43-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb43-7" data-line-number="7">y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">26</span>, <span class="dv">17</span>, <span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">8</span>)</a>
-<a class="sourceLine" id="cb43-8" data-line-number="8">d &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(x, y)</a>
-<a class="sourceLine" id="cb43-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb43-10" data-line-number="10"><span class="co"># custom function</span></a>
-<a class="sourceLine" id="cb43-11" data-line-number="11">LL &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">ymax =</span> <span class="dv">15</span>, <span class="dt">xhalf =</span> <span class="dv">6</span>) {</a>
-<a class="sourceLine" id="cb43-12" data-line-number="12">  <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">dpois</a></span>(y, <span class="dt">lambda =</span> ymax <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>x <span class="op">/</span><span class="st"> </span>xhalf), <span class="dt">log =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb43-13" data-line-number="13">}</a>
-<a class="sourceLine" id="cb43-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb43-15" data-line-number="15"><span class="co"># use default parameters of LL</span></a>
-<a class="sourceLine" id="cb43-16" data-line-number="16">fit &lt;-<span class="st"> </span>bbmle<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/bbmle/topics/mle2">mle2</a></span>(LL, <span class="dt">fixed =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">xhalf =</span> <span class="dv">6</span>))</a>
-<a class="sourceLine" id="cb43-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb43-18" data-line-number="18"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb43-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb43-20" data-line-number="20">  <span class="dt">x =</span> fit,</a>
-<a class="sourceLine" id="cb43-21" data-line-number="21">  <span class="dt">title =</span> <span class="st">"maximum likelihood estimation"</span>,</a>
-<a class="sourceLine" id="cb43-22" data-line-number="22">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_excel_new">theme_excel_new</a></span>()</a>
-<a class="sourceLine" id="cb43-23" data-line-number="23">)</a>
-<a class="sourceLine" id="cb43-24" data-line-number="24"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mle2 .</span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(bbmle)</a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co"># data</span></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7">y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">26</span>, <span class="dv">17</span>, <span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb45-8" data-line-number="8">d &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(x, y)</a>
+<a class="sourceLine" id="cb45-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb45-10" data-line-number="10"><span class="co"># custom function</span></a>
+<a class="sourceLine" id="cb45-11" data-line-number="11">LL &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">ymax =</span> <span class="dv">15</span>, <span class="dt">xhalf =</span> <span class="dv">6</span>) {</a>
+<a class="sourceLine" id="cb45-12" data-line-number="12">  <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">dpois</a></span>(y, <span class="dt">lambda =</span> ymax <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>x <span class="op">/</span><span class="st"> </span>xhalf), <span class="dt">log =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb45-13" data-line-number="13">}</a>
+<a class="sourceLine" id="cb45-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb45-15" data-line-number="15"><span class="co"># use default parameters of LL</span></a>
+<a class="sourceLine" id="cb45-16" data-line-number="16">fit &lt;-<span class="st"> </span>bbmle<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/bbmle/topics/mle2">mle2</a></span>(LL, <span class="dt">fixed =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">xhalf =</span> <span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb45-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb45-18" data-line-number="18"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb45-19" data-line-number="19">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb45-20" data-line-number="20">  <span class="dt">x =</span> fit,</a>
+<a class="sourceLine" id="cb45-21" data-line-number="21">  <span class="dt">title =</span> <span class="st">"maximum likelihood estimation"</span>,</a>
+<a class="sourceLine" id="cb45-22" data-line-number="22">  <span class="dt">ggtheme =</span> ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_excel_new">theme_excel_new</a></span>()</a>
+<a class="sourceLine" id="cb45-23" data-line-number="23">)</a>
+<a class="sourceLine" id="cb45-24" data-line-number="24"><span class="co">#&gt; Note: No model diagnostics information available for the object of class mle2 .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/mle2-1.png" width="384"></p>
 </div>
 <div id="cochrane-orcutt-estimation-orcutt" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cochrane-orcutt-estimation-orcutt" class="anchor"></a>Cochrane-Orcutt estimation (<code>orcutt</code>)</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(orcutt)</a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb44-4" data-line-number="4">reg &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>disp, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb44-5" data-line-number="5">co &lt;-<span class="st"> </span>orcutt<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/orcutt/topics/cochrane.orcutt">cochrane.orcutt</a></span>(reg)</a>
-<a class="sourceLine" id="cb44-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb44-7" data-line-number="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb44-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> co, </a>
-<a class="sourceLine" id="cb44-9" data-line-number="9">                         <span class="dt">title =</span> <span class="st">"Cochrane-Orcutt estimation"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(orcutt)</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4">reg &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(<span class="dt">formula =</span> mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>qsec <span class="op">+</span><span class="st"> </span>disp, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb46-5" data-line-number="5">co &lt;-<span class="st"> </span>orcutt<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/orcutt/topics/cochrane.orcutt">cochrane.orcutt</a></span>(reg)</a>
+<a class="sourceLine" id="cb46-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb46-8" data-line-number="8">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> co, </a>
+<a class="sourceLine" id="cb46-9" data-line-number="9">                         <span class="dt">title =</span> <span class="st">"Cochrane-Orcutt estimation"</span>)</a></code></pre></div>
 </div>
 <div id="confusion-matrix-confusionmatrix" class="section level2">
 <h2 class="hasAnchor">
 <a href="#confusion-matrix-confusionmatrix" class="anchor"></a>confusion matrix (<code>confusionMatrix</code>)</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(caret)</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb45-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co"># setting up confusion matrix</span></a>
-<a class="sourceLine" id="cb45-6" data-line-number="6">two_class_sample1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dv">100</span>, <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb45-7" data-line-number="7">two_class_sample2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dv">100</span>, <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb45-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb45-9" data-line-number="9">two_class_cm &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/caret/topics/confusionMatrix">confusionMatrix</a></span>(</a>
-<a class="sourceLine" id="cb45-10" data-line-number="10">  two_class_sample1,</a>
-<a class="sourceLine" id="cb45-11" data-line-number="11">  two_class_sample2</a>
-<a class="sourceLine" id="cb45-12" data-line-number="12">)</a>
-<a class="sourceLine" id="cb45-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb45-14" data-line-number="14"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb45-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> two_class_cm,</a>
-<a class="sourceLine" id="cb45-16" data-line-number="16">                         <span class="dt">by.class =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb45-17" data-line-number="17">                         <span class="dt">title =</span> <span class="st">"confusion matrix"</span>)</a>
-<a class="sourceLine" id="cb45-18" data-line-number="18"><span class="co">#&gt; Note: No model diagnostics information available for the object of class confusionMatrix .</span></a>
-<a class="sourceLine" id="cb45-19" data-line-number="19"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from confusionMatrix object; </span></a>
-<a class="sourceLine" id="cb45-20" data-line-number="20"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(caret)</a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="co"># setting up confusion matrix</span></a>
+<a class="sourceLine" id="cb47-6" data-line-number="6">two_class_sample1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dv">100</span>, <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb47-7" data-line-number="7">two_class_sample2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dv">100</span>, <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb47-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb47-9" data-line-number="9">two_class_cm &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/caret/topics/confusionMatrix">confusionMatrix</a></span>(</a>
+<a class="sourceLine" id="cb47-10" data-line-number="10">  two_class_sample1,</a>
+<a class="sourceLine" id="cb47-11" data-line-number="11">  two_class_sample2</a>
+<a class="sourceLine" id="cb47-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb47-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb47-14" data-line-number="14"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb47-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> two_class_cm,</a>
+<a class="sourceLine" id="cb47-16" data-line-number="16">                         <span class="dt">by.class =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb47-17" data-line-number="17">                         <span class="dt">title =</span> <span class="st">"confusion matrix"</span>)</a>
+<a class="sourceLine" id="cb47-18" data-line-number="18"><span class="co">#&gt; Note: No model diagnostics information available for the object of class confusionMatrix .</span></a>
+<a class="sourceLine" id="cb47-19" data-line-number="19"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from confusionMatrix object; </span></a>
+<a class="sourceLine" id="cb47-20" data-line-number="20"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/confusionMatrix-1.png" width="576"></p>
 </div>
 <div id="multivariate-generalised-linear-mixed-models-mcmcglmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multivariate-generalised-linear-mixed-models-mcmcglmm" class="anchor"></a>multivariate generalised linear mixed models (<code>MCMCglmm</code>)</h2>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="co"># setup</span></a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(MCMCglmm)</a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="co"># model</span></a>
-<a class="sourceLine" id="cb46-6" data-line-number="6">mm0 &lt;-<span class="st"> </span>MCMCglmm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/MCMCglmm/topics/MCMCglmm">MCMCglmm</a></span>(</a>
-<a class="sourceLine" id="cb46-7" data-line-number="7">  <span class="dt">fixed =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(Reaction) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(Days),</a>
-<a class="sourceLine" id="cb46-8" data-line-number="8">  <span class="dt">random =</span> <span class="op">~</span>Subject, <span class="dt">data =</span> sleepstudy,</a>
-<a class="sourceLine" id="cb46-9" data-line-number="9">  <span class="dt">nitt =</span> <span class="dv">4000</span>,</a>
-<a class="sourceLine" id="cb46-10" data-line-number="10">  <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb46-11" data-line-number="11">  <span class="dt">verbose =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb46-12" data-line-number="12">)</a>
-<a class="sourceLine" id="cb46-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb46-14" data-line-number="14"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb46-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb46-16" data-line-number="16">  <span class="dt">x =</span> mm0,</a>
-<a class="sourceLine" id="cb46-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"multivariate generalised linear mixed model"</span>,</a>
-<a class="sourceLine" id="cb46-18" data-line-number="18">  <span class="dt">conf.method =</span> <span class="st">"HPDinterval"</span>,</a>
-<a class="sourceLine" id="cb46-19" data-line-number="19">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb46-20" data-line-number="20">  <span class="dt">rhat =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb46-21" data-line-number="21">  <span class="dt">robust =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb46-22" data-line-number="22">)</a>
-<a class="sourceLine" id="cb46-23" data-line-number="23"><span class="co">#&gt; Note: No model diagnostics information available for the object of class MCMCglmm .</span></a>
-<a class="sourceLine" id="cb46-24" data-line-number="24"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from MCMCglmm object; </span></a>
-<a class="sourceLine" id="cb46-25" data-line-number="25"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># setup</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(MCMCglmm)</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="co"># model</span></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6">mm0 &lt;-<span class="st"> </span>MCMCglmm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/MCMCglmm/topics/MCMCglmm">MCMCglmm</a></span>(</a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">  <span class="dt">fixed =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(Reaction) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(Days),</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8">  <span class="dt">random =</span> <span class="op">~</span>Subject, <span class="dt">data =</span> sleepstudy,</a>
+<a class="sourceLine" id="cb48-9" data-line-number="9">  <span class="dt">nitt =</span> <span class="dv">4000</span>,</a>
+<a class="sourceLine" id="cb48-10" data-line-number="10">  <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb48-11" data-line-number="11">  <span class="dt">verbose =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb48-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb48-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb48-14" data-line-number="14"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb48-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb48-16" data-line-number="16">  <span class="dt">x =</span> mm0,</a>
+<a class="sourceLine" id="cb48-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"multivariate generalised linear mixed model"</span>,</a>
+<a class="sourceLine" id="cb48-18" data-line-number="18">  <span class="dt">conf.method =</span> <span class="st">"HPDinterval"</span>,</a>
+<a class="sourceLine" id="cb48-19" data-line-number="19">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb48-20" data-line-number="20">  <span class="dt">rhat =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb48-21" data-line-number="21">  <span class="dt">robust =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb48-22" data-line-number="22">)</a>
+<a class="sourceLine" id="cb48-23" data-line-number="23"><span class="co">#&gt; Note: No model diagnostics information available for the object of class MCMCglmm .</span></a>
+<a class="sourceLine" id="cb48-24" data-line-number="24"><span class="co">#&gt; Note: No p-values and/or statistic available for regression coefficients from MCMCglmm object; </span></a>
+<a class="sourceLine" id="cb48-25" data-line-number="25"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/MCMCglmm-1.png" width="576"></p>
 </div>
 <div id="dataframes-tbl_df-tbl-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dataframes-tbl_df-tbl-data-frame" class="anchor"></a>dataframes (<code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>)</h2>
 <p>Sometimes you don’t have a model object but a custom dataframe that you want display using this function. If a data frame is to be plotted, it <strong>must</strong> contain columns named <code>term</code> (names of predictors), and <code>estimate</code> (corresponding estimates of coefficients or other quantities of interest). Other optional columns are <code>conf.low</code> and <code>conf.high</code> (for confidence intervals), and <code>p.value</code>. You will also have to specify the type of statistic relevant for regression models (<code>"t"</code>, <code>"z"</code>, <code>"f"</code>) in case you want to display statistical labels.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># set up</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
-<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gapminder)</a>
-<a class="sourceLine" id="cb47-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="co"># data for running regression models</span></a>
-<a class="sourceLine" id="cb47-7" data-line-number="7">df &lt;-</a>
-<a class="sourceLine" id="cb47-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">!=</span><span class="st"> "Oceania"</span>)</a>
-<a class="sourceLine" id="cb47-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb47-10" data-line-number="10"><span class="co"># saving results from regression  </span></a>
-<a class="sourceLine" id="cb47-11" data-line-number="11">df_results &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
-<a class="sourceLine" id="cb47-12" data-line-number="12">  <span class="dt">.l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb47-13" data-line-number="13">    <span class="dt">data =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(df),</a>
-<a class="sourceLine" id="cb47-14" data-line-number="14">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(lifeExp) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(gdpPercap) <span class="op">+</span><span class="st"> </span>(gdpPercap <span class="op">|</span></a>
-<a class="sourceLine" id="cb47-15" data-line-number="15"><span class="st">                                                          </span>country)),</a>
-<a class="sourceLine" id="cb47-16" data-line-number="16">    <span class="dt">grouping.vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">alist</a></span>(continent),</a>
-<a class="sourceLine" id="cb47-17" data-line-number="17">    <span class="dt">output =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"tidy"</span>, <span class="st">"glance"</span>)</a>
-<a class="sourceLine" id="cb47-18" data-line-number="18">  ),</a>
-<a class="sourceLine" id="cb47-19" data-line-number="19">  <span class="dt">.f =</span> groupedstats<span class="op">::</span>grouped_lmer</a>
-<a class="sourceLine" id="cb47-20" data-line-number="20">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">full_join</a></span>(<span class="dt">x =</span> .[[<span class="dv">1</span>]], <span class="dt">y =</span> .[[<span class="dv">2</span>]], <span class="dt">by =</span> <span class="st">"continent"</span>)</a>
-<a class="sourceLine" id="cb47-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb47-23" data-line-number="23"><span class="co"># modifying the results so to be compatible with the `ggcoefstats` requirement</span></a>
-<a class="sourceLine" id="cb47-24" data-line-number="24">(df_results <span class="op">%&lt;&gt;%</span></a>
-<a class="sourceLine" id="cb47-25" data-line-number="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-26" data-line-number="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">.data =</span> .,</a>
-<a class="sourceLine" id="cb47-27" data-line-number="27">                <span class="op">-</span>effect,</a>
-<a class="sourceLine" id="cb47-28" data-line-number="28">                <span class="op">-</span>term,</a>
-<a class="sourceLine" id="cb47-29" data-line-number="29">                <span class="dt">term =</span> continent,</a>
-<a class="sourceLine" id="cb47-30" data-line-number="30">                <span class="dt">statistic =</span> t.value))</a>
-<a class="sourceLine" id="cb47-31" data-line-number="31"><span class="co">#&gt; # A tibble: 4 x 14</span></a>
-<a class="sourceLine" id="cb47-32" data-line-number="32"><span class="co">#&gt;   term  estimate std.error statistic conf.low conf.high  p.value</span></a>
-<a class="sourceLine" id="cb47-33" data-line-number="33"><span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb47-34" data-line-number="34"><span class="co">#&gt; 1 Asia      7.35     1.27       5.79    4.86       9.84 7.00e- 9</span></a>
-<a class="sourceLine" id="cb47-35" data-line-number="35"><span class="co">#&gt; 2 Euro~     1.52     0.238      6.36    1.05       1.98 2.02e-10</span></a>
-<a class="sourceLine" id="cb47-36" data-line-number="36"><span class="co">#&gt; 3 Afri~     1.54     0.348      4.43    0.860      2.22 9.49e- 6</span></a>
-<a class="sourceLine" id="cb47-37" data-line-number="37"><span class="co">#&gt; 4 Amer~     1.88     0.233      8.06    1.42       2.34 7.64e-16</span></a>
-<a class="sourceLine" id="cb47-38" data-line-number="38"><span class="co">#&gt; # ... with 7 more variables: significance &lt;chr&gt;, sigma &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb47-39" data-line-number="39"><span class="co">#&gt; #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, REMLcrit &lt;dbl&gt;, df.residual &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb47-40" data-line-number="40"></a>
-<a class="sourceLine" id="cb47-41" data-line-number="41"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb47-42" data-line-number="42">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
-<a class="sourceLine" id="cb47-43" data-line-number="43">  <span class="dt">x =</span> df_results,</a>
-<a class="sourceLine" id="cb47-44" data-line-number="44">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
-<a class="sourceLine" id="cb47-45" data-line-number="45">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,</a>
-<a class="sourceLine" id="cb47-46" data-line-number="46">  <span class="dt">title =</span> <span class="st">"Relationship between life expectancy and GDP"</span>,</a>
-<a class="sourceLine" id="cb47-47" data-line-number="47">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder foundation"</span>,</a>
-<a class="sourceLine" id="cb47-48" data-line-number="48">  <span class="dt">caption =</span> <span class="st">"Data from Oceania continent not included"</span></a>
-<a class="sourceLine" id="cb47-49" data-line-number="49">)</a>
-<a class="sourceLine" id="cb47-50" data-line-number="50"><span class="co">#&gt; Note: No model diagnostics information available for the object of class tbl_df .</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># set up</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggstatsplot)</a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gapminder)</a>
+<a class="sourceLine" id="cb49-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb49-6" data-line-number="6"><span class="co"># data for running regression models</span></a>
+<a class="sourceLine" id="cb49-7" data-line-number="7">df &lt;-</a>
+<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> gapminder<span class="op">::</span>gapminder, continent <span class="op">!=</span><span class="st"> "Oceania"</span>)</a>
+<a class="sourceLine" id="cb49-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="co"># saving results from regression  </span></a>
+<a class="sourceLine" id="cb49-11" data-line-number="11">df_results &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span>(</a>
+<a class="sourceLine" id="cb49-12" data-line-number="12">  <span class="dt">.l =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb49-13" data-line-number="13">    <span class="dt">data =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(df),</a>
+<a class="sourceLine" id="cb49-14" data-line-number="14">    <span class="dt">formula =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(lifeExp) <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(gdpPercap) <span class="op">+</span><span class="st"> </span>(gdpPercap <span class="op">|</span></a>
+<a class="sourceLine" id="cb49-15" data-line-number="15"><span class="st">                                                          </span>country)),</a>
+<a class="sourceLine" id="cb49-16" data-line-number="16">    <span class="dt">grouping.vars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">alist</a></span>(continent),</a>
+<a class="sourceLine" id="cb49-17" data-line-number="17">    <span class="dt">output =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"tidy"</span>, <span class="st">"glance"</span>)</a>
+<a class="sourceLine" id="cb49-18" data-line-number="18">  ),</a>
+<a class="sourceLine" id="cb49-19" data-line-number="19">  <span class="dt">.f =</span> groupedstats<span class="op">::</span>grouped_lmer</a>
+<a class="sourceLine" id="cb49-20" data-line-number="20">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">full_join</a></span>(<span class="dt">x =</span> .[[<span class="dv">1</span>]], <span class="dt">y =</span> .[[<span class="dv">2</span>]], <span class="dt">by =</span> <span class="st">"continent"</span>)</a>
+<a class="sourceLine" id="cb49-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb49-23" data-line-number="23"><span class="co"># modifying the results so to be compatible with the `ggcoefstats` requirement</span></a>
+<a class="sourceLine" id="cb49-24" data-line-number="24">(df_results <span class="op">%&lt;&gt;%</span></a>
+<a class="sourceLine" id="cb49-25" data-line-number="25"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="dt">.data =</span> ., term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-26" data-line-number="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">.data =</span> .,</a>
+<a class="sourceLine" id="cb49-27" data-line-number="27">                <span class="op">-</span>effect,</a>
+<a class="sourceLine" id="cb49-28" data-line-number="28">                <span class="op">-</span>term,</a>
+<a class="sourceLine" id="cb49-29" data-line-number="29">                <span class="dt">term =</span> continent,</a>
+<a class="sourceLine" id="cb49-30" data-line-number="30">                <span class="dt">statistic =</span> t.value))</a>
+<a class="sourceLine" id="cb49-31" data-line-number="31"><span class="co">#&gt; # A tibble: 4 x 14</span></a>
+<a class="sourceLine" id="cb49-32" data-line-number="32"><span class="co">#&gt;   term  estimate std.error statistic conf.low conf.high  p.value</span></a>
+<a class="sourceLine" id="cb49-33" data-line-number="33"><span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb49-34" data-line-number="34"><span class="co">#&gt; 1 Asia      7.35     1.27       5.79    4.86       9.84 7.00e- 9</span></a>
+<a class="sourceLine" id="cb49-35" data-line-number="35"><span class="co">#&gt; 2 Euro~     1.52     0.238      6.36    1.05       1.98 2.02e-10</span></a>
+<a class="sourceLine" id="cb49-36" data-line-number="36"><span class="co">#&gt; 3 Afri~     1.54     0.348      4.43    0.860      2.22 9.49e- 6</span></a>
+<a class="sourceLine" id="cb49-37" data-line-number="37"><span class="co">#&gt; 4 Amer~     1.88     0.233      8.06    1.42       2.34 7.64e-16</span></a>
+<a class="sourceLine" id="cb49-38" data-line-number="38"><span class="co">#&gt; # ... with 7 more variables: significance &lt;chr&gt;, sigma &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb49-39" data-line-number="39"><span class="co">#&gt; #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, REMLcrit &lt;dbl&gt;, df.residual &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb49-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb49-41" data-line-number="41"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb49-42" data-line-number="42">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
+<a class="sourceLine" id="cb49-43" data-line-number="43">  <span class="dt">x =</span> df_results,</a>
+<a class="sourceLine" id="cb49-44" data-line-number="44">  <span class="dt">statistic =</span> <span class="st">"t"</span>,</a>
+<a class="sourceLine" id="cb49-45" data-line-number="45">  <span class="dt">sort =</span> <span class="st">"ascending"</span>,</a>
+<a class="sourceLine" id="cb49-46" data-line-number="46">  <span class="dt">title =</span> <span class="st">"Relationship between life expectancy and GDP"</span>,</a>
+<a class="sourceLine" id="cb49-47" data-line-number="47">  <span class="dt">subtitle =</span> <span class="st">"Source: Gapminder foundation"</span>,</a>
+<a class="sourceLine" id="cb49-48" data-line-number="48">  <span class="dt">caption =</span> <span class="st">"Data from Oceania continent not included"</span></a>
+<a class="sourceLine" id="cb49-49" data-line-number="49">)</a>
+<a class="sourceLine" id="cb49-50" data-line-number="50"><span class="co">#&gt; Note: No model diagnostics information available for the object of class tbl_df .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/dataframe-1.png" width="576"></p>
 </div>
 <div id="and-much-more" class="section level2">
@@ -1622,6 +1664,7 @@
       <li><a href="#aalens-additive-regression-model-for-censored-data-aareg">Aalen’s additive regression model for censored data (<code>aareg</code>)</a></li>
       <li><a href="#relative-risk-regression-model-for-case-cohort-studies-cch">relative risk regression model for case-cohort studies (<code>cch</code>)</a></li>
       <li><a href="#ridge-regression-ridgelm">ridge regression (<code>ridgelm</code>)</a></li>
+      <li><a href="#generalized-additive-model-gam">generalized additive model (<code>Gam</code>)</a></li>
       <li><a href="#linear-model-using-generalized-least-squares-gls">linear model using generalized least squares (<code>gls</code>)</a></li>
       <li><a href="#robust-regression-using-an-m-estimator-rlm">robust regression using an M estimator (<code>rlm</code>)</a></li>
       <li><a href="#quantile-regression-rq">quantile regression (<code>rq</code>)</a></li>
@@ -1629,6 +1672,7 @@
       <li><a href="#instrumental-variable-regression-ivreg">instrumental-variable regression (<code>ivreg</code>)</a></li>
       <li><a href="#causal-mediation-analysis-mediate">causal mediation analysis (<code>mediate</code>)</a></li>
       <li><a href="#model-ii-regression-lmodel2">Model II regression (<code>lmodel2</code>)</a></li>
+      <li><a href="#generalized-additive-models-for-location-scale-and-shape-gamlss">generalized additive models for location scale and shape (<code>gamlss</code>)</a></li>
       <li><a href="#generalized-method-of-moment-estimation-gmm">generalized method of moment estimation (<code>gmm</code>)</a></li>
       <li><a href="#exponential-family-random-graph-models-ergm">exponential-family random graph models (<code>ergm</code>)</a></li>
       <li><a href="#tergm-by-bootstrapped-pseudolikelihood-or-mcmc-mle-btergm">TERGM by bootstrapped pseudolikelihood or MCMC MLE (<code>btergm</code>)</a></li>
