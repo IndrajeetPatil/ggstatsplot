@@ -1,4 +1,4 @@
-#' @title A heteroscedastic one-way ANOVA for trimmed means with confidence
+#' #' @title A heteroscedastic one-way ANOVA for trimmed means with confidence
 #'   interval for effect size.
 #' @name t1way_ci
 #' @description Custom function to get confidence intervals for effect size
@@ -28,6 +28,20 @@
 #' @importFrom WRS2 t1way
 #' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
+#'
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' ggstatsplot:::t1way_ci(
+#'   data = dplyr::filter(ggplot2::msleep, vore != "insecti"),
+#'   x = vore,
+#'   y = brainwt,
+#'   tr = 0.05,
+#'   nboot = 50,
+#'   conf.level = 0.99,
+#'   conf.type = "perc"
+#' )
+#' }
 #'
 #' @keywords internal
 
@@ -164,8 +178,23 @@ t1way_ci <- function(data,
 #' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
 #'
+#' @examples
+#' \dontrun{
+#' ggstatsplot:::yuend_ci(
+#'   data = dplyr::filter(
+#'     .data = ggstatsplot::iris_long,
+#'     condition %in% c("Sepal.Length", "Petal.Length")
+#'   ),
+#'   x = condition,
+#'   y = value,
+#'   nboot = 50,
+#'   tr = 0.2
+#' )
+#' }
+#'
 #' @keywords internal
 
+# function body
 yuend_ci <- function(data,
                      x,
                      y,
@@ -316,8 +345,24 @@ yuend_ci <- function(data,
 #' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
 #'
+#' @examples
+#' \dontrun{
+#' ggstatsplot:::cor_test_ci(
+#'   data = ggplot2::msleep,
+#'   x = brainwt,
+#'   y = sleep_total,
+#'   nboot = 25,
+#'   conf.level = 0.99,
+#'   conf.type = "perc",
+#'   method = "spearman",
+#'   continuity = TRUE,
+#'   alternative = "greater"
+#' )
+#' }
+#'
 #' @keywords internal
 
+# function body
 cor_test_ci <- function(data,
                         x,
                         y,
@@ -459,7 +504,7 @@ cor_test_ci <- function(data,
 
 
 #' @title Chi-squared test of association with confidence interval for effect
-#'   size (Cramer's V).
+#'   size (Cramer's *V*).
 #' @name chisq_v_ci
 #' @description Custom function to get confidence intervals for effect size
 #'   measure for chi-squared test of association (Contingency Tables analyses,
@@ -481,6 +526,18 @@ cor_test_ci <- function(data,
 #' @importFrom boot boot
 #' @importFrom boot boot.ci
 #' @importFrom stats na.omit
+#'
+#' @examples
+#' \dontrun{
+#' ggstatsplot:::chisq_v_ci(
+#'   data = ggstatsplot::Titanic_full,
+#'   rows = Sex,
+#'   cols = Survived,
+#'   nboot = 12,
+#'   conf.level = 0.90,
+#'   conf.type = "norm"
+#' )
+#' }
 #'
 #' @keywords internal
 
@@ -628,8 +685,22 @@ chisq_v_ci <- function(data,
 #' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
 #'
+#' @examples
+#' \dontrun{
+#' ggstatsplot:::robcor_ci(
+#'   data = mtcars,
+#'   x = "hp",
+#'   y = "mpg",
+#'   beta = .01,
+#'   nboot = 125,
+#'   conf.level = .99,
+#'   conf.type = c("basic")
+#' )
+#' }
+#'
 #' @keywords internal
 
+# function body
 robcor_ci <- function(data,
                       x,
                       y,
@@ -753,6 +824,18 @@ robcor_ci <- function(data,
 #' @importFrom stats kruskal.test
 #' @importFrom boot boot boot.ci
 #' @importFrom stats na.omit
+#'
+#' @examples
+#' \dontrun{
+#' ggstatsplot:::kw_eta_h_ci(
+#'   data = ggplot2::msleep,
+#'   x = vore,
+#'   y = sleep_rem,
+#'   nboot = 100,
+#'   conf.level = 0.90,
+#'   conf.type = "basic"
+#' )
+#' }
 #'
 #' @keywords internal
 

@@ -5,60 +5,44 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    # make a bogus dataframe to test against
-    # some plausible numbers, a negative value and an NA
-    bogusdata <- structure(list(
-      salary = c(
-        50730.83081, 77872.83003, 57803.88727,
-        85409.38994, 62071.88095, 69196.43718, 74876.73551, 86352.12023,
-        52691.98159, 128703.9815, 52099.91134, 69872.26705, 117719.5328,
-        63661.73531, 59017.89943, 85396.33069, 69358.85247, 81688.73386,
-        58317.0537, 74468.2009, 122257.5829, 57615.41862, 105443.7078,
-        78588.46832, 71255.37619, 78884.72352, 61605.19855, 108925.0633,
-        74719.10675, 103466.0394, 56181.22337, 82875.21286, 55107.10588,
-        56511.27457, 77637.82316, 70461.50759, 66888.48649, 64260.17655,
-        62414.73747, -60188.71604, 79242.54313, 71892.76574, 57299.30235,
-        86821.75668, 57069.45982, 104673.7276, 58223.47324, 72176.91737,
-        75401.36975, 96543.25113, NA, 53745.74092, 55065.02797,
-        87433.44606, 72073.14522, 76584.70822, 66510.70525, 51348.30634,
-        104029.4993, 62318.45518, 83349.1664, 48317.47756, 71888.55861,
-        80132.49856, 56225.62056, 77870.53773, 52994.10556, 121012.7997,
-        75396.5276, 121317.9, 85720.64062, 77267.42723, 62038.05133,
-        52335.07442, 62310.09344, 64517.68315, 49553.6248, 108131.1387,
-        59214.97363, 80524.47338, 71574.21554, 48364.61591, 78799.56176,
-        87799.65136, 55990.01832, 61801.93175, 46972.29276, 91835.54746,
-        66499.9822, 60362.2498, 79035.75994, 76063.98704, 56127.40021,
-        51375.03835, 74480.09465, 80420.02603, 53964.0617, 135949.0046,
-        96420.96265, 62239.7917
-      ),
-      new_hire = structure(c(rep(2L, times = 50), rep(1L, times = 50)),
-        .Label = c("No", "Yes"),
-        class = "factor"
-      )
-    ),
-    row.names = c(NA, -100L), class = "data.frame"
-    )
-
+    # normal
     set.seed(123)
-
-    # 3 seconds
     df1 <-
       ggstatsplot:::t1way_ci(
-        data = bogusdata,
-        x = new_hire,
-        y = salary,
+        data = dplyr::filter(.data = ggplot2::msleep, vore != "insecti"),
+        x = vore,
+        y = brainwt,
         nboot = 25,
         conf.level = .99,
-        tr = .05,
+        tr = 0.05,
         conf.type = c("norm")
       )
 
-    # testing 5 conditions
+    # percentile
     set.seed(123)
-    testthat::expect_equal(df1$xi, 0.08635324, tolerance = .00002)
-    testthat::expect_equal(df1$conf.low, -0.1674259, tolerance = .00002)
-    testthat::expect_equal(df1$conf.high, 0.2684582, tolerance = .00002)
-    testthat::expect_equal(df1$F.value, 0.3718993, tolerance = .00002)
-    testthat::expect_equal(df1$p.value, 0.5435346, tolerance = .00002)
+    df2 <-
+      suppressWarnings(ggstatsplot:::t1way_ci(
+        data = dplyr::filter(.data = ggplot2::msleep, vore != "insecti"),
+        x = vore,
+        y = brainwt,
+        tr = 0.1,
+        nboot = 50,
+        conf.level = 0.99,
+        conf.type = "perc"
+      ))
+
+    # test normal CI
+    testthat::expect_equal(df1$xi, 0.6537392, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.low, -0.9077024, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.high, 1.933281, tolerance = 0.00002)
+    testthat::expect_equal(df1$F.value, 0.6146867, tolerance = 0.00002)
+    testthat::expect_equal(df1$p.value, 0.5487093, tolerance = 0.00002)
+
+    # test percentile CI
+    testthat::expect_equal(df2$xi, 1.27404, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.low, 0.211037, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.high, 3.414511, tolerance = 0.00002)
+    testthat::expect_equal(df2$F.value, 0.260884, tolerance = 0.00002)
+    testthat::expect_equal(df2$p.value, 0.772501, tolerance = 0.00002)
   }
 )

@@ -165,4 +165,18 @@ sample size, bending constant, no. of bootstrap samples, etc.
 Custom function to get confidence intervals for percentage bend
 correlation coefficient.
 }
+\examples{
+\dontrun{
+ggstatsplot:::robcor_ci(
+  data = mtcars,
+  x = "hp",
+  y = "mpg",
+  beta = .01,
+  nboot = 125,
+  conf.level = .99,
+  conf.type = c("basic")
+)
+}
+
+}
 \keyword{internal}

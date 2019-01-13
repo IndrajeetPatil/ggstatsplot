@@ -52,7 +52,7 @@ Imports:
     magrittr (>= 1.5),
     metafor (>= 2.0-0),
     paletteer (>= 0.1.0),
-    psych (>= 1.8.10),
+    psych (>= 1.8.12),
     purrr (>= 0.2.5),
     purrrlyr (>= 0.0.3),
     rlang (>= 0.3.1),

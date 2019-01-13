@@ -157,4 +157,17 @@ intervals required. The value should be any subset of the values \code{"norm"},
 Custom function to get confidence intervals for effect size
 measure for Kruskal-Wallis Rank Sum Test.
 }
+\examples{
+\dontrun{
+ggstatsplot:::kw_eta_h_ci(
+  data = ggplot2::msleep,
+  x = vore,
+  y = sleep_rem,
+  nboot = 100,
+  conf.level = 0.90,
+  conf.type = "basic"
+)
+}
+
+}
 \keyword{internal}

@@ -3,7 +3,7 @@
 \name{chisq_v_ci}
 \alias{chisq_v_ci}
 \title{Chi-squared test of association with confidence interval for effect
-size (Cramer's V).}
+size (Cramer's \emph{V}).}
 \usage{
 chisq_v_ci(data, rows, cols, nboot = 25, conf.level = 0.95,
   conf.type = "norm", ...)
@@ -158,5 +158,18 @@ intervals required. The value should be any subset of the values \code{"norm"},
 Custom function to get confidence intervals for effect size
 measure for chi-squared test of association (Contingency Tables analyses,
 i.e.).
+}
+\examples{
+\dontrun{
+ggstatsplot:::chisq_v_ci(
+  data = ggstatsplot::Titanic_full,
+  rows = Sex,
+  cols = Survived,
+  nboot = 12,
+  conf.level = 0.90,
+  conf.type = "norm"
+)
+}
+
 }
 \keyword{internal}

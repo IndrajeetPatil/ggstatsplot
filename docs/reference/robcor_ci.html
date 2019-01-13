@@ -326,6 +326,21 @@ confidence intervals. Additionally, it also includes information about
 sample size, bending constant, no. of bootstrap samples, etc.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/robcor_ci.html'>robcor_ci</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"hp"</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"mpg"</span>,
+  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>.01</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>125</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.99</span>,
+  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"basic"</span>)
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 11</span><span>
+#&gt;   estimate conf.low conf.high  conf    V2    V3 p.value statistic     n nboot
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>   -</span><span style='color: #BB0000;'>0.804</span><span>   -</span><span style='color: #BB0000;'>0.905</span><span>    -</span><span style='color: #BB0000;'>0.714</span><span>  0.99  125.  0.63 2.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-8</span><span>     -</span><span style='color: #BB0000;'>7.41</span><span>    32   125
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: beta </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -333,7 +348,9 @@ sample size, bending constant, no. of bootstrap samples, etc.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

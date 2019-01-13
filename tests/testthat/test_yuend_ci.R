@@ -102,7 +102,7 @@ testthat::test_that(
       )
     # ggstatsplot output
     set.seed(123)
-    using_function1 <-
+    df1 <-
       ggstatsplot:::yuend_ci(
         data = mydata,
         x = time,
@@ -122,7 +122,7 @@ testthat::test_that(
 
     # creating a dataframe
     set.seed(123)
-    using_function2 <-
+    df2 <-
       ggstatsplot:::yuend_ci(
         data = mydata1,
         x = time,
@@ -131,18 +131,36 @@ testthat::test_that(
         conf.type = "basic"
       )
 
-    # testing 5 conditions (dataframe without NAs)
-    testthat::expect_equal(using_function1$t.value, -5.27, tolerance = .001)
-    testthat::expect_equal(using_function1$conf.low, 0.0952, tolerance = 0.0001)
-    testthat::expect_equal(using_function1$conf.high, 0.248, tolerance = 0.001)
-    testthat::expect_equal(using_function1$df, 15L)
-    testthat::expect_equal(using_function1$p.value, 0.0000945, tolerance = 0.000001)
+    # creating a dataframe
+    set.seed(123)
+    df3 <-
+      ggstatsplot:::yuend_ci(
+        data = mydata1,
+        x = time,
+        y = grade,
+        conf.level = 0.50,
+        conf.type = "perc"
+      )
 
-    # testing 5 conditions (dataframe with NAs)
-    testthat::expect_equal(using_function2$t.value, -1.356716, tolerance = .001)
-    testthat::expect_equal(using_function2$conf.low, -0.084208, tolerance = 0.0001)
-    testthat::expect_equal(using_function2$conf.high, 0.6691399, tolerance = 0.001)
-    testthat::expect_equal(using_function2$df, 8L)
-    testthat::expect_equal(using_function2$p.value, 0.2119125, tolerance = 0.000001)
+    # testing (dataframe without NAs)
+    testthat::expect_equal(df1$t.value, -5.27, tolerance = .001)
+    testthat::expect_equal(df1$xi, 0.166875, tolerance = 0.0001)
+    testthat::expect_equal(df1$conf.low, 0.0952, tolerance = 0.0001)
+    testthat::expect_equal(df1$conf.high, 0.248, tolerance = 0.001)
+    testthat::expect_equal(df1$df, 15L)
+    testthat::expect_equal(df1$p.value, 0.0000945, tolerance = 0.000001)
+
+    # testing (dataframe with NAs)
+    testthat::expect_equal(df2$t.value, -1.356716, tolerance = .001)
+    testthat::expect_equal(df2$xi, 0.3486531, tolerance = 0.0001)
+    testthat::expect_equal(df2$conf.low, -0.084208, tolerance = 0.0001)
+    testthat::expect_equal(df2$conf.high, 0.6691399, tolerance = 0.001)
+    testthat::expect_equal(df2$df, 8L)
+    testthat::expect_equal(df2$p.value, 0.2119125, tolerance = 0.000001)
+
+    # testing (dataframe with NAs + percentile CI)
+    testthat::expect_equal(df3$xi, 0.3486531, tolerance = 0.0001)
+    testthat::expect_equal(df3$conf.low, 0.2040678, tolerance = 0.0001)
+    testthat::expect_equal(df3$conf.high, 0.5274532, tolerance = 0.0001)
   }
 )

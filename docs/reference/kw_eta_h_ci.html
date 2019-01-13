@@ -315,12 +315,27 @@ intervals required. The value should be any subset of the values <code>"norm"</c
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/kw_eta_h_ci.html'>kw_eta_h_ci</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.90</span>,
+  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"basic"</span>
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 5</span><span>
+#&gt;   eta_sq_H conf.low conf.high  conf nboot
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>    0.117   -</span><span style='color: #BB0000;'>0.103</span><span>     0.215   0.9   100</div></span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

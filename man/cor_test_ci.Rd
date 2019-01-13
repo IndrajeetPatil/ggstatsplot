@@ -180,4 +180,20 @@ intervals required. The value should be any subset of the values \code{"norm"},
 Custom function to get confidence intervals for effect size
 measure for parametric or non-parametric correlation coefficient.
 }
+\examples{
+\dontrun{
+ggstatsplot:::cor_test_ci(
+  data = ggplot2::msleep,
+  x = brainwt,
+  y = sleep_total,
+  nboot = 25,
+  conf.level = 0.99,
+  conf.type = "perc",
+  method = "spearman",
+  continuity = TRUE,
+  alternative = "greater"
+)
+}
+
+}
 \keyword{internal}

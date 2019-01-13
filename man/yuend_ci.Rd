@@ -164,4 +164,19 @@ intervals required. The value should be any subset of the values \code{"norm"},
 Custom function to get confidence intervals for effect size
 measure for paired samples robust t-tests.
 }
+\examples{
+\dontrun{
+ggstatsplot:::yuend_ci(
+  data = dplyr::filter(
+    .data = ggstatsplot::iris_long,
+    condition \%in\% c("Sepal.Length", "Petal.Length")
+  ),
+  x = condition,
+  y = value,
+  nboot = 50,
+  tr = 0.2
+)
+}
+
+}
 \keyword{internal}

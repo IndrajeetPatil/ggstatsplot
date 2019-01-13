@@ -348,12 +348,31 @@ intervals required. The value should be any subset of the values <code>"norm"</c
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cor_test_ci.html'>cor_test_ci</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>brainwt</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_total</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
+  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"perc"</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"spearman"</span>,
+  <span class='kw'>continuity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"greater"</span>
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 11</span><span>
+#&gt;        r conf.low conf.high p.value  conf nboot    V2    V3 statistic method
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> -</span><span style='color: #BB0000;'>0.594</span><span>   -</span><span style='color: #BB0000;'>0.756</span><span>    -</span><span style='color: #BB0000;'>0.442</span><span>   1.000  0.99    25  0.13  25.9    </span><span style='text-decoration: underline;'>46</span><span>627. Spear~
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: alternative </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span></div></span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
