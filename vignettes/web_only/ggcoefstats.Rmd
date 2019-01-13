@@ -1235,7 +1235,8 @@ data(jobs)
 
 # base models
 b <-
-  stats::lm(formula = job_seek ~ treat + econ_hard + sex + age, data = jobs)
+  stats::lm(formula = job_seek ~ treat + econ_hard + sex + age, 
+            data = jobs)
 c <-
   stats::lm(formula = depress2 ~ treat + job_seek + econ_hard + sex + age,
             data = jobs)
@@ -1302,7 +1303,7 @@ ggstatsplot::ggcoefstats(x = g,
 
 ## generalized method of moment estimation (`gmm`)
 
-```{r gmm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+```{r gmm, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 5}
 # setup
 set.seed(123)
 library(gmm)
@@ -1325,6 +1326,47 @@ ggstatsplot::ggcoefstats(x = res,
                          package = "palettetown",
                          palette = "victreebel",
                          title = "generalized method of moment estimation")
+```
+
+## joint model to time-to-event data and multivariate longitudinal data (`mjoint`)
+
+```{r mjoint, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
+# setup
+set.seed(123)
+library(joineRML)
+data(heart.valve)
+
+# data
+hvd <- heart.valve[!is.na(heart.valve$log.grad) &
+  !is.na(heart.valve$log.lvmi) &
+  heart.valve$num <= 50, ]
+
+# model
+fit <- joineRML::mjoint(
+  formLongFixed = list(
+    "grad" = log.grad ~ time + sex + hs,
+    "lvmi" = log.lvmi ~ time + sex
+  ),
+  formLongRandom = list(
+    "grad" = ~ 1 | num,
+    "lvmi" = ~ time | num
+  ),
+  formSurv = Surv(fuyrs, status) ~ age,
+  data = hvd,
+  inits = list("gamma" = c(0.11, 1.51, 0.80)),
+  timeVar = "time"
+)
+
+# extract the survival fixed effects and plot them
+ggstatsplot::ggcoefstats(
+  x = fit,
+  conf.level = 0.99,
+  exclude.intercept = FALSE,
+  component = "longitudinal",
+  package = "yarrr",
+  palette = "basel",
+  title = "joint model to time-to-event data \nand multivariate longitudinal data"
+)
 ```
 
 ## exponential-family random graph models (`ergm`)

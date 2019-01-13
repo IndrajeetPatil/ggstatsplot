@@ -144,6 +144,7 @@
 #' @inheritParams broom.mixed::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams broom::tidy.polr
+#' @inheritParams broom::tidy.mjoint
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams paletteer::paletteer_d
 #' @inheritParams subtitle_meta_ggcoefstats
@@ -170,26 +171,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # -------------- with model object --------------------------------------
-#'
+#' 
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#'
+#' 
 #' # to get a plot
 #' ggstatsplot::ggcoefstats(x = mod, output = "plot")
-#'
+#' 
 #' # to get a tidy dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
-#'
+#' 
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#'
+#' 
 #' # to get augmented dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
-#'
+#' 
 #' # -------------- with custom dataframe -----------------------------------
-#'
+#' 
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -255,7 +256,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#'
+#' 
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -271,6 +272,7 @@ ggcoefstats <- function(x,
                         scales = NULL,
                         conf.method = "Wald",
                         conf.type = "Wald",
+                        component = "survival",
                         quick = FALSE,
                         p.kr = TRUE,
                         p.adjust.method = "none",
@@ -383,9 +385,12 @@ ggcoefstats <- function(x,
       "Kendall",
       "kmeans",
       "list",
+      "Mclust",
       "mts",
       "muhaz",
       "optim",
+      "poLCA",
+      "prcomp",
       "spec",
       "survdiff",
       "survexp",
@@ -603,6 +608,7 @@ ggcoefstats <- function(x,
         by_class = by.class,
         quick = quick,
         conf.type = conf.type,
+        component = component,
         ...
       )
   }

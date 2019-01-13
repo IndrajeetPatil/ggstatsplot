@@ -6,19 +6,20 @@
 caption.}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
-  conf.method = "Wald", conf.type = "Wald", quick = FALSE,
-  p.kr = TRUE, p.adjust.method = "none", coefficient.type = NULL,
-  by.class = FALSE, effsize = "eta", partial = TRUE, nboot = 500,
-  meta.analytic.effect = FALSE, point.color = "blue", point.size = 3,
-  point.shape = 16, conf.int = TRUE, conf.level = 0.95,
-  se.type = "nid", k = 2, k.caption.summary = 0,
-  exclude.intercept = TRUE, exponentiate = FALSE,
-  errorbar.color = "black", errorbar.height = 0,
-  errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
-  vline.color = "black", vline.linetype = "dashed", vline.size = 1,
-  sort = "none", xlab = "regression coefficient", ylab = "term",
-  title = NULL, subtitle = NULL, stats.labels = TRUE,
-  caption = NULL, caption.summary = TRUE, stats.label.size = 3,
+  conf.method = "Wald", conf.type = "Wald", component = "survival",
+  quick = FALSE, p.kr = TRUE, p.adjust.method = "none",
+  coefficient.type = NULL, by.class = FALSE, effsize = "eta",
+  partial = TRUE, nboot = 500, meta.analytic.effect = FALSE,
+  point.color = "blue", point.size = 3, point.shape = 16,
+  conf.int = TRUE, conf.level = 0.95, se.type = "nid", k = 2,
+  k.caption.summary = 0, exclude.intercept = TRUE,
+  exponentiate = FALSE, errorbar.color = "black",
+  errorbar.height = 0, errorbar.linetype = "solid",
+  errorbar.size = 0.5, vline = TRUE, vline.color = "black",
+  vline.linetype = "dashed", vline.size = 1, sort = "none",
+  xlab = "regression coefficient", ylab = "term", title = NULL,
+  subtitle = NULL, stats.labels = TRUE, caption = NULL,
+  caption.summary = TRUE, stats.label.size = 3,
   stats.label.fontface = "bold", stats.label.color = NULL,
   label.r = 0.15, label.size = 0.25, label.box.padding = 1,
   label.label.padding = 0.25, label.point.padding = 0.5,
@@ -58,6 +59,10 @@ For MCMC model objects (Stan, JAGS, etc.), the allowed options are
 
 \item{conf.type}{the type of confidence interval
 (see \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}})}
+
+\item{component}{Character specifying whether to tidy the survival or
+the longitudinal component of the model. Must be either \code{"survival"} or
+\code{"longitudinal"}. Defaults to \code{"survival"}.}
 
 \item{quick}{Logical indiciating if the only the \code{term} and \code{estimate}
 columns should be returned. Often useful to avoid time consuming
