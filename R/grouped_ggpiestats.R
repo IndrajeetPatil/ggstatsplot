@@ -6,10 +6,8 @@
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil, Chuck Powell
 #'
-#' @param grouping.var Grouping variable.
-#' @param title.prefix Character specifying the prefix text for the fixed plot
-#'   title (name of each factor level) (Default: `"Group"`).
 #' @inheritParams ggpiestats
+#' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams combine_plots
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
@@ -77,7 +75,7 @@ grouped_ggpiestats <- function(data,
                                condition = NULL,
                                counts = NULL,
                                grouping.var,
-                               title.prefix = "Group",
+                               title.prefix = NULL,
                                ratio = NULL,
                                paired = FALSE,
                                factor.levels = NULL,
@@ -132,9 +130,13 @@ grouped_ggpiestats <- function(data,
     }
   }
 
-
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+
+  # if `title.prefix` is not provided, use the variable `grouping.var` name
+  if (is.null(title.prefix)) {
+    title.prefix <- rlang::as_name(grouping.var)
+  }
 
   # ======================== preparing dataframe =============================
 

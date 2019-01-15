@@ -7,11 +7,8 @@
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
 #'
-#' @param grouping.var Grouping variable. Can be entered either as
-#'   a character string (e.g., `"group"`) or as a bare expression (e.g, `group`).
-#' @param title.prefix Character specifying the prefix text for the fixed plot
-#'   title (name of each factor level) (Default: `"Group"`).
 #' @inheritParams ggscatterstats
+#' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams combine_plots
 #'
 #' @import ggplot2
@@ -98,7 +95,7 @@ grouped_ggscatterstats <- function(data,
                                    label.var = NULL,
                                    label.expression = NULL,
                                    grouping.var,
-                                   title.prefix = "Group",
+                                   title.prefix = NULL,
                                    xlab = NULL,
                                    ylab = NULL,
                                    method = "lm",
@@ -182,6 +179,11 @@ grouped_ggscatterstats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+
+  # if `title.prefix` is not provided, use the variable `grouping.var` name
+  if (is.null(title.prefix)) {
+    title.prefix <- rlang::as_name(grouping.var)
+  }
 
   # getting the dataframe ready
   df <-

@@ -4,7 +4,7 @@
 \alias{grouped_ggdotplotstats}
 \title{Grouped histograms for distribution of a labelled numeric variable}
 \usage{
-grouped_ggdotplotstats(data, x, y, grouping.var, title.prefix = "Group",
+grouped_ggdotplotstats(data, x, y, grouping.var, title.prefix = NULL,
   xlab = NULL, ylab = NULL, subtitle = NULL, caption = NULL,
   type = "parametric", test.value = 0, bf.prior = 0.707,
   bf.message = FALSE, robust.estimator = "onestep",
@@ -27,10 +27,12 @@ taken. This argument is optional.}
 
 \item{y}{Label or grouping variable.}
 
-\item{grouping.var}{Grouping variable.}
+\item{grouping.var}{A single grouping variable (can be entered either as a
+bare name \code{x} or as a string \code{"x"}).}
 
-\item{title.prefix}{Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: \code{"Group"}).}
+\item{title.prefix}{Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
+variable name entered for \code{grouping.var} will be used.}
 
 \item{xlab}{Label for \code{x} axis variable.}
 
@@ -205,9 +207,10 @@ ggstatsplot::grouped_ggdotplotstats(
   grouping.var = "cyl",
   test.value = 15.5,
   title.prefix = "cylinder count",
-  ggplot.component = ggplot2::scale_y_continuous(
-    sec.axis = ggplot2::dup_axis(name = "percentile score"),
-    breaks = seq(0, 12, 2)
+  ggplot.component = ggplot2::scale_x_continuous(
+    sec.axis = ggplot2::dup_axis(),
+    limits = c(12, 24),
+    breaks = seq(12, 24, 2)
   ),
   messages = FALSE
 )

@@ -184,7 +184,7 @@ subtitle.</p>
 
     <pre class="usage"><span class='fu'>grouped_ggscatterstats</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label.var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>,
+  <span class='kw'>label.expression</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>, <span class='kw'>method.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>point.alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>line.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>point.width.jitter</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -256,13 +256,14 @@ expression (e.g., <code>y &lt; 4 &amp; z &lt; 20</code>).</p></td>
     </tr>
     <tr>
       <th>grouping.var</th>
-      <td><p>Grouping variable. Can be entered either as
-a character string (e.g., <code>"group"</code>) or as a bare expression (e.g, <code>group</code>).</p></td>
+      <td><p>A single grouping variable (can be entered either as a
+bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
     </tr>
     <tr>
       <th>title.prefix</th>
-      <td><p>Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
+      <td><p>Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: <code>NULL</code>). If <code>NULL</code>, the
+variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>xlab</th>

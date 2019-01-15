@@ -5,7 +5,7 @@
 \title{Violin plots for group or condition comparisons in between-subjects
 designs repeated across all levels of a grouping variable.}
 \usage{
-grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = "Group",
+grouped_ggbetweenstats(data, x, y, grouping.var, title.prefix = NULL,
   plot.type = "boxviolin", type = "parametric",
   pairwise.comparisons = FALSE, pairwise.annotation = "asterisk",
   pairwise.display = "significant", p.adjust.method = "holm",
@@ -36,10 +36,12 @@ be taken.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{grouping.var}{Grouping variable.}
+\item{grouping.var}{A single grouping variable (can be entered either as a
+bare name \code{x} or as a string \code{"x"}).}
 
-\item{title.prefix}{Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: \code{"Group"}).}
+\item{title.prefix}{Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
+variable name entered for \code{grouping.var} will be used.}
 
 \item{plot.type}{Character describing the \emph{type} of plot. Currently supported
 plots are \code{"box"} (for pure boxplots), \code{"violin"} (for pure violin plots),

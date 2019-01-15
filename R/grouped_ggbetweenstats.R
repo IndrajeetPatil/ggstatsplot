@@ -1,14 +1,15 @@
 #' @title Violin plots for group or condition comparisons in between-subjects
 #'   designs repeated across all levels of a grouping variable.
 #' @name grouped_ggbetweenstats
-#' @aliases grouped_ggbetweenstats
 #' @description A combined plot of comparison plot created for levels of a
 #'   grouping variable.
 #' @author Indrajeet Patil
 #'
-#' @param grouping.var Grouping variable.
-#' @param title.prefix Character specifying the prefix text for the fixed plot
-#'   title (name of each factor level) (Default: `"Group"`).
+#' @param grouping.var A single grouping variable (can be entered either as a
+#'   bare name `x` or as a string `"x"`).
+#' @param title.prefix Character string specifying the prefix text for the fixed
+#'   plot title (name of each factor level) (Default: `NULL`). If `NULL`, the
+#'   variable name entered for `grouping.var` will be used.
 #' @inheritParams ggbetweenstats
 #' @inheritDotParams combine_plots
 #'
@@ -64,7 +65,7 @@ grouped_ggbetweenstats <- function(data,
                                    x,
                                    y,
                                    grouping.var,
-                                   title.prefix = "Group",
+                                   title.prefix = NULL,
                                    plot.type = "boxviolin",
                                    type = "parametric",
                                    pairwise.comparisons = FALSE,
@@ -142,6 +143,11 @@ grouped_ggbetweenstats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+
+  # if `title.prefix` is not provided, use the variable `grouping.var` name
+  if (is.null(title.prefix)) {
+    title.prefix <- rlang::as_name(grouping.var)
+  }
 
   # ======================== preparing dataframe ==========================
 

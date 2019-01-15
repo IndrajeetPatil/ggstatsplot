@@ -7,10 +7,8 @@
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil
 #'
-#' @param grouping.var Grouping variable.
-#' @param title.prefix Character specifying the prefix text for the fixed plot
-#'   title (name of each factor level) (Default: `"Group"`).
 #' @inheritParams ggcorrmat
+#' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams combine_plots
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
@@ -76,7 +74,7 @@ grouped_ggcorrmat <- function(data,
                               cor.vars = NULL,
                               cor.vars.names = NULL,
                               grouping.var,
-                              title.prefix = "Group",
+                              title.prefix = NULL,
                               output = "plot",
                               matrix.type = "full",
                               method = "square",
@@ -130,6 +128,11 @@ grouped_ggcorrmat <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+
+  # if `title.prefix` is not provided, use the variable `grouping.var` name
+  if (is.null(title.prefix)) {
+    title.prefix <- rlang::as_name(grouping.var)
+  }
 
   # getting the dataframe ready
   if ("cor.vars" %in% names(param_list)) {

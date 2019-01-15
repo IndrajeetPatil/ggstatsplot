@@ -180,7 +180,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggpiestats</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='st'>"Group"</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -215,12 +215,14 @@ if each row represents a single observation (Default).</p></td>
     </tr>
     <tr>
       <th>grouping.var</th>
-      <td><p>Grouping variable.</p></td>
+      <td><p>A single grouping variable (can be entered either as a
+bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
     </tr>
     <tr>
       <th>title.prefix</th>
-      <td><p>Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: <code>"Group"</code>).</p></td>
+      <td><p>Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: <code>NULL</code>). If <code>NULL</code>, the
+variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>ratio</th>

@@ -475,6 +475,37 @@ ggstatsplot::combine_plots(
 )
 ``` 
 
+# `grouped_` variants
+
+Note that although all the above examples were written with the non-grouped
+variants of functions, the same rule holds true for the `grouped_` variants of
+all the above functions. 
+
+For example, if we want to use the `grouped_gghistostats` across three different
+datasets, you can use `purrr::pmap()` function. For the sake of brevity, the
+plots are not displayed here, but you can run the following code and check the
+individual `grouped_` plots (e.g., `plotlist[[1]]`).
+
+```{r purrr_grouped, warning = FALSE, message = FALSE}
+# create a list of plots
+plotlist <-
+  purrr::pmap(
+    .l = list(
+      data = list(mtcars, iris, ToothGrowth),
+      x = alist(wt, Sepal.Length, len),
+      results.subtitle = list(FALSE),
+      grouping.var = alist(am, Species, supp),
+      title.text = list("Dataset: mtcars", "Dataset: iris", "Dataset: ToothGrowth"),
+      messages = list(FALSE)
+    ),
+    .f = ggstatsplot::grouped_gghistostats
+  )
+
+# given that we had three different datasets, we expect a list of length 3
+# (each of which contains a `grouped_` plot)
+length(plotlist)
+```
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

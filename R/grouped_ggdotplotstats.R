@@ -6,10 +6,8 @@
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil
 #'
-#' @param grouping.var Grouping variable.
-#' @param title.prefix Character specifying the prefix text for the fixed plot
-#'   title (name of each factor level) (Default: `"Group"`).
 #' @inheritParams ggdotplotstats
+#' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams combine_plots
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
@@ -40,9 +38,10 @@
 #'   grouping.var = "cyl",
 #'   test.value = 15.5,
 #'   title.prefix = "cylinder count",
-#'   ggplot.component = ggplot2::scale_y_continuous(
-#'     sec.axis = ggplot2::dup_axis(name = "percentile score"),
-#'     breaks = seq(0, 12, 2)
+#'   ggplot.component = ggplot2::scale_x_continuous(
+#'     sec.axis = ggplot2::dup_axis(),
+#'     limits = c(12, 24),
+#'     breaks = seq(12, 24, 2)
 #'   ),
 #'   messages = FALSE
 #' )
@@ -53,7 +52,7 @@ grouped_ggdotplotstats <- function(data,
                                    x,
                                    y,
                                    grouping.var,
-                                   title.prefix = "Group",
+                                   title.prefix = NULL,
                                    xlab = NULL,
                                    ylab = NULL,
                                    subtitle = NULL,
@@ -92,6 +91,11 @@ grouped_ggdotplotstats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+
+  # if `title.prefix` is not provided, use the variable `grouping.var` name
+  if (is.null(title.prefix)) {
+    title.prefix <- rlang::as_name(grouping.var)
+  }
 
   # getting the dataframe ready
   df <-

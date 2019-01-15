@@ -9,6 +9,9 @@ NEW FEATURES
   
 MINOR CHANGES
 
+  - All `grouped_` functions had argument `title.prefix` that defaulted to
+    `"Group"`. It now instead defaults to `NULL`, in which case the prefix will
+    variable name for `grouping.var` argument.
   - `ggbetweenstats` and its `grouped_` variant gain a new argument
     `axes.range.restrict` (which defaults to `FALSE`). This restricts `y`-axes
     limits to minimum and maximum of `y` variable. This is what these functions

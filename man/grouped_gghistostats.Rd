@@ -4,7 +4,7 @@
 \alias{grouped_gghistostats}
 \title{Grouped histograms for distribution of a numeric variable}
 \usage{
-grouped_gghistostats(data, x, grouping.var, title.prefix = "Group",
+grouped_gghistostats(data, x, grouping.var, title.prefix = NULL,
   binwidth = NULL, bar.measure = "count", xlab = NULL,
   subtitle = NULL, caption = NULL, type = "parametric",
   test.value = 0, bf.prior = 0.707, bf.message = FALSE,
@@ -28,10 +28,12 @@ taken. This argument is optional.}
 
 \item{x}{A numeric variable.}
 
-\item{grouping.var}{Grouping variable.}
+\item{grouping.var}{A single grouping variable (can be entered either as a
+bare name \code{x} or as a string \code{"x"}).}
 
-\item{title.prefix}{Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: \code{"Group"}).}
+\item{title.prefix}{Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
+variable name entered for \code{grouping.var} will be used.}
 
 \item{binwidth}{The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from \code{x}. The default is

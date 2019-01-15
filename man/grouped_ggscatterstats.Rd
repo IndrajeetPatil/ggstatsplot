@@ -7,7 +7,7 @@ variable}
 \usage{
 grouped_ggscatterstats(data, x, y, type = "pearson", conf.level = 0.95,
   bf.prior = 0.707, bf.message = FALSE, label.var = NULL,
-  label.expression = NULL, grouping.var, title.prefix = "Group",
+  label.expression = NULL, grouping.var, title.prefix = NULL,
   xlab = NULL, ylab = NULL, method = "lm", method.args = list(),
   formula = y ~ x, point.color = "black", point.size = 3,
   point.alpha = 0.4, line.size = 1.5, point.width.jitter = 0,
@@ -57,11 +57,12 @@ determines the subset of data points to label. This argument can be entered
 either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
 expression (e.g., \code{y < 4 & z < 20}).}
 
-\item{grouping.var}{Grouping variable. Can be entered either as
-a character string (e.g., \code{"group"}) or as a bare expression (e.g, \code{group}).}
+\item{grouping.var}{A single grouping variable (can be entered either as a
+bare name \code{x} or as a string \code{"x"}).}
 
-\item{title.prefix}{Character specifying the prefix text for the fixed plot
-title (name of each factor level) (Default: \code{"Group"}).}
+\item{title.prefix}{Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
+variable name entered for \code{grouping.var} will be used.}
 
 \item{xlab}{Label for \code{x} axis variable. The default is the variable name.}
 

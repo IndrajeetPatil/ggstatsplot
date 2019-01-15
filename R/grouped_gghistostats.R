@@ -6,10 +6,8 @@
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil
 #'
-#' @param grouping.var Grouping variable.
-#' @param title.prefix Character specifying the prefix text for the fixed plot
-#'   title (name of each factor level) (Default: `"Group"`).
 #' @inheritParams gghistostats
+#' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams combine_plots
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
@@ -47,7 +45,7 @@
 grouped_gghistostats <- function(data,
                                  x,
                                  grouping.var,
-                                 title.prefix = "Group",
+                                 title.prefix = NULL,
                                  binwidth = NULL,
                                  bar.measure = "count",
                                  xlab = NULL,
@@ -92,6 +90,11 @@ grouped_gghistostats <- function(data,
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
+
+  # if `title.prefix` is not provided, use the variable `grouping.var` name
+  if (is.null(title.prefix)) {
+    title.prefix <- rlang::as_name(grouping.var)
+  }
 
   # getting the dataframe ready
   df <-
