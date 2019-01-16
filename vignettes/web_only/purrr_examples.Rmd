@@ -100,8 +100,8 @@ year_list <- gapminder::gapminder %>%
   dplyr::filter(
     .data = .,
     year == 1967 |
-    year == 1987 |
-    year == 2007, 
+      year == 1987 |
+      year == 2007,
     continent != "Oceania"
   ) %>%
   base::split(x = ., f = .$year, drop = TRUE)
@@ -156,7 +156,7 @@ plot_list <- purrr::pmap(
     effsize.type = list(
       NULL,
       "partial_omega",
-       "partial_eta"
+      "partial_eta"
     ),
     plot.type = list("box", "boxviolin", "violin"),
     mean.ci = list(TRUE, FALSE, FALSE),
@@ -228,11 +228,11 @@ plot_list <- purrr::pmap(
     ),
     label.var = list("title"),
     label.expression = list(
-       "rating > 7.5 &
+      "rating > 7.5 &
          budget < 100",
-       "rating > 8 & budget < 50",
-       "rating > 8 & budget < 10"
-     ),
+      "rating > 8 & budget < 50",
+      "rating > 8 & budget < 10"
+    ),
     type = list("r", "np", "bf"),
     method = list(MASS::rlm, "lm", "lm"),
     nboot = 25,
@@ -250,7 +250,7 @@ plot_list <- purrr::pmap(
   ),
   .f = ggstatsplot::ggscatterstats
 )
-  
+
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
@@ -261,7 +261,7 @@ ggstatsplot::combine_plots(
   caption.color = "blue",
   nrow = 3,
   ncol = 1,
-  labels = c("(a)","(b)","(c)","(d)")
+  labels = c("(a)", "(b)", "(c)", "(d)")
 )
 ```
 
@@ -276,7 +276,7 @@ methodology as the earlier examples.
 # also, to make this fast, let's only use 5% of the sample
 cut_list <- ggplot2::diamonds %>%
   dplyr::sample_frac(tbl = ., size = 0.05) %>%
-  dplyr::filter(.data = ., cut != "Fair") %>% 
+  dplyr::filter(.data = ., cut != "Fair") %>%
   base::split(x = ., f = .$cut, drop = TRUE)
 
 # this created a list with 4 elements, one for each quality of cut
@@ -301,7 +301,7 @@ plot_list <- purrr::pmap(
       "price"
     )),
     corr.method = list("pearson", "np", "robust", "kendall"),
-    title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"), 
+    title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
     # note that we are changing both p-value adjustment method *and*
     # significance level to display the significant correlations in the
     # visualization matrix
@@ -380,7 +380,7 @@ plot_list <- purrr::pmap(
       "Continent: Asia",
       "Continent: Europe"
     ),
-    bar.measure = list("proportion", "count", "proportion", "density"),
+    bar.measure = list("proportion", "count", "mix", "density"),
     fill.gradient = list(TRUE, FALSE, FALSE, TRUE),
     low.color = list("#56B4E9", "white", "#999999", "#009E73"),
     high.color = list("#D55E00", "white", "#F0E442", "#F0E442"),
@@ -400,15 +400,85 @@ plot_list <- purrr::pmap(
   ),
   .f = ggstatsplot::gghistostats
 )
-  
+
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Improvement in life expectancy worldwide since 1950",
   caption.text = "Note: black line - 1950; blue line - 2007",
   nrow = 4,
-  ncol = 1,
   labels = c("(a)", "(b)", "(c)", "(d)")
+)
+```  
+
+
+# `ggdotplotstats`
+
+```{r purrr_ggdotplotstats, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 6}
+# for reproducibility
+set.seed(123)
+
+# libraries needed
+library(ggthemes)
+library(hrbrthemes)
+
+# let's split the dataframe and create a list by continent
+# let's leave out Oceania because it has just two data points
+continent_list <- gapminder::gapminder %>%
+  dplyr::filter(.data = ., continent != "Oceania") %>%
+  base::split(x = ., f = .$continent, drop = TRUE)
+
+# this created a list with 4 elements, one for each continent
+# you can check the structure of the file for yourself
+# str(continent_list)
+
+# checking the length and names of each element
+length(continent_list)
+names(continent_list)
+
+# running function on every element of this list note that if you want the same
+# value for a given argument across all elements of the list, you need to
+# specify it just once
+plot_list <- purrr::pmap(
+  .l = list(
+    data = continent_list,
+    x = "gdpPercap",
+    y = "year",
+    xlab = "GDP per capita (US$, inflation-adjusted)",
+    test.value = list(2500, 9000, 10000, 10000),
+    type = list("p", "np", "r", "bf"),
+    bf.message = list(TRUE, FALSE, TRUE, FALSE),
+    title = list(
+      "Continent: Africa",
+      "Continent: Americas",
+      "Continent: Asia",
+      "Continent: Europe"
+    ),
+    
+    centrality.color = list("red", "#0072B2", "#D55E00", "#CC79A7"),
+    test.value.line = TRUE,
+    test.value.color = list("#E69F00", "#56B4E9", "#009E73", "blue"),
+    centrality.para = list("median", "mean", "mean", "median"), 
+    point.color = list("green", "blue", "#E69F00", "darkgreen"), 
+    point.size = list(3, 4, 4, 3), 
+    point.shape = list(12, 13, 17, 18),
+    ggtheme = list(
+      ggplot2::theme_minimal(base_family = "serif"),
+      ggthemes::theme_tufte(),
+      hrbrthemes::theme_ipsum_rc(),
+      ggthemes::theme_hc(bgcolor = "darkunica")
+    ),
+    messages = FALSE
+  ),
+  .f = ggstatsplot::ggdotplotstats
+)
+
+# combining all individual plots from the list into a single plot using combine_plots function
+ggstatsplot::combine_plots(
+  plotlist = plot_list,
+  title.text = "Improvement in GDP per capita from 1952-2007",
+  nrow = 4,
+  labels = c("(i)", "(ii)", "(iii)", "(iv)")
 )
 ```  
 
@@ -463,7 +533,7 @@ plot_list <- purrr::pmap(
   ),
   .f = ggstatsplot::ggpiestats
 )
-  
+
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
@@ -471,7 +541,7 @@ ggstatsplot::combine_plots(
   caption.text = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant",
   nrow = 4,
   ncol = 1,
-  labels = c("(a)","(b)","(c)", "(d)")
+  labels = c("(a)", "(b)", "(c)", "(d)")
 )
 ``` 
 

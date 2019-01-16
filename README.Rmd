@@ -61,10 +61,11 @@ It, therefore, produces a limited kinds of plots for the supported analyses:
   - **dot-and-whisker plots** (for regression models).
 
 In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
-versions for most functions that makes it easy to repeat the same analysis for any
-grouping variable.
+versions for most functions that makes it easy to repeat the same analysis for
+any grouping variable.
 
-Future versions will include other types of statistical analyses and plots as well.
+Future versions will include other types of statistical analyses and plots as
+well.
 
 # Installation
 
@@ -92,7 +93,7 @@ utils::install.packages(pkgs = "devtools")
 # downloading the package from GitHub
 devtools::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
-  dependencies = FALSE,                # assumes that you already have all packages installed needed for this package to work
+  dependencies = FALSE,                # assumes you have already installed needed packages
   quick = TRUE                         # skips docs, demos, and vignettes
 )                        
 ```
@@ -125,8 +126,8 @@ context, run the following code in your `R` console:
 utils::citation(package = "ggstatsplot")
 ```
 
-There is currently a publication in preparation corresponding this package and
-the citation will be updated once it's published.
+There is currently a publication in preparation corresponding to this package
+and the citation will be updated once it's published.
 
 # Documentation and Examples
 
