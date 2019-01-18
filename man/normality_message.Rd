@@ -12,10 +12,11 @@ normality_message(x, lab = NULL, k = 2, output = "message")
 \item{lab}{A character describing label for the variable. If \code{NULL}, a
 generic \code{"x"} label will be used.}
 
-\item{k}{Number of decimal places expected for results (Default: \code{2}).}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
 
-\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"}
-objects.}
+\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"} (or
+\code{"tidy"}) objects.}
 }
 \value{
 A list with class \code{"htest"} containing the following components:
@@ -32,12 +33,16 @@ default linear model.
 \examples{
 
 # message
-normality_message(x = datasets::anscombe$x1)
+normality_message(
+  x = anscombe$x1,
+  lab = "x1",
+  k = 3
+)
 
 # statistical test object
-normality_message(
-  x = datasets::anscombe$x2,
-  output = "stats"
+ggstatsplot::normality_message(
+  x = anscombe$x2,
+  output = "tidy"
 )
 }
 \seealso{

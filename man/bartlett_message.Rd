@@ -21,8 +21,8 @@ name will be used.}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"}
-objects.}
+\item{output}{What output is desired: \code{"message"} (default) or \code{"stats"} (or
+\code{"tidy"}) objects.}
 }
 \value{
 A list of class \code{"htest"} containing the following components:
@@ -41,7 +41,7 @@ default linear model.
 \examples{
 
 # getting message
-bartlett_message(
+ggstatsplot::bartlett_message(
   data = iris,
   x = Species,
   y = Sepal.Length,
@@ -49,11 +49,11 @@ bartlett_message(
 )
 
 # getting results from the test
-bartlett_message(
+ggstatsplot::bartlett_message(
   data = mtcars,
   x = am,
   y = wt,
-  output = "stats"
+  output = "tidy"
 )
 }
 \seealso{

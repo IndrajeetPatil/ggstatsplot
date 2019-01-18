@@ -1,16 +1,15 @@
 #' @title Display normality test result as a message.
 #' @name normality_message
-#' @aliases normality_message
+#' @description A note to the user about the validity of assumptions for the
+#'   default linear model.
 #' @author Indrajeet Patil
 #'
 #' @param x A numeric vector.
 #' @param lab A character describing label for the variable. If `NULL`, a
 #'   generic `"x"` label will be used.
-#' @param k Number of decimal places expected for results (Default: `2`).
-#' @param output What output is desired: `"message"` (default) or `"stats"`
-#'   objects.
-#' @description A note to the user about the validity of assumptions for the
-#'   default linear model.
+#' @param output What output is desired: `"message"` (default) or `"stats"` (or
+#'   `"tidy"`) objects.
+#' @inheritParams ggbetweenstats
 #'
 #' @importFrom stats shapiro.test
 #' @importFrom crayon green blue yellow red
@@ -22,14 +21,18 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#' 
+#'
 #' # message
-#' normality_message(x = datasets::anscombe$x1)
-#' 
-#' # statistical test object
 #' normality_message(
-#'   x = datasets::anscombe$x2,
-#'   output = "stats"
+#'   x = anscombe$x1,
+#'   lab = "x1",
+#'   k = 3
+#' )
+#'
+#' # statistical test object
+#' ggstatsplot::normality_message(
+#'   x = anscombe$x2,
+#'   output = "tidy"
 #' )
 #' @export
 
@@ -62,39 +65,29 @@ normality_message <- function(x,
           ": p-value = "
         ),
         crayon::yellow(
-          ggstatsplot::specify_decimal_p(
-            x = sw_norm$p.value[[1]],
-            k = k,
-            p.value = TRUE
-          )
+          specify_decimal_p(x = sw_norm$p.value[[1]], k = k, p.value = TRUE)
         ),
         "\n",
         sep = ""
       ))
-    } else if (output == "stats") {
-
-      # other return the tidy output
+    } else if (output %in% c("stats", "tidy")) {
       return(broom::tidy(sw_norm))
     }
   }
 }
 
-
 #' @title Display homogeneity of variance test as a message
 #' @name bartlett_message
-#' @aliases bartlett_message
-#' @author Indrajeet Patil
-#'
-#' @inheritParams ggbetweenstats
-#' @param lab A character describing label for the variable. If `NULL`, variable
-#'   name will be used.
-#' @param output What output is desired: `"message"` (default) or `"stats"`
-#'   objects.
-#'
 #' @description A note to the user about the validity of assumptions for the
 #'   default linear model.
+#' @author Indrajeet Patil
 #'
-#' @importFrom rlang enquo quo_name !! as_name ensym
+#' @param lab A character describing label for the variable. If `NULL`, variable
+#'   name will be used.
+#' @inheritParams ggbetweenstats
+#' @inheritParams normality_message
+#'
+#' @importFrom rlang enquo quo_name !! as_name ensym := new_formula
 #' @importFrom stats bartlett.test
 #' @importFrom crayon green blue yellow red
 #'
@@ -105,21 +98,21 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#' 
+#'
 #' # getting message
-#' bartlett_message(
+#' ggstatsplot::bartlett_message(
 #'   data = iris,
 #'   x = Species,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#' 
+#'
 #' # getting results from the test
-#' bartlett_message(
+#' ggstatsplot::bartlett_message(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
-#'   output = "stats"
+#'   output = "tidy"
 #' )
 #' @export
 
@@ -131,30 +124,14 @@ bartlett_message <- function(data,
                              k = 2,
                              output = "message") {
 
-  #--------------------------- variable names ---------------------------------
-
   # if `lab` is not provided, use the variable `x` name
   if (is.null(lab)) {
     lab <- rlang::as_name(rlang::ensym(x))
   }
 
-  #-------------------------- data -------------------------------------------
-
-  # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>% # removing NAs and any dropped factor levels
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
-
-  #------------------------------ bartlett's test ----------------------------
-
   # running the test
   bartlett <- stats::bartlett.test(
-    formula = y ~ x,
+    formula = rlang::new_formula(rlang::ensym(y), rlang::ensym(x)),
     data = data,
     na.action = na.omit
   )
@@ -170,16 +147,12 @@ bartlett_message <- function(data,
         ": p-value = "
       ),
       crayon::yellow(
-        ggstatsplot::specify_decimal_p(
-          x = bartlett$p.value[[1]],
-          k = k,
-          p.value = TRUE
-        )
+        specify_decimal_p(x = bartlett$p.value[[1]], k = k, p.value = TRUE)
       ),
       "\n",
       sep = ""
     ))
-  } else if (output == "stats") {
+  } else if (output %in% c("stats", "tidy")) {
     return(broom::tidy(bartlett))
   }
 }
@@ -231,7 +204,7 @@ grouped_message <- function() {
 #'   min_length = 20
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
