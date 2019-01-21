@@ -33,17 +33,31 @@ testthat::test_that(
       expected = length(levels(diamonds_short$cut))
     )
 
-    # check mean label for first factor level
-    testthat::expect_identical(
-      object = mean_dat$label[[1]],
-      expected = "3759.200, 95% CI [3160.528, 4357.872]"
-    )
+    if (utils::packageVersion("skimr") != "2.0") {
+      # check mean label for first factor level
+      testthat::expect_identical(
+        object = mean_dat$label[[1]],
+        expected = "3759.200, 95% CI [3160.528, 4357.872]"
+      )
 
-    # check mean label for first factor level
-    testthat::expect_identical(
-      object = mean_dat$label[[4]],
-      expected = "4866.200, 95% CI [4527.173, 5205.227]"
-    )
+      # check mean label for first factor level
+      testthat::expect_identical(
+        object = mean_dat$label[[4]],
+        expected = "4866.200, 95% CI [4527.173, 5205.227]"
+      )
+    } else {
+      # check mean label for first factor level
+      testthat::expect_identical(
+        object = mean_dat$label[[1]],
+        expected = "3759.196, 95% CI [3160.523, 4357.869]"
+      )
+
+      # check mean label for first factor level
+      testthat::expect_identical(
+        object = mean_dat$label[[4]],
+        expected = "4866.200, 95% CI [4527.172, 5205.227]"
+      )
+    }
 
     # check sample size label for first factor level
     testthat::expect_identical(

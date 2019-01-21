@@ -908,8 +908,7 @@ ggstatsplot::combine_plots(
   # arguments relevant for `combine_plots` function
   labels = c("(a)", "(b)"),
   title.text = "Robust variants of lmRob and glmRob",
-  nrow = 2,
-  ncol = 1
+  nrow = 2
 )
 ```
 

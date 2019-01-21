@@ -21,14 +21,14 @@
 #' @seealso \code{\link{ggbetweenstats}}
 #'
 #' @examples
-#'
+#' 
 #' # message
 #' normality_message(
 #'   x = anscombe$x1,
 #'   lab = "x1",
 #'   k = 3
 #' )
-#'
+#' 
 #' # statistical test object
 #' ggstatsplot::normality_message(
 #'   x = anscombe$x2,
@@ -98,7 +98,7 @@ normality_message <- function(x,
 #' @family helper_messages
 #'
 #' @examples
-#'
+#' 
 #' # getting message
 #' ggstatsplot::bartlett_message(
 #'   data = iris,
@@ -106,7 +106,7 @@ normality_message <- function(x,
 #'   y = Sepal.Length,
 #'   lab = "Iris Species"
 #' )
-#'
+#' 
 #' # getting results from the test
 #' ggstatsplot::bartlett_message(
 #'   data = mtcars,
@@ -204,7 +204,7 @@ grouped_message <- function() {
 #'   min_length = 20
 #' )
 #' }
-#'
+#' 
 #' @keywords internal
 
 # function body
