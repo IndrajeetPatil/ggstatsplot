@@ -6,7 +6,7 @@
 \usage{
 ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   paired = FALSE, factor.levels = NULL, stat.title = NULL,
-  sample.size.label = TRUE, bf.message = FALSE,
+  sample.size.label = TRUE, label.text.size = 4, bf.message = FALSE,
   sampling.plan = "indepMulti", fixed.margin = "rows",
   prior.concentration = 1, title = NULL, caption = NULL,
   conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
@@ -46,6 +46,9 @@ like \code{"main x condition"} or \code{"interaction"}.}
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{condition}
 (Default: \code{TRUE}).}
+
+\item{label.text.size}{Numeric that decides number of decimal places for percentage
+labels (Default: \code{4}).}
 
 \item{bf.message}{Logical that decides whether to display a caption with
 results from bayes factor test in favor of the null hypothesis (default:

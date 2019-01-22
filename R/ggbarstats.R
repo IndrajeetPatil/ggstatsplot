@@ -20,6 +20,8 @@
 #'   to be carried out for each level of `condition` (Default: `TRUE`).
 #' @param perc.k Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0`).
+#' @param label.text.size Numeric that decides size for bar labels
+#'   (Default: `4`).
 #' @param slice.label Character decides what information needs to be displayed
 #'   on the label in each sub-divsion of the vertical bar. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
@@ -92,6 +94,7 @@ ggbarstats <- function(data,
                        factor.levels = NULL,
                        stat.title = NULL,
                        sample.size.label = TRUE,
+                       label.text.size = 4,
                        bf.message = FALSE,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
@@ -194,7 +197,6 @@ ggbarstats <- function(data,
         slice.label = paste0(round(x = perc, digits = perc.k), "%")
       )
 
-    label.text.size <- 4
   } else if (slice.label == "counts") {
     # only raw counts
     df %<>%
@@ -203,22 +205,17 @@ ggbarstats <- function(data,
         slice.label = paste0("n = ", counts)
       )
 
-    label.text.size <- 4
   } else if (slice.label == "both") {
     # both raw counts and percentages
     df %<>%
       dplyr::mutate(
         .data = .,
         slice.label = paste0(
-          "n = ",
-          counts,
-          "\n(",
           round(x = perc, digits = perc.k),
-          "%)"
+          "% (",
+          counts, ")"
         )
       )
-
-    label.text.size <- 3
   }
 
 #  return(df)
@@ -260,7 +257,7 @@ ggbarstats <- function(data,
   }
 
   # =================================== plot =================================
-  # return(df)
+#  return(df)
   # if no. of factor levels is greater than the default palette color count
   palette_message(
     package = package,
@@ -274,9 +271,11 @@ ggbarstats <- function(data,
               ylab("Percent") +
               xlab(facet.wrap.name) +
               scale_y_continuous(labels = scales::percent, breaks = seq(0, 1, by = 0.10)) +
-              geom_text(aes(label = paste0(round(x = perc, digits = perc.k), "%")),
+              geom_text(aes(label = slice.label),
+    #              geom_text(aes(label = paste0(round(x = perc, digits = perc.k), "%")),
                         show.legend = FALSE,
-                        position = position_fill(vjust = 0.5)
+                        position = position_fill(vjust = 0.5),
+                        size = label.text.size
                         ) +
               ggstatsplot::theme_mprl(
                         ggtheme = ggtheme,
@@ -291,8 +290,9 @@ ggbarstats <- function(data,
       package = !!package,
       palette = !!palette,
       direction = direction,
-      name = ""
-    )
+      name = "",
+      labels = unique(legend.labels)
+      )
 
 
 #  return(p)
