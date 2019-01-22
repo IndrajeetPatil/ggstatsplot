@@ -11,7 +11,7 @@ ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   prior.concentration = 1, title = NULL, caption = NULL,
   conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
   B = 2000, legend.title = NULL, facet.wrap.name = NULL, k = 2,
-  perc.k = 0, slice.label = "percentage", facet.proptest = TRUE,
+  perc.k = 0, slice.label = "percentage", facet.proptest = FALSE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   messages = TRUE)
@@ -91,7 +91,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 labels (Default: \code{0}).}
 
 \item{slice.label}{Character decides what information needs to be displayed
-on the label in each pie slice. Possible options are \code{"percentage"}
+on the label in each sub-divsion of the vertical bar. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
 \item{facet.proptest}{Decides whether proportion test for \code{main} variable is
@@ -129,7 +129,7 @@ Larntz, 1978; Thompson, 1988). For more, see-
 \url{http://www.how2stats.net/2011/09/yates-correction.html}
 }
 \description{
-Pie charts for categorical data with statistical details
+Bar charts for categorical data with statistical details
 included in the plot as a subtitle.
 }
 \examples{
@@ -154,6 +154,7 @@ library(jmv)
 ggstatsplot::ggbarstats(
   data = as.data.frame(HairEyeColor),
   main = Eye,
+  condition = Hair,
   counts = Freq
 )
 }

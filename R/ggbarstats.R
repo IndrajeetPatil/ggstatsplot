@@ -1,7 +1,7 @@
 #' @title Pie charts with statistical tests
 #' @name ggbarstats
 #' @aliases ggbarstats
-#' @description Pie charts for categorical data with statistical details
+#' @description Bar charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
@@ -21,7 +21,7 @@
 #' @param perc.k Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0`).
 #' @param slice.label Character decides what information needs to be displayed
-#'   on the label in each pie slice. Possible options are `"percentage"`
+#'   on the label in each sub-divsion of the vertical bar. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param bf.message Logical that decides whether to display a caption with
 #'   results from bayes factor test in favor of the null hypothesis (default:
@@ -87,7 +87,7 @@ ggbarstats <- function(data,
                        main,
                        condition = NULL,
                        counts = NULL,
-                       ratio = NULL,
+                       ratio = NULL, #does nothing
                        paired = FALSE,
                        factor.levels = NULL,
                        stat.title = NULL,
@@ -107,7 +107,7 @@ ggbarstats <- function(data,
                        k = 2,
                        perc.k = 0,
                        slice.label = "percentage",
-                       facet.proptest = TRUE,
+                       facet.proptest = FALSE,
                        ggtheme = ggplot2::theme_bw(),
                        ggstatsplot.layer = TRUE,
                        package = "RColorBrewer",
@@ -119,43 +119,37 @@ ggbarstats <- function(data,
 
   if (base::missing(condition)) {
     stop("You must specify a condition variable")
-  } else {
-    # if legend title is not provided, use the variable name for 'main'
-    # argument
-    if (is.null(legend.title)) {
-      legend.title <- rlang::as_name(rlang::ensym(main))
-    }
-    # if facetting variable name is not specified, use the variable name for
-    # 'condition' argument
-    if (is.null(facet.wrap.name)) {
-      facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
-    }
   }
+  # if legend title is not provided, use the variable name for 'main'
+  # argument
+  if (is.null(legend.title)) {
+    legend.title <- rlang::as_name(rlang::ensym(main))
+  }
+  # if facetting variable name is not specified, use the variable name for
+  # 'condition' argument
+  if (is.null(facet.wrap.name)) {
+    facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
+  }
+
 
   # =============================== dataframe ================================
 
-  # creating a dataframe based on which variables are provided
-    if (base::missing(counts)) {
-      data <-
-        dplyr::select(
-          .data = data,
-          main = !!rlang::enquo(main),
-          condition = !!rlang::quo_name(rlang::enquo(condition))
-        )
-    } else {
-      data <-
-        dplyr::select(
-          .data = data,
-          main = !!rlang::enquo(main),
-          condition = !!rlang::quo_name(rlang::enquo(condition)),
-          counts = !!rlang::quo_name(rlang::enquo(counts))
-        )
-    }
-
-  # =========================== converting counts ============================
-
-  # untable the dataframe based on the count for each obervation
-  if (!base::missing(counts)) {
+  # creating a dataframe based on whether counts
+  if (base::missing(counts)) {
+    data <-
+      dplyr::select(
+        .data = data,
+        main = !!rlang::enquo(main),
+        condition = !!rlang::quo_name(rlang::enquo(condition))
+      )
+  } else {
+    data <-
+      dplyr::select(
+        .data = data,
+        main = !!rlang::enquo(main),
+        condition = !!rlang::quo_name(rlang::enquo(condition)),
+        counts = !!rlang::quo_name(rlang::enquo(counts))
+      )
     data %<>%
       tidyr::uncount(
         data = .,
@@ -170,7 +164,6 @@ ggbarstats <- function(data,
   # main and condition need to be a factor for this analysis
   # also drop the unused levels of the factors
 
-  # main
   data %<>%
     dplyr::mutate(.data = ., main = droplevels(as.factor(main))) %>%
     dplyr::filter(.data = ., !is.na(main)) %>%
@@ -181,13 +174,13 @@ ggbarstats <- function(data,
   data %<>%
     tibble::as_tibble(x = .)
 
-    df <-
-      data %>%
-      dplyr::group_by(.data = ., condition, main) %>%
-      dplyr::summarize(.data = ., counts = n()) %>%
-      dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-      dplyr::ungroup(x = .) %>%
-      dplyr::arrange(.data = ., dplyr::desc(x = main))
+  df <-
+    data %>%
+    dplyr::group_by(.data = ., condition, main) %>%
+    dplyr::summarize(.data = ., counts = n()) %>%
+    dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
+    dplyr::ungroup(x = .) %>%
+    dplyr::arrange(.data = ., dplyr::desc(x = main))
 
 
   # checking what needs to be displayed on pie slices as labels also decide on
@@ -228,42 +221,19 @@ ggbarstats <- function(data,
     label.text.size <- 3
   }
 
+#  return(df)
+
   # ============================ sample size label ==========================
 
-  # if sample size labels are to be displayed at the bottom of the pie charts
+  # if labels are to be displayed on the bottom of the charts
   # for each facet
   if (isTRUE(sample.size.label)) {
-    if (!base::missing(condition)) {
-      df_n_label <-
-        dplyr::full_join(
-          x = df,
-          y = df %>%
-            dplyr::group_by(.data = ., condition) %>%
-            dplyr::summarize(.data = ., total_n = sum(counts)) %>%
-            dplyr::ungroup(x = .) %>%
-            dplyr::mutate(
-              .data = .,
-              condition_n_label = paste("(n = ", total_n, ")", sep = "")
-            ) %>%
-            # changing character variables into factors
-            dplyr::mutate_if(
-              .tbl = .,
-              .predicate = purrr::is_bare_character,
-              .funs = ~ base::as.factor(.)
-            ),
-          by = "condition"
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          condition_n_label = dplyr::if_else(
-            condition = base::duplicated(condition),
-            true = NA_character_,
-            false = as.character(condition_n_label)
-          )
-        ) %>%
-        stats::na.omit(.)
-    }
+    df_n_label <- data %>%
+      group_by(condition) %>%
+      summarize(N = n()) %>% mutate(N = paste0("N=",N))
   }
+
+#  return(df_n_label)
 
   # ================= preparing names for legend and facet_wrap ==============
 
@@ -290,7 +260,7 @@ ggbarstats <- function(data,
   }
 
   # =================================== plot =================================
-
+  # return(df)
   # if no. of factor levels is greater than the default palette color count
   palette_message(
     package = package,
@@ -298,88 +268,41 @@ ggbarstats <- function(data,
     min_length = length(unique(levels(data$main)))[[1]]
   )
 
-  # if facet_wrap is *not* happening
-  if (base::missing(condition)) {
-    p <- ggplot2::ggplot(
-      data = df,
-      mapping = ggplot2::aes(x = "", y = counts)
-    ) +
-      ggplot2::geom_col(
-        position = "fill",
-        color = "black",
-        width = 1,
-        ggplot2::aes(fill = factor(get("main")))
-      ) +
-      ggplot2::geom_label(
-        ggplot2::aes(
-          label = slice.label,
-          group = factor(get("main"))
-        ),
-        position = position_fill(vjust = 0.5),
-        color = "black",
-        size = label.text.size,
-        show.legend = FALSE
-      ) +
-      ggplot2::coord_polar(theta = "y") # convert to polar coordinates
-  } else {
-    # if facet_wrap *is* happening
-    p <- ggplot2::ggplot(
-      data = df,
-      mapping = ggplot2::aes(x = "", y = counts)
-    ) +
-      ggplot2::geom_col(
-        position = "fill",
-        color = "black",
-        width = 1,
-        ggplot2::aes(fill = factor(get("main")))
-      ) +
-      ggplot2::facet_wrap(
-        facets = ~condition,
-        # creating facets and, if necessary, changing the facet_wrap name
-        labeller = ggplot2::labeller(
-          condition = label_facet(
-            original_var = df$condition,
-            custom_name = facet.wrap.name
-          )
-        )
-      ) +
-      ggplot2::geom_label(
-        ggplot2::aes(
-          label = slice.label,
-          group = factor(get("main"))
-        ),
-        position = ggplot2::position_fill(vjust = 0.5),
-        color = "black",
-        size = label.text.size,
-        show.legend = FALSE
-      ) +
-      # convert to polar coordinates
-      ggplot2::coord_polar(theta = "y")
-  }
+  p <- ggplot(data = df,
+              aes(fill=main, y=perc, x=condition)) +
+              geom_bar(stat="identity", position="fill", color = "gray") +
+              ylab("Percent") +
+              xlab(facet.wrap.name) +
+              scale_y_continuous(labels = scales::percent, breaks = seq(0, 1, by = 0.10)) +
+              geom_text(aes(label = paste0(round(x = perc, digits = perc.k), "%")),
+                        show.legend = FALSE,
+                        position = position_fill(vjust = 0.5)
+                        ) +
+              ggstatsplot::theme_mprl(
+                        ggtheme = ggtheme,
+                        ggstatsplot.layer = ggstatsplot.layer
+               ) +
+              theme(panel.grid.major.x = element_blank()) +
+              ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
 
-  # formatting
+
   p <- p +
-    ggplot2::scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(
       package = !!package,
       palette = !!palette,
       direction = direction,
-      name = "",
-      labels = unique(legend.labels)
-    ) +
-    theme_pie(
-      ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
-    # remove black diagonal line from legend
-    ggplot2::guides(
-      fill = ggplot2::guide_legend(override.aes = list(color = NA))
+      name = ""
     )
+
+
+#  return(p)
+#  return(df)
+
 
   # =============== chi-square test (either Pearson or McNemar) =============
 
   # if facetting by condition is happening
-  if (!base::missing(condition)) {
+
     if (isTRUE(facet.proptest)) {
       # merging dataframe containing results from the proportion test with
       # counts and percentage dataframe
@@ -418,6 +341,8 @@ ggbarstats <- function(data,
           dplyr::select(.data = ., -c(main:slice.label)))
       }
     }
+
+#  return(p)
 
     # running approprate statistical test
     # unpaired: Pearson's Chi-square test of independence
@@ -464,36 +389,23 @@ ggbarstats <- function(data,
     if (isTRUE(facet.proptest)) {
       p <-
         p +
-        ggplot2::geom_text(
-          data = df2,
-          mapping = ggplot2::aes(label = significance, x = 1.65),
-          position = ggplot2::position_fill(vjust = 1),
-          size = 5,
-          na.rm = TRUE
-        )
+        ggplot2::geom_text(data = df2,
+                aes(x = condition, y = -0.10, label = significance, fill = NULL),
+                size = 3,
+                fontface = "bold"
+                )
     }
 
     # adding sample size info
     if (isTRUE(sample.size.label)) {
       p <-
         p +
-        ggplot2::geom_text(
-          data = df_n_label,
-          mapping = ggplot2::aes(label = condition_n_label, x = 1.65),
-          position = ggplot2::position_fill(vjust = 0.5),
-          size = 4,
-          na.rm = TRUE
-        )
+        ggplot2::geom_text(data = df_n_label,
+                aes(x = condition, y = -0.05, label = N, fill = NULL),
+                size = 3,
+                fontface = "bold")
     }
-  } else {
-    subtitle <- subtitle_onesample_proptest(
-      data = data,
-      main = main,
-      ratio = ratio,
-      legend.title = legend.title,
-      k = k
-    )
-  }
+
 
   # =========================== putting all together ========================
 
@@ -501,13 +413,10 @@ ggbarstats <- function(data,
   p <-
     p +
     ggplot2::labs(
-      x = NULL,
-      y = NULL,
       subtitle = subtitle,
       title = title,
       caption = caption
-    ) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
+    )
 
   # return the final plot
   return(p)
