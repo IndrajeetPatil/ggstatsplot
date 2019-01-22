@@ -1,4 +1,4 @@
-#' @title Pie charts with statistical tests
+#' @title Bar(column) charts with statistical tests
 #' @name ggbarstats
 #' @aliases ggbarstats
 #' @description Bar charts for categorical data with statistical details

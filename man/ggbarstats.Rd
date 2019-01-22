@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggbarstats.R
 \name{ggbarstats}
 \alias{ggbarstats}
-\title{Pie charts with statistical tests}
+\title{Bar(column) charts with statistical tests}
 \usage{
 ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   paired = FALSE, factor.levels = NULL, stat.title = NULL,
@@ -47,8 +47,8 @@ like \code{"main x condition"} or \code{"interaction"}.}
 should be displayed for each level of the grouping variable \code{condition}
 (Default: \code{TRUE}).}
 
-\item{label.text.size}{Numeric that decides number of decimal places for percentage
-labels (Default: \code{4}).}
+\item{label.text.size}{Numeric that decides size for bar labels
+(Default: \code{4}).}
 
 \item{bf.message}{Logical that decides whether to display a caption with
 results from bayes factor test in favor of the null hypothesis (default:
