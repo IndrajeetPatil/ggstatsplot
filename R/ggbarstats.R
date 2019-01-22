@@ -56,18 +56,10 @@
 #'   \url{http://www.how2stats.net/2011/09/yates-correction.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
-#' # simple function call with the defaults (without condition)
-#' ggstatsplot::ggbarstats(
-#'   data = ggplot2::msleep,
-#'   main = vore,
-#'   perc.k = 1,
-#'   k = 2
-#' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggbarstats(
 #'   data = datasets::mtcars,
@@ -78,13 +70,14 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggbarstats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
+#'   condition = Hair,
 #'   counts = Freq
 #' )
 #' @export
@@ -125,7 +118,7 @@ ggbarstats <- function(data,
   # ================= extracting column names as labels  =====================
 
   if (base::missing(condition)) {
-    # saving the column label for the 'main' variables
+    stop("You must specify a condition variable")
   } else {
     # if legend title is not provided, use the variable name for 'main'
     # argument
@@ -142,9 +135,6 @@ ggbarstats <- function(data,
   # =============================== dataframe ================================
 
   # creating a dataframe based on which variables are provided
-  if (base::missing(condition)) {
-	#
-  } else {
     if (base::missing(counts)) {
       data <-
         dplyr::select(
@@ -161,7 +151,6 @@ ggbarstats <- function(data,
           counts = !!rlang::quo_name(rlang::enquo(counts))
         )
     }
-  }
 
   # =========================== converting counts ============================
 
@@ -192,16 +181,6 @@ ggbarstats <- function(data,
   data %<>%
     tibble::as_tibble(x = .)
 
-  # convert the data into percentages; group by conditional variable if needed
-  if (base::missing(condition)) {
-    df <-
-      data %>%
-      dplyr::group_by(.data = ., main) %>%
-      dplyr::summarize(.data = ., counts = n()) %>%
-      dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-      dplyr::ungroup(x = .) %>%
-      dplyr::arrange(.data = ., dplyr::desc(x = main))
-  } else {
     df <-
       data %>%
       dplyr::group_by(.data = ., condition, main) %>%
@@ -209,7 +188,7 @@ ggbarstats <- function(data,
       dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
       dplyr::ungroup(x = .) %>%
       dplyr::arrange(.data = ., dplyr::desc(x = main))
-  }
+
 
   # checking what needs to be displayed on pie slices as labels also decide on
   # the text size for the label; if both counts and percentages are going to

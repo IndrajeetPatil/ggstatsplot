@@ -137,14 +137,6 @@ included in the plot as a subtitle.
 # for reproducibility
 set.seed(123)
 
-# simple function call with the defaults (without condition)
-ggstatsplot::ggbarstats(
-  data = ggplot2::msleep,
-  main = vore,
-  perc.k = 1,
-  k = 2
-)
-
 # simple function call with the defaults (with condition)
 ggstatsplot::ggbarstats(
   data = datasets::mtcars,
