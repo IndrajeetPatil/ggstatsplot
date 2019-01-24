@@ -13,7 +13,7 @@ ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   caption = NULL, legend.position = "bottom",
   x.axis.orientation = NULL, conf.level = 0.95, nboot = 25,
   simulate.p.value = FALSE, B = 2000, legend.title = NULL,
-  facet.wrap.name = NULL, k = 2, perc.k = 0,
+  x.axis.label = NULL, k = 2, perc.k = 0,
   slice.label = "percentage", facet.proptest = FALSE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
@@ -101,7 +101,8 @@ orientation (Default: \code{NULL} which is horizontal).}
 
 \item{legend.title}{Title text for the legend.}
 
-\item{facet.wrap.name}{The text for the facet_wrap variable label.}
+\item{x.axis.label}{Custom text for the x axis label. (Default: \code{NULL} which
+will cause the x axis label to be the \code{main} variable)}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

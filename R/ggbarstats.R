@@ -20,7 +20,8 @@
 #' @param palette If a character string (e.g., `"Set1"`), will use that named
 #'   palette. If a number, will index into the list of palettes of appropriate
 #'   type. Default palette is `"Dark2"`.
-#' @param facet.wrap.name The text for the facet_wrap variable label.
+#' @param x.axis.label Custom text for the x axis label. (Default: `NULL` which
+#'   will cause the x axis label to be the `main` variable)
 #' @param facet.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `FALSE`).
 #' @param perc.k Numeric that decides number of decimal places for percentage
@@ -125,7 +126,7 @@ ggbarstats <- function(data,
                        simulate.p.value = FALSE,
                        B = 2000,
                        legend.title = NULL,
-                       facet.wrap.name = NULL,
+                       x.axis.label = NULL,
                        k = 2,
                        perc.k = 0,
                        slice.label = "percentage",
@@ -148,10 +149,10 @@ ggbarstats <- function(data,
   if (is.null(legend.title)) {
     legend.title <- rlang::as_name(rlang::ensym(main))
   }
-  # if facetting variable name is not specified, use the variable name for
+  # if alternate variable label is not specified, use the variable name for
   # 'condition' argument
-  if (is.null(facet.wrap.name)) {
-    facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
+  if (is.null(x.axis.label)) {
+    x.axis.label <- rlang::as_name(rlang::ensym(condition))
   }
 
 
@@ -238,21 +239,18 @@ ggbarstats <- function(data,
       )
   }
 
-#  return(df)
 
   # ============================ sample size label ==========================
 
   # if labels are to be displayed on the bottom of the charts
-  # for each facet
+  # for each bar/column
   if (isTRUE(sample.size.label)) {
     df_n_label <- data %>%
       group_by(condition) %>%
-      summarize(N = n()) %>% mutate(N = paste0("n = ",N))
+      summarize(N = n()) %>% mutate(N = paste0("n = ", N))
   }
 
-#  return(df_n_label)
-
-  # ================= preparing names for legend and facet_wrap ==============
+  # ================= preparing names for legend  ==============
 
   # reorder the category factor levels to order the legend
   df$main <- factor(
@@ -267,17 +265,8 @@ ggbarstats <- function(data,
     legend.labels <- factor.levels
   }
 
-  # custom labeller function to use if the user wants a different name for
-  # facet_wrap variable
-  label_facet <- function(original_var, custom_name) {
-    lev <- levels(x = as.factor(original_var))
-    lab <- paste0(custom_name, ": ", lev)
-    names(lab) <- lev
-    return(lab)
-  }
 
   # =================================== plot =================================
-#  return(df)
   # if no. of factor levels is greater than the default palette color count
   palette_message(
     package = package,
@@ -286,10 +275,10 @@ ggbarstats <- function(data,
   )
 
   p <- ggplot(data = df,
-              aes(fill=main, y=perc, x=condition)) +
-              geom_bar(stat="identity", position="fill", color = "gray") +
+              aes(fill = main, y = perc, x = condition)) +
+              geom_bar(stat = "identity", position = "fill", color = "gray") +
               ylab("Percent") +
-              xlab(facet.wrap.name) +
+              xlab(x.axis.label) +
               scale_y_continuous(labels = scales::percent, breaks = seq(0, 1, by = 0.10)) +
               geom_label(aes(label = slice.label, group = main),
                         show.legend = FALSE,
@@ -316,14 +305,9 @@ ggbarstats <- function(data,
       labels = unique(legend.labels)
       )
 
-
-#  return(p)
-#  return(df)
-
-
   # =============== chi-square test (either Pearson or McNemar) =============
 
-  # if facetting by condition is happening
+  # if testing by condition is happening
 
     if (isTRUE(facet.proptest)) {
       # merging dataframe containing results from the proportion test with
@@ -354,7 +338,9 @@ ggbarstats <- function(data,
         # tell the user what these results are
         base::message(cat(
           crayon::green("Note: "),
-          crayon::blue("Results from faceted one-sample proportion tests:\n"),
+          crayon::blue("Results from one-sample proportion tests for each\n"),
+          crayon::blue("      level of the condition variable testing for equal\n"),
+          crayon::blue("      proportions of the main variable.\n"),
           sep = ""
         ))
 
@@ -364,7 +350,6 @@ ggbarstats <- function(data,
       }
     }
 
-#  return(p)
 
     # running approprate statistical test
     # unpaired: Pearson's Chi-square test of independence
@@ -405,9 +390,9 @@ ggbarstats <- function(data,
       caption <- bf.caption.text
     }
 
-    # ====================== facetted proportion test =======================
+    # ====================== proportion test =======================
 
-    # adding significance labels to pie charts for grouped proportion tests
+    # adding significance labels to bars for proportion tests
     if (isTRUE(facet.proptest)) {
       p <-
         p +
@@ -423,18 +408,35 @@ ggbarstats <- function(data,
       p <-
         p +
         ggplot2::geom_text(data = df_n_label,
-                aes(x = condition, y = -0.05, label = N, fill = NULL),
-                size = 3)
+                           aes(
+                             x = condition,
+                             y = -0.05,
+                             label = N,
+                             fill = NULL
+                           ),
+                           size = 3)
     }
 
 
   # =========================== putting all together ========================
-  # if we need to modify x axis orientation
+    # if we need to modify x axis orientation
     if (!base::missing(x.axis.orientation)) {
       if (x.axis.orientation == "slant") {
-        p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text( angle = 45, vjust = 1, hjust= 1, face = "bold"))
+        p <-
+          p + ggplot2::theme(axis.text.x = ggplot2::element_text(
+            angle = 45,
+            vjust = 1,
+            hjust = 1,
+            face = "bold"
+          ))
       } else if (x.axis.orientation == "vertical") {
-        p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text( angle = 90, vjust = 0.5, hjust= 1, face = "bold"))
+        p <-
+          p + ggplot2::theme(axis.text.x = ggplot2::element_text(
+            angle = 90,
+            vjust = 0.5,
+            hjust = 1,
+            face = "bold"
+          ))
       }
     }
 
