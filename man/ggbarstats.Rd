@@ -5,7 +5,7 @@
 \title{Bar(column) charts with statistical tests}
 \usage{
 ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
-  paired = FALSE, factor.levels = NULL, stat.title = NULL,
+  paired = FALSE, labels.legend = NULL, stat.title = NULL,
   sample.size.label = TRUE, label.text.size = 4,
   label.fill.color = "white", label.fill.alpha = 1,
   bf.message = FALSE, sampling.plan = "jointMulti",
@@ -14,7 +14,7 @@ ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   x.axis.orientation = NULL, conf.level = 0.95, nboot = 25,
   simulate.p.value = FALSE, B = 2000, legend.title = NULL,
   x.axis.label = NULL, k = 2, perc.k = 0,
-  slice.label = "percentage", facet.proptest = FALSE,
+  data.label = "percentage", bar.proptest = FALSE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   ggplot.component = NULL, messages = TRUE)
@@ -38,8 +38,8 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
 returned. If \code{FALSE}, Pearson's chi-square test will be returned.}
 
-\item{factor.levels}{A character vector with labels for factor levels of
-\code{main} variable.}
+\item{labels.legend}{A character vector with custom labels for levels of
+the \code{main} variable displayed in the legend.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test. The default is \code{NULL}, i.e. no title will be added to describe the
@@ -110,11 +110,11 @@ will cause the x axis label to be the \code{main} variable)}
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
 
-\item{slice.label}{Character decides what information needs to be displayed
+\item{data.label}{Character decides what information needs to be displayed
 on the label in each sub-divsion of the vertical bar. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
-\item{facet.proptest}{Decides whether proportion test for \code{main} variable is
+\item{bar.proptest}{Decides whether proportion test for \code{main} variable is
 to be carried out for each level of \code{condition} (Default: \code{FALSE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
@@ -171,7 +171,7 @@ ggstatsplot::ggbarstats(
   condition = cyl,
   bf.message = TRUE,
   nboot = 10,
-  factor.levels = c("0 = V-shaped", "1 = straight"),
+  labels.legend = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
 

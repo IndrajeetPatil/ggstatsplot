@@ -5,8 +5,8 @@
 #'   included in the plot as a subtitle.
 #' @author Chuck Powell
 #'
-#' @param factor.levels A character vector with labels for factor levels of
-#'   `main` variable.
+#' @param labels.legend A character vector with custom labels for levels of
+#'   the `main` variable displayed in the legend.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
 #' @param legend.position The position of the legend
@@ -22,7 +22,7 @@
 #'   type. Default palette is `"Dark2"`.
 #' @param x.axis.label Custom text for the x axis label. (Default: `NULL` which
 #'   will cause the x axis label to be the `main` variable)
-#' @param facet.proptest Decides whether proportion test for `main` variable is
+#' @param bar.proptest Decides whether proportion test for `main` variable is
 #'   to be carried out for each level of `condition` (Default: `FALSE`).
 #' @param perc.k Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0`).
@@ -32,7 +32,7 @@
 #'   (Default: `white`).
 #' @param label.fill.alpha Numeric that specifies fill color transparency or
 #'   `"alpha"` for bar labels (Default: `1` range 0 to 1).
-#' @param slice.label Character decides what information needs to be displayed
+#' @param data.label Character decides what information needs to be displayed
 #'   on the label in each sub-divsion of the vertical bar. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param bf.message Logical that decides whether to display a caption with
@@ -85,7 +85,7 @@
 #'   condition = cyl,
 #'   bf.message = TRUE,
 #'   nboot = 10,
-#'   factor.levels = c("0 = V-shaped", "1 = straight"),
+#'   labels.legend = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
 #'
@@ -107,7 +107,7 @@ ggbarstats <- function(data,
                        counts = NULL,
                        ratio = NULL, #does nothing
                        paired = FALSE,
-                       factor.levels = NULL,
+                       labels.legend = NULL,
                        stat.title = NULL,
                        sample.size.label = TRUE,
                        label.text.size = 4,
@@ -129,8 +129,8 @@ ggbarstats <- function(data,
                        x.axis.label = NULL,
                        k = 2,
                        perc.k = 0,
-                       slice.label = "percentage",
-                       facet.proptest = FALSE,
+                       data.label = "percentage",
+                       bar.proptest = FALSE,
                        ggtheme = ggplot2::theme_bw(),
                        ggstatsplot.layer = TRUE,
                        package = "RColorBrewer",
@@ -210,28 +210,28 @@ ggbarstats <- function(data,
   # checking what needs to be displayed on pie slices as labels also decide on
   # the text size for the label; if both counts and percentages are going to
   # be displayed, then use a bit smaller text size
-  if (slice.label == "percentage") {
+  if (data.label == "percentage") {
     # only percentage
     df %<>%
       dplyr::mutate(
         .data = .,
-        slice.label = paste0(round(x = perc, digits = perc.k), "%")
+        data.label = paste0(round(x = perc, digits = perc.k), "%")
       )
 
-  } else if (slice.label == "counts") {
+  } else if (data.label == "counts") {
     # only raw counts
     df %<>%
       dplyr::mutate(
         .data = .,
-        slice.label = paste0("n = ", counts)
+        data.label = paste0("n = ", counts)
       )
 
-  } else if (slice.label == "both") {
+  } else if (data.label == "both") {
     # both raw counts and percentages
     df %<>%
       dplyr::mutate(
         .data = .,
-        slice.label = paste0(
+        data.label = paste0(
           round(x = perc, digits = perc.k),
           "% (",
           counts, ")"
@@ -259,10 +259,10 @@ ggbarstats <- function(data,
   )
 
   # getting labels for all levels of the 'main' variable factor
-  if (is.null(factor.levels)) {
+  if (is.null(labels.legend)) {
     legend.labels <- as.character(df$main)
-  } else if (!missing(factor.levels)) {
-    legend.labels <- factor.levels
+  } else if (!missing(labels.legend)) {
+    legend.labels <- labels.legend
   }
 
 
@@ -280,7 +280,7 @@ ggbarstats <- function(data,
               ylab("Percent") +
               xlab(x.axis.label) +
               scale_y_continuous(labels = scales::percent, breaks = seq(0, 1, by = 0.10)) +
-              geom_label(aes(label = slice.label, group = main),
+              geom_label(aes(label = data.label, group = main),
                         show.legend = FALSE,
                         position = position_fill(vjust = 0.5),
                         size = label.text.size,
@@ -309,7 +309,7 @@ ggbarstats <- function(data,
 
   # if testing by condition is happening
 
-    if (isTRUE(facet.proptest)) {
+    if (isTRUE(bar.proptest)) {
       # merging dataframe containing results from the proportion test with
       # counts and percentage dataframe
       df2 <-
@@ -335,18 +335,24 @@ ggbarstats <- function(data,
 
       # display grouped proportion test results
       if (isTRUE(messages)) {
+        main.name <- rlang::as_name(rlang::ensym(main))
+        condition.name <- rlang::as_name(rlang::ensym(condition))
         # tell the user what these results are
         base::message(cat(
           crayon::green("Note: "),
           crayon::blue("Results from one-sample proportion tests for each\n"),
-          crayon::blue("      level of the condition variable testing for equal\n"),
-          crayon::blue("      proportions of the main variable.\n"),
+          crayon::blue("      level of the variable "),
+          crayon::red(condition.name),
+          crayon::blue(" testing for equal\n"),
+          crayon::blue("      proportions of the variable "),
+          crayon::red(main.name),
+          crayon::blue(".\n"),
           sep = ""
         ))
 
         # print the tibble and leave out unnecessary columns
         print(tibble::as_tibble(df2) %>%
-          dplyr::select(.data = ., -c(main:slice.label)))
+          dplyr::select(.data = ., -c(main:data.label)))
       }
     }
 
@@ -393,7 +399,7 @@ ggbarstats <- function(data,
     # ====================== proportion test =======================
 
     # adding significance labels to bars for proportion tests
-    if (isTRUE(facet.proptest)) {
+    if (isTRUE(bar.proptest)) {
       p <-
         p +
         ggplot2::geom_text(data = df2,
