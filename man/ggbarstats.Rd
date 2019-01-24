@@ -6,15 +6,18 @@
 \usage{
 ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   paired = FALSE, factor.levels = NULL, stat.title = NULL,
-  sample.size.label = TRUE, label.text.size = 4, bf.message = FALSE,
-  sampling.plan = "jointMulti", fixed.margin = "rows",
-  prior.concentration = 1, title = NULL, caption = NULL,
-  conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
-  B = 2000, legend.title = NULL, facet.wrap.name = NULL, k = 2,
-  perc.k = 0, slice.label = "percentage", facet.proptest = FALSE,
+  sample.size.label = TRUE, label.text.size = 4,
+  label.fill.color = "white", label.fill.alpha = 1,
+  bf.message = FALSE, sampling.plan = "jointMulti",
+  fixed.margin = "rows", prior.concentration = 1, title = NULL,
+  caption = NULL, legend.position = "bottom",
+  x.axis.orientation = NULL, conf.level = 0.95, nboot = 25,
+  simulate.p.value = FALSE, B = 2000, legend.title = NULL,
+  facet.wrap.name = NULL, k = 2, perc.k = 0,
+  slice.label = "percentage", facet.proptest = FALSE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
-  messages = TRUE)
+  ggplot.component = NULL, messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -50,6 +53,12 @@ should be displayed for each level of the grouping variable \code{condition}
 \item{label.text.size}{Numeric that decides size for bar labels
 (Default: \code{4}).}
 
+\item{label.fill.color}{Character that specifies fill color for bar labels
+(Default: \code{white}).}
+
+\item{label.fill.alpha}{Numeric that specifies fill color transparency or
+\code{"alpha"} for bar labels (Default: \code{1} range 0 to 1).}
+
 \item{bf.message}{Logical that decides whether to display a caption with
 results from bayes factor test in favor of the null hypothesis (default:
 \code{FALSE}).}
@@ -70,6 +79,13 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{title}{The text for the plot title.}
 
 \item{caption}{The text for the plot caption.}
+
+\item{legend.position}{The position of the legend
+"none", "left", "right", "bottom", "top" (Default: \code{"bottom"}).}
+
+\item{x.axis.orientation}{The orientation of the x axis labels one of
+"slant" or "vertical" to change from the default horizontal
+orientation (Default: \code{NULL} which is horizontal).}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
@@ -98,7 +114,7 @@ on the label in each sub-divsion of the vertical bar. Possible options are \code
 (default), \code{"counts"}, \code{"both"}.}
 
 \item{facet.proptest}{Decides whether proportion test for \code{main} variable is
-to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
+to be carried out for each level of \code{condition} (Default: \code{FALSE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -117,6 +133,13 @@ palette. If a number, will index into the list of palettes of appropriate
 type. Default palette is \code{"Dark2"}.}
 
 \item{direction}{Either \code{1} or \code{-1}. If \code{-1} the palette will be reversed.}
+
+\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
+by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_} variant
+of the current function. Default is \code{NULL}. The argument should be entered
+as a function. If the given function has an argument \code{axes.range.restrict}
+and if it has been set to \code{TRUE}, the added ggplot component \emph{might} not
+work as expected.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
@@ -165,5 +188,5 @@ ggstatsplot::ggbarstats(
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html}
 }
 \author{
-Indrajeet Patil
+Chuck Powell
 }

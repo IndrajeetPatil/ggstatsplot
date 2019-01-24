@@ -3,12 +3,17 @@
 #' @aliases ggbarstats
 #' @description Bar charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
-#' @author Indrajeet Patil
+#' @author Chuck Powell
 #'
 #' @param factor.levels A character vector with labels for factor levels of
 #'   `main` variable.
 #' @param title The text for the plot title.
 #' @param caption The text for the plot caption.
+#' @param legend.position The position of the legend
+#'   "none", "left", "right", "bottom", "top" (Default: `"bottom"`).
+#' @param x.axis.orientation The orientation of the x axis labels one of
+#'   "slant" or "vertical" to change from the default horizontal
+#'   orientation (Default: `NULL` which is horizontal).
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `condition`
 #'   (Default: `TRUE`).
@@ -17,17 +22,27 @@
 #'   type. Default palette is `"Dark2"`.
 #' @param facet.wrap.name The text for the facet_wrap variable label.
 #' @param facet.proptest Decides whether proportion test for `main` variable is
-#'   to be carried out for each level of `condition` (Default: `TRUE`).
+#'   to be carried out for each level of `condition` (Default: `FALSE`).
 #' @param perc.k Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0`).
 #' @param label.text.size Numeric that decides size for bar labels
 #'   (Default: `4`).
+#' @param label.fill.color Character that specifies fill color for bar labels
+#'   (Default: `white`).
+#' @param label.fill.alpha Numeric that specifies fill color transparency or
+#'   `"alpha"` for bar labels (Default: `1` range 0 to 1).
 #' @param slice.label Character decides what information needs to be displayed
 #'   on the label in each sub-divsion of the vertical bar. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param bf.message Logical that decides whether to display a caption with
 #'   results from bayes factor test in favor of the null hypothesis (default:
 #'   `FALSE`).
+#' @param ggplot.component A `ggplot` component to be added to the plot prepared
+#'   by `ggstatsplot`. This argument is primarily helpful for `grouped_` variant
+#'   of the current function. Default is `NULL`. The argument should be entered
+#'   as a function. If the given function has an argument `axes.range.restrict`
+#'   and if it has been set to `TRUE`, the added ggplot component *might* not
+#'   work as expected.
 #' @inheritParams bf_contingency_tab
 #' @inheritParams subtitle_contingency_tab
 #' @inheritParams subtitle_onesample_proptest
@@ -95,12 +110,16 @@ ggbarstats <- function(data,
                        stat.title = NULL,
                        sample.size.label = TRUE,
                        label.text.size = 4,
+                       label.fill.color = "white",
+                       label.fill.alpha = 1,
                        bf.message = FALSE,
                        sampling.plan = "jointMulti",
                        fixed.margin = "rows",
                        prior.concentration = 1,
                        title = NULL,
                        caption = NULL,
+                       legend.position = "bottom",
+                       x.axis.orientation = NULL,
                        conf.level = 0.95,
                        nboot = 25,
                        simulate.p.value = FALSE,
@@ -116,6 +135,7 @@ ggbarstats <- function(data,
                        package = "RColorBrewer",
                        palette = "Dark2",
                        direction = 1,
+                       ggplot.component = NULL,
                        messages = TRUE) {
 
   # ================= extracting column names as labels  =====================
@@ -227,7 +247,7 @@ ggbarstats <- function(data,
   if (isTRUE(sample.size.label)) {
     df_n_label <- data %>%
       group_by(condition) %>%
-      summarize(N = n()) %>% mutate(N = paste0("N=",N))
+      summarize(N = n()) %>% mutate(N = paste0("n = ",N))
   }
 
 #  return(df_n_label)
@@ -271,17 +291,19 @@ ggbarstats <- function(data,
               ylab("Percent") +
               xlab(facet.wrap.name) +
               scale_y_continuous(labels = scales::percent, breaks = seq(0, 1, by = 0.10)) +
-              geom_text(aes(label = slice.label),
-    #              geom_text(aes(label = paste0(round(x = perc, digits = perc.k), "%")),
+              geom_label(aes(label = slice.label, group = main),
                         show.legend = FALSE,
                         position = position_fill(vjust = 0.5),
-                        size = label.text.size
+                        size = label.text.size,
+                        fill = label.fill.color,
+                        alpha = label.fill.alpha
                         ) +
               ggstatsplot::theme_mprl(
                         ggtheme = ggtheme,
                         ggstatsplot.layer = ggstatsplot.layer
                ) +
-              theme(panel.grid.major.x = element_blank()) +
+              theme(panel.grid.major.x = element_blank(),
+                    legend.position = legend.position) +
               ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
 
 
@@ -402,12 +424,19 @@ ggbarstats <- function(data,
         p +
         ggplot2::geom_text(data = df_n_label,
                 aes(x = condition, y = -0.05, label = N, fill = NULL),
-                size = 3,
-                fontface = "bold")
+                size = 3)
     }
 
 
   # =========================== putting all together ========================
+  # if we need to modify x axis orientation
+    if (!base::missing(x.axis.orientation)) {
+      if (x.axis.orientation == "slant") {
+        p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text( angle = 45, vjust = 1, hjust= 1, face = "bold"))
+      } else if (x.axis.orientation == "vertical") {
+        p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text( angle = 90, vjust = 0.5, hjust= 1, face = "bold"))
+      }
+    }
 
   # preparing the plot
   p <-
@@ -417,6 +446,13 @@ ggbarstats <- function(data,
       title = title,
       caption = caption
     )
+
+    # ---------------- adding ggplot component ---------------------------------
+
+    # if any additional modification needs to be made to the plot
+    # this is primarily useful for grouped_ variant of this function
+    p <- p + ggplot.component
+
 
   # return the final plot
   return(p)
