@@ -7,7 +7,7 @@
 ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   paired = FALSE, factor.levels = NULL, stat.title = NULL,
   sample.size.label = TRUE, label.text.size = 4, bf.message = FALSE,
-  sampling.plan = "indepMulti", fixed.margin = "rows",
+  sampling.plan = "jointMulti", fixed.margin = "rows",
   prior.concentration = 1, title = NULL, caption = NULL,
   conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
   B = 2000, legend.title = NULL, facet.wrap.name = NULL, k = 2,
