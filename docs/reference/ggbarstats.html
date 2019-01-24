@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pie charts with statistical tests — ggpiestats • ggstatsplot</title>
+<title>Bar (column) charts with statistical tests — ggbarstats • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,9 +38,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Pie charts with statistical tests — ggpiestats" />
+<meta property="og:title" content="Bar (column) charts with statistical tests — ggbarstats" />
 
-<meta property="og:description" content="Pie charts for categorical data with statistical details
+<meta property="og:description" content="Bar charts for categorical data with statistical details
 included in the plot as a subtitle." />
 <meta name="twitter:card" content="summary" />
 
@@ -165,29 +165,33 @@ included in the plot as a subtitle." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pie charts with statistical tests</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggpiestats.R'><code>R/ggpiestats.R</code></a></small>
-    <div class="hidden name"><code>ggpiestats.Rd</code></div>
+    <h1>Bar (column) charts with statistical tests</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggbarstats.R'><code>R/ggbarstats.R</code></a></small>
+    <div class="hidden name"><code>ggbarstats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Pie charts for categorical data with statistical details
+    <p>Bar charts for categorical data with statistical details
 included in the plot as a subtitle.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggpiestats</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>, <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
+    <pre class="usage"><span class='fu'>ggbarstats</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>labels.legend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label.text.size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>label.fill.color</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>label.fill.alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>bar.outline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"jointMulti"</span>, <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
   <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>, <span class='kw'>x.axis.orientation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Percent"</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>data.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>,
+  <span class='kw'>bar.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
+  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -223,9 +227,9 @@ design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar test s
 returned. If <code>FALSE</code>, Pearson's chi-square test will be returned.</p></td>
     </tr>
     <tr>
-      <th>factor.levels</th>
-      <td><p>A character vector with labels for factor levels of
-<code>main</code> variable.</p></td>
+      <th>labels.legend</th>
+      <td><p>A character vector with custom labels for levels of
+the <code>main</code> variable displayed in the legend.</p></td>
     </tr>
     <tr>
       <th>stat.title</th>
@@ -239,6 +243,25 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
       <td><p>Logical that decides whether sample size information
 should be displayed for each level of the grouping variable <code>condition</code>
 (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>label.text.size</th>
+      <td><p>Numeric that decides size for bar labels
+(Default: <code>4</code>).</p></td>
+    </tr>
+    <tr>
+      <th>label.fill.color</th>
+      <td><p>Character that specifies fill color for bar labels
+(Default: <code>white</code>).</p></td>
+    </tr>
+    <tr>
+      <th>label.fill.alpha</th>
+      <td><p>Numeric that specifies fill color transparency or
+<code>"alpha"</code> for bar labels (Default: <code>1</code> range <code>0</code> to <code>1</code>).</p></td>
+    </tr>
+    <tr>
+      <th>bar.outline.color</th>
+      <td><p>Character specifying color for bars (default: <code>"black"</code>).</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
@@ -274,6 +297,17 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
       <td><p>The text for the plot caption.</p></td>
     </tr>
     <tr>
+      <th>legend.position</th>
+      <td><p>The position of the legend
+<code>"none"</code>, <code>"left"</code>, <code>"right"</code>, <code>"bottom"</code>, <code>"top"</code> (Default: <code>"bottom"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>x.axis.orientation</th>
+      <td><p>The orientation of the <code>x</code> axis labels one of
+"slant" or "vertical" to change from the default horizontal
+orientation (Default: <code>NULL</code> which is horizontal).</p></td>
+    </tr>
+    <tr>
       <th>conf.level</th>
       <td><p>Scalar between 0 and 1. If unspecified, the defaults return
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
@@ -298,8 +332,13 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
       <td><p>Title text for the legend.</p></td>
     </tr>
     <tr>
-      <th>facet.wrap.name</th>
-      <td><p>The text for the facet_wrap variable label.</p></td>
+      <th>xlab</th>
+      <td><p>Custom text for the <code>x</code> axis label (Default: <code>NULL</code>, which
+will cause the <code>x</code> axis label to be the <code>main</code> variable).</p></td>
+    </tr>
+    <tr>
+      <th>ylab</th>
+      <td><p>Custom text for the <code>y</code> axis label (Default: <code>"percent"</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -312,13 +351,13 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 labels (Default: <code>0</code>).</p></td>
     </tr>
     <tr>
-      <th>slice.label</th>
+      <th>data.label</th>
       <td><p>Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are <code>"percentage"</code>
 (default), <code>"counts"</code>, <code>"both"</code>.</p></td>
     </tr>
     <tr>
-      <th>facet.proptest</th>
+      <th>bar.proptest</th>
       <td><p>Decides whether proportion test for <code>main</code> variable is
 to be carried out for each level of <code>condition</code> (Default: <code>TRUE</code>).</p></td>
     </tr>
@@ -377,31 +416,20 @@ ever be applied in practice (Camilli &amp; Hopkins, 1978, 1979; Feinberg, 1980;
 Larntz, 1978; Thompson, 1988). For more, see-
 <a href='http://www.how2stats.net/2011/09/yates-correction.html'>http://www.how2stats.net/2011/09/yates-correction.html</a></p>
     
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
-<span class='co'># simple function call with the defaults (without condition)</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>
-)</div><div class='img'><img src='ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># simple function call with the defaults (with condition)</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbarstats.html'>ggbarstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/datasets/topics/mtcars'>mtcars</a></span>,
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>vs</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"0 = V-shaped"</span>, <span class='st'>"1 = straight"</span>),
+  <span class='kw'>labels.legend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"0 = V-shaped"</span>, <span class='st'>"1 = straight"</span>),
   <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='st'>"Engine"</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each
 #&gt;       level of the variable </span><span style='color: #BBBB00;'>cyl</span><span style='color: #0000BB;'> testing for equal
@@ -412,15 +440,35 @@ Larntz, 1978; Thompson, 1988). For more, see-
 #&gt; </span><span style='color: #555555;'>1</span><span> 4         9.09%   90.91%         7.36      1     0.007 **          
 #&gt; </span><span style='color: #555555;'>2</span><span> 6         42.86%  57.14%         0.143     1     0.705 ns          
 #&gt; </span><span style='color: #555555;'>3</span><span> 8         100.00% 0.00%         14         1     0     ***         </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># simple function call with the defaults (without condition; with count data)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)
-
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggpiestats.html'>ggpiestats</a></span>(
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: 'jmv'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:stats':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    anova</span></div><div class='input'>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggbarstats.html'>ggbarstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>HairEyeColor</span>),
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>Eye</span>,
+  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>Hair</span>,
   <span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>Freq</span>
-)</div><div class='img'><img src='ggpiestats-3.png' alt='' width='700' height='433' /></div></span></pre>
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Results from one-sample proportion tests for each
+#&gt;       level of the variable </span><span style='color: #BBBB00;'>Hair</span><span style='color: #0000BB;'> testing for equal
+#&gt;       proportions of the variable </span><span style='color: #BBBB00;'>Eye</span><span style='color: #0000BB;'>.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 9</span><span>
+#&gt;   condition Brown  Blue   Hazel  Green  `Chi-squared`    df `p-value`
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Black     62.96% 18.52% 13.89% 4.63%          87.3      3     0    
+#&gt; </span><span style='color: #555555;'>2</span><span> Brown     41.61% 29.37% 18.88% 10.14%         63.3      3     0    
+#&gt; </span><span style='color: #555555;'>3</span><span> Red       36.62% 23.94% 19.72% 19.72%          5.45     3     0.142
+#&gt; </span><span style='color: #555555;'>4</span><span> Blond     5.51%  74.02% 7.87%  12.60%        164.       3     0    
+#&gt;   significance
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'>1</span><span> ***         
+#&gt; </span><span style='color: #555555;'>2</span><span> ***         
+#&gt; </span><span style='color: #555555;'>3</span><span> ns          
+#&gt; </span><span style='color: #555555;'>4</span><span> ***         
+#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>25</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggbarstats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -428,14 +476,12 @@ Larntz, 1978; Thompson, 1988). For more, see-
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p>Chuck Powell, Indrajeet Patil</p>
   </div>
 </div>
 

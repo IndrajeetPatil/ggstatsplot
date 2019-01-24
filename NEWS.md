@@ -2,6 +2,7 @@
 
 NEW FEATURES
 
+  - New function `ggbarstats` introduced for making bar charts (thanks to #78). 
   - `gghistostats` and its `grouped_` variant has a new argument `normal.curve`
     to superpose a normal distribution curve on top of the histogram (#138).
   - `ggcoefstats` can support following new regression model objects: `Gam`,

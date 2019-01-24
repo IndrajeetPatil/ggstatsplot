@@ -880,7 +880,7 @@ in measurement is accounted for by the interaction between these two factors.
 The robust regression models, as implemented in the `robust` package are also
 supported. 
 
-```{r robust, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
+```{r robust, eval = FALSE, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
 ggstatsplot::combine_plots(
   # plot 1: glmRob
   ggstatsplot::ggcoefstats(

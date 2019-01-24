@@ -31,6 +31,7 @@
 #' @inheritParams subtitle_onesample_proptest
 #' @inheritParams paletteer::scale_fill_paletteer_d
 #' @inheritParams theme_ggstatsplot
+#' @inheritParams gghistostats
 #'
 #' @import ggplot2
 #'
@@ -56,10 +57,10 @@
 #'   \url{http://www.how2stats.net/2011/09/yates-correction.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -67,7 +68,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -78,10 +79,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -120,6 +121,7 @@ ggpiestats <- function(data,
                        package = "RColorBrewer",
                        palette = "Dark2",
                        direction = 1,
+                       ggplot.component = NULL,
                        messages = TRUE) {
 
   # ================= extracting column names as labels  =====================
@@ -221,7 +223,8 @@ ggpiestats <- function(data,
       dplyr::summarize(.data = ., counts = n()) %>%
       dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
       dplyr::ungroup(x = .) %>%
-      dplyr::arrange(.data = ., dplyr::desc(x = main))
+      dplyr::arrange(.data = ., dplyr::desc(x = main)) %>%
+      dplyr::filter(.data = ., counts != 0L)
   } else {
     df <-
       data %>%
@@ -229,7 +232,8 @@ ggpiestats <- function(data,
       dplyr::summarize(.data = ., counts = n()) %>%
       dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
       dplyr::ungroup(x = .) %>%
-      dplyr::arrange(.data = ., dplyr::desc(x = main))
+      dplyr::arrange(.data = ., dplyr::desc(x = main)) %>%
+      dplyr::filter(.data = ., counts != 0L)
   }
 
   # checking what needs to be displayed on pie slices as labels also decide on
@@ -448,10 +452,20 @@ ggpiestats <- function(data,
 
       # display grouped proportion test results
       if (isTRUE(messages)) {
+        # capturing names of variables
+        main.name <- rlang::as_name(rlang::ensym(main))
+        condition.name <- rlang::as_name(rlang::ensym(condition))
+
         # tell the user what these results are
         base::message(cat(
           crayon::green("Note: "),
-          crayon::blue("Results from faceted one-sample proportion tests:\n"),
+          crayon::blue("Results from one-sample proportion tests for each\n"),
+          crayon::blue("      level of the variable "),
+          crayon::yellow(condition.name),
+          crayon::blue(" testing for equal\n"),
+          crayon::blue("      proportions of the variable "),
+          crayon::yellow(main.name),
+          crayon::blue(".\n"),
           sep = ""
         ))
 
@@ -550,6 +564,12 @@ ggpiestats <- function(data,
       caption = caption
     ) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title))
+
+  # ---------------- adding ggplot component ---------------------------------
+
+  # if any additional modification needs to be made to the plot
+  # this is primarily useful for grouped_ variant of this function
+  p <- p + ggplot.component
 
   # return the final plot
   return(p)

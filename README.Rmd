@@ -560,6 +560,32 @@ For more, including information about the variant of this function
 `grouped_ggpiestats`, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
+## `ggbarstats`
+
+In case you are not a fan of pie charts (for very good reasons), you can
+alternatively use `ggbarstats` function-
+
+```{r ggbarstats1, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 8}
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::ggbarstats(
+  data = ggstatsplot::movies_long,
+  main = mpaa,
+  condition = genre,
+  bf.message = TRUE,
+  sampling.plan = "jointMulti",
+  title = "MPAA Ratings by Genre",
+  xlab = "movie genre",
+  perc.k = 1,
+  x.axis.orientation = "slant",
+  ggplot.component = ggplot2::theme(axis.text.x = ggplot2::element_text(face = "italic")),
+  palette = "Set2",
+  messages = FALSE
+)
+```
+
 ## `gghistostats`
 
 In case you would like to see the distribution of one variable and check if it

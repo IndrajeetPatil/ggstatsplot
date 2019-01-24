@@ -2,22 +2,23 @@
 % Please edit documentation in R/ggbarstats.R
 \name{ggbarstats}
 \alias{ggbarstats}
-\title{Bar(column) charts with statistical tests}
+\title{Bar (column) charts with statistical tests}
 \usage{
 ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
-  paired = FALSE, factor.levels = NULL, stat.title = NULL,
+  paired = FALSE, labels.legend = NULL, stat.title = NULL,
   sample.size.label = TRUE, label.text.size = 4,
   label.fill.color = "white", label.fill.alpha = 1,
-  bf.message = FALSE, sampling.plan = "jointMulti",
-  fixed.margin = "rows", prior.concentration = 1, title = NULL,
-  caption = NULL, legend.position = "bottom",
-  x.axis.orientation = NULL, conf.level = 0.95, nboot = 25,
-  simulate.p.value = FALSE, B = 2000, legend.title = NULL,
-  facet.wrap.name = NULL, k = 2, perc.k = 0,
-  slice.label = "percentage", facet.proptest = FALSE,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
-  package = "RColorBrewer", palette = "Dark2", direction = 1,
-  ggplot.component = NULL, messages = TRUE)
+  bar.outline.color = "black", bf.message = FALSE,
+  sampling.plan = "jointMulti", fixed.margin = "rows",
+  prior.concentration = 1, title = NULL, caption = NULL,
+  legend.position = "bottom", x.axis.orientation = NULL,
+  conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
+  B = 2000, legend.title = NULL, xlab = NULL, ylab = "Percent",
+  k = 2, perc.k = 0, data.label = "percentage",
+  bar.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, package = "RColorBrewer",
+  palette = "Dark2", direction = 1, ggplot.component = NULL,
+  messages = TRUE)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -38,8 +39,8 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
 returned. If \code{FALSE}, Pearson's chi-square test will be returned.}
 
-\item{factor.levels}{A character vector with labels for factor levels of
-\code{main} variable.}
+\item{labels.legend}{A character vector with custom labels for levels of
+the \code{main} variable displayed in the legend.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test. The default is \code{NULL}, i.e. no title will be added to describe the
@@ -57,7 +58,9 @@ should be displayed for each level of the grouping variable \code{condition}
 (Default: \code{white}).}
 
 \item{label.fill.alpha}{Numeric that specifies fill color transparency or
-\code{"alpha"} for bar labels (Default: \code{1} range 0 to 1).}
+\code{"alpha"} for bar labels (Default: \code{1} range \code{0} to \code{1}).}
+
+\item{bar.outline.color}{Character specifying color for bars (default: \code{"black"}).}
 
 \item{bf.message}{Logical that decides whether to display a caption with
 results from bayes factor test in favor of the null hypothesis (default:
@@ -81,9 +84,9 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{caption}{The text for the plot caption.}
 
 \item{legend.position}{The position of the legend
-"none", "left", "right", "bottom", "top" (Default: \code{"bottom"}).}
+\code{"none"}, \code{"left"}, \code{"right"}, \code{"bottom"}, \code{"top"} (Default: \code{"bottom"}).}
 
-\item{x.axis.orientation}{The orientation of the x axis labels one of
+\item{x.axis.orientation}{The orientation of the \code{x} axis labels one of
 "slant" or "vertical" to change from the default horizontal
 orientation (Default: \code{NULL} which is horizontal).}
 
@@ -101,7 +104,10 @@ orientation (Default: \code{NULL} which is horizontal).}
 
 \item{legend.title}{Title text for the legend.}
 
-\item{facet.wrap.name}{The text for the facet_wrap variable label.}
+\item{xlab}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
+will cause the \code{x} axis label to be the \code{main} variable).}
+
+\item{ylab}{Custom text for the \code{y} axis label (Default: \code{"percent"}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
@@ -109,12 +115,12 @@ orientation (Default: \code{NULL} which is horizontal).}
 \item{perc.k}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0}).}
 
-\item{slice.label}{Character decides what information needs to be displayed
-on the label in each sub-divsion of the vertical bar. Possible options are \code{"percentage"}
+\item{data.label}{Character decides what information needs to be displayed
+on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
-\item{facet.proptest}{Decides whether proportion test for \code{main} variable is
-to be carried out for each level of \code{condition} (Default: \code{FALSE}).}
+\item{bar.proptest}{Decides whether proportion test for \code{main} variable is
+to be carried out for each level of \code{condition} (Default: \code{TRUE}).}
 
 \item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
 \code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
@@ -170,7 +176,7 @@ ggstatsplot::ggbarstats(
   condition = cyl,
   bf.message = TRUE,
   nboot = 10,
-  factor.levels = c("0 = V-shaped", "1 = straight"),
+  labels.legend = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
 
@@ -184,9 +190,6 @@ ggstatsplot::ggbarstats(
   counts = Freq
 )
 }
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html}
-}
 \author{
-Chuck Powell
+Chuck Powell, Indrajeet Patil
 }

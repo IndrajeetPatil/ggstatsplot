@@ -1,3 +1,4 @@
+^\cache$
 ^codemeta\.json$
 ^Meta$
 ^doc$

@@ -1,11 +1,17 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "ggstatsplot",
   "description": "Extension of 'ggplot2', 'ggstatsplot' creates graphics with details \n  from statistical tests included in the plots themselves. It is targeted primarily at \n  behavioral sciences community to provide a one-line code to generate information-rich plots for \n  statistical analysis. of continuous (violin plots, scatterplots, histograms) or \n  categorical (pie charts) data. Currently, it supports only the most common types \n  of statistical tests: parametric, nonparametric, robust, and bayesian \n  versions of t-test/anova, correlation analyses, contingency table analysis, \n  and regression analyses.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
-  "relatedLink": ["https://indrajeetpatil.github.io/ggstatsplot/", "https://CRAN.R-project.org/package=ggstatsplot"],
+  "relatedLink": [
+    "https://indrajeetpatil.github.io/ggstatsplot/",
+    "https://CRAN.R-project.org/package=ggstatsplot"
+  ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.0.8.9000",
@@ -118,7 +124,7 @@
       "@type": "SoftwareApplication",
       "identifier": "hrbrthemes",
       "name": "hrbrthemes",
-      "version": ">= 0.5.0.1",
+      "version": ">= 0.6.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -518,7 +524,7 @@
       "@type": "SoftwareApplication",
       "identifier": "groupedstats",
       "name": "groupedstats",
-      "version": ">= 0.0.4",
+      "version": ">= 0.0.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -704,7 +710,31 @@
   ],
   "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
-  "contIntegration": ["https://travis-ci.org/IndrajeetPatil/ggstatsplot", "https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot", "https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master", "https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"],
+  "contIntegration": [
+    "https://travis-ci.org/IndrajeetPatil/ggstatsplot",
+    "https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot",
+    "https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master",
+    "https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"
+  ],
   "developmentStatus": "https://www.tidyverse.org/lifecycle/",
-  "keywords": ["ggplot-extension", "statistical-tests", "dataviz", "r", "statistical-analysis", "statistical-inference", "visualization", "datascience", "violin-plot", "parametric", "robust", "plot", "bayes-factors", "regression-models", "correlation", "correlation-matrices", "tidy-data", "effect-size"]
+  "keywords": [
+    "ggplot-extension",
+    "statistical-tests",
+    "dataviz",
+    "r",
+    "statistical-analysis",
+    "statistical-inference",
+    "visualization",
+    "datascience",
+    "violin-plot",
+    "parametric",
+    "robust",
+    "plot",
+    "bayes-factors",
+    "regression-models",
+    "correlation",
+    "correlation-matrices",
+    "tidy-data",
+    "effect-size"
+  ]
 }
