@@ -12,7 +12,7 @@ grouped_ggbarstats(data, main, condition = NULL, counts = NULL,
   bf.message = FALSE, sampling.plan = "jointMulti",
   fixed.margin = "rows", prior.concentration = 1, title = NULL,
   caption = NULL, legend.position = "bottom",
-  x.axis.orientation = NULL, conf.level = 0.95, nboot = 25,
+  x.axis.orientation = "horizontal", conf.level = 0.95, nboot = 25,
   simulate.p.value = FALSE, B = 2000, legend.title = NULL,
   xlab = NULL, ylab = "Percent", k = 2, perc.k = 0,
   data.label = "percentage", bar.proptest = TRUE,
@@ -242,7 +242,8 @@ set.seed(123)
 
 # let's create a smaller dataframe
 diamonds_short <- ggplot2::diamonds \%>\%
-  dplyr::filter(.data = ., cut \%in\% c("Fair", "Very Good", "Ideal")) \%>\%
+  dplyr::filter(.data = ., cut \%in\% c("Very Good", "Ideal")) \%>\%
+  dplyr::filter(.data = ., clarity \%in\% c("SI1", "SI2", "VS1", "VS2", "VVS1", "VVS2")) \%>\%
   dplyr::sample_frac(tbl = ., size = 0.10)
 
 # plot
@@ -254,10 +255,10 @@ ggstatsplot::grouped_ggbarstats(
   bf.message = TRUE,
   sampling.plan = "poisson",
   title.prefix = "Quality",
-  slice.label = "both",
+  data.label = "both",
   messages = FALSE,
   perc.k = 1,
-  nrow = 3
+  nrow = 2
 )
 }
 }

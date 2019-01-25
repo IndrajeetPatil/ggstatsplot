@@ -43,7 +43,8 @@
 #'
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
-#'   dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
+#'   dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
+#'   dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2", "VVS1", "VVS2")) %>%
 #'   dplyr::sample_frac(tbl = ., size = 0.10)
 #'
 #' # plot
@@ -55,10 +56,10 @@
 #'   bf.message = TRUE,
 #'   sampling.plan = "poisson",
 #'   title.prefix = "Quality",
-#'   slice.label = "both",
+#'   data.label = "both",
 #'   messages = FALSE,
 #'   perc.k = 1,
-#'   nrow = 3
+#'   nrow = 2
 #' )
 #' }
 #' @export
@@ -86,7 +87,7 @@ grouped_ggbarstats <- function(data,
                                title = NULL,
                                caption = NULL,
                                legend.position = "bottom",
-                               x.axis.orientation = NULL,
+                               x.axis.orientation = "horizontal",
                                conf.level = 0.95,
                                nboot = 25,
                                simulate.p.value = FALSE,
@@ -265,23 +266,31 @@ grouped_ggbarstats <- function(data,
       # put common parameters here
       ratio = ratio,
       paired = paired,
+      labels.legend = labels.legend,
       stat.title = stat.title,
       sample.size.label = sample.size.label,
       label.text.size = label.text.size,
       label.fill.color = label.fill.color,
       label.fill.alpha = label.fill.alpha,
+      bar.outline.color = bar.outline.color,
       bf.message = bf.message,
       sampling.plan = sampling.plan,
       fixed.margin = fixed.margin,
       prior.concentration = prior.concentration,
       caption = caption,
+      legend.position = legend.position,
+      x.axis.orientation = x.axis.orientation,
       conf.level = conf.level,
       nboot = nboot,
       simulate.p.value = simulate.p.value,
       B = B,
       legend.title = legend.title,
+      xlab = xlab,
+      ylab = ylab,
       k = k,
       perc.k = perc.k,
+      data.label = data.label,
+      bar.proptest = bar.proptest,
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer,
       package = package,
