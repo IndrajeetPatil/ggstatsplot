@@ -7,18 +7,15 @@
 proptest_message(main, condition)
 }
 \arguments{
-\item{main}{The variable to use as the \strong{rows} in the
-contingency table.}
-
-\item{condition}{The variable to use as the \strong{columns} in the contingency
-table.}
+\item{main, condition}{Character specifying names of variables used for
+contingency table analyses.}
 }
 \description{
 Message about results from a single-sample proportion test.
 }
 \examples{
 \dontrun{
-ggstatsplot:::proptest_message(main = am, condition = cyl)
+ggstatsplot:::proptest_message(main = "am", condition = "cyl")
 }
 
 }

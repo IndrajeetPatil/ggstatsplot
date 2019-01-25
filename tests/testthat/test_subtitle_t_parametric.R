@@ -195,7 +195,7 @@ testthat::test_that(
 
     # preparing long format dataframe
     bugs_long <-
-      tibble::as.tibble(x = bugs) %>%
+      tibble::as_tibble(x = bugs) %>%
       dplyr::select(.data = ., HDLF, HDHF) %>%
       tidyr::gather(data = ., "key", "value", convert = TRUE)
 

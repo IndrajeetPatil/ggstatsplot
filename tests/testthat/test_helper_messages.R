@@ -217,15 +217,9 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     testthat::expect_output(
-      ggstatsplot:::proptest_message(main = am, condition = cyl),
-      "level of the variable cyl testing for equal
-      proportions of the variable am",
+      ggstatsplot:::proptest_message(main = "am", condition = "cyl"),
+      "level of the variable cyl testing for equal",
       fixed = TRUE
-    )
-
-    testthat::expect_identical(
-      ggstatsplot:::proptest_message(main = y, condition = x),
-      ggstatsplot:::proptest_message(main = "y", condition = "x")
     )
   }
 )

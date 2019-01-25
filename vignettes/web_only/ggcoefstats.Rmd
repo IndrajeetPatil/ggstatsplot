@@ -803,7 +803,7 @@ ggstatsplot::ggcoefstats(x = m,
                          title = "proportional odds and related models")
 ```
 
-## survey-weighted generalised linear models (`svyglm`)
+## survey-weighted generalized linear models (`svyglm`)
 
 ```{r svyglm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # data
@@ -828,7 +828,7 @@ mod <- survey::svyglm(
 
 # plot
 ggstatsplot::ggcoefstats(x = mod,
-                         title = "survey-weighted generalised linear model")
+                         title = "survey-weighted generalized linear model")
 ```
 
 ## repeated measures ANOVA (`aovlist`)
@@ -1515,7 +1515,7 @@ ggstatsplot::ggcoefstats(x = two_class_cm,
                          title = "confusion matrix")
 ```
 
-## multivariate generalised linear mixed models (`MCMCglmm`)
+## multivariate generalized linear mixed models (`MCMCglmm`)
 
 ```{r MCMCglmm, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # setup
@@ -1534,7 +1534,7 @@ mm0 <- MCMCglmm::MCMCglmm(
 # plot
 ggstatsplot::ggcoefstats(
   x = mm0,
-  title = "multivariate generalised linear mixed model",
+  title = "multivariate generalized linear mixed model",
   conf.method = "HPDinterval",
   exclude.intercept = FALSE,
   rhat = TRUE,

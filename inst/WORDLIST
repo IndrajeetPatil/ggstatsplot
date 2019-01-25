@@ -17,6 +17,7 @@ Camilli
 cex
 changedate
 chartjunk
+Cochrane
 codecov
 Codecov
 coefficients’
@@ -60,9 +61,11 @@ holm
 howell
 http
 https
+hv
 imdb
 IMDB
 img
+indiciating
 indrajeetpatil
 IndrajeetPatil
 intentionality
@@ -104,6 +107,7 @@ NumGenre
 nz
 Oneway
 OpenGL
+Orcutt
 pandoc
 pch
 pearson's
@@ -117,6 +121,7 @@ pre
 preferrred
 priori
 PRs
+pseudolikelihood
 PsyArXiv
 purrr
 Quartile
@@ -125,6 +130,7 @@ Rdoc
 readme
 README
 reproducibility
+rlbt
 Rmarkdown
 Royston
 rpubs
@@ -141,6 +147,8 @@ spearman
 srt
 stype
 svg
+tblr
+TERGM
 tibble
 tibbles
 tidiers
