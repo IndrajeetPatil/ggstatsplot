@@ -10,7 +10,7 @@ grouped_ggbarstats(data, main, condition = NULL, counts = NULL,
   label.fill.color = "white", label.fill.alpha = 1,
   bar.outline.color = "black", bf.message = FALSE,
   sampling.plan = "jointMulti", fixed.margin = "rows",
-  prior.concentration = 1, title = NULL, caption = NULL,
+  prior.concentration = 1, caption = NULL,
   legend.position = "bottom", x.axis.orientation = "horizontal",
   conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
   B = 2000, legend.title = NULL, xlab = NULL, ylab = "Percent",
@@ -79,8 +79,6 @@ margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
 to \code{1} by default. It indexes the expected deviation from the null
 hypothesis under the alternative, and corresponds to Gunel and Dickey's
 (1974) \code{"a"} parameter.}
-
-\item{title}{The text for the plot title.}
 
 \item{caption}{The text for the plot caption.}
 
