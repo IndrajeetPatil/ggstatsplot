@@ -65,12 +65,11 @@
 #' @export
 
 # defining the function
+
 grouped_ggbarstats <- function(data,
                                main,
                                condition = NULL,
                                counts = NULL,
-                               grouping.var,
-                               title.prefix = NULL,
                                ratio = NULL,
                                paired = FALSE,
                                labels.legend = NULL,
@@ -106,7 +105,8 @@ grouped_ggbarstats <- function(data,
                                direction = 1,
                                ggplot.component = NULL,
                                messages = TRUE,
-                               ...) {
+                               grouping.var,
+                               title.prefix = NULL) {
 
   # ======================== check user input =============================
 
