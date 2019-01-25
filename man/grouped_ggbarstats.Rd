@@ -5,20 +5,20 @@
 \title{Grouped Bar (column) charts with statistical tests}
 \usage{
 grouped_ggbarstats(data, main, condition = NULL, counts = NULL,
-  grouping.var, title.prefix = NULL, ratio = NULL, paired = FALSE,
-  labels.legend = NULL, stat.title = NULL, sample.size.label = TRUE,
-  label.text.size = 4, label.fill.color = "white",
-  label.fill.alpha = 1, bar.outline.color = "black",
-  bf.message = FALSE, sampling.plan = "jointMulti",
-  fixed.margin = "rows", prior.concentration = 1, title = NULL,
-  caption = NULL, legend.position = "bottom",
-  x.axis.orientation = "horizontal", conf.level = 0.95, nboot = 25,
-  simulate.p.value = FALSE, B = 2000, legend.title = NULL,
-  xlab = NULL, ylab = "Percent", k = 2, perc.k = 0,
-  data.label = "percentage", bar.proptest = TRUE,
-  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
-  package = "RColorBrewer", palette = "Dark2", direction = 1,
-  ggplot.component = NULL, messages = TRUE, ...)
+  ratio = NULL, paired = FALSE, labels.legend = NULL,
+  stat.title = NULL, sample.size.label = TRUE, label.text.size = 4,
+  label.fill.color = "white", label.fill.alpha = 1,
+  bar.outline.color = "black", bf.message = FALSE,
+  sampling.plan = "jointMulti", fixed.margin = "rows",
+  prior.concentration = 1, title = NULL, caption = NULL,
+  legend.position = "bottom", x.axis.orientation = "horizontal",
+  conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
+  B = 2000, legend.title = NULL, xlab = NULL, ylab = "Percent",
+  k = 2, perc.k = 0, data.label = "percentage",
+  bar.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
+  ggstatsplot.layer = TRUE, package = "RColorBrewer",
+  palette = "Dark2", direction = 1, ggplot.component = NULL,
+  messages = TRUE, grouping.var, title.prefix = NULL, ...)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -31,13 +31,6 @@ table.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
-
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
-
-\item{title.prefix}{Character string specifying the prefix text for the fixed
-plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
-variable name entered for \code{grouping.var} will be used.}
 
 \item{ratio}{A vector of numbers: the expected proportions for the proportion
 test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
@@ -157,6 +150,13 @@ work as expected.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{grouping.var}{A single grouping variable (can be entered either as a
+bare name \code{x} or as a string \code{"x"}).}
+
+\item{title.prefix}{Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
+variable name entered for \code{grouping.var} will be used.}
 
 \item{...}{Arguments passed on to \code{combine_plots}
 \describe{

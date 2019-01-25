@@ -6,9 +6,16 @@
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil, Chuck Powell
 #'
+#' @param grouping.var A single grouping variable (can be entered either as a
+#'   bare name `x` or as a string `"x"`).
+#' @param title.prefix Character string specifying the prefix text for the fixed
+#'   plot title (name of each factor level) (Default: `NULL`). If `NULL`, the
+#'   variable name entered for `grouping.var` will be used.
 #' @inheritParams ggbarstats
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams combine_plots
+#'
+#' @import ggplot2
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
@@ -106,7 +113,8 @@ grouped_ggbarstats <- function(data,
                                ggplot.component = NULL,
                                messages = TRUE,
                                grouping.var,
-                               title.prefix = NULL) {
+                               title.prefix = NULL,
+                               ...) {
 
   # ======================== check user input =============================
 
