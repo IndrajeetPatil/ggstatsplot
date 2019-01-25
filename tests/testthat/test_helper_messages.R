@@ -208,3 +208,24 @@ testthat::test_that(
     testthat::expect_equal(df$parameter, df_broom$parameter)
   }
 )
+
+# proptest_message is working ---------------------------------------------
+
+testthat::test_that(
+  desc = "proptest_message is working",
+  code = {
+    testthat::skip_on_cran()
+
+    testthat::expect_output(
+      ggstatsplot:::proptest_message(main = am, condition = cyl),
+      "level of the variable cyl testing for equal
+      proportions of the variable am",
+      fixed = TRUE
+    )
+
+    testthat::expect_identical(
+      ggstatsplot:::proptest_message(main = y, condition = x),
+      ggstatsplot:::proptest_message(main = "y", condition = "x")
+    )
+  }
+)

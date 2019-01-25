@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggstatsplot: 'ggplot2' Based Plots with Statistical Details — ggstatsplot-package • ggstatsplot</title>
+<title>Summary dataframe for categorical variables. — cat_summary_label_maker • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,21 +38,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="ggstatsplot: 'ggplot2' Based Plots with Statistical Details — ggstatsplot-package" />
+<meta property="og:title" content="Summary dataframe for categorical variables. — cat_summary_label_maker" />
 
-<meta property="og:description" content="ggstatsplot is an extension of ggplot2 package for creating
-graphics with details from statistical tests included in the plots
-themselves and targeted primarily at behavioral sciences community to
-provide a one-line code to produce information-rich plots. In a typical
-exploratory data analysis workflow, data visualization and statistical
-modelling are two different phases: visualization informs modelling, and
-modelling in its turn can suggest a different visualization method, and so
-on and so forth. The central idea of ggstatsplot is simple: combine these
-two phases into one in the form of graphics with statistical details, which
-makes data exploration simpler and faster. Currently, it supports only the
-most common types of statistical tests (parametric, nonparametric,
-bayesian, and robust versions of t-test/anova, correlation, regression, and
-contingency tables analyses)." />
+<meta property="og:description" content="Creating a dataframe with an added column corresponding to
+summary for categorical variables." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -176,90 +165,78 @@ contingency tables analyses)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ggstatsplot: 'ggplot2' Based Plots with Statistical Details</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggstatsplot-package.R'><code>R/ggstatsplot-package.R</code></a></small>
-    <div class="hidden name"><code>ggstatsplot-package.Rd</code></div>
+    <h1>Summary dataframe for categorical variables.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcatstats.R'><code>R/helpers_ggcatstats.R</code></a></small>
+    <div class="hidden name"><code>cat_summary_label_maker.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>ggstatsplot</code> is an extension of <code>ggplot2</code> package for creating
-graphics with details from statistical tests included in the plots
-themselves and targeted primarily at behavioral sciences community to
-provide a one-line code to produce information-rich plots. In a typical
-exploratory data analysis workflow, data visualization and statistical
-modelling are two different phases: visualization informs modelling, and
-modelling in its turn can suggest a different visualization method, and so
-on and so forth. The central idea of ggstatsplot is simple: combine these
-two phases into one in the form of graphics with statistical details, which
-makes data exploration simpler and faster. Currently, it supports only the
-most common types of statistical tests (parametric, nonparametric,
-bayesian, and robust versions of t-test/anova, correlation, regression, and
-contingency tables analyses).</p>
+    <p>Creating a dataframe with an added column corresponding to
+summary for categorical variables.</p>
     
     </div>
 
-        
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>ggstatsplot</code></p>
-<p>The main functions are-</p><ul>
-<li><p><code><a href='ggbetweenstats.html'>ggbetweenstats</a></code> function to produce
-information-rich comparison plot between different groups or conditions
-with <code>ggplot2</code> and details from the statistical tests in the subtitle.</p></li>
-<li><p><code><a href='ggscatterstats.html'>ggscatterstats</a></code> function to produce
-<code>ggplot2</code> scatterplots along with a marginal histograms/boxplots/density
-plots from <code>ggExtra</code> and details from the statistical tests in the
-subtitle.</p></li>
-<li><p><code><a href='ggpiestats.html'>ggpiestats</a></code> function to produce pie chart
-with details from the statistical tests in the subtitle.</p></li>
-<li><p><code><a href='ggbarstats.html'>ggbarstats</a></code> function to produce stacked bar
-chart with details from the statistical tests in the subtitle.</p></li>
-<li><p><code><a href='gghistostats.html'>gghistostats</a></code> function to produce histogram
-for a single variable with results from one sample test displayed in the
-subtitle.</p></li>
-<li><p><code><a href='ggdotplotstats.html'>ggdotplotstats</a></code> function to produce
-Cleveland-style dot plots/charts for a single variable with labels and
-results from one sample test displayed in the subtitle.</p></li>
-<li><p><code><a href='ggcorrmat.html'>ggcorrmat</a></code> function to visualize the
-correlation matrix.</p></li>
-<li><p><code><a href='ggcoefstats.html'>ggcoefstats</a></code> function to visualize
-results from regression analyses.</p></li>
-<li><p><code><a href='combine_plots.html'>combine_plots</a></code> helper function to combine
-multiple <code>ggstatsplot</code> plots using <code><a href='https://www.rdocumentation.org/packages/cowplot/topics/plot_grid'>cowplot::plot_grid()</a></code> with a
-combination of title, caption, and annotation label.</p></li>
-<li><p><code><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></code> default theme used for
-this package.</p></li>
-</ul>
-    <p>For more documentation, see the dedicated
-<a href='https://indrajeetpatil.github.io/ggstatsplot/'>Website</a>.</p>
+    <pre class="usage"><span class='fu'>cat_summary_label_maker</span>(<span class='no'>data</span>, <span class='kw'>label.col.name</span> <span class='kw'>=</span> <span class='st'>"slice.label"</span>,
+  <span class='kw'>label.content</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://indrajeetpatil.github.io/ggstatsplot/'>https://indrajeetpatil.github.io/ggstatsplot/</a></p></li>
-<li><p><a href='https://github.com/IndrajeetPatil/ggstatsplot'>https://github.com/IndrajeetPatil/ggstatsplot</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/IndrajeetPatil/ggstatsplot/issues'>https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p></li>
-</ul></div>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>A dataframe containing summaries for categorical variables.
+Should contain columns named either <code>"perc"</code> or <code>"counts"</code> or both.</p></td>
+    </tr>
+    <tr>
+      <th>label.col.name</th>
+      <td><p>Character that decides the column name containing
+summary label. This can either be <code>"slice.label"</code> (default) or
+<code>"data.label"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>label.content</th>
+      <td><p>Character decides what information needs to be displayed
+on the label in each pie or bar slice. Possible options are <code>"percentage"</code>
+(default), <code>"counts"</code>, <code>"both"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>perc.k</th>
+      <td><p>Numeric that decides number of decimal places for percentage
+labels (Default: <code>0</code>).</p></td>
+    </tr>
+    </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># creating a dataframe with counts and percentage</span>
+<span class='no'>df</span> <span class='kw'>&lt;-</span>
+  <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>am</span>, <span class='no'>cyl</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='fu'>n</span>()) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>perc</span> <span class='kw'>=</span> (<span class='no'>counts</span> / <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>counts</span>)) * <span class='fl'>100</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cyl</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>counts</span> <span class='kw'>!=</span> <span class='fl'>0L</span>)</div><div class='output co'>#&gt; <span class='error'>Error in n(): could not find function "n"</span></div><div class='input'>
+<span class='co'># dataframe with label column</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cat_summary_label_maker.html'>cat_summary_label_maker</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>,
+  <span class='kw'>label.col.name</span> <span class='kw'>=</span> <span class='st'>"slice.label"</span>,
+  <span class='kw'>label.content</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
+  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>1</span>
+)</div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("mutate_"): no applicable method for 'mutate_' applied to an object of class "function"</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-          </ul>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
-    <p><strong>Maintainer</strong>: Indrajeet Patil <a href='mailto:patilindrajeet.science@gmail.com'>patilindrajeet.science@gmail.com</a> (0000-0003-1995-6531)</p>
-<p>Other contributors:</p><ul>
-<li><p>Chuck Powell <a href='mailto:ibecav@gmail.com'>ibecav@gmail.com</a> (0000-0002-3606-2188) [contributor]</p></li>
-</ul>
-
-
+    <p>Indrajeet Patil</p>
   </div>
 </div>
 

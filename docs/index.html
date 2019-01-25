@@ -17,7 +17,7 @@
   from statistical tests included in the plots themselves. It is targeted primarily at 
   behavioral sciences community to provide a one-line code to generate information-rich plots for 
   statistical analysis. of continuous (violin plots, scatterplots, histograms) or 
-  categorical (pie charts) data. Currently, it supports only the most common types 
+  categorical (pie and bar charts) data. Currently, it supports only the most common types 
   of statistical tests: parametric, nonparametric, robust, and bayesian 
   versions of t-test/anova, correlation analyses, contingency table analysis, 
   and regression analyses.">
@@ -210,7 +210,7 @@
 <li>
 <strong>violin plots</strong> (for comparisons <em>between</em> groups or conditions),</li>
 <li>
-<strong>pie charts</strong> (for categorical data),</li>
+<strong>pie charts</strong> and <strong>bar charts</strong> (for categorical data),</li>
 <li>
 <strong>scatterplots</strong> (for correlations between two variables),</li>
 <li>
@@ -334,7 +334,7 @@
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; &lt;bytecode: 0x000000002a423770&gt;</span></a>
+<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; &lt;bytecode: 0x000000002a3d86c0&gt;</span></a>
 <a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -645,15 +645,16 @@
 <a class="sourceLine" id="cb18-7" data-line-number="7">  <span class="dt">main =</span> mpaa,</a>
 <a class="sourceLine" id="cb18-8" data-line-number="8">  <span class="dt">grouping.var =</span> genre,            <span class="co"># grouping variable</span></a>
 <a class="sourceLine" id="cb18-9" data-line-number="9">  <span class="dt">title.prefix =</span> <span class="st">"Movie genre"</span>,    <span class="co"># prefix for the facetted title</span></a>
-<a class="sourceLine" id="cb18-10" data-line-number="10">  <span class="dt">slice.label =</span> <span class="st">"both"</span>,            <span class="co"># show both counts and percentage data</span></a>
-<a class="sourceLine" id="cb18-11" data-line-number="11">  <span class="dt">perc.k =</span> <span class="dv">1</span>,                      <span class="co"># no. of decimal places for percentages  </span></a>
-<a class="sourceLine" id="cb18-12" data-line-number="12">  <span class="dt">palette =</span> <span class="st">"BrightPastel"</span>,</a>
-<a class="sourceLine" id="cb18-13" data-line-number="13">  <span class="dt">package =</span> <span class="st">"quickpalette"</span>,</a>
-<a class="sourceLine" id="cb18-14" data-line-number="14">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb18-15" data-line-number="15">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb18-16" data-line-number="16">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb18-17" data-line-number="17">  <span class="dt">title.text =</span> <span class="st">"Composition of MPAA ratings for different genres"</span></a>
-<a class="sourceLine" id="cb18-18" data-line-number="18">)</a></code></pre></div>
+<a class="sourceLine" id="cb18-10" data-line-number="10">  <span class="dt">label.text.size =</span> <span class="dv">3</span>,             <span class="co"># text size for slice labels</span></a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">  <span class="dt">slice.label =</span> <span class="st">"both"</span>,            <span class="co"># show both counts and percentage data</span></a>
+<a class="sourceLine" id="cb18-12" data-line-number="12">  <span class="dt">perc.k =</span> <span class="dv">1</span>,                      <span class="co"># no. of decimal places for percentages  </span></a>
+<a class="sourceLine" id="cb18-13" data-line-number="13">  <span class="dt">palette =</span> <span class="st">"BrightPastel"</span>,</a>
+<a class="sourceLine" id="cb18-14" data-line-number="14">  <span class="dt">package =</span> <span class="st">"quickpalette"</span>,</a>
+<a class="sourceLine" id="cb18-15" data-line-number="15">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb18-16" data-line-number="16">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb18-17" data-line-number="17">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb18-18" data-line-number="18">  <span class="dt">title.text =</span> <span class="st">"Composition of MPAA ratings for different genres"</span></a>
+<a class="sourceLine" id="cb18-19" data-line-number="19">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats4-1.png" width="100%"></p>
 <p>For more, including information about the variant of this function <code>grouped_ggpiestats</code>, see the <code>ggpiestats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
 </div>
@@ -676,10 +677,12 @@
 <a class="sourceLine" id="cb19-12" data-line-number="12">  <span class="dt">xlab =</span> <span class="st">"movie genre"</span>,</a>
 <a class="sourceLine" id="cb19-13" data-line-number="13">  <span class="dt">perc.k =</span> <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb19-14" data-line-number="14">  <span class="dt">x.axis.orientation =</span> <span class="st">"slant"</span>,</a>
-<a class="sourceLine" id="cb19-15" data-line-number="15">  <span class="dt">ggplot.component =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.text.x =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">face =</span> <span class="st">"italic"</span>)),</a>
-<a class="sourceLine" id="cb19-16" data-line-number="16">  <span class="dt">palette =</span> <span class="st">"Set2"</span>,</a>
-<a class="sourceLine" id="cb19-17" data-line-number="17">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb19-18" data-line-number="18">)</a></code></pre></div>
+<a class="sourceLine" id="cb19-15" data-line-number="15">  <span class="dt">ggtheme =</span> hrbrthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_rc">theme_modern_rc</a></span>(),</a>
+<a class="sourceLine" id="cb19-16" data-line-number="16">  <span class="dt">ggstatsplot.layer =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb19-17" data-line-number="17">  <span class="dt">ggplot.component =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.text.x =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">face =</span> <span class="st">"italic"</span>)),</a>
+<a class="sourceLine" id="cb19-18" data-line-number="18">  <span class="dt">palette =</span> <span class="st">"Set2"</span>,</a>
+<a class="sourceLine" id="cb19-19" data-line-number="19">  <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb19-20" data-line-number="20">)</a></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats1-1.png" width="100%"></p>
 </div>
 <div id="gghistostats" class="section level2">

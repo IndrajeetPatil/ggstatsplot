@@ -1,6 +1,5 @@
 #' @title Pie charts with statistical tests
 #' @name ggpiestats
-#' @aliases ggpiestats
 #' @description Pie charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
 #' @author Indrajeet Patil
@@ -23,6 +22,12 @@
 #' @param slice.label Character decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
+#' @param label.text.size Numeric that decides text size for slice/bar labels
+#'   (Default: `4`).
+#' @param label.fill.color Character that specifies fill color for slice/bar
+#'   labels (Default: `white`).
+#' @param label.fill.alpha Numeric that specifies fill color transparency or
+#'   `"alpha"` for slice/bar labels (Default: `1` range `0` to `1`).
 #' @param bf.message Logical that decides whether to display a caption with
 #'   results from bayes factor test in favor of the null hypothesis (default:
 #'   `FALSE`).
@@ -100,6 +105,9 @@ ggpiestats <- function(data,
                        factor.levels = NULL,
                        stat.title = NULL,
                        sample.size.label = TRUE,
+                       label.text.size = 4,
+                       label.fill.color = "white",
+                       label.fill.alpha = 1,
                        bf.message = FALSE,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
@@ -236,43 +244,14 @@ ggpiestats <- function(data,
       dplyr::filter(.data = ., counts != 0L)
   }
 
-  # checking what needs to be displayed on pie slices as labels also decide on
-  # the text size for the label; if both counts and percentages are going to
-  # be displayed, then use a bit smaller text size
-  if (slice.label == "percentage") {
-    # only percentage
-    df %<>%
-      dplyr::mutate(
-        .data = .,
-        slice.label = paste0(round(x = perc, digits = perc.k), "%")
-      )
-
-    label.text.size <- 4
-  } else if (slice.label == "counts") {
-    # only raw counts
-    df %<>%
-      dplyr::mutate(
-        .data = .,
-        slice.label = paste0("n = ", counts)
-      )
-
-    label.text.size <- 4
-  } else if (slice.label == "both") {
-    # both raw counts and percentages
-    df %<>%
-      dplyr::mutate(
-        .data = .,
-        slice.label = paste0(
-          "n = ",
-          counts,
-          "\n(",
-          round(x = perc, digits = perc.k),
-          "%)"
-        )
-      )
-
-    label.text.size <- 3
-  }
+  # dataframe with summary labels
+  df %<>%
+    cat_summary_label_maker(
+      data = .,
+      label.col.name = "slice.label",
+      label.content = slice.label,
+      perc.k = perc.k
+    )
 
   # ============================ sample size label ==========================
 
@@ -354,7 +333,8 @@ ggpiestats <- function(data,
         position = "fill",
         color = "black",
         width = 1,
-        ggplot2::aes(fill = factor(get("main")))
+        ggplot2::aes(fill = factor(get("main"))),
+        na.rm = TRUE
       ) +
       ggplot2::geom_label(
         ggplot2::aes(
@@ -364,7 +344,10 @@ ggpiestats <- function(data,
         position = position_fill(vjust = 0.5),
         color = "black",
         size = label.text.size,
-        show.legend = FALSE
+        fill = label.fill.color,
+        alpha = label.fill.alpha,
+        show.legend = FALSE,
+        na.rm = TRUE
       ) +
       ggplot2::coord_polar(theta = "y") # convert to polar coordinates
   } else {
@@ -377,7 +360,8 @@ ggpiestats <- function(data,
         position = "fill",
         color = "black",
         width = 1,
-        ggplot2::aes(fill = factor(get("main")))
+        mapping = ggplot2::aes(fill = factor(get("main"))),
+        na.rm = TRUE
       ) +
       ggplot2::facet_wrap(
         facets = ~condition,
@@ -390,14 +374,12 @@ ggpiestats <- function(data,
         )
       ) +
       ggplot2::geom_label(
-        ggplot2::aes(
-          label = slice.label,
-          group = factor(get("main"))
-        ),
+        mapping = ggplot2::aes(label = slice.label, group = factor(get("main"))),
         position = ggplot2::position_fill(vjust = 0.5),
         color = "black",
         size = label.text.size,
-        show.legend = FALSE
+        show.legend = FALSE,
+        na.rm = TRUE
       ) +
       # convert to polar coordinates
       ggplot2::coord_polar(theta = "y")
@@ -452,22 +434,11 @@ ggpiestats <- function(data,
 
       # display grouped proportion test results
       if (isTRUE(messages)) {
-        # capturing names of variables
-        main.name <- rlang::as_name(rlang::ensym(main))
-        condition.name <- rlang::as_name(rlang::ensym(condition))
-
         # tell the user what these results are
-        base::message(cat(
-          crayon::green("Note: "),
-          crayon::blue("Results from one-sample proportion tests for each\n"),
-          crayon::blue("      level of the variable "),
-          crayon::yellow(condition.name),
-          crayon::blue(" testing for equal\n"),
-          crayon::blue("      proportions of the variable "),
-          crayon::yellow(main.name),
-          crayon::blue(".\n"),
-          sep = ""
-        ))
+        proptest_message(
+          main = rlang::as_name(rlang::ensym(main)),
+          condition = rlang::as_name(rlang::ensym(condition))
+        )
 
         # print the tibble and leave out unnecessary columns
         print(tibble::as_tibble(df2) %>%

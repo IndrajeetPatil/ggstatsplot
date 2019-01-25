@@ -182,11 +182,13 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
     <pre class="usage"><span class='fu'>grouped_ggpiestats</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>counts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>grouping.var</span>, <span class='kw'>title.prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>factor.levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
-  <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>label.text.size</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>label.fill.color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
+  <span class='kw'>label.fill.alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>, <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
+  <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>,
+  <span class='kw'>legend.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>facet.wrap.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>perc.k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>slice.label</span> <span class='kw'>=</span> <span class='st'>"percentage"</span>, <span class='kw'>facet.proptest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
@@ -252,6 +254,21 @@ like <code>"main x condition"</code> or <code>"interaction"</code>.</p></td>
       <td><p>Logical that decides whether sample size information
 should be displayed for each level of the grouping variable <code>condition</code>
 (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>label.text.size</th>
+      <td><p>Numeric that decides text size for slice/bar labels
+(Default: <code>4</code>).</p></td>
+    </tr>
+    <tr>
+      <th>label.fill.color</th>
+      <td><p>Character that specifies fill color for slice/bar
+labels (Default: <code>white</code>).</p></td>
+    </tr>
+    <tr>
+      <th>label.fill.alpha</th>
+      <td><p>Numeric that specifies fill color transparency or
+<code>"alpha"</code> for slice/bar labels (Default: <code>1</code> range <code>0</code> to <code>1</code>).</p></td>
     </tr>
     <tr>
       <th>bf.message</th>

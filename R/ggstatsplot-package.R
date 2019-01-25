@@ -27,6 +27,8 @@
 #'   subtitle.
 #'   \item \code{\link[ggstatsplot]{ggpiestats}} function to produce pie chart
 #'   with details from the statistical tests in the subtitle.
+#'   \item \code{\link[ggstatsplot]{ggbarstats}} function to produce stacked bar
+#'   chart with details from the statistical tests in the subtitle.
 #'   \item \code{\link[ggstatsplot]{gghistostats}} function to produce histogram
 #'   for a single variable with results from one sample test displayed in the
 #'   subtitle.

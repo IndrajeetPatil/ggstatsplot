@@ -6,12 +6,14 @@
 \usage{
 ggpiestats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   paired = FALSE, factor.levels = NULL, stat.title = NULL,
-  sample.size.label = TRUE, bf.message = FALSE,
-  sampling.plan = "indepMulti", fixed.margin = "rows",
-  prior.concentration = 1, title = NULL, caption = NULL,
-  conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
-  B = 2000, legend.title = NULL, facet.wrap.name = NULL, k = 2,
-  perc.k = 0, slice.label = "percentage", facet.proptest = TRUE,
+  sample.size.label = TRUE, label.text.size = 4,
+  label.fill.color = "white", label.fill.alpha = 1,
+  bf.message = FALSE, sampling.plan = "indepMulti",
+  fixed.margin = "rows", prior.concentration = 1, title = NULL,
+  caption = NULL, conf.level = 0.95, nboot = 25,
+  simulate.p.value = FALSE, B = 2000, legend.title = NULL,
+  facet.wrap.name = NULL, k = 2, perc.k = 0,
+  slice.label = "percentage", facet.proptest = TRUE,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   ggplot.component = NULL, messages = TRUE)
@@ -46,6 +48,15 @@ like \code{"main x condition"} or \code{"interaction"}.}
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{condition}
 (Default: \code{TRUE}).}
+
+\item{label.text.size}{Numeric that decides text size for slice/bar labels
+(Default: \code{4}).}
+
+\item{label.fill.color}{Character that specifies fill color for slice/bar
+labels (Default: \code{white}).}
+
+\item{label.fill.alpha}{Numeric that specifies fill color transparency or
+\code{"alpha"} for slice/bar labels (Default: \code{1} range \code{0} to \code{1}).}
 
 \item{bf.message}{Logical that decides whether to display a caption with
 results from bayes factor test in favor of the null hypothesis (default:

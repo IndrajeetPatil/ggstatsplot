@@ -24,34 +24,34 @@
 #' @inherit ggpiestats return return
 #'
 #' @examples
-#'
+#' 
 #' # grouped one-sample proportion tests
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   main = cyl
 #' )
-#'
+#' 
 #' # without condition and with count data
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
-#'
+#' 
 #' # the following will take slightly more amount of time
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(.data = ., cut %in% c("Fair", "Very Good", "Ideal")) %>%
 #'   dplyr::sample_frac(tbl = ., size = 0.10)
-#'
+#' 
 #' # plot
 #' ggstatsplot::grouped_ggpiestats(
 #'   data = diamonds_short,
@@ -81,6 +81,9 @@ grouped_ggpiestats <- function(data,
                                factor.levels = NULL,
                                stat.title = NULL,
                                sample.size.label = TRUE,
+                               label.text.size = 4,
+                               label.fill.color = "white",
+                               label.fill.alpha = 1,
                                bf.message = FALSE,
                                sampling.plan = "indepMulti",
                                fixed.margin = "rows",
@@ -266,6 +269,9 @@ grouped_ggpiestats <- function(data,
       factor.levels = factor.levels,
       stat.title = stat.title,
       sample.size.label = sample.size.label,
+      label.text.size = label.text.size,
+      label.fill.color = label.fill.color,
+      label.fill.alpha = label.fill.alpha,
       bf.message = bf.message,
       sampling.plan = sampling.plan,
       fixed.margin = fixed.margin,

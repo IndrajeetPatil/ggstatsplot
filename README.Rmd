@@ -54,7 +54,7 @@ and **regression** analyses.
 It, therefore, produces a limited kinds of plots for the supported analyses:
 
   - **violin plots** (for comparisons *between* groups or conditions), 
-  - **pie charts** (for categorical data),
+  - **pie charts** and **bar charts** (for categorical data),
   - **scatterplots** (for correlations between two variables),
   - **correlation matrices** (for correlations between multiple variables),
   - **histograms** and **dot plots/charts** (for hypothesis about distributions),
@@ -545,6 +545,7 @@ ggstatsplot::grouped_ggpiestats(
   main = mpaa,
   grouping.var = genre,            # grouping variable
   title.prefix = "Movie genre",    # prefix for the facetted title
+  label.text.size = 3,             # text size for slice labels
   slice.label = "both",            # show both counts and percentage data
   perc.k = 1,                      # no. of decimal places for percentages  
   palette = "BrightPastel",
@@ -580,6 +581,8 @@ ggstatsplot::ggbarstats(
   xlab = "movie genre",
   perc.k = 1,
   x.axis.orientation = "slant",
+  ggtheme = hrbrthemes::theme_modern_rc(),
+  ggstatsplot.layer = FALSE,
   ggplot.component = ggplot2::theme(axis.text.x = ggplot2::element_text(face = "italic")),
   palette = "Set2",
   messages = FALSE

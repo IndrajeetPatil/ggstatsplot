@@ -28,6 +28,9 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_two_sample_ttest.html</loc>
   </url>
   <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/cat_summary_label_maker.html</loc>
+  </url>
+  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/check_outlier.html</loc>
   </url>
   <url>
@@ -155,6 +158,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/palette_message.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/proptest_message.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/reexports.html</loc>

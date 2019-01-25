@@ -118,7 +118,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "aesthetic modifications",
   code = {
-
     testthat::skip_on_cran()
 
     # plot
@@ -129,6 +128,7 @@ testthat::test_that(
       condition = cyl,
       bf.message = TRUE,
       nboot = 10,
+      data.label = "both",
       package = "wesanderson",
       palette = "Royal2",
       labels.legend = c("0 = V-shaped", "1 = straight"),
@@ -142,6 +142,7 @@ testthat::test_that(
       data = mtcars,
       main = vs,
       condition = cyl,
+      data.label = "counts",
       bf.message = FALSE,
       nboot = 10,
       x.axis.orientation = "vertical",
@@ -165,15 +166,24 @@ testthat::test_that(
 
     # testing everything is okay with data
     testthat::expect_equal(data_dims, c(5L, 5L))
-    testthat::expect_identical(dat$data.label, c("91%",  "57%",  "9%" ,  "43%" , "100%"))
+    testthat::expect_identical(
+      pb$data[[2]]$label,
+      c("n = 1\n(9%)", "n = 10\n(91%)", "n = 3\n(43%)", "n = 4\n(57%)", "n = 14\n(100%)")
+    )
+    testthat::expect_identical(
+      pb1$data[[2]]$label,
+      c("n = 1", "n = 10", "n = 3", "n = 4", "n = 14")
+    )
 
     # checking layered data
-    testthat::expect_identical(pb$data[[1]]$fill,
-                               c("#F5CDB4", "#9A8822", "#F5CDB4", "#9A8822", "#F5CDB4"))
+    testthat::expect_identical(
+      pb$data[[1]]$fill,
+      c("#F5CDB4", "#9A8822", "#F5CDB4", "#9A8822", "#F5CDB4")
+    )
     testthat::expect_identical(pb$plot$guides$fill$title, "Engine")
     testthat::expect_equal(pb$plot$theme$axis.text.x$angle, 45L)
     testthat::expect_equal(pb1$plot$theme$axis.text.x$angle, 90L)
     testthat::expect_identical(pb$plot$theme$legend.position, "top")
-    testthat::expect_identical(pb1$plot$theme$legend.position,  "bottom")
+    testthat::expect_identical(pb1$plot$theme$legend.position, "bottom")
   }
 )

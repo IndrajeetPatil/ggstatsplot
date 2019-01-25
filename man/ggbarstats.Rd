@@ -51,16 +51,17 @@ like \code{"main x condition"} or \code{"interaction"}.}
 should be displayed for each level of the grouping variable \code{condition}
 (Default: \code{TRUE}).}
 
-\item{label.text.size}{Numeric that decides size for bar labels
+\item{label.text.size}{Numeric that decides text size for slice/bar labels
 (Default: \code{4}).}
 
-\item{label.fill.color}{Character that specifies fill color for bar labels
-(Default: \code{white}).}
+\item{label.fill.color}{Character that specifies fill color for slice/bar
+labels (Default: \code{white}).}
 
 \item{label.fill.alpha}{Numeric that specifies fill color transparency or
-\code{"alpha"} for bar labels (Default: \code{1} range \code{0} to \code{1}).}
+\code{"alpha"} for slice/bar labels (Default: \code{1} range \code{0} to \code{1}).}
 
-\item{bar.outline.color}{Character specifying color for bars (default: \code{"black"}).}
+\item{bar.outline.color}{Character specifying color for bars (default:
+\code{"black"}).}
 
 \item{bf.message}{Logical that decides whether to display a caption with
 results from bayes factor test in favor of the null hypothesis (default:
@@ -179,8 +180,8 @@ ggstatsplot::ggbarstats(
   labels.legend = c("0 = V-shaped", "1 = straight"),
   legend.title = "Engine"
 )
-
-# simple function call with the defaults (without condition; with count data)
+\dontrun{
+# simple function call with the defaults (with count data)
 library(jmv)
 
 ggstatsplot::ggbarstats(
@@ -189,6 +190,7 @@ ggstatsplot::ggbarstats(
   condition = Hair,
   counts = Freq
 )
+}
 }
 \author{
 Chuck Powell, Indrajeet Patil

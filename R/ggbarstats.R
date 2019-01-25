@@ -1,6 +1,5 @@
 #' @title Bar (column) charts with statistical tests
 #' @name ggbarstats
-#' @aliases ggbarstats
 #' @description Bar charts for categorical data with statistical details
 #'   included in the plot as a subtitle.
 #' @author Chuck Powell, Indrajeet Patil
@@ -20,13 +19,8 @@
 #' @param x.axis.orientation The orientation of the `x` axis labels one of
 #'   "slant" or "vertical" to change from the default horizontal
 #'   orientation (Default: `NULL` which is horizontal).
-#' @param label.text.size Numeric that decides size for bar labels
-#'   (Default: `4`).
-#' @param label.fill.color Character that specifies fill color for bar labels
-#'   (Default: `white`).
-#' @param label.fill.alpha Numeric that specifies fill color transparency or
-#'   `"alpha"` for bar labels (Default: `1` range `0` to `1`).
-#' @param bar.outline.color Character specifying color for bars (default: `"black"`).
+#' @param bar.outline.color Character specifying color for bars (default:
+#'   `"black"`).
 #' @inheritParams ggpiestats
 #'
 #' @import ggplot2
@@ -58,8 +52,8 @@
 #'   labels.legend = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#'
-#' # simple function call with the defaults (without condition; with count data)
+#' \dontrun{
+#' # simple function call with the defaults (with count data)
 #' library(jmv)
 #'
 #' ggstatsplot::ggbarstats(
@@ -68,6 +62,7 @@
 #'   condition = Hair,
 #'   counts = Freq
 #' )
+#' }
 #' @export
 
 # defining the function
@@ -179,37 +174,14 @@ ggbarstats <- function(data,
     dplyr::arrange(.data = ., dplyr::desc(x = main)) %>%
     dplyr::filter(.data = ., counts != 0L)
 
-  # checking what needs to be displayed on pie slices as labels also decide on
-  # the text size for the label; if both counts and percentages are going to
-  # be displayed, then use a bit smaller text size
-  if (data.label == "percentage") {
-    # only percentage
-    df %<>%
-      dplyr::mutate(
-        .data = .,
-        data.label = paste0(round(x = perc, digits = perc.k), "%")
-      )
-  } else if (data.label == "counts") {
-    # only raw counts
-    df %<>%
-      dplyr::mutate(
-        .data = .,
-        data.label = paste0("n = ", counts)
-      )
-  } else if (data.label == "both") {
-    # both raw counts and percentages
-    df %<>%
-      dplyr::mutate(
-        .data = .,
-        data.label = paste0(
-          "n = ",
-          counts,
-          "\n(",
-          round(x = perc, digits = perc.k),
-          "%)"
-        )
-      )
-  }
+  # dataframe with summary labels
+  df %<>%
+    cat_summary_label_maker(
+      data = .,
+      label.col.name = "data.label",
+      label.content = data.label,
+      perc.k = perc.k
+    )
 
   # ============================ sample size label ==========================
 
@@ -266,6 +238,7 @@ ggbarstats <- function(data,
       mapping = ggplot2::aes(label = data.label, group = main),
       show.legend = FALSE,
       position = ggplot2::position_fill(vjust = 0.5),
+      color = "black",
       size = label.text.size,
       fill = label.fill.color,
       alpha = label.fill.alpha,
@@ -320,22 +293,11 @@ ggbarstats <- function(data,
 
     # display grouped proportion test results
     if (isTRUE(messages)) {
-      # capturing names of variables
-      main.name <- rlang::as_name(rlang::ensym(main))
-      condition.name <- rlang::as_name(rlang::ensym(condition))
-
       # tell the user what these results are
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue("Results from one-sample proportion tests for each\n"),
-        crayon::blue("      level of the variable "),
-        crayon::yellow(condition.name),
-        crayon::blue(" testing for equal\n"),
-        crayon::blue("      proportions of the variable "),
-        crayon::yellow(main.name),
-        crayon::blue(".\n"),
-        sep = ""
-      ))
+      proptest_message(
+        main = rlang::as_name(rlang::ensym(main)),
+        condition = rlang::as_name(rlang::ensym(condition))
+      )
 
       # print the tibble and leave out unnecessary columns
       print(tibble::as_tibble(df2) %>%

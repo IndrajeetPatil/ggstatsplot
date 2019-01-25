@@ -280,3 +280,33 @@ effsize_ci_message <- function(nboot = 100, conf.level = 0.95) {
     sep = ""
   ))
 }
+
+
+#' @title Message about results from a single-sample proportion test.
+#' @name proptest_message
+#' @author Indrajeet Patil
+#'
+#' @inheritParams ggpiestats
+#'
+#' @examples
+#' \dontrun{
+#' ggstatsplot:::proptest_message(main = am, condition = cyl)
+#' }
+#' 
+#' @keywords internal
+
+# function body
+proptest_message <- function(main, condition) {
+  # tell the user what these results are
+  base::message(cat(
+    crayon::green("Note: "),
+    crayon::blue("Results from one-sample proportion tests for each\n"),
+    crayon::blue("      level of the variable "),
+    crayon::yellow(condition),
+    crayon::blue(" testing for equal\n"),
+    crayon::blue("      proportions of the variable "),
+    crayon::yellow(main),
+    crayon::blue(".\n"),
+    sep = ""
+  ))
+}
