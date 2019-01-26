@@ -25,6 +25,7 @@ testthat::test_that(
       data = summary_df,
       label.col.name = "slice.label",
       label.content = "both",
+      label.separator = "\n",
       perc.k = 1
     )
 
