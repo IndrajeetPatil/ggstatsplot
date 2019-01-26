@@ -1,5 +1,5 @@
 #' @title Summary dataframe for categorical variables.
-#' @name cat_summary_label_maker
+#' @name cat_label_df
 #' @description Creating a dataframe with an added column corresponding to
 #'   summary for categorical variables.
 #' @author Indrajeet Patil
@@ -12,6 +12,10 @@
 #' @param label.content Character decides what information needs to be displayed
 #'   on the label in each pie or bar slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
+#' @param label.separator If `"both"` counts and proportion information is to be
+#'   displayed in a label, this argument decides whether these two pieces of
+#'   information are going to be on the same line (`" "`) or on separate lines
+#'   (`"\n"`).
 #' @inheritParams ggpiestats
 #'
 #' @importFrom dplyr mutate
@@ -28,23 +32,24 @@
 #'   dplyr::ungroup(x = .) %>%
 #'   dplyr::arrange(.data = ., dplyr::desc(x = cyl)) %>%
 #'   dplyr::filter(.data = ., counts != 0L)
-#'
+#' 
 #' # dataframe with label column
-#' ggstatsplot:::cat_summary_label_maker(
+#' ggstatsplot:::cat_label_df(
 #'   data = df,
 #'   label.col.name = "slice.label",
 #'   label.content = "both",
 #'   perc.k = 1
 #' )
 #' }
-#'
+#' 
 #' @keywords internal
 
 # function body
-cat_summary_label_maker <- function(data,
-                                    label.col.name = "slice.label",
-                                    label.content = "percentage",
-                                    perc.k = 1) {
+cat_label_df <- function(data,
+                         label.col.name = "slice.label",
+                         label.content = "percentage",
+                         label.separator = c("\n", " "),
+                         perc.k = 1) {
   # checking what needs to be displayed in a label
   if (label.content %in% c("percentage", "perc", "proportion", "prop")) {
     # only percentage
@@ -68,7 +73,8 @@ cat_summary_label_maker <- function(data,
         !!label.col.name := paste0(
           "n = ",
           counts,
-          "\n(",
+          label.separator,
+          "(",
           round(x = perc, digits = perc.k),
           "%)"
         )

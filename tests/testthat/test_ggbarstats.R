@@ -24,6 +24,7 @@ testthat::test_that(
       conf.level = 0.95,
       xlab = "Passenger sex",
       ylab = "proportion",
+      label.separator = "\n",
       messages = TRUE
     )
 
@@ -135,6 +136,7 @@ testthat::test_that(
       legend.title = "Engine",
       x.axis.orientation = "slant",
       legend.position = "top",
+      label.separator = "\n",
       messages = FALSE
     ))
 

@@ -589,6 +589,41 @@ ggstatsplot::ggbarstats(
 )
 ```
 
+And, needless to say, there is also a `grouped_` variant of this function-
+
+```{r ggbarstats2, message = FALSE, warning = FALSE, fig.height = 16, fig.width = 10}
+# setup
+library(ggstatsplot)
+set.seed(123)
+
+# let's create a smaller dataframe
+diamonds_short <- ggplot2::diamonds %>%
+  dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
+  dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2", "VVS1")) %>%
+  dplyr::sample_frac(tbl = ., size = 0.05)
+
+# plot
+ggstatsplot::grouped_ggbarstats(
+  data = diamonds_short,
+  main = color,
+  condition = clarity,
+  grouping.var = cut,
+  bf.message = TRUE,
+  sampling.plan = "poisson",
+  title.prefix = "Quality",
+  data.label = "both",
+  label.text.size = 3,
+  perc.k = 1,
+  package = "palettetown",
+  palette = "charizard",
+  ggtheme = ggthemes::theme_tufte(base_size = 12),
+  ggstatsplot.layer = FALSE,
+  messages = FALSE,
+  title.text = "Diamond quality and color combination",
+  nrow = 2
+)
+```
+
 ## `gghistostats`
 
 In case you would like to see the distribution of one variable and check if it
@@ -601,7 +636,7 @@ The `type` (of test) argument also accepts the following abbreviations: `"p"`
 
 ```{r gghistostats1, message = FALSE, warning = FALSE}
 ggstatsplot::gghistostats(
-  data = ToothGrowth,             # dataframe from which variable is to be taken
+  data = ToothGrowth,                       # dataframe from which variable is to be taken
   x = len,                                  # numeric variable whose distribution is of interest
   title = "Distribution of Sepal.Length",   # title for the plot
   fill.gradient = TRUE,                     # use color gradient

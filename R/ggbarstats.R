@@ -38,10 +38,10 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggbarstats(
 #'   data = datasets::mtcars,
@@ -55,7 +55,7 @@
 #' \dontrun{
 #' # simple function call with the defaults (with count data)
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::ggbarstats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -75,6 +75,7 @@ ggbarstats <- function(data,
                        labels.legend = NULL,
                        stat.title = NULL,
                        sample.size.label = TRUE,
+                       label.separator = " ",
                        label.text.size = 4,
                        label.fill.color = "white",
                        label.fill.alpha = 1,
@@ -176,10 +177,11 @@ ggbarstats <- function(data,
 
   # dataframe with summary labels
   df %<>%
-    cat_summary_label_maker(
+    cat_label_df(
       data = .,
       label.col.name = "data.label",
       label.content = data.label,
+      label.separator = label.separator,
       perc.k = perc.k
     )
 

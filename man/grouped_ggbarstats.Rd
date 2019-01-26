@@ -2,11 +2,12 @@
 % Please edit documentation in R/grouped_ggbarstats.R
 \name{grouped_ggbarstats}
 \alias{grouped_ggbarstats}
-\title{Grouped Bar (column) charts with statistical tests}
+\title{Grouped bar (column) charts with statistical tests}
 \usage{
-grouped_ggbarstats(data, main, condition = NULL, counts = NULL,
-  ratio = NULL, paired = FALSE, labels.legend = NULL,
-  stat.title = NULL, sample.size.label = TRUE, label.text.size = 4,
+grouped_ggbarstats(data, main, condition, counts = NULL, grouping.var,
+  title.prefix = NULL, ratio = NULL, paired = FALSE,
+  labels.legend = NULL, stat.title = NULL, sample.size.label = TRUE,
+  label.separator = " ", label.text.size = 4,
   label.fill.color = "white", label.fill.alpha = 1,
   bar.outline.color = "black", bf.message = FALSE,
   sampling.plan = "jointMulti", fixed.margin = "rows",
@@ -18,7 +19,7 @@ grouped_ggbarstats(data, main, condition = NULL, counts = NULL,
   bar.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, package = "RColorBrewer",
   palette = "Dark2", direction = 1, ggplot.component = NULL,
-  messages = TRUE, grouping.var, title.prefix = NULL, ...)
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -31,6 +32,13 @@ table.}
 
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
+
+\item{grouping.var}{A single grouping variable (can be entered either as a
+bare name \code{x} or as a string \code{"x"}).}
+
+\item{title.prefix}{Character string specifying the prefix text for the fixed
+plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
+variable name entered for \code{grouping.var} will be used.}
 
 \item{ratio}{A vector of numbers: the expected proportions for the proportion
 test. Default is \code{NULL}, which means if there are two levels \code{ratio = c(1,1)}, etc.}
@@ -50,6 +58,11 @@ like \code{"main x condition"} or \code{"interaction"}.}
 \item{sample.size.label}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{condition}
 (Default: \code{TRUE}).}
+
+\item{label.separator}{If \code{"both"} counts and proportion information is to be
+displayed in a label, this argument decides whether these two pieces of
+information are going to be on the same line (\code{" "}) or on separate lines
+(\code{"\n"}).}
 
 \item{label.text.size}{Numeric that decides text size for slice/bar labels
 (Default: \code{4}).}
@@ -149,13 +162,6 @@ work as expected.}
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
-
-\item{title.prefix}{Character string specifying the prefix text for the fixed
-plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
-variable name entered for \code{grouping.var} will be used.}
-
 \item{...}{Arguments passed on to \code{combine_plots}
 \describe{
   \item{title.text}{String or plotmath expression to be drawn as title for the
@@ -241,8 +247,8 @@ set.seed(123)
 # let's create a smaller dataframe
 diamonds_short <- ggplot2::diamonds \%>\%
   dplyr::filter(.data = ., cut \%in\% c("Very Good", "Ideal")) \%>\%
-  dplyr::filter(.data = ., clarity \%in\% c("SI1", "SI2", "VS1", "VS2", "VVS1", "VVS2")) \%>\%
-  dplyr::sample_frac(tbl = ., size = 0.10)
+  dplyr::filter(.data = ., clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%
+  dplyr::sample_frac(tbl = ., size = 0.05)
 
 # plot
 ggstatsplot::grouped_ggbarstats(

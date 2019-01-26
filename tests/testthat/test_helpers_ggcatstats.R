@@ -1,10 +1,10 @@
 # context ------------------------------------------------------------
-context(desc = "cat_summary_label_maker")
+context(desc = "cat_label_df")
 
-# cat_summary_label_maker works ----------------------------------------------
+# cat_label_df works ----------------------------------------------
 
 testthat::test_that(
-  desc = "cat_summary_label_maker works",
+  desc = "cat_label_df works",
   code = {
     testthat::skip_on_cran()
 
@@ -21,7 +21,7 @@ testthat::test_that(
       dplyr::filter(.data = ., counts != 0L)
 
     # mix of counts and percentage
-    df1 <- ggstatsplot:::cat_summary_label_maker(
+    df1 <- ggstatsplot:::cat_label_df(
       data = summary_df,
       label.col.name = "slice.label",
       label.content = "both",
@@ -29,14 +29,14 @@ testthat::test_that(
     )
 
     # just counts
-    df2 <- ggstatsplot:::cat_summary_label_maker(
+    df2 <- ggstatsplot:::cat_label_df(
       data = summary_df,
       label.col.name = "data.label",
       label.content = "n"
     )
 
     # just percentage
-    df3 <- ggstatsplot:::cat_summary_label_maker(
+    df3 <- ggstatsplot:::cat_label_df(
       data = summary_df,
       label.col.name = "data.label",
       label.content = "perc",

@@ -1,16 +1,10 @@
-#' @title Grouped Bar (column) charts with statistical tests
+#' @title Grouped bar (column) charts with statistical tests
 #' @name grouped_ggbarstats
-#' @aliases grouped_ggbarstats
 #' @description Helper function for `ggstatsplot::ggbarstats` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil, Chuck Powell
 #'
-#' @param grouping.var A single grouping variable (can be entered either as a
-#'   bare name `x` or as a string `"x"`).
-#' @param title.prefix Character string specifying the prefix text for the fixed
-#'   plot title (name of each factor level) (Default: `NULL`). If `NULL`, the
-#'   variable name entered for `grouping.var` will be used.
 #' @inheritParams ggbarstats
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams combine_plots
@@ -31,10 +25,10 @@
 #' @inherit ggbarstats return return
 #'
 #' @examples
-#'
+#' 
 #' # with condition and with count data
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::grouped_ggbarstats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
@@ -42,18 +36,18 @@
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
-#'
+#' 
 #' # the following will take slightly more amount of time
 #' \dontrun{
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
-#'   dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2", "VVS1", "VVS2")) %>%
-#'   dplyr::sample_frac(tbl = ., size = 0.10)
-#'
+#'   dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
+#'   dplyr::sample_frac(tbl = ., size = 0.05)
+#' 
 #' # plot
 #' ggstatsplot::grouped_ggbarstats(
 #'   data = diamonds_short,
@@ -72,16 +66,18 @@
 #' @export
 
 # defining the function
-
 grouped_ggbarstats <- function(data,
                                main,
-                               condition = NULL,
+                               condition,
                                counts = NULL,
+                               grouping.var,
+                               title.prefix = NULL,
                                ratio = NULL,
                                paired = FALSE,
                                labels.legend = NULL,
                                stat.title = NULL,
                                sample.size.label = TRUE,
+                               label.separator = " ",
                                label.text.size = 4,
                                label.fill.color = "white",
                                label.fill.alpha = 1,
@@ -111,8 +107,6 @@ grouped_ggbarstats <- function(data,
                                direction = 1,
                                ggplot.component = NULL,
                                messages = TRUE,
-                               grouping.var,
-                               title.prefix = NULL,
                                ...) {
 
   # ======================== check user input =============================
@@ -151,63 +145,33 @@ grouped_ggbarstats <- function(data,
 
   # ======================== preparing dataframe =============================
 
-  # if condition variable *is* provided
-  if (!missing(condition)) {
-    # if the data is not tabled
-    if (missing(counts)) {
-      df <-
-        dplyr::select(
-          .data = data,
-          !!rlang::enquo(grouping.var),
-          !!rlang::enquo(main),
-          !!rlang::enquo(condition)
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          title.text = !!rlang::enquo(grouping.var)
-        )
-    } else if (!missing(counts)) {
-      # if data is tabled
-      df <-
-        dplyr::select(
-          .data = data,
-          !!rlang::enquo(grouping.var),
-          !!rlang::enquo(main),
-          !!rlang::enquo(condition),
-          !!rlang::enquo(counts)
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          title.text = !!rlang::enquo(grouping.var)
-        )
-    }
-  } else if (missing(condition)) {
-    # if condition variable is *not* provided
-    if (base::missing(counts)) {
-      df <-
-        dplyr::select(
-          .data = data,
-          !!rlang::enquo(grouping.var),
-          !!rlang::enquo(main)
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          title.text = !!rlang::enquo(grouping.var)
-        )
-    } else if (!missing(counts)) {
-      # if data is tabled
-      df <-
-        dplyr::select(
-          .data = data,
-          !!rlang::enquo(grouping.var),
-          !!rlang::enquo(main),
-          !!rlang::enquo(counts)
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          title.text = !!rlang::enquo(grouping.var)
-        )
-    }
+  # if the data is not tabled
+  if (missing(counts)) {
+    df <-
+      dplyr::select(
+        .data = data,
+        !!rlang::enquo(grouping.var),
+        !!rlang::enquo(main),
+        !!rlang::enquo(condition)
+      ) %>%
+      dplyr::mutate(
+        .data = .,
+        title.text = !!rlang::enquo(grouping.var)
+      )
+  } else if (!missing(counts)) {
+    # if data is tabled
+    df <-
+      dplyr::select(
+        .data = data,
+        !!rlang::enquo(grouping.var),
+        !!rlang::enquo(main),
+        !!rlang::enquo(condition),
+        !!rlang::enquo(counts)
+      ) %>%
+      dplyr::mutate(
+        .data = .,
+        title.text = !!rlang::enquo(grouping.var)
+      )
   }
 
   # make a list of dataframes by grouping variable
@@ -227,7 +191,7 @@ grouped_ggbarstats <- function(data,
 
   # ============== build pmap list based on conditions =====================
 
-  if (!missing(condition) && missing(counts)) {
+  if (missing(counts)) {
     flexiblelist <- list(
       data = df,
       main = rlang::quo_text(ensym(main)),
@@ -236,28 +200,11 @@ grouped_ggbarstats <- function(data,
     )
   }
 
-  if (missing(condition) && missing(counts)) {
-    flexiblelist <- list(
-      data = df,
-      main = rlang::quo_text(ensym(main)),
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
-  if (!missing(condition) && !missing(counts)) {
+  if (!missing(counts)) {
     flexiblelist <- list(
       data = df,
       main = rlang::quo_text(ensym(main)),
       condition = rlang::quo_text(ensym(condition)),
-      counts = rlang::quo_text(ensym(counts)),
-      title = glue::glue("{title.prefix}: {names(df)}")
-    )
-  }
-
-  if (missing(condition) && !missing(counts)) {
-    flexiblelist <- list(
-      data = df,
-      main = rlang::quo_text(ensym(main)),
       counts = rlang::quo_text(ensym(counts)),
       title = glue::glue("{title.prefix}: {names(df)}")
     )
@@ -276,6 +223,7 @@ grouped_ggbarstats <- function(data,
       labels.legend = labels.legend,
       stat.title = stat.title,
       sample.size.label = sample.size.label,
+      label.separator = label.separator,
       label.text.size = label.text.size,
       label.fill.color = label.fill.color,
       label.fill.alpha = label.fill.alpha,

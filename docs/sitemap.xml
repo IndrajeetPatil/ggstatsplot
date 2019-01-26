@@ -28,7 +28,7 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/bf_two_sample_ttest.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/cat_summary_label_maker.html</loc>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/cat_label_df.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/check_outlier.html</loc>
@@ -89,6 +89,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/ggstatsplot-package.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbarstats.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html</loc>

@@ -128,7 +128,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-01-24</h4>
+            <h4 class="date">2019-01-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -842,9 +842,9 @@
 <a class="sourceLine" id="cb20-22" data-line-number="22">                         <span class="dt">title =</span> <span class="st">"proportional odds and related models"</span>)</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/svyolr-1.png" width="768"></p>
 </div>
-<div id="survey-weighted-generalised-linear-models-svyglm" class="section level2">
+<div id="survey-weighted-generalized-linear-models-svyglm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#survey-weighted-generalised-linear-models-svyglm" class="anchor"></a>survey-weighted generalised linear models (<code>svyglm</code>)</h2>
+<a href="#survey-weighted-generalized-linear-models-svyglm" class="anchor"></a>survey-weighted generalized linear models (<code>svyglm</code>)</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># data</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(survey)</a>
 <a class="sourceLine" id="cb21-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
@@ -867,7 +867,7 @@
 <a class="sourceLine" id="cb21-20" data-line-number="20"></a>
 <a class="sourceLine" id="cb21-21" data-line-number="21"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb21-22" data-line-number="22">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(<span class="dt">x =</span> mod,</a>
-<a class="sourceLine" id="cb21-23" data-line-number="23">                         <span class="dt">title =</span> <span class="st">"survey-weighted generalised linear model"</span>)</a>
+<a class="sourceLine" id="cb21-23" data-line-number="23">                         <span class="dt">title =</span> <span class="st">"survey-weighted generalized linear model"</span>)</a>
 <a class="sourceLine" id="cb21-24" data-line-number="24"><span class="co">#&gt; Note: No model diagnostics information available for the object of class svyglm .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/svyglm-1.png" width="480"></p>
 </div>
@@ -1566,9 +1566,9 @@
 <a class="sourceLine" id="cb48-20" data-line-number="20"><span class="co">#&gt; skipping labels with stats.</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/confusionMatrix-1.png" width="576"></p>
 </div>
-<div id="multivariate-generalised-linear-mixed-models-mcmcglmm" class="section level2">
+<div id="multivariate-generalized-linear-mixed-models-mcmcglmm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#multivariate-generalised-linear-mixed-models-mcmcglmm" class="anchor"></a>multivariate generalised linear mixed models (<code>MCMCglmm</code>)</h2>
+<a href="#multivariate-generalized-linear-mixed-models-mcmcglmm" class="anchor"></a>multivariate generalized linear mixed models (<code>MCMCglmm</code>)</h2>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># setup</span></a>
 <a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb49-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(MCMCglmm)</a>
@@ -1585,7 +1585,7 @@
 <a class="sourceLine" id="cb49-14" data-line-number="14"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb49-15" data-line-number="15">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb49-16" data-line-number="16">  <span class="dt">x =</span> mm0,</a>
-<a class="sourceLine" id="cb49-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"multivariate generalised linear mixed model"</span>,</a>
+<a class="sourceLine" id="cb49-17" data-line-number="17">  <span class="dt">title =</span> <span class="st">"multivariate generalized linear mixed model"</span>,</a>
 <a class="sourceLine" id="cb49-18" data-line-number="18">  <span class="dt">conf.method =</span> <span class="st">"HPDinterval"</span>,</a>
 <a class="sourceLine" id="cb49-19" data-line-number="19">  <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb49-20" data-line-number="20">  <span class="dt">rhat =</span> <span class="ot">TRUE</span>,</a>
@@ -1692,7 +1692,7 @@
       <li><a href="#ordered-logistic-or-probit-regression-polr">ordered logistic or probit regression (<code>polr</code>)</a></li>
       <li><a href="#multinomial-logistic-regression-models-multinom">multinomial logistic regression models (<code>multinom</code>)</a></li>
       <li><a href="#proportional-odds-and-related-models-svyolr">proportional odds and related models (<code>svyolr</code>)</a></li>
-      <li><a href="#survey-weighted-generalised-linear-models-svyglm">survey-weighted generalised linear models (<code>svyglm</code>)</a></li>
+      <li><a href="#survey-weighted-generalized-linear-models-svyglm">survey-weighted generalized linear models (<code>svyglm</code>)</a></li>
       <li><a href="#repeated-measures-anova-aovlist">repeated measures ANOVA (<code>aovlist</code>)</a></li>
       <li><a href="#robust-regression-lmrob-glmrob">robust regression (<code>lmRob</code>, <code>glmRob</code>)</a></li>
       <li><a href="#fit-a-linear-model-with-multiple-group-fixed-effects-felm">fit a linear model with multiple group fixed effects (<code>felm</code>)</a></li>
@@ -1722,7 +1722,7 @@
       <li><a href="#maximum-likelihood-estimation-mle2">maximum likelihood estimation (<code>mle2</code>)</a></li>
       <li><a href="#cochrane-orcutt-estimation-orcutt">Cochrane-Orcutt estimation (<code>orcutt</code>)</a></li>
       <li><a href="#confusion-matrix-confusionmatrix">confusion matrix (<code>confusionMatrix</code>)</a></li>
-      <li><a href="#multivariate-generalised-linear-mixed-models-mcmcglmm">multivariate generalised linear mixed models (<code>MCMCglmm</code>)</a></li>
+      <li><a href="#multivariate-generalized-linear-mixed-models-mcmcglmm">multivariate generalized linear mixed models (<code>MCMCglmm</code>)</a></li>
       <li><a href="#dataframes-tbl_df-tbl-data-frame">dataframes (<code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>)</a></li>
       <li><a href="#and-much-more">And much more…</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
