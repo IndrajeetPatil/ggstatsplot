@@ -15,7 +15,7 @@
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param legend.position The position of the legend
-#'   `"none"`, `"left"`, `"right"`, `"bottom"`, `"top"` (Default: `"bottom"`).
+#'   `"none"`, `"left"`, `"right"`, `"bottom"`, `"top"` (Default: `"right"`).
 #' @param x.axis.orientation The orientation of the `x` axis labels one of
 #'   "slant" or "vertical" to change from the default horizontal
 #'   orientation (Default: `NULL` which is horizontal).
@@ -86,7 +86,7 @@ ggbarstats <- function(data,
                        prior.concentration = 1,
                        title = NULL,
                        caption = NULL,
-                       legend.position = "bottom",
+                       legend.position = "right",
                        x.axis.orientation = NULL,
                        conf.level = 0.95,
                        nboot = 25,
@@ -126,22 +126,20 @@ ggbarstats <- function(data,
 
   # =============================== dataframe ================================
 
-  # creating a dataframe based on whether counts
-  if (base::missing(counts)) {
-    data <-
-      dplyr::select(
-        .data = data,
-        main = !!rlang::enquo(main),
-        condition = !!rlang::quo_name(rlang::enquo(condition))
-      )
-  } else {
-    data <-
-      dplyr::select(
-        .data = data,
-        main = !!rlang::enquo(main),
-        condition = !!rlang::quo_name(rlang::enquo(condition)),
-        counts = !!rlang::quo_name(rlang::enquo(counts))
-      )
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      main = !!rlang::enquo(main),
+      condition = !!rlang::enquo(condition),
+      counts = !!rlang::enquo(counts)
+    ) %>%
+    tidyr::drop_na(data = .)
+
+  # =========================== converting counts ============================
+
+  # untable the dataframe based on the count for each obervation
+  if (!base::missing(counts)) {
     data %<>%
       tidyr::uncount(
         data = .,

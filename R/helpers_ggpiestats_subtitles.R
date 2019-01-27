@@ -27,7 +27,7 @@
 #'
 #' @importFrom tibble tribble as_tibble
 #' @importFrom exact2x2 exact2x2
-#' @importFrom tidyr uncount
+#' @importFrom tidyr uncount drop_na
 #' @importFrom broom tidy
 #' @importFrom jmv propTestN contTables contTablesPaired
 #'
@@ -75,25 +75,15 @@ subtitle_contingency_tab <- function(data,
 
   # =============================== dataframe ================================
 
-  # creating a dataframe based on which variables are provided
-  if (base::missing(counts)) {
-    data <-
-      dplyr::select(
-        .data = data,
-        main = !!rlang::enquo(main),
-        condition = !!rlang::quo_name(rlang::enquo(condition))
-      ) %>%
-      dplyr::filter(.data = ., !is.na(main), !is.na(condition))
-  } else {
-    data <-
-      dplyr::select(
-        .data = data,
-        main = !!rlang::enquo(main),
-        condition = !!rlang::quo_name(rlang::enquo(condition)),
-        counts = !!rlang::quo_name(rlang::enquo(counts))
-      ) %>%
-      dplyr::filter(.data = ., !is.na(main), !is.na(condition), !is.na(counts))
-  }
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      main = !!rlang::enquo(main),
+      condition = !!rlang::enquo(condition),
+      counts = !!rlang::enquo(counts)
+    ) %>%
+    tidyr::drop_na(data = .)
 
   # main and condition need to be a factor for this analysis
   # also drop the unused levels of the factors
@@ -283,8 +273,8 @@ subtitle_contingency_tab <- function(data,
 }
 
 
-#' @title Making text subtitle for Proportion Test (N Outcomes), a chi-squared
-#'   Goodness of fit test.
+#' @title Making text subtitle for Proportion Test (N Outcomes)
+#' @description This is going to be a chi-squared Goodness of fit test.
 #' @name subtitle_onesample_proptest
 #' @author Indrajeet Patil
 #'
@@ -329,22 +319,14 @@ subtitle_onesample_proptest <- function(data,
 
   # ============================ dataframe ===============================
 
-  if (base::missing(counts)) {
-    data <-
-      dplyr::select(
-        .data = data,
-        main = !!rlang::enquo(main)
-      ) %>%
-      dplyr::filter(.data = ., !is.na(main))
-  } else {
-    data <-
-      dplyr::select(
-        .data = data,
-        main = !!rlang::enquo(main),
-        counts = !!rlang::enquo(counts)
-      ) %>%
-      dplyr::filter(.data = ., !is.na(main), !is.na(counts))
-  }
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      main = !!rlang::enquo(main),
+      counts = !!rlang::enquo(counts)
+    ) %>%
+    tidyr::drop_na(data = .)
 
   # ====================== converting counts ================================
 
@@ -357,7 +339,7 @@ subtitle_onesample_proptest <- function(data,
         .remove = TRUE,
         .id = "id"
       ) %>%
-      tibble::as_tibble(.)
+      tibble::as_tibble(x = .)
   }
 
   # ============================= statistical test =========================

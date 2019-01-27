@@ -12,7 +12,7 @@ testthat::test_that(
       suppressWarnings(
         ggstatsplot::subtitle_onesample_proptest(
           data = Titanic_full,
-          main = Class,
+          main = "Class",
           legend.title = "Testing",
           k = 5
         )
@@ -44,7 +44,6 @@ testthat::test_that(
   }
 )
 
-
 # checking subtitle (with counts) -----------------------------------------
 
 testthat::test_that(
@@ -58,7 +57,7 @@ testthat::test_that(
         ggstatsplot::subtitle_onesample_proptest(
           data = as.data.frame(Titanic),
           main = Sex,
-          counts = Freq,
+          counts = "Freq",
           k = 3
         )
       )
@@ -89,11 +88,43 @@ testthat::test_that(
   }
 )
 
+# dataframe with NA --------------------------------------------------------
+
+testthat::test_that(
+  desc = "works with dataframes with NAs",
+  code = {
+    set.seed(123)
+
+    # from function
+    subtitle <-
+      ggstatsplot::subtitle_onesample_proptest(data = ggplot2::msleep, main = vore)
+
+    # expected
+    expected <- ggplot2::expr(paste(
+      italic(chi)^2,
+      "(",
+      3,
+      ") = ",
+      "19.26",
+      ", ",
+      italic("p"),
+      " = ",
+      "< 0.001",
+      ", ",
+      italic("n"),
+      " = ",
+      76L
+    ))
+
+    # testing if these are equivalent
+    testthat::expect_identical(subtitle, expected)
+  }
+)
 
 # checking edge cases --------------------------------------------------------
 
 testthat::test_that(
-  desc = " works",
+  desc = "works even in edge cases",
   code = {
     set.seed(123)
 

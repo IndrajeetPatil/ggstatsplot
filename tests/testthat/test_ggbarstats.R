@@ -19,7 +19,7 @@ testthat::test_that(
       data = as.data.frame(Titanic),
       main = Sex,
       condition = Survived,
-      counts = Freq,
+      counts = "Freq",
       perc.k = 2,
       conf.level = 0.95,
       xlab = "Passenger sex",
@@ -35,8 +35,8 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <- ggstatsplot::subtitle_contingency_tab(
       data = as.data.frame(Titanic),
-      main = Sex,
-      condition = Survived,
+      main = "Sex",
+      condition = "Survived",
       counts = Freq,
       conf.level = 0.95,
       messages = FALSE
@@ -126,7 +126,7 @@ testthat::test_that(
     p <- suppressWarnings(ggstatsplot::ggbarstats(
       data = mtcars,
       main = vs,
-      condition = cyl,
+      condition = "cyl",
       bf.message = TRUE,
       nboot = 10,
       data.label = "both",
@@ -186,6 +186,6 @@ testthat::test_that(
     testthat::expect_equal(pb$plot$theme$axis.text.x$angle, 45L)
     testthat::expect_equal(pb1$plot$theme$axis.text.x$angle, 90L)
     testthat::expect_identical(pb$plot$theme$legend.position, "top")
-    testthat::expect_identical(pb1$plot$theme$legend.position, "bottom")
+    testthat::expect_identical(pb1$plot$theme$legend.position, "right")
   }
 )

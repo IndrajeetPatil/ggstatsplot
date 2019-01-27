@@ -96,15 +96,12 @@ ggdotplotstats <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., y = droplevels(as.factor(y))) %>%
-    tibble::as_tibble(x = .)
-
-  # if the data hasn't already been summarized, do so
-  data %<>%
     dplyr::group_by(.data = ., y) %>%
     dplyr::summarise(.data = ., x = mean(x, na.rm = TRUE)) %>%
-    dplyr::ungroup(x = .)
+    dplyr::ungroup(x = .) %>%
+    tibble::as_tibble(x = .)
 
   # rank ordering the data
   data %<>%

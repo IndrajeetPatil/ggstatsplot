@@ -2,8 +2,7 @@
 % Please edit documentation in R/helpers_ggpiestats_subtitles.R
 \name{subtitle_onesample_proptest}
 \alias{subtitle_onesample_proptest}
-\title{Making text subtitle for Proportion Test (N Outcomes), a chi-squared
-Goodness of fit test.}
+\title{Making text subtitle for Proportion Test (N Outcomes)}
 \usage{
 subtitle_onesample_proptest(data, main, counts = NULL, ratio = NULL,
   legend.title = NULL, k = 2, ...)
@@ -28,8 +27,7 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 \item{...}{Additional arguments (currently ignored).}
 }
 \description{
-Making text subtitle for Proportion Test (N Outcomes), a chi-squared
-Goodness of fit test.
+This is going to be a chi-squared Goodness of fit test.
 }
 \examples{
 

@@ -31,7 +31,7 @@ testthat::test_that(
     p_subtitle <-
       ggstatsplot::subtitle_onesample_proptest(
         data = ggplot2::msleep,
-        main = vore
+        main = "vore"
       )
 
     # checking dimensions of data
@@ -201,7 +201,7 @@ testthat::test_that(
       data = as.data.frame(Titanic),
       main = Sex,
       condition = Survived,
-      counts = Freq,
+      counts = "Freq",
       perc.k = 2,
       conf.level = 0.95,
       messages = TRUE

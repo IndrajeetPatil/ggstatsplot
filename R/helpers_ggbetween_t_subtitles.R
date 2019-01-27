@@ -20,20 +20,20 @@
 #' @importFrom effsize cohen.d
 #'
 #' @examples
-#' 
+#'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#' 
+#'
 #' # with defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
@@ -63,10 +63,7 @@ subtitle_t_parametric <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
+    ) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
@@ -95,8 +92,6 @@ subtitle_t_parametric <- function(data,
     # sample size
     sample_size <- nrow(data)
   }
-
-
 
   # deciding which effect size to use (Hedge's g or Cohen's d)
   if (effsize.type %in% c("unbiased", "g")) {
@@ -200,7 +195,7 @@ subtitle_mann_nonparametric <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+      tidyr::drop_na(data = .) %>%
       dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
       tibble::as_tibble(x = .)
 
@@ -272,22 +267,22 @@ subtitle_mann_nonparametric <-
             n
           ),
         env = base::list(
-          estimate = ggstatsplot::specify_decimal_p(
+          estimate = specify_decimal_p(
             x = mann_stat$statistic[[1]],
             k = k,
             p.value = FALSE
           ),
-          z_value = ggstatsplot::specify_decimal_p(
+          z_value = specify_decimal_p(
             x = coin::statistic(z_stat)[[1]],
             k = k,
             p.value = FALSE
           ),
-          pvalue = ggstatsplot::specify_decimal_p(
+          pvalue = specify_decimal_p(
             x = mann_stat$p.value[[1]],
             k = k,
             p.value = TRUE
           ),
-          r = ggstatsplot::specify_decimal_p(
+          r = specify_decimal_p(
             x = (coin::statistic(z_stat)[[1]] / sqrt(length(data$y))),
             k = k,
             p.value = FALSE
@@ -322,14 +317,14 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
-#' 
+#'
 #' # with defaults
 #' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_t_robust(
 #'   data = ToothGrowth,
@@ -339,7 +334,7 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'   k = 1,
 #'   tr = 0.2
 #' )
-#' 
+#'
 #' # within-subjects design
 #' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
@@ -488,18 +483,18 @@ subtitle_t_robust <- function(data,
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # between-subjects design
-#' 
+#'
 #' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#' 
+#'
 #' # within-subjects design
-#' 
+#'
 #' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -612,11 +607,11 @@ subtitle_t_bayes <- function(data,
         ),
       env = base::list(
         df = as.data.frame(jmv_results$ttest)$`df[stud]`,
-        estimate = ggstatsplot::specify_decimal_p(
+        estimate = specify_decimal_p(
           x = as.data.frame(jmv_results$ttest)$`stat[stud]`,
           k = k
         ),
-        bf = ggstatsplot::specify_decimal_p(
+        bf = specify_decimal_p(
           x = log(
             x = as.data.frame(jmv_results$ttest)$`stat[bf]`,
             base = exp(1)
@@ -624,12 +619,12 @@ subtitle_t_bayes <- function(data,
           k = 1,
           p.value = FALSE
         ),
-        bf_prior = ggstatsplot::specify_decimal_p(
+        bf_prior = specify_decimal_p(
           x = bf.prior,
           k = 3,
           p.value = FALSE
         ),
-        effsize = ggstatsplot::specify_decimal_p(
+        effsize = specify_decimal_p(
           x = as.data.frame(jmv_results$ttest)$`es[stud]`,
           k = k,
           p.value = FALSE

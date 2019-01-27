@@ -11,15 +11,14 @@ grouped_ggbarstats(data, main, condition, counts = NULL, grouping.var,
   label.fill.color = "white", label.fill.alpha = 1,
   bar.outline.color = "black", bf.message = FALSE,
   sampling.plan = "jointMulti", fixed.margin = "rows",
-  prior.concentration = 1, caption = NULL,
-  legend.position = "bottom", x.axis.orientation = "horizontal",
-  conf.level = 0.95, nboot = 25, simulate.p.value = FALSE,
-  B = 2000, legend.title = NULL, xlab = NULL, ylab = "Percent",
-  k = 2, perc.k = 0, data.label = "percentage",
-  bar.proptest = TRUE, ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE, package = "RColorBrewer",
-  palette = "Dark2", direction = 1, ggplot.component = NULL,
-  messages = TRUE, ...)
+  prior.concentration = 1, caption = NULL, legend.position = "right",
+  x.axis.orientation = "horizontal", conf.level = 0.95, nboot = 25,
+  simulate.p.value = FALSE, B = 2000, legend.title = NULL,
+  xlab = NULL, ylab = "Percent", k = 2, perc.k = 0,
+  data.label = "percentage", bar.proptest = TRUE,
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  package = "RColorBrewer", palette = "Dark2", direction = 1,
+  ggplot.component = NULL, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -96,7 +95,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{caption}{The text for the plot caption.}
 
 \item{legend.position}{The position of the legend
-\code{"none"}, \code{"left"}, \code{"right"}, \code{"bottom"}, \code{"top"} (Default: \code{"bottom"}).}
+\code{"none"}, \code{"left"}, \code{"right"}, \code{"bottom"}, \code{"top"} (Default: \code{"right"}).}
 
 \item{x.axis.orientation}{The orientation of the \code{x} axis labels one of
 "slant" or "vertical" to change from the default horizontal

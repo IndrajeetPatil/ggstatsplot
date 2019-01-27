@@ -36,7 +36,7 @@ testthat::test_that(
           main = response_before,
           condition = response_after,
           paired = TRUE,
-          counts = Freq,
+          counts = "Freq",
           k = 5,
           messages = FALSE
         )

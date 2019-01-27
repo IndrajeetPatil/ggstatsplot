@@ -9,8 +9,8 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.8-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/116717490.svg)](https://zenodo.org/badge/latestdoi/116717490)                                                                  |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--01--24-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
-| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)            | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_12-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--01--27-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)            | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_27-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
 
@@ -36,7 +36,7 @@ It, therefore, produces a limited kinds of plots for the supported
 analyses:
 
   - **violin plots** (for comparisons *between* groups or conditions),
-  - **pie charts** (for categorical data),
+  - **pie charts** and **bar charts** (for categorical data),
   - **scatterplots** (for correlations between two variables),
   - **correlation matrices** (for correlations between multiple
     variables),
@@ -206,7 +206,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
-#> <bytecode: 0x000000002debf8d8>
+#> <bytecode: 0x000000002fdb85a8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -608,8 +608,8 @@ ggstatsplot::ggpiestats(
   palette = "Royal1"
 )
 #> Note: Results from one-sample proportion tests for each
-#>       level of the condition variable testing for equal
-#>       proportions of the main variable.
+#>       level of the variable 2nd survey testing for equal
+#>       proportions of the variable 1st survey.
 #> # A tibble: 2 x 7
 #>   condition  Approve Disapprove `Chi-squared`    df `p-value` significance
 #>   <fct>      <chr>   <chr>              <dbl> <dbl>     <dbl> <chr>       
@@ -633,6 +633,7 @@ ggstatsplot::grouped_ggpiestats(
   main = mpaa,
   grouping.var = genre,            # grouping variable
   title.prefix = "Movie genre",    # prefix for the facetted title
+  label.text.size = 3,             # text size for slice labels
   slice.label = "both",            # show both counts and percentage data
   perc.k = 1,                      # no. of decimal places for percentages  
   palette = "BrightPastel",
@@ -670,6 +671,8 @@ ggstatsplot::ggbarstats(
   xlab = "movie genre",
   perc.k = 1,
   x.axis.orientation = "slant",
+  ggtheme = hrbrthemes::theme_modern_rc(),
+  ggstatsplot.layer = FALSE,
   ggplot.component = ggplot2::theme(axis.text.x = ggplot2::element_text(face = "italic")),
   palette = "Set2",
   messages = FALSE
@@ -677,6 +680,44 @@ ggstatsplot::ggbarstats(
 ```
 
 <img src="man/figures/README-ggbarstats1-1.png" width="100%" />
+
+And, needless to say, there is also a `grouped_` variant of this
+function-
+
+``` r
+# setup
+library(ggstatsplot)
+set.seed(123)
+
+# let's create a smaller dataframe
+diamonds_short <- ggplot2::diamonds %>%
+  dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
+  dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2", "VVS1")) %>%
+  dplyr::sample_frac(tbl = ., size = 0.05)
+
+# plot
+ggstatsplot::grouped_ggbarstats(
+  data = diamonds_short,
+  main = color,
+  condition = clarity,
+  grouping.var = cut,
+  bf.message = TRUE,
+  sampling.plan = "poisson",
+  title.prefix = "Quality",
+  data.label = "both",
+  label.text.size = 3,
+  perc.k = 1,
+  package = "palettetown",
+  palette = "charizard",
+  ggtheme = ggthemes::theme_tufte(base_size = 12),
+  ggstatsplot.layer = FALSE,
+  messages = FALSE,
+  title.text = "Diamond quality and color combination",
+  nrow = 2
+)
+```
+
+<img src="man/figures/README-ggbarstats2-1.png" width="100%" />
 
 ## `gghistostats`
 
@@ -690,7 +731,7 @@ The `type` (of test) argument also accepts the following abbreviations:
 
 ``` r
 ggstatsplot::gghistostats(
-  data = ToothGrowth,             # dataframe from which variable is to be taken
+  data = ToothGrowth,                       # dataframe from which variable is to be taken
   x = len,                                  # numeric variable whose distribution is of interest
   title = "Distribution of Sepal.Length",   # title for the plot
   fill.gradient = TRUE,                     # use color gradient
@@ -1109,8 +1150,9 @@ models supported, see the associated vignette-
 The full power of `ggstatsplot` can be leveraged with a functional
 programming package like [`purrr`](http://purrr.tidyverse.org/) that
 replaces `for` loops with code that is both more succinct and easier to
-read and, therefore, `purrr` should be preferrred 😻. (Another old school
-option to do this effectively is using the `plyr` package.)
+read and, therefore, `purrr` should be preferrred \<U+0001F63B\>.
+(Another old school option to do this effectively is using the `plyr`
+package.)
 
 In such cases, `ggstatsplot` contains a helper function `combine_plots`
 to combine multiple plots, which can be useful for combining a list of

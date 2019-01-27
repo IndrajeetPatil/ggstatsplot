@@ -156,40 +156,15 @@ ggpiestats <- function(data,
 
   # =============================== dataframe ================================
 
-  # creating a dataframe based on which variables are provided
-  if (base::missing(condition)) {
-    if (base::missing(counts)) {
-      data <-
-        dplyr::select(
-          .data = data,
-          main = !!rlang::enquo(main)
-        )
-    } else {
-      data <-
-        dplyr::select(
-          .data = data,
-          main = !!rlang::enquo(main),
-          counts = !!rlang::enquo(counts)
-        )
-    }
-  } else {
-    if (base::missing(counts)) {
-      data <-
-        dplyr::select(
-          .data = data,
-          main = !!rlang::enquo(main),
-          condition = !!rlang::quo_name(rlang::enquo(condition))
-        )
-    } else {
-      data <-
-        dplyr::select(
-          .data = data,
-          main = !!rlang::enquo(main),
-          condition = !!rlang::quo_name(rlang::enquo(condition)),
-          counts = !!rlang::quo_name(rlang::enquo(counts))
-        )
-    }
-  }
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      main = !!rlang::enquo(main),
+      condition = !!rlang::enquo(condition),
+      counts = !!rlang::enquo(counts)
+    ) %>%
+    tidyr::drop_na(data = .)
 
   # =========================== converting counts ============================
 

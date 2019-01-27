@@ -11,7 +11,7 @@ ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
   label.fill.alpha = 1, bar.outline.color = "black",
   bf.message = FALSE, sampling.plan = "jointMulti",
   fixed.margin = "rows", prior.concentration = 1, title = NULL,
-  caption = NULL, legend.position = "bottom",
+  caption = NULL, legend.position = "right",
   x.axis.orientation = NULL, conf.level = 0.95, nboot = 25,
   simulate.p.value = FALSE, B = 2000, legend.title = NULL,
   xlab = NULL, ylab = "Percent", k = 2, perc.k = 0,
@@ -90,7 +90,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{caption}{The text for the plot caption.}
 
 \item{legend.position}{The position of the legend
-\code{"none"}, \code{"left"}, \code{"right"}, \code{"bottom"}, \code{"top"} (Default: \code{"bottom"}).}
+\code{"none"}, \code{"left"}, \code{"right"}, \code{"bottom"}, \code{"top"} (Default: \code{"right"}).}
 
 \item{x.axis.orientation}{The orientation of the \code{x} axis labels one of
 "slant" or "vertical" to change from the default horizontal

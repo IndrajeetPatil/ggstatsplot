@@ -58,7 +58,7 @@ mean_labeller <- function(data,
     dplyr::mutate_at(
       .tbl = .,
       .vars = dplyr::vars(dplyr::contains(".y")),
-      .funs = ~ ggstatsplot::specify_decimal_p(x = ., k = k)
+      .funs = ~ specify_decimal_p(x = ., k = k)
     )
 
   # adding confidence intervals to the label for mean
@@ -171,15 +171,8 @@ long_to_wide_converter <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    ) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
 
   # figuring out number of levels in the grouping factor
   x_n_levels <- length(levels(data$x))[[1]]

@@ -147,7 +147,7 @@ gghistostats <- function(data = NULL,
 
   # convert to a tibble and remove NAs from `x`
   data %<>%
-    dplyr::filter(.data = ., !is.na(x)) %>%
+    tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
   # Adding some binwidth sanity checking
@@ -201,7 +201,6 @@ gghistostats <- function(data = NULL,
   # information is needed
 
   if (bar.measure == "count") {
-
     # only counts
     plot <- ggplot2::ggplot(
       data = data,
@@ -223,7 +222,6 @@ gghistostats <- function(data = NULL,
         high = high.color
       )
   } else if (bar.measure == "proportion") {
-
     # only proportion
     plot <- ggplot2::ggplot(
       data = data,
@@ -248,7 +246,6 @@ gghistostats <- function(data = NULL,
       ggplot2::scale_y_continuous(labels = scales::percent) +
       ggplot2::ylab("proportion")
   } else if (bar.measure == "density") {
-
     # only density
     plot <- ggplot2::ggplot(
       data = data,
@@ -270,7 +267,6 @@ gghistostats <- function(data = NULL,
         high = high.color
       )
   } else if (bar.measure == "mix") {
-
     # all things combined
     plot <- ggplot2::ggplot(
       data = data,
@@ -293,7 +289,7 @@ gghistostats <- function(data = NULL,
       ) +
       ggplot2::scale_y_continuous(
         sec.axis = ggplot2::sec_axis(
-          trans = ~ . / nrow(x = data),
+          trans = ~ . / nrow(data),
           labels = scales::percent,
           name = "proportion"
         )

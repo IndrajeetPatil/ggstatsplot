@@ -264,35 +264,23 @@ ggbetweenstats <- function(data,
 
   # --------------------------------- data -----------------------------------
 
-  # if outlier label is provided then include it in the dataframe
-  if (base::missing(outlier.label)) {
-
-    # if outlier label is not provided then only include the two arguments
-    # provided
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      ) %>%
-      dplyr::mutate(.data = ., outlier.label = y)
-  } else {
-
-    # if outlier label is provided then include it to make a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y),
-        outlier.label = !!rlang::quo_name(rlang::enquo(outlier.label))
-      )
-  }
-
-  # removing NAs and any dropped factor levels
-  data %<>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y),
+      outlier.label = !!rlang::enquo(outlier.label)
+    ) %>%
+    tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
+
+  # if outlier.label column is not present, just use the values from `y` column
+  if (!"outlier.label" %in% names(data)) {
+    data %<>%
+      dplyr::mutate(.data = ., outlier.label = y)
+  }
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(

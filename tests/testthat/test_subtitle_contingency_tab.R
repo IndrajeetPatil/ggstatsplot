@@ -11,7 +11,7 @@ testthat::test_that(
     using_function1 <-
       suppressWarnings(ggstatsplot::subtitle_contingency_tab(
         data = Titanic_full,
-        main = Survived,
+        main = "Survived",
         condition = Class,
         stat.title = "Testing",
         k = 5,
@@ -85,7 +85,7 @@ testthat::test_that(
       suppressWarnings(ggstatsplot::subtitle_contingency_tab(
         data = df,
         main = am,
-        condition = cyl,
+        condition = "cyl",
         conf.level = .990,
         conf.type = "perc",
         nboot = 15,
