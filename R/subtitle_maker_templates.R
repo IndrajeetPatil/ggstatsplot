@@ -4,8 +4,9 @@
 #' @author Indrajeet Patil
 #'
 #' @param no.parameters An integer that specifies that the number of parameters
-#'   for the statistical test. Can be `1` for tests based on *t*-statistic or
-#'   chi-squared statistic, `2` for tests based on *F*-statistic.
+#'   for the statistical test. Can be `0` for non-parametric tests, `1` for
+#'   tests based on *t*-statistic or chi-squared statistic, `2` for tests based
+#'   on *F*-statistic.
 #' @param stat.title A character describing the test being run, which will be
 #'   added as a prefix in the subtitle. The default is `NULL`. An example of a
 #'   `stat.title` argument will be something like `"Student's t-test: "`.
@@ -15,7 +16,8 @@
 #'   `quote(italic("t"))`).
 #' @param statistic The numeric value of a statistic.
 #' @param parameter The numeric value of a parameter being modeled (often
-#'   degrees of freedom for the test).
+#'   degrees of freedom for the test). Default is `NULL` to accommodate
+#'   non-parametric tests.
 #' @param parameter2 Relevant only if the statistic in question has two degrees
 #'   of freedom (default: `NULL`).
 #' @param p.value The two-sided p-value associated with the observed statistic.
@@ -57,7 +59,7 @@ subtitle_template <- function(no.parameters,
                               stat.title = NULL,
                               statistic.text,
                               statistic,
-                              parameter,
+                              parameter = NULL,
                               parameter2 = NULL,
                               p.value,
                               effsize.text,
@@ -68,9 +70,67 @@ subtitle_template <- function(no.parameters,
                               conf.level = 0.95,
                               k = 3L,
                               k.parameter = 0L) {
-  # ------------------ statistic with 1 degree of freedom --------------------
+  # ------------------ statistic with 0 degrees of freedom --------------------
 
-  if (no.parameters == 1L) {
+  if (no.parameters == 0L) {
+    # preparing subtitle
+    subtitle <-
+      base::substitute(
+        expr =
+          paste(
+            stat.title,
+            statistic.text,
+            " = ",
+            statistic,
+            ", ",
+            italic("p"),
+            " = ",
+            p.value,
+            ", ",
+            effsize.text,
+            " = ",
+            effsize.estimate,
+            ", CI"[conf.level],
+            " [",
+            effsize.LL,
+            ", ",
+            effsize.UL,
+            "]",
+            ", ",
+            italic("n"),
+            " = ",
+            n
+          ),
+        env = base::list(
+          stat.title = stat.title,
+          statistic.text = statistic.text,
+          statistic = specify_decimal_p(x = statistic, k = k),
+          p.value = specify_decimal_p(x = p.value, k = k, p.value = TRUE),
+          effsize.text = effsize.text,
+          effsize.estimate = specify_decimal_p(x = effsize.estimate, k = k),
+          conf.level = paste(conf.level * 100, "%", sep = ""),
+          effsize.LL = specify_decimal_p(x = effsize.LL, k = k),
+          effsize.UL = specify_decimal_p(x = effsize.UL, k = k),
+          n = n
+        )
+      )
+
+    # ------------------ statistic with 1 degree of freedom -----------------
+  } else if (no.parameters == 1L) {
+
+    # check if parameter is specified
+    if (purrr::is_null(parameter)) {
+      base::stop(base::message(cat(
+        crayon::red("Error: "),
+        crayon::blue(
+          "For tests with statistic that have two parameters, \n",
+          "the argument `parameter` **must** be specified.\n"
+        ),
+        sep = ""
+      )),
+      call. = FALSE
+      )
+    }
 
     # preparing subtitle
     subtitle <-
@@ -107,11 +167,7 @@ subtitle_template <- function(no.parameters,
           statistic.text = statistic.text,
           statistic = specify_decimal_p(x = statistic, k = k),
           parameter = specify_decimal_p(x = parameter, k = k.parameter),
-          p.value = specify_decimal_p(
-            x = p.value,
-            k = k,
-            p.value = TRUE
-          ),
+          p.value = specify_decimal_p(x = p.value, k = k, p.value = TRUE),
           effsize.text = effsize.text,
           effsize.estimate = specify_decimal_p(x = effsize.estimate, k = k),
           conf.level = paste(conf.level * 100, "%", sep = ""),
@@ -124,13 +180,13 @@ subtitle_template <- function(no.parameters,
     # ------------------ statistic with 2 degrees of freedom -----------------
   } else if (no.parameters == 2L) {
 
-    # check if parameter 2 is specified
-    if (purrr::is_null(parameter2)) {
+    # check if parameters are specified
+    if (purrr::is_null(parameter) || purrr::is_null(parameter2)) {
       base::stop(base::message(cat(
         crayon::red("Error: "),
         crayon::blue(
           "For tests with statistic that have two parameters, \n",
-          "the argument `parameter2` must be specified.\n"
+          "the arguments `parameter` and `parameter2` **must** be specified.\n"
         ),
         sep = ""
       )),
@@ -176,11 +232,7 @@ subtitle_template <- function(no.parameters,
           statistic = specify_decimal_p(x = statistic, k = k),
           parameter = specify_decimal_p(x = parameter, k = 0L),
           parameter2 = specify_decimal_p(x = parameter2, k = k.parameter),
-          p.value = specify_decimal_p(
-            x = p.value,
-            k = k,
-            p.value = TRUE
-          ),
+          p.value = specify_decimal_p(x = p.value, k = k, p.value = TRUE),
           effsize.text = effsize.text,
           effsize.estimate = specify_decimal_p(x = effsize.estimate, k = k),
           conf.level = paste(conf.level * 100, "%", sep = ""),

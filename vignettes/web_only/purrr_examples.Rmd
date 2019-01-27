@@ -465,7 +465,7 @@ plot_list <- purrr::pmap(
     ggtheme = list(
       ggplot2::theme_minimal(base_family = "serif"),
       ggthemes::theme_tufte(),
-      hrbrthemes::theme_ipsum_rc(),
+      hrbrthemes::theme_ipsum_rc(axis_title_size = 10),
       ggthemes::theme_hc(bgcolor = "darkunica")
     ),
     messages = FALSE

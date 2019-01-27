@@ -6,14 +6,15 @@
 single parameter (e.g., t, chi-squared, etc.)}
 \usage{
 subtitle_template(no.parameters, stat.title = NULL, statistic.text,
-  statistic, parameter, parameter2 = NULL, p.value, effsize.text,
-  effsize.estimate, effsize.LL, effsize.UL, n, conf.level = 0.95,
-  k = 3L, k.parameter = 0L)
+  statistic, parameter = NULL, parameter2 = NULL, p.value,
+  effsize.text, effsize.estimate, effsize.LL, effsize.UL, n,
+  conf.level = 0.95, k = 3L, k.parameter = 0L)
 }
 \arguments{
 \item{no.parameters}{An integer that specifies that the number of parameters
-for the statistical test. Can be \code{1} for tests based on \emph{t}-statistic or
-chi-squared statistic, \code{2} for tests based on \emph{F}-statistic.}
+for the statistical test. Can be \code{0} for non-parametric tests, \code{1} for
+tests based on \emph{t}-statistic or chi-squared statistic, \code{2} for tests based
+on \emph{F}-statistic.}
 
 \item{stat.title}{A character describing the test being run, which will be
 added as a prefix in the subtitle. The default is \code{NULL}. An example of a
@@ -27,7 +28,8 @@ want to use plotmath, you will have to quote the argument (e.g.,
 \item{statistic}{The numeric value of a statistic.}
 
 \item{parameter}{The numeric value of a parameter being modeled (often
-degrees of freedom for the test).}
+degrees of freedom for the test). Default is \code{NULL} to accommodate
+non-parametric tests.}
 
 \item{parameter2}{Relevant only if the statistic in question has two degrees
 of freedom (default: \code{NULL}).}

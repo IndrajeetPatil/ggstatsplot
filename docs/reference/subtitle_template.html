@@ -181,9 +181,9 @@ single parameter (e.g., t, chi-squared, etc.)</p>
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_template</span>(<span class='no'>no.parameters</span>, <span class='kw'>stat.title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>statistic.text</span>,
-  <span class='no'>statistic</span>, <span class='no'>parameter</span>, <span class='kw'>parameter2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>p.value</span>, <span class='no'>effsize.text</span>,
-  <span class='no'>effsize.estimate</span>, <span class='no'>effsize.LL</span>, <span class='no'>effsize.UL</span>, <span class='no'>n</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3L</span>, <span class='kw'>k.parameter</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
+  <span class='no'>statistic</span>, <span class='kw'>parameter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>parameter2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>p.value</span>,
+  <span class='no'>effsize.text</span>, <span class='no'>effsize.estimate</span>, <span class='no'>effsize.LL</span>, <span class='no'>effsize.UL</span>, <span class='no'>n</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3L</span>, <span class='kw'>k.parameter</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,8 +191,9 @@ single parameter (e.g., t, chi-squared, etc.)</p>
     <tr>
       <th>no.parameters</th>
       <td><p>An integer that specifies that the number of parameters
-for the statistical test. Can be <code>1</code> for tests based on <em>t</em>-statistic or
-chi-squared statistic, <code>2</code> for tests based on <em>F</em>-statistic.</p></td>
+for the statistical test. Can be <code>0</code> for non-parametric tests, <code>1</code> for
+tests based on <em>t</em>-statistic or chi-squared statistic, <code>2</code> for tests based
+on <em>F</em>-statistic.</p></td>
     </tr>
     <tr>
       <th>stat.title</th>
@@ -214,7 +215,8 @@ want to use plotmath, you will have to quote the argument (e.g.,
     <tr>
       <th>parameter</th>
       <td><p>The numeric value of a parameter being modeled (often
-degrees of freedom for the test).</p></td>
+degrees of freedom for the test). Default is <code>NULL</code> to accommodate
+non-parametric tests.</p></td>
     </tr>
     <tr>
       <th>parameter2</th>

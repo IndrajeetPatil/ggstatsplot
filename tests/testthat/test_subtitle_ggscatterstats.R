@@ -27,9 +27,7 @@ testthat::test_that(
         paste(
           NULL,
           "log"["e"](italic("S")),
-          "(",
-          "1577",
-          ") = ",
+          " = ",
           "19.67322",
           ", ",
           italic("p"),

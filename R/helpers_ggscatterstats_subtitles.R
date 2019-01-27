@@ -139,11 +139,11 @@ subtitle_ggscatterstats <- function(data,
 
     # preparing subtitle
     subtitle <- subtitle_template(
-      no.parameters = 1L,
+      no.parameters = 0L,
       stat.title = NULL,
       statistic.text = quote("log"["e"](italic("S"))),
-      statistic = log(x = stats_df$statistic[[1]], base = exp(1)),
-      parameter = (sample_size - 2L),
+      statistic = log(stats_df$statistic[[1]]),
+      parameter = NULL,
       p.value = stats_df$p.value[[1]],
       effsize.text = quote(italic(rho)["Spearman"]),
       effsize.estimate = stats_df$estimate,

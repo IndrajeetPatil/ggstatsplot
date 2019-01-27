@@ -117,7 +117,6 @@
 #' @importFrom effsize cohen.d
 #' @importFrom sjstats eta_sq omega_sq
 #' @importFrom stats na.omit t.test oneway.test
-#' @importFrom coin wilcox_test statistic
 #' @importFrom rlang enquo quo_name as_name !!
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom crayon blue green red yellow

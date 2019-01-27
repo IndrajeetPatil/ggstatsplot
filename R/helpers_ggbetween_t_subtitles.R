@@ -20,20 +20,20 @@
 #' @importFrom effsize cohen.d
 #'
 #' @examples
-#'
+#' 
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#'
+#' 
 #' # with defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
@@ -156,9 +156,12 @@ subtitle_t_parametric <- function(data,
 }
 
 
-#' @title Making text subtitle for the Mann-Whitney U-test
+#' @title Making text subtitle for the Mann-Whitney *U*-test
 #'   (between-/within-subjects designs).
 #' @author Indrajeet Patil
+#' @details Two-sample Wilcoxon test, also known as Mann-Whitney test, is
+#'   carried out. The effect size estimate for this test is Hodges–Lehmann–Sen
+#'   estimator.
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
@@ -168,7 +171,6 @@ subtitle_t_parametric <- function(data,
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom stats wilcox.test
-#' @importFrom coin wilcox_test
 #'
 #' @examples
 #' subtitle_mann_nonparametric(
@@ -185,6 +187,7 @@ subtitle_mann_nonparametric <-
              y,
              paired = FALSE,
              k = 2,
+             conf.level = 0.95,
              messages = TRUE,
              ...) {
 
@@ -203,8 +206,8 @@ subtitle_mann_nonparametric <-
     sample_size <- nrow(data)
 
     # setting up the Mann-Whitney U-test and getting its summary
-    mann_stat <-
-      stats::wilcox.test(
+    stats_df <-
+      broom::tidy(stats::wilcox.test(
         formula = y ~ x,
         data = data,
         paired = paired,
@@ -213,83 +216,26 @@ subtitle_mann_nonparametric <-
         exact = FALSE,
         correct = TRUE,
         conf.int = TRUE,
-        conf.level = 0.95
-      )
-
-    # computing Z score
-    z_stat <-
-      coin::wilcox_test(
-        formula = y ~ x,
-        data = data,
-        distribution = "asymptotic",
-        alternative = "two.sided",
-        conf.int = TRUE,
-        conf.level = 0.95
-      )
-
-    # displaying message about which test was run
-    if (isTRUE(messages)) {
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue(
-          "Two-sample Wilcoxon test, also known as Mann-Whitney test, was run.\n"
-        ),
-        sep = ""
+        conf.level = conf.level
       ))
-    }
 
-    # mann_stat input represents the U-test summary derived from `stats`
-    # library, while Z is from Exact `Wilcoxon-Pratt Signed-Rank Test` from
-    # `coin` library
-    # effect size is computed as `r = z/sqrt(n)`
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            italic(U),
-            " = ",
-            estimate,
-            ", ",
-            italic(Z),
-            " = ",
-            z_value,
-            ", ",
-            italic(" p"),
-            " = ",
-            pvalue,
-            ", ",
-            italic("r"),
-            " = ",
-            r,
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = specify_decimal_p(
-            x = mann_stat$statistic[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          z_value = specify_decimal_p(
-            x = coin::statistic(z_stat)[[1]],
-            k = k,
-            p.value = FALSE
-          ),
-          pvalue = specify_decimal_p(
-            x = mann_stat$p.value[[1]],
-            k = k,
-            p.value = TRUE
-          ),
-          r = specify_decimal_p(
-            x = (coin::statistic(z_stat)[[1]] / sqrt(length(data$y))),
-            k = k,
-            p.value = FALSE
-          ),
-          n = sample_size
-        )
-      )
+    # preparing subtitle
+    subtitle <- subtitle_template(
+      no.parameters = 0L,
+      parameter = NULL,
+      parameter2 = NULL,
+      stat.title = NULL,
+      statistic.text = quote("log"["e"](italic("W"))),
+      statistic = log(stats_df$statistic[[1]]),
+      p.value = stats_df$p.value[[1]],
+      effsize.text = quote(Delta["HLS"]),
+      effsize.estimate = stats_df$estimate[[1]],
+      effsize.LL = stats_df$conf.low[[1]],
+      effsize.UL = stats_df$conf.high[[1]],
+      n = sample_size,
+      conf.level = conf.level,
+      k = k
+    )
 
     # return the subtitle
     return(subtitle)
@@ -317,14 +263,14 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
-#'
+#' 
 #' # with defaults
 #' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_t_robust(
 #'   data = ToothGrowth,
@@ -334,7 +280,7 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'   k = 1,
 #'   tr = 0.2
 #' )
-#'
+#' 
 #' # within-subjects design
 #' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
@@ -483,18 +429,18 @@ subtitle_t_robust <- function(data,
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # between-subjects design
-#'
+#' 
 #' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#'
+#' 
 #' # within-subjects design
-#'
+#' 
 #' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,

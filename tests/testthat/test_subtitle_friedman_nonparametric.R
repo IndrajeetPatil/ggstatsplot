@@ -37,7 +37,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic("W")["kendall"],
+          italic("W")["Kendall"],
           " = ",
           "0.2115",
           ", ",

@@ -3,14 +3,14 @@
 \name{subtitle_mann_nonparametric}
 \alias{subtitle_mann_nonparametric}
 \alias{subtitle_t_nonparametric}
-\title{Making text subtitle for the Mann-Whitney U-test
+\title{Making text subtitle for the Mann-Whitney \emph{U}-test
 (between-/within-subjects designs).}
 \usage{
 subtitle_mann_nonparametric(data, x, y, paired = FALSE, k = 2,
-  messages = TRUE, ...)
+  conf.level = 0.95, messages = TRUE, ...)
 
 subtitle_t_nonparametric(data, x, y, paired = FALSE, k = 2,
-  messages = TRUE, ...)
+  conf.level = 0.95, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
@@ -26,14 +26,22 @@ taken.}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
+\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
+default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
+
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
 \item{...}{Additional arguments (ignored).}
 }
 \description{
-Making text subtitle for the Mann-Whitney U-test
+Making text subtitle for the Mann-Whitney \emph{U}-test
 (between-/within-subjects designs).
+}
+\details{
+Two-sample Wilcoxon test, also known as Mann-Whitney test, is
+carried out. The effect size estimate for this test is Hodges–Lehmann–Sen
+estimator.
 }
 \examples{
 subtitle_mann_nonparametric(

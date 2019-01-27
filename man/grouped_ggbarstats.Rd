@@ -227,6 +227,7 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 
+\dontrun{
 # with condition and with count data
 library(jmv)
 
@@ -239,7 +240,6 @@ ggstatsplot::grouped_ggbarstats(
 )
 
 # the following will take slightly more amount of time
-\dontrun{
 # for reproducibility
 set.seed(123)
 

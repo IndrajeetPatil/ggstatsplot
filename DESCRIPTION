@@ -34,7 +34,6 @@ Imports:
     boot (>= 1.3-20),
     broom (>= 0.5.1),
     broom.mixed (>= 0.2.3),
-    coin (>= 1.2-2),
     cowplot (>= 0.9.4),
     crayon (>= 1.3.4),
     dplyr (>= 0.7.8),

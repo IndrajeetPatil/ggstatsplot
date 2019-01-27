@@ -134,40 +134,41 @@ subtitle_t_onesample <- function(data = NULL,
 
     # ========================== non-parametric ==============================
   } else if (stats.type == "nonparametric") {
-    # preparing the subtitle
-    subtitle <-
-      base::substitute(
-        expr =
-          paste(
-            italic("U"),
-            " = ",
-            estimate,
-            ", ",
-            italic("p"),
-            " = ",
-            p.value,
-            ", ",
-            italic("d"),
-            " = ",
-            effsize,
-            ", ",
-            italic("n"),
-            " = ",
-            n
-          ),
-        env = base::list(
-          estimate = stats_df$`stat[wilc]`,
-          p.value = specify_decimal_p(x = stats_df$`p[wilc]`, k = k, p.value = TRUE),
-          effsize = specify_decimal_p(x = stats_df$`es[wilc]`, k = k),
-          n = sample_size
-        )
-      )
+    # setting up the Mann-Whitney U-test and getting its summary
+    stats_df <-
+      broom::tidy(stats::wilcox.test(
+        x = data$x,
+        alternative = "two.sided",
+        na.action = na.omit,
+        mu = test.value,
+        exact = FALSE,
+        correct = TRUE,
+        conf.int = TRUE,
+        conf.level = conf.level
+      ))
 
+    # preparing subtitle
+    subtitle <- subtitle_template(
+      no.parameters = 0L,
+      parameter = NULL,
+      parameter2 = NULL,
+      stat.title = NULL,
+      statistic.text = quote("log"["e"](italic("W"))),
+      statistic = log(stats_df$statistic[[1]]),
+      p.value = stats_df$p.value[[1]],
+      effsize.text = quote(Delta["HLS"]),
+      effsize.estimate = stats_df$estimate[[1]],
+      effsize.LL = stats_df$conf.low[[1]],
+      effsize.UL = stats_df$conf.high[[1]],
+      n = sample_size,
+      conf.level = conf.level,
+      k = k
+    )
     # ======================= robust =========================================
   } else if (stats.type == "robust") {
 
     # running one-sample percentile bootstrap
-    rob_os <- WRS2::onesampb(
+    stats_df <- WRS2::onesampb(
       x = data$x,
       est = robust.estimator,
       nboot = nboot,
@@ -178,13 +179,9 @@ subtitle_t_onesample <- function(data = NULL,
     if (isTRUE(messages)) {
       base::message(cat(
         crayon::green("Note: "),
-        crayon::blue(
-          "95% CI for robust location measure",
-          crayon::yellow(robust.estimator),
-          "computed with",
-          crayon::yellow(nboot),
-          "bootstrap samples.\n"
-        ),
+        crayon::blue("95% CI for robust location measure computed with "),
+        crayon::yellow(nboot),
+        crayon::blue(" bootstrap samples.\n"),
         sep = ""
       ))
     }
@@ -211,10 +208,10 @@ subtitle_t_onesample <- function(data = NULL,
           n
         ),
       env = base::list(
-        estimate = specify_decimal_p(x = rob_os$estimate[[1]], k = k),
-        LL = specify_decimal_p(x = rob_os$ci[[1]], k = k),
-        UL = specify_decimal_p(x = rob_os$ci[[2]], k = k),
-        p.value = specify_decimal_p(x = rob_os$p.value[[1]], k = k, p.value = TRUE),
+        estimate = specify_decimal_p(x = stats_df$estimate[[1]], k = k),
+        LL = specify_decimal_p(x = stats_df$ci[[1]], k = k),
+        UL = specify_decimal_p(x = stats_df$ci[[2]], k = k),
+        p.value = specify_decimal_p(x = stats_df$p.value[[1]], k = k, p.value = TRUE),
         n = sample_size
       )
     )
