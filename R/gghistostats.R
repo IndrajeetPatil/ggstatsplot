@@ -47,7 +47,7 @@
 #' @importFrom crayon green blue yellow red
 #'
 #' @examples
-#' 
+#'
 #' # most basic function call with the defaults
 #' # this is the **only** function where data argument can be `NULL`
 #' ggstatsplot::gghistostats(
@@ -55,7 +55,7 @@
 #'   xlab = "Tooth length",
 #'   centrality.para = "median"
 #' )
-#' 
+#'
 #' # a detailed function call
 #' ggstatsplot::gghistostats(
 #'   data = iris,
@@ -243,7 +243,7 @@ gghistostats <- function(data = NULL,
         high = high.color,
         labels = percent
       ) +
-      ggplot2::scale_y_continuous(labels = scales::percent) +
+      ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
       ggplot2::ylab("proportion")
   } else if (bar.measure == "density") {
     # only density
@@ -290,7 +290,7 @@ gghistostats <- function(data = NULL,
       ggplot2::scale_y_continuous(
         sec.axis = ggplot2::sec_axis(
           trans = ~ . / nrow(data),
-          labels = scales::percent,
+          labels = scales::percent_format(accuracy = 1),
           name = "proportion"
         )
       ) +
