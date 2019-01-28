@@ -218,7 +218,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$y.sec.labels,
-      c("0.0%", "10.0%", "20.0%", "30.0%", "40.0%")
+      c("0%", "10%", "20%", "30%", "40%")
     )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$y.arrange,
@@ -317,7 +317,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$y.labels,
-      c("0.0%", "10.0%", "20.0%")
+      c("0%", "10%", "20%")
     )
   }
 )
