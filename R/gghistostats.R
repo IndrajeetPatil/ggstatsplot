@@ -42,7 +42,7 @@
 #' @importFrom rlang enquo as_name !!
 #' @importFrom jmv ttestOneS
 #' @importFrom WRS2 onesampb
-#' @importFrom scales percent
+#' @importFrom scales percent percent_format
 #' @importFrom stats dnorm
 #' @importFrom crayon green blue yellow red
 #'
