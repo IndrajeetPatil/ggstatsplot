@@ -141,21 +141,14 @@ grouped_ggcorrmat <- function(data,
         .data = data,
         !!rlang::enquo(grouping.var),
         !!rlang::enquo(cor.vars)
-      ) %>%
-      dplyr::mutate(
-        .data = .,
-        title.text = !!rlang::enquo(grouping.var)
       )
   } else {
-    df <- data %>%
-      dplyr::mutate(
-        .data = .,
-        title.text = !!rlang::enquo(grouping.var)
-      )
+    df <- data
   }
 
   # creating a nested dataframe
   df %<>%
+    dplyr::mutate(.data = ., title.text = !!rlang::enquo(grouping.var)) %>%
     dplyr::mutate_if(
       .tbl = .,
       .predicate = purrr::is_bare_character,

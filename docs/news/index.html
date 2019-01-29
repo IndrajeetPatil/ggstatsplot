@@ -180,7 +180,7 @@
 <p>MINOR CHANGES</p>
 <ul>
 <li>All <code>grouped_</code> functions had argument <code>title.prefix</code> that defaulted to <code>"Group"</code>. It now instead defaults to <code>NULL</code>, in which case the prefix will variable name for <code>grouping.var</code> argument.</li>
-<li>To accommodate non-paramtric tests, <code>subtitle_template</code> function can now work with <code>parameter = NULL</code>.</li>
+<li>To accommodate non-parametric tests, <code>subtitle_template</code> function can now work with <code>parameter = NULL</code>.</li>
 <li>For <code>ggbetweenstats</code>, details contained in the subtitle for non-parametric test are modified. It now uses Hodges–Lehmann–Sen estimator as effect size. This removes <code>coin</code> from dependencies.</li>
 <li>
 <code>ggbetweenstats</code> and its <code>grouped_</code> variant gain a new argument <code>axes.range.restrict</code> (which defaults to <code>FALSE</code>). This restricts <code>y</code>-axes limits to minimum and maximum of <code>y</code> variable. This is what these functions were doing by default in the past versions, which created issues for additional ggplot components using the <code>ggplot.component</code> argument.</li>

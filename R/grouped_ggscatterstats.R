@@ -186,6 +186,8 @@ grouped_ggscatterstats <- function(data,
   }
 
   # getting the dataframe ready
+  # note that `dplyr::everything` is used because point labelling can involve
+  # any of the data columns
   df <-
     dplyr::select(
       .data = data,
@@ -193,10 +195,6 @@ grouped_ggscatterstats <- function(data,
       !!rlang::enquo(x),
       !!rlang::enquo(y),
       dplyr::everything()
-    ) %>%
-    dplyr::mutate(
-      .data = .,
-      title.text = !!rlang::enquo(grouping.var)
     )
 
   # creating dataframe per level of grouping
@@ -212,7 +210,7 @@ grouped_ggscatterstats <- function(data,
       .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]])
+    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
 
   # if labeling expression has been specified, format the arguments accordingly
   if (isTRUE(expression.present)) {
@@ -332,7 +330,6 @@ grouped_ggscatterstats <- function(data,
       ggplot.component = ggplot.component,
       messages = messages
     )
-
 
   # combining the list of plots into a single plot
   combined_plot <-

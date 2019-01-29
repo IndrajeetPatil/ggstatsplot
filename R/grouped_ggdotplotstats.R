@@ -105,10 +105,8 @@ grouped_ggdotplotstats <- function(data,
       !!rlang::enquo(x),
       !!rlang::enquo(y)
     ) %>%
-    dplyr::mutate(
-      .data = .,
-      title.text = !!rlang::enquo(grouping.var)
-    )
+    tidyr::drop_na(data = .) %>%
+    dplyr::mutate(.data = ., title.text = !!rlang::enquo(grouping.var))
 
   # creating a nested dataframe
   df %<>%
@@ -122,7 +120,6 @@ grouped_ggdotplotstats <- function(data,
       .predicate = is.factor,
       .funs = ~ base::droplevels(.)
     ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)

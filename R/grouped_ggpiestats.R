@@ -145,64 +145,17 @@ grouped_ggpiestats <- function(data,
 
   # ======================== preparing dataframe =============================
 
-  # if condition variable *is* provided
-  if (!missing(condition)) {
-    # if the data is not tabled
-    if (missing(counts)) {
-      df <-
-        dplyr::select(
-          .data = data,
-          !!rlang::enquo(grouping.var),
-          !!rlang::enquo(main),
-          !!rlang::enquo(condition)
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          title.text = !!rlang::enquo(grouping.var)
-        )
-    } else if (!missing(counts)) {
-      # if data is tabled
-      df <-
-        dplyr::select(
-          .data = data,
-          !!rlang::enquo(grouping.var),
-          !!rlang::enquo(main),
-          !!rlang::enquo(condition),
-          !!rlang::enquo(counts)
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          title.text = !!rlang::enquo(grouping.var)
-        )
-    }
-  } else if (missing(condition)) {
-    # if condition variable is *not* provided
-    if (base::missing(counts)) {
-      df <-
-        dplyr::select(
-          .data = data,
-          !!rlang::enquo(grouping.var),
-          !!rlang::enquo(main)
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          title.text = !!rlang::enquo(grouping.var)
-        )
-    } else if (!missing(counts)) {
-      # if data is tabled
-      df <-
-        dplyr::select(
-          .data = data,
-          !!rlang::enquo(grouping.var),
-          !!rlang::enquo(main),
-          !!rlang::enquo(counts)
-        ) %>%
-        dplyr::mutate(
-          .data = .,
-          title.text = !!rlang::enquo(grouping.var)
-        )
-    }
-  }
+  # creating a dataframe
+  df <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(grouping.var),
+      !!rlang::enquo(main),
+      !!rlang::enquo(condition),
+      !!rlang::enquo(counts)
+    ) %>%
+    tidyr::drop_na(data = .) %>%
+    dplyr::mutate(.data = ., title.text = !!rlang::enquo(grouping.var))
 
   # make a list of dataframes by grouping variable
   df %<>%
@@ -217,7 +170,7 @@ grouped_ggpiestats <- function(data,
       .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]])
+    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
 
   # ============== build pmap list based on conditions =====================
 

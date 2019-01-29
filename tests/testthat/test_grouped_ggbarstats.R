@@ -25,6 +25,12 @@ testthat::test_that(
       messages = TRUE
     ))
 
+    testthat::expect_error(ggstatsplot::grouped_ggbarstats(
+      data = mpg_short,
+      main = cyl,
+      messages = TRUE
+    ))
+
     testthat::expect_output(
       ggstatsplot::grouped_ggbarstats(
         data = mpg_short,

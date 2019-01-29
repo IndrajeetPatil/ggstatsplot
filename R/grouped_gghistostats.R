@@ -86,7 +86,7 @@ grouped_gghistostats <- function(data,
                                  messages = TRUE,
                                  ...) {
 
-  # ======================== preparing dataframe ============================
+  # ======================== computing binwidth ============================
 
   # ensure the grouping variable works quoted or unquoted
   grouping.var <- rlang::ensym(grouping.var)
@@ -96,32 +96,14 @@ grouped_gghistostats <- function(data,
     title.prefix <- rlang::as_name(grouping.var)
   }
 
-  # getting the dataframe ready
-  df <-
-    dplyr::select(
-      .data = data,
-      !!rlang::enquo(grouping.var),
-      !!rlang::enquo(x)
-    ) %>%
-    dplyr::mutate(
-      .data = .,
-      title.text = !!rlang::enquo(grouping.var)
-    )
-
   # maximum value for x
   binmax <-
-    dplyr::select(
-      .data = data,
-      !!rlang::enquo(x)
-    ) %>%
+    dplyr::select(.data = data, !!rlang::enquo(x)) %>%
     max(x = ., na.rm = TRUE)
 
   # minimum value for x
   binmin <-
-    dplyr::select(
-      .data = data,
-      !!rlang::enquo(x)
-    ) %>%
+    dplyr::select(.data = data, !!rlang::enquo(x)) %>%
     min(x = ., na.rm = TRUE)
 
   # number of datapoints
@@ -131,6 +113,18 @@ grouped_gghistostats <- function(data,
   if (is.null(binwidth)) {
     binwidth <- (binmax - binmin) / sqrt(bincount)
   }
+
+  # ======================== preparing dataframe ============================
+
+  # getting the dataframe ready
+  df <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(grouping.var),
+      !!rlang::enquo(x)
+    ) %>%
+    tidyr::drop_na(data = .) %>%
+    dplyr::mutate(.data = ., title.text = !!rlang::enquo(grouping.var))
 
   # creating a nested dataframe
   df %<>%
@@ -144,7 +138,6 @@ grouped_gghistostats <- function(data,
       .predicate = is.factor,
       .funs = ~ base::droplevels(.)
     ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)

@@ -151,41 +151,17 @@ grouped_ggbetweenstats <- function(data,
 
   # ======================== preparing dataframe ==========================
 
-  # prepare dataframe based on outlier tagging requirements
-  if (!base::missing(outlier.label) &&
-    "outlier.tagging" %in% names(param_list)) {
-    df <-
-      dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(x),
-        !!rlang::enquo(y),
-        !!rlang::enquo(outlier.label)
-      ) %>%
-      dplyr::mutate(
-        .data = .,
-        title.text = !!rlang::enquo(grouping.var)
-      ) %>%
-      dplyr::filter(
-        .data = .,
-        !is.na(!!rlang::enquo(x)),
-        !is.na(!!rlang::enquo(y)),
-        !is.na(!!rlang::enquo(grouping.var))
-      )
-  } else {
-    df <-
-      dplyr::select(
-        .data = data,
-        !!rlang::enquo(grouping.var),
-        !!rlang::enquo(x),
-        !!rlang::enquo(y)
-      ) %>%
-      dplyr::mutate(
-        .data = .,
-        title.text = !!rlang::enquo(grouping.var)
-      ) %>%
-      stats::na.omit(.)
-  }
+  # creating a dataframe
+  df <-
+    dplyr::select(
+      .data = data,
+      !!rlang::enquo(x),
+      !!rlang::enquo(y),
+      !!rlang::enquo(grouping.var),
+      !!rlang::enquo(outlier.label)
+    ) %>%
+    tidyr::drop_na(data = .) %>%
+    tibble::as_tibble(x = .)
 
   # make a list of dataframes by grouping variable
   df %<>%
@@ -199,16 +175,15 @@ grouped_ggbetweenstats <- function(data,
       .predicate = is.factor,
       .funs = ~ base::droplevels(.)
     ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]])
+    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
 
   # ============== build pmap list based on conditions =====================
 
   if (!"outlier.tagging" %in% names(param_list) || isFALSE(outlier.tagging)) {
     flexiblelist <- list(
       data = df,
-      x = rlang::quo_text(ensym(x)),
-      y = rlang::quo_text(ensym(y)),
+      x = rlang::quo_text(rlang::ensym(x)),
+      y = rlang::quo_text(rlang::ensym(y)),
       title = glue::glue("{title.prefix}: {names(df)}")
     )
   }
@@ -216,8 +191,8 @@ grouped_ggbetweenstats <- function(data,
   if (isTRUE(outlier.tagging) && !"outlier.label" %in% names(param_list)) {
     flexiblelist <- list(
       data = df,
-      x = rlang::quo_text(ensym(x)),
-      y = rlang::quo_text(ensym(y)),
+      x = rlang::quo_text(rlang::ensym(x)),
+      y = rlang::quo_text(rlang::ensym(y)),
       outlier.tagging = TRUE,
       title = glue::glue("{title.prefix}: {names(df)}")
     )
@@ -226,9 +201,9 @@ grouped_ggbetweenstats <- function(data,
   if (isTRUE(outlier.tagging) && "outlier.label" %in% names(param_list)) {
     flexiblelist <- list(
       data = df,
-      x = rlang::quo_text(ensym(x)),
-      y = rlang::quo_text(ensym(y)),
-      outlier.label = rlang::quo_text(ensym(outlier.label)),
+      x = rlang::quo_text(rlang::ensym(x)),
+      y = rlang::quo_text(rlang::ensym(y)),
+      outlier.label = rlang::quo_text(rlang::ensym(outlier.label)),
       outlier.tagging = TRUE,
       title = glue::glue("{title.prefix}: {names(df)}")
     )

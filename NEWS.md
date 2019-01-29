@@ -3,7 +3,7 @@
 NEW FEATURES
 
   - New function `ggbarstats` (and its `grouped_` variant) introduced for making
-    bar charts (thanks to \#78).
+    bar charts (thanks to #78).
   - `gghistostats` and its `grouped_` variant has a new argument `normal.curve`
     to superpose a normal distribution curve on top of the histogram (#138).
   - `ggcoefstats` can support following new regression model objects: `Gam`,
@@ -14,7 +14,7 @@ MINOR CHANGES
   - All `grouped_` functions had argument `title.prefix` that defaulted to
     `"Group"`. It now instead defaults to `NULL`, in which case the prefix will
     variable name for `grouping.var` argument.
-  - To accommodate non-paramtric tests, `subtitle_template` function can now
+  - To accommodate non-parametric tests, `subtitle_template` function can now
     work with `parameter = NULL`.
   - For `ggbetweenstats`, details contained in the subtitle for non-parametric
     test are modified. It now uses Hodges–Lehmann–Sen estimator as effect size.

@@ -187,6 +187,12 @@ testthat::test_that(
         "#9A8822"
       )
     )
+
+    # test layout
+    df_layout <- tibble::as_tibble(pb$layout$layout)
+    testthat::expect_equal(dim(df_layout), c(3L, 6L))
+    testthat::expect_identical(class(df_layout$condition), "factor")
+    testthat::expect_identical(levels(df_layout$condition), c("4", "6", "8"))
   }
 )
 

@@ -313,7 +313,6 @@ ggstatsplot::grouped_ggbetweenstats(
   package = "ggsci",
   messages = FALSE,
   nrow = 2,
-  ncol = 2,
   title.text = "Differences in movie length by mpaa ratings for different genres"
 )
 ```
