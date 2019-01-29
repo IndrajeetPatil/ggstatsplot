@@ -21,7 +21,7 @@ ggbetweenstats(data, x, y, plot.type = "boxviolin",
   outlier.label.color = "black", outlier.color = "black",
   outlier.coef = 1.5, mean.plotting = TRUE, mean.ci = FALSE,
   mean.size = 5, mean.color = "darkred", point.jitter.width = NULL,
-  point.jitter.height = 0.1, point.dodge.width = 0.6,
+  point.jitter.height = 0, point.dodge.width = 0.6,
   ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   package = "RColorBrewer", palette = "Dark2", direction = 1,
   ggplot.component = NULL, messages = TRUE)

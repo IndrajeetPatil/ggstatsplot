@@ -24,17 +24,17 @@
 #' @inherit ggcorrmat return details
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # for plot
 #' # (without specifiying needed variables; all numeric variables will be used)
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore
 #' )
-#'
+#' 
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -47,7 +47,7 @@
 #'   palette = "BottleRocket2",
 #'   nrow = 2
 #' )
-#'
+#' 
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -55,7 +55,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#'
+#' 
 #' # for getting confidence intervals
 #' # confidence intervals are not available for **robust** correlation
 #' ggstatsplot::grouped_ggcorrmat(

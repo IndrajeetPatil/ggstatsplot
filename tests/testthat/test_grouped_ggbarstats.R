@@ -49,6 +49,7 @@ testthat::test_that(
         main = cyl,
         condition = class,
         grouping.var = drv,
+        x.axis.orientation = "horizontal",
         messages = TRUE
       )
     ),
@@ -63,6 +64,7 @@ testthat::test_that(
         main = "cyl",
         condition = "class",
         grouping.var = "drv",
+        x.axis.orientation = "slant",
         messages = FALSE
       )
     ),

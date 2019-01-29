@@ -150,7 +150,7 @@ testthat::test_that(
 
     # range of y variable
     testthat::expect_equal(ggplot2::layer_scales(p)$y$range$range,
-      c(-0.0949, 5.71200000),
+      c(0.00014, 5.71200000),
       tolerance = 1e-5
     )
 
