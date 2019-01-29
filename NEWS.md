@@ -8,6 +8,8 @@ NEW FEATURES
     to superpose a normal distribution curve on top of the histogram (#138).
   - `ggcoefstats` can support following new regression model objects: `Gam`,
     `gamlss`, `mjoint`.
+  - New function to convert plots which are not of `gg`/`ggplot` class to
+    convert into `ggplot` objects.
   
 MINOR CHANGES
 

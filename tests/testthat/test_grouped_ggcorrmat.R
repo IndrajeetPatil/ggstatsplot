@@ -106,6 +106,14 @@ testthat::test_that(
       messages = FALSE
     )
 
+    # edge case
+    df3 <- ggstatsplot::grouped_ggcorrmat(
+      data = ggplot2::msleep,
+      grouping.var = vore,
+      cor.vars = brainwt,
+      output = "p"
+    )
+
     # testing dataframe
     testthat::expect_equal(dim(df2), c(12L, 5L))
     testthat::expect_equal(
@@ -125,6 +133,15 @@ testthat::test_that(
         0.32
       ),
       tolerance = 0.001
+    )
+
+    # testing edge case
+    testthat::expect_equal(dim(df3), c(4L, 3L))
+    testthat::expect_identical(unique(df3$variable), "brainwt")
+    testthat::expect_equal(df3$brainwt, c(0, 0, 0, 0), tolerance = 0.001)
+    testthat::expect_identical(
+      as.character(levels(as.factor(na.omit(ggplot2::msleep$vore)))),
+      df3$vore
     )
   }
 )

@@ -1,7 +1,6 @@
 #' @title Visualization of a correlalogram (or correlation matrix) for all
 #'   levels of a grouping variable
 #' @name grouped_ggcorrmat
-#' @aliases grouped_ggcorrmat
 #' @description Helper function for `ggstatsplot::ggcorrmat` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.
@@ -25,17 +24,17 @@
 #' @inherit ggcorrmat return details
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # for plot
 #' # (without specifiying needed variables; all numeric variables will be used)
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore
 #' )
-#' 
+#'
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -48,7 +47,7 @@
 #'   palette = "BottleRocket2",
 #'   nrow = 2
 #' )
-#' 
+#'
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -56,7 +55,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#' 
+#'
 #' # for getting confidence intervals
 #' # confidence intervals are not available for **robust** correlation
 #' ggstatsplot::grouped_ggcorrmat(
@@ -164,71 +163,73 @@ grouped_ggcorrmat <- function(data,
     dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
     tidyr::nest(data = .)
 
-  # ===================== grouped plot ===================================
+  # ===================== grouped analysis ===================================
 
   # see which method was used to specify type of correlation
   corr.method <- type %||% corr.method
   digits <- k %||% digits
 
-  # creating a list of plots
-  if (output == "plot") {
-    plotlist_purrr <-
-      df %>%
-      dplyr::mutate(
-        .data = .,
-        plots = data %>%
-          purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-          purrr::map(
-            .x = .,
-            .f = ~ ggstatsplot::ggcorrmat(
-              title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
-              data = .,
-              cor.vars.names = cor.vars.names,
-              output = output,
-              matrix.type = matrix.type,
-              method = method,
-              corr.method = corr.method,
-              exact = exact,
-              continuity = continuity,
-              beta = beta,
-              digits = digits,
-              sig.level = sig.level,
-              p.adjust.method = p.adjust.method,
-              hc.order = hc.order,
-              hc.method = hc.method,
-              lab = lab,
-              package = package,
-              palette = palette,
-              direction = direction,
-              colors = colors,
-              outline.color = outline.color,
-              ggtheme = ggtheme,
-              ggstatsplot.layer = ggstatsplot.layer,
-              subtitle = subtitle,
-              caption = caption,
-              caption.default = caption.default,
-              lab.col = lab.col,
-              lab.size = lab.size,
-              insig = insig,
-              pch = pch,
-              pch.col = pch.col,
-              pch.cex = pch.cex,
-              tl.cex = tl.cex,
-              tl.col = tl.col,
-              tl.srt = tl.srt,
-              axis.text.x.margin.t = axis.text.x.margin.t,
-              axis.text.x.margin.r = axis.text.x.margin.r,
-              axis.text.x.margin.b = axis.text.x.margin.b,
-              axis.text.x.margin.l = axis.text.x.margin.l,
-              messages = messages
-            )
+  # creating a list of results
+  results_purrr <-
+    df %>%
+    dplyr::mutate(
+      .data = .,
+      output = data %>%
+        purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
+        purrr::map(
+          .x = .,
+          .f = ~ ggstatsplot::ggcorrmat(
+            title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
+            data = .,
+            cor.vars.names = cor.vars.names,
+            output = output,
+            matrix.type = matrix.type,
+            method = method,
+            corr.method = corr.method,
+            exact = exact,
+            continuity = continuity,
+            beta = beta,
+            digits = digits,
+            sig.level = sig.level,
+            p.adjust.method = p.adjust.method,
+            hc.order = hc.order,
+            hc.method = hc.method,
+            lab = lab,
+            package = package,
+            palette = palette,
+            direction = direction,
+            colors = colors,
+            outline.color = outline.color,
+            ggtheme = ggtheme,
+            ggstatsplot.layer = ggstatsplot.layer,
+            subtitle = subtitle,
+            caption = caption,
+            caption.default = caption.default,
+            lab.col = lab.col,
+            lab.size = lab.size,
+            insig = insig,
+            pch = pch,
+            pch.col = pch.col,
+            pch.cex = pch.cex,
+            tl.cex = tl.cex,
+            tl.col = tl.col,
+            tl.srt = tl.srt,
+            axis.text.x.margin.t = axis.text.x.margin.t,
+            axis.text.x.margin.r = axis.text.x.margin.r,
+            axis.text.x.margin.b = axis.text.x.margin.b,
+            axis.text.x.margin.l = axis.text.x.margin.l,
+            messages = messages
           )
-      )
+        )
+    )
 
+  # ===================== combining results ===================================
+
+  if (output == "plot") {
     # combining the list of plots into a single plot
-    combined_plot <-
+    combined_object <-
       ggstatsplot::combine_plots(
-        plotlist = plotlist_purrr$plots,
+        plotlist = results_purrr$output,
         ...
       )
 
@@ -237,44 +238,12 @@ grouped_ggcorrmat <- function(data,
     if (isTRUE(messages)) {
       grouped_message()
     }
-
-    # return the combined plot
-    return(combined_plot)
   } else {
-    # ======================== grouped stats dataframe ======================
-
-    statsdf_purrr <-
-      df %>%
-      dplyr::mutate(
-        .data = .,
-        statsdf = data %>%
-          purrr::set_names(!!rlang::enquo(grouping.var)) %>%
-          purrr::map(
-            .x = .,
-            .f = ~ ggstatsplot::ggcorrmat(
-              data = .,
-              cor.vars.names = cor.vars.names,
-              output = output,
-              matrix.type = matrix.type,
-              method = method,
-              corr.method = corr.method,
-              p.adjust.method = p.adjust.method,
-              exact = exact,
-              continuity = continuity,
-              beta = beta,
-              digits = digits,
-              sig.level = sig.level,
-              messages = messages
-            )
-          )
-      )
-
-
     # combining all
-    final_statsdf <-
-      dplyr::bind_rows(statsdf_purrr$statsdf, .id = title.prefix)
-
-    # return the datafrmae
-    return(final_statsdf)
+    combined_object <-
+      dplyr::bind_rows(results_purrr$output, .id = title.prefix)
   }
+
+  # return the datafrmae
+  return(combined_object)
 }

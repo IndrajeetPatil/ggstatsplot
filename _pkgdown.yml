@@ -22,6 +22,7 @@ reference:
     contents:
       - starts_with("gg")
       - combine_plots
+      - ggplot_converter
 
   - title: Grouped variants of primary functions
     desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable.
