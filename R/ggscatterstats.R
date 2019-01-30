@@ -383,41 +383,31 @@ ggscatterstats <- function(data,
         color = yfill,
         size = 1.0,
         na.rm = TRUE
-      ) +
-      # label for vertical line
-      ggplot2::geom_label(
-        mapping = ggplot2::aes(
-          label = list(bquote(
-            "mean" == .(ggstatsplot::specify_decimal_p(
-              x = x_mean, k = 2
-            ))
-          )),
-          x = x_mean,
-          y = y_label_pos * (1 + 0.25)
-        ),
-        alpha = 0.5,
-        show.legend = FALSE,
-        parse = TRUE,
-        color = xfill,
-        na.rm = TRUE
-      ) +
-      # label for horizontal line
-      ggplot2::geom_label(
-        mapping = ggplot2::aes(
-          label = list(bquote(
-            "mean" == .(ggstatsplot::specify_decimal_p(
-              x = y_mean, k = 2
-            ))
-          )),
-          x = x_label_pos * (1 + 0.25),
-          y = y_mean
-        ),
-        alpha = 0.5,
-        show.legend = FALSE,
-        parse = TRUE,
-        color = yfill,
-        na.rm = TRUE
       )
+
+    # label for vertical line
+    plot <- line_labeller(
+      plot = plot,
+      x = x_mean,
+      y = y_label_pos,
+      k = 2,
+      color = xfill,
+      label.text = "mean",
+      line.direction = "vline",
+      jitter = 0.25
+    )
+
+    # label for horizontal line
+    plot <- line_labeller(
+      plot = plot,
+      x = x_label_pos,
+      y = y_mean,
+      k = 2,
+      line.direction = "hline",
+      color = yfill,
+      label.text = "mean",
+      jitter = 0.25
+    )
   } else if (centrality.para == "median") {
     plot <-
       plot +
@@ -436,41 +426,31 @@ ggscatterstats <- function(data,
         color = yfill,
         size = 1.0,
         na.rm = TRUE
-      ) +
-      # label for vertical line
-      ggplot2::geom_label(
-        mapping = ggplot2::aes(
-          label = list(bquote(
-            "median" == .(ggstatsplot::specify_decimal_p(
-              x = x_median, k = 2
-            ))
-          )),
-          x = x_median,
-          y = y_label_pos * (1 + 0.25)
-        ),
-        alpha = 0.5,
-        show.legend = FALSE,
-        parse = TRUE,
-        color = xfill,
-        na.rm = TRUE
-      ) +
-      # label for horizontal line
-      ggplot2::geom_label(
-        mapping = ggplot2::aes(
-          label = list(bquote(
-            "median" == .(ggstatsplot::specify_decimal_p(
-              x = y_median, k = 2
-            ))
-          )),
-          x = x_label_pos * (1 + 0.25),
-          y = y_median
-        ),
-        alpha = 0.5,
-        show.legend = FALSE,
-        parse = TRUE,
-        color = yfill,
-        na.rm = TRUE
       )
+
+    # label for vertical line
+    plot <- line_labeller(
+      plot = plot,
+      x = x_median,
+      y = y_label_pos,
+      k = 2,
+      color = xfill,
+      label.text = "median",
+      line.direction = "vline",
+      jitter = 0.25
+    )
+
+    # label for horizontal line
+    plot <- line_labeller(
+      plot = plot,
+      x = x_label_pos,
+      y = y_median,
+      k = 2,
+      line.direction = "hline",
+      color = yfill,
+      label.text = "median",
+      jitter = 0.25
+    )
   }
 
   #---------------------- range restriction -------------------------------

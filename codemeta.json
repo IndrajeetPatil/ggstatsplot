@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ggstatsplot",
-  "description": "Extension of 'ggplot2', 'ggstatsplot' creates graphics with details \n  from statistical tests included in the plots themselves. It is targeted primarily at \n  behavioral sciences community to provide a one-line code to generate information-rich plots for \n  statistical analysis. of continuous (violin plots, scatterplots, histograms) or \n  categorical (pie and bar charts) data. Currently, it supports only the most common types \n  of statistical tests: parametric, nonparametric, robust, and bayesian \n  versions of t-test/anova, correlation analyses, contingency table analysis, \n  and regression analyses.",
+  "description": "Extension of 'ggplot2', 'ggstatsplot' creates\n    graphics with details from statistical tests included in the plots\n    themselves. It is targeted primarily at behavioral sciences community\n    to provide a one-line code to generate information-rich plots for\n    statistical analysis. of continuous (violin plots, scatterplots,\n    histograms) or categorical (pie and bar charts) data. Currently, it\n    supports only the most common types of statistical tests: parametric,\n    nonparametric, robust, and bayesian versions of t-test/anova,\n    correlation analyses, contingency table analysis, and regression\n    analyses.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "relatedLink": [
@@ -70,32 +70,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "ggthemes",
-      "name": "ggthemes",
-      "version": ">= 4.0.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ggthemes"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "gmm",
-      "name": "gmm",
-      "version": ">= 1.6-2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=gmm"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "gapminder",
       "name": "gapminder",
       "version": ">= 0.3.0",
@@ -109,6 +83,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "ggthemes",
+      "name": "ggthemes",
+      "version": ">= 4.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ggthemes"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "glmmTMB",
       "name": "glmmTMB",
       "version": ">= 0.2.3",
@@ -119,6 +106,19 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=glmmTMB"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "gmm",
+      "name": "gmm",
+      "version": ">= 1.6-2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=gmm"
     },
     {
       "@type": "SoftwareApplication",
@@ -199,19 +199,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "robust",
-      "name": "robust",
-      "version": ">= 0.4-18",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=robust"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "readr",
       "name": "readr",
       "version": ">= 1.3.0",
@@ -234,6 +221,19 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "robust",
+      "name": "robust",
+      "version": ">= 0.4-18",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=robust"
     },
     {
       "@type": "SoftwareApplication",

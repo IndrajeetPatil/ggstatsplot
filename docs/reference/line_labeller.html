@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Standardize a dataframe with effect sizes for <code>aov</code>, <code>lm</code>, <code>aovlist</code>,
-etc. objects. — lm_effsize_standardizer • ggstatsplot</title>
+<title>Adds a label to the horizontal or vertical line. — line_labeller • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,11 +38,9 @@ etc. objects. — lm_effsize_standardizer • ggstatsplot</title>
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Standardize a dataframe with effect sizes for <code>aov</code>, <code>lm</code>, <code>aovlist</code>,
-etc. objects. — lm_effsize_standardizer" />
+<meta property="og:title" content="Adds a label to the horizontal or vertical line. — line_labeller" />
 
-<meta property="og:description" content="Standardize a dataframe with effect sizes for aov, lm, aovlist,
-etc. objects." />
+<meta property="og:description" content="Adds a label to the horizontal or vertical line." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -167,66 +164,74 @@ etc. objects." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Standardize a dataframe with effect sizes for <code>aov</code>, <code>lm</code>, <code>aovlist</code>,
-etc. objects.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetweenstats.R'><code>R/helpers_ggbetweenstats.R</code></a></small>
-    <div class="hidden name"><code>lm_effsize_standardizer.Rd</code></div>
+    <h1>Adds a label to the horizontal or vertical line.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_gghistostats.R'><code>R/helpers_gghistostats.R</code></a></small>
+    <div class="hidden name"><code>line_labeller.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Standardize a dataframe with effect sizes for <code>aov</code>, <code>lm</code>, <code>aovlist</code>,
-etc. objects.</p>
+    <p>Adds a label to the horizontal or vertical line.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>lm_effsize_standardizer</span>(<span class='no'>object</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>)</pre>
+    <pre class="usage"><span class='fu'>line_labeller</span>(<span class='no'>plot</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>color</span>, <span class='no'>label.text</span>,
+  <span class='kw'>line.direction</span> <span class='kw'>=</span> <span class='st'>"vline"</span>, <span class='kw'>jitter</span> <span class='kw'>=</span> <span class='fl'>0.25</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>The linear model object (can be of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>).</p></td>
+      <th>plot</th>
+      <td><p>A <code>ggplot</code> object in which the label needs to be displayed.</p></td>
     </tr>
     <tr>
-      <th>effsize</th>
-      <td><p>Character describing the effect size to be displayed: <code>"eta"</code>
-(default) or <code>"omega"</code>.</p></td>
+      <th>x, y</th>
+      <td><p>The <code>x</code>- and <code>y</code>-axes coordinates for the label.</p></td>
     </tr>
     <tr>
-      <th>partial</th>
-      <td><p>Logical that decides if partial eta-squared or omega-squared
-are returned (Default: <code>TRUE</code>). If <code>FALSE</code>, eta-squared or omega-squared
-will be returned. Valid only for objects of class <code>lm</code>, <code>aov</code>, <code>anova</code>, or
-<code>aovlist</code>.</p></td>
+      <th>k</th>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
-      <th>conf.level</th>
-      <td><p>Numeric specifying Level of confidence for the confidence
-interval (Default: <code>0.95</code>).</p></td>
+      <th>color</th>
+      <td><p>Color of the label.</p></td>
     </tr>
     <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for confidence intervals for partial
-eta-squared and omega-squared (Default: <code>500</code>).</p></td>
+      <th>label.text</th>
+      <td><p>The text to include in the label (e.g., <code>"mean"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>line.direction</th>
+      <td><p>Character that specifies whether the line on which
+label is to be attached is vertical (<code>"vline"</code>, default) or horizontal
+(<code>"hline"</code>) line.</p></td>
+    </tr>
+    <tr>
+      <th>jitter</th>
+      <td><p>Numeric that specifies how much the label should be jittered in
+the vertical direction (default:  <code>0.25</code>). The sign will determine the
+direction (upwards or downwards).</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/lm_effsize_standardizer.html'>lm_effsize_standardizer</a></span>(
-  <span class='kw'>object</span> <span class='kw'>=</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>brainwt</span> ~ <span class='no'>vore</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>),
-  <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>50</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 8</span><span>
-#&gt;   term  F.value   df1   df2 p.value estimate conf.low conf.high
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> vore     1.06     3    47   0.375   0.063</span><span style='text-decoration: underline;'>3</span><span>  -</span><span style='color: #BB0000;'>0.025</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>     0.139</div></span></pre>
+    <pre class="examples"><div class='input'><span class='co'># creating a basic plot</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()
+
+<span class='co'># adding a label</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggstatsplot/topics/line_labeller'>line_labeller</a></span>(
+  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>p</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/median'>median</a></span>(<span class='no'>mtcars</span>$<span class='no'>wt</span>),
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='no'>mtcars</span>$<span class='no'>mpg</span>),
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+  <span class='kw'>label.text</span> <span class='kw'>=</span> <span class='st'>"median"</span>
+)</div><div class='img'><img src='line_labeller-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -236,6 +241,8 @@ eta-squared and omega-squared (Default: <code>500</code>).</p></td>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
+    <h2>Author</h2>
+    <p>Indrajeet Patil</p>
   </div>
 </div>
 

@@ -1,3 +1,80 @@
+#' @title Adds a label to the horizontal or vertical line.
+#' @name line_labeller
+#' @author Indrajeet Patil
+#'
+#' @param plot A `ggplot` object in which the label needs to be displayed.
+#' @param x,y The `x`- and `y`-axes coordinates for the label.
+#' @param color Color of the label.
+#' @param label.text The text to include in the label (e.g., `"mean"`).
+#' @param jitter Numeric that specifies how much the label should be jittered in
+#'   the vertical direction (default:  `0.25`). The sign will determine the
+#'   direction (upwards or downwards).
+#' @param line.direction Character that specifies whether the line on which
+#'   label is to be attached is vertical (`"vline"`, default) or horizontal
+#'   (`"hline"`) line.
+#' @inheritParams gghistostats
+#'
+#' @import ggplot2
+#'
+#' @examples
+#' # creating a basic plot
+#' set.seed(123)
+#' library(ggplot2)
+#' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+#'
+#' # adding a label
+#' ggstatsplot:::line_labeller(
+#'   plot = p,
+#'   x = median(mtcars$wt),
+#'   y = mean(mtcars$mpg),
+#'   k = 2,
+#'   color = "red",
+#'   label.text = "median"
+#' )
+#' @keywords internal
+
+# function body
+line_labeller <- function(plot,
+                          x,
+                          y,
+                          k = 2,
+                          color,
+                          label.text,
+                          line.direction = "vline",
+                          jitter = 0.25) {
+  # assigning `x` and `y` values to new position variables to avoid confusion
+  if (line.direction == "vline") {
+    x_pos <- x
+    y_pos <- y * (1 + jitter)
+    label.value <- x_pos
+  } else {
+    x_pos <- x * (1 + jitter)
+    y_pos <- y
+    label.value <- y_pos
+  }
+
+  # adding label to the plot
+  plot <-
+    plot +
+    ggplot2::geom_label(
+      mapping = ggplot2::aes(
+        label = list(bquote(.(label.text) == .(
+          specify_decimal_p(x = label.value, k = k)
+        ))),
+        x = x_pos,
+        y = y_pos
+      ),
+      show.legend = FALSE,
+      parse = TRUE,
+      color = color,
+      alpha = 0.5,
+      na.rm = TRUE
+    )
+
+  # return the plot with label
+  return(plot)
+}
+
 #' @title Custom function for adding labelled lines for `x`-axis variable.
 #' @name histo_labeller
 #' @description Helper function for adding centrality parameter value and/or a
@@ -37,10 +114,10 @@
 #' @examples
 #' \dontrun{
 #' library(ggplot2)
-#' 
+#'
 #' # creating a ploton which lines and labels are to be superposed
 #' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
-#' 
+#'
 #' # computing `y`-axis positions for line labels
 #' y_label_pos <- median(
 #'   x = ggplot2::layer_scales(p)$y$range$range,
@@ -54,7 +131,7 @@
 #'   test.value.line = TRUE
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -92,21 +169,14 @@ histo_labeller <- function(plot,
     if (isTRUE(test.line.labeller)) {
       # adding a text label with test value
       plot <-
-        plot +
-        ggplot2::geom_label(
-          mapping = ggplot2::aes(
-            label = list(bquote(
-              "test" == .(
-                specify_decimal_p(x = test.value, k = test.k)
-              )
-            )),
-            x = test.value,
-            y = y.label.position * (1 - 0.25)
-          ),
-          show.legend = FALSE,
-          parse = TRUE,
-          color = test.value.color,
-          na.rm = TRUE
+        line_labeller(
+          plot = plot,
+          x = test.value,
+          y = y.label.position,
+          label.text = "test",
+          k = test.k,
+          jitter = -0.25,
+          color = test.value.color
         )
     }
   }
@@ -126,21 +196,14 @@ histo_labeller <- function(plot,
       if (isTRUE(centrality.line.labeller)) {
         # adding a text label with mean value
         plot <-
-          plot +
-          ggplot2::geom_label(
-            mapping = ggplot2::aes(
-              label = list(bquote(
-                "mean" == .(
-                  specify_decimal_p(x = x_mean, k = centrality.k)
-                )
-              )),
-              x = x_mean,
-              y = y.label.position * (1 + 0.25)
-            ),
-            show.legend = FALSE,
-            parse = TRUE,
-            color = centrality.color,
-            na.rm = TRUE
+          line_labeller(
+            plot = plot,
+            x = x_mean,
+            y = y.label.position,
+            label.text = "mean",
+            k = centrality.k,
+            jitter = 0.25,
+            color = centrality.color
           )
       }
     } else if (centrality.para == "median") {
@@ -156,21 +219,14 @@ histo_labeller <- function(plot,
       # adding a text label with median value
       if (isTRUE(centrality.line.labeller)) {
         plot <-
-          plot +
-          ggplot2::geom_label(
-            mapping = ggplot2::aes(
-              label = list(bquote(
-                "median" == .(
-                  specify_decimal_p(x = x_median, k = centrality.k)
-                )
-              )),
-              x = x_median,
-              y = y.label.position * (1 + 0.25)
-            ),
-            show.legend = FALSE,
-            parse = TRUE,
-            color = centrality.color,
-            na.rm = TRUE
+          line_labeller(
+            plot = plot,
+            x = x_median,
+            y = y.label.position,
+            label.text = "median",
+            k = centrality.k,
+            jitter = 0.25,
+            color = centrality.color
           )
       }
     }

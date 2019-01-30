@@ -76,6 +76,32 @@ testthat::test_that(
     testthat::expect_equal(p$plot_env$y_median, 1.6700, tolerance = 0.002)
     testthat::expect_equal(p$plot_env$y_mean, 166.1363, tolerance = 0.002)
 
+    # checking geoms
+    testthat::expect_equal(
+      class(pb$data[[5]]$label[[1]]),
+      "call"
+    )
+    testthat::expect_equal(
+      pb$data[[5]]$label[[1]],
+      ggplot2::expr("mean" == "10.43")
+    )
+    testthat::expect_equal(pb$data[[5]]$x[[1]], 10.43373, tolerance = 0.001)
+    testthat::expect_equal(pb$data[[5]]$y[[1]], 3693.693, tolerance = 0.001)
+    testthat::expect_equal(
+      class(pb$data[[6]]$label[[1]]),
+      "call"
+    )
+    testthat::expect_equal(
+      pb$data[[6]]$label[[1]],
+      ggplot2::expr("mean" == "166.14")
+    )
+    testthat::expect_equal(pb$data[[6]]$x[[1]], 13.625, tolerance = 0.001)
+    testthat::expect_equal(pb$data[[6]]$y[[1]], 166.1363, tolerance = 0.001)
+
+    # checking intercepts
+    testthat::expect_equal(pb$data[[3]]$xintercept[[1]], 10.43373, tolerance = 0.001)
+    testthat::expect_equal(pb$data[[4]]$yintercept[[1]], 166.1363, tolerance = 0.001)
+
     # subtitle
     set.seed(123)
     p_subtitle <- ggstatsplot::subtitle_ggscatterstats(

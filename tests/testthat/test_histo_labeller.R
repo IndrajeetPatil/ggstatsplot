@@ -1,4 +1,4 @@
-context("Helpers gghistostats")
+context("histo_labeller")
 
 # computing y coordinates ------------------------------------------------
 
@@ -29,6 +29,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if labeling works",
   code = {
+    testthat::skip_on_cran()
+
     set.seed(123)
     library(ggplot2)
 
@@ -45,7 +47,7 @@ testthat::test_that(
     testthat::expect_equal(y_label_pos, 686.5, tolerance = 0.01)
 
     # adding labels
-    p <- histo_labeller(
+    p <- ggstatsplot:::histo_labeller(
       plot = plot,
       x = dplyr::starwars$height,
       y.label.position = y_label_pos,
@@ -54,6 +56,9 @@ testthat::test_that(
       test.value.color = "green",
       centrality.color = "red"
     )
+
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
 
     # checking dimensions of data
     data_dims <- ggplot2::layer_data(p) %>%
@@ -68,5 +73,14 @@ testthat::test_that(
     testthat::expect_identical(p$layers[[2]]$aes_params$colour, "green")
     testthat::expect_identical(p$layers[[4]]$aes_params$linetype, "dashed")
     testthat::expect_identical(p$layers[[4]]$aes_params$colour, "red")
+
+    testthat::expect_identical(
+      unique(pb$data[[5]]$label)[[1]],
+      ggplot2::expr("mean" == "174.36")
+    )
+    testthat::expect_identical(
+      unique(pb$data[[3]]$label)[[1]],
+      ggplot2::expr("test" == "160")
+    )
   }
 )
