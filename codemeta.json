@@ -149,7 +149,6 @@
       "@type": "SoftwareApplication",
       "identifier": "MASS",
       "name": "MASS",
-      "version": ">= 7.3-51.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -265,7 +264,6 @@
       "@type": "SoftwareApplication",
       "identifier": "survival",
       "name": "survival",
-      "version": ">= 2.43-3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
