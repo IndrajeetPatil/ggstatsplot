@@ -31,6 +31,19 @@ testthat::test_that(
         conf.type = "perc"
       ))
 
+    # bca
+    set.seed(123)
+    df3 <-
+      suppressWarnings(ggstatsplot:::t1way_ci(
+        data = dplyr::filter(.data = ggplot2::msleep, vore != "insecti"),
+        x = vore,
+        y = brainwt,
+        nboot = 50,
+        conf.level = .99,
+        tr = 0.05,
+        conf.type = c("bca")
+      ))
+
     # test normal CI
     testthat::expect_equal(df1$xi, 0.6537392, tolerance = 0.00002)
     testthat::expect_equal(df1$conf.low, -0.9077024, tolerance = 0.00002)
@@ -44,5 +57,10 @@ testthat::test_that(
     testthat::expect_equal(df2$conf.high, 3.414511, tolerance = 0.00002)
     testthat::expect_equal(df2$F.value, 0.260884, tolerance = 0.00002)
     testthat::expect_equal(df2$p.value, 0.772501, tolerance = 0.00002)
+
+    # test bca
+    testthat::expect_equal(df3$xi, 0.6310199, tolerance = 0.00002)
+    testthat::expect_equal(df3$conf.low, 0.3068031, tolerance = 0.00002)
+    testthat::expect_equal(df3$conf.high, 1.855582, tolerance = 0.00002)
   }
 )

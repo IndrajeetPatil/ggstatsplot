@@ -34,7 +34,7 @@
 #' @seealso \code{\link{ggpiestats}}
 #'
 #' @examples
-#' 
+#'
 #' # without counts data
 #' subtitle_contingency_tab(
 #'   data = mtcars,
@@ -42,11 +42,11 @@
 #'   condition = cyl,
 #'   nboot = 15
 #' )
-#' 
+#'
 #' # with counts data
 #' # in case of no variation, a `NULL` will be returned.
 #' library(jmv)
-#' 
+#'
 #' as.data.frame(HairEyeColor) %>%
 #'   dplyr::filter(.data = ., Sex == "Male") %>%
 #'   subtitle_contingency_tab(
@@ -149,40 +149,19 @@ subtitle_contingency_tab <- function(data,
         B = B
       ))
 
-    # object with Cramer's V
-    jmv_df <- jmv::contTables(
+    # computing confidence interval for Cramer's V
+    effsize_df <- chisq_v_ci(
       data = data,
-      rows = "condition",
-      cols = "main",
-      phiCra = TRUE,
-      chiSq = TRUE,
-      chiSqCorr = FALSE
+      rows = main,
+      cols = condition,
+      nboot = nboot,
+      conf.level = conf.level,
+      conf.type = conf.type
     )
 
-    # preparing Cramer's V object depending on whether V is NaN or not it will
-    # be NaN in cases where there are no values of one categorial variable for
-    # level of another categorial variable
-    if (is.nan(as.data.frame(jmv_df$nom)[[4]])) {
-      # in case Cramer's V is a NaN
-      effsize_df <- tibble::tribble(
-        ~Cramer.V, ~conf.low, ~conf.high,
-        NaN, NaN, NaN
-      )
-    } else {
-      # results for confidence interval of Cramer's V
-      effsize_df <- chisq_v_ci(
-        data = data,
-        rows = main,
-        cols = condition,
-        nboot = nboot,
-        conf.level = conf.level,
-        conf.type = conf.type
-      )
-
-      # message about effect size measure
-      if (isTRUE(messages)) {
-        effsize_ci_message(nboot = nboot, conf.level = conf.level)
-      }
+    # message about effect size measure
+    if (isTRUE(messages)) {
+      effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
 
     # preparing subtitle
@@ -203,7 +182,7 @@ subtitle_contingency_tab <- function(data,
       k.parameter = 0L
     )
 
-    # ============== McNemar's test ===========================================
+    # ======================== McNemar's test =================================
   } else if (isTRUE(paired)) {
     # carrying out McNemar's test
     stats_df <-
@@ -286,16 +265,16 @@ subtitle_contingency_tab <- function(data,
 #' @param ... Additional arguments (currently ignored).
 #'
 #' @examples
-#' 
+#'
 #' # with counts
 #' library(jmv)
-#' 
+#'
 #' subtitle_onesample_proptest(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
 #'   counts = Freq
 #' )
-#' 
+#'
 #' # in case no variation, only sample size will be shown
 #' subtitle_onesample_proptest(
 #'   data = cbind.data.frame(x = rep("a", 10)),
@@ -352,12 +331,16 @@ subtitle_onesample_proptest <- function(data,
     jmv::propTestN(
       data = data,
       var = "main",
-      ratio = ratio
+      ratio = ratio,
+      expected = FALSE
     )
+
+  # extracting the results
+  stats_df <- tibble::as_tibble(as.data.frame(stats_df$tests))
 
   # if there is no value corresponding to one of the levels of the 'main'
   # variable, then no subtitle is needed
-  if (is.nan(as.data.frame(stats_df$tests)$chi[[1]])) {
+  if (is.nan(stats_df$chi[[1]])) {
     subtitle <-
       base::substitute(
         expr =
@@ -398,16 +381,9 @@ subtitle_onesample_proptest <- function(data,
             n
           ),
         env = base::list(
-          estimate = specify_decimal_p(
-            x = as.data.frame(stats_df$tests)[[1]],
-            k = k
-          ),
-          df = as.data.frame(stats_df$tests)[[2]],
-          p.value = specify_decimal_p(
-            x = as.data.frame(stats_df$tests)[[3]],
-            k = k,
-            p.value = TRUE
-          ),
+          estimate = specify_decimal_p(x = stats_df$chi[[1]], k = k),
+          df = stats_df$df[[1]],
+          p.value = specify_decimal_p(x = stats_df$p[[1]], k = k, p.value = TRUE),
           n = sample_size
         )
       )

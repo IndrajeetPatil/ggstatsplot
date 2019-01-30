@@ -100,6 +100,7 @@ testthat::test_that(
       row.names = c(NA, -40L),
       class = "data.frame"
       )
+
     # ggstatsplot output
     set.seed(123)
     df1 <-
@@ -131,7 +132,7 @@ testthat::test_that(
         conf.type = "basic"
       )
 
-    # creating a dataframe
+    # percentile CI
     set.seed(123)
     df3 <-
       ggstatsplot:::yuend_ci(
@@ -140,6 +141,17 @@ testthat::test_that(
         y = grade,
         conf.level = 0.50,
         conf.type = "perc"
+      )
+
+    # bca CI
+    set.seed(123)
+    df4 <-
+      ggstatsplot:::yuend_ci(
+        data = mydata1,
+        x = time,
+        y = grade,
+        conf.level = 0.85,
+        conf.type = "bca"
       )
 
     # testing (dataframe without NAs)
@@ -162,5 +174,10 @@ testthat::test_that(
     testthat::expect_equal(df3$xi, 0.3486531, tolerance = 0.0001)
     testthat::expect_equal(df3$conf.low, 0.2040678, tolerance = 0.0001)
     testthat::expect_equal(df3$conf.high, 0.5274532, tolerance = 0.0001)
+
+    # testing (dataframe with NAs + bca CI)
+    testthat::expect_equal(df4$xi, 0.3486531, tolerance = 0.0001)
+    testthat::expect_equal(df4$conf.low, 0.02886853, tolerance = 0.0001)
+    testthat::expect_equal(df4$conf.high, 0.6907674, tolerance = 0.0001)
   }
 )
