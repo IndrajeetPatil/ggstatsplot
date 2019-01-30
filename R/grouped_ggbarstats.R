@@ -25,11 +25,11 @@
 #' @inherit ggbarstats return return
 #'
 #' @examples
-#' 
+#'
 #' \dontrun{
 #' # with condition and with count data
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::grouped_ggbarstats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
@@ -37,17 +37,17 @@
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
-#' 
+#'
 #' # the following will take slightly more amount of time
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
 #'   dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
 #'   dplyr::sample_frac(tbl = ., size = 0.05)
-#' 
+#'
 #' # plot
 #' ggstatsplot::grouped_ggbarstats(
 #'   data = diamonds_short,
@@ -88,7 +88,7 @@ grouped_ggbarstats <- function(data,
                                prior.concentration = 1,
                                caption = NULL,
                                legend.position = "right",
-                               x.axis.orientation = "horizontal",
+                               x.axis.orientation = NULL,
                                conf.level = 0.95,
                                nboot = 25,
                                simulate.p.value = FALSE,
