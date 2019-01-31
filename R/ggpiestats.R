@@ -164,7 +164,8 @@ ggpiestats <- function(data,
       condition = !!rlang::enquo(condition),
       counts = !!rlang::enquo(counts)
     ) %>%
-    tidyr::drop_na(data = .)
+    tidyr::drop_na(data = .) %>%
+    tibble::as_tibble(x = .)
 
   # =========================== converting counts ============================
 
@@ -186,40 +187,16 @@ ggpiestats <- function(data,
 
   # main
   data %<>%
-    dplyr::mutate(.data = ., main = droplevels(as.factor(main))) %>%
-    dplyr::filter(.data = ., !is.na(main))
+    dplyr::mutate(.data = ., main = droplevels(as.factor(main)))
 
   # condition
   if (!base::missing(condition)) {
     data %<>%
-      dplyr::mutate(.data = ., condition = droplevels(as.factor(condition))) %>%
-      dplyr::filter(.data = ., !is.na(condition))
+      dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
   }
-
-  # converting to tibble
-  data %<>%
-    tibble::as_tibble(x = .)
 
   # convert the data into percentages; group by conditional variable if needed
-  if (base::missing(condition)) {
-    df <-
-      data %>%
-      dplyr::group_by(.data = ., main) %>%
-      dplyr::summarize(.data = ., counts = n()) %>%
-      dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-      dplyr::ungroup(x = .) %>%
-      dplyr::arrange(.data = ., dplyr::desc(x = main)) %>%
-      dplyr::filter(.data = ., counts != 0L)
-  } else {
-    df <-
-      data %>%
-      dplyr::group_by(.data = ., condition, main) %>%
-      dplyr::summarize(.data = ., counts = n()) %>%
-      dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-      dplyr::ungroup(x = .) %>%
-      dplyr::arrange(.data = ., dplyr::desc(x = main)) %>%
-      dplyr::filter(.data = ., counts != 0L)
-  }
+  df <- cat_counter(data, main, condition)
 
   # dataframe with summary labels
   df %<>%
@@ -264,17 +241,14 @@ ggpiestats <- function(data,
             false = as.character(condition_n_label)
           )
         ) %>%
-        stats::na.omit(.)
+        tidyr::drop_na(data = .)
     }
   }
 
   # ================= preparing names for legend and facet_wrap ==============
 
   # reorder the category factor levels to order the legend
-  df$main <- factor(
-    x = df$main,
-    levels = unique(df$main)
-  )
+  df$main <- factor(x = df$main, levels = unique(df$main))
 
   # getting labels for all levels of the 'main' variable factor
   if (is.null(factor.levels)) {
@@ -286,7 +260,7 @@ ggpiestats <- function(data,
   # custom labeller function to use if the user wants a different name for
   # facet_wrap variable
   label_facet <- function(original_var, custom_name) {
-    lev <- levels(x = as.factor(original_var))
+    lev <- levels(as.factor(original_var))
     lab <- paste0(custom_name, ": ", lev)
     names(lab) <- lev
     return(lab)
@@ -301,49 +275,38 @@ ggpiestats <- function(data,
     min_length = length(unique(levels(data$main)))[[1]]
   )
 
+  # creating the basic plot
+  p <- ggplot2::ggplot(
+    data = df,
+    mapping = ggplot2::aes(x = "", y = counts)
+  ) +
+    ggplot2::geom_col(
+      position = "fill",
+      color = "black",
+      width = 1,
+      ggplot2::aes(fill = factor(get("main"))),
+      na.rm = TRUE
+    ) +
+    ggplot2::geom_label(
+      ggplot2::aes(label = slice.label, group = factor(get("main"))),
+      position = ggplot2::position_fill(vjust = 0.5),
+      color = "black",
+      size = label.text.size,
+      fill = label.fill.color,
+      alpha = label.fill.alpha,
+      show.legend = FALSE,
+      na.rm = TRUE
+    )
+
   # if facet_wrap is *not* happening
   if (base::missing(condition)) {
-    p <- ggplot2::ggplot(
-      data = df,
-      mapping = ggplot2::aes(x = "", y = counts)
-    ) +
-      ggplot2::geom_col(
-        position = "fill",
-        color = "black",
-        width = 1,
-        ggplot2::aes(fill = factor(get("main"))),
-        na.rm = TRUE
-      ) +
-      ggplot2::geom_label(
-        ggplot2::aes(
-          label = slice.label,
-          group = factor(get("main"))
-        ),
-        position = position_fill(vjust = 0.5),
-        color = "black",
-        size = label.text.size,
-        fill = label.fill.color,
-        alpha = label.fill.alpha,
-        show.legend = FALSE,
-        na.rm = TRUE
-      ) +
-      ggplot2::coord_polar(theta = "y") # convert to polar coordinates
+    p <- p +
+      ggplot2::coord_polar(theta = "y")
   } else {
     # if facet_wrap *is* happening
-    p <- ggplot2::ggplot(
-      data = df,
-      mapping = ggplot2::aes(x = "", y = counts)
-    ) +
-      ggplot2::geom_col(
-        position = "fill",
-        color = "black",
-        width = 1,
-        mapping = ggplot2::aes(fill = factor(get("main"))),
-        na.rm = TRUE
-      ) +
+    p <- p +
       ggplot2::facet_wrap(
         facets = ~condition,
-        # creating facets and, if necessary, changing the facet_wrap name
         labeller = ggplot2::labeller(
           condition = label_facet(
             original_var = df$condition,
@@ -351,15 +314,6 @@ ggpiestats <- function(data,
           )
         )
       ) +
-      ggplot2::geom_label(
-        mapping = ggplot2::aes(label = slice.label, group = factor(get("main"))),
-        position = ggplot2::position_fill(vjust = 0.5),
-        color = "black",
-        size = label.text.size,
-        show.legend = FALSE,
-        na.rm = TRUE
-      ) +
-      # convert to polar coordinates
       ggplot2::coord_polar(theta = "y")
   }
 

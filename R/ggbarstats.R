@@ -38,10 +38,10 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#'
+#' 
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggbarstats(
 #'   data = datasets::mtcars,
@@ -55,7 +55,7 @@
 #' \dontrun{
 #' # simple function call with the defaults (with count data)
 #' library(jmv)
-#'
+#' 
 #' ggstatsplot::ggbarstats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -134,7 +134,8 @@ ggbarstats <- function(data,
       condition = !!rlang::enquo(condition),
       counts = !!rlang::enquo(counts)
     ) %>%
-    tidyr::drop_na(data = .)
+    tidyr::drop_na(data = .) %>%
+    tibble::as_tibble(x = .)
 
   # =========================== converting counts ============================
 
@@ -155,23 +156,10 @@ ggbarstats <- function(data,
   # also drop the unused levels of the factors
   data %<>%
     dplyr::mutate(.data = ., main = droplevels(as.factor(main))) %>%
-    dplyr::filter(.data = ., !is.na(main)) %>%
-    dplyr::mutate(.data = ., condition = droplevels(as.factor(condition))) %>%
-    dplyr::filter(.data = ., !is.na(condition))
-
-  # converting to tibble
-  data %<>%
-    tibble::as_tibble(x = .)
+    dplyr::mutate(.data = ., condition = droplevels(as.factor(condition)))
 
   # convert the data into percentages; group by conditional variable
-  df <-
-    data %>%
-    dplyr::group_by(.data = ., condition, main) %>%
-    dplyr::summarize(.data = ., counts = n()) %>%
-    dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
-    dplyr::ungroup(x = .) %>%
-    dplyr::arrange(.data = ., dplyr::desc(x = main)) %>%
-    dplyr::filter(.data = ., counts != 0L)
+  df <- cat_counter(data, main, condition)
 
   # dataframe with summary labels
   df %<>%

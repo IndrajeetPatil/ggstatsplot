@@ -154,8 +154,7 @@ grouped_ggpiestats <- function(data,
       !!rlang::enquo(condition),
       !!rlang::enquo(counts)
     ) %>%
-    tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = ., title.text = !!rlang::enquo(grouping.var))
+    tidyr::drop_na(data = .)
 
   # make a list of dataframes by grouping variable
   df %<>%
@@ -169,7 +168,6 @@ grouped_ggpiestats <- function(data,
       .predicate = is.factor,
       .funs = ~ base::droplevels(.)
     ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
     base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
 
   # ============== build pmap list based on conditions =====================

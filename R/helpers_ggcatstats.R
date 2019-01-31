@@ -84,3 +84,48 @@ cat_label_df <- function(data,
   # return dataframe with label column
   return(data)
 }
+
+
+#' @title Preparing dataframe with counts and percentages for categorical
+#'   variables.
+#' @name cat_counter
+#' @author Indrajeet Patil
+#'
+#' @inheritParams ggpiestats
+#' @param ... Additional grouping variables.
+#'
+#' @importFrom rlang enquos !! quo_is_null
+#' @importFrom purrr discard
+#' @importFrom dplyr select group_by summarize n arrange if_else desc
+#' @importFrom dplyr mutate mutate_at mutate_if group_by_at
+#'
+#' @examples
+#' ggstatsplot:::cat_counter(data = ggplot2::mpg, "drv", cyl, "fl")
+#' @keywords internal
+
+# function body
+cat_counter <- function(data, main, condition = NULL, ...) {
+  # massaging the inputs
+  dots <-
+    rlang::enquos(condition,
+      main,
+      ...,
+      .ignore_empty = "all"
+    )
+
+  # discarding NULL arguments
+  purrr::discard(.x = dots, .p = rlang::quo_is_null)
+
+  # creating a dataframe with counts
+  df <-
+    data %>%
+    dplyr::group_by_at(dots) %>%
+    dplyr::summarize(.data = ., counts = n()) %>%
+    dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
+    dplyr::ungroup(x = .) %>%
+    dplyr::arrange(.data = ., dplyr::desc(!!rlang::ensym(main))) %>%
+    dplyr::filter(.data = ., counts != 0L)
+
+  # return the final dataframe
+  return(df)
+}

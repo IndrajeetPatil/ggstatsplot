@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adds a label to the horizontal or vertical line. — line_labeller • ggstatsplot</title>
+<title>Preparing dataframe with counts and percentages for categorical
+variables. — cat_counter • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,9 +39,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Adds a label to the horizontal or vertical line. — line_labeller" />
+<meta property="og:title" content="Preparing dataframe with counts and percentages for categorical
+variables. — cat_counter" />
 
-<meta property="og:description" content="Adds a label to the horizontal or vertical line." />
+<meta property="og:description" content="Preparing dataframe with counts and percentages for categorical
+variables." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -164,74 +167,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Adds a label to the horizontal or vertical line.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_gghistostats.R'><code>R/helpers_gghistostats.R</code></a></small>
-    <div class="hidden name"><code>line_labeller.Rd</code></div>
+    <h1>Preparing dataframe with counts and percentages for categorical
+variables.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggcatstats.R'><code>R/helpers_ggcatstats.R</code></a></small>
+    <div class="hidden name"><code>cat_counter.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Adds a label to the horizontal or vertical line.</p>
+    <p>Preparing dataframe with counts and percentages for categorical
+variables.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>line_labeller</span>(<span class='no'>plot</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>color</span>, <span class='no'>label.text</span>,
-  <span class='kw'>line.direction</span> <span class='kw'>=</span> <span class='st'>"vline"</span>, <span class='kw'>jitter</span> <span class='kw'>=</span> <span class='fl'>0.25</span>)</pre>
+    <pre class="usage"><span class='fu'>cat_counter</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>plot</th>
-      <td><p>A <code>ggplot</code> object in which the label needs to be displayed.</p></td>
+      <th>data</th>
+      <td><p>The data as a data frame (matrix or tables will not be accepted).</p></td>
     </tr>
     <tr>
-      <th>x, y</th>
-      <td><p>The <code>x</code>- and <code>y</code>-axes coordinates for the label.</p></td>
+      <th>main</th>
+      <td><p>The variable to use as the <strong>rows</strong> in the
+contingency table.</p></td>
     </tr>
     <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
+      <th>condition</th>
+      <td><p>The variable to use as the <strong>columns</strong> in the contingency
+table.</p></td>
     </tr>
     <tr>
-      <th>color</th>
-      <td><p>Color of the label.</p></td>
-    </tr>
-    <tr>
-      <th>label.text</th>
-      <td><p>The text to include in the label (e.g., <code>"mean"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>line.direction</th>
-      <td><p>Character that specifies whether the line on which
-label is to be attached is vertical (<code>"vline"</code>, default) or horizontal
-(<code>"hline"</code>) line.</p></td>
-    </tr>
-    <tr>
-      <th>jitter</th>
-      <td><p>Numeric that specifies how much the label should be jittered in
-the vertical direction (default:  <code>0.25</code>). The sign will determine the
-direction (upwards or downwards).</p></td>
+      <th>...</th>
+      <td><p>Additional grouping variables.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># creating a basic plot</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>wt</span>, <span class='no'>mpg</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()
-
-<span class='co'># adding a label</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/line_labeller.html'>line_labeller</a></span>(
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>p</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/median'>median</a></span>(<span class='no'>mtcars</span>$<span class='no'>wt</span>),
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='no'>mtcars</span>$<span class='no'>mpg</span>),
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>label.text</span> <span class='kw'>=</span> <span class='st'>"median"</span>
-)</div><div class='img'><img src='line_labeller-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cat_counter.html'>cat_counter</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='st'>"drv"</span>, <span class='no'>cyl</span>, <span class='st'>"fl"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 22 x 5</span><span>
+#&gt;      cyl drv   fl    counts   perc
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>     6 r     r          4 100   
+#&gt; </span><span style='color: #555555;'> 2</span><span>     8 r     e          1   4.76
+#&gt; </span><span style='color: #555555;'> 3</span><span>     8 r     p          7  33.3 
+#&gt; </span><span style='color: #555555;'> 4</span><span>     8 r     r         13  61.9 
+#&gt; </span><span style='color: #555555;'> 5</span><span>     4 f     c          1   1.72
+#&gt; </span><span style='color: #555555;'> 6</span><span>     4 f     d          3   5.17
+#&gt; </span><span style='color: #555555;'> 7</span><span>     4 f     p         14  24.1 
+#&gt; </span><span style='color: #555555;'> 8</span><span>     4 f     r         40  69.0 
+#&gt; </span><span style='color: #555555;'> 9</span><span>     5 f     r          4 100   
+#&gt; </span><span style='color: #555555;'>10</span><span>     6 f     e          1   2.33
+#&gt; </span><span style='color: #555555;'># ... with 12 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

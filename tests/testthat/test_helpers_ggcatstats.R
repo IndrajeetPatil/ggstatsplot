@@ -72,3 +72,34 @@ testthat::test_that(
     )
   }
 )
+
+# cat_couter works ----------------------------------------------
+
+testthat::test_that(
+  desc = "cat_couter works",
+  code = {
+    testthat::skip_on_cran()
+
+    set.seed(123)
+    data_tooth <- dplyr::filter(ToothGrowth, supp != "VC")
+    data_mtcars <- dplyr::filter(mtcars, cyl != "4")
+
+    df1 <- ggstatsplot:::cat_counter(mtcars, am, "cyl")
+    df2 <- ggstatsplot:::cat_counter(ggplot2::msleep, "vore")
+    df3 <- ggstatsplot:::cat_counter(data_tooth, "supp", NULL)
+    df4 <- ggstatsplot:::cat_counter(data_mtcars, "am", "cyl")
+    df5 <- ggstatsplot:::cat_counter(ggplot2::mpg, "drv", "cyl", "fl")
+
+    testthat::expect_equal(dim(df1), c(6L, 4L))
+    testthat::expect_equal(dim(df2), c(5L, 3L))
+    testthat::expect_equal(dim(df3), c(1L, 3L))
+    testthat::expect_equal(dim(df4), c(4L, 4L))
+    testthat::expect_equal(dim(df5), c(22L, 5L))
+
+    testthat::expect_identical(colnames(df1), c("cyl", "am", "counts", "perc"))
+    testthat::expect_identical(colnames(df2), c("vore", "counts", "perc"))
+    testthat::expect_identical(colnames(df3), c("supp", "counts", "perc"))
+    testthat::expect_identical(colnames(df4), colnames(df1))
+    testthat::expect_identical(colnames(df5), c("cyl", "drv", "fl", "counts", "perc"))
+  }
+)

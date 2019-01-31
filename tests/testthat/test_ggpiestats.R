@@ -106,8 +106,22 @@ testthat::test_that(
       )
     )
 
+    # dropped level dataset
+    mtcars_small <- dplyr::filter(.data = mtcars, am == "0")
+
+    # plot
+    p1 <-
+      ggstatsplot::ggpiestats(
+        data = mtcars_small,
+        main = cyl,
+        condition = am,
+        facet.wrap.name = "transmission",
+        messages = FALSE
+      )
+
     # build plot
     pb <- ggplot2::ggplot_build(p)
+    pb1 <- ggplot2::ggplot_build(p1)
 
     # subtitle used
     set.seed(123)
@@ -129,16 +143,29 @@ testthat::test_that(
 
     # testing everything is okay with data
     testthat::expect_equal(data_dims, c(6L, 5L))
-    testthat::expect_equal(dat$perc,
+    testthat::expect_equal(
+      dat$perc,
       c(72.73, 42.86, 14.29, 27.27, 57.14, 85.71),
       tolerance = 1e-3
+    )
+    testthat::expect_equal(p1$data$perc,
+      c(63.15789, 21.05263, 15.78947),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(p1$data$counts, c(12L, 4L, 3L))
+    testthat::expect_identical(levels(p1$data$main), c("8", "6", "4"))
+    testthat::expect_identical(levels(p1$data$condition), c("0"))
+    testthat::expect_identical(
+      colnames(p1$data),
+      c("condition", "main", "counts", "perc", "slice.label")
     )
 
     # checking plot labels
     testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(pb$plot$plot_env$facet.wrap.name, "cylinders")
-    testthat::expect_identical(pb$plot$plot_env$legend.labels[1], "0 = automatic")
-    testthat::expect_identical(pb$plot$plot_env$legend.labels[2], "1 = manual")
+    testthat::expect_identical(
+      pb$plot$plot_env$legend.labels, c("0 = automatic", "1 = manual")
+    )
     testthat::expect_identical(pb$plot$labels$caption, ggplot2::expr(atop(
       displaystyle(NULL),
       expr = paste(
@@ -159,6 +186,11 @@ testthat::test_that(
     testthat::expect_null(p$labels$y, NULL)
     testthat::expect_null(pb$plot$plot_env$stat.title, NULL)
     testthat::expect_identical(pb$plot$guides$fill$title[1], "transmission")
+    testthat::expect_null(pb1$plot$labels$subtitle, NULL)
+    testthat::expect_identical(
+      pb1$layout$facet_params$plot_env$facet.wrap.name,
+      "transmission"
+    )
 
     # checking labels
     testthat::expect_identical(
