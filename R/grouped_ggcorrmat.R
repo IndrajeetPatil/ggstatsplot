@@ -24,17 +24,17 @@
 #' @inherit ggcorrmat return details
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # for plot
 #' # (without specifiying needed variables; all numeric variables will be used)
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore
 #' )
-#' 
+#'
 #' # for getting plot
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -47,7 +47,7 @@
 #'   palette = "BottleRocket2",
 #'   nrow = 2
 #' )
-#' 
+#'
 #' # for getting correlations
 #' ggstatsplot::grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
@@ -55,7 +55,7 @@
 #'   cor.vars = sleep_total:bodywt,
 #'   output = "correlations"
 #' )
-#' 
+#'
 #' # for getting confidence intervals
 #' # confidence intervals are not available for **robust** correlation
 #' ggstatsplot::grouped_ggcorrmat(
@@ -159,9 +159,12 @@ grouped_ggcorrmat <- function(data,
       .funs = ~ base::droplevels(.)
     ) %>%
     dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
-    dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
-    tidyr::nest(data = .)
+    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+
+  flexiblelist <- list(
+    data = df,
+    title = glue::glue("{title.prefix}: {names(df)}")
+  )
 
   # ===================== grouped analysis ===================================
 
@@ -170,17 +173,10 @@ grouped_ggcorrmat <- function(data,
   digits <- k %||% digits
 
   # creating a list of results
-  results_purrr <-
-    df %>%
-    dplyr::mutate(
-      .data = .,
-      output = data %>%
-        purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-        purrr::map(
-          .x = .,
-          .f = ~ ggstatsplot::ggcorrmat(
-            title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
-            data = .,
+  plotlist_purrr <-
+    purrr::pmap(
+      .l = flexiblelist,
+      .f = ggstatsplot::ggcorrmat,
             cor.vars.names = cor.vars.names,
             output = output,
             matrix.type = matrix.type,
@@ -220,8 +216,6 @@ grouped_ggcorrmat <- function(data,
             axis.text.x.margin.l = axis.text.x.margin.l,
             messages = messages
           )
-        )
-    )
 
   # ===================== combining results ===================================
 
@@ -229,7 +223,7 @@ grouped_ggcorrmat <- function(data,
     # combining the list of plots into a single plot
     combined_object <-
       ggstatsplot::combine_plots(
-        plotlist = results_purrr$output,
+        plotlist = plotlist_purrr,
         ...
       )
 
@@ -241,7 +235,7 @@ grouped_ggcorrmat <- function(data,
   } else {
     # combining all
     combined_object <-
-      dplyr::bind_rows(results_purrr$output, .id = title.prefix)
+      dplyr::bind_rows(plotlist_purrr, .id = title.prefix)
   }
 
   # return the datafrmae
