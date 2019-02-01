@@ -23,7 +23,7 @@
 #' @inherit gghistostats return details
 #'
 #' @examples
-#' 
+#'
 #' ggstatsplot::grouped_gghistostats(
 #'   data = iris,
 #'   x = Sepal.Length,
@@ -138,25 +138,21 @@ grouped_gghistostats <- function(data,
       .predicate = is.factor,
       .funs = ~ base::droplevels(.)
     ) %>%
-    dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
-    dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
-    tidyr::nest(data = .)
+    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+
+  flexiblelist <- list(
+    data = df,
+    x = rlang::quo_text(rlang::ensym(x)),
+    title = glue::glue("{title.prefix}: {names(df)}")
+  )
 
   # creating a list of plots
   plotlist_purrr <-
-    df %>%
-    dplyr::mutate(
-      .data = .,
-      plots = data %>%
-        purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-        purrr::map(
-          .x = .,
-          .f = ~ ggstatsplot::gghistostats(
-            data = .,
-            x = !!rlang::enquo(x),
+        purrr::pmap(
+          .l = flexiblelist,
+          .f = ggstatsplot::gghistostats,
             bar.measure = bar.measure,
             xlab = xlab,
-            title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
             subtitle = subtitle,
             caption = caption,
             type = type,
@@ -194,13 +190,12 @@ grouped_gghistostats <- function(data,
             ggplot.component = ggplot.component,
             messages = messages
           )
-        )
-    )
+#        )
 
   # combining the list of plots into a single plot
   combined_plot <-
     ggstatsplot::combine_plots(
-      plotlist = plotlist_purrr$plots,
+      plotlist = plotlist_purrr,
       ...
     )
 
