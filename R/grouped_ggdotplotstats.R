@@ -23,13 +23,13 @@
 #' @inherit ggdotplotstats return details
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # removing factor level with very few no. of observations
 #' df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6", "8"))
-#' 
+#'
 #' # plot
 #' ggstatsplot::grouped_ggdotplotstats(
 #'   data = df,
@@ -120,26 +120,23 @@ grouped_ggdotplotstats <- function(data,
       .predicate = is.factor,
       .funs = ~ base::droplevels(.)
     ) %>%
-    dplyr::arrange(.data = ., !!rlang::enquo(grouping.var)) %>%
-    dplyr::group_by(.data = ., !!rlang::enquo(grouping.var)) %>%
-    tidyr::nest(data = .)
+    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+
+  flexiblelist <- list(
+    data = df,
+    x = rlang::quo_text(rlang::ensym(x)),
+    y = rlang::quo_text(rlang::ensym(y)),
+    title = glue::glue("{title.prefix}: {names(df)}")
+  )
 
   # creating a list of plots
+  # creating a list of plots
   plotlist_purrr <-
-    df %>%
-    dplyr::mutate(
-      .data = .,
-      plots = data %>%
-        purrr::set_names(x = ., nm = !!rlang::enquo(grouping.var)) %>%
-        purrr::map(
-          .x = .,
-          .f = ~ ggstatsplot::ggdotplotstats(
-            data = .,
-            x = !!rlang::enquo(x),
-            y = !!rlang::enquo(y),
+    purrr::pmap(
+      .l = flexiblelist,
+      .f = ggstatsplot::ggdotplotstats,
             xlab = xlab,
             ylab = ylab,
-            title = glue::glue("{title.prefix}: {as.character(.$title.text)}"),
             subtitle = subtitle,
             caption = caption,
             type = type,
@@ -171,13 +168,11 @@ grouped_ggdotplotstats <- function(data,
             ggplot.component = ggplot.component,
             messages = messages
           )
-        )
-    )
 
   # combining the list of plots into a single plot
   combined_plot <-
     ggstatsplot::combine_plots(
-      plotlist = plotlist_purrr$plots,
+      plotlist = plotlist_purrr,
       ...
     )
 
