@@ -171,26 +171,26 @@
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # -------------- with model object --------------------------------------
-#' 
+#'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#' 
+#'
 #' # to get a plot
 #' ggstatsplot::ggcoefstats(x = mod, output = "plot")
-#' 
+#'
 #' # to get a tidy dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "tidy")
-#' 
+#'
 #' # to get a glance summary
 #' ggstatsplot::ggcoefstats(x = mod, output = "glance")
-#' 
+#'
 #' # to get augmented dataframe
 #' ggstatsplot::ggcoefstats(x = mod, output = "augment")
-#' 
+#'
 #' # -------------- with custom dataframe -----------------------------------
-#' 
+#'
 #' # creating a dataframe
 #' df <-
 #'   structure(
@@ -256,7 +256,7 @@
 #'       "tbl", "data.frame"
 #'     )
 #'   )
-#' 
+#'
 #' # plotting the dataframe
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
@@ -670,15 +670,14 @@ ggcoefstats <- function(x,
 
   # halt if there are repeated terms
   if (dim(term_df)[1] != 0L) {
-    base::stop(base::message(cat(
+    base::message(cat(
       crayon::red("Error: "),
       crayon::blue(
         "All elements in the column `term` should be unique."
       ),
       sep = ""
-    )),
-    call. = FALSE
-    )
+    ))
+    base::return(base::invisible(dim(term_df)[1]))
   }
 
   # =================== p-value computation ==================================

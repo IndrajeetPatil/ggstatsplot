@@ -21,7 +21,7 @@
 #' set.seed(123)
 #' library(ggplot2)
 #' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
-#' 
+#'
 #' # adding a label
 #' ggstatsplot:::line_labeller(
 #'   plot = p,
@@ -114,10 +114,10 @@ line_labeller <- function(plot,
 #' @examples
 #' \dontrun{
 #' library(ggplot2)
-#' 
+#'
 #' # creating a ploton which lines and labels are to be superposed
 #' p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
-#' 
+#'
 #' # computing `y`-axis positions for line labels
 #' y_label_pos <- median(
 #'   x = ggplot2::layer_scales(p)$y$range$range,
@@ -131,7 +131,7 @@ line_labeller <- function(plot,
 #'   test.value.line = TRUE
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body

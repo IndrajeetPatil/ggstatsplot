@@ -16,7 +16,7 @@
 #' \dontrun{
 #' ggstatsplot:::numdf_summary(ggplot2::msleep)
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body

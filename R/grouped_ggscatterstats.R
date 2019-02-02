@@ -27,11 +27,11 @@
 #' @inherit ggscatterstats return details
 #'
 #' @examples
-#' 
+#'
 #' \dontrun{
 #' # to ensure reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # basic function call
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
@@ -45,7 +45,7 @@
 #'   formula = y ~ x + I(x^3),
 #'   grouping.var = genre
 #' )
-#' 
+#'
 #' # using labeling
 #' # (also show how to modify basic plot from within function call)
 #' ggstatsplot::grouped_ggscatterstats(
@@ -63,9 +63,9 @@
 #'   palette = "appletv",
 #'   messages = FALSE
 #' )
-#' 
+#'
 #' # labeling without expression
-#' 
+#'
 #' ggstatsplot::grouped_ggscatterstats(
 #'   data = dplyr::filter(
 #'     .data = ggstatsplot::movies_long,
@@ -197,20 +197,9 @@ grouped_ggscatterstats <- function(data,
       dplyr::everything()
     )
 
-  # creating dataframe per level of grouping
+  # creating a list for grouped analysis
   df %<>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = purrr::is_bare_character,
-      .funs = ~ as.factor(.)
-    ) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
-    ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
 
   # if labeling expression has been specified, format the arguments accordingly
   if (isTRUE(expression.present)) {

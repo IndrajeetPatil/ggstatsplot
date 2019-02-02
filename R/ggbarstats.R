@@ -38,10 +38,10 @@
 #' @inherit ggpiestats return details
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggbarstats(
 #'   data = datasets::mtcars,
@@ -55,7 +55,7 @@
 #' \dontrun{
 #' # simple function call with the defaults (with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggbarstats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,

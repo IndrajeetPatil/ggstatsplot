@@ -35,7 +35,7 @@
 #'
 #' @examples
 #' set.seed(123)
-#' 
+#'
 #' # subtitle for *t*-statistic with Cohen's *d* as effect size
 #' ggstatsplot::subtitle_template(
 #'   no.parameters = 1L,

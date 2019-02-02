@@ -249,5 +249,5 @@ ggstatsplot::grouped_gghistostats(
 \code{\link{gghistostats}}
 }
 \author{
-Indrajeet Patil
+Indrajeet Patil, Chuck Powell
 }

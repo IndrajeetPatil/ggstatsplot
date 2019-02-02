@@ -799,10 +799,6 @@ testthat::test_that(
       unique(df.clm4$coefficient_type),
       unique(df.clm3$coefficient_type)
     )
-    testthat::expect_error(ggstatsplot::ggcoefstats(
-      x = mod.clm,
-      coefficient.type = "xyz"
-    ))
 
     # polr model
     set.seed(123)
@@ -854,10 +850,6 @@ testthat::test_that(
       unique(df.polr4$coefficient_type),
       unique(df.polr3$coefficient_type)
     )
-    testthat::expect_error(ggstatsplot::ggcoefstats(
-      x = mod.polr,
-      coefficient.type = "xyz"
-    ))
   }
 )
 
@@ -993,7 +985,7 @@ testthat::test_that(
       x = df6,
       meta.analytic.effect = TRUE
     ))
-    testthat::expect_error(ggstatsplot::ggcoefstats(x = df7))
+    testthat::expect_message(ggstatsplot::ggcoefstats(x = df7))
 
     # plotting the dataframe
     p1 <- ggstatsplot::ggcoefstats(x = df1, statistic = "t", sort = "none")

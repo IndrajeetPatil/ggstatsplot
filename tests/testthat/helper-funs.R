@@ -54,8 +54,7 @@ formals_comparator <- function(.f1, .f2) {
         "data",
         "grouping.var",
         "...",
-        "condition",
-        "x.axis.orientation"
+        "condition"
       )
     )
 

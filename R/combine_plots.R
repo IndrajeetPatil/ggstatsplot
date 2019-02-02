@@ -62,7 +62,7 @@
 #' @examples
 #' # loading the necessary libraries
 #' library(ggplot2)
-#' 
+#'
 #' # preparing the first plot
 #' p1 <-
 #'   ggplot2::ggplot(
@@ -71,7 +71,7 @@
 #'   ) +
 #'   geom_point() +
 #'   labs(title = "setosa")
-#' 
+#'
 #' # preparing the second plot
 #' p2 <-
 #'   ggplot2::ggplot(
@@ -80,7 +80,7 @@
 #'   ) +
 #'   geom_point() +
 #'   labs(title = "versicolor")
-#' 
+#'
 #' # combining the plot with a title and a caption
 #' combine_plots(
 #'   p1,

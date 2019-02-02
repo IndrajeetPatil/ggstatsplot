@@ -42,7 +42,7 @@
 #'   conf.type = "perc"
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 t1way_ci <- function(data,
@@ -191,7 +191,7 @@ t1way_ci <- function(data,
 #'   tr = 0.2
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -359,7 +359,7 @@ yuend_ci <- function(data,
 #'   alternative = "greater"
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -538,7 +538,7 @@ cor_test_ci <- function(data,
 #'   conf.type = "norm"
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -697,7 +697,7 @@ chisq_v_ci <- function(data,
 #'   conf.type = c("basic")
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body
@@ -836,7 +836,7 @@ robcor_ci <- function(data,
 #'   conf.type = "basic"
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function to get confidence intervals

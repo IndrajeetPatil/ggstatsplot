@@ -14,7 +14,7 @@
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
-#' @importFrom purrr map set_names
+#' @importFrom purrr pmap
 #' @importFrom tidyr nest
 #'
 #' @seealso \code{\link{ggdotplotstats}}
@@ -105,23 +105,13 @@ grouped_ggdotplotstats <- function(data,
       !!rlang::enquo(x),
       !!rlang::enquo(y)
     ) %>%
-    tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = ., title.text = !!rlang::enquo(grouping.var))
+    tidyr::drop_na(data = .)
 
-  # creating a nested dataframe
+  # creating a list for grouped analysis
   df %<>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = purrr::is_bare_character,
-      .funs = ~ as.factor(.)
-    ) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
-    ) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
 
+  # list with basic arguments
   flexiblelist <- list(
     data = df,
     x = rlang::quo_text(rlang::ensym(x)),
@@ -130,44 +120,43 @@ grouped_ggdotplotstats <- function(data,
   )
 
   # creating a list of plots
-  # creating a list of plots
   plotlist_purrr <-
     purrr::pmap(
       .l = flexiblelist,
       .f = ggstatsplot::ggdotplotstats,
-            xlab = xlab,
-            ylab = ylab,
-            subtitle = subtitle,
-            caption = caption,
-            type = type,
-            test.value = test.value,
-            bf.prior = bf.prior,
-            bf.message = bf.message,
-            robust.estimator = robust.estimator,
-            conf.level = conf.level,
-            nboot = nboot,
-            k = k,
-            results.subtitle = results.subtitle,
-            centrality.para = centrality.para,
-            centrality.color = centrality.color,
-            centrality.size = centrality.size,
-            centrality.linetype = centrality.linetype,
-            centrality.line.labeller = centrality.line.labeller,
-            centrality.k = centrality.k,
-            test.value.line = test.value.line,
-            test.value.color = test.value.color,
-            test.value.size = test.value.size,
-            test.value.linetype = test.value.linetype,
-            test.line.labeller = test.line.labeller,
-            test.k = test.k,
-            ggtheme = ggtheme,
-            ggstatsplot.layer = ggstatsplot.layer,
-            point.color = point.color,
-            point.size = point.size,
-            point.shape = point.shape,
-            ggplot.component = ggplot.component,
-            messages = messages
-          )
+      xlab = xlab,
+      ylab = ylab,
+      subtitle = subtitle,
+      caption = caption,
+      type = type,
+      test.value = test.value,
+      bf.prior = bf.prior,
+      bf.message = bf.message,
+      robust.estimator = robust.estimator,
+      conf.level = conf.level,
+      nboot = nboot,
+      k = k,
+      results.subtitle = results.subtitle,
+      centrality.para = centrality.para,
+      centrality.color = centrality.color,
+      centrality.size = centrality.size,
+      centrality.linetype = centrality.linetype,
+      centrality.line.labeller = centrality.line.labeller,
+      centrality.k = centrality.k,
+      test.value.line = test.value.line,
+      test.value.color = test.value.color,
+      test.value.size = test.value.size,
+      test.value.linetype = test.value.linetype,
+      test.line.labeller = test.line.labeller,
+      test.k = test.k,
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer,
+      point.color = point.color,
+      point.size = point.size,
+      point.shape = point.shape,
+      ggplot.component = ggplot.component,
+      messages = messages
+    )
 
   # combining the list of plots into a single plot
   combined_plot <-

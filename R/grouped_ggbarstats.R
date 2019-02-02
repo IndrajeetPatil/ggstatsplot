@@ -25,11 +25,11 @@
 #' @inherit ggbarstats return return
 #'
 #' @examples
-#' 
+#'
 #' \dontrun{
 #' # with condition and with count data
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::grouped_ggbarstats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Hair,
@@ -37,17 +37,17 @@
 #'   counts = Freq,
 #'   grouping.var = Sex
 #' )
-#' 
+#'
 #' # the following will take slightly more amount of time
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(.data = ., cut %in% c("Very Good", "Ideal")) %>%
 #'   dplyr::filter(.data = ., clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
 #'   dplyr::sample_frac(tbl = ., size = 0.05)
-#' 
+#'
 #' # plot
 #' ggstatsplot::grouped_ggbarstats(
 #'   data = diamonds_short,
@@ -156,20 +156,9 @@ grouped_ggbarstats <- function(data,
     ) %>%
     tidyr::drop_na(data = .)
 
-  # make a list of dataframes by grouping variable
+  # creating a list for grouped analysis
   df %<>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = purrr::is_bare_character,
-      .funs = ~ as.factor(.)
-    ) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
-    ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
 
   # ============== build pmap list based on conditions =====================
 

@@ -343,5 +343,5 @@ ggstatsplot::grouped_ggbetweenstats(
 \code{\link{ggbetweenstats}}
 }
 \author{
-Indrajeet Patil
+Indrajeet Patil, Chuck Powell
 }

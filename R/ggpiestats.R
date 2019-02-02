@@ -63,10 +63,10 @@
 #'   \url{http://www.how2stats.net/2011/09/yates-correction.html}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # simple function call with the defaults (without condition)
 #' ggstatsplot::ggpiestats(
 #'   data = ggplot2::msleep,
@@ -74,7 +74,7 @@
 #'   perc.k = 1,
 #'   k = 2
 #' )
-#' 
+#'
 #' # simple function call with the defaults (with condition)
 #' ggstatsplot::ggpiestats(
 #'   data = datasets::mtcars,
@@ -85,10 +85,10 @@
 #'   factor.levels = c("0 = V-shaped", "1 = straight"),
 #'   legend.title = "Engine"
 #' )
-#' 
+#'
 #' # simple function call with the defaults (without condition; with count data)
 #' library(jmv)
-#' 
+#'
 #' ggstatsplot::ggpiestats(
 #'   data = as.data.frame(HairEyeColor),
 #'   main = Eye,
@@ -136,19 +136,14 @@ ggpiestats <- function(data,
 
   # ================= extracting column names as labels  =====================
 
-  if (base::missing(condition)) {
-    # saving the column label for the 'main' variables
-    if (is.null(legend.title)) {
-      legend.title <- rlang::as_name(rlang::ensym(main))
-    }
-  } else {
-    # if legend title is not provided, use the variable name for 'main'
-    # argument
-    if (is.null(legend.title)) {
-      legend.title <- rlang::as_name(rlang::ensym(main))
-    }
-    # if facetting variable name is not specified, use the variable name for
-    # 'condition' argument
+  # saving the column label for the 'main' variables
+  if (is.null(legend.title)) {
+    legend.title <- rlang::as_name(rlang::ensym(main))
+  }
+
+  # if facetting variable name is not specified, use the variable name for
+  # 'condition' argument
+  if (!base::missing(condition)) {
     if (is.null(facet.wrap.name)) {
       facet.wrap.name <- rlang::as_name(rlang::ensym(condition))
     }

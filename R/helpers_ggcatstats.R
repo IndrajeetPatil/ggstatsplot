@@ -32,7 +32,7 @@
 #'   dplyr::ungroup(x = .) %>%
 #'   dplyr::arrange(.data = ., dplyr::desc(x = cyl)) %>%
 #'   dplyr::filter(.data = ., counts != 0L)
-#' 
+#'
 #' # dataframe with label column
 #' ggstatsplot:::cat_label_df(
 #'   data = df,
@@ -41,7 +41,7 @@
 #'   perc.k = 1
 #' )
 #' }
-#' 
+#'
 #' @keywords internal
 
 # function body

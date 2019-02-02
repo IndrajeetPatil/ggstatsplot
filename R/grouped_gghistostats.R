@@ -4,7 +4,7 @@
 #' @description Helper function for `ggstatsplot::gghistostats` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.
-#' @author Indrajeet Patil
+#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @inheritParams gghistostats
 #' @inheritParams grouped_ggbetweenstats
@@ -123,23 +123,13 @@ grouped_gghistostats <- function(data,
       !!rlang::enquo(grouping.var),
       !!rlang::enquo(x)
     ) %>%
-    tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = ., title.text = !!rlang::enquo(grouping.var))
+    tidyr::drop_na(data = .)
 
-  # creating a nested dataframe
+  # creating a list for grouped analysis
   df %<>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = purrr::is_bare_character,
-      .funs = ~ as.factor(.)
-    ) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
-    ) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
 
+  # list with basic arguments
   flexiblelist <- list(
     data = df,
     x = rlang::quo_text(rlang::ensym(x)),
@@ -148,49 +138,49 @@ grouped_gghistostats <- function(data,
 
   # creating a list of plots
   plotlist_purrr <-
-        purrr::pmap(
-          .l = flexiblelist,
-          .f = ggstatsplot::gghistostats,
-            bar.measure = bar.measure,
-            xlab = xlab,
-            subtitle = subtitle,
-            caption = caption,
-            type = type,
-            test.value = test.value,
-            bf.prior = bf.prior,
-            bf.message = bf.message,
-            robust.estimator = robust.estimator,
-            conf.level = conf.level,
-            nboot = nboot,
-            low.color = low.color,
-            high.color = high.color,
-            bar.fill = bar.fill,
-            k = k,
-            results.subtitle = results.subtitle,
-            centrality.para = centrality.para,
-            centrality.color = centrality.color,
-            centrality.size = centrality.size,
-            centrality.linetype = centrality.linetype,
-            centrality.line.labeller = centrality.line.labeller,
-            centrality.k = centrality.k,
-            test.value.line = test.value.line,
-            test.value.color = test.value.color,
-            test.value.size = test.value.size,
-            test.value.linetype = test.value.linetype,
-            test.line.labeller = test.line.labeller,
-            test.k = test.k,
-            normal.curve = normal.curve,
-            normal.curve.color = normal.curve.color,
-            normal.curve.linetype = normal.curve.linetype,
-            normal.curve.size = normal.curve.size,
-            binwidth = binwidth,
-            ggtheme = ggtheme,
-            ggstatsplot.layer = ggstatsplot.layer,
-            fill.gradient = fill.gradient,
-            ggplot.component = ggplot.component,
-            messages = messages
-          )
-#        )
+    purrr::pmap(
+      .l = flexiblelist,
+      .f = ggstatsplot::gghistostats,
+      bar.measure = bar.measure,
+      xlab = xlab,
+      subtitle = subtitle,
+      caption = caption,
+      type = type,
+      test.value = test.value,
+      bf.prior = bf.prior,
+      bf.message = bf.message,
+      robust.estimator = robust.estimator,
+      conf.level = conf.level,
+      nboot = nboot,
+      low.color = low.color,
+      high.color = high.color,
+      bar.fill = bar.fill,
+      k = k,
+      results.subtitle = results.subtitle,
+      centrality.para = centrality.para,
+      centrality.color = centrality.color,
+      centrality.size = centrality.size,
+      centrality.linetype = centrality.linetype,
+      centrality.line.labeller = centrality.line.labeller,
+      centrality.k = centrality.k,
+      test.value.line = test.value.line,
+      test.value.color = test.value.color,
+      test.value.size = test.value.size,
+      test.value.linetype = test.value.linetype,
+      test.line.labeller = test.line.labeller,
+      test.k = test.k,
+      normal.curve = normal.curve,
+      normal.curve.color = normal.curve.color,
+      normal.curve.linetype = normal.curve.linetype,
+      normal.curve.size = normal.curve.size,
+      binwidth = binwidth,
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer,
+      fill.gradient = fill.gradient,
+      ggplot.component = ggplot.component,
+      messages = messages
+    )
+  #        )
 
   # combining the list of plots into a single plot
   combined_plot <-

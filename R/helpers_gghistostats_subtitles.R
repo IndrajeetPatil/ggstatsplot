@@ -27,10 +27,10 @@
 #' @seealso \code{\link{gghistostats}}
 #'
 #' @examples
-#' 
+#'
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' subtitle_t_onesample(
 #'   x = iris$Sepal.Length,
 #'   type = "r"

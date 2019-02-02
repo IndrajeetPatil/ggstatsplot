@@ -3,7 +3,7 @@
 #' @name grouped_ggbetweenstats
 #' @description A combined plot of comparison plot created for levels of a
 #'   grouping variable.
-#' @author Indrajeet Patil
+#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @param grouping.var A single grouping variable (can be entered either as a
 #'   bare name `x` or as a string `"x"`).
@@ -19,8 +19,7 @@
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
-#' @importFrom purrr map set_names
-#' @importFrom tidyr nest
+#' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggbetweenstats}}
 #'
@@ -28,10 +27,10 @@
 #' @inherit ggbetweenstats return details
 #'
 #' @examples
-#' 
+#'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
-#' 
+#'
 #' # the most basic function call
 #' ggstatsplot::grouped_ggbetweenstats(
 #'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
@@ -57,7 +56,7 @@
 #'   messages = FALSE
 #' )
 #' }
-#' 
+#'
 #' @export
 
 # defining the function
@@ -160,22 +159,11 @@ grouped_ggbetweenstats <- function(data,
       !!rlang::enquo(grouping.var),
       !!rlang::enquo(outlier.label)
     ) %>%
-    tidyr::drop_na(data = .) %>%
-    tibble::as_tibble(x = .)
+    tidyr::drop_na(data = .)
 
-  # make a list of dataframes by grouping variable
+  # creating a list for grouped analysis
   df %<>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = purrr::is_bare_character,
-      .funs = ~ as.factor(.)
-    ) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
-    ) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
 
   # ============== build pmap list based on conditions =====================
 

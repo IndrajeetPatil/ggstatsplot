@@ -4,7 +4,7 @@
 #' @description Helper function for `ggstatsplot::ggcorrmat` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.
-#' @author Indrajeet Patil
+#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @inheritParams ggcorrmat
 #' @inheritParams grouped_ggbetweenstats
@@ -145,22 +145,11 @@ grouped_ggcorrmat <- function(data,
     df <- data
   }
 
-  # creating a nested dataframe
+  # creating a list for grouped analysis
   df %<>%
-    dplyr::mutate(.data = ., title.text = !!rlang::enquo(grouping.var)) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = purrr::is_bare_character,
-      .funs = ~ as.factor(.)
-    ) %>%
-    dplyr::mutate_if(
-      .tbl = .,
-      .predicate = is.factor,
-      .funs = ~ base::droplevels(.)
-    ) %>%
-    dplyr::filter(.data = ., !is.na(!!rlang::enquo(grouping.var))) %>%
-    base::split(.[[rlang::quo_text(grouping.var)]], drop = TRUE)
+    grouped_list(data = ., grouping.var = !!rlang::enquo(grouping.var))
 
+  # list with basic arguments
   flexiblelist <- list(
     data = df,
     title = glue::glue("{title.prefix}: {names(df)}")
@@ -177,45 +166,45 @@ grouped_ggcorrmat <- function(data,
     purrr::pmap(
       .l = flexiblelist,
       .f = ggstatsplot::ggcorrmat,
-            cor.vars.names = cor.vars.names,
-            output = output,
-            matrix.type = matrix.type,
-            method = method,
-            corr.method = corr.method,
-            exact = exact,
-            continuity = continuity,
-            beta = beta,
-            digits = digits,
-            sig.level = sig.level,
-            p.adjust.method = p.adjust.method,
-            hc.order = hc.order,
-            hc.method = hc.method,
-            lab = lab,
-            package = package,
-            palette = palette,
-            direction = direction,
-            colors = colors,
-            outline.color = outline.color,
-            ggtheme = ggtheme,
-            ggstatsplot.layer = ggstatsplot.layer,
-            subtitle = subtitle,
-            caption = caption,
-            caption.default = caption.default,
-            lab.col = lab.col,
-            lab.size = lab.size,
-            insig = insig,
-            pch = pch,
-            pch.col = pch.col,
-            pch.cex = pch.cex,
-            tl.cex = tl.cex,
-            tl.col = tl.col,
-            tl.srt = tl.srt,
-            axis.text.x.margin.t = axis.text.x.margin.t,
-            axis.text.x.margin.r = axis.text.x.margin.r,
-            axis.text.x.margin.b = axis.text.x.margin.b,
-            axis.text.x.margin.l = axis.text.x.margin.l,
-            messages = messages
-          )
+      cor.vars.names = cor.vars.names,
+      output = output,
+      matrix.type = matrix.type,
+      method = method,
+      corr.method = corr.method,
+      exact = exact,
+      continuity = continuity,
+      beta = beta,
+      digits = digits,
+      sig.level = sig.level,
+      p.adjust.method = p.adjust.method,
+      hc.order = hc.order,
+      hc.method = hc.method,
+      lab = lab,
+      package = package,
+      palette = palette,
+      direction = direction,
+      colors = colors,
+      outline.color = outline.color,
+      ggtheme = ggtheme,
+      ggstatsplot.layer = ggstatsplot.layer,
+      subtitle = subtitle,
+      caption = caption,
+      caption.default = caption.default,
+      lab.col = lab.col,
+      lab.size = lab.size,
+      insig = insig,
+      pch = pch,
+      pch.col = pch.col,
+      pch.cex = pch.cex,
+      tl.cex = tl.cex,
+      tl.col = tl.col,
+      tl.srt = tl.srt,
+      axis.text.x.margin.t = axis.text.x.margin.t,
+      axis.text.x.margin.r = axis.text.x.margin.r,
+      axis.text.x.margin.b = axis.text.x.margin.b,
+      axis.text.x.margin.l = axis.text.x.margin.l,
+      messages = messages
+    )
 
   # ===================== combining results ===================================
 
