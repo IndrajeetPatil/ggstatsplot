@@ -437,6 +437,7 @@ ggcoefstats <- function(x,
       "orcutt",
       "plm",
       "ridgelm",
+      "stanreg",
       "svyolr"
     )
 

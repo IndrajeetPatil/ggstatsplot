@@ -123,7 +123,9 @@ testthat::test_that(
           "(BF"["01"],
           ") = ",
           "-2.23",
-          ", Prior width = ",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
           "0.71"
         )
       ))

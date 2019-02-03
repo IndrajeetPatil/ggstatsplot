@@ -452,7 +452,8 @@ ggbetweenstats <- function(data,
             y = y,
             bf.prior = bf.prior,
             caption = caption,
-            output = "caption"
+            output = "caption",
+            k = k
           )
       }
     }

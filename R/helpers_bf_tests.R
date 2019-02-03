@@ -170,7 +170,9 @@ bf_caption_maker <- function(bf.df,
             "(BF"["01"],
             ") = ",
             bf,
-            ", Prior width = ",
+            ", ",
+            italic("r")["Cauchy"],
+            " = ",
             bf_prior
           )
       ),
@@ -243,19 +245,22 @@ bf_corr_test <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    tidyr::drop_na(data = .) %>%
     tibble::as_tibble(.)
 
   # ========================= subtitle preparation ==========================
 
   # extracting results from bayesian test and creating a dataframe
   bf_results <-
-    bf_extractor(bf.object = BayesFactor::correlationBF(
-      x = data$x,
-      y = data$y,
-      nullInterval = NULL,
-      rscale = bf.prior
-    )) %>% # adding prior width column
+    bf_extractor(
+      bf.object = BayesFactor::correlationBF(
+        x = data$x,
+        y = data$y,
+        nullInterval = NULL,
+        rscale = bf.prior
+      ),
+      posterior = TRUE
+    ) %>% # adding prior width column
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
   # prepare the bayes factor message
@@ -344,7 +349,7 @@ bf_contingency_tab <- function(data,
       x = !!rlang::enquo(main),
       y = !!rlang::enquo(condition)
     ) %>%
-    dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+    tidyr::drop_na(data = .) %>%
     dplyr::mutate(
       .data = .,
       x = droplevels(as.factor(x)), y = droplevels(as.factor(y))
@@ -365,12 +370,15 @@ bf_contingency_tab <- function(data,
 
   # extracting results from bayesian test and creating a dataframe
   bf_results <-
-    bf_extractor(bf.object = BayesFactor::contingencyTableBF(
-      x = table(data$x, data$y),
-      sampleType = sampling.plan,
-      fixedMargin = fixed.margin,
-      priorConcentration = prior.concentration
-    )) %>%
+    bf_extractor(
+      bf.object = BayesFactor::contingencyTableBF(
+        x = table(data$x, data$y),
+        sampleType = sampling.plan,
+        fixedMargin = fixed.margin,
+        priorConcentration = prior.concentration
+      ),
+      posterior = TRUE
+    ) %>%
     dplyr::mutate(
       .data = .,
       sampling.plan = sampling_plan_text,
@@ -486,15 +494,9 @@ bf_two_sample_ttest <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    ) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    tibble::as_tibble(.)
 
   # -------------------------- between-subjects design -------------------
 
@@ -539,7 +541,8 @@ bf_two_sample_ttest <- function(data,
 
   # extracting the bayes factors
   bf_results <- bf_extractor(
-    bf.object = bf_object
+    bf.object = bf_object,
+    posterior = TRUE
   ) %>%
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
@@ -612,24 +615,23 @@ bf_oneway_anova <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    stats::na.omit(.) %>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    ) %>%
+    tidyr::drop_na(data = .) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(.)
 
   # ========================= subtitle preparation ==========================
 
   # extracting results from bayesian test and creating a dataframe
   bf_results <-
-    bf_extractor(bf.object = BayesFactor::anovaBF(
-      formula = y ~ x,
-      data = as.data.frame(data),
-      rscaleFixed = bf.prior,
-      progress = FALSE
-    )) %>%
+    bf_extractor(
+      bf.object = BayesFactor::anovaBF(
+        formula = y ~ x,
+        data = as.data.frame(data),
+        rscaleFixed = bf.prior,
+        progress = FALSE
+      ),
+      posterior = TRUE
+    ) %>%
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
   # prepare the bayes factor message
@@ -717,12 +719,15 @@ bf_one_sample_ttest <- function(data = NULL,
 
   # extracting results from bayesian test and creating a dataframe
   bf_results <-
-    bf_extractor(bf.object = BayesFactor::ttestBF(
-      x = data$x,
-      rscale = bf.prior,
-      mu = test.value,
-      nullInterval = NULL
-    )) %>%
+    bf_extractor(
+      bf.object = BayesFactor::ttestBF(
+        x = data$x,
+        rscale = bf.prior,
+        mu = test.value,
+        nullInterval = NULL
+      ),
+      posterior = TRUE
+    ) %>%
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
   # prepare the bayes factor message

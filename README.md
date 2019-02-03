@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.8-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/116717490.svg)](https://zenodo.org/badge/latestdoi/116717490)                                                                  |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--01--31-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--02--03-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)            | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_31-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
@@ -206,6 +206,7 @@ ggstatsplot::theme_ggstatsplot
 #>     ggtheme
 #>   }
 #> }
+#> <bytecode: 0x000000002cb989b8>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -1056,7 +1057,7 @@ ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="80%" />
 
-The basic can be further modified to one’s liking with additional
+The basic plot can be further modified to one’s liking with additional
 arguments (also, let’s use a robust linear model instead of a simple
 linear model now):
 
@@ -1076,7 +1077,7 @@ ggstatsplot::ggcoefstats(
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",
-  ggtheme = ggthemes::theme_stata(),
+  ggtheme = hrbrthemes::theme_ipsum_ps(),
   ggstatsplot.layer = FALSE
 ) +                                    
   # further modification with the ggplot2 commands
@@ -1094,53 +1095,8 @@ package with `tidy` and `glance` methods
 supported by `ggcoefstats`. Additionally, we can make a number of
 aesthetic modifications by changing the defaults for theme and palette.
 
-Let’s see a couple more examples:
-
-``` r
-# for reproducibility
-set.seed(123)
-library(quantreg)
-library(nlme)
-
-# loading dataframe needed for the analyses below
-data(stackloss)
-
-# combining plots together
-ggstatsplot::combine_plots(
-  # quantile regression
-  ggstatsplot::ggcoefstats(
-    x = quantreg::rq(
-      formula = stack.loss ~ stack.x,
-      data = stackloss,
-      method = "br"
-    ),
-    se.type = "iid",
-    title = "quantile regression"
-  ),
-  # linear model using generalized least squares
-  ggstatsplot::ggcoefstats(
-    x = nlme::gls(
-      model = follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time),
-      data = Ovary,
-      correlation = corAR1(form = ~ 1 | Mare)
-    ),
-    point.color = "red",
-    stats.label.color = "black",
-    ggtheme = hrbrthemes::theme_ipsum_ps(),
-    ggstatsplot.layer = FALSE,
-    exclude.intercept = FALSE,
-    title = "generalized least squares model"
-  ),
-  labels = c("(a)", "(b)"),
-  nrow = 2
-)
-```
-
-<img src="man/figures/README-ggcoefstats3-1.png" width="100%" />
-
-This is by no means an exhaustive list of models supported by
-`ggcoefstats`. For a more thorough discussion about all regression
-models supported, see the associated vignette-
+For an exhaustive list of all regression models supported by
+`ggcoefstats`, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
 ## `combine_plots`
@@ -1148,9 +1104,8 @@ models supported, see the associated vignette-
 The full power of `ggstatsplot` can be leveraged with a functional
 programming package like [`purrr`](http://purrr.tidyverse.org/) that
 replaces `for` loops with code that is both more succinct and easier to
-read and, therefore, `purrr` should be preferrred \<U+0001F63B\>.
-(Another old school option to do this effectively is using the `plyr`
-package.)
+read and, therefore, `purrr` should be preferrred 😻. (Another old school
+option to do this effectively is using the `plyr` package.)
 
 In such cases, `ggstatsplot` contains a helper function `combine_plots`
 to combine multiple plots, which can be useful for combining a list of

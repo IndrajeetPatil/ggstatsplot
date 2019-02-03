@@ -1164,20 +1164,72 @@ ggstatsplot::ggcoefstats(x = g,
 
 The `nlme` package provides a function to fit a linear model using generalized
 least squares. The errors are allowed to be correlated and/or have unequal
-variances. We have already seen an example in the `README` document:
-<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
+variances. 
+
+```{r gls, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# for reproducibility
+set.seed(123)
+library(nlme)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = nlme::gls(
+    model = follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time),
+    data = Ovary,
+    correlation = corAR1(form = ~ 1 | Mare)
+  ),
+  point.color = "red",
+  stats.label.color = "black",
+  ggtheme = hrbrthemes::theme_ipsum_ps(),
+  ggstatsplot.layer = FALSE,
+  exclude.intercept = FALSE,
+  title = "generalized least squares model"
+)
+```
 
 ## robust regression using an M estimator (`rlm`)
 
-We have already seen an example of `MASS::rlm()` in the `README` document:
-<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
+```{r rlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# for reproducibility
+set.seed(123)
 
+# plot
+ggstatsplot::ggcoefstats(
+  x = MASS::rlm(formula = mpg ~ am * cyl,
+                data = mtcars),
+  point.color = "red",                
+  point.shape = 15,
+  vline.color = "#CC79A7",
+  vline.linetype = "dotdash",
+  stats.label.size = 3.5,
+  stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
+  title = "robust regression using an M estimator",
+  ggtheme = ggthemes::theme_stata(),
+  ggstatsplot.layer = FALSE
+)
+```
 
 ## quantile regression (`rq`)
 
-We have already seen an example of quantile regression (`quantreg::rq()`) in the
-`README` document:
-<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
+```{r rq, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# for reproducibility
+set.seed(123)
+library(quantreg)
+
+# loading dataframe needed for the analyses below
+data(stackloss)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = quantreg::rq(
+    formula = stack.loss ~ stack.x,
+    data = stackloss,
+    method = "br"
+  ),
+  se.type = "iid",
+  title = "quantile regression"
+)
+```
 
 ## nonlinear quantile regression estimates (`nlrq`)
 
@@ -1513,6 +1565,22 @@ two_class_cm <- caret::confusionMatrix(
 ggstatsplot::ggcoefstats(x = two_class_cm,
                          by.class = TRUE,
                          title = "confusion matrix")
+```
+
+## Bayesian regression models via Stan (`stanreg`)
+
+```{r rstan, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# set up
+set.seed(123)
+library(rstanarm)
+
+# model
+fit <- rstanarm::stan_glm(mpg ~ wt + am, data = mtcars, chains = 1)
+
+# plot
+ggstatsplot::ggcoefstats(x = fit, 
+                         title = "Bayesian generalized linear models via Stan",
+                         conf.method = "quantile")
 ```
 
 ## multivariate generalized linear mixed models (`MCMCglmm`)

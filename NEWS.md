@@ -7,7 +7,7 @@ NEW FEATURES
   - `gghistostats` and its `grouped_` variant has a new argument `normal.curve`
     to superpose a normal distribution curve on top of the histogram (#138).
   - `ggcoefstats` can support following new regression model objects: `Gam`,
-    `gamlss`, `mjoint`.
+    `gamlss`, `mjoint`, `stanreg`.
   - New function to convert plots which are not of `gg`/`ggplot` class to
     convert into `ggplot` objects.
   

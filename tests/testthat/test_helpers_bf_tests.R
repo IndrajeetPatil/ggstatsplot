@@ -211,6 +211,7 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # bayes factor results
+    set.seed(123)
     bf_results <- tibble::tribble(
       ~log_e_bf01, ~bf.prior,
       1.1, 0.88
@@ -235,7 +236,9 @@ testthat::test_that(
           "(BF"["01"],
           ") = ",
           "1.100",
-          ", Prior width = ",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
           "0.880"
         )
       ))

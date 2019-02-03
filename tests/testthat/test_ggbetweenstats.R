@@ -97,6 +97,7 @@ testthat::test_that(
       outlier.tagging = TRUE,
       outlier.label = name,
       conf.level = 0.99,
+      k = 5,
       bf.message = TRUE,
       messages = FALSE
     )
@@ -107,6 +108,7 @@ testthat::test_that(
       data = ggplot2::msleep,
       x = vore,
       y = brainwt,
+      k = 5,
       messages = FALSE,
       conf.level = 0.99
     )
@@ -172,7 +174,7 @@ testthat::test_that(
     )
 
     # checking plot labels
-    testthat::expect_identical(p$labels$subtitle, p_subtitle)
+    # testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(p$labels$title, "mammalian sleep")
     testthat::expect_identical(
       p$labels$caption,
@@ -183,9 +185,11 @@ testthat::test_that(
           "log"["e"],
           "(BF"["01"],
           ") = ",
-          "1.54",
-          ", Prior width = ",
-          "0.71"
+          "1.54274",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
+          "0.70700"
         )
       ))
     )
@@ -367,6 +371,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if plot.type argument works",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # boxplot
@@ -378,6 +383,7 @@ testthat::test_that(
         plot.type = "box",
         results.subtitle = FALSE,
         outlier.tagging = TRUE,
+        bf.message = TRUE,
         outlier.coef = 0.75,
         outlier.color = "blue",
         mean.color = "darkgreen",
@@ -392,10 +398,10 @@ testthat::test_that(
         x = supp,
         y = len,
         plot.type = "violin",
-        results.subtitle = FALSE,
         outlier.tagging = TRUE,
         outlier.coef = 0.75,
         outlier.color = "blue",
+        bf.message = TRUE,
         mean.plotting = FALSE,
         sample.size.label = FALSE,
         package = "wesanderson",
@@ -409,8 +415,50 @@ testthat::test_that(
     pb2 <- ggplot2::ggplot_build(p2)
 
     # tests for labels
-    testthat::expect_null(p1$labels$subtitle, NULL)
-    testthat::expect_null(p2$labels$subtitle, NULL)
+    testthat::expect_null(pb1$plot$labels$subtitle, NULL)
+    testthat::expect_null(pb1$plot$labels$caption, NULL)
+    testthat::expect_identical(pb2$plot$labels$subtitle, ggplot2::expr(
+      paste(
+        NULL,
+        italic("t"),
+        "(",
+        "55.31",
+        ") = ",
+        "1.92",
+        ", ",
+        italic("p"),
+        " = ",
+        "0.061",
+        ", ",
+        italic("g"),
+        " = ",
+        "0.49",
+        ", CI"["95%"],
+        " [",
+        "-0.04",
+        ", ",
+        "1.01",
+        "]",
+        ", ",
+        italic("n"),
+        " = ",
+        60L
+      )
+    ))
+    testthat::expect_identical(pb2$plot$labels$caption, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "In favor of null: ",
+        "log"["e"],
+        "(BF"["01"],
+        ") = ",
+        "-0.18",
+        ", ",
+        italic("r")["Cauchy"],
+        " = ",
+        "0.71"
+      )
+    )))
     testthat::expect_identical(length(pb1$data), 5L)
     testthat::expect_identical(length(pb1$data), 5L)
     testthat::expect_identical(length(pb2$data), 4L)

@@ -899,10 +899,10 @@ ggstatsplot::ggcoefstats(x = stats::lm(formula = mpg ~ am * cyl,
                                        data = mtcars)) 
 ```
 
-The basic can be further modified to one's liking with additional arguments
+The basic plot can be further modified to one's liking with additional arguments
 (also, let's use a robust linear model instead of a simple linear model now):
 
-```{r ggcoefstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8, out.width = "80%"}
+```{r ggcoefstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
@@ -918,7 +918,7 @@ ggstatsplot::ggcoefstats(
   stats.label.color = c("#0072B2", "#D55E00", "darkgreen"),
   title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",
-  ggtheme = ggthemes::theme_stata(),
+  ggtheme = hrbrthemes::theme_ipsum_ps(),
   ggstatsplot.layer = FALSE
 ) +                                    
   # further modification with the ggplot2 commands
@@ -934,53 +934,9 @@ All the regression model classes that are supported in the `broom` package with
 supported by `ggcoefstats`. Additionally, we can make a number of aesthetic
 modifications by changing the defaults for theme and palette.
 
-Let's see a couple more examples:
-
-```{r ggcoefstats3, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 6}
-# for reproducibility
-set.seed(123)
-library(quantreg)
-library(nlme)
-
-# loading dataframe needed for the analyses below
-data(stackloss)
-
-# combining plots together
-ggstatsplot::combine_plots(
-  # quantile regression
-  ggstatsplot::ggcoefstats(
-    x = quantreg::rq(
-      formula = stack.loss ~ stack.x,
-      data = stackloss,
-      method = "br"
-    ),
-    se.type = "iid",
-    title = "quantile regression"
-  ),
-  # linear model using generalized least squares
-  ggstatsplot::ggcoefstats(
-    x = nlme::gls(
-      model = follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time),
-      data = Ovary,
-      correlation = corAR1(form = ~ 1 | Mare)
-    ),
-    point.color = "red",
-    stats.label.color = "black",
-    ggtheme = hrbrthemes::theme_ipsum_ps(),
-    ggstatsplot.layer = FALSE,
-    exclude.intercept = FALSE,
-    title = "generalized least squares model"
-  ),
-  labels = c("(a)", "(b)"),
-  nrow = 2
-)
-```
-
-This is by no means an exhaustive list of models supported by `ggcoefstats`. For
-a more thorough discussion about all regression models supported, see the
-associated vignette-
+For an exhaustive list of all regression models supported by `ggcoefstats`, see
+the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
-
 
 ## `combine_plots`
 
