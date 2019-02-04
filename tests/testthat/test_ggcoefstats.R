@@ -431,6 +431,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "check merMod output",
   code = {
+    testthat::skip_on_cran()
+
     # setup
     set.seed(123)
     library(lme4)
@@ -454,10 +456,14 @@ testthat::test_that(
     )
     mod2 <- lme4::glmer(y ~ x + (1 | f), data = d, family = poisson)
     mod3 <-
-      lme4::lmer(weight ~ Time * Diet + (1 + Time |
-        Chick),
-      data = ChickWeight,
-      REML = FALSE
+      lme4::lmer(
+        formula = weight ~ Time * Diet + (1 + Time | Chick),
+        data = ChickWeight,
+        REML = FALSE,
+        control = lme4::lmerControl(
+          optimizer = "bobyqa",
+          check.conv.grad = .makeCC("message", tol = 2e-2, relTol = NULL)
+        )
       )
 
     # broom output

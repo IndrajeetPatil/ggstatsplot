@@ -193,7 +193,7 @@ subtitle_kw_nonparametric <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y)) %>%
+      tidyr::drop_na(data = .) %>%
       dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
       tibble::as_tibble(x = .)
 
@@ -227,7 +227,7 @@ subtitle_kw_nonparametric <-
     # preparing subtitle
     subtitle <- subtitle_template(
       no.parameters = 1L,
-      stat.title = "Kruskal-Wallis: ",
+      stat.title = NULL,
       statistic.text = quote(italic(chi)^2),
       statistic = stats_df$statistic[[1]],
       parameter = stats_df$parameter[[1]],
@@ -623,7 +623,9 @@ subtitle_anova_bayes <- function(data,
           "(BF"["10"],
           ") = ",
           bf,
-          ", Prior width = ",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
           bf_prior,
           ", ",
           italic("n"),

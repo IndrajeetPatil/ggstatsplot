@@ -185,6 +185,7 @@
 <li>For <code>ggbetweenstats</code>, details contained in the subtitle for non-parametric test are modified. It now uses Hodges–Lehmann–Sen estimator as effect size. This removes <code>coin</code> from dependencies.</li>
 <li>
 <code>ggbetweenstats</code> and its <code>grouped_</code> variant gain a new argument <code>axes.range.restrict</code> (which defaults to <code>FALSE</code>). This restricts <code>y</code>-axes limits to minimum and maximum of <code>y</code> variable. This is what these functions were doing by default in the past versions, which created issues for additional ggplot components using the <code>ggplot.component</code> argument.</li>
+<li>All bayes factor related subtitle and captions replace <code>prior.width</code> with <code>r_{Cauchy}</code>.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0-0-8" class="section level1">

@@ -26,6 +26,8 @@ MINOR CHANGES
     limits to minimum and maximum of `y` variable. This is what these functions
     were doing by default in the past versions, which created issues for
     additional ggplot components using the `ggplot.component` argument.
+  - All bayes factor related subtitle and captions replace `prior.width` with
+    `r_{Cauchy}`.
 
 # ggstatsplot 0.0.8
 

@@ -767,13 +767,13 @@ set.seed(123)
 library(nnet)
 library(MASS)
 utils::example(topic = birthwt, echo = FALSE)
-bwt.mu <- nnet::multinom(formula = low ~ ., data = bwt)
+bwt.mu <- nnet::multinom(formula = low ~ ., data = bwt, trace = FALSE)
 
 # plot
 ggstatsplot::ggcoefstats(x = bwt.mu,
                          title = "multinomial logistic regression models",
-                         package = "ggthemes",
-                         palette = "tableau_cyclic")
+                         package = "ggsci",
+                         palette = "default_ucscgb")
 ```
 
 ## proportional odds and related models (`svyolr`)

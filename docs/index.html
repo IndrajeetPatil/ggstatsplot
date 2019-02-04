@@ -189,7 +189,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--02--03-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--02--04-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -336,7 +336,7 @@
 <a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt;     ggtheme</span></a>
 <a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt;   }</span></a>
 <a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; &lt;bytecode: 0x0000000029c21fe0&gt;</span></a>
+<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; &lt;bytecode: 0x0000000029c00318&gt;</span></a>
 <a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -649,7 +649,7 @@
 <a class="sourceLine" id="cb18-10" data-line-number="10">  <span class="dt">label.text.size =</span> <span class="dv">3</span>,             <span class="co"># text size for slice labels</span></a>
 <a class="sourceLine" id="cb18-11" data-line-number="11">  <span class="dt">slice.label =</span> <span class="st">"both"</span>,            <span class="co"># show both counts and percentage data</span></a>
 <a class="sourceLine" id="cb18-12" data-line-number="12">  <span class="dt">perc.k =</span> <span class="dv">1</span>,                      <span class="co"># no. of decimal places for percentages  </span></a>
-<a class="sourceLine" id="cb18-13" data-line-number="13">  <span class="dt">palette =</span> <span class="st">"BrightPastel"</span>,</a>
+<a class="sourceLine" id="cb18-13" data-line-number="13">  <span class="dt">palette =</span> <span class="st">"brightPastel"</span>,</a>
 <a class="sourceLine" id="cb18-14" data-line-number="14">  <span class="dt">package =</span> <span class="st">"quickpalette"</span>,</a>
 <a class="sourceLine" id="cb18-15" data-line-number="15">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb18-16" data-line-number="16">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
@@ -1018,7 +1018,7 @@
 <a class="sourceLine" id="cb30-21" data-line-number="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"transmission"</span>, <span class="st">"cylinders"</span>, <span class="st">"interaction"</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb30-22" data-line-number="22"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb30-23" data-line-number="23">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
-<p><img src="reference/figures/README-ggcoefstats2-1.png" width="80%"></p>
+<p><img src="reference/figures/README-ggcoefstats2-1.png" width="100%"></p>
 <p>All the regression model classes that are supported in the <code>broom</code> package with <code>tidy</code> and <code>glance</code> methods (<a href="https://broom.tidyverse.org/articles/available-methods.html" class="uri">https://broom.tidyverse.org/articles/available-methods.html</a>) are also supported by <code>ggcoefstats</code>. Additionally, we can make a number of aesthetic modifications by changing the defaults for theme and palette.</p>
 <p>For an exhaustive list of all regression models supported by <code>ggcoefstats</code>, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>
 </div>

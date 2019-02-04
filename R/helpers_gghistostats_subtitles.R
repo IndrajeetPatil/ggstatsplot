@@ -53,11 +53,7 @@ subtitle_t_onesample <- function(data = NULL,
   # preparing a dataframe out of provided inputs
   if (!is.null(data)) {
     # if dataframe is provided
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x)
-      )
+    data <- dplyr::select(.data = data, x = !!rlang::enquo(x))
   } else {
     # if vectors are provided
     data <-
@@ -66,7 +62,7 @@ subtitle_t_onesample <- function(data = NULL,
 
   # convert to a tibble
   data %<>%
-    dplyr::filter(.data = ., !is.na(x)) %>%
+    tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 
   # sample size
@@ -230,7 +226,9 @@ subtitle_t_onesample <- function(data = NULL,
           "(BF"["10"],
           ") = ",
           bf,
-          ", Prior width = ",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
           bf_prior,
           ", ",
           italic("d"),

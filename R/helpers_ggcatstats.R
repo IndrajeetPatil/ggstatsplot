@@ -106,12 +106,7 @@ cat_label_df <- function(data,
 # function body
 cat_counter <- function(data, main, condition = NULL, ...) {
   # massaging the inputs
-  dots <-
-    rlang::enquos(condition,
-      main,
-      ...,
-      .ignore_empty = "all"
-    )
+  dots <- rlang::enquos(condition, main, ..., .ignore_empty = "all")
 
   # discarding NULL arguments
   purrr::discard(.x = dots, .p = rlang::quo_is_null)

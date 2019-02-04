@@ -22,7 +22,7 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
-          "Kruskal-Wallis: ",
+          NULL,
           italic(chi)^2,
           "(",
           "8",
@@ -79,7 +79,7 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
-          "Kruskal-Wallis: ",
+          NULL,
           italic(chi)^2,
           "(",
           "3",

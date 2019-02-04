@@ -266,7 +266,7 @@ gghistostats <- function(data = NULL,
         low = low.color,
         high = high.color
       )
-  } else if (bar.measure == "mix") {
+  } else if (bar.measure %in% c("mix", "both", "all")) {
     # all things combined
     plot <- ggplot2::ggplot(
       data = data,
