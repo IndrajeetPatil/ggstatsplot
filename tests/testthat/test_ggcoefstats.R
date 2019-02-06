@@ -957,6 +957,67 @@ testthat::test_that(
   }
 )
 
+# checking bayesian models work ------------------------------------------
+
+testthat::test_that(
+  desc = "ggcoefstats works with data frames",
+  code = {
+    testthat::skip_on_cran()
+
+    # setup
+    library(lme4)
+    suppressPackageStartupMessages(library(MCMCglmm))
+
+    # model
+    set.seed(123)
+    mm0 <- MCMCglmm::MCMCglmm(
+      fixed = scale(Reaction) ~ scale(Days),
+      random = ~Subject,
+      data = sleepstudy,
+      nitt = 4000,
+      pr = TRUE,
+      verbose = FALSE
+    )
+
+    # output from broom.mixed
+    broom_df <- broom.mixed::tidy(
+      x = mm0,
+      conf.int = TRUE,
+      effects = "fixed"
+    )
+
+    # sticking to defaults
+    df1 <- ggstatsplot::ggcoefstats(
+      x = mm0,
+      exclude.intercept = FALSE,
+      output = "tidy"
+    )
+
+    # customizing
+    df2 <- ggstatsplot::ggcoefstats(
+      x = mm0,
+      title = "multivariate generalized linear mixed model",
+      conf.method = "HPDinterval",
+      exclude.intercept = FALSE,
+      robust = TRUE,
+      output = "tidy"
+    )
+
+    # default
+    testthat::expect_equal(df1$estimate, broom_df$estimate, tolerance = 0.001)
+    testthat::expect_equal(df1$std.error, broom_df$std.error, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.low, broom_df$conf.low, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.high, broom_df$conf.high, tolerance = 0.001)
+
+    # custom
+    testthat::expect_identical(as.character(df2$term), c("(Intercept)", "scale(Days)"))
+    testthat::expect_equal(df2$estimate, c(0.01964504, 0.53422489), tolerance = 0.001)
+    testthat::expect_equal(df2$std.error, c(0.16551929, 0.04574515), tolerance = 0.001)
+    testthat::expect_equal(df2$conf.low, c(-0.2679899, 0.4493697), tolerance = 0.001)
+    testthat::expect_equal(df2$conf.high, c(0.3007959, 0.6163155), tolerance = 0.001)
+  }
+)
+
 # dataframe as input ----------------------------------------------------
 
 testthat::test_that(

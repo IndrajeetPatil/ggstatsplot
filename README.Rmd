@@ -932,13 +932,14 @@ Most of the regression models that are supported in the `broom` and
 `broom.mixed` packages with `tidy` and `glance` methods are also supported by
 `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `biglm`, `btergm`, `cch`, `clm`,
-`clmm`, `confusionMatrix`, `coxph`, `ergm`, `felm`, `fitdistr`, `glmerMod`,
-`glmmTMB`, `gls`, `Gam`, `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmTMB`,
-`glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmrob`,
-`MCMCglmm`, `mediate`, `mjoint`, `mle2`, `multinom`, `nlmerMod`, `nlrq`, `nls`,
-`orcutt`, `plm`, `polr`, `ridgelm`, `rlm`, `rlmerMod`, `rq`, `speedlm`,
-`stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `biglm`, `brmsfit`, `btergm`,
+`cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `ergm`, `felm`, `fitdistr`,
+`glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
+`glmmadmb`, `glmmTMB`, `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`,
+`lmodel2`, `lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `multinom`,
+`nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rlm`,
+`rlmerMod`, `rq`, `speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
+etc.
 
 For an exhaustive list of all regression models supported by `ggcoefstats` and
 what to do in case the regression model you are interested in is not supported,

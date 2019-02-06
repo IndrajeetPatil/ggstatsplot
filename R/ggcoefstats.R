@@ -25,10 +25,13 @@
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
 #' @param conf.method Character describing method for computing confidence
-#'   intervals (for more, see `lme4::confint.merMod`). This argument is valid
-#'   only for the `merMod` class model objects (`lmer`, `glmer`, `nlmer`, etc.).
-#'   For MCMC model objects (Stan, JAGS, etc.), the allowed options are
-#'   `"quantile"` or `"HPDinterval"`.
+#'   intervals (for more, see `?lme4::confint.merMod` and
+#'   `?broom.mixed::tidy.brmsfit`). This argument has different defaults
+#'   depending on the model object. For the `merMod` class model objects
+#'   (`lmer`, `glmer`, `nlmer`, etc.), the default is `"Wald"` (other options
+#'   are: `"profile"`, `"boot"`). For MCMC or brms fit model objects (Stan,
+#'   JAGS, etc.), the default is `"quantile"`, while the only other options is
+#'   `"HPDinterval"`.
 #' @param p.kr Logical, if `TRUE`, the computation of *p*-values for `lmer` is
 #'   based on conditional F-tests with Kenward-Roger approximation for the df.
 #'   For details, see `?sjstats::p_value`.
@@ -411,6 +414,7 @@ ggcoefstats <- function(x,
       "coeftest",
       "confusionMatrix",
       "manova",
+      "mcmc",
       "MCMCglmm",
       "mediate",
       "mle2",
@@ -425,8 +429,10 @@ ggcoefstats <- function(x,
     c(
       "aareg",
       "biglm",
+      "brmsfit",
       "cch",
       "felm",
+      "gam",
       "glmRob",
       "gmm",
       "ivreg",
@@ -451,6 +457,15 @@ ggcoefstats <- function(x,
   )
 
   # =================== types of models =====================================
+
+  # bayesian models (default `conf.method` won't work for these)
+  bayes.mods <- c(
+    "brmsfit",
+    "mcmc",
+    "MCMCglmm",
+    "rjags",
+    "stanreg"
+  )
 
   # models for which statistic is F-value
   f.mods <- c(
@@ -557,6 +572,13 @@ ggcoefstats <- function(x,
 
     # =========================== broom.mixed tidiers =======================
   } else if (class(x)[[1]] %in% mixed.mods) {
+
+    # changing conf.method to something suitable for Bayesian models
+    if (class(x)[[1]] %in% bayes.mods && conf.method == "Wald") {
+      conf.method <- "quantile"
+    }
+
+    # getting tidy output using `broom.mixed`
     tidy_df <-
       broom.mixed::tidy(
         x = x,
@@ -613,6 +635,7 @@ ggcoefstats <- function(x,
         quick = quick,
         conf.type = conf.type,
         component = component,
+        parametric = TRUE,
         ...
       )
   }

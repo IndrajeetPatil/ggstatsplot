@@ -239,10 +239,13 @@ kind of model it is dealing with.</p></td>
     <tr>
       <th>conf.method</th>
       <td><p>Character describing method for computing confidence
-intervals (for more, see <code><a href='https://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>lme4::confint.merMod</a></code>). This argument is valid
-only for the <code>merMod</code> class model objects (<code>lmer</code>, <code>glmer</code>, <code>nlmer</code>, etc.).
-For MCMC model objects (Stan, JAGS, etc.), the allowed options are
-<code>"quantile"</code> or <code>"HPDinterval"</code>.</p></td>
+intervals (for more, see <code><a href='https://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>?lme4::confint.merMod</a></code> and
+<code><a href='https://www.rdocumentation.org/packages/broom.mixed/topics/brms_tidiers'>?broom.mixed::tidy.brmsfit</a></code>). This argument has different defaults
+depending on the model object. For the <code>merMod</code> class model objects
+(<code>lmer</code>, <code>glmer</code>, <code>nlmer</code>, etc.), the default is <code>"Wald"</code> (other options
+are: <code>"profile"</code>, <code>"boot"</code>). For MCMC or brms fit model objects (Stan,
+JAGS, etc.), the default is <code>"quantile"</code>, while the only other options is
+<code>"HPDinterval"</code>.</p></td>
     </tr>
     <tr>
       <th>conf.type</th>

@@ -592,8 +592,7 @@ set.seed(123)
 # model
 mod <-
   glmmTMB::glmmTMB(
-    formula = Reaction ~ Days + (Days |
-                                   Subject),
+    formula = Reaction ~ Days + (Days | Subject),
     data = sleepstudy,
     family = glmmTMB::truncated_poisson()
   )
@@ -1143,6 +1142,31 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## generalized additive models with integrated smoothness estimation (`gam`)
+
+These model outputs contains both parametric and smooth terms. `ggcoefstats`
+only displays parametric terms.
+
+```{r gam_mgcv, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(mgcv)
+
+# model
+g <- mgcv::gam(
+  formula = mpg ~ s(hp) + am + qsec,
+  family = stats::quasi(),
+  data = mtcars
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = g,
+  title = "generalized additive models \nwith integrated smoothness estimation",
+  subtitle = "using `mgcv` package"
+)
+```
+
 ## generalized additive model (`Gam`)
 
 ```{r Gam, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
@@ -1567,6 +1591,34 @@ ggstatsplot::ggcoefstats(x = two_class_cm,
                          title = "confusion matrix")
 ```
 
+## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
+
+```{r brmsfit, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(brms)
+
+# prior
+bprior1 <- prior(student_t(5, 0, 10), class = b) +
+  prior(cauchy(0, 2), class = sd)
+
+# model
+fit1 <- brms::brm(
+  formula = count ~ log_Age_c + log_Base4_c * Trt + (1 | patient),
+  data = epilepsy,
+  family = poisson(),
+  prior = bprior1,
+  silent = TRUE
+)
+
+# plot
+ggstatsplot::ggcoefstats(x = fit1,
+                         exclude.intercept = FALSE,
+                         conf.method = "HPDinterval",
+                         title = "Bayesian generalized (non-)linear \nmultivariate multilevel models",
+                         subtitle = "using `brms` package")
+```
+
 ## Bayesian regression models via Stan (`stanreg`)
 
 ```{r rstan, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
@@ -1575,12 +1627,11 @@ set.seed(123)
 library(rstanarm)
 
 # model
-fit <- rstanarm::stan_glm(mpg ~ wt + am, data = mtcars, chains = 1)
+fit <- rstanarm::stan_glm(formula = mpg ~ wt + am, data = mtcars, chains = 1)
 
 # plot
 ggstatsplot::ggcoefstats(x = fit, 
-                         title = "Bayesian generalized linear models via Stan",
-                         conf.method = "quantile")
+                         title = "Bayesian generalized linear models via Stan")
 ```
 
 ## multivariate generalized linear mixed models (`MCMCglmm`)
@@ -1593,7 +1644,8 @@ library(MCMCglmm)
 # model
 mm0 <- MCMCglmm::MCMCglmm(
   fixed = scale(Reaction) ~ scale(Days),
-  random = ~Subject, data = sleepstudy,
+  random = ~Subject, 
+  data = sleepstudy,
   nitt = 4000,
   pr = TRUE,
   verbose = FALSE
@@ -1605,7 +1657,26 @@ ggstatsplot::ggcoefstats(
   title = "multivariate generalized linear mixed model",
   conf.method = "HPDinterval",
   exclude.intercept = FALSE,
-  rhat = TRUE,
+  robust = TRUE
+)
+```
+
+## Markov Chain Monte Carlo objects (`mcmc`)
+
+```{r mcmc, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# loading the data
+set.seed(123)
+library(coda)
+data(line)
+
+# select first chain
+x1 <- line[[1]]
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = x1,
+  conf.int = TRUE,
+  title = "Markov Chain Monte Carlo objects",
   robust = TRUE
 )
 ```

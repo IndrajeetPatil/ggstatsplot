@@ -52,10 +52,13 @@ kind of model it is dealing with.}
 \item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.}
 
 \item{conf.method}{Character describing method for computing confidence
-intervals (for more, see \code{lme4::confint.merMod}). This argument is valid
-only for the \code{merMod} class model objects (\code{lmer}, \code{glmer}, \code{nlmer}, etc.).
-For MCMC model objects (Stan, JAGS, etc.), the allowed options are
-\code{"quantile"} or \code{"HPDinterval"}.}
+intervals (for more, see \code{?lme4::confint.merMod} and
+\code{?broom.mixed::tidy.brmsfit}). This argument has different defaults
+depending on the model object. For the \code{merMod} class model objects
+(\code{lmer}, \code{glmer}, \code{nlmer}, etc.), the default is \code{"Wald"} (other options
+are: \code{"profile"}, \code{"boot"}). For MCMC or brms fit model objects (Stan,
+JAGS, etc.), the default is \code{"quantile"}, while the only other options is
+\code{"HPDinterval"}.}
 
 \item{conf.type}{the type of confidence interval
 (see \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}})}

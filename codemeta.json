@@ -159,6 +159,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "MCMCglmm",
+      "name": "MCMCglmm",
+      "version": ">= 2.27",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=MCMCglmm"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "ordinal",
       "name": "ordinal",
       "version": ">= 2018.8-25",
