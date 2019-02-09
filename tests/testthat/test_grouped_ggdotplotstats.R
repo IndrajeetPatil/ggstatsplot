@@ -27,7 +27,7 @@ testthat::test_that(
       point.size = 5,
       point.shape = 13,
       test.value.line = TRUE,
-      ggtheme = ggthemes::theme_par(),
+      ggtheme = ggplot2::theme_classic(),
       messages = TRUE,
       title.text = "Fuel economy data"
     )

@@ -266,6 +266,36 @@
 #'   statistic = "t",
 #'   meta.analytic.effect = TRUE
 #' )
+#'
+#' # -------------- getting model summary ------------------------------
+#'
+#' # model
+#' library(lme4)
+#' lmm1 <- lme4::lmer(
+#'   formula = Reaction ~ Days + (Days | Subject),
+#'   data = sleepstudy
+#' )
+#'
+#' # dataframe with model summary
+#' ggstatsplot::ggcoefstats(x = lmm1, output = "glance")
+#'
+#' # -------------- getting augmented dataframe ------------------------------
+#'
+#' # setup
+#' set.seed(123)
+#' library(survival)
+#'
+#' # fit
+#' cfit <-
+#'   survival::coxph(formula = Surv(time, status) ~ age + sex, data = lung)
+#'
+#' # augmented dataframe
+#' ggstatsplot::ggcoefstats(
+#'   x = cfit,
+#'   data = lung,
+#'   output = "augment",
+#'   type.predict = "risk"
+#' )
 #' @export
 
 # function body
@@ -1111,11 +1141,11 @@ ggcoefstats <- function(x,
     # return the augmented dataframe
     if (class(x)[[1]] %in% mixed.mods) {
       # for mixed-effects models
-      return(broom.mixed::augment(x = x) %>%
+      return(broom.mixed::augment(x = x, ...) %>%
         tibble::as_tibble(x = .))
     } else {
       # everything else
-      return(broom::augment(x = x) %>%
+      return(broom::augment(x = x, ...) %>%
         tibble::as_tibble(x = .))
     }
   }

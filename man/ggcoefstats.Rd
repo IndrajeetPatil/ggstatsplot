@@ -362,6 +362,36 @@ ggstatsplot::ggcoefstats(
   statistic = "t",
   meta.analytic.effect = TRUE
 )
+
+# -------------- getting model summary ------------------------------
+
+# model
+library(lme4)
+lmm1 <- lme4::lmer(
+  formula = Reaction ~ Days + (Days | Subject),
+  data = sleepstudy
+)
+
+# dataframe with model summary
+ggstatsplot::ggcoefstats(x = lmm1, output = "glance")
+
+# -------------- getting augmented dataframe ------------------------------
+
+# setup
+set.seed(123)
+library(survival)
+
+# fit
+cfit <-
+  survival::coxph(formula = Surv(time, status) ~ age + sex, data = lung)
+
+# augmented dataframe
+ggstatsplot::ggcoefstats(
+  x = cfit,
+  data = lung,
+  output = "augment",
+  type.predict = "risk"
+)
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}

@@ -213,23 +213,31 @@ data frame with coefficients.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># set up</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggstatsplot</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>gapminder</span>)
-
-<span class='co'># saving results from regression</span>
-<span class='no'>df_results</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map2.html'>pmap</a></span>(
-  <span class='kw'>.l</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-    <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw pkg'>gapminder</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/gapminder/topics/gapminder'>gapminder</a></span>),
-    <span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/scale'>scale</a></span>(<span class='no'>lifeExp</span>) ~ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/scale'>scale</a></span>(<span class='no'>gdpPercap</span>)),
-    <span class='kw'>grouping.vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>alist</a></span>(<span class='no'>continent</span>),
-    <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"tidy"</span>, <span class='st'>"glance"</span>)
-  ),
-  <span class='kw'>.f</span> <span class='kw'>=</span> <span class='kw pkg'>groupedstats</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/groupedstats//reference/grouped_lm.html'>grouped_lm</a></span>
-) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>full_join</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>.</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"continent"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='no'>term</span> <span class='kw'>!=</span> <span class='st'>"(Intercept)"</span>)
+    <pre class="examples"><div class='input'><span class='co'># let's create a dataframe</span>
+<span class='no'>df_results</span> <span class='kw'>&lt;-</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/structure'>structure</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>estimate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+  <span class='fl'>0.382047603321706</span>, <span class='fl'>0.780783111514665</span>,
+  <span class='fl'>0.425607573765058</span>, <span class='fl'>0.558365541235078</span>, <span class='fl'>0.956473848429961</span>
+), <span class='kw'>std.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+  <span class='fl'>0.0465576338644502</span>,
+  <span class='fl'>0.0330218199731529</span>, <span class='fl'>0.0362834986178494</span>, <span class='fl'>0.0480571500648261</span>, <span class='fl'>0.062215818388157</span>
+), <span class='kw'>t.value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+  <span class='fl'>8.20590677855356</span>, <span class='fl'>23.6444603038067</span>, <span class='fl'>11.7300588415607</span>,
+  <span class='fl'>11.6187818146078</span>, <span class='fl'>15.3734833553524</span>
+), <span class='kw'>conf.low</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+  <span class='fl'>0.290515146096969</span>,
+  <span class='fl'>0.715841986960399</span>, <span class='fl'>0.354354575031406</span>, <span class='fl'>0.46379116008131</span>, <span class='fl'>0.827446138277154</span>
+), <span class='kw'>conf.high</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+  <span class='fl'>0.473580060546444</span>, <span class='fl'>0.845724236068931</span>, <span class='fl'>0.496860572498711</span>,
+  <span class='fl'>0.652939922388847</span>, <span class='fl'>1.08550155858277</span>
+), <span class='kw'>p.value.x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+  <span class='fl'>3.28679518728519e-15</span>,
+  <span class='fl'>4.04778497135963e-75</span>, <span class='fl'>7.59757330804449e-29</span>, <span class='fl'>5.45155840151592e-26</span>,
+  <span class='fl'>2.99171217913312e-13</span>
+), <span class='kw'>df.residual</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+  <span class='fl'>394L</span>, <span class='fl'>358L</span>, <span class='fl'>622L</span>, <span class='fl'>298L</span>,
+  <span class='fl'>22L</span>
+)), <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>), <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>))
 
 <span class='co'># making subtitle</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_ggcoefstats.html'>subtitle_meta_ggcoefstats</a></span>(

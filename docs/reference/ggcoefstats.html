@@ -713,7 +713,62 @@ confidence interval whiskers.</p>
   <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>,
   <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>No model diagnostics information available for the object of class </span><span style='color: #BBBB00;'>tbl_df</span><span style='color: #0000BB;'> .
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div></span></pre>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># -------------- getting model summary ------------------------------</span>
+
+<span class='co'># model</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>lme4</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='input'><span class='no'>lmm1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></span>(
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>Reaction</span> ~ <span class='no'>Days</span> + (<span class='no'>Days</span> <span class='kw'>|</span> <span class='no'>Subject</span>),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleepstudy</span>
+)
+
+<span class='co'># dataframe with model summary</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lmm1</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>)</div><div class='output co'>#&gt; <span class='message'>Computing p-values via Kenward-Roger approximation. Use `p.kr = FALSE` if computation takes too long.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
+#&gt;   sigma logLik   AIC   BIC REMLcrit df.residual
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  25.6  -</span><span style='color: #BB0000;'>872.</span><span> </span><span style='text-decoration: underline;'>1</span><span>756. </span><span style='text-decoration: underline;'>1</span><span>775.    </span><span style='text-decoration: underline;'>1</span><span>744.         174</div><div class='input'>
+<span class='co'># -------------- getting augmented dataframe ------------------------------</span>
+
+<span class='co'># setup</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>survival</span>)
+
+<span class='co'># fit</span>
+<span class='no'>cfit</span> <span class='kw'>&lt;-</span>
+  <span class='kw pkg'>survival</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/survival/topics/coxph'>coxph</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/survival/topics/Surv'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>age</span> + <span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>lung</span>)
+
+<span class='co'># augmented dataframe</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cfit</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>lung</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"augment"</span>,
+  <span class='kw'>type.predict</span> <span class='kw'>=</span> <span class='st'>"risk"</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 228 x 13</span><span>
+#&gt;     inst  time status   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>     3   306      2    74     1       1       90       100     </span><span style='text-decoration: underline;'>1</span><span>175      </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span>     3   455      2    68     1       0       90        90     </span><span style='text-decoration: underline;'>1</span><span>225      15
+#&gt; </span><span style='color: #555555;'> 3</span><span>     3  </span><span style='text-decoration: underline;'>1</span><span>010      1    56     1       0       90        90       </span><span style='color: #BB0000;'>NA</span><span>      15
+#&gt; </span><span style='color: #555555;'> 4</span><span>     5   210      2    57     1       1       90        60     </span><span style='text-decoration: underline;'>1</span><span>150      11
+#&gt; </span><span style='color: #555555;'> 5</span><span>     1   883      2    60     1       0      100        90       </span><span style='color: #BB0000;'>NA</span><span>       0
+#&gt; </span><span style='color: #555555;'> 6</span><span>    12  </span><span style='text-decoration: underline;'>1</span><span>022      1    74     1       1       50        80      513       0
+#&gt; </span><span style='color: #555555;'> 7</span><span>     7   310      2    68     2       2       70        60      384      10
+#&gt; </span><span style='color: #555555;'> 8</span><span>    11   361      2    71     2       2       60        80      538       1
+#&gt; </span><span style='color: #555555;'> 9</span><span>     1   218      2    53     1       1       70        80      825      16
+#&gt; </span><span style='color: #555555;'>10</span><span>     7   166      2    61     1       2       70        70      271      34
+#&gt;    .fitted .se.fit   .resid
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>   1.49   0.149   0.004</span><span style='text-decoration: underline;'>39</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span>   1.35   0.094</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.506</span><span>  
+#&gt; </span><span style='color: #555555;'> 3</span><span>   1.10   0.095</span><span style='text-decoration: underline;'>6</span><span> -</span><span style='color: #BB0000;'>3.13</span><span>   
+#&gt; </span><span style='color: #555555;'> 4</span><span>   1.12   0.090</span><span style='text-decoration: underline;'>0</span><span>  0.533  
+#&gt; </span><span style='color: #555555;'> 5</span><span>   1.17   0.077</span><span style='text-decoration: underline;'>0</span><span> -</span><span style='color: #BB0000;'>2.35</span><span>   
+#&gt; </span><span style='color: #555555;'> 6</span><span>   1.49   0.149  -</span><span style='color: #BB0000;'>4.25</span><span>   
+#&gt; </span><span style='color: #555555;'> 7</span><span>   0.806  0.104   0.448  
+#&gt; </span><span style='color: #555555;'> 8</span><span>   0.848  0.121   0.290  
+#&gt; </span><span style='color: #555555;'> 9</span><span>   1.04   0.115   0.548  
+#&gt; </span><span style='color: #555555;'>10</span><span>   1.19   0.074</span><span style='text-decoration: underline;'>5</span><span>  0.681  
+#&gt; </span><span style='color: #555555;'># ... with 218 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

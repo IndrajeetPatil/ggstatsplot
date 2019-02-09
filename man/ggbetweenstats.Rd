@@ -274,7 +274,7 @@ ggstatsplot::ggbetweenstats(
   outlier.tagging = TRUE,
   outlier.label = Run,
   nboot = 10,
-  ggtheme = ggthemes::theme_few(),
+  ggtheme = ggplot2::theme_grey(),
   ggstatsplot.layer = FALSE,
   bf.message = TRUE
 )

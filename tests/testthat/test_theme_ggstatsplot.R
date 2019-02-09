@@ -17,9 +17,9 @@ testthat::test_that(
     p1 <- p +
       ggstatsplot::theme_ggstatsplot(ggstatsplot.layer = FALSE)
     p2 <- p +
-      ggstatsplot::theme_ggstatsplot(ggthemes::theme_fivethirtyeight())
+      ggstatsplot::theme_ggstatsplot(ggplot2::theme_dark())
     p3 <- p +
-      ggstatsplot::theme_ggstatsplot(ggthemes::theme_calc())
+      ggstatsplot::theme_ggstatsplot(ggplot2::theme_minimal())
 
     # check if outputs are ggplot objects
     testthat::expect_identical(class(p1), c("gg", "ggplot"))
@@ -30,7 +30,7 @@ testthat::test_that(
     df1 <- tibble::enframe(ggstatsplot::theme_ggstatsplot())
     df2 <- tibble::enframe(ggstatsplot::theme_ggstatsplot(theme_bw()), TRUE)
     df3 <- tibble::enframe(ggstatsplot::theme_ggstatsplot(
-      theme_grey(),
+      ggplot2::theme_grey(),
       ggstatsplot.layer = FALSE
     ))
 
@@ -52,7 +52,7 @@ testthat::test_that(
     df1 <- tibble::enframe(ggstatsplot::theme_pie())
     df2 <- tibble::enframe(ggstatsplot::theme_pie(theme_classic()), FALSE)
     df3 <- tibble::enframe(ggstatsplot::theme_pie(
-      ggthemes::theme_fivethirtyeight(),
+      ggplot2::theme_bw(),
       ggstatsplot.layer = FALSE
     ))
 

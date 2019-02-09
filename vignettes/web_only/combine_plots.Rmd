@@ -156,8 +156,7 @@ plots <- plyr::dlply(
 ggstatsplot::combine_plots(
   plotlist = plots,
   title.text = "Relationship between GDP (per capita) and life expectancy",
-  nrow = 2,
-  ncol = 2
+  nrow = 2
 )
 ```
 
