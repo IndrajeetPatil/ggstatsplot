@@ -508,9 +508,15 @@ calls-
 There are three main documents one can rely on to learn how to use
 `ggstatsplot`:
 
+  - **Presentation**: 
+    The quickest (and the most fun) way to get an overview of
+    the philosophy behind this package and the offered functionality is to go
+    through the following slides:
+    <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
+  
   - **Manual**:  
     The `CRAN` reference manual provides detailed documentation about arguments
-    for each function and examples :
+    for each function and examples:
     <https://cran.r-project.org/web/packages/ggstatsplot/ggstatsplot.pdf>
 
   - **README**:  

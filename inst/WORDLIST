@@ -13,6 +13,7 @@ binwidth
 bodywt
 boxviolin
 brainwt
+brms
 Camilli
 cex
 changedate
@@ -22,12 +23,14 @@ codecov
 Codecov
 coefficients’
 colorbar
+Conover
 correlalogram
 Correlalogram
 Covrpage
 Cramer's
 Cramer'V
 cran
+Crichtlow
 customizable
 Delacre
 densigram
@@ -35,10 +38,13 @@ df
 DOI
 dplyr
 ds
+Durbin
+Dwass
 eg
 exressions
 facilitateto
 Feinberg
+Fligner
 Gapminder
 ggbetweenstats
 ggcoefstats
@@ -92,7 +98,6 @@ lmer
 McNemar
 McNemar's
 McNemar’s
-md
 modelling
 moiré
 Mora

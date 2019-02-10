@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.8-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/116717490.svg)](https://zenodo.org/badge/latestdoi/116717490)                                                                  |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--02--05-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--02--10-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)            | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_31-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
@@ -50,6 +50,47 @@ the same analysis for any grouping variable.
 
 Future versions will include other types of statistical analyses and
 plots as well.
+
+# Statistical reporting
+
+For all statistical tests reported in the plots, the default template
+abides by the [APA](https://my.ilstu.edu/~jhkahn/apastats.html) gold
+standard for statistical reporting. For example, here are results from
+Yuen’s test for trimmed means (robust *t*-test):
+
+<img src="man/figures/stats_reporting_format.png" align="center" />
+
+# Summary of supported statistical analyses
+
+The table below summarizes all the different types of analyses currently
+supported in this
+package-
+
+| Functions                        | Description                               | Parametric                     | Non-parametric                 | Robust                         | Bayes Factor                   |
+| -------------------------------- | ----------------------------------------- | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `ggbetweenstats`                 | Between group/condition comparisons       | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> |
+| `gghistostats`, `ggdotplotstats` | Distribution of a numeric variable        | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> |
+| `ggcorrmat`                      | Correlation matrix                        | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>    |
+| `ggscatterstats`                 | Correlation between two variables         | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> |
+| `ggpiestats`, `ggbarstats`       | Association between categorical variables | <font color="green">Yes</font> | <font color="red">No</font>    | <font color="red">No</font>    | <font color="green">Yes</font> |
+| `ggcoefstats`                    | Regression model coefficients             | <font color="green">Yes</font> | <font color="red">No</font>    | <font color="green">Yes</font> | <font color="red">No</font>    |
+
+# Effect sizes and confidence intervals available
+
+`ggstatsplot` provides a wide range of effect sizes and their confidence
+intervals.
+
+| Test                          | Parametric                     | Non-parametric                 | Robust                         | Bayes                       |
+| ----------------------------- | ------------------------------ | ------------------------------ | ------------------------------ | --------------------------- |
+| one-sample *t*-test           | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> |
+| two-sample *t*-test (between) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> |
+| two-sample *t*-test (within)  | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> |
+| One-way ANOVA (between)       | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> |
+| One-way ANOVA (within)        | <font color="green">Yes</font> | <font color="red">No</font>    | <font color="red">No</font>    | <font color="red">No</font> |
+| correlations                  | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> |
+| contingency table             | <font color="green">Yes</font> | `NA`                           | `NA`                           | <font color="red">No</font> |
+| goodness of fit               | <font color="green">Yes</font> | `NA`                           | `NA`                           | <font color="red">No</font> |
+| regression                    | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font> |
 
 # Installation
 
@@ -140,20 +181,8 @@ Another handy tool to see arguments to any of the functions is `args`.
 For example-
 
 ``` r
-args(name = ggstatsplot::ggscatterstats)
-#> function (data, x, y, type = "pearson", conf.level = 0.95, bf.prior = 0.707, 
-#>     bf.message = FALSE, label.var = NULL, label.expression = NULL, 
-#>     xlab = NULL, ylab = NULL, method = "lm", method.args = list(), 
-#>     formula = y ~ x, point.color = "black", point.size = 3, point.alpha = 0.4, 
-#>     point.width.jitter = 0, point.height.jitter = 0, line.size = 1.5, 
-#>     line.color = "blue", marginal = TRUE, marginal.type = "histogram", 
-#>     marginal.size = 5, margins = c("both", "x", "y"), package = "wesanderson", 
-#>     palette = "Royal1", direction = 1, xfill = "#009E73", yfill = "#D55E00", 
-#>     xalpha = 1, yalpha = 1, xsize = 0.7, ysize = 0.7, centrality.para = NULL, 
-#>     results.subtitle = TRUE, title = NULL, subtitle = NULL, caption = NULL, 
-#>     nboot = 100, beta = 0.1, k = 2, axes.range.restrict = FALSE, 
-#>     ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE, 
-#>     ggplot.component = NULL, messages = TRUE) 
+args(name = ggstatsplot::specify_decimal_p)
+#> function (x, k = 3, p.value = FALSE) 
 #> NULL
 ```
 
@@ -161,52 +190,17 @@ In case you want to look at the function body for any of the functions,
 just type the name of the function without the parentheses:
 
 ``` r
-ggstatsplot::theme_ggstatsplot
-#> function(ggtheme = ggplot2::theme_bw(),
-#>                               ggstatsplot.layer = TRUE) {
+# function to convert class of any object to `ggplot` class
+ggstatsplot::ggplot_converter
+#> function(plot) {
+#>   # convert the saved plot
+#>   p <- cowplot::ggdraw() +
+#>     cowplot::draw_grob(grid::grobTree(plot))
 #> 
-#>   # if ggstatsplot-specific layer is to be added on top of the default theme
-#>   if (isTRUE(ggstatsplot.layer)) {
-#>     ggtheme +
-#>       ggplot2::theme(
-#>         axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
-#>         strip.text.x = ggplot2::element_text(size = 11, face = "bold"),
-#>         strip.text.y = ggplot2::element_text(size = 11, face = "bold"),
-#>         strip.text = ggplot2::element_text(size = 11, face = "bold"),
-#>         axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
-#>         axis.text.x = ggplot2::element_text(size = 11, face = "bold"),
-#>         axis.text.y = ggplot2::element_text(size = 11, face = "bold"),
-#>         axis.line = ggplot2::element_line(),
-#>         legend.text = ggplot2::element_text(size = 11),
-#>         legend.title = ggplot2::element_text(size = 11, face = "bold"),
-#>         legend.title.align = 0.5,
-#>         legend.text.align = 0.5,
-#>         legend.key.height = grid::unit(x = 1, units = "line"),
-#>         legend.key.width = grid::unit(x = 1, units = "line"),
-#>         plot.margin = grid::unit(x = c(1, 1, 1, 1), units = "lines"),
-#>         panel.border = ggplot2::element_rect(
-#>           color = "black",
-#>           fill = NA,
-#>           size = 1
-#>         ),
-#>         plot.title = ggplot2::element_text(
-#>           color = "black",
-#>           size = 13,
-#>           face = "bold",
-#>           hjust = 0.5
-#>         ),
-#>         plot.subtitle = ggplot2::element_text(
-#>           color = "black",
-#>           size = 11,
-#>           face = "plain",
-#>           hjust = 0.5
-#>         )
-#>       )
-#>   } else {
-#>     ggtheme
-#>   }
+#>   # returning the converted plot
+#>   return(p)
 #> }
-#> <bytecode: 0x000000002cbbb108>
+#> <bytecode: 0x000000002c36be30>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -379,6 +373,22 @@ ggstatsplot::grouped_ggbetweenstats(
 ```
 
 <img src="man/figures/README-ggbetweenstats3-1.png" width="100%" />
+
+Here is a summary of pairwise comparison tests supported in
+*ggbetweenstats*-
+
+| Type           | Design  | Equal variance? | Test                               | *p*-value adjustment?          |
+| -------------- | ------- | --------------- | ---------------------------------- | ------------------------------ |
+| Parametric     | between | No              | Games-Howell test                  | <font color="green">Yes</font> |
+| Parametric     | between | Yes             | Student’s *t*-test                 | <font color="green">Yes</font> |
+| Parametric     | within  | `NA`            | Student’s *t*-test                 | <font color="green">Yes</font> |
+| Non-parametric | between | No              | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font> |
+| Non-parametric | within  | No              | Durbin-Conover test                | <font color="green">Yes</font> |
+| Robust         | between | No              | Yuen’s trimmed means test          | <font color="green">Yes</font> |
+| Robust         | within  | `NA`            | Yuen’s trimmed means test          | <font color="green">Yes</font> |
+| Bayes Factor   | between | No              | <font color="red">No</font>        | <font color="red">No</font>    |
+| Bayes Factor   | between | Yes             | <font color="red">No</font>        | <font color="red">No</font>    |
+| Bayes Factor   | within  | `NA`            | <font color="red">No</font>        | <font color="red">No</font>    |
 
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
@@ -1093,14 +1103,14 @@ Most of the regression models that are supported in the `broom` and
 `broom.mixed` packages with `tidy` and `glance` methods are also
 supported by `ggcoefstats`. For example-
 
-`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `biglm`, `btergm`, `cch`,
-`clm`, `clmm`, `confusionMatrix`, `coxph`, `ergm`, `felm`, `fitdistr`,
-`glmerMod`, `glmmTMB`, `gls`, `Gam`, `gamlss`, `garch`, `glm`,
-`glmmadmb`, `glmmTMB`, `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`,
-`lmerMod`, `lmodel2`, `lmrob`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`,
-`multinom`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
-`ridgelm`, `rlm`, `rlmerMod`, `rq`, `speedlm`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, etc.
+`aareg`, `anova`, `aov`, `aovlist`, `Arima`, `biglm`, `brmsfit`,
+`btergm`, `cch`, `clm`, `clmm`, `confusionMatrix`, `coxph`, `ergm`,
+`felm`, `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`,
+`gamlss`, `garch`, `glm`, `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`,
+`ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmrob`, `mcmc`,
+`MCMCglmm`, `mediate`, `mjoint`, `mle2`, `multinom`, `nlmerMod`, `nlrq`,
+`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rlm`, `rlmerMod`, `rq`,
+`speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
 
 For an exhaustive list of all regression models supported by
 `ggcoefstats` and what to do in case the regression model you are
@@ -1230,6 +1240,24 @@ using the Github issues system over trying to reach out to me in other
 ways (personal e-mail, Twitter, etc.). Pull requests for contributions
 are encouraged.
 
+Here are some simple ways in which you can contribute:
+
+  - Read and correct any inconsistencies in the
+    [documentation](https://indrajeetpatil.github.io/ggstatsplot/)
+
+  - Raise issues about bugs or wanted features
+
+  - Review code
+
+  - Add new functionality (in the form of new plotting functions or
+    helpers for preparing subtitles)
+
 Please note that this project is released with a [Contributor Code of
 Conduct](CONDUCT.md). By participating in this project you agree to
 abide by its terms.
+
+# Session Information
+
+For details about the session information in which this `README` file
+was rendered, see-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>

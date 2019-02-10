@@ -339,6 +339,22 @@ remove them by adding `+ ggplot2::labs(subtitle = NULL)` and add a new subtitle
 for the within-subjects test using an appropriate helper function-
 <https://indrajeetpatil.github.io/ggstatsplot/reference/index.html#section-helper-functions-for-preparing-statistics-subtitles>.
 
+# Pairwise comparison tests in *ggbetweenstats*
+
+Type | Design | Equal variance? |  Test | *p*-value adjustment? 
+----------- | --------- | --- | ------------------------- | --
+Parametric | between | No | Games-Howell test | <font color="green">Yes</font>  
+Parametric | between | Yes | Student's *t*-test | <font color="green">Yes</font>  
+Parametric | within | `NA` | Student's *t*-test | <font color="green">Yes</font>  
+Non-parametric | between | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font>  
+Non-parametric | within | No | Durbin-Conover test | <font color="green">Yes</font>  
+Robust | between | No | Yuen's trimmed means test | <font color="green">Yes</font>  
+Robust | within |`NA` | Yuen's trimmed means test | <font color="green">Yes</font>  
+Bayes Factor | between | No | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | between | Yes | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | within | `NA` | <font color="red">No</font> | <font color="red">No</font>
+
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

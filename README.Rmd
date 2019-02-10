@@ -67,6 +67,46 @@ any grouping variable.
 Future versions will include other types of statistical analyses and plots as
 well.
 
+# Statistical reporting
+
+For all statistical tests reported in the plots, the default template abides
+by the [APA](https://my.ilstu.edu/~jhkahn/apastats.html) gold standard for
+statistical reporting. For example, here are results from Yuen's test for
+trimmed means (robust *t*-test):
+
+<img src="man/figures/stats_reporting_format.png" align="center" />
+
+# Summary of supported statistical analyses
+
+The table below summarizes all the different types of analyses currently
+supported in this package-
+
+Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
+------- | ------------------ | ---- | ----- | ----| ----- 
+`ggbetweenstats` | Between group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggcorrmat` | Correlation matrix | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+`ggscatterstats` | Correlation between two variables | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | <font color="red">No</font> | <font color="red">No</font> | <font color="green">Yes</font>
+`ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="red">No</font>| <font color="green">Yes</font> | <font color="red">No</font>
+
+# Effect sizes and confidence intervals available
+
+`ggstatsplot` provides a wide range of effect sizes and their confidence
+intervals.
+
+Test | Parametric | Non-parametric | Robust | Bayes
+---------------------------- | ------ | ------ | ------ | ------
+one-sample *t*-test | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+two-sample *t*-test (between) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+two-sample *t*-test (within) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+One-way ANOVA (between) | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+One-way ANOVA (within) | <font color="green">Yes</font> | <font color="red">No</font> | <font color="red">No</font> | <font color="red">No</font>
+correlations | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+contingency table | <font color="green">Yes</font> | `NA` | `NA` | <font color="red">No</font>
+goodness of fit | <font color="green">Yes</font> | `NA` | `NA` | <font color="red">No</font>
+regression | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
+
 # Installation
 
 To get the latest, stable CRAN release (`0.0.8`):
@@ -151,14 +191,15 @@ Another handy tool to see arguments to any of the functions is `args`. For
 example-
 
 ```{r args}
-args(name = ggstatsplot::ggscatterstats)
+args(name = ggstatsplot::specify_decimal_p)
 ```
 
 In case you want to look at the function body for any of the functions, just
 type the name of the function without the parentheses:
 
 ```{r funbody}
-ggstatsplot::theme_ggstatsplot
+# function to convert class of any object to `ggplot` class
+ggstatsplot::ggplot_converter
 ```
 
 If you are not familiar either with what the namespace `::` does or how to use
@@ -316,6 +357,21 @@ ggstatsplot::grouped_ggbetweenstats(
   title.text = "Differences in movie length by mpaa ratings for different genres"
 )
 ```
+
+Here is a summary of pairwise comparison tests supported in *ggbetweenstats*-
+
+Type | Design | Equal variance? |  Test | *p*-value adjustment? 
+----------- | --------- | --- | ------------------------- | --
+Parametric | between | No | Games-Howell test | <font color="green">Yes</font>  
+Parametric | between | Yes | Student's *t*-test | <font color="green">Yes</font>  
+Parametric | within | `NA` | Student's *t*-test | <font color="green">Yes</font>  
+Non-parametric | between | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font>  
+Non-parametric | within | No | Durbin-Conover test | <font color="green">Yes</font>  
+Robust | between | No | Yuen's trimmed means test | <font color="green">Yes</font>  
+Robust | within |`NA` | Yuen's trimmed means test | <font color="green">Yes</font>  
+Bayes Factor | between | No | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | between | Yes | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | within | `NA` | <font color="red">No</font> | <font color="red">No</font>
 
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
@@ -1059,6 +1115,25 @@ contributions to fix problems and add features. I personally prefer using the
 Github issues system over trying to reach out to me in other ways (personal
 e-mail, Twitter, etc.). Pull requests for contributions are encouraged.
 
+Here are some simple ways in which you can contribute:
+
+  - Read and correct any inconsistencies in the
+    [documentation](https://indrajeetpatil.github.io/ggstatsplot/)
+
+  - Raise issues about bugs or wanted features
+
+  - Review code
+
+  - Add new functionality (in the form of new plotting functions or helpers for
+    preparing subtitles)
+
 Please note that this project is released with a 
 [Contributor Code of Conduct](CONDUCT.md). By participating in this project
 you agree to abide by its terms.
+
+# Session Information
+
+For details about the session information in which this `README` file was
+rendered, see-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
+

@@ -165,9 +165,9 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0-0-8-9000" class="section level1">
+    <div id="ggstatsplot-0089000" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-8-9000" class="anchor"></a>ggstatsplot 0.0.8.9000<small> Unreleased </small>
+<a href="#ggstatsplot-0089000" class="anchor"></a>ggstatsplot 0.0.8.9000<small> Unreleased </small>
 </h1>
 <p>NEW FEATURES</p>
 <ul>
@@ -186,11 +186,13 @@
 <li>
 <code>ggbetweenstats</code> and its <code>grouped_</code> variant gain a new argument <code>axes.range.restrict</code> (which defaults to <code>FALSE</code>). This restricts <code>y</code>-axes limits to minimum and maximum of <code>y</code> variable. This is what these functions were doing by default in the past versions, which created issues for additional ggplot components using the <code>ggplot.component</code> argument.</li>
 <li>All bayes factor related subtitle and captions replace <code>prior.width</code> with <code>r_{Cauchy}</code>.</li>
+<li>
+<code>ggcoefstats</code> passes dots (<code>...</code>) to <code>augment</code> method from <code>broom</code>.</li>
 </ul>
 </div>
-    <div id="ggstatsplot-0-0-8" class="section level1">
+    <div id="ggstatsplot-008" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-8" class="anchor"></a>ggstatsplot 0.0.8<small> 2019-01-07 </small>
+<a href="#ggstatsplot-008" class="anchor"></a>ggstatsplot 0.0.8<small> 2019-01-07 </small>
 </h1>
 <p>NEW FEATURES</p>
 <ul>
@@ -223,9 +225,9 @@
 <code>ggcoefstats</code> gains a <code>caption</code> argument. If <code>caption.summary</code> is set to <code>TRUE</code>, the specified caption will be added on top of the <code>caption.summary</code>.</li>
 </ul>
 </div>
-    <div id="ggstatsplot-0-0-7" class="section level1">
+    <div id="ggstatsplot-007" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-7" class="anchor"></a>ggstatsplot 0.0.7<small> 2018-12-08 </small>
+<a href="#ggstatsplot-007" class="anchor"></a>ggstatsplot 0.0.7<small> 2018-12-08 </small>
 </h1>
 <p>BUG FIXES</p>
 <ul>
@@ -283,9 +285,9 @@
 <li>To avoid code repetition, there is a now a function that produces a generic message any time confidence intervals for effect size estimate are computed using bootstrapping.</li>
 </ul>
 </div>
-    <div id="ggstatsplot-0-0-6" class="section level1">
+    <div id="ggstatsplot-006" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-6" class="anchor"></a>ggstatsplot 0.0.6<small> 2018-09-30 </small>
+<a href="#ggstatsplot-006" class="anchor"></a>ggstatsplot 0.0.6<small> 2018-09-30 </small>
 </h1>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -334,9 +336,9 @@
 <code>grouped_ggpiestats</code> wasn’t working when only <code>main</code> variable was provided with <code>counts</code> data. Fixed that.</li>
 </ul>
 </div>
-    <div id="ggstatsplot-0-0-5" class="section level1">
+    <div id="ggstatsplot-005" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-5" class="anchor"></a>ggstatsplot 0.0.5<small> 2018-08-14 </small>
+<a href="#ggstatsplot-005" class="anchor"></a>ggstatsplot 0.0.5<small> 2018-08-14 </small>
 </h1>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -367,9 +369,9 @@
 <code>ggscatterstats</code> supports <code>densigram</code> with the development version of <code>ggExtra</code>. It additionally gains few extra arguments to change aesthetics of marginals (alpha, size, etc.).</li>
 </ul>
 </div>
-    <div id="ggstatsplot-0-0-4" class="section level1">
+    <div id="ggstatsplot-004" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-4" class="anchor"></a>ggstatsplot 0.0.4<small> 2018-07-05 </small>
+<a href="#ggstatsplot-004" class="anchor"></a>ggstatsplot 0.0.4<small> 2018-07-05 </small>
 </h1>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -398,9 +400,9 @@
 <code>gghistostats</code> also allows running robust version of one-sample test now (One-sample percentile bootstrap).</li>
 </ul>
 </div>
-    <div id="ggstatsplot-0-0-3" class="section level1">
+    <div id="ggstatsplot-003" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-3" class="anchor"></a>ggstatsplot 0.0.3<small> 2018-05-22 </small>
+<a href="#ggstatsplot-003" class="anchor"></a>ggstatsplot 0.0.3<small> 2018-05-22 </small>
 </h1>
 <p>NEW FEATURES</p>
 <ul>
@@ -430,9 +432,9 @@
 <li>The <code>centrality.para</code> argument for <code>ggscatterstats</code> was not working properly. Choosing <code>"median"</code> didn’t show median, but the mean. This is fixed now.</li>
 </ul>
 </div>
-    <div id="ggstatsplot-0-0-2" class="section level1">
+    <div id="ggstatsplot-002" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-2" class="anchor"></a>ggstatsplot 0.0.2<small> 2018-04-28 </small>
+<a href="#ggstatsplot-002" class="anchor"></a>ggstatsplot 0.0.2<small> 2018-04-28 </small>
 </h1>
 <p>NEW FEATURES</p>
 <ul>
@@ -457,9 +459,9 @@
 <li>95% confidence intervals for partial eta- and omega-squared for <code>ggbetweenstats</code> function are now computed using <code>sjstats</code> package, which allows bootstrapping. <code>apaTables</code> and <code>userfriendlyscience</code> packages are thus removed from dependencies.</li>
 </ul>
 </div>
-    <div id="ggstatsplot-0-0-1" class="section level1">
+    <div id="ggstatsplot-001" class="section level1">
 <h1 class="page-header">
-<a href="#ggstatsplot-0-0-1" class="anchor"></a>ggstatsplot 0.0.1<small> 2018-04-03 </small>
+<a href="#ggstatsplot-001" class="anchor"></a>ggstatsplot 0.0.1<small> 2018-04-03 </small>
 </h1>
 <ul>
 <li>First release of the package.</li>
@@ -471,15 +473,15 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ggstatsplot-0-0-8-9000">0.0.8.9000</a></li>
-        <li><a href="#ggstatsplot-0-0-8">0.0.8</a></li>
-        <li><a href="#ggstatsplot-0-0-7">0.0.7</a></li>
-        <li><a href="#ggstatsplot-0-0-6">0.0.6</a></li>
-        <li><a href="#ggstatsplot-0-0-5">0.0.5</a></li>
-        <li><a href="#ggstatsplot-0-0-4">0.0.4</a></li>
-        <li><a href="#ggstatsplot-0-0-3">0.0.3</a></li>
-        <li><a href="#ggstatsplot-0-0-2">0.0.2</a></li>
-        <li><a href="#ggstatsplot-0-0-1">0.0.1</a></li>
+        <li><a href="#ggstatsplot-0089000">0.0.8.9000</a></li>
+        <li><a href="#ggstatsplot-008">0.0.8</a></li>
+        <li><a href="#ggstatsplot-007">0.0.7</a></li>
+        <li><a href="#ggstatsplot-006">0.0.6</a></li>
+        <li><a href="#ggstatsplot-005">0.0.5</a></li>
+        <li><a href="#ggstatsplot-004">0.0.4</a></li>
+        <li><a href="#ggstatsplot-003">0.0.3</a></li>
+        <li><a href="#ggstatsplot-002">0.0.2</a></li>
+        <li><a href="#ggstatsplot-001">0.0.1</a></li>
       </ul>
     </div>
   </div>

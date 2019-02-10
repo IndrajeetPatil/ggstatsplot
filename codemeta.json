@@ -123,7 +123,7 @@
       "@type": "SoftwareApplication",
       "identifier": "MCMCglmm",
       "name": "MCMCglmm",
-      "version": ">= 2.27",
+      "version": ">= 2.28",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

@@ -28,6 +28,7 @@ MINOR CHANGES
     additional ggplot components using the `ggplot.component` argument.
   - All bayes factor related subtitle and captions replace `prior.width` with
     `r_{Cauchy}`.
+  - `ggcoefstats` passes dots (`...`) to `augment` method from `broom`.
 
 # ggstatsplot 0.0.8
 
