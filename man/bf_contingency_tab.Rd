@@ -6,7 +6,7 @@
 \usage{
 bf_contingency_tab(data, main, condition, sampling.plan = "indepMulti",
   fixed.margin = "rows", prior.concentration = 1, caption = NULL,
-  output = "caption", k = 2)
+  output = "caption", k = 2, ...)
 }
 \arguments{
 \item{data}{The data as a data frame (matrix or tables will not be accepted).}
@@ -38,6 +38,8 @@ results).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{...}{further arguments to be passed to or from methods.}
 }
 \description{
 Bayesian contingency table analysis.

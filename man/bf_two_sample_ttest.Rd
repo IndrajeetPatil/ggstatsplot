@@ -5,16 +5,16 @@
 \title{Bayesian two-samples \emph{t}-test.}
 \usage{
 bf_two_sample_ttest(data, x, y, paired = FALSE, bf.prior = 0.707,
-  caption = NULL, output = "caption", k = 2)
+  caption = NULL, output = "caption", k = 2, ...)
 }
 \arguments{
-\item{data}{A dataframe from which variables specified are preferentially to
-be taken.}
+\item{data}{for use with \code{formula}, a data frame containing all the
+data}
 
-\item{x}{The grouping variable from the dataframe \code{data}.}
+\item{x}{a vector of observations for the first (or only) group}
 
-\item{y}{The response (a.k.a. outcome or dependent) variable from the
-dataframe \code{data}.}
+\item{y}{a vector of observations for the second group (or condition, for
+paired)}
 
 \item{paired}{if \code{TRUE}, observations are paired}
 
@@ -29,6 +29,8 @@ results).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{...}{further arguments to be passed to or from methods.}
 }
 \description{
 Bayesian two-samples \emph{t}-test.

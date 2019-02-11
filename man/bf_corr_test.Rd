@@ -5,18 +5,14 @@
 \title{Bayesian correlation test.}
 \usage{
 bf_corr_test(data, x, y, bf.prior = 0.707, caption = NULL,
-  output = "caption", k = 2)
+  output = "caption", k = 2, ...)
 }
 \arguments{
 \item{data}{Dataframe from which variables are to be taken.}
 
-\item{x}{The column in \code{data} containing the explanatory variable to be
-plotted on the x axis. Can be entered either as
-a character string (e.g., \code{"x"}) or as a bare expression (e.g, \code{x}).}
+\item{x}{second continuous variable}
 
-\item{y}{The column in \code{data} containing the response (outcome) variable to
-be plotted on the y axis. Can be entered either as
-a character string (e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
+\item{y}{first continuous variable}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
@@ -28,6 +24,8 @@ in favor of null)  or \code{"results"} (which will return the dataframe with
 results).}
 
 \item{k}{Number of decimal places expected for results.}
+
+\item{...}{further arguments to be passed to or from methods.}
 }
 \description{
 Bayesian correlation test.

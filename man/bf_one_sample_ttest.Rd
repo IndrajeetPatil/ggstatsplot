@@ -5,13 +5,13 @@
 \title{Bayesian one-sample \emph{t}-test.}
 \usage{
 bf_one_sample_ttest(data = NULL, x, test.value = 0, bf.prior = 0.707,
-  caption = NULL, output = "caption", k = 2)
+  caption = NULL, output = "caption", k = 2, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken. This argument is optional.}
+\item{data}{for use with \code{formula}, a data frame containing all the
+data}
 
-\item{x}{A numeric variable.}
+\item{x}{a vector of observations for the first (or only) group}
 
 \item{test.value}{A number specifying the value of the null hypothesis
 (Default: \code{0}).}
@@ -27,6 +27,8 @@ results).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{...}{further arguments to be passed to or from methods.}
 }
 \description{
 Bayesian one-sample \emph{t}-test.

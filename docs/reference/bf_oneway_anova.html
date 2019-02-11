@@ -176,15 +176,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>bf_oneway_anova</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe from which variables specified are preferentially to
-be taken.</p></td>
+      <td><p>a data frame containing data for all factors in the formula</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -215,6 +214,10 @@ results).</p></td>
       <td><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments to be passed to or from methods.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -241,16 +244,11 @@ results).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
   <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 15</span><span>
-#&gt;      bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01        error
-#&gt;     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 2.03</span><span style='color: #555555;'>e</span><span>28       65.2        28.3 4.93</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-29</span><span>      -</span><span style='color: #BB0000;'>65.2</span><span>       -</span><span style='color: #BB0000;'>28.3</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>047</span><span style='text-decoration: underline;'>8</span><span>
-#&gt;   posterior.mean posterior.median posterior.sd posterior.std.error HDI.low
-#&gt;            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>           1.97            0.354         7.73              0.099</span><span style='text-decoration: underline;'>8</span><span>  -</span><span style='color: #BB0000;'>0.910</span><span>
-#&gt;   HDI.high cred.int bf.prior
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>     5.91     0.95      0.8</div></span></pre>
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 8</span><span>
+#&gt;      bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01   error
+#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 2.03</span><span style='color: #949494;'>e</span><span>28       65.2        28.3 4.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-29</span><span>      -</span><span style='color: #BB0000;'>65.2</span><span>       -</span><span style='color: #BB0000;'>28.3</span><span> 4.78</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-8</span><span>
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: bf.prior </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

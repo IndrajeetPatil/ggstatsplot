@@ -176,24 +176,24 @@
     </div>
 
     <pre class="usage"><span class='fu'>bf_two_sample_ttest</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe from which variables specified are preferentially to
-be taken.</p></td>
+      <td><p>for use with <code>formula</code>, a data frame containing all the
+data</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping variable from the dataframe <code>data</code>.</p></td>
+      <td><p>a vector of observations for the first (or only) group</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>The response (a.k.a. outcome or dependent) variable from the
-dataframe <code>data</code>.</p></td>
+      <td><p>a vector of observations for the second group (or condition, for
+paired)</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -218,6 +218,10 @@ results).</p></td>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments to be passed to or from methods.</p></td>
     </tr>
     </table>
     
@@ -249,16 +253,10 @@ results).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 15</span><span>
-#&gt;    bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01         error
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> </span><span style='text-decoration: underline;'>1</span><span>383.       7.23        3.14 0.000</span><span style='text-decoration: underline;'>723</span><span>      -</span><span style='color: #BB0000;'>7.23</span><span>       -</span><span style='color: #BB0000;'>3.14</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>003</span><span style='text-decoration: underline;'>41</span><span>
-#&gt;   posterior.mean posterior.median posterior.sd posterior.std.error HDI.low
-#&gt;            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>           7.80             1.50         193.                2.73   0.160
-#&gt;   HDI.high cred.int bf.prior
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>     5.45     0.95    0.707</div><div class='input'>
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 8</span><span>
+#&gt;    bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01    error bf.prior
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='text-decoration: underline;'>1</span><span>383.       7.23        3.14 0.000</span><span style='text-decoration: underline;'>723</span><span>      -</span><span style='color: #BB0000;'>7.23</span><span>       -</span><span style='color: #BB0000;'>3.14</span><span>  3.41</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-9</span><span>    0.707</div><div class='input'>
 <span class='co'># for paired sample test</span>
 <span class='fu'>bf_two_sample_ttest</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
@@ -270,16 +268,11 @@ results).</p></td>
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"results"</span>
-)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 15</span><span>
+)</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 8</span><span>
 #&gt;      bf10 log_e_bf10 log_10_bf10     bf01 log_e_bf01 log_10_bf01    error
-#&gt;     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 1.20</span><span style='color: #555555;'>e</span><span>61       141.        61.1 8.36</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-62</span><span>      -</span><span style='color: #BB0000;'>141.</span><span>       -</span><span style='color: #BB0000;'>61.1</span><span> 1.17</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-69</span><span>
-#&gt;   posterior.mean posterior.median posterior.sd posterior.std.error HDI.low
-#&gt;            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>           2.47           -</span><span style='color: #BB0000;'>0.503</span><span>         27.1               0.429   -</span><span style='color: #BB0000;'>4.03</span><span>
-#&gt;   HDI.high cred.int bf.prior
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>     7.70     0.95    0.707</div></span></pre>
+#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1.20</span><span style='color: #949494;'>e</span><span>61       141.        61.1 8.36</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-62</span><span>      -</span><span style='color: #BB0000;'>141.</span><span>       -</span><span style='color: #BB0000;'>61.1</span><span> 1.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-69</span><span>
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: bf.prior </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

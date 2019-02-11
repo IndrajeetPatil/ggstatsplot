@@ -189,6 +189,10 @@
 <li>
 <code>ggcoefstats</code> passes dots (<code>...</code>) to <code>augment</code> method from <code>broom</code>.</li>
 </ul>
+<p>BUG FIXES</p>
+<ul>
+<li>The helper function <code>bf_extractor</code> no longer provides option to extract information about posterior distribution because these details were incorrect. The <code>posterior = TRUE</code> details were not used anywhere in the package so nothing about the results changes.</li>
+</ul>
 </div>
     <div id="ggstatsplot-008" class="section level1">
 <h1 class="page-header">

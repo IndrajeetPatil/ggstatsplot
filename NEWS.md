@@ -30,6 +30,13 @@ MINOR CHANGES
     `r_{Cauchy}`.
   - `ggcoefstats` passes dots (`...`) to `augment` method from `broom`.
 
+BUG FIXES
+
+  - The helper function `bf_extractor` no longer provides option to extract
+    information about posterior distribution because these details were
+    incorrect. The `posterior = TRUE` details were not used anywhere in the
+    package so nothing about the results changes.
+
 # ggstatsplot 0.0.8
 
 NEW FEATURES

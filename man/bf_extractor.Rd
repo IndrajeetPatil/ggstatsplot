@@ -2,48 +2,26 @@
 % Please edit documentation in R/helpers_bf_tests.R
 \name{bf_extractor}
 \alias{bf_extractor}
-\title{Convenience function to extract bayes factors and details about
-posterior (mean, median, HDI, etc.) from \code{BayesFactor} model object.}
+\title{Convenience function to extract bayes factors from \code{BayesFactor} model
+object.}
 \usage{
-bf_extractor(bf.object, posterior = FALSE, iterations = 1000,
-  cred.int = 0.95)
+bf_extractor(bf.object, ...)
 }
 \arguments{
 \item{bf.object}{An object from \code{BayesFactor} package test results.}
 
-\item{posterior}{If \code{TRUE}, the dataframe will contain mean, median, standard
-deviation, and standard error for the posterior.}
-
-\item{iterations}{The number of iterations to sample for computing posterior
-(default: \code{1000}).}
-
-\item{cred.int}{A scalar between 0 and 1, indicating the mass within the
-credible interval that is to be estimated (default: \code{0.95}).}
+\item{...}{Currently ignored.}
 }
 \description{
-Convenience function to extract bayes factors and details about
-posterior (mean, median, HDI, etc.) from \code{BayesFactor} model object.
+Convenience function to extract bayes factors from \code{BayesFactor} model
+object.
 }
 \examples{
-
 # getting only bayes factors
-ggstatsplot::bf_extractor(BayesFactor::anovaBF(Sepal.Length ~ Species,
-  data = iris,
-  progress = FALSE
-))
-\dontrun{
-# show all columns in a tibble
-options(tibble.width = Inf)
-
-# getting bayes factors and posteriors
 ggstatsplot::bf_extractor(
-  BayesFactor::correlationBF(
-    x = iris$Sepal.Length,
-    y = iris$Sepal.Width
-  ),
-  posterior = TRUE,
-  iterations = 1000,
-  cred.int = 0.95
+  BayesFactor::anovaBF(Sepal.Length ~ Species,
+    data = iris,
+    progress = FALSE
+  )
 )
-}
 }

@@ -5,11 +5,10 @@
 \title{Bayesian one-way analysis of variance.}
 \usage{
 bf_oneway_anova(data, x, y, bf.prior = 0.707, caption = NULL,
-  output = "caption", k = 2)
+  output = "caption", k = 2, ...)
 }
 \arguments{
-\item{data}{A dataframe from which variables specified are preferentially to
-be taken.}
+\item{data}{a data frame containing data for all factors in the formula}
 
 \item{x}{The grouping variable from the dataframe \code{data}.}
 
@@ -27,6 +26,8 @@ results).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{...}{further arguments to be passed to or from methods.}
 }
 \description{
 Bayesian one-way analysis of variance.

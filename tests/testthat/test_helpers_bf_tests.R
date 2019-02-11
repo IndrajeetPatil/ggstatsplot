@@ -13,10 +13,7 @@ testthat::test_that(
       BayesFactor::correlationBF(
         x = ggplot2::msleep$brainwt,
         y = ggplot2::msleep$sleep_total
-      ),
-      posterior = TRUE,
-      iterations = 500,
-      cred.int = 0.90
+      )
     ))
 
     # check bayes factor values
@@ -25,14 +22,6 @@ testthat::test_that(
     testthat::expect_equal(df$log_e_bf10, -df$log_e_bf01, tolerance = 0.001)
     testthat::expect_equal(df$log_10_bf10, 0.9537841, tolerance = 0.001)
     testthat::expect_equal(df$log_10_bf10, -df$log_10_bf01, tolerance = 0.001)
-
-    # check posterior values
-    testthat::expect_equal(df$posterior.median, -0.34, tolerance = 0.01)
-    testthat::expect_equal(df$posterior.sd, 0.13, tolerance = 0.01)
-    testthat::expect_equal(df$posterior.std.error, 0.00411, tolerance = 0.001)
-    testthat::expect_equal(df$HDI.low, -0.5403865, tolerance = 0.001)
-    testthat::expect_equal(df$HDI.high, -0.1230767, tolerance = 0.001)
-    testthat::expect_equal(df$cred.int, 0.90, tolerance = 0.01)
   }
 )
 
@@ -54,10 +43,7 @@ testthat::test_that(
         y = dat$HDHF,
         rscale = 0.8,
         paired = TRUE
-      ),
-      posterior = TRUE,
-      iterations = 500,
-      cred.int = 0.95
+      )
     ))
 
     # creating a tidy dataframe
@@ -85,14 +71,6 @@ testthat::test_that(
     # checking if two usages of the function are producing the same results
     testthat::expect_equal(df$bf10, df_results$bf10, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
-
-    # check posterior values
-    testthat::expect_equal(df$posterior.median, -0.016, tolerance = 0.01)
-    testthat::expect_equal(df$posterior.sd, 47.6, tolerance = 0.01)
-    testthat::expect_equal(df$posterior.std.error, 1.064368, tolerance = 0.001)
-    testthat::expect_equal(df$HDI.low, -1.778363, tolerance = 0.001)
-    testthat::expect_equal(df$HDI.high, 10.33179, tolerance = 0.001)
-    testthat::expect_equal(df$cred.int, 0.95, tolerance = 0.01)
   }
 )
 
@@ -112,10 +90,7 @@ testthat::test_that(
         x = iris$Petal.Length,
         mu = 5.5,
         rscale = 0.99
-      ),
-      posterior = TRUE,
-      iterations = 500,
-      cred.int = 0.95
+      )
     ))
 
     # extracting results from where this function is implemented
@@ -137,14 +112,6 @@ testthat::test_that(
     # checking if two usages of the function are producing the same results
     testthat::expect_equal(df$bf10, df_results$bf10, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
-
-    # check posterior values
-    testthat::expect_equal(df$posterior.median, 3.23, tolerance = 0.01)
-    testthat::expect_equal(df$posterior.sd, 267.03, tolerance = 0.01)
-    testthat::expect_equal(df$posterior.std.error, 5.970972, tolerance = 0.001)
-    testthat::expect_equal(df$HDI.low, 0.4319726, tolerance = 0.001)
-    testthat::expect_equal(df$HDI.high, 13.50321, tolerance = 0.001)
-    testthat::expect_equal(df$cred.int, 0.95, tolerance = 0.01)
   }
 )
 
@@ -164,10 +131,7 @@ testthat::test_that(
         x = table(mtcars$am, mtcars$cyl),
         sampleType = "jointMulti",
         fixedMargin = "rows"
-      ),
-      posterior = TRUE,
-      iterations = 500,
-      cred.int = 0.95
+      )
     ))
 
     # extracting results from where this function is implemented
@@ -191,14 +155,6 @@ testthat::test_that(
     # checking if two usages of the function are producing the same results
     testthat::expect_equal(df$bf10, df_results$bf10, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
-
-    # check posterior values
-    testthat::expect_equal(df$posterior.median, 0.13, tolerance = 0.01)
-    testthat::expect_equal(df$posterior.sd, 0.11, tolerance = 0.01)
-    testthat::expect_equal(df$posterior.std.error, 0.002008316, tolerance = 0.001)
-    testthat::expect_equal(df$HDI.low, 0.01865475, tolerance = 0.001)
-    testthat::expect_equal(df$HDI.high, 0.3931479, tolerance = 0.001)
-    testthat::expect_identical(class(df)[[1]], "tbl_df")
   }
 )
 
