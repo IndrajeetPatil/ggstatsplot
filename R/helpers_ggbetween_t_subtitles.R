@@ -16,8 +16,7 @@
 #'
 #' @importFrom dplyr select mutate_at
 #' @importFrom rlang !! enquo
-#' @importFrom stats t.test na.omit
-#' @importFrom effsize cohen.d
+#' @importFrom stats t.test na.omit qt pt uniroot
 #'
 #' @examples
 #'

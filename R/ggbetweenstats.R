@@ -114,7 +114,6 @@
 #' @importFrom dplyr select group_by arrange mutate mutate_at mutate_if
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom WRS2 t1way yuen yuen.effect.ci
-#' @importFrom effsize cohen.d
 #' @importFrom sjstats eta_sq omega_sq
 #' @importFrom stats na.omit t.test oneway.test
 #' @importFrom rlang enquo quo_name as_name !!
