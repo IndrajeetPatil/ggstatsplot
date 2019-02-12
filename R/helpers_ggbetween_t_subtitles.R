@@ -19,20 +19,20 @@
 #' @importFrom stats t.test na.omit qt pt uniroot
 #'
 #' @examples
-#'
+#' 
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#'
+#' 
 #' # with defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
@@ -262,14 +262,14 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
-#'
+#' 
 #' # with defaults
 #' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_t_robust(
 #'   data = ToothGrowth,
@@ -279,7 +279,7 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'   k = 1,
 #'   tr = 0.2
 #' )
-#'
+#' 
 #' # within-subjects design
 #' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
@@ -428,18 +428,18 @@ subtitle_t_robust <- function(data,
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # between-subjects design
-#'
+#' 
 #' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#'
+#' 
 #' # within-subjects design
-#'
+#' 
 #' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -607,19 +607,19 @@ subtitle_t_bayes <- function(data,
 #' @importFrom tibble tibble
 #'
 #' @examples
-#'
+#' 
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#'
+#' 
 #' # with defaults
 #' effect_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #' )
-#'
+#' 
 #' # changing defaults
 #' effect_t_parametric(
 #'   formula = sleep_rem ~ vore,
@@ -633,14 +633,13 @@ subtitle_t_bayes <- function(data,
 #' @export
 
 # function body
-effect_t_parametric <- function (formula = NULL,
-                        data = NULL,
-                        mu = 0,
-                        paired = FALSE,
-                        hedges.correction = TRUE,
-                        conf.level = .95,
-                        noncentral = TRUE)
-{
+effect_t_parametric <- function(formula = NULL,
+                                data = NULL,
+                                mu = 0,
+                                paired = FALSE,
+                                hedges.correction = TRUE,
+                                conf.level = .95,
+                                noncentral = TRUE) {
   # -------------- input checking -------------------
 
   if (!is(formula, "formula") | !is(data, "data.frame")) {
@@ -663,14 +662,14 @@ effect_t_parametric <- function (formula = NULL,
     sd.est <- sd(x)
     df <- length(x) - 1
     mean.diff <- mean(x) - mu
-    d <- mean.diff/sd.est
-    Z <- -qt((1 - conf.level)/2, df)
+    d <- mean.diff / sd.est
+    Z <- -qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * sqrt(sd(x)))
     upper.ci <- c(d + Z * sqrt(sd(x)))
     tobject <- t.test(x, mu = mu, var.equal = TRUE, conf.level = conf.level)
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int,"conf.level")
+    civalue <- attr(tobject$conf.int, "conf.level")
     twosamples <- FALSE
   }
 
@@ -693,20 +692,20 @@ effect_t_parametric <- function (formula = NULL,
     n <- length(sq.devs)
     n1 <- length(x)
     n2 <- length(y)
-    psd <- sqrt(sum(sq.devs)/(n - 2))
+    psd <- sqrt(sum(sq.devs) / (n - 2))
     sd.est <- psd
     mean.diff <- mean(x) - mean(y)
     df <- length(x) + length(y) - 2
-    d <- mean.diff/sd.est
-    Sigmad <- sqrt((n1 + n2)/(n1 * n2) + 0.5 * d^2/(n1 + n2))
-    Z <- -qt((1 - conf.level)/2, df)
+    d <- mean.diff / sd.est
+    Sigmad <- sqrt((n1 + n2) / (n1 * n2) + 0.5 * d^2 / (n1 + n2))
+    Z <- -qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
     tobject <- t.test(x, y, var.equal = TRUE, conf.level = conf.level)
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int,"conf.level")
+    civalue <- attr(tobject$conf.int, "conf.level")
     twosamples <- TRUE
   }
 
@@ -727,18 +726,18 @@ effect_t_parametric <- function (formula = NULL,
       ind <- !is.na(x) & !is.na(y)
       x <- x[ind]
       y <- y[ind]
-    }#    return(x)
+    } #    return(x)
     if (length(x) != length(y)) {
       stop("paired samples requires samples of the same size")
     }
     n <- length(x)
     df <- n - 1
-    r <- cor(x,y)
+    r <- cor(x, y)
     sd.est <- sd(x - y)
     mean.diff <- mean(y) - mean(x)
-    d <- mean.diff/sd.est
+    d <- mean.diff / sd.est
     Sigmad <- sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r)) # paired
-    Z <- -qt((1 - conf.level)/2, df)
+    Z <- -qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
@@ -746,7 +745,7 @@ effect_t_parametric <- function (formula = NULL,
     tobject <- t.test(diffscores, mu = 0, var.equal = TRUE, conf.level = conf.level)
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int,"conf.level")
+    civalue <- attr(tobject$conf.int, "conf.level")
     twosamples <- FALSE
   }
 
@@ -754,7 +753,7 @@ effect_t_parametric <- function (formula = NULL,
 
   if (hedges.correction == TRUE) {
     method <- "Hedges's g"
-    d <- d * (n - 3)/(n - 2.25)
+    d <- d * (n - 3) / (n - 2.25)
   }
 
   # -------------- calculate NCP intervals -------------------
@@ -765,20 +764,28 @@ effect_t_parametric <- function (formula = NULL,
     while (pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
       end1 <- end1 + st
     }
-    ncp1 = uniroot(function(x)
-      (1 - civalue) / 2 - pt(q = tvalue,
-                             df = dfvalue,
-                             ncp = x),
-      c(2 * tvalue - end1, end1))$root
+    ncp1 <- uniroot(
+      function(x)
+        (1 - civalue) / 2 - pt(
+          q = tvalue,
+          df = dfvalue,
+          ncp = x
+        ),
+      c(2 * tvalue - end1, end1)
+    )$root
     end2 <- tvalue
     while (pt(q = tvalue, df = dfvalue, ncp = end2) < (1 + civalue) / 2) {
       end2 <- end2 - st
     }
-    ncp2 = uniroot(function(x)
-      (1 + civalue) / 2 - pt(q = tvalue,
-                             df = dfvalue,
-                             ncp = x),
-      c(end2, 2 * tvalue - end2))$root
+    ncp2 <- uniroot(
+      function(x)
+        (1 + civalue) / 2 - pt(
+          q = tvalue,
+          df = dfvalue,
+          ncp = x
+        ),
+      c(end2, 2 * tvalue - end2)
+    )$root
 
     if (isTRUE(twosamples)) {
       ncp.upper.ci <- ncp1 * sqrt(1 / n1 + 1 / n2)
@@ -792,17 +799,18 @@ effect_t_parametric <- function (formula = NULL,
   # -------------- return results desired -------------------
 
   if (isTRUE(noncentral)) {
-    return(tibble(Method = method,
-                  Estimate = d,
-                  LowerCI = ncp.lower.ci,
-                  UpperCI = ncp.upper.ci)
-    )
+    return(tibble(
+      Method = method,
+      Estimate = d,
+      LowerCI = ncp.lower.ci,
+      UpperCI = ncp.upper.ci
+    ))
   } else {
-    return(tibble(Method = method,
-                  Estimate = d,
-                  LowerCI = lower.ci,
-                  UpperCI = upper.ci)
-    )
+    return(tibble(
+      Method = method,
+      Estimate = d,
+      LowerCI = lower.ci,
+      UpperCI = upper.ci
+    ))
   }
 }
-
