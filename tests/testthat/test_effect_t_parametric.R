@@ -247,8 +247,10 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # creating a new dataframe with a variable that has dropped factor level
-    iris_short <- dplyr::filter(.data = ggstatsplot::iris_long,
-                                condition %in% c("Sepal.Length", "Sepal.Width"))
+    iris_short <- dplyr::filter(
+      .data = ggstatsplot::iris_long,
+      condition %in% c("Sepal.Length", "Sepal.Width")
+    )
 
     # shouldn't work
     testthat::expect_error(ggstatsplot::effsize_t_parametric(
@@ -329,6 +331,8 @@ testthat::test_that(
     testthat::expect_equal(df4$conf.high, -2.722362, tolerance = 0.001)
 
     # checking details
+    testthat::expect_equal(df4$conf.level, 0.50, tolerance = 0.01)
+    testthat::expect_equal(df2$conf.level, 0.95, tolerance = 0.01)
     testthat::expect_identical(
       c(df1$method, df2$method, df3$method, df4$method),
       c("Hedges's g", "Hedges's g", "Cohen's d", "Cohen's d")
@@ -369,11 +373,13 @@ testthat::test_that(
     # creating a new dataframe with a variable that has dropped factor level
     bugs_short_unequal <- bugs %>%
       tibble::as_tibble(x = .) %>%
-      tidyr::gather(data = .,
-                    key = "condition",
-                    value = "value",
-                    LDLF:LDHF,
-                    na.rm = TRUE)
+      tidyr::gather(
+        data = .,
+        key = "condition",
+        value = "value",
+        LDLF:LDHF,
+        na.rm = TRUE
+      )
 
     bugs_short <- bugs_short_unequal %>%
       dplyr::filter(.data = ., Subject != 2L, Subject != 80)
@@ -431,6 +437,17 @@ testthat::test_that(
       noncentral = TRUE
     )
 
+    # not tidy data
+    set.seed(123)
+    df5 <- ggstatsplot::effsize_t_parametric(
+      formula = LDLF ~ LDHF,
+      data = bugs,
+      paired = TRUE,
+      hedges.correction = FALSE,
+      conf.level = 0.90,
+      noncentral = TRUE
+    )
+
     # checking attributes of dataframe
     testthat::expect_identical(
       c(class(df1), class(df2), class(df3), class(df4)),
@@ -458,7 +475,13 @@ testthat::test_that(
     testthat::expect_equal(df4$conf.low, -0.8925503, tolerance = 0.001)
     testthat::expect_equal(df4$conf.high, -0.5056502, tolerance = 0.001)
 
+    testthat::expect_equal(df5$estimate, 0.6969645, tolerance = 0.001)
+    testthat::expect_equal(df5$conf.low, 0.5056489, tolerance = 0.001)
+    testthat::expect_equal(df5$conf.high, 0.8925545, tolerance = 0.001)
+
     # checking details
+    testthat::expect_equal(df4$conf.level, 0.90, tolerance = 0.01)
+    testthat::expect_equal(df1$conf.level, 0.95, tolerance = 0.01)
     testthat::expect_identical(
       c(df1$method, df2$method, df3$method, df4$method),
       c("Hedges's g", "Hedges's g", "Cohen's d", "Cohen's d")
@@ -483,5 +506,81 @@ testthat::test_that(
       c(df1$paired, df2$paired, df3$paired, df4$paired),
       c(rep(TRUE, 4L))
     )
+  }
+)
+
+
+# effsize works for one sample test ------------
+
+testthat::test_that(
+  desc = "effsize works for one sample test",
+  code = {
+    testthat::skip_on_cran()
+
+    # d and central
+    set.seed(123)
+    df1 <- ggstatsplot::effsize_t_parametric(
+      formula = ~ height,
+      data = dplyr::starwars,
+      mu = 175,
+      hedges.correction = FALSE,
+      conf.level = 0.99,
+      noncentral = FALSE
+    )
+
+    # d and noncentral
+    set.seed(123)
+    df2 <- ggstatsplot::effsize_t_parametric(
+      formula = ~ height,
+      data = dplyr::starwars,
+      mu = 175,
+      hedges.correction = FALSE,
+      conf.level = 0.90,
+      noncentral = TRUE
+    )
+
+    # g and central
+    set.seed(123)
+    df3 <- ggstatsplot::effsize_t_parametric(
+      formula = ~ height,
+      data = dplyr::starwars,
+      hedges.correction = TRUE,
+      mu = 100,
+      conf.level = 0.99,
+      noncentral = FALSE
+    )
+
+    # g and noncentral
+    set.seed(123)
+    df4 <- suppressWarnings(ggstatsplot::effsize_t_parametric(
+      formula = ~ height,
+      data = dplyr::starwars,
+      mu = 100,
+      hedges.correction = TRUE,
+      conf.level = 0.90,
+      noncentral = TRUE
+    ))
+
+    # checking estimates and CIs
+    testthat::expect_equal(df1$estimate, -0.01846326, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.low, -15.57789, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.high, 15.54096, tolerance = 0.001)
+
+    testthat::expect_equal(df2$estimate, df1$estimate, tolerance = 0.001)
+    testthat::expect_equal(df2$conf.low, -0.2024353, tolerance = 0.001)
+    testthat::expect_equal(df2$conf.high, 0.1653947, tolerance = 0.001)
+
+    testthat::expect_equal(df3$estimate, 2.118175, tolerance = 0.001)
+    testthat::expect_equal(df3$conf.low, -13.42088, tolerance = 0.001)
+    testthat::expect_equal(df3$conf.high, 17.69797, tolerance = 0.001)
+
+    testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
+    testthat::expect_equal(df4$conf.low, 1.813373, tolerance = 0.001)
+    testthat::expect_equal(df4$conf.high, 2.482309, tolerance = 0.001)
+
+    testthat::expect_identical(df1$paired, NA_character_)
+
+    testthat::expect_equal(df4$conf.level, 0.90, tolerance = 0.01)
+    testthat::expect_equal(df3$conf.level, 0.99, tolerance = 0.01)
   }
 )
