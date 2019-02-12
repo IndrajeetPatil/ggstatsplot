@@ -726,7 +726,7 @@ effect_t_parametric <- function(formula = NULL,
       ind <- !is.na(x) & !is.na(y)
       x <- x[ind]
       y <- y[ind]
-    } #    return(x)
+    }
     if (length(x) != length(y)) {
       stop("paired samples requires samples of the same size")
     }
@@ -796,21 +796,21 @@ effect_t_parametric <- function(formula = NULL,
     }
   }
 
-  # -------------- return results desired -------------------
+  # -------------- return results desired ------------------
 
   if (isTRUE(noncentral)) {
     return(tibble(
-      Method = method,
-      Estimate = d,
-      LowerCI = ncp.lower.ci,
-      UpperCI = ncp.upper.ci
+      method = method,
+      estimate = d,
+      conf.low = ncp.lower.ci,
+      conf.high = ncp.upper.ci
     ))
   } else {
     return(tibble(
-      Method = method,
-      Estimate = d,
-      LowerCI = lower.ci,
-      UpperCI = upper.ci
+      method = method,
+      estimate = d,
+      conf.low = lower.ci,
+      conf.high = upper.ci
     ))
   }
 }
