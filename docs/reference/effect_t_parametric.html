@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default theme used in all <code>ggstatsplot</code> package plots — theme_ggstatsplot • ggstatsplot</title>
+<title>Calculating Cohen or Hedges (between-/within- or one
+sample designs). — effect_t_parametric • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,11 +39,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Default theme used in all <code>ggstatsplot</code> package plots — theme_ggstatsplot" />
+<meta property="og:title" content="Calculating Cohen or Hedges (between-/within- or one
+sample designs). — effect_t_parametric" />
 
-<meta property="og:description" content="Common theme used across all plots generated in ggstatsplot
-and assumed by the author to be aesthetically pleasing to the
-user/reader." />
+<meta property="og:description" content="Calculating Cohen or Hedges (between-/within- or one
+sample designs)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -166,64 +167,102 @@ user/reader." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Default theme used in all <code>ggstatsplot</code> package plots</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/theme_ggstatsplot.R'><code>R/theme_ggstatsplot.R</code></a></small>
-    <div class="hidden name"><code>theme_ggstatsplot.Rd</code></div>
+    <h1>Calculating Cohen or Hedges (between-/within- or one
+sample designs).</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_t_subtitles.R'><code>R/helpers_ggbetween_t_subtitles.R</code></a></small>
+    <div class="hidden name"><code>effect_t_parametric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Common theme used across all plots generated in <code>ggstatsplot</code>
-and <em>assumed</em> by the author to be aesthetically pleasing to the
-user/reader.</p>
+    <p>Calculating Cohen or Hedges (between-/within- or one
+sample designs).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>theme_ggstatsplot</span>(<span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
-  <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='fu'>theme_mprl</span>(<span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>effect_t_parametric</span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
+      <th>formula</th>
+      <td><p>this function only accepts the variables in
+<code>formula</code> format e.g. <code>sleep_rem ~ vore</code> or <code>~ vore</code>.</p></td>
     </tr>
     <tr>
-      <th>ggstatsplot.layer</th>
-      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>).</p></td>
+      <th>data</th>
+      <td><p>a data frame or tibble containing the data</p></td>
+    </tr>
+    <tr>
+      <th>mu</th>
+      <td><p>if conducting a single sample test against a mean (Default: <code>0</code>).</p></td>
+    </tr>
+    <tr>
+      <th>paired</th>
+      <td><p>Logical indicating whether to treat the data as a oaired sample
+e.g. <code>post ~ pre</code>.</p></td>
+    </tr>
+    <tr>
+      <th>hedges.correction</th>
+      <td><p>Logical indicating whether to apply Hedges correction,
+Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>A scalar value between 0 and 1. If unspecified, the
+default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+    </tr>
+    <tr>
+      <th>noncentral</th>
+      <td><p>Logical indicating whether to use non-central
+<em>t</em>-distributions for computing the confidence intervals (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>ggplot2</code> object with the <code>theme_ggstatsplot</code> theme.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># creating a smaller dataset</span>
+<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
+)
 
-    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html</a></p>
-    
-
+<span class='co'># with defaults</span>
+<span class='fu'>effect_t_parametric</span>(
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 4</span><span>
+#&gt;   method     estimate conf.low conf.high
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Hedges's g    0.716  -</span><span style='color: #BB0000;'>0.031</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>      1.49</div><div class='input'>
+<span class='co'># changing defaults</span>
+<span class='fu'>effect_t_parametric</span>(
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+  <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='co'># ignored in this case</span>
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.99</span>,
+  <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
+#&gt;   method     estimate conf.low conf.high
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Hedges's g    0.716   -</span><span style='color: #BB0000;'>0.326</span><span>      1.79</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-          </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p>Chuck Powell</p>
   </div>
 </div>
 

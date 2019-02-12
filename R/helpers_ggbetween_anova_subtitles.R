@@ -2,8 +2,8 @@
 #' @name subtitle_anova_parametric
 #' @author Indrajeet Patil
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
+#' @param data Dataframe (or a tibble) from which variables specified are
+#'   preferentially to be taken.
 #' @param x The grouping variable.
 #' @param y The response - a vector of length the number of rows of `x`.
 #' @param nboot Number of bootstrap samples for computing effect size (Default:

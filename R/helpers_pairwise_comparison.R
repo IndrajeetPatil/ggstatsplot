@@ -57,7 +57,7 @@ games_howell <- function(data,
 
   # ============================ analysis ===============================
 
-  statistics <- lapply(X = 1:ncol(combs), FUN = function(x) {
+  statistics <- lapply(X = 1:NCOL(combs), FUN = function(x) {
 
     # mean difference
     mean.diff <- Mean[combs[2, x]] - Mean[combs[1, x]]
@@ -90,7 +90,7 @@ games_howell <- function(data,
         std[combs[2, x]] / n[combs[2, x]]))
 
     # upper confidence limit for mean difference
-    conf.high <- lapply(X = 1:ncol(combs), FUN = function(x) {
+    conf.high <- lapply(X = 1:NCOL(combs), FUN = function(x) {
       mean.diff + stats::qtukey(
         p = 0.95,
         nmeans = groups,
@@ -99,7 +99,7 @@ games_howell <- function(data,
     })[[1]]
 
     # lower confidence limit for mean difference
-    conf.low <- lapply(X = 1:ncol(combs), FUN = function(x) {
+    conf.low <- lapply(X = 1:NCOL(combs), FUN = function(x) {
       mean.diff - stats::qtukey(
         p = 0.95,
         nmeans = groups,

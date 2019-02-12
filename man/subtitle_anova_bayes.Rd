@@ -9,8 +9,8 @@ subtitle_anova_bayes(data, x, y, effsize.type = "unbiased",
   paired = FALSE, k = 2, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{Dataframe (or a tibble) from which variables specified are
+preferentially to be taken.}
 
 \item{x}{The grouping variable.}
 

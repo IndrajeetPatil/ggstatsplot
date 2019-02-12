@@ -13,8 +13,8 @@ subtitle_t_nonparametric(data, x, y, paired = FALSE, k = 2,
   conf.level = 0.95, messages = TRUE, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{Dataframe (or a tibble) from which variables specified are
+preferentially to be taken.}
 
 \item{x}{The grouping variable.}
 

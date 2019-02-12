@@ -10,6 +10,10 @@ NEW FEATURES
     `gam`, `Gam`, `gamlss`, `mcmc`, `mjoint`, `stanreg`.
   - New function to convert plots which are not of `gg`/`ggplot` class to
     convert into `ggplot` objects.
+  - Instead of using `effsize` to compute Cohen's *d* and Hedge's *g*,
+    `ggstatsplot` now relies on a new (#159) internal function
+    `effect_t_parametric` to compute them. This removes `effsize` from
+    dependencies.
   
 MINOR CHANGES
 

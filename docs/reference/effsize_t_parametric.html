@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for the robust t-test
-(between- and within-subjects designs). — subtitle_t_robust • ggstatsplot</title>
+<title>Calculating Cohen's <em>d</em> or Hedge's <em>g</em> (for between-/within- or one
+sample designs). — effsize_t_parametric • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,11 +39,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for the robust t-test
-(between- and within-subjects designs). — subtitle_t_robust" />
+<meta property="og:title" content="Calculating Cohen's <em>d</em> or Hedge's <em>g</em> (for between-/within- or one
+sample designs). — effsize_t_parametric" />
 
-<meta property="og:description" content="Making text subtitle for the robust t-test
-(between- and within-subjects designs)." />
+<meta property="og:description" content="Calculating Cohen's d or Hedge's g (for between-/within- or one
+sample designs)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -167,46 +167,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for the robust t-test
-(between- and within-subjects designs).</h1>
+    <h1>Calculating Cohen's <em>d</em> or Hedge's <em>g</em> (for between-/within- or one
+sample designs).</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_t_subtitles.R'><code>R/helpers_ggbetween_t_subtitles.R</code></a></small>
-    <div class="hidden name"><code>subtitle_t_robust.Rd</code></div>
+    <div class="hidden name"><code>effsize_t_parametric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for the robust t-test
-(between- and within-subjects designs).</p>
+    <p>Calculating Cohen's <em>d</em> or Hedge's <em>g</em> (for between-/within- or one
+sample designs).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_t_robust</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>effsize_t_parametric</span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>formula</th>
+      <td><p>This function only accepts the variables in
+<code>formula</code> format e.g. <code>sleep_rem ~ vore</code> or <code>~ vore</code>.</p></td>
+    </tr>
     <tr>
       <th>data</th>
       <td><p>Dataframe (or a tibble) from which variables specified are
 preferentially to be taken.</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>The grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tr</th>
-      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
-<code>0.1</code>. Lowering the value might help.</p></td>
+      <th>mu</th>
+      <td><p>If conducting a single sample test against a mean (Default: <code>0</code>).</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -214,9 +207,9 @@ try to play around with the value of <code>tr</code>, which is by default set to
     t-test.</p></td>
     </tr>
     <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing effect size (Default:
-<code>100</code>).</p></td>
+      <th>hedges.correction</th>
+      <td><p>Logical indicating whether to apply Hedges correction,
+Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -224,80 +217,73 @@ try to play around with the value of <code>tr</code>, which is by default set to
 default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
-      <th>conf.type</th>
-      <td><p>A vector of character strings representing the type of
-intervals required. The value should be any subset of the values <code>"norm"</code>,
-<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='https://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments (ignored).</p></td>
+      <th>noncentral</th>
+      <td><p>Logical indicating whether to use non-central
+<em>t</em>-distributions for computing the confidence intervals (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function is a rewrite of functionality provided in <code>lsr::cohensD</code> and
+<code><a href='https://www.rdocumentation.org/packages/effsize/topics/cohen.d'>effsize::cohen.d</a></code>.</p>
+<p>References-</p><ul>
+<li><p>Cooper, Harris, Hedges, Larry V., Valentine, Jeffrey C., <em>The Handbook of Research Synthesis and Meta-Analysis</em>, 2009.</p></li>
+<li><p>Cumming, G., Finch, S., <em>A Primer On The Understanding, Use, And Calculation Of Confidence Intervals That Are Based On Central And Noncentral Distributions</em>, Educational and Psychological Measurement, Vol. 61 No. 4,
+August 2001 532-574.</p></li>
+<li><p>Cohen, J. (1988). <em>Statistical power analysis for the behavioral sciences (2nd ed.)</em> Hillsdale, NJ: Lawrence Erlbaum Associates.</p></li>
+<li><p>David C. Howell (2010). <em>Confidence Intervals on Effect Size</em> retrieved from (<a href='https://www.uvm.edu/~dhowell/methods7/Supplements/Confidence%20Intervals%20on%20Effect%20Size.pdf'>https://www.uvm.edu/~dhowell/methods7/Supplements/Confidence%20Intervals%20on%20Effect%20Size.pdf</a>).</p></li>
+</ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='co'># creating a smaller dataset</span>
+<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
+)
+
 <span class='co'># with defaults</span>
-<span class='fu'>subtitle_t_robust</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleep</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>group</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>extra</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "13.90", ") = ", "1.57", ", ", 
-#&gt;     italic("p"), " = ", "0.139", ", ", italic(xi), " = ", "0.52", 
-#&gt;     ", CI"["95%"], " [", "0.00", ", ", "0.88", "]", ", ", italic("n"), 
-#&gt;     " = ", 20L)</div><div class='input'>
+<span class='fu'>effsize_t_parametric</span>(
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 9</span><span>
+#&gt;   method     estimate conf.low conf.high conf.level alternative paired
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Hedges's g    0.716  -</span><span style='color: #BB0000;'>0.031</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>      1.49       0.95 two.sided   FALSE 
+#&gt;   noncentral var.equal
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> TRUE       TRUE     </div><div class='input'>
 <span class='co'># changing defaults</span>
-<span class='fu'>subtitle_t_robust</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ToothGrowth</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>supp</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>len</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.2</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "33.5", ") = ", "2.3", ", ", italic("p"), 
-#&gt;     " = ", "0.029", ", ", italic(xi), " = ", "0.4", ", CI"["95%"], 
-#&gt;     " [", "0.0", ", ", "0.6", "]", ", ", italic("n"), " = ", 
-#&gt;     60L)</div><div class='input'>
-<span class='co'># within-subjects design</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_robust.html'>subtitle_t_robust</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
-    <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
-    <span class='no'>condition</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"accidental"</span>, <span class='st'>"attempted"</span>),
-    <span class='no'>harm</span> <span class='kw'>==</span> <span class='st'>"Poisoning"</span>
-  ),
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
-  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>25</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "199", ") = ", "-26.64", ", ", 
-#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.73", 
-#&gt;     ", CI"["95%"], " [", "0.54", ", ", "0.87", "]", ", ", italic("n"), 
-#&gt;     " = ", 250L)</div></span></pre>
+<span class='fu'>effsize_t_parametric</span>(
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+  <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='co'># ignored in this case</span>
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.99</span>,
+  <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 9</span><span>
+#&gt;   method     estimate conf.low conf.high conf.level alternative paired
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Hedges's g    0.716   -</span><span style='color: #BB0000;'>0.326</span><span>      1.79       0.99 two.sided   FALSE 
+#&gt;   noncentral var.equal
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> FALSE      TRUE     </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p>Chuck Powell</p>
   </div>
 </div>
 

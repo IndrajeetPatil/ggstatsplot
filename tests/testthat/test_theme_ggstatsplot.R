@@ -37,7 +37,11 @@ testthat::test_that(
     # checking legend text
     testthat::expect_equal(df1$value[[47]]$size, 13L)
     testthat::expect_equal(df2$value[[47]]$size, 13L)
-    testthat::expect_equal(as.numeric(df3$value[[27]]$size), 0.8, tolerance = 0.1)
+    testthat::expect_equal(
+      as.numeric(df3$value[[27]]$size),
+      0.8,
+      tolerance = 0.1
+    )
   }
 )
 
