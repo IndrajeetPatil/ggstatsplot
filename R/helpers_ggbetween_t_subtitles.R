@@ -64,11 +64,11 @@ subtitle_t_parametric <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    dplyr::mutate_if(is.factor, droplevels) %>%
+    dplyr::mutate_if(is.character, as.factor) %>%
     tibble::as_tibble(x = .)
-
   # properly removing NAs if it's a paired design
-  if (isTRUE(paired)) {
+  if (isTRUE(paired) && is.factor(data$x)) {
     data %<>%
       long_to_wide_converter(
         data = .,
@@ -76,7 +76,8 @@ subtitle_t_parametric <- function(data,
         y = y
       ) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
-      dplyr::rename(.data = ., x = key, y = value)
+      dplyr::rename(.data = ., x = key, y = value) %>%
+      dplyr::mutate(x = factor(x))
 
     # sample size
     sample_size <- length(unique(data$rowid))
@@ -115,12 +116,11 @@ subtitle_t_parametric <- function(data,
 
   # effect size object
   effsize_df <-
-    effsize::cohen.d(
+    effect_t_parametric(
       formula = y ~ x,
       data = data,
       paired = paired,
       hedges.correction = hedges.correction,
-      na.rm = TRUE,
       conf.level = conf.level,
       noncentral = effsize.noncentral
     )
@@ -142,9 +142,9 @@ subtitle_t_parametric <- function(data,
     parameter = stats_df$parameter[[1]],
     p.value = stats_df$p.value[[1]],
     effsize.text = effsize.text,
-    effsize.estimate = effsize_df[[3]][[1]],
-    effsize.LL = effsize_df$conf.int[[1]],
-    effsize.UL = effsize_df$conf.int[[2]],
+    effsize.estimate = effsize_df$Estimate,
+    effsize.LL = effsize_df$LowerCI,
+    effsize.UL = effsize_df$UpperCI,
     n = sample_size,
     conf.level = conf.level,
     k = k,
@@ -584,3 +584,226 @@ subtitle_t_bayes <- function(data,
   # return the message
   return(subtitle)
 }
+
+
+#' @title Calculating Cohen or Hedges (between-/within- or one
+#'   sample designs).
+#' @name effect_t_parametric
+#' @author Chuck Powell
+#'
+#' @param formula this function only accepts the variables in
+#'   `formula` format e.g. `sleep_rem ~ vore` or `~ vore`.
+#' @param data a data frame or tibble containing the data
+#' @param mu if conducting a single sample test against a mean (Default: `0`).
+#' @param paired Logical indicating whether to treat the data as a oaired sample
+#'   e.g. `post ~ pre`.
+#' @param hedges.correction Logical indicating whether to apply Hedges correction,
+#'   Hedge's *g* (Default: `TRUE`).
+#' @param conf.level A scalar value between 0 and 1. If unspecified, the
+#'    default is to return `95%` lower and upper confidence intervals (`0.95`).
+#' @param noncentral Logical indicating whether to use non-central
+#'   *t*-distributions for computing the confidence intervals (Default: `TRUE`).
+#'
+#' @importFrom stats t.test na.omit cor qt pt uniroot
+#' @importFrom tibble tibble
+#'
+#' @examples
+#'
+#' # creating a smaller dataset
+#' msleep_short <- dplyr::filter(
+#'   .data = ggplot2::msleep,
+#'   vore %in% c("carni", "herbi")
+#' )
+#'
+#' # with defaults
+#' effect_t_parametric(
+#'   formula = sleep_rem ~ vore,
+#'   data = msleep_short,
+#' )
+#'
+#' # changing defaults
+#' effect_t_parametric(
+#'   formula = sleep_rem ~ vore,
+#'   data = msleep_short,
+#'   mu = 1, # ignored in this case
+#'   paired = FALSE,
+#'   hedges.correction = TRUE,
+#'   conf.level = .99,
+#'   noncentral = FALSE
+#' )
+#' @export
+
+# function body
+effect_t_parametric <- function (formula = NULL,
+                        data = NULL,
+                        mu = 0,
+                        paired = FALSE,
+                        hedges.correction = TRUE,
+                        conf.level = .95,
+                        noncentral = TRUE)
+{
+  # -------------- input checking -------------------
+
+  if (!is(formula, "formula") | !is(data, "data.frame")) {
+    stop("arguments must include a formula and a data frame")
+  }
+  if (length(formula) == 2 & length(all.vars(formula)) > 1) {
+    stop("Your formula has too many items on the rhs")
+  }
+  if (length(formula) == 3 & length(all.vars(formula)) > 2) {
+    stop("Your formula has too many variables")
+  }
+
+  # -------------- single sample compare to mu -------------------
+
+  if (length(formula) == 2 & length(all.vars(formula)) == 1) {
+    method <- "Cohen's d"
+    x <- eval(formula[[2]], data)
+    x <- x[!is.na(x)]
+    n <- length(x)
+    sd.est <- sd(x)
+    df <- length(x) - 1
+    mean.diff <- mean(x) - mu
+    d <- mean.diff/sd.est
+    Z <- -qt((1 - conf.level)/2, df)
+    lower.ci <- c(d - Z * sqrt(sd(x)))
+    upper.ci <- c(d + Z * sqrt(sd(x)))
+    tobject <- t.test(x, mu = mu, var.equal = TRUE, conf.level = conf.level)
+    tvalue <- tobject$statistic
+    dfvalue <- tobject$parameter
+    civalue <- attr(tobject$conf.int,"conf.level")
+    twosamples <- FALSE
+  }
+
+
+  # ---------------two independent samples by factor -------------------
+
+  if (length(formula) == 3 & !isTRUE(paired)) { # two samples by factor
+    outcome <- eval(formula[[2]], data)
+    group <- eval(formula[[3]], data)
+    group <- factor(group)
+    if (nlevels(group) != 2L) {
+      stop("grouping factor must have exactly 2 levels")
+    }
+    x <- split(outcome, group)
+    y <- x[[2]]
+    x <- x[[1]]
+    x <- x[!is.na(x)]
+    y <- y[!is.na(y)]
+    sq.devs <- (c(x - mean(x), y - mean(y)))^2
+    n <- length(sq.devs)
+    n1 <- length(x)
+    n2 <- length(y)
+    psd <- sqrt(sum(sq.devs)/(n - 2))
+    sd.est <- psd
+    mean.diff <- mean(x) - mean(y)
+    df <- length(x) + length(y) - 2
+    d <- mean.diff/sd.est
+    Sigmad <- sqrt((n1 + n2)/(n1 * n2) + 0.5 * d^2/(n1 + n2))
+    Z <- -qt((1 - conf.level)/2, df)
+    lower.ci <- c(d - Z * Sigmad)
+    upper.ci <- c(d + Z * Sigmad)
+    method <- "Cohen's d"
+    tobject <- t.test(x, y, var.equal = TRUE, conf.level = conf.level)
+    tvalue <- tobject$statistic
+    dfvalue <- tobject$parameter
+    civalue <- attr(tobject$conf.int,"conf.level")
+    twosamples <- TRUE
+  }
+
+
+  # -------------- two paired samples in matching columns -------------------
+
+  if (length(formula) == 3 & isTRUE(paired)) {
+    if (is.factor(eval(formula[[3]], data))) {
+      outcome <- eval(formula[[2]], data)
+      group <- eval(formula[[3]], data)
+      group <- droplevels(group)
+      x <- split(outcome, group)
+      y <- x[[2]]
+      x <- x[[1]]
+    } else {
+      x <- eval(formula[[2]], data)
+      y <- eval(formula[[3]], data)
+      ind <- !is.na(x) & !is.na(y)
+      x <- x[ind]
+      y <- y[ind]
+    }#    return(x)
+    if (length(x) != length(y)) {
+      stop("paired samples requires samples of the same size")
+    }
+    n <- length(x)
+    df <- n - 1
+    r <- cor(x,y)
+    sd.est <- sd(x - y)
+    mean.diff <- mean(y) - mean(x)
+    d <- mean.diff/sd.est
+    Sigmad <- sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r)) # paired
+    Z <- -qt((1 - conf.level)/2, df)
+    lower.ci <- c(d - Z * Sigmad)
+    upper.ci <- c(d + Z * Sigmad)
+    method <- "Cohen's d"
+    diffscores <- as.vector(y - x)
+    tobject <- t.test(diffscores, mu = 0, var.equal = TRUE, conf.level = conf.level)
+    tvalue <- tobject$statistic
+    dfvalue <- tobject$parameter
+    civalue <- attr(tobject$conf.int,"conf.level")
+    twosamples <- FALSE
+  }
+
+  # -------------- apply hedges correction -------------------
+
+  if (hedges.correction == TRUE) {
+    method <- "Hedges's g"
+    d <- d * (n - 3)/(n - 2.25)
+  }
+
+  # -------------- calculate NCP intervals -------------------
+
+  if (isTRUE(noncentral)) {
+    st <- max(0.1, tvalue)
+    end1 <- tvalue
+    while (pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
+      end1 <- end1 + st
+    }
+    ncp1 = uniroot(function(x)
+      (1 - civalue) / 2 - pt(q = tvalue,
+                             df = dfvalue,
+                             ncp = x),
+      c(2 * tvalue - end1, end1))$root
+    end2 <- tvalue
+    while (pt(q = tvalue, df = dfvalue, ncp = end2) < (1 + civalue) / 2) {
+      end2 <- end2 - st
+    }
+    ncp2 = uniroot(function(x)
+      (1 + civalue) / 2 - pt(q = tvalue,
+                             df = dfvalue,
+                             ncp = x),
+      c(end2, 2 * tvalue - end2))$root
+
+    if (isTRUE(twosamples)) {
+      ncp.upper.ci <- ncp1 * sqrt(1 / n1 + 1 / n2)
+      ncp.lower.ci <- ncp2 * sqrt(1 / n1 + 1 / n2)
+    } else {
+      ncp.upper.ci <- ncp1 / sqrt(dfvalue)
+      ncp.lower.ci <- ncp2 / sqrt(dfvalue)
+    }
+  }
+
+  # -------------- return results desired -------------------
+
+  if (isTRUE(noncentral)) {
+    return(tibble(Method = method,
+                  Estimate = d,
+                  LowerCI = ncp.lower.ci,
+                  UpperCI = ncp.upper.ci)
+    )
+  } else {
+    return(tibble(Method = method,
+                  Estimate = d,
+                  LowerCI = lower.ci,
+                  UpperCI = upper.ci)
+    )
+  }
+}
+
