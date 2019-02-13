@@ -19,20 +19,20 @@
 #' @importFrom stats t.test na.omit qt pt uniroot
 #'
 #' @examples
-#'
+#' 
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#'
+#' 
 #' # with defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
@@ -156,11 +156,11 @@ subtitle_t_parametric <- function(data,
 
 
 #' @title Making text subtitle for the Mann-Whitney *U*-test
-#'   (between-/within-subjects designs).
-#' @author Indrajeet Patil
+#'   (between-subjects designs).
+#' @author Indrajeet Patil, Chuck Powell
 #' @details Two-sample Wilcoxon test, also known as Mann-Whitney test, is
-#'   carried out. The effect size estimate for this test is Hodges–Lehmann–Sen
-#'   estimator.
+#'   carried out. The effect size estimate for this test is Spearman's *rho*
+#'   as the ranks of the `y` variable related to the factor `x`.
 #'
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
@@ -170,6 +170,7 @@ subtitle_t_parametric <- function(data,
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom stats wilcox.test
+#' @importFrom psych corr.test
 #'
 #' @examples
 #' subtitle_mann_nonparametric(
@@ -190,6 +191,7 @@ subtitle_mann_nonparametric <-
              messages = TRUE,
              ...) {
 
+
     # creating a dataframe
     data <-
       dplyr::select(
@@ -197,26 +199,69 @@ subtitle_mann_nonparametric <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      tidyr::drop_na(data = .) %>%
-      dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
-      tibble::as_tibble(x = .)
+      tidyr::drop_na(data = .)
 
-    # sample size
-    sample_size <- nrow(data)
+    if (!is.numeric(data$y)) {
+      stop("y variable must be numeric")
+    }
 
-    # setting up the Mann-Whitney U-test and getting its summary
-    stats_df <-
-      broom::tidy(stats::wilcox.test(
-        formula = y ~ x,
-        data = data,
-        paired = paired,
-        alternative = "two.sided",
-        na.action = na.omit,
-        exact = FALSE,
-        correct = TRUE,
-        conf.int = TRUE,
-        conf.level = conf.level
-      ))
+    if (is.numeric(data$x)) {
+      # setting up the test and getting its summary
+      stats_df <-
+        broom::tidy(stats::wilcox.test(
+          x = data$x,
+          y = data$y,
+          paired = paired,
+          alternative = "two.sided",
+          na.action = na.omit,
+          exact = FALSE,
+          correct = TRUE,
+          conf.int = TRUE,
+          conf.level = conf.level
+        ))
+      # sample size
+      sample_size <- nrow(data)
+    } else {
+      data <-
+        data %>%
+        dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+        tibble::as_tibble(x = .)
+
+      # setting up the test and getting its summary
+      stats_df <-
+        broom::tidy(stats::wilcox.test(
+          formula = y ~ x,
+          data = data,
+          paired = paired,
+          alternative = "two.sided",
+          na.action = na.omit,
+          exact = FALSE,
+          correct = TRUE,
+          conf.int = TRUE,
+          conf.level = conf.level
+        ))
+      # sample size
+      if (!isTRUE(paired)) {
+        sample_size <- nrow(data)
+      } else {
+        sample_size <- .5 * nrow(data)
+      }
+    }
+
+    # preparing effect size and ci's
+    effsize_list <- psych::corr.test(
+      x = as.integer(data$x),
+      y = data$y,
+      ci = TRUE,
+      method = "spearman",
+      alpha = 1 - conf.level
+    )
+
+    if (isTRUE(paired)) {
+      statistic.text <- quote("log"["e"](italic("V")))
+    } else {
+      statistic.text <- quote("log"["e"](italic("W")))
+    }
 
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -224,13 +269,13 @@ subtitle_mann_nonparametric <-
       parameter = NULL,
       parameter2 = NULL,
       stat.title = NULL,
-      statistic.text = quote("log"["e"](italic("W"))),
+      statistic.text = statistic.text,
       statistic = log(stats_df$statistic[[1]]),
       p.value = stats_df$p.value[[1]],
-      effsize.text = quote(Delta["HLS"]),
-      effsize.estimate = stats_df$estimate[[1]],
-      effsize.LL = stats_df$conf.low[[1]],
-      effsize.UL = stats_df$conf.high[[1]],
+      effsize.text = quote(italic(r)["Spearman"]),
+      effsize.estimate = effsize_list$r,
+      effsize.LL = effsize_list$ci$lower,
+      effsize.UL = effsize_list$ci$upper,
       n = sample_size,
       conf.level = conf.level,
       k = k
@@ -262,14 +307,14 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
-#'
+#' 
 #' # with defaults
 #' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#'
+#' 
 #' # changing defaults
 #' subtitle_t_robust(
 #'   data = ToothGrowth,
@@ -279,7 +324,7 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'   k = 1,
 #'   tr = 0.2
 #' )
-#'
+#' 
 #' # within-subjects design
 #' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
@@ -428,18 +473,18 @@ subtitle_t_robust <- function(data,
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#'
+#' 
 #' # between-subjects design
-#'
+#' 
 #' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#'
+#' 
 #' # within-subjects design
-#'
+#' 
 #' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -619,19 +664,19 @@ subtitle_t_bayes <- function(data,
 #' @examples
 #' \dontrun{
 #' #---------------- two-sample test ------------------------------------
-#'
+#' 
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#'
+#' 
 #' # with defaults
 #' ggstatsplot::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #' )
-#'
+#' 
 #' # changing defaults
 #' ggstatsplot::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
@@ -642,9 +687,9 @@ subtitle_t_bayes <- function(data,
 #'   conf.level = .99,
 #'   noncentral = FALSE
 #' )
-#'
+#' 
 #' #---------------- one-sample test ------------------------------------
-#'
+#' 
 #' ggstatsplot::effsize_t_parametric(
 #'   formula = ~sleep_rem,
 #'   data = msleep_short,

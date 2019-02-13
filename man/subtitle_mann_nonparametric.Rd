@@ -4,7 +4,7 @@
 \alias{subtitle_mann_nonparametric}
 \alias{subtitle_t_nonparametric}
 \title{Making text subtitle for the Mann-Whitney \emph{U}-test
-(between-/within-subjects designs).}
+(between-subjects designs).}
 \usage{
 subtitle_mann_nonparametric(data, x, y, paired = FALSE, k = 2,
   conf.level = 0.95, messages = TRUE, ...)
@@ -36,12 +36,12 @@ to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Making text subtitle for the Mann-Whitney \emph{U}-test
-(between-/within-subjects designs).
+(between-subjects designs).
 }
 \details{
 Two-sample Wilcoxon test, also known as Mann-Whitney test, is
-carried out. The effect size estimate for this test is Hodges–Lehmann–Sen
-estimator.
+carried out. The effect size estimate for this test is Spearman's \emph{rho}
+as the ranks of the \code{y} variable related to the factor \code{x}.
 }
 \examples{
 subtitle_mann_nonparametric(
@@ -51,5 +51,5 @@ subtitle_mann_nonparametric(
 )
 }
 \author{
-Indrajeet Patil
+Indrajeet Patil, Chuck Powell
 }
