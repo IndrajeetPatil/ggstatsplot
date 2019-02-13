@@ -599,6 +599,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check lmRob output",
   code = {
+    testthat::skip_on_cran()
 
     # set up
     set.seed(123)
@@ -716,6 +717,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check aareg output",
   code = {
+    testthat::skip_on_cran()
 
     # model
     library(survival)
@@ -754,8 +756,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "check clm and polr models (minimal)",
   code = {
-    testthat::skip_on_cran()
-
     # clm model
     set.seed(123)
     library(ordinal)
@@ -789,12 +789,37 @@ testthat::test_that(
         coefficient.type = NULL,
         output = "tidy"
       )
+    df.clm5 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.clm,
+        coefficient.type = NULL,
+        output = "glance"
+      )
+    df.clm6 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.clm,
+        coefficient.type = NULL,
+        output = "augment",
+        type.predict = "prob"
+      )
+    df.clm7 <-
+      ggstatsplot::ggcoefstats(
+        x = mod.clm,
+        coefficient.type = NULL,
+        output = "augment",
+        type.predict = "class"
+      )
 
-    # tests
+    # dimensions
     testthat::expect_equal(dim(df.clm1), c(9L, 12L))
     testthat::expect_equal(dim(df.clm2), c(6L, 12L))
     testthat::expect_equal(dim(df.clm3), c(3L, 12L))
     testthat::expect_equal(dim(df.clm4), c(3L, 12L))
+    testthat::expect_equal(dim(df.clm5), c(1L, 5L))
+    testthat::expect_equal(dim(df.clm6), c(4016L, 5L))
+    testthat::expect_equal(dim(df.clm7), c(4016L, 5L))
+
+    # coefficients
     testthat::expect_identical(
       unique(df.clm1$coefficient_type),
       c("alpha", "beta")
@@ -1251,6 +1276,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if augment works",
   code = {
+    testthat::skip_on_cran()
+
     # set up
     library(lme4)
 
@@ -1281,13 +1308,31 @@ testthat::test_that(
     df3.broom <- tibble::as_tibble(broom::augment(mod3))
     df3.ggstats <- ggstatsplot::ggcoefstats(x = mod3, output = "augment")
 
+    # simpler model
+    mod4 <- stats::lm(formula = mpg ~ wt + qsec, data = mtcars)
+    newdata <- mtcars %>% head(6) %>% dplyr::mutate(.data = ., wt = wt + 1)
+    df4.broom <- tibble::as_tibble(broom::augment(x = mod4, newdata = newdata))
+    df4.ggstats <-
+      ggstatsplot::ggcoefstats(
+        x = mod4,
+        output = "augment",
+        newdata = newdata
+      )
+
     # checking if they are equal
     testthat::expect_identical(df1.broom, df1.ggstats)
     testthat::expect_identical(df2.broom, df2.ggstats)
     testthat::expect_identical(df3.broom, df3.ggstats)
+    testthat::expect_identical(df4.broom, df4.ggstats)
     testthat::expect_true(inherits(df1.ggstats, what = "tbl_df"))
     testthat::expect_true(inherits(df2.ggstats, what = "tbl_df"))
     testthat::expect_true(inherits(df3.ggstats, what = "tbl_df"))
+
+    # checking dimensions of dataframes
+    testthat::expect_equal(dim(df1.ggstats), c(32L, 10L))
+    testthat::expect_equal(dim(df2.ggstats), c(180L, 13L))
+    testthat::expect_equal(dim(df3.ggstats), c(43L, 10L))
+    testthat::expect_equal(dim(df4.ggstats), c(6L, 13L))
   }
 )
 

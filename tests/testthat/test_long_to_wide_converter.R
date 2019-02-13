@@ -6,6 +6,7 @@ context(desc = "long_to_wide_converter")
 testthat::test_that(
   desc = "long_to_wide_converter works",
   code = {
+    testthat::skip_on_cran()
 
     # setup
     set.seed(123)

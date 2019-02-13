@@ -124,6 +124,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking gghistostats and non-parametric stats - data without NAs",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-
@@ -247,6 +249,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking robust stats and proportions",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-
@@ -329,6 +333,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking bayes stats and density",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-
@@ -491,6 +497,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking with default binwidth",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-

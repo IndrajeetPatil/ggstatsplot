@@ -7,6 +7,21 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
+    # checking for errors
+    testthat::expect_error(ggstatsplot::effsize_t_parametric(
+      formula = wt ~ cyl
+    ))
+
+    testthat::expect_error(ggstatsplot::effsize_t_parametric(
+      formula = wt ~ .,
+      data = mtcars
+    ))
+
+    testthat::expect_error(ggstatsplot::effsize_t_parametric(
+      formula = wt ~ am + cyl,
+      data = mtcars
+    ))
+
     # creating a new dataframe with a variable that has dropped factor level
     mtcars_short <- dplyr::filter(.data = mtcars, cyl != "4")
 
@@ -520,7 +535,7 @@ testthat::test_that(
     # d and central
     set.seed(123)
     df1 <- ggstatsplot::effsize_t_parametric(
-      formula = ~ height,
+      formula = ~height,
       data = dplyr::starwars,
       mu = 175,
       hedges.correction = FALSE,
@@ -531,7 +546,7 @@ testthat::test_that(
     # d and noncentral
     set.seed(123)
     df2 <- ggstatsplot::effsize_t_parametric(
-      formula = ~ height,
+      formula = ~height,
       data = dplyr::starwars,
       mu = 175,
       hedges.correction = FALSE,
@@ -542,7 +557,7 @@ testthat::test_that(
     # g and central
     set.seed(123)
     df3 <- ggstatsplot::effsize_t_parametric(
-      formula = ~ height,
+      formula = ~height,
       data = dplyr::starwars,
       hedges.correction = TRUE,
       mu = 100,
@@ -553,7 +568,7 @@ testthat::test_that(
     # g and noncentral
     set.seed(123)
     df4 <- suppressWarnings(ggstatsplot::effsize_t_parametric(
-      formula = ~ height,
+      formula = ~height,
       data = dplyr::starwars,
       mu = 100,
       hedges.correction = TRUE,

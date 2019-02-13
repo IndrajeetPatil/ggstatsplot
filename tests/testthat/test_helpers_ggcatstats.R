@@ -100,6 +100,9 @@ testthat::test_that(
     testthat::expect_identical(colnames(df2), c("vore", "counts", "perc"))
     testthat::expect_identical(colnames(df3), c("supp", "counts", "perc"))
     testthat::expect_identical(colnames(df4), colnames(df1))
-    testthat::expect_identical(colnames(df5), c("cyl", "drv", "fl", "counts", "perc"))
+    testthat::expect_identical(
+      colnames(df5),
+      c("cyl", "drv", "fl", "counts", "perc")
+    )
   }
 )

@@ -1,4 +1,3 @@
-# context -------------------------------------------------------------------
 context(desc = "ggbetweenstats")
 
 # outlier labeling works ----------------------------------------------------
@@ -279,6 +278,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitles with bayesian tests work",
   code = {
+    testthat::skip_on_cran()
 
     # plot
     set.seed(123)
@@ -336,6 +336,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle works with equal variance assumption",
   code = {
+    testthat::skip_on_cran()
 
     # plot
     set.seed(123)
@@ -509,6 +510,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggplot component addition works",
   code = {
+    testthat::skip_on_cran()
 
     # plot
     p <- ggstatsplot::ggbetweenstats(

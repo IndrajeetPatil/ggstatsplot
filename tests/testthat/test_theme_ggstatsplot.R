@@ -11,7 +11,8 @@ testthat::test_that(
     library(ggplot2)
 
     # plot
-    p <- ggplot(msleep, aes(vore, brainwt)) + geom_point(na.rm = TRUE)
+    p <-
+      ggplot(msleep, aes(vore, brainwt)) + geom_point(na.rm = TRUE)
 
     # changing the basic plot
     p1 <- p +
@@ -28,17 +29,16 @@ testthat::test_that(
 
     # creating dataframes with theme information
     df1 <- tibble::enframe(ggstatsplot::theme_ggstatsplot())
-    df2 <- tibble::enframe(ggstatsplot::theme_ggstatsplot(theme_bw()), TRUE)
-    df3 <- tibble::enframe(ggstatsplot::theme_ggstatsplot(
-      ggplot2::theme_grey(),
+    df2 <-
+      tibble::enframe(ggstatsplot::theme_ggstatsplot(theme_bw()), TRUE)
+    df3 <- tibble::enframe(ggstatsplot::theme_ggstatsplot(ggplot2::theme_grey(),
       ggstatsplot.layer = FALSE
     ))
 
     # checking legend text
     testthat::expect_equal(df1$value[[47]]$size, 13L)
     testthat::expect_equal(df2$value[[47]]$size, 13L)
-    testthat::expect_equal(
-      as.numeric(df3$value[[27]]$size),
+    testthat::expect_equal(as.numeric(df3$value[[27]]$size),
       0.8,
       tolerance = 0.1
     )
@@ -54,9 +54,10 @@ testthat::test_that(
     library(ggplot2)
 
     df1 <- tibble::enframe(ggstatsplot::theme_pie())
-    df2 <- tibble::enframe(ggstatsplot::theme_pie(theme_classic()), FALSE)
+    df2 <-
+      tibble::enframe(ggstatsplot::theme_pie(ggtheme = theme_classic()), FALSE)
     df3 <- tibble::enframe(ggstatsplot::theme_pie(
-      ggplot2::theme_bw(),
+      ggtheme = ggplot2::theme_bw(),
       ggstatsplot.layer = FALSE
     ))
 

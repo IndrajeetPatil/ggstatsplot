@@ -1,4 +1,3 @@
-# context ------------------------------------------------------------
 context(desc = "formals")
 
 # formals for primary and grouped functions ----------------------------
@@ -6,6 +5,7 @@ context(desc = "formals")
 testthat::test_that(
   desc = "checking if formal defaults are the same across primary and grouped",
   code = {
+    testthat::skip_on_cran()
 
     # checking if formal defaults are the same across primary and grouped
     df <- purrr::pmap_dfr(
