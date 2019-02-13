@@ -177,6 +177,7 @@
 <li>
 <code>ggcoefstats</code> can support following new regression model objects: <code>brmsfit</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>mcmc</code>, <code>mjoint</code>, <code>stanreg</code>.</li>
 <li>New function to convert plots which are not of <code>gg</code>/<code>ggplot</code> class to convert into <code>ggplot</code> objects.</li>
+<li>Instead of using <code>effsize</code> to compute Cohen’s <em>d</em> and Hedge’s <em>g</em>, <code>ggstatsplot</code> now relies on a new (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/159'>#159</a>) internal function <code>effect_t_parametric</code> to compute them. This removes <code>effsize</code> from dependencies.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -494,7 +495,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>, Chuck Powell.</p>
 </div>
 
 <div class="pkgdown">

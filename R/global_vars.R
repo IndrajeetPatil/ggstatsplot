@@ -176,7 +176,8 @@ utils::globalVariables(
     "statistic.z",
     "variable",
     "method",
-    "N"
+    "N",
+    "compare_list"
   ),
   package = "ggstatsplot",
   add = FALSE

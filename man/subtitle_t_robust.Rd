@@ -10,8 +10,8 @@ subtitle_t_robust(data, x, y, tr = 0.1, paired = FALSE, nboot = 100,
   ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{Dataframe (or a tibble) from which variables specified are
+preferentially to be taken.}
 
 \item{x}{The grouping variable.}
 

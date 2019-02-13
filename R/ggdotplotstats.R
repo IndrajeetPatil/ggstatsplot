@@ -110,7 +110,7 @@ ggdotplotstats <- function(data,
     dplyr::mutate(
       .data = .,
       percent_rank = (trunc(rank(x)) / length(x)) * 100,
-      rank = 1:nrow(.)
+      rank = 1:NROW(.)
     )
 
   # ================ stats labels ==========================================

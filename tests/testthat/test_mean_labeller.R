@@ -33,7 +33,7 @@ testthat::test_that(
       expected = length(levels(diamonds_short$cut))
     )
 
-    if (utils::packageVersion("skimr") != "2.0") {
+    if (utils::packageVersion("skimr") < "2.0") {
       # check mean label for first factor level
       testthat::expect_identical(
         object = mean_dat$label[[1]],

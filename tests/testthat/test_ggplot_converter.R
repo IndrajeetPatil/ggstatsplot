@@ -5,6 +5,7 @@ context("ggplot_converter")
 testthat::test_that(
   desc = "ggplot_converter work",
   code = {
+    testthat::skip_on_cran()
     library(ggplot2)
 
     # creating objects that are not of ggplot type

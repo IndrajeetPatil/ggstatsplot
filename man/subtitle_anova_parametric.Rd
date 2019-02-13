@@ -9,8 +9,8 @@ subtitle_anova_parametric(data, x, y, effsize.type = "unbiased",
   var.equal = FALSE, k = 2, messages = TRUE, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{Dataframe (or a tibble) from which variables specified are
+preferentially to be taken.}
 
 \item{x}{The grouping variable.}
 

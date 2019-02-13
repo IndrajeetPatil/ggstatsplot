@@ -233,6 +233,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with counts",
   code = {
+    testthat::skip_on_cran()
+
     # plot
     set.seed(123)
     p <- ggstatsplot::ggpiestats(
@@ -329,6 +331,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking if functions work without enough data",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # creating a dataframe

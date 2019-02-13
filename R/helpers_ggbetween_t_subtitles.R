@@ -63,8 +63,8 @@ subtitle_t_parametric <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::mutate_if(is.character, as.factor) %>%
-    dplyr::mutate_if(is.factor, droplevels) %>%
+    dplyr::mutate_if(.tbl = ., .predicate = is.character, .funs = as.factor) %>%
+    dplyr::mutate_if(.tbl = ., .predicate = is.factor, .funs = droplevels) %>%
     tibble::as_tibble(x = .)
   # properly removing NAs if it's a paired design
   if (isTRUE(paired) && is.factor(data$x)) {
@@ -115,7 +115,7 @@ subtitle_t_parametric <- function(data,
 
   # effect size object
   effsize_df <-
-    effect_t_parametric(
+    effsize_t_parametric(
       formula = y ~ x,
       data = data,
       paired = paired,
@@ -585,28 +585,40 @@ subtitle_t_bayes <- function(data,
 }
 
 
-#' @title Calculating Cohen or Hedges (between-/within- or one
+#' @title Calculating Cohen's *d* or Hedge's *g* (for between-/within- or one
 #'   sample designs).
-#' @name effect_t_parametric
+#' @name effsize_t_parametric
 #' @author Chuck Powell
 #'
-#' @param formula this function only accepts the variables in
+#' @param formula This function only accepts the variables in
 #'   `formula` format e.g. `sleep_rem ~ vore` or `~ vore`.
-#' @param data a data frame or tibble containing the data
-#' @param mu if conducting a single sample test against a mean (Default: `0`).
-#' @param paired Logical indicating whether to treat the data as a oaired sample
-#'   e.g. `post ~ pre`.
+#' @param mu If conducting a single sample test against a mean (Default: `0`).
 #' @param hedges.correction Logical indicating whether to apply Hedges correction,
 #'   Hedge's *g* (Default: `TRUE`).
-#' @param conf.level A scalar value between 0 and 1. If unspecified, the
-#'    default is to return `95%` lower and upper confidence intervals (`0.95`).
 #' @param noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence intervals (Default: `TRUE`).
+#' @inheritParams subtitle_t_parametric
 #'
 #' @importFrom stats t.test na.omit cor qt pt uniroot
 #' @importFrom tibble tibble
+#' @importFrom methods is
+#'
+#' @details
+#' This function is a rewrite of functionality provided in `lsr::cohensD` and
+#' `effsize::cohen.d`.
+#'
+#' References-
+#' \itemize{
+#'   \item Cooper, Harris, Hedges, Larry V., Valentine, Jeffrey C., *The Handbook of Research Synthesis and Meta-Analysis*, 2009.
+#'   \item Cumming, G., Finch, S., *A Primer On The Understanding, Use, And Calculation Of Confidence Intervals That Are Based On Central And Noncentral Distributions*, Educational and Psychological Measurement, Vol. 61 No. 4,
+#' August 2001 532-574.
+#'   \item Cohen, J. (1988). *Statistical power analysis for the behavioral sciences (2nd ed.)* Hillsdale, NJ: Lawrence Erlbaum Associates.
+#'   \item David C. Howell (2010). *Confidence Intervals on Effect Size* retrieved from (\url{https://www.uvm.edu/~dhowell/methods7/Supplements/Confidence\%20Intervals\%20on\%20Effect\%20Size.pdf}).
+#' }
 #'
 #' @examples
+#' \dontrun{
+#' #---------------- two-sample test ------------------------------------
 #'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
@@ -615,13 +627,13 @@ subtitle_t_bayes <- function(data,
 #' )
 #'
 #' # with defaults
-#' effect_t_parametric(
+#' ggstatsplot::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #' )
 #'
 #' # changing defaults
-#' effect_t_parametric(
+#' ggstatsplot::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #'   mu = 1, # ignored in this case
@@ -630,16 +642,28 @@ subtitle_t_bayes <- function(data,
 #'   conf.level = .99,
 #'   noncentral = FALSE
 #' )
+#'
+#' #---------------- one-sample test ------------------------------------
+#'
+#' ggstatsplot::effsize_t_parametric(
+#'   formula = ~sleep_rem,
+#'   data = msleep_short,
+#'   mu = 2,
+#'   hedges.correction = TRUE,
+#'   conf.level = .90,
+#'   noncentral = TRUE
+#' )
+#' }
 #' @export
 
 # function body
-effect_t_parametric <- function(formula = NULL,
-                                data = NULL,
-                                mu = 0,
-                                paired = FALSE,
-                                hedges.correction = TRUE,
-                                conf.level = .95,
-                                noncentral = TRUE) {
+effsize_t_parametric <- function(formula = NULL,
+                                 data = NULL,
+                                 mu = 0,
+                                 paired = FALSE,
+                                 hedges.correction = TRUE,
+                                 conf.level = 0.95,
+                                 noncentral = TRUE) {
   # -------------- input checking -------------------
 
   if (!is(formula, "formula") | !is(data, "data.frame")) {
@@ -663,26 +687,40 @@ effect_t_parametric <- function(formula = NULL,
     df <- length(x) - 1
     mean.diff <- mean(x) - mu
     d <- mean.diff / sd.est
-    Z <- -qt((1 - conf.level) / 2, df)
+    Z <- -stats::qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * sqrt(sd(x)))
     upper.ci <- c(d + Z * sqrt(sd(x)))
-    tobject <- t.test(x, mu = mu, var.equal = TRUE, conf.level = conf.level)
+    tobject <-
+      stats::t.test(
+        x = x,
+        alternative = "two.sided",
+        mu = mu,
+        var.equal = TRUE,
+        na.action = na.omit,
+        conf.level = conf.level
+      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
     civalue <- attr(tobject$conf.int, "conf.level")
     twosamples <- FALSE
+    paired <- NA_character_
   }
-
 
   # ---------------two independent samples by factor -------------------
 
-  if (length(formula) == 3 & !isTRUE(paired)) { # two samples by factor
+  # two samples by factor
+  if (length(formula) == 3 & !isTRUE(paired)) {
+    # getting `x` and `y` in required format
     outcome <- eval(formula[[2]], data)
     group <- eval(formula[[3]], data)
     group <- factor(group)
+
+    #  checking that there are just two levels
     if (nlevels(group) != 2L) {
       stop("grouping factor must have exactly 2 levels")
     }
+
+    # test relevant variables
     x <- split(outcome, group)
     y <- x[[2]]
     x <- x[[1]]
@@ -698,25 +736,40 @@ effect_t_parametric <- function(formula = NULL,
     df <- length(x) + length(y) - 2
     d <- mean.diff / sd.est
     Sigmad <- sqrt((n1 + n2) / (n1 * n2) + 0.5 * d^2 / (n1 + n2))
-    Z <- -qt((1 - conf.level) / 2, df)
+    Z <- -stats::qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
-    tobject <- t.test(x, y, var.equal = TRUE, conf.level = conf.level)
+    tobject <-
+      stats::t.test(
+        x = x,
+        y = y,
+        var.equal = TRUE,
+        alternative = "two.sided",
+        na.action = na.omit,
+        conf.level = conf.level
+      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
     civalue <- attr(tobject$conf.int, "conf.level")
     twosamples <- TRUE
   }
 
-
   # -------------- two paired samples in matching columns -------------------
 
+  # if the data is in tidy format
   if (length(formula) == 3 & isTRUE(paired)) {
-    if (is.factor(eval(formula[[3]], data))) {
+    if (is.factor(eval(formula[[3]], data)) ||
+      is.character(eval(formula[[3]], data))) {
+      # getting `x` and `y` in required format
       outcome <- eval(formula[[2]], data)
       group <- eval(formula[[3]], data)
-      group <- droplevels(group)
+      group <- droplevels(as.factor(group))
+
+      #  checking that there are just two levels
+      if (nlevels(group) != 2L) {
+        stop("grouping factor must have exactly 2 levels")
+      }
       x <- split(outcome, group)
       y <- x[[2]]
       x <- x[[1]]
@@ -727,9 +780,13 @@ effect_t_parametric <- function(formula = NULL,
       x <- x[ind]
       y <- y[ind]
     }
+
+    # checking if sample sizes are the same across paired samples
     if (length(x) != length(y)) {
       stop("paired samples requires samples of the same size")
     }
+
+    # test relevant variables
     n <- length(x)
     df <- n - 1
     r <- cor(x, y)
@@ -742,7 +799,15 @@ effect_t_parametric <- function(formula = NULL,
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
     diffscores <- as.vector(y - x)
-    tobject <- t.test(diffscores, mu = 0, var.equal = TRUE, conf.level = conf.level)
+    tobject <-
+      stats::t.test(
+        x = diffscores,
+        alternative = "two.sided",
+        mu = 0,
+        var.equal = TRUE,
+        na.action = na.omit,
+        conf.level = conf.level
+      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
     civalue <- attr(tobject$conf.int, "conf.level")
@@ -761,12 +826,12 @@ effect_t_parametric <- function(formula = NULL,
   if (isTRUE(noncentral)) {
     st <- max(0.1, tvalue)
     end1 <- tvalue
-    while (pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
+    while (stats::pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
       end1 <- end1 + st
     }
     ncp1 <- uniroot(
       function(x)
-        (1 - civalue) / 2 - pt(
+        (1 - civalue) / 2 - stats::pt(
           q = tvalue,
           df = dfvalue,
           ncp = x
@@ -774,12 +839,12 @@ effect_t_parametric <- function(formula = NULL,
       c(2 * tvalue - end1, end1)
     )$root
     end2 <- tvalue
-    while (pt(q = tvalue, df = dfvalue, ncp = end2) < (1 + civalue) / 2) {
+    while (stats::pt(q = tvalue, df = dfvalue, ncp = end2) < (1 + civalue) / 2) {
       end2 <- end2 - st
     }
     ncp2 <- uniroot(
       function(x)
-        (1 + civalue) / 2 - pt(
+        (1 + civalue) / 2 - stats::pt(
           q = tvalue,
           df = dfvalue,
           ncp = x
@@ -799,18 +864,28 @@ effect_t_parametric <- function(formula = NULL,
   # -------------- return results desired ------------------
 
   if (isTRUE(noncentral)) {
-    return(tibble(
+    return(tibble::tibble(
       method = method,
       estimate = d,
       conf.low = ncp.lower.ci,
-      conf.high = ncp.upper.ci
+      conf.high = ncp.upper.ci,
+      conf.level = conf.level,
+      alternative = "two.sided",
+      paired = paired,
+      noncentral = noncentral,
+      var.equal = TRUE
     ))
   } else {
-    return(tibble(
+    return(tibble::tibble(
       method = method,
       estimate = d,
       conf.low = lower.ci,
-      conf.high = upper.ci
+      conf.high = upper.ci,
+      conf.level = conf.level,
+      alternative = "two.sided",
+      paired = paired,
+      noncentral = noncentral,
+      var.equal = TRUE
     ))
   }
 }
