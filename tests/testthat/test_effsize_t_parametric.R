@@ -578,8 +578,6 @@ testthat::test_that(
     testthat::expect_equal(df4$conf.low, 1.813373, tolerance = 0.001)
     testthat::expect_equal(df4$conf.high, 2.482309, tolerance = 0.001)
 
-    testthat::expect_identical(df1$paired, NA_character_)
-
     testthat::expect_equal(df4$conf.level, 0.90, tolerance = 0.01)
     testthat::expect_equal(df3$conf.level, 0.99, tolerance = 0.01)
   }

@@ -48,6 +48,8 @@ August 2001 532-574.
 }
 }
 \examples{
+\dontrun{
+#---------------- two-sample test ------------------------------------
 
 # creating a smaller dataset
 msleep_short <- dplyr::filter(
@@ -56,13 +58,13 @@ msleep_short <- dplyr::filter(
 )
 
 # with defaults
-effsize_t_parametric(
+ggstatsplot::effsize_t_parametric(
   formula = sleep_rem ~ vore,
   data = msleep_short,
 )
 
 # changing defaults
-effsize_t_parametric(
+ggstatsplot::effsize_t_parametric(
   formula = sleep_rem ~ vore,
   data = msleep_short,
   mu = 1, # ignored in this case
@@ -71,6 +73,18 @@ effsize_t_parametric(
   conf.level = .99,
   noncentral = FALSE
 )
+
+#---------------- one-sample test ------------------------------------
+
+ggstatsplot::effsize_t_parametric(
+  formula = ~sleep_rem,
+  data = msleep_short,
+  mu = 2,
+  hedges.correction = TRUE,
+  conf.level = .90,
+  noncentral = TRUE
+)
+}
 }
 \author{
 Chuck Powell

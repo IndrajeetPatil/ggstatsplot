@@ -63,8 +63,8 @@ subtitle_t_parametric <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::mutate_if(is.character, as.factor) %>%
-    dplyr::mutate_if(is.factor, droplevels) %>%
+    dplyr::mutate_if(.tbl = ., .predicate = is.character, .funs = as.factor) %>%
+    dplyr::mutate_if(.tbl = ., .predicate = is.factor, .funs = droplevels) %>%
     tibble::as_tibble(x = .)
   # properly removing NAs if it's a paired design
   if (isTRUE(paired) && is.factor(data$x)) {
@@ -601,6 +601,7 @@ subtitle_t_bayes <- function(data,
 #'
 #' @importFrom stats t.test na.omit cor qt pt uniroot
 #' @importFrom tibble tibble
+#' @importFrom methods is
 #'
 #' @details
 #' This function is a rewrite of functionality provided in `lsr::cohensD` and
@@ -616,6 +617,8 @@ subtitle_t_bayes <- function(data,
 #' }
 #'
 #' @examples
+#' \dontrun{
+#' #---------------- two-sample test ------------------------------------
 #'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
@@ -624,13 +627,13 @@ subtitle_t_bayes <- function(data,
 #' )
 #'
 #' # with defaults
-#' effsize_t_parametric(
+#' ggstatsplot::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #' )
 #'
 #' # changing defaults
-#' effsize_t_parametric(
+#' ggstatsplot::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #'   mu = 1, # ignored in this case
@@ -639,6 +642,18 @@ subtitle_t_bayes <- function(data,
 #'   conf.level = .99,
 #'   noncentral = FALSE
 #' )
+#'
+#' #---------------- one-sample test ------------------------------------
+#'
+#' ggstatsplot::effsize_t_parametric(
+#'   formula = ~sleep_rem,
+#'   data = msleep_short,
+#'   mu = 2,
+#'   hedges.correction = TRUE,
+#'   conf.level = .90,
+#'   noncentral = TRUE
+#' )
+#' }
 #' @export
 
 # function body
@@ -672,7 +687,7 @@ effsize_t_parametric <- function(formula = NULL,
     df <- length(x) - 1
     mean.diff <- mean(x) - mu
     d <- mean.diff / sd.est
-    Z <- -qt((1 - conf.level) / 2, df)
+    Z <- -stats::qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * sqrt(sd(x)))
     upper.ci <- c(d + Z * sqrt(sd(x)))
     tobject <-
@@ -688,18 +703,24 @@ effsize_t_parametric <- function(formula = NULL,
     dfvalue <- tobject$parameter
     civalue <- attr(tobject$conf.int, "conf.level")
     twosamples <- FALSE
+    paired <- NA_character_
   }
 
   # ---------------two independent samples by factor -------------------
 
   # two samples by factor
   if (length(formula) == 3 & !isTRUE(paired)) {
+    # getting `x` and `y` in required format
     outcome <- eval(formula[[2]], data)
     group <- eval(formula[[3]], data)
     group <- factor(group)
+
+    #  checking that there are just two levels
     if (nlevels(group) != 2L) {
       stop("grouping factor must have exactly 2 levels")
     }
+
+    # test relevant variables
     x <- split(outcome, group)
     y <- x[[2]]
     x <- x[[1]]
@@ -715,7 +736,7 @@ effsize_t_parametric <- function(formula = NULL,
     df <- length(x) + length(y) - 2
     d <- mean.diff / sd.est
     Sigmad <- sqrt((n1 + n2) / (n1 * n2) + 0.5 * d^2 / (n1 + n2))
-    Z <- -qt((1 - conf.level) / 2, df)
+    Z <- -stats::qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
@@ -736,12 +757,16 @@ effsize_t_parametric <- function(formula = NULL,
 
   # -------------- two paired samples in matching columns -------------------
 
+  # if the data is in tidy format
   if (length(formula) == 3 & isTRUE(paired)) {
     if (is.factor(eval(formula[[3]], data)) ||
-        is.character(eval(formula[[3]], data))) {
-      outcome <- eval(formula[[2]], data)
+      is.character(eval(formula[[3]], data))) {
+      # getting `x` and `y` in required format
+        outcome <- eval(formula[[2]], data)
       group <- eval(formula[[3]], data)
       group <- droplevels(as.factor(group))
+
+      #  checking that there are just two levels
       if (nlevels(group) != 2L) {
         stop("grouping factor must have exactly 2 levels")
       }
@@ -755,9 +780,13 @@ effsize_t_parametric <- function(formula = NULL,
       x <- x[ind]
       y <- y[ind]
     }
+
+    # checking if sample sizes are the same across paired samples
     if (length(x) != length(y)) {
       stop("paired samples requires samples of the same size")
     }
+
+    # test relevant variables
     n <- length(x)
     df <- n - 1
     r <- cor(x, y)
@@ -797,12 +826,12 @@ effsize_t_parametric <- function(formula = NULL,
   if (isTRUE(noncentral)) {
     st <- max(0.1, tvalue)
     end1 <- tvalue
-    while (pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
+    while (stats::pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
       end1 <- end1 + st
     }
     ncp1 <- uniroot(
       function(x)
-        (1 - civalue) / 2 - pt(
+        (1 - civalue) / 2 - stats::pt(
           q = tvalue,
           df = dfvalue,
           ncp = x
@@ -810,12 +839,12 @@ effsize_t_parametric <- function(formula = NULL,
       c(2 * tvalue - end1, end1)
     )$root
     end2 <- tvalue
-    while (pt(q = tvalue, df = dfvalue, ncp = end2) < (1 + civalue) / 2) {
+    while (stats::pt(q = tvalue, df = dfvalue, ncp = end2) < (1 + civalue) / 2) {
       end2 <- end2 - st
     }
     ncp2 <- uniroot(
       function(x)
-        (1 + civalue) / 2 - pt(
+        (1 + civalue) / 2 - stats::pt(
           q = tvalue,
           df = dfvalue,
           ncp = x
@@ -835,7 +864,7 @@ effsize_t_parametric <- function(formula = NULL,
   # -------------- return results desired ------------------
 
   if (isTRUE(noncentral)) {
-    return(tibble(
+    return(tibble::tibble(
       method = method,
       estimate = d,
       conf.low = ncp.lower.ci,
@@ -847,7 +876,7 @@ effsize_t_parametric <- function(formula = NULL,
       var.equal = TRUE
     ))
   } else {
-    return(tibble(
+    return(tibble::tibble(
       method = method,
       estimate = d,
       conf.low = lower.ci,
