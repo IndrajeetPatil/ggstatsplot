@@ -50,6 +50,7 @@ Imports:
     jmv (>= 0.9.6),
     magrittr (>= 1.5),
     metafor (>= 2.0-0),
+    methods,
     paletteer (>= 0.2.0),
     psych (>= 1.8.12),
     purrr (>= 0.3.0),

@@ -502,6 +502,11 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
       "version": ">= 0.2.0",
