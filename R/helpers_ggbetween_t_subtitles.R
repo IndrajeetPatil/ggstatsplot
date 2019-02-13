@@ -191,6 +191,7 @@ subtitle_mann_nonparametric <-
              messages = TRUE,
              ...) {
 
+
     # creating a dataframe
     data <-
       dplyr::select(
@@ -198,26 +199,54 @@ subtitle_mann_nonparametric <-
         x = !!rlang::enquo(x),
         y = !!rlang::enquo(y)
       ) %>%
-      tidyr::drop_na(data = .) %>%
-      dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
-      tibble::as_tibble(x = .)
+      tidyr::drop_na(data = .)
 
-    # sample size
-    sample_size <- nrow(data)
+    if (!is.numeric(data$y)) {
+      stop("y variable must be numeric")
+    }
 
-    # setting up the Mann-Whitney U-test and getting its summary
-    stats_df <-
-      broom::tidy(stats::wilcox.test(
-        formula = y ~ x,
-        data = data,
-        paired = paired,
-        alternative = "two.sided",
-        na.action = na.omit,
-        exact = FALSE,
-        correct = TRUE,
-        conf.int = TRUE,
-        conf.level = conf.level
-      ))
+    if (is.numeric(data$x)) {
+      # setting up the test and getting its summary
+      stats_df <-
+        broom::tidy(stats::wilcox.test(
+          x = data$x,
+          y = data$y,
+          paired = paired,
+          alternative = "two.sided",
+          na.action = na.omit,
+          exact = FALSE,
+          correct = TRUE,
+          conf.int = TRUE,
+          conf.level = conf.level
+        ))
+      # sample size
+      sample_size <- nrow(data)
+    } else {
+      data <-
+        data %>%
+        dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+        tibble::as_tibble(x = .)
+
+      # setting up the test and getting its summary
+      stats_df <-
+        broom::tidy(stats::wilcox.test(
+          formula = y ~ x,
+          data = data,
+          paired = paired,
+          alternative = "two.sided",
+          na.action = na.omit,
+          exact = FALSE,
+          correct = TRUE,
+          conf.int = TRUE,
+          conf.level = conf.level
+        ))
+      # sample size
+      if (!isTRUE(paired)) {
+        sample_size <- nrow(data)
+      } else {
+        sample_size <- .5 * nrow(data)
+      }
+    }
 
     # preparing effect size and ci's
     effsize_list <- psych::corr.test(
@@ -228,13 +257,19 @@ subtitle_mann_nonparametric <-
       alpha = 1 - conf.level
     )
 
+    if (isTRUE(paired)) {
+      statistic.text <- quote("log"["e"](italic("V")))
+    } else {
+      statistic.text <- quote("log"["e"](italic("W")))
+    }
+
     # preparing subtitle
     subtitle <- subtitle_template(
       no.parameters = 0L,
       parameter = NULL,
       parameter2 = NULL,
       stat.title = NULL,
-      statistic.text = quote("log"["e"](italic("W"))),
+      statistic.text = statistic.text,
       statistic = log(stats_df$statistic[[1]]),
       p.value = stats_df$p.value[[1]],
       effsize.text = quote(italic(r)["Spearman"]),
