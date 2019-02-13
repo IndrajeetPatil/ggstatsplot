@@ -19,20 +19,20 @@
 #' @importFrom stats t.test na.omit qt pt uniroot
 #'
 #' @examples
-#' 
+#'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#' 
+#'
 #' # with defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_t_parametric(
 #'   data = msleep_short,
@@ -307,14 +307,14 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #' @importFrom WRS2 yuen yuen.effect.ci
 #'
 #' @examples
-#' 
+#'
 #' # with defaults
 #' subtitle_t_robust(
 #'   data = sleep,
 #'   x = group,
 #'   y = extra
 #' )
-#' 
+#'
 #' # changing defaults
 #' subtitle_t_robust(
 #'   data = ToothGrowth,
@@ -324,7 +324,7 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #'   k = 1,
 #'   tr = 0.2
 #' )
-#' 
+#'
 #' # within-subjects design
 #' ggstatsplot::subtitle_t_robust(
 #'   data = dplyr::filter(
@@ -473,18 +473,18 @@ subtitle_t_robust <- function(data,
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
-#' 
+#'
 #' # between-subjects design
-#' 
+#'
 #' subtitle_t_bayes(
 #'   data = mtcars,
 #'   x = am,
 #'   y = wt,
 #'   paired = FALSE
 #' )
-#' 
+#'
 #' # within-subjects design
-#' 
+#'
 #' subtitle_t_bayes(
 #'   data = dplyr::filter(
 #'     ggstatsplot::intent_morality,
@@ -664,19 +664,19 @@ subtitle_t_bayes <- function(data,
 #' @examples
 #' \dontrun{
 #' #---------------- two-sample test ------------------------------------
-#' 
+#'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
 #'   vore %in% c("carni", "herbi")
 #' )
-#' 
+#'
 #' # with defaults
 #' ggstatsplot::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #' )
-#' 
+#'
 #' # changing defaults
 #' ggstatsplot::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
@@ -687,9 +687,9 @@ subtitle_t_bayes <- function(data,
 #'   conf.level = .99,
 #'   noncentral = FALSE
 #' )
-#' 
+#'
 #' #---------------- one-sample test ------------------------------------
-#' 
+#'
 #' ggstatsplot::effsize_t_parametric(
 #'   formula = ~sleep_rem,
 #'   data = msleep_short,
@@ -732,9 +732,10 @@ effsize_t_parametric <- function(formula = NULL,
     df <- length(x) - 1
     mean.diff <- mean(x) - mu
     d <- mean.diff / sd.est
+    Sigmad <- sqrt((n /(n / 2) ^ 2 ) + (d ^ 2 / (2 * n)))
     Z <- -stats::qt((1 - conf.level) / 2, df)
-    lower.ci <- c(d - Z * sqrt(sd(x)))
-    upper.ci <- c(d + Z * sqrt(sd(x)))
+    lower.ci <- c(d - Z * Sigmad)
+    upper.ci <- c(d + Z * Sigmad)
     tobject <-
       stats::t.test(
         x = x,

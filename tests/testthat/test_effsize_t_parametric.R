@@ -578,16 +578,16 @@ testthat::test_that(
 
     # checking estimates and CIs
     testthat::expect_equal(df1$estimate, -0.01846326, tolerance = 0.001)
-    testthat::expect_equal(df1$conf.low, -15.57789, tolerance = 0.001)
-    testthat::expect_equal(df1$conf.high, 15.54096, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.low, -0.605, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.high, 0.568, tolerance = 0.001)
 
     testthat::expect_equal(df2$estimate, df1$estimate, tolerance = 0.001)
     testthat::expect_equal(df2$conf.low, -0.2024353, tolerance = 0.001)
     testthat::expect_equal(df2$conf.high, 0.1653947, tolerance = 0.001)
 
     testthat::expect_equal(df3$estimate, 2.118175, tolerance = 0.001)
-    testthat::expect_equal(df3$conf.low, -13.42088, tolerance = 0.001)
-    testthat::expect_equal(df3$conf.high, 17.69797, tolerance = 0.001)
+    testthat::expect_equal(df3$conf.low, 1.403425, tolerance = 0.001)
+    testthat::expect_equal(df3$conf.high, 2.873659, tolerance = 0.001)
 
     testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
     testthat::expect_equal(df4$conf.low, 1.813373, tolerance = 0.001)
@@ -597,3 +597,4 @@ testthat::test_that(
     testthat::expect_equal(df3$conf.level, 0.99, tolerance = 0.01)
   }
 )
+
