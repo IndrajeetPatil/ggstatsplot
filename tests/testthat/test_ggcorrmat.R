@@ -512,6 +512,17 @@ testthat::test_that(
     )
 
     testthat::expect_true(inherits(df, what = "tbl_df"))
+    testthat::expect_identical(
+      df$pair,
+      c(
+        "sleep_total-sleep_rem",
+        "sleep_total-sleep_cycle",
+        "sleep_total-awake",
+        "sleep_rem-sleep_cycle",
+        "sleep_rem-awake",
+        "sleep_cycle-awake"
+      )
+    )
     testthat::expect_equal(
       df$r,
       c(

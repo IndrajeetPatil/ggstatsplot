@@ -1285,7 +1285,7 @@ testthat::test_that(
     df3.broom <- tibble::as_tibble(broom::augment(mod3))
     df3.ggstats <- ggstatsplot::ggcoefstats(x = mod3, output = "augment")
 
-     # checking if they are equal
+    # checking if they are equal
     testthat::expect_identical(df1.broom, df1.ggstats)
     testthat::expect_identical(df2.broom, df2.ggstats)
     testthat::expect_identical(df3.broom, df3.ggstats)
@@ -1307,7 +1307,9 @@ testthat::test_that(
     # augment
     set.seed(123)
     mod4 <- stats::lm(formula = mpg ~ wt + qsec, data = mtcars)
-    newdata <- mtcars %>% head(6) %>% dplyr::mutate(.data = ., wt = wt + 1)
+    newdata <- mtcars %>%
+      head(6) %>%
+      dplyr::mutate(.data = ., wt = wt + 1)
     df4.broom <- tibble::as_tibble(broom::augment(x = mod4, newdata = newdata))
     df4.ggstats <-
       ggstatsplot::ggcoefstats(

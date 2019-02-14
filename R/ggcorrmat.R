@@ -515,11 +515,13 @@ ggcorrmat <- function(data,
     if (corr.method %in% c("pearson", "spearman", "kendall")) {
       # compute confidence intervals
       ci.mat <- dplyr::full_join(
-        x = tibble::as_tibble(corr_df$ci) %>%
-          tibble::rownames_to_column(., "pair") %>%
-          tibble::rowid_to_column(.),
-        y = tibble::as_tibble(corr_df$ci.adj) %>%
-          tibble::rowid_to_column(.),
+        x = corr_df$ci %>%
+          tibble::rownames_to_column(.data = ., var = "pair") %>%
+          tibble::rowid_to_column(.data = ., var = "rowid") %>%
+          tibble::as_tibble(x = .),
+        y = corr_df$ci.adj %>%
+          tibble::rowid_to_column(.data = ., var = "rowid") %>%
+          tibble::as_tibble(x = .),
         by = "rowid"
       ) %>%
         dplyr::select(.data = ., pair, r, dplyr::everything(), -rowid)

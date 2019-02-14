@@ -95,6 +95,53 @@ testthat::test_that(
     testthat::expect_equal(dim(df1), c(24L, 8L))
     testthat::expect_equal(df1$sleep_rem[1], 0.919, tolerance = 0.001)
 
+    # tidy dataframe
+    set.seed(123)
+    df11 <- ggstatsplot::grouped_ggcorrmat(
+      data = dplyr::select(ggplot2::msleep, vore, awake:brainwt),
+      grouping.var = vore,
+      output = "ci",
+      k = 3,
+      messages = FALSE
+    )
+
+    # testing dataframe
+    testthat::expect_equal(dim(df11), c(4L, 8L))
+    testthat::expect_identical(df11$vore, c("carni", "herbi", "insecti", "omni"))
+    testthat::expect_identical(
+      df11$pair,
+      c(
+        "awake-brainwt",
+        "awake-brainwt",
+        "awake-brainwt",
+        "awake-brainwt"
+      )
+    )
+    testthat::expect_equal(df11$r,
+      c(0.5243674, 0.3855934, -0.1117243, 0.3365608),
+      tolerance = 0.01
+    )
+    testthat::expect_equal(df11$p,
+      c(0.14727017, 0.09314295, 0.85804468, 0.18653185),
+      tolerance = 0.01
+    )
+    testthat::expect_equal(df11$lower,
+      c(-0.21442721, -0.06863955, -0.90480369, -0.17188998),
+      tolerance = 0.01
+    )
+    testthat::expect_equal(df11$upper,
+      c(0.8815091, 0.7074071, 0.8548003, 0.7034165),
+      tolerance = 0.01
+    )
+    testthat::expect_equal(df11$lower.adj,
+      c(-0.21442721, -0.06863955, -0.90480369, -0.17188998),
+      tolerance = 0.01
+    )
+    testthat::expect_equal(df11$upper.adj,
+      c(0.8815091, 0.7074071, 0.8548003, 0.7034165),
+      tolerance = 0.01
+    )
+
     # with cor.vars specified -----------------------------------------------
 
     set.seed(123)
@@ -112,6 +159,16 @@ testthat::test_that(
       grouping.var = vore,
       cor.vars = brainwt,
       output = "p"
+    )
+
+    # ci
+    set.seed(123)
+    df4 <- ggstatsplot::grouped_ggcorrmat(
+      data = ggplot2::msleep,
+      cor.vars = awake:bodywt,
+      grouping.var = vore,
+      output = "ci",
+      messages = FALSE
     )
 
     # testing dataframe
@@ -142,6 +199,28 @@ testthat::test_that(
     testthat::expect_identical(
       as.character(levels(as.factor(na.omit(ggplot2::msleep$vore)))),
       df3$vore
+    )
+
+    # testing CIs
+    testthat::expect_equal(dim(df4), c(12L, 8L))
+    testthat::expect_identical(unique(df4$vore), c("carni", "herbi", "insecti", "omni"))
+    testthat::expect_equal(
+      df4$r,
+      c(
+        0.5243674,
+        0.4441851,
+        0.8600201,
+        0.3855934,
+        0.3826471,
+        0.9447948,
+        -0.1117243,
+        -0.2572068,
+        0.9725380,
+        0.3365608,
+        0.3158033,
+        0.6638581
+      ),
+      tolerance = 0.001
     )
   }
 )

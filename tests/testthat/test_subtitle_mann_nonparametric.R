@@ -83,6 +83,9 @@ testthat::test_that(
     # creating a dataframe
     df_bird <- read.table(textConnection(Input), header = TRUE)
 
+    # wide format dataframe
+    df_bird_wide <- tibble::as_tibble(df_bird)
+
     # converting to long format
     df_bird %<>%
       tibble::as_tibble(x = .) %>%
@@ -93,9 +96,66 @@ testthat::test_that(
         Typical:Odd
       )
 
+    # expect error
+    testthat::expect_error(ggstatsplot::subtitle_mann_nonparametric(
+      data = iris,
+      x = Sepal.Length,
+      y = Species
+    ))
+
+    # wide format ----------------------------------------------------
+
     # ggstatsplot output
     set.seed(123)
-    using_function <-
+    using_function1 <-
+      suppressWarnings(ggstatsplot::subtitle_mann_nonparametric(
+        data = df_bird_wide,
+        x = Typical,
+        y = Odd,
+        k = 3,
+        conf.level = 0.90,
+        paired = TRUE,
+        messages = FALSE
+      ))
+
+    # expected output
+    set.seed(123)
+    results1 <-
+      ggplot2::expr(
+        paste(
+          NULL,
+          "log"["e"](italic("V")),
+          " = ",
+          "4.836",
+          ", ",
+          italic("p"),
+          " = ",
+          "0.003",
+          ", ",
+          italic(r)["Spearman"],
+          " = ",
+          "NA",
+          ", CI"["90%"],
+          " [",
+          "NA",
+          ", ",
+          "NA",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          16L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(using_function1, results1)
+
+    # long format ----------------------------------------------------
+
+    # ggstatsplot output
+    set.seed(123)
+    using_function2 <-
       ggstatsplot::subtitle_mann_nonparametric(
         data = df_bird,
         x = type,
@@ -108,7 +168,7 @@ testthat::test_that(
 
     # expected output
     set.seed(123)
-    results <-
+    results2 <-
       ggplot2::expr(
         paste(
           NULL,
@@ -137,6 +197,6 @@ testthat::test_that(
       )
 
     # testing overall call
-    testthat::expect_identical(using_function, results)
+    testthat::expect_identical(using_function2, results2)
   }
 )

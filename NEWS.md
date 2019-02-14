@@ -23,7 +23,7 @@ MINOR CHANGES
   - To accommodate non-parametric tests, `subtitle_template` function can now
     work with `parameter = NULL`.
   - For `ggbetweenstats`, details contained in the subtitle for non-parametric
-    test are modified. It now uses Hodges–Lehmann–Sen estimator as effect size.
+    test are modified. It now uses Spearman's *rho*-based effect size estimates.
     This removes `coin` from dependencies.
   - `ggbetweenstats` and its `grouped_` variant gain a new argument
     `axes.range.restrict` (which defaults to `FALSE`). This restricts `y`-axes
@@ -40,6 +40,8 @@ BUG FIXES
     information about posterior distribution because these details were
     incorrect. The `posterior = TRUE` details were not used anywhere in the
     package so nothing about the results changes.
+  - `ggcorrmat` didn't output pair names when `output == "ci"` was used. This is
+    fixed.
 
 # ggstatsplot 0.0.8
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Making text subtitle for the Mann-Whitney <em>U</em>-test
-(between-/within-subjects designs). — subtitle_mann_nonparametric • ggstatsplot</title>
+(between-subjects designs). — subtitle_mann_nonparametric • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,10 +40,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 <meta property="og:title" content="Making text subtitle for the Mann-Whitney <em>U</em>-test
-(between-/within-subjects designs). — subtitle_mann_nonparametric" />
+(between-subjects designs). — subtitle_mann_nonparametric" />
 
 <meta property="og:description" content="Making text subtitle for the Mann-Whitney U-test
-(between-/within-subjects designs)." />
+(between-subjects designs)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,7 +168,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Making text subtitle for the Mann-Whitney <em>U</em>-test
-(between-/within-subjects designs).</h1>
+(between-subjects designs).</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_t_subtitles.R'><code>R/helpers_ggbetween_t_subtitles.R</code></a></small>
     <div class="hidden name"><code>subtitle_mann_nonparametric.Rd</code></div>
     </div>
@@ -176,7 +176,7 @@
     <div class="ref-description">
     
     <p>Making text subtitle for the Mann-Whitney <em>U</em>-test
-(between-/within-subjects designs).</p>
+(between-subjects designs).</p>
     
     </div>
 
@@ -231,8 +231,8 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Two-sample Wilcoxon test, also known as Mann-Whitney test, is
-carried out. The effect size estimate for this test is Hodges–Lehmann–Sen
-estimator.</p>
+carried out. The effect size estimate for this test is Spearman's <em>rho</em>
+as the ranks of the <code>y</code> variable related to the factor <code>x</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -241,9 +241,9 @@ estimator.</p>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>group</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>extra</span>
 )</div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "3.24", ", ", italic("p"), 
-#&gt;     " = ", "0.069", ", ", Delta["HLS"], " = ", "-1.35", ", CI"["95%"], 
-#&gt;     " [", "-3.60", ", ", "0.10", "]", ", ", italic("n"), " = ", 
-#&gt;     20L)</div></pre>
+#&gt;     " = ", "0.069", ", ", italic(r)["Spearman"], " = ", "0.43", 
+#&gt;     ", CI"["95%"], " [", "-0.02", ", ", "0.73", "]", ", ", italic("n"), 
+#&gt;     " = ", 20L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -256,7 +256,7 @@ estimator.</p>
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p>Indrajeet Patil, Chuck Powell</p>
   </div>
 </div>
 

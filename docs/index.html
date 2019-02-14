@@ -189,7 +189,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--02--12-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--02--13-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -451,7 +451,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x000000002936dae0&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000029b40fb0&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -1126,23 +1126,23 @@
 <a class="sourceLine" id="cb27-49" title="49"><span class="co">#&gt; the upper triangle: p-values adjusted for multiple comparisons</span></a>
 <a class="sourceLine" id="cb27-50" title="50"><span class="co">#&gt; the lower triangle: unadjusted p-values.</span></a>
 <a class="sourceLine" id="cb27-51" title="51"><span class="co">#&gt; # A tibble: 15 x 7</span></a>
-<a class="sourceLine" id="cb27-52" title="52"><span class="co">#&gt;    pair        r      lower      upper         p lower.adj upper.adj</span></a>
-<a class="sourceLine" id="cb27-53" title="53"><span class="co">#&gt;    &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb27-54" title="54"><span class="co">#&gt;  1 1      0.5922  0.4000     0.7345    4.981e- 7   0.3027    0.7817 </span></a>
-<a class="sourceLine" id="cb27-55" title="55"><span class="co">#&gt;  2 2     -0.3481 -0.6214     0.0006818 5.090e- 2  -0.6789    0.1002 </span></a>
-<a class="sourceLine" id="cb27-56" title="56"><span class="co">#&gt;  3 3     -1      -1         -1         0.         -1        -1      </span></a>
-<a class="sourceLine" id="cb27-57" title="57"><span class="co">#&gt;  4 4     -0.4293 -0.6220    -0.1875    9.621e- 4  -0.6858   -0.07796</span></a>
-<a class="sourceLine" id="cb27-58" title="58"><span class="co">#&gt;  5 5     -0.3851 -0.5547    -0.1847    3.247e- 4  -0.6050   -0.1106 </span></a>
-<a class="sourceLine" id="cb27-59" title="59"><span class="co">#&gt;  6 6     -0.2066 -0.5180     0.1531    2.566e- 1  -0.5180    0.1531 </span></a>
-<a class="sourceLine" id="cb27-60" title="60"><span class="co">#&gt;  7 7     -0.5922 -0.7345    -0.4000    4.981e- 7  -0.7832   -0.2990 </span></a>
-<a class="sourceLine" id="cb27-61" title="61"><span class="co">#&gt;  8 8     -0.2636 -0.5096     0.02217   7.022e- 2  -0.5400    0.06404</span></a>
-<a class="sourceLine" id="cb27-62" title="62"><span class="co">#&gt;  9 9     -0.3163 -0.5262    -0.07004   1.302e- 2  -0.5662   -0.01317</span></a>
-<a class="sourceLine" id="cb27-63" title="63"><span class="co">#&gt; 10 10     0.3481 -0.0006818  0.6214    5.090e- 2  -0.1145    0.6867 </span></a>
-<a class="sourceLine" id="cb27-64" title="64"><span class="co">#&gt; 11 11     0.7125  0.4739     0.8536    1.001e- 5   0.3239    0.8954 </span></a>
-<a class="sourceLine" id="cb27-65" title="65"><span class="co">#&gt; 12 12     0.6545  0.3962     0.8168    4.834e- 5   0.2459    0.8656 </span></a>
-<a class="sourceLine" id="cb27-66" title="66"><span class="co">#&gt; 13 13     0.4293  0.1875     0.6220    9.621e- 4   0.08322   0.6829 </span></a>
-<a class="sourceLine" id="cb27-67" title="67"><span class="co">#&gt; 14 14     0.3851  0.1847     0.5547    3.247e- 4   0.1049    0.6087 </span></a>
-<a class="sourceLine" id="cb27-68" title="68"><span class="co">#&gt; 15 15     0.8378  0.7373     0.9020    8.181e-16   0.6716    0.9238</span></a>
+<a class="sourceLine" id="cb27-52" title="52"><span class="co">#&gt;    pair                 r     lower     upper         p lower.adj upper.adj</span></a>
+<a class="sourceLine" id="cb27-53" title="53"><span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb27-54" title="54"><span class="co">#&gt;  1 sleep_total-s~  0.5922  4.000e-1  7.345e-1 4.981e- 7   0.3027    0.7817 </span></a>
+<a class="sourceLine" id="cb27-55" title="55"><span class="co">#&gt;  2 sleep_total-s~ -0.3481 -6.214e-1  6.818e-4 5.090e- 2  -0.6789    0.1002 </span></a>
+<a class="sourceLine" id="cb27-56" title="56"><span class="co">#&gt;  3 sleep_total-a~ -1      -1.000e+0 -1.000e+0 0.         -1        -1      </span></a>
+<a class="sourceLine" id="cb27-57" title="57"><span class="co">#&gt;  4 sleep_total-b~ -0.4293 -6.220e-1 -1.875e-1 9.621e- 4  -0.6858   -0.07796</span></a>
+<a class="sourceLine" id="cb27-58" title="58"><span class="co">#&gt;  5 sleep_total-b~ -0.3851 -5.547e-1 -1.847e-1 3.247e- 4  -0.6050   -0.1106 </span></a>
+<a class="sourceLine" id="cb27-59" title="59"><span class="co">#&gt;  6 sleep_rem-sle~ -0.2066 -5.180e-1  1.531e-1 2.566e- 1  -0.5180    0.1531 </span></a>
+<a class="sourceLine" id="cb27-60" title="60"><span class="co">#&gt;  7 sleep_rem-awa~ -0.5922 -7.345e-1 -4.000e-1 4.981e- 7  -0.7832   -0.2990 </span></a>
+<a class="sourceLine" id="cb27-61" title="61"><span class="co">#&gt;  8 sleep_rem-bra~ -0.2636 -5.096e-1  2.217e-2 7.022e- 2  -0.5400    0.06404</span></a>
+<a class="sourceLine" id="cb27-62" title="62"><span class="co">#&gt;  9 sleep_rem-bod~ -0.3163 -5.262e-1 -7.004e-2 1.302e- 2  -0.5662   -0.01317</span></a>
+<a class="sourceLine" id="cb27-63" title="63"><span class="co">#&gt; 10 sleep_cycle-a~  0.3481 -6.818e-4  6.214e-1 5.090e- 2  -0.1145    0.6867 </span></a>
+<a class="sourceLine" id="cb27-64" title="64"><span class="co">#&gt; 11 sleep_cycle-b~  0.7125  4.739e-1  8.536e-1 1.001e- 5   0.3239    0.8954 </span></a>
+<a class="sourceLine" id="cb27-65" title="65"><span class="co">#&gt; 12 sleep_cycle-b~  0.6545  3.962e-1  8.168e-1 4.834e- 5   0.2459    0.8656 </span></a>
+<a class="sourceLine" id="cb27-66" title="66"><span class="co">#&gt; 13 awake-brainwt   0.4293  1.875e-1  6.220e-1 9.621e- 4   0.08322   0.6829 </span></a>
+<a class="sourceLine" id="cb27-67" title="67"><span class="co">#&gt; 14 awake-bodywt    0.3851  1.847e-1  5.547e-1 3.247e- 4   0.1049    0.6087 </span></a>
+<a class="sourceLine" id="cb27-68" title="68"><span class="co">#&gt; 15 brainwt-bodywt  0.8378  7.373e-1  9.020e-1 8.181e-16   0.6716    0.9238</span></a>
 <a class="sourceLine" id="cb27-69" title="69"></a>
 <a class="sourceLine" id="cb27-70" title="70"><span class="co"># getting the sample sizes for all pairs</span></a>
 <a class="sourceLine" id="cb27-71" title="71">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcorrmat.html">ggcorrmat</a></span>(</a>

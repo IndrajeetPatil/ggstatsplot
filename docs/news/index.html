@@ -183,7 +183,7 @@
 <ul>
 <li>All <code>grouped_</code> functions had argument <code>title.prefix</code> that defaulted to <code>"Group"</code>. It now instead defaults to <code>NULL</code>, in which case the prefix will variable name for <code>grouping.var</code> argument.</li>
 <li>To accommodate non-parametric tests, <code>subtitle_template</code> function can now work with <code>parameter = NULL</code>.</li>
-<li>For <code>ggbetweenstats</code>, details contained in the subtitle for non-parametric test are modified. It now uses Hodges–Lehmann–Sen estimator as effect size. This removes <code>coin</code> from dependencies.</li>
+<li>For <code>ggbetweenstats</code>, details contained in the subtitle for non-parametric test are modified. It now uses Spearman’s <em>rho</em>-based effect size estimates. This removes <code>coin</code> from dependencies.</li>
 <li>
 <code>ggbetweenstats</code> and its <code>grouped_</code> variant gain a new argument <code>axes.range.restrict</code> (which defaults to <code>FALSE</code>). This restricts <code>y</code>-axes limits to minimum and maximum of <code>y</code> variable. This is what these functions were doing by default in the past versions, which created issues for additional ggplot components using the <code>ggplot.component</code> argument.</li>
 <li>All bayes factor related subtitle and captions replace <code>prior.width</code> with <code>r_{Cauchy}</code>.</li>
@@ -193,6 +193,8 @@
 <p>BUG FIXES</p>
 <ul>
 <li>The helper function <code>bf_extractor</code> no longer provides option to extract information about posterior distribution because these details were incorrect. The <code>posterior = TRUE</code> details were not used anywhere in the package so nothing about the results changes.</li>
+<li>
+<code>ggcorrmat</code> didn’t output pair names when <code>output == "ci"</code> was used. This is fixed.</li>
 </ul>
 </div>
     <div id="ggstatsplot-008" class="section level1">
