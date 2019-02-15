@@ -7,9 +7,9 @@ test for independence for between-subjects design or McNemar's test for
 within-subjects design)}
 \usage{
 subtitle_contingency_tab(data, main, condition, counts = NULL,
-  nboot = 25, paired = FALSE, stat.title = NULL, conf.level = 0.95,
-  conf.type = "norm", simulate.p.value = FALSE, B = 2000, k = 2,
-  messages = TRUE, ...)
+  nboot = 100, paired = FALSE, stat.title = NULL,
+  conf.level = 0.95, conf.type = "norm", simulate.p.value = FALSE,
+  B = 2000, k = 2, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
