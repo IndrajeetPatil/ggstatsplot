@@ -8,7 +8,8 @@ subtitle_onesample_proptest(data, main, counts = NULL, ratio = NULL,
   legend.title = NULL, k = 2, ...)
 }
 \arguments{
-\item{data}{The data as a data frame (matrix or tables will not be accepted).}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{main}{The variable to use as the \strong{rows} in the
 contingency table.}
@@ -24,7 +25,7 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{Additional arguments (currently ignored).}
+\item{...}{Additional arguments.}
 }
 \description{
 This is going to be a chi-squared Goodness of fit test.

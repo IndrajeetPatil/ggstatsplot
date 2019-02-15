@@ -6,23 +6,18 @@
 #'   histograms/boxplots/density plots with statistical details added as a
 #'   subtitle.
 #'
-#' @param data Dataframe from which variables are to be taken.
 #' @param x The column in `data` containing the explanatory variable to be
 #'   plotted on the x axis. Can be entered either as
 #'   a character string (e.g., `"x"`) or as a bare expression (e.g, `x`).
 #' @param y The column in `data` containing the response (outcome) variable to
 #'   be plotted on the y axis. Can be entered either as
 #'   a character string (e.g., `"y"`) or as a bare expression (e.g, `y`).
-#' @param bf.message Logical. Decides whether to display Bayes Factor in favor
-#'   of *null* hypothesis **for parametric test** (Default: `FALSE`).
 #' @param label.var Variable to use for points labels. Can be entered either as
 #'   a character string (e.g., `"var1"`) or as a bare expression (e.g, `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
 #'   determines the subset of data points to label. This argument can be entered
 #'   either as a character string (e.g., `"y < 4 & z < 20"`) or as a bare
 #'   expression (e.g., `y < 4 & z < 20`).
-#' @param xlab Label for `x` axis variable. The default is the variable name.
-#' @param ylab Label for `y` axis variable. The default is the variable name.
 #' @param line.color color for the regression line.
 #' @param line.size Size for the regression line.
 #' @param point.color,point.size,point.alpha Aesthetics specifying geom point
@@ -45,24 +40,12 @@
 #'   default is `1` for both axes.
 #' @param xsize,ysize Size for the marginal distribution boundaries (Default:
 #'   `0.7`).
-#' @param results.subtitle Decides whether the results of statistical tests are
-#'   to be displayed as a subtitle (Default: `TRUE`). If set to `FALSE`, only
-#'   the plot will be returned.
 #' @param centrality.para Decides *which* measure of central tendency (`"mean"`
 #'   or `"median"`) is to be displayed as vertical (for `x`) and horizontal (for
 #'   `y`) lines.
-#' @param title The text for the plot title.
-#' @param subtitle The text for the plot subtitle. Will work only if
-#'   `results.subtitle = FALSE`.
-#' @param caption The text for the plot caption.
-#' @param k Number of decimal places expected for results.
 #' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
 #'   direction, respectively. Defaults to `0` (0%) of the resolution of the
 #'   data.
-#' @param axes.range.restrict Logical that decides whether to restrict the axes
-#'   values ranges to `min` and `max` values of the axes variables (Default:
-#'   `FALSE`), only relevant for functions where axes variables are of numeric
-#'   type.
 #' @inheritParams subtitle_ggscatterstats
 #' @inheritParams ggplot2::geom_smooth
 #' @inheritParams theme_ggstatsplot

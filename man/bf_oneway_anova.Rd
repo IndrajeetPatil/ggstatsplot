@@ -27,7 +27,7 @@ results).}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{further arguments to be passed to or from methods.}
+\item{...}{Additional arguments.}
 }
 \description{
 Bayesian one-way analysis of variance.

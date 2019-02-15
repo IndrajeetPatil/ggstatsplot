@@ -182,7 +182,7 @@ i.e.).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>chisq_v_ci</span>(<span class='no'>data</span>, <span class='no'>rows</span>, <span class='no'>cols</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+    <pre class="usage"><span class='fu'>chisq_v_ci</span>(<span class='no'>data</span>, <span class='no'>rows</span>, <span class='no'>cols</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -190,8 +190,8 @@ i.e.).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Dataframe from which variables specified are preferentially to be
-taken.</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>rows</th>
@@ -204,7 +204,7 @@ taken.</p></td>
     <tr>
       <th>nboot</th>
       <td><p>Number of bootstrap samples for computing effect size (Default:
-<code>25</code>).</p></td>
+<code>100</code>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>

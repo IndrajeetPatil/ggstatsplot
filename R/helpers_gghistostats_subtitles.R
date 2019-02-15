@@ -3,8 +3,6 @@
 #' @name subtitle_t_onesample
 #' @author Indrajeet Patil
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken. This argument is optional.
 #' @param x A numeric variable.
 #' @param test.value A number specifying the value of the null hypothesis
 #'   (Default: `0`).
@@ -13,6 +11,7 @@
 #'   `?WRS2::onesampb`.
 #' @param nboot Number of bootstrap samples for robust one-sample location test
 #'   (Default: `100`).
+#' @param ... Additional arguments.
 #' @inheritParams ggbetweenstats
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
@@ -23,6 +22,7 @@
 #' @importFrom crayon green blue yellow red
 #' @importFrom psych cohen.d.ci
 #' @importFrom groupedstats specify_decimal_p
+#' @importFrom ellipsis check_dots_used
 #'
 #' @seealso \code{\link{gghistostats}}
 #'
@@ -31,13 +31,15 @@
 #' # for reproducibility
 #' set.seed(123)
 #'
-#' subtitle_t_onesample(
-#'   x = iris$Sepal.Length,
+#' ggstatsplot::subtitle_t_onesample(
+#'   data = iris,
+#'   x = Sepal.Length,
+#'   test.value = 5,
 #'   type = "r"
 #' )
 #' @export
 
-subtitle_t_onesample <- function(data = NULL,
+subtitle_t_onesample <- function(data,
                                  x,
                                  type = "parametric",
                                  test.value = 0,
@@ -46,22 +48,16 @@ subtitle_t_onesample <- function(data = NULL,
                                  conf.level = 0.95,
                                  nboot = 100,
                                  k = 2,
-                                 messages = TRUE) {
+                                 messages = TRUE,
+                                 ...) {
 
-  # ====================== dataframe ==========================================
+  # check the dots
+  ellipsis::check_dots_used()
+
+  # ====================== dataframe ========================================
 
   # preparing a dataframe out of provided inputs
-  if (!is.null(data)) {
-    # if dataframe is provided
-    data <- dplyr::select(.data = data, x = !!rlang::enquo(x))
-  } else {
-    # if vectors are provided
-    data <-
-      base::cbind.data.frame(x = x)
-  }
-
-  # convert to a tibble
-  data %<>%
+  data <- dplyr::select(.data = data, x = !!rlang::enquo(x)) %>%
     tidyr::drop_na(data = .) %>%
     tibble::as_tibble(x = .)
 

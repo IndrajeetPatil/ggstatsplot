@@ -182,20 +182,20 @@ sample designs).</p>
 
     <pre class="usage"><span class='fu'>effsize_t_parametric</span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>formula</th>
-      <td><p>This function only accepts the variables in
-<code>formula</code> format e.g. <code>sleep_rem ~ vore</code> or <code>~ vore</code>.</p></td>
+      <td><p>This function only accepts the variables in <code>formula</code> format
+e.g. <code>sleep_rem ~ vore</code> or <code>~ vore</code>.</p></td>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>Dataframe (or a tibble) from which variables specified are
-preferentially to be taken.</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>mu</th>
@@ -208,18 +208,22 @@ preferentially to be taken.</p></td>
     </tr>
     <tr>
       <th>hedges.correction</th>
-      <td><p>Logical indicating whether to apply Hedges correction,
-Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
+      <td><p>Logical indicating whether to apply Hedges
+correction, Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
-      <td><p>A scalar value between 0 and 1. If unspecified, the
-default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>noncentral</th>
       <td><p>Logical indicating whether to use non-central
 <em>t</em>-distributions for computing the confidence intervals (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     

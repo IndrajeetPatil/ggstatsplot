@@ -8,8 +8,8 @@ display in \code{ggbetweenstats} plot.}
 mean_labeller(data, x, y, mean.ci = FALSE, k = 3)
 }
 \arguments{
-\item{data}{A dataframe from which variables specified are preferentially to
-be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The grouping variable from the dataframe \code{data}.}
 

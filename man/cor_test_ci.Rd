@@ -9,8 +9,10 @@ cor_test_ci(data, x, y, method = "spearman", exact = FALSE,
   conf.level = 0.95, conf.type = "norm", ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{an optional matrix or data frame (or similar: see
+    \code{\link{model.frame}}) containing the variables in the
+    formula \code{formula}.  By default the variables are taken from
+    \code{environment(formula)}.}
 
 \item{x}{A vector containing the explanatory variable.}
 

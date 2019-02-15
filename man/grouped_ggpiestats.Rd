@@ -19,7 +19,8 @@ grouped_ggpiestats(data, main, condition = NULL, counts = NULL,
   ggplot.component = NULL, messages = TRUE, ...)
 }
 \arguments{
-\item{data}{The data as a data frame (matrix or tables will not be accepted).}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{main}{The variable to use as the \strong{rows} in the
 contingency table.}
@@ -93,7 +94,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{25}).}
+\code{100}).}
 
 \item{simulate.p.value}{a logical indicating whether to compute
     p-values by Monte Carlo simulation.}

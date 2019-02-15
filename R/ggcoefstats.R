@@ -144,6 +144,7 @@
 #'   entire plot area. Defaults to `c(NA, NA)`.
 #' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
 #'   which to adjust position of labels (Default: `"y"`).
+#' @param ... Additional arguments to tidying method.
 #' @inheritParams broom.mixed::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams broom::tidy.polr
@@ -152,7 +153,6 @@
 #' @inheritParams paletteer::paletteer_d
 #' @inheritParams subtitle_meta_ggcoefstats
 #' @inheritParams ggbetweenstats
-#' @param ... Additional arguments to tidying method.
 #'
 #' @import ggplot2
 #'

@@ -9,8 +9,8 @@ pairwise_p(data, x, y, type = "parametric", tr = 0.1, paired = FALSE,
   messages = TRUE, ...)
 }
 \arguments{
-\item{data}{A dataframe from which variables specified are preferentially to
-be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The grouping variable from the dataframe \code{data}.}
 
@@ -48,7 +48,7 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{further arguments to be passed to or from methods.}
+\item{...}{Additional arguments.}
 }
 \description{
 Calculate pairwise comparisons between group levels with

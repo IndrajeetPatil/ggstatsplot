@@ -189,16 +189,17 @@ designs).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Dataframe (or a tibble) from which variables specified are
-preferentially to be taken.</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping variable.</p></td>
+      <td><p>The grouping variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+      <td><p>The response (a.k.a. outcome or dependent) variable from the
+dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -221,8 +222,8 @@ or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
-      <td><p>A scalar value between 0 and 1. If unspecified, the
-default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>var.equal</th>
@@ -240,7 +241,7 @@ default is to return <code>95%</code> lower and upper confidence intervals (<cod
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments (ignored).</p></td>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     

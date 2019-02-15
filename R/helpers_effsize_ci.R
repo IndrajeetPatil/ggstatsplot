@@ -4,10 +4,11 @@
 #' @description Custom function to get confidence intervals for effect size
 #'   measure for robust ANOVA.
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
-#' @param x The grouping variable.
-#' @param y The response - a vector of length the number of rows of `x`.
+#' @param data A dataframe (or a tibble) from which variables specified are to
+#'   be taken. A matrix or tables will **not** be accepted.
+#' @param x The grouping variable from the dataframe `data`.
+#' @param y The response (a.k.a. outcome or dependent) variable from the
+#'   dataframe `data`.
 #' @param nboot Number of bootstrap samples for computing effect size (Default:
 #'   `100`).
 #' @param tr Trim level for the mean when carrying out `robust` tests. If you
@@ -328,12 +329,8 @@ yuend_ci <- function(data,
 #' @description Custom function to get confidence intervals for effect size
 #'   measure for parametric or non-parametric correlation coefficient.
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
 #' @param x A vector containing the explanatory variable.
 #' @param y The response - a vector of length the number of rows of `x`.
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `100`).
 #' @inheritDotParams boot::boot
 #' @inheritParams stats::cor.test
 #' @inheritParams t1way_ci
@@ -510,12 +507,8 @@ cor_test_ci <- function(data,
 #'   measure for chi-squared test of association (Contingency Tables analyses,
 #'   i.e.).
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
 #' @param rows The variable to use as the rows in the contingency table.
 #' @param cols the variable to use as the columns in the contingency table.
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `25`).
 #' @inheritParams t1way_ci
 #' @inheritDotParams boot::boot
 #'
@@ -545,10 +538,11 @@ cor_test_ci <- function(data,
 chisq_v_ci <- function(data,
                        rows,
                        cols,
-                       nboot = 25,
+                       nboot = 100,
                        conf.level = 0.95,
                        conf.type = "norm",
                        ...) {
+
   # creating a dataframe from entered data
   data <-
     dplyr::select(
@@ -668,12 +662,8 @@ chisq_v_ci <- function(data,
 #'   confidence intervals. Additionally, it also includes information about
 #'   sample size, bending constant, no. of bootstrap samples, etc.
 #'
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
 #' @param x A vector containing the explanatory variable.
 #' @param y The response - a vector of length the number of rows of `x`.
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `100`).
 #' @param beta bending constant (Default: `0.1`). For more, see `?WRS2::pbcor`.
 #' @inheritParams t1way_ci
 #' @inheritDotParams boot::boot

@@ -23,6 +23,7 @@
 # function body
 bf_extractor <- function(bf.object,
                          ...) {
+  ellipsis::check_dots_used()
 
   # preparing the dataframe
   bf_df <-
@@ -123,7 +124,6 @@ bf_caption_maker <- function(bf.df,
 
 #' @title Bayesian correlation test.
 #' @name bf_corr_test
-#' @aliases bf_corr_test
 #' @author Indrajeet Patil
 #'
 #' @inheritParams BayesFactor::correlationBF
@@ -220,7 +220,6 @@ bf_corr_test <- function(data,
 
 #' @title Bayesian contingency table analysis.
 #' @name bf_contingency_tab
-#' @aliases bf_contingency_tab
 #' @author Indrajeet Patil
 #'
 #' @inheritParams BayesFactor::contingencyTableBF
@@ -365,7 +364,6 @@ bf_contingency_tab <- function(data,
 
 #' @title Bayesian two-samples *t*-test.
 #' @name bf_two_sample_ttest
-#' @aliases bf_two_sample_ttest
 #' @author Indrajeet Patil
 #'
 #' @importFrom BayesFactor ttestBF extractBF
@@ -504,7 +502,6 @@ bf_two_sample_ttest <- function(data,
 
 #' @title Bayesian one-way analysis of variance.
 #' @name bf_oneway_anova
-#' @aliases bf_oneway_anova
 #' @author Indrajeet Patil
 #'
 #' @importFrom BayesFactor anovaBF extractBF
@@ -512,6 +509,7 @@ bf_two_sample_ttest <- function(data,
 #' @inheritParams BayesFactor::anovaBF
 #' @inheritParams ggbetweenstats
 #' @inheritParams bf_corr_test
+#' @param ... Additional arguments.
 #'
 #' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},
 #' \code{\link{bf_two_sample_ttest}}
@@ -594,7 +592,6 @@ bf_oneway_anova <- function(data,
 
 #' @title Bayesian one-sample *t*-test.
 #' @name bf_one_sample_ttest
-#' @aliases bf_one_sample_ttest
 #' @author Indrajeet Patil
 #'
 #' @inheritParams BayesFactor::ttestBF

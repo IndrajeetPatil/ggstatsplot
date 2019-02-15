@@ -6,11 +6,6 @@
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence interval for Cohen's *d*
 #'   or Hedge's *g* (Default: `FALSE`).
-#' @param conf.level A scalar value between 0 and 1. If unspecified, the
-#'    default is to return `95%` lower and upper confidence intervals (`0.95`).
-#' @param k Number of digits after decimal point (should be an integer)
-#'   (Default: `k = 2`).
-#' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams stats::t.test
 #'
@@ -55,6 +50,7 @@ subtitle_t_parametric <- function(data,
                                   var.equal = FALSE,
                                   k = 2,
                                   ...) {
+  ellipsis::check_dots_used()
 
   # creating a dataframe
   data <-
@@ -66,6 +62,7 @@ subtitle_t_parametric <- function(data,
     dplyr::mutate_if(.tbl = ., .predicate = is.character, .funs = as.factor) %>%
     dplyr::mutate_if(.tbl = ., .predicate = is.factor, .funs = droplevels) %>%
     tibble::as_tibble(x = .)
+
   # properly removing NAs if it's a paired design
   if (isTRUE(paired) && is.factor(data$x)) {
     data %<>%
@@ -162,9 +159,7 @@ subtitle_t_parametric <- function(data,
 #'   carried out. The effect size estimate for this test is Spearman's *rho*
 #'   as the ranks of the `y` variable related to the factor `x`.
 #'
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
-#' @param ... Additional arguments (ignored).
+#' @inheritParams subtitle_anova_parametric
 #' @inheritParams subtitle_t_parametric
 #'
 #' @importFrom dplyr select
@@ -181,109 +176,108 @@ subtitle_t_parametric <- function(data,
 #' @export
 
 # function body
-subtitle_mann_nonparametric <-
-  function(data,
-             x,
-             y,
-             paired = FALSE,
-             k = 2,
-             conf.level = 0.95,
-             messages = TRUE,
-             ...) {
+subtitle_mann_nonparametric <- function(data,
+                                        x,
+                                        y,
+                                        paired = FALSE,
+                                        k = 2,
+                                        conf.level = 0.95,
+                                        messages = TRUE,
+                                        ...) {
+  ellipsis::check_dots_used()
 
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    tidyr::drop_na(data = .)
 
-    # creating a dataframe
+  if (!is.numeric(data$y)) {
+    stop("y variable must be numeric")
+  }
+
+  if (is.numeric(data$x)) {
+    # setting up the test and getting its summary
+    stats_df <-
+      broom::tidy(stats::wilcox.test(
+        x = data$x,
+        y = data$y,
+        paired = paired,
+        alternative = "two.sided",
+        na.action = na.omit,
+        exact = FALSE,
+        correct = TRUE,
+        conf.int = TRUE,
+        conf.level = conf.level
+      ))
+    # sample size
+    sample_size <- nrow(data)
+  } else {
     data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      ) %>%
-      tidyr::drop_na(data = .)
+      data %>%
+      dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+      tibble::as_tibble(x = .)
 
-    if (!is.numeric(data$y)) {
-      stop("y variable must be numeric")
-    }
-
-    if (is.numeric(data$x)) {
-      # setting up the test and getting its summary
-      stats_df <-
-        broom::tidy(stats::wilcox.test(
-          x = data$x,
-          y = data$y,
-          paired = paired,
-          alternative = "two.sided",
-          na.action = na.omit,
-          exact = FALSE,
-          correct = TRUE,
-          conf.int = TRUE,
-          conf.level = conf.level
-        ))
-      # sample size
+    # setting up the test and getting its summary
+    stats_df <-
+      broom::tidy(stats::wilcox.test(
+        formula = y ~ x,
+        data = data,
+        paired = paired,
+        alternative = "two.sided",
+        na.action = na.omit,
+        exact = FALSE,
+        correct = TRUE,
+        conf.int = TRUE,
+        conf.level = conf.level
+      ))
+    # sample size
+    if (!isTRUE(paired)) {
       sample_size <- nrow(data)
     } else {
-      data <-
-        data %>%
-        dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
-        tibble::as_tibble(x = .)
-
-      # setting up the test and getting its summary
-      stats_df <-
-        broom::tidy(stats::wilcox.test(
-          formula = y ~ x,
-          data = data,
-          paired = paired,
-          alternative = "two.sided",
-          na.action = na.omit,
-          exact = FALSE,
-          correct = TRUE,
-          conf.int = TRUE,
-          conf.level = conf.level
-        ))
-      # sample size
-      if (!isTRUE(paired)) {
-        sample_size <- nrow(data)
-      } else {
-        sample_size <- .5 * nrow(data)
-      }
+      sample_size <- .5 * nrow(data)
     }
-
-    # preparing effect size and ci's
-    effsize_list <- psych::corr.test(
-      x = as.integer(data$x),
-      y = data$y,
-      ci = TRUE,
-      method = "spearman",
-      alpha = 1 - conf.level
-    )
-
-    if (isTRUE(paired)) {
-      statistic.text <- quote("log"["e"](italic("V")))
-    } else {
-      statistic.text <- quote("log"["e"](italic("W")))
-    }
-
-    # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = 0L,
-      parameter = NULL,
-      parameter2 = NULL,
-      stat.title = NULL,
-      statistic.text = statistic.text,
-      statistic = log(stats_df$statistic[[1]]),
-      p.value = stats_df$p.value[[1]],
-      effsize.text = quote(italic(r)["Spearman"]),
-      effsize.estimate = effsize_list$r,
-      effsize.LL = effsize_list$ci$lower,
-      effsize.UL = effsize_list$ci$upper,
-      n = sample_size,
-      conf.level = conf.level,
-      k = k
-    )
-
-    # return the subtitle
-    return(subtitle)
   }
+
+  # preparing effect size and ci's
+  effsize_list <- psych::corr.test(
+    x = as.integer(data$x),
+    y = data$y,
+    ci = TRUE,
+    method = "spearman",
+    alpha = 1 - conf.level
+  )
+
+  if (isTRUE(paired)) {
+    statistic.text <- quote("log"["e"](italic("V")))
+  } else {
+    statistic.text <- quote("log"["e"](italic("W")))
+  }
+
+  # preparing subtitle
+  subtitle <- subtitle_template(
+    no.parameters = 0L,
+    parameter = NULL,
+    parameter2 = NULL,
+    stat.title = NULL,
+    statistic.text = statistic.text,
+    statistic = log(stats_df$statistic[[1]]),
+    p.value = stats_df$p.value[[1]],
+    effsize.text = quote(italic(r)["Spearman"]),
+    effsize.estimate = effsize_list$r,
+    effsize.LL = effsize_list$ci$lower,
+    effsize.UL = effsize_list$ci$upper,
+    n = sample_size,
+    conf.level = conf.level,
+    k = k
+  )
+
+  # return the subtitle
+  return(subtitle)
+}
 
 #' @rdname subtitle_mann_nonparametric
 #' @aliases subtitle_mann_nonparametric
@@ -296,11 +290,9 @@ subtitle_t_nonparametric <- subtitle_mann_nonparametric
 #' @name subtitle_t_robust
 #' @author Indrajeet Patil
 #'
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
-#' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams yuend_ci
+#' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -351,6 +343,7 @@ subtitle_t_robust <- function(data,
                               k = 2,
                               messages = TRUE,
                               ...) {
+  ellipsis::check_dots_used()
 
   # creating a dataframe
   data <-
@@ -465,8 +458,8 @@ subtitle_t_robust <- function(data,
 #'
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
-#' @param ... Additional arguments (ignored).
 #' @inheritParams subtitle_t_parametric
+#' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom jmv ttestIS ttestPS
 #'
@@ -505,6 +498,7 @@ subtitle_t_bayes <- function(data,
                              paired = FALSE,
                              k = 2,
                              ...) {
+  ellipsis::check_dots_used()
 
   # creating a dataframe
   data <-
@@ -635,13 +629,14 @@ subtitle_t_bayes <- function(data,
 #' @name effsize_t_parametric
 #' @author Chuck Powell
 #'
-#' @param formula This function only accepts the variables in
-#'   `formula` format e.g. `sleep_rem ~ vore` or `~ vore`.
+#' @param formula This function only accepts the variables in `formula` format
+#'   e.g. `sleep_rem ~ vore` or `~ vore`.
 #' @param mu If conducting a single sample test against a mean (Default: `0`).
-#' @param hedges.correction Logical indicating whether to apply Hedges correction,
-#'   Hedge's *g* (Default: `TRUE`).
+#' @param hedges.correction Logical indicating whether to apply Hedges
+#'   correction, Hedge's *g* (Default: `TRUE`).
 #' @param noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence intervals (Default: `TRUE`).
+#' @inheritParams ggbetweenstats
 #' @inheritParams subtitle_t_parametric
 #'
 #' @importFrom stats t.test na.omit cor qt pt uniroot
@@ -712,7 +707,10 @@ effsize_t_parametric <- function(formula = NULL,
                                  paired = FALSE,
                                  hedges.correction = TRUE,
                                  conf.level = 0.95,
-                                 noncentral = TRUE) {
+                                 noncentral = TRUE,
+                                 ...) {
+  ellipsis::check_dots_used()
+
   # -------------- input checking -------------------
 
   if (!is(formula, "formula") | !is(data, "data.frame")) {

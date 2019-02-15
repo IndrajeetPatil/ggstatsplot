@@ -9,6 +9,7 @@
 #'   generic `"x"` label will be used.
 #' @param output What output is desired: `"message"` (default) or `"stats"` (or
 #'   `"tidy"`) objects.
+#' @param ... Additional arguments (ignored).
 #' @inheritParams ggbetweenstats
 #'
 #' @importFrom stats shapiro.test
@@ -40,7 +41,9 @@
 normality_message <- function(x,
                               lab = NULL,
                               k = 2,
-                              output = "message") {
+                              output = "message",
+                              ...) {
+  ellipsis::check_dots_used()
 
   # if label is not provided, use generic "x" variable
   if (is.null(lab)) {
@@ -122,7 +125,9 @@ bartlett_message <- function(data,
                              y,
                              lab = NULL,
                              k = 2,
-                             output = "message") {
+                             output = "message",
+                             ...) {
+  ellipsis::check_dots_used()
 
   # if `lab` is not provided, use the variable `x` name
   if (is.null(lab)) {

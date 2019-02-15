@@ -75,6 +75,7 @@ ggdotplotstats <- function(data,
                            test.k = 0,
                            ggplot.component = NULL,
                            messages = TRUE) {
+
   # ------------------------------ variable names ----------------------------
 
   # if `xlab` is not provided, use the variable `x` name

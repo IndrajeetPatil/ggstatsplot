@@ -5,9 +5,9 @@
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil, Chuck Powell
 #'
+#' @inheritDotParams combine_plots
 #' @inheritParams ggbarstats
 #' @inheritParams grouped_ggbetweenstats
-#' @inheritDotParams combine_plots
 #'
 #' @import ggplot2
 #'

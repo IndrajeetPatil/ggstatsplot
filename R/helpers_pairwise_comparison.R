@@ -170,6 +170,7 @@ games_howell <- function(data,
 #' @author Indrajeet Patil
 #'
 #' @inheritParams ggbetweenstats
+#' @param ... Additional arguments.
 #' @inheritParams stats::t.test
 #' @inheritParams WRS2::rmmcp
 #'
@@ -296,6 +297,9 @@ pairwise_p <- function(data,
                        k = 2,
                        messages = TRUE,
                        ...) {
+
+  ellipsis::check_dots_used()
+
   # ---------------------------- data cleanup -------------------------------
   # creating a dataframe
   data <-
@@ -666,7 +670,10 @@ pairwise_p_caption <- function(type,
                                var.equal = FALSE,
                                paired = FALSE,
                                p.adjust.method = "holm",
-                               caption = NULL) {
+                               caption = NULL,
+                               ...) {
+
+  ellipsis::check_dots_used()
 
   # ======================= pairwise test run ==============================
 

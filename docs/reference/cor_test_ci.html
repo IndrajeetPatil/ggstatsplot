@@ -186,8 +186,10 @@ measure for parametric or non-parametric correlation coefficient.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Dataframe from which variables specified are preferentially to be
-taken.</p></td>
+      <td><p>an optional matrix or data frame (or similar: see
+    <code><a href='https://www.rdocumentation.org/packages/stats/topics/model.frame'>model.frame</a></code>) containing the variables in the
+    formula <code>formula</code>.  By default the variables are taken from
+    <code><a href='https://www.rdocumentation.org/packages/base/topics/environment'>environment(formula)</a></code>.</p></td>
     </tr>
     <tr>
       <th>x</th>
