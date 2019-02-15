@@ -50,7 +50,7 @@ subtitle_t_parametric <- function(data,
                                   y,
                                   paired = FALSE,
                                   effsize.type = "g",
-                                  effsize.noncentral = FALSE,
+                                  effsize.noncentral = TRUE,
                                   conf.level = 0.95,
                                   var.equal = FALSE,
                                   k = 2,
@@ -103,15 +103,18 @@ subtitle_t_parametric <- function(data,
   }
 
   # setting up the t-test model and getting its summary
+
+  tobject <- stats::t.test(
+    formula = y ~ x,
+    data = data,
+    paired = paired,
+    alternative = "two.sided",
+    var.equal = var.equal,
+    na.action = na.omit
+  )
+
   stats_df <-
-    broom::tidy(stats::t.test(
-      formula = y ~ x,
-      data = data,
-      paired = paired,
-      alternative = "two.sided",
-      var.equal = var.equal,
-      na.action = na.omit
-    ))
+    broom::tidy(tobject)
 
   # effect size object
   effsize_df <-
@@ -121,7 +124,9 @@ subtitle_t_parametric <- function(data,
       paired = paired,
       hedges.correction = hedges.correction,
       conf.level = conf.level,
-      noncentral = effsize.noncentral
+      noncentral = effsize.noncentral,
+      var.equal = var.equal,
+      tobject = tobject
     )
 
   # when paired samples t-test is run df is going to be integer
@@ -248,9 +253,13 @@ subtitle_mann_nonparametric <-
       }
     }
 
+    if (is.factor(data$x)) {
+      data$x <- as.integer(data$x)
+    }
+
     # preparing effect size and ci's
     effsize_list <- psych::corr.test(
-      x = as.integer(data$x),
+      x = data$x,
       y = data$y,
       ci = TRUE,
       method = "spearman",
@@ -711,8 +720,10 @@ effsize_t_parametric <- function(formula = NULL,
                                  mu = 0,
                                  paired = FALSE,
                                  hedges.correction = TRUE,
-                                 conf.level = 0.95,
-                                 noncentral = TRUE) {
+                                 conf.level = NULL,
+                                 var.equal = NULL,
+                                 noncentral = TRUE,
+                                 tobject = NULL) {
   # -------------- input checking -------------------
 
   if (!is(formula, "formula") | !is(data, "data.frame")) {
@@ -740,18 +751,9 @@ effsize_t_parametric <- function(formula = NULL,
     Z <- -stats::qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
-    tobject <-
-      stats::t.test(
-        x = x,
-        alternative = "two.sided",
-        mu = mu,
-        var.equal = TRUE,
-        na.action = na.omit,
-        conf.level = conf.level
-      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int, "conf.level")
+    civalue <- conf.level
     twosamples <- FALSE
     paired <- NA_character_
   }
@@ -780,28 +782,22 @@ effsize_t_parametric <- function(formula = NULL,
     n <- length(sq.devs)
     n1 <- length(x)
     n2 <- length(y)
-    psd <- sqrt(sum(sq.devs) / (n - 2))
-    sd.est <- psd
+    if (isTRUE(var.equal)) {
+      sd.est <- sqrt(sum(sq.devs) / (n - 2))
+    } else {
+      sd.est <- sqrt((var(x) + var(y))/2)
+    }
     mean.diff <- mean(x) - mean(y)
-    df <- length(x) + length(y) - 2
+    df <- tobject$parameter
     d <- mean.diff / sd.est
     Sigmad <- sqrt((n1 + n2) / (n1 * n2) + 0.5 * d^2 / (n1 + n2))
     Z <- -stats::qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
-    tobject <-
-      stats::t.test(
-        x = x,
-        y = y,
-        var.equal = TRUE,
-        alternative = "two.sided",
-        na.action = na.omit,
-        conf.level = conf.level
-      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int, "conf.level")
+    civalue <- conf.level
     twosamples <- TRUE
   }
 
@@ -849,18 +845,9 @@ effsize_t_parametric <- function(formula = NULL,
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
     diffscores <- as.vector(y - x)
-    tobject <-
-      stats::t.test(
-        x = diffscores,
-        alternative = "two.sided",
-        mu = 0,
-        var.equal = TRUE,
-        na.action = na.omit,
-        conf.level = conf.level
-      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int, "conf.level")
+    civalue <- conf.level
     twosamples <- FALSE
   }
 

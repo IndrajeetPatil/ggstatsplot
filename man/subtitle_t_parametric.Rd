@@ -6,7 +6,7 @@
 designs).}
 \usage{
 subtitle_t_parametric(data, x, y, paired = FALSE, effsize.type = "g",
-  effsize.noncentral = FALSE, conf.level = 0.95, var.equal = FALSE,
+  effsize.noncentral = TRUE, conf.level = 0.95, var.equal = FALSE,
   k = 2, ...)
 }
 \arguments{
