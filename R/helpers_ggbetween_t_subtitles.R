@@ -45,7 +45,7 @@ subtitle_t_parametric <- function(data,
                                   y,
                                   paired = FALSE,
                                   effsize.type = "g",
-                                  effsize.noncentral = FALSE,
+                                  effsize.noncentral = TRUE,
                                   conf.level = 0.95,
                                   var.equal = FALSE,
                                   k = 2,
@@ -100,15 +100,18 @@ subtitle_t_parametric <- function(data,
   }
 
   # setting up the t-test model and getting its summary
+
+  tobject <- stats::t.test(
+    formula = y ~ x,
+    data = data,
+    paired = paired,
+    alternative = "two.sided",
+    var.equal = var.equal,
+    na.action = na.omit
+  )
+
   stats_df <-
-    broom::tidy(stats::t.test(
-      formula = y ~ x,
-      data = data,
-      paired = paired,
-      alternative = "two.sided",
-      var.equal = var.equal,
-      na.action = na.omit
-    ))
+    broom::tidy(tobject)
 
   # effect size object
   effsize_df <-
@@ -118,7 +121,9 @@ subtitle_t_parametric <- function(data,
       paired = paired,
       hedges.correction = hedges.correction,
       conf.level = conf.level,
-      noncentral = effsize.noncentral
+      noncentral = effsize.noncentral,
+      var.equal = var.equal,
+      tobject = tobject
     )
 
   # when paired samples t-test is run df is going to be integer
@@ -185,98 +190,101 @@ subtitle_mann_nonparametric <- function(data,
                                         messages = TRUE,
                                         ...) {
 
-
-  # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
-    tidyr::drop_na(data = .)
-
-  if (!is.numeric(data$y)) {
-    stop("y variable must be numeric")
-  }
-
-  if (is.numeric(data$x)) {
-    # setting up the test and getting its summary
-    stats_df <-
-      broom::tidy(stats::wilcox.test(
-        x = data$x,
-        y = data$y,
-        paired = paired,
-        alternative = "two.sided",
-        na.action = na.omit,
-        exact = FALSE,
-        correct = TRUE,
-        conf.int = TRUE,
-        conf.level = conf.level
-      ))
-    # sample size
-    sample_size <- nrow(data)
-  } else {
+ # creating a dataframe
     data <-
-      data %>%
-      dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
-      tibble::as_tibble(x = .)
+      dplyr::select(
+        .data = data,
+        x = !!rlang::enquo(x),
+        y = !!rlang::enquo(y)
+      ) %>%
+      tidyr::drop_na(data = .)
 
-    # setting up the test and getting its summary
-    stats_df <-
-      broom::tidy(stats::wilcox.test(
-        formula = y ~ x,
-        data = data,
-        paired = paired,
-        alternative = "two.sided",
-        na.action = na.omit,
-        exact = FALSE,
-        correct = TRUE,
-        conf.int = TRUE,
-        conf.level = conf.level
-      ))
-    # sample size
-    if (!isTRUE(paired)) {
+    if (!is.numeric(data$y)) {
+      stop("y variable must be numeric")
+    }
+
+    if (is.numeric(data$x)) {
+      # setting up the test and getting its summary
+      stats_df <-
+        broom::tidy(stats::wilcox.test(
+          x = data$x,
+          y = data$y,
+          paired = paired,
+          alternative = "two.sided",
+          na.action = na.omit,
+          exact = FALSE,
+          correct = TRUE,
+          conf.int = TRUE,
+          conf.level = conf.level
+        ))
+      # sample size
       sample_size <- nrow(data)
     } else {
-      sample_size <- .5 * nrow(data)
+      data <-
+        data %>%
+        dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+        tibble::as_tibble(x = .)
+
+      # setting up the test and getting its summary
+      stats_df <-
+        broom::tidy(stats::wilcox.test(
+          formula = y ~ x,
+          data = data,
+          paired = paired,
+          alternative = "two.sided",
+          na.action = na.omit,
+          exact = FALSE,
+          correct = TRUE,
+          conf.int = TRUE,
+          conf.level = conf.level
+        ))
+      # sample size
+      if (!isTRUE(paired)) {
+        sample_size <- nrow(data)
+      } else {
+        sample_size <- .5 * nrow(data)
+      }
     }
-  }
 
-  # preparing effect size and ci's
-  effsize_list <- psych::corr.test(
-    x = as.integer(data$x),
-    y = data$y,
-    ci = TRUE,
-    method = "spearman",
-    alpha = 1 - conf.level
-  )
+    if (is.factor(data$x)) {
+      data$x <- as.integer(data$x)
+    }
 
-  if (isTRUE(paired)) {
-    statistic.text <- quote("log"["e"](italic("V")))
-  } else {
-    statistic.text <- quote("log"["e"](italic("W")))
-  }
+    # preparing effect size and ci's
+    effsize_list <- psych::corr.test(
+      x = data$x,
+      y = data$y,
+      ci = TRUE,
+      method = "spearman",
+      alpha = 1 - conf.level
+    )
 
-  # preparing subtitle
-  subtitle <- subtitle_template(
-    no.parameters = 0L,
-    parameter = NULL,
-    parameter2 = NULL,
-    stat.title = NULL,
-    statistic.text = statistic.text,
-    statistic = log(stats_df$statistic[[1]]),
-    p.value = stats_df$p.value[[1]],
-    effsize.text = quote(italic(r)["Spearman"]),
-    effsize.estimate = effsize_list$r,
-    effsize.LL = effsize_list$ci$lower,
-    effsize.UL = effsize_list$ci$upper,
-    n = sample_size,
-    conf.level = conf.level,
-    k = k
-  )
+    if (isTRUE(paired)) {
+      statistic.text <- quote("log"["e"](italic("V")))
+    } else {
+      statistic.text <- quote("log"["e"](italic("W")))
+    }
 
-  # return the subtitle
-  return(subtitle)
+    # preparing subtitle
+    subtitle <- subtitle_template(
+      no.parameters = 0L,
+      parameter = NULL,
+      parameter2 = NULL,
+      stat.title = NULL,
+      statistic.text = statistic.text,
+      statistic = log(stats_df$statistic[[1]]),
+      p.value = stats_df$p.value[[1]],
+      effsize.text = quote(italic(r)["Spearman"]),
+      effsize.estimate = effsize_list$r,
+      effsize.LL = effsize_list$ci$lower,
+      effsize.UL = effsize_list$ci$upper,
+      n = sample_size,
+      conf.level = conf.level,
+      k = k
+    )
+
+    # return the subtitle
+    return(subtitle)
 }
 
 #' @rdname subtitle_mann_nonparametric
@@ -706,10 +714,11 @@ effsize_t_parametric <- function(formula = NULL,
                                  mu = 0,
                                  paired = FALSE,
                                  hedges.correction = TRUE,
-                                 conf.level = 0.95,
+                                 conf.level = NULL,
+                                 var.equal = NULL,
                                  noncentral = TRUE,
-                                 ...) {
-
+                                 tobject = NULL,
+                                ...) {
 
   # -------------- input checking -------------------
 
@@ -738,18 +747,9 @@ effsize_t_parametric <- function(formula = NULL,
     Z <- -stats::qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
-    tobject <-
-      stats::t.test(
-        x = x,
-        alternative = "two.sided",
-        mu = mu,
-        var.equal = TRUE,
-        na.action = na.omit,
-        conf.level = conf.level
-      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int, "conf.level")
+    civalue <- conf.level
     twosamples <- FALSE
     paired <- NA_character_
   }
@@ -778,28 +778,22 @@ effsize_t_parametric <- function(formula = NULL,
     n <- length(sq.devs)
     n1 <- length(x)
     n2 <- length(y)
-    psd <- sqrt(sum(sq.devs) / (n - 2))
-    sd.est <- psd
+    if (isTRUE(var.equal)) {
+      sd.est <- sqrt(sum(sq.devs) / (n - 2))
+    } else {
+      sd.est <- sqrt((var(x) + var(y))/2)
+    }
     mean.diff <- mean(x) - mean(y)
-    df <- length(x) + length(y) - 2
+    df <- tobject$parameter
     d <- mean.diff / sd.est
     Sigmad <- sqrt((n1 + n2) / (n1 * n2) + 0.5 * d^2 / (n1 + n2))
     Z <- -stats::qt((1 - conf.level) / 2, df)
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
-    tobject <-
-      stats::t.test(
-        x = x,
-        y = y,
-        var.equal = TRUE,
-        alternative = "two.sided",
-        na.action = na.omit,
-        conf.level = conf.level
-      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int, "conf.level")
+    civalue <- conf.level
     twosamples <- TRUE
   }
 
@@ -847,18 +841,9 @@ effsize_t_parametric <- function(formula = NULL,
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
     diffscores <- as.vector(y - x)
-    tobject <-
-      stats::t.test(
-        x = diffscores,
-        alternative = "two.sided",
-        mu = 0,
-        var.equal = TRUE,
-        na.action = na.omit,
-        conf.level = conf.level
-      )
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
-    civalue <- attr(tobject$conf.int, "conf.level")
+    civalue <- conf.level
     twosamples <- FALSE
   }
 

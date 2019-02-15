@@ -6,8 +6,8 @@
 sample designs).}
 \usage{
 effsize_t_parametric(formula = NULL, data = NULL, mu = 0,
-  paired = FALSE, hedges.correction = TRUE, conf.level = 0.95,
-  noncentral = TRUE, ...)
+  paired = FALSE, hedges.correction = TRUE, conf.level = NULL,
+  var.equal = NULL, noncentral = TRUE, tobject = NULL, ...)
 }
 \arguments{
 \item{formula}{This function only accepts the variables in \code{formula} format
@@ -26,6 +26,13 @@ correction, Hedge's \emph{g} (Default: \code{TRUE}).}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
+
+\item{var.equal}{a logical variable indicating whether to treat the
+    variances in the samples as equal.  If \code{TRUE}, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If \code{FALSE}, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.}
 
 \item{noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence intervals (Default: \code{TRUE}).}
