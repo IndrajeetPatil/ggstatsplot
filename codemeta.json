@@ -561,7 +561,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrrlyr",
       "name": "purrrlyr",
-      "version": ">= 0.0.3",
+      "version": ">= 0.0.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

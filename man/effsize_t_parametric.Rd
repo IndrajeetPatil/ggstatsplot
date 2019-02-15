@@ -37,6 +37,8 @@ correction, Hedge's \emph{g} (Default: \code{TRUE}).}
 \item{noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence intervals (Default: \code{TRUE}).}
 
+\item{tobject}{Object with the \emph{t}-test specification.}
+
 \item{...}{Additional arguments.}
 }
 \description{
@@ -102,3 +104,4 @@ ggstatsplot::effsize_t_parametric(
 \author{
 Chuck Powell
 }
+\keyword{internal}

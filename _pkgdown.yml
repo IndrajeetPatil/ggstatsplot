@@ -69,8 +69,3 @@ reference:
       - Titanic_full
       - intent_morality
       - iris_long
-
-  - title: Miscellaneous
-    desc: An uncategorized collection of helper functions.
-    contents:
-      - effsize_t_parametric

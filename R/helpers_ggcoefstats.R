@@ -428,101 +428,41 @@ tfz_labeller <- function(tidy_df,
     # which effect size is needed?
     if (effsize == "eta") {
       if (isTRUE(partial)) {
-        tidy_df %<>%
-          purrrlyr::by_row(
-            .d = .,
-            ..f = ~ paste(
-              "list(~italic(F)",
-              "(",
-              .$df1,
-              "*\",\"*",
-              .$df2,
-              ")==",
-              .$statistic,
-              ", ~italic(p)",
-              .$p.value.formatted2,
-              ", ~italic(eta)[p]^2==",
-              specify_decimal_p(x = .$estimate, k = k),
-              ")",
-              sep = ""
-            ),
-            .collate = "rows",
-            .to = "label",
-            .labels = TRUE
-          )
+        tidy_df$effsize.text <- list(quote(italic(eta)[p]^2))
       } else {
-        tidy_df %<>%
-          purrrlyr::by_row(
-            .d = .,
-            ..f = ~ paste(
-              "list(~italic(F)",
-              "(",
-              .$df1,
-              "*\",\"*",
-              .$df2,
-              ")==",
-              .$statistic,
-              ", ~italic(p)",
-              .$p.value.formatted2,
-              ", ~italic(eta)^2==",
-              specify_decimal_p(x = .$estimate, k = k),
-              ")",
-              sep = ""
-            ),
-            .collate = "rows",
-            .to = "label",
-            .labels = TRUE
-          )
+        tidy_df$effsize.text <- list(quote(italic(eta)^2))
       }
     } else if (effsize == "omega") {
       if (isTRUE(partial)) {
-        tidy_df %<>%
-          purrrlyr::by_row(
-            .d = .,
-            ..f = ~ paste(
-              "list(~italic(F)",
-              "(",
-              .$df1,
-              "*\",\"*",
-              .$df2,
-              ")==",
-              .$statistic,
-              ", ~italic(p)",
-              .$p.value.formatted2,
-              ", ~italic(omega)[p]^2==",
-              specify_decimal_p(x = .$estimate, k = k),
-              ")",
-              sep = ""
-            ),
-            .collate = "rows",
-            .to = "label",
-            .labels = TRUE
-          )
+        tidy_df$effsize.text <- list(quote(italic(omega)[p]^2))
       } else {
-        tidy_df %<>%
-          purrrlyr::by_row(
-            .d = .,
-            ..f = ~ paste(
-              "list(~italic(F)",
-              "(",
-              .$df1,
-              "*\",\"*",
-              .$df2,
-              ")==",
-              .$statistic,
-              ", ~italic(p)",
-              .$p.value.formatted2,
-              ", ~italic(omega)^2==",
-              specify_decimal_p(x = .$estimate, k = k),
-              ")",
-              sep = ""
-            ),
-            .collate = "rows",
-            .to = "label",
-            .labels = TRUE
-          )
+        tidy_df$effsize.text <- list(quote(italic(omega)^2))
       }
     }
+
+    # which effect size is needed?
+    tidy_df %<>%
+      purrrlyr::by_row(
+        .d = .,
+        ..f = ~ paste(
+          "list(~italic(F)",
+          "(",
+          .$df1,
+          "*\",\"*",
+          .$df2,
+          ")==",
+          .$statistic,
+          ", ~italic(p)",
+          .$p.value.formatted2,
+          ", ~", .$effsize.text, "==",
+          specify_decimal_p(x = .$estimate, k = k),
+          ")",
+          sep = ""
+        ),
+        .collate = "rows",
+        .to = "label",
+        .labels = TRUE
+      )
   }
 
   # convert to tibble

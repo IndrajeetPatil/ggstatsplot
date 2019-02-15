@@ -8,9 +8,7 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # checking for errors
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(
-      formula = wt ~ cyl
-    ))
+    testthat::expect_error(ggstatsplot::effsize_t_parametric(formula = wt ~ cyl))
 
     testthat::expect_error(ggstatsplot::effsize_t_parametric(
       formula = wt ~ .,
@@ -38,8 +36,20 @@ testthat::test_that(
 
     # g and central
     set.seed(123)
-    tobject1 <- t.test(formula = wt ~ am, data = mtcars, var.equal = TRUE, conf.level = .95)
-    tobject2 <- t.test(formula = wt ~ cyl, data = mtcars_short, var.equal = TRUE, conf.level = .99)
+    tobject1 <-
+      t.test(
+        formula = wt ~ am,
+        data = mtcars,
+        var.equal = TRUE,
+        conf.level = .95
+      )
+    tobject2 <-
+      t.test(
+        formula = wt ~ cyl,
+        data = mtcars_short,
+        var.equal = TRUE,
+        conf.level = .99
+      )
 
     df1 <- ggstatsplot::effsize_t_parametric(
       formula = wt ~ am,
@@ -105,14 +115,10 @@ testthat::test_that(
     testthat::expect_equal(df2$estimate, df1$estimate, tolerance = 0.001)
     testthat::expect_equal(df2$conf.low, 1.030023, tolerance = 0.001)
     testthat::expect_equal(df2$conf.high, 2.732913, tolerance = 0.001)
-
     testthat::expect_equal(df3$estimate, -1.487072, tolerance = 0.001)
     testthat::expect_equal(df3$conf.low, -2.965202, tolerance = 0.001)
     testthat::expect_equal(df3$conf.high, -0.008940757, tolerance = 0.001)
-
     testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
-#    testthat::expect_equal(df4$conf.low, -2.641733, tolerance = 0.001)
-#    testthat::expect_equal(df4$conf.high, -0.01115432, tolerance = 0.001)
 
     # checking details
     testthat::expect_identical(
@@ -120,7 +126,12 @@ testthat::test_that(
       c("Hedges's g", "Hedges's g", "Cohen's d", "Cohen's d")
     )
     testthat::expect_identical(
-      c(df1$alternative, df2$alternative, df3$alternative, df4$alternative),
+      c(
+        df1$alternative,
+        df2$alternative,
+        df3$alternative,
+        df4$alternative
+      ),
       c(rep("two.sided", 4L))
     )
     testthat::expect_true(df2$noncentral)
@@ -128,7 +139,12 @@ testthat::test_that(
     testthat::expect_true(df4$noncentral)
     testthat::expect_false(df3$noncentral)
     testthat::expect_identical(
-      c(df1$noncentral, df2$noncentral, df3$noncentral, df4$noncentral),
+      c(
+        df1$noncentral,
+        df2$noncentral,
+        df3$noncentral,
+        df4$noncentral
+      ),
       c(FALSE, TRUE, FALSE, TRUE)
     )
     testthat::expect_identical(
@@ -167,8 +183,20 @@ testthat::test_that(
       data = msleep
     ))
 
-    tobject1 <- t.test(formula = brainwt ~ vore, data = msleep_short, var.equal = TRUE, conf.level = .95)
-    tobject2 <- t.test(formula = sleep_rem ~ vore, data = msleep_short, var.equal = TRUE, conf.level = .90)
+    tobject1 <-
+      t.test(
+        formula = brainwt ~ vore,
+        data = msleep_short,
+        var.equal = TRUE,
+        conf.level = .95
+      )
+    tobject2 <-
+      t.test(
+        formula = sleep_rem ~ vore,
+        data = msleep_short,
+        var.equal = TRUE,
+        conf.level = .90
+      )
 
 
     # g and central
@@ -252,7 +280,12 @@ testthat::test_that(
       c("Hedges's g", "Hedges's g", "Cohen's d", "Cohen's d")
     )
     testthat::expect_identical(
-      c(df1$alternative, df2$alternative, df3$alternative, df4$alternative),
+      c(
+        df1$alternative,
+        df2$alternative,
+        df3$alternative,
+        df4$alternative
+      ),
       c(rep("two.sided", 4L))
     )
     testthat::expect_true(df2$noncentral)
@@ -260,7 +293,12 @@ testthat::test_that(
     testthat::expect_true(df4$noncentral)
     testthat::expect_false(df3$noncentral)
     testthat::expect_identical(
-      c(df1$noncentral, df2$noncentral, df3$noncentral, df4$noncentral),
+      c(
+        df1$noncentral,
+        df2$noncentral,
+        df3$noncentral,
+        df4$noncentral
+      ),
       c(FALSE, TRUE, FALSE, TRUE)
     )
     testthat::expect_identical(
@@ -288,15 +326,38 @@ testthat::test_that(
     )
 
     # shouldn't work
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(
-      formula = value ~ condition,
-      data = iris_long,
-      paired = TRUE
-    ))
+    testthat::expect_error(
+      ggstatsplot::effsize_t_parametric(
+        formula = value ~ condition,
+        data = iris_long,
+        paired = TRUE
+      )
+    )
 
-    tobject1 <- t.test(formula = value ~ condition, data = iris_short, var.equal = TRUE, conf.level = .95, paired = TRUE)
-    tobject2 <- t.test(formula = value ~ condition, data = iris_short, var.equal = TRUE, conf.level = .99, paired = TRUE)
-    tobject3 <- t.test(formula = value ~ condition, data = iris_short, var.equal = TRUE, conf.level = .50, paired = TRUE)
+    tobject1 <-
+      t.test(
+        formula = value ~ condition,
+        data = iris_short,
+        var.equal = TRUE,
+        conf.level = .95,
+        paired = TRUE
+      )
+    tobject2 <-
+      t.test(
+        formula = value ~ condition,
+        data = iris_short,
+        var.equal = TRUE,
+        conf.level = .99,
+        paired = TRUE
+      )
+    tobject3 <-
+      t.test(
+        formula = value ~ condition,
+        data = iris_short,
+        var.equal = TRUE,
+        conf.level = .50,
+        paired = TRUE
+      )
 
     # g and central
     set.seed(123)
@@ -360,18 +421,11 @@ testthat::test_that(
     testthat::expect_equal(df1$estimate, -2.828219, tolerance = 0.001)
     testthat::expect_equal(df1$conf.low, -3.569516, tolerance = 0.001)
     testthat::expect_equal(df1$conf.high, -2.115781, tolerance = 0.001)
-
     testthat::expect_equal(df2$estimate, df1$estimate, tolerance = 0.001)
-#    testthat::expect_equal(df2$conf.low, -3.208837, tolerance = 0.001)
-#    testthat::expect_equal(df2$conf.high, -2.489882, tolerance = 0.001)
-
     testthat::expect_equal(df3$estimate, -2.842649, tolerance = 0.001)
     testthat::expect_equal(df3$conf.low, -3.802441, tolerance = 0.001)
     testthat::expect_equal(df3$conf.high, -1.882856, tolerance = 0.001)
-
     testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
-#    testthat::expect_equal(df4$conf.low, -2.971019, tolerance = 0.001)
-#    testthat::expect_equal(df4$conf.high, -2.722362, tolerance = 0.001)
 
     # checking details
     testthat::expect_equal(df4$conf.level, 0.50, tolerance = 0.01)
@@ -381,7 +435,12 @@ testthat::test_that(
       c("Hedges's g", "Hedges's g", "Cohen's d", "Cohen's d")
     )
     testthat::expect_identical(
-      c(df1$alternative, df2$alternative, df3$alternative, df4$alternative),
+      c(
+        df1$alternative,
+        df2$alternative,
+        df3$alternative,
+        df4$alternative
+      ),
       c(rep("two.sided", 4L))
     )
     testthat::expect_true(df2$noncentral)
@@ -389,7 +448,12 @@ testthat::test_that(
     testthat::expect_true(df4$noncentral)
     testthat::expect_false(df3$noncentral)
     testthat::expect_identical(
-      c(df1$noncentral, df2$noncentral, df3$noncentral, df4$noncentral),
+      c(
+        df1$noncentral,
+        df2$noncentral,
+        df3$noncentral,
+        df4$noncentral
+      ),
       c(FALSE, TRUE, FALSE, TRUE)
     )
     testthat::expect_identical(
@@ -427,20 +491,57 @@ testthat::test_that(
     bugs_short <- bugs_short_unequal %>%
       dplyr::filter(.data = ., Subject != 2L, Subject != 80)
 
-    tobject1 <- t.test(formula = value ~ condition, data = bugs_short, var.equal = TRUE, conf.level = .95, paired = TRUE)
-    tobject2 <- t.test(formula = value ~ condition, data = bugs_short, var.equal = TRUE, conf.level = .95, paired = TRUE)
-    tobject3 <- t.test(formula = value ~ condition, data = bugs_short, var.equal = TRUE, conf.level = .90, paired = TRUE)
-    tobject4 <- t.test(formula = value ~ condition, data = bugs_short, var.equal = TRUE, conf.level = .90, paired = TRUE)
-    tobject5 <- t.test(x = bugs$LDLF, y = bugs$LDHF, var.equal = TRUE, conf.level = .90, paired = TRUE)
+    tobject1 <-
+      t.test(
+        formula = value ~ condition,
+        data = bugs_short,
+        var.equal = TRUE,
+        conf.level = .95,
+        paired = TRUE
+      )
+    tobject2 <-
+      t.test(
+        formula = value ~ condition,
+        data = bugs_short,
+        var.equal = TRUE,
+        conf.level = .95,
+        paired = TRUE
+      )
+    tobject3 <-
+      t.test(
+        formula = value ~ condition,
+        data = bugs_short,
+        var.equal = TRUE,
+        conf.level = .90,
+        paired = TRUE
+      )
+    tobject4 <-
+      t.test(
+        formula = value ~ condition,
+        data = bugs_short,
+        var.equal = TRUE,
+        conf.level = .90,
+        paired = TRUE
+      )
+    tobject5 <-
+      t.test(
+        x = bugs$LDLF,
+        y = bugs$LDHF,
+        var.equal = TRUE,
+        conf.level = .90,
+        paired = TRUE
+      )
 
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(
-      formula = value ~ condition,
-      data = bugs_short_unequal,
-      paired = TRUE,
-      hedges.correction = TRUE,
-      conf.level = 0.95,
-      noncentral = FALSE
-    ))
+    testthat::expect_error(
+      ggstatsplot::effsize_t_parametric(
+        formula = value ~ condition,
+        data = bugs_short_unequal,
+        paired = TRUE,
+        hedges.correction = TRUE,
+        conf.level = 0.95,
+        noncentral = FALSE
+      )
+    )
 
     # g and central
     set.seed(123)
@@ -518,20 +619,12 @@ testthat::test_that(
     testthat::expect_equal(df1$conf.high, -0.4634148, tolerance = 0.001)
 
     testthat::expect_equal(df2$estimate, df1$estimate, tolerance = 0.001)
-#    testthat::expect_equal(df2$conf.low, -0.9297575, tolerance = 0.001)
-#    testthat::expect_equal(df2$conf.high, -0.4687366, tolerance = 0.001)
-
     testthat::expect_equal(df3$estimate, -0.6969645, tolerance = 0.001)
     testthat::expect_equal(df3$conf.low, -0.8923415, tolerance = 0.001)
     testthat::expect_equal(df3$conf.high, -0.5015875, tolerance = 0.001)
-
     testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
-#    testthat::expect_equal(df4$conf.low, -0.8925503, tolerance = 0.001)
-#    testthat::expect_equal(df4$conf.high, -0.5056502, tolerance = 0.001)
-
     testthat::expect_equal(df5$estimate, 0.6969645, tolerance = 0.001)
-#    testthat::expect_equal(df5$conf.low, 0.5056489, tolerance = 0.001)
-#    testthat::expect_equal(df5$conf.high, 0.8925545, tolerance = 0.001)
+
 
     # checking details
     testthat::expect_equal(df4$conf.level, 0.90, tolerance = 0.01)
@@ -541,7 +634,12 @@ testthat::test_that(
       c("Hedges's g", "Hedges's g", "Cohen's d", "Cohen's d")
     )
     testthat::expect_identical(
-      c(df1$alternative, df2$alternative, df3$alternative, df4$alternative),
+      c(
+        df1$alternative,
+        df2$alternative,
+        df3$alternative,
+        df4$alternative
+      ),
       c(rep("two.sided", 4L))
     )
     testthat::expect_true(df2$noncentral)
@@ -549,7 +647,12 @@ testthat::test_that(
     testthat::expect_true(df4$noncentral)
     testthat::expect_false(df3$noncentral)
     testthat::expect_identical(
-      c(df1$noncentral, df2$noncentral, df3$noncentral, df4$noncentral),
+      c(
+        df1$noncentral,
+        df2$noncentral,
+        df3$noncentral,
+        df4$noncentral
+      ),
       c(FALSE, TRUE, FALSE, TRUE)
     )
     testthat::expect_identical(
@@ -571,10 +674,34 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
 
-    tobject1 <- t.test(x = dplyr::starwars$height, var.equal = TRUE, conf.level = .99, mu = 175)
-    tobject2 <- t.test(x = dplyr::starwars$height, var.equal = TRUE, conf.level = .90, mu = 175)
-    tobject3 <- t.test(x = dplyr::starwars$height, var.equal = TRUE, conf.level = .99, mu = 100)
-    tobject4 <- t.test(x = dplyr::starwars$height, var.equal = TRUE, conf.level = .90, mu = 100)
+    tobject1 <-
+      t.test(
+        x = dplyr::starwars$height,
+        var.equal = TRUE,
+        conf.level = .99,
+        mu = 175
+      )
+    tobject2 <-
+      t.test(
+        x = dplyr::starwars$height,
+        var.equal = TRUE,
+        conf.level = .90,
+        mu = 175
+      )
+    tobject3 <-
+      t.test(
+        x = dplyr::starwars$height,
+        var.equal = TRUE,
+        conf.level = .99,
+        mu = 100
+      )
+    tobject4 <-
+      t.test(
+        x = dplyr::starwars$height,
+        var.equal = TRUE,
+        conf.level = .90,
+        mu = 100
+      )
 
 
     # d and central
@@ -615,15 +742,17 @@ testthat::test_that(
 
     # g and noncentral
     set.seed(123)
-    df4 <- suppressWarnings(ggstatsplot::effsize_t_parametric(
-      formula = ~height,
-      data = dplyr::starwars,
-      mu = 100,
-      hedges.correction = TRUE,
-      conf.level = 0.90,
-      noncentral = TRUE,
-      tobject = tobject4
-    ))
+    df4 <- suppressWarnings(
+      ggstatsplot::effsize_t_parametric(
+        formula = ~height,
+        data = dplyr::starwars,
+        mu = 100,
+        hedges.correction = TRUE,
+        conf.level = 0.90,
+        noncentral = TRUE,
+        tobject = tobject4
+      )
+    )
 
     # checking estimates and CIs
     testthat::expect_equal(df1$estimate, -0.01846326, tolerance = 0.001)
@@ -646,4 +775,3 @@ testthat::test_that(
     testthat::expect_equal(df3$conf.level, 0.99, tolerance = 0.01)
   }
 )
-

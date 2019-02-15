@@ -55,7 +55,7 @@ Imports:
     paletteer (>= 0.2.1),
     psych (>= 1.8.12),
     purrr (>= 0.3.0),
-    purrrlyr (>= 0.0.3),
+    purrrlyr (>= 0.0.4),
     rlang (>= 0.3.1),
     scales (>= 1.0.0),
     sjstats (>= 0.17.3),

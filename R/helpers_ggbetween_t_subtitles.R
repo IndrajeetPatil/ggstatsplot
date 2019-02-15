@@ -644,6 +644,7 @@ subtitle_t_bayes <- function(data,
 #'   correction, Hedge's *g* (Default: `TRUE`).
 #' @param noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence intervals (Default: `TRUE`).
+#' @param tobject Object with the *t*-test specification.
 #' @inheritParams ggbetweenstats
 #' @inheritParams subtitle_t_parametric
 #'
@@ -706,7 +707,7 @@ subtitle_t_bayes <- function(data,
 #'   noncentral = TRUE
 #' )
 #' }
-#' @export
+#' @keywords internal
 
 # function body
 effsize_t_parametric <- function(formula = NULL,
