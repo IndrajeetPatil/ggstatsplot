@@ -50,7 +50,7 @@ subtitle_t_parametric <- function(data,
                                   var.equal = FALSE,
                                   k = 2,
                                   ...) {
-  ellipsis::check_dots_used()
+
 
   # creating a dataframe
   data <-
@@ -184,7 +184,7 @@ subtitle_mann_nonparametric <- function(data,
                                         conf.level = 0.95,
                                         messages = TRUE,
                                         ...) {
-  ellipsis::check_dots_used()
+
 
   # creating a dataframe
   data <-
@@ -343,7 +343,7 @@ subtitle_t_robust <- function(data,
                               k = 2,
                               messages = TRUE,
                               ...) {
-  ellipsis::check_dots_used()
+
 
   # creating a dataframe
   data <-
@@ -498,7 +498,7 @@ subtitle_t_bayes <- function(data,
                              paired = FALSE,
                              k = 2,
                              ...) {
-  ellipsis::check_dots_used()
+
 
   # creating a dataframe
   data <-
@@ -709,7 +709,7 @@ effsize_t_parametric <- function(formula = NULL,
                                  conf.level = 0.95,
                                  noncentral = TRUE,
                                  ...) {
-  ellipsis::check_dots_used()
+
 
   # -------------- input checking -------------------
 

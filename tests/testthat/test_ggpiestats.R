@@ -16,6 +16,7 @@ testthat::test_that(
       legend.title = "vorarephilia",
       caption = "From ggplot2 package",
       perc.k = 2,
+      nboot = 25,
       slice.label = "both",
       messages = FALSE
     )
@@ -85,6 +86,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with contingency tab",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <- suppressWarnings(
@@ -94,6 +97,7 @@ testthat::test_that(
         condition = "cyl",
         bf.message = TRUE,
         perc.k = 2,
+        nboot = 25,
         package = "wesanderson",
         palette = "Royal2",
         slice.label = "counts",
@@ -115,6 +119,7 @@ testthat::test_that(
         data = mtcars_small,
         main = cyl,
         condition = am,
+        nboot = 25,
         facet.wrap.name = "transmission",
         messages = FALSE
       )
@@ -131,6 +136,7 @@ testthat::test_that(
         main = "am",
         condition = "cyl",
         simulate.p.value = TRUE,
+        nboot = 25,
         B = 3000,
         messages = FALSE
       )
@@ -241,6 +247,7 @@ testthat::test_that(
       data = as.data.frame(Titanic),
       main = Sex,
       condition = Survived,
+      nboot = 25,
       counts = "Freq",
       perc.k = 2,
       conf.level = 0.95,
@@ -254,6 +261,7 @@ testthat::test_that(
       main = Sex,
       condition = Survived,
       counts = Freq,
+      nboot = 25,
       conf.level = 0.95,
       messages = FALSE
     )
@@ -288,6 +296,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with contingency tab (paired)",
   code = {
+    testthat::skip_on_cran()
+
     # data
     set.seed(123)
     survey.data <- data.frame(
@@ -304,6 +314,7 @@ testthat::test_that(
       main = `1st survey`,
       condition = `2nd survey`,
       counts = Counts,
+      nboot = 25,
       paired = TRUE,
       conf.level = 0.90,
       messages = FALSE

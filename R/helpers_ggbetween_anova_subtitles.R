@@ -55,7 +55,7 @@ subtitle_anova_parametric <- function(data,
                                       k = 2,
                                       messages = TRUE,
                                       ...) {
-  ellipsis::check_dots_used()
+
 
   # creating a dataframe
   data <-
@@ -184,7 +184,7 @@ subtitle_kw_nonparametric <-
              conf.level = 0.95,
              conf.type = "norm",
              ...) {
-    ellipsis::check_dots_used()
+
 
     # creating a dataframe
     data <-
@@ -286,7 +286,7 @@ subtitle_friedman_nonparametric <- function(data,
                                             messages = TRUE,
                                             k = 2,
                                             ...) {
-  ellipsis::check_dots_used()
+
 
   # creating a dataframe
   data <-
@@ -423,7 +423,7 @@ subtitle_anova_robust <- function(data,
                                   messages = TRUE,
                                   k = 2,
                                   ...) {
-  ellipsis::check_dots_used()
+
 
   # creating a dataframe
   data <-
@@ -527,7 +527,7 @@ subtitle_anova_bayes <- function(data,
                                  paired = FALSE,
                                  k = 2,
                                  ...) {
-  ellipsis::check_dots_used()
+
 
   # creating a dataframe
   data <-

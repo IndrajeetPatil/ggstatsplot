@@ -297,7 +297,6 @@ pairwise_p <- function(data,
                        k = 2,
                        messages = TRUE,
                        ...) {
-
   ellipsis::check_dots_used()
 
   # ---------------------------- data cleanup -------------------------------
@@ -672,7 +671,6 @@ pairwise_p_caption <- function(type,
                                p.adjust.method = "holm",
                                caption = NULL,
                                ...) {
-
   ellipsis::check_dots_used()
 
   # ======================= pairwise test run ==============================
