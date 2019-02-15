@@ -8,19 +8,19 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # checking for errors
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(formula = wt ~ cyl))
+    testthat::expect_error(ggstatsplot:::effsize_t_parametric(formula = wt ~ cyl))
 
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(
+    testthat::expect_error(ggstatsplot:::effsize_t_parametric(
       formula = wt ~ .,
       data = mtcars
     ))
 
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(
+    testthat::expect_error(ggstatsplot:::effsize_t_parametric(
       formula = wt ~ am + cyl,
       data = mtcars
     ))
 
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(
+    testthat::expect_error(ggstatsplot:::effsize_t_parametric(
       formula = ~ am + cyl,
       data = mtcars
     ))
@@ -29,7 +29,7 @@ testthat::test_that(
     mtcars_short <- dplyr::filter(.data = mtcars, cyl != "4")
 
     # shouldn't work
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(
+    testthat::expect_error(ggstatsplot:::effsize_t_parametric(
       formula = wt ~ cyl,
       data = mtcars
     ))
@@ -51,7 +51,7 @@ testthat::test_that(
         conf.level = .99
       )
 
-    df1 <- ggstatsplot::effsize_t_parametric(
+    df1 <- ggstatsplot:::effsize_t_parametric(
       formula = wt ~ am,
       data = mtcars,
       paired = FALSE,
@@ -63,7 +63,7 @@ testthat::test_that(
 
     # g and non-central
     set.seed(123)
-    df2 <- ggstatsplot::effsize_t_parametric(
+    df2 <- ggstatsplot:::effsize_t_parametric(
       formula = wt ~ am,
       data = mtcars,
       paired = FALSE,
@@ -75,7 +75,7 @@ testthat::test_that(
 
     # d and central
     set.seed(123)
-    df3 <- ggstatsplot::effsize_t_parametric(
+    df3 <- ggstatsplot:::effsize_t_parametric(
       formula = wt ~ cyl,
       data = mtcars_short,
       paired = FALSE,
@@ -87,7 +87,7 @@ testthat::test_that(
 
     # d and non-central
     set.seed(123)
-    df4 <- ggstatsplot::effsize_t_parametric(
+    df4 <- ggstatsplot:::effsize_t_parametric(
       formula = wt ~ cyl,
       data = mtcars_short,
       paired = FALSE,
@@ -178,7 +178,7 @@ testthat::test_that(
     )
 
     # shouldn't work
-    testthat::expect_error(ggstatsplot::effsize_t_parametric(
+    testthat::expect_error(ggstatsplot:::effsize_t_parametric(
       formula = brainwt ~ vore,
       data = msleep
     ))
@@ -201,7 +201,7 @@ testthat::test_that(
 
     # g and central
     set.seed(123)
-    df1 <- ggstatsplot::effsize_t_parametric(
+    df1 <- ggstatsplot:::effsize_t_parametric(
       formula = brainwt ~ vore,
       data = msleep_short,
       paired = FALSE,
@@ -213,7 +213,7 @@ testthat::test_that(
 
     # g and non-central
     set.seed(123)
-    df2 <- ggstatsplot::effsize_t_parametric(
+    df2 <- ggstatsplot:::effsize_t_parametric(
       formula = brainwt ~ vore,
       data = msleep_short,
       paired = FALSE,
@@ -225,7 +225,7 @@ testthat::test_that(
 
     # d and central
     set.seed(123)
-    df3 <- ggstatsplot::effsize_t_parametric(
+    df3 <- ggstatsplot:::effsize_t_parametric(
       formula = sleep_rem ~ vore,
       data = msleep_short,
       paired = FALSE,
@@ -237,7 +237,7 @@ testthat::test_that(
 
     # d and non-central
     set.seed(123)
-    df4 <- ggstatsplot::effsize_t_parametric(
+    df4 <- ggstatsplot:::effsize_t_parametric(
       formula = sleep_rem ~ vore,
       data = msleep_short,
       paired = FALSE,
@@ -327,7 +327,7 @@ testthat::test_that(
 
     # shouldn't work
     testthat::expect_error(
-      ggstatsplot::effsize_t_parametric(
+      ggstatsplot:::effsize_t_parametric(
         formula = value ~ condition,
         data = iris_long,
         paired = TRUE
@@ -361,7 +361,7 @@ testthat::test_that(
 
     # g and central
     set.seed(123)
-    df1 <- ggstatsplot::effsize_t_parametric(
+    df1 <- ggstatsplot:::effsize_t_parametric(
       formula = value ~ condition,
       data = iris_short,
       paired = TRUE,
@@ -373,7 +373,7 @@ testthat::test_that(
 
     # g and non-central
     set.seed(123)
-    df2 <- ggstatsplot::effsize_t_parametric(
+    df2 <- suppressWarnings(ggstatsplot:::effsize_t_parametric(
       formula = value ~ condition,
       data = iris_short,
       paired = TRUE,
@@ -381,11 +381,11 @@ testthat::test_that(
       conf.level = 0.95,
       noncentral = TRUE,
       tobject = tobject1
-    )
+    ))
 
     # d and central
     set.seed(123)
-    df3 <- ggstatsplot::effsize_t_parametric(
+    df3 <- ggstatsplot:::effsize_t_parametric(
       formula = value ~ condition,
       data = iris_short,
       paired = TRUE,
@@ -397,7 +397,7 @@ testthat::test_that(
 
     # d and non-central
     set.seed(123)
-    df4 <- ggstatsplot::effsize_t_parametric(
+    df4 <- suppressWarnings(ggstatsplot:::effsize_t_parametric(
       formula = value ~ condition,
       data = iris_short,
       paired = TRUE,
@@ -405,7 +405,7 @@ testthat::test_that(
       conf.level = 0.50,
       noncentral = TRUE,
       tobject = tobject3
-    )
+    ))
 
     # checking attributes of dataframe
     testthat::expect_identical(
@@ -533,7 +533,7 @@ testthat::test_that(
       )
 
     testthat::expect_error(
-      ggstatsplot::effsize_t_parametric(
+      ggstatsplot:::effsize_t_parametric(
         formula = value ~ condition,
         data = bugs_short_unequal,
         paired = TRUE,
@@ -545,7 +545,7 @@ testthat::test_that(
 
     # g and central
     set.seed(123)
-    df1 <- ggstatsplot::effsize_t_parametric(
+    df1 <- ggstatsplot:::effsize_t_parametric(
       formula = value ~ condition,
       data = bugs_short,
       paired = TRUE,
@@ -557,7 +557,7 @@ testthat::test_that(
 
     # g and non-central
     set.seed(123)
-    df2 <- ggstatsplot::effsize_t_parametric(
+    df2 <- ggstatsplot:::effsize_t_parametric(
       formula = value ~ condition,
       data = bugs_short,
       paired = TRUE,
@@ -569,7 +569,7 @@ testthat::test_that(
 
     # d and central
     set.seed(123)
-    df3 <- ggstatsplot::effsize_t_parametric(
+    df3 <- ggstatsplot:::effsize_t_parametric(
       formula = value ~ condition,
       data = bugs_short,
       paired = TRUE,
@@ -581,7 +581,7 @@ testthat::test_that(
 
     # d and non-central
     set.seed(123)
-    df4 <- ggstatsplot::effsize_t_parametric(
+    df4 <- ggstatsplot:::effsize_t_parametric(
       formula = value ~ condition,
       data = bugs_short,
       paired = TRUE,
@@ -593,7 +593,7 @@ testthat::test_that(
 
     # not tidy data
     set.seed(123)
-    df5 <- ggstatsplot::effsize_t_parametric(
+    df5 <- ggstatsplot:::effsize_t_parametric(
       formula = LDLF ~ LDHF,
       data = bugs,
       paired = TRUE,
@@ -706,7 +706,7 @@ testthat::test_that(
 
     # d and central
     set.seed(123)
-    df1 <- ggstatsplot::effsize_t_parametric(
+    df1 <- ggstatsplot:::effsize_t_parametric(
       formula = ~height,
       data = dplyr::starwars,
       mu = 175,
@@ -718,7 +718,7 @@ testthat::test_that(
 
     # d and noncentral
     set.seed(123)
-    df2 <- ggstatsplot::effsize_t_parametric(
+    df2 <- ggstatsplot:::effsize_t_parametric(
       formula = ~height,
       data = dplyr::starwars,
       mu = 175,
@@ -730,7 +730,7 @@ testthat::test_that(
 
     # g and central
     set.seed(123)
-    df3 <- ggstatsplot::effsize_t_parametric(
+    df3 <- ggstatsplot:::effsize_t_parametric(
       formula = ~height,
       data = dplyr::starwars,
       hedges.correction = TRUE,
@@ -743,7 +743,7 @@ testthat::test_that(
     # g and noncentral
     set.seed(123)
     df4 <- suppressWarnings(
-      ggstatsplot::effsize_t_parametric(
+      ggstatsplot:::effsize_t_parametric(
         formula = ~height,
         data = dplyr::starwars,
         mu = 100,

@@ -181,8 +181,8 @@ sample designs).</p>
     </div>
 
     <pre class="usage"><span class='fu'>effsize_t_parametric</span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tobject</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -217,9 +217,22 @@ correction, Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
 <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
+      <th>var.equal</th>
+      <td><p>a logical variable indicating whether to treat the
+    variances in the samples as equal.  If <code>TRUE</code>, then a simple F
+    test for the equality of means in a one-way analysis of variance is
+    performed.  If <code>FALSE</code>, an approximate method of Welch (1951)
+    is used, which generalizes the commonly known 2-sample Welch test to
+    the case of arbitrarily many samples.</p></td>
+    </tr>
+    <tr>
       <th>noncentral</th>
       <td><p>Logical indicating whether to use non-central
 <em>t</em>-distributions for computing the confidence intervals (Default: <code>TRUE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>tobject</th>
+      <td><p>Object with the <em>t</em>-test specification.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -260,11 +273,7 @@ Confidence Intervals on Effect Size, retrieved from
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
-)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 9</span><span>
-#&gt;   method estimate conf.low conf.high conf.level alternative paired noncentral
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Hedge~    0.716  -</span><span style='color: #BB0000;'>0.031</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>      1.49       0.95 two.sided   FALSE  TRUE      
-#&gt; </span><span style='color: #949494;'># ... with 1 more variable: var.equal </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='error'>Error: 'effsize_t_parametric' is not an exported object from 'namespace:ggstatsplot'</span></div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
@@ -274,11 +283,7 @@ Confidence Intervals on Effect Size, retrieved from
   <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.99</span>,
   <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 9</span><span>
-#&gt;   method estimate conf.low conf.high conf.level alternative paired noncentral
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Hedge~    0.716   -</span><span style='color: #BB0000;'>0.326</span><span>      1.79       0.99 two.sided   FALSE  FALSE     
-#&gt; </span><span style='color: #949494;'># ... with 1 more variable: var.equal </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='error'>Error: 'effsize_t_parametric' is not an exported object from 'namespace:ggstatsplot'</span></div><div class='input'>
 <span class='co'>#---------------- one-sample test ------------------------------------</span>
 
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
@@ -288,11 +293,7 @@ Confidence Intervals on Effect Size, retrieved from
   <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.90</span>,
   <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 9</span><span>
-#&gt;   method estimate conf.low conf.high conf.level alternative paired noncentral
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Hedge~   -</span><span style='color: #BB0000;'>0.269</span><span>   -</span><span style='color: #BB0000;'>0.570</span><span>    0.014</span><span style='text-decoration: underline;'>0</span><span>        0.9 two.sided   </span><span style='color: #BB0000;'>NA</span><span>     TRUE      
-#&gt; </span><span style='color: #949494;'># ... with 1 more variable: var.equal </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div></span></pre>
+)</div><div class='output co'>#&gt; <span class='error'>Error: 'effsize_t_parametric' is not an exported object from 'namespace:ggstatsplot'</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

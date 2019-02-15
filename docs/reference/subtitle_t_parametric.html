@@ -181,7 +181,7 @@ designs).</p>
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_t_parametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
-  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -260,8 +260,8 @@ or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
 )</div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "10.89", ") = ", "1.49", ", ", 
-#&gt;     italic("p"), " = ", "0.164", ", ", italic("g"), " = ", "0.72", 
-#&gt;     ", CI"["95%"], " [", "-0.05", ", ", "1.52", "]", ", ", italic("n"), 
+#&gt;     italic("p"), " = ", "0.164", ", ", italic("g"), " = ", "0.61", 
+#&gt;     ", CI"["95%"], " [", "-0.22", ", ", "1.32", "]", ", ", italic("n"), 
 #&gt;     " = ", 34L)</div><div class='input'>
 <span class='co'># changing defaults</span>
 <span class='fu'>subtitle_t_parametric</span>(
@@ -273,7 +273,7 @@ or Hedge's <em>g</em> (Default: <code>FALSE</code>).</p></td>
   <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"d"</span>
 )</div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "32", ") = ", "1.95", ", ", italic("p"), 
 #&gt;     " = ", "0.060", ", ", italic("d"), " = ", "0.73", ", CI"["95%"], 
-#&gt;     " [", "-0.05", ", ", "1.52", "]", ", ", italic("n"), " = ", 
+#&gt;     " [", "-0.03", ", ", "1.49", "]", ", ", italic("n"), " = ", 
 #&gt;     34L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
