@@ -7,12 +7,13 @@ test for independence for between-subjects design or McNemar's test for
 within-subjects design)}
 \usage{
 subtitle_contingency_tab(data, main, condition, counts = NULL,
-  nboot = 25, paired = FALSE, stat.title = NULL, conf.level = 0.95,
-  conf.type = "norm", simulate.p.value = FALSE, B = 2000, k = 2,
-  messages = TRUE, ...)
+  nboot = 100, paired = FALSE, stat.title = NULL,
+  conf.level = 0.95, conf.type = "norm", simulate.p.value = FALSE,
+  B = 2000, k = 2, messages = TRUE, ...)
 }
 \arguments{
-\item{data}{The data as a data frame (matrix or tables will not be accepted).}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{main}{The variable to use as the \strong{rows} in the
 contingency table.}
@@ -24,7 +25,7 @@ table.}
 if each row represents a single observation (Default).}
 
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{25}).}
+\code{100}).}
 
 \item{paired}{Logical indicating whether data came from a within-subjects
 design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
@@ -54,7 +55,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{Additional arguments (currently ignored).}
+\item{...}{Additional arguments.}
 }
 \description{
 Making text subtitle for contingency analysis (Pearson's chi-square

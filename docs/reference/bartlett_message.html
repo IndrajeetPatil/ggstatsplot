@@ -177,15 +177,16 @@ default linear model.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bartlett_message</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>)</pre>
+    <pre class="usage"><span class='fu'>bartlett_message</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>lab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"message"</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A dataframe from which variables specified are preferentially to
-be taken.</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -210,6 +211,10 @@ name will be used.</p></td>
       <th>output</th>
       <td><p>What output is desired: <code>"message"</code> (default) or <code>"stats"</code> (or
 <code>"tidy"</code>) objects.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments (ignored).</p></td>
     </tr>
     </table>
     
@@ -250,10 +255,10 @@ name will be used.</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
+)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 4</span><span>
 #&gt;   statistic p.value parameter method                                   
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                    
-#&gt; </span><span style='color: #555555;'>1</span><span>     0.715   0.398         1 Bartlett test of homogeneity of variances</div></span></pre>
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                    
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0.715   0.398         1 Bartlett test of homogeneity of variances</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

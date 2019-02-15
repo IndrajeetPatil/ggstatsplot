@@ -6,11 +6,11 @@
 \usage{
 subtitle_ggscatterstats(data, x, y, nboot = 100, beta = 0.1,
   type = "pearson", bf.prior = 0.707, conf.level = 0.95,
-  conf.type = "norm", messages = TRUE, k = 2)
+  conf.type = "norm", messages = TRUE, k = 2, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{A vector containing the explanatory variable.}
 
@@ -42,7 +42,10 @@ intervals required. The value should be any subset of the values \code{"norm"},
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{k}{Number of decimal places expected for results.}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
+
+\item{...}{further arguments to be passed to or from methods.}
 }
 \description{
 Making text subtitle for the correlation test.

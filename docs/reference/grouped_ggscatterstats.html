@@ -203,7 +203,8 @@ subtitle.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Dataframe from which variables are to be taken.</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -239,8 +240,8 @@ to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
-      <td><p>Logical. Decides whether to display Bayes Factor in favor
-of <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>FALSE</code>).</p></td>
+      <td><p>Logical that decides whether to display Bayes Factor in
+favor of the <em>null</em> hypothesis <strong>for parametric test</strong> (Default: <code>FALSE</code>).</p></td>
     </tr>
     <tr>
       <th>label.var</th>
@@ -267,11 +268,13 @@ variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for <code>x</code> axis variable. The default is the variable name.</p></td>
+      <td><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
+variable names for <code>x</code> and <code>y</code> will be used.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for <code>y</code> axis variable. The default is the variable name.</p></td>
+      <td><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
+variable names for <code>x</code> and <code>y</code> will be used.</p></td>
     </tr>
     <tr>
       <th>method</th>
@@ -435,7 +438,8 @@ the plot will be returned.</p></td>
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Number of decimal places expected for results.</p></td>
+      <td><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2</code>).</p></td>
     </tr>
     <tr>
       <th>axes.range.restrict</th>

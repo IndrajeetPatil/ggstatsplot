@@ -9,12 +9,10 @@
 #'   Corresponding abbreviations are also accepted: `"p"` (for
 #'   parametric/pearson's), `"np"` (nonparametric/spearman), `"r"` (robust),
 #'   `"bf"` (for bayes factor), resp.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
 #' @inheritParams robcor_ci
 #' @inheritParams cor_test_ci
 #' @inheritParams bf_corr_test
-#' @inheritParams subtitle_t_parametric
+#' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -52,7 +50,9 @@ subtitle_ggscatterstats <- function(data,
                                     conf.level = 0.95,
                                     conf.type = "norm",
                                     messages = TRUE,
-                                    k = 2) {
+                                    k = 2,
+                                    ...) {
+  ellipsis::check_dots_used()
 
   #------------------------ dataframe -------------------------------------
 

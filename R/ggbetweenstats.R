@@ -7,16 +7,11 @@
 #'   the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
-#' @param data A dataframe from which variables specified are preferentially to
-#'   be taken.
-#' @param x The grouping variable from the dataframe `data`.
-#' @param y The response (a.k.a. outcome or dependent) variable from the
-#'   dataframe `data`.
 #' @param plot.type Character describing the *type* of plot. Currently supported
 #'   plots are `"box"` (for pure boxplots), `"violin"` (for pure violin plots),
 #'   and `"boxviolin"` (for a combination of box and violin plots; default).
-#' @param xlab Label for `x` axis variable.
-#' @param ylab Label for `y` axis variable.
+#' @param xlab,ylab Labels for `x` and `y` axis variables. If `NULL` (default),
+#'   variable names for `x` and `y` will be used.
 #' @param type Type of statistic expected (`"parametric"` or `"nonparametric"`
 #'   or `"robust"` or `"bayes"`).Corresponding abbreviations are also accepted:
 #'   `"p"` (for parametric), `"np"` (nonparametric), `"r"` (robust), or
@@ -102,12 +97,15 @@
 #'   as a function. If the given function has an argument `axes.range.restrict`
 #'   and if it has been set to `TRUE`, the added ggplot component *might* not
 #'   work as expected.
+#' @param axes.range.restrict Logical that decides whether to restrict the axes
+#'   values ranges to `min` and `max` values of the axes variables (Default:
+#'   `FALSE`), only relevant for functions where axes variables are of numeric
+#'   type.
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
+#' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams subtitle_t_parametric
-#' @inheritParams t1way_ci
-#' @inheritParams ggscatterstats
 #'
 #' @import ggplot2
 #'

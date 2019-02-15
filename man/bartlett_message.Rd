@@ -4,11 +4,12 @@
 \alias{bartlett_message}
 \title{Display homogeneity of variance test as a message}
 \usage{
-bartlett_message(data, x, y, lab = NULL, k = 2, output = "message")
+bartlett_message(data, x, y, lab = NULL, k = 2, output = "message",
+  ...)
 }
 \arguments{
-\item{data}{A dataframe from which variables specified are preferentially to
-be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The grouping variable from the dataframe \code{data}.}
 
@@ -23,6 +24,8 @@ name will be used.}
 
 \item{output}{What output is desired: \code{"message"} (default) or \code{"stats"} (or
 \code{"tidy"}) objects.}
+
+\item{...}{Additional arguments (ignored).}
 }
 \value{
 A list of class \code{"htest"} containing the following components:

@@ -7,8 +7,8 @@
 long_to_wide_converter(data, x, y, paired = TRUE)
 }
 \arguments{
-\item{data}{A dataframe from which variables specified are preferentially to
-be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{The grouping variable from the dataframe \code{data}.}
 

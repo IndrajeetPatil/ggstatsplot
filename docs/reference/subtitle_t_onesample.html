@@ -180,17 +180,17 @@ robust equivalents.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_t_onesample</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>,
-  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_t_onesample</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"parametric"</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Dataframe from which variables specified are preferentially to be
-taken. This argument is optional.</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -221,8 +221,8 @@ to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
-      <td><p>A scalar value between 0 and 1. If unspecified, the
-default is to return <code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -239,6 +239,10 @@ default is to return <code>95%</code> lower and upper confidence intervals (<cod
       <td><p>Decides whether messages references, notes, and warnings are
 to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -251,8 +255,10 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
-<span class='fu'>subtitle_t_onesample</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>,
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_onesample.html'>subtitle_t_onesample</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>,
+  <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"r"</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>95% CI for robust location measure computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(italic("M")[robust], " = ", "5.82", ", CI"["95%"], " [", 

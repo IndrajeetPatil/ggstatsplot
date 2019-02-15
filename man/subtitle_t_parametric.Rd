@@ -10,12 +10,13 @@ subtitle_t_parametric(data, x, y, paired = FALSE, effsize.type = "g",
   k = 2, ...)
 }
 \arguments{
-\item{data}{Dataframe (or a tibble) from which variables specified are
-preferentially to be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{x}{The grouping variable.}
+\item{x}{The grouping variable from the dataframe \code{data}.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{paired}{a logical indicating whether you want a paired
     t-test.}
@@ -30,8 +31,8 @@ omega-squared for \strong{anova})).}
 \emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
 or Hedge's \emph{g} (Default: \code{FALSE}).}
 
-\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
-default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{var.equal}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F
@@ -43,7 +44,7 @@ default is to return \code{95\%} lower and upper confidence intervals (\code{0.9
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{Additional arguments (ignored).}
+\item{...}{Additional arguments.}
 }
 \description{
 Making text subtitle for the t-test (between-/within-subjects

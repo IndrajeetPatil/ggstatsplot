@@ -187,7 +187,8 @@ variables.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>The data as a data frame (matrix or tables will not be accepted).</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>main</th>
@@ -207,20 +208,20 @@ table.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cat_counter.html'>cat_counter</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='st'>"drv"</span>, <span class='no'>cyl</span>, <span class='st'>"fl"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 22 x 5</span><span>
+    <pre class="examples"><div class='input'><span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cat_counter.html'>cat_counter</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='st'>"drv"</span>, <span class='no'>cyl</span>, <span class='st'>"fl"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 22 x 5</span><span>
 #&gt;      cyl drv   fl    counts   perc
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     6 r     r          4 100   
-#&gt; </span><span style='color: #555555;'> 2</span><span>     8 r     e          1   4.76
-#&gt; </span><span style='color: #555555;'> 3</span><span>     8 r     p          7  33.3 
-#&gt; </span><span style='color: #555555;'> 4</span><span>     8 r     r         13  61.9 
-#&gt; </span><span style='color: #555555;'> 5</span><span>     4 f     c          1   1.72
-#&gt; </span><span style='color: #555555;'> 6</span><span>     4 f     d          3   5.17
-#&gt; </span><span style='color: #555555;'> 7</span><span>     4 f     p         14  24.1 
-#&gt; </span><span style='color: #555555;'> 8</span><span>     4 f     r         40  69.0 
-#&gt; </span><span style='color: #555555;'> 9</span><span>     5 f     r          4 100   
-#&gt; </span><span style='color: #555555;'>10</span><span>     6 f     e          1   2.33
-#&gt; </span><span style='color: #555555;'># ... with 12 more rows</span><span></div></span></pre>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     6 r     r          4 100   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     8 r     e          1   4.76
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     8 r     p          7  33.3 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     8 r     r         13  61.9 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     4 f     c          1   1.72
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     4 f     d          3   5.17
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     4 f     p         14  24.1 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     4 f     r         40  69.0 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     5 f     r          4 100   
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     6 f     e          1   2.33
+#&gt; </span><span style='color: #949494;'># ... with 12 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -7,25 +7,25 @@ sample designs).}
 \usage{
 effsize_t_parametric(formula = NULL, data = NULL, mu = 0,
   paired = FALSE, hedges.correction = TRUE, conf.level = NULL,
-  var.equal = NULL, noncentral = TRUE, tobject = NULL)
+  var.equal = NULL, noncentral = TRUE, tobject = NULL, ...)
 }
 \arguments{
-\item{formula}{This function only accepts the variables in
-\code{formula} format e.g. \code{sleep_rem ~ vore} or \code{~ vore}.}
+\item{formula}{This function only accepts the variables in \code{formula} format
+e.g. \code{sleep_rem ~ vore} or \code{~ vore}.}
 
-\item{data}{Dataframe (or a tibble) from which variables specified are
-preferentially to be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{mu}{If conducting a single sample test against a mean (Default: \code{0}).}
 
 \item{paired}{a logical indicating whether you want a paired
     t-test.}
 
-\item{hedges.correction}{Logical indicating whether to apply Hedges correction,
-Hedge's \emph{g} (Default: \code{TRUE}).}
+\item{hedges.correction}{Logical indicating whether to apply Hedges
+correction, Hedge's \emph{g} (Default: \code{TRUE}).}
 
-\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
-default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{var.equal}{a logical variable indicating whether to treat the
     variances in the samples as equal.  If \code{TRUE}, then a simple F
@@ -36,6 +36,8 @@ default is to return \code{95\%} lower and upper confidence intervals (\code{0.9
 
 \item{noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence intervals (Default: \code{TRUE}).}
+
+\item{...}{Additional arguments.}
 }
 \description{
 Calculating Cohen's \emph{d} or Hedge's \emph{g} (for between-/within- or one

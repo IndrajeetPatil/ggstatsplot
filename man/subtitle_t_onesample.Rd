@@ -5,13 +5,13 @@
 \title{Making text subtitle for one sample t-test and its nonparametric and
 robust equivalents.}
 \usage{
-subtitle_t_onesample(data = NULL, x, type = "parametric",
-  test.value = 0, bf.prior = 0.707, robust.estimator = "onestep",
-  conf.level = 0.95, nboot = 100, k = 2, messages = TRUE)
+subtitle_t_onesample(data, x, type = "parametric", test.value = 0,
+  bf.prior = 0.707, robust.estimator = "onestep", conf.level = 0.95,
+  nboot = 100, k = 2, messages = TRUE, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken. This argument is optional.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{A numeric variable.}
 
@@ -30,8 +30,8 @@ to use in calculating Bayes factors.}
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
 
-\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
-default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{nboot}{Number of bootstrap samples for robust one-sample location test
 (Default: \code{100}).}
@@ -41,6 +41,8 @@ default is to return \code{95\%} lower and upper confidence intervals (\code{0.9
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{...}{Additional arguments.}
 }
 \description{
 Making text subtitle for one sample t-test and its nonparametric and
@@ -51,8 +53,10 @@ robust equivalents.
 # for reproducibility
 set.seed(123)
 
-subtitle_t_onesample(
-  x = iris$Sepal.Length,
+ggstatsplot::subtitle_t_onesample(
+  data = iris,
+  x = Sepal.Length,
+  test.value = 5,
   type = "r"
 )
 }

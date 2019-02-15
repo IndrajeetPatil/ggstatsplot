@@ -46,8 +46,8 @@ effect size, its lower bound, and its upper.}
 
 \item{n}{An integer specifying the sample size used for the test.}
 
-\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
-default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{k}{Number of decimal places to display (default: \code{3}).}
 

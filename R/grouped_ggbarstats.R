@@ -5,9 +5,9 @@
 #'   resulting plots using `ggstatsplot::combine_plots`.
 #' @author Indrajeet Patil, Chuck Powell
 #'
+#' @inheritDotParams combine_plots
 #' @inheritParams ggbarstats
 #' @inheritParams grouped_ggbetweenstats
-#' @inheritDotParams combine_plots
 #'
 #' @import ggplot2
 #'
@@ -90,7 +90,7 @@ grouped_ggbarstats <- function(data,
                                legend.position = "right",
                                x.axis.orientation = NULL,
                                conf.level = 0.95,
-                               nboot = 25,
+                               nboot = 100,
                                simulate.p.value = FALSE,
                                B = 2000,
                                legend.title = NULL,

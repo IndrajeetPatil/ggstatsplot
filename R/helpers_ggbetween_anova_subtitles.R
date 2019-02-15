@@ -2,20 +2,17 @@
 #' @name subtitle_anova_parametric
 #' @author Indrajeet Patil
 #'
-#' @param data Dataframe (or a tibble) from which variables specified are
-#'   preferentially to be taken.
-#' @param x The grouping variable.
-#' @param y The response - a vector of length the number of rows of `x`.
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `100`).
+#' @inheritParams t1way_ci
 #' @param effsize.type Type of effect size needed for *parametric* tests. The
 #'   argument can be `"biased"` (`"d"` for Cohen's *d* for **t-test**;
 #'   `"partial_eta"` for partial eta-squared for **anova**) or `"unbiased"`
 #'   (`"g"` Hedge's *g* for **t-test**; `"partial_omega"` for partial
 #'   omega-squared for **anova**)).
+#' @param k Number of digits after decimal point (should be an integer)
+#'   (Default: `k = 2`).
 #' @param messages Decides whether messages references, notes, and warnings are
 #'   to be displayed (Default: `TRUE`).
-#' @param ... Additional arguments (ignored).
+#' @param ... Additional arguments.
 #' @inheritParams stats::oneway.test
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams lm_effsize_standardizer
@@ -58,6 +55,8 @@ subtitle_anova_parametric <- function(data,
                                       k = 2,
                                       messages = TRUE,
                                       ...) {
+
+
   # creating a dataframe
   data <-
     dplyr::select(
@@ -186,6 +185,7 @@ subtitle_kw_nonparametric <-
              conf.type = "norm",
              ...) {
 
+
     # creating a dataframe
     data <-
       dplyr::select(
@@ -287,6 +287,7 @@ subtitle_friedman_nonparametric <- function(data,
                                             k = 2,
                                             ...) {
 
+
   # creating a dataframe
   data <-
     dplyr::select(
@@ -379,11 +380,8 @@ subtitle_friedman_nonparametric <- function(data,
 #' @name subtitle_anova_robust
 #' @author Indrajeet Patil
 #'
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
-#' @param ... Additional arguments (ignored).
 #' @inheritParams t1way_ci
-#' @inheritParams subtitle_t_parametric
+#' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
@@ -425,6 +423,7 @@ subtitle_anova_robust <- function(data,
                                   messages = TRUE,
                                   k = 2,
                                   ...) {
+
 
   # creating a dataframe
   data <-
@@ -528,6 +527,7 @@ subtitle_anova_bayes <- function(data,
                                  paired = FALSE,
                                  k = 2,
                                  ...) {
+
 
   # creating a dataframe
   data <-

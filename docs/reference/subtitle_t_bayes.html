@@ -183,16 +183,17 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Dataframe (or a tibble) from which variables specified are
-preferentially to be taken.</p></td>
+      <td><p>A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping variable.</p></td>
+      <td><p>The grouping variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>The response - a vector of length the number of rows of <code>x</code>.</p></td>
+      <td><p>The response (a.k.a. outcome or dependent) variable from the
+dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
@@ -211,7 +212,7 @@ to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments (ignored).</p></td>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     
@@ -227,12 +228,7 @@ to use in calculating Bayes factors.</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>am</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>wt</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='message'>Registered S3 methods overwritten by 'car':</span>
-#&gt; <span class='message'>  method                          from</span>
-#&gt; <span class='message'>  influence.merMod                lme4</span>
-#&gt; <span class='message'>  cooks.distance.influence.merMod lme4</span>
-#&gt; <span class='message'>  dfbeta.influence.merMod         lme4</span>
-#&gt; <span class='message'>  dfbetas.influence.merMod        lme4</span></div><div class='output co'>#&gt; paste(italic("t"), "(", 30, ") = ", "5.26", ", log"["e"], "(BF"["10"], 
+)</div><div class='output co'>#&gt; paste(italic("t"), "(", 30, ") = ", "5.26", ", log"["e"], "(BF"["10"], 
 #&gt;     ") = ", "7.2", ", ", italic("r")["Cauchy"], " = ", "0.707", 
 #&gt;     ", ", italic("d"), " = ", "1.89", ", ", italic("n"), " = ", 
 #&gt;     32L)</div><div class='input'>

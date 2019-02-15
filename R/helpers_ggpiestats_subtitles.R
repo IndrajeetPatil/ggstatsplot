@@ -4,7 +4,6 @@
 #' @name subtitle_contingency_tab
 #' @author Indrajeet Patil
 #'
-#' @param data The data as a data frame (matrix or tables will not be accepted).
 #' @param main The variable to use as the **rows** in the
 #'   contingency table.
 #' @param condition The variable to use as the **columns** in the contingency
@@ -18,12 +17,10 @@
 #'   test. The default is `NULL`, i.e. no title will be added to describe the
 #'   effect being shown. An example of a `stat.title` argument will be something
 #'   like `"main x condition"` or `"interaction"`.
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
 #' @inheritParams chisq_v_ci
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams stats::chisq.test
-#' @param ... Additional arguments (currently ignored).
+#' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom tibble tribble as_tibble
 #' @importFrom exact2x2 exact2x2
@@ -62,7 +59,7 @@ subtitle_contingency_tab <- function(data,
                                      main,
                                      condition,
                                      counts = NULL,
-                                     nboot = 25,
+                                     nboot = 100,
                                      paired = FALSE,
                                      stat.title = NULL,
                                      conf.level = 0.95,
@@ -72,6 +69,7 @@ subtitle_contingency_tab <- function(data,
                                      k = 2,
                                      messages = TRUE,
                                      ...) {
+  ellipsis::check_dots_used()
 
   # =============================== dataframe ================================
 
@@ -262,7 +260,6 @@ subtitle_contingency_tab <- function(data,
 #'   c(1,1)`, etc.
 #' @param legend.title Title text for the legend.
 #' @inheritParams subtitle_contingency_tab
-#' @param ... Additional arguments (currently ignored).
 #'
 #' @examples
 #'
@@ -290,6 +287,7 @@ subtitle_onesample_proptest <- function(data,
                                         legend.title = NULL,
                                         k = 2,
                                         ...) {
+  ellipsis::check_dots_used()
 
   # saving the column label for the 'main' variables
   if (is.null(legend.title)) {

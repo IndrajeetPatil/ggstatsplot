@@ -10,12 +10,13 @@ subtitle_t_robust(data, x, y, tr = 0.1, paired = FALSE, nboot = 100,
   ...)
 }
 \arguments{
-\item{data}{Dataframe (or a tibble) from which variables specified are
-preferentially to be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{x}{The grouping variable.}
+\item{x}{The grouping variable from the dataframe \code{data}.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. If you
 get error stating "Standard error cannot be computed because of Winsorized
@@ -29,8 +30,8 @@ try to play around with the value of \code{tr}, which is by default set to
 \item{nboot}{Number of bootstrap samples for computing effect size (Default:
 \code{100}).}
 
-\item{conf.level}{A scalar value between 0 and 1. If unspecified, the
-default is to return \code{95\%} lower and upper confidence intervals (\code{0.95}).}
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{conf.type}{A vector of character strings representing the type of
 intervals required. The value should be any subset of the values \code{"norm"},
@@ -42,7 +43,7 @@ intervals required. The value should be any subset of the values \code{"norm"},
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{Additional arguments (ignored).}
+\item{...}{Additional arguments.}
 }
 \description{
 Making text subtitle for the robust t-test

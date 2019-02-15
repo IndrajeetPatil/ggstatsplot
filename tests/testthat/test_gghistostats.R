@@ -150,7 +150,8 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <-
       ggstatsplot::subtitle_t_onesample(
-        x = ggplot2::mpg$cty,
+        data = ggplot2::mpg,
+        x = cty,
         type = "np",
         test.value = 20,
         k = 3,
@@ -273,7 +274,8 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <-
       ggstatsplot::subtitle_t_onesample(
-        x = mtcars$wt,
+        data = mtcars,
+        x = wt,
         test.value = 2.5,
         type = "r",
         messages = FALSE
@@ -356,7 +358,8 @@ testthat::test_that(
     set.seed(123)
     p_subtitle <-
       ggstatsplot::subtitle_t_onesample(
-        x = morley$Speed,
+        data = morley,
+        x = Speed,
         test.value = 2.5,
         type = "bf",
         messages = FALSE

@@ -124,7 +124,8 @@ testthat::test_that(
     using_function <-
       suppressWarnings(
         ggstatsplot::subtitle_t_onesample(
-          x = anscombe$x1,
+          data = anscombe,
+          x = x1,
           test.value = 8,
           type = "r",
           k = 4,
@@ -172,7 +173,8 @@ testthat::test_that(
     using_function <-
       suppressWarnings(
         ggstatsplot::subtitle_t_onesample(
-          x = anscombe$x2,
+          data = anscombe,
+          x = x2,
           test.value = 8,
           type = "bf",
           messages = FALSE

@@ -8,12 +8,13 @@ subtitle_t_bayes(data, x, y, bf.prior = 0.707, paired = FALSE, k = 2,
   ...)
 }
 \arguments{
-\item{data}{Dataframe (or a tibble) from which variables specified are
-preferentially to be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
-\item{x}{The grouping variable.}
+\item{x}{The grouping variable from the dataframe \code{data}.}
 
-\item{y}{The response - a vector of length the number of rows of \code{x}.}
+\item{y}{The response (a.k.a. outcome or dependent) variable from the
+dataframe \code{data}.}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
@@ -24,7 +25,7 @@ to use in calculating Bayes factors.}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{Additional arguments (ignored).}
+\item{...}{Additional arguments.}
 }
 \description{
 Making text subtitle for the bayesian t-test.

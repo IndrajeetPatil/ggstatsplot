@@ -1,5 +1,10 @@
 # ggstatsplot 0.0.8.9000
 
+BREAKING CHANGES
+
+  - `subtitle_t_parametric` no longer has `data` as the optional argument. This
+    was done to be consistent with other subtitle helper functions.
+
 NEW FEATURES
 
   - New function `ggbarstats` (and its `grouped_` variant) introduced for making

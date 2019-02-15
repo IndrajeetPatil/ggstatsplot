@@ -119,6 +119,7 @@ gghistostats <- function(data = NULL,
                          normal.curve.size = 1.0,
                          ggplot.component = NULL,
                          messages = TRUE) {
+
   # if data is not available then don't display any messages
   if (is.null(data)) {
     messages <- FALSE

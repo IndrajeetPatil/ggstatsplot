@@ -5,7 +5,7 @@
 \title{Preparing caption in case pairwise comparisons are displayed.}
 \usage{
 pairwise_p_caption(type, var.equal = FALSE, paired = FALSE,
-  p.adjust.method = "holm", caption = NULL)
+  p.adjust.method = "holm", caption = NULL, ...)
 }
 \arguments{
 \item{type}{Type of statistic expected (\code{"parametric"} or \code{"nonparametric"}
@@ -28,6 +28,8 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
 
 \item{caption}{The text for the plot caption.}
+
+\item{...}{Additional arguments.}
 }
 \description{
 Preparing caption in case pairwise comparisons are displayed.

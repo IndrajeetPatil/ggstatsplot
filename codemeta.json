@@ -343,7 +343,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
-      "version": ">= 0.7.8",
+      "version": ">= 0.8.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -351,6 +351,19 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=dplyr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ellipsis",
+      "name": "ellipsis",
+      "version": ">= 0.0.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ellipsis"
     },
     {
       "@type": "SoftwareApplication",
@@ -509,7 +522,7 @@
       "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
-      "version": ">= 0.2.0",
+      "version": ">= 0.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

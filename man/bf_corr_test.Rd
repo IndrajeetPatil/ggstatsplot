@@ -8,7 +8,8 @@ bf_corr_test(data, x, y, bf.prior = 0.707, caption = NULL,
   output = "caption", k = 2, ...)
 }
 \arguments{
-\item{data}{Dataframe from which variables are to be taken.}
+\item{data}{A dataframe (or a tibble) from which variables specified are to
+be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{x}{second continuous variable}
 
@@ -23,7 +24,8 @@ to use in calculating Bayes factors.}
 in favor of null)  or \code{"results"} (which will return the dataframe with
 results).}
 
-\item{k}{Number of decimal places expected for results.}
+\item{k}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2}).}
 
 \item{...}{further arguments to be passed to or from methods.}
 }
