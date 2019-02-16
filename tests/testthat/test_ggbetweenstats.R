@@ -398,6 +398,7 @@ testthat::test_that(
         data = ToothGrowth,
         x = supp,
         y = len,
+        effsize.noncentral = FALSE,
         plot.type = "violin",
         outlier.tagging = TRUE,
         outlier.coef = 0.75,

@@ -5,7 +5,7 @@
 #'
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence interval for Cohen's *d*
-#'   or Hedge's *g* (Default: `FALSE`).
+#'   or Hedge's *g* (Default: `TRUE`).
 #' @inheritParams subtitle_anova_parametric
 #' @inheritParams stats::t.test
 #'

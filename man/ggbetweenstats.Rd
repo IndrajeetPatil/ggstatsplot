@@ -9,7 +9,7 @@ ggbetweenstats(data, x, y, plot.type = "boxviolin",
   type = "parametric", pairwise.comparisons = FALSE,
   pairwise.annotation = "asterisk", pairwise.display = "significant",
   p.adjust.method = "holm", effsize.type = "unbiased",
-  partial = TRUE, effsize.noncentral = FALSE, bf.prior = 0.707,
+  partial = TRUE, effsize.noncentral = TRUE, bf.prior = 0.707,
   bf.message = FALSE, results.subtitle = TRUE, xlab = NULL,
   ylab = NULL, caption = NULL, title = NULL, subtitle = NULL,
   sample.size.label = TRUE, k = 2, var.equal = FALSE,
@@ -77,7 +77,7 @@ will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{a
 
 \item{effsize.noncentral}{Logical indicating whether to use non-central
 \emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
-or Hedge's \emph{g} (Default: \code{FALSE}).}
+or Hedge's \emph{g} (Default: \code{TRUE}).}
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
@@ -257,7 +257,6 @@ ggstatsplot::ggbetweenstats(
   caption = "Transmission (0 = automatic, 1 = manual)",
   bf.message = TRUE
 )
-
 \dontrun{
 # more detailed function call
 ggstatsplot::ggbetweenstats(

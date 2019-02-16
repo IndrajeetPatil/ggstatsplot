@@ -27,7 +27,8 @@ testthat::test_that(
           ggstatsplot::grouped_ggcorrmat
         )
       ),
-      .f = formals_comparator
+      .f = formals_comparator,
+      .id = "function"
     )
 
     # there should be no discrepancies

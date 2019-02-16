@@ -63,9 +63,9 @@ formals_comparator <- function(.f1, .f2) {
 
   # count the number of discrepancies between formals defaults
   discrepancies <-
-    purrr::map_dfc(df_list, rlang::is_false) %>%
-    tidyr::gather() %>%
-    dplyr::summarise(error = sum(value))
+    purrr::map_dfc(.x = df_list, .f = rlang::is_false) %>%
+    tidyr::gather(data = .) %>%
+    dplyr::summarise(.data = ., error = sum(value))
 
   # retuen the dataframe
   return(discrepancies)

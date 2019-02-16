@@ -88,7 +88,8 @@ Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 `ggcorrmat` | Correlation matrix | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
 `ggscatterstats` | Correlation between two variables | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | <font color="red">No</font> | <font color="red">No</font> | <font color="green">Yes</font>
-`ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="red">No</font>| <font color="green">Yes</font> | <font color="red">No</font>
+`ggpiestats` | Proportion test | <font color="red">No</font> | <font color="red">No</font> | <font color="red">No</font> | <font color="red">No</font>
+`ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="red">No</font>| <font color="green">Yes</font> | <font color="green">Yes</font>
 
 # Effect sizes and confidence intervals available
 

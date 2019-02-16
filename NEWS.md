@@ -23,6 +23,12 @@ NEW FEATURES
     `ggpiestats` gain `results.subtitle` which can be set to `FALSE` if
     statistical analysis is not required, in which case `subtitle` argument can
     be used to provide alternative subtitle.
+
+MAJOR CHANGES
+   
+  - `ggbetweenstats` now defaults to using noncentral-*t* distribution for
+    computing Cohen's *d* and Hedge's *g*. To get variants with central-t
+    distribution, use `effsize.noncentral = FALSE`.
    
 MINOR CHANGES
 

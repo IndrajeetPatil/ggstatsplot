@@ -185,6 +185,11 @@
 <li>Instead of using <code>effsize</code> to compute Cohen’s <em>d</em> and Hedge’s <em>g</em>, <code>ggstatsplot</code> now relies on a new (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/159'>#159</a>) internal function <code>effect_t_parametric</code> to compute them. This removes <code>effsize</code> from dependencies.</li>
 <li>To be consistent with other functions in this package, both <code>ggbarstats</code> and <code>ggpiestats</code> gain <code>results.subtitle</code> which can be set to <code>FALSE</code> if statistical analysis is not required, in which case <code>subtitle</code> argument can be used to provide alternative subtitle.</li>
 </ul>
+<p>MAJOR CHANGES</p>
+<ul>
+<li>
+<code>ggbetweenstats</code> now defaults to using noncentral-<em>t</em> distribution for computing Cohen’s <em>d</em> and Hedge’s <em>g</em>. To get variants with central-t distribution, use <code>effsize.noncentral = FALSE</code>.</li>
+</ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li>All <code>grouped_</code> functions had argument <code>title.prefix</code> that defaulted to <code>"Group"</code>. It now instead defaults to <code>NULL</code>, in which case the prefix will variable name for <code>grouping.var</code> argument.</li>

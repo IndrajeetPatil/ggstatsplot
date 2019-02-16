@@ -1,7 +1,7 @@
 # context ------------------------------------------------------------
 context(desc = "gghistostats")
 
-# checking plot and parametric stats ---------------------------------------------
+# checking plot and parametric stats --------------------------------------
 
 testthat::test_that(
   desc = "checking gghistostats plot and parametric stats - data with NAs",

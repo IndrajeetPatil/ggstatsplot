@@ -83,7 +83,7 @@ testthat::test_that(
       ggplot2::expr(
         paste(
           NULL,
-          "log"["e"](italic("W")),
+          "log"["e"](italic("V")),
           " = ",
           "6.6247",
           ", ",
