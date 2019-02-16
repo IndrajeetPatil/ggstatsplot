@@ -43,6 +43,20 @@ Making text subtitle for the Mann-Whitney \emph{U}-test
 Two-sample Wilcoxon test, also known as Mann-Whitney test, is
 carried out. The effect size estimate for this test is Spearman's \emph{rho}
 as the ranks of the \code{y} variable related to the factor \code{x}.
+
+For the two independent samples case, the Mann Whitney \emph{U}-test
+is calculated and \emph{W} is reported from \emph{stats::wilcox.test}. For the
+paired samples case the Wilcoxon signed rank test is run and \emph{V} is
+reported.
+
+Since there is no single commonly accepted method for reporting effect
+size for these tests we are computing and reporting \emph{rho} a.k.a. \emph{r}
+along with the confidence intervals associated with the estimate.
+
+We have selected \emph{Spearman's rho} which should be nearly identical to
+rank bi-serial and Somer's d for the case of x as two factors
+(including) as a pre/post measure and with \emph{y} treated as ranks rather
+than raw scores.
 }
 \examples{
 subtitle_mann_nonparametric(
