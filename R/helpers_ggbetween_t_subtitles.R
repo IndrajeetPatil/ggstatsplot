@@ -194,6 +194,20 @@ subtitle_t_parametric <- function(data,
 #' @importFrom stats wilcox.test
 #' @importFrom psych corr.test
 #'
+#' @details For the two independent samples case, the Mann Whitney *U*-test
+#'   is calculated and *W* is reported from *stats::wilcox.test*. For the
+#'   paired samples case the Wilcoxon signed rank test is run and *V* is
+#'   reported.
+#'
+#'   Since there is no single commonly accepted method for reporting effect
+#'   size for these tests we are computing and reporting *rho* a.k.a. *r*
+#'   along with the confidence intervals associated with the estimate.
+#'
+#'   We have selected *Spearman's rho* which should be nearly identical to
+#'   rank bi-serial and Somer's d for the case of x as two factors
+#'   (including) as a pre/post measure and with *y* treated as ranks rather
+#'   than raw scores.
+#'
 #' @examples
 #' subtitle_mann_nonparametric(
 #'   data = sleep,
