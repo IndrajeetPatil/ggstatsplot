@@ -1,7 +1,7 @@
 #' @title Making text subtitle for the t-test (between-/within-subjects
 #'   designs).
 #' @name subtitle_t_parametric
-#' @author Indrajeet Patil
+#' @author Indrajeet Patil, Chuck Powell
 #'
 #' @param effsize.noncentral Logical indicating whether to use non-central
 #'   *t*-distributions for computing the confidence interval for Cohen's *d*
@@ -12,6 +12,28 @@
 #' @importFrom dplyr select mutate_at
 #' @importFrom rlang !! enquo
 #' @importFrom stats t.test na.omit qt pt uniroot
+#'
+#' @details Cohen's *d* is calculated in the traditional fashion as the
+#'   difference between means or mean minus *mu* divided by the estimated
+#'   standardized deviation.  By default Hedge's correction is
+#'   applied (N-3)/(N-2.25) to produce *g*. For independent samples t-test, there
+#'   are two possibilities implemented. If the t-test did not make
+#'   a homogeneity of variance assumption, (the Welch test), the variance term
+#'   will mirror the Welch test, otherwise a pooled and weighted estimate is used.
+#'   If a paired samples t-test was requested, then effect size desired is
+#'   based on the standard deviation of the differences.
+#'
+#'   The computation of the confidence intervals defaults to a use of non-central
+#'   Student-t distributions effsize.noncentral = TRUE; otherwise a central distribution
+#'   is used.
+#'
+#'   When computing confidence intervals the variance of the effect size *d or g* is
+#'   computed using the conversion formula reported in Cooper et al. (2009)
+#'
+#'   ((n1+n2)/(n1*n2) + .5*d^2/df) * ((n1+n2)/df) (independent samples)
+#'
+#'   sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r))  (paired case)
+#'
 #'
 #' @examples
 #'
