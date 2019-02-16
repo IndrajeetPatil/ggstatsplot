@@ -246,4 +246,3 @@ testthat::test_that(
     testthat::expect_identical(subtitle, expected)
   }
 )
-

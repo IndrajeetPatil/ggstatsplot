@@ -14,6 +14,7 @@ install:
 environment:
   global:
     USE_RTOOLS: true
+    NOT_CRAN: true
   matrix:
   - R_VERSION: 3.5.0
     R_ARCH: x64

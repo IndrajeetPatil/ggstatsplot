@@ -258,6 +258,7 @@ ggstatsplot::ggbetweenstats(
   bf.message = TRUE
 )
 
+\dontrun{
 # more detailed function call
 ggstatsplot::ggbetweenstats(
   data = datasets::morley,
@@ -277,6 +278,7 @@ ggstatsplot::ggbetweenstats(
   ggstatsplot.layer = FALSE,
   bf.message = TRUE
 )
+}
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}

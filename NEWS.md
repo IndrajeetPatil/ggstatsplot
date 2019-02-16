@@ -19,7 +19,11 @@ NEW FEATURES
     `ggstatsplot` now relies on a new (#159) internal function
     `effect_t_parametric` to compute them. This removes `effsize` from
     dependencies.
-  
+  - To be consistent with other functions in this package, both `ggbarstats` and
+    `ggpiestats` gain `results.subtitle` which can be set to `FALSE` if
+    statistical analysis is not required, in which case `subtitle` argument can
+    be used to provide alternative subtitle.
+   
 MINOR CHANGES
 
   - All `grouped_` functions had argument `title.prefix` that defaulted to

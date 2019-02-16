@@ -163,7 +163,7 @@
 #'   caption = "Transmission (0 = automatic, 1 = manual)",
 #'   bf.message = TRUE
 #' )
-#'
+#' \dontrun{
 #' # more detailed function call
 #' ggstatsplot::ggbetweenstats(
 #'   data = datasets::morley,
@@ -183,6 +183,7 @@
 #'   ggstatsplot.layer = FALSE,
 #'   bf.message = TRUE
 #' )
+#' }
 #' @export
 
 # defining the function

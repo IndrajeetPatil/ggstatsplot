@@ -6,12 +6,13 @@
 \usage{
 grouped_ggbarstats(data, main, condition, counts = NULL, grouping.var,
   title.prefix = NULL, ratio = NULL, paired = FALSE,
-  labels.legend = NULL, stat.title = NULL, sample.size.label = TRUE,
-  label.separator = " ", label.text.size = 4,
-  label.fill.color = "white", label.fill.alpha = 1,
-  bar.outline.color = "black", bf.message = FALSE,
-  sampling.plan = "jointMulti", fixed.margin = "rows",
-  prior.concentration = 1, caption = NULL, legend.position = "right",
+  results.subtitle = TRUE, labels.legend = NULL, stat.title = NULL,
+  sample.size.label = TRUE, label.separator = " ",
+  label.text.size = 4, label.fill.color = "white",
+  label.fill.alpha = 1, bar.outline.color = "black",
+  bf.message = FALSE, sampling.plan = "jointMulti",
+  fixed.margin = "rows", prior.concentration = 1, subtitle = NULL,
+  caption = NULL, legend.position = "right",
   x.axis.orientation = NULL, conf.level = 0.95, nboot = 100,
   simulate.p.value = FALSE, B = 2000, legend.title = NULL,
   xlab = NULL, ylab = "Percent", k = 2, perc.k = 0,
@@ -46,6 +47,10 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 \item{paired}{Logical indicating whether data came from a within-subjects
 design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be
 returned. If \code{FALSE}, Pearson's chi-square test will be returned.}
+
+\item{results.subtitle}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
 
 \item{labels.legend}{A character vector with custom labels for levels of
 the \code{main} variable displayed in the legend.}
@@ -92,6 +97,9 @@ margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
 to \code{1} by default. It indexes the expected deviation from the null
 hypothesis under the alternative, and corresponds to Gunel and Dickey's
 (1974) \code{"a"} parameter.}
+
+\item{subtitle}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption.}
 

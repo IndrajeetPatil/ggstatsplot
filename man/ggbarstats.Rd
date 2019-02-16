@@ -5,13 +5,13 @@
 \title{Bar (column) charts with statistical tests}
 \usage{
 ggbarstats(data, main, condition = NULL, counts = NULL, ratio = NULL,
-  paired = FALSE, labels.legend = NULL, stat.title = NULL,
-  sample.size.label = TRUE, label.separator = " ",
+  paired = FALSE, labels.legend = NULL, results.subtitle = TRUE,
+  stat.title = NULL, sample.size.label = TRUE, label.separator = " ",
   label.text.size = 4, label.fill.color = "white",
   label.fill.alpha = 1, bar.outline.color = "black",
   bf.message = FALSE, sampling.plan = "jointMulti",
   fixed.margin = "rows", prior.concentration = 1, title = NULL,
-  caption = NULL, legend.position = "right",
+  subtitle = NULL, caption = NULL, legend.position = "right",
   x.axis.orientation = NULL, conf.level = 0.95, nboot = 100,
   simulate.p.value = FALSE, B = 2000, legend.title = NULL,
   xlab = NULL, ylab = "Percent", k = 2, perc.k = 0,
@@ -42,6 +42,10 @@ returned. If \code{FALSE}, Pearson's chi-square test will be returned.}
 
 \item{labels.legend}{A character vector with custom labels for levels of
 the \code{main} variable displayed in the legend.}
+
+\item{results.subtitle}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
 
 \item{stat.title}{Title for the effect being investigated with the chi-square
 test. The default is \code{NULL}, i.e. no title will be added to describe the
@@ -87,6 +91,9 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 (1974) \code{"a"} parameter.}
 
 \item{title}{The text for the plot title.}
+
+\item{subtitle}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption.}
 

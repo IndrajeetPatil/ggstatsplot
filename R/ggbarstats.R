@@ -73,6 +73,7 @@ ggbarstats <- function(data,
                        ratio = NULL,
                        paired = FALSE,
                        labels.legend = NULL,
+                       results.subtitle = TRUE,
                        stat.title = NULL,
                        sample.size.label = TRUE,
                        label.separator = " ",
@@ -85,6 +86,7 @@ ggbarstats <- function(data,
                        fixed.margin = "rows",
                        prior.concentration = 1,
                        title = NULL,
+                       subtitle = NULL,
                        caption = NULL,
                        legend.position = "right",
                        x.axis.orientation = NULL,
@@ -295,41 +297,40 @@ ggbarstats <- function(data,
 
   # running approprate statistical test
   # unpaired: Pearson's Chi-square test of independence
-  subtitle <-
-    subtitle_contingency_tab(
-      data = data,
-      main = main,
-      condition = condition,
-      nboot = nboot,
-      paired = paired,
-      stat.title = stat.title,
-      conf.level = conf.level,
-      conf.type = "norm",
-      simulate.p.value = simulate.p.value,
-      B = B,
-      messages = messages,
-      k = k
-    )
-
-  # preparing the BF message for null hypothesis support
-  if (isTRUE(bf.message)) {
-    bf.caption.text <-
-      bf_contingency_tab(
+  if (isTRUE(results.subtitle)) {
+    subtitle <-
+      subtitle_contingency_tab(
         data = data,
         main = main,
         condition = condition,
-        sampling.plan = sampling.plan,
-        fixed.margin = fixed.margin,
-        prior.concentration = prior.concentration,
-        caption = caption,
-        output = "caption",
+        nboot = nboot,
+        paired = paired,
+        stat.title = stat.title,
+        conf.level = conf.level,
+        conf.type = "norm",
+        simulate.p.value = simulate.p.value,
+        B = B,
+        messages = messages,
         k = k
       )
-  }
 
-  # if bayes factor message needs to be displayed
-  if (isTRUE(bf.message)) {
-    caption <- bf.caption.text
+    # preparing the BF message for null hypothesis support
+    if (isTRUE(bf.message)) {
+      bf.caption.text <-
+        bf_contingency_tab(
+          data = data,
+          main = main,
+          condition = condition,
+          sampling.plan = sampling.plan,
+          fixed.margin = fixed.margin,
+          prior.concentration = prior.concentration,
+          caption = caption,
+          output = "caption",
+          k = k
+        )
+
+      caption <- bf.caption.text
+    }
   }
 
   # ====================== proportion test =======================
@@ -369,6 +370,7 @@ ggbarstats <- function(data,
   }
 
   # =========================== putting all together ========================
+
   # if we need to modify `x`-axis orientation
   if (!base::is.null(x.axis.orientation)) {
     if (x.axis.orientation == "slant") {

@@ -190,101 +190,101 @@ subtitle_mann_nonparametric <- function(data,
                                         messages = TRUE,
                                         ...) {
 
- # creating a dataframe
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    tidyr::drop_na(data = .)
+
+  if (!is.numeric(data$y)) {
+    stop("y variable must be numeric")
+  }
+
+  if (is.numeric(data$x)) {
+    # setting up the test and getting its summary
+    stats_df <-
+      broom::tidy(stats::wilcox.test(
+        x = data$x,
+        y = data$y,
+        paired = paired,
+        alternative = "two.sided",
+        na.action = na.omit,
+        exact = FALSE,
+        correct = TRUE,
+        conf.int = TRUE,
+        conf.level = conf.level
+      ))
+    # sample size
+    sample_size <- nrow(data)
+  } else {
     data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
-      ) %>%
-      tidyr::drop_na(data = .)
+      data %>%
+      dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+      tibble::as_tibble(x = .)
 
-    if (!is.numeric(data$y)) {
-      stop("y variable must be numeric")
-    }
-
-    if (is.numeric(data$x)) {
-      # setting up the test and getting its summary
-      stats_df <-
-        broom::tidy(stats::wilcox.test(
-          x = data$x,
-          y = data$y,
-          paired = paired,
-          alternative = "two.sided",
-          na.action = na.omit,
-          exact = FALSE,
-          correct = TRUE,
-          conf.int = TRUE,
-          conf.level = conf.level
-        ))
-      # sample size
+    # setting up the test and getting its summary
+    stats_df <-
+      broom::tidy(stats::wilcox.test(
+        formula = y ~ x,
+        data = data,
+        paired = paired,
+        alternative = "two.sided",
+        na.action = na.omit,
+        exact = FALSE,
+        correct = TRUE,
+        conf.int = TRUE,
+        conf.level = conf.level
+      ))
+    # sample size
+    if (!isTRUE(paired)) {
       sample_size <- nrow(data)
     } else {
-      data <-
-        data %>%
-        dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
-        tibble::as_tibble(x = .)
-
-      # setting up the test and getting its summary
-      stats_df <-
-        broom::tidy(stats::wilcox.test(
-          formula = y ~ x,
-          data = data,
-          paired = paired,
-          alternative = "two.sided",
-          na.action = na.omit,
-          exact = FALSE,
-          correct = TRUE,
-          conf.int = TRUE,
-          conf.level = conf.level
-        ))
-      # sample size
-      if (!isTRUE(paired)) {
-        sample_size <- nrow(data)
-      } else {
-        sample_size <- .5 * nrow(data)
-      }
+      sample_size <- .5 * nrow(data)
     }
+  }
 
-    if (is.factor(data$x)) {
-      data$x <- as.integer(data$x)
-    }
+  if (is.factor(data$x)) {
+    data$x <- as.integer(data$x)
+  }
 
-    # preparing effect size and ci's
-    effsize_list <- psych::corr.test(
-      x = data$x,
-      y = data$y,
-      ci = TRUE,
-      method = "spearman",
-      alpha = 1 - conf.level
-    )
+  # preparing effect size and ci's
+  effsize_list <- psych::corr.test(
+    x = data$x,
+    y = data$y,
+    ci = TRUE,
+    method = "spearman",
+    alpha = 1 - conf.level
+  )
 
-    if (isTRUE(paired)) {
-      statistic.text <- quote("log"["e"](italic("V")))
-    } else {
-      statistic.text <- quote("log"["e"](italic("W")))
-    }
+  if (isTRUE(paired)) {
+    statistic.text <- quote("log"["e"](italic("V")))
+  } else {
+    statistic.text <- quote("log"["e"](italic("W")))
+  }
 
-    # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = 0L,
-      parameter = NULL,
-      parameter2 = NULL,
-      stat.title = NULL,
-      statistic.text = statistic.text,
-      statistic = log(stats_df$statistic[[1]]),
-      p.value = stats_df$p.value[[1]],
-      effsize.text = quote(italic(r)["Spearman"]),
-      effsize.estimate = effsize_list$r,
-      effsize.LL = effsize_list$ci$lower,
-      effsize.UL = effsize_list$ci$upper,
-      n = sample_size,
-      conf.level = conf.level,
-      k = k
-    )
+  # preparing subtitle
+  subtitle <- subtitle_template(
+    no.parameters = 0L,
+    parameter = NULL,
+    parameter2 = NULL,
+    stat.title = NULL,
+    statistic.text = statistic.text,
+    statistic = log(stats_df$statistic[[1]]),
+    p.value = stats_df$p.value[[1]],
+    effsize.text = quote(italic(r)["Spearman"]),
+    effsize.estimate = effsize_list$r,
+    effsize.LL = effsize_list$ci$lower,
+    effsize.UL = effsize_list$ci$upper,
+    n = sample_size,
+    conf.level = conf.level,
+    k = k
+  )
 
-    # return the subtitle
-    return(subtitle)
+  # return the subtitle
+  return(subtitle)
 }
 
 #' @rdname subtitle_mann_nonparametric
@@ -719,7 +719,7 @@ effsize_t_parametric <- function(formula = NULL,
                                  var.equal = NULL,
                                  noncentral = TRUE,
                                  tobject = NULL,
-                                ...) {
+                                 ...) {
 
   # -------------- input checking -------------------
 
@@ -782,7 +782,7 @@ effsize_t_parametric <- function(formula = NULL,
     if (isTRUE(var.equal)) {
       sd.est <- sqrt(sum(sq.devs) / (n - 2))
     } else {
-      sd.est <- sqrt((var(x) + var(y))/2)
+      sd.est <- sqrt((var(x) + var(y)) / 2)
     }
     mean.diff <- mean(x) - mean(y)
     df <- tobject$parameter
