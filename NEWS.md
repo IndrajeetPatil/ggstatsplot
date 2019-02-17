@@ -9,6 +9,8 @@ NEW FEATURES
 
   - New function `ggbarstats` (and its `grouped_` variant) introduced for making
     bar charts (thanks to #78).
+  - `ggcoefstats` also displays a caption with model summary when meta-analysis
+    is required.
   - `gghistostats` and its `grouped_` variant has a new argument `normal.curve`
     to superpose a normal distribution curve on top of the histogram (#138).
   - `ggcoefstats` can support following new regression model objects: `brmsfit`,

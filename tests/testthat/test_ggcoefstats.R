@@ -5,6 +5,7 @@ context("ggcoefstats")
 testthat::test_that(
   desc = "ggcoefstats with lm model",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # model
@@ -91,6 +92,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with glmer model",
   code = {
+    testthat::skip_on_cran()
     library(lme4)
 
     # model
@@ -165,6 +167,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with partial variants of effect size for f-statistic",
   code = {
+    testthat::skip_on_cran()
 
     ## partial eta-squared
 
@@ -372,6 +375,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats with non-partial variants of effect size for f-statistic",
   code = {
+    testthat::skip_on_cran()
 
     # model
     set.seed(123)
@@ -538,6 +542,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "check glm output",
   code = {
+    testthat::skip_on_cran()
 
     # set up
     set.seed(123)
@@ -756,6 +761,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "check clm and polr models (minimal)",
   code = {
+    testthat::skip_on_cran()
+
     # clm model
     set.seed(123)
     library(ordinal)
@@ -1025,6 +1032,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "ggcoefstats works with data frames",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # creating dataframe
@@ -1075,7 +1083,19 @@ testthat::test_that(
 
     # meta subtitle
     meta_subtitle <-
-      ggstatsplot::subtitle_meta_ggcoefstats(data = df5, k = 3, messages = FALSE)
+      ggstatsplot::subtitle_meta_ggcoefstats(
+        data = df5,
+        k = 3,
+        messages = FALSE,
+        output = "subtitle"
+      )
+    meta_caption <-
+      ggstatsplot::subtitle_meta_ggcoefstats(
+        data = df5,
+        k = 3,
+        messages = FALSE,
+        output = "caption"
+      )
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -1146,7 +1166,6 @@ testthat::test_that(
     testthat::expect_null(p4$labels$y, NULL)
     testthat::expect_null(p4$labels$title, NULL)
     testthat::expect_null(p4$labels$subtitle, NULL)
-    testthat::expect_null(p4$labels$caption, NULL)
 
     # checking meta-analysis
     testthat::expect_error(ggstatsplot::ggcoefstats(
@@ -1156,6 +1175,7 @@ testthat::test_that(
     ))
 
     testthat::expect_identical(pb6$plot$labels$subtitle, meta_subtitle)
+    testthat::expect_identical(pb6$plot$labels$caption, meta_caption)
   }
 )
 
@@ -1220,6 +1240,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "check if glance works",
   code = {
+    testthat::skip_on_cran()
+    library(lme4)
 
     # creating broom and ggstatsplot output
     # lm
@@ -1396,6 +1418,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "unsupported model objects",
   code = {
+    testthat::skip_on_cran()
 
     # mod-1
     set.seed(123)

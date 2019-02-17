@@ -3,7 +3,7 @@ context("combine_plots")
 testthat::test_that(
   desc = "checking if combining plots works",
   code = {
-    skip_on_cran()
+    testthat::skip_on_cran()
 
     # setup
     set.seed(123)

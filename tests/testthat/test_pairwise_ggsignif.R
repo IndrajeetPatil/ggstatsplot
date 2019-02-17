@@ -1,4 +1,3 @@
-# context -------------------------------------------------------------------
 context(desc = "pairwise_p with ggsignif")
 
 # significant display works -------------------------------------------------

@@ -53,24 +53,24 @@ designs).
 \details{
 Cohen's \emph{d} is calculated in the traditional fashion as the
 difference between means or mean minus \emph{mu} divided by the estimated
-standardized deviation.  By default Hedge's correction is
-applied (N-3)/(N-2.25) to produce \emph{g}. For independent samples t-test, there
-are two possibilities implemented. If the t-test did not make
-a homogeneity of variance assumption, (the Welch test), the variance term
-will mirror the Welch test, otherwise a pooled and weighted estimate is used.
-If a paired samples t-test was requested, then effect size desired is
+standardized deviation.  By default Hedge's correction is applied
+(\emph{N}-3)/(\emph{N}-2.25) to produce \emph{g}. For independent samples \emph{t}-test, there
+are two possibilities implemented. If the \emph{t}-test did not make a
+homogeneity of variance assumption, (the Welch test), the variance term
+will mirror the Welch test, otherwise a pooled and weighted estimate is
+used. If a paired samples \emph{t}-test was requested, then effect size desired is
 based on the standard deviation of the differences.
 
-The computation of the confidence intervals defaults to a use of non-central
-Student-t distributions effsize.noncentral = TRUE; otherwise a central distribution
-is used.
+The computation of the confidence intervals defaults to a use of
+non-central Student-\emph{t} distributions (\code{effsize.noncentral = TRUE});
+otherwise a central distribution is used.
 
-When computing confidence intervals the variance of the effect size \emph{d or g} is
+When computing confidence intervals the variance of the effect size \emph{d} or \emph{g} is
 computed using the conversion formula reported in Cooper et al. (2009)
-
-((n1+n2)/(n1\emph{n2) + .5}d^2/df) * ((n1+n2)/df) (independent samples)
-
-sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r))  (paired case)
+\itemize{
+\item \code{((n1+n2)/(n1*n2) + .5*d^2/df) * ((n1+n2)/df)} (independent samples)
+\item \code{sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r))}  (paired case)
+}
 }
 \examples{
 
@@ -96,6 +96,9 @@ subtitle_t_parametric(
   k = 2,
   effsize.type = "d"
 )
+}
+\seealso{
+subtitle_t_parametric
 }
 \author{
 Indrajeet Patil, Chuck Powell

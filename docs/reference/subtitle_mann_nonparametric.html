@@ -234,6 +234,16 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <p>Two-sample Wilcoxon test, also known as Mann-Whitney test, is
 carried out. The effect size estimate for this test is Spearman's <em>rho</em>
 as the ranks of the <code>y</code> variable related to the factor <code>x</code>.</p>
+<p>For the two independent samples case, the Mann Whitney <em>U</em>-test
+is calculated and <em>W</em> is reported from <em>stats::wilcox.test</em>. For the
+paired samples case the Wilcoxon signed rank test is run and <em>V</em> is
+reported.</p>
+<p>Since there is no single commonly accepted method for reporting effect size
+for these tests we are computing and reporting Spearman's <em>rho</em> a.k.a. <em>r</em>
+along with the confidence intervals associated with the estimate.</p>
+<p>We have selected <em>Spearman's rho</em> which should be nearly identical to rank
+bi-serial and Somer's <em>d</em> for the case of x as two factors (including) as a
+pre/post measure and with <em>y</em> treated as ranks rather than raw scores.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

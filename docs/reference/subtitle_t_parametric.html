@@ -245,6 +245,30 @@ or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Cohen's <em>d</em> is calculated in the traditional fashion as the
+difference between means or mean minus <em>mu</em> divided by the estimated
+standardized deviation.  By default Hedge's correction is applied
+(<em>N</em>-3)/(<em>N</em>-2.25) to produce <em>g</em>. For independent samples <em>t</em>-test, there
+are two possibilities implemented. If the <em>t</em>-test did not make a
+homogeneity of variance assumption, (the Welch test), the variance term
+will mirror the Welch test, otherwise a pooled and weighted estimate is
+used. If a paired samples <em>t</em>-test was requested, then effect size desired is
+based on the standard deviation of the differences.</p>
+<p>The computation of the confidence intervals defaults to a use of
+non-central Student-<em>t</em> distributions (<code>effsize.noncentral = TRUE</code>);
+otherwise a central distribution is used.</p>
+<p>When computing confidence intervals the variance of the effect size <em>d</em> or <em>g</em> is
+computed using the conversion formula reported in Cooper et al. (2009)</p><ul>
+<li><p><code>((n1+n2)/(n1*n2) + .5*d^2/df) * ((n1+n2)/df)</code> (independent samples)</p></li>
+<li><p><code><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r))</a></code>  (paired case)</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>subtitle_t_parametric</p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -280,12 +304,16 @@ or Hedge's <em>g</em> (Default: <code>TRUE</code>).</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
-    <p>Indrajeet Patil</p>
+    <p>Indrajeet Patil, Chuck Powell</p>
   </div>
 </div>
 

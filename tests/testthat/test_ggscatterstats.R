@@ -1,4 +1,3 @@
-# context ------------------------------------------------------------
 context(desc = "ggscatterstats")
 
 # pearson's r with NAs ---------------------------------------------
@@ -6,6 +5,8 @@ context(desc = "ggscatterstats")
 testthat::test_that(
   desc = "checking ggscatterstats - without NAs - pearson's r",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-
@@ -146,6 +147,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggscatterstats - without NAs - spearman's rho",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-
@@ -180,6 +183,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggscatterstats - without NAs - percentage bend",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-
@@ -240,6 +245,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking median display",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -358,6 +364,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "aesthetic modifications work",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggscatterstats(
@@ -511,6 +519,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "class of object",
   code = {
+    testthat::skip_on_cran()
+
     # creating the messages
     set.seed(123)
     p_message1 <- capture.output(

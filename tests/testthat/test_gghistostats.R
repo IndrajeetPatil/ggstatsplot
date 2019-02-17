@@ -1,4 +1,3 @@
-# context ------------------------------------------------------------
 context(desc = "gghistostats")
 
 # checking plot and parametric stats --------------------------------------
@@ -6,6 +5,8 @@ context(desc = "gghistostats")
 testthat::test_that(
   desc = "checking gghistostats plot and parametric stats - data with NAs",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-
@@ -402,6 +403,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking with default binwidth",
   code = {
+    testthat::skip_on_cran()
 
     # creating a subset of the dataset
     set.seed(123)

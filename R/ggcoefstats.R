@@ -913,11 +913,23 @@ ggcoefstats <- function(x,
   # =================== meta-analytic subtitle ================================
 
   if (isTRUE(meta.analytic.effect)) {
+    # result
     subtitle <-
       subtitle_meta_ggcoefstats(
         data = tidy_df,
         k = k,
-        messages = messages
+        messages = messages,
+        output = "subtitle"
+      )
+
+    # model summary
+    caption.meta <-
+      subtitle_meta_ggcoefstats(
+        data = tidy_df,
+        k = k,
+        caption = caption,
+        messages = FALSE,
+        output = "caption"
       )
   }
 
@@ -925,29 +937,35 @@ ggcoefstats <- function(x,
 
   # caption containing model diagnostics
   if (isTRUE(caption.summary)) {
-    if (!class(x)[[1]] %in% c(noglance.mods, nodiagnostics.mods, df.mods)) {
-      if (!is.na(glance_df$AIC[[1]])) {
-        # preparing caption with model diagnostics
-        caption <-
-          substitute(
-            atop(displaystyle(top.text),
-              expr =
-                paste(
-                  "AIC = ",
-                  AIC,
-                  ", BIC = ",
-                  BIC,
-                  ", log-likelihood = ",
-                  LL
-                )
-            ),
-            env = list(
-              top.text = caption,
-              AIC = specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
-              BIC = specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary),
-              LL = specify_decimal_p(x = glance_df$logLik[[1]], k = k.caption.summary)
+    if (class(x)[[1]] %in% df.mods) {
+      if (isTRUE(meta.analytic.effect)) {
+        caption <- caption.meta
+      }
+    } else {
+      if (!class(x)[[1]] %in% c(noglance.mods, nodiagnostics.mods)) {
+        if (!is.na(glance_df$AIC[[1]])) {
+          # preparing caption with model diagnostics
+          caption <-
+            substitute(
+              atop(displaystyle(top.text),
+                expr =
+                  paste(
+                    "AIC = ",
+                    AIC,
+                    ", BIC = ",
+                    BIC,
+                    ", log-likelihood = ",
+                    LL
+                  )
+              ),
+              env = list(
+                top.text = caption,
+                AIC = specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
+                BIC = specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary),
+                LL = specify_decimal_p(x = glance_df$logLik[[1]], k = k.caption.summary)
+              )
             )
-          )
+        }
       }
     }
   }

@@ -56,7 +56,6 @@ subtitle_anova_parametric <- function(data,
                                       messages = TRUE,
                                       ...) {
 
-
   # creating a dataframe
   data <-
     dplyr::select(

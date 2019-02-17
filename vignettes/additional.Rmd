@@ -7,7 +7,7 @@ output:
     fig_width: 6
     fig.align: 'center'
     fig.asp: 0.618
-    dpi: 300
+    dpi: 100
     toc: true
     warning: FALSE
     message: FALSE
@@ -79,6 +79,12 @@ additional vignettes that are only available on the website for this package:
 
   - Session information:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
+    
+# Presentation
+
+In addition to these vignettes, another quick way to get an overview of this
+package is to go through the following slides:
+<https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
 
 # Suggestions
 

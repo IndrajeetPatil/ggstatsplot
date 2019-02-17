@@ -19,6 +19,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "outlier.labeling works across vector types",
   code = {
+    testthat::skip_on_cran()
 
     # `outlier.label` is numeric
     set.seed(123)

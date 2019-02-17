@@ -178,7 +178,7 @@ models as implemented in the <code>metafor</code> package.</p>
     </div>
 
     <pre class="usage"><span class='fu'>subtitle_meta_ggcoefstats</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"subtitle"</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"subtitle"</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,8 +202,14 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <tr>
       <th>output</th>
       <td><p>Character describing the desired output. If <code>"subtitle"</code>, a
-formatted subtitle will be returned. The other option is to return <code>"tidy"</code>
-data frame with coefficients.</p></td>
+formatted subtitle with summary effect and statistical details will be
+returned, and if <code>"caption"</code>, expression containing details from model
+summary will be returned. The other option is to return <code>"tidy"</code> data frame
+with coefficients or <code>"glance"</code> dataframe with model summaries.</p></td>
+    </tr>
+    <tr>
+      <th>caption</th>
+      <td><p>The text for the plot caption.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -215,36 +221,40 @@ data frame with coefficients.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># let's create a dataframe</span>
 <span class='no'>df_results</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/structure'>structure</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>estimate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
-    <span class='fl'>0.382047603321706</span>, <span class='fl'>0.780783111514665</span>,
-    <span class='fl'>0.425607573765058</span>, <span class='fl'>0.558365541235078</span>, <span class='fl'>0.956473848429961</span>
-  ), <span class='kw'>std.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
-    <span class='fl'>0.0465576338644502</span>,
-    <span class='fl'>0.0330218199731529</span>, <span class='fl'>0.0362834986178494</span>, <span class='fl'>0.0480571500648261</span>, <span class='fl'>0.062215818388157</span>
-  ), <span class='kw'>t.value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
-    <span class='fl'>8.20590677855356</span>, <span class='fl'>23.6444603038067</span>, <span class='fl'>11.7300588415607</span>,
-    <span class='fl'>11.6187818146078</span>, <span class='fl'>15.3734833553524</span>
-  ), <span class='kw'>conf.low</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
-    <span class='fl'>0.290515146096969</span>,
-    <span class='fl'>0.715841986960399</span>, <span class='fl'>0.354354575031406</span>, <span class='fl'>0.46379116008131</span>, <span class='fl'>0.827446138277154</span>
-  ), <span class='kw'>conf.high</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
-    <span class='fl'>0.473580060546444</span>, <span class='fl'>0.845724236068931</span>, <span class='fl'>0.496860572498711</span>,
-    <span class='fl'>0.652939922388847</span>, <span class='fl'>1.08550155858277</span>
-  ), <span class='kw'>p.value.x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
-    <span class='fl'>3.28679518728519e-15</span>,
-    <span class='fl'>4.04778497135963e-75</span>, <span class='fl'>7.59757330804449e-29</span>, <span class='fl'>5.45155840151592e-26</span>,
-    <span class='fl'>2.99171217913312e-13</span>
-  ), <span class='kw'>df.residual</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
-    <span class='fl'>394L</span>, <span class='fl'>358L</span>, <span class='fl'>622L</span>, <span class='fl'>298L</span>,
-    <span class='fl'>22L</span>
-  )), <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>), <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>))
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/structure'>structure</a></span>(
+    <span class='kw'>.Data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>estimate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='fl'>0.382047603321706</span>, <span class='fl'>0.780783111514665</span>,
+      <span class='fl'>0.425607573765058</span>, <span class='fl'>0.558365541235078</span>, <span class='fl'>0.956473848429961</span>
+    ), <span class='kw'>std.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='fl'>0.0465576338644502</span>,
+      <span class='fl'>0.0330218199731529</span>, <span class='fl'>0.0362834986178494</span>, <span class='fl'>0.0480571500648261</span>, <span class='fl'>0.062215818388157</span>
+    ), <span class='kw'>t.value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='fl'>8.20590677855356</span>, <span class='fl'>23.6444603038067</span>, <span class='fl'>11.7300588415607</span>,
+      <span class='fl'>11.6187818146078</span>, <span class='fl'>15.3734833553524</span>
+    ), <span class='kw'>conf.low</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='fl'>0.290515146096969</span>,
+      <span class='fl'>0.715841986960399</span>, <span class='fl'>0.354354575031406</span>, <span class='fl'>0.46379116008131</span>, <span class='fl'>0.827446138277154</span>
+    ), <span class='kw'>conf.high</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='fl'>0.473580060546444</span>, <span class='fl'>0.845724236068931</span>, <span class='fl'>0.496860572498711</span>,
+      <span class='fl'>0.652939922388847</span>, <span class='fl'>1.08550155858277</span>
+    ), <span class='kw'>p.value.x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='fl'>3.28679518728519e-15</span>,
+      <span class='fl'>4.04778497135963e-75</span>, <span class='fl'>7.59757330804449e-29</span>, <span class='fl'>5.45155840151592e-26</span>,
+      <span class='fl'>2.99171217913312e-13</span>
+    ), <span class='kw'>df.residual</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='fl'>394L</span>, <span class='fl'>358L</span>, <span class='fl'>622L</span>, <span class='fl'>298L</span>,
+      <span class='fl'>22L</span>
+    )),
+    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>),
+    <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>)
+  )
 
 <span class='co'># making subtitle</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_ggcoefstats.html'>subtitle_meta_ggcoefstats</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; paste("Meta-analytic effect: ", beta, " = ", "0.619", ", CI"["95%"], 
+)</div><div class='output co'>#&gt; paste("Summary effect: ", beta, " = ", "0.619", ", CI"["95%"], 
 #&gt;     " [", "0.407", ", ", "0.830", "]", ", ", italic("z"), " = ", 
 #&gt;     "5.736", ", ", "se = ", "0.108", ", ", italic("p"), " = ", 
 #&gt;     "&lt; 0.001")</div><div class='input'>
@@ -253,10 +263,29 @@ data frame with coefficients.</p></td>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tidy"</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 7</span><span>
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 7</span><span>
 #&gt;   term           estimate conf.low conf.high std.error z.value       p.value
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> summary effect    0.619    0.407     0.830     0.108    5.74 0.000</span><span style='text-decoration: underline;'>000</span><span>009</span><span style='text-decoration: underline;'>68</span><span></div></span></pre>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> summary effect    0.619    0.407     0.830     0.108    5.74 0.000</span><span style='text-decoration: underline;'>000</span><span>009</span><span style='text-decoration: underline;'>68</span><span></div><div class='input'>
+<span class='co'># making caption</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_ggcoefstats.html'>subtitle_meta_ggcoefstats</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("Heterogeneity: ", italic("Q"), 
+#&gt;     "(", "4", ") = ", "109", ", ", italic("p "), "&lt; 0.001", ", ", 
+#&gt;     tau["REML"]^2, " = ", "0.06", ", ", "I"^2, " = ", "96.81%"))</div><div class='input'>
+<span class='co'># getting dataframe with model summary</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_meta_ggcoefstats.html'>subtitle_meta_ggcoefstats</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df_results</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"glance"</span>
+)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 12</span><span>
+#&gt;     tau2 se.tau2     k     p     m    QE      QEp    QM     QMp    I2    H2
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.056</span><span style='text-decoration: underline;'>1</span><span>  0.041</span><span style='text-decoration: underline;'>1</span><span>     5     1     1  109. 1.48</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-22</span><span>  32.9 9.68</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-9</span><span>  96.8  31.3
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: int.only </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

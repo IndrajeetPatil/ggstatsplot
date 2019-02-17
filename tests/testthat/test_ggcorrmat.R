@@ -55,6 +55,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggcorrmat - without NAs - pearson's r",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggcorrmat(
@@ -294,6 +296,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggcorrmat - with NAs - spearman's rho",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggcorrmat(
@@ -361,6 +365,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggcorrmat - with NAs - Kendall tau",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
@@ -449,6 +454,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking sample sizes",
   code = {
+    testthat::skip_on_cran()
 
     # dataframe with sample sizes
     set.seed(123)
@@ -500,6 +506,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking confidence intervals",
   code = {
+    testthat::skip_on_cran()
+
     # dataframe with sample sizes
     set.seed(123)
     df <- ggstatsplot::ggcorrmat(
@@ -567,6 +575,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking messages",
   code = {
+    testthat::skip_on_cran()
+
     # capturing the message
     set.seed(123)
     p_message1 <- capture.output(ggstatsplot::ggcorrmat(

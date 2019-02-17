@@ -13,26 +13,28 @@
 #' @importFrom rlang !! enquo
 #' @importFrom stats t.test na.omit qt pt uniroot
 #'
+#' @seealso subtitle_t_parametric
+#'
 #' @details Cohen's *d* is calculated in the traditional fashion as the
 #'   difference between means or mean minus *mu* divided by the estimated
-#'   standardized deviation.  By default Hedge's correction is
-#'   applied (N-3)/(N-2.25) to produce *g*. For independent samples t-test, there
-#'   are two possibilities implemented. If the t-test did not make
-#'   a homogeneity of variance assumption, (the Welch test), the variance term
-#'   will mirror the Welch test, otherwise a pooled and weighted estimate is used.
-#'   If a paired samples t-test was requested, then effect size desired is
+#'   standardized deviation.  By default Hedge's correction is applied
+#'   (*N*-3)/(*N*-2.25) to produce *g*. For independent samples *t*-test, there
+#'   are two possibilities implemented. If the *t*-test did not make a
+#'   homogeneity of variance assumption, (the Welch test), the variance term
+#'   will mirror the Welch test, otherwise a pooled and weighted estimate is
+#'   used. If a paired samples *t*-test was requested, then effect size desired is
 #'   based on the standard deviation of the differences.
 #'
-#'   The computation of the confidence intervals defaults to a use of non-central
-#'   Student-t distributions effsize.noncentral = TRUE; otherwise a central distribution
-#'   is used.
+#'   The computation of the confidence intervals defaults to a use of
+#'   non-central Student-*t* distributions (`effsize.noncentral = TRUE`);
+#'   otherwise a central distribution is used.
 #'
-#'   When computing confidence intervals the variance of the effect size *d or g* is
+#'   When computing confidence intervals the variance of the effect size *d* or *g* is
 #'   computed using the conversion formula reported in Cooper et al. (2009)
 #'
-#'   ((n1+n2)/(n1*n2) + .5*d^2/df) * ((n1+n2)/df) (independent samples)
+#'   - `((n1+n2)/(n1*n2) + .5*d^2/df) * ((n1+n2)/df)` (independent samples)
 #'
-#'   sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r))  (paired case)
+#'   - `sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r))`  (paired case)
 #'
 #'
 #' @examples
@@ -199,14 +201,13 @@ subtitle_t_parametric <- function(data,
 #'   paired samples case the Wilcoxon signed rank test is run and *V* is
 #'   reported.
 #'
-#'   Since there is no single commonly accepted method for reporting effect
-#'   size for these tests we are computing and reporting *rho* a.k.a. *r*
+#'   Since there is no single commonly accepted method for reporting effect size
+#'   for these tests we are computing and reporting Spearman's *rho* a.k.a. *r*
 #'   along with the confidence intervals associated with the estimate.
 #'
-#'   We have selected *Spearman's rho* which should be nearly identical to
-#'   rank bi-serial and Somer's d for the case of x as two factors
-#'   (including) as a pre/post measure and with *y* treated as ranks rather
-#'   than raw scores.
+#'   We have selected *Spearman's rho* which should be nearly identical to rank
+#'   bi-serial and Somer's *d* for the case of x as two factors (including) as a
+#'   pre/post measure and with *y* treated as ranks rather than raw scores.
 #'
 #' @examples
 #' subtitle_mann_nonparametric(
