@@ -67,9 +67,8 @@ JAGS, etc.), the default is \code{"quantile"}, while the only other options is
 the longitudinal component of the model. Must be either \code{"survival"} or
 \code{"longitudinal"}. Defaults to \code{"survival"}.}
 
-\item{quick}{Logical indiciating if the only the \code{term} and \code{estimate}
-columns should be returned. Often useful to avoid time consuming
-covariance and standard error calculations. Defaults to \code{FALSE}.}
+\item{quick}{whether to compute a smaller and faster version, containing only
+the term, estimate and coefficient_type columns}
 
 \item{p.kr}{Logical, if \code{TRUE}, the computation of \emph{p}-values for \code{lmer} is
 based on conditional F-tests with Kenward-Roger approximation for the df.
