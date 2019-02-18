@@ -318,6 +318,10 @@ subtitle_mann_nonparametric <- function(data,
 
   if (is.factor(data$x)) {
     data$x <- as.integer(data$x)
+  } else if (is.numeric(data$x)) {
+    d1 <- data.frame(y = data$x, x = 0)
+    d2 <- data.frame(y = data$y, x = 1)
+    data <- rbind(d1, d2)
   }
 
   # preparing effect size and ci's
@@ -911,7 +915,6 @@ effsize_t_parametric <- function(formula = NULL,
     lower.ci <- c(d - Z * Sigmad)
     upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
-    diffscores <- as.vector(y - x)
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
     civalue <- conf.level
