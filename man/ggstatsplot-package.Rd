@@ -67,7 +67,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Indrajeet Patil \email{patilindrajeet.science@gmail.com} (0000-0003-1995-6531)
+\strong{Maintainer}: Indrajeet Patil \email{patilindrajeet.science@gmail.com} (0000-0003-1995-6531) [contributor]
 
 Authors:
 \itemize{

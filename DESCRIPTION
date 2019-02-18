@@ -1,11 +1,11 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.8.9000
+Version: 0.0.9
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
-             role = c("aut", "cre"),
+             role = c("cre", "aut", "ctb"),
              email = "patilindrajeet.science@gmail.com",
              comment = c(ORCID = "0000-0003-1995-6531")),
       person(given = "Chuck",

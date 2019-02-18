@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.8.9000",
+  "version": "0.0.9",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -45,6 +45,13 @@
     }
   ],
   "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Indrajeet",
+      "familyName": "Patil",
+      "email": "patilindrajeet.science@gmail.com",
+      "@id": "https://orcid.org/0000-0003-1995-6531"
+    },
     {
       "@type": "Person",
       "givenName": "Chuck",

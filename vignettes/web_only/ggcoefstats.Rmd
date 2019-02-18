@@ -1735,12 +1735,62 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## meta-analysis
+
+In case the estimates you are displaying come from multiple studies, you can
+also use this function to carry out random-effects meta-analysis (as implemented
+in the [metafor](http://www.metafor-project.org/doku.php) package; see
+`metafor::rma()`).
+
+The dataframe you enter **must** contain at the minimum the following three
+columns- `term`, `estimate`, `std.error`.
+
+```{r meta1, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
+# let's make up a dataframe (with minimum amount of details)
+df_min <- tibble::tribble(
+  ~term, ~estimate, ~std.error,
+  "study1", 0.0665, -0.778,
+  "study2", 0.542, -0.280,
+  "study3", 0.045, 0.030, 
+  "study4", 0.500, -0.708,
+  "study5", 0.032, -0.280,
+  "study6", 0.085, 0.030
+)
+
+# plot
+ggstatsplot::ggcoefstats(x = df_min,
+                         meta.analytic.effect = TRUE, 
+                         point.color = "red")
+```
+
+Or you can also provide a dataframe containing all the other relevant
+information for making labels with statistical information.
+
+```{r meta2, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 6}
+# let's make up a dataframe (with all available details)
+df_full <- tibble::tribble(
+  ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.residual,
+  "study1", 0.158, 0.0665, -0.778, 0.875, 5L,
+  "study2", 1.33, 0.542, -0.280, 0.191, 10L,
+  "study3", 1.24, 0.045, 0.030, 0.001, 12L,
+  "study4", 0.156, 0.500, -0.708, 0.885, 8L,
+  "study5", 0.33, 0.032, -0.280, 0.101, 2L,
+  "study6", 1.04, 0.085, 0.030, 0.001, 3L
+)
+
+# plot
+ggstatsplot::ggcoefstats(x = df_full,
+                         meta.analytic.effect = TRUE, 
+                         statistic = "t",
+                         package = "LaCroixColoR",
+                         palette = "paired")
+```
+
 ## And much more...
 
-This vignette was supposed to give just a taste for only *some* of the
-regression models supported by `ggcoefstats`. The full list of supported models
-will keep expanding as additional tidiers are added to the `broom` (and its
-extension `broom.mixed`) package:
+This vignette was supposed to give a comprehensive account of regression models
+supported by `ggcoefstats`. The list of supported models will keep expanding as
+additional tidiers are added to the `broom` and `broom.mixed` package:
 <https://broom.tidyverse.org/articles/available-methods.html>
 
 Note that not **all** models supported by `broom` will be supported by
