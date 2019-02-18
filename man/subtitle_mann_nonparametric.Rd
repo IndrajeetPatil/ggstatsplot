@@ -56,12 +56,45 @@ along with the confidence intervals associated with the estimate.
 We have selected \emph{Spearman's rho} which should be nearly identical to rank
 bi-serial and Somer's \emph{d} for the case of x as two factors (including) as a
 pre/post measure and with \emph{y} treated as ranks rather than raw scores.
+
+\emph{Note} The \emph{wilcox.test} function in the stats package does not follow the
+same connvention as t.test and reverse the sign of the test statistic based
+on the sign of the grouped differences.  It calculates a different test
+statistic estimate with the same significance level. Consider manually
+reordering your factor levels if appropriate as shown in the second
+example below.
 }
 \examples{
 subtitle_mann_nonparametric(
   data = sleep,
   x = group,
   y = extra
+)
+
+# creating a smaller dataset
+msleep_short <- dplyr::filter(
+  .data = ggplot2::msleep,
+  vore \%in\% c("carni", "herbi")
+)
+
+# with defaults
+subtitle_t_nonparametric(
+  data = msleep_short,
+  x = vore,
+  y = sleep_rem
+)
+
+# The order of the grouping factor matters when computing *W*
+# Changing default alphabeical order manually
+ msleep_short$vore <- factor(msleep_short$vore,
+                             levels = c("herbi", "carni"))
+
+# note the change in the reported W value but the identical
+# value for *p* and the reversed effect size
+subtitle_t_nonparametric(
+  data = msleep_short,
+  x = vore,
+  y = sleep_rem
 )
 }
 \author{
