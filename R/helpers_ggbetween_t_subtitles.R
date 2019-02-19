@@ -953,6 +953,9 @@ effsize_t_parametric <- function(formula = NULL,
   # -------------- calculate NCP intervals -------------------
 
   if (isTRUE(noncentral)) {
+    if (tvalue > 0 && isTRUE(paired)) {
+      tvalue <- tvalue * -1
+    }
     st <- max(0.1, tvalue)
     end1 <- tvalue
     while (stats::pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
