@@ -75,10 +75,11 @@ additional vignettes that are only available on the website for this package:
 
   - Examples illustrating how to use functional programming package like `purrr`
     to extend `ggstatsplot` functionality-
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
+    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
 
   - Session information:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
+
     
 # Presentation
 

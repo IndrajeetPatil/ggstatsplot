@@ -74,7 +74,7 @@ sample designs)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.9</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.9.9000</span>
       </span>
     </div>
 
@@ -270,12 +270,12 @@ Confidence Intervals on Effect Size, retrieved from
 )
 
 <span class='co'># with defaults</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
-)</div><div class='output co'>#&gt; <span class='error'>Error: 'effsize_t_parametric' is not an exported object from 'namespace:ggstatsplot'</span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='error'>Error in stats::qt((1 - conf.level)/2, df): Non-numeric argument to mathematical function</span></div><div class='input'>
 <span class='co'># changing defaults</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
   <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='co'># ignored in this case</span>
@@ -283,17 +283,17 @@ Confidence Intervals on Effect Size, retrieved from
   <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.99</span>,
   <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error: 'effsize_t_parametric' is not an exported object from 'namespace:ggstatsplot'</span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='error'>Error in stats::qt((1 - conf.level)/2, df): Non-numeric argument to mathematical function</span></div><div class='input'>
 <span class='co'>#---------------- one-sample test ------------------------------------</span>
 
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> ~<span class='no'>sleep_rem</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
   <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.90</span>,
   <span class='kw'>noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error: 'effsize_t_parametric' is not an exported object from 'namespace:ggstatsplot'</span></div></pre>
+)</div><div class='output co'>#&gt; <span class='error'>Error in stats::pt(q = tvalue, df = dfvalue, ncp = end1): Non-numeric argument to mathematical function</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

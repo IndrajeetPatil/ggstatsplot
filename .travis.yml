@@ -20,8 +20,7 @@ env:
     - _R_CHECK_FORCE_SUGGESTS_=true
     - _R_CHECK_CRAN_INCOMING_=true
 
-#r_build_args: "--no-build-vignettes"
-#r_check_args: "--no-build-vignettes --as-cran"
+#r_check_args: "--run-dontrun"
 
 r_binary_packages:
   - stringi

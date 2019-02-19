@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.9</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.9.9000</span>
       </span>
     </div>
 
@@ -234,16 +234,21 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <p>Two-sample Wilcoxon test, also known as Mann-Whitney test, is
 carried out. The effect size estimate for this test is Spearman's <em>rho</em>
 as the ranks of the <code>y</code> variable related to the factor <code>x</code>.</p>
-<p>For the two independent samples case, the Mann Whitney <em>U</em>-test
-is calculated and <em>W</em> is reported from <em>stats::wilcox.test</em>. For the
-paired samples case the Wilcoxon signed rank test is run and <em>V</em> is
-reported.</p>
+<p>For the two independent samples case, the Mann-Whitney <em>U</em>-test is
+calculated and <em>W</em> is reported from <em>stats::wilcox.test</em>. For the paired
+samples case the Wilcoxon signed rank test is run and <em>V</em> is reported.</p>
 <p>Since there is no single commonly accepted method for reporting effect size
 for these tests we are computing and reporting Spearman's <em>rho</em> a.k.a. <em>r</em>
 along with the confidence intervals associated with the estimate.</p>
 <p>We have selected <em>Spearman's rho</em> which should be nearly identical to rank
-bi-serial and Somer's <em>d</em> for the case of x as two factors (including) as a
-pre/post measure and with <em>y</em> treated as ranks rather than raw scores.</p>
+bi-serial and Somer's <em>d</em> for the case of <code>x</code> as two factors (including) as
+a pre/post measure and with <em>y</em> treated as ranks rather than raw scores.</p>
+<p><em>Note</em> The <code>wilcox.test</code> function in the stats package does not follow the
+same convention as <code>t.test</code> and reverse the sign of the test statistic
+based on the sign of the grouped differences.  It calculates a different
+test statistic estimate with the same significance level. Consider manually
+reordering your factor levels if appropriate as shown in the second example
+below.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -254,7 +259,38 @@ pre/post measure and with <em>y</em> treated as ranks rather than raw scores.</p
 )</div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "3.24", ", ", italic("p"), 
 #&gt;     " = ", "0.069", ", ", italic(r)["Spearman"], " = ", "0.43", 
 #&gt;     ", CI"["95%"], " [", "-0.02", ", ", "0.73", "]", ", ", italic("n"), 
-#&gt;     " = ", 20L)</div></pre>
+#&gt;     " = ", 20L)</div><div class='input'>
+<span class='co'># creating a smaller dataset</span>
+<span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
+  <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+  <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
+)
+
+<span class='co'># with defaults</span>
+<span class='fu'>subtitle_t_nonparametric</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
+)</div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "5.05", ", ", italic("p"), 
+#&gt;     " = ", "0.179", ", ", italic(r)["Spearman"], " = ", "-0.24", 
+#&gt;     ", CI"["95%"], " [", "-0.53", ", ", "0.11", "]", ", ", italic("n"), 
+#&gt;     " = ", 34L)</div><div class='input'>
+<span class='co'># The order of the grouping factor matters when computing *W*</span>
+<span class='co'># Changing default alphabeical order manually</span>
+<span class='no'>msleep_short</span>$<span class='no'>vore</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>msleep_short</span>$<span class='no'>vore</span>,
+  <span class='kw'>levels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"herbi"</span>, <span class='st'>"carni"</span>)
+)
+
+<span class='co'># note the change in the reported W value but the identical</span>
+<span class='co'># value for *p* and the reversed effect size</span>
+<span class='fu'>subtitle_t_nonparametric</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
+)</div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "4.43", ", ", italic("p"), 
+#&gt;     " = ", "0.179", ", ", italic(r)["Spearman"], " = ", "0.24", 
+#&gt;     ", CI"["95%"], " [", "-0.11", ", ", "0.53", "]", ", ", italic("n"), 
+#&gt;     " = ", 34L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

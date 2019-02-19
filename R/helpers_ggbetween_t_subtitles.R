@@ -196,25 +196,24 @@ subtitle_t_parametric <- function(data,
 #' @importFrom stats wilcox.test
 #' @importFrom psych corr.test
 #'
-#' @details For the two independent samples case, the Mann Whitney *U*-test
-#'   is calculated and *W* is reported from *stats::wilcox.test*. For the
-#'   paired samples case the Wilcoxon signed rank test is run and *V* is
-#'   reported.
+#' @details For the two independent samples case, the Mann-Whitney *U*-test is
+#'   calculated and *W* is reported from *stats::wilcox.test*. For the paired
+#'   samples case the Wilcoxon signed rank test is run and *V* is reported.
 #'
 #'   Since there is no single commonly accepted method for reporting effect size
 #'   for these tests we are computing and reporting Spearman's *rho* a.k.a. *r*
 #'   along with the confidence intervals associated with the estimate.
 #'
 #'   We have selected *Spearman's rho* which should be nearly identical to rank
-#'   bi-serial and Somer's *d* for the case of x as two factors (including) as a
-#'   pre/post measure and with *y* treated as ranks rather than raw scores.
+#'   bi-serial and Somer's *d* for the case of `x` as two factors (including) as
+#'   a pre/post measure and with *y* treated as ranks rather than raw scores.
 #'
-#'   *Note* The *wilcox.test* function in the stats package does not follow the
-#'     same connvention as t.test and reverse the sign of the test statistic based
-#'     on the sign of the grouped differences.  It calculates a different test
-#'     statistic estimate with the same significance level. Consider manually
-#'     reordering your factor levels if appropriate as shown in the second
-#'     example below.
+#'   *Note* The `wilcox.test` function in the stats package does not follow the
+#'   same convention as `t.test` and reverse the sign of the test statistic
+#'   based on the sign of the grouped differences.  It calculates a different
+#'   test statistic estimate with the same significance level. Consider manually
+#'   reordering your factor levels if appropriate as shown in the second example
+#'   below.
 #'
 #' @examples
 #' subtitle_mann_nonparametric(
@@ -238,8 +237,9 @@ subtitle_t_parametric <- function(data,
 #'
 #' # The order of the grouping factor matters when computing *W*
 #' # Changing default alphabeical order manually
-#'  msleep_short$vore <- factor(msleep_short$vore,
-#'                              levels = c("herbi", "carni"))
+#' msleep_short$vore <- factor(msleep_short$vore,
+#'   levels = c("herbi", "carni")
+#' )
 #'
 #' # note the change in the reported W value but the identical
 #' # value for *p* and the reversed effect size
@@ -754,13 +754,13 @@ subtitle_t_bayes <- function(data,
 #' )
 #'
 #' # with defaults
-#' ggstatsplot::effsize_t_parametric(
+#' ggstatsplot:::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #' )
 #'
 #' # changing defaults
-#' ggstatsplot::effsize_t_parametric(
+#' ggstatsplot:::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
 #'   mu = 1, # ignored in this case
@@ -772,7 +772,7 @@ subtitle_t_bayes <- function(data,
 #'
 #' #---------------- one-sample test ------------------------------------
 #'
-#' ggstatsplot::effsize_t_parametric(
+#' ggstatsplot:::effsize_t_parametric(
 #'   formula = ~sleep_rem,
 #'   data = msleep_short,
 #'   mu = 2,

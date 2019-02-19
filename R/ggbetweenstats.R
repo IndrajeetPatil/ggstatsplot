@@ -550,34 +550,21 @@ ggbetweenstats <- function(data,
       k = k
     )
 
-  # highlight the mean of each group
+  # add labels for mean values
   if (isTRUE(mean.plotting)) {
-    plot <- plot +
-      ggplot2::stat_summary(
-        fun.y = mean,
-        geom = "point",
-        color = mean.color,
-        size = mean.size,
-        na.rm = TRUE
-      )
-
-    # attach the labels with means to the plot
-    plot <- plot +
-      ggrepel::geom_label_repel(
-        data = mean_dat,
-        mapping = ggplot2::aes(x = x, y = y, label = label),
-        size = mean.label.size,
-        fontface = mean.label.fontface,
-        color = mean.label.color,
-        direction = "both",
-        max.iter = 3e2,
-        box.padding = 0.35,
-        point.padding = 0.5,
-        segment.color = "black",
-        force = 2,
-        na.rm = TRUE,
-        seed = 123
-      )
+    plot <- mean_ggrepel(
+      plot = plot,
+      data = data,
+      x = x,
+      y = y,
+      mean.ci = mean.ci,
+      mean.size = mean.size,
+      mean.color = mean.color,
+      mean.label.size = mean.label.size,
+      mean.label.fontface = mean.label.fontface,
+      mean.label.color = mean.label.color,
+      k = k
+    )
   }
 
   # ----------------- sample size labels --------------------------------------

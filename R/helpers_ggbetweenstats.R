@@ -97,6 +97,94 @@ mean_labeller <- function(data,
 }
 
 
+#' @title Adding labels for mean values.
+#' @name mean_ggrepel
+#' @author Indrajeet Patil
+#'
+#' @param plot A `ggplot` object for which means are to be displayed.
+#' @param ... Additional arguments.
+#' @inheritParams ggbetweenstats
+#'
+#' @importFrom ggrepel geom_label_repel
+#' @importFrom rlang !! enquo
+#' @importFrom ellipsis check_dots_used
+#'
+#' @examples
+#'
+#' set.seed(123)
+#' library(ggplot2)
+#'
+#' # make a plot
+#' p <- ggplot(data = iris, aes(x = Species, y = Sepal.Length)) +
+#'   geom_boxplot()
+#'
+#' # add means
+#' ggstatsplot:::mean_ggrepel(
+#'   plot = p,
+#'   data = iris,
+#'   x = Species,
+#'   y = Sepal.Length
+#' )
+#' @keywords internal
+
+# function body
+mean_ggrepel <- function(plot,
+                         data,
+                         x,
+                         y,
+                         mean.ci = FALSE,
+                         mean.size = 5,
+                         mean.color = "darkred",
+                         mean.label.size = 3,
+                         mean.label.fontface = "bold",
+                         mean.label.color = "black",
+                         k = 2,
+                         ...) {
+  ellipsis::check_dots_used()
+
+  # new dataframe with means
+  mean_dat <-
+    mean_labeller(
+      data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y),
+      mean.ci = mean.ci,
+      k = k
+    )
+
+  # highlight the mean of each group
+  plot <- plot +
+    ggplot2::stat_summary(
+      fun.y = mean,
+      geom = "point",
+      color = mean.color,
+      size = mean.size,
+      na.rm = TRUE
+    )
+
+  # attach the labels with means to the plot
+  plot <- plot +
+    ggrepel::geom_label_repel(
+      data = mean_dat,
+      mapping = ggplot2::aes(x = x, y = y, label = label),
+      size = mean.label.size,
+      fontface = mean.label.fontface,
+      color = mean.label.color,
+      direction = "both",
+      max.iter = 3e2,
+      box.padding = 0.35,
+      point.padding = 0.5,
+      segment.color = "black",
+      force = 2,
+      na.rm = TRUE,
+      seed = 123
+    )
+
+  # return the plot with labels
+  return(plot)
+}
+
+
 #' @title Finding the outliers in the dataframe using Tukey's interquartile
 #'   range rule
 #' @name check_outlier

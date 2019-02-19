@@ -44,25 +44,24 @@ Two-sample Wilcoxon test, also known as Mann-Whitney test, is
 carried out. The effect size estimate for this test is Spearman's \emph{rho}
 as the ranks of the \code{y} variable related to the factor \code{x}.
 
-For the two independent samples case, the Mann Whitney \emph{U}-test
-is calculated and \emph{W} is reported from \emph{stats::wilcox.test}. For the
-paired samples case the Wilcoxon signed rank test is run and \emph{V} is
-reported.
+For the two independent samples case, the Mann-Whitney \emph{U}-test is
+calculated and \emph{W} is reported from \emph{stats::wilcox.test}. For the paired
+samples case the Wilcoxon signed rank test is run and \emph{V} is reported.
 
 Since there is no single commonly accepted method for reporting effect size
 for these tests we are computing and reporting Spearman's \emph{rho} a.k.a. \emph{r}
 along with the confidence intervals associated with the estimate.
 
 We have selected \emph{Spearman's rho} which should be nearly identical to rank
-bi-serial and Somer's \emph{d} for the case of x as two factors (including) as a
-pre/post measure and with \emph{y} treated as ranks rather than raw scores.
+bi-serial and Somer's \emph{d} for the case of \code{x} as two factors (including) as
+a pre/post measure and with \emph{y} treated as ranks rather than raw scores.
 
-\emph{Note} The \emph{wilcox.test} function in the stats package does not follow the
-same connvention as t.test and reverse the sign of the test statistic based
-on the sign of the grouped differences.  It calculates a different test
-statistic estimate with the same significance level. Consider manually
-reordering your factor levels if appropriate as shown in the second
-example below.
+\emph{Note} The \code{wilcox.test} function in the stats package does not follow the
+same convention as \code{t.test} and reverse the sign of the test statistic
+based on the sign of the grouped differences.  It calculates a different
+test statistic estimate with the same significance level. Consider manually
+reordering your factor levels if appropriate as shown in the second example
+below.
 }
 \examples{
 subtitle_mann_nonparametric(
@@ -86,8 +85,9 @@ subtitle_t_nonparametric(
 
 # The order of the grouping factor matters when computing *W*
 # Changing default alphabeical order manually
- msleep_short$vore <- factor(msleep_short$vore,
-                             levels = c("herbi", "carni"))
+msleep_short$vore <- factor(msleep_short$vore,
+  levels = c("herbi", "carni")
+)
 
 # note the change in the reported W value but the identical
 # value for *p* and the reversed effect size

@@ -73,13 +73,13 @@ msleep_short <- dplyr::filter(
 )
 
 # with defaults
-ggstatsplot::effsize_t_parametric(
+ggstatsplot:::effsize_t_parametric(
   formula = sleep_rem ~ vore,
   data = msleep_short,
 )
 
 # changing defaults
-ggstatsplot::effsize_t_parametric(
+ggstatsplot:::effsize_t_parametric(
   formula = sleep_rem ~ vore,
   data = msleep_short,
   mu = 1, # ignored in this case
@@ -91,7 +91,7 @@ ggstatsplot::effsize_t_parametric(
 
 #---------------- one-sample test ------------------------------------
 
-ggstatsplot::effsize_t_parametric(
+ggstatsplot:::effsize_t_parametric(
   formula = ~sleep_rem,
   data = msleep_short,
   mu = 2,
