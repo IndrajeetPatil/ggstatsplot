@@ -756,7 +756,8 @@ subtitle_t_bayes <- function(data,
 #' # with defaults
 #' tobj1 <- t.test(
 #'   formula = sleep_rem ~ vore,
-#'   data = msleep_short)
+#'   data = msleep_short
+#' )
 #' ggstatsplot:::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
@@ -770,7 +771,7 @@ subtitle_t_bayes <- function(data,
 #'   mu = 1,
 #'   paired = FALSE,
 #'   conf.level = .99
-#'   )
+#' )
 #' ggstatsplot:::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
@@ -788,9 +789,9 @@ subtitle_t_bayes <- function(data,
 #'   x = msleep_short$sleep_rem,
 #'   mu = 2,
 #'   conf.level = .90
-#'   )
+#' )
 #' ggstatsplot:::effsize_t_parametric(
-#'   formula = ~ sleep_rem,
+#'   formula = ~sleep_rem,
 #'   data = msleep_short,
 #'   mu = 2,
 #'   hedges.correction = TRUE,

@@ -75,7 +75,8 @@ msleep_short <- dplyr::filter(
 # with defaults
 tobj1 <- t.test(
   formula = sleep_rem ~ vore,
-  data = msleep_short)
+  data = msleep_short
+)
 ggstatsplot:::effsize_t_parametric(
   formula = sleep_rem ~ vore,
   data = msleep_short,
@@ -89,7 +90,7 @@ tobj2 <- t.test(
   mu = 1,
   paired = FALSE,
   conf.level = .99
-  )
+)
 ggstatsplot:::effsize_t_parametric(
   formula = sleep_rem ~ vore,
   data = msleep_short,
@@ -107,9 +108,9 @@ tobj3 <- t.test(
   x = msleep_short$sleep_rem,
   mu = 2,
   conf.level = .90
-  )
+)
 ggstatsplot:::effsize_t_parametric(
-  formula = ~ sleep_rem,
+  formula = ~sleep_rem,
   data = msleep_short,
   mu = 2,
   hedges.correction = TRUE,
