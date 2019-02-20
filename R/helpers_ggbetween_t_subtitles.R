@@ -754,12 +754,23 @@ subtitle_t_bayes <- function(data,
 #' )
 #'
 #' # with defaults
+#' tobj1 <- t.test(
+#'   formula = sleep_rem ~ vore,
+#'   data = msleep_short)
 #' ggstatsplot:::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
+#'   tobject = tobj1
 #' )
 #'
 #' # changing defaults
+#' tobj2 <- t.test(
+#'   formula = sleep_rem ~ vore,
+#'   data = msleep_short,
+#'   mu = 1,
+#'   paired = FALSE,
+#'   conf.level = .99
+#'   )
 #' ggstatsplot:::effsize_t_parametric(
 #'   formula = sleep_rem ~ vore,
 #'   data = msleep_short,
@@ -767,18 +778,25 @@ subtitle_t_bayes <- function(data,
 #'   paired = FALSE,
 #'   hedges.correction = TRUE,
 #'   conf.level = .99,
-#'   noncentral = FALSE
+#'   noncentral = FALSE,
+#'   tobject = tobj2
 #' )
 #'
 #' #---------------- one-sample test ------------------------------------
 #'
+#' tobj3 <- t.test(
+#'   x = msleep_short$sleep_rem,
+#'   mu = 2,
+#'   conf.level = .90
+#'   )
 #' ggstatsplot:::effsize_t_parametric(
-#'   formula = ~sleep_rem,
+#'   formula = ~ sleep_rem,
 #'   data = msleep_short,
 #'   mu = 2,
 #'   hedges.correction = TRUE,
 #'   conf.level = .90,
-#'   noncentral = TRUE
+#'   noncentral = TRUE,
+#'   tobject = tobj3
 #' )
 #' }
 #' @keywords internal
@@ -789,8 +807,8 @@ effsize_t_parametric <- function(formula = NULL,
                                  mu = 0,
                                  paired = FALSE,
                                  hedges.correction = TRUE,
-                                 conf.level = NULL,
-                                 var.equal = NULL,
+                                 conf.level = .95,
+                                 var.equal = FALSE,
                                  noncentral = TRUE,
                                  tobject = NULL,
                                  ...) {
@@ -805,6 +823,10 @@ effsize_t_parametric <- function(formula = NULL,
   }
   if (length(formula) == 3 & length(all.vars(formula)) > 2) {
     stop("Your formula has too many variables")
+  }
+  if (is.null(tobject)) {
+    stop("This is an internal function and requires a tobject as
+         part of its call")
   }
 
   # -------------- single sample compare to mu -------------------
@@ -931,6 +953,9 @@ effsize_t_parametric <- function(formula = NULL,
   # -------------- calculate NCP intervals -------------------
 
   if (isTRUE(noncentral)) {
+    if (tvalue > 0 && isTRUE(paired)) {
+      tvalue <- tvalue * -1
+    }
     st <- max(0.1, tvalue)
     end1 <- tvalue
     while (stats::pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
@@ -980,7 +1005,7 @@ effsize_t_parametric <- function(formula = NULL,
       alternative = "two.sided",
       paired = paired,
       noncentral = noncentral,
-      var.equal = TRUE
+      var.equal = var.equal
     ))
   } else {
     return(tibble::tibble(
@@ -992,7 +1017,7 @@ effsize_t_parametric <- function(formula = NULL,
       alternative = "two.sided",
       paired = paired,
       noncentral = noncentral,
-      var.equal = TRUE
+      var.equal = var.equal
     ))
   }
 }

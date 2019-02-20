@@ -94,7 +94,7 @@ testthat::test_that(
       hedges.correction = FALSE,
       conf.level = 0.99,
       noncentral = TRUE,
-      tobject = tobject1
+      tobject = tobject2
     )
 
     # checking attributes of dataframe
@@ -119,6 +119,8 @@ testthat::test_that(
     testthat::expect_equal(df3$conf.low, -2.965202, tolerance = 0.001)
     testthat::expect_equal(df3$conf.high, -0.008940757, tolerance = 0.001)
     testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
+    testthat::expect_equal(df4$conf.low, -2.641733, tolerance = 0.001)
+    testthat::expect_equal(df4$conf.high, -0.01115432, tolerance = 0.001)
 
     # checking details
     testthat::expect_identical(
@@ -149,7 +151,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       c(df1$var.equal, df2$var.equal, df3$var.equal, df4$var.equal),
-      c(rep(TRUE, 4L))
+      c(rep(FALSE, 4L))
     )
     testthat::expect_identical(
       c(df1$paired, df2$paired, df3$paired, df4$paired),
@@ -303,7 +305,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       c(df1$var.equal, df2$var.equal, df3$var.equal, df4$var.equal),
-      c(rep(TRUE, 4L))
+      c(rep(FALSE, 4L))
     )
     testthat::expect_identical(
       c(df1$paired, df2$paired, df3$paired, df4$paired),
@@ -426,6 +428,11 @@ testthat::test_that(
     testthat::expect_equal(df3$conf.low, -3.802441, tolerance = 0.001)
     testthat::expect_equal(df3$conf.high, -1.882856, tolerance = 0.001)
     testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
+    testthat::expect_equal(df2$conf.low, -3.208837, tolerance = 0.001)
+    testthat::expect_equal(df2$conf.high, -2.489882, tolerance = 0.001)
+    testthat::expect_equal(df4$conf.low, -2.971019, tolerance = 0.001)
+    testthat::expect_equal(df4$conf.high, -2.722362, tolerance = 0.001)
+
 
     # checking details
     testthat::expect_equal(df4$conf.level, 0.50, tolerance = 0.01)
@@ -458,7 +465,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       c(df1$var.equal, df2$var.equal, df3$var.equal, df4$var.equal),
-      c(rep(TRUE, 4L))
+      c(rep(FALSE, 4L))
     )
     testthat::expect_identical(
       c(df1$paired, df2$paired, df3$paired, df4$paired),
@@ -657,7 +664,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       c(df1$var.equal, df2$var.equal, df3$var.equal, df4$var.equal),
-      c(rep(TRUE, 4L))
+      c(rep(FALSE, 4L))
     )
     testthat::expect_identical(
       c(df1$paired, df2$paired, df3$paired, df4$paired),
