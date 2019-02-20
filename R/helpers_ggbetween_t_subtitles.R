@@ -842,8 +842,6 @@ effsize_t_parametric <- function(formula = NULL,
     d <- mean.diff / sd.est
     Sigmad <- sqrt((n / (n / 2)^2) + (d^2 / (2 * n)))
     Z <- -stats::qt((1 - conf.level) / 2, df)
-    lower.ci <- c(d - Z * Sigmad)
-    upper.ci <- c(d + Z * Sigmad)
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
     civalue <- conf.level
@@ -885,8 +883,6 @@ effsize_t_parametric <- function(formula = NULL,
     d <- mean.diff / sd.est
     Sigmad <- sqrt((n1 + n2) / (n1 * n2) + 0.5 * d^2 / (n1 + n2))
     Z <- -stats::qt((1 - conf.level) / 2, df)
-    lower.ci <- c(d - Z * Sigmad)
-    upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
@@ -934,8 +930,6 @@ effsize_t_parametric <- function(formula = NULL,
     d <- mean.diff / sd.est
     Sigmad <- sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r)) # paired
     Z <- -qt((1 - conf.level) / 2, df)
-    lower.ci <- c(d - Z * Sigmad)
-    upper.ci <- c(d + Z * Sigmad)
     method <- "Cohen's d"
     tvalue <- tobject$statistic
     dfvalue <- tobject$parameter
@@ -949,6 +943,10 @@ effsize_t_parametric <- function(formula = NULL,
     method <- "Hedges's g"
     d <- d * (n - 3) / (n - 2.25)
   }
+  lower.ci <- c(d - Z * Sigmad)
+  upper.ci <- c(d + Z * Sigmad)
+
+
 
   # -------------- calculate NCP intervals -------------------
 
