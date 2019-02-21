@@ -272,7 +272,8 @@ Confidence Intervals on Effect Size, retrieved from
 <span class='co'># with defaults</span>
 <span class='no'>tobj1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/t.test'>t.test</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>)
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>
+)
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
@@ -289,7 +290,7 @@ Confidence Intervals on Effect Size, retrieved from
   <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.99</span>
-  )
+)
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
   <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span> ~ <span class='no'>vore</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
@@ -310,9 +311,9 @@ Confidence Intervals on Effect Size, retrieved from
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>$<span class='no'>sleep_rem</span>,
   <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.90</span>
-  )
+)
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/effsize_t_parametric.html'>effsize_t_parametric</a></span>(
-  <span class='kw'>formula</span> <span class='kw'>=</span> ~ <span class='no'>sleep_rem</span>,
+  <span class='kw'>formula</span> <span class='kw'>=</span> ~<span class='no'>sleep_rem</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
   <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>hedges.correction</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,

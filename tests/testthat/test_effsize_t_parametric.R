@@ -25,18 +25,6 @@ testthat::test_that(
       data = mtcars
     ))
 
-    testthat::expect_error(ggstatsplot:::effsize_t_parametric(
-      formula = wt ~ am,
-      data = mtcars,
-      paired = TRUE
-    ))
-
-    testthat::expect_error(ggstatsplot:::effsize_t_parametric(
-      formula = wt ~ cyl,
-      data = mtcars,
-      paired = TRUE
-    ))
-
     # creating a new dataframe with a variable that has dropped factor level
     mtcars_short <- dplyr::filter(.data = mtcars, cyl != "4")
 

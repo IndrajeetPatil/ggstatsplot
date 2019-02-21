@@ -14,14 +14,25 @@ testthat::test_that(
     p <- ggplot(data = msleep, aes(x = vore, y = brainwt)) +
       geom_boxplot(na.rm = TRUE)
 
-    # add means
-    p_mean <- ggstatsplot:::mean_ggrepel(
-      plot = p,
+    p_dat <- ggstatsplot:::mean_labeller(
       data = msleep,
       x = vore,
       y = brainwt,
-      mean.ci = TRUE,
+      mean.ci = TRUE
+    )
+
+    # add means
+    p_mean <- ggstatsplot:::mean_ggrepel(
+      plot = p,
+      mean.data = p_dat,
       mean.color = "blue"
+    )
+
+    p_new <- ggstatsplot:::mean_ggrepel(
+      plot = p,
+      mean.data = p_dat,
+      mean.color = "blue",
+      inherit.aes = FALSE
     )
 
     # build plot for tests
@@ -36,5 +47,11 @@ testthat::test_that(
       c(0.07925556, 0.62159750, 0.02155000, 0.14573118, 0.00762600),
       tolerance = 0.001
     )
+    testthat::expect_identical(
+      as.character(unique(pb_mean$data[[2]]$colour)),
+      "blue"
+    )
+
+    testthat::expect_is(p_new, "ggplot")
   }
 )

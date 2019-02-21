@@ -101,9 +101,12 @@ mean_labeller <- function(data,
 #' @name mean_ggrepel
 #' @author Indrajeet Patil
 #'
+#' @param mean.data A dataframe containing means for each level of the factor.
+#'   The columns should be titled `x`, `y`, and `label`.
 #' @param plot A `ggplot` object for which means are to be displayed.
 #' @param ... Additional arguments.
 #' @inheritParams ggbetweenstats
+#' @inheritParams ggrepel::geom_label_repel
 #'
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom rlang !! enquo
@@ -111,6 +114,8 @@ mean_labeller <- function(data,
 #'
 #' @examples
 #'
+#' \dontrun{
+#' # this internal function may not have much utility outside of the package
 #' set.seed(123)
 #' library(ggplot2)
 #'
@@ -118,54 +123,68 @@ mean_labeller <- function(data,
 #' p <- ggplot(data = iris, aes(x = Species, y = Sepal.Length)) +
 #'   geom_boxplot()
 #'
+#' # get a dataframe with means
+#' mean_dat <- ggstatsplot:::mean_labeller(
+#'   data = iris,
+#'   x = Species,
+#'   y = Sepal.Length,
+#'   mean.ci = TRUE,
+#'   k = 3
+#' )
+#'
 #' # add means
 #' ggstatsplot:::mean_ggrepel(
 #'   plot = p,
-#'   data = iris,
-#'   x = Species,
-#'   y = Sepal.Length
+#'   mean.data = mean_dat,
+#'   mean.color = "darkgreen"
 #' )
+#' }
 #' @keywords internal
 
 # function body
 mean_ggrepel <- function(plot,
-                         data,
-                         x,
-                         y,
-                         mean.ci = FALSE,
+                         mean.data,
                          mean.size = 5,
                          mean.color = "darkred",
                          mean.label.size = 3,
                          mean.label.fontface = "bold",
                          mean.label.color = "black",
-                         k = 2,
+                         inherit.aes = TRUE,
                          ...) {
+
+  # check any misspecified argumenta
   ellipsis::check_dots_used()
 
-  # new dataframe with means
-  mean_dat <-
-    mean_labeller(
-      data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y),
-      mean.ci = mean.ci,
-      k = k
-    )
-
   # highlight the mean of each group
-  plot <- plot +
-    ggplot2::stat_summary(
-      fun.y = mean,
-      geom = "point",
-      color = mean.color,
-      size = mean.size,
-      na.rm = TRUE
-    )
+  if (isTRUE(inherit.aes)) {
+    plot <- plot +
+      ggplot2::stat_summary(
+        fun.y = mean,
+        geom = "point",
+        color = mean.color,
+        size = mean.size,
+        na.rm = TRUE
+      )
+  } else {
+    plot <- plot +
+      ggplot2::stat_summary(
+        mapping = ggplot2::aes(
+          x = x,
+          y = y
+        ),
+        fun.y = mean,
+        geom = "point",
+        color = mean.color,
+        size = mean.size,
+        inherit.aes = FALSE,
+        na.rm = TRUE
+      )
+  }
 
   # attach the labels with means to the plot
   plot <- plot +
     ggrepel::geom_label_repel(
-      data = mean_dat,
+      data = mean.data,
       mapping = ggplot2::aes(x = x, y = y, label = label),
       size = mean.label.size,
       fontface = mean.label.fontface,
@@ -176,6 +195,7 @@ mean_ggrepel <- function(plot,
       point.padding = 0.5,
       segment.color = "black",
       force = 2,
+      inherit.aes = FALSE,
       na.rm = TRUE,
       seed = 123
     )

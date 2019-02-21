@@ -1,6 +1,5 @@
 #' @title Grouped pie charts with statistical tests
 #' @name grouped_ggpiestats
-#' @aliases grouped_ggpiestats
 #' @description Helper function for `ggstatsplot::ggpiestats` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.

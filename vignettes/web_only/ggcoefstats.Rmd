@@ -1766,7 +1766,7 @@ ggstatsplot::ggcoefstats(x = df_min,
 Or you can also provide a dataframe containing all the other relevant
 information for making labels with statistical information.
 
-```{r meta2, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 6}
+```{r meta2, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 7}
 # let's make up a dataframe (with all available details)
 df_full <- tibble::tribble(
   ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.residual,

@@ -4,24 +4,15 @@
 \alias{mean_ggrepel}
 \title{Adding labels for mean values.}
 \usage{
-mean_ggrepel(plot, data, x, y, mean.ci = FALSE, mean.size = 5,
-  mean.color = "darkred", mean.label.size = 3,
-  mean.label.fontface = "bold", mean.label.color = "black", k = 2,
-  ...)
+mean_ggrepel(plot, mean.data, mean.size = 5, mean.color = "darkred",
+  mean.label.size = 3, mean.label.fontface = "bold",
+  mean.label.color = "black", inherit.aes = TRUE, ...)
 }
 \arguments{
 \item{plot}{A \code{ggplot} object for which means are to be displayed.}
 
-\item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
-
-\item{x}{The grouping variable from the dataframe \code{data}.}
-
-\item{y}{The response (a.k.a. outcome or dependent) variable from the
-dataframe \code{data}.}
-
-\item{mean.ci}{Logical that decides whether 95% confidence interval for mean
-is to be displayed (Default: \code{FALSE}).}
+\item{mean.data}{A dataframe containing means for each level of the factor.
+The columns should be titled \code{x}, \code{y}, and \code{label}.}
 
 \item{mean.size}{Point size for the data point corresponding to mean
 (Default: \code{5}).}
@@ -38,8 +29,10 @@ the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, res
 \item{mean.label.color}{Aesthetics for
 the label displaying mean. Defaults: \code{3}, \code{"bold"},\code{"black"}, respectively.}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2}).}
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link[ggplot2]{borders}}.}
 
 \item{...}{Additional arguments.}
 }
@@ -48,6 +41,8 @@ Adding labels for mean values.
 }
 \examples{
 
+\dontrun{
+# this internal function may not have much utility outside of the package
 set.seed(123)
 library(ggplot2)
 
@@ -55,13 +50,22 @@ library(ggplot2)
 p <- ggplot(data = iris, aes(x = Species, y = Sepal.Length)) +
   geom_boxplot()
 
+# get a dataframe with means
+mean_dat <- ggstatsplot:::mean_labeller(
+  data = iris,
+  x = Species,
+  y = Sepal.Length,
+  mean.ci = TRUE,
+  k = 3
+)
+
 # add means
 ggstatsplot:::mean_ggrepel(
   plot = p,
-  data = iris,
-  x = Species,
-  y = Sepal.Length
+  mean.data = mean_dat,
+  mean.color = "darkgreen"
 )
+}
 }
 \author{
 Indrajeet Patil

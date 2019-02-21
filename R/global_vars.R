@@ -181,7 +181,8 @@ utils::globalVariables(
     "I2",
     "Q",
     "tau",
-    "tau2"
+    "tau2",
+    "id"
   ),
   package = "ggstatsplot",
   add = FALSE

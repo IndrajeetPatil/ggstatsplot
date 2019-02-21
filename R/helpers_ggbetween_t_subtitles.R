@@ -859,11 +859,6 @@ effsize_t_parametric <- function(formula = NULL,
     group <- eval(formula[[3]], data)
     group <- factor(group)
 
-    #  checking that there are just two levels
-    if (nlevels(group) != 2L) {
-      stop("grouping factor must have exactly 2 levels")
-    }
-
     # test relevant variables
     x <- split(outcome, group)
     y <- x[[2]]
@@ -901,11 +896,6 @@ effsize_t_parametric <- function(formula = NULL,
       outcome <- eval(formula[[2]], data)
       group <- eval(formula[[3]], data)
       group <- droplevels(as.factor(group))
-
-      #  checking that there are just two levels
-      if (nlevels(group) != 2L) {
-        stop("grouping factor must have exactly 2 levels")
-      }
       x <- split(outcome, group)
       y <- x[[2]]
       x <- x[[1]]
@@ -915,11 +905,6 @@ effsize_t_parametric <- function(formula = NULL,
       ind <- !is.na(x) & !is.na(y)
       x <- x[ind]
       y <- y[ind]
-    }
-
-    # checking if sample sizes are the same across paired samples
-    if (length(x) != length(y)) {
-      stop("paired samples requires samples of the same size")
     }
 
     # test relevant variables

@@ -1,6 +1,5 @@
 #' @title Grouped histograms for distribution of a numeric variable
 #' @name grouped_gghistostats
-#' @aliases grouped_gghistostats
 #' @description Helper function for `ggstatsplot::gghistostats` to apply this
 #'   function across multiple levels of a given factor and combining the
 #'   resulting plots using `ggstatsplot::combine_plots`.

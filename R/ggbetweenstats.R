@@ -1,7 +1,6 @@
 #' @title Box/Violin plots for group or condition comparisons in
 #'   between-subjects designs.
 #' @name ggbetweenstats
-#' @aliases ggbetweenstats
 #' @description A combination of box and violin plots along with jittered data
 #'   points for between-subjects designs with statistical details included in
 #'   the plot as a subtitle.
@@ -554,16 +553,12 @@ ggbetweenstats <- function(data,
   if (isTRUE(mean.plotting)) {
     plot <- mean_ggrepel(
       plot = plot,
-      data = data,
-      x = x,
-      y = y,
-      mean.ci = mean.ci,
+      mean.data = mean_dat,
       mean.size = mean.size,
       mean.color = mean.color,
       mean.label.size = mean.label.size,
       mean.label.fontface = mean.label.fontface,
-      mean.label.color = mean.label.color,
-      k = k
+      mean.label.color = mean.label.color
     )
   }
 
@@ -580,7 +575,7 @@ ggbetweenstats <- function(data,
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
     df_pairwise <-
-      ggstatsplot::pairwise_p(
+      pairwise_p(
         data = data,
         x = x,
         y = y,
@@ -642,23 +637,6 @@ ggbetweenstats <- function(data,
       # arrange the dataframe so that annotations are properly aligned
       df_pairwise %<>%
         dplyr::arrange(.data = ., group1)
-
-      # retaining data corresponding to the levels of the grouping variable for
-      # which the comparisons are to be drawn
-      data_ggsignif <-
-        dplyr::filter(.data = data, x %in%
-          unique(x = c(levels(
-            as.factor(df_pairwise$group1)
-          ), levels(
-            as.factor(df_pairwise$group2)
-          )))) %>%
-        dplyr::mutate_if(
-          .tbl = .,
-          .predicate = base::is.factor,
-          .funs = ~ as.character(.)
-        ) %>%
-        dplyr::arrange(.data = ., x) %>%
-        tibble::as_tibble(x = .)
 
       # computing y coordinates for ggsgnif bars
       ggsignif_y_position <-
