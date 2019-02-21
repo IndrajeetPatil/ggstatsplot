@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ggstatsplot",
-  "description": "Extension of 'ggplot2', 'ggstatsplot' creates\n    graphics with details from statistical tests included in the plots\n    themselves. It is targeted primarily at behavioral sciences community\n    to provide a one-line code to generate information-rich plots for\n    statistical analysis. of continuous (violin plots, scatterplots,\n    histograms) or categorical (pie and bar charts) data. Currently, it\n    supports only the most common types of statistical tests: parametric,\n    nonparametric, robust, and bayesian versions of t-test/anova,\n    correlation analyses, contingency table analysis, and regression\n    analyses.",
+  "description": "Extension of 'ggplot2', 'ggstatsplot' creates\n    graphics with details from statistical tests included in the plots\n    themselves. It is targeted primarily at behavioral sciences community\n    to provide a one-line code to generate information-rich plots for\n    statistical analysis of continuous (violin plots, scatterplots,\n    histograms, dot plots, dot-and-whisker plots) or categorical (pie and\n    bar charts) data. Currently, it supports only the most common types of\n    statistical tests: parametric, nonparametric, robust, and bayesian\n    versions of t-test/anova, correlation analyses, contingency table\n    analysis, and regression analyses.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "relatedLink": [
@@ -691,5 +691,23 @@
     "effect-size",
     "mixed-models",
     "statistical-measures"
+  ],
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2018",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Indrajeet",
+          "familyName": "Patil"
+        }
+      ],
+      "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
+      "identifier": "10.5281/zenodo.2074621",
+      "url": "https://CRAN.R-project.org/package=ggstatsplot",
+      "@id": "https://doi.org/10.5281/zenodo.2074621",
+      "sameAs": "https://doi.org/10.5281/zenodo.2074621"
+    }
   ]
 }

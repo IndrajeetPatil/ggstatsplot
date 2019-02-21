@@ -1,5 +1,9 @@
 # ggstatsplot 0.0.9.9000
 
+NEW FEATURES
+
+  - `ggcoefstats` can support following new model objects: `rjags`.
+
 # ggstatsplot 0.0.9
 
 BREAKING CHANGES

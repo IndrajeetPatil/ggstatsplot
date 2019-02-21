@@ -1675,9 +1675,48 @@ x1 <- line[[1]]
 # plot
 ggstatsplot::ggcoefstats(
   x = x1,
-  conf.int = TRUE,
   title = "Markov Chain Monte Carlo objects",
-  robust = TRUE
+  robust = TRUE,
+  ess = TRUE
+)
+```
+
+## MCMC with Just Another Gibbs Sampler (`rjags`)
+
+```{r R2jags, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
+# setup
+set.seed(123)
+library(R2jags)
+
+# An example model file is given in:
+model.file <- system.file(package = "R2jags", "model", "schools.txt")
+
+# data
+J <- 8.0
+y <- c(28.4, 7.9, -2.8, 6.8, -0.6, 0.6, 18.0, 12.2)
+sd <- c(14.9, 10.2, 16.3, 11.0, 9.4, 11.4, 10.4, 17.6)
+
+# setting up model
+jags.data <- list("y", "sd", "J")
+jags.params <- c("mu", "sigma", "theta")
+jags.inits <- function() {
+  list("mu" = rnorm(1), "sigma" = runif(1), "theta" = rnorm(J))
+}
+
+# model fitting
+jagsfit <- R2jags::jags(
+  data = list("y", "sd", "J"),
+  inits = jags.inits,
+  jags.params,
+  n.iter = 10,
+  model.file = model.file
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = jagsfit,
+  title = "Markov Chain Monte Carlo with\nJust Another Gibbs Sampler",
+  point.color = "darkgreen"
 )
 ```
 
