@@ -33,8 +33,8 @@ of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
 graphics with details from statistical tests included in the plots themselves
 and targeted primarily at behavioral sciences community to provide a one-line
 code to produce information-rich plots. In a typical exploratory data analysis
-workflow, data visualization and statistical modelling are two different phases:
-visualization informs modelling, and modelling in its turn can suggest a
+workflow, data visualization and statistical modeling are two different phases:
+visualization informs modeling, and modeling in its turn can suggest a
 different visualization method, and so on and so forth. The central idea of
 *ggstatsplot* is simple: combine these two phases into one in the form of
 graphics with statistical details, which makes data exploration simpler and

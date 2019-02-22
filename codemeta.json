@@ -311,7 +311,7 @@
       "@type": "SoftwareApplication",
       "identifier": "broom.mixed",
       "name": "broom.mixed",
-      "version": ">= 0.2.3",
+      "version": ">= 0.2.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

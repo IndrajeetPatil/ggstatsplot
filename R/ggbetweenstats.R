@@ -278,13 +278,6 @@ ggbetweenstats <- function(data,
       dplyr::mutate(.data = ., outlier.label = y)
   }
 
-  # if no. of factor levels is greater than the default palette color count
-  palette_message(
-    package = package,
-    palette = palette,
-    min_length = length(unique(levels(data$x)))[[1]]
-  )
-
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
     dplyr::group_by(.data = ., x) %>%
@@ -670,21 +663,23 @@ ggbetweenstats <- function(data,
 
   # ------------------------ annotations and themes -------------------------
 
-  # specifying theme and labels for the final plot
-  plot <- plot +
-    ggplot2::labs(
-      x = xlab,
-      y = ylab,
+  # specifiying annotations and other aesthetic aspects for the plot
+  plot <-
+    aesthetic_addon(
+      plot = plot,
+      x = data$x,
+      xlab = xlab,
+      ylab = ylab,
       title = title,
       subtitle = subtitle,
       caption = caption,
-      color = xlab
-    ) +
-    ggstatsplot::theme_mprl(
       ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
-    ggplot2::theme(legend.position = "none")
+      ggstatsplot.layer = ggstatsplot.layer,
+      package = package,
+      palette = palette,
+      direction = direction,
+      ggplot.component = ggplot.component
+    )
 
   # don't do scale restriction in case of post hoc comparisons
   if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
@@ -692,25 +687,6 @@ ggbetweenstats <- function(data,
       ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
       ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
   }
-
-  # choosing palette
-  plot <- plot +
-    paletteer::scale_color_paletteer_d(
-      package = !!package,
-      palette = !!palette,
-      direction = direction
-    ) +
-    paletteer::scale_fill_paletteer_d(
-      package = !!package,
-      palette = !!palette,
-      direction = direction
-    )
-
-  # ---------------- adding ggplot component ---------------------------------
-
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  plot <- plot + ggplot.component
 
   # --------------------- messages ------------------------------------------
 

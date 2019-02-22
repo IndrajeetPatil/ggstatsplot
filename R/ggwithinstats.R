@@ -7,18 +7,22 @@
 #' @author Indrajeet Patil
 #'
 #' @inheritParams ggbetweenstats
+#' @param path.point,path.mean Logical that decides whether individual data
+#'   points and means, respectively, should be connected using `geom_path`. Both
+#'   default to `TRUE`. In case of large number of data points, it is advisable
+#'   to set `path.point = FALSE` as these lines can overwhelm the plot.
 #'
-#' @details **This work is still work in progress.**
+#' @details **This function is still work in progress.**
 #'
 #' @examples
-#' ggstatsplot::ggwithinstats(
+#' ggstatsplot:::ggwithinstats(
 #'   data = ggstatsplot::iris_long,
 #'   x = attribute,
 #'   y = value,
 #'   bf.message = TRUE,
 #'   messages = FALSE
 #' )
-#' @export
+#' @keywords internal
 
 # defining the function
 ggwithinstats <- function(data,
@@ -45,6 +49,8 @@ ggwithinstats <- function(data,
                           conf.level = 0.95,
                           nboot = 100,
                           tr = 0.1,
+                          path.point = TRUE,
+                          path.mean = TRUE,
                           axes.range.restrict = FALSE,
                           mean.label.size = 3,
                           mean.label.fontface = "bold",
@@ -111,13 +117,6 @@ ggwithinstats <- function(data,
       dplyr::mutate(.data = ., outlier.label = y)
   }
 
-  # if no. of factor levels is greater than the default palette color count
-  palette_message(
-    package = package,
-    palette = palette,
-    min_length = length(unique(levels(data$x)))[[1]]
-  )
-
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
     dplyr::group_by(.data = ., x) %>%
@@ -176,7 +175,7 @@ ggwithinstats <- function(data,
     )
 
   # add a connecting path only if there are less than two groups
-  if (length(levels(as.factor(data$x))) < 3) {
+  if (isTRUE(path.point)) {
     plot <- plot +
       ggplot2::geom_path(
         color = "grey50",
@@ -338,15 +337,20 @@ ggwithinstats <- function(data,
       mean.label.fontface = mean.label.fontface,
       mean.label.color = mean.label.color,
       inherit.aes = FALSE
-    ) +
-      ggplot2::geom_path(
-        data = mean_dat,
-        mapping = ggplot2::aes(x = x, y = y, group = 1),
-        color = "red",
-        size = 2,
-        alpha = 0.5,
-        inherit.aes = FALSE
-      )
+    )
+
+    # if there should be lines connecting mean values across groups
+    if (isTRUE(path.mean)) {
+      plot <- plot +
+        ggplot2::geom_path(
+          data = mean_dat,
+          mapping = ggplot2::aes(x = x, y = y, group = 1),
+          color = "red",
+          size = 2,
+          alpha = 0.5,
+          inherit.aes = FALSE
+        )
+    }
   }
 
   # ----------------- sample size labels --------------------------------------
@@ -457,21 +461,23 @@ ggwithinstats <- function(data,
 
   # ------------------------ annotations and themes -------------------------
 
-  # specifying theme and labels for the final plot
-  plot <- plot +
-    ggplot2::labs(
-      x = xlab,
-      y = ylab,
+  # specifiying annotations and other aesthetic aspects for the plot
+  plot <-
+    aesthetic_addon(
+      plot = plot,
+      x = data$x,
+      xlab = xlab,
+      ylab = ylab,
       title = title,
       subtitle = subtitle,
       caption = caption,
-      color = xlab
-    ) +
-    ggstatsplot::theme_mprl(
       ggtheme = ggtheme,
-      ggstatsplot.layer = ggstatsplot.layer
-    ) +
-    ggplot2::theme(legend.position = "none")
+      ggstatsplot.layer = ggstatsplot.layer,
+      package = package,
+      palette = palette,
+      direction = direction,
+      ggplot.component = ggplot.component
+    )
 
   # don't do scale restriction in case of post hoc comparisons
   if (isTRUE(axes.range.restrict) && !isTRUE(pairwise.comparisons)) {
@@ -479,25 +485,6 @@ ggwithinstats <- function(data,
       ggplot2::coord_cartesian(ylim = c(min(data$y), max(data$y))) +
       ggplot2::scale_y_continuous(limits = c(min(data$y), max(data$y)))
   }
-
-  # choosing palette
-  plot <- plot +
-    paletteer::scale_color_paletteer_d(
-      package = !!package,
-      palette = !!palette,
-      direction = direction
-    ) +
-    paletteer::scale_fill_paletteer_d(
-      package = !!package,
-      palette = !!palette,
-      direction = direction
-    )
-
-  # ---------------- adding ggplot component ---------------------------------
-
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  plot <- plot + ggplot.component
 
   # --------------------- messages ------------------------------------------
 

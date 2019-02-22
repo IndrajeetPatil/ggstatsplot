@@ -13,7 +13,8 @@ ggwithinstats(data, x, y, type = "parametric",
   results.subtitle = TRUE, xlab = NULL, ylab = NULL,
   caption = NULL, title = NULL, subtitle = NULL,
   sample.size.label = TRUE, k = 2, conf.level = 0.95, nboot = 100,
-  tr = 0.1, axes.range.restrict = FALSE, mean.label.size = 3,
+  tr = 0.1, path.point = TRUE, path.mean = TRUE,
+  axes.range.restrict = FALSE, mean.label.size = 3,
   mean.label.fontface = "bold", mean.label.color = "black",
   notch = FALSE, notchwidth = 0.5, linetype = "solid",
   outlier.tagging = FALSE, outlier.shape = 19, outlier.label = NULL,
@@ -115,6 +116,11 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
+\item{path.point, path.mean}{Logical that decides whether individual data
+points and means, respectively, should be connected using \code{geom_path}. Both
+default to \code{TRUE}. In case of large number of data points, it is advisable
+to set \code{path.point = FALSE} as these lines can overwhelm the plot.}
+
 \item{axes.range.restrict}{Logical that decides whether to restrict the axes
 values ranges to \code{min} and \code{max} values of the axes variables (Default:
 \code{FALSE}), only relevant for functions where axes variables are of numeric
@@ -210,10 +216,10 @@ points for within-subjects designs with statistical details included in
 the plot as a subtitle.
 }
 \details{
-\strong{This work is still work in progress.}
+\strong{This function is still work in progress.}
 }
 \examples{
-ggstatsplot::ggwithinstats(
+ggstatsplot:::ggwithinstats(
   data = ggstatsplot::iris_long,
   x = attribute,
   y = value,
@@ -224,3 +230,4 @@ ggstatsplot::ggwithinstats(
 \author{
 Indrajeet Patil
 }
+\keyword{internal}

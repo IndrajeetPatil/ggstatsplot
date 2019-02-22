@@ -7,16 +7,17 @@ testthat::test_that(
   code = {
     set.seed(123)
 
-    p1 <- ggstatsplot::ggwithinstats(
+    p1 <- ggstatsplot:::ggwithinstats(
       data = ggstatsplot::iris_long,
       x = condition,
       y = value,
+      type = "bf",
       outlier.tagging = TRUE,
       pairwise.comparisons = TRUE,
       messages = TRUE
     )
 
-    p2 <- ggstatsplot::ggwithinstats(
+    p2 <- ggstatsplot:::ggwithinstats(
       data = ggstatsplot::iris_long,
       x = condition,
       y = value,
@@ -24,10 +25,11 @@ testthat::test_that(
       pairwise.comparisons = TRUE,
       pairwise.display = "ns",
       pairwise.annotation = "p",
+      bf.message = TRUE,
       messages = TRUE
     )
 
-    p3 <- ggstatsplot::ggwithinstats(
+    p3 <- ggstatsplot:::ggwithinstats(
       data = ggstatsplot::iris_long,
       x = attribute,
       y = value,
@@ -35,7 +37,7 @@ testthat::test_that(
       bf.message = TRUE
     )
 
-    p4 <- ggstatsplot::ggwithinstats(
+    p4 <- ggstatsplot:::ggwithinstats(
       data = ggstatsplot::iris_long,
       x = attribute,
       y = value,
@@ -43,7 +45,7 @@ testthat::test_that(
       messages = FALSE
     )
 
-    p5 <- ggstatsplot::ggwithinstats(
+    p5 <- ggstatsplot:::ggwithinstats(
       data = ggstatsplot::iris_long,
       x = attribute,
       y = value,

@@ -424,3 +424,45 @@ testthat::test_that(
     )
   }
 )
+
+# dropped levels --------------------------------------------------
+
+testthat::test_that(
+  desc = "dropped levels are not included",
+  code = {
+    testthat::skip_on_cran()
+
+    set.seed(123)
+
+    # drop levels
+    msleep2 <- dplyr::filter(
+      .data = ggplot2::msleep,
+      vore %in% c("carni", "omni")
+    )
+
+    # check those levels are not included
+    df1 <- ggstatsplot::pairwise_p(
+      data = msleep2,
+      x = vore,
+      y = brainwt,
+      messages = FALSE,
+      p.adjust.method = "none"
+    )
+
+    df2 <- ggstatsplot::pairwise_p(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = FALSE,
+      p.adjust.method = "none"
+    ) %>%
+      dplyr::filter(.data = ., group1 == "omni", group2 == "carni")
+
+    # tests
+    testthat::expect_equal(dim(df1), c(1L, 11L))
+    testthat::expect_equal(df1$mean.difference, df2$mean.difference, tolerance = 0.01)
+    testthat::expect_equal(df1$se, df2$se, tolerance = 0.01)
+    testthat::expect_equal(df1$t.value, df2$t.value, tolerance = 0.01)
+    testthat::expect_equal(df1$df, df2$df, tolerance = 0.01)
+  }
+)

@@ -182,7 +182,7 @@
 <p>BREAKING CHANGES</p>
 <ul>
 <li>
-<code>subtitle_t_parametric</code> no longer has <code>data</code> as the optional argument. This was done to be consistent with other subtitle helper functions.</li>
+<code>subtitle_t_onesample</code> no longer has <code>data</code> as the optional argument. This was done to be consistent with other subtitle helper functions.</li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
@@ -193,14 +193,14 @@
 <code>gghistostats</code> and its <code>grouped_</code> variant has a new argument <code>normal.curve</code> to superpose a normal distribution curve on top of the histogram (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/138'>#138</a>).</li>
 <li>
 <code>ggcoefstats</code> can support following new regression model objects: <code>brmsfit</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>mcmc</code>, <code>mjoint</code>, <code>stanreg</code>.</li>
-<li>New function to convert plots which are not of <code>gg</code>/<code>ggplot</code> class to convert into <code>ggplot</code> objects.</li>
+<li>New function to convert plots which are not of <code>gg</code>/<code>ggplot</code> class to <code>ggplot</code> class objects.</li>
 <li>Instead of using <code>effsize</code> to compute Cohen’s <em>d</em> and Hedge’s <em>g</em>, <code>ggstatsplot</code> now relies on a new (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/159'>#159</a>) internal function <code>effect_t_parametric</code> to compute them. This removes <code>effsize</code> from dependencies.</li>
 <li>To be consistent with other functions in this package, both <code>ggbarstats</code> and <code>ggpiestats</code> gain <code>results.subtitle</code> which can be set to <code>FALSE</code> if statistical analysis is not required, in which case <code>subtitle</code> argument can be used to provide alternative subtitle.</li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
 <li>
-<code>ggbetweenstats</code> now defaults to using noncentral-<em>t</em> distribution for computing Cohen’s <em>d</em> and Hedge’s <em>g</em>. To get variants with central-t distribution, use <code>effsize.noncentral = FALSE</code>.</li>
+<code>ggbetweenstats</code> now defaults to using noncentral-<em>t</em> distribution for computing Cohen’s <em>d</em> and Hedge’s <em>g</em>. To get variants with central-<em>t</em> distribution, use <code>effsize.noncentral = FALSE</code>.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

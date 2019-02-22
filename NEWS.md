@@ -8,7 +8,7 @@ NEW FEATURES
 
 BREAKING CHANGES
 
-  - `subtitle_t_parametric` no longer has `data` as the optional argument. This
+  - `subtitle_t_onesample` no longer has `data` as the optional argument. This
     was done to be consistent with other subtitle helper functions.
 
 NEW FEATURES
@@ -22,7 +22,7 @@ NEW FEATURES
   - `ggcoefstats` can support following new regression model objects: `brmsfit`,
     `gam`, `Gam`, `gamlss`, `mcmc`, `mjoint`, `stanreg`.
   - New function to convert plots which are not of `gg`/`ggplot` class to
-    convert into `ggplot` objects.
+    `ggplot` class objects.
   - Instead of using `effsize` to compute Cohen's *d* and Hedge's *g*,
     `ggstatsplot` now relies on a new (#159) internal function
     `effect_t_parametric` to compute them. This removes `effsize` from
@@ -35,7 +35,7 @@ NEW FEATURES
 MAJOR CHANGES
    
   - `ggbetweenstats` now defaults to using noncentral-*t* distribution for
-    computing Cohen's *d* and Hedge's *g*. To get variants with central-t
+    computing Cohen's *d* and Hedge's *g*. To get variants with central-*t*
     distribution, use `effsize.noncentral = FALSE`.
    
 MINOR CHANGES
