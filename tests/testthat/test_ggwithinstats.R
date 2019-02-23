@@ -33,6 +33,9 @@ testthat::test_that(
       data = ggstatsplot::iris_long,
       x = attribute,
       y = value,
+      pairwise.comparisons = TRUE,
+      pairwise.display = "s",
+      pairwise.annotation = "asterisk",
       messages = FALSE,
       bf.message = TRUE
     )
@@ -41,6 +44,8 @@ testthat::test_that(
       data = ggstatsplot::iris_long,
       x = attribute,
       y = value,
+      results.subtitle = FALSE,
+      pairwise.comparisons = TRUE,
       axes.range.restrict = TRUE,
       messages = FALSE
     )

@@ -33,7 +33,6 @@ reference:
     desc: Functions used to create statistical subtitles that can be used outside of `ggstatsplot` package.
     contents:
       - starts_with("subtitle_")
-      - pairwise_p
 
   - title: Helper functions for preparing Bayes Factor captions
     desc: Functions used to create Bayes Factor (in favor of null) captions that can be used outside of `ggstatsplot` package.
@@ -55,6 +54,12 @@ reference:
     desc:  Simple function to display messages from tests carried out to check statistical assumptions of tests.
     contents:
       - ends_with("_message")
+
+  - title: Miscellaneous
+    desc: Sundry of helpful statistical functions.
+    contents:
+      - pairwise_p
+      - outlier_df
 
   - title: Themes used
     desc: The `ggplot2` themes used as default in `ggstatsplot`.

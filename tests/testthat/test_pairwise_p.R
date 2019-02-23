@@ -466,3 +466,27 @@ testthat::test_that(
     testthat::expect_equal(df1$df, df2$df, tolerance = 0.01)
   }
 )
+
+
+# irregular names --------------------------------------------------
+
+testthat::test_that(
+  desc = "check if everything works fine with irregular factor level names",
+  code = {
+    testthat::skip_on_cran()
+
+    set.seed(123)
+
+    df <- ggstatsplot::pairwise_p(
+      data = ggstatsplot::movies_wide,
+      x = mpaa,
+      y = rating,
+      var.equal = TRUE,
+      messages = FALSE
+    )
+
+    testthat::expect_equal(dim(df), c(3L, 8L))
+    testthat::expect_equal(df$group1, c("PG-13", "R", "R"))
+    testthat::expect_equal(df$group2, c("PG", "PG", "PG-13"))
+  }
+)

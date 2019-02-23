@@ -174,9 +174,9 @@ games_howell <- function(data,
 #' @inheritParams stats::t.test
 #' @inheritParams WRS2::rmmcp
 #'
-#' @importFrom dplyr select rename mutate mutate_if everything full_join
-#' @importFrom stats p.adjust pairwise.t.test na.omit
-#' @importFrom stats aov TukeyHSD var sd
+#' @importFrom dplyr select rename mutate mutate_if everything full_join vars
+#' @importFrom stats p.adjust pairwise.t.test na.omit aov TukeyHSD var sd
+#' @importFrom stringr str_replace
 #' @importFrom WRS2 lincon rmmcp
 #' @importFrom tidyr gather spread separate
 #' @importFrom rlang !! enquo
@@ -324,7 +324,7 @@ pairwise_p <- function(data,
         )
 
       # extracting and cleaning up Tukey's HSD output
-      df_tukey <- TukeyHSD(aovmodel) %>%
+      df_tukey <- stats::TukeyHSD(x = aovmodel, conf.level = 0.95) %>%
         broom::tidy(x = .) %>%
         dplyr::select(comparison, estimate, conf.low, conf.high) %>%
         tidyr::separate(
@@ -333,20 +333,15 @@ pairwise_p <- function(data,
           into = c("group1", "group2"),
           sep = "-"
         ) %>%
-        dplyr::rename(.data = ., mean.difference = estimate)
-
-      # changing names of factor levels
-      df_tukey$group1 <-
-        stringr::str_replace(
-          string = df_tukey$group1,
-          pattern = "_",
-          replacement = "-"
-        )
-      df_tukey$group2 <-
-        stringr::str_replace(
-          string = df_tukey$group2,
-          pattern = "_",
-          replacement = "-"
+        dplyr::rename(.data = ., mean.difference = estimate) %>%
+        dplyr::mutate_at(
+          .tbl = .,
+          .vars = dplyr::vars(dplyr::matches("^group[0-9]$")),
+          .funs =  ~ stringr::str_replace(
+            string = .,
+            pattern = "_",
+            replacement = "-"
+          )
         )
 
       # combining mean difference and results from pairwise t-test

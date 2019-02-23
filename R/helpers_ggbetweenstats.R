@@ -245,6 +245,67 @@ check_outlier <- function(var, coef = 1.5) {
 }
 
 
+#' @title Adding a column to dataframe describing outlier status.
+#' @name outlier_df
+#' @author Indrajeet Patil
+#' @description This function is mostly helpful for internal operations of some
+#'   of the functions in this package.
+#'
+#' @inheritParams ggbetweenstats
+#' @param ... Additional arguments.
+#'
+#' @importFrom rlang !! enquo
+#' @importFrom dplyr group_by mutate ungroup
+#'
+#' @examples
+#' # adding column for outlier and a label for that outlier
+#' ggstatsplot::outlier_df(
+#'   data = morley,
+#'   x = Expt,
+#'   y = Speed,
+#'   outlier.label = Run,
+#'   outlier.coef = 2
+#' ) %>%
+#'   dplyr::arrange(outlier)
+#'
+#' @export
+
+outlier_df <- function(data,
+                       x,
+                       y,
+                       outlier.label,
+                       outlier.coef = 1.5,
+                       ...) {
+  ellipsis::check_dots_used()
+
+  # add a logical column indicating whether a point is or is not an outlier
+  data %<>%
+    dplyr::group_by(.data = ., !!rlang::enquo(x)) %>%
+    dplyr::mutate(
+      .data = .,
+      isanoutlier = base::ifelse(
+        test = check_outlier(
+          var = !!rlang::enquo(y),
+          coef = outlier.coef
+        ),
+        yes = TRUE,
+        no = FALSE
+      )
+    ) %>%
+    dplyr::mutate(
+      .data = .,
+      outlier = base::ifelse(
+        test = isanoutlier,
+        yes = !!rlang::enquo(outlier.label),
+        no = NA
+      )
+    ) %>%
+    dplyr::ungroup(x = .)
+
+  # return the data frame with outlier
+  return(data)
+}
+
 #' @title Converts long-format dataframe to wide-format dataframe
 #' @name long_to_wide_converter
 #' @author Indrajeet Patil

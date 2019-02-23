@@ -4,6 +4,11 @@ NEW FEATURES
 
   - `ggcoefstats` can support following new model objects: `rjags`.
 
+MINOR CHANGES
+
+  - The internal function `outlier_df` to add a column specifying outlier status
+    of any given data point is now exported.
+
 # ggstatsplot 0.0.9
 
 BREAKING CHANGES

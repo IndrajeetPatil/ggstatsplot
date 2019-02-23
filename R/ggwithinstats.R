@@ -119,30 +119,20 @@ ggwithinstats <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    dplyr::group_by(.data = ., x) %>%
-    dplyr::mutate(
-      .data = .,
-      isanoutlier = base::ifelse(
-        test = check_outlier(
-          var = y,
-          coef = outlier.coef
-        ),
-        yes = TRUE,
-        no = FALSE
-      )
-    ) %>%
-    dplyr::ungroup(x = .)
+    outlier_df(
+      data = .,
+      x = x,
+      y = y,
+      outlier.coef = outlier.coef,
+      outlier.label = outlier.label
+    )
 
   # --------------------------------- basic plot ------------------------------
 
   # plot
   plot <- ggplot2::ggplot(
     data = data,
-    mapping = ggplot2::aes(
-      x = x,
-      y = y,
-      group = id
-    )
+    mapping = ggplot2::aes(x = x, y = y, group = id)
   ) +
     ggplot2::geom_point(
       alpha = 0.5,
@@ -151,10 +141,7 @@ ggwithinstats <- function(data,
       ggplot2::aes(color = factor(x))
     ) +
     ggplot2::geom_boxplot(
-      mapping = ggplot2::aes(
-        x = x,
-        y = y
-      ),
+      mapping = ggplot2::aes(x = x, y = y),
       inherit.aes = FALSE,
       fill = "white",
       width = 0.2,
@@ -163,10 +150,7 @@ ggwithinstats <- function(data,
       notchwidth = 0.1
     ) +
     ggplot2::geom_violin(
-      mapping = ggplot2::aes(
-        x = x,
-        y = y
-      ),
+      mapping = ggplot2::aes(x = x, y = y),
       inherit.aes = FALSE,
       width = 0.5,
       alpha = 0.2,
@@ -274,25 +258,8 @@ ggwithinstats <- function(data,
   if (isTRUE(outlier.tagging)) {
     # finding and tagging the outliers
     data_outlier_label <- data %>%
-      dplyr::group_by(.data = ., x) %>%
-      dplyr::mutate(
-        .data = .,
-        outlier = base::ifelse(
-          test = isanoutlier,
-          yes = outlier.label,
-          no = NA
-        )
-      ) %>%
-      dplyr::ungroup(x = .) %>%
       dplyr::filter(.data = ., isanoutlier) %>%
       dplyr::select(.data = ., -outlier)
-
-    # if there is no value for outlier.label
-    data_outlier_label$outlier.label <-
-      stringr::str_replace_na(
-        string = data_outlier_label$outlier.label,
-        replacement = "NA"
-      )
 
     # applying the labels to tagged outliers with ggrepel
     plot <-
