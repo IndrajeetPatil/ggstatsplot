@@ -60,6 +60,7 @@ Imports:
     scales (>= 1.0.0),
     sjstats (>= 0.17.3),
     stats,
+    stringr (>= 1.3.1),
     tibble (>= 2.0.1),
     tidyr (>= 0.8.2),
     WRS2 (>= 0.10-0)
@@ -76,7 +77,6 @@ Suggests:
     rmarkdown,
     robust (>= 0.4-18),
     spelling (>= 2.0),
-    stringr (>= 1.3.1),
     survival,
     testthat
 VignetteBuilder: 
