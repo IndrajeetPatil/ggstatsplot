@@ -15,14 +15,16 @@ testthat::test_that(
       y = brainwt,
       messages = FALSE,
       pairwise.comparisons = TRUE,
+      pairwise.display = "s",
       caption = "mammalian sleep",
       k = 3
     )
 
-    # checking dimensions of data
-    data_dims <- dim(p$plot_env$df_pairwise)
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
 
-    testthat::expect_equal(data_dims, c(0L, 12L))
+    # checking dimensions of data
+    testthat::expect_equal(length(pb$data), 6L)
 
     # checking caption
     testthat::expect_identical(
@@ -62,22 +64,33 @@ testthat::test_that(
       k = 3
     )
 
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
     # data used for pairwise comparisons
-    dat <- p$plot_env$df_pairwise
+    dat <- pb$plot$plot_env$df_pairwise
 
     # ggsignif layer parameters
-    ggsignif_stat <- p$layers[[7]]$stat_params
+    ggsignif_stat <- pb$plot$layers[[7]]$stat_params
 
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims, c(3L, 12L))
+    # data for geom_signif layer
+    data_signif <- tibble::as_tibble(pb$data[[7]])
+
+
+    testthat::expect_equal(length(pb$data), 7L)
+    testthat::expect_identical(
+      as.character(unique(data_signif$annotation)),
+      c("p = 0.079", "p = 0.139", "p = 0.825")
+    )
+    testthat::expect_equal(data_dims, c(3L, 11L))
 
     # checking comparison groups and labels
-    testthat::expect_identical(dat$group1[1], "PG-13")
-    testthat::expect_identical(dat$group2[1], "R")
-    testthat::expect_identical(dat$groups[[1]], c("PG-13", "R"))
-    testthat::expect_identical(dat$label[3], "p = 0.825")
+    testthat::expect_identical(dat$group1, c("PG-13", "PG-13", "R"))
+    testthat::expect_identical(dat$group2, c("R", "PG", "PG"))
+    testthat::expect_identical(dat$p.value.label, c("p = 0.079", "p = 0.139", "p = 0.825"))
     testthat::expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
@@ -100,21 +113,20 @@ testthat::test_that(
     )
 
     # checking values
-    testthat::expect_equal(dat$mean.difference[1], -1904.886, tolerance = 1e-3)
-    testthat::expect_equal(dat$mean.difference[3], -803.034, tolerance = 1e-3)
+    testthat::expect_equal(dat$mean.difference,
+      c(-1904.886, -2707.920, -803.034),
+      tolerance = 1e-3
+    )
 
     # checking ggsignif layers
-    testthat::expect_equal(ggsignif_stat$y_position[1], 161548.2, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[3], 185188.2, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[2], 173368.2, tolerance = 0.01)
+    testthat::expect_equal(ggsignif_stat$y_position,
+      c(161548.2, 173368.2, 185188.2),
+      tolerance = 0.01
+    )
     testthat::expect_equal(ggsignif_stat$comparisons[[2]], c("PG-13", "PG"))
     testthat::expect_equal(
       ggsignif_stat$annotations,
-      c(
-        "p = 0.079",
-        "p = 0.139",
-        "p = 0.825"
-      )
+      c("p = 0.079", "p = 0.139", "p = 0.825")
     )
   }
 )
@@ -128,7 +140,10 @@ testthat::test_that(
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggbetweenstats(
-      data = dplyr::sample_frac(ggstatsplot::movies_long, size = 0.5),
+      data = dplyr::sample_frac(dplyr::filter(
+        ggstatsplot::movies_long,
+        genre %in% c("Action", "Comedy", "RomCom")
+      ), size = 0.5),
       x = genre,
       y = rating,
       type = "np",
@@ -140,26 +155,29 @@ testthat::test_that(
       palette = "Set3"
     )
 
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
     # data used for pairwise comparisons
-    dat <- p$plot_env$df_pairwise
+    dat <- pb$plot$plot_env$df_pairwise
 
     # ggsignif layer parameters
-    ggsignif_stat <- p$layers[[7]]$stat_params
+    ggsignif_stat <- pb$plot$layers[[7]]$stat_params
 
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims, c(36L, 7L))
+    # data for geom_signif layer
+    data_signif <- tibble::as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    testthat::expect_identical(dat$group1[1], "Action")
-    testthat::expect_identical(dat$group2[12], "Comedy Drama")
-    testthat::expect_identical(dat$groups[[1]], c("Action", "Action Comedy"))
-    testthat::expect_identical(dat$label[1], "ns")
-    testthat::expect_identical(dat$label[2], "***")
-    testthat::expect_identical(dat$label[15], "ns")
-    testthat::expect_identical(dat$p.value.label[15], "p = 0.147")
-    testthat::expect_identical(dat$p.value.label[6], "p <= 0.001")
+    testthat::expect_identical(dat$group1, c("Action", "Action", "Comedy"))
+    testthat::expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
+    testthat::expect_identical(dat$significance, c("ns", "**", "**"))
+    testthat::expect_identical(
+      dat$p.value.label,
+      c("p = 0.305", "p = 0.001", "p = 0.001")
+    )
     testthat::expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
@@ -174,63 +192,29 @@ testthat::test_that(
     )
     testthat::expect_identical(
       ggstatsplot::specify_decimal_p(
-        x = dat$p.value[6],
+        x = dat$p.value[1],
         p.value = TRUE,
         k = 4
       ),
-      "< 0.001"
+      "0.3050"
     )
 
     # checking values
-    testthat::expect_equal(dat$W[1], 2.05, tolerance = 0.01)
-    testthat::expect_equal(dat$W[6], 11.3, tolerance = 0.01)
+    testthat::expect_equal(dat$W,
+      c(1.450993, 4.987136, 4.717530),
+      tolerance = 0.001
+    )
 
     # checking ggsignif layers
-    testthat::expect_equal(ggsignif_stat$y_position[1], 9.327500, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[3], 10.120357, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$y_position[15], 14.3, tolerance = 0.01)
-    testthat::expect_equal(ggsignif_stat$comparisons[[15]], c("Action Comedy", "RomCom"))
-    testthat::expect_equal(
-      ggsignif_stat$annotations,
-      c(
-        "ns",
-        "***",
-        "**",
-        "ns",
-        "***",
-        "***",
-        "***",
-        "**",
-        "*",
-        "*",
-        "ns",
-        "***",
-        "***",
-        "***",
-        "ns",
-        "ns",
-        "*",
-        "ns",
-        "*",
-        "ns",
-        "ns",
-        "**",
-        "ns",
-        "ns",
-        "ns",
-        "ns",
-        "***",
-        "***",
-        "***",
-        "*",
-        "*",
-        "ns",
-        "*",
-        "ns",
-        "***",
-        "*"
-      )
+    testthat::expect_equal(ggsignif_stat$y_position,
+      c(9.225, 9.735, 10.245),
+      tolerance = 0.01
     )
+    testthat::expect_equal(
+      ggsignif_stat$comparisons[[1]],
+      c("Action", "Comedy")
+    )
+    testthat::expect_equal(ggsignif_stat$annotations, c("ns", "**", "**"))
   }
 )
 
@@ -245,7 +229,7 @@ testthat::test_that(
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggbetweenstats(
-      data = ggplot2::mpg,
+      data = dplyr::sample_frac(ggplot2::mpg, size = 0.5),
       x = drv,
       y = cty,
       messages = FALSE,
@@ -257,22 +241,26 @@ testthat::test_that(
       pairwise.annotation = "p.value"
     )
 
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
     # data used for pairwise comparisons
-    dat <- p$plot_env$df_pairwise
+    dat <- pb$plot$plot_env$df_pairwise
 
     # ggsignif layer parameters
-    ggsignif_stat <- p$layers[[7]]$stat_params
+    ggsignif_stat <- pb$plot$layers[[7]]$stat_params
 
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims, c(2L, 9L))
+    # data for geom_signif layer
+    data_signif <- tibble::as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    testthat::expect_identical(dat$group1[1], "4")
-    testthat::expect_identical(dat$group2[2], "r")
-    testthat::expect_identical(dat$groups[[1]], c("4", "f"))
-    testthat::expect_identical(dat$significance[1], "***")
+    testthat::expect_equal(data_dims, c(3L, 8L))
+    testthat::expect_identical(dat$group1, c("4", "4", "f"))
+    testthat::expect_identical(dat$group2, c("f", "r", "r"))
+    testthat::expect_identical(dat$significance, c("***", "ns", "***"))
     testthat::expect_identical(
       p$labels$caption,
       ggplot2::expr(atop(
@@ -285,18 +273,12 @@ testthat::test_that(
         )
       ))
     )
-    testthat::expect_identical(
-      ggstatsplot::specify_decimal_p(
-        x = dat$conf.low[1],
-        p.value = FALSE,
-        k = 2
-      ),
-      "-6.43"
-    )
 
     # checking values
-    testthat::expect_equal(dat$psihat[1], -5.38, tolerance = 0.01)
-    testthat::expect_equal(dat$psihat[2], 5.57, tolerance = 0.01)
+    testthat::expect_equal(dat$psihat,
+      c(-5.0273133, 0.1521739, 5.1794872),
+      tolerance = 0.001
+    )
 
     # checking ggsignif layers
     testthat::expect_equal(ggsignif_stat$y_position,
@@ -338,21 +320,25 @@ testthat::test_that(
       pairwise.annotation = "p"
     )
 
+    # build the plot
+    pb <- ggplot2::ggplot_build(p)
+
     # data used for pairwise comparisons
-    dat <- p$plot_env$df_pairwise
+    dat <- pb$plot$plot_env$df_pairwise
 
     # ggsignif layer parameters
-    ggsignif_stat <- p$layers[[7]]$stat_params
+    ggsignif_stat <- pb$plot$layers[[7]]$stat_params
 
     # checking dimensions of data
     data_dims <- dim(dat)
 
-    testthat::expect_equal(data_dims, c(3L, 9L))
+    # data for geom_signif layer
+    data_signif <- tibble::as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    testthat::expect_identical(dat$group1[1], "6")
-    testthat::expect_identical(dat$group2[2], "4")
-    testthat::expect_identical(dat$groups[[1]], c("6", "4"))
+    testthat::expect_equal(data_dims, c(3L, 8L))
+    testthat::expect_identical(dat$group1, c("6", "8", "8"))
+    testthat::expect_identical(dat$group2, c("4", "4", "6"))
     testthat::expect_identical(dat$significance, c("*", "***", "*"))
     testthat::expect_identical(
       p$labels$caption,
@@ -368,10 +354,18 @@ testthat::test_that(
     )
 
     # checking values
-    testthat::expect_equal(dat$mean.difference[1], 0.831, tolerance = 0.01)
-    testthat::expect_equal(dat$mean.difference[3], 0.882, tolerance = 0.01)
-    testthat::expect_equal(dat$conf.low[1], 0.0794, tolerance = 0.01)
-    testthat::expect_equal(dat$conf.high[1], 1.580, tolerance = 0.01)
+    testthat::expect_equal(dat$mean.difference,
+      c(0.8314156, 1.7134870, 0.8820714),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(dat$conf.low,
+      c(0.07939155, 1.08680032, 0.16206323),
+      tolerance = 0.001
+    )
+    testthat::expect_equal(dat$conf.high,
+      c(1.583440, 2.340174, 1.602080),
+      tolerance = 0.001
+    )
 
     # checking ggsignif layers
     testthat::expect_equal(ggsignif_stat$y_position,
@@ -385,6 +379,23 @@ testthat::test_that(
         "p = 0.032",
         "p <= 0.001",
         "p = 0.015"
+      )
+    )
+
+    # geom_signif data layers
+    testthat::expect_equal(dim(data_signif), c(9L, 19L))
+    testthat::expect_identical(
+      as.character(data_signif$group),
+      c(
+        "6-4-1",
+        "6-4-1",
+        "6-4-1",
+        "8-4-2",
+        "8-4-2",
+        "8-4-2",
+        "8-6-3",
+        "8-6-3",
+        "8-6-3"
       )
     )
   }

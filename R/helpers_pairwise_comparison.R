@@ -337,7 +337,7 @@ pairwise_p <- function(data,
         dplyr::mutate_at(
           .tbl = .,
           .vars = dplyr::vars(dplyr::matches("^group[0-9]$")),
-          .funs =  ~ stringr::str_replace(
+          .funs = ~ stringr::str_replace(
             string = .,
             pattern = "_",
             replacement = "-"

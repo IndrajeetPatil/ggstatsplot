@@ -189,7 +189,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot"><img src="http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--02--22-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--02--25-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -488,7 +488,7 @@
 <a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;   # returning the converted plot</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;   return(p)</span></a>
 <a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x0000000031217c70&gt;</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; &lt;bytecode: 0x00000000312b3cc0&gt;</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; &lt;environment: namespace:ggstatsplot&gt;</span></a></code></pre></div>
 <p>If you are not familiar either with what the namespace <code>::</code> does or how to use pipe operator <code>%&gt;%</code>, something this package and its documentation relies a lot on, you can check out these links-</p>
 <ul>
@@ -1255,7 +1255,7 @@
 <a class="sourceLine" id="cb30-23" title="23">                <span class="dt">y =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats2-1.png" width="100%"></p>
 <p>Most of the regression models that are supported in the <code>broom</code> and <code>broom.mixed</code> packages with <code>tidy</code> and <code>glance</code> methods are also supported by <code>ggcoefstats</code>. For example-</p>
-<p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>biglm</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>clm</code>, <code>clmm</code>, <code>confusionMatrix</code>, <code>coxph</code>, <code>ergm</code>, <code>felm</code>, <code>fitdistr</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmTMB</code>, <code>glmrob</code>, <code>gmm</code>, <code>ivreg</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mediate</code>, <code>mjoint</code>, <code>mle2</code>, <code>multinom</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>speedlm</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, etc.</p>
+<p><code>aareg</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>biglm</code>, <code>brmsfit</code>, <code>btergm</code>, <code>cch</code>, <code>clm</code>, <code>clmm</code>, <code>confusionMatrix</code>, <code>coxph</code>, <code>ergm</code>, <code>felm</code>, <code>fitdistr</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>glm</code>, <code>glmmadmb</code>, <code>glmmTMB</code>, <code>glmrob</code>, <code>gmm</code>, <code>ivreg</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmodel2</code>, <code>lmrob</code>, <code>mcmc</code>, <code>MCMCglmm</code>, <code>mediate</code>, <code>mjoint</code>, <code>mle2</code>, <code>multinom</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nls</code>, <code>orcutt</code>, <code>plm</code>, <code>polr</code>, <code>ridgelm</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>rq</code>, <code>speedlm</code>, <code>stanreg</code>, <code>survreg</code>, <code>svyglm</code>, <code>svyolr</code>, <code>svyglm</code>, etc.</p>
 <p>For an exhaustive list of all regression models supported by <code>ggcoefstats</code> and what to do in case the regression model you are interested in is not supported, see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>
 </div>
 <div id="combine_plots" class="section level2">

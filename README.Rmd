@@ -988,7 +988,7 @@ Most of the regression models that are supported in the `broom` and
 `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`, `glm`,
 `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`, `lmerMod`,
 `lmodel2`, `lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `multinom`,
-`nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rlm`,
+`nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`,
 `rlmerMod`, `rq`, `speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
 etc.
 

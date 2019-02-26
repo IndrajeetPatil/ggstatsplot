@@ -267,7 +267,6 @@ check_outlier <- function(var, coef = 1.5) {
 #'   outlier.coef = 2
 #' ) %>%
 #'   dplyr::arrange(outlier)
-#'
 #' @export
 
 outlier_df <- function(data,
@@ -438,4 +437,105 @@ lm_effsize_standardizer <- function(object,
 
   # return the dataframe in standard format
   return(df)
+}
+
+
+#' @title Adding `geom_signif` to the plot.
+#' @name ggsignif_adder
+#' @param plot A `ggplot` object on which `geom_signif` needed to be added.
+#' @inheritParams ggbetweenstats
+#'
+#' @examples
+#' \dontrun{
+#' library(ggplot2)
+#'
+#' # data
+#' df <- data.frame(x = iris$Species, y = iris$Sepal.Length)
+#'
+#' # plot
+#' p <- ggplot(df, aes(x, y)) + geom_boxplot()
+#'
+#' # dataframe with pairwise comparison test results
+#' df_pair <- ggstatsplot::pairwise_p(df, x, y)
+#'
+#' # adding plot with
+#' ggstatsplot:::ggsignif_adder(
+#'   plot = p,
+#'   df_pairwise = df_pair,
+#'   data = df
+#' )
+#' }
+#'
+#' @keywords internal
+
+ggsignif_adder <- function(plot,
+                           df_pairwise,
+                           data,
+                           pairwise.annotation = "asterisk",
+                           pairwise.display = "significant") {
+  # creating a column for group combinations
+  df_pairwise %<>%
+    purrrlyr::by_row(
+      .d = .,
+      ..f = ~ c(.$group1, .$group2),
+      .collate = "list",
+      .to = "groups"
+    )
+
+  # decide what needs to be displayed:
+  # only significant or non-significant comparisons
+  if (pairwise.display %in% c("s", "significant")) {
+    df_pairwise %<>%
+      dplyr::filter(.data = ., significance != "ns")
+  } else if (pairwise.display %in% c("ns", "nonsignificant", "non-significant")) {
+    df_pairwise %<>%
+      dplyr::filter(.data = ., significance == "ns")
+  }
+
+  # proceed only if there are any significant comparisons to display
+  if (dim(df_pairwise)[[1]] != 0L) {
+    # deciding what needs to be displayed
+    if (pairwise.annotation %in% c("p", "p-value", "p.value")) {
+      # if p-values are to be displayed
+      df_pairwise %<>%
+        dplyr::rename(.data = ., label = p.value.label)
+
+      # for ggsignif
+      textsize <- 3
+      vjust <- 0
+    } else {
+      # otherwise just show the asterisks
+      df_pairwise %<>%
+        dplyr::rename(.data = ., label = significance)
+
+      # for ggsignif
+      textsize <- 4
+      vjust <- 0.2
+    }
+
+    # arrange the dataframe so that annotations are properly aligned
+    df_pairwise %<>%
+      dplyr::arrange(.data = ., group1)
+
+    # computing y coordinates for ggsgnif bars
+    ggsignif_y_position <-
+      ggsignif_position_calculator(x = data$x, y = data$y)
+
+    # adding ggsignif comparisons to the plot
+    plot <- plot +
+      ggsignif::geom_signif(
+        comparisons = df_pairwise$groups,
+        map_signif_level = TRUE,
+        textsize = textsize,
+        tip_length = 0.01,
+        vjust = vjust,
+        y_position = ggsignif_y_position,
+        annotations = df_pairwise$label,
+        test = NULL,
+        na.rm = TRUE
+      )
+  }
+
+  # return the plot
+  return(plot)
 }
