@@ -41,9 +41,11 @@ p <- ggplot(df, aes(x, y)) + geom_boxplot()
 df_pair <- ggstatsplot::pairwise_p(df, x, y)
 
 # adding plot with
-ggstatsplot:::ggsignif_adder(plot = p,
-                                  df_pairwise = df_pair,
-                                  data = df)
+ggstatsplot:::ggsignif_adder(
+  plot = p,
+  df_pairwise = df_pair,
+  data = df
+)
 }
 
 }

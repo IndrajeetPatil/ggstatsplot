@@ -38,7 +38,6 @@ ggstatsplot::outlier_df(
   outlier.coef = 2
 ) \%>\%
   dplyr::arrange(outlier)
-
 }
 \author{
 Indrajeet Patil
