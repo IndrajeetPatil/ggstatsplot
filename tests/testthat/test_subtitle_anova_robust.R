@@ -5,6 +5,7 @@ context("subtitle_anova_robust")
 testthat::test_that(
   desc = "subtitle_anova_robust works - conf.type = norm",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # ggstatsplot output
@@ -28,9 +29,9 @@ testthat::test_that(
           "(",
           "8",
           ",",
-          "171.38458",
+          "201.17562",
           ") = ",
-          "25.18580",
+          "30.46450",
           ", ",
           italic("p"),
           " = ",
@@ -38,12 +39,12 @@ testthat::test_that(
           ", ",
           italic(xi),
           " = ",
-          "0.60098",
+          "0.56962",
           ", CI"["95%"],
           " [",
-          "0.56868",
+          "0.48190",
           ", ",
-          "0.60232",
+          "0.58374",
           "]",
           ", ",
           italic("n"),
@@ -62,6 +63,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_anova_robust works - conf.type = perc",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -96,12 +98,12 @@ testthat::test_that(
           ", ",
           italic(xi),
           " = ",
-          "0.1393",
+          "0.1415",
           ", CI"["99%"],
           " [",
-          "-0.1692",
+          "-0.0284",
           ", ",
-          "0.2128",
+          "0.2206",
           "]",
           ", ",
           italic("n"),

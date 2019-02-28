@@ -301,6 +301,7 @@ testthat::test_that(
     # tidy dataframe from the function
     tidy_df <- p$plot_env$tidy_df
 
+    # tests
     testthat::expect_identical(p$labels$x, "partial omega-squared")
     testthat::expect_identical(p$labels$y, "term")
     testthat::expect_identical(
@@ -319,13 +320,13 @@ testthat::test_that(
 
     testthat::expect_equal(tidy_df$estimate,
       c(0.30828881, 0.02348073, 0.17365008),
-      tolerance = 1e-3
+      tolerance = 0.001
     )
     testthat::expect_equal(tidy_df$df1[1], 3L)
     testthat::expect_equal(tidy_df$df2[1], 35L)
     testthat::expect_equal(tidy_df$p.value,
-      c(0.000584, 0.163, 0.0148),
-      tolerance = 1e-3
+      c(0.0005838887, 0.1626797382, 0.0148476585),
+      tolerance = 0.001
     )
 
     testthat::expect_identical(
@@ -348,12 +349,12 @@ testthat::test_that(
 
     # checking panel parameters
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(-0.1754901, 0.7496432),
+      c(-0.1648929, 0.7565467),
       tolerance = 0.001
     )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$x.labels,
-      c("0.00", "0.25", "0.50")
+      c("0.00", "0.25", "0.50", "0.75")
     )
     testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
       c(0.4, 3.6),

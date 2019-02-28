@@ -5,6 +5,7 @@ context("subtitle_contingency_tab")
 testthat::test_that(
   desc = "subtitle_contingency_tab works - data without NAs",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -42,9 +43,9 @@ testthat::test_that(
           "0.29412",
           ", CI"["99%"],
           " [",
-          "0.26560",
+          "0.26376",
           ", ",
-          "0.31106",
+          "0.29634",
           "]",
           ", ",
           italic("n"),
@@ -114,9 +115,9 @@ testthat::test_that(
           "0.43",
           ", CI"["99%"],
           " [",
-          "0.02",
+          "0.05",
           ", ",
-          "0.86",
+          "0.87",
           "]",
           ", ",
           italic("n"),

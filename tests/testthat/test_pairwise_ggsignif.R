@@ -136,14 +136,15 @@ testthat::test_that(
 testthat::test_that(
   desc = "check mixed comparison displays - adjusted",
   code = {
+    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggbetweenstats(
-      data = dplyr::sample_frac(dplyr::filter(
+      data = dplyr::filter(
         ggstatsplot::movies_long,
         genre %in% c("Action", "Comedy", "RomCom")
-      ), size = 0.5),
+      ),
       x = genre,
       y = rating,
       type = "np",
@@ -173,10 +174,10 @@ testthat::test_that(
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("Action", "Action", "Comedy"))
     testthat::expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
-    testthat::expect_identical(dat$significance, c("ns", "**", "**"))
+    testthat::expect_identical(dat$significance, c("ns", "***", "***"))
     testthat::expect_identical(
       dat$p.value.label,
-      c("p = 0.305", "p = 0.001", "p = 0.001")
+      c("p = 0.687", "p = 0.001", "p <= 0.001")
     )
     testthat::expect_identical(
       p$labels$caption,
@@ -196,25 +197,25 @@ testthat::test_that(
         p.value = TRUE,
         k = 4
       ),
-      "0.3050"
+      "0.6870"
     )
 
     # checking values
     testthat::expect_equal(dat$W,
-      c(1.450993, 4.987136, 4.717530),
+      c(0.5702297, 4.8458729, 5.4434648),
       tolerance = 0.001
     )
 
     # checking ggsignif layers
     testthat::expect_equal(ggsignif_stat$y_position,
-      c(9.225, 9.735, 10.245),
-      tolerance = 0.01
+      c(9.2250, 9.7725, 10.3200),
+      tolerance = 0.001
     )
     testthat::expect_equal(
       ggsignif_stat$comparisons[[1]],
       c("Action", "Comedy")
     )
-    testthat::expect_equal(ggsignif_stat$annotations, c("ns", "**", "**"))
+    testthat::expect_equal(ggsignif_stat$annotations, dat$significance)
   }
 )
 
@@ -229,7 +230,7 @@ testthat::test_that(
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggbetweenstats(
-      data = dplyr::sample_frac(ggplot2::mpg, size = 0.5),
+      data = ggplot2::mpg,
       x = drv,
       y = cty,
       messages = FALSE,
@@ -276,7 +277,7 @@ testthat::test_that(
 
     # checking values
     testthat::expect_equal(dat$psihat,
-      c(-5.0273133, 0.1521739, 5.1794872),
+      c(-5.3769964, 0.1927711, 5.5697674),
       tolerance = 0.001
     )
 

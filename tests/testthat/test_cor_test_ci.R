@@ -15,8 +15,8 @@ testthat::test_that(
       data = datasets::mtcars,
       x = hp,
       y = mpg,
-      nboot = 125,
-      conf.level = .99,
+      nboot = 25,
+      conf.level = 0.90,
       conf.type = c("norm"),
       method = "kendall",
       continuity = TRUE,
@@ -26,36 +26,33 @@ testthat::test_that(
     # dataset with NAs
     mtcars2 <- datasets::mtcars
     mtcars2[1, 1] <- NA
-    set.seed(123)
 
     # this also makes sure that the quoted arguments work
+    set.seed(123)
     df2 <- ggstatsplot:::cor_test_ci(
       data = mtcars2,
       x = "hp",
       y = "mpg",
-      nboot = 125,
-      conf.level = .99,
-      conf.type = c("norm"),
+      nboot = 20,
+      conf.level = 0.99,
+      conf.type = "norm",
       method = "kendall",
       continuity = TRUE,
       alternative = "less"
     )
 
-    # testing 12 conditions
-    set.seed(123)
-
     # dataset without NAs
     testthat::expect_equal(df1$r, -0.7428125, tolerance = 0.00002)
-    testthat::expect_equal(df1$conf.low, -0.9164006, tolerance = 0.00002)
-    testthat::expect_equal(df1$conf.high, -0.5732568, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.low, -0.8708747, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.high, -0.6449002, tolerance = 0.00002)
     testthat::expect_equal(df1$statistic, -5.854742, tolerance = 0.00002)
     testthat::expect_equal(df1$p.value, 0.00000000239, tolerance = 0.00002)
     testthat::expect_match(as.character(df1$alternative), regexp = "less")
 
     # dataset with NAs
     testthat::expect_equal(df2$r, -0.7360461, tolerance = 0.00002)
-    testthat::expect_equal(df2$conf.low, -0.9230962, tolerance = 0.00002)
-    testthat::expect_equal(df2$conf.high, -0.5628487, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.low, -0.8864601, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.high, -0.5745845, tolerance = 0.00002)
     testthat::expect_equal(df2$statistic, -5.70882, tolerance = 0.00002)
     testthat::expect_equal(df2$p.value, 5.688118e-09, tolerance = 0.00002)
     testthat::expect_match(as.character(df2$alternative), regexp = "less")
@@ -77,7 +74,7 @@ testthat::test_that(
       data = datasets::mtcars,
       x = hp,
       y = mpg,
-      nboot = 125,
+      nboot = 20,
       conf.level = .99,
       conf.type = c("norm"),
       method = "pearson",
@@ -88,7 +85,6 @@ testthat::test_that(
     # dataset with NAs
     mtcars2 <- datasets::mtcars
     mtcars2[1, 1] <- NA
-    set.seed(123)
 
     # this also makes sure that the quoted arguments work
     set.seed(123)
@@ -96,7 +92,7 @@ testthat::test_that(
       data = mtcars2,
       x = "hp",
       y = "mpg",
-      nboot = 125,
+      nboot = 25,
       conf.level = .99,
       conf.type = c("norm"),
       method = "pearson",
@@ -106,16 +102,16 @@ testthat::test_that(
 
     # dataset without NAs
     testthat::expect_equal(df1$r, -0.7761684, tolerance = 0.00002)
-    testthat::expect_equal(df1$conf.low, -0.8950344, tolerance = 0.00002)
-    testthat::expect_equal(df1$conf.high, -0.6346684, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.low, -0.9126434, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.high, -0.6221413, tolerance = 0.00002)
     testthat::expect_equal(df1$statistic, -6.742389, tolerance = 0.00002)
     testthat::expect_equal(df1$p.value, 8.939176e-08, tolerance = 0.00002)
     testthat::expect_match(as.character(df1$alternative), regexp = "less")
 
     # dataset with NAs
     testthat::expect_equal(df2$r, -0.7774885, tolerance = 0.00002)
-    testthat::expect_equal(df2$conf.low, -0.8892667, tolerance = 0.00002)
-    testthat::expect_equal(df2$conf.high, -0.6545251, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.low, -0.8958777, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.high, -0.6446162, tolerance = 0.00002)
     testthat::expect_equal(df2$statistic, -6.657534, tolerance = 0.00002)
     testthat::expect_equal(df2$p.value, 1.33453e-07, tolerance = 0.00002)
     testthat::expect_match(as.character(df2$alternative), regexp = "less")
@@ -136,7 +132,7 @@ testthat::test_that(
       x = hp,
       y = mpg,
       nboot = 25,
-      conf.level = .99,
+      conf.level = 0.99,
       conf.type = "perc",
       method = "spearman",
       continuity = TRUE,
@@ -153,8 +149,8 @@ testthat::test_that(
       data = mtcars2,
       x = "hp",
       y = "mpg",
-      nboot = 100,
-      conf.level = .90,
+      nboot = 20,
+      conf.level = 0.90,
       conf.type = "basic",
       method = "spearman",
       continuity = TRUE,
@@ -168,15 +164,15 @@ testthat::test_that(
       x = wt,
       y = mpg,
       nboot = 50,
-      conf.level = .90,
+      conf.level = 0.90,
       conf.type = "bca",
       method = "spearman"
     ))
 
     # dataset without NAs
     testthat::expect_equal(df1$r, -0.8946646, tolerance = 0.00002)
-    testthat::expect_equal(df1$conf.low, -0.9509772, tolerance = 0.00002)
-    testthat::expect_equal(df1$conf.high, -0.7030092, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.low, -0.9507201, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.high, -0.781459, tolerance = 0.00002)
     testthat::expect_equal(df1$statistic, 10337.29, tolerance = 0.00002)
     testthat::expect_equal(df1$p.value, 1, tolerance = 0.00002)
     testthat::expect_equal(df1$nboot, 25L)
@@ -185,16 +181,15 @@ testthat::test_that(
 
     # dataset with NAs
     testthat::expect_equal(df2$r, -0.8923343, tolerance = 0.00002)
-    testthat::expect_equal(df2$conf.low, -0.9989724, tolerance = 0.00002)
-    testthat::expect_equal(df2$conf.high, -0.8408024, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.low, -0.9833273, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.high, -0.8373902, tolerance = 0.00002)
     testthat::expect_equal(df2$statistic, 9385.978, tolerance = 0.00002)
     testthat::expect_equal(df2$p.value, 1.643287e-11, tolerance = 0.00002)
-    testthat::expect_equal(df2$nboot, 100L)
     testthat::expect_match(as.character(df2$alternative), regexp = "two.sided")
 
     # bca CI
     testthat::expect_equal(df3$r, -0.886422, tolerance = 0.00002)
-    testthat::expect_equal(df3$conf.low, -0.9447229, tolerance = 0.00002)
-    testthat::expect_equal(df3$conf.high, -0.7873163, tolerance = 0.00002)
+    testthat::expect_equal(df3$conf.low, -0.9396298, tolerance = 0.00002)
+    testthat::expect_equal(df3$conf.high, -0.7886005, tolerance = 0.00002)
   }
 )
