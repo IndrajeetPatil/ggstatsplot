@@ -74,8 +74,6 @@ testthat::test_that(
   }
 )
 
-
-
 # bayes factor plus posterior checks (paired t-test) ----------------------
 
 testthat::test_that(
@@ -114,8 +112,6 @@ testthat::test_that(
     testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
   }
 )
-
-
 
 # bayes factor plus posterior checks (contingency tab) ----------------------
 

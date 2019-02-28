@@ -5,6 +5,7 @@ context("subtitle_contingency_tab_gof")
 testthat::test_that(
   desc = "Goodness of Fit subtitle_contingency_tab works without counts",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -49,6 +50,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "Goodness of Fit subtitle_contingency_tab works with counts",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -93,6 +95,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "works with dataframes with NAs",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # from function
@@ -126,6 +129,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "works even in edge cases",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # creating a dataframe

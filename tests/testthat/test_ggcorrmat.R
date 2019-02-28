@@ -199,6 +199,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking ggcorrmat - with NAs - robust r",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggcorrmat(
@@ -484,6 +486,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking p-values",
   code = {
+    testthat::skip_on_cran()
+
     # dataframe with sample sizes
     set.seed(123)
     df <- ggstatsplot::ggcorrmat(

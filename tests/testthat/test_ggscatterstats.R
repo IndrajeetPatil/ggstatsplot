@@ -239,7 +239,6 @@ testthat::test_that(
   }
 )
 
-
 # checking median display ---------------------------------------------
 
 testthat::test_that(
@@ -310,6 +309,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "bayes factor plus class of object",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <-

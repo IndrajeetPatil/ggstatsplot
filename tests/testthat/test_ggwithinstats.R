@@ -5,6 +5,7 @@ context(desc = "ggwithinstats")
 testthat::test_that(
   desc = "basic plotting works",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     p0 <- ggstatsplot:::ggwithinstats(

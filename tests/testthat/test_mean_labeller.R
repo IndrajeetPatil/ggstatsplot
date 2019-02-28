@@ -6,6 +6,8 @@ testthat::test_that(
   desc = "mean_labeller works",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_on_appveyor()
+    testthat::skip_on_travis()
 
     # ----------------------- data without NAs ------------------------------
 

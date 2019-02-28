@@ -5,6 +5,7 @@ context("subtitle_anova_bayes")
 testthat::test_that(
   desc = "subtitle_anova_bayes works (unequal variance)",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
 
     # ggstatsplot output

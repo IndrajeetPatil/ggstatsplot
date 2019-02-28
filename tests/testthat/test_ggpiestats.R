@@ -6,6 +6,8 @@ context(desc = "ggpiestats")
 testthat::test_that(
   desc = "checking one sample proportion test",
   code = {
+    testthat::skip_on_cran()
+
     # creating the plot
     set.seed(123)
     p <- ggstatsplot::ggpiestats(

@@ -3,6 +3,8 @@ context("subtitle_friedman_nonparametric")
 testthat::test_that(
   desc = "subtitle_friedman_nonparametric works",
   code = {
+    testthat::skip_on_cran()
+
     library(jmv)
     data("bugs", package = "jmv")
 

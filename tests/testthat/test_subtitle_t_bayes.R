@@ -5,6 +5,7 @@ context("subtitle_t_bayes")
 testthat::test_that(
   desc = "subtitle_t_bayes works - between-subjects design",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -57,6 +58,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_t_bayes_paired works - within-subjects design",
   code = {
+    testthat::skip_on_cran()
 
     # made up data
     Input <- ("
