@@ -420,18 +420,18 @@ testthat::test_that(
     )
 
     # checking estimates and CIs
-    testthat::expect_equal(df1$estimate, -2.828219, tolerance = 0.001)
-    testthat::expect_equal(df1$conf.low, -3.555086, tolerance = 0.001)
-    testthat::expect_equal(df1$conf.high, -2.101352, tolerance = 0.001)
+    testthat::expect_equal(df1$estimate, 2.828219, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.low, 2.101352, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.high, 3.555086, tolerance = 0.001)
     testthat::expect_equal(df2$estimate, df1$estimate, tolerance = 0.001)
-    testthat::expect_equal(df3$estimate, -2.842649, tolerance = 0.001)
-    testthat::expect_equal(df3$conf.low, -3.802441, tolerance = 0.001)
-    testthat::expect_equal(df3$conf.high, -1.882856, tolerance = 0.001)
+    testthat::expect_equal(df3$estimate, 2.842649, tolerance = 0.001)
+    testthat::expect_equal(df3$conf.low, 1.882856, tolerance = 0.001)
+    testthat::expect_equal(df3$conf.high, 3.802441, tolerance = 0.001)
     testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
-    testthat::expect_equal(df2$conf.low, -3.208837, tolerance = 0.001)
-    testthat::expect_equal(df2$conf.high, -2.489882, tolerance = 0.001)
-    testthat::expect_equal(df4$conf.low, -2.971019, tolerance = 0.001)
-    testthat::expect_equal(df4$conf.high, -2.722362, tolerance = 0.001)
+    testthat::expect_equal(df2$conf.low, 2.489882, tolerance = 0.001)
+    testthat::expect_equal(df2$conf.high, 3.208837, tolerance = 0.001)
+    testthat::expect_equal(df4$conf.low, 2.722362, tolerance = 0.001)
+    testthat::expect_equal(df4$conf.high, 2.971019, tolerance = 0.001)
 
 
     # checking details
@@ -621,16 +621,16 @@ testthat::test_that(
     )
 
     # checking estimates and CIs
-    testthat::expect_equal(df1$estimate, -0.6910747, tolerance = 0.001)
-    testthat::expect_equal(df1$conf.low, -0.9246243, tolerance = 0.001)
-    testthat::expect_equal(df1$conf.high, -0.457525, tolerance = 0.001)
+    testthat::expect_equal(df1$estimate, 0.6910747, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.low, 0.457525, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.high, 0.9246243, tolerance = 0.001)
 
     testthat::expect_equal(df2$estimate, df1$estimate, tolerance = 0.001)
-    testthat::expect_equal(df3$estimate, -0.6969645, tolerance = 0.001)
-    testthat::expect_equal(df3$conf.low, -0.8923415, tolerance = 0.001)
-    testthat::expect_equal(df3$conf.high, -0.5015875, tolerance = 0.001)
+    testthat::expect_equal(df3$estimate, 0.6969645, tolerance = 0.001)
+    testthat::expect_equal(df3$conf.low, 0.5015875, tolerance = 0.001)
+    testthat::expect_equal(df3$conf.high, 0.8923415, tolerance = 0.001)
     testthat::expect_equal(df4$estimate, df3$estimate, tolerance = 0.001)
-    testthat::expect_equal(df5$estimate, 0.6969645, tolerance = 0.001)
+    testthat::expect_equal(df5$estimate, -0.6969645, tolerance = 0.001)
 
 
     # checking details
@@ -782,3 +782,4 @@ testthat::test_that(
     testthat::expect_equal(df3$conf.level, 0.99, tolerance = 0.01)
   }
 )
+
