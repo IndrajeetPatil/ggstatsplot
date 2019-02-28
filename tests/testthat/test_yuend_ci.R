@@ -146,38 +146,38 @@ testthat::test_that(
     # bca CI
     set.seed(123)
     df4 <-
-      ggstatsplot:::yuend_ci(
+      suppressWarnings(ggstatsplot:::yuend_ci(
         data = mydata1,
         x = time,
         y = grade,
         conf.level = 0.85,
         conf.type = "bca"
-      )
+      ))
 
     # testing (dataframe without NAs)
-    testthat::expect_equal(df1$t.value, -5.27, tolerance = .001)
+    testthat::expect_equal(df1$t.value, -5.268876, tolerance = .001)
     testthat::expect_equal(df1$xi, 0.166875, tolerance = 0.0001)
-    testthat::expect_equal(df1$conf.low, 0.0952, tolerance = 0.0001)
-    testthat::expect_equal(df1$conf.high, 0.248, tolerance = 0.001)
+    testthat::expect_equal(df1$conf.low, 0.07917537, tolerance = 0.0001)
+    testthat::expect_equal(df1$conf.high, 0.2513106, tolerance = 0.001)
     testthat::expect_equal(df1$df, 15L)
     testthat::expect_equal(df1$p.value, 0.0000945, tolerance = 0.000001)
 
     # testing (dataframe with NAs)
-    testthat::expect_equal(df2$t.value, -1.356716, tolerance = .001)
-    testthat::expect_equal(df2$xi, 0.3486531, tolerance = 0.0001)
-    testthat::expect_equal(df2$conf.low, -0.084208, tolerance = 0.0001)
-    testthat::expect_equal(df2$conf.high, 0.6691399, tolerance = 0.001)
-    testthat::expect_equal(df2$df, 8L)
-    testthat::expect_equal(df2$p.value, 0.2119125, tolerance = 0.000001)
+    testthat::expect_equal(df2$t.value, -0.3976015, tolerance = .001)
+    testthat::expect_equal(df2$xi, 0.1607089, tolerance = 0.0001)
+    testthat::expect_equal(df2$conf.low, -0.408429, tolerance = 0.0001)
+    testthat::expect_equal(df2$conf.high, 0.3024555, tolerance = 0.001)
+    testthat::expect_equal(df2$df, 7L)
+    testthat::expect_equal(df2$p.value, 0.7027698, tolerance = 0.000001)
 
     # testing (dataframe with NAs + percentile CI)
-    testthat::expect_equal(df3$xi, 0.3486531, tolerance = 0.0001)
-    testthat::expect_equal(df3$conf.low, 0.2040678, tolerance = 0.0001)
-    testthat::expect_equal(df3$conf.high, 0.5274532, tolerance = 0.0001)
+    testthat::expect_equal(df3$xi, 0.1607089, tolerance = 0.0001)
+    testthat::expect_equal(df3$conf.low, 0.1566501, tolerance = 0.0001)
+    testthat::expect_equal(df3$conf.high, 0.4350129, tolerance = 0.0001)
 
     # testing (dataframe with NAs + bca CI)
-    testthat::expect_equal(df4$xi, 0.3486531, tolerance = 0.0001)
-    testthat::expect_equal(df4$conf.low, 0.02886853, tolerance = 0.0001)
-    testthat::expect_equal(df4$conf.high, 0.6907674, tolerance = 0.0001)
+    testthat::expect_equal(df4$xi, 0.1607089, tolerance = 0.0001)
+    testthat::expect_equal(df4$conf.low, 0.00291321, tolerance = 0.0001)
+    testthat::expect_equal(df4$conf.high, 0.3079085, tolerance = 0.0001)
   }
 )

@@ -6,6 +6,8 @@ testthat::test_that(
   desc = "mean_labeller works",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_on_appveyor()
+    testthat::skip_on_travis()
 
     # ----------------------- data without NAs ------------------------------
 
@@ -48,26 +50,25 @@ testthat::test_that(
       # check mean label for first factor level
       testthat::expect_identical(
         object = mean_dat$label[[1]],
-        expected = "3759.196, 95% CI [3160.523, 4357.869]"
+        expected = "3819.577, 95% CI [3140.801, 4498.353]"
       )
 
       # check mean label for first factor level
       testthat::expect_identical(
         object = mean_dat$label[[4]],
-        expected = "4866.200, 95% CI [4527.172, 5205.227]"
+        expected = "4602.088, 95% CI [4274.731, 4929.445]"
       )
     }
 
     # check sample size label for first factor level
     testthat::expect_identical(
-      object = mean_dat$n_label[[1]],
-      expected = "Fair\n(n = 97)"
-    )
-
-    # check sample size label for first factor level
-    testthat::expect_identical(
-      object = mean_dat$n_label[[4]],
-      expected = "Premium\n(n = 686)"
+      mean_dat$n_label,
+      c(
+        "Fair\n(n = 78)",
+        "Good\n(n = 257)",
+        "Very Good\n(n = 602)",
+        "Premium\n(n = 671)"
+      )
     )
 
     # ------------------------- data with NAs ------------------------------

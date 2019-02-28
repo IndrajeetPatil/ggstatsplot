@@ -68,11 +68,11 @@ testthat::test_that(
       tolerance = 0.001
     )
     testthat::expect_equal(df1$conf.low,
-      c(0.467598329, 0.076237348, -0.009511146),
+      c(0.467069780, 0.061202567, -0.005654606),
       tolerance = 0.001
     )
     testthat::expect_equal(df1$conf.high,
-      c(0.7821529, 0.3663353, 0.1068571),
+      c(0.7632418, 0.3793348, 0.1165496),
       tolerance = 0.001
     )
     testthat::expect_equal(df1$p.value,
@@ -86,11 +86,11 @@ testthat::test_that(
       tolerance = 0.001
     )
     testthat::expect_equal(df2$conf.low,
-      c(0.482273232, 0.090869714, -0.005661891),
+      c(0.47388762, 0.08958920, -0.01051093),
       tolerance = 0.001
     )
     testthat::expect_equal(df2$conf.high,
-      c(0.7593054, 0.3558572, 0.1221788),
+      c(0.7542232, 0.3781342, 0.1314104),
       tolerance = 0.001
     )
     testthat::expect_equal(df2$p.value,
@@ -104,11 +104,11 @@ testthat::test_that(
       tolerance = 0.001
     )
     testthat::expect_equal(df3$conf.low,
-      c(-0.01949901, -0.00396669),
+      c(-0.008902341, -0.011105971),
       tolerance = 0.001
     )
     testthat::expect_equal(df3$conf.high,
-      c(0.18630792, 0.07099604),
+      c(0.18450114, 0.07611324),
       tolerance = 0.001
     )
     testthat::expect_equal(df3$p.value,
@@ -377,7 +377,7 @@ testthat::test_that(
       effsize = "omega",
       partial = TRUE,
       conf.level = 0.95,
-      nboot = 100
+      nboot = 20
     )
 
     # model-2
@@ -387,7 +387,7 @@ testthat::test_that(
       effsize = "omega",
       partial = TRUE,
       conf.level = 0.95,
-      nboot = 100
+      nboot = 20
     )
 
     # model-3
@@ -397,7 +397,7 @@ testthat::test_that(
       effsize = "omega",
       partial = TRUE,
       conf.level = 0.95,
-      nboot = 100
+      nboot = 20
     )
 
     # model-1
@@ -406,11 +406,11 @@ testthat::test_that(
       tolerance = 0.001
     )
     testthat::expect_equal(df1$conf.low,
-      c(0.75216576, 0.41435369, -0.01836613),
+      c(0.71560787, 0.34674153, -0.02239435),
       tolerance = 0.001
     )
     testthat::expect_equal(df1$conf.high,
-      c(0.9209846, 0.8459550, 0.5332036),
+      c(0.9358406, 0.8688754, 0.5913419),
       tolerance = 0.001
     )
 
@@ -420,11 +420,11 @@ testthat::test_that(
       tolerance = 0.001
     )
     testthat::expect_equal(df2$conf.low,
-      c(0.77064188, 0.45791246, 0.04458774),
+      c(0.78771654, 0.36172052, 0.07688201),
       tolerance = 0.001
     )
     testthat::expect_equal(df2$conf.high,
-      c(0.9177533, 0.8391131, 0.5699243),
+      c(0.9195726, 0.9426915, 0.5887994),
       tolerance = 0.001
     )
 
@@ -434,11 +434,11 @@ testthat::test_that(
       tolerance = 0.001
     )
     testthat::expect_equal(df3$conf.low,
-      c(-0.01147894, -0.06437648),
+      c(-0.02471128, -0.11370840),
       tolerance = 0.001
     )
     testthat::expect_equal(df3$conf.high,
-      c(0.6066151, 0.3555619),
+      c(0.6057236, 0.4098428),
       tolerance = 0.001
     )
 

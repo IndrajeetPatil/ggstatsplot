@@ -13,7 +13,7 @@ testthat::test_that(
         x = vore,
         y = brainwt,
         nboot = 25,
-        conf.level = .99,
+        conf.level = 0.99,
         tr = 0.05,
         conf.type = c("norm")
       )
@@ -39,28 +39,28 @@ testthat::test_that(
         x = vore,
         y = brainwt,
         nboot = 50,
-        conf.level = .99,
+        conf.level = 0.99,
         tr = 0.05,
         conf.type = c("bca")
       ))
 
     # test normal CI
-    testthat::expect_equal(df1$xi, 0.6537392, tolerance = 0.00002)
-    testthat::expect_equal(df1$conf.low, -0.9077024, tolerance = 0.00002)
-    testthat::expect_equal(df1$conf.high, 1.933281, tolerance = 0.00002)
+    testthat::expect_equal(df1$xi, 0.7639015, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.low, 0.06259349, tolerance = 0.00002)
+    testthat::expect_equal(df1$conf.high, 1.838343, tolerance = 0.00002)
     testthat::expect_equal(df1$F.value, 0.6146867, tolerance = 0.00002)
     testthat::expect_equal(df1$p.value, 0.5487093, tolerance = 0.00002)
 
     # test percentile CI
-    testthat::expect_equal(df2$xi, 1.27404, tolerance = 0.00002)
-    testthat::expect_equal(df2$conf.low, 0.211037, tolerance = 0.00002)
-    testthat::expect_equal(df2$conf.high, 3.414511, tolerance = 0.00002)
+    testthat::expect_equal(df2$xi, 1.452066, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.low, 0.1435678, tolerance = 0.00002)
+    testthat::expect_equal(df2$conf.high, 2.357306, tolerance = 0.00002)
     testthat::expect_equal(df2$F.value, 0.260884, tolerance = 0.00002)
     testthat::expect_equal(df2$p.value, 0.772501, tolerance = 0.00002)
 
     # test bca
-    testthat::expect_equal(df3$xi, 0.6310199, tolerance = 0.00002)
-    testthat::expect_equal(df3$conf.low, 0.3068031, tolerance = 0.00002)
-    testthat::expect_equal(df3$conf.high, 1.855582, tolerance = 0.00002)
+    testthat::expect_equal(df3$xi, 0.5664255, tolerance = 0.00002)
+    testthat::expect_equal(df3$conf.low, 0.2904682, tolerance = 0.00002)
+    testthat::expect_equal(df3$conf.high, 1.724382, tolerance = 0.00002)
   }
 )

@@ -490,8 +490,8 @@ testthat::test_that(
     # even if binwidth changes mean of the distribution shouldn't change
     testthat::expect_identical(mean(pb1$data[[2]]$x), mean(pb2$data[[2]]$x))
     testthat::expect_identical(mean(pb3$data[[2]]$x), mean(pb4$data[[2]]$x))
-    testthat::expect_equal(mean(pb1$data[[2]]$y), 13.71123, tolerance = 0.001)
-    testthat::expect_equal(mean(pb2$data[[2]]$y), 0.01005975, tolerance = 0.001)
+    testthat::expect_equal(mean(pb1$data[[2]]$y), 14.02795, tolerance = 0.001)
+    testthat::expect_equal(mean(pb2$data[[2]]$y), 0.008271081, tolerance = 0.001)
     testthat::expect_equal(mean(pb3$data[[2]]$y), 4.627659, tolerance = 0.001)
     testthat::expect_equal(mean(pb4$data[[2]]$y), 0.1082654, tolerance = 0.001)
   }

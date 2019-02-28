@@ -5,6 +5,7 @@ context("subtitle_t_robust")
 testthat::test_that(
   desc = "subtitle_t_robust - within-subjects",
   code = {
+    testthat::skip_on_cran()
 
     # creating a dataframe
     df <- iris %>%
@@ -42,9 +43,9 @@ testthat::test_that(
         "0.9265",
         ", CI"["90%"],
         " [",
-        "0.9178",
+        "0.9193",
         ", ",
-        "0.9380",
+        "0.9367",
         "]",
         ", ",
         italic("n"),
@@ -85,6 +86,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_t_robust - between-subjects",
   code = {
+    testthat::skip_on_cran()
 
     # subtitle
     set.seed(123)
@@ -114,12 +116,12 @@ testthat::test_that(
         ", ",
         italic(xi),
         " = ",
-        "0.814",
+        "0.812",
         ", CI"["99%"],
         " [",
-        "0.685",
+        "0.727",
         ", ",
-        "0.992",
+        "0.985",
         "]",
         ", ",
         italic("n"),

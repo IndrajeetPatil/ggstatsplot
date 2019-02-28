@@ -2,7 +2,7 @@
 
 language: r
 r:
-  - release
+  #- release
   - devel
 
 sudo: true

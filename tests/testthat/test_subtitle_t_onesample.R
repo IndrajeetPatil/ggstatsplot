@@ -62,6 +62,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_t_onesample non-parametric works",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -143,9 +144,9 @@ testthat::test_that(
           "9.0000",
           ", CI"["95%"],
           " [",
-          "6.8434",
+          "6.9545",
           ", ",
-          "11.3163",
+          "11.3845",
           "], ",
           italic("p"),
           " = ",

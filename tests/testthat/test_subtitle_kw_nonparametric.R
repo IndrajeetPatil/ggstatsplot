@@ -5,6 +5,7 @@ context("subtitle_kw_nonparametric")
 testthat::test_that(
   desc = "subtitle_kw_nonparametric works - data without NAs",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -38,9 +39,9 @@ testthat::test_that(
           "0.21331",
           ", CI"["95%"],
           " [",
-          "0.17162",
+          "0.16934",
           ", ",
-          "0.24782",
+          "0.24848",
           "]",
           ", ",
           italic("n"),
@@ -60,6 +61,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_kw_nonparametric works - data with NAs",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -95,9 +97,9 @@ testthat::test_that(
           "0.083",
           ", CI"["99%"],
           " [",
-          "-0.071",
+          "-0.108",
           ", ",
-          "0.573",
+          "0.458",
           "]",
           ", ",
           italic("n"),

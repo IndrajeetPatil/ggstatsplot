@@ -5,6 +5,7 @@ context(desc = "ggsignif_adder")
 testthat::test_that(
   desc = "ggsignif_adder works",
   code = {
+    testthat::skip_on_cran()
     set.seed(123)
     library(ggplot2)
 

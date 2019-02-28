@@ -5,6 +5,7 @@ context("subtitle_ggscatterstats")
 testthat::test_that(
   desc = "subtitle_ggscatterstats works - nonparametric",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -39,9 +40,9 @@ testthat::test_that(
           "0.46669",
           ", CI"["99.9%"],
           " [",
-          "0.40415",
+          "0.41794",
           ", ",
-          "0.50080",
+          "0.51081",
           "]",
           ", ",
           italic("n"),
@@ -60,6 +61,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_ggscatterstats works - parametric",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -153,9 +155,9 @@ testthat::test_that(
           "-0.5696",
           ", CI"["50%"],
           " [",
-          "-0.6047",
+          "-0.6432",
           ", ",
-          "-0.5283",
+          "-0.4927",
           "]",
           ", ",
           italic("n"),

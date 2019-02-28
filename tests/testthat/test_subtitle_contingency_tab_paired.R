@@ -5,6 +5,7 @@ context("subtitle_contingency_tab_paired")
 testthat::test_that(
   desc = "paired subtitle_contingency_tab works - counts data without NAs",
   code = {
+    testthat::skip_on_cran()
 
     # create data structure
     paired_data <-
@@ -85,6 +86,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "paired subtitle_contingency_tab works - with NAs",
   code = {
+    testthat::skip_on_cran()
 
     # create data structure
     paired_data <-

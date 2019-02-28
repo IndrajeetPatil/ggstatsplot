@@ -5,6 +5,7 @@ context("subtitle_t_parametric")
 testthat::test_that(
   desc = "parametric t-test works (between-subjects without NAs)",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -68,6 +69,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "parametric t-test works (between-subjects with NAs)",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -131,6 +133,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "parametric t-test works (within-subjects without NAs)",
   code = {
+    testthat::skip_on_cran()
 
     # output from ggstatsplot helper subtitle
     set.seed(123)
@@ -189,6 +192,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "parametric t-test works (within-subjects with NAs)",
   code = {
+    testthat::skip_on_cran()
 
     # loading the dataset
     data("bugs", package = "jmv")
