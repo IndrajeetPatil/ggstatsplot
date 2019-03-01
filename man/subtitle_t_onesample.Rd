@@ -7,7 +7,8 @@ robust equivalents.}
 \usage{
 subtitle_t_onesample(data, x, type = "parametric", test.value = 0,
   bf.prior = 0.707, robust.estimator = "onestep", conf.level = 0.95,
-  nboot = 100, k = 2, messages = TRUE, ...)
+  nboot = 100, k = 2, messages = TRUE, effsize.type = "g",
+  effsize.noncentral = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -41,6 +42,16 @@ to use in calculating Bayes factors.}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
+
+\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
+argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-test};
+\code{"partial_eta"} for partial eta-squared for \strong{anova}) or \code{"unbiased"}
+(\code{"g"} Hedge's \emph{g} for \strong{t-test}; \code{"partial_omega"} for partial
+omega-squared for \strong{anova})).}
+
+\item{effsize.noncentral}{Logical indicating whether to use non-central
+\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
+or Hedge's \emph{g} (Default: \code{TRUE}).}
 
 \item{...}{Additional arguments.}
 }

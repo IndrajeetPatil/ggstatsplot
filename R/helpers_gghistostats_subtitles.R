@@ -49,6 +49,8 @@ subtitle_t_onesample <- function(data,
                                  nboot = 100,
                                  k = 2,
                                  messages = TRUE,
+                                 effsize.type = "g",
+                                 effsize.noncentral = TRUE,
                                  ...) {
 
   # check the dots
@@ -94,31 +96,46 @@ subtitle_t_onesample <- function(data,
   # extracting the relevant information
   stats_df <- as.data.frame(stats_df$ttest)
 
+
   # ========================= parametric ======================================
   if (stats.type == "parametric") {
 
-    # confidence intervals for Cohen's d
-    effsize_df <-
-      psych::cohen.d.ci(
-        d = stats_df$`es[stud]`,
-        n1 = sample_size,
-        alpha = 1 - conf.level
-      ) %>%
-      tibble::as_tibble(x = .)
+    # deciding which effect size to use (Hedge's g or Cohen's d)
+    if (effsize.type %in% c("unbiased", "g")) {
+      hedges.correction <- TRUE
+      effsize.text <- quote(italic("g"))
+    } else if (effsize.type %in% c("biased", "d")) {
+      hedges.correction <- FALSE
+      effsize.text <- quote(italic("d"))
+    }
+
+    # creating tobject
+    tobj <- t.test(data$x,
+                   mu = test.value,
+                   conf.level = conf.level)
+
+    # creating effect size info
+    effsize_stuff <- ggstatsplot:::effsize_t_parametric(formula = ~ x,
+                                                        data = data,
+                                                        tobject = tobj,
+                                                        mu = test.value,
+                                                        hedges.correction = hedges.correction,
+                                                        conf.level = conf.level)
+
 
     # preparing subtitle
     subtitle <- subtitle_template(
       no.parameters = 1L,
       stat.title = NULL,
       statistic.text = quote(italic("t")),
-      statistic = stats_df$`stat[stud]`,
-      parameter = stats_df$`df[stud]`,
-      p.value = stats_df$`p[stud]`,
-      effsize.text = quote(italic("d")),
-      effsize.estimate = stats_df$`es[stud]`,
-      effsize.LL = effsize_df$lower[[1]],
-      effsize.UL = effsize_df$upper[[1]],
-      n = sample_size,
+      statistic = as.double(tobj$statistic),
+      parameter = as.double(tobj$parameter),
+      p.value = as.double(tobj$p.value),
+      effsize.text = effsize.text,
+      effsize.estimate = effsize_stuff$estimate,
+      effsize.LL = effsize_stuff$conf.low,
+      effsize.UL = effsize_stuff$conf.high,
+      n = sample_size, # or parameter + 1
       conf.level = conf.level,
       k = k,
       k.parameter = 0L
@@ -208,6 +225,7 @@ subtitle_t_onesample <- function(data,
       )
     )
     # ===================== bayes ============================================
+
   } else if (stats.type == "bayes") {
     # preparing the subtitle
     subtitle <- base::substitute(
