@@ -108,12 +108,11 @@ testthat::test_that(
     # when arguments are entered as bare expressions
     set.seed(123)
     testthat::expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggbarstats(
+      ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
         main = cyl,
         condition = class,
         grouping.var = drv,
-        x.axis.orientation = "horizontal",
         messages = TRUE
       )
     ),
@@ -123,7 +122,7 @@ testthat::test_that(
     # when arguments are entered as character
     set.seed(123)
     testthat::expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggbarstats(
+      ggstatsplot::grouped_ggpiestats(
         data = mpg_short,
         main = "cyl",
         condition = "class",
@@ -133,8 +132,6 @@ testthat::test_that(
     ),
     what = "gg"
     ))
-
-
 
     ## with counts
 
