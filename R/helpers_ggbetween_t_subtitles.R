@@ -933,7 +933,7 @@ effsize_t_parametric <- function(formula = NULL,
     df <- n - 1
     r <- cor(x, y)
     sd.est <- sd(x - y)
-    mean.diff <- mean(y) - mean(x)
+    mean.diff <- mean(x) - mean(y)
     d <- mean.diff / sd.est
     Sigmad <- sqrt(((1 / n) + (d^2 / n)) * 2 * (1 - r)) # paired
     Z <- -qt((1 - conf.level) / 2, df)
@@ -958,9 +958,6 @@ effsize_t_parametric <- function(formula = NULL,
   # -------------- calculate NCP intervals -------------------
 
   if (isTRUE(noncentral)) {
-    if (tvalue > 0 && isTRUE(paired)) {
-      tvalue <- tvalue * -1
-    }
     st <- max(0.1, tvalue)
     end1 <- tvalue
     while (stats::pt(q = tvalue, df = dfvalue, ncp = end1) > (1 - civalue) / 2) {
@@ -1004,8 +1001,8 @@ effsize_t_parametric <- function(formula = NULL,
     return(tibble::tibble(
       method = method,
       estimate = d,
-      conf.low = ncp.lower.ci,
-      conf.high = ncp.upper.ci,
+      conf.low = min(ncp.lower.ci, ncp.upper.ci),
+      conf.high = max(ncp.lower.ci, ncp.upper.ci),
       conf.level = conf.level,
       alternative = "two.sided",
       paired = paired,
