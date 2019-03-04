@@ -33,14 +33,14 @@ testthat::test_that(
           " = ",
           "0.001",
           ", ",
-          italic(r)["Spearman"],
+          italic(r),
           " = ",
           "0.133",
           ", CI"["90%"],
           " [",
-          "0.068",
+          "0.074",
           ", ",
-          "0.198",
+          "0.195",
           "]",
           ", ",
           italic("n"),
@@ -85,9 +85,6 @@ testthat::test_that(
     # creating a dataframe
     df_bird <- read.table(textConnection(Input), header = TRUE)
 
-    # wide format dataframe
-    df_bird_wide <- tibble::as_tibble(df_bird)
-
     # converting to long format
     df_bird %<>%
       tibble::as_tibble(x = .) %>%
@@ -105,68 +102,20 @@ testthat::test_that(
       y = Species
     ))
 
-    # wide format ----------------------------------------------------
-
-    # ggstatsplot output
-    set.seed(123)
-    using_function1 <-
-      suppressWarnings(ggstatsplot::subtitle_mann_nonparametric(
-        data = df_bird_wide,
-        x = Typical,
-        y = Odd,
-        k = 3,
-        conf.level = 0.90,
-        paired = TRUE,
-        messages = FALSE
-      ))
-
-    # expected output
-    set.seed(123)
-    results1 <-
-      ggplot2::expr(
-        paste(
-          NULL,
-          "log"["e"](italic("V")),
-          " = ",
-          "4.836",
-          ", ",
-          italic("p"),
-          " = ",
-          "0.003",
-          ", ",
-          italic(r)["Spearman"],
-          " = ",
-          "-0.559",
-          ", CI"["90%"],
-          " [",
-          "-0.733",
-          ", ",
-          "-0.314",
-          "]",
-          ", ",
-          italic("n"),
-          " = ",
-          16L
-        )
-      )
-
-    # testing overall call
-    testthat::expect_identical(using_function1, results1)
-
-    # long format ----------------------------------------------------
-
     # ggstatsplot output
     set.seed(123)
     using_function2 <-
-      ggstatsplot::subtitle_mann_nonparametric(
+      suppressWarnings(ggstatsplot::subtitle_mann_nonparametric(
         data = df_bird,
         x = type,
         y = length,
         k = 5,
+        nboot = 25,
+        conf.type = "perc",
         conf.level = 0.99,
         paired = TRUE,
         messages = FALSE
-      )
+      ))
 
     # expected output
     set.seed(123)
@@ -182,19 +131,19 @@ testthat::test_that(
           " = ",
           "0.00295",
           ", ",
-          italic(r)["Spearman"],
+          italic(r),
           " = ",
-          "0.55856",
+          "0.74978",
           ", CI"["99%"],
           " [",
-          "0.15124",
+          "0.59505",
           ", ",
-          "0.80373",
+          "0.88156",
           "]",
           ", ",
           italic("n"),
           " = ",
-          16
+          16L
         )
       )
 
