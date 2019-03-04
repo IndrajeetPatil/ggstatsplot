@@ -170,7 +170,13 @@ testthat::test_that(
     testthat::expect_equal(data_dims, c(5L, 5L))
     testthat::expect_identical(
       pb$data[[2]]$label,
-      c("n = 1\n(9%)", "n = 10\n(91%)", "n = 3\n(43%)", "n = 4\n(57%)", "n = 14\n(100%)")
+      c(
+        "n = 1\n(9%)",
+        "n = 10\n(91%)",
+        "n = 3\n(43%)",
+        "n = 4\n(57%)",
+        "n = 14\n(100%)"
+      )
     )
     testthat::expect_identical(
       pb1$data[[2]]$label,

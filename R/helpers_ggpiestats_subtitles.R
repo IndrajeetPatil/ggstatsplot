@@ -17,7 +17,10 @@
 #'   test. The default is `NULL`, i.e. no title will be added to describe the
 #'   effect being shown. An example of a `stat.title` argument will be something
 #'   like `"main x condition"` or `"interaction"`.
-#' @inheritParams chisq_v_ci
+#' @param bias.correct If `TRUE`, a bias correction will be applied to Cramer's
+#'   *V*.
+#' @param ... Additional arguments (currently ignored).
+#' @inheritParams t1way_ci
 #' @inheritParams subtitle_t_parametric
 #' @inheritParams stats::chisq.test
 #' @inheritParams subtitle_anova_parametric
@@ -27,6 +30,7 @@
 #' @importFrom tidyr uncount drop_na
 #' @importFrom broom tidy
 #' @importFrom jmv propTestN contTables contTablesPaired
+#' @importFrom rcompanion cramerV
 #'
 #' @seealso \code{\link{ggpiestats}}
 #'
@@ -66,6 +70,7 @@ subtitle_contingency_tab <- function(data,
                                      conf.type = "norm",
                                      simulate.p.value = FALSE,
                                      B = 2000,
+                                     bias.correct = FALSE,
                                      k = 2,
                                      messages = TRUE,
                                      ...) {
@@ -148,14 +153,28 @@ subtitle_contingency_tab <- function(data,
       ))
 
     # computing confidence interval for Cramer's V
-    effsize_df <- chisq_v_ci(
-      data = data,
-      rows = main,
-      cols = condition,
-      nboot = nboot,
-      conf.level = conf.level,
-      conf.type = conf.type
-    )
+    # if there was problem computing Cramer's V or its effect size, use NaN
+    effsize_df <-
+      tryCatch(
+        expr =     rcompanion::cramerV(
+          x = as.integer(data$main),
+          y = as.integer(data$condition),
+          ci = TRUE,
+          conf = conf.level,
+          type = conf.type,
+          R = nboot,
+          histogram = FALSE,
+          digits = k,
+          bias.correct = bias.correct
+        ) %>%
+          tibble::as_tibble(x = .),
+        error = function(x) {
+          tibble::tribble(
+            ~r, ~lower.ci, ~upper.ci,
+            NaN, NaN, NaN
+          )
+        }
+      )
 
     # message about effect size measure
     if (isTRUE(messages)) {
@@ -171,9 +190,9 @@ subtitle_contingency_tab <- function(data,
       parameter = stats_df$parameter[[1]],
       p.value = stats_df$p.value[[1]],
       effsize.text = quote(italic("V")),
-      effsize.estimate = effsize_df$Cramer.V[[1]],
-      effsize.LL = effsize_df$conf.low[[1]],
-      effsize.UL = effsize_df$conf.high[[1]],
+      effsize.estimate = effsize_df$r[[1]],
+      effsize.LL = effsize_df$lower.ci[[1]],
+      effsize.UL = effsize_df$upper.ci[[1]],
       n = sample_size,
       conf.level = conf.level,
       k = k,
@@ -181,7 +200,7 @@ subtitle_contingency_tab <- function(data,
     )
 
     # ======================== McNemar's test =================================
-  } else if (isTRUE(paired)) {
+  } else {
     # carrying out McNemar's test
     stats_df <-
       jmv::contTablesPaired(

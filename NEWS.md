@@ -3,11 +3,20 @@
 NEW FEATURES
 
   - `ggcoefstats` can support following new model objects: `rjags`.
+  - New `VR_dilemma` dataset for toying around with within-subjects design.
 
 MINOR CHANGES
 
   - The internal function `outlier_df` to add a column specifying outlier status
     of any given data point is now exported.
+  - `ggstatsplot` previously relied on an internal function `chisq_v_ci` to
+    compute confidence intervals for Cramer's *V* using bootstrapping but it was
+    pretty slow. It now instead relies on `rcompanion` package to compute
+    confidence intervals for *V*. `ggstatsplot`, therefore, gains a new
+    dependency.
+  - `subtitle_mann_nonparametric` now computes effect size *r* and its
+    confidence intervals as $Z/\\sqrt{N}$ (with the help of `rcompanion`
+    package), instead of using Spearman correlation.
 
 # ggstatsplot 0.0.9
 
