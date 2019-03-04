@@ -69,6 +69,7 @@ reordering your factor levels if appropriate as shown in the second example
 below.
 }
 \examples{
+\dontrun{
 set.seed(123)
 
 # -------------- between-subjects design ------------------------
@@ -78,7 +79,7 @@ ggstatsplot::subtitle_mann_nonparametric(
   x = group,
   y = extra
 )
-\dontrun{
+
 # creating a smaller dataset
 msleep_short <- dplyr::filter(
   .data = ggplot2::msleep,
@@ -108,7 +109,6 @@ ggstatsplot::subtitle_mann_nonparametric(
   x = vore,
   y = sleep_rem
 )
-}
 
 # -------------- within-subjects design ------------------------
 # using dataset included in the package
@@ -122,6 +122,7 @@ ggstatsplot::subtitle_mann_nonparametric(
   nboot = 200,
   k = 5
 )
+}
 }
 \author{
 Indrajeet Patil, Chuck Powell

@@ -213,6 +213,7 @@ subtitle_t_parametric <- function(data,
 #'   below.
 #'
 #' @examples
+#' \dontrun{
 #' set.seed(123)
 #'
 #' # -------------- between-subjects design ------------------------
@@ -222,7 +223,7 @@ subtitle_t_parametric <- function(data,
 #'   x = group,
 #'   y = extra
 #' )
-#' \dontrun{
+#'
 #' # creating a smaller dataset
 #' msleep_short <- dplyr::filter(
 #'   .data = ggplot2::msleep,
@@ -252,7 +253,6 @@ subtitle_t_parametric <- function(data,
 #'   x = vore,
 #'   y = sleep_rem
 #' )
-#' }
 #'
 #' # -------------- within-subjects design ------------------------
 #' # using dataset included in the package
@@ -266,6 +266,7 @@ subtitle_t_parametric <- function(data,
 #'   nboot = 200,
 #'   k = 5
 #' )
+#' }
 #' @export
 
 # function body
