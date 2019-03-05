@@ -25,7 +25,7 @@ test. Default is \code{NULL}, which means if there are two levels \code{ratio = 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
 This is going to be a chi-squared Goodness of fit test.

@@ -173,10 +173,15 @@
 <ul>
 <li>
 <code>ggcoefstats</code> can support following new model objects: <code>rjags</code>.</li>
+<li>New <code>VR_dilemma</code> dataset for toying around with within-subjects design.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li>The internal function <code>outlier_df</code> to add a column specifying outlier status of any given data point is now exported.</li>
+<li>
+<code>ggstatsplot</code> previously relied on an internal function <code>chisq_v_ci</code> to compute confidence intervals for Cramer’s <em>V</em> using bootstrapping but it was pretty slow. It now instead relies on <code>rcompanion</code> package to compute confidence intervals for <em>V</em>. <code>ggstatsplot</code>, therefore, gains a new dependency.</li>
+<li>
+<code>subtitle_mann_nonparametric</code> now computes effect size <em>r</em> and its confidence intervals as $Z/\sqrt{N}$ (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</li>
 </ul>
 </div>
     <div id="ggstatsplot-009" class="section level1">

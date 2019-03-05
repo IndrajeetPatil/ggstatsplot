@@ -12,9 +12,7 @@ testthat::test_that(
       ggplot2::mpg %>%
       dplyr::filter(
         .data = .,
-        drv %in% c("4", "f"),
-        class %in% c("suv", "midsize"),
-        trans %in% c("auto(l4)", "auto(l5)")
+        drv %in% c("4", "f")
       )
 
     ## expecting error message

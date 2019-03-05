@@ -40,9 +40,6 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/check_outlier.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/chisq_v_ci.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html</loc>
   </url>
   <url>
@@ -269,6 +266,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/Titanic_full.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/VR_dilemma.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot//reference/yuend_ci.html</loc>

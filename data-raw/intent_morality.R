@@ -1,7 +1,6 @@
 
 # loading the needed libraries
 library(dplyr)
-library(magrittr)
 library(readr)
 
 # reading the datafile

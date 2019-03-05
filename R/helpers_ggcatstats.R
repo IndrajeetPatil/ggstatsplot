@@ -114,7 +114,7 @@ cat_counter <- function(data, main, condition = NULL, ...) {
   # creating a dataframe with counts
   df <-
     data %>%
-    dplyr::group_by_at(dots) %>%
+    dplyr::group_by_at(.tbl = ., .vars = dots, .drop = TRUE) %>%
     dplyr::summarize(.data = ., counts = n()) %>%
     dplyr::mutate(.data = ., perc = (counts / sum(counts)) * 100) %>%
     dplyr::ungroup(x = .) %>%

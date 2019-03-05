@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adding <code>geom_signif</code> to the plot. — ggsignif_adder • ggstatsplot</title>
+<title>Virtual reality moral dilemmas. — VR_dilemma • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,9 +38,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Adding <code>geom_signif</code> to the plot. — ggsignif_adder" />
+<meta property="og:title" content="Virtual reality moral dilemmas. — VR_dilemma" />
 
-<meta property="og:description" content="Adding geom_signif to the plot." />
+<meta property="og:description" content="Virtual reality moral dilemmas." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -164,76 +164,74 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Adding <code>geom_signif</code> to the plot.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetweenstats.R'><code>R/helpers_ggbetweenstats.R</code></a></small>
-    <div class="hidden name"><code>ggsignif_adder.Rd</code></div>
+    <h1>Virtual reality moral dilemmas.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>VR_dilemma.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Adding <code>geom_signif</code> to the plot.</p>
+    <p>Virtual reality moral dilemmas.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggsignif_adder</span>(<span class='no'>plot</span>, <span class='no'>df_pairwise</span>, <span class='no'>data</span>, <span class='kw'>pairwise.annotation</span> <span class='kw'>=</span> <span class='st'>"asterisk"</span>,
-  <span class='kw'>pairwise.display</span> <span class='kw'>=</span> <span class='st'>"significant"</span>)</pre>
+    <pre class="usage"><span class='no'>VR_dilemma</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 68 rows and 4 variables</p><ul>
+<li><p>id. Dummy identity number for each participant.</p></li>
+<li><p>order.	The order in which the participants completed the two
+sessions: <code>"text_first"</code> or <code>"text_second"</code>.</p></li>
+<li><p>modality.	Describes how the moral dilemmas were presented to the
+participants: either in text format (<code>"text"</code>) or in Virtual Reality
+(<code>"vr"</code>).</p></li>
+<li><p>score.	Proportion of "utilitarian" decisions. In other words, of the
+4 decisions, how many affirmative were responses. Range: 0 (all
+utilitarian) - 1 (none utilitarian).</p></li>
+</ul>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>plot</th>
-      <td><p>A <code>ggplot</code> object on which <code>geom_signif</code> needed to be added.</p></td>
-    </tr>
-    <tr>
-      <th>data</th>
-      <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
-    </tr>
-    <tr>
-      <th>pairwise.annotation</th>
-      <td><p>Character that decides the annotations to use for
-pairwise comparisons. Either <code>"p.value"</code> or <code>"asterisk"</code> (default).</p></td>
-    </tr>
-    <tr>
-      <th>pairwise.display</th>
-      <td><p>Decides which pairwise comparisons to display.
-Available options are <code>"significant"</code> (abbreviation accepted: <code>"s"</code>) or
-<code>"non-significant"</code> (abbreviation accepted: <code>"ns"</code>) or
-<code>"everything"</code>/<code>"all"</code>. The default is <code>"significant"</code>. You can use this
-argument to make sure that your plot is not uber-cluttered when you have
-multiple groups being compared and scores of pairwise comparisons being
-displayed.</p></td>
-    </tr>
-    </table>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://psyarxiv.com/ry3ap/'>https://psyarxiv.com/ry3ap/</a></p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Dataset from a study where participants completed identical moral
+dilemmas in two different sessions held on separate days: in one session,
+they read text description of the scenario, while in another session they
+completed the same scenarios in Virtual Reality (videos:
+<a href='https://www.youtube.com/watch?v=ebdU3HhhYs8'>https://www.youtube.com/watch?v=ebdU3HhhYs8</a>). The study investigated
+if there was a discrepancy between how people judged the same scenarios
+while reading them in text versus experiencing them in virtual reality.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
-
-<span class='co'># data</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Species</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>)
-
-<span class='co'># plot</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span>()
-
-<span class='co'># dataframe with pairwise comparison test results</span>
-<span class='no'>df_pair</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/pairwise_p.html'>pairwise_p</a></span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>The parametric pairwise multiple comparisons test used-
-#&gt;  Games-Howell test.
-#&gt;  Adjustment method for p-values: </span><span style='color: #BBBB00;'>holm</span><span></div><div class='output co'>#&gt; </div><div class='input'>
-<span class='co'># adding plot with</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggsignif_adder.html'>ggsignif_adder</a></span>(
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>p</span>,
-  <span class='kw'>df_pairwise</span> <span class='kw'>=</span> <span class='no'>df_pair</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>
-)</div><div class='img'><img src='ggsignif_adder-1.png' alt='' width='700' height='433' /></div></span><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>VR_dilemma</span>)</div><div class='output co'>#&gt; [1] 68  4</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>VR_dilemma</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 4</span><span>
+#&gt;      id order modality score
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     1 0     text      0.25
+#&gt; </span><span style='color: #555555;'>2</span><span>     6 0     text      1   
+#&gt; </span><span style='color: #555555;'>3</span><span>     7 0     text      1   
+#&gt; </span><span style='color: #555555;'>4</span><span>     8 0     text      1   
+#&gt; </span><span style='color: #555555;'>5</span><span>     9 0     text      0.5 
+#&gt; </span><span style='color: #555555;'>6</span><span>    10 0     text      0.75</div><div class='input'><span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>(<span class='no'>VR_dilemma</span>)</div><div class='output co'>#&gt; Observations: 68
+#&gt; Variables: 4
+#&gt; $ id       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 6, 7, 8, 9, 10, 12, 14, 15, 17, 20, 22, 28, 31, 34, 35,...
+#&gt; $ order    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"...
+#&gt; $ modality </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "text", "text", "text", "text", "text", "text", "text", "t...
+#&gt; $ score    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0.25, 1.00, 1.00, 1.00, 0.50, 0.75, 1.00, 1.00, 0.75, 0.00...</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#source">Source</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

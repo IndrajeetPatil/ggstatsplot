@@ -8,8 +8,8 @@
 | [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                  | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.0.9.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)                | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)                                       |
 | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)               | [![vignettes](https://img.shields.io/badge/vignettes-0.0.9-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)           |
-| [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/116717490.svg)](https://zenodo.org/badge/latestdoi/116717490)                                                                  |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--02--21-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot)  | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot)                                 | [![Last-changedate](https://img.shields.io/badge/last%20change-2019--03--04-yellowgreen.svg)](/commits/master)                                                  | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot)            | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_31-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md)                | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil)                                    | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)                                                      | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Overview
@@ -20,12 +20,11 @@ for creating graphics with details from statistical tests included in
 the plots themselves and targeted primarily at behavioral sciences
 community to provide a one-line code to produce information-rich plots.
 In a typical exploratory data analysis workflow, data visualization and
-statistical modelling are two different phases: visualization informs
-modelling, and modelling in its turn can suggest a different
-visualization method, and so on and so forth. The central idea of
-*ggstatsplot* is simple: combine these two phases into one in the form
-of graphics with statistical details, which makes data exploration
-simpler and faster.
+statistical modeling are two different phases: visualization informs
+modeling, and modeling in its turn can suggest a different visualization
+method, and so on and so forth. The central idea of *ggstatsplot* is
+simple: combine these two phases into one in the form of graphics with
+statistical details, which makes data exploration simpler and faster.
 
 Currently, it supports only the most common types of statistical tests:
 **parametric**, **nonparametric**, **robust**, and **bayesian** versions
@@ -154,6 +153,21 @@ context, run the following code in your `R` console:
 
 ``` r
 utils::citation(package = "ggstatsplot")
+#> 
+#> Patil I, Powell C (2018). _ggstatsplot: 'ggplot2' Based Plots with
+#> Statistical Details_. doi: 10.5281/zenodo.2074621 (URL:
+#> https://doi.org/10.5281/zenodo.2074621), <URL:
+#> https://CRAN.R-project.org/package=ggstatsplot>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {ggstatsplot: 'ggplot2' Based Plots with Statistical Details},
+#>     author = {Indrajeet Patil and Chuck Powell},
+#>     year = {2018},
+#>     url = {https://CRAN.R-project.org/package=ggstatsplot},
+#>     doi = {10.5281/zenodo.2074621},
+#>   }
 ```
 
 There is currently a publication in preparation corresponding to this
@@ -183,6 +197,20 @@ For example-
 
 ``` r
 args(name = ggstatsplot::specify_decimal_p)
+#> Registered S3 methods overwritten by 'broom.mixed':
+#>   method         from 
+#>   augment.lme    broom
+#>   augment.merMod broom
+#>   glance.lme     broom
+#>   glance.merMod  broom
+#>   glance.stanreg broom
+#>   tidy.brmsfit   broom
+#>   tidy.gamlss    broom
+#>   tidy.lme       broom
+#>   tidy.merMod    broom
+#>   tidy.rjags     broom
+#>   tidy.stanfit   broom
+#>   tidy.stanreg   broom
 #> function (x, k = 3, p.value = FALSE) 
 #> NULL
 ```
@@ -201,7 +229,7 @@ ggstatsplot::ggplot_converter
 #>   # returning the converted plot
 #>   return(p)
 #> }
-#> <bytecode: 0x000000002cbb92d8>
+#> <bytecode: 0x000000002ecdaf10>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -1110,8 +1138,9 @@ supported by `ggcoefstats`. For example-
 `gamlss`, `garch`, `glm`, `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`,
 `ivreg`, `lm`, `lm.beta`, `lmerMod`, `lmodel2`, `lmrob`, `mcmc`,
 `MCMCglmm`, `mediate`, `mjoint`, `mle2`, `multinom`, `nlmerMod`, `nlrq`,
-`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rlm`, `rlmerMod`, `rq`,
-`speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
+`nls`, `orcutt`, `plm`, `polr`, `ridgelm`, `rjags`, `rlm`, `rlmerMod`,
+`rq`, `speedlm`, `stanreg`, `survreg`, `svyglm`, `svyolr`, `svyglm`,
+etc.
 
 For an exhaustive list of all regression models supported by
 `ggcoefstats` and what to do in case the regression model you are
