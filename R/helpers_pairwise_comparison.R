@@ -531,12 +531,24 @@ pairwise_p <- function(data,
     # extracting the robust pairwise comparisons and tidying up names
     rob_df_tidy <-
       suppressMessages(rob_pairwise_df$comp %>%
-        tibble::as_tibble(x = ., .name_repair = "unique")) %>%
-      dplyr::rename(
-        .data = .,
-        group1 = Group..1,
-        group2 = Group..2
-      )
+        tibble::as_tibble(x = ., .name_repair = "unique"))
+
+    # rename columns to have unique names
+    if (packageVersion("tibble") > "2.0.1") {
+      rob_df_tidy %<>%
+        dplyr::rename(
+          .data = .,
+          group1 = Group...1,
+          group2 = Group...2
+        )
+    } else {
+      rob_df_tidy %<>%
+        dplyr::rename(
+          .data = .,
+          group1 = Group..1,
+          group2 = Group..2
+        )
+    }
 
     # cleaning the raw object and getting it in the right format
     df <-

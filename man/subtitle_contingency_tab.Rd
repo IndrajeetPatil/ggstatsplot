@@ -9,7 +9,7 @@ within-subjects design)}
 subtitle_contingency_tab(data, main, condition, counts = NULL,
   nboot = 100, paired = FALSE, stat.title = NULL,
   conf.level = 0.95, conf.type = "norm", simulate.p.value = FALSE,
-  B = 2000, k = 2, messages = TRUE, ...)
+  B = 2000, bias.correct = FALSE, k = 2, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -49,13 +49,16 @@ intervals required. The value should be any subset of the values \code{"norm"},
 \item{B}{an integer specifying the number of replicates used in the
     Monte Carlo test.}
 
+\item{bias.correct}{If \code{TRUE}, a bias correction will be applied to Cramer's
+\emph{V}.}
+
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
 Making text subtitle for contingency analysis (Pearson's chi-square
