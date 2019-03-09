@@ -8,8 +8,8 @@ for effect size measure.}
 effsize_ci_message(nboot = 100, conf.level = 0.95)
 }
 \arguments{
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}

@@ -119,6 +119,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_ggscatterstats works - robust",
   code = {
+    testthat::skip_on_cran()
 
     # using function
     set.seed(123)
@@ -177,6 +178,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_ggscatterstats works - bayes",
   code = {
+    testthat::skip_on_cran()
 
     # using function
     set.seed(123)

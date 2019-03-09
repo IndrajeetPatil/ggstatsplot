@@ -131,6 +131,8 @@ utils::globalVariables(
     "group2",
     "Group..1",
     "Group..2",
+    "Group...1",
+    "Group...2",
     "ci.lower",
     "ci.upper",
     "comparison",

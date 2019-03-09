@@ -6,7 +6,8 @@
 robust equivalents.}
 \usage{
 subtitle_t_onesample(data, x, type = "parametric", test.value = 0,
-  bf.prior = 0.707, robust.estimator = "onestep", conf.level = 0.95,
+  bf.prior = 0.707, robust.estimator = "onestep", effsize.type = "g",
+  effsize.noncentral = TRUE, conf.level = 0.95, conf.type = "norm",
   nboot = 100, k = 2, messages = TRUE, ...)
 }
 \arguments{
@@ -30,11 +31,23 @@ to use in calculating Bayes factors.}
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
 
+\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
+argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
+(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is}
+
+\item{effsize.noncentral}{Logical indicating whether to use non-central
+\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
+or Hedge's \emph{g} (Default: \code{TRUE}).}
+
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{nboot}{Number of bootstrap samples for robust one-sample location test
-(Default: \code{100}).}
+\item{conf.type}{A vector of character strings representing the type of
+intervals required. The value should be any subset of the values \code{"norm"},
+\code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
+
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

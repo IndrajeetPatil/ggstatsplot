@@ -36,8 +36,8 @@ dataframe \code{data}.}
 intervals required. The value should be any subset of the values \code{"norm"},
 \code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
 
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{messages}{Decides whether messages references, notes, and warnings are
 to be displayed (Default: \code{TRUE}).}

@@ -17,8 +17,8 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{beta}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
 
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}

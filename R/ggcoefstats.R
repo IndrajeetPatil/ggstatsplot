@@ -1091,8 +1091,6 @@ ggcoefstats <- function(x,
       na.rm = TRUE
     )
 
-
-
   # ========================= ggrepel labels ================================
 
   # adding the labels

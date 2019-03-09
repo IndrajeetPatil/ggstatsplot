@@ -329,6 +329,7 @@ testthat::test_that(
       main = `1st survey`,
       condition = `2nd survey`,
       counts = Counts,
+      nboot = 25,
       paired = TRUE,
       conf.level = 0.90,
       messages = FALSE

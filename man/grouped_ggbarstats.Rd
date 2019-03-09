@@ -113,8 +113,8 @@ orientation (Default: \code{NULL} which is horizontal).}
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{simulate.p.value}{a logical indicating whether to compute
     p-values by Monte Carlo simulation.}

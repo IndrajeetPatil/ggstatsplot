@@ -9,10 +9,12 @@
 #' @param robust.estimator If `test = "robust"` robust estimator to be used
 #'   (`"onestep"` (Default), `"mom"`, or `"median"`). For more, see
 #'   `?WRS2::onesampb`.
-#' @param nboot Number of bootstrap samples for robust one-sample location test
-#'   (Default: `100`).
+#' @param effsize.type Type of effect size needed for *parametric* tests. The
+#'   argument can be `"biased"` (`"d"` for Cohen's *d*) or `"unbiased"`
+#'   (`"g"` Hedge's *g* for **t-test**). The default is
 #' @param ... Additional arguments.
 #' @inheritParams ggbetweenstats
+#' @inheritParams t1way_ci
 #'
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if
 #' @importFrom dplyr group_by n arrange
@@ -23,6 +25,7 @@
 #' @importFrom psych cohen.d.ci
 #' @importFrom groupedstats specify_decimal_p
 #' @importFrom ellipsis check_dots_used
+#' @importFrom rcompanion wilcoxonOneSampleR
 #'
 #' @seealso \code{\link{gghistostats}}
 #'
@@ -45,7 +48,10 @@ subtitle_t_onesample <- function(data,
                                  test.value = 0,
                                  bf.prior = 0.707,
                                  robust.estimator = "onestep",
+                                 effsize.type = "g",
+                                 effsize.noncentral = TRUE,
                                  conf.level = 0.95,
+                                 conf.type = "norm",
                                  nboot = 100,
                                  k = 2,
                                  messages = TRUE,
@@ -97,14 +103,33 @@ subtitle_t_onesample <- function(data,
   # ========================= parametric ======================================
   if (stats.type == "parametric") {
 
-    # confidence intervals for Cohen's d
-    effsize_df <-
-      psych::cohen.d.ci(
-        d = stats_df$`es[stud]`,
-        n1 = sample_size,
-        alpha = 1 - conf.level
-      ) %>%
-      tibble::as_tibble(x = .)
+    # deciding which effect size to use (Hedge's g or Cohen's d)
+    if (effsize.type %in% c("unbiased", "g")) {
+      hedges.correction <- TRUE
+      effsize.text <- quote(italic("g"))
+    } else if (effsize.type %in% c("biased", "d")) {
+      hedges.correction <- FALSE
+      effsize.text <- quote(italic("d"))
+    }
+
+    # creating tobject
+    tobj <- stats::t.test(
+      x = data$x,
+      mu = test.value,
+      conf.level = conf.level,
+      alternative = "two.sided",
+      na.action = na.omit
+    )
+
+    # creating effect size info
+    effsize_df <- effsize_t_parametric(
+      formula = ~x,
+      data = data,
+      tobject = tobj,
+      mu = test.value,
+      hedges.correction = hedges.correction,
+      conf.level = conf.level
+    )
 
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -114,10 +139,10 @@ subtitle_t_onesample <- function(data,
       statistic = stats_df$`stat[stud]`,
       parameter = stats_df$`df[stud]`,
       p.value = stats_df$`p[stud]`,
-      effsize.text = quote(italic("d")),
-      effsize.estimate = stats_df$`es[stud]`,
-      effsize.LL = effsize_df$lower[[1]],
-      effsize.UL = effsize_df$upper[[1]],
+      effsize.text = effsize.text,
+      effsize.estimate = effsize_df$estimate,
+      effsize.LL = effsize_df$conf.low,
+      effsize.UL = effsize_df$conf.high,
       n = sample_size,
       conf.level = conf.level,
       k = k,
@@ -139,6 +164,23 @@ subtitle_t_onesample <- function(data,
         conf.level = conf.level
       ))
 
+    # effect size dataframe
+    effsize_df <- rcompanion::wilcoxonOneSampleR(
+      x = data$x,
+      mu = test.value,
+      ci = TRUE,
+      conf = conf.level,
+      type = conf.type,
+      R = nboot,
+      histogram = FALSE,
+      digits = k
+    )
+
+    # message about effect size measure
+    if (isTRUE(messages)) {
+      effsize_ci_message(nboot = nboot, conf.level = conf.level)
+    }
+
     # preparing subtitle
     subtitle <- subtitle_template(
       no.parameters = 0L,
@@ -148,10 +190,10 @@ subtitle_t_onesample <- function(data,
       statistic.text = quote("log"["e"](italic("V"))),
       statistic = log(stats_df$statistic[[1]]),
       p.value = stats_df$p.value[[1]],
-      effsize.text = quote(Delta["HLS"]),
-      effsize.estimate = stats_df$estimate[[1]],
-      effsize.LL = stats_df$conf.low[[1]],
-      effsize.UL = stats_df$conf.high[[1]],
+      effsize.text = quote(italic(r)),
+      effsize.estimate = effsize_df$r[[1]],
+      effsize.LL = effsize_df$lower.ci[[1]],
+      effsize.UL = effsize_df$upper.ci[[1]],
       n = sample_size,
       conf.level = conf.level,
       k = k
@@ -203,7 +245,11 @@ subtitle_t_onesample <- function(data,
         estimate = specify_decimal_p(x = stats_df$estimate[[1]], k = k),
         LL = specify_decimal_p(x = stats_df$ci[[1]], k = k),
         UL = specify_decimal_p(x = stats_df$ci[[2]], k = k),
-        p.value = specify_decimal_p(x = stats_df$p.value[[1]], k = k, p.value = TRUE),
+        p.value = specify_decimal_p(
+          x = stats_df$p.value[[1]],
+          k = k,
+          p.value = TRUE
+        ),
         n = sample_size
       )
     )

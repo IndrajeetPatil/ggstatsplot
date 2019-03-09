@@ -23,8 +23,8 @@ variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.1}. Lowering the value might help.}
 
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}

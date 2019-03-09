@@ -183,6 +183,7 @@ games_howell <- function(data,
 #' @importFrom tibble as_tibble rowid_to_column enframe
 #' @importFrom broom tidy
 #' @importFrom jmv anovaNP anovaRMNP
+#' @importFrom utils packageVersion
 #'
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}
 #'
@@ -534,7 +535,7 @@ pairwise_p <- function(data,
         tibble::as_tibble(x = ., .name_repair = "unique"))
 
     # rename columns to have unique names
-    if (packageVersion("tibble") > "2.0.1") {
+    if (utils::packageVersion("tibble") > "2.0.1") {
       rob_df_tidy %<>%
         dplyr::rename(
           .data = .,

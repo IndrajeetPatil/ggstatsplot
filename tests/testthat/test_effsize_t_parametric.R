@@ -782,4 +782,3 @@ testthat::test_that(
     testthat::expect_equal(df3$conf.level, 0.99, tolerance = 0.01)
   }
 )
-

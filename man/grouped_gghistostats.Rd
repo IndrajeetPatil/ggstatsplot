@@ -8,8 +8,9 @@ grouped_gghistostats(data, x, grouping.var, title.prefix = NULL,
   binwidth = NULL, bar.measure = "count", xlab = NULL,
   subtitle = NULL, caption = NULL, type = "parametric",
   test.value = 0, bf.prior = 0.707, bf.message = FALSE,
-  robust.estimator = "onestep", conf.level = 0.95, nboot = 100,
-  k = 2, ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
+  robust.estimator = "onestep", effsize.type = "g",
+  effsize.noncentral = TRUE, conf.level = 0.95, nboot = 100, k = 2,
+  ggtheme = ggplot2::theme_bw(), ggstatsplot.layer = TRUE,
   fill.gradient = FALSE, low.color = "#0072B2",
   high.color = "#D55E00", bar.fill = "grey50",
   results.subtitle = TRUE, centrality.para = "mean",
@@ -74,11 +75,19 @@ favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
 
+\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
+argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
+(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is}
+
+\item{effsize.noncentral}{Logical indicating whether to use non-central
+\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
+or Hedge's \emph{g} (Default: \code{TRUE}).}
+
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{nboot}{Number of bootstrap samples for robust one-sample location test
-(Default: \code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

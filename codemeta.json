@@ -352,19 +352,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "exact2x2",
-      "name": "exact2x2",
-      "version": ">= 1.6.3",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=exact2x2"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
       "version": ">= 0.1.2",
@@ -650,6 +637,11 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
     },
     {
       "@type": "SoftwareApplication",

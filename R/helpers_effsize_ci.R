@@ -9,8 +9,8 @@
 #' @param x The grouping variable from the dataframe `data`.
 #' @param y The response (a.k.a. outcome or dependent) variable from the
 #'   dataframe `data`.
-#' @param nboot Number of bootstrap samples for computing effect size (Default:
-#'   `100`).
+#' @param nboot Number of bootstrap samples for computing confidence interval
+#'   for the effect size (Default: `100`).
 #' @param tr Trim level for the mean when carrying out `robust` tests. If you
 #'   get error stating "Standard error cannot be computed because of Winsorized
 #'   variance of 0 (e.g., due to ties). Try to decrease the trimming level.",

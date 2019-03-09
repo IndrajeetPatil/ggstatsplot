@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for the robust t-test
-(between- and within-subjects designs). — subtitle_t_robust • ggstatsplot</title>
+<title>Confidence intervals for Cohen's <em>g</em> effect size. — cohenG_ci • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,11 +38,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for the robust t-test
-(between- and within-subjects designs). — subtitle_t_robust" />
+<meta property="og:title" content="Confidence intervals for Cohen's <em>g</em> effect size. — cohenG_ci" />
 
-<meta property="og:description" content="Making text subtitle for the robust t-test
-(between- and within-subjects designs)." />
+<meta property="og:description" content="Confidence intervals for Cohen's g effect size." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -167,52 +164,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for the robust t-test
-(between- and within-subjects designs).</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_t_subtitles.R'><code>R/helpers_ggbetween_t_subtitles.R</code></a></small>
-    <div class="hidden name"><code>subtitle_t_robust.Rd</code></div>
+    <h1>Confidence intervals for Cohen's <em>g</em> effect size.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/cohenG_ci.R'><code>R/cohenG_ci.R</code></a></small>
+    <div class="hidden name"><code>cohenG_ci.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for the robust t-test
-(between- and within-subjects designs).</p>
+    <p>Confidence intervals for Cohen's <em>g</em> effect size.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_t_robust</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>cohenG_ci</span>(<span class='no'>x</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
-    </tr>
-    <tr>
       <th>x</th>
-      <td><p>The grouping variable from the dataframe <code>data</code>.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>The response (a.k.a. outcome or dependent) variable from the
-dataframe <code>data</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tr</th>
-      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
-<code>0.1</code>. Lowering the value might help.</p></td>
-    </tr>
-    <tr>
-      <th>paired</th>
-      <td><p>a logical indicating whether you want a paired
-    t-test.</p></td>
+      <td><p>A two-way contingency table. It must be square. 
+It can have two or
+more levels for each dimension.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
@@ -230,64 +202,14 @@ for the effect size (Default: <code>100</code>).</p></td>
 intervals required. The value should be any subset of the values <code>"norm"</code>,
 <code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='https://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
     </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2</code>).</p></td>
-    </tr>
-    <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># with defaults</span>
-<span class='fu'>subtitle_t_robust</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleep</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>group</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>extra</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "13.90", ") = ", "1.57", ", ", 
-#&gt;     italic("p"), " = ", "0.139", ", ", italic(xi), " = ", "0.52", 
-#&gt;     ", CI"["95%"], " [", "0.00", ", ", "0.84", "]", ", ", italic("n"), 
-#&gt;     " = ", 20L)</div><div class='input'>
-<span class='co'># changing defaults</span>
-<span class='fu'>subtitle_t_robust</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ToothGrowth</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>supp</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>len</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.2</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "33.5", ") = ", "2.3", ", ", italic("p"), 
-#&gt;     " = ", "0.029", ", ", italic(xi), " = ", "0.4", ", CI"["95%"], 
-#&gt;     " [", "0.3", ", ", "0.7", "]", ", ", italic("n"), " = ", 
-#&gt;     60L)</div><div class='input'>
-<span class='co'># within-subjects design</span>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_t_robust.html'>subtitle_t_robust</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
-    <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='no'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/intent_morality.html'>intent_morality</a></span>,
-    <span class='no'>condition</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"accidental"</span>, <span class='st'>"attempted"</span>),
-    <span class='no'>harm</span> <span class='kw'>==</span> <span class='st'>"Poisoning"</span>
-  ),
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
-  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>25</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>25</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic("t"), "(", "199", ") = ", "-26.64", ", ", 
-#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic(xi), " = ", "0.73", 
-#&gt;     ", CI"["95%"], " [", "0.44", ", ", "0.88", "]", ", ", italic("n"), 
-#&gt;     " = ", 250L)</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>rcompanion</span>)
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/cohenG_ci.html'>cohenG_ci</a></span>(<span class='no'>AndersonRainGarden</span>)</div><div class='output co'>#&gt;      r  lower.ci  upper.ci
+#&gt; 1 0.42 0.3096501 0.5232499</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

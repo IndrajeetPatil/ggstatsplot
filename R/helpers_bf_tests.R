@@ -67,6 +67,7 @@ bf_extractor <- function(bf.object,
 #'   If dataframe contains more than two rows, only the first row will be used.
 #' @param caption Text to display as caption (will be displayed on top of the
 #'   bayes factor caption/message).
+#' @param ... Additional arguments (ignored).
 #' @inheritParams ggbetweenstats
 #'
 #' @examples
@@ -92,7 +93,9 @@ bf_extractor <- function(bf.object,
 # function body
 bf_caption_maker <- function(bf.df,
                              k = 2,
-                             caption = NULL) {
+                             caption = NULL,
+                             ...) {
+  ellipsis::check_dots_used()
 
   # prepare the bayes factor message
   bf_caption <-

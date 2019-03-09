@@ -354,6 +354,11 @@ subtitle_mann_nonparametric <- function(data,
   ) %>%
     tibble::as_tibble(x = .)
 
+  # message about effect size measure
+  if (isTRUE(messages)) {
+    effsize_ci_message(nboot = nboot, conf.level = conf.level)
+  }
+
   # statistic text
   if (isTRUE(paired)) {
     statistic.text <- quote("log"["e"](italic("V")))
@@ -447,7 +452,6 @@ subtitle_t_robust <- function(data,
                               k = 2,
                               messages = TRUE,
                               ...) {
-
 
   # creating a dataframe
   data <-

@@ -228,8 +228,8 @@ intervals required. The value should be any subset of the values <code>"norm"</c
     </tr>
     <tr>
       <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing effect size (Default:
-<code>100</code>).</p></td>
+      <td><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100</code>).</p></td>
     </tr>
     <tr>
       <th>messages</th>
@@ -270,10 +270,12 @@ below.</p>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>sleep</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>group</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>extra</span>
-)</div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "3.24", ", ", italic("p"), 
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "3.24", ", ", italic("p"), 
 #&gt;     " = ", "0.069", ", ", italic(r), " = ", "0.41", ", CI"["95%"], 
 #&gt;     " [", "0.08", ", ", "0.78", "]", ", ", italic("n"), " = ", 
-#&gt;     20L)</div><div class='input'><span class='co'># creating a smaller dataset</span>
+#&gt;     20L)</div><div class='input'>
+<span class='co'># creating a smaller dataset</span>
 <span class='no'>msleep_short</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(
   <span class='kw'>.data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
   <span class='no'>vore</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"carni"</span>, <span class='st'>"herbi"</span>)
@@ -287,7 +289,8 @@ below.</p>
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>200</span>,
   <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
   <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"bca"</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "5.05", ", ", italic("p"), 
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: extreme order statistics used as endpoints</span></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>99%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>200</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "5.05", ", ", italic("p"), 
 #&gt;     " = ", "0.179", ", ", italic(r), " = ", "0.23", ", CI"["99%"], 
 #&gt;     " [", "0.00", ", ", "0.63", "]", ", ", italic("n"), " = ", 
 #&gt;     34L)</div><div class='input'>
@@ -303,7 +306,8 @@ below.</p>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
-)</div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "4.43", ", ", italic("p"), 
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("W")), " = ", "4.43", ", ", italic("p"), 
 #&gt;     " = ", "0.179", ", ", italic(r), " = ", "0.23", ", CI"["95%"], 
 #&gt;     " [", "-0.09", ", ", "0.54", "]", ", ", italic("n"), " = ", 
 #&gt;     34L)</div><div class='input'>
@@ -318,10 +322,11 @@ below.</p>
   <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"perc"</span>,
   <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>200</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>5</span>
-)</div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("V")), " = ", "1.50408", ", ", 
+)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>90%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>200</span><span style='color: #0000BB;'> bootstrap samples.
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, "log"["e"](italic("V")), " = ", "1.50408", ", ", 
 #&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic(r), " = ", "0.60567", 
 #&gt;     ", CI"["90%"], " [", "0.44139", ", ", "0.73401", "]", ", ", 
-#&gt;     italic("n"), " = ", 34L)</div></pre>
+#&gt;     italic("n"), " = ", 34L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

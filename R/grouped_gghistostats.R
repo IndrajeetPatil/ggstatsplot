@@ -13,8 +13,8 @@
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom glue glue
-#' @importFrom purrr map set_names
-#' @importFrom tidyr nest
+#' @importFrom purrr pmap
+#' @importFrom tidyr drop_na
 #'
 #' @seealso \code{\link{gghistostats}}
 #'
@@ -55,6 +55,8 @@ grouped_gghistostats <- function(data,
                                  bf.prior = 0.707,
                                  bf.message = FALSE,
                                  robust.estimator = "onestep",
+                                 effsize.type = "g",
+                                 effsize.noncentral = TRUE,
                                  conf.level = 0.95,
                                  nboot = 100,
                                  k = 2,
@@ -149,6 +151,8 @@ grouped_gghistostats <- function(data,
       bf.prior = bf.prior,
       bf.message = bf.message,
       robust.estimator = robust.estimator,
+      effsize.type = effsize.type,
+      effsize.noncentral = effsize.noncentral,
       conf.level = conf.level,
       nboot = nboot,
       low.color = low.color,
@@ -179,7 +183,6 @@ grouped_gghistostats <- function(data,
       ggplot.component = ggplot.component,
       messages = messages
     )
-  #        )
 
   # combining the list of plots into a single plot
   combined_plot <-

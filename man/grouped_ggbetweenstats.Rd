@@ -125,8 +125,8 @@ should be displayed for each level of the grouping variable \code{x} (Default:
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. If you
 get error stating "Standard error cannot be computed because of Winsorized

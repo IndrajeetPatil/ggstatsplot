@@ -4,7 +4,7 @@
 \alias{bf_caption_maker}
 \title{Prepare caption with bayes factor in favor of null}
 \usage{
-bf_caption_maker(bf.df, k = 2, caption = NULL)
+bf_caption_maker(bf.df, k = 2, caption = NULL, ...)
 }
 \arguments{
 \item{bf.df}{A dataframe containing two columns \code{log_e_bf01} and \code{bf.prior}.
@@ -15,6 +15,8 @@ If dataframe contains more than two rows, only the first row will be used.}
 
 \item{caption}{Text to display as caption (will be displayed on top of the
 bayes factor caption/message).}
+
+\item{...}{Additional arguments (ignored).}
 }
 \description{
 Convenience function to write a caption message with bayes

@@ -174,6 +174,10 @@
 <li>
 <code>ggcoefstats</code> can support following new model objects: <code>rjags</code>.</li>
 <li>New <code>VR_dilemma</code> dataset for toying around with within-subjects design.</li>
+<li>
+<code>subtitle_t_onesample</code> supports both Cohen’s <em>d</em> and Hedge’s <em>g</em> as effect sizes and also produces their confidence intervals. Additionally, non-central variants of these effect sizes are also supported. Thus, <code>gghistostats</code> and its <code>grouped_</code> variant gets two new arguments: <code>effsize.type</code>, <code>effsize.noncentral</code>.</li>
+<li>
+<code>ggpiestats</code> used to display odds ratio as effect size for paired designs (McNemar test). But this was only working when the analysis was a 2 x 2 contingency table. It now instead displays Cohen’s G as effect size, which generalizes to any kind of design.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -181,7 +185,7 @@
 <li>
 <code>ggstatsplot</code> previously relied on an internal function <code>chisq_v_ci</code> to compute confidence intervals for Cramer’s <em>V</em> using bootstrapping but it was pretty slow. It now instead relies on <code>rcompanion</code> package to compute confidence intervals for <em>V</em>. <code>ggstatsplot</code>, therefore, gains a new dependency.</li>
 <li>
-<code>subtitle_mann_nonparametric</code> now computes effect size <em>r</em> and its confidence intervals as $Z/\sqrt{N}$ (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</li>
+<code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as $Z/\sqrt{N}$ (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</li>
 </ul>
 </div>
     <div id="ggstatsplot-009" class="section level1">
