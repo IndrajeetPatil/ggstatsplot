@@ -61,10 +61,11 @@ for these tests we are computing and reporting \emph{r} (computed as
 \eqn{Z/\sqrt{N}}) along with the confidence intervals associated with the
 estimate.
 
-\emph{Note} The \code{wilcox.test} function in the stats package does not follow the
-same convention as \code{t.test} and reverse the sign of the test statistic
-based on the sign of the grouped differences.  It calculates a different
-test statistic estimate with the same significance level. Consider manually
+\emph{Note:} The \emph{stats::wilcox.test} function does not follow the
+same convention as \emph{stats::t.test}. The sign of the \emph{V} test statistic
+will always be positive since it is \strong{the sum of the positive signed ranks}.
+Therefore \emph{V} will vary in magnitude but not significance based solely
+on the order of the grouping variable. Consider manually
 reordering your factor levels if appropriate as shown in the second example
 below.
 }
@@ -96,13 +97,13 @@ ggstatsplot::subtitle_mann_nonparametric(
   conf.type = "bca"
 )
 
-# The order of the grouping factor matters when computing *W*
+# The order of the grouping factor matters when computing *V*
 # Changing default alphabeical order manually
 msleep_short$vore <- factor(msleep_short$vore,
   levels = c("herbi", "carni")
 )
 
-# note the change in the reported W value but the identical
+# note the change in the reported *V* value but the identical
 # value for *p* and the reversed effect size
 ggstatsplot::subtitle_mann_nonparametric(
   data = msleep_short,
