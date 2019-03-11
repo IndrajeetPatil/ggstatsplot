@@ -1,5 +1,7 @@
 context("grouped_gghistostats")
 
+# grouped_gghistostats works ---------------------------------------------
+
 testthat::test_that(
   desc = "grouped_gghistostats works",
   code = {
@@ -30,6 +32,8 @@ testthat::test_that(
         grouping.var = "vore",
         type = "r",
         normal.curve = TRUE,
+        effsize.type = "d",
+        effsize.noncentral = FALSE,
         bar.measure = "proportion",
         ggplot.component = ggplot2::scale_x_continuous(
           sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())

@@ -59,14 +59,14 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          "log"["e"](OR),
+          italic("g")["Cohen"],
           " = ",
-          "-1.60944",
+          "0.33333",
           ", CI"["95%"],
           " [",
-          "-2.81683",
+          "0.16712",
           ", ",
-          "-0.63132",
+          "0.49684",
           "]",
           ", ",
           italic("n"),
@@ -79,7 +79,6 @@ testthat::test_that(
     testthat::expect_identical(using_function1, results1)
   }
 )
-
 
 # paired data with NAs  ---------------------------------------------
 
@@ -159,14 +158,14 @@ testthat::test_that(
           " = ",
           "0.003",
           ", ",
-          "log"["e"](OR),
+          italic("g")["Cohen"],
           " = ",
-          "-1.674",
+          "0.342",
           ", CI"["90%"],
           " [",
-          "-3.068",
+          "0.147",
           ", ",
-          "-0.578",
+          "0.500",
           "]",
           ", ",
           italic("n"),
@@ -177,5 +176,84 @@ testthat::test_that(
 
     # testing overall call
     testthat::expect_identical(using_function1, results1)
+  }
+)
+
+# paired data 3-by-3  ---------------------------------------------
+
+testthat::test_that(
+  desc = "paired data 4-by-4",
+  code = {
+    testthat::skip_on_cran()
+    set.seed(123)
+
+    # making data
+    Input <- ("
+    Before        Pastafarian2   Discordiant2   Dudist2   Jedi2
+    Pastafarian   7              0              23         0
+    Discordiant   0              7               0        33
+    Dudist        3              0               7         1
+    Jedi          0              1               0         7
+    ")
+
+    # matrix
+    matrix_df <- as.matrix(read.table(textConnection(Input),
+      header = TRUE,
+      row.names = 1
+    ))
+
+    # cleaning the factor levels
+    df <- as.data.frame(as.table(matrix_df)) %>%
+      dplyr::mutate(.data = ., Var2 = stringr::str_remove(Var2, "2"))
+
+    # ggstatsplot output
+    set.seed(123)
+    subtitle1 <- suppressWarnings(ggstatsplot::subtitle_contingency_tab(
+      data = df,
+      main = Var1,
+      condition = Var2,
+      counts = "Freq",
+      paired = TRUE,
+      k = 4,
+      conf.level = 0.99,
+      conf.type = "basic",
+      nboot = 50,
+      messages = FALSE
+    ))
+
+    # expected output
+    set.seed(123)
+    results1 <-
+      ggplot2::expr(
+        paste(
+          NULL,
+          italic(chi)^2,
+          "(",
+          "6",
+          ") = ",
+          "NaN",
+          ", ",
+          italic("p"),
+          " = ",
+          "NaN",
+          ", ",
+          italic("g")["Cohen"],
+          " = ",
+          "0.4344",
+          ", CI"["99%"],
+          " [",
+          "0.3680",
+          ", ",
+          "0.5010",
+          "]",
+          ", ",
+          italic("n"),
+          " = ",
+          89L
+        )
+      )
+
+    # testing overall call
+    testthat::expect_identical(subtitle1, results1)
   }
 )

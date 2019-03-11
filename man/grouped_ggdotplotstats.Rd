@@ -65,8 +65,8 @@ favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{nboot}{Number of bootstrap samples for robust one-sample location test
-(Default: \code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

@@ -36,8 +36,8 @@ cor_test_ci(data, x, y, method = "spearman", exact = FALSE,
     can specify just the initial letter.  \code{"greater"} corresponds
     to positive association, \code{"less"} to negative association.}
 
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{conf.level}{confidence level for the returned confidence
     interval.  Currently only used for the Pearson product moment

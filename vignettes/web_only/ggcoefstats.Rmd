@@ -718,7 +718,7 @@ with these four types of (minor) harms.
 Note that, by default, `beta` parameters are shown for `clm` and `clmm` models,
 but you can also plot either just `alpha` or `both` using `ggcoefstats`.
 
-```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6, eval = FALSE}
+```{r clmm2, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 # for reproducibility
 set.seed(123)
 
@@ -738,7 +738,8 @@ ggstatsplot::ggcoefstats(
   coefficient.type = "alpha"
 ) +
   ggplot2::labs(x = "logit regression coefficients",
-                y = "threshold parameters")
+                y = "threshold parameters",
+                title = "cumulative link mixed models")
 ```
 
 ## ordered logistic or probit regression (`polr`)
@@ -879,7 +880,7 @@ in measurement is accounted for by the interaction between these two factors.
 The robust regression models, as implemented in the `robust` package are also
 supported. 
 
-```{r robust, eval = FALSE, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
+```{r robust, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
 ggstatsplot::combine_plots(
   # plot 1: glmRob
   ggstatsplot::ggcoefstats(

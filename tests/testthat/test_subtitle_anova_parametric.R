@@ -64,6 +64,8 @@ testthat::test_that(
 testthat::test_that(
   desc = "parametric anova subtitles work (with NAs)",
   code = {
+    testthat::skip_on_cran()
+
     # the expected result
     set.seed(123)
     r <-
@@ -135,6 +137,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "parametric anova subtitles with partial omega-squared",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -192,6 +195,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "parametric anova subtitles with partial eta-squared and data with NAs",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     set.seed(123)
@@ -253,6 +257,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "parametric anova subtitles with partial eta-squared and data with NAs",
   code = {
+    testthat::skip_on_cran()
 
     # ggstatsplot output
     # eta

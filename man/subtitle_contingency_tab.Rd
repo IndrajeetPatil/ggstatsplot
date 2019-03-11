@@ -24,8 +24,8 @@ table.}
 \item{counts}{A string naming a variable in data containing counts, or \code{NULL}
 if each row represents a single observation (Default).}
 
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{paired}{Logical indicating whether data came from a within-subjects
 design study (Default: \code{FALSE}). If \code{TRUE}, McNemar test subtitle will be

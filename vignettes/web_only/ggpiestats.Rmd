@@ -195,7 +195,6 @@ ggstatsplot::grouped_ggpiestats(
   data = ggstatsplot::Titanic_full,
   grouping.var = Age,
   title.prefix = "Child or Adult?: ",
-  stat.title = "Pearson's chi-squared test: ",
   main = Survived,
   condition = Sex,
   bf.message = TRUE,

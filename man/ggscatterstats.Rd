@@ -142,8 +142,8 @@ the plot will be returned.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{nboot}{Number of bootstrap samples for computing effect size (Default:
-\code{100}).}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
 \item{beta}{bending constant (Default: \code{0.1}). For more, see \code{?WRS2::pbcor}.}
 

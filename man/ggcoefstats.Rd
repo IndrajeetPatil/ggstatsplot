@@ -67,7 +67,7 @@ JAGS, etc.), the default is \code{"quantile"}, while the only other options is
 the longitudinal component of the model. Must be either \code{"survival"} or
 \code{"longitudinal"}. Defaults to \code{"survival"}.}
 
-\item{quick}{Logical indiciating if the only the \code{term} and \code{estimate}
+\item{quick}{Logical indicating if the only the \code{term} and \code{estimate}
 columns should be returned. Often useful to avoid time consuming
 covariance and standard error calculations. Defaults to \code{FALSE}.}
 

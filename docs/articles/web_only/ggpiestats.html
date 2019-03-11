@@ -128,7 +128,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-03</h4>
+            <h4 class="date">2019-03-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -261,22 +261,21 @@
 <a class="sourceLine" id="cb4-8" title="8">  <span class="dt">data =</span> ggstatsplot<span class="op">::</span>Titanic_full,</a>
 <a class="sourceLine" id="cb4-9" title="9">  <span class="dt">grouping.var =</span> Age,</a>
 <a class="sourceLine" id="cb4-10" title="10">  <span class="dt">title.prefix =</span> <span class="st">"Child or Adult?: "</span>,</a>
-<a class="sourceLine" id="cb4-11" title="11">  <span class="dt">stat.title =</span> <span class="st">"Pearson's chi-squared test: "</span>,</a>
-<a class="sourceLine" id="cb4-12" title="12">  <span class="dt">main =</span> Survived,</a>
-<a class="sourceLine" id="cb4-13" title="13">  <span class="dt">condition =</span> Sex,</a>
-<a class="sourceLine" id="cb4-14" title="14">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb4-15" title="15">  <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb4-16" title="16">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-17" title="17">  <span class="dt">perc.k =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb4-18" title="18">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
-<a class="sourceLine" id="cb4-19" title="19">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,</a>
-<a class="sourceLine" id="cb4-20" title="20">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb4-21" title="21">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
-<a class="sourceLine" id="cb4-22" title="22">  <span class="dt">title.text =</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,</a>
-<a class="sourceLine" id="cb4-23" title="23">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
-<a class="sourceLine" id="cb4-24" title="24">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb4-25" title="25">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-26" title="26">)</a></code></pre></div>
+<a class="sourceLine" id="cb4-11" title="11">  <span class="dt">main =</span> Survived,</a>
+<a class="sourceLine" id="cb4-12" title="12">  <span class="dt">condition =</span> Sex,</a>
+<a class="sourceLine" id="cb4-13" title="13">  <span class="dt">bf.message =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-14" title="14">  <span class="dt">nboot =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb4-15" title="15">  <span class="dt">k =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-16" title="16">  <span class="dt">perc.k =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb4-17" title="17">  <span class="dt">package =</span> <span class="st">"ggsci"</span>,</a>
+<a class="sourceLine" id="cb4-18" title="18">  <span class="dt">palette =</span> <span class="st">"category10_d3"</span>,</a>
+<a class="sourceLine" id="cb4-19" title="19">  <span class="dt">messages =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb4-20" title="20">  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span></a>
+<a class="sourceLine" id="cb4-21" title="21">  <span class="dt">title.text =</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,</a>
+<a class="sourceLine" id="cb4-22" title="22">  <span class="dt">caption.text =</span> <span class="st">"Asterisks denote results from proportion tests; </span><span class="ch">\n</span><span class="st">***: p &lt; 0.001, ns: non-significant"</span>,</a>
+<a class="sourceLine" id="cb4-23" title="23">  <span class="dt">nrow =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-24" title="24">  <span class="dt">ncol =</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-25" title="25">)</a></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="768"></p>
 <p>The resulting pie charts and statistics make the story clear. For adults gender very much matters. Women survived at much higher rates than men. For children gender is not significantly associated with survival and both male and female children have a survival rate that is not significantly different from 50/50.</p>
 </div>

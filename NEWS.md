@@ -4,6 +4,15 @@ NEW FEATURES
 
   - `ggcoefstats` can support following new model objects: `rjags`.
   - New `VR_dilemma` dataset for toying around with within-subjects design.
+  - `subtitle_t_onesample` supports both Cohen's *d* and Hedge's *g* as effect
+    sizes and also produces their confidence intervals. Additionally,
+    non-central variants of these effect sizes are also supported. Thus,
+    `gghistostats` and its `grouped_` variant gets two new arguments:
+    `effsize.type`, `effsize.noncentral`.
+  - `ggpiestats` used to display odds ratio as effect size for paired designs
+    (McNemar test). But this was only working when the analysis was a 2 x 2
+    contingency table. It now instead displays Cohen's G as effect size, which
+    generalizes to any kind of design.
 
 MINOR CHANGES
 
@@ -14,9 +23,9 @@ MINOR CHANGES
     pretty slow. It now instead relies on `rcompanion` package to compute
     confidence intervals for *V*. `ggstatsplot`, therefore, gains a new
     dependency.
-  - `subtitle_mann_nonparametric` now computes effect size *r* and its
-    confidence intervals as $Z/\\sqrt{N}$ (with the help of `rcompanion`
-    package), instead of using Spearman correlation.
+  - `subtitle_mann_nonparametric` and `subtitle_t_onesample` now computes effect
+    size *r* and its confidence intervals as $Z/\\sqrt{N}$ (with the help of
+    `rcompanion` package), instead of using Spearman correlation.
 
 # ggstatsplot 0.0.9
 

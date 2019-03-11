@@ -38,7 +38,7 @@ testthat::test_that(
           " = ",
           "< 0.001",
           ", ",
-          italic("V"),
+          italic("V")["Cramer"],
           " = ",
           "0.29412",
           ", CI"["99%"],
@@ -64,6 +64,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "subtitle_contingency_tab works - data with NAs",
   code = {
+    testthat::skip_on_cran()
 
     # introduce NAs
     # check that 2-by-2 doesn't produce continuity correction
@@ -110,7 +111,7 @@ testthat::test_that(
           " = ",
           "0.107",
           ", ",
-          italic("V"),
+          italic("V")["Cramer"],
           " = ",
           "0.43",
           ", CI"["99%"],
