@@ -646,3 +646,155 @@ subtitle_anova_bayes <- function(data,
   # return the subtitle
   return(subtitle)
 }
+
+#' @title Making text subtitle for the within-subject anova designs.
+#' @name subtitle_anova_parametric_repeated
+#' @author Chuck Powell, Indrajeet Patil
+#'
+#' @inheritParams t1way_ci
+#' @param effsize.type Type of effect size for repeated *ANOVA* test. The
+#'   argument can be `"biased"` (`"partial_eta"` for partial eta-squared)
+#'   or `"unbiased"` (`"omega"` for omega-squared for **anova**)).
+#' @param id.variable The subject identification variable from the dataframe
+#'   `data`. See example
+#' @param k Number of digits after decimal point (should be an integer)
+#'   (Default: `k = 2`).
+#' @param messages Decides whether messages references, notes, and warnings
+#'   are to be displayed (Default: `TRUE`).
+#' @param ... Additional arguments.
+#' @inheritParams stats::oneway.test
+#' @inheritParams subtitle_t_parametric
+#' @inheritParams lm_effsize_standardizer
+#'
+#' @importFrom ez ezANOVA
+#' @importFrom MBESS conf.limits.ncf
+#' @importFrom dplyr select
+#' @importFrom rlang !! enquo
+#' @importFrom sjstats eta_sq omega_sq
+#'
+#' @examples
+#' # setup
+#' set.seed(123)
+#' library(ggstatsplot)
+#' library(jmv)
+#' data("bugs", package = "jmv")
+#'
+#' # converting to long format
+#' data_bugs <- bugs %>%
+#'   dplyr::filter(., !is.na(LDHF) & !is.na(LDLF) & !is.na(HDLF)  & !is.na(HDHF)) %>%
+#'   tibble::as_tibble(.) %>%
+#'   tidyr::gather(., key, value, LDLF:HDHF)
+#'
+#' # creating the subtitle
+#' ggstatsplot::subtitle_anova_parametric_repeated(
+#'   data = data_bugs,
+#'   x = key,
+#'   y = value,
+#'   id.variable = Subject,
+#'   k = 2
+#' )
+#'
+#' @export
+
+# function body
+subtitle_anova_parametric_repeated <- function(data,
+                                      x,
+                                      y,
+                                      id.variable,
+                                      effsize.type = "unbiased",
+                                      conf.level = 0.95,
+                                      k = 2,
+                                      messages = TRUE,
+                                      ...) {
+
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y),
+      id.variable = !!rlang::enquo(id.variable)
+    ) %>%
+    tidyr::drop_na(data = .) %>%
+    dplyr::mutate(.data = .,
+                  x = droplevels(as.factor(x)),
+                  id.variable = droplevels(as.factor(id.variable))) %>%
+    tibble::as_tibble(x = .) %>%
+    dplyr::mutate_if(is.character, as.factor)
+
+  # run the ANOVA
+  stats_df <-
+    ez::ezANOVA(
+      data = data,
+      dv = y,
+      wid = id.variable,
+      within = x,
+      detailed = TRUE,
+      return_aov = TRUE
+  )
+
+  # get effect estimate and construct CIs
+  #
+  if (effsize.type == "unbiased") {
+    effsize <- "omega"
+    effsize.text <- quote(omega^2)
+    effsize_df <- sjstats::omega_sq(stats_df$aov,
+                                    ci.lvl = conf.level,
+                                    partial = FALSE)
+    effsize.estimate = effsize_df[2,2]
+    effsize.LL = effsize_df$conf.low[2]
+    effsize.UL = effsize_df$conf.high[2]
+  } else if (effsize.type == "biased") {
+    effsize <- "eta"
+    effsize.text <- quote(eta["p"]^2)
+    effsize_df <- sjstats::eta_sq(stats_df$aov,
+                                  ci.lvl = conf.level,
+                                  partial = TRUE)
+    effsize.estimate = effsize_df[2,2]
+    effsize.LL = effsize_df$conf.low[2]
+    effsize.UL = effsize_df$conf.high[2]
+  } else {
+    effsize <- "eta"
+    effsize.text <- quote(eta["G"]^2)
+    Lims <- MBESS::conf.limits.ncf(F.value = stats_df$ANOVA$F[2],
+                                   conf.level = conf.level,
+                                   df.1 = stats_df$ANOVA$DFn[2],
+                                   df.2 = nrow(data))
+    if (is.na(Lims$Lower.Limit)) {
+      Lims$Lower.Limit <- 0
+    }
+    Lower.lim <- Lims$Lower.Limit/(Lims$Lower.Limit + stats_df$ANOVA$DFn[2] + nrow(data))
+    Upper.lim <- Lims$Upper.Limit/(Lims$Upper.Limit + stats_df$ANOVA$DFn[2] + nrow(data))
+    effsize.estimate = stats_df$ANOVA$ges[2]
+    effsize.LL = Lower.lim
+    effsize.UL = Upper.lim
+  }
+
+  # preparing subtitle
+  subtitle <- subtitle_template(
+    no.parameters = 2L,
+    stat.title = NULL,
+    statistic.text = quote(italic("F")),
+    statistic = stats_df$ANOVA$F[2],
+    parameter = stats_df$ANOVA$DFn[2],
+    parameter2 = stats_df$ANOVA$DFd[2],
+    p.value = stats_df$ANOVA$p[2],
+    effsize.text = effsize.text,
+    effsize.estimate = effsize.estimate,
+    effsize.LL = effsize.LL,
+    effsize.UL = effsize.UL,
+    n = stats_df$ANOVA$DFn[1] + stats_df$ANOVA$DFd[1],
+    conf.level = conf.level,
+    k = k,
+    k.parameter = 0
+  )
+
+  # message about effect size measure
+  if (isTRUE(messages)) {
+#    effsize_ci_message(nboot = nboot, conf.level = conf.level)
+  }
+
+  # return the subtitle
+  return(subtitle)
+}
+
