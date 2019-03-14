@@ -5,7 +5,7 @@
 \title{Box/Violin plots for group or condition comparisons in
 \strong{within}-subjects (or repeated measures) designs.}
 \usage{
-ggwithinstats(data, x, y, id.variable = NULL, type = "parametric",
+ggwithinstats(data, x, y, type = "parametric",
   pairwise.comparisons = FALSE, pairwise.annotation = "asterisk",
   pairwise.display = "significant", p.adjust.method = "holm",
   effsize.type = "unbiased", partial = TRUE,

@@ -28,7 +28,6 @@
 ggwithinstats <- function(data,
                           x,
                           y,
-                          id.variable = NULL,
                           type = "parametric",
                           pairwise.comparisons = FALSE,
                           pairwise.annotation = "asterisk",
@@ -103,8 +102,7 @@ ggwithinstats <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y),
-      outlier.label = !!rlang::enquo(outlier.label),
-      id.variable = !!rlang::enquo(id.variable)
+      outlier.label = !!rlang::enquo(outlier.label)
     ) %>%
     tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
@@ -237,23 +235,6 @@ ggwithinstats <- function(data,
           bf.prior = bf.prior,
           tr = tr,
           nboot = nboot,
-          conf.level = conf.level,
-          k = k,
-          messages = messages
-        )
-    }
-
-    # temporary
-    if ("id.variable" %in% names(data)) {
-      subtitle <-
-        subtitle_anova_parametric_repeated(
-          # arguments relevant for subtitle helper functions
-          data = data,
-          x = x,
-          y = y,
-          id.variable = id.variable,
-          paired = TRUE,
-          effsize.type = effsize.type,
           conf.level = conf.level,
           k = k,
           messages = messages
