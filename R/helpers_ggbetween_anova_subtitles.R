@@ -667,7 +667,6 @@ subtitle_anova_bayes <- function(data,
 #' @inheritParams lm_effsize_standardizer
 #'
 #' @importFrom ez ezANOVA
-#' @importFrom MBESS conf.limits.ncf
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom sjstats eta_sq omega_sq
@@ -760,20 +759,14 @@ subtitle_anova_parametric_repeated <- function(data,
     effsize.LL = effsize_df$conf.low[2]
     effsize.UL = effsize_df$conf.high[2]
   } else {
-    effsize <- "eta"
-    effsize.text <- quote(eta["G"]^2)
-    Lims <- MBESS::conf.limits.ncf(F.value = stats_df$ANOVA$F[2],
-                                   conf.level = conf.level,
-                                   df.1 = stats_df$ANOVA$DFn[2],
-                                   df.2 = nrow(data))
-    if (is.na(Lims$Lower.Limit)) {
-      Lims$Lower.Limit <- 0
-    }
-    Lower.lim <- Lims$Lower.Limit/(Lims$Lower.Limit + stats_df$ANOVA$DFn[2] + nrow(data))
-    Upper.lim <- Lims$Upper.Limit/(Lims$Upper.Limit + stats_df$ANOVA$DFn[2] + nrow(data))
-    effsize.estimate = stats_df$ANOVA$ges[2]
-    effsize.LL = Lower.lim
-    effsize.UL = Upper.lim
+    effsize <- "omega"
+    effsize.text <- quote(omega^2)
+    effsize_df <- sjstats::omega_sq(stats_df$aov,
+                                    ci.lvl = conf.level,
+                                    partial = FALSE)
+    effsize.estimate = effsize_df[2,2]
+    effsize.LL = effsize_df$conf.low[2]
+    effsize.UL = effsize_df$conf.high[2]
   }
 
   # preparing subtitle
