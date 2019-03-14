@@ -722,6 +722,12 @@ subtitle_anova_parametric_repeated <- function(data,
     tibble::as_tibble(x = .) %>%
     dplyr::mutate_if(is.character, as.factor)
 
+  # test if we have complete within subjects data
+  all_present <- table(data$id.variable, data$x)
+  if (!all(all_present == 1)) {
+    stop("Check your data you do not appear to have the right number of observations per id")
+  }
+
   # run the ANOVA
   stats_df <-
     ez::ezANOVA(
