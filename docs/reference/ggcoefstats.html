@@ -17,7 +17,8 @@ caption. — ggcoefstats • ggstatsplot</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -82,7 +83,7 @@ caption." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -145,7 +146,7 @@ caption." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -182,8 +183,8 @@ caption.</p>
 
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>component</span> <span class='kw'>=</span> <span class='st'>"survival"</span>,
-  <span class='kw'>quick</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>by.class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
+  <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"beta"</span>,
+  <span class='st'>"location"</span>, <span class='st'>"coefficient"</span>), <span class='kw'>by.class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
   <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
   <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>se.type</span> <span class='kw'>=</span> <span class='st'>"nid"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
@@ -234,7 +235,7 @@ kind of model it is dealing with.</p></td>
     </tr>
     <tr>
       <th>scales</th>
-      <td><p>scales on which to report the variables: for random effects, the choices are &#8216;"sdcor"&#8217; (standard deviations and correlations: the default if <code>scales</code> is <code>NULL</code>) or &#8216;"vcov"&#8217; (variances and covariances). <code>NA</code> means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.</p></td>
+      <td><p>scales on which to report the variables: for random effects, the choices are &#8216;"sdcor"&#8217; (standard deviations and correlations: the default if <code>scales</code> is <code>NULL</code>) or &#8216;"vcov"&#8217; (variances and covariances). <code>NA</code> means no transformation, appropriate e.g. for fixed effects.</p></td>
     </tr>
     <tr>
       <th>conf.method</th>
@@ -249,20 +250,15 @@ JAGS, etc.), the default is <code>"quantile"</code>, while the only other option
     </tr>
     <tr>
       <th>conf.type</th>
-      <td><p>the type of confidence interval
-(see <code><a href='https://www.rdocumentation.org/packages/ordinal/topics/confint.clm'>ordinal::confint.clm()</a></code>)</p></td>
+      <td><p>Whether to use <code>"profile"</code> or <code>"Wald"</code> confidendence
+intervals, passed to the <code>type</code> argument of <code><a href='https://www.rdocumentation.org/packages/ordinal/topics/confint.clm'>ordinal::confint.clm()</a></code>.
+Defaults to <code>"profile"</code>.</p></td>
     </tr>
     <tr>
       <th>component</th>
       <td><p>Character specifying whether to tidy the survival or
 the longitudinal component of the model. Must be either <code>"survival"</code> or
 <code>"longitudinal"</code>. Defaults to <code>"survival"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>quick</th>
-      <td><p>Logical indicating if the only the <code>term</code> and <code>estimate</code>
-columns should be returned. Often useful to avoid time consuming
-covariance and standard error calculations. Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>p.kr</th>
@@ -275,20 +271,27 @@ For details, see <code><a href='https://www.rdocumentation.org/packages/sjstats/
       <td><p>Adjustment method for <em>p</em>-values for multiple
 comparisons. Possible methods are: <code>"holm"</code>, <code>"hochberg"</code>, <code>"hommel"</code>,
 <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>. Default is no correction
-(<code>"none"</code>).</p></td>
+(<code>"none"</code>). This argument is relevent for multiplicity correction for
+multiway ANOVA designs (see,
+<a href='https://link.springer.com/article/10.3758/s13423-015-0913-5'>Cramer
+et al., 2015</a>).</p></td>
     </tr>
     <tr>
       <th>coefficient.type</th>
       <td><p>Relevant only for ordinal regression models (<code>clm</code> ,
-<code>clmm</code>, and <code>polr</code>), this argument decides which parameters to display in
-the plot. This determines whether parameter measures the intercept, i.e.
-the log-odds distance between response values (<code>"alpha"</code>); effects on the
-location (<code>"beta"</code>); or effects on the scale (<code>"zeta"</code>). For <code>clm</code> and
-<code>clmm</code> models, if this is <code>NULL</code>, only <code>"beta"</code> (a vector of regression
-parameters) parameters will be show. Other options are <code>"alpha"</code> (a vector
-of threshold parameters) or <code>"both"</code>. For <code>polr</code> models, if this argument
-is <code>NULL</code>, only <code>"coefficient"</code> will be shown. Other option is to show
-<code>"zeta"</code> parameters.</p></td>
+<code>clmm</code>, <code>"svyolr"</code>, and <code>polr</code>), this argument decides which parameters are
+display in the plot. Availabel parameters are: parameter that measures the
+<strong>intercept</strong>, i.e. the log-odds distance between response values
+(<code>"alpha"</code>); effects on the <strong>location</strong> (<code>"beta"</code>); or effects on the
+<strong>scale</strong> (<code>"zeta"</code>). For <code>clm</code> and <code>clmm</code> models, by default, only
+<code>"beta"</code> (a vector of regression parameters) parameters will be show. Other
+options are <code>"alpha"</code> (a vector of threshold parameters) or <code>"both"</code>. For
+<code>polr</code> models, by default, only <code>"coefficient"</code> will be shown. Other option
+is to show <code>"zeta"</code> parameters. Note that, from <code>broom 0.7.0</code> onward,
+coefficients will be renamed and <code>"intercept"</code> type coefficients will
+correspond to <code>"alpha"</code> parameters, <code>"location"</code> type coefficients will
+correspond to <code>"beta"</code> parameters, and <code>"scale"</code> type coefficients will
+correspond to <code>"zeta"</code> parameters.</p></td>
     </tr>
     <tr>
       <th>by.class</th>

@@ -7,8 +7,8 @@ caption.}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   conf.method = "Wald", conf.type = "Wald", component = "survival",
-  quick = FALSE, p.kr = TRUE, p.adjust.method = "none",
-  coefficient.type = NULL, by.class = FALSE, effsize = "eta",
+  p.kr = TRUE, p.adjust.method = "none", coefficient.type = c("beta",
+  "location", "coefficient"), by.class = FALSE, effsize = "eta",
   partial = TRUE, nboot = 500, meta.analytic.effect = FALSE,
   point.color = "blue", point.size = 3, point.shape = 16,
   conf.int = TRUE, conf.level = 0.95, se.type = "nid", k = 2,
@@ -49,7 +49,7 @@ dataframe of results from \code{broom::tidy}) or \code{"glance"} (object from
 \code{ggcoefstats} is a dataframe in which case the function wouldn't know what
 kind of model it is dealing with.}
 
-\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects; inverse-link transformations (exponentiation or logistic) are not yet implemented, but may be in the future.}
+\item{scales}{scales on which to report the variables: for random effects, the choices are \sQuote{"sdcor"} (standard deviations and correlations: the default if \code{scales} is \code{NULL}) or \sQuote{"vcov"} (variances and covariances). \code{NA} means no transformation, appropriate e.g. for fixed effects.}
 
 \item{conf.method}{Character describing method for computing confidence
 intervals (for more, see \code{?lme4::confint.merMod} and
@@ -60,16 +60,13 @@ are: \code{"profile"}, \code{"boot"}). For MCMC or brms fit model objects (Stan,
 JAGS, etc.), the default is \code{"quantile"}, while the only other options is
 \code{"HPDinterval"}.}
 
-\item{conf.type}{the type of confidence interval
-(see \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}})}
+\item{conf.type}{Whether to use \code{"profile"} or \code{"Wald"} confidendence
+intervals, passed to the \code{type} argument of \code{\link[ordinal:confint.clm]{ordinal::confint.clm()}}.
+Defaults to \code{"profile"}.}
 
 \item{component}{Character specifying whether to tidy the survival or
 the longitudinal component of the model. Must be either \code{"survival"} or
 \code{"longitudinal"}. Defaults to \code{"survival"}.}
-
-\item{quick}{Logical indicating if the only the \code{term} and \code{estimate}
-columns should be returned. Often useful to avoid time consuming
-covariance and standard error calculations. Defaults to \code{FALSE}.}
 
 \item{p.kr}{Logical, if \code{TRUE}, the computation of \emph{p}-values for \code{lmer} is
 based on conditional F-tests with Kenward-Roger approximation for the df.
@@ -78,18 +75,25 @@ For details, see \code{?sjstats::p_value}.}
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},
 \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}. Default is no correction
-(\code{"none"}).}
+(\code{"none"}). This argument is relevent for multiplicity correction for
+multiway ANOVA designs (see,
+\href{https://link.springer.com/article/10.3758/s13423-015-0913-5}{Cramer
+et al., 2015}).}
 
 \item{coefficient.type}{Relevant only for ordinal regression models (\code{clm} ,
-\code{clmm}, and \code{polr}), this argument decides which parameters to display in
-the plot. This determines whether parameter measures the intercept, i.e.
-the log-odds distance between response values (\code{"alpha"}); effects on the
-location (\code{"beta"}); or effects on the scale (\code{"zeta"}). For \code{clm} and
-\code{clmm} models, if this is \code{NULL}, only \code{"beta"} (a vector of regression
-parameters) parameters will be show. Other options are \code{"alpha"} (a vector
-of threshold parameters) or \code{"both"}. For \code{polr} models, if this argument
-is \code{NULL}, only \code{"coefficient"} will be shown. Other option is to show
-\code{"zeta"} parameters.}
+\code{clmm}, \code{"svyolr"}, and \code{polr}), this argument decides which parameters are
+display in the plot. Availabel parameters are: parameter that measures the
+\strong{intercept}, i.e. the log-odds distance between response values
+(\code{"alpha"}); effects on the \strong{location} (\code{"beta"}); or effects on the
+\strong{scale} (\code{"zeta"}). For \code{clm} and \code{clmm} models, by default, only
+\code{"beta"} (a vector of regression parameters) parameters will be show. Other
+options are \code{"alpha"} (a vector of threshold parameters) or \code{"both"}. For
+\code{polr} models, by default, only \code{"coefficient"} will be shown. Other option
+is to show \code{"zeta"} parameters. Note that, from \code{broom 0.7.0} onward,
+coefficients will be renamed and \code{"intercept"} type coefficients will
+correspond to \code{"alpha"} parameters, \code{"location"} type coefficients will
+correspond to \code{"beta"} parameters, and \code{"scale"} type coefficients will
+correspond to \code{"zeta"} parameters.}
 
 \item{by.class}{A logical indicating whether or not to show performance
 measures broken down by class. Defaults to \code{FALSE}. When \code{by.class = FALSE}

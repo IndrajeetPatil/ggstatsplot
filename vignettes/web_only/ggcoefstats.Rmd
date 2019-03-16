@@ -89,27 +89,29 @@ set.seed(123)
 
 # to speed up the calculation, let's use only 10% of the data
 movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
-  
+
 # plot
 ggstatsplot::ggcoefstats(
   x = stats::aov(
     formula = rating ~ mpaa * genre,
     data = movies_10
   ),
-  effsize = "eta",                          # changing the effect size estimate being displayed
-  partial = FALSE,                          # just eta-squared 
-  point.color = "red",                      # changing the point color
-  point.size = 4,                           # changing the point size
-  point.shape = 15,                         # changing the point shape
-  package = "dutchmasters",                 # package from which color paletter is to be taken
-  palette = "milkmaid",                     # color palette for labels
-  title = "omnibus ANOVA"                   # title for the plot
-) +                                    
+  effsize = "eta", # changing the effect size estimate being displayed
+  partial = FALSE, # just eta-squared
+  point.color = "red", # changing the point color
+  point.size = 4, # changing the point size
+  point.shape = 15, # changing the point shape
+  package = "dutchmasters", # package from which color paletter is to be taken
+  palette = "milkmaid", # color palette for labels
+  title = "omnibus ANOVA" # title for the plot
+) +
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("MPAA", "Genre", "Interaction term")) +
-  ggplot2::labs(x = "effect size estimate (partial omega-squared)",
-                y = NULL)
+  ggplot2::labs(
+    x = "effect size estimate (partial omega-squared)",
+    y = NULL
+  )
 ```
 
 As this plot shows, there is no interaction effect between these two factors.
@@ -188,8 +190,10 @@ mod <- stats::lm(
 )
 
 # plotting estimates
-ggstatsplot::ggcoefstats(x = car::Anova(mod, type = "III"),
-                         title = "analysis of variance (`car` package)")
+ggstatsplot::ggcoefstats(
+  x = car::Anova(mod, type = "III"),
+  title = "analysis of variance (`car` package)"
+)
 ```
 
 ## linear model (`lm`)
@@ -204,22 +208,26 @@ using **Action** movies as our comparison point.
 ggstatsplot::ggcoefstats(
   x = stats::lm(
     formula = rating ~ genre,
-    data = dplyr::filter(.data = ggstatsplot::movies_long, 
-                         genre %in% c("Action", 
-                                      "Action Comedy", 
-                                      "Action Drama", 
-                                      "Comedy", 
-                                      "Drama", 
-                                      "Comedy Drama"))
-    ),
-  conf.level = 0.99,                      # changing the confidence levels for confidence intervals
-  sort = "ascending",                     # sorting the terms of the model based on estimate values
-  label.direction = "both",               # direction in which to adjust position of labels (both x and y)
-  ggtheme = ggplot2::theme_gray(),        # changing the default theme
+    data = dplyr::filter(
+      .data = ggstatsplot::movies_long,
+      genre %in% c(
+        "Action",
+        "Action Comedy",
+        "Action Drama",
+        "Comedy",
+        "Drama",
+        "Comedy Drama"
+      )
+    )
+  ),
+  conf.level = 0.99, # changing the confidence levels for confidence intervals
+  sort = "ascending", # sorting the terms of the model based on estimate values
+  label.direction = "both", # direction in which to adjust position of labels (both x and y)
+  ggtheme = ggplot2::theme_gray(), # changing the default theme
   stats.label.color = c("#CC79A7", "darkgreen", "#0072B2", "black", "red"),
   title = "Movie ratings by their genre",
   subtitle = "Source: www.imdb.com"
-) +                                    
+) +
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("Comedy", "Action Comedy", "Action Drama", "Comedy Drama", "Drama")) +
@@ -260,7 +268,7 @@ ggstatsplot::combine_plots(
     ),
     title = "linear model",
     stats.label.color = "black",
-    exclude.intercept = FALSE              # show the intercept
+    exclude.intercept = FALSE # show the intercept
   ) +
     ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)")),
   # model 2: linear mixed-effects model
@@ -273,10 +281,12 @@ ggstatsplot::combine_plots(
     p.kr = FALSE,
     title = "linear mixed-effects model",
     stats.label.color = "black",
-    exclude.intercept = FALSE              # show the intercept
+    exclude.intercept = FALSE # show the intercept
   ) +
-    ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)"), 
-                  y = "fixed effects"),
+    ggplot2::labs(
+      x = parse(text = "'standardized regression coefficient' ~italic(beta)"),
+      y = "fixed effects"
+    ),
   labels = c("(a)", "(b)"),
   nrow = 2,
   ncol = 1,
@@ -329,8 +339,10 @@ roblmm.mod <- robustlmm::rlmer(
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = roblmm.mod,
-                         title = "robust estimation of linear mixed-effects model")
+ggstatsplot::ggcoefstats(
+  x = roblmm.mod,
+  title = "robust estimation of linear mixed-effects model"
+)
 ```
 
 ## non-linear mixed-effects model (`nlmer`/`nlmerMod`)
@@ -340,12 +352,16 @@ ggstatsplot::ggcoefstats(x = roblmm.mod,
 library(lme4)
 set.seed(123)
 startvec <- c(Asym = 200, xmid = 725, scal = 350)
-nm1 <- lme4::nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym|Tree,
-             Orange, start = startvec)
+nm1 <- lme4::nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym | Tree,
+  Orange,
+  start = startvec
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = nm1,
-                         title = "non-linear mixed-effects model")
+ggstatsplot::ggcoefstats(
+  x = nm1,
+  title = "non-linear mixed-effects model"
+)
 ```
 
 ## non-linear least-squares model (`nls`)
@@ -365,14 +381,14 @@ movies_10 <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.1)
 
 # plot
 ggstatsplot::ggcoefstats(
-    x = stats::nls(
-      formula = rating ~ k / budget + c,     # try toying around with the form of non-linear function
-      data = movies_10,
-      start = list(k = 1, c = 0)
-    ),
-    title = "non-linear least squares regression",
-    subtitle = "Non-linear relationship between budget and rating"
-  )
+  x = stats::nls(
+    formula = rating ~ k / budget + c, # try toying around with the form of non-linear function
+    data = movies_10,
+    start = list(k = 1, c = 0)
+  ),
+  title = "non-linear least squares regression",
+  subtitle = "Non-linear relationship between budget and rating"
+)
 ```
 
 This analysis shows that there is indeed a possible non-linear association
@@ -404,8 +420,8 @@ ggstatsplot::ggcoefstats(
   x = stats::glm(
     formula = Survived ~ Sex + Age,
     data = df,
-    weights = df$Freq,                          # vector containing weights (no. of observations per row)
-    family = stats::binomial(link = "logit")    # choosing the family
+    weights = df$Freq, # vector containing weights (no. of observations per row)
+    family = stats::binomial(link = "logit") # choosing the family
   ),
   exponentiate = TRUE,
   ggtheme = ggthemes::theme_economist_white(),
@@ -414,9 +430,11 @@ ggstatsplot::ggcoefstats(
   vline.linetype = "solid",
   label.segment.color = "red",
   stats.label.size = 3.5,
-  stats.label.color = c("orangered",
-                        "dodgerblue")
-) 
+  stats.label.color = c(
+    "orangered",
+    "dodgerblue"
+  )
+)
 ```
 
 As can be seen from the regression coefficients, all entered predictors were
@@ -461,16 +479,18 @@ library(ggstatsplot)
 x1 <- stats::rnorm(50)
 y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
 (df.3 <- data.frame(x = x1, y = y1) %>%
-    tibble::as_tibble(x = .))
+  tibble::as_tibble(x = .))
 
 # dataframe #4
 x2 <- stats::rnorm(50)
-y2 <- rbinom(n = 50,
-             size = 1,
-             prob = stats::plogis(x2))
+y2 <- rbinom(
+  n = 50,
+  size = 1,
+  prob = stats::plogis(x2)
+)
 
 (df.4 <- data.frame(x = x2, y = y2) %>%
-    tibble::as_tibble(x = .))
+  tibble::as_tibble(x = .))
 
 # combining all plots in a single plot
 ggstatsplot::combine_plots(
@@ -515,7 +535,7 @@ ggstatsplot::combine_plots(
     stats.label.color = "black"
   ),
   # Family: Quasipoisson
-    ggstatsplot::ggcoefstats(
+  ggstatsplot::ggcoefstats(
     x = stats::glm(
       formula = y ~ x,
       family = stats::quasipoisson(link = "log"),
@@ -525,7 +545,7 @@ ggstatsplot::combine_plots(
     stats.label.color = "black"
   ),
   # Family: Gaussian
-    ggstatsplot::ggcoefstats(
+  ggstatsplot::ggcoefstats(
     x = stats::glm(
       formula = Sepal.Length ~ Species,
       family = stats::gaussian(link = "identity"),
@@ -598,9 +618,11 @@ mod <-
   )
 
 # plotting the model
-ggstatsplot::ggcoefstats(x = mod,
-                         conf.method = "uniroot",
-                         title = "generalized linear mixed models \nusing Template Model Builder")
+ggstatsplot::ggcoefstats(
+  x = mod,
+  conf.method = "uniroot",
+  title = "generalized linear mixed models \nusing Template Model Builder"
+)
 ```
 
 ## generalized linear mixed models using AD Model Builder (`glmmadmb`)
@@ -662,16 +684,20 @@ ggstatsplot::ggcoefstats(
     formula = as.factor(rating) ~ belief * outcome,
     link = "logit",
     data = dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.10),
-    control = ordinal::clm.control(maxIter = 50,
-                                   convergence = "silent")
+    control = ordinal::clm.control(
+      maxIter = 50,
+      convergence = "silent"
+    )
   ),
   stats.label.color = "black",
   title = "cumulative link model (clm)",
   subtitle = "(using `ordinal` package)",
-  caption.summary = FALSE                            # suppress model diagnostics
+  caption.summary = FALSE # suppress model diagnostics
 ) +
-  ggplot2::labs(x = "logit regression coefficient",
-                y = NULL)
+  ggplot2::labs(
+    x = "logit regression coefficient",
+    y = NULL
+  )
 ```
 
 As can be seen from this plot, both factors (intentionality and consequences)
@@ -694,7 +720,7 @@ set.seed(123)
 ggstatsplot::ggcoefstats(
   x = ordinal::clmm(
     formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
-                                                        harm),
+      harm),
     data = dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.10),
     control = ordinal::clmm.control(
       method = "nlminb",
@@ -704,10 +730,12 @@ ggstatsplot::ggcoefstats(
     )
   ),
   title = "cumulative link mixed model (clmm)",
-    subtitle = "(using `ordinal` package)"
+  subtitle = "(using `ordinal` package)"
 ) +
-  ggplot2::labs(x = "coefficient from ordinal mixed-effects regression",
-                y = "fixed effects")
+  ggplot2::labs(
+    x = "coefficient from ordinal mixed-effects regression",
+    y = "fixed effects"
+  )
 ```
 
 Mixed effects regression didn't reveal any interaction effect. That is, most of
@@ -726,7 +754,7 @@ set.seed(123)
 ggstatsplot::ggcoefstats(
   x = ordinal::clmm(
     formula = as.factor(rating) ~ belief * outcome + (belief + outcome |
-                                                        harm),
+      harm),
     link = "logit",
     data = dplyr::sample_frac(tbl = ggstatsplot::intent_morality, size = 0.10),
     control = ordinal::clmm.control(
@@ -734,12 +762,13 @@ ggstatsplot::ggcoefstats(
       gradTol = 1e-4,
       innerCtrl = "noWarn"
     )
-  ),
-  coefficient.type = "alpha"
+  )
 ) +
-  ggplot2::labs(x = "logit regression coefficients",
-                y = "threshold parameters",
-                title = "cumulative link mixed models")
+  ggplot2::labs(
+    x = "logit regression coefficients",
+    y = "threshold parameters",
+    title = "cumulative link mixed models"
+  )
 ```
 
 ## ordered logistic or probit regression (`polr`)
@@ -748,15 +777,19 @@ ggstatsplot::ggcoefstats(
 # polr model
 set.seed(123)
 library(MASS)
-polr.mod <- MASS::polr(formula = Sat ~ Infl + Type + Cont, 
-                       weights = Freq, 
-                       data = housing)
+polr.mod <- MASS::polr(
+  formula = Sat ~ Infl + Type + Cont,
+  weights = Freq,
+  data = housing
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = polr.mod, 
-                         coefficient.type = "both",
-                         title = "ordered logistic or probit regression",
-                         subtitle = "using `MASS` package")
+ggstatsplot::ggcoefstats(
+  x = polr.mod,
+  coefficient.type = "both",
+  title = "ordered logistic or probit regression",
+  subtitle = "using `MASS` package"
+)
 ```
 
 ## multinomial logistic regression models (`multinom`)
@@ -770,15 +803,17 @@ utils::example(topic = birthwt, echo = FALSE)
 bwt.mu <- nnet::multinom(formula = low ~ ., data = bwt, trace = FALSE)
 
 # plot
-ggstatsplot::ggcoefstats(x = bwt.mu,
-                         title = "multinomial logistic regression models",
-                         package = "ggsci",
-                         palette = "default_ucscgb")
+ggstatsplot::ggcoefstats(
+  x = bwt.mu,
+  title = "multinomial logistic regression models",
+  package = "ggsci",
+  palette = "default_ucscgb"
+)
 ```
 
 ## proportional odds and related models (`svyolr`)
 
-```{r svyolr, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+```{r svyolr, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}
 # setup
 set.seed(123)
 library(survey)
@@ -786,21 +821,26 @@ data(api)
 
 # preparing data
 dclus1 <- survey::svydesign(
-  id =  ~ dnum,
-  weights =  ~ pw,
+  id = ~dnum,
+  weights = ~pw,
   data = apiclus1,
-  fpc =  ~ fpc
+  fpc = ~fpc
 )
 dclus1 <-
   update(dclus1, mealcat = cut(meals, c(0, 25, 50, 75, 100)))
 
 # model
-m <- survey::svyolr(formula = mealcat ~ avg.ed + mobility + stype,
-                    design = dclus1)
+m <- survey::svyolr(
+  formula = mealcat ~ avg.ed + mobility + stype,
+  design = dclus1
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = m,
-                         title = "proportional odds and related models")
+ggstatsplot::ggcoefstats(
+  x = m,
+  title = "proportional odds and related models",
+  coefficient.type = "both"
+)
 ```
 
 ## survey-weighted generalized linear models (`svyglm`)
@@ -812,11 +852,11 @@ set.seed(123)
 data(api)
 dstrat <-
   survey::svydesign(
-    id =  ~ 1,
-    strata =  ~ stype,
-    weights =  ~ pw,
+    id = ~1,
+    strata = ~stype,
+    weights = ~pw,
     data = apistrat,
-    fpc =  ~ fpc
+    fpc = ~fpc
   )
 
 # model
@@ -827,8 +867,10 @@ mod <- survey::svyglm(
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = mod,
-                         title = "survey-weighted generalized linear model")
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "survey-weighted generalized linear model"
+)
 ```
 
 ## repeated measures ANOVA (`aovlist`)
@@ -855,8 +897,10 @@ iris_long_20 <- dplyr::sample_frac(tbl = ggstatsplot::iris_long, size = 0.20)
 
 # specifying the model (note the error structure)
 ggstatsplot::ggcoefstats(
-  x = stats::aov(formula = value ~ attribute * measure + Error(id / (attribute * measure)),
-             data = iris_long_20),
+  x = stats::aov(
+    formula = value ~ attribute * measure + Error(id / (attribute * measure)),
+    data = iris_long_20
+  ),
   effsize = "eta",
   partial = FALSE,
   nboot = 50,
@@ -866,7 +910,7 @@ ggstatsplot::ggcoefstats(
   title = "Variation in measurements for Iris species",
   subtitle = "Source: Iris data set (by Fisher or Anderson)",
   caption = "Results from 2 by 2 RM ANOVA"
-) + 
+) +
   ggplot2::theme(plot.subtitle = ggplot2::element_text(size = 11, face = "plain"))
 ```
 
@@ -897,8 +941,10 @@ ggstatsplot::combine_plots(
   ),
   # plot 2: lmRob
   ggstatsplot::ggcoefstats(
-    x = robust::lmRob(formula = Sepal.Length ~ Sepal.Width * Species, 
-                      data = iris),
+    x = robust::lmRob(
+      formula = Sepal.Length ~ Sepal.Width * Species,
+      data = iris
+    ),
     title = "robust linear model",
     package = "awtools",
     palette = "a_palette",
@@ -943,8 +989,10 @@ y <- x + 0.5 * x2 + id.eff[id] + firm.eff[firm] + u
 est <- lfe::felm(formula = y ~ x + x2 | id + firm)
 
 # plot
-ggstatsplot::ggcoefstats(x = est,
-                         title = "linear model with multiple group fixed effects")
+ggstatsplot::ggcoefstats(
+  x = est,
+  title = "linear model with multiple group fixed effects"
+)
 ```
 
 ## linear models for panel data (`plm`)
@@ -957,11 +1005,14 @@ data("Produc", package = "plm")
 
 # model
 plm.mod <- plm(log(gsp) ~ log(pcap) + log(pc) + log(emp) + unemp,
-          data = Produc, index = c("state","year"))
+  data = Produc, index = c("state", "year")
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = plm.mod,
-                         title = "linear models for panel data")
+ggstatsplot::ggcoefstats(
+  x = plm.mod,
+  title = "linear models for panel data"
+)
 ```
 
 ## Cox proportional hazards regression model (`coxph`)
@@ -983,13 +1034,17 @@ test1 <- list(
 )
 
 # fit a stratified model
-mod <- survival::coxph(formula = Surv(time, status) ~ x + strata(sex), 
-                       data = test1)
+mod <- survival::coxph(
+  formula = Surv(time, status) ~ x + strata(sex),
+  data = test1
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = mod, 
-                         exponentiate = TRUE,
-                         title = "Cox proportional hazards regression model")
+ggstatsplot::ggcoefstats(
+  x = mod,
+  exponentiate = TRUE,
+  title = "Cox proportional hazards regression model"
+)
 ```
 
 ## autoregressive integrated moving average (`Arima`)
@@ -1002,23 +1057,60 @@ set.seed(123)
 fit <- stats::arima(x = lh, order = c(1, 0, 0))
 
 # plot
-ggstatsplot::ggcoefstats(x = fit,
-                         title = "autoregressive integrated moving average")
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "autoregressive integrated moving average"
+)
 ```
-## high performance linear model (`speedlm`)
+## high performance linear model (`speedlm`/`speedglm`)
+
+Example of high performance linear model-
 
 ```{r speedlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # model
 set.seed(123)
-mod <-
-  speedglm::speedlm(formula = mpg ~ wt + qsec,
-                    data = mtcars,
-                    fitted = TRUE)
+mod <- speedglm::speedlm(
+  formula = mpg ~ wt + qsec,
+  data = mtcars,
+  fitted = TRUE
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = mod, 
-                         title = "high performance linear model",
-                         exclude.intercept = FALSE)
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "high performance linear model",
+  exclude.intercept = FALSE
+)
+```
+
+Example of high performance generalized linear model-
+
+```{r speedglm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# setup
+set.seed(123)
+library(speedglm)
+
+# data
+n <- 50000
+k <- 5
+y <- rgamma(n, 1.5, 1)
+x <- round(matrix(rnorm(n * k), n, k), digits = 3)
+colnames(x) <- paste("s", 1:k, sep = "")
+da <- data.frame(y, x)
+fo <- as.formula(paste("y~", paste(paste("s", 1:k, sep = ""), collapse = "+")))
+
+# model
+mod <- speedglm::speedglm(
+  formula = fo,
+  data = da,
+  family = stats::Gamma(log)
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "high performance generalized linear model"
+)
 ```
 
 ## bounded memory linear regression (`biglm`)
@@ -1026,13 +1118,17 @@ ggstatsplot::ggcoefstats(x = mod,
 ```{r biglm, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # model
 set.seed(123)
-bfit <- biglm::biglm(formula = scale(mpg) ~ scale(wt) + scale(disp), 
-                     data = mtcars)
+bfit <- biglm::biglm(
+  formula = scale(mpg) ~ scale(wt) + scale(disp),
+  data = mtcars
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = bfit, 
-                         title = "bounded memory linear regression",
-                         exclude.intercept = FALSE)
+ggstatsplot::ggcoefstats(
+  x = bfit,
+  title = "bounded memory linear regression",
+  exclude.intercept = FALSE
+)
 ```
 
 ## parametric survival regression model (`survreg`)
@@ -1073,10 +1169,12 @@ afit <- survival::aareg(
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = afit, 
-                         title = "Aalen's additive regression model", 
-                         subtitle = "(for censored data)",
-                         k = 3)
+ggstatsplot::ggcoefstats(
+  x = afit,
+  title = "Aalen's additive regression model",
+  subtitle = "(for censored data)",
+  k = 3
+)
 ```
 
 ## relative risk regression model for case-cohort studies (`cch`)
@@ -1099,7 +1197,7 @@ ccoh.data$histol <- factor(ccoh.data$histol, labels = c("FH", "UH"))
 
 ## tumour stage
 ccoh.data$stage <-
-  factor(ccoh.data$stage, labels = c("I", "II", "III" , "IV"))
+  factor(ccoh.data$stage, labels = c("I", "II", "III", "IV"))
 ccoh.data$age <- ccoh.data$age / 12 # Age in years
 
 # model
@@ -1107,16 +1205,18 @@ fit.ccP <-
   survival::cch(
     formula = Surv(edrel, rel) ~ stage + histol + age,
     data = ccoh.data,
-    subcoh = ~ subcohort,
-    id = ~ seqno,
+    subcoh = ~subcohort,
+    id = ~seqno,
     cohort.size = 4028
   )
 
 # plot
-ggstatsplot::ggcoefstats(x = fit.ccP, 
-                         title = "relative risk regression model", 
-                         subtitle = "(for case-cohort studies)",
-                         conf.level = 0.99)
+ggstatsplot::ggcoefstats(
+  x = fit.ccP,
+  title = "relative risk regression model",
+  subtitle = "(for case-cohort studies)",
+  conf.level = 0.99
+)
 ```
 
 ## ridge regression (`ridgelm`)
@@ -1176,13 +1276,17 @@ set.seed(123)
 library(gam)
 
 # model
-g <- gam::gam(formula = mpg ~ s(hp, 4) + am + qsec, 
-              data = mtcars)
+g <- gam::gam(
+  formula = mpg ~ s(hp, 4) + am + qsec,
+  data = mtcars
+)
 
 # plot
-ggstatsplot::ggcoefstats(x = g, 
-                         title = "generalized additive model",
-                         subtite = "(using `gam` package)")
+ggstatsplot::ggcoefstats(
+  x = g,
+  title = "generalized additive model",
+  subtite = "(using `gam` package)"
+)
 ```
 
 ## linear model using generalized least squares (`gls`)
@@ -1220,9 +1324,11 @@ set.seed(123)
 
 # plot
 ggstatsplot::ggcoefstats(
-  x = MASS::rlm(formula = mpg ~ am * cyl,
-                data = mtcars),
-  point.color = "red",                
+  x = MASS::rlm(
+    formula = mpg ~ am * cyl,
+    data = mtcars
+  ),
+  point.color = "red",
   point.shape = 15,
   vline.color = "#CC79A7",
   vline.linetype = "dotdash",
@@ -1277,8 +1383,10 @@ Dat.nlrq <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(x = Dat.nlrq,
-                         title = "non-linear quantile regression")
+ggstatsplot::ggcoefstats(
+  x = Dat.nlrq,
+  title = "non-linear quantile regression"
+)
 ```
 
 ## instrumental-variable regression (`ivreg`)
@@ -1297,8 +1405,10 @@ ivr <- AER::ivreg(
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = ivr,
-                         title = "instrumental-variable regression")
+ggstatsplot::ggcoefstats(
+  x = ivr,
+  title = "instrumental-variable regression"
+)
 ```
 
 ## causal mediation analysis (`mediate`)
@@ -1311,11 +1421,15 @@ data(jobs)
 
 # base models
 b <-
-  stats::lm(formula = job_seek ~ treat + econ_hard + sex + age, 
-            data = jobs)
+  stats::lm(
+    formula = job_seek ~ treat + econ_hard + sex + age,
+    data = jobs
+  )
 c <-
-  stats::lm(formula = depress2 ~ treat + job_seek + econ_hard + sex + age,
-            data = jobs)
+  stats::lm(
+    formula = depress2 ~ treat + job_seek + econ_hard + sex + age,
+    data = jobs
+  )
 
 # mediation model
 mod <-
@@ -1328,8 +1442,10 @@ mod <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(x = mod,
-                         title = "causal mediation analysis")
+ggstatsplot::ggcoefstats(
+  x = mod,
+  title = "causal mediation analysis"
+)
 ```
 
 ## Model II regression (`lmodel2`)
@@ -1351,9 +1467,11 @@ Ex2.res <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(x = Ex2.res,
-                         exclude.intercept = FALSE,
-                         title = "Model II regression")
+ggstatsplot::ggcoefstats(
+  x = Ex2.res,
+  exclude.intercept = FALSE,
+  title = "Model II regression"
+)
 ```
 
 ## generalized additive models for location scale and shape (`gamlss`)
@@ -1373,8 +1491,10 @@ g <- gamlss::gamlss(
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = g, 
-                         title = "generalized additive models \nfor location scale and shape")
+ggstatsplot::ggcoefstats(
+  x = g,
+  title = "generalized additive models \nfor location scale and shape"
+)
 ```
 
 ## generalized method of moment estimation (`gmm`)
@@ -1398,10 +1518,12 @@ h <- matrix(zm, t, 1)
 res <- gmm::gmm(z ~ zm, x = h)
 
 # plot
-ggstatsplot::ggcoefstats(x = res, 
-                         package = "palettetown",
-                         palette = "victreebel",
-                         title = "generalized method of moment estimation")
+ggstatsplot::ggcoefstats(
+  x = res,
+  package = "palettetown",
+  palette = "victreebel",
+  title = "generalized method of moment estimation"
+)
 ```
 
 ## joint model to time-to-event data and multivariate longitudinal data (`mjoint`)
@@ -1458,9 +1580,11 @@ data(florentine)
 gest <- ergm(flomarriage ~ edges + absdiff("wealth"))
 
 # plot
-ggstatsplot::ggcoefstats(x = gest,
-                         conf.level = 0.99,
-                         title = "exponential-family random graph models")
+ggstatsplot::ggcoefstats(
+  x = gest,
+  conf.level = 0.99,
+  title = "exponential-family random graph models"
+)
 ```
 
 
@@ -1505,12 +1629,14 @@ ggstatsplot::ggcoefstats(
 set.seed(123)
 library(tseries)
 data(EuStockMarkets)
-dax <- diff(log(EuStockMarkets))[,"DAX"]
+dax <- diff(log(EuStockMarkets))[, "DAX"]
 dax.garch <- tseries::garch(x = dax, trace = FALSE)
 
 # plot
-ggstatsplot::ggcoefstats(x = dax.garch,
-                         title = "generalized autoregressive \nconditional heteroscedastic (GARCH)")
+ggstatsplot::ggcoefstats(
+  x = dax.garch,
+  title = "generalized autoregressive \nconditional heteroscedastic (GARCH)"
+)
 ```
 
 ## maximum-likelihood fitting of univariate distributions (`fitdistr`)
@@ -1523,9 +1649,11 @@ x <- rnorm(100, 5, 2)
 fit <- MASS::fitdistr(x, dnorm, list(mean = 3, sd = 1))
 
 # plot
-ggstatsplot::ggcoefstats(x = fit,
-                         title = "maximum-likelihood fitting of \nunivariate distributions",
-                         ggtheme = ggthemes::theme_pander())
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "maximum-likelihood fitting of \nunivariate distributions",
+  ggtheme = ggthemes::theme_pander()
+)
 ```
 
 ## maximum likelihood estimation (`mle2`)
@@ -1566,8 +1694,10 @@ reg <- stats::lm(formula = mpg ~ wt + qsec + disp, data = mtcars)
 co <- orcutt::cochrane.orcutt(reg)
 
 # plot
-ggstatsplot::ggcoefstats(x = co, 
-                         title = "Cochrane-Orcutt estimation")
+ggstatsplot::ggcoefstats(
+  x = co,
+  title = "Cochrane-Orcutt estimation"
+)
 ```
 
 ## confusion matrix (`confusionMatrix`)
@@ -1587,9 +1717,11 @@ two_class_cm <- caret::confusionMatrix(
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = two_class_cm,
-                         by.class = TRUE,
-                         title = "confusion matrix")
+ggstatsplot::ggcoefstats(
+  x = two_class_cm,
+  by.class = TRUE,
+  title = "confusion matrix"
+)
 ```
 
 ## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
@@ -1605,7 +1737,7 @@ bprior1 <- prior(student_t(5, 0, 10), class = b) +
 
 # model
 fit1 <- brms::brm(
-  formula = count ~ log_Age_c + log_Base4_c * Trt + (1 | patient),
+  formula = count ~ Age + Base * Trt + (1 | patient),
   data = epilepsy,
   family = poisson(),
   prior = bprior1,
@@ -1613,11 +1745,13 @@ fit1 <- brms::brm(
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = fit1,
-                         exclude.intercept = FALSE,
-                         conf.method = "HPDinterval",
-                         title = "Bayesian generalized (non-)linear \nmultivariate multilevel models",
-                         subtitle = "using `brms` package")
+ggstatsplot::ggcoefstats(
+  x = fit1,
+  exclude.intercept = FALSE,
+  conf.method = "HPDinterval",
+  title = "Bayesian generalized (non-)linear \nmultivariate multilevel models",
+  subtitle = "using `brms` package"
+)
 ```
 
 ## Bayesian regression models via Stan (`stanreg`)
@@ -1631,8 +1765,10 @@ library(rstanarm)
 fit <- rstanarm::stan_glm(formula = mpg ~ wt + am, data = mtcars, chains = 1)
 
 # plot
-ggstatsplot::ggcoefstats(x = fit, 
-                         title = "Bayesian generalized linear models via Stan")
+ggstatsplot::ggcoefstats(
+  x = fit,
+  title = "Bayesian generalized linear models via Stan"
+)
 ```
 
 ## multivariate generalized linear mixed models (`MCMCglmm`)
@@ -1645,7 +1781,7 @@ library(MCMCglmm)
 # model
 mm0 <- MCMCglmm::MCMCglmm(
   fixed = scale(Reaction) ~ scale(Days),
-  random = ~Subject, 
+  random = ~Subject,
   data = sleepstudy,
   nitt = 4000,
   pr = TRUE,
@@ -1742,12 +1878,12 @@ library(gapminder)
 df <-
   dplyr::filter(.data = gapminder::gapminder, continent != "Oceania")
 
-# saving results from regression  
+# saving results from regression
 df_results <- purrr::pmap(
   .l = list(
     data = list(df),
     formula = list(scale(lifeExp) ~ scale(gdpPercap) + (gdpPercap |
-                                                          country)),
+      country)),
     grouping.vars = alist(continent),
     output = list("tidy", "glance")
   ),
@@ -1758,11 +1894,13 @@ df_results <- purrr::pmap(
 # modifying the results so to be compatible with the `ggcoefstats` requirement
 (df_results %<>%
   dplyr::filter(.data = ., term != "(Intercept)") %>%
-  dplyr::select(.data = .,
-                -effect,
-                -term,
-                term = continent,
-                statistic = t.value))
+  dplyr::select(
+    .data = .,
+    -effect,
+    -term,
+    term = continent,
+    statistic = t.value
+  ))
 
 # plot
 ggstatsplot::ggcoefstats(
@@ -1791,16 +1929,18 @@ df_min <- tibble::tribble(
   ~term, ~estimate, ~std.error,
   "study1", 0.0665, -0.778,
   "study2", 0.542, -0.280,
-  "study3", 0.045, 0.030, 
+  "study3", 0.045, 0.030,
   "study4", 0.500, -0.708,
   "study5", 0.032, -0.280,
   "study6", 0.085, 0.030
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = df_min,
-                         meta.analytic.effect = TRUE, 
-                         point.color = "red")
+ggstatsplot::ggcoefstats(
+  x = df_min,
+  meta.analytic.effect = TRUE,
+  point.color = "red"
+)
 ```
 
 Or you can also provide a dataframe containing all the other relevant
@@ -1819,11 +1959,13 @@ df_full <- tibble::tribble(
 )
 
 # plot
-ggstatsplot::ggcoefstats(x = df_full,
-                         meta.analytic.effect = TRUE, 
-                         statistic = "t",
-                         package = "LaCroixColoR",
-                         palette = "paired")
+ggstatsplot::ggcoefstats(
+  x = df_full,
+  meta.analytic.effect = TRUE,
+  statistic = "t",
+  package = "LaCroixColoR",
+  palette = "paired"
+)
 ```
 
 ## And much more...

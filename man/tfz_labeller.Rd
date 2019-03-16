@@ -8,7 +8,7 @@ tfz_labeller(tidy_df, glance_df = NULL, statistic, effsize = "eta",
   partial = TRUE, k = 2)
 }
 \arguments{
-\item{tidy_df}{Tidy dataframe from \code{broom::tidy}.}
+\item{tidy_df}{Tidy dataframe from \code{broomExtra::tidy}.}
 
 \item{glance_df}{Glance model summary dataframe from \code{broom::glance}
 (default: \code{NULL}). This is optional argument. If provide, the \code{glance}

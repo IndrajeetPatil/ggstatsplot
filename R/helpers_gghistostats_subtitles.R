@@ -153,7 +153,7 @@ subtitle_t_onesample <- function(data,
   } else if (stats.type == "nonparametric") {
     # setting up the Mann-Whitney U-test and getting its summary
     stats_df <-
-      broom::tidy(stats::wilcox.test(
+      broomExtra::tidy(stats::wilcox.test(
         x = data$x,
         alternative = "two.sided",
         na.action = na.omit,

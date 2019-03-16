@@ -680,7 +680,7 @@ subtitle_anova_bayes <- function(data,
 #'
 #' # converting to long format
 #' data_bugs <- bugs %>%
-#'   dplyr::filter(., !is.na(LDHF) & !is.na(LDLF) & !is.na(HDLF)  & !is.na(HDHF)) %>%
+#'   dplyr::filter(., !is.na(LDHF) & !is.na(LDLF) & !is.na(HDLF) & !is.na(HDHF)) %>%
 #'   tibble::as_tibble(.) %>%
 #'   tidyr::gather(., key, value, LDLF:HDHF)
 #'
@@ -692,19 +692,18 @@ subtitle_anova_bayes <- function(data,
 #'   id.variable = Subject,
 #'   k = 2
 #' )
-#'
 #' @export
 
 # function body
 subtitle_anova_parametric_repeated <- function(data,
-                                      x,
-                                      y,
-                                      id.variable,
-                                      effsize.type = "unbiased",
-                                      conf.level = 0.95,
-                                      k = 2,
-                                      messages = TRUE,
-                                      ...) {
+                                               x,
+                                               y,
+                                               id.variable,
+                                               effsize.type = "unbiased",
+                                               conf.level = 0.95,
+                                               k = 2,
+                                               messages = TRUE,
+                                               ...) {
 
   # creating a dataframe
   data <-
@@ -715,9 +714,11 @@ subtitle_anova_parametric_repeated <- function(data,
       id.variable = !!rlang::enquo(id.variable)
     ) %>%
     tidyr::drop_na(data = .) %>%
-    dplyr::mutate(.data = .,
-                  x = droplevels(as.factor(x)),
-                  id.variable = droplevels(as.factor(id.variable))) %>%
+    dplyr::mutate(
+      .data = .,
+      x = droplevels(as.factor(x)),
+      id.variable = droplevels(as.factor(id.variable))
+    ) %>%
     tibble::as_tibble(x = .) %>%
     dplyr::mutate_if(is.character, as.factor)
 
@@ -736,7 +737,7 @@ subtitle_anova_parametric_repeated <- function(data,
       within = x,
       detailed = TRUE,
       return_aov = TRUE
-  )
+    )
 
   # get effect estimate and construct CIs
   #
@@ -744,29 +745,32 @@ subtitle_anova_parametric_repeated <- function(data,
     effsize <- "omega"
     effsize.text <- quote(omega^2)
     effsize_df <- sjstats::omega_sq(stats_df$aov,
-                                    ci.lvl = conf.level,
-                                    partial = FALSE)
-    effsize.estimate = effsize_df[2,2]
-    effsize.LL = effsize_df$conf.low[2]
-    effsize.UL = effsize_df$conf.high[2]
+      ci.lvl = conf.level,
+      partial = FALSE
+    )
+    effsize.estimate <- effsize_df[2, 2]
+    effsize.LL <- effsize_df$conf.low[2]
+    effsize.UL <- effsize_df$conf.high[2]
   } else if (effsize.type == "biased") {
     effsize <- "eta"
     effsize.text <- quote(eta["p"]^2)
     effsize_df <- sjstats::eta_sq(stats_df$aov,
-                                  ci.lvl = conf.level,
-                                  partial = TRUE)
-    effsize.estimate = effsize_df[2,2]
-    effsize.LL = effsize_df$conf.low[2]
-    effsize.UL = effsize_df$conf.high[2]
+      ci.lvl = conf.level,
+      partial = TRUE
+    )
+    effsize.estimate <- effsize_df[2, 2]
+    effsize.LL <- effsize_df$conf.low[2]
+    effsize.UL <- effsize_df$conf.high[2]
   } else {
     effsize <- "omega"
     effsize.text <- quote(omega^2)
     effsize_df <- sjstats::omega_sq(stats_df$aov,
-                                    ci.lvl = conf.level,
-                                    partial = FALSE)
-    effsize.estimate = effsize_df[2,2]
-    effsize.LL = effsize_df$conf.low[2]
-    effsize.UL = effsize_df$conf.high[2]
+      ci.lvl = conf.level,
+      partial = FALSE
+    )
+    effsize.estimate <- effsize_df[2, 2]
+    effsize.LL <- effsize_df$conf.low[2]
+    effsize.UL <- effsize_df$conf.high[2]
   }
 
   # preparing subtitle
@@ -790,10 +794,9 @@ subtitle_anova_parametric_repeated <- function(data,
 
   # message about effect size measure
   if (isTRUE(messages)) {
-#    effsize_ci_message(nboot = nboot, conf.level = conf.level)
+    #    effsize_ci_message(nboot = nboot, conf.level = conf.level)
   }
 
   # return the subtitle
   return(subtitle)
 }
-

@@ -59,8 +59,7 @@
 #'   research which suggests that the Yates' correction is overly conservative,
 #'   even in small sample sizes. As such it is recommended that it should not
 #'   ever be applied in practice (Camilli & Hopkins, 1978, 1979; Feinberg, 1980;
-#'   Larntz, 1978; Thompson, 1988). For more, see-
-#'   \url{http://www.how2stats.net/2011/09/yates-correction.html}
+#'   Larntz, 1978; Thompson, 1988).
 #'
 #' @examples
 #'

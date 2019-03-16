@@ -111,4 +111,3 @@ testthat::test_that(
     testthat::expect_identical(using_function1, results1)
   }
 )
-

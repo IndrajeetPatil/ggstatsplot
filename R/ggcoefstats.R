@@ -38,7 +38,10 @@
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"`, `"hochberg"`, `"hommel"`,
 #'   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`. Default is no correction
-#'   (`"none"`).
+#'   (`"none"`). This argument is relevent for multiplicity correction for
+#'   multiway ANOVA designs (see,
+#'   \href{https://link.springer.com/article/10.3758/s13423-015-0913-5}{Cramer
+#'   et al., 2015}).
 #' @param point.color Character describing color for the point (Default:
 #'   `"blue"`).
 #' @param point.size Numeric specifying size for the point (Default: `3`).
@@ -50,15 +53,19 @@
 #'   `0.95`). For MCMC model objects (Stan, JAGS, etc.), this will be
 #'   probability level for CI.
 #' @param coefficient.type Relevant only for ordinal regression models (`clm` ,
-#'   `clmm`, and `polr`), this argument decides which parameters to display in
-#'   the plot. This determines whether parameter measures the intercept, i.e.
-#'   the log-odds distance between response values (`"alpha"`); effects on the
-#'   location (`"beta"`); or effects on the scale (`"zeta"`). For `clm` and
-#'   `clmm` models, if this is `NULL`, only `"beta"` (a vector of regression
-#'   parameters) parameters will be show. Other options are `"alpha"` (a vector
-#'   of threshold parameters) or `"both"`. For `polr` models, if this argument
-#'   is `NULL`, only `"coefficient"` will be shown. Other option is to show
-#'   `"zeta"` parameters.
+#'   `clmm`, `"svyolr"`, and `polr`), this argument decides which parameters are
+#'   display in the plot. Availabel parameters are: parameter that measures the
+#'   **intercept**, i.e. the log-odds distance between response values
+#'   (`"alpha"`); effects on the **location** (`"beta"`); or effects on the
+#'   **scale** (`"zeta"`). For `clm` and `clmm` models, by default, only
+#'   `"beta"` (a vector of regression parameters) parameters will be show. Other
+#'   options are `"alpha"` (a vector of threshold parameters) or `"both"`. For
+#'   `polr` models, by default, only `"coefficient"` will be shown. Other option
+#'   is to show `"zeta"` parameters. Note that, from `broom 0.7.0` onward,
+#'   coefficients will be renamed and `"intercept"` type coefficients will
+#'   correspond to `"alpha"` parameters, `"location"` type coefficients will
+#'   correspond to `"beta"` parameters, and `"scale"` type coefficients will
+#'   correspond to `"zeta"` parameters.
 #' @param by.class A logical indicating whether or not to show performance
 #'   measures broken down by class. Defaults to `FALSE`. When `by.class = FALSE`
 #'   only returns a tibble with accuracy and kappa statistics. Mostly relevant
@@ -155,9 +162,7 @@
 #' @inheritParams ggbetweenstats
 #'
 #' @import ggplot2
-#'
-#' @importFrom broom tidy glance augment
-#' @importFrom broom.mixed tidy glance augment
+#' @importFrom broomExtra tidy glance augment
 #' @importFrom dplyr select bind_rows summarize mutate mutate_at mutate_if n
 #' @importFrom dplyr group_by arrange full_join vars matches desc everything
 #' @importFrom purrrlyr by_row
@@ -306,10 +311,9 @@ ggcoefstats <- function(x,
                         conf.method = "Wald",
                         conf.type = "Wald",
                         component = "survival",
-                        quick = FALSE,
                         p.kr = TRUE,
                         p.adjust.method = "none",
-                        coefficient.type = NULL,
+                        coefficient.type = c("beta", "location", "coefficient"),
                         by.class = FALSE,
                         effsize = "eta",
                         partial = TRUE,
@@ -435,26 +439,6 @@ ggcoefstats <- function(x,
       "zoo"
     )
 
-  # models for which glance is not supported
-  noglance.mods <-
-    c(
-      "aovlist",
-      "anova",
-      "btergm",
-      "coeftest",
-      "confusionMatrix",
-      "manova",
-      "mcmc",
-      "MCMCglmm",
-      "mediate",
-      "mle2",
-      "rjags",
-      "rlmerMod",
-      "stanfit",
-      "svyglm",
-      "TukeyHSD"
-    )
-
   # models for which the full diagnostics is not available (AIC, BIC, LL)
   nodiagnostics.mods <-
     c(
@@ -507,14 +491,6 @@ ggcoefstats <- function(x,
     "manova"
   )
 
-  # ordinal regression models
-  ordinal.mods <- c(
-    "clm",
-    "clmm",
-    "polr",
-    "svyolr"
-  )
-
   # =========================== checking if object is supported ==============
 
   # glace is not supported for all models
@@ -534,33 +510,20 @@ ggcoefstats <- function(x,
 
   # ============================= model and its summary ======================
 
-  # glance object from `broom`
-  if (!(class(x)[[1]] %in% noglance.mods) &&
-    !(class(x)[[1]] %in% df.mods)) {
-    # depends on whether it's a mixed effects model or not
-    if (class(x)[[1]] %in% mixed.mods) {
-      glance_df <- broom.mixed::glance(x = x) %>%
-        tibble::as_tibble(x = .)
-    } else {
-      glance_df <- broom::glance(x = x) %>%
-        tibble::as_tibble(x = .)
-    }
-  } else {
-    # no glance available
-    glance_df <- NULL
+  # creating glance dataframe
+  glance_df <- broomExtra::glance(x)
 
-    # inform the user (only relevant in case of plot output)
-    if (output == "plot") {
-      base::message(cat(
-        crayon::green("Note: "),
-        crayon::blue(
-          "No model diagnostics information available for the object of class",
-          crayon::yellow(class(x)[[1]]),
-          ".\n"
-        ),
-        sep = ""
-      ))
-    }
+  # if glance is not available, inform the user
+  if (is.null(glance_df) && output == "plot") {
+    base::message(cat(
+      crayon::green("Note: "),
+      crayon::blue(
+        "No model diagnostics information available for the object of class",
+        crayon::yellow(class(x)[[1]]),
+        ".\n"
+      ),
+      sep = ""
+    ))
   }
 
   # ============================= dataframe ===============================
@@ -611,7 +574,7 @@ ggcoefstats <- function(x,
 
     # getting tidy output using `broom.mixed`
     tidy_df <-
-      broom.mixed::tidy(
+      broomExtra::tidy(
         x = x,
         conf.int = TRUE,
         conf.level = conf.level,
@@ -650,20 +613,19 @@ ggcoefstats <- function(x,
     # ============ tidying robust models =====================================
   } else if (class(x)[[1]] %in% c("lmRob", "glmRob")) {
     tidy_df <-
-      broom::tidy(
+      broomExtra::tidy(
         x = x,
         ...
       )
     # ==================== tidying everything else ===========================
   } else {
     tidy_df <-
-      broom::tidy(
+      broomExtra::tidy(
         x = x,
         conf.int = TRUE,
         conf.level = conf.level,
         se.type = se.type,
         by_class = by.class,
-        quick = quick,
         conf.type = conf.type,
         component = component,
         parametric = TRUE,
@@ -674,20 +636,17 @@ ggcoefstats <- function(x,
   # =================== tidy dataframe cleanup ================================
 
   # selecting needed coefficients/parameters for ordinal regression models
-  if (class(x)[[1]] %in% ordinal.mods) {
-    # if type of coefficients for ordinal models are not selected, defaults-
-    if (is.null(coefficient.type)) {
-      if (class(x)[[1]] %in% c("clm", "clmm")) {
-        coefficient.type <- "beta"
-      } else if (class(x)[[1]] %in% c("polr", "svyolr")) {
-        coefficient.type <- "coefficient"
+  if (any(names(tidy_df) %in% c("coefficient_type", "coef.type"))) {
+    if (any(coefficient.type %in%
+      c("alpha", "beta", "zeta", "intercept", "location", "scale", "coefficient"))) {
+      # subset the dataframe, only if not all coefficients are to be retained
+      if (utils::packageVersion("broom") > "0.5.1") {
+        tidy_df %<>%
+          dplyr::filter(.data = ., coef.type %in% coefficient.type)
+      } else {
+        tidy_df %<>%
+          dplyr::filter(.data = ., coefficient_type %in% coefficient.type)
       }
-    }
-
-    # subset the dataframe, only if not all coefficients are to be retained
-    if (coefficient.type != "both") {
-      tidy_df %<>%
-        dplyr::filter(.data = ., coefficient_type == coefficient.type)
     }
   }
 
@@ -873,8 +832,15 @@ ggcoefstats <- function(x,
 
   # ========================== p-value adjustment ===========================
 
-  # adjust the p-values based on the adjustment used
+  # clean up the p-value column
   if ("p.value" %in% names(tidy_df)) {
+    # if p-value column is not numeric
+    if (!purrr::is_bare_numeric(tidy_df$p.value)) {
+      tidy_df %<>%
+        dplyr::mutate(.data = ., p.value = as.numeric(as.character(p.value)))
+    }
+
+    # adjust the p-values based on the adjustment used
     tidy_df %<>%
       dplyr::mutate(
         .data = .,
@@ -938,12 +904,10 @@ ggcoefstats <- function(x,
 
   # caption containing model diagnostics
   if (isTRUE(caption.summary)) {
-    if (class(x)[[1]] %in% df.mods) {
-      if (isTRUE(meta.analytic.effect)) {
+    if (class(x)[[1]] %in% df.mods && isTRUE(meta.analytic.effect)) {
         caption <- caption.meta
-      }
     } else {
-      if (!class(x)[[1]] %in% c(noglance.mods, nodiagnostics.mods)) {
+      if (!is.null(glance_df) && !class(x)[[1]] %in% nodiagnostics.mods) {
         if (!is.na(glance_df$AIC[[1]])) {
           # preparing caption with model diagnostics
           caption <-
@@ -1156,14 +1120,7 @@ ggcoefstats <- function(x,
     return(glance_df)
   } else if (output == "augment") {
     # return the augmented dataframe
-    if (class(x)[[1]] %in% mixed.mods) {
-      # for mixed-effects models
-      return(broom.mixed::augment(x = x, ...) %>%
-        tibble::as_tibble(x = .))
-    } else {
-      # everything else
-      return(broom::augment(x = x, ...) %>%
-        tibble::as_tibble(x = .))
-    }
+    broomExtra::augment(x = x, ...) %>%
+      tibble::as_tibble(x = .)
   }
 }

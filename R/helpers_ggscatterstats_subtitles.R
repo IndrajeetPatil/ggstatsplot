@@ -74,7 +74,7 @@ subtitle_ggscatterstats <- function(data,
 
   # Pearson's r (will also be used for Bayes tests)
   stats_df <-
-    broom::tidy(stats::cor.test(
+    broomExtra::tidy(stats::cor.test(
       formula = ~ x + y,
       data = data,
       method = "pearson",
@@ -112,7 +112,7 @@ subtitle_ggscatterstats <- function(data,
     # note that stats::cor.test doesn't give degress of freedom; it's
     # calculated as df = (no. of pairs - 2)
     stats_df <-
-      broom::tidy(stats::cor.test(
+      broomExtra::tidy(stats::cor.test(
         formula = ~ x + y,
         data = data,
         method = "spearman",

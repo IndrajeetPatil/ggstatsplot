@@ -17,7 +17,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -82,7 +83,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -145,7 +146,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/IndrajeetPatil/ggstatsplot">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -253,10 +254,11 @@ samples case the Wilcoxon signed rank test is run and <em>V</em> is reported.</p
 for these tests we are computing and reporting <em>r</em> (computed as
 \(Z/\sqrt{N}\)) along with the confidence intervals associated with the
 estimate.</p>
-<p><em>Note</em> The <code>wilcox.test</code> function in the stats package does not follow the
-same convention as <code>t.test</code> and reverse the sign of the test statistic
-based on the sign of the grouped differences.  It calculates a different
-test statistic estimate with the same significance level. Consider manually
+<p><em>Note:</em> The <em>stats::wilcox.test</em> function does not follow the
+same convention as <em>stats::t.test</em>. The sign of the <em>V</em> test statistic
+will always be positive since it is <strong>the sum of the positive signed ranks</strong>.
+Therefore <em>V</em> will vary in magnitude but not significance based solely
+on the order of the grouping variable. Consider manually
 reordering your factor levels if appropriate as shown in the second example
 below.</p>
     
@@ -294,13 +296,13 @@ below.</p>
 #&gt;     " = ", "0.179", ", ", italic(r), " = ", "0.23", ", CI"["99%"], 
 #&gt;     " [", "0.00", ", ", "0.63", "]", ", ", italic("n"), " = ", 
 #&gt;     34L)</div><div class='input'>
-<span class='co'># The order of the grouping factor matters when computing *W*</span>
+<span class='co'># The order of the grouping factor matters when computing *V*</span>
 <span class='co'># Changing default alphabeical order manually</span>
 <span class='no'>msleep_short</span>$<span class='no'>vore</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>msleep_short</span>$<span class='no'>vore</span>,
   <span class='kw'>levels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"herbi"</span>, <span class='st'>"carni"</span>)
 )
 
-<span class='co'># note the change in the reported W value but the identical</span>
+<span class='co'># note the change in the reported *V* value but the identical</span>
 <span class='co'># value for *p* and the reversed effect size</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_mann_nonparametric.html'>subtitle_mann_nonparametric</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>msleep_short</span>,

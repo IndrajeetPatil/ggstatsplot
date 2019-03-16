@@ -234,3 +234,9 @@ mark {
 .html-widget {
   margin-bottom: 10px;
 }
+
+/* fontawesome ------------------------ */
+
+.fab {
+    font-family: "Font Awesome 5 Brands" !important;
+}

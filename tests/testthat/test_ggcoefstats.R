@@ -757,10 +757,10 @@ testthat::test_that(
   }
 )
 
-# check clm and polr models (minimal) ----------------------------------------
+# check clm models (minimal) ----------------------------------------
 
 testthat::test_that(
-  desc = "check clm and polr models (minimal)",
+  desc = "check clm models (minimal)",
   code = {
     testthat::skip_on_cran()
 
@@ -782,13 +782,13 @@ testthat::test_that(
     df.clm2 <-
       ggstatsplot::ggcoefstats(
         x = mod.clm,
-        coefficient.type = "alpha",
+        coefficient.type = c("intercept", "alpha"),
         output = "tidy"
       )
     df.clm3 <-
       ggstatsplot::ggcoefstats(
         x = mod.clm,
-        coefficient.type = "beta",
+        coefficient.type = c("location", "beta"),
         output = "tidy"
       )
     df.clm4 <-
@@ -802,70 +802,7 @@ testthat::test_that(
     testthat::expect_equal(dim(df.clm1), c(9L, 12L))
     testthat::expect_equal(dim(df.clm2), c(6L, 12L))
     testthat::expect_equal(dim(df.clm3), c(3L, 12L))
-    testthat::expect_equal(dim(df.clm4), c(3L, 12L))
-
-    # coefficients
-    testthat::expect_identical(
-      unique(df.clm1$coefficient_type),
-      c("alpha", "beta")
-    )
-    testthat::expect_identical(unique(df.clm2$coefficient_type), "alpha")
-    testthat::expect_identical(unique(df.clm3$coefficient_type), "beta")
-    testthat::expect_identical(
-      unique(df.clm4$coefficient_type),
-      unique(df.clm3$coefficient_type)
-    )
-
-    # polr model
-    set.seed(123)
-    library(MASS)
-    mod.polr <- MASS::polr(
-      formula = Sat ~ Infl + Type + Cont,
-      weights = Freq,
-      data = housing
-    )
-
-    # dataframes
-    df.polr1 <-
-      ggstatsplot::ggcoefstats(
-        x = mod.polr,
-        coefficient.type = "both",
-        output = "tidy"
-      )
-    df.polr2 <-
-      ggstatsplot::ggcoefstats(
-        x = mod.polr,
-        coefficient.type = "zeta",
-        output = "tidy"
-      )
-    df.polr3 <-
-      ggstatsplot::ggcoefstats(
-        x = mod.polr,
-        coefficient.type = "coefficient",
-        output = "tidy"
-      )
-    df.polr4 <-
-      ggstatsplot::ggcoefstats(
-        x = mod.polr,
-        coefficient.type = NULL,
-        output = "tidy"
-      )
-
-    # tests
-    testthat::expect_equal(dim(df.polr1), c(8L, 13L))
-    testthat::expect_equal(dim(df.polr2), c(2L, 13L))
-    testthat::expect_equal(dim(df.polr3), c(6L, 13L))
-    testthat::expect_equal(dim(df.polr4), c(6L, 13L))
-    testthat::expect_identical(
-      unique(df.polr1$coefficient_type),
-      c("coefficient", "zeta")
-    )
-    testthat::expect_identical(unique(df.polr2$coefficient_type), "zeta")
-    testthat::expect_identical(unique(df.polr3$coefficient_type), "coefficient")
-    testthat::expect_identical(
-      unique(df.polr4$coefficient_type),
-      unique(df.polr3$coefficient_type)
-    )
+    testthat::expect_equal(dim(df.clm4), c(9L, 12L))
   }
 )
 
@@ -885,12 +822,12 @@ testthat::test_that(
       formula = as.factor(rating) ~ belief * outcome * question
     )
 
-    # selecting alpha terms
+    # selecting intercept terms
     df1 <- broom::tidy(
       x = mod,
       conf.int = TRUE
     ) %>%
-      dplyr::filter(.data = ., coefficient_type == "alpha")
+      dplyr::filter(.data = ., coef.type == "intercept")
 
     # selecting beta terms
     df2 <- broom::tidy(
@@ -898,14 +835,15 @@ testthat::test_that(
       conf.int = TRUE,
       exponentiate = TRUE
     ) %>%
-      dplyr::filter(.data = ., coefficient_type == "beta")
+      dplyr::filter(.data = ., coef.type == "location")
 
     # computed dataframes
     tidy_df1 <-
       ggstatsplot::ggcoefstats(
         x = df1,
         statistic = "z",
-        output = "tidy"
+        output = "tidy",
+        coefficient.type = "intercept"
       )
     tidy_df2 <-
       ggstatsplot::ggcoefstats(
@@ -1045,6 +983,7 @@ testthat::test_that(
     )
     df2 <- dplyr::select(.data = df1, -p.value)
     df3 <- dplyr::select(.data = df1, -statistic)
+    df3$p.value <- as.factor(df3$p.value)
     df4 <- dplyr::select(.data = df1, -df.residual)
     df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
     df6 <- dplyr::select(.data = df5, -term, -estimate, -std.error)
@@ -1071,7 +1010,7 @@ testthat::test_that(
     p3 <- ggstatsplot::ggcoefstats(x = df2, statistic = "t")
     p4 <- ggstatsplot::ggcoefstats(x = df3, statistic = "t") +
       ggplot2::scale_y_discrete(labels = c("x1", "x2", "x3")) +
-      ggplot2::labs(x = "beta", y = NULL)
+      ggplot2::labs(x = "location", y = NULL)
     p5 <- ggstatsplot::ggcoefstats(x = df4, statistic = "t")
     p6 <-
       ggstatsplot::ggcoefstats(
@@ -1163,7 +1102,7 @@ testthat::test_that(
     )
 
     # annotations
-    testthat::expect_identical(p4$labels$x, "beta")
+    testthat::expect_identical(p4$labels$x, "location")
     testthat::expect_null(p4$labels$y, NULL)
     testthat::expect_null(p4$labels$title, NULL)
     testthat::expect_null(p4$labels$subtitle, NULL)

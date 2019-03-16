@@ -14,7 +14,7 @@
 #'
 #' #------------------------- models with *t*-statistic ------------------
 #' # model with t-statistic
-#' ggstatsplot:::ggcoefstats_label_maker(x = broom::tidy(stats::lm(
+#' ggstatsplot:::ggcoefstats_label_maker(x = broomExtra::tidy(stats::lm(
 #'   data = mtcars, formula = wt ~ cyl * mpg
 #' )), statistic = "t")
 #'
@@ -41,7 +41,7 @@
 #' # model with t-statistic
 #' ggstatsplot:::ggcoefstats_label_maker(
 #'   x = mod,
-#'   tidy_df = broom::tidy(
+#'   tidy_df = broomExtra::tidy(
 #'     x = mod,
 #'     conf.int = TRUE,
 #'     conf.level = 0.95
@@ -64,7 +64,7 @@
 #' )
 #'
 #' # creating tidy dataframe with label column
-#' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broom::tidy(mod))
+#' ggstatsplot:::ggcoefstats_label_maker(x = mod, tidy_df = broomExtra::tidy(mod))
 #'
 #' #------------------------- models with *f*-statistic --------------------
 #' # creating a model object
@@ -137,6 +137,7 @@ ggcoefstats_label_maker <- function(x,
       "rlm",
       "rlmerMod",
       "rq",
+      "speedglm",
       "speedlm",
       "svyglm",
       "svyolr"
@@ -300,7 +301,7 @@ ggcoefstats_label_maker <- function(x,
 #'   statistic (*t*, *z*, or *f*) displayed in the label.
 #' @name tfz_labeller
 #'
-#' @param tidy_df Tidy dataframe from `broom::tidy`.
+#' @param tidy_df Tidy dataframe from `broomExtra::tidy`.
 #' @param glance_df Glance model summary dataframe from `broom::glance`
 #'   (default: `NULL`). This is optional argument. If provide, the `glance`
 #'   summary will be used to write `caption` for the final plot.

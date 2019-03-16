@@ -134,7 +134,7 @@ subtitle_t_parametric <- function(data,
   )
 
   stats_df <-
-    broom::tidy(tobject)
+    broomExtra::tidy(tobject)
 
   # effect size object
   effsize_df <-
@@ -322,7 +322,7 @@ subtitle_mann_nonparametric <- function(data,
 
   # setting up the test and getting its summary
   stats_df <-
-    broom::tidy(stats::wilcox.test(
+    broomExtra::tidy(stats::wilcox.test(
       formula = y ~ x,
       data = data,
       paired = paired,

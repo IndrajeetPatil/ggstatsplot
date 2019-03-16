@@ -181,7 +181,6 @@ games_howell <- function(data,
 #' @importFrom tidyr gather spread separate
 #' @importFrom rlang !! enquo
 #' @importFrom tibble as_tibble rowid_to_column enframe
-#' @importFrom broom tidy
 #' @importFrom jmv anovaNP anovaRMNP
 #' @importFrom utils packageVersion
 #'

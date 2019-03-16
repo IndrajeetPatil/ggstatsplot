@@ -47,7 +47,7 @@ data("bugs", package = "jmv")
 
 # converting to long format
 data_bugs <- bugs \%>\%
-  dplyr::filter(., !is.na(LDHF) & !is.na(LDLF) & !is.na(HDLF)  & !is.na(HDHF)) \%>\%
+  dplyr::filter(., !is.na(LDHF) & !is.na(LDLF) & !is.na(HDLF) & !is.na(HDHF)) \%>\%
   tibble::as_tibble(.) \%>\%
   tidyr::gather(., key, value, LDLF:HDHF)
 
@@ -59,7 +59,6 @@ ggstatsplot::subtitle_anova_parametric_repeated(
   id.variable = Subject,
   k = 2
 )
-
 }
 \author{
 Chuck Powell, Indrajeet Patil

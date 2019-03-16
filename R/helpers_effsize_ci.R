@@ -381,7 +381,7 @@ cor_test_ci <- function(data,
     tibble::as_tibble(x = .)
 
   # running correlation and creating a tidy dataframe
-  tidy_df <- broom::tidy(
+  tidy_df <- broomExtra::tidy(
     x = stats::cor.test(
       formula = stats::as.formula(~ x + y),
       data = data,
@@ -405,7 +405,7 @@ cor_test_ci <- function(data,
     d <- data[indices, ]
     # allows boot to select sample
     boot_df <-
-      broom::tidy(
+      broomExtra::tidy(
         stats::cor.test(
           formula = stats::as.formula(~ x + y),
           data = d,

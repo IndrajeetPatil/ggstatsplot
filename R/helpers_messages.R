@@ -74,7 +74,7 @@ normality_message <- function(x,
         sep = ""
       ))
     } else if (output %in% c("stats", "tidy")) {
-      return(broom::tidy(sw_norm))
+      return(broomExtra::tidy(sw_norm))
     }
   }
 }
@@ -158,7 +158,7 @@ bartlett_message <- function(data,
       sep = ""
     ))
   } else if (output %in% c("stats", "tidy")) {
-    return(broom::tidy(bartlett))
+    return(broomExtra::tidy(bartlett))
   }
 }
 

@@ -27,7 +27,6 @@
 #'
 #' @importFrom tibble tribble as_tibble
 #' @importFrom tidyr uncount drop_na
-#' @importFrom broom tidy
 #' @importFrom jmv propTestN contTables
 #' @importFrom stats mcnemar.test chisq.test
 #' @importFrom rcompanion cramerV
@@ -143,7 +142,7 @@ subtitle_contingency_tab <- function(data,
 
     # object contatining stats
     stats_df <-
-      broom::tidy(stats::chisq.test(
+      broomExtra::tidy(stats::chisq.test(
         x = data$main,
         y = data$condition,
         correct = FALSE,
@@ -195,7 +194,7 @@ subtitle_contingency_tab <- function(data,
     mat_df <- as.matrix(table(data$main, data$condition))
 
     # computing effect size + CI
-    stats_df <- broom::tidy(stats::mcnemar.test(
+    stats_df <- broomExtra::tidy(stats::mcnemar.test(
       x = mat_df,
       y = NULL,
       correct = FALSE
