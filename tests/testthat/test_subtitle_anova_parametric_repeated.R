@@ -170,10 +170,6 @@ testthat::test_that(
   }
 )
 
-
-
-
-
 # parametric repeated anova subtitles (catch bad data) --------------------------
 
 testthat::test_that(
@@ -184,7 +180,7 @@ testthat::test_that(
     # ggstatsplot output
     set.seed(123)
     # fake a data entry mistake
-    iris_long[5,3] <- "Sepal.Width"
+    iris_long[5, 3] <- "Sepal.Width"
     testthat::expect_error(
       subtitle_anova_parametric_repeated(
         data = iris_long,
@@ -195,5 +191,3 @@ testthat::test_that(
     )
   }
 )
-
-

@@ -740,7 +740,6 @@ subtitle_anova_parametric_repeated <- function(data,
     )
 
   # get effect estimate and construct CIs
-  #
   if (effsize.type == "unbiased") {
     effsize <- "omega"
     effsize.text <- quote(omega^2)

@@ -11,13 +11,14 @@ coverage:
     project:
       default:
         target: auto
-        threshold: null
+        threshold: 1%
         branches: null
 
     patch:
       default:
         target: auto
         branches: null
+        threshold: 1%
 
     changes:
       default:

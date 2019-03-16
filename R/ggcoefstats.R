@@ -439,29 +439,6 @@ ggcoefstats <- function(x,
       "zoo"
     )
 
-  # models for which the full diagnostics is not available (AIC, BIC, LL)
-  nodiagnostics.mods <-
-    c(
-      "aareg",
-      "biglm",
-      "brmsfit",
-      "cch",
-      "felm",
-      "gam",
-      "glmRob",
-      "gmm",
-      "ivreg",
-      "lavaan",
-      "lmodel2",
-      "lmRob",
-      "multinom",
-      "orcutt",
-      "plm",
-      "ridgelm",
-      "stanreg",
-      "svyolr"
-    )
-
   # objects for which p-value needs to be computed using `sjstats` package
   p.mods <- c(
     "lmerMod",
@@ -513,17 +490,28 @@ ggcoefstats <- function(x,
   # creating glance dataframe
   glance_df <- broomExtra::glance(x)
 
-  # if glance is not available, inform the user
-  if (is.null(glance_df) && output == "plot") {
-    base::message(cat(
-      crayon::green("Note: "),
-      crayon::blue(
-        "No model diagnostics information available for the object of class",
-        crayon::yellow(class(x)[[1]]),
-        ".\n"
-      ),
-      sep = ""
-    ))
+  # if the object is not a dataframe, check if summary caption is to be displayed
+  if (!class(x)[[1]] %in% df.mods) {
+    # if glance is not available, inform the user
+    if (is.null(glance_df) && output == "plot") {
+      base::message(cat(
+        crayon::green("Note: "),
+        crayon::blue(
+          "No model diagnostics information available for the object of class",
+          crayon::yellow(class(x)[[1]]),
+          ".\n"
+        ),
+        sep = ""
+      ))
+
+      # and skip the caption
+      caption.summary <- FALSE
+    } else {
+      # if glance is not null, but the needed metric are not available, skip caption
+      if (!all(c("logLik", "AIC", "BIC") %in% names(glance_df))) {
+        caption.summary <- FALSE
+      }
+    }
   }
 
   # ============================= dataframe ===============================
@@ -904,33 +892,35 @@ ggcoefstats <- function(x,
 
   # caption containing model diagnostics
   if (isTRUE(caption.summary)) {
+    # for dataframe objects
     if (class(x)[[1]] %in% df.mods && isTRUE(meta.analytic.effect)) {
-        caption <- caption.meta
-    } else {
-      if (!is.null(glance_df) && !class(x)[[1]] %in% nodiagnostics.mods) {
-        if (!is.na(glance_df$AIC[[1]])) {
-          # preparing caption with model diagnostics
-          caption <-
-            substitute(
-              atop(displaystyle(top.text),
-                expr =
-                  paste(
-                    "AIC = ",
-                    AIC,
-                    ", BIC = ",
-                    BIC,
-                    ", log-likelihood = ",
-                    LL
-                  )
-              ),
-              env = list(
-                top.text = caption,
-                AIC = specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
-                BIC = specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary),
-                LL = specify_decimal_p(x = glance_df$logLik[[1]], k = k.caption.summary)
-              )
+      caption <- caption.meta
+    }
+
+    # for non-dataframe objects
+    if (!class(x)[[1]] %in% df.mods) {
+      if (!is.na(glance_df$AIC[[1]])) {
+        # preparing caption with model diagnostics
+        caption <-
+          substitute(
+            atop(displaystyle(top.text),
+              expr =
+                paste(
+                  "AIC = ",
+                  AIC,
+                  ", BIC = ",
+                  BIC,
+                  ", log-likelihood = ",
+                  LL
+                )
+            ),
+            env = list(
+              top.text = caption,
+              AIC = specify_decimal_p(x = glance_df$AIC[[1]], k = k.caption.summary),
+              BIC = specify_decimal_p(x = glance_df$BIC[[1]], k = k.caption.summary),
+              LL = specify_decimal_p(x = glance_df$logLik[[1]], k = k.caption.summary)
             )
-        }
+          )
       }
     }
   }

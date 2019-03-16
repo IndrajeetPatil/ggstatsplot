@@ -1179,7 +1179,6 @@ ggstatsplot::ggcoefstats(
 
 ## relative risk regression model for case-cohort studies (`cch`)
 
-
 ```{r cch, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 6}
 
 # setup
