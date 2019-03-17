@@ -38,7 +38,7 @@
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"`, `"hochberg"`, `"hommel"`,
 #'   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`. Default is no correction
-#'   (`"none"`). This argument is relevent for multiplicity correction for
+#'   (`"none"`). This argument is relevant for multiplicity correction for
 #'   multiway ANOVA designs (see,
 #'   \href{https://link.springer.com/article/10.3758/s13423-015-0913-5}{Cramer
 #'   et al., 2015}).
@@ -54,7 +54,7 @@
 #'   probability level for CI.
 #' @param coefficient.type Relevant only for ordinal regression models (`clm` ,
 #'   `clmm`, `"svyolr"`, and `polr`), this argument decides which parameters are
-#'   display in the plot. Availabel parameters are: parameter that measures the
+#'   display in the plot. Available parameters are: parameter that measures the
 #'   **intercept**, i.e. the log-odds distance between response values
 #'   (`"alpha"`); effects on the **location** (`"beta"`); or effects on the
 #'   **scale** (`"zeta"`). For `clm` and `clmm` models, by default, only

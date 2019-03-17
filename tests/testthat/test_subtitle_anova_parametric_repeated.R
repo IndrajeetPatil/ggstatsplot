@@ -10,7 +10,7 @@ testthat::test_that(
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
-      subtitle_anova_parametric_repeated(
+      ggstatsplot:::subtitle_anova_parametric_repeated(
         data = iris_long,
         x = condition,
         y = value,
@@ -65,7 +65,7 @@ testthat::test_that(
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
-      subtitle_anova_parametric_repeated(
+      ggstatsplot:::subtitle_anova_parametric_repeated(
         data = iris_long,
         x = condition,
         y = value,
@@ -123,7 +123,7 @@ testthat::test_that(
     # ggstatsplot output
     set.seed(123)
     using_function1 <-
-      subtitle_anova_parametric_repeated(
+      ggstatsplot:::subtitle_anova_parametric_repeated(
         data = iris_long,
         x = condition,
         y = value,
@@ -182,7 +182,7 @@ testthat::test_that(
     # fake a data entry mistake
     iris_long[5, 3] <- "Sepal.Width"
     testthat::expect_error(
-      subtitle_anova_parametric_repeated(
+      ggstatsplot:::subtitle_anova_parametric_repeated(
         data = iris_long,
         x = condition,
         y = value,

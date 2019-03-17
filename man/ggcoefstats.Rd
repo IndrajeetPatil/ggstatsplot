@@ -75,14 +75,14 @@ For details, see \code{?sjstats::p_value}.}
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"},
 \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}. Default is no correction
-(\code{"none"}). This argument is relevent for multiplicity correction for
+(\code{"none"}). This argument is relevant for multiplicity correction for
 multiway ANOVA designs (see,
 \href{https://link.springer.com/article/10.3758/s13423-015-0913-5}{Cramer
 et al., 2015}).}
 
 \item{coefficient.type}{Relevant only for ordinal regression models (\code{clm} ,
 \code{clmm}, \code{"svyolr"}, and \code{polr}), this argument decides which parameters are
-display in the plot. Availabel parameters are: parameter that measures the
+display in the plot. Available parameters are: parameter that measures the
 \strong{intercept}, i.e. the log-odds distance between response values
 (\code{"alpha"}); effects on the \strong{location} (\code{"beta"}); or effects on the
 \strong{scale} (\code{"zeta"}). For \code{clm} and \code{clmm} models, by default, only

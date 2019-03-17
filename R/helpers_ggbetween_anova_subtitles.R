@@ -670,6 +670,7 @@ subtitle_anova_bayes <- function(data,
 #' @importFrom sjstats eta_sq omega_sq
 #'
 #' @examples
+#' \dontrun{
 #' # setup
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -683,14 +684,15 @@ subtitle_anova_bayes <- function(data,
 #'   tidyr::gather(., key, value, LDLF:HDHF)
 #'
 #' # creating the subtitle
-#' ggstatsplot::subtitle_anova_parametric_repeated(
+#' ggstatsplot:::subtitle_anova_parametric_repeated(
 #'   data = data_bugs,
 #'   x = key,
 #'   y = value,
 #'   id.variable = Subject,
 #'   k = 2
 #' )
-#' @export
+#' }
+#' @keywords internal
 
 # function body
 subtitle_anova_parametric_repeated <- function(data,

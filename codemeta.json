@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.9.9000",
+  "version": "0.0.10",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -519,7 +519,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 0.3.1",
+      "version": ">= 0.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -532,7 +532,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrrlyr",
       "name": "purrrlyr",
-      "version": ">= 0.0.4",
+      "version": ">= 0.0.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -545,7 +545,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rcompanion",
       "name": "rcompanion",
-      "version": ">= 2.0.10",
+      "version": ">= 2.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -615,7 +615,7 @@
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
-      "version": ">= 2.0.1",
+      "version": ">= 2.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

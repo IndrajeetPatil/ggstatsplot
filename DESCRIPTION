@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.0.9.9000
+Version: 0.0.10
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -53,15 +53,15 @@ Imports:
     methods,
     paletteer (>= 0.2.1),
     psych (>= 1.8.12),
-    purrr (>= 0.3.1),
-    purrrlyr (>= 0.0.4),
-    rcompanion (>= 2.0.10),
+    purrr (>= 0.3.2),
+    purrrlyr (>= 0.0.5),
+    rcompanion (>= 2.1.1),
     rlang (>= 0.3.1),
     scales (>= 1.0.0),
     sjstats (>= 0.17.3),
     stats,
     stringr (>= 1.3.1),
-    tibble (>= 2.0.1),
+    tibble (>= 2.1.1),
     tidyr (>= 0.8.3),
     utils,
     WRS2 (>= 0.10-0)

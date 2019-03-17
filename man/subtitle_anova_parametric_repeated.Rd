@@ -39,6 +39,7 @@ are to be displayed (Default: \code{TRUE}).}
 Making text subtitle for the within-subject anova designs.
 }
 \examples{
+\dontrun{
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -52,7 +53,7 @@ data_bugs <- bugs \%>\%
   tidyr::gather(., key, value, LDLF:HDHF)
 
 # creating the subtitle
-ggstatsplot::subtitle_anova_parametric_repeated(
+ggstatsplot:::subtitle_anova_parametric_repeated(
   data = data_bugs,
   x = key,
   y = value,
@@ -60,6 +61,8 @@ ggstatsplot::subtitle_anova_parametric_repeated(
   k = 2
 )
 }
+}
 \author{
 Chuck Powell, Indrajeet Patil
 }
+\keyword{internal}

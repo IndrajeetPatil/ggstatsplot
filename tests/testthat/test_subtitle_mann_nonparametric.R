@@ -96,11 +96,11 @@ testthat::test_that(
       )
 
     # expect error
-    testthat::expect_error(ggstatsplot::subtitle_mann_nonparametric(
+    testthat::expect_error(suppressWarnings(ggstatsplot::subtitle_mann_nonparametric(
       data = iris,
       x = Sepal.Length,
       y = Species
-    ))
+    )))
 
     # ggstatsplot output
     set.seed(123)
@@ -114,7 +114,7 @@ testthat::test_that(
         conf.type = "perc",
         conf.level = 0.99,
         paired = TRUE,
-        messages = FALSE
+        messages = TRUE
       ))
 
     # expected output
