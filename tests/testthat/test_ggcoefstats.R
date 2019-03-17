@@ -634,54 +634,6 @@ testthat::test_that(
   }
 )
 
-# check quantreg output ----------------------------------------------
-
-testthat::test_that(
-  desc = "check quantreg output",
-  code = {
-    testthat::skip_on_cran()
-
-    # set up
-    set.seed(123)
-    library(quantreg)
-    data(stackloss)
-
-    # model
-    mod <-
-      quantreg::rq(
-        formula = stack.loss ~ stack.x,
-        data = stackloss,
-        method = "br"
-      )
-
-    # broom outputs
-    broom_df <-
-      broom::tidy(
-        x = mod,
-        se.type = "iid",
-        conf.int = TRUE,
-        conf.level = 0.90
-      )
-
-    # ggcoefstats outputs
-    tidy_df <- ggstatsplot::ggcoefstats(
-      x = mod,
-      se.type = "iid",
-      exclude.intercept = FALSE,
-      conf.level = 0.90,
-      output = "tidy"
-    )
-
-    # testing
-    testthat::expect_identical(broom_df$term, as.character(tidy_df$term))
-    testthat::expect_equal(broom_df$estimate, tidy_df$estimate, tolerance = 0.001)
-    testthat::expect_equal(broom_df$std.error, tidy_df$std.error, tolerance = 0.001)
-    testthat::expect_equal(broom_df$p.value, tidy_df$p.value, tolerance = 0.001)
-    testthat::expect_equal(broom_df$conf.low, tidy_df$conf.low, tolerance = 0.001)
-    testthat::expect_equal(broom_df$conf.high, tidy_df$conf.high, tolerance = 0.001)
-  }
-)
-
 # check gmm output ----------------------------------------------
 
 testthat::test_that(
@@ -1373,12 +1325,20 @@ testthat::test_that(
     cfit <- coxph(Surv(time, status) ~ age + sex, lung)
     mod2 <- survfit(cfit)
 
+    # mod-3
+    mod3 <- stats::aov(
+      formula = value ~ attribute * measure + Error(id / (attribute * measure)),
+      data = iris_long
+    )
+
+    # plot
+    p <- ggstatsplot::ggcoefstats(mod3)
+    pb <- ggplot2::ggplot_build(p)
+
     # test failures
-    testthat::expect_error(
-      ggstatsplot::ggcoefstats(x = mod1)
-    )
-    testthat::expect_error(
-      ggstatsplot::ggcoefstats(x = mod2)
-    )
+    testthat::expect_error(ggstatsplot::ggcoefstats(x = mod1))
+    testthat::expect_error(ggstatsplot::ggcoefstats(x = mod2))
+    testthat::expect_null(pb$plot$labels$subtitle, NULL)
+
   }
 )

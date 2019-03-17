@@ -423,7 +423,6 @@ subtitle_anova_robust <- function(data,
                                   k = 2,
                                   ...) {
 
-
   # creating a dataframe
   data <-
     dplyr::select(
@@ -469,7 +468,6 @@ subtitle_anova_robust <- function(data,
     k = k,
     k.parameter = k
   )
-
 
   # message about effect size measure
   if (isTRUE(messages)) {

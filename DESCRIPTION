@@ -74,7 +74,6 @@ Suggests:
     lme4,
     MCMCglmm,
     ordinal,
-    quantreg,
     readr,
     rmarkdown,
     robust,
