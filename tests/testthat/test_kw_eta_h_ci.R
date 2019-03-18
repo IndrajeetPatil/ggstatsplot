@@ -40,19 +40,19 @@ testthat::test_that(
     ))
 
     # percentile
-    testthat::expect_equal(df1$eta_sq_H, 0.1263433, tolerance = 0.001)
+    testthat::expect_equal(df1$estimate, 0.1263433, tolerance = 0.001)
     testthat::expect_equal(df1$conf.low, 0.09194167, tolerance = 0.0001)
     testthat::expect_equal(df1$conf.high, 0.1739922, tolerance = 0.0003)
     testthat::expect_equal(df1$conf, 0.999, tolerance = 0.01)
     testthat::expect_equal(df1$nboot, 50L)
 
     # basic
-    testthat::expect_equal(df2$eta_sq_H, 0.1165873, tolerance = 0.001)
+    testthat::expect_equal(df2$estimate, 0.1165873, tolerance = 0.001)
     testthat::expect_equal(df2$conf.low, -0.09807447, tolerance = 0.0001)
     testthat::expect_equal(df2$conf.high, 0.2325179, tolerance = 0.0003)
 
     # bca
-    testthat::expect_equal(df3$eta_sq_H, 0.1165873, tolerance = 0.001)
+    testthat::expect_equal(df3$estimate, 0.1165873, tolerance = 0.001)
     testthat::expect_equal(df3$conf.low, -0.03205744, tolerance = 0.0001)
     testthat::expect_equal(df3$conf.high, 0.2477084, tolerance = 0.0003)
   }

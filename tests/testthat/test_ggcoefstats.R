@@ -1339,6 +1339,5 @@ testthat::test_that(
     testthat::expect_error(ggstatsplot::ggcoefstats(x = mod1))
     testthat::expect_error(ggstatsplot::ggcoefstats(x = mod2))
     testthat::expect_null(pb$plot$labels$subtitle, NULL)
-
   }
 )

@@ -75,7 +75,7 @@ ANOVA) (within-subjects designs)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.10</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.10.9000</span>
       </span>
     </div>
 
@@ -181,8 +181,8 @@ ANOVA) (within-subjects designs).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_friedman_nonparametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_friedman_nonparametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,14 +202,19 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
 dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -236,9 +241,10 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>
-)</div><div class='output co'>#&gt; paste("Friedman: ", italic(chi)^2, "(", 3, ") = ", "55.83", ", ", 
-#&gt;     italic("p"), " = ", "&lt; 0.001", ", ", italic("W")["Kendall"], 
-#&gt;     " = ", "0.21", ", ", italic("n"), " = ", 88L)</div></pre>
+)</div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", "3", ") = ", "55.83", ", ", italic("p"), 
+#&gt;     " = ", "&lt; 0.001", ", ", italic("W")["Kendall"], " = ", "0.21", 
+#&gt;     ", CI"["95%"], " [", "0.11", ", ", "0.33", "]", ", ", italic("n"), 
+#&gt;     " = ", 88L)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

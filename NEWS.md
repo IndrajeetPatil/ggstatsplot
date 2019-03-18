@@ -1,4 +1,11 @@
-# ggstatsplot 0.0.9.9000
+# ggstatsplot 0.0.10.9000
+
+NEW FEATURES
+
+  - `subtitle_friedman_nonparametric` now returns confidence intervals for
+    Kendall's *W*.
+
+# ggstatsplot 0.0.10
 
 NEW FEATURES
 
@@ -24,7 +31,7 @@ MINOR CHANGES
     confidence intervals for *V*. `ggstatsplot`, therefore, gains a new
     dependency.
   - `subtitle_mann_nonparametric` and `subtitle_t_onesample` now computes effect
-    size *r* and its confidence intervals as $Z/\\sqrt{N}$ (with the help of
+    size *r* and its confidence intervals as $Z/\sqrt{N}$ (with the help of
     `rcompanion` package), instead of using Spearman correlation.
 
 # ggstatsplot 0.0.9

@@ -20,6 +20,7 @@ testthat::test_that(
       x = key,
       y = value,
       k = 4,
+      conf.level = 0.99,
       messages = FALSE
     )
 
@@ -28,10 +29,10 @@ testthat::test_that(
     results1 <-
       ggplot2::expr(
         paste(
-          "Friedman: ",
+          NULL,
           italic(chi)^2,
           "(",
-          3,
+          "3",
           ") = ",
           "55.8338",
           ", ",
@@ -42,6 +43,12 @@ testthat::test_that(
           italic("W")["Kendall"],
           " = ",
           "0.2115",
+          ", CI"["99%"],
+          " [",
+          "0.0847",
+          ", ",
+          "0.3737",
+          "]",
           ", ",
           italic("n"),
           " = ",

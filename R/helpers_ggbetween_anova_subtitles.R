@@ -232,7 +232,7 @@ subtitle_kw_nonparametric <-
       parameter = stats_df$parameter[[1]],
       p.value = stats_df$p.value[[1]],
       effsize.text = quote(eta["H"]^2),
-      effsize.estimate = effsize_df$eta_sq_H[[1]],
+      effsize.estimate = effsize_df$estimate[[1]],
       effsize.LL = effsize_df$conf.low[[1]],
       effsize.UL = effsize_df$conf.high[[1]],
       n = sample_size,
@@ -282,10 +282,10 @@ subtitle_kw_nonparametric <-
 subtitle_friedman_nonparametric <- function(data,
                                             x,
                                             y,
-                                            messages = TRUE,
+                                            conf.level = 0.95,
                                             k = 2,
+                                            messages = TRUE,
                                             ...) {
-
 
   # creating a dataframe
   data <-
@@ -310,10 +310,9 @@ subtitle_friedman_nonparametric <- function(data,
 
   # sample size
   sample_size <- length(unique(data_within$rowid))
-  no_measurements <- length(levels(data$x))
 
   # setting up the anova model and getting its summary
-  friedman_stat <-
+  stats_df <-
     stats::friedman.test(
       formula = value ~ key | rowid,
       data = data_within,
@@ -322,53 +321,31 @@ subtitle_friedman_nonparametric <- function(data,
 
   # calculating Kendall's W
   # ref: http://www.tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
-  kendall_w <- (friedman_stat$statistic[[1]]) /
-    (sample_size * (no_measurements - 1))
+  effsize_df <- kendall_w_ci(
+    data = data_within,
+    x = key,
+    y = value,
+    id.variable = rowid,
+    conf.level = conf.level
+  )
 
-  # preparing the subtitle
-  subtitle <-
-    base::substitute(
-      expr =
-        paste(
-          "Friedman: ",
-          italic(chi)^2,
-          "(",
-          df,
-          ") = ",
-          estimate,
-          ", ",
-          italic("p"),
-          " = ",
-          pvalue,
-          ", ",
-          italic("W")["Kendall"],
-          " = ",
-          kendall_w,
-          ", ",
-          italic("n"),
-          " = ",
-          n
-        ),
-      env = base::list(
-        estimate = specify_decimal_p(
-          x = friedman_stat$statistic[[1]],
-          k = k,
-          p.value = FALSE
-        ),
-        df = friedman_stat$parameter[[1]],
-        pvalue = specify_decimal_p(
-          x = friedman_stat$p.value[[1]],
-          k,
-          p.value = TRUE
-        ),
-        kendall_w = specify_decimal_p(
-          x = kendall_w[[1]],
-          k,
-          p.value = FALSE
-        ),
-        n = sample_size
-      )
-    )
+  # preparing subtitle
+  subtitle <- subtitle_template(
+    no.parameters = 1L,
+    stat.title = NULL,
+    statistic.text = quote(italic(chi)^2),
+    statistic = stats_df$statistic[[1]],
+    parameter = stats_df$parameter[[1]],
+    p.value = stats_df$p.value[[1]],
+    effsize.text = quote(italic("W")["Kendall"]),
+    effsize.estimate = effsize_df$estimate[[1]],
+    effsize.LL = effsize_df$conf.low[[1]],
+    effsize.UL = effsize_df$conf.high[[1]],
+    n = sample_size,
+    conf.level = conf.level,
+    k = k,
+    k.parameter = 0L
+  )
 
   # return the subtitle
   return(subtitle)

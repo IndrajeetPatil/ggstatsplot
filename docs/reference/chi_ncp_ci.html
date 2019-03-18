@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Games-Howell post-hoc test — games_howell • ggstatsplot</title>
+<title>Computing confidence intervals for chi-squared statistic. — chi_ncp_ci • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,10 +39,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Games-Howell post-hoc test — games_howell" />
+<meta property="og:title" content="Computing confidence intervals for chi-squared statistic. — chi_ncp_ci" />
 
-<meta property="og:description" content="This function produces results from Games-Howell post-hoc tests
-for Welch's one-way analysis of variance (ANOVA) (stats::oneway.test())." />
+<meta property="og:description" content="Computing confidence intervals for chi-squared statistic." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -166,44 +165,49 @@ for Welch's one-way analysis of variance (ANOVA) (stats::oneway.test())." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Games-Howell post-hoc test</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_pairwise_comparison.R'><code>R/helpers_pairwise_comparison.R</code></a></small>
-    <div class="hidden name"><code>games_howell.Rd</code></div>
+    <h1>Computing confidence intervals for chi-squared statistic.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/kendall_w_ci.R'><code>R/kendall_w_ci.R</code></a></small>
+    <div class="hidden name"><code>chi_ncp_ci.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function produces results from Games-Howell post-hoc tests
-for Welch's one-way analysis of variance (ANOVA) (<code><a href='https://www.rdocumentation.org/packages/stats/topics/oneway.test'>stats::oneway.test()</a></code>).</p>
+    <p>Computing confidence intervals for chi-squared statistic.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>games_howell</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>)</pre>
+    <pre class="usage"><span class='fu'>chi_ncp_ci</span>(<span class='no'>chi.square</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='no'>df</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-09</span>,
+  <span class='kw'>jumping.prop</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
+      <th>chi.square</th>
+      <td><p>A value of chi-squared statistic.</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>The grouping variable from the dataframe <code>data</code>.</p></td>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
-      <th>y</th>
-      <td><p>The response (a.k.a. outcome or dependent) variable from the
-dataframe <code>data</code>.</p></td>
+      <th>df</th>
+      <td><p>degrees of freedom (non-negative, but can be non-integer).</p></td>
+    </tr>
+    <tr>
+      <th>tol</th>
+      <td><p>Tolerance.</p></td>
+    </tr>
+    <tr>
+      <th>jumping.prop</th>
+      <td><p>Jumping proportion.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments (ignored).</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>This is based on the implementation of Games-Howell test by Aaron
-Schlegel (https://rpubs.com/aaronsc32)  and published on RPubs
-(https://rpubs.com/aaronsc32/games-howell-test).</p>
     
 
   </div>
@@ -211,10 +215,10 @@ Schlegel (https://rpubs.com/aaronsc32)  and published on RPubs
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#note">Note</a></li>
-          </ul>
+                </ul>
 
+    <h2>Author</h2>
+    <p>Chuck Powell</p>
   </div>
 </div>
 

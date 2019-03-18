@@ -788,7 +788,7 @@ kw_eta_h_ci <- function(data,
   # preparing a dataframe out of the results
   results_df <-
     tibble::as_tibble(x = cbind.data.frame(
-      "eta_sq_H" = eta_sq_H,
+      "estimate" = eta_sq_H,
       ci,
       "nboot" = bootci$R
     ))
@@ -798,7 +798,7 @@ kw_eta_h_ci <- function(data,
     results_df %<>%
       dplyr::select(
         .data = .,
-        eta_sq_H,
+        estimate,
         conf.low = V2,
         conf.high = V3,
         conf,
@@ -808,7 +808,7 @@ kw_eta_h_ci <- function(data,
     results_df %<>%
       dplyr::select(
         .data = .,
-        eta_sq_H,
+        estimate,
         conf.low = V4,
         conf.high = V5,
         conf,

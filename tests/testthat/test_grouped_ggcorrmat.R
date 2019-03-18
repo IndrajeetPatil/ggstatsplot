@@ -78,6 +78,7 @@ testthat::test_that(
 testthat::test_that(
   desc = "grouped_ggcorrmat stats work",
   code = {
+    testthat::skip_on_cran()
 
     # without cor.vars specified --------------------------------------------
 

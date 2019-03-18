@@ -532,11 +532,11 @@ pairwise_p <- function(data,
     rob_df_tidy <-
       suppressMessages(rob_pairwise_df$comp %>%
         tibble::as_tibble(x = ., .name_repair = "unique")) %>%
-        dplyr::rename(
-          .data = .,
-          group1 = Group...1,
-          group2 = Group...2
-        )
+      dplyr::rename(
+        .data = .,
+        group1 = Group...1,
+        group2 = Group...2
+      )
 
     # cleaning the raw object and getting it in the right format
     df <-

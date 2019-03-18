@@ -5,8 +5,8 @@
 \title{Making text subtitle for the Friedman Rank Sum Test (nonparametric
 ANOVA) (within-subjects designs).}
 \usage{
-subtitle_friedman_nonparametric(data, x, y, messages = TRUE, k = 2,
-  ...)
+subtitle_friedman_nonparametric(data, x, y, conf.level = 0.95, k = 2,
+  messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -17,11 +17,14 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{messages}{Decides whether messages references, notes, and warnings are
-to be displayed (Default: \code{TRUE}).}
+\item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
+\code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{messages}{Decides whether messages references, notes, and warnings are
+to be displayed (Default: \code{TRUE}).}
 
 \item{...}{Additional arguments (ignored).}
 }
