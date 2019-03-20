@@ -2,12 +2,11 @@
 % Please edit documentation in R/helpers_ggbetween_anova_subtitles.R
 \name{subtitle_anova_robust}
 \alias{subtitle_anova_robust}
-\title{Making text subtitle for the robust ANOVA
-(between-subjects designs).}
+\title{Making text subtitle for the robust ANOVA}
 \usage{
-subtitle_anova_robust(data, x, y, tr = 0.1, nboot = 100,
-  conf.level = 0.95, conf.type = "norm", messages = TRUE, k = 2,
-  ...)
+subtitle_anova_robust(data, x, y, paired = FALSE, tr = 0.1,
+  nboot = 100, conf.level = 0.95, conf.type = "norm",
+  messages = TRUE, k = 2, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -17,6 +16,11 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
+
+\item{paired}{Logical that decides whether the design is repeated
+measures/within-subjects (in which case one-way Friedman Rank Sum Test will
+be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
+test will be carried out). The default is \code{FALSE}.}
 
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. If you
 get error stating "Standard error cannot be computed because of Winsorized
@@ -44,20 +48,21 @@ to be displayed (Default: \code{TRUE}).}
 }
 \description{
 Making text subtitle for the robust ANOVA
-(between-subjects designs).
 }
 \examples{
 
-# examples not executed due to time constraints
 \dontrun{
 # for reproducibility
 set.seed(123)
 
+# ------------------------ between-subjects -----------------------------
+
 # going with the defaults
-subtitle_anova_robust(
+ggstatsplot::subtitle_anova_robust(
   data = ggplot2::midwest,
   x = state,
   y = percbelowpoverty,
+  paired = FALSE,
   nboot = 10
 )
 
@@ -66,8 +71,21 @@ subtitle_anova_robust(
   data = ggplot2::midwest,
   x = state,
   y = percollege,
+  paired = FALSE,
+  conf.level = 0.99,
   tr = 0.2,
   nboot = 10
+)
+
+# ------------------------ within-subjects -----------------------------
+
+ggstatsplot::subtitle_anova_robust(
+  data = iris_long,
+  x = condition,
+  y = value,
+  paired = TRUE,
+  tr = 0.2,
+  k = 3
 )
 }
 }
