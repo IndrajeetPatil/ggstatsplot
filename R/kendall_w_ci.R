@@ -1,46 +1,16 @@
-#' @title Computing confidence interval for Kendall's coefficient of concordance
-#'   (aka Kedall's *W*).
+#' @title Computing confidence intervals for the Kendall's coefficient of
+#'   concordance (aka Kedall's *W*).
 #' @name kendall_w_ci
 #' @author Chuck Powell, Indrajeet Patil
 #'
-#' @inheritParams subtitle_friedman_nonparametric
+#' @importFrom dplyr tibble
+#'
+#' @inheritParams subtitle_anova_nonparametric
 #' @inheritParams subtitle_anova_parametric_repeated
 #'
 #' @examples
-#' \dontrun{
-#' library(ggstatsplot)
-#' library(jmv)
-#' data("bugs", package = "jmv")
-#' # Kendall W work
-#' # first make sure you build data_bugs carefully because converting to long format
 #'
-#' data_bugs1 <- bugs %>%
-#'   tibble::as_tibble(.) %>%
-#'   tidyr::gather(., key, value, LDLF:HDHF)
-#' #
-#' # is not the same as ...
-#' #
-#' data_bugs2 <- bugs %>%
-#'   dplyr::filter(., !is.na(LDHF) & !is.na(LDLF) & !is.na(HDLF) & !is.na(HDHF)) %>%
-#'   tibble::as_tibble(.) %>%
-#'   tidyr::gather(., key, value, LDLF:HDHF)
-#' # the first will fail Friedman the second won't
-#'
-#' ggstatsplot:::kendall_w_ci(
-#'   data = data_bugs1,
-#'   x = key,
-#'   y = value,
-#'   id.variable = Subject,
-#'   conf.level = .90
-#' )
-#'
-#' ggstatsplot:::kendall_w_ci(
-#'   data = data_bugs2,
-#'   x = key,
-#'   y = value,
-#'   id.variable = Subject,
-#'   conf.level = .999
-#' )
+#' set.seed(123)
 #'
 #' ggstatsplot:::kendall_w_ci(
 #'   data = iris_long,
@@ -48,8 +18,6 @@
 #'   y = value,
 #'   id.variable = id
 #' )
-#' }
-#'
 #' @keywords internal
 
 # this function will return Kendall and CI's for the specified conf.level
@@ -81,10 +49,12 @@ kendall_w_ci <- function(data,
   friedman_stat <-
     stats::friedman.test(
       formula = y ~ x | id.variable,
-      data = data
+      data = data,
+      na.action = na.omit
     )
 
-  # calculate Kendall's W
+  # calculating Kendall's W
+  # ref: http://www.tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
   kendall_w <- (friedman_stat$statistic[[1]]) /
     (sample_size * (no_measurements - 1))
 
@@ -114,12 +84,10 @@ kendall_w_ci <- function(data,
 
   # preparing a dataframe out of the results
   results_df <-
-    tibble::as_tibble(
-      x = cbind.data.frame(
-        "estimate" = kendall_w,
-        "conf.low" = effsize.LL,
-        "conf.high" = effsize.UL
-      )
+    dplyr::tibble(
+      "estimate" = kendall_w,
+      "conf.low" = effsize.LL,
+      "conf.high" = effsize.UL
     )
 
   # return the tibble
@@ -185,7 +153,9 @@ chi_ncp_ci <- function(chi.square,
       }
       if (FAILED == TRUE) {
         warning(
-          "The size of the effect combined with the degrees of freedom is too small to determine a lower confidence limit for the 'alpha.lower' (or the (1/2)(1-'conf.level') symmetric) value specified (set to zero).",
+          "The size of the effect combined with the degrees of freedom is too small
+          to determine a lower confidence limit for the 'alpha.lower'
+          (or the (1/2)(1-'conf.level') symmetric) value specified (set to zero).",
           call. = FALSE
         )
       }
@@ -269,7 +239,9 @@ chi_ncp_ci <- function(chi.square,
     if (Diff < 0) {
       FAILED.Up <- TRUE
       warning(
-        "The size of the effect combined with the degrees of freedom is too small to determine an upper confidence limit for the 'alpha.upper' (or (1/2)(1-'conf.level') symmetric) value specified.",
+        "The size of the effect combined with the degrees of freedom is too small
+        to determine an upper confidence limit for the 'alpha.upper'
+        (or (1/2)(1-'conf.level') symmetric) value specified.",
         call. = FALSE
       )
     }

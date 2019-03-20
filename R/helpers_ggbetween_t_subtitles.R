@@ -314,7 +314,7 @@ subtitle_mann_nonparametric <- function(data,
   } else {
     # remove NAs listwise for between-subjects design
     data %<>%
-      dplyr::filter(.data = ., !is.na(x), !is.na(y))
+      tidyr::drop_na(data = .)
 
     # sample size
     sample_size <- nrow(data)
@@ -956,10 +956,9 @@ effsize_t_parametric <- function(formula = NULL,
     method <- "Hedges's g"
     d <- d * (n - 3) / (n - 2.25)
   }
+
   lower.ci <- c(d - Z * Sigmad)
   upper.ci <- c(d + Z * Sigmad)
-
-
 
   # -------------- calculate NCP intervals -------------------
 

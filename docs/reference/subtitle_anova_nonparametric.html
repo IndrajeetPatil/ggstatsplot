@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
-(between-subjects designs). — subtitle_kw_nonparametric • ggstatsplot</title>
+<title>Making text subtitle for nonparametric ANOVA. — subtitle_anova_nonparametric • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,11 +39,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
-(between-subjects designs). — subtitle_kw_nonparametric" />
+<meta property="og:title" content="Making text subtitle for nonparametric ANOVA. — subtitle_anova_nonparametric" />
 
-<meta property="og:description" content="Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
-(between-subjects designs)." />
+<meta property="og:description" content="For paired designs, the effect size is Kendall's coefficient of
+concordance (W), while for between-subjects designs, the effect size is
+H-statistic based eta-squared." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,21 +167,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
-(between-subjects designs).</h1>
+    <h1>Making text subtitle for nonparametric ANOVA.</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetween_anova_subtitles.R'><code>R/helpers_ggbetween_anova_subtitles.R</code></a></small>
-    <div class="hidden name"><code>subtitle_kw_nonparametric.Rd</code></div>
+    <div class="hidden name"><code>subtitle_anova_nonparametric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
-(between-subjects designs).</p>
+    <p>For paired designs, the effect size is Kendall's coefficient of
+concordance (<em>W</em>), while for between-subjects designs, the effect size is
+H-statistic based eta-squared.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_kw_nonparametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_anova_nonparametric</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,9 +202,22 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
 dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
-      <th>messages</th>
-      <td><p>Decides whether messages references, notes, and warnings are
-to be displayed (Default: <code>TRUE</code>).</p></td>
+      <th>paired</th>
+      <td><p>Logical that decides whether the design is repeated
+measures/within-subjects (in which case one-way Friedman Rank Sum Test will
+be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
+test will be carried out). The default is <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>conf.type</th>
+      <td><p>A vector of character strings representing the type of
+intervals required. The value should be any subset of the values <code>"norm"</code>,
+<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='https://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>conf.level</th>
+      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
+<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -217,32 +230,55 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 for the effect size (Default: <code>100</code>).</p></td>
     </tr>
     <tr>
-      <th>conf.level</th>
-      <td><p>Scalar between 0 and 1. If unspecified, the defaults return
-<code>95%</code> lower and upper confidence intervals (<code>0.95</code>).</p></td>
-    </tr>
-    <tr>
-      <th>conf.type</th>
-      <td><p>A vector of character strings representing the type of
-intervals required. The value should be any subset of the values <code>"norm"</code>,
-<code>"basic"</code>, <code>"perc"</code>, <code>"bca"</code>. For more, see <code><a href='https://www.rdocumentation.org/packages/boot/topics/boot.ci'>?boot::boot.ci</a></code>.</p></td>
+      <th>messages</th>
+      <td><p>Decides whether messages references, notes, and warnings are
+to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments (ignored).</p></td>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>subtitle_kw_nonparametric</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>,
+    <pre class="examples"><div class='input'><span class='co'># setup</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggstatsplot</span>)
+
+<span class='co'># -------------- within-subjects design --------------------------------</span>
+
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"bugs"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"jmv"</span>)
+
+<span class='co'># converting to long format</span>
+<span class='no'>data_bugs</span> <span class='kw'>&lt;-</span> <span class='no'>bugs</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='no'>.</span>, <span class='no'>key</span>, <span class='no'>value</span>, <span class='no'>LDLF</span>:<span class='no'>HDHF</span>)
+
+<span class='co'># creating the subtitle</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_nonparametric.html'>subtitle_anova_nonparametric</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data_bugs</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>
+)</div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", "3", ") = ", "55.83", ", ", italic("p"), 
+#&gt;     " = ", "&lt; 0.001", ", ", italic("W")["Kendall"], " = ", "0.21", 
+#&gt;     ", CI"["95%"], " [", "0.11", ", ", "0.33", "]", ", ", italic("n"), 
+#&gt;     " = ", 88L)</div><div class='input'>
+<span class='co'># -------------- between-subjects design --------------------------------</span>
+
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/subtitle_anova_nonparametric.html'>subtitle_anova_nonparametric</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/msleep'>msleep</a></span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>vore</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>
-)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>95%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>sleep_rem</span>,
+  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.99</span>
+)</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>99%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>100</span><span style='color: #0000BB;'> bootstrap samples.
 #&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; paste(NULL, italic(chi)^2, "(", "3", ") = ", "9.06", ", ", italic("p"), 
-#&gt;     " = ", "0.028", ", ", eta["H"]^2, " = ", "0.12", ", CI"["95%"], 
-#&gt;     " [", "-0.17", ", ", "0.28", "]", ", ", italic("n"), " = ", 
+#&gt;     " = ", "0.028", ", ", eta["H"]^2, " = ", "0.12", ", CI"["99%"], 
+#&gt;     " [", "-0.18", ", ", "0.32", "]", ", ", italic("n"), " = ", 
 #&gt;     56L)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

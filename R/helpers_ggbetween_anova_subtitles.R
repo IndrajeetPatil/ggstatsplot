@@ -149,63 +149,131 @@ subtitle_anova_parametric <- function(data,
   return(subtitle)
 }
 
-#' @title Making text subtitle for the Kruskal-Wallis test (nonparametric ANOVA)
-#'   (between-subjects designs).
-#' @name subtitle_kw_nonparametric
+#' @title Making text subtitle for nonparametric ANOVA.
+#' @name subtitle_anova_nonparametric
 #' @author Indrajeet Patil
 #'
-#' @param messages Decides whether messages references, notes, and warnings are
-#'   to be displayed (Default: `TRUE`).
-#' @param ... Additional arguments (ignored).
+#' @description For paired designs, the effect size is Kendall's coefficient of
+#'   concordance (*W*), while for between-subjects designs, the effect size is
+#'   H-statistic based eta-squared.
+#'
+#' @param paired Logical that decides whether the design is repeated
+#'   measures/within-subjects (in which case one-way Friedman Rank Sum Test will
+#'   be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
+#'   test will be carried out). The default is `FALSE`.
 #' @inheritParams t1way_ci
 #' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
-#' @importFrom stats kruskal.test
+#' @importFrom stats friedman.test kruskal.test
+#' @importFrom broomExtra tidy
 #'
 #' @examples
-#' subtitle_kw_nonparametric(
+#' # setup
+#' set.seed(123)
+#' library(ggstatsplot)
+#'
+#' # -------------- within-subjects design --------------------------------
+#'
+#' library(jmv)
+#' data("bugs", package = "jmv")
+#'
+#' # converting to long format
+#' data_bugs <- bugs %>%
+#'   tibble::as_tibble(.) %>%
+#'   tidyr::gather(., key, value, LDLF:HDHF)
+#'
+#' # creating the subtitle
+#' ggstatsplot::subtitle_anova_nonparametric(
+#'   data = data_bugs,
+#'   x = key,
+#'   y = value,
+#'   paired = TRUE,
+#'   k = 2
+#' )
+#'
+#' # -------------- between-subjects design --------------------------------
+#'
+#' ggstatsplot::subtitle_anova_nonparametric(
 #'   data = ggplot2::msleep,
 #'   x = vore,
-#'   y = sleep_rem
+#'   y = sleep_rem,
+#'   paired = FALSE,
+#'   conf.level = 0.99
 #' )
 #' @export
 
 # function body
-subtitle_kw_nonparametric <-
-  function(data,
-             x,
-             y,
-             messages = TRUE,
-             k = 2,
-             nboot = 100,
-             conf.level = 0.95,
-             conf.type = "norm",
-             ...) {
+subtitle_anova_nonparametric <- function(data,
+                                         x,
+                                         y,
+                                         paired = FALSE,
+                                         conf.type = "norm",
+                                         conf.level = 0.95,
+                                         k = 2,
+                                         nboot = 100,
+                                         messages = TRUE,
+                                         ...) {
 
+  # creating a dataframe
+  data <-
+    dplyr::select(
+      .data = data,
+      x = !!rlang::enquo(x),
+      y = !!rlang::enquo(y)
+    ) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    tibble::as_tibble(x = .)
 
-    # creating a dataframe
-    data <-
-      dplyr::select(
-        .data = data,
-        x = !!rlang::enquo(x),
-        y = !!rlang::enquo(y)
+  # properly removing NAs if it's a paired design
+  if (isTRUE(paired)) {
+    # converting to long format and then getting it back in wide so that the
+    # rowid variable can be used as the block variable
+    data_within <-
+      long_to_wide_converter(
+        data = data,
+        x = x,
+        y = y
       ) %>%
-      tidyr::drop_na(data = .) %>%
-      dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
-      tibble::as_tibble(x = .)
+      tidyr::gather(data = ., key, value, -rowid) %>%
+      dplyr::arrange(.data = ., rowid)
+
+    # sample size
+    sample_size <- length(unique(data_within$rowid))
+
+    # setting up the anova model and getting its summary
+    stats_df <-
+      broomExtra::tidy(stats::friedman.test(
+        formula = value ~ key | rowid,
+        data = data_within,
+        na.action = na.omit
+      ))
+
+    # calculating Kendall's W
+    # ref: http://www.tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
+    effsize_df <- kendall_w_ci(
+      data = data_within,
+      x = key,
+      y = value,
+      id.variable = rowid,
+      conf.level = conf.level
+    )
+  } else {
+    # remove NAs listwise for between-subjects design
+    data %<>%
+      tidyr::drop_na(data = .)
 
     # sample size
     sample_size <- nrow(data)
 
     # setting up the anova model and getting its summary
     stats_df <-
-      stats::kruskal.test(
+      broomExtra::tidy(stats::kruskal.test(
         formula = y ~ x,
         data = data,
         na.action = na.omit
-      )
+      ))
 
     # getting partial eta-squared based on H-statistic
     effsize_df <-
@@ -222,112 +290,13 @@ subtitle_kw_nonparametric <-
     if (isTRUE(messages)) {
       effsize_ci_message(nboot = nboot, conf.level = conf.level)
     }
-
-    # preparing subtitle
-    subtitle <- subtitle_template(
-      no.parameters = 1L,
-      stat.title = NULL,
-      statistic.text = quote(italic(chi)^2),
-      statistic = stats_df$statistic[[1]],
-      parameter = stats_df$parameter[[1]],
-      p.value = stats_df$p.value[[1]],
-      effsize.text = quote(eta["H"]^2),
-      effsize.estimate = effsize_df$estimate[[1]],
-      effsize.LL = effsize_df$conf.low[[1]],
-      effsize.UL = effsize_df$conf.high[[1]],
-      n = sample_size,
-      conf.level = conf.level,
-      k = k,
-      k.parameter = 0L
-    )
-
-    # return the subtitle
-    return(subtitle)
   }
 
-#' @title Making text subtitle for the Friedman Rank Sum Test (nonparametric
-#'   ANOVA) (within-subjects designs).
-#' @name subtitle_friedman_nonparametric
-#' @author Indrajeet Patil
-#'
-#' @param ... Additional arguments (ignored).
-#' @inheritParams subtitle_kw_nonparametric
-#'
-#' @importFrom dplyr select
-#' @importFrom rlang !! enquo
-#' @importFrom stats friedman.test
-#'
-#' @examples
-#' # setup
-#' set.seed(123)
-#' library(ggstatsplot)
-#' library(jmv)
-#' data("bugs", package = "jmv")
-#'
-#' # converting to long format
-#' data_bugs <- bugs %>%
-#'   tibble::as_tibble(.) %>%
-#'   tidyr::gather(., key, value, LDLF:HDHF)
-#'
-#' # creating the subtitle
-#' ggstatsplot::subtitle_friedman_nonparametric(
-#'   data = data_bugs,
-#'   x = key,
-#'   y = value,
-#'   k = 2
-#' )
-#' @export
-
-# function body
-subtitle_friedman_nonparametric <- function(data,
-                                            x,
-                                            y,
-                                            conf.level = 0.95,
-                                            k = 2,
-                                            messages = TRUE,
-                                            ...) {
-
-  # creating a dataframe
-  data <-
-    dplyr::select(
-      .data = data,
-      x = !!rlang::enquo(x),
-      y = !!rlang::enquo(y)
-    ) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
-    tibble::as_tibble(x = .)
-
-  # converting to long format and then getting it back in wide so that the
-  # rowid variable can be used as the block variable
-  data_within <-
-    long_to_wide_converter(
-      data = data,
-      x = x,
-      y = y
-    ) %>%
-    tidyr::gather(data = ., key, value, -rowid) %>%
-    dplyr::arrange(.data = ., rowid)
-
-  # sample size
-  sample_size <- length(unique(data_within$rowid))
-
-  # setting up the anova model and getting its summary
-  stats_df <-
-    stats::friedman.test(
-      formula = value ~ key | rowid,
-      data = data_within,
-      na.action = na.omit
-    )
-
-  # calculating Kendall's W
-  # ref: http://www.tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
-  effsize_df <- kendall_w_ci(
-    data = data_within,
-    x = key,
-    y = value,
-    id.variable = rowid,
-    conf.level = conf.level
-  )
+  if (isTRUE(paired)) {
+    effsize.text <- quote(italic("W")["Kendall"])
+  } else {
+    effsize.text <- quote(eta["H"]^2)
+  }
 
   # preparing subtitle
   subtitle <- subtitle_template(
@@ -337,7 +306,7 @@ subtitle_friedman_nonparametric <- function(data,
     statistic = stats_df$statistic[[1]],
     parameter = stats_df$parameter[[1]],
     p.value = stats_df$p.value[[1]],
-    effsize.text = quote(italic("W")["Kendall"]),
+    effsize.text = effsize.text,
     effsize.estimate = effsize_df$estimate[[1]],
     effsize.LL = effsize_df$conf.low[[1]],
     effsize.UL = effsize_df$conf.high[[1]],

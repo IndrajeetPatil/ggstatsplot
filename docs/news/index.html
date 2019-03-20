@@ -170,10 +170,19 @@
 <h1 class="page-header">
 <a href="#ggstatsplot-00109000" class="anchor"></a>ggstatsplot 0.0.10.9000<small> Unreleased </small>
 </h1>
+<p>(To be released as 1.0.0)</p>
+<p>BREAKING CHANGES</p>
+<ul>
+<li>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</li>
+</ul>
 <p>NEW FEATURES</p>
 <ul>
+<li>For repeated measures ANOVA, <code>subtitle_anova_nonparametric</code> now returns confidence intervals for Kendall’s <em>W</em>.</li>
+</ul>
+<p>MINOR CHANGES</p>
+<ul>
 <li>
-<code>subtitle_friedman_nonparametric</code> now returns confidence intervals for Kendall’s <em>W</em>.</li>
+<code><a href="../reference/pairwise_p.html">pairwise_p()</a></code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric post hoc tests are run. This is because these values were accurate only when no p-value adjustment was carried out.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0010" class="section level1">

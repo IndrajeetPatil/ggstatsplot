@@ -1,10 +1,26 @@
 # ggstatsplot 0.0.10.9000
 
+(To be released as 1.0.0)
+
+BREAKING CHANGES
+
+  - Instead of having two separate functions that dealt with repeated measures
+    (`subtitle_friedman_nonparametric`) and between-subjects
+    (`subtitle_kw_nonparametric`), a single function
+    `subtitle_anova_nonparametric` handles both of these designs with the
+    `paired` argument determining which test is run.
+
 NEW FEATURES
 
-  - `subtitle_friedman_nonparametric` now returns confidence intervals for
-    Kendall's *W*.
+  - For repeated measures ANOVA, `subtitle_anova_nonparametric` now returns
+    confidence intervals for Kendall's *W*.
 
+MINOR CHANGES
+
+  - `pairwise_p()` function no longer outputs `conf.low` and `conf.high` columns
+    when parametric post hoc tests are run. This is because these values were
+    accurate only when no p-value adjustment was carried out.
+  
 # ggstatsplot 0.0.10
 
 NEW FEATURES
