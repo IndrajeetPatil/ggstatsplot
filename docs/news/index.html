@@ -170,7 +170,7 @@
 <h1 class="page-header">
 <a href="#ggstatsplot-00109000" class="anchor"></a>ggstatsplot 0.0.10.9000<small> Unreleased </small>
 </h1>
-<p>(To be released as 1.0.0)</p>
+<p>(To be released as <code>1.0.0</code>)</p>
 <p>BREAKING CHANGES</p>
 <ul>
 <li>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</li>
@@ -178,6 +178,7 @@
 <p>NEW FEATURES</p>
 <ul>
 <li>For repeated measures ANOVA, <code>subtitle_anova_nonparametric</code> now returns confidence intervals for Kendall’s <em>W</em>.</li>
+<li>Both <code>subtitle_anova_robust</code> and <code>subtitle_anova_parametric</code> gain a new argument <code>paired</code> to support repeated measures designs.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>

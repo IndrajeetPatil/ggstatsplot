@@ -18,8 +18,10 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{mu}{If conducting a single sample test against a mean (Default: \code{0}).}
 
-\item{paired}{a logical indicating whether you want a paired
-    t-test.}
+\item{paired}{Logical that decides whether the design is repeated
+measures/within-subjects (in which case one-way Friedman Rank Sum Test will
+be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
+test will be carried out). The default is \code{FALSE}.}
 
 \item{hedges.correction}{Logical indicating whether to apply Hedges
 correction, Hedge's \emph{g} (Default: \code{TRUE}).}

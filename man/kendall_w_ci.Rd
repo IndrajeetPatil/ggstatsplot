@@ -3,7 +3,7 @@
 \name{kendall_w_ci}
 \alias{kendall_w_ci}
 \title{Computing confidence intervals for the Kendall's coefficient of
-concordance (aka Kedall's \emph{W}).}
+concordance (aka Kendall's \emph{W}).}
 \usage{
 kendall_w_ci(data, x, y, id.variable, conf.level = 0.95, ...)
 }
@@ -16,8 +16,7 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{id.variable}{The subject identification variable from the dataframe
-\code{data}. See example}
+\item{id.variable}{Variable identifying a unique observation.}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
@@ -26,7 +25,7 @@ dataframe \code{data}.}
 }
 \description{
 Computing confidence intervals for the Kendall's coefficient of
-concordance (aka Kedall's \emph{W}).
+concordance (aka Kendall's \emph{W}).
 }
 \examples{
 

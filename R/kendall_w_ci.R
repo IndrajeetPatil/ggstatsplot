@@ -1,12 +1,12 @@
 #' @title Computing confidence intervals for the Kendall's coefficient of
-#'   concordance (aka Kedall's *W*).
+#'   concordance (aka Kendall's *W*).
 #' @name kendall_w_ci
 #' @author Chuck Powell, Indrajeet Patil
 #'
 #' @importFrom dplyr tibble
 #'
-#' @inheritParams subtitle_anova_nonparametric
-#' @inheritParams subtitle_anova_parametric_repeated
+#' @inheritParams subtitle_anova_parametric
+#' @param id.variable Variable identifying a unique observation.
 #'
 #' @examples
 #'

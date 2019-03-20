@@ -2,11 +2,11 @@
 % Please edit documentation in R/helpers_ggbetween_anova_subtitles.R
 \name{subtitle_anova_parametric}
 \alias{subtitle_anova_parametric}
-\title{Making text subtitle for the between-subject anova designs.}
+\title{Making text subtitle for parametric ANOVA.}
 \usage{
-subtitle_anova_parametric(data, x, y, effsize.type = "unbiased",
-  partial = TRUE, conf.level = 0.95, nboot = 100,
-  var.equal = FALSE, k = 2, messages = TRUE, ...)
+subtitle_anova_parametric(data, x, y, paired = FALSE,
+  effsize.type = "unbiased", partial = TRUE, conf.level = 0.95,
+  nboot = 100, var.equal = FALSE, k = 2, messages = TRUE, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -16,6 +16,11 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
+
+\item{paired}{Logical that decides whether the design is repeated
+measures/within-subjects (in which case one-way Friedman Rank Sum Test will
+be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
+test will be carried out). The default is \code{FALSE}.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-test};
@@ -50,27 +55,52 @@ to be displayed (Default: \code{TRUE}).}
 \item{...}{Additional arguments.}
 }
 \description{
-Making text subtitle for the between-subject anova designs.
+Making text subtitle for parametric ANOVA.
+}
+\note{
+For repeated measures designs (\code{paired = TRUE}), only omega-squared and
+partial eta-squared effect sizes are supported.
 }
 \examples{
+
+# for reproducibility
+set.seed(123)
+library(ggstatsplot)
+
+# -------------------- between-subjects ------------------------------
+
 # with defaults
-subtitle_anova_parametric(
+ggstatsplot::subtitle_anova_parametric(
   data = ggplot2::msleep,
   x = vore,
   y = sleep_rem,
+  paired = FALSE,
   k = 3
 )
 
 # modifying the defaults
-subtitle_anova_parametric(
+ggstatsplot::subtitle_anova_parametric(
   data = ggplot2::msleep,
   x = vore,
   y = sleep_rem,
+  paired = FALSE,
   effsize.type = "biased",
   partial = FALSE,
   var.equal = TRUE,
   nboot = 10
 )
+
+# -------------------- repeated measures ------------------------------
+
+ggstatsplot::subtitle_anova_parametric(
+  data = iris_long,
+  x = condition,
+  y = value,
+  paired = TRUE,
+  k = 4,
+  nboot = 10
+)
+
 }
 \author{
 Indrajeet Patil

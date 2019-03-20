@@ -1,6 +1,6 @@
 # ggstatsplot 0.0.10.9000
 
-(To be released as 1.0.0)
+(To be released as `1.0.0`)
 
 BREAKING CHANGES
 
@@ -14,6 +14,8 @@ NEW FEATURES
 
   - For repeated measures ANOVA, `subtitle_anova_nonparametric` now returns
     confidence intervals for Kendall's *W*.
+  - Both `subtitle_anova_robust` and `subtitle_anova_parametric` gain a new
+    argument `paired` to support repeated measures designs.
 
 MINOR CHANGES
 

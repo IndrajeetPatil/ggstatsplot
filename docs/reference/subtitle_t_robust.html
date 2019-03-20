@@ -212,8 +212,10 @@ try to play around with the value of <code>tr</code>, which is by default set to
     </tr>
     <tr>
       <th>paired</th>
-      <td><p>a logical indicating whether you want a paired
-    t-test.</p></td>
+      <td><p>Logical that decides whether the design is repeated
+measures/within-subjects (in which case one-way Friedman Rank Sum Test will
+be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
+test will be carried out). The default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>nboot</th>
