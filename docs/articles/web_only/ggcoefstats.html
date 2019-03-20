@@ -129,7 +129,7 @@
       <h1>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-18</h4>
+            <h4 class="date">2019-03-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -184,8 +184,8 @@
 <a class="sourceLine" id="cb1-25" title="25">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb1-26" title="26"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb1-27" title="27"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb1-28" title="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-29" title="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb1-28" title="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-29" title="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(</a>
 <a class="sourceLine" id="cb1-30" title="30">    <span class="dt">x =</span> <span class="st">"effect size estimate (partial omega-squared)"</span>,</a>
 <a class="sourceLine" id="cb1-31" title="31">    <span class="dt">y =</span> <span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb1-32" title="32">  )</a></code></pre></div>
@@ -284,16 +284,16 @@
 <a class="sourceLine" id="cb4-17" title="17">  <span class="dt">conf.level =</span> <span class="fl">0.99</span>, <span class="co"># changing the confidence levels for confidence intervals</span></a>
 <a class="sourceLine" id="cb4-18" title="18">  <span class="dt">sort =</span> <span class="st">"ascending"</span>, <span class="co"># sorting the terms of the model based on estimate values</span></a>
 <a class="sourceLine" id="cb4-19" title="19">  <span class="dt">label.direction =</span> <span class="st">"both"</span>, <span class="co"># direction in which to adjust position of labels (both x and y)</span></a>
-<a class="sourceLine" id="cb4-20" title="20">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span>(), <span class="co"># changing the default theme</span></a>
+<a class="sourceLine" id="cb4-20" title="20">  <span class="dt">ggtheme =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_gray</a></span>(), <span class="co"># changing the default theme</span></a>
 <a class="sourceLine" id="cb4-21" title="21">  <span class="dt">stats.label.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#CC79A7"</span>, <span class="st">"darkgreen"</span>, <span class="st">"#0072B2"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>),</a>
 <a class="sourceLine" id="cb4-22" title="22">  <span class="dt">title =</span> <span class="st">"Movie ratings by their genre"</span>,</a>
 <a class="sourceLine" id="cb4-23" title="23">  <span class="dt">subtitle =</span> <span class="st">"Source: www.imdb.com"</span></a>
 <a class="sourceLine" id="cb4-24" title="24">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-25" title="25"><span class="st">  </span><span class="co"># further modification with the ggplot2 commands</span></a>
 <a class="sourceLine" id="cb4-26" title="26"><span class="st">  </span><span class="co"># note the order in which the labels are entered</span></a>
-<a class="sourceLine" id="cb4-27" title="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Comedy"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy Drama"</span>, <span class="st">"Drama"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-28" title="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">y =</span> <span class="st">"Genre compared to Action movies)"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-29" title="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb4-27" title="27"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_discrete">scale_y_discrete</a></span>(<span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Comedy"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy Drama"</span>, <span class="st">"Drama"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">y =</span> <span class="st">"Genre compared to Action movies)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-29" title="29"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">axis.title.y =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">size =</span> <span class="dv">14</span>, <span class="dt">face =</span> <span class="st">"bold"</span>))</a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lm-1.png" width="768"></p>
 <p>As can be seen from the regression coefficients, compared to action movies, comedies and action comedies are not rated significantly better. All three of the “drama” types (pure, action or comedy dramas) have statistical significantly higher regression coefficients. This finding occurs even with our more conservative <code>0.99</code> confidence interval.</p>
 </div>
@@ -321,7 +321,7 @@
 <a class="sourceLine" id="cb5-18" title="18">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb5-19" title="19">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span> <span class="co"># show the intercept</span></a>
 <a class="sourceLine" id="cb5-20" title="20">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/parse">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),</a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/parse">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>)),</a>
 <a class="sourceLine" id="cb5-22" title="22">  <span class="co"># model 2: linear mixed-effects model</span></a>
 <a class="sourceLine" id="cb5-23" title="23">  ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html">ggcoefstats</a></span>(</a>
 <a class="sourceLine" id="cb5-24" title="24">    <span class="dt">x =</span> lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(</a>
@@ -334,7 +334,7 @@
 <a class="sourceLine" id="cb5-31" title="31">    <span class="dt">stats.label.color =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb5-32" title="32">    <span class="dt">exclude.intercept =</span> <span class="ot">FALSE</span> <span class="co"># show the intercept</span></a>
 <a class="sourceLine" id="cb5-33" title="33">  ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-34" title="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb5-34" title="34"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(</a>
 <a class="sourceLine" id="cb5-35" title="35">      <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/parse">parse</a></span>(<span class="dt">text =</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span>),</a>
 <a class="sourceLine" id="cb5-36" title="36">      <span class="dt">y =</span> <span class="st">"fixed effects"</span></a>
 <a class="sourceLine" id="cb5-37" title="37">    ),</a>
@@ -746,7 +746,7 @@
 <a class="sourceLine" id="cb15-17" title="17">  <span class="dt">subtitle =</span> <span class="st">"(using `ordinal` package)"</span>,</a>
 <a class="sourceLine" id="cb15-18" title="18">  <span class="dt">caption.summary =</span> <span class="ot">FALSE</span> <span class="co"># suppress model diagnostics</span></a>
 <a class="sourceLine" id="cb15-19" title="19">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-20" title="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb15-20" title="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(</a>
 <a class="sourceLine" id="cb15-21" title="21">    <span class="dt">x =</span> <span class="st">"logit regression coefficient"</span>,</a>
 <a class="sourceLine" id="cb15-22" title="22">    <span class="dt">y =</span> <span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb15-23" title="23">  )</a></code></pre></div>
@@ -776,7 +776,7 @@
 <a class="sourceLine" id="cb16-17" title="17">  <span class="dt">title =</span> <span class="st">"cumulative link mixed model (clmm)"</span>,</a>
 <a class="sourceLine" id="cb16-18" title="18">  <span class="dt">subtitle =</span> <span class="st">"(using `ordinal` package)"</span></a>
 <a class="sourceLine" id="cb16-19" title="19">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-20" title="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb16-20" title="20"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(</a>
 <a class="sourceLine" id="cb16-21" title="21">    <span class="dt">x =</span> <span class="st">"coefficient from ordinal mixed-effects regression"</span>,</a>
 <a class="sourceLine" id="cb16-22" title="22">    <span class="dt">y =</span> <span class="st">"fixed effects"</span></a>
 <a class="sourceLine" id="cb16-23" title="23">  )</a></code></pre></div>
@@ -800,7 +800,7 @@
 <a class="sourceLine" id="cb17-15" title="15">    )</a>
 <a class="sourceLine" id="cb17-16" title="16">  )</a>
 <a class="sourceLine" id="cb17-17" title="17">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-18" title="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(</a>
+<a class="sourceLine" id="cb17-18" title="18"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(</a>
 <a class="sourceLine" id="cb17-19" title="19">    <span class="dt">x =</span> <span class="st">"logit regression coefficients"</span>,</a>
 <a class="sourceLine" id="cb17-20" title="20">    <span class="dt">y =</span> <span class="st">"threshold parameters"</span>,</a>
 <a class="sourceLine" id="cb17-21" title="21">    <span class="dt">title =</span> <span class="st">"cumulative link mixed models"</span></a>
@@ -947,7 +947,7 @@
 <a class="sourceLine" id="cb22-31" title="31">  <span class="dt">subtitle =</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span>,</a>
 <a class="sourceLine" id="cb22-32" title="32">  <span class="dt">caption =</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span></a>
 <a class="sourceLine" id="cb22-33" title="33">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-34" title="34"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
+<a class="sourceLine" id="cb22-34" title="34"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.subtitle =</span> ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">"plain"</span>))</a>
 <a class="sourceLine" id="cb22-35" title="35"><span class="co">#&gt; Note: No model diagnostics information available for the object of class aovlist .</span></a></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
 <p>As revealed by this analysis, all effects of this model are significant. But most of the variance is explained by the <code>attribute</code>, with the next important explanatory factor being the <code>measure</code> used. A very little amount of variation in measurement is accounted for by the interaction between these two factors.</p>
@@ -1809,9 +1809,9 @@
 <a class="sourceLine" id="cb54-35" title="35"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb54-36" title="36"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb54-37" title="37"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb54-38" title="38"><span class="co">#&gt; Chain 1:  Elapsed Time: 15.135 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb54-39" title="39"><span class="co">#&gt; Chain 1:                8.256 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb54-40" title="40"><span class="co">#&gt; Chain 1:                23.391 seconds (Total)</span></a>
+<a class="sourceLine" id="cb54-38" title="38"><span class="co">#&gt; Chain 1:  Elapsed Time: 15.599 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb54-39" title="39"><span class="co">#&gt; Chain 1:                8.515 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb54-40" title="40"><span class="co">#&gt; Chain 1:                24.114 seconds (Total)</span></a>
 <a class="sourceLine" id="cb54-41" title="41"><span class="co">#&gt; Chain 1: </span></a>
 <a class="sourceLine" id="cb54-42" title="42"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb54-43" title="43"><span class="co">#&gt; SAMPLING FOR MODEL '77159b9735d2072cdb82fe2cb397c565' NOW (CHAIN 2).</span></a>
@@ -1834,9 +1834,9 @@
 <a class="sourceLine" id="cb54-60" title="60"><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb54-61" title="61"><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb54-62" title="62"><span class="co">#&gt; Chain 2: </span></a>
-<a class="sourceLine" id="cb54-63" title="63"><span class="co">#&gt; Chain 2:  Elapsed Time: 34.585 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb54-64" title="64"><span class="co">#&gt; Chain 2:                73.679 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb54-65" title="65"><span class="co">#&gt; Chain 2:                108.264 seconds (Total)</span></a>
+<a class="sourceLine" id="cb54-63" title="63"><span class="co">#&gt; Chain 2:  Elapsed Time: 34.777 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb54-64" title="64"><span class="co">#&gt; Chain 2:                78.076 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb54-65" title="65"><span class="co">#&gt; Chain 2:                112.853 seconds (Total)</span></a>
 <a class="sourceLine" id="cb54-66" title="66"><span class="co">#&gt; Chain 2: </span></a>
 <a class="sourceLine" id="cb54-67" title="67"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb54-68" title="68"><span class="co">#&gt; SAMPLING FOR MODEL '77159b9735d2072cdb82fe2cb397c565' NOW (CHAIN 3).</span></a>
@@ -1859,15 +1859,15 @@
 <a class="sourceLine" id="cb54-85" title="85"><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb54-86" title="86"><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb54-87" title="87"><span class="co">#&gt; Chain 3: </span></a>
-<a class="sourceLine" id="cb54-88" title="88"><span class="co">#&gt; Chain 3:  Elapsed Time: 10.893 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb54-89" title="89"><span class="co">#&gt; Chain 3:                6.406 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb54-90" title="90"><span class="co">#&gt; Chain 3:                17.299 seconds (Total)</span></a>
+<a class="sourceLine" id="cb54-88" title="88"><span class="co">#&gt; Chain 3:  Elapsed Time: 11.622 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb54-89" title="89"><span class="co">#&gt; Chain 3:                6.776 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb54-90" title="90"><span class="co">#&gt; Chain 3:                18.398 seconds (Total)</span></a>
 <a class="sourceLine" id="cb54-91" title="91"><span class="co">#&gt; Chain 3: </span></a>
 <a class="sourceLine" id="cb54-92" title="92"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb54-93" title="93"><span class="co">#&gt; SAMPLING FOR MODEL '77159b9735d2072cdb82fe2cb397c565' NOW (CHAIN 4).</span></a>
 <a class="sourceLine" id="cb54-94" title="94"><span class="co">#&gt; Chain 4: </span></a>
-<a class="sourceLine" id="cb54-95" title="95"><span class="co">#&gt; Chain 4: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb54-96" title="96"><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
+<a class="sourceLine" id="cb54-95" title="95"><span class="co">#&gt; Chain 4: Gradient evaluation took 0.001 seconds</span></a>
+<a class="sourceLine" id="cb54-96" title="96"><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></a>
 <a class="sourceLine" id="cb54-97" title="97"><span class="co">#&gt; Chain 4: Adjust your expectations accordingly!</span></a>
 <a class="sourceLine" id="cb54-98" title="98"><span class="co">#&gt; Chain 4: </span></a>
 <a class="sourceLine" id="cb54-99" title="99"><span class="co">#&gt; Chain 4: </span></a>
@@ -1884,9 +1884,9 @@
 <a class="sourceLine" id="cb54-110" title="110"><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb54-111" title="111"><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb54-112" title="112"><span class="co">#&gt; Chain 4: </span></a>
-<a class="sourceLine" id="cb54-113" title="113"><span class="co">#&gt; Chain 4:  Elapsed Time: 9.538 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb54-114" title="114"><span class="co">#&gt; Chain 4:                6.656 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb54-115" title="115"><span class="co">#&gt; Chain 4:                16.194 seconds (Total)</span></a>
+<a class="sourceLine" id="cb54-113" title="113"><span class="co">#&gt; Chain 4:  Elapsed Time: 10.038 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb54-114" title="114"><span class="co">#&gt; Chain 4:                6.872 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb54-115" title="115"><span class="co">#&gt; Chain 4:                16.91 seconds (Total)</span></a>
 <a class="sourceLine" id="cb54-116" title="116"><span class="co">#&gt; Chain 4:</span></a>
 <a class="sourceLine" id="cb54-117" title="117"></a>
 <a class="sourceLine" id="cb54-118" title="118"><span class="co"># plot</span></a>
@@ -1913,8 +1913,8 @@
 <a class="sourceLine" id="cb55-7" title="7"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb55-8" title="8"><span class="co">#&gt; SAMPLING FOR MODEL 'continuous' NOW (CHAIN 1).</span></a>
 <a class="sourceLine" id="cb55-9" title="9"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb55-10" title="10"><span class="co">#&gt; Chain 1: Gradient evaluation took 0 seconds</span></a>
-<a class="sourceLine" id="cb55-11" title="11"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.</span></a>
+<a class="sourceLine" id="cb55-10" title="10"><span class="co">#&gt; Chain 1: Gradient evaluation took 0.001 seconds</span></a>
+<a class="sourceLine" id="cb55-11" title="11"><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.</span></a>
 <a class="sourceLine" id="cb55-12" title="12"><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></a>
 <a class="sourceLine" id="cb55-13" title="13"><span class="co">#&gt; Chain 1: </span></a>
 <a class="sourceLine" id="cb55-14" title="14"><span class="co">#&gt; Chain 1: </span></a>
@@ -1931,9 +1931,9 @@
 <a class="sourceLine" id="cb55-25" title="25"><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb55-26" title="26"><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></a>
 <a class="sourceLine" id="cb55-27" title="27"><span class="co">#&gt; Chain 1: </span></a>
-<a class="sourceLine" id="cb55-28" title="28"><span class="co">#&gt; Chain 1:  Elapsed Time: 0.077 seconds (Warm-up)</span></a>
-<a class="sourceLine" id="cb55-29" title="29"><span class="co">#&gt; Chain 1:                0.082 seconds (Sampling)</span></a>
-<a class="sourceLine" id="cb55-30" title="30"><span class="co">#&gt; Chain 1:                0.159 seconds (Total)</span></a>
+<a class="sourceLine" id="cb55-28" title="28"><span class="co">#&gt; Chain 1:  Elapsed Time: 0.085 seconds (Warm-up)</span></a>
+<a class="sourceLine" id="cb55-29" title="29"><span class="co">#&gt; Chain 1:                0.092 seconds (Sampling)</span></a>
+<a class="sourceLine" id="cb55-30" title="30"><span class="co">#&gt; Chain 1:                0.177 seconds (Total)</span></a>
 <a class="sourceLine" id="cb55-31" title="31"><span class="co">#&gt; Chain 1:</span></a>
 <a class="sourceLine" id="cb55-32" title="32"></a>
 <a class="sourceLine" id="cb55-33" title="33"><span class="co"># plot</span></a>

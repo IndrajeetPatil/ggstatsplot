@@ -337,7 +337,7 @@ testthat::test_that(
     data_signif <- tibble::as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    testthat::expect_equal(data_dims, c(3L, 8L))
+    testthat::expect_equal(data_dims, c(3L, 6L))
     testthat::expect_identical(dat$group1, c("6", "8", "8"))
     testthat::expect_identical(dat$group2, c("4", "4", "6"))
     testthat::expect_identical(dat$significance, c("*", "***", "*"))
@@ -357,14 +357,6 @@ testthat::test_that(
     # checking values
     testthat::expect_equal(dat$mean.difference,
       c(0.8314156, 1.7134870, 0.8820714),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(dat$conf.low,
-      c(0.07939155, 1.08680032, 0.16206323),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(dat$conf.high,
-      c(1.583440, 2.340174, 1.602080),
       tolerance = 0.001
     )
 

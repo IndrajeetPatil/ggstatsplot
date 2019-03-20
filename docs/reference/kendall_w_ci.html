@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Computing confidence interval for Kendall's coefficient of concordance
-(aka Kedall's <em>W</em>). — kendall_w_ci • ggstatsplot</title>
+<title>Computing confidence intervals for the Kendall's coefficient of
+concordance (aka Kedall's <em>W</em>). — kendall_w_ci • ggstatsplot</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,11 +40,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Computing confidence interval for Kendall's coefficient of concordance
-(aka Kedall's <em>W</em>). — kendall_w_ci" />
+<meta property="og:title" content="Computing confidence intervals for the Kendall's coefficient of
+concordance (aka Kedall's <em>W</em>). — kendall_w_ci" />
 
-<meta property="og:description" content="Computing confidence interval for Kendall's coefficient of concordance
-(aka Kedall's W)." />
+<meta property="og:description" content="Computing confidence intervals for the Kendall's coefficient of
+concordance (aka Kedall's W)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -168,16 +168,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Computing confidence interval for Kendall's coefficient of concordance
-(aka Kedall's <em>W</em>).</h1>
+    <h1>Computing confidence intervals for the Kendall's coefficient of
+concordance (aka Kedall's <em>W</em>).</h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/kendall_w_ci.R'><code>R/kendall_w_ci.R</code></a></small>
     <div class="hidden name"><code>kendall_w_ci.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Computing confidence interval for Kendall's coefficient of concordance
-(aka Kedall's <em>W</em>).</p>
+    <p>Computing confidence intervals for the Kendall's coefficient of
+concordance (aka Kedall's <em>W</em>).</p>
     
     </div>
 
@@ -212,57 +212,24 @@ dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments (ignored).</p></td>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggstatsplot</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>jmv</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"bugs"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"jmv"</span>)
-<span class='co'># Kendall W work</span>
-<span class='co'># first make sure you build data_bugs carefully because converting to long format</span>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
 
-<span class='no'>data_bugs1</span> <span class='kw'>&lt;-</span> <span class='no'>bugs</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='no'>.</span>, <span class='no'>key</span>, <span class='no'>value</span>, <span class='no'>LDLF</span>:<span class='no'>HDHF</span>)
-<span class='co'>#</span>
-<span class='co'># is not the same as ...</span>
-<span class='co'>#</span>
-<span class='no'>data_bugs2</span> <span class='kw'>&lt;-</span> <span class='no'>bugs</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>.</span>, !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NA'>is.na</a></span>(<span class='no'>LDHF</span>) <span class='kw'>&amp;</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NA'>is.na</a></span>(<span class='no'>LDLF</span>) <span class='kw'>&amp;</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NA'>is.na</a></span>(<span class='no'>HDLF</span>) <span class='kw'>&amp;</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NA'>is.na</a></span>(<span class='no'>HDHF</span>)) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='no'>.</span>, <span class='no'>key</span>, <span class='no'>value</span>, <span class='no'>LDLF</span>:<span class='no'>HDHF</span>)
-<span class='co'># the first will fail Friedman the second won't</span>
-
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/kendall_w_ci.html'>kendall_w_ci</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data_bugs1</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
-  <span class='kw'>id.variable</span> <span class='kw'>=</span> <span class='no'>Subject</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.90</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in friedman.test.default(c(6, 10, 5, 6, 3, 2, 10, 10, 9.5, 8.5, 0, 9.5, 7, 3, 4, 7, 2, 7.5, 6.5, 7, 3, 2.5, 10, 0, 0.5, 5, 6.5, 8, 3, 7.5, 6.5, 4.5, 3, 6, 4, 4.5, 7, 8, 5, 5, 2, 7.5, 3.5, 5, 2, 4, 5, 5.5, 10, 7, 5.5, 10, 9.5, 6, 7.5, 3.5, 2.5, 3.5, 8.5, 3, 6, 5.5, 3, 2, 4, 9, 10, 5.5, 6, 9, 6, 5, 6, 1.5, 5.5, 9.5, 8, 0, 3, 7, 5, 10, 7.5, 6, 7, 6.5, 6.5, 3, 10, 8.5, 1.5, 9, 5.5, 6, 10, 9, 6.5, 0.5, 10, 10, 9.5, 10, 2.5, 7.5, 8.5, 8, 5, 8.5, 6, 6, 6, 9, 4.5, 9.5, 10, 1.5, 0.5, 7.5, 5, 9, 10, 7, 10, 8.5, 2, 10, 10, 7, 7, 8.5, 7.5, 8.5, 2, 7, 4, 7.5, 3.5, 8, 6, 2.5, 10, 8.5, 10, 10, 10, 4.5, 6.5, 7.5, 7.5, 9.5, 6, 8.5, 10, 8, 8, 8.5, 9, 10, 10, 6, 8.5, 9, 6, 6.5, 8, 4, 9.5, 8, 5, 3, 7, 4, 10, 8, 8, 7.5, 9.5, 10, 4, 10, 10, 10, 10, 5.5, 9, 10, 10, 6, 5.5, 7.5, 10, 9, 6, 7, 0, 8.5, 6.5, 4, 6, 8.5, 10, 7.5, 10, 8.5, 5, 4.5, 9, 4, 4.5, 3.5, 10, 8, 7.5, 6.5, 10, 8.5, 8, 2, 7, 10, 10, 8, 7.5, 0, 6.5, 1, 0.5, 9.5, 1.5, 4.5, 8, 10, 4, 6, 10, 10, 7.5, 10, 8, 5, 3.5, 10, 3, 4.5, 10, 4, 2.5, 8.5, 10, 1, 8.5, 9, 7.5, 0.5, 9, 9, 10, 9.5, 8.5, 0, 0.5, 8.5, 3.5, 10, 9.5, 4.5, 8.5, 4, 10, 2, 10, 8.5, 8.5, 10, 2, 10, 10, 10, 9, 8.5, 3, 10, 10, 10, 0, 10, 8.5, 8.5, 7, 9, 10, 10, 10, 9.5, 9.5, 7.5, 10, 1.5, 5.5, 10, 10, 8, 6, 10, 4, 6, 4, 4.5, 10, 10, 9, 9.5, 7.5, 9.5, 5.5, 8, 10, 2.5, 5.5, 9.5, 3.5, 9, 10, 9, 10, 10, 10, 6, 8.5, 8, 7.5, 8, 5, 2.5, 8.5, 9.5, 7, 6, 10, 10, 10, 5.5, 9, 9, 6, 5.5, 7, 9.5, 5.5, 8.5, 10, 5, 7, 7.5, 5.5, 10, 10, 6.5, 8, 8.5, 10, 2, 10, 10, 10, 10, 3), structure(c(4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L), .Label = c("HDHF", "HDLF", "LDHF", "LDLF"), class = "factor"), structure(c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 15L, 16L, 17L, 18L, 19L, 20L, 21L, 22L, 23L, 24L, 25L, 26L, 27L, 28L, 29L, 30L, 31L, 32L, 33L, 34L, 35L, 36L, 37L, 38L, 39L, 40L, 41L, 42L, 43L, 44L, 45L, 46L, 47L, 48L, 49L, 50L, 51L, 52L, 53L, 54L, 55L, 56L, 57L, 58L, 59L, 60L, 61L, 62L, 63L, 64L, 65L, 66L, 67L, 68L, 69L, 70L, 71L, 72L, 73L, 74L, 75L, 76L, 77L, 78L, 79L, 80L, 81L, 82L, 83L, 84L, 85L, 86L, 87L, 88L, 89L, 90L, 91L, 92L, 93L, 1L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 15L, 16L, 17L, 18L, 19L, 20L, 21L, 22L, 23L, 24L, 25L, 26L, 27L, 28L, 29L, 30L, 31L, 32L, 33L, 34L, 35L, 36L, 37L, 38L, 39L, 40L, 41L, 42L, 43L, 44L, 45L, 46L, 47L, 48L, 49L, 50L, 51L, 52L, 53L, 54L, 55L, 56L, 57L, 58L, 59L, 60L, 61L, 62L, 63L, 64L, 65L, 66L, 67L, 68L, 69L, 70L, 71L, 72L, 73L, 75L, 76L, 77L, 78L, 79L, 80L, 81L, 82L, 83L, 84L, 85L, 86L, 87L, 88L, 89L, 90L, 91L, 92L, 93L, 1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 15L, 16L, 17L, 18L, 19L, 20L, 21L, 22L, 23L, 24L, 25L, 26L, 27L, 28L, 29L, 30L, 31L, 32L, 33L, 34L, 35L, 36L, 37L, 38L, 39L, 41L, 42L, 43L, 44L, 45L, 46L, 47L, 48L, 49L, 50L, 51L, 52L, 53L, 54L, 55L, 56L, 57L, 58L, 60L, 61L, 62L, 63L, 64L, 65L, 66L, 67L, 68L, 69L, 70L, 71L, 72L, 73L, 74L, 75L, 76L, 77L, 78L, 79L, 80L, 81L, 82L, 83L, 84L, 85L, 86L, 87L, 88L, 89L, 90L, 91L, 92L, 93L, 1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 11L, 12L, 13L, 14L, 15L, 16L, 17L, 18L, 19L, 20L, 21L, 22L, 23L, 24L, 25L, 26L, 27L, 28L, 29L, 30L, 31L, 32L, 33L, 34L, 35L, 36L, 37L, 38L, 39L, 40L, 41L, 42L, 43L, 44L, 45L, 46L, 47L, 48L, 49L, 50L, 51L, 52L, 53L, 54L, 55L, 56L, 57L, 58L, 59L, 60L, 61L, 62L, 63L, 64L, 65L, 66L, 67L, 68L, 69L, 70L, 71L, 72L, 73L, 74L, 75L, 76L, 77L, 78L, 79L, 80L, 81L, 82L, 83L, 84L, 85L, 86L, 87L, 88L, 89L, 90L, 91L, 92L, 93L), .Label = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "22", "23", "24", "25", "26", "27", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "56", "57", "58", "59", "60", "61", "62", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "95", "96", "97", "98", "99", "100"), class = "factor")): not an unreplicated complete block design</span></div><div class='input'>
-<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/kendall_w_ci.html'>kendall_w_ci</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data_bugs2</span>,
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>key</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
-  <span class='kw'>id.variable</span> <span class='kw'>=</span> <span class='no'>Subject</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>.999</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 3</span><span>
-#&gt;   estimate conf.low conf.high
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>    0.211   0.060</span><span style='text-decoration: underline;'>6</span><span>     0.430</div><div class='input'>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>:::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/kendall_w_ci.html'>kendall_w_ci</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris_long</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>condition</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>value</span>,
   <span class='kw'>id.variable</span> <span class='kw'>=</span> <span class='no'>id</span>
-)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 3</span><span>
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 3</span><span>
 #&gt;   estimate conf.low conf.high
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>    0.911    0.739         1</div></span><div class='input'>
-</div></pre>
+#&gt; </span><span style='color: #555555;'>1</span><span>    0.911    0.739         1</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

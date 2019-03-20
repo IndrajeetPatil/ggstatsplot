@@ -198,7 +198,7 @@ grouping variable.</p>
   <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>outlier.coef</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>mean.plotting</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>mean.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mean.size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>mean.color</span> <span class='kw'>=</span> <span class='st'>"darkred"</span>,
   <span class='kw'>point.jitter.width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>point.jitter.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>(),
+  <span class='kw'>point.dodge.width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(),
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"RColorBrewer"</span>,
   <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
@@ -479,7 +479,7 @@ direction. Defaults to <code>0.60</code>.</p></td>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+<code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
 extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>,
 <code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
     </tr>
@@ -604,7 +604,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
 
 <span class='co'># the most basic function call</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='no'>drv</span> <span class='kw'>!=</span> <span class='st'>"4"</span>),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/mpg'>mpg</a></span>, <span class='no'>drv</span> <span class='kw'>!=</span> <span class='st'>"4"</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>hwy</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>drv</span>,
@@ -623,7 +623,7 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>rating</span>,
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>mpaa</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>9</span>, <span class='fl'>1</span>)),
+  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous'>scale_y_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>9</span>, <span class='fl'>1</span>)),
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</div><div class='img'><img src='grouped_ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>

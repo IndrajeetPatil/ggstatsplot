@@ -27,16 +27,10 @@ games_howell <- function(data,
       .data = data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
-    )
-
-  # convert the grouping variable to factor and drop unused levels
-  data %<>%
-    stats::na.omit(.) %>%
-    dplyr::mutate_at(
-      .tbl = .,
-      .vars = "x",
-      .funs = ~ base::droplevels(x = base::as.factor(x = .))
-    )
+    ) %>%
+    tidyr::drop_na(data = .) %>%
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    tibble::as_tibble(x = .)
 
   # variables of interest for running the test
   grp <- data$x
@@ -326,7 +320,7 @@ pairwise_p <- function(data,
       # extracting and cleaning up Tukey's HSD output
       df_tukey <- stats::TukeyHSD(x = aovmodel, conf.level = 0.95) %>%
         broom::tidy(x = .) %>%
-        dplyr::select(comparison, estimate, conf.low, conf.high) %>%
+        dplyr::select(comparison, estimate) %>%
         tidyr::separate(
           data = .,
           col = comparison,

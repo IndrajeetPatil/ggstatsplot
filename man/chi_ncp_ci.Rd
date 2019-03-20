@@ -19,7 +19,7 @@ chi_ncp_ci(chi.square, conf.level = 0.95, df, tol = 1e-09,
 
 \item{jumping.prop}{Jumping proportion.}
 
-\item{...}{Additional arguments (ignored).}
+\item{...}{Additional arguments.}
 }
 \description{
 Computing confidence intervals for chi-squared statistic.

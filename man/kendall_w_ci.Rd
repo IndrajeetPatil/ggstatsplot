@@ -2,8 +2,8 @@
 % Please edit documentation in R/kendall_w_ci.R
 \name{kendall_w_ci}
 \alias{kendall_w_ci}
-\title{Computing confidence interval for Kendall's coefficient of concordance
-(aka Kedall's \emph{W}).}
+\title{Computing confidence intervals for the Kendall's coefficient of
+concordance (aka Kedall's \emph{W}).}
 \usage{
 kendall_w_ci(data, x, y, id.variable, conf.level = 0.95, ...)
 }
@@ -22,47 +22,15 @@ dataframe \code{data}.}
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{...}{Additional arguments (ignored).}
+\item{...}{Additional arguments.}
 }
 \description{
-Computing confidence interval for Kendall's coefficient of concordance
-(aka Kedall's \emph{W}).
+Computing confidence intervals for the Kendall's coefficient of
+concordance (aka Kedall's \emph{W}).
 }
 \examples{
-\dontrun{
-library(ggstatsplot)
-library(jmv)
-data("bugs", package = "jmv")
-# Kendall W work
-# first make sure you build data_bugs carefully because converting to long format
 
-data_bugs1 <- bugs \%>\%
-  tibble::as_tibble(.) \%>\%
-  tidyr::gather(., key, value, LDLF:HDHF)
-#
-# is not the same as ...
-#
-data_bugs2 <- bugs \%>\%
-  dplyr::filter(., !is.na(LDHF) & !is.na(LDLF) & !is.na(HDLF) & !is.na(HDHF)) \%>\%
-  tibble::as_tibble(.) \%>\%
-  tidyr::gather(., key, value, LDLF:HDHF)
-# the first will fail Friedman the second won't
-
-ggstatsplot:::kendall_w_ci(
-  data = data_bugs1,
-  x = key,
-  y = value,
-  id.variable = Subject,
-  conf.level = .90
-)
-
-ggstatsplot:::kendall_w_ci(
-  data = data_bugs2,
-  x = key,
-  y = value,
-  id.variable = Subject,
-  conf.level = .999
-)
+set.seed(123)
 
 ggstatsplot:::kendall_w_ci(
   data = iris_long,
@@ -70,8 +38,6 @@ ggstatsplot:::kendall_w_ci(
   y = value,
   id.variable = id
 )
-}
-
 }
 \author{
 Chuck Powell, Indrajeet Patil

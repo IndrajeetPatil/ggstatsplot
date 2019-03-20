@@ -48,7 +48,7 @@ ggbetweenstats_switch <- function(type, test, ...) {
         ggstatsplot::subtitle_anova_parametric(...)
       },
       np = {
-        ggstatsplot::subtitle_kw_nonparametric(...)
+        ggstatsplot::subtitle_anova_nonparametric(...)
       },
       r = {
         ggstatsplot::subtitle_anova_robust(...)

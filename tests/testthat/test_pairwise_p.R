@@ -21,6 +21,58 @@ testthat::test_that(
       p.adjust.method = "bonferroni"
     )
 
+    # games-howell
+    df2 <- ggstatsplot::pairwise_p(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = FALSE,
+      type = "p",
+      var.equal = FALSE,
+      paired = FALSE,
+      p.adjust.method = "bonferroni"
+    )
+
+    # Dwass-Steel-Crichtlow-Fligner test
+    df3 <- ggstatsplot::pairwise_p(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = FALSE,
+      type = "np",
+      paired = FALSE,
+      p.adjust.method = "none"
+    )
+
+    # robust t test
+    df4 <- ggstatsplot::pairwise_p(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      messages = FALSE,
+      type = "r",
+      paired = FALSE,
+      p.adjust.method = "fdr"
+    )
+
+    # checking the edge case where factor level names contain `-`
+    set.seed(123)
+    df5 <- ggstatsplot::pairwise_p(
+      data = movies_wide,
+      x = mpaa,
+      y = rating,
+      var.equal = TRUE,
+      messages = FALSE
+    )
+
+    # checking dimensions of the results dataframe
+    testthat::expect_equal(dim(df1), c(6L, 6L))
+    testthat::expect_equal(dim(df2), c(6L, 11L))
+    testthat::expect_equal(dim(df3), c(6L, 6L))
+    testthat::expect_equal(dim(df4), c(6L, 8L))
+    testthat::expect_equal(dim(df5), c(3L, 6L))
+
+    # testing exact values
     testthat::expect_equal(
       df1$mean.difference,
       c(
@@ -34,32 +86,9 @@ testthat::test_that(
       tolerance = 0.001
     )
 
-    # games-howell
-    df2 <- ggstatsplot::pairwise_p(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      messages = FALSE,
-      type = "p",
-      var.equal = FALSE,
-      paired = FALSE,
-      p.adjust.method = "bonferroni"
-    )
-
     testthat::expect_equal(df2$mean.difference,
       c(0.476, -0.066, -0.124, -0.542, -0.600, -0.058),
       tolerance = 0.001
-    )
-
-    # Dwass-Steel-Crichtlow-Fligner test
-    df3 <- ggstatsplot::pairwise_p(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      messages = FALSE,
-      type = "np",
-      paired = FALSE,
-      p.adjust.method = "none"
     )
 
     testthat::expect_equal(
@@ -75,17 +104,6 @@ testthat::test_that(
       tolerance = 0.001
     )
 
-    # robust t test
-    df4 <- ggstatsplot::pairwise_p(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      messages = FALSE,
-      type = "r",
-      paired = FALSE,
-      p.adjust.method = "fdr"
-    )
-
     testthat::expect_equal(
       df4$psihat,
       c(
@@ -99,34 +117,23 @@ testthat::test_that(
       tolerance = 0.001
     )
 
-    # checking the edge case where factor level names contain `-`
-    set.seed(123)
-    df5 <- ggstatsplot::pairwise_p(
-      data = movies_wide,
-      x = mpaa,
-      y = rating,
-      var.equal = TRUE,
-      messages = FALSE
-    )
-
     testthat::expect_equal(df5$group1, c("PG-13", "R", "R"))
     testthat::expect_equal(df5$group2, c("PG", "PG", "PG-13"))
     testthat::expect_equal(df5$mean.difference,
       c(0.1042746, 0.3234094, 0.2191348),
       tolerance = 0.001
     )
-    testthat::expect_equal(df5$conf.low,
-      c(-0.13957173, 0.09444830, 0.05700094),
-      tolerance = 0.001
-    )
-    testthat::expect_equal(df5$conf.high,
-      c(0.3481209, 0.5523704, 0.3812686),
-      tolerance = 0.001
-    )
     testthat::expect_equal(df5$p.value,
       c(0.315931518, 0.002825407, 0.003100279),
       tolerance = 0.001
     )
+
+    # checking tibble
+    testthat::expect_is(df1, "tbl_df")
+    testthat::expect_is(df2, "tbl_df")
+    testthat::expect_is(df3, "tbl_df")
+    testthat::expect_is(df4, "tbl_df")
+    testthat::expect_is(df5, "tbl_df")
   }
 )
 
@@ -159,8 +166,31 @@ testthat::test_that(
       p.adjust.method = "bonferroni"
     )
 
-    testthat::expect_true(inherits(df1, what = "tbl_df"))
+    # Durbin-Conover test
+    df2 <- ggstatsplot::pairwise_p(
+      data = bugs_long,
+      x = key,
+      y = value,
+      type = "np",
+      k = 3,
+      paired = TRUE,
+      messages = FALSE,
+      p.adjust.method = "BY"
+    )
 
+    # robust t test
+    df3 <- ggstatsplot::pairwise_p(
+      data = bugs_long,
+      x = key,
+      y = value,
+      type = "r",
+      k = 3,
+      paired = TRUE,
+      messages = FALSE,
+      p.adjust.method = "hommel"
+    )
+
+    # checking exact values
     testthat::expect_equal(
       df1$mean.difference,
       c(
@@ -191,18 +221,6 @@ testthat::test_that(
       c("**", "ns", "***", "ns", "**", "***")
     )
 
-    # Durbin-Conover test
-    df2 <- ggstatsplot::pairwise_p(
-      data = bugs_long,
-      x = key,
-      y = value,
-      type = "np",
-      k = 3,
-      paired = TRUE,
-      messages = FALSE,
-      p.adjust.method = "BY"
-    )
-
     testthat::expect_equal(
       df2$statistic,
       c(4.780042, 2.443931, 8.014657, 2.336111, 3.234615, 5.570726),
@@ -224,18 +242,6 @@ testthat::test_that(
     testthat::expect_identical(
       df2$significance,
       c("***", "*", "***", "*", "**", "***")
-    )
-
-    # robust t test
-    df3 <- ggstatsplot::pairwise_p(
-      data = bugs_long,
-      x = key,
-      y = value,
-      type = "r",
-      k = 3,
-      paired = TRUE,
-      messages = FALSE,
-      p.adjust.method = "hommel"
     )
 
     testthat::expect_equal(
@@ -267,6 +273,16 @@ testthat::test_that(
       df3$significance,
       c("ns", "ns", "*", "**", "***", "***")
     )
+
+    # checking dimensions of the results dataframe
+    testthat::expect_equal(dim(df1), c(6L, 6L))
+    testthat::expect_equal(dim(df2), c(6L, 6L))
+    testthat::expect_equal(dim(df3), c(6L, 8L))
+
+    # checking if it is a tibble
+    testthat::expect_is(df1, "tbl_df")
+    testthat::expect_is(df2, "tbl_df")
+    testthat::expect_is(df3, "tbl_df")
   }
 )
 
@@ -481,11 +497,12 @@ testthat::test_that(
       data = ggstatsplot::movies_wide,
       x = mpaa,
       y = rating,
+      type = "p",
       var.equal = TRUE,
       messages = FALSE
     )
 
-    testthat::expect_equal(dim(df), c(3L, 8L))
+    testthat::expect_equal(dim(df), c(3L, 6L))
     testthat::expect_equal(df$group1, c("PG-13", "R", "R"))
     testthat::expect_equal(df$group2, c("PG", "PG", "PG-13"))
   }
