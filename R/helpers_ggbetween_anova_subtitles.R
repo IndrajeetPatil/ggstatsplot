@@ -69,7 +69,6 @@
 #'   k = 4,
 #'   nboot = 10
 #' )
-#'
 #' @export
 
 # function body
@@ -174,14 +173,7 @@ subtitle_anova_parametric <- function(data,
       )
 
     # creating a standardized dataframe with effect size and its CIs
-    effsize_df <- lm_effsize_standardizer(
-      object = ez_df$aov,
-      effsize = effsize,
-      partial = partial,
-      conf.level = conf.level,
-      nboot = nboot
-    )
-
+    effsize_object <- ez_df$aov
   } else {
 
     # remove NAs listwise for between-subjects design
@@ -202,18 +194,22 @@ subtitle_anova_parametric <- function(data,
       )
 
     # creating a standardized dataframe with effect size and its CIs
-    effsize_df <- lm_effsize_standardizer(
-      object = stats::lm(
+    effsize_object <-
+      stats::lm(
         formula = y ~ x,
         data = data,
         na.action = na.omit
-      ),
-      effsize = effsize,
-      partial = partial,
-      conf.level = conf.level,
-      nboot = nboot
-    )
+      )
   }
+
+  # creating a standardized dataframe with effect size and its CIs
+  effsize_df <- lm_effsize_standardizer(
+    object = effsize_object,
+    effsize = effsize,
+    partial = partial,
+    conf.level = conf.level,
+    nboot = nboot
+  )
 
   # preparing subtitle
   subtitle <- subtitle_template(
