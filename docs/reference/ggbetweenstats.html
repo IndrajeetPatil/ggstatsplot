@@ -191,8 +191,8 @@ the plot as a subtitle.</p>
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>sample.size.label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tr</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>sort.fun</span> <span class='kw'>=</span> <span class='no'>mean</span>, <span class='kw'>axes.range.restrict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mean.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>mean.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>mean.label.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
   <span class='kw'>outlier.tagging</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>outlier.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -354,6 +354,16 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of <code>tr</code>, which is by default set to
 <code>0.1</code>. Lowering the value might help.</p></td>
+    </tr>
+    <tr>
+      <th>sort</th>
+      <td><p>If <code>"ascending"</code> (default), <code>x</code>-axis variable factor levels will
+be sorted based on increasing values of <code>y</code>-axis variable. If
+<code>"descending"</code>, the opposite. If <code>"none"</code>, no sorting will happen.</p></td>
+    </tr>
+    <tr>
+      <th>sort.fun</th>
+      <td><p>The function used to sort (default: <code>mean</code>).</p></td>
     </tr>
     <tr>
       <th>axes.range.restrict</th>
@@ -559,20 +569,20 @@ incorrect. You can remove them by adding <code>+ ggplot2::labs(subtitle = NULL)<
   <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; <span style='color: #00BB00;'>Note: </span><span style='color: #BBBB00;'>99%</span><span style='color: #0000BB;'> CI for effect size estimate was computed with </span><span style='color: #BBBB00;'>10</span><span style='color: #0000BB;'> bootstrap samples.
-#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 11</span><span>
-#&gt;    group1 group2 mean.difference conf.low conf.high    se t.value    df p.value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 1      2                -</span><span style='color: #BB0000;'>53</span><span>     -</span><span style='color: #BB0000;'>132.</span><span>     25.7    19.2   1.95   30.6   0.72 
-#&gt; </span><span style='color: #555555;'> 2</span><span> 1      3                -</span><span style='color: #BB0000;'>64</span><span>     -</span><span style='color: #BB0000;'>148.</span><span>     20.4    20.8   2.18   35.3   0.703
-#&gt; </span><span style='color: #555555;'> 3</span><span> 1      4                -</span><span style='color: #BB0000;'>88.5</span><span>   -</span><span style='color: #BB0000;'>167.</span><span>    -</span><span style='color: #BB0000;'>10.1</span><span>    19.1   3.27   30.2   0.21 
-#&gt; </span><span style='color: #555555;'> 4</span><span> 1      5                -</span><span style='color: #BB0000;'>77.5</span><span>   -</span><span style='color: #BB0000;'>154.</span><span>     -</span><span style='color: #BB0000;'>0.641</span><span>  18.7   2.94   28.5   0.235
-#&gt; </span><span style='color: #555555;'> 5</span><span> 2      3                -</span><span style='color: #BB0000;'>11</span><span>      -</span><span style='color: #BB0000;'>75.2</span><span>    53.2    15.8   0.492  35.7   0.988
-#&gt; </span><span style='color: #555555;'> 6</span><span> 2      4                -</span><span style='color: #BB0000;'>35.5</span><span>    -</span><span style='color: #BB0000;'>90.4</span><span>    19.4    13.6   1.85   38.0   0.72 
-#&gt; </span><span style='color: #555555;'> 7</span><span> 2      5                -</span><span style='color: #BB0000;'>24.5</span><span>    -</span><span style='color: #BB0000;'>76.9</span><span>    27.9    12.9   1.34   37.5   0.988
-#&gt; </span><span style='color: #555555;'> 8</span><span> 3      4                -</span><span style='color: #BB0000;'>24.5</span><span>    -</span><span style='color: #BB0000;'>88.3</span><span>    39.3    15.7   1.10   35.4   0.988
-#&gt; </span><span style='color: #555555;'> 9</span><span> 3      5                -</span><span style='color: #BB0000;'>13.5</span><span>    -</span><span style='color: #BB0000;'>75.3</span><span>    48.3    15.2   0.63   33.6   0.988
-#&gt; </span><span style='color: #555555;'>10</span><span> 4      5                 11      -</span><span style='color: #BB0000;'>40.8</span><span>    62.8    12.8   0.608  37.6   0.988
-#&gt; </span><span style='color: #555555;'># ... with 2 more variables: significance </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, p.value.label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt; </span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 10 x 9</span><span>
+#&gt;    group1 group2 mean.difference    se t.value    df p.value significance
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #555555;'> 1</span><span> 1      2                -</span><span style='color: #BB0000;'>53</span><span>    19.2   1.95   30.6   0.72  ns          
+#&gt; </span><span style='color: #555555;'> 2</span><span> 1      3                -</span><span style='color: #BB0000;'>64</span><span>    20.8   2.18   35.3   0.703 ns          
+#&gt; </span><span style='color: #555555;'> 3</span><span> 1      4                -</span><span style='color: #BB0000;'>88.5</span><span>  19.1   3.27   30.2   0.21  ns          
+#&gt; </span><span style='color: #555555;'> 4</span><span> 1      5                -</span><span style='color: #BB0000;'>77.5</span><span>  18.7   2.94   28.5   0.235 ns          
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2      3                -</span><span style='color: #BB0000;'>11</span><span>    15.8   0.492  35.7   0.988 ns          
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2      4                -</span><span style='color: #BB0000;'>35.5</span><span>  13.6   1.85   38.0   0.72  ns          
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2      5                -</span><span style='color: #BB0000;'>24.5</span><span>  12.9   1.34   37.5   0.988 ns          
+#&gt; </span><span style='color: #555555;'> 8</span><span> 3      4                -</span><span style='color: #BB0000;'>24.5</span><span>  15.7   1.10   35.4   0.988 ns          
+#&gt; </span><span style='color: #555555;'> 9</span><span> 3      5                -</span><span style='color: #BB0000;'>13.5</span><span>  15.2   0.63   33.6   0.988 ns          
+#&gt; </span><span style='color: #555555;'>10</span><span> 4      5                 11    12.8   0.608  37.6   0.988 ns          
+#&gt; </span><span style='color: #555555;'># ... with 1 more variable: p.value.label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
 #&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Shapiro-Wilk Normality Test for </span><span style='color: #BBBB00;'>Speed-of-light measurement</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.514</span><span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>Note: </span><span style='color: #0000BB;'>Bartlett's test for homogeneity of variances for factor </span><span style='color: #BBBB00;'>The experiment number</span><span style='color: #0000BB;'> : p-value = </span><span style='color: #BBBB00;'>0.021</span><span></div><div class='output co'>#&gt; </div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

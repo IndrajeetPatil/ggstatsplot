@@ -13,8 +13,8 @@ ggwithinstats(data, x, y, type = "parametric",
   results.subtitle = TRUE, xlab = NULL, ylab = NULL,
   caption = NULL, title = NULL, subtitle = NULL,
   sample.size.label = TRUE, k = 2, conf.level = 0.95, nboot = 100,
-  tr = 0.1, path.point = TRUE, path.mean = TRUE,
-  axes.range.restrict = FALSE, mean.label.size = 3,
+  tr = 0.1, path.point = TRUE, path.mean = TRUE, sort = "none",
+  sort.fun = mean, axes.range.restrict = FALSE, mean.label.size = 3,
   mean.label.fontface = "bold", mean.label.color = "black",
   notch = FALSE, notchwidth = 0.5, linetype = "solid",
   outlier.tagging = FALSE, outlier.shape = 19, outlier.label = NULL,
@@ -122,6 +122,12 @@ default to \code{TRUE}. Note that \code{path.point} argument is relevant only wh
 there are two groups (i.e., in case of a \emph{t}-test). In case of large number
 of data points, it is advisable to set \code{path.point = FALSE} as these lines
 can overwhelm the plot.}
+
+\item{sort}{If \code{"ascending"} (default), \code{x}-axis variable factor levels will
+be sorted based on increasing values of \code{y}-axis variable. If
+\code{"descending"}, the opposite. If \code{"none"}, no sorting will happen.}
+
+\item{sort.fun}{The function used to sort (default: \code{mean}).}
 
 \item{axes.range.restrict}{Logical that decides whether to restrict the axes
 values ranges to \code{min} and \code{max} values of the axes variables (Default:
@@ -237,13 +243,17 @@ ggstatsplot::ggwithinstats(
 )
 
 # more than two groups (anova)
-ggstatsplot::ggwithinstats(
-  data = iris_long,
-  x = condition,
-  y = value,
-  type = "r"
-)
+library(WRS2)
 
+ggstatsplot::ggwithinstats(
+  data = tibble::as_tibble(WineTasting),
+  x = Wine,
+  y = Taste,
+  type = "r",
+  pairwise.comparisons = TRUE,
+  outlier.tagging = TRUE,
+  outlier.label = Taster
+)
 }
 \author{
 Indrajeet Patil

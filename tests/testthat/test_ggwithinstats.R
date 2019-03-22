@@ -1,48 +1,359 @@
 context(desc = "ggwithinstats")
 
-# basic plotting works ----------------------------------------------------
+# common setup
+set.seed(123)
+library(WRS2)
+library(jmv)
+data("bugs", package = "jmv")
+
+# converting to long format
+data_bugs <- bugs %>%
+  tibble::as_tibble(.) %>%
+  tidyr::gather(., key, value, LDLF:HDHF)
+
+# errors ------------------------------------------------------------------
 
 testthat::test_that(
-  desc = "basic plotting works",
+  desc = "error when x and outlier.label are same",
+  code = {
+    testthat::expect_error(
+      ggstatsplot::ggwithinstats(
+        data = ggstatsplot::iris_long,
+        x = condition,
+        y = value,
+        outlier.label = condition
+      )
+    )
+  }
+)
+
+# basic plotting works - more than two groups ---------------------------------
+
+testthat::test_that(
+  desc = "basic plotting works - more than two groups",
   code = {
     testthat::skip_on_cran()
     set.seed(123)
 
-    p0 <- ggstatsplot:::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = condition,
-      y = value,
+    # plot
+    p1 <- ggstatsplot::ggwithinstats(
+      data = WineTasting,
+      x = Wine,
+      y = Taste,
       type = "p",
+      sort = "ascending",
+      sort.fun = median,
+      bf.message = TRUE,
+      k = 4,
+      conf.level = 0.99,
       outlier.tagging = TRUE,
+      outlier.coef = 2.5,
       pairwise.comparisons = TRUE,
+      title = "wine tasting data",
+      caption = "From `WRS2` package",
       messages = TRUE
     )
 
-    p1 <- ggstatsplot:::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = condition,
-      y = value,
+    # build the plot
+    pb1 <- ggplot2::ggplot_build(p1)
+
+    # subtitle
+    set.seed(123)
+    p1_subtitle <- ggstatsplot::subtitle_anova_parametric(
+      data = WineTasting,
+      x = Wine,
+      y = Taste,
       type = "p",
+      k = 4,
+      paired = TRUE,
+      conf.level = 0.99,
+      messages = FALSE
+    )
+
+    # dataframe used for visualization
+    testthat::expect_equal(length(pb1$data), 8L)
+    testthat::expect_equal(dim(pb1$data[[1]]), c(66L, 10L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(3L, 25L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(1536L, 20L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(4L, 15L))
+    testthat::expect_equal(dim(pb1$data[[5]]), c(3L, 12L))
+    testthat::expect_equal(dim(pb1$data[[6]]), c(3L, 15L))
+    testthat::expect_equal(dim(pb1$data[[7]]), c(3L, 8L))
+    testthat::expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
+
+    # data from difference layers
+    testthat::expect_equal(pb1$data[[5]]$x, c(1L, 2L, 3L))
+    testthat::expect_equal(pb1$data[[5]]$y,
+      c(5.459091, 5.543182, 5.53409),
+      tolerance = 0.001
+    )
+
+    # checking displayed outlier labels
+    testthat::expect_equal(
+      ggplot2::layer_grob(p1, i = 4L)$`1`$lab,
+      c(5.00, 6.30, 6.30, 6.25),
+      tolerance = 0.01
+    )
+
+    # range of y variable
+    testthat::expect_equal(
+      ggplot2::layer_scales(p1)$y$range$range,
+      c(4.95000, 6.55875),
+      tolerance = 1e-5
+    )
+
+    # checking x-axis sample size labels
+    testthat::expect_identical(
+      ggplot2::layer_scales(p1)$x$labels,
+      c("Wine C\n(n = 22)", "Wine A\n(n = 22)", "Wine B\n(n = 22)")
+    )
+
+    # checking plot labels
+    # testthat::expect_identical(p$labels$subtitle, p_subtitle)
+    testthat::expect_identical(p1$labels$title, "wine tasting data")
+    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
+    testthat::expect_identical(
+      p1$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle(atop(
+          displaystyle("From `WRS2` package"),
+          expr = paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            "2.0635",
+            ", ",
+            italic("r")["Cauchy"],
+            " = ",
+            "0.7070"
+          )
+        )),
+        expr = paste(
+          "Pairwise comparisons: ",
+          bold("Student's t-test"),
+          "; Adjustment (p-value): ",
+          bold("Holm")
+        )
+      ))
+    )
+    testthat::expect_identical(p1$labels$x, "Wine")
+    testthat::expect_identical(p1$labels$y, "Taste")
+
+    # checking pairwise comparisons
+    testthat::expect_equal(levels(pb1$data[[8]]$annotation), c("*", "**"))
+  }
+)
+
+# checking sorting -------------------------------------------------------
+
+testthat::test_that(
+  desc = "checking sorting",
+  code = {
+    testthat::skip_on_cran()
+
+    set.seed(123)
+    p1 <- ggstatsplot::ggwithinstats(
+      data = WineTasting,
+      x = Wine,
+      y = Taste,
+      sort = "none",
+      results.subtitle = FALSE,
+      messages = FALSE
+    )
+
+    set.seed(123)
+    p2 <- ggstatsplot::ggwithinstats(
+      data = WineTasting,
+      x = Wine,
+      y = Taste,
+      sort = "ascending",
+      results.subtitle = FALSE,
+      messages = FALSE
+    )
+
+    set.seed(123)
+    p3 <- ggstatsplot::ggwithinstats(
+      data = WineTasting,
+      x = Wine,
+      y = Taste,
+      sort = "xxx",
+      results.subtitle = FALSE,
+      messages = FALSE
+    )
+
+    # built plots
+    pb1 <- ggplot2::ggplot_build(p1)
+    pb2 <- ggplot2::ggplot_build(p2)
+    pb3 <- ggplot2::ggplot_build(p3)
+
+    # tests
+    testthat::expect_equal(pb1$data[[6]]$label, rev(pb3$data[[6]]$label))
+    testthat::expect_equal(pb1$data[[6]]$label, pb2$data[[6]]$label)
+  }
+)
+
+# checking subtitle outputs - without NAs ------------------------------------
+
+testthat::test_that(
+  desc = "checking subtitle outputs - without NAs",
+  code = {
+    testthat::skip_on_cran()
+
+    set.seed(123)
+    p1 <- ggstatsplot::ggwithinstats(
+      data = ggstatsplot::iris_long,
+      x = condition,
+      y = value,
+      type = "np",
+      pairwise.display = "s",
+      pairwise.annotation = "p",
+      outlier.tagging = FALSE,
+      pairwise.comparisons = TRUE,
+      conf.level = 0.90,
+      messages = FALSE
+    )
+
+    set.seed(123)
+    p1_subtitle <- ggstatsplot::subtitle_anova_nonparametric(
+      data = ggstatsplot::iris_long,
+      x = condition,
+      y = value,
+      type = "np",
+      paired = TRUE,
+      conf.level = 0.90,
+      messages = FALSE
+    )
+
+    set.seed(123)
+    p2 <- ggstatsplot::ggwithinstats(
+      data = ggstatsplot::iris_long,
+      x = condition,
+      y = value,
+      type = "r",
       pairwise.display = "ns",
-      outlier.tagging = TRUE,
+      outlier.tagging = FALSE,
       pairwise.comparisons = TRUE,
+      pairwise.annotation = "p",
+      conf.level = 0.90,
       messages = FALSE
     )
 
-    p2 <- ggstatsplot:::ggwithinstats(
+    set.seed(123)
+    p2_subtitle <- ggstatsplot::subtitle_anova_robust(
       data = ggstatsplot::iris_long,
       x = condition,
       y = value,
-      type = "bf",
-      outlier.tagging = TRUE,
-      pairwise.comparisons = TRUE,
+      paired = TRUE,
+      conf.level = 0.90,
       messages = FALSE
     )
 
-    p3 <- ggstatsplot:::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = condition,
+    set.seed(123)
+    p3 <- suppressWarnings(ggstatsplot::ggwithinstats(
+      data = ggstatsplot::VR_dilemma,
+      x = modality,
+      y = score,
+      type = "r",
+      k = 3,
+      nboot = 25,
+      pairwise.comparisons = TRUE,
+      pairwise.display = "all",
+      pairwise.annotation = "p",
+      messages = FALSE,
+      bf.message = TRUE
+    ))
+
+    set.seed(123)
+    p3_subtitle <- suppressWarnings(ggstatsplot::subtitle_t_robust(
+      data = ggstatsplot::VR_dilemma,
+      x = modality,
+      y = score,
+      paired = TRUE,
+      k = 3,
+      nboot = 25,
+      messages = FALSE
+    ))
+
+    set.seed(123)
+    p4 <- ggstatsplot::ggwithinstats(
+      data = ggstatsplot::VR_dilemma,
+      x = modality,
+      y = score,
+      type = "np",
+      k = 4,
+      nboot = 15,
+      conf.level = 0.50,
+      pairwise.comparisons = TRUE,
+      pairwise.display = "all",
+      pairwise.annotation = "p",
+      messages = FALSE,
+      bf.message = TRUE
+    )
+
+    set.seed(123)
+    p4_subtitle <- ggstatsplot::subtitle_t_nonparametric(
+      data = ggstatsplot::VR_dilemma,
+      x = modality,
+      y = score,
+      conf.level = 0.50,
+      paired = TRUE,
+      k = 4,
+      nboot = 15,
+      messages = FALSE
+    )
+
+    # built plots
+    pb1 <- ggplot2::ggplot_build(p1)
+    pb2 <- ggplot2::ggplot_build(p2)
+    pb3 <- ggplot2::ggplot_build(p3)
+    pb4 <- ggplot2::ggplot_build(p4)
+
+    # checking subtitle outputs
+    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
+    testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
+    testthat::expect_identical(p3$labels$subtitle, p3_subtitle)
+    testthat::expect_identical(p4$labels$subtitle, p4_subtitle)
+    testthat::expect_identical(p1$labels$caption, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "Pairwise comparisons: ",
+        bold("Durbin-Conover test"),
+        "; Adjustment (p-value): ",
+        bold("Holm")
+      )
+    )))
+    testthat::expect_identical(p2$labels$caption, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "Pairwise comparisons: ",
+        bold("Yuen's trimmed means test"),
+        "; Adjustment (p-value): ",
+        bold("Holm")
+      )
+    )))
+    testthat::expect_null(p3$labels$caption, NULL)
+    testthat::expect_null(p4$labels$caption, NULL)
+
+  }
+)
+
+# checking subtitle outputs - with NAs ----------------------------------------
+
+testthat::test_that(
+  desc = "checking subtitle outputs - with NAs",
+  code = {
+    testthat::skip_on_cran()
+    set.seed(123)
+
+    data_bugs_2 <- dplyr::filter(.data = data_bugs, key %in% c("HDLF", "HDHF"))
+
+    set.seed(123)
+    p1 <- ggstatsplot::ggwithinstats(
+      data = data_bugs,
+      x = key,
       y = value,
+      type = "np",
       outlier.tagging = TRUE,
       pairwise.comparisons = TRUE,
       pairwise.annotation = "p",
@@ -50,43 +361,130 @@ testthat::test_that(
       messages = FALSE
     )
 
-    p4 <- ggstatsplot:::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = attribute,
+    set.seed(123)
+    p1_subtitle <- ggstatsplot::subtitle_anova_nonparametric(
+      data = data_bugs,
+      x = key,
       y = value,
-      pairwise.comparisons = TRUE,
-      pairwise.display = "ns",
-      pairwise.annotation = "asterisk",
-      messages = FALSE,
-      bf.message = TRUE
-    )
-
-    p5 <- ggstatsplot:::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = attribute,
-      y = value,
-      results.subtitle = FALSE,
-      pairwise.comparisons = TRUE,
-      axes.range.restrict = TRUE,
+      paired = TRUE,
       messages = FALSE
     )
 
-    p6 <- ggstatsplot:::ggwithinstats(
-      data = ggstatsplot::iris_long,
-      x = attribute,
+    set.seed(123)
+    p2 <- ggstatsplot::ggwithinstats(
+      data = data_bugs,
+      x = key,
       y = value,
-      axes.range.restrict = TRUE,
+      type = "r",
       outlier.tagging = TRUE,
-      outlier.label = condition,
+      pairwise.comparisons = TRUE,
+      pairwise.annotation = "p",
+      conf.level = 0.99,
+      bf.message = TRUE,
       messages = FALSE
     )
 
-    testthat::expect_is(p0, "ggplot")
-    testthat::expect_is(p1, "ggplot")
-    testthat::expect_is(p2, "ggplot")
-    testthat::expect_is(p3, "ggplot")
-    testthat::expect_is(p4, "ggplot")
-    testthat::expect_is(p5, "ggplot")
-    testthat::expect_is(p6, "ggplot")
+    set.seed(123)
+    p2_subtitle <- ggstatsplot::subtitle_anova_robust(
+      data = data_bugs,
+      x = key,
+      y = value,
+      type = "r",
+      paired = TRUE,
+      conf.level = 0.99,
+      messages = FALSE
+    )
+
+    set.seed(123)
+    p3 <- ggstatsplot::ggwithinstats(
+      data = data_bugs_2,
+      x = key,
+      y = value,
+      type = "np",
+      messages = FALSE
+    )
+
+    set.seed(123)
+    p3_subtitle <- ggstatsplot::subtitle_t_nonparametric(
+      data = data_bugs_2,
+      x = key,
+      y = value,
+      type = "np",
+      paired = TRUE,
+      messages = FALSE
+    )
+
+    set.seed(123)
+    p4 <- ggstatsplot::ggwithinstats(
+      data = data_bugs_2,
+      x = key,
+      y = value,
+      type = "r",
+      nboot = 20,
+      conf.level = 0.90,
+      messages = FALSE
+    )
+
+    set.seed(123)
+    p4_subtitle <- ggstatsplot::subtitle_t_robust(
+      data = data_bugs_2,
+      x = key,
+      y = value,
+      paired = TRUE,
+      nboot = 20,
+      conf.level = 0.90,
+      messages = FALSE
+    )
+
+    # testing subtitle and caption
+    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
+    testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
+    testthat::expect_identical(p3$labels$subtitle, p3_subtitle)
+    testthat::expect_identical(p4$labels$subtitle, p4_subtitle)
+    testthat::expect_identical(p1$labels$caption, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "Pairwise comparisons: ",
+        bold("Durbin-Conover test"),
+        "; Adjustment (p-value): ",
+        bold("Holm")
+      )
+    )))
+    testthat::expect_identical(p2$labels$caption, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "Pairwise comparisons: ",
+        bold("Yuen's trimmed means test"),
+        "; Adjustment (p-value): ",
+        bold("Holm")
+      )
+    )))
+    testthat::expect_null(p3$labels$caption, NULL)
+    testthat::expect_null(p4$labels$caption, NULL)
+  }
+)
+
+# ggplot component addition works ------------------------------------------
+
+testthat::test_that(
+  desc = "ggplot component addition works",
+  code = {
+    testthat::skip_on_cran()
+
+    # plot
+    p <- ggstatsplot::ggwithinstats(
+      data = WineTasting,
+      x = Wine,
+      y = Taste,
+      results.subtitle = FALSE,
+      messages = FALSE,
+      ggplot.component = ggplot2::labs(y = "Taste rating")
+    )
+
+    # build plot
+    pb <- ggplot2::ggplot_build(p)
+
+    # test
+    testthat::expect_identical(p$labels$y, "Taste rating")
   }
 )

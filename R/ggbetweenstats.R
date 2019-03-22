@@ -100,6 +100,10 @@
 #'   values ranges to `min` and `max` values of the axes variables (Default:
 #'   `FALSE`), only relevant for functions where axes variables are of numeric
 #'   type.
+#' @param sort If `"ascending"` (default), `x`-axis variable factor levels will
+#'   be sorted based on increasing values of `y`-axis variable. If
+#'   `"descending"`, the opposite. If `"none"`, no sorting will happen.
+#' @param sort.fun The function used to sort (default: `mean`).
 #' @inheritParams paletteer::scale_color_paletteer_d
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams t1way_ci
@@ -212,6 +216,8 @@ ggbetweenstats <- function(data,
                            conf.level = 0.95,
                            nboot = 100,
                            tr = 0.1,
+                           sort = "none",
+                           sort.fun = mean,
                            axes.range.restrict = FALSE,
                            mean.label.size = 3,
                            mean.label.fontface = "bold",
@@ -296,7 +302,21 @@ ggbetweenstats <- function(data,
     test <- "anova"
   }
 
-  # -------------------------------- plot -----------------------------------
+  # --------------------------------- sorting --------------------------------
+
+  # if sorting is happening
+  if (sort != "none") {
+    data %<>%
+      sort_xy(
+        data = .,
+        x = x,
+        y = y,
+        sort = sort,
+        sort.fun = sort.fun
+      )
+  }
+
+  # -------------------------- basic plot -----------------------------------
 
   # create the basic plot
   plot <-
@@ -403,7 +423,7 @@ ggbetweenstats <- function(data,
       ggbetweenstats_geom_violin
   }
 
-  # --------------------- subtitle preparation -------------------------------
+  # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
 
@@ -411,11 +431,10 @@ ggbetweenstats <- function(data,
     effsize.type <- effsize_type_switch(effsize.type)
 
     # preparing the bayes factor message
-    if (test == "t-test") {
-
+    if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       # preparing the BF message for null
-      if (isTRUE(bf.message)) {
-        bf.caption.text <-
+      if (test == "t-test") {
+        caption <-
           bf_two_sample_ttest(
             data = data,
             x = x,
@@ -426,11 +445,9 @@ ggbetweenstats <- function(data,
             output = "caption",
             k = k
           )
-      }
-    } else if (test == "anova") {
-      # preparing the BF message for null
-      if (isTRUE(bf.message)) {
-        bf.caption.text <-
+      } else if (test == "anova") {
+        # preparing the BF message for null
+        caption <-
           bf_oneway_anova(
             data = data,
             x = x,
@@ -444,34 +461,27 @@ ggbetweenstats <- function(data,
     }
 
     # extracting the subtitle using the switch function
-    if (isTRUE(results.subtitle)) {
-      subtitle <-
-        ggbetweenstats_switch(
-          # switch based on
-          type = type,
-          test = test,
-          # arguments relevant for subtitle helper functions
-          data = data,
-          x = x,
-          y = y,
-          paired = FALSE,
-          effsize.type = effsize.type,
-          partial = partial,
-          effsize.noncentral = effsize.noncentral,
-          var.equal = var.equal,
-          bf.prior = bf.prior,
-          tr = tr,
-          nboot = nboot,
-          conf.level = conf.level,
-          k = k,
-          messages = messages
-        )
-    }
-
-    # if bayes factor message needs to be displayed
-    if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
-      caption <- bf.caption.text
-    }
+    subtitle <-
+      ggbetweenstats_switch(
+        # switch based on
+        type = type,
+        test = test,
+        # arguments relevant for subtitle helper functions
+        data = data,
+        x = x,
+        y = y,
+        paired = FALSE,
+        effsize.type = effsize.type,
+        partial = partial,
+        effsize.noncentral = effsize.noncentral,
+        var.equal = var.equal,
+        bf.prior = bf.prior,
+        tr = tr,
+        nboot = nboot,
+        conf.level = conf.level,
+        k = k,
+        messages = messages
+      )
   } else {
     test <- "none"
   }

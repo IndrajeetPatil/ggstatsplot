@@ -539,3 +539,36 @@ ggsignif_adder <- function(plot,
   # return the plot
   return(plot)
 }
+
+# function body
+sort_xy <- function(data,
+                    x,
+                    y,
+                    sort = "none",
+                    sort.fun = mean,
+                    ...) {
+  ellipsis::check_dots_used()
+
+  # decide the needed order
+  if (sort == "ascending") {
+    .desc <- FALSE
+  } else {
+    .desc <- TRUE
+  }
+
+  # reordering `x` based on its mean values
+  data %<>%
+    dplyr::mutate(
+      .data = .,
+      !!rlang::enquo(x) := forcats::fct_reorder(
+        .f = !!rlang::enquo(x),
+        .x = !!rlang::enquo(y),
+        .fun = sort.fun,
+        na.rm = TRUE,
+        .desc = .desc
+      )
+    )
+
+  # return the final dataframe
+  return(data)
+}

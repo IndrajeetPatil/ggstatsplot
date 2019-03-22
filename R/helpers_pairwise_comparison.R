@@ -378,7 +378,7 @@ pairwise_p <- function(data,
           sep = ""
         ))
       }
-    } else if (!isTRUE(var.equal)) {
+    } else {
 
       # dataframe with Games-Howell test results
       df <-
@@ -387,7 +387,8 @@ pairwise_p <- function(data,
           .data = .,
           p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
         ) %>%
-        ggstatsplot::signif_column(data = ., p = p.value)
+        signif_column(data = ., p = p.value) %>%
+        dplyr::select(.data = ., -conf.low, -conf.high)
 
       # display message about the post hoc tests run
       if (isTRUE(messages)) {
