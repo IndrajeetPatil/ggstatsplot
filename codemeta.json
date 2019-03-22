@@ -21,7 +21,7 @@
     "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2019-03-15 r76239)",
+  "runtimePlatform": "R Under development (unstable) (2019-03-19 r76252)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -348,6 +348,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=ez"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "forcats",
+      "name": "forcats",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=forcats"
     },
     {
       "@type": "SoftwareApplication",

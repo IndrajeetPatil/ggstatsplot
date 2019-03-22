@@ -288,6 +288,14 @@ ggbetweenstats <- function(data,
       outlier.label = outlier.label
     )
 
+  # figure out which test to run based on the number of levels of the
+  # independent variables
+  if (length(levels(as.factor(data$x))) < 3) {
+    test <- "t-test"
+  } else {
+    test <- "anova"
+  }
+
   # -------------------------------- plot -----------------------------------
 
   # create the basic plot
@@ -398,13 +406,6 @@ ggbetweenstats <- function(data,
   # --------------------- subtitle preparation -------------------------------
 
   if (isTRUE(results.subtitle)) {
-    # figure out which test to run based on the number of levels of the
-    # independent variables
-    if (length(levels(as.factor(data$x))) < 3) {
-      test <- "t-test"
-    } else {
-      test <- "anova"
-    }
 
     # figuring out which effect size to use
     effsize.type <- effsize_type_switch(effsize.type)

@@ -1,28 +1,48 @@
 #' @title Box/Violin plots for group or condition comparisons in
 #'   **within**-subjects (or repeated measures) designs.
 #' @name ggwithinstats
-#' @description A combination of box and violin plots along with jittered data
-#'   points for within-subjects designs with statistical details included in
-#'   the plot as a subtitle.
+#' @description A combination of box and violin plots along with raw
+#'   (unjittered) data points for within-subjects designs with statistical
+#'   details included in the plot as a subtitle.
 #' @author Indrajeet Patil
 #'
 #' @inheritParams ggbetweenstats
 #' @param path.point,path.mean Logical that decides whether individual data
 #'   points and means, respectively, should be connected using `geom_path`. Both
-#'   default to `TRUE`. In case of large number of data points, it is advisable
-#'   to set `path.point = FALSE` as these lines can overwhelm the plot.
+#'   default to `TRUE`. Note that `path.point` argument is relevant only when
+#'   there are two groups (i.e., in case of a *t*-test). In case of large number
+#'   of data points, it is advisable to set `path.point = FALSE` as these lines
+#'   can overwhelm the plot.
+#'
+#' @importFrom forcats fct_reorder
 #'
 #' @details **This function is still work in progress.**
 #'
 #' @examples
-#' ggstatsplot:::ggwithinstats(
-#'   data = ggstatsplot::iris_long,
-#'   x = attribute,
-#'   y = value,
+#'
+#' # setup
+#' set.seed(123)
+#' library(ggstatsplot)
+#'
+#' # two groups (t-test)
+#' ggstatsplot::ggwithinstats(
+#'   data = VR_dilemma,
+#'   x = modality,
+#'   y = score,
 #'   bf.message = TRUE,
-#'   messages = FALSE
+#'   xlab = "Presentation modality",
+#'   ylab = "Proportion of utilitarian decisions"
 #' )
-#' @keywords internal
+#'
+#' # more than two groups (anova)
+#' ggstatsplot::ggwithinstats(
+#'   data = iris_long,
+#'   x = condition,
+#'   y = value,
+#'   type = "r"
+#' )
+#'
+#' @export
 
 # defining the function
 ggwithinstats <- function(data,
@@ -104,12 +124,24 @@ ggwithinstats <- function(data,
       y = !!rlang::enquo(y),
       outlier.label = !!rlang::enquo(outlier.label)
     ) %>%
-    tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
-    dplyr::group_by(.data = ., x) %>%
-    dplyr::mutate(.data = ., id = dplyr::row_number()) %>%
-    dplyr::ungroup(x = .) %>%
     tibble::as_tibble(x = .)
+
+  # making sure missing observations for the repeated measure are left out
+  # plus give a unique id to each set of observations
+  data %<>%
+    long_to_wide_converter(
+    data = .,
+    x = x,
+    y = y
+  ) %>%
+    tidyr::gather(data = ., key, value, -rowid) %>%
+    dplyr::arrange(.data = ., rowid) %>%
+    dplyr::rename(.data = ., x = key, y = value, id = rowid)
+
+  # reordering `x` based on its mean values
+  data$x <-
+    forcats::fct_reorder(.f = data$x, .x = data$y, .fun = median)
 
   # if outlier.label column is not present, just use the values from `y` column
   if (!"outlier.label" %in% names(data)) {
@@ -126,6 +158,14 @@ ggwithinstats <- function(data,
       outlier.coef = outlier.coef,
       outlier.label = outlier.label
     )
+
+  # figure out which test to run based on the number of levels of the
+  # independent variables
+  if (length(levels(as.factor(data$x))) < 3) {
+    test <- "t-test"
+  } else {
+    test <- "anova"
+  }
 
   # --------------------------------- basic plot ------------------------------
 
@@ -158,8 +198,8 @@ ggwithinstats <- function(data,
       na.rm = TRUE
     )
 
-  # add a connecting path only if there are less than two groups
-  if (isTRUE(path.point)) {
+  # add a connecting path only if there are only two groups
+  if (test != "anova" && isTRUE(path.point)) {
     plot <- plot +
       ggplot2::geom_path(
         color = "grey50",
@@ -172,13 +212,6 @@ ggwithinstats <- function(data,
   # --------------------- subtitle preparation -------------------------------
 
   if (isTRUE(results.subtitle)) {
-    # figure out which test to run based on the number of levels of the
-    # independent variables
-    if (length(levels(as.factor(data$x))) < 3) {
-      test <- "t-test"
-    } else {
-      test <- "anova"
-    }
 
     # figuring out which effect size to use
     effsize.type <- effsize_type_switch(effsize.type)

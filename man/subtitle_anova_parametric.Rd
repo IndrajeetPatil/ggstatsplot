@@ -100,7 +100,6 @@ ggstatsplot::subtitle_anova_parametric(
   k = 4,
   nboot = 10
 )
-
 }
 \author{
 Indrajeet Patil

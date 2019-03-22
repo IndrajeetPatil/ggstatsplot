@@ -118,8 +118,10 @@ try to play around with the value of \code{tr}, which is by default set to
 
 \item{path.point, path.mean}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both
-default to \code{TRUE}. In case of large number of data points, it is advisable
-to set \code{path.point = FALSE} as these lines can overwhelm the plot.}
+default to \code{TRUE}. Note that \code{path.point} argument is relevant only when
+there are two groups (i.e., in case of a \emph{t}-test). In case of large number
+of data points, it is advisable to set \code{path.point = FALSE} as these lines
+can overwhelm the plot.}
 
 \item{axes.range.restrict}{Logical that decides whether to restrict the axes
 values ranges to \code{min} and \code{max} values of the axes variables (Default:
@@ -211,23 +213,38 @@ work as expected.}
 to be displayed (Default: \code{TRUE}).}
 }
 \description{
-A combination of box and violin plots along with jittered data
-points for within-subjects designs with statistical details included in
-the plot as a subtitle.
+A combination of box and violin plots along with raw
+(unjittered) data points for within-subjects designs with statistical
+details included in the plot as a subtitle.
 }
 \details{
 \strong{This function is still work in progress.}
 }
 \examples{
-ggstatsplot:::ggwithinstats(
-  data = ggstatsplot::iris_long,
-  x = attribute,
-  y = value,
+
+# setup
+set.seed(123)
+library(ggstatsplot)
+
+# two groups (t-test)
+ggstatsplot::ggwithinstats(
+  data = VR_dilemma,
+  x = modality,
+  y = score,
   bf.message = TRUE,
-  messages = FALSE
+  xlab = "Presentation modality",
+  ylab = "Proportion of utilitarian decisions"
 )
+
+# more than two groups (anova)
+ggstatsplot::ggwithinstats(
+  data = iris_long,
+  x = condition,
+  y = value,
+  type = "r"
+)
+
 }
 \author{
 Indrajeet Patil
 }
-\keyword{internal}

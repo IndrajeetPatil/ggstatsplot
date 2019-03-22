@@ -176,7 +176,7 @@ games_howell <- function(data,
 #' @importFrom rlang !! enquo
 #' @importFrom tibble as_tibble rowid_to_column enframe
 #' @importFrom jmv anovaNP anovaRMNP
-#' @importFrom utils packageVersion
+#' @importFrom forcats fct_relabel
 #'
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{grouped_ggbetweenstats}}
 #'
@@ -310,12 +310,18 @@ pairwise_p <- function(data,
     if (isTRUE(var.equal) || isTRUE(paired)) {
       # anova model
       aovmodel <- stats::aov(formula = y ~ x, data = data)
-      aovmodel$model$x <-
-        stringr::str_replace(
-          string = aovmodel$model$x,
-          pattern = "-",
-          replacement = "_"
-        )
+
+      # safeguarding against edge cases
+      aovmodel$model %<>%
+        dplyr::mutate(.data = .,
+                      x = forcats::fct_relabel(
+                        .f = x,
+                        .fun =  ~ stringr::str_replace(
+                          string = .x,
+                          pattern = "-",
+                          replacement = "_"
+                        )
+                      ))
 
       # extracting and cleaning up Tukey's HSD output
       df_tukey <- stats::TukeyHSD(x = aovmodel, conf.level = 0.95) %>%
@@ -338,21 +344,24 @@ pairwise_p <- function(data,
           )
         )
 
+      # tidy dataframe with results from pairwise tests
+      df_tidy <- broom::tidy(
+        stats::pairwise.t.test(
+          x = data$y,
+          g = data$x,
+          p.adjust.method = p.adjust.method,
+          paired = paired,
+          alternative = "two.sided",
+          na.action = na.omit
+        )
+      ) %>%
+        signif_column(data = ., p = p.value)
+
       # combining mean difference and results from pairwise t-test
       df <-
         dplyr::full_join(
           x = df_tukey,
-          y = broom::tidy(
-            stats::pairwise.t.test(
-              x = data$y,
-              g = data$x,
-              p.adjust.method = p.adjust.method,
-              paired = paired,
-              alternative = "two.sided",
-              na.action = na.omit
-            )
-          ) %>%
-            ggstatsplot::signif_column(data = ., p = p.value),
+          y = df_tidy,
           by = c("group1", "group2")
         )
 
