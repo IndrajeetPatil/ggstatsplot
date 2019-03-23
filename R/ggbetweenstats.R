@@ -124,8 +124,8 @@
 #' @importFrom ggsignif geom_signif
 #' @importFrom purrrlyr by_row
 #'
-#' @seealso \code{\link{grouped_ggbetweenstats}},
-#'  \code{\link{pairwise_p}}
+#' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
+#'  \code{\link{grouped_ggwithinstats}}, \code{\link{pairwise_p}}
 #'
 #' @details
 #'

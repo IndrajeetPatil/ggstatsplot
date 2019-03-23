@@ -137,7 +137,7 @@ ggwithinstats <- function(data,
   x_n_levels <- length(levels(data$x))[[1]]
 
   # removing observations that don't have all repeated values
-    data %<>%
+  data %<>%
     dplyr::filter(.data = ., !is.na(x)) %>%
     dplyr::group_by(.data = ., x) %>%
     dplyr::mutate(.data = ., id = dplyr::row_number()) %>%
@@ -146,7 +146,8 @@ ggwithinstats <- function(data,
     dplyr::group_by(.data = ., id) %>%
     dplyr::mutate(.data = ., n = dplyr::n()) %>%
     dplyr::ungroup(x = .) %>%
-    dplyr::filter(.data = ., n == x_n_levels)
+    dplyr::filter(.data = ., n == x_n_levels) %>%
+    dplyr::select(.data = ., -n)
 
   # if outlier.label column is not present, just use the values from `y` column
   if (!"outlier.label" %in% names(data)) {

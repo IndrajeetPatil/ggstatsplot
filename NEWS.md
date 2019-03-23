@@ -12,6 +12,8 @@ BREAKING CHANGES
 
 NEW FEATURES
 
+  - New functions `ggwithinstats` (and its `grouped_` variant) are introduced as
+    a counterpart to `ggbetweenstats` to handle repeated measures designs.
   - For repeated measures ANOVA, `subtitle_anova_nonparametric` now returns
     confidence intervals for Kendall's *W*.
   - Both `subtitle_anova_robust` and `subtitle_anova_parametric` gain a new

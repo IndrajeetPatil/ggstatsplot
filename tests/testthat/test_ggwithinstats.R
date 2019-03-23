@@ -11,6 +11,9 @@ data_bugs <- bugs %>%
   tibble::as_tibble(.) %>%
   tidyr::gather(., key, value, LDLF:HDHF)
 
+# for t-test
+data_bugs_2 <- dplyr::filter(.data = data_bugs, key %in% c("HDLF", "HDHF"))
+
 # errors ------------------------------------------------------------------
 
 testthat::test_that(
@@ -27,6 +30,99 @@ testthat::test_that(
   }
 )
 
+# basic plotting works - two groups ---------------------------------
+
+testthat::test_that(
+  desc = "basic plotting works - two groups",
+  code = {
+    testthat::skip_on_cran()
+
+    # plot
+    set.seed(123)
+    p1 <- ggstatsplot::ggwithinstats(
+      data = data_bugs_2,
+      x = key,
+      y = value,
+      type = "p",
+      sort = "descending",
+      sort.fun = mean,
+      k = 4,
+      conf.level = 0.99,
+      outlier.tagging = TRUE,
+      outlier.label = "Region",
+      outlier.coef = 1.5,
+      bf.message = TRUE,
+      pairwise.comparisons = TRUE,
+      title = "bugs dataset",
+      caption = "From `jmv` package",
+      messages = FALSE
+    )
+
+    # build the plot
+    pb1 <- ggplot2::ggplot_build(p1)
+
+    # subtitle
+    set.seed(123)
+    p1_subtitle <- ggstatsplot::subtitle_t_parametric(
+      data = data_bugs_2,
+      x = key,
+      y = value,
+      type = "p",
+      k = 4,
+      paired = TRUE,
+      conf.level = 0.99,
+      messages = FALSE
+    )
+
+    # dataframe used for visualization
+    testthat::expect_equal(length(pb1$data), 8L)
+    testthat::expect_equal(dim(p1$data), c(180L, 6L))
+    testthat::expect_equal(dim(pb1$data[[1]]), c(180L, 10L))
+    testthat::expect_equal(dim(pb1$data[[2]]), c(2L, 25L))
+    testthat::expect_equal(dim(pb1$data[[3]]), c(1024L, 20L))
+    testthat::expect_equal(dim(pb1$data[[4]]), c(180L, 8L))
+    testthat::expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
+    testthat::expect_equal(dim(pb1$data[[6]]), c(2L, 12L))
+    testthat::expect_equal(dim(pb1$data[[7]]), c(2L, 15L))
+    testthat::expect_equal(dim(pb1$data[[8]]), c(2L, 8L))
+
+    # data from difference layers
+    testthat::expect_equal(max(pb1$data[[4]]$group), 90L)
+
+    # range of y variable
+    testthat::expect_equal(ggplot2::layer_scales(p1)$y$range$range, c(0L, 10L))
+
+    # checking x-axis sample size labels
+    testthat::expect_identical(
+      ggplot2::layer_scales(p1)$x$labels,
+      c("HDHF\n(n = 90)", "HDLF\n(n = 90)")
+    )
+
+    # checking plot labels
+    testthat::expect_identical(p1$labels$title, "bugs dataset")
+    testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
+    testthat::expect_identical(
+      p1$labels$caption,
+      ggplot2::expr(atop(
+        displaystyle("From `jmv` package"),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "-3.7724",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
+          "0.7070"
+        )
+      ))
+    )
+    testthat::expect_identical(p1$labels$x, "key")
+    testthat::expect_identical(p1$labels$y, "value")
+  }
+)
+
 # basic plotting works - more than two groups ---------------------------------
 
 testthat::test_that(
@@ -39,7 +135,7 @@ testthat::test_that(
     p1 <- ggstatsplot::ggwithinstats(
       data = WineTasting,
       x = Wine,
-      y = Taste,
+      y = "Taste",
       type = "p",
       sort = "ascending",
       sort.fun = median,
@@ -61,7 +157,7 @@ testthat::test_that(
     set.seed(123)
     p1_subtitle <- ggstatsplot::subtitle_anova_parametric(
       data = WineTasting,
-      x = Wine,
+      x = "Wine",
       y = Taste,
       type = "p",
       k = 4,
@@ -109,7 +205,6 @@ testthat::test_that(
     )
 
     # checking plot labels
-    # testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(p1$labels$title, "wine tasting data")
     testthat::expect_identical(p1$labels$subtitle, p1_subtitle)
     testthat::expect_identical(
@@ -158,6 +253,8 @@ testthat::test_that(
       x = Wine,
       y = Taste,
       sort = "none",
+      package = "wesanderson",
+      palette = "Royal1",
       results.subtitle = FALSE,
       messages = FALSE
     )
@@ -210,6 +307,7 @@ testthat::test_that(
       pairwise.annotation = "p",
       outlier.tagging = FALSE,
       pairwise.comparisons = TRUE,
+      axes.range.restrict = TRUE,
       conf.level = 0.90,
       messages = FALSE
     )
@@ -335,6 +433,16 @@ testthat::test_that(
     testthat::expect_null(p3$labels$caption, NULL)
     testthat::expect_null(p4$labels$caption, NULL)
 
+
+    p5 <- ggstatsplot::ggwithinstats(
+      data = ggstatsplot::iris_long,
+      x = condition,
+      y = value,
+      type = "bf",
+      pairwise.comparisons = TRUE
+    )
+
+    testthat::expect_is(p5, "ggplot")
   }
 )
 
@@ -346,8 +454,6 @@ testthat::test_that(
     testthat::skip_on_cran()
     set.seed(123)
 
-    data_bugs_2 <- dplyr::filter(.data = data_bugs, key %in% c("HDLF", "HDHF"))
-
     set.seed(123)
     p1 <- ggstatsplot::ggwithinstats(
       data = data_bugs,
@@ -355,7 +461,8 @@ testthat::test_that(
       y = value,
       type = "np",
       outlier.tagging = TRUE,
-      pairwise.comparisons = TRUE,
+      pairwise.comparisons = FALSE,
+      axes.range.restrict = TRUE,
       pairwise.annotation = "p",
       bf.message = TRUE,
       messages = FALSE
@@ -441,15 +548,7 @@ testthat::test_that(
     testthat::expect_identical(p2$labels$subtitle, p2_subtitle)
     testthat::expect_identical(p3$labels$subtitle, p3_subtitle)
     testthat::expect_identical(p4$labels$subtitle, p4_subtitle)
-    testthat::expect_identical(p1$labels$caption, ggplot2::expr(atop(
-      displaystyle(NULL),
-      expr = paste(
-        "Pairwise comparisons: ",
-        bold("Durbin-Conover test"),
-        "; Adjustment (p-value): ",
-        bold("Holm")
-      )
-    )))
+    testthat::expect_null(p1$labels$caption, NULL)
     testthat::expect_identical(p2$labels$caption, ggplot2::expr(atop(
       displaystyle(NULL),
       expr = paste(

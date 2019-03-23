@@ -223,7 +223,6 @@ testthat::test_that(
     )
 
     # checking plot labels
-    # testthat::expect_identical(p$labels$subtitle, p_subtitle)
     testthat::expect_identical(p$labels$title, "mammalian sleep")
     testthat::expect_identical(
       p$labels$caption,
