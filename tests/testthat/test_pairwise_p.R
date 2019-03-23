@@ -67,7 +67,7 @@ testthat::test_that(
 
     # checking dimensions of the results dataframe
     testthat::expect_equal(dim(df1), c(6L, 6L))
-    testthat::expect_equal(dim(df2), c(6L, 11L))
+    testthat::expect_equal(dim(df2), c(6L, 9L))
     testthat::expect_equal(dim(df3), c(6L, 6L))
     testthat::expect_equal(dim(df4), c(6L, 8L))
     testthat::expect_equal(dim(df5), c(3L, 6L))
@@ -475,7 +475,7 @@ testthat::test_that(
       dplyr::filter(.data = ., group1 == "omni", group2 == "carni")
 
     # tests
-    testthat::expect_equal(dim(df1), c(1L, 11L))
+    testthat::expect_equal(dim(df1), c(1L, 9L))
     testthat::expect_equal(df1$mean.difference, df2$mean.difference, tolerance = 0.01)
     testthat::expect_equal(df1$se, df2$se, tolerance = 0.01)
     testthat::expect_equal(df1$t.value, df2$t.value, tolerance = 0.01)

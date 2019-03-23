@@ -1,16 +1,12 @@
-#' @title Violin plots for group or condition comparisons in between-subjects
+#' @title Violin plots for group or condition comparisons in within-subjects
 #'   designs repeated across all levels of a grouping variable.
-#' @name grouped_ggbetweenstats
+#' @name grouped_ggwithinstats
 #' @description A combined plot of comparison plot created for levels of a
 #'   grouping variable.
 #' @author Indrajeet Patil, Chuck Powell
 #'
-#' @param grouping.var A single grouping variable (can be entered either as a
-#'   bare name `x` or as a string `"x"`).
-#' @param title.prefix Character string specifying the prefix text for the fixed
-#'   plot title (name of each factor level) (Default: `NULL`). If `NULL`, the
-#'   variable name entered for `grouping.var` will be used.
-#' @inheritParams ggbetweenstats
+#' @inheritParams ggwithinstats
+#' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams combine_plots
 #'
 #' @import ggplot2
@@ -21,102 +17,84 @@
 #' @importFrom glue glue
 #' @importFrom purrr pmap
 #'
-#' @seealso \code{\link{ggbetweenstats}}
+#' @seealso \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},
+#' \code{\link{grouped_ggbetweenstats}}
 #'
-#' @inherit ggbetweenstats return references
-#' @inherit ggbetweenstats return details
+#' @inherit ggwithinstats return references
+#' @inherit ggwithinstats return details
 #'
 #' @examples
 #'
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # the most basic function call
-#' ggstatsplot::grouped_ggbetweenstats(
-#'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
-#'   x = year,
-#'   y = hwy,
-#'   grouping.var = drv,
-#'   conf.level = 0.99,
-#'   bf.message = TRUE
+#' ggstatsplot::grouped_ggwithinstats(
+#'   data = VR_dilemma,
+#'   x = modality,
+#'   y = score,
+#'   grouping.var = order,
+#'   bf.message = TRUE,
+#'   messages = TRUE
 #' )
-#' \dontrun{
-#' # modifying individual plots using `ggplot.component` argument
-#' ggstatsplot::grouped_ggbetweenstats(
-#'   data = dplyr::filter(
-#'     ggstatsplot::movies_long,
-#'     genre %in% c("Action", "Comedy"),
-#'     mpaa %in% c("R", "PG")
-#'   ),
-#'   x = genre,
-#'   y = rating,
-#'   grouping.var = mpaa,
-#'   results.subtitle = FALSE,
-#'   ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
-#'   messages = FALSE
-#' )
-#' }
-#'
 #' @export
 
 # defining the function
-grouped_ggbetweenstats <- function(data,
-                                   x,
-                                   y,
-                                   grouping.var,
-                                   title.prefix = NULL,
-                                   plot.type = "boxviolin",
-                                   type = "parametric",
-                                   pairwise.comparisons = FALSE,
-                                   pairwise.annotation = "asterisk",
-                                   pairwise.display = "significant",
-                                   p.adjust.method = "holm",
-                                   effsize.type = "unbiased",
-                                   partial = TRUE,
-                                   effsize.noncentral = TRUE,
-                                   bf.prior = 0.707,
-                                   bf.message = FALSE,
-                                   results.subtitle = TRUE,
-                                   xlab = NULL,
-                                   ylab = NULL,
-                                   subtitle = NULL,
-                                   caption = NULL,
-                                   sample.size.label = TRUE,
-                                   k = 2,
-                                   var.equal = FALSE,
-                                   conf.level = 0.95,
-                                   nboot = 100,
-                                   tr = 0.1,
-                                   sort = "none",
-                                   sort.fun = mean,
-                                   axes.range.restrict = FALSE,
-                                   mean.label.size = 3,
-                                   mean.label.fontface = "bold",
-                                   mean.label.color = "black",
-                                   notch = FALSE,
-                                   notchwidth = 0.5,
-                                   linetype = "solid",
-                                   outlier.tagging = FALSE,
-                                   outlier.label = NULL,
-                                   outlier.label.color = "black",
-                                   outlier.color = "black",
-                                   outlier.shape = 19,
-                                   outlier.coef = 1.5,
-                                   mean.plotting = TRUE,
-                                   mean.ci = FALSE,
-                                   mean.size = 5,
-                                   mean.color = "darkred",
-                                   point.jitter.width = NULL,
-                                   point.jitter.height = 0,
-                                   point.dodge.width = 0.60,
-                                   ggtheme = ggplot2::theme_bw(),
-                                   ggstatsplot.layer = TRUE,
-                                   package = "RColorBrewer",
-                                   palette = "Dark2",
-                                   direction = 1,
-                                   ggplot.component = NULL,
-                                   messages = TRUE,
-                                   ...) {
+grouped_ggwithinstats <- function(data,
+                                  x,
+                                  y,
+                                  grouping.var,
+                                  title.prefix = NULL,
+                                  type = "parametric",
+                                  pairwise.comparisons = FALSE,
+                                  pairwise.annotation = "asterisk",
+                                  pairwise.display = "significant",
+                                  p.adjust.method = "holm",
+                                  effsize.type = "unbiased",
+                                  partial = TRUE,
+                                  effsize.noncentral = TRUE,
+                                  bf.prior = 0.707,
+                                  bf.message = FALSE,
+                                  results.subtitle = TRUE,
+                                  xlab = NULL,
+                                  ylab = NULL,
+                                  subtitle = NULL,
+                                  caption = NULL,
+                                  sample.size.label = TRUE,
+                                  k = 2,
+                                  conf.level = 0.95,
+                                  nboot = 100,
+                                  tr = 0.1,
+                                  path.point = TRUE,
+                                  path.mean = TRUE,
+                                  sort = "none",
+                                  sort.fun = mean,
+                                  axes.range.restrict = FALSE,
+                                  mean.label.size = 3,
+                                  mean.label.fontface = "bold",
+                                  mean.label.color = "black",
+                                  notch = FALSE,
+                                  notchwidth = 0.5,
+                                  linetype = "solid",
+                                  outlier.tagging = FALSE,
+                                  outlier.label = NULL,
+                                  outlier.label.color = "black",
+                                  outlier.color = "black",
+                                  outlier.shape = 19,
+                                  outlier.coef = 1.5,
+                                  mean.plotting = TRUE,
+                                  mean.ci = FALSE,
+                                  mean.size = 5,
+                                  mean.color = "darkred",
+                                  ggtheme = ggplot2::theme_bw(),
+                                  ggstatsplot.layer = TRUE,
+                                  package = "RColorBrewer",
+                                  palette = "Dark2",
+                                  direction = 1,
+                                  ggplot.component = NULL,
+                                  messages = TRUE,
+                                  ...) {
 
   # =================== check user input and prep =========================
 
@@ -204,9 +182,8 @@ grouped_ggbetweenstats <- function(data,
   plotlist_purrr <-
     purrr::pmap(
       .l = flexiblelist,
-      .f = ggstatsplot::ggbetweenstats,
+      .f = ggstatsplot::ggwithinstats,
       # put common parameters here
-      plot.type = plot.type,
       type = type,
       pairwise.comparisons = pairwise.comparisons,
       pairwise.annotation = pairwise.annotation,
@@ -224,10 +201,11 @@ grouped_ggbetweenstats <- function(data,
       caption = caption,
       sample.size.label = sample.size.label,
       k = k,
-      var.equal = var.equal,
       conf.level = conf.level,
       nboot = nboot,
       tr = tr,
+      path.point = path.point,
+      path.mean = path.mean,
       sort = sort,
       sort.fun = sort.fun,
       axes.range.restrict = axes.range.restrict,
@@ -245,9 +223,6 @@ grouped_ggbetweenstats <- function(data,
       mean.ci = mean.ci,
       mean.size = mean.size,
       mean.color = mean.color,
-      point.jitter.width = point.jitter.width,
-      point.dodge.width = point.dodge.width,
-      point.jitter.height = point.jitter.height,
       ggtheme = ggtheme,
       ggstatsplot.layer = ggstatsplot.layer,
       package = package,

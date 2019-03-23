@@ -35,13 +35,17 @@
 #' )
 #'
 #' # more than two groups (anova)
-#' ggstatsplot::ggwithinstats(
-#'   data = iris_long,
-#'   x = condition,
-#'   y = value,
-#'   type = "r"
-#' )
+#' library(WRS2)
 #'
+#' ggstatsplot::ggwithinstats(
+#'   data = tibble::as_tibble(WineTasting),
+#'   x = Wine,
+#'   y = Taste,
+#'   type = "r",
+#'   pairwise.comparisons = TRUE,
+#'   outlier.tagging = TRUE,
+#'   outlier.label = Taster
+#' )
 #' @export
 
 # defining the function
@@ -71,6 +75,8 @@ ggwithinstats <- function(data,
                           tr = 0.1,
                           path.point = TRUE,
                           path.mean = TRUE,
+                          sort = "none",
+                          sort.fun = mean,
                           axes.range.restrict = FALSE,
                           mean.label.size = 3,
                           mean.label.fontface = "bold",
@@ -127,21 +133,21 @@ ggwithinstats <- function(data,
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
-  # making sure missing observations for the repeated measure are left out
-  # plus give a unique id to each set of observations
-  data %<>%
-    long_to_wide_converter(
-    data = .,
-    x = x,
-    y = y
-  ) %>%
-    tidyr::gather(data = ., key, value, -rowid) %>%
-    dplyr::arrange(.data = ., rowid) %>%
-    dplyr::rename(.data = ., x = key, y = value, id = rowid)
+  # figuring out number of levels in the grouping factor
+  x_n_levels <- length(levels(data$x))[[1]]
 
-  # reordering `x` based on its mean values
-  data$x <-
-    forcats::fct_reorder(.f = data$x, .x = data$y, .fun = median)
+  # removing observations that don't have all repeated values
+  data %<>%
+    dplyr::filter(.data = ., !is.na(x)) %>%
+    dplyr::group_by(.data = ., x) %>%
+    dplyr::mutate(.data = ., id = dplyr::row_number()) %>%
+    dplyr::ungroup(x = .) %>%
+    dplyr::filter(.data = ., !is.na(y)) %>%
+    dplyr::group_by(.data = ., id) %>%
+    dplyr::mutate(.data = ., n = dplyr::n()) %>%
+    dplyr::ungroup(x = .) %>%
+    dplyr::filter(.data = ., n == x_n_levels) %>%
+    dplyr::select(.data = ., -n)
 
   # if outlier.label column is not present, just use the values from `y` column
   if (!"outlier.label" %in% names(data)) {
@@ -165,6 +171,20 @@ ggwithinstats <- function(data,
     test <- "t-test"
   } else {
     test <- "anova"
+  }
+
+  # --------------------------------- sorting --------------------------------
+
+  # if sorting is happening
+  if (sort != "none") {
+    data %<>%
+      sort_xy(
+        data = .,
+        x = x,
+        y = y,
+        sort = sort,
+        sort.fun = sort.fun
+      )
   }
 
   # --------------------------------- basic plot ------------------------------
@@ -209,7 +229,7 @@ ggwithinstats <- function(data,
       )
   }
 
-  # --------------------- subtitle preparation -------------------------------
+  # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
 
@@ -217,11 +237,10 @@ ggwithinstats <- function(data,
     effsize.type <- effsize_type_switch(effsize.type)
 
     # preparing the bayes factor message
-    if (test == "t-test") {
-
+    if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
       # preparing the BF message for null
-      if (isTRUE(bf.message)) {
-        bf.caption.text <-
+      if (test == "t-test") {
+        caption <-
           bf_two_sample_ttest(
             data = data,
             x = x,
@@ -232,11 +251,8 @@ ggwithinstats <- function(data,
             output = "caption",
             k = k
           )
-      }
-    } else if (test == "anova") {
-      # preparing the BF message for null
-      if (isTRUE(bf.message)) {
-        bf.caption.text <-
+      } else if (test == "anova") {
+        caption <-
           bf_oneway_anova(
             data = data,
             x = x,
@@ -250,34 +266,27 @@ ggwithinstats <- function(data,
     }
 
     # extracting the subtitle using the switch function
-    if (isTRUE(results.subtitle)) {
-      subtitle <-
-        ggbetweenstats_switch(
-          # switch based on
-          type = type,
-          test = test,
-          # arguments relevant for subtitle helper functions
-          data = data,
-          x = x,
-          y = y,
-          paired = TRUE,
-          effsize.type = effsize.type,
-          partial = partial,
-          effsize.noncentral = effsize.noncentral,
-          var.equal = TRUE,
-          bf.prior = bf.prior,
-          tr = tr,
-          nboot = nboot,
-          conf.level = conf.level,
-          k = k,
-          messages = messages
-        )
-    }
-
-    # if bayes factor message needs to be displayed
-    if (type %in% c("parametric", "p") && isTRUE(bf.message)) {
-      caption <- bf.caption.text
-    }
+    subtitle <-
+      ggbetweenstats_switch(
+        # switch based on
+        type = type,
+        test = test,
+        # arguments relevant for subtitle helper functions
+        data = data,
+        x = x,
+        y = y,
+        paired = TRUE,
+        effsize.type = effsize.type,
+        partial = partial,
+        effsize.noncentral = effsize.noncentral,
+        var.equal = TRUE,
+        bf.prior = bf.prior,
+        tr = tr,
+        nboot = nboot,
+        conf.level = conf.level,
+        k = k,
+        messages = messages
+      )
   } else {
     test <- "none"
   }

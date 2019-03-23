@@ -85,7 +85,7 @@ testthat::test_that(
       as.character(unique(data_signif$annotation)),
       c("p = 0.079", "p = 0.139", "p = 0.825")
     )
-    testthat::expect_equal(data_dims, c(3L, 11L))
+    testthat::expect_equal(data_dims, c(3L, 9L))
 
     # checking comparison groups and labels
     testthat::expect_identical(dat$group1, c("PG-13", "PG-13", "R"))

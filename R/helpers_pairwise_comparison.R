@@ -313,15 +313,17 @@ pairwise_p <- function(data,
 
       # safeguarding against edge cases
       aovmodel$model %<>%
-        dplyr::mutate(.data = .,
-                      x = forcats::fct_relabel(
-                        .f = x,
-                        .fun =  ~ stringr::str_replace(
-                          string = .x,
-                          pattern = "-",
-                          replacement = "_"
-                        )
-                      ))
+        dplyr::mutate(
+          .data = .,
+          x = forcats::fct_relabel(
+            .f = x,
+            .fun = ~ stringr::str_replace(
+              string = .x,
+              pattern = "-",
+              replacement = "_"
+            )
+          )
+        )
 
       # extracting and cleaning up Tukey's HSD output
       df_tukey <- stats::TukeyHSD(x = aovmodel, conf.level = 0.95) %>%
@@ -378,7 +380,7 @@ pairwise_p <- function(data,
           sep = ""
         ))
       }
-    } else if (!isTRUE(var.equal)) {
+    } else {
 
       # dataframe with Games-Howell test results
       df <-
@@ -387,7 +389,8 @@ pairwise_p <- function(data,
           .data = .,
           p.value = stats::p.adjust(p = p.value, method = p.adjust.method)
         ) %>%
-        ggstatsplot::signif_column(data = ., p = p.value)
+        signif_column(data = ., p = p.value) %>%
+        dplyr::select(.data = ., -conf.low, -conf.high)
 
       # display message about the post hoc tests run
       if (isTRUE(messages)) {

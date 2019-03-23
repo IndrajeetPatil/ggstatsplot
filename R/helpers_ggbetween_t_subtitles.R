@@ -461,7 +461,8 @@ subtitle_t_robust <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    dplyr::mutate(.data = ., x = droplevels(as.factor(x)))
+    dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
+    tibble::as_tibble(x = .)
 
   # when paired robust t-test is run, `df` is going to be an integer
   if (isTRUE(paired)) {
@@ -521,12 +522,26 @@ subtitle_t_robust <- function(data,
     # ---------------------------- within-subjects design -------------------
   } else {
 
+    # converting to long format and then getting it back in wide so that the
+    # rowid variable can be used as the block variable
+    data_within <-
+      long_to_wide_converter(
+        data = data,
+        x = x,
+        y = y
+      ) %>%
+      tidyr::gather(data = ., key, value, -rowid) %>%
+      dplyr::arrange(.data = ., rowid)
+
+    # sample size
+    sample_size <- length(unique(data_within$rowid))
+
     # getting dataframe of results from the custom function
     stats_df <-
       yuend_ci(
-        data = data,
-        x = x,
-        y = y,
+        data = data_within,
+        x = key,
+        y = value,
         tr = tr,
         nboot = nboot,
         conf.level = conf.level,
@@ -545,7 +560,7 @@ subtitle_t_robust <- function(data,
       effsize.estimate = stats_df$xi[[1]],
       effsize.LL = stats_df$conf.low[[1]],
       effsize.UL = stats_df$conf.high[[1]],
-      n = stats_df$n[[1]],
+      n = sample_size,
       conf.level = conf.level,
       k = k,
       k.parameter = k.df
