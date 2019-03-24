@@ -203,7 +203,7 @@ categories like **NC-17** we'll sample only one quarter of the data and
 completely drop NC-17 using `dplyr`.  Once again we'll feed `purrr::pmap` a list
 of lists via `.l` and for `.f` we'll specify `.f = ggstatsplot::ggscatterstats`.
 
-This time we'll put all the code in one block...
+This time we'll put all the code in one block-
 
 ```{r purrr_ggscatterstats, warning = FALSE, message = FALSE, fig.height = 14, fig.width = 7}
 # for reproducibility
@@ -385,6 +385,8 @@ plot_list <- purrr::pmap(
     low.color = list("#56B4E9", "white", "#999999", "#009E73"),
     high.color = list("#D55E00", "white", "#F0E442", "#F0E442"),
     bar.fill = list("white", "red", "orange", "blue"),
+    effsize.type = list("d", "d", "g", "g"),
+    effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
     centrality.color = "black",
     test.value.line = TRUE,
     test.value.color = "black",
@@ -454,7 +456,8 @@ plot_list <- purrr::pmap(
       "Continent: Asia",
       "Continent: Europe"
     ),
-    
+    effsize.type = list("d", "d", "g", "g"),
+    effsize.noncentral = list(TRUE, FALSE, TRUE, FALSE),
     centrality.color = list("red", "#0072B2", "#D55E00", "#CC79A7"),
     test.value.line = TRUE,
     test.value.color = list("#E69F00", "#56B4E9", "#009E73", "blue"),

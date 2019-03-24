@@ -132,7 +132,7 @@
       <h1>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-23</h4>
+            <h4 class="date">2019-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -266,7 +266,7 @@
 </h1>
 <p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle.</p>
 <p>For data we’ll use <code>movies_wide</code> which is from IMDB and part of the <code>ggstatsplot</code> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>. Once again we’ll feed <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::pmap</a></code> a list of lists via <code>.l</code> and for <code>.f</code> we’ll specify <code>.f = ggstatsplot::ggscatterstats</code>.</p>
-<p>This time we’ll put all the code in one block…</p>
+<p>This time we’ll put all the code in one block-</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># for reproducibility</span></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
 <a class="sourceLine" id="cb4-3" title="3"></a>
@@ -450,30 +450,32 @@
 <a class="sourceLine" id="cb6-42" title="42">    <span class="dt">low.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"#56B4E9"</span>, <span class="st">"white"</span>, <span class="st">"#999999"</span>, <span class="st">"#009E73"</span>),</a>
 <a class="sourceLine" id="cb6-43" title="43">    <span class="dt">high.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"#D55E00"</span>, <span class="st">"white"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#F0E442"</span>),</a>
 <a class="sourceLine" id="cb6-44" title="44">    <span class="dt">bar.fill =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"white"</span>, <span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>),</a>
-<a class="sourceLine" id="cb6-45" title="45">    <span class="dt">centrality.color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb6-46" title="46">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb6-47" title="47">    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb6-48" title="48">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
-<a class="sourceLine" id="cb6-49" title="49">    <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb6-50" title="50">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb6-51" title="51">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
-<a class="sourceLine" id="cb6-52" title="52">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
-<a class="sourceLine" id="cb6-53" title="53">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
-<a class="sourceLine" id="cb6-54" title="54">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_few">theme_few</a></span>()</a>
-<a class="sourceLine" id="cb6-55" title="55">    ),</a>
-<a class="sourceLine" id="cb6-56" title="56">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb6-57" title="57">  ),</a>
-<a class="sourceLine" id="cb6-58" title="58">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
-<a class="sourceLine" id="cb6-59" title="59">)</a>
-<a class="sourceLine" id="cb6-60" title="60"></a>
-<a class="sourceLine" id="cb6-61" title="61"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb6-62" title="62">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb6-63" title="63">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb6-64" title="64">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
-<a class="sourceLine" id="cb6-65" title="65">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
-<a class="sourceLine" id="cb6-66" title="66">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb6-67" title="67">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
-<a class="sourceLine" id="cb6-68" title="68">)</a></code></pre></div>
+<a class="sourceLine" id="cb6-45" title="45">    <span class="dt">effsize.type =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"g"</span>, <span class="st">"g"</span>),</a>
+<a class="sourceLine" id="cb6-46" title="46">    <span class="dt">effsize.noncentral =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb6-47" title="47">    <span class="dt">centrality.color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb6-48" title="48">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-49" title="49">    <span class="dt">test.value.color =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb6-50" title="50">    <span class="dt">centrality.para =</span> <span class="st">"mean"</span>,</a>
+<a class="sourceLine" id="cb6-51" title="51">    <span class="dt">normal.curve =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-52" title="52">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb6-53" title="53">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_classic</a></span>(),</a>
+<a class="sourceLine" id="cb6-54" title="54">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight">theme_fivethirtyeight</a></span>(),</a>
+<a class="sourceLine" id="cb6-55" title="55">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(),</a>
+<a class="sourceLine" id="cb6-56" title="56">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_few">theme_few</a></span>()</a>
+<a class="sourceLine" id="cb6-57" title="57">    ),</a>
+<a class="sourceLine" id="cb6-58" title="58">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb6-59" title="59">  ),</a>
+<a class="sourceLine" id="cb6-60" title="60">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>gghistostats</a>
+<a class="sourceLine" id="cb6-61" title="61">)</a>
+<a class="sourceLine" id="cb6-62" title="62"></a>
+<a class="sourceLine" id="cb6-63" title="63"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb6-64" title="64">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb6-65" title="65">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb6-66" title="66">  <span class="dt">title.text =</span> <span class="st">"Improvement in life expectancy worldwide since 1950"</span>,</a>
+<a class="sourceLine" id="cb6-67" title="67">  <span class="dt">caption.text =</span> <span class="st">"Note: black line - 1950; blue line - 2007"</span>,</a>
+<a class="sourceLine" id="cb6-68" title="68">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb6-69" title="69">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>)</a>
+<a class="sourceLine" id="cb6-70" title="70">)</a></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_gghistostats-1.png" width="576"></p>
 </div>
 <div id="ggdotplotstats" class="section level1">
@@ -521,32 +523,33 @@
 <a class="sourceLine" id="cb7-39" title="39">      <span class="st">"Continent: Asia"</span>,</a>
 <a class="sourceLine" id="cb7-40" title="40">      <span class="st">"Continent: Europe"</span></a>
 <a class="sourceLine" id="cb7-41" title="41">    ),</a>
-<a class="sourceLine" id="cb7-42" title="42">    </a>
-<a class="sourceLine" id="cb7-43" title="43">    <span class="dt">centrality.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"red"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>),</a>
-<a class="sourceLine" id="cb7-44" title="44">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb7-45" title="45">    <span class="dt">test.value.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"blue"</span>),</a>
-<a class="sourceLine" id="cb7-46" title="46">    <span class="dt">centrality.para =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"median"</span>, <span class="st">"mean"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span>), </a>
-<a class="sourceLine" id="cb7-47" title="47">    <span class="dt">point.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"#E69F00"</span>, <span class="st">"darkgreen"</span>), </a>
-<a class="sourceLine" id="cb7-48" title="48">    <span class="dt">point.size =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>), </a>
-<a class="sourceLine" id="cb7-49" title="49">    <span class="dt">point.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">18</span>),</a>
-<a class="sourceLine" id="cb7-50" title="50">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb7-51" title="51">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(<span class="dt">base_family =</span> <span class="st">"serif"</span>),</a>
-<a class="sourceLine" id="cb7-52" title="52">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
-<a class="sourceLine" id="cb7-53" title="53">      hrbrthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_rc">theme_ipsum_rc</a></span>(<span class="dt">axis_title_size =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb7-54" title="54">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_hc">theme_hc</a></span>(<span class="dt">bgcolor =</span> <span class="st">"darkunica"</span>)</a>
-<a class="sourceLine" id="cb7-55" title="55">    ),</a>
-<a class="sourceLine" id="cb7-56" title="56">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb7-57" title="57">  ),</a>
-<a class="sourceLine" id="cb7-58" title="58">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggdotplotstats</a>
-<a class="sourceLine" id="cb7-59" title="59">)</a>
-<a class="sourceLine" id="cb7-60" title="60"></a>
-<a class="sourceLine" id="cb7-61" title="61"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
-<a class="sourceLine" id="cb7-62" title="62">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
-<a class="sourceLine" id="cb7-63" title="63">  <span class="dt">plotlist =</span> plot_list,</a>
-<a class="sourceLine" id="cb7-64" title="64">  <span class="dt">title.text =</span> <span class="st">"Improvement in GDP per capita from 1952-2007"</span>,</a>
-<a class="sourceLine" id="cb7-65" title="65">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb7-66" title="66">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>, <span class="st">"(iii)"</span>, <span class="st">"(iv)"</span>)</a>
-<a class="sourceLine" id="cb7-67" title="67">)</a></code></pre></div>
+<a class="sourceLine" id="cb7-42" title="42">    <span class="dt">effsize.type =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"g"</span>, <span class="st">"g"</span>),</a>
+<a class="sourceLine" id="cb7-43" title="43">    <span class="dt">effsize.noncentral =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb7-44" title="44">    <span class="dt">centrality.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"red"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>),</a>
+<a class="sourceLine" id="cb7-45" title="45">    <span class="dt">test.value.line =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb7-46" title="46">    <span class="dt">test.value.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"blue"</span>),</a>
+<a class="sourceLine" id="cb7-47" title="47">    <span class="dt">centrality.para =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"median"</span>, <span class="st">"mean"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span>), </a>
+<a class="sourceLine" id="cb7-48" title="48">    <span class="dt">point.color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"#E69F00"</span>, <span class="st">"darkgreen"</span>), </a>
+<a class="sourceLine" id="cb7-49" title="49">    <span class="dt">point.size =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb7-50" title="50">    <span class="dt">point.shape =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">18</span>),</a>
+<a class="sourceLine" id="cb7-51" title="51">    <span class="dt">ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb7-52" title="52">      ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>(<span class="dt">base_family =</span> <span class="st">"serif"</span>),</a>
+<a class="sourceLine" id="cb7-53" title="53">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_tufte">theme_tufte</a></span>(),</a>
+<a class="sourceLine" id="cb7-54" title="54">      hrbrthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_rc">theme_ipsum_rc</a></span>(<span class="dt">axis_title_size =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb7-55" title="55">      ggthemes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_hc">theme_hc</a></span>(<span class="dt">bgcolor =</span> <span class="st">"darkunica"</span>)</a>
+<a class="sourceLine" id="cb7-56" title="56">    ),</a>
+<a class="sourceLine" id="cb7-57" title="57">    <span class="dt">messages =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb7-58" title="58">  ),</a>
+<a class="sourceLine" id="cb7-59" title="59">  <span class="dt">.f =</span> ggstatsplot<span class="op">::</span>ggdotplotstats</a>
+<a class="sourceLine" id="cb7-60" title="60">)</a>
+<a class="sourceLine" id="cb7-61" title="61"></a>
+<a class="sourceLine" id="cb7-62" title="62"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span></a>
+<a class="sourceLine" id="cb7-63" title="63">ggstatsplot<span class="op">::</span><span class="kw"><a href="https://indrajeetpatil.github.io/ggstatsplot//reference/combine_plots.html">combine_plots</a></span>(</a>
+<a class="sourceLine" id="cb7-64" title="64">  <span class="dt">plotlist =</span> plot_list,</a>
+<a class="sourceLine" id="cb7-65" title="65">  <span class="dt">title.text =</span> <span class="st">"Improvement in GDP per capita from 1952-2007"</span>,</a>
+<a class="sourceLine" id="cb7-66" title="66">  <span class="dt">nrow =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb7-67" title="67">  <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>, <span class="st">"(iii)"</span>, <span class="st">"(iv)"</span>)</a>
+<a class="sourceLine" id="cb7-68" title="68">)</a></code></pre></div>
 <p><img src="purrr_examples_files/figure-html/purrr_ggdotplotstats-1.png" width="576"></p>
 </div>
 <div id="ggpiestats" class="section level1">

@@ -8,8 +8,9 @@
 ggdotplotstats(data, x, y, xlab = NULL, ylab = NULL, title = NULL,
   subtitle = NULL, caption = NULL, type = "parametric",
   test.value = 0, bf.prior = 0.707, bf.message = FALSE,
-  robust.estimator = "onestep", conf.level = 0.95, nboot = 100,
-  k = 2, results.subtitle = TRUE, ggtheme = ggplot2::theme_bw(),
+  robust.estimator = "onestep", effsize.type = "g",
+  effsize.noncentral = TRUE, conf.level = 0.95, nboot = 100, k = 2,
+  results.subtitle = TRUE, ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE, point.color = "black", point.size = 3,
   point.shape = 16, centrality.para = "mean",
   centrality.color = "blue", centrality.size = 1,
@@ -56,6 +57,14 @@ favor of the \emph{null} hypothesis \strong{for parametric test} (Default: \code
 \item{robust.estimator}{If \code{test = "robust"} robust estimator to be used
 (\code{"onestep"} (Default), \code{"mom"}, or \code{"median"}). For more, see
 \code{?WRS2::onesampb}.}
+
+\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
+argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d}) or \code{"unbiased"}
+(\code{"g"} Hedge's \emph{g} for \strong{t-test}). The default is}
+
+\item{effsize.noncentral}{Logical indicating whether to use non-central
+\emph{t}-distributions for computing the confidence interval for Cohen's \emph{d}
+or Hedge's \emph{g} (Default: \code{TRUE}).}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
