@@ -1,0 +1,341 @@
+---
+title: "ggwithinstats"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    toc: true
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{ggwithinstats}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The function `ggstatsplot::ggwithinstats` is designed to facilitate 
+**data exploration**, and for making highly customizable **publication-ready plots**,
+with relevant statistical details included in the plot itself if desired. We
+will see examples of how to use this function in this vignette.
+
+To begin with, here are some instances where you would want to use
+`ggwithinstats`-
+
+ - to check if a continuous variable differs across multiple groups/conditions
+
+ - to compare distributions visually and check for outliers
+
+**Note**: This vignette uses the pipe operator (`%>%`), if you are not
+familiar with this operator, here is a good explanation:
+<http://r4ds.had.co.nz/pipes.html>
+
+## Comparisons between groups with `ggwithistats`
+
+To illustrate how this function can be used, we will use the `bugs` dataset
+throughout this vignette. This data set, "Bugs", provides the extent to which
+men and women want to kill arthropods that vary in freighteningness (low, high)
+and disgustingness (low, high). Each participant rates their attitudes towards
+all anthropods. Subset of the data reported by [Ryan et al. (2013)](https://www.sciencedirect.com/science/article/pii/S0747563213000277). 
+Note that this is a repeated measures design because the same participant gave
+four different ratings across four different conditions (LDLF, LDHF, HDLF,
+HDHF).
+
+Let's have a look at the data-
+
+```{r bugs, warning = FALSE, message = FALSE}
+library(jmv)
+library(ggstatsplot)
+data("bugs", package = "jmv")
+
+# getting data in tidy format
+data_bugs <- bugs %>%
+  tibble::as_tibble(x = .) %>%
+  tidyr::gather(data = ., key, value, LDLF:HDHF) %>%
+  dplyr::filter(.data = ., Region %in% c("Europe", "North America"))
+
+dplyr::glimpse(x = data_bugs)
+```
+
+Suppose the first thing we want to inspect is the distribution of desire to kill
+across all conditions (disregarding the factorial structure of the experiment).
+We also want to know if the mean differences in this desire across conditions is
+statistically significant.
+
+The simplest form of the function call is-
+
+```{r ggwithinstats1, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+# since the confidence intervals for the effect sizes are computed using
+# bootstrapping, important to set a seed for reproducibility
+set.seed(123)
+
+# function call
+ggstatsplot::ggwithinstats(
+  data = data_bugs,
+  x = key,
+  y = value,
+  messages = FALSE
+)
+```
+
+**Note**:
+  - The function automatically decides whether an independent samples *t*-test
+    is preferred (for 2 groups) or a one-way ANOVA (3 or more groups). based on
+    the number of levels in the grouping variable.
+  - The output of the function is a `ggplot` object which means that it can be
+    further modified with `ggplot2` functions.
+
+We can make the output much more aesthetically pleasing as well as informative
+by making use of the many optional parameters in `ggwithinstats`. We'll add a
+title and caption, better `x` and `y` axis labels, and tag and label the
+outliers in the data. We can and will change the overall theme as well as the
+color palette in use.
+
+```{r ggwithinstats2, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 8}
+library(ggstatsplot)
+
+# for reproducibility
+set.seed(123)
+
+# plot
+ggstatsplot::ggwithinstats(
+  data = data_bugs,      
+  x = key,                                            # grouping/independent variable
+  y = value,                                          # dependent variables
+  xlab = "Condition",                                 # label for the x-axis
+  ylab = "Desire to kill an artrhopod",               # label for the y-axis
+  type = "parametric",                                # type of statistical test  
+  effsize.type = "biased",                            # type of effect size
+  nboot = 10,                                         # number of bootstrap samples used
+  bf.message = TRUE,                                  # display bayes factor in favor of null hypothesis
+  pairwise.comparisons = TRUE,                        # display pairwise comparisons
+  outlier.tagging = TRUE,                             # whether outliers should be flagged
+  outlier.coef = 1.5,                                 # coefficient for Tukey's rule
+  outlier.label = Region,                             # label to attach to outlier values
+  outlier.label.color = "red",                        # outlier point label color
+  mean.plotting = TRUE,                               # whether the mean is to be displayed
+  mean.color = "darkblue",                            # color for mean
+  messages = FALSE,                                   # turn off messages
+  ggtheme = ggplot2::theme_gray(),                    # a different theme
+  package = "yarrr",                                  # package from which color palette is to be taken
+  palette = "info2",                                  # choosing a different color palette
+  title = "Comparison of desire to kill bugs",
+  caption = "Source: Ryan et al., 2013"
+) +                                                   # modifying the plot further
+  ggplot2::scale_y_continuous(limits = c(0, 10),
+                              breaks = seq(from = 0, to = 10, by = 1))
+```
+
+As can be appreciated from the effect size (partial eta squared) of 0.18, there
+are small differences in the mean desire to kill across conditions.
+Importantly, this plot also helps us appreciate the distributions within any
+given condition. 
+
+So far we have only used a classic parametric test, but we can also use other
+available options: The `type` (of test) argument also accepts the following
+abbreviations: `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"`
+(for *robust*), `"bf"` (for *Bayes Factor*).
+
+Let's use the `combine_plots` function to make one plot from four separate plots
+that demonstrates all of these options. Let's compare desire to kill bugs only
+for low versus high disgust conditions to see how much of a difference whether a
+bug is disgusting-looking or not makes to the desire to kill that bug. We will
+generate the plots one by one and then use `combine_plots` to merge them into
+one plot with some common labeling. It is possible, but not necessarily
+recommended, to make each plot have different colors or themes.
+
+For example,
+```{r ggwithinstats3, message = FALSE, warning = FALSE, fig.height = 10, fig.width = 10}
+library(ggstatsplot)
+
+# selecting subset of the data
+df_disgust <- dplyr::filter(.data = data_bugs, key %in% c("LDHF", "HDHF"))
+
+# for reproducibility
+set.seed(123)
+
+# parametric t-test
+p1 <- ggstatsplot::ggwithinstats(
+  data = df_disgust,
+  x = key,
+  y = value,
+  type = "p",
+  effsize.type = "d",
+  conf.level = 0.99,
+  title = "Parametric test",
+  package = "ggsci",
+  palette = "nrc_npg",
+  messages = FALSE
+)
+
+# Mann-Whitney U test (nonparametric t) 
+p2 <- ggstatsplot::ggwithinstats(
+  data = df_disgust,
+  x = key,
+  y = value,
+  xlab = "Condition", 
+  ylab = "Desire to kill bugs", 
+  type = "np",
+  conf.level = 0.99,
+  sort = "ascending",
+  title = "Non-parametric Test",
+  package = "ggsci",
+  palette = "uniform_startrek",
+  messages = FALSE
+)
+
+# robust t-test
+p3 <- ggstatsplot::ggwithinstats(
+  data = df_disgust,
+  x = key,
+  y = value,
+  xlab = "Condition", 
+  ylab = "Desire to kill bugs", 
+  type = "r",
+  conf.level = 0.99,
+  sort = "descending",
+  title = "Robust Test",
+  tr = 0.2,
+  package = "wesanderson",
+  palette = "Royal2",
+  nboot = 15,
+  messages = FALSE
+)
+
+# Bayes Factor for parametric t-test
+p4 <- ggstatsplot::ggwithinstats(
+  data = df_disgust,
+  x = key,
+  y = value,
+  xlab = "Condition", 
+  ylab = "Desire to kill bugs", 
+  type = "bf",
+  title = "Bayesian Test",
+  package = "ggsci",
+  palette = "nrc_npg",
+  messages = FALSE
+)
+
+# combining the individual plots into a single plot
+ggstatsplot::combine_plots(
+  p1, p2, p3, p4, 
+  nrow = 2, 
+  labels = c("(a)", "(b)", "(c)", "(d)"),
+  title.text = "Effect of disgust on desire to kill bugs ",
+  caption.text = "Source: Bugs dataset from `jmv` R package",
+  title.size = 14,
+  caption.size = 12
+)
+```
+
+## Grouped analysis with `grouped_ggwithinstats`
+
+What if we want to carry out this same analysis but for each region (or gender)?
+In that case, we could write a `for` loop or use `purrr`, both of which are time
+consuming and can be a bit of a struggle.
+
+`ggstatsplot` provides a special helper function for such instances:
+`grouped_ggwithinstats`. This is merely a wrapper function around
+`ggstatsplot::combine_plots`. It applies `ggwithinstats` across all **levels**
+of a specified **grouping variable** and then combines list of individual plots
+into a single plot. Note that the grouping variable can be anything: conditions
+in a given study, groups in a study sample, different studies, etc.
+
+Let's focus on the two regions and for years: 1967, 1987, 2007. Also,
+let's carry out pairwise comparisons to see if there differences between every
+pair of continents. 
+
+```{r grouped1, warning = FALSE, message = FALSE, fig.height = 12, fig.width = 8}
+# for reproducibility
+set.seed(123)
+library(ggstatsplot)
+
+ggstatsplot::grouped_ggwithinstats(
+  # arguments relevant for ggstatsplot::ggwithinstats
+  data = data_bugs,
+  x = key,
+  y = value,
+  grouping.var = Gender,
+  xlab = "Continent", 
+  ylab = "Desire to kill bugs",
+  sort = "ascending",
+  sort.fun = median,
+  nboot = 10,
+  type = "np",                         # type of test
+  pairwise.comparisons = TRUE,         # display results from pairwise comparisons 
+  pairwise.display = "significant",    # display only significant pairwise comparisons 
+  pairwise.annotation = "p.value",     # annotate the pairwise comparisons using p-values
+  p.adjust.method = "fdr",             # adjust p-values for multiple tests using this method
+  ggtheme = ggthemes::theme_tufte(),
+  package = "ggsci",
+  palette = "default_jco",
+  outlier.tagging = TRUE,
+  ggstatsplot.layer = FALSE,
+  outlier.label = Education,
+  title.prefix = "Year",
+  messages = FALSE,
+  # arguments relevant for ggstatsplot::combine_plots
+  title.text = "Desire to kill bugs across genders",
+  ncol = 1,
+  labels = c("(a)","(b)")
+)
+```
+
+## Grouped analysis with `ggwithinstats` + `purrr` 
+
+Although this grouping function provides a quick way to explore the data, it
+leaves much to be desired. For example, the same type of test and theme is
+applied for all genders, but maybe we want to change this for different genders,
+or maybe we want to gave different effect sizes for different years. This type
+of customization for different levels of a grouping variable is not possible
+with `grouped_ggwithinstats`, but this can be easily achieved using the `purrr`
+package.
+
+See the associated vignette here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+
+## Summary of tests
+
+Following (within-subjects) tests are carried out for each type of analyses-
+
+Type | No. of groups | Test
+----------- | --- | -------------------------
+Parametric | > 2 | One-way repeated measures ANOVA
+Non-parametric | > 2 | Friedman test
+Robust | > 2 | Heteroscedastic one-way repeated measures ANOVA for trimmed means
+Bayes Factor | > 2 | One-way repeated measures ANOVA
+Parametric | 2 | Student's *t*-test
+Non-parametric | 2 | Mann–Whitney *U* test
+Robust | 2 | Yuen's test on trimmed means for dependent samples
+Bayes Factor | 2 | Student's *t*-test
+
+Here is a summary of *multiple pairwise comparison* tests supported in
+*ggwithinstats*-
+
+Type | Test | *p*-value adjustment? 
+----------- | ---------------------------- | ---
+Parametric | Student's *t*-test | <font color="green">Yes</font>  
+Non-parametric | Durbin-Conover test | <font color="green">Yes</font>  
+Robust | Yuen's trimmed means test | <font color="green">Yes</font>  
+Bayes Factor | <font color="red">No</font> | <font color="red">No</font>
+
+# Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on
+GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+# Session Information
+
+For details, see-
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
+

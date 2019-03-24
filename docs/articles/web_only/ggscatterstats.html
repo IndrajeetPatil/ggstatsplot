@@ -87,6 +87,9 @@
       <a href="../../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
     </li>
     <li>
+      <a href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
@@ -129,7 +132,7 @@
       <h1>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-22</h4>
+            <h4 class="date">2019-03-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -274,6 +277,35 @@
 <p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate type of marginal distribution plot for each MPAA rating or if we wanted to use different types of correlations across different levels of MPAA ratings (NC-17 has only 6 movies, so a robust correlation would be a good idea), this is not possible. But this can be easily done using <code>purrr</code>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
+<div id="summary-of-tests" class="section level2">
+<h2 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<p>Following tests are carried out for each type of analyses-</p>
+<table class="table">
+<thead><tr class="header">
+<th>Type</th>
+<th>Test</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>Pearson’s correlation coefficient</td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>Spearman’s rank correlation coefficient</td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>Percentage bend correlation coefficient</td>
+</tr>
+<tr class="even">
+<td>Bayes Factor</td>
+<td>Pearson’s correlation coefficient</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="different-smoothing-methods" class="section level2">
 <h2 class="hasAnchor">
 <a href="#different-smoothing-methods" class="anchor"></a>Different smoothing methods</h2>
@@ -343,6 +375,7 @@
 <li><a href="#correlation-plot-with-ggscatterstats">Correlation plot with <code>ggscatterstats</code></a></li>
       <li><a href="#grouped-analysis-with-grouped_ggscatterstats">Grouped analysis with <code>grouped_ggscatterstats</code></a></li>
       <li><a href="#grouped-analysis-with-ggscatterstats-purrr">Grouped analysis with <code>ggscatterstats</code> + <code>purrr</code></a></li>
+      <li><a href="#summary-of-tests">Summary of tests</a></li>
       <li><a href="#different-smoothing-methods">Different smoothing methods</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       <li><a href="#session-information">Session Information</a></li>

@@ -87,6 +87,9 @@
       <a href="../../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
     </li>
     <li>
+      <a href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
@@ -129,7 +132,7 @@
       <h1>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-22</h4>
+            <h4 class="date">2019-03-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -394,6 +397,35 @@
 <p>Although <code>grouped_</code> function is good for quickly exploring the data, it reduces the flexibility with which this function can be used. This is the because the common parameters used are applied to plots corresponding to all levels of the grouping variable and there is no way to customize the arguments for different levels of the grouping variable. We will see how this can be done using the <code>purrr</code> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
+<div id="summary-of-tests" class="section level2">
+<h2 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<p>Following tests are carried out for each type of analyses-</p>
+<table class="table">
+<thead><tr class="header">
+<th>Type</th>
+<th>Test</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>Pearson’s correlation coefficient</td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>Spearman’s rank correlation coefficient</td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>Percentage bend correlation coefficient</td>
+</tr>
+<tr class="even">
+<td>Bayes Factor</td>
+<td>Pearson’s correlation coefficient</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#suggestions" class="anchor"></a>Suggestions</h1>
@@ -415,6 +447,7 @@
       <li><a href="#correlation-statistics-matrix-with-ggcorrmat">Correlation statistics matrix with <code>ggcorrmat</code></a></li>
       <li><a href="#grouped-analysis-with-grouped_ggcorrmat">Grouped analysis with <code>grouped_ggcorrmat</code></a></li>
       <li><a href="#grouped-analysis-with-ggcorrmat-purrr">Grouped analysis with <code>ggcorrmat</code> + <code>purrr</code></a></li>
+      <li><a href="#summary-of-tests">Summary of tests</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       <li><a href="#session-information">Session Information</a></li>
       </ul>

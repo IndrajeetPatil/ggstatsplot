@@ -87,6 +87,9 @@
       <a href="../../articles/web_only/ggstatsplot_paper.html">ggstatsplot: ggplot2 Based Plots with Statistical Details</a>
     </li>
     <li>
+      <a href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
     </li>
     <li>
@@ -129,7 +132,7 @@
       <h1>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-22</h4>
+            <h4 class="date">2019-03-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -260,6 +263,35 @@
 <p>Although this is a quick and dirty way to explore a large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each gender, this is not possible with <code>grouped_gghistostats</code>. For cases like these, or to run separate kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group) it would be better to use <code>purrr</code>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
+<div id="summary-of-tests" class="section level2">
+<h2 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<p>Following tests are carried out for each type of analyses-</p>
+<table class="table">
+<thead><tr class="header">
+<th>Type</th>
+<th>Test</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>One-sample Student’s <em>t</em>-test</td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>One-sample Wilcoxon test</td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>One-sample percentile bootstrap</td>
+</tr>
+<tr class="even">
+<td>Bayes Factor</td>
+<td>One-sample Student’s <em>t</em>-test</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#suggestions" class="anchor"></a>Suggestions</h1>
@@ -281,6 +313,7 @@
       <li><a href="#statistical-analysis-with-gghistostats">Statistical analysis with <code>gghistostats</code></a></li>
       <li><a href="#grouped-analysis-with-grouped_gghistostats">Grouped analysis with <code>grouped_gghistostats</code></a></li>
       <li><a href="#grouped-analysis-with-purrr">Grouped analysis with <code>purrr</code></a></li>
+      <li><a href="#summary-of-tests">Summary of tests</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       <li><a href="#session-information">Session Information</a></li>
       </ul>

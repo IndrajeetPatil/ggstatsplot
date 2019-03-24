@@ -180,6 +180,17 @@ use `purrr`.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
+## Summary of tests
+
+Following tests are carried out for each type of analyses-
+
+Type | Test
+----------- | -------------------------
+Parametric | One-sample Student's *t*-test
+Non-parametric | One-sample Wilcoxon test 
+Robust | One-sample percentile bootstrap
+Bayes Factor | One-sample Student's *t*-test
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 

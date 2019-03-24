@@ -60,6 +60,7 @@ ggpiestats
 ggplot
 ggscatterstats
 ggtheme
+ggwithinstats
 gh
 github
 Github
@@ -179,6 +180,7 @@ virginica
 vjust
 Welch
 Welch's
+Welch’s
 Wickham
 wilcox
 Wilk

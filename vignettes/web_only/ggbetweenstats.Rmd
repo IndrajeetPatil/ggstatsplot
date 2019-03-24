@@ -54,7 +54,7 @@ library(gapminder)
 dplyr::glimpse(x = gapminder::gapminder)
 ```
 
-**Note**: for the remainder of the vignette we're going to exclude *Oceania*
+**Note**: For the remainder of the vignette, we're going to exclude *Oceania*
 from the analysis simply because there are so few observations (countries).
 
 Suppose the first thing we want to inspect is the distribution of life
@@ -141,16 +141,16 @@ for the Asian continent, possibly reflecting the war and the political turmoil.
 So far we have only used a classic parametric test and a boxviolin plot, 
 but we can also use other available options:
 
-  - The `type` (of test) argument also accepts the following
-abbreviations:   
-`"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"` (for *robust*). 
+  - The `type` (of test) argument also accepts the following abbreviations:
+    `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"` (for
+    *robust*), `"bf"` (for *Bayes Factor*). 
 
   - The type of plot to be displayed can also be modified (`"box"`, `"violin"`,
   or `"boxviolin"`).
 
   - The color palettes can be modified.
 
-Let's use the `combine_plots` function to make one plot from three separate
+Let's use the `combine_plots` function to make one plot from four separate
 plots that demonstrates all of these options. Let's compare life expectancy for
 all countries for the first and last year of available data 1957 and 2007. We
 will generate the plots one by one and then use `combine_plots` to merge them
@@ -169,7 +169,7 @@ df_year <- dplyr::filter(.data = gapminder::gapminder,
 # for reproducibility
 set.seed(123)
 
-# parametric ANOVA and box plot
+# parametric t-test and box plot
 p1 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
@@ -178,14 +178,14 @@ p1 <- ggstatsplot::ggbetweenstats(
   type = "p",
   effsize.type = "d",
   conf.level = 0.99,
-  title = "parametric test",
+  title = "Parametric test",
   package = "ggsci",
   palette = "nrc_npg",
   k = 2,
   messages = FALSE
 )
 
-# Kruskal-Wallis test (nonparametric ANOVA) and violin plot
+# Mann-Whitney U test (nonparametric t) and violin plot
 p2 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
@@ -202,7 +202,7 @@ p2 <- ggstatsplot::ggbetweenstats(
   messages = FALSE
 )
 
-# robust ANOVA and boxviolin plot
+# robust t-test and boxviolin plot
 p3 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
@@ -221,7 +221,7 @@ p3 <- ggstatsplot::ggbetweenstats(
   messages = FALSE
 )
 
-# robust ANOVA and boxviolin plot
+# Bayes Factor for parametric t-test and boxviolin plot
 p4 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
@@ -241,7 +241,6 @@ p4 <- ggstatsplot::ggbetweenstats(
 ggstatsplot::combine_plots(
   p1, p2, p3, p4, 
   nrow = 2, 
-  ncol = 2, 
   labels = c("(a)", "(b)", "(c)", "(d)"),
   title.text = "Comparison of life expectancy between 1957 and 2007",
   caption.text = "Source: Gapminder Foundation",
@@ -264,9 +263,9 @@ of a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
 
-Let's focus on the same 4 continents and for years: 1967, 1987, 2007. Also,
-let's carry out pairwise comparisons to see if there differences between every
-pair of continents. 
+Let's focus on the same 4 continents for the following years: 1967, 1987, 2007.
+Also, let's carry out pairwise comparisons to see if there differences between
+every pair of continents.
 
 ```{r grouped1, warning = FALSE, message = FALSE, fig.height = 15, fig.width = 7}
 # for reproducibility
@@ -283,6 +282,7 @@ ggstatsplot::grouped_ggbetweenstats(
   ),
   x = continent,
   y = lifeExp,
+  grouping.var = year,
   xlab = "Continent", 
   ylab = "Life expectancy", 
   k = 2,
@@ -299,13 +299,11 @@ ggstatsplot::grouped_ggbetweenstats(
   outlier.tagging = TRUE,
   ggstatsplot.layer = FALSE,
   outlier.label = country,
-  grouping.var = year,
   title.prefix = "Year",
   messages = FALSE,
   # arguments relevant for ggstatsplot::combine_plots
   title.text = "Changes in life expectancy across continents (1967-2007)",
   nrow = 3,
-  ncol = 1,
   labels = c("(a)","(b)","(c)")
 )
 ```
@@ -332,28 +330,35 @@ See the associated vignette here:
 
 ## Within-subjects designs
 
-A variant of this function, called `ggwithinstats`, is currently under
-development. You *can* still use this function just to prepare the **plot** for,
-but the statistical details displayed in the subtitle will be incorrect. You can
-remove them by adding `+ ggplot2::labs(subtitle = NULL)` and add a new subtitle
-for the within-subjects test using an appropriate helper function-
-<https://indrajeetpatil.github.io/ggstatsplot/reference/index.html#section-helper-functions-for-preparing-statistics-subtitles>.
+For repeated measures designs, `ggwithinstats` function can be used:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
-# Pairwise comparison tests in *ggbetweenstats*
+## Summary of tests
 
-Type | Design | Equal variance? |  Test | *p*-value adjustment? 
------------ | --------- | --- | ------------------------- | --
-Parametric | between | No | Games-Howell test | <font color="green">Yes</font>  
-Parametric | between | Yes | Student's *t*-test | <font color="green">Yes</font>  
-Parametric | within | `NA` | Student's *t*-test | <font color="green">Yes</font>  
-Non-parametric | between | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font>  
-Non-parametric | within | No | Durbin-Conover test | <font color="green">Yes</font>  
-Robust | between | No | Yuen's trimmed means test | <font color="green">Yes</font>  
-Robust | within |`NA` | Yuen's trimmed means test | <font color="green">Yes</font>  
-Bayes Factor | between | No | <font color="red">No</font> | <font color="red">No</font>
-Bayes Factor | between | Yes | <font color="red">No</font> | <font color="red">No</font>
-Bayes Factor | within | `NA` | <font color="red">No</font> | <font color="red">No</font>
+Following (between-subjects) tests are carried out for each type of analyses-
 
+Type | No. of groups | Test
+----------- | --- | -------------------------
+Parametric | > 2 | Student's or Welch's one-way ANOVA
+Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA
+Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means
+Bayes Factor | > 2 | Student's ANOVA
+Parametric | 2 | Student's or Welch's *t*-test
+Non-parametric | 2 | Mann–Whitney *U* test
+Robust | 2 |  Yuen's test for trimmed means
+Bayes Factor | 2 | Student's *t*-test
+
+Here is a summary of *multiple pairwise comparison* tests supported in
+*ggbetweenstats*-
+
+Type | Equal variance? | Test | *p*-value adjustment? 
+----------- | --- | ------------------------- | ---
+Parametric | No | Games-Howell test | <font color="green">Yes</font>  
+Parametric | Yes | Student's *t*-test | <font color="green">Yes</font>  
+Non-parametric | No | Dwass-Steel-Crichtlow-Fligner test | <font color="green">Yes</font>  
+Robust | No | Yuen's trimmed means test | <font color="green">Yes</font>  
+Bayes Factor | No | <font color="red">No</font> | <font color="red">No</font>
+Bayes Factor | Yes | <font color="red">No</font> | <font color="red">No</font>
 
 # Suggestions
 

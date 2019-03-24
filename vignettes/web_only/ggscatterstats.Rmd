@@ -207,6 +207,17 @@ can be easily done using `purrr`.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
+## Summary of tests
+
+Following tests are carried out for each type of analyses-
+
+Type | Test
+----------- | -------------------------
+Parametric | Pearson's correlation coefficient
+Non-parametric | Spearman's rank correlation coefficient
+Robust | Percentage bend correlation coefficient
+Bayes Factor | Pearson's correlation coefficient
+
 ## Different smoothing methods
 
 Additionally, different smoothing methods can be specified. For example, if a
