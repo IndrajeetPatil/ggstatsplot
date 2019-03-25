@@ -31,6 +31,8 @@ testthat::test_that(
         test.value = 800,
         type = "p",
         k = 4,
+        effsize.type = "d",
+        effsize.noncentral = FALSE,
         title = "Michelson-Morley experiment",
         caption = "Studies carried out in 1887",
         xlab = substitute(paste("Speed of light (", italic("c"), ")")),
@@ -58,6 +60,8 @@ testthat::test_that(
       ggstatsplot::subtitle_t_onesample(
         data = dat,
         x = x,
+        effsize.type = "d",
+        effsize.noncentral = FALSE,
         test.value = 800,
         type = "p",
         k = 4,

@@ -22,8 +22,8 @@ NEW FEATURES
 MINOR CHANGES
 
   - `pairwise_p()` function no longer outputs `conf.low` and `conf.high` columns
-    when parametric post hoc tests are run. This is because these values were
-    accurate only when no p-value adjustment was carried out.
+    when parametric *post hoc* tests are run. This is because these values were
+    accurate only when no *p*-value adjustment was carried out.
   
 # ggstatsplot 0.0.10
 

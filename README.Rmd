@@ -19,12 +19,12 @@ knitr::opts_chunk$set(
 Package | Status | Usage | GitHub | References
 ----------------- | ----------------- | ----------------- | ----------------- | -----------------
 [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot) | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot) | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![GitHub version](https://img.shields.io/badge/GitHub-0.0.10.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/) | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)
-[![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html) | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls)| [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)
+[![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html) | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Pending PRs](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/pulls.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/pulls) | [![Rdoc](https://www.rdocumentation.org/badges/version/ggstatsplot)](https://www.rdocumentation.org/packages/ggstatsplot)
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/) | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/) | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](http://githubbadges.herokuapp.com/IndrajeetPatil/ggstatsplot/issues.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues) | [![vignettes](https://img.shields.io/badge/vignettes-0.0.10-orange.svg?colorB=FF5722)](https://cran.r-project.org/web/packages/ggstatsplot/vignettes/)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master) | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master) | [![HitCount](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot.svg)](http://hits.dwyl.io/IndrajeetPatil/ggstatsplot) | [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master) | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)
 [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot) | [![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_31-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/tests/README.md) | [![saythanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/IndrajeetPatil) | [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community) | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | | |
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community) | [![Dependency Status](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot/badge)](https://dependencyci.com/github/IndrajeetPatil/ggstatsplot) | | [![Generic badge](https://img.shields.io/badge/forks-49-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/) |
 
 # Overview
 
@@ -123,10 +123,10 @@ prefer-
 
 ```{r installation1, eval = FALSE}
 # needed package to download from GitHub repo
-utils::install.packages(pkgs = "devtools")
+utils::install.packages(pkgs = "remotes")
 
 # downloading the package from GitHub
-devtools::install_github(
+remotes::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
   dependencies = FALSE, # assumes you have already installed needed packages
   quick = TRUE # skips docs, demos, and vignettes
@@ -135,7 +135,7 @@ devtools::install_github(
 
 If time is not a constraint-
 ```{r installation2, eval = FALSE}
-devtools::install_github(
+remotes::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
   dependencies = TRUE, # installs packages which ggstatsplot depends on
   upgrade_dependencies = TRUE # updates any out of date dependencies
@@ -374,6 +374,10 @@ Non-parametric | 2 | Mann–Whitney *U* test
 Robust | 2 |  Yuen's test for trimmed means
 Bayes Factor | 2 | Student's *t*-test
 
+
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggbetweenstats*-
 
@@ -478,6 +482,9 @@ Non-parametric | Durbin-Conover test | <font color="green">Yes</font>
 Robust | Yuen's trimmed means test | <font color="green">Yes</font>  
 Bayes Factor | <font color="red">No</font> | <font color="red">No</font>
 
+For more, see the `ggbetweenstats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
+
 ## `ggscatterstats`
 
 This function creates a scatterplot with marginal
@@ -569,14 +576,16 @@ ggstatsplot::grouped_ggscatterstats(
 
 ### Summary of tests
 
-Following tests are carried out for each type of analyses-
+Following tests are carried out for each type of analyses. Additionally, the
+correlation coefficients (and their confidence intervals) are used as effect
+sizes-
 
-Type | Test
------------ | -------------------------
-Parametric | Pearson's correlation coefficient
-Non-parametric | Spearman's rank correlation coefficient
-Robust | Percentage bend correlation coefficient
-Bayes Factor | Pearson's correlation coefficient
+Type | Test | CI?
+----------- | ------------------------- | ---
+Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
+Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
+Robust | Percentage bend correlation coefficient | <font color="green">Yes<font>
+Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
 
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
@@ -687,8 +696,7 @@ ggstatsplot::grouped_ggpiestats(
 )
 ```
 
-For more, including information about the variant of this function
-`grouped_ggpiestats`, see the `ggpiestats` vignette:
+For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
 ## `ggbarstats`
@@ -1027,14 +1035,16 @@ ggstatsplot::grouped_ggcorrmat(
 
 ### Summary of tests
 
-Following tests are carried out for each type of analyses-
+Following tests are carried out for each type of analyses. Additionally, the
+correlation coefficients (and their confidence intervals) are used as effect
+sizes-
 
-Type | Test
------------ | -------------------------
-Parametric | Pearson's correlation coefficient
-Non-parametric | Spearman's rank correlation coefficient
-Robust | Percentage bend correlation coefficient
-Bayes Factor | Pearson's correlation coefficient
+Type | Test | CI?
+----------- | ------------------------- | ---
+Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
+Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
+Robust | Percentage bend correlation coefficient | <font color="red">No<font>
+Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>

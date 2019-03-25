@@ -132,7 +132,7 @@
       <h1>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-23</h4>
+            <h4 class="date">2019-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -280,28 +280,33 @@
 <div id="summary-of-tests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
-<p>Following tests are carried out for each type of analyses-</p>
+<p>Following tests are carried out for each type of analyses. Additionally, the correlation coefficients (and their confidence intervals) are used as effect sizes-</p>
 <table class="table">
 <thead><tr class="header">
 <th>Type</th>
 <th>Test</th>
+<th>CI?</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
 <td>Pearson’s correlation coefficient</td>
+<td><font color="green">Yes<font></font></font></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>Spearman’s rank correlation coefficient</td>
+<td><font color="green">Yes<font></font></font></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Percentage bend correlation coefficient</td>
+<td><font color="green">Yes<font></font></font></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>Pearson’s correlation coefficient</td>
+<td><font color="red">No<font></font></font></td>
 </tr>
 </tbody>
 </table>

@@ -348,6 +348,20 @@ Non-parametric | 2 | Mann–Whitney *U* test
 Robust | 2 |  Yuen's test for trimmed means
 Bayes Factor | 2 | Student's *t*-test
 
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
+
+Type | No. of groups | Effect size | CI?
+----------- | --- | ------------------------- | --- 
+Parametric | > 2 | $\eta_{p}^2$, $\eta^2$, $\omega_{p}^2$, $\omega^2$ | <font color="green">Yes<font>
+Non-parametric | > 2 | $\eta_{H}^2$ (*H*-statistic based eta-squared) | <font color="green">Yes<font>
+Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font>
+Bayes Factor | > 2 | <font color="red">No<font> | <font color="red">No<font>
+Parametric | 2 | Cohen's *d*, Hedge's *g* (central-and noncentral-*t* distribution based) | <font color="green">Yes<font>
+Non-parametric | 2 | *r* (computed as $Z/\sqrt{N}$) | <font color="green">Yes<font>
+Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font>
+Bayes Factor | 2 | <font color="red">No<font> | <font color="red">No<font>
+
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggbetweenstats*-
 

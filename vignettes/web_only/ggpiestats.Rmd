@@ -352,6 +352,25 @@ out healthy only 4% were sick after a month. Ideally, we would have hoped for
 zero but reality is seldom perfect. On the other side of the 38 who started out
 sick that number has reduced to just 13 or 34% which is a marked improvement.
 
+## Summary of tests
+
+Following tests are carried out for each type of analyses-
+
+Type of data | Design | Test
+----------- | ------------ | -------------------------
+Unpaired | $n \times p$ contingency table | Pearson's $\chi^2$ test
+Paired | $n \times p$ contingency table | McNemar's test
+Frequency | $n \times 1$ contingency table | Goodness of fit
+
+Following effect sizes (and confidence intervals/CI) are available for each type
+of test-
+
+Type | Effect size | CI?
+--------------- | ------------------------- | --- 
+Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font>
+McNemar's test | Cohen's $g$ | <font color="green">Yes<font>
+Goodness of fit | <font color="red">No<font> | <font color="red">No<font> 
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

@@ -132,7 +132,7 @@
       <h1>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-23</h4>
+            <h4 class="date">2019-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -428,6 +428,77 @@
 <td>Bayes Factor</td>
 <td>2</td>
 <td>Student’s <em>t</em>-test</td>
+</tr>
+</tbody>
+</table>
+<p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
+<table class="table">
+<colgroup>
+<col width="26%">
+<col width="7%">
+<col width="59%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th>Type</th>
+<th>No. of groups</th>
+<th>Effect size</th>
+<th>CI?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>&gt; 2</td>
+<td>
+<span class="math inline">\(\eta_{p}^2\)</span>, <span class="math inline">\(\eta^2\)</span>, <span class="math inline">\(\omega_{p}^2\)</span>, <span class="math inline">\(\omega^2\)</span>
+</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>&gt; 2</td>
+<td>
+<span class="math inline">\(\eta_{H}^2\)</span> (<em>H</em>-statistic based eta-squared)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>&gt; 2</td>
+<td>
+<span class="math inline">\(\xi\)</span> (Explanatory measure of effect size)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Bayes Factor</td>
+<td>&gt; 2</td>
+<td><font color="red">No<font></font></font></td>
+<td><font color="red">No<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Parametric</td>
+<td>2</td>
+<td>Cohen’s <em>d</em>, Hedge’s <em>g</em> (central-and noncentral-<em>t</em> distribution based)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>2</td>
+<td>
+<em>r</em> (computed as <span class="math inline">\(Z/\sqrt{N}\)</span>)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>2</td>
+<td>
+<span class="math inline">\(\xi\)</span> (Explanatory measure of effect size)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Bayes Factor</td>
+<td>2</td>
+<td><font color="red">No<font></font></font></td>
+<td><font color="red">No<font></font></font></td>
 </tr>
 </tbody>
 </table>
