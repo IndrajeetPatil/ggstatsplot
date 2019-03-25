@@ -123,10 +123,10 @@ prefer-
 
 ```{r installation1, eval = FALSE}
 # needed package to download from GitHub repo
-utils::install.packages(pkgs = "devtools")
+utils::install.packages(pkgs = "remotes")
 
 # downloading the package from GitHub
-devtools::install_github(
+remotes::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
   dependencies = FALSE, # assumes you have already installed needed packages
   quick = TRUE # skips docs, demos, and vignettes
@@ -135,7 +135,7 @@ devtools::install_github(
 
 If time is not a constraint-
 ```{r installation2, eval = FALSE}
-devtools::install_github(
+remotes::install_github(
   repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
   dependencies = TRUE, # installs packages which ggstatsplot depends on
   upgrade_dependencies = TRUE # updates any out of date dependencies
@@ -374,6 +374,10 @@ Non-parametric | 2 | Mann–Whitney *U* test
 Robust | 2 |  Yuen's test for trimmed means
 Bayes Factor | 2 | Student's *t*-test
 
+
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggbetweenstats*-
 
@@ -478,6 +482,9 @@ Non-parametric | Durbin-Conover test | <font color="green">Yes</font>
 Robust | Yuen's trimmed means test | <font color="green">Yes</font>  
 Bayes Factor | <font color="red">No</font> | <font color="red">No</font>
 
+For more, see the `ggbetweenstats` vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
+
 ## `ggscatterstats`
 
 This function creates a scatterplot with marginal
@@ -569,14 +576,16 @@ ggstatsplot::grouped_ggscatterstats(
 
 ### Summary of tests
 
-Following tests are carried out for each type of analyses-
+Following tests are carried out for each type of analyses. Additionally, the
+correlation coefficients (and their confidence intervals) are used as effect
+sizes-
 
-Type | Test
------------ | -------------------------
-Parametric | Pearson's correlation coefficient
-Non-parametric | Spearman's rank correlation coefficient
-Robust | Percentage bend correlation coefficient
-Bayes Factor | Pearson's correlation coefficient
+Type | Test | CI?
+----------- | ------------------------- | ---
+Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
+Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
+Robust | Percentage bend correlation coefficient | <font color="green">Yes<font>
+Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
 
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
@@ -687,8 +696,7 @@ ggstatsplot::grouped_ggpiestats(
 )
 ```
 
-For more, including information about the variant of this function
-`grouped_ggpiestats`, see the `ggpiestats` vignette:
+For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
 ## `ggbarstats`
@@ -1027,14 +1035,16 @@ ggstatsplot::grouped_ggcorrmat(
 
 ### Summary of tests
 
-Following tests are carried out for each type of analyses-
+Following tests are carried out for each type of analyses. Additionally, the
+correlation coefficients (and their confidence intervals) are used as effect
+sizes-
 
-Type | Test
------------ | -------------------------
-Parametric | Pearson's correlation coefficient
-Non-parametric | Spearman's rank correlation coefficient
-Robust | Percentage bend correlation coefficient
-Bayes Factor | Pearson's correlation coefficient
+Type | Test | CI?
+----------- | ------------------------- | ---
+Parametric | Pearson's correlation coefficient | <font color="green">Yes<font>
+Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font>
+Robust | Percentage bend correlation coefficient | <font color="red">No<font>
+Bayes Factor | Pearson's correlation coefficient | <font color="red">No<font>
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>

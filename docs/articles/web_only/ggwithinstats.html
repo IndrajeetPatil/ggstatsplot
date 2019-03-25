@@ -132,7 +132,7 @@
       <h1>ggwithinstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-23</h4>
+            <h4 class="date">2019-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -357,6 +357,11 @@
 <p>Although this grouping function provides a quick way to explore the data, it leaves much to be desired. For example, the same type of test and theme is applied for all genders, but maybe we want to change this for different genders, or maybe we want to gave different effect sizes for different years. This type of customization for different levels of a grouping variable is not possible with <code>grouped_ggwithinstats</code>, but this can be easily achieved using the <code>purrr</code> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
+<div id="between-subjects-designs" class="section level2">
+<h2 class="hasAnchor">
+<a href="#between-subjects-designs" class="anchor"></a>Between-subjects designs</h2>
+<p>For repeated measures designs, <code>ggbetweenstats</code> function can be used: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
+</div>
 <div id="summary-of-tests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
@@ -415,6 +420,76 @@
 </tr>
 </tbody>
 </table>
+<p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
+<table class="table">
+<colgroup>
+<col width="26%">
+<col width="7%">
+<col width="59%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th>Type</th>
+<th>No. of groups</th>
+<th>Effect size</th>
+<th>CI?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>&gt; 2</td>
+<td>
+<span class="math inline">\(\eta_{p}^2\)</span>, <span class="math inline">\(\omega^2\)</span>
+</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>&gt; 2</td>
+<td>
+<span class="math inline">\(W_{Kendall}\)</span> (Kendall’s coefficient of concordance)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>&gt; 2</td>
+<td><font color="red">No<font></font></font></td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Bayes Factor</td>
+<td>&gt; 2</td>
+<td><font color="red">No<font></font></font></td>
+<td><font color="red">No<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Parametric</td>
+<td>2</td>
+<td>Cohen’s <em>d</em>, Hedge’s <em>g</em> (central-and noncentral-<em>t</em> distribution based)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Non-parametric</td>
+<td>2</td>
+<td>
+<em>r</em> (computed as <span class="math inline">\(Z/\sqrt{N}\)</span>)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Robust</td>
+<td>2</td>
+<td>
+<span class="math inline">\(\xi\)</span> (Explanatory measure of effect size)</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>Bayes Factor</td>
+<td>2</td>
+<td><font color="red">No<font></font></font></td>
+<td><font color="red">No<font></font></font></td>
+</tr>
+</tbody>
+</table>
 <p>Here is a summary of <em>multiple pairwise comparison</em> tests supported in <em>ggwithinstats</em>-</p>
 <table class="table">
 <thead><tr class="header">
@@ -467,6 +542,7 @@
 <li><a href="#comparisons-between-groups-with-ggwithistats">Comparisons between groups with <code>ggwithistats</code></a></li>
       <li><a href="#grouped-analysis-with-grouped_ggwithinstats">Grouped analysis with <code>grouped_ggwithinstats</code></a></li>
       <li><a href="#grouped-analysis-with-ggwithinstats-purrr">Grouped analysis with <code>ggwithinstats</code> + <code>purrr</code></a></li>
+      <li><a href="#between-subjects-designs">Between-subjects designs</a></li>
       <li><a href="#summary-of-tests">Summary of tests</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       <li><a href="#session-information">Session Information</a></li>

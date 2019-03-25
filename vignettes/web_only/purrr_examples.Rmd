@@ -186,7 +186,95 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Changes in life expectancy across continents (1967-2007)",
   title.color = "red",
-  nrow = 3,
+  ncol = 1
+)
+```
+
+# `ggwithinstats`
+
+We will be using simulated data from then Attention Network Test provided in ANT
+dataset in `ez` package.
+
+```{r purrr_ggwithinstats1, warning = FALSE, message = FALSE, fig.height = 18, fig.width = 8}
+library(ggstatsplot)
+library(ez)
+data("ANT") # loading data from `ez` package
+
+# for reproducibility
+set.seed(123)
+
+# let's split the dataframe and create a list by years of interest
+cue_list <- ANT %>%
+  base::split(x = ., f = .$cue, drop = TRUE)
+
+# this created a list with 4 elements, one for each year we want
+# you can check the structure of the file for yourself
+# str(cue_list[1])
+
+# checking the length of the list and the names of each element
+length(cue_list)
+
+# creating a list of plots by applying the same function for elements of the list
+plot_list <- purrr::pmap(
+  .l = list(
+    data = cue_list,
+    x = "flank",
+    y = "rt",
+    outlier.tagging = TRUE,
+    outlier.label = "group",
+    outlier.coef = list(2, 2, 2.5, 3),
+    outlier.label.color = list(
+      "#009E73",
+      "#56B4E9",
+      "black",
+      "red"
+    ),
+    xlab = "Flank",
+    ylab = "Response time",
+    title = list(
+      "Cue: None",
+      "Cue: Center",
+      "Cue: Double",
+      "Cue: Spatial"
+    ),
+    type = list("p", "r", "bf", "np"),
+    pairwise.comparisons = TRUE,
+    pairwise.display = list("ns", "s", "ns", "all"),
+    pairwise.annotation = list("p", "asterisk", "asterisk", "p.value"),
+    p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
+    nboot = 25,
+    conf.level = list(0.99, 0.99, 0.95, 0.90),
+    mean.label.size = c(2, 3, 4, 5),
+    k = list(3, 2, 2, 3),
+    effsize.type = list(
+      "omega",
+      "eta",
+      "partial_omega",
+      "partial_eta"
+    ),
+    mean.ci = list(FALSE, TRUE, FALSE, FALSE),
+    package = list("ggsci", "palettetown", "vapoRwave", "wesanderson"),
+    palette = list("lanonc_lancet", "venomoth", "hotlineBling", "GrandBudapest1"),
+    ggtheme = list(
+      ggplot2::theme_linedraw(),
+      hrbrthemes::theme_ft_rc(),
+      ggthemes::theme_solarized(),
+      ggthemes::theme_gdocs()
+    ),
+    ggstatsplot.layer = TRUE,
+    sample.size.label = list(FALSE, TRUE, FALSE, TRUE),
+    messages = FALSE
+  ),
+  .f = ggstatsplot::ggwithinstats
+)
+
+# combining all individual plots from the list into a single plot using combine_plots function
+ggstatsplot::combine_plots(
+  plotlist = plot_list,
+  title.text = "Response times across flank conditions for each type of cue",
+  title.color = "blue",
+  caption.text = "Simulated data from Attention Network Test",
+  caption.color = "orange",
   ncol = 1
 )
 ```
@@ -259,7 +347,6 @@ ggstatsplot::combine_plots(
   caption.size = 16,
   title.color = "red",
   caption.color = "blue",
-  nrow = 3,
   ncol = 1,
   labels = c("(a)", "(b)", "(c)", "(d)")
 )
@@ -413,7 +500,6 @@ ggstatsplot::combine_plots(
 )
 ```  
 
-
 # `ggdotplotstats`
 
 ```{r purrr_ggdotplotstats, warning = FALSE, message = FALSE, fig.height = 16, fig.width = 6}
@@ -542,7 +628,6 @@ ggstatsplot::combine_plots(
   plotlist = plot_list,
   title.text = "Survival in Titanic disaster by gender for all passenger classes",
   caption.text = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant",
-  nrow = 4,
   ncol = 1,
   labels = c("(a)", "(b)", "(c)", "(d)")
 )

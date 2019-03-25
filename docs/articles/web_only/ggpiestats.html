@@ -132,7 +132,7 @@
       <h1>ggpiestats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2019-03-23</h4>
+            <h4 class="date">2019-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -407,6 +407,65 @@
 <p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="768"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who started out healthy only 4% were sick after a month. Ideally, we would have hoped for zero but reality is seldom perfect. On the other side of the 38 who started out sick that number has reduced to just 13 or 34% which is a marked improvement.</p>
 </div>
+<div id="summary-of-tests" class="section level2">
+<h2 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<p>Following tests are carried out for each type of analyses-</p>
+<table class="table">
+<thead><tr class="header">
+<th>Type of data</th>
+<th>Design</th>
+<th>Test</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Unpaired</td>
+<td>
+<span class="math inline">\(n \times p\)</span> contingency table</td>
+<td>Pearson’s <span class="math inline">\(\chi^2\)</span> test</td>
+</tr>
+<tr class="even">
+<td>Paired</td>
+<td>
+<span class="math inline">\(n \times p\)</span> contingency table</td>
+<td>McNemar’s test</td>
+</tr>
+<tr class="odd">
+<td>Frequency</td>
+<td>
+<span class="math inline">\(n \times 1\)</span> contingency table</td>
+<td>Goodness of fit</td>
+</tr>
+</tbody>
+</table>
+<p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
+<table class="table">
+<thead><tr class="header">
+<th>Type</th>
+<th>Effect size</th>
+<th>CI?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Pearson’s <span class="math inline">\(\chi^2\)</span> test</td>
+<td>Cramer’s <span class="math inline">\(V\)</span>
+</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="even">
+<td>McNemar’s test</td>
+<td>Cohen’s <span class="math inline">\(g\)</span>
+</td>
+<td><font color="green">Yes<font></font></font></td>
+</tr>
+<tr class="odd">
+<td>Goodness of fit</td>
+<td><font color="red">No<font></font></font></td>
+<td><font color="red">No<font></font></font></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#suggestions" class="anchor"></a>Suggestions</h1>
@@ -431,6 +490,7 @@
       <li><a href="#grouped-analysis-with-ggpiestats-purrr">Grouped analysis with <code>ggpiestats</code> + <code>purrr</code></a></li>
       <li><a href="#working-with-data-organized-by-counts">Working with data organized by <code>counts</code></a></li>
       <li><a href="#within-subjects-designs">Within-subjects designs</a></li>
+      <li><a href="#summary-of-tests">Summary of tests</a></li>
       <li><a href="#suggestions">Suggestions</a></li>
       <li><a href="#session-information">Session Information</a></li>
       </ul>
