@@ -78,6 +78,7 @@ supported in this package-
 Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 ------- | ------------------ | ---- | ----- | ----| ----- 
 `ggbetweenstats` | Between group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggwithinstats` | Within group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
 `ggcorrmat` | Correlation matrix | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="red">No</font>
 `ggscatterstats` | Correlation between two variables | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
@@ -373,10 +374,6 @@ Parametric | 2 | Student's or Welch's *t*-test
 Non-parametric | 2 | Mann–Whitney *U* test
 Robust | 2 |  Yuen's test for trimmed means
 Bayes Factor | 2 | Student's *t*-test
-
-
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggbetweenstats*-

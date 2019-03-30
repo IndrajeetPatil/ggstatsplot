@@ -21,7 +21,7 @@
     "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2019-03-19 r76252)",
+  "runtimePlatform": "R version 3.6.0 alpha (2019-03-29 r76300)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",

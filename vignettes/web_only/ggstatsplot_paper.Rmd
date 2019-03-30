@@ -25,15 +25,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r library, include = FALSE}
-library(tidyverse)
-library(rlang)
-library(ggstatsplot)
-
-# this is to get rid of the rlang warnings appearing once per session
-ggstatsplot::ggbetweenstats(data = iris, x = Species, y = Sepal.Length)
-```
-
 (**This publication is still a work in progress**)
 
 > "What is to be sought in designs for the display of information is the clear
@@ -115,7 +106,9 @@ which rely on *angle* judgments, which are less accurate (as compared to bar
 graphs, e.g., which require *position* judgments). This shortcoming is assuaged
 to some degree by using plenty of labels that describe percentages for all
 slices. This makes angle judgment unnecessary and pre-vacates any concerns about
-inaccurate judgments about percentages.
+inaccurate judgments about percentages. Additionally, it also provides
+alternative function to `ggpiestats` for working with categorical variables:
+`ggbarstats`.
 
 ```{r example2, fig.height = 6, fig.width = 10, fig.cap = "**Figure-2**. Pie charts don't follow Cleveland's paradigm to data display because they rely on less accurate angle judgments. `ggstatsplot` sidesteps this issue by always labelling percentages for pie slices, which makes angle judgments unnecessary."}
 # for reproducibility
@@ -340,6 +333,7 @@ ggstatsplot::combine_plots(
 Functions | Description | Parametric | Non-parametric | Robust | Bayes Factor
 ------- | ------------------ | ---- | ----- | ----| ----- 
 `ggbetweenstats` | Between group/condition comparisons | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
+`ggwithinstats` | Within group/condition comparisons | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
 `gghistostats` | Distribution of a numeric variable | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
 `ggcorrmat` | Correlation matrix | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="red">$\times$</font>
 `ggscatterstats` | Correlation between two variables | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font> | <font color="green">$\checkmark$</font>
