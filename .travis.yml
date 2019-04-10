@@ -3,7 +3,7 @@
 language: r
 r:
   - release
-  #- devel
+  - devel
 
 sudo: true
 dist: trusty
