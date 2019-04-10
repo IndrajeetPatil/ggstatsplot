@@ -4,6 +4,7 @@ testthat::test_that(
   desc = "Yuen's test on trimmed means for dependent samples works",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # made up data
     mydata <-
