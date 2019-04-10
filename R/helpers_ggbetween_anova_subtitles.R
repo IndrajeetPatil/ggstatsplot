@@ -336,13 +336,11 @@ subtitle_anova_nonparametric <- function(data,
         na.action = na.omit
       ))
 
-    # calculating Kendall's W
-    # ref: http://www.tss.awf.poznan.pl/files/3_Trends_Vol21_2014__no1_20.pdf
+    # calculating Kendall's W and its CI
     effsize_df <- kendall_w_ci(
-      data = data_within,
-      x = key,
-      y = value,
-      id.variable = rowid,
+      data = dplyr::select(long_to_wide_converter(data, x, y), -rowid),
+      nboot = nboot,
+      conf.type = conf.type,
       conf.level = conf.level
     )
   } else {
@@ -371,11 +369,11 @@ subtitle_anova_nonparametric <- function(data,
         conf.level = conf.level,
         conf.type = conf.type
       ))
+  }
 
-    # message about effect size measure
-    if (isTRUE(messages)) {
-      effsize_ci_message(nboot = nboot, conf.level = conf.level)
-    }
+  # message about effect size measure
+  if (isTRUE(messages)) {
+    effsize_ci_message(nboot = nboot, conf.level = conf.level)
   }
 
   # choosing the appropriate effect size text
