@@ -111,6 +111,7 @@ testthat::test_that(
   desc = "within-subjects - data with and without NAs",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     library(jmv)
     data("bugs", package = "jmv")
