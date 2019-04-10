@@ -718,6 +718,7 @@ testthat::test_that(
   desc = "check clm models (minimal)",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_on_travis()
     testthat::skip_if_not(R.version$minor >= "6.0")
 
     # clm model

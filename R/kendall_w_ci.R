@@ -17,7 +17,6 @@
 #' library(jmv)
 #' data("bugs", package = "jmv")
 #' ggstatsplot:::kendall_w_ci(dplyr::select(bugs, LDLF:HDHF))
-#'
 #' @keywords internal
 
 kendall_w_ci <- function(data,
@@ -66,4 +65,3 @@ kendall_w_ci <- function(data,
 
   return(dplyr::tibble(estimate = r, conf.low = CI1, conf.high = CI2))
 }
-
