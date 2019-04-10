@@ -24,6 +24,9 @@ to use in calculating Bayes factors.}
 in favor of null)  or \code{"results"} (which will return the dataframe with
 results).}
 
+\item{paired}{a logical indicating whether you want a paired
+    t-test.}
+
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 

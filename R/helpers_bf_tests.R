@@ -512,6 +512,7 @@ bf_two_sample_ttest <- function(data,
 #' @inheritParams BayesFactor::anovaBF
 #' @inheritParams ggbetweenstats
 #' @inheritParams bf_corr_test
+#' @inheritParams pairwise_p
 #' @param ... Additional arguments.
 #'
 #' @seealso \code{\link{bf_contingency_tab}}, \code{\link{bf_corr_test}},

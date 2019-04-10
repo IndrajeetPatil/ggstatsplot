@@ -10,13 +10,13 @@
 #'   parametric/pearson's), `"np"` (nonparametric/spearman), `"r"` (robust),
 #'   `"bf"` (for bayes factor), resp.
 #' @inheritParams robcor_ci
-#' @inheritParams cor_test_ci
 #' @inheritParams bf_corr_test
 #' @inheritParams subtitle_anova_parametric
 #'
 #' @importFrom dplyr select
 #' @importFrom rlang !! enquo
 #' @importFrom stats cor.test
+#' @importFrom DescTools SpearmanRho
 #'
 #' @examples
 #'
@@ -123,19 +123,13 @@ subtitle_ggscatterstats <- function(data,
 
     # getting confidence interval for rho using broom bootstrap
     effsize_df <-
-      cor_test_ci(
-        data = data,
-        x = x,
-        y = y,
-        nboot = nboot,
-        conf.level = conf.level,
-        conf.type = conf.type
-      )
-
-    # message about effect size measure
-    if (isTRUE(messages)) {
-      effsize_ci_message(nboot = nboot, conf.level = conf.level)
-    }
+      DescTools::SpearmanRho(
+        x = data$x,
+        y = data$y,
+        use = "pairwise.complete.obs",
+        conf.level = conf.level
+      ) %>%
+      tibble::enframe(x = .)
 
     # preparing subtitle
     subtitle <- subtitle_template(
@@ -147,8 +141,8 @@ subtitle_ggscatterstats <- function(data,
       p.value = stats_df$p.value[[1]],
       effsize.text = quote(italic(rho)["Spearman"]),
       effsize.estimate = stats_df$estimate,
-      effsize.LL = effsize_df$conf.low[[1]],
-      effsize.UL = effsize_df$conf.high[[1]],
+      effsize.LL = effsize_df$value[[2]],
+      effsize.UL = effsize_df$value[[3]],
       n = sample_size,
       conf.level = conf.level,
       k = k,

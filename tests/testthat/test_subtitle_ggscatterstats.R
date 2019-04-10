@@ -17,7 +17,6 @@ testthat::test_that(
         type = "nonparametric",
         k = 5,
         conf.level = 0.999,
-        conf.type = "perc",
         nboot = 50,
         messages = FALSE
       ))
@@ -40,9 +39,9 @@ testthat::test_that(
           "0.46669",
           ", CI"["99.9%"],
           " [",
-          "0.41794",
+          "0.39941",
           ", ",
-          "0.51081",
+          "0.52898",
           "]",
           ", ",
           italic("n"),

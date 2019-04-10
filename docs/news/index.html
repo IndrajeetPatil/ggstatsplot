@@ -188,6 +188,7 @@
 <ul>
 <li>
 <code><a href="../reference/pairwise_p.html">pairwise_p()</a></code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</li>
+<li>Instead of using the internal function <code>cor_test_ci</code>, <code>ggscatterstats</code> instead used <code>SpearmanRho</code> function from <code>DescTools</code> package. This was done to reduce number of custom internal functions used to compute CIs for various effect sizes. <code>ggstatsplot</code> therefore gains <code>DescTools</code> as a dependency.</li>
 </ul>
 </div>
     <div id="ggstatsplot-0010" class="section level1">

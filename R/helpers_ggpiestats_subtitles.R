@@ -211,6 +211,7 @@ subtitle_contingency_tab <- function(data,
       digits = 5
     )$Global.statistics %>%
       tibble::as_tibble(x = .) %>%
+      dplyr::rename(.data = ., r = Value) %>%
       dplyr::filter(.data = ., Statistic == "g")
   }
 
@@ -230,7 +231,7 @@ subtitle_contingency_tab <- function(data,
     parameter = stats_df$parameter[[1]],
     p.value = stats_df$p.value[[1]],
     effsize.text = effsize.text,
-    effsize.estimate = effsize_df$Value[[1]],
+    effsize.estimate = effsize_df$r[[1]],
     effsize.LL = effsize_df$lower.ci[[1]],
     effsize.UL = effsize_df$upper.ci[[1]],
     n = sample_size,

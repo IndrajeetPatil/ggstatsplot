@@ -438,7 +438,7 @@ testthat::test_that(
       data = ggstatsplot::iris_long,
       x = condition,
       y = value,
-      type = "bf",
+      #type = "bf",
       pairwise.comparisons = TRUE
     )
 
