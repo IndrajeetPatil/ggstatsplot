@@ -625,13 +625,49 @@ subtitle_anova_robust <- function(data,
 subtitle_anova_bayes <- function(data,
                                  x,
                                  y,
+                                 paired = FALSE,
                                  effsize.type = "unbiased",
                                  partial = TRUE,
                                  var.equal = FALSE,
                                  bf.prior = 0.707,
-                                 paired = FALSE,
                                  k = 2,
                                  ...) {
+
+  # number of decimal places for degree of freedom
+  if (isTRUE(var.equal) || isTRUE(paired)) {
+    k.df <- 0
+  } else {
+    k.df <- k
+  }
+
+  # figuring out which effect size to use
+  effsize.type <- effsize_type_switch(effsize.type)
+
+  # some of the effect sizes don't work properly for paired designs
+  if (isTRUE(paired)) {
+    if (effsize.type == "unbiased") {
+      partial <- FALSE
+    } else {
+      partial <- TRUE
+    }
+  }
+
+  # preparing the subtitles with appropriate effect sizes
+  if (effsize.type == "unbiased") {
+    effsize <- "omega"
+    if (isTRUE(partial)) {
+      effsize.text <- quote(omega["p"]^2)
+    } else {
+      effsize.text <- quote(omega^2)
+    }
+  } else if (effsize.type == "biased") {
+    effsize <- "eta"
+    if (isTRUE(partial)) {
+      effsize.text <- quote(eta["p"]^2)
+    } else {
+      effsize.text <- quote(eta^2)
+    }
+  }
 
   # creating a dataframe
   data <-
@@ -640,72 +676,66 @@ subtitle_anova_bayes <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(x = .)
 
-  # sample size
-  sample_size <- nrow(data)
+  # properly removing NAs if it's a paired design
+  if (isTRUE(paired)) {
+    # converting to long format and then getting it back in wide so that the
+    # rowid variable can be used as the block variable
+    data_within <-
+      long_to_wide_converter(
+        data = data,
+        x = x,
+        y = y
+      ) %>%
+      tidyr::gather(data = ., key, value, -rowid) %>%
+      dplyr::arrange(.data = ., rowid)
 
-  # Welch's ANOVA run by default
-  stats_df <-
-    stats::oneway.test(
-      formula = y ~ x,
-      data = data,
-      subset = NULL,
-      na.action = na.omit,
-      var.equal = var.equal
+    # sample size
+    sample_size <- length(unique(data_within$rowid))
+  } else {
+
+    # remove NAs listwise for between-subjects design
+    data %<>%
+      tidyr::drop_na(data = .)
+
+    # sample size
+    sample_size <- nrow(data)
+
+    # Welch's ANOVA run by default
+    stats_df <-
+      stats::oneway.test(
+        formula = y ~ x,
+        data = data,
+        subset = NULL,
+        na.action = na.omit,
+        var.equal = var.equal
+      )
+
+    # bayes factor results
+    bf_results <-
+      bf_oneway_anova(
+        data = data,
+        x = x,
+        y = y,
+        bf.prior = bf.prior,
+        caption = NULL,
+        output = "results"
+      )
+
+    # creating a standardized dataframe with effect size and its confidence
+    # intervals
+    effsize_df <- lm_effsize_standardizer(
+      object = stats::lm(
+        formula = y ~ x,
+        data = data,
+        na.action = na.omit
+      ),
+      effsize = effsize,
+      partial = partial
     )
-
-  # bayes factor results
-  bf_results <-
-    bf_oneway_anova(
-      data = data,
-      x = x,
-      y = y,
-      bf.prior = bf.prior,
-      caption = NULL,
-      output = "results"
-    )
-
-  # number of decimal places for degree of freedom
-  if (!isTRUE(var.equal)) {
-    k.df <- k
-  } else if (isTRUE(var.equal)) {
-    k.df <- 0
   }
-
-  # figuring out which effect size to use
-  effsize.type <- effsize_type_switch(effsize.type)
-
-  # preparing the subtitles with appropriate effect sizes
-  if (effsize.type == "unbiased") {
-    effsize <- "omega"
-    if (isTRUE(partial)) {
-      effsize.text <- quote(omega["p"])
-    } else {
-      effsize.text <- quote(omega)
-    }
-  } else if (effsize.type == "biased") {
-    effsize <- "eta"
-    if (isTRUE(partial)) {
-      effsize.text <- quote(eta["p"])
-    } else {
-      effsize.text <- quote(eta)
-    }
-  }
-
-  # creating a standardized dataframe with effect size and its confidence
-  # intervals
-  effsize_df <- lm_effsize_standardizer(
-    object = stats::lm(
-      formula = y ~ x,
-      data = data,
-      na.action = na.omit
-    ),
-    effsize = effsize,
-    partial = partial
-  )
 
   # preparing the subtitle
   subtitle <-
@@ -720,7 +750,7 @@ subtitle_anova_bayes <- function(data,
           ") = ",
           estimate,
           ", ",
-          effsize.text^2,
+          effsize.text,
           " = ",
           effsize,
           ", log"["e"],

@@ -4,9 +4,9 @@
 \alias{subtitle_anova_bayes}
 \title{Making text subtitle for the between-subject one-way anova designs.}
 \usage{
-subtitle_anova_bayes(data, x, y, effsize.type = "unbiased",
-  partial = TRUE, var.equal = FALSE, bf.prior = 0.707,
-  paired = FALSE, k = 2, ...)
+subtitle_anova_bayes(data, x, y, paired = FALSE,
+  effsize.type = "unbiased", partial = TRUE, var.equal = FALSE,
+  bf.prior = 0.707, k = 2, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -16,6 +16,11 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
+
+\item{paired}{Logical that decides whether the design is repeated
+measures/within-subjects (in which case one-way Friedman Rank Sum Test will
+be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
+test will be carried out). The default is \code{FALSE}.}
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"biased"} (\code{"d"} for Cohen's \emph{d} for \strong{t-test};
@@ -37,11 +42,6 @@ will be returned. Valid only for objects of class \code{lm}, \code{aov}, \code{a
 
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
-
-\item{paired}{Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is \code{FALSE}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

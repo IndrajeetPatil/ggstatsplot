@@ -544,6 +544,7 @@ bf_oneway_anova <- function(data,
                             bf.prior = 0.707,
                             caption = NULL,
                             output = "caption",
+                            paired = FALSE,
                             k = 2,
                             ...) {
 
@@ -556,24 +557,55 @@ bf_oneway_anova <- function(data,
       x = !!rlang::enquo(x),
       y = !!rlang::enquo(y)
     ) %>%
-    tidyr::drop_na(data = .) %>%
     dplyr::mutate(.data = ., x = droplevels(as.factor(x))) %>%
     tibble::as_tibble(.)
 
   # ========================= subtitle preparation ==========================
 
-  # extracting results from bayesian test and creating a dataframe
-  bf_results <-
-    bf_extractor(
-      BayesFactor::anovaBF(
-        formula = y ~ x,
+  if (isTRUE(paired)) {
+    # converting to long format and then getting it back in wide so that the
+    # rowid variable can be used as the block variable
+    data <-
+      long_to_wide_converter(
+        data = data,
+        x = x,
+        y = y
+      ) %>%
+      tidyr::gather(data = ., key, value, -rowid) %>%
+      dplyr::arrange(.data = ., rowid) %>%
+      dplyr::mutate(.data = ., rowid = as.factor(rowid))
+
+    # extracting results from bayesian test and creating a dataframe
+    bf_results <-
+      bf_extractor(BayesFactor::anovaBF(
+        value ~ key + rowid,
         data = as.data.frame(data),
+        whichRandom = "rowid",
         rscaleFixed = bf.prior,
         progress = FALSE,
+        rscaleRandom = 1,
         ...
-      )
-    ) %>%
-    dplyr::mutate(.data = ., bf.prior = bf.prior)
+      )) %>%
+      dplyr::mutate(.data = ., bf.prior = bf.prior)
+  } else {
+
+    # remove NAs listwise for between-subjects design
+    data %<>%
+      tidyr::drop_na(data = .)
+
+    # extracting results from bayesian test and creating a dataframe
+    bf_results <-
+      bf_extractor(
+        BayesFactor::anovaBF(
+          formula = y ~ x,
+          data = as.data.frame(data),
+          rscaleFixed = bf.prior,
+          progress = FALSE,
+          ...
+        )
+      ) %>%
+      dplyr::mutate(.data = ., bf.prior = bf.prior)
+  }
 
   # prepare the bayes factor message
   bf_message <-
