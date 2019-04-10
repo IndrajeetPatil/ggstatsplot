@@ -6,6 +6,7 @@ testthat::test_that(
   desc = "subtitle_ggscatterstats works - nonparametric",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     set.seed(123)
@@ -17,7 +18,6 @@ testthat::test_that(
         type = "nonparametric",
         k = 5,
         conf.level = 0.999,
-        conf.type = "perc",
         nboot = 50,
         messages = FALSE
       ))
@@ -40,9 +40,9 @@ testthat::test_that(
           "0.46669",
           ", CI"["99.9%"],
           " [",
-          "0.41794",
+          "0.39941",
           ", ",
-          "0.51081",
+          "0.52898",
           "]",
           ", ",
           italic("n"),
@@ -62,6 +62,7 @@ testthat::test_that(
   desc = "subtitle_ggscatterstats works - parametric",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     set.seed(123)
@@ -120,6 +121,7 @@ testthat::test_that(
   desc = "subtitle_ggscatterstats works - robust",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # using function
     set.seed(123)
@@ -179,6 +181,7 @@ testthat::test_that(
   desc = "subtitle_ggscatterstats works - bayes",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # using function
     set.seed(123)

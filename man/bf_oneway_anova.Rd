@@ -5,7 +5,7 @@
 \title{Bayesian one-way analysis of variance.}
 \usage{
 bf_oneway_anova(data, x, y, bf.prior = 0.707, caption = NULL,
-  output = "caption", k = 2, ...)
+  output = "caption", paired = FALSE, k = 2, ...)
 }
 \arguments{
 \item{data}{a data frame containing data for all factors in the formula}
@@ -23,6 +23,9 @@ to use in calculating Bayes factors.}
 \item{output}{Can either be \code{"caption"} (which will contain text for evidence
 in favor of null)  or \code{"results"} (which will return the dataframe with
 results).}
+
+\item{paired}{a logical indicating whether you want a paired
+    t-test.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

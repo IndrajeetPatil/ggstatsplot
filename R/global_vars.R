@@ -185,7 +185,9 @@ utils::globalVariables(
     "tau",
     "tau2",
     "id",
-    "coef.type"
+    "coef.type",
+    "Value",
+    "Statistic"
   ),
   package = "ggstatsplot",
   add = FALSE

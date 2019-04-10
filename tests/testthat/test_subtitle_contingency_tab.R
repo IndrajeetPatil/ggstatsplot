@@ -6,6 +6,7 @@ testthat::test_that(
   desc = "subtitle_contingency_tab works - data without NAs",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     set.seed(123)
@@ -65,6 +66,7 @@ testthat::test_that(
   desc = "subtitle_contingency_tab works - data with NAs",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # introduce NAs
     # check that 2-by-2 doesn't produce continuity correction

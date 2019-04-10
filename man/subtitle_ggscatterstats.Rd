@@ -45,7 +45,7 @@ to be displayed (Default: \code{TRUE}).}
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
 
-\item{...}{further arguments to be passed to or from methods.}
+\item{...}{Additional arguments.}
 }
 \description{
 Making text subtitle for the correlation test.

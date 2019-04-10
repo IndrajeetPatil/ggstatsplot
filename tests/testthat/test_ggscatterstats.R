@@ -523,19 +523,7 @@ testthat::test_that(
     testthat::skip_on_cran()
 
     # creating the messages
-    set.seed(123)
     p_message1 <- capture.output(
-      ggstatsplot::subtitle_ggscatterstats(
-        data = dplyr::starwars,
-        x = mass,
-        y = height,
-        conf.level = 0.50,
-        nboot = 10,
-        type = "np"
-      )
-    )
-
-    p_message2 <- capture.output(
       ggstatsplot::subtitle_ggscatterstats(
         data = dplyr::starwars,
         x = mass,
@@ -548,11 +536,6 @@ testthat::test_that(
 
     # checking captured messages
     testthat::expect_match(p_message1[1],
-      "50% CI for effect size estimate was computed with 10",
-      fixed = TRUE
-    )
-
-    testthat::expect_match(p_message2[1],
       "90% CI for effect size estimate was computed with 15",
       fixed = TRUE
     )

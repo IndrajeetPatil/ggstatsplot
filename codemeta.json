@@ -313,6 +313,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "DescTools",
+      "name": "DescTools",
+      "version": ">= 0.99.28",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=DescTools"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "version": ">= 0.8.0.1",
@@ -393,7 +406,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.1.0",
+      "version": ">= 3.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -559,7 +572,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rcompanion",
       "name": "rcompanion",
-      "version": ">= 2.1.1",
+      "version": ">= 2.1.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -616,7 +629,7 @@
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
-      "version": ">= 1.3.1",
+      "version": ">= 1.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

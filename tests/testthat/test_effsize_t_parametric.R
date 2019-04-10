@@ -6,6 +6,7 @@ testthat::test_that(
   desc = "effsize works for Cohen's d and Hedge's g (between - without NA)",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # checking for errors
     testthat::expect_error(ggstatsplot:::effsize_t_parametric(formula = wt ~ cyl))
@@ -170,6 +171,7 @@ testthat::test_that(
   desc = "effsize works for Cohen's d and Hedge's g (between - with NA)",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     library(ggplot2)
 
@@ -320,6 +322,7 @@ testthat::test_that(
   desc = "effsize works for Cohen's d and Hedge's g (within - without NA)",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # creating a new dataframe with a variable that has dropped factor level
     iris_short <- dplyr::filter(
@@ -480,6 +483,7 @@ testthat::test_that(
   desc = "effsize works for Cohen's d and Hedge's g (within - with NA)",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     library(jmv)
     data(bugs)
@@ -680,6 +684,7 @@ testthat::test_that(
   desc = "effsize works for one sample test",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     tobject1 <-
       t.test(

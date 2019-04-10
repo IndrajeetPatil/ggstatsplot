@@ -6,6 +6,7 @@ testthat::test_that(
   desc = "subtitle_mann_nonparametric works - between-subjects design",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     set.seed(123)
@@ -60,6 +61,7 @@ testthat::test_that(
   desc = "subtitle_mann_nonparametric works - within-subjects design",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # made up data
     Input <- ("

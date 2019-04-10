@@ -203,7 +203,9 @@ subtitle_t_parametric <- function(data,
 #'   Since there is no single commonly accepted method for reporting effect size
 #'   for these tests we are computing and reporting *r* (computed as
 #'   \eqn{Z/\sqrt{N}}) along with the confidence intervals associated with the
-#'   estimate.
+#'   estimate. Note that *N* here corresponds to total *sample size* for
+#'   independent/between-subjects designs, and to total number of *pairs* (and
+#'   **not** *observations*) for repeated measures/within-subjects designs.
 #'
 #'   *Note:* The *stats::wilcox.test* function does not follow the
 #'   same convention as *stats::t.test*. The sign of the *V* test statistic

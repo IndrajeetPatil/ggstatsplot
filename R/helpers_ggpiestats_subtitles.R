@@ -29,7 +29,7 @@
 #' @importFrom tidyr uncount drop_na
 #' @importFrom jmv propTestN contTables
 #' @importFrom stats mcnemar.test chisq.test
-#' @importFrom rcompanion cramerV
+#' @importFrom rcompanion cramerV cohenG
 #'
 #' @seealso \code{\link{ggpiestats}}
 #'
@@ -201,22 +201,18 @@ subtitle_contingency_tab <- function(data,
     ))
 
     # computing effect size + CI
-    effsize_df <-
-      tryCatch(
-        expr = cohenG_ci(
-          x = mat_df,
-          nboot = nboot,
-          conf.level = conf.level,
-          conf.type = conf.type
-        ) %>%
-          tibble::as_tibble(x = .),
-        error = function(x) {
-          tibble::tribble(
-            ~r, ~lower.ci, ~upper.ci,
-            NaN, NaN, NaN
-          )
-        }
-      )
+    effsize_df <- rcompanion::cohenG(
+      x = mat_df,
+      ci = TRUE,
+      conf = conf.level,
+      type = conf.type,
+      R = nboot,
+      histogram = FALSE,
+      digits = 5
+    )$Global.statistics %>%
+      tibble::as_tibble(x = .) %>%
+      dplyr::rename(.data = ., r = Value) %>%
+      dplyr::filter(.data = ., Statistic == "g")
   }
 
   # effct size text

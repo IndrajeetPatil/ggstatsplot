@@ -5,23 +5,24 @@
 \title{Computing confidence intervals for the Kendall's coefficient of
 concordance (aka Kendall's \emph{W}).}
 \usage{
-kendall_w_ci(data, x, y, id.variable, conf.level = 0.95, ...)
+kendall_w_ci(data, nboot = 100, conf.type = "norm",
+  conf.level = 0.95, ...)
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+\item{data}{Data in wide format with only numeric columns corresponding to
+raters' ratings.}
 
-\item{x}{The grouping variable from the dataframe \code{data}.}
+\item{nboot}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100}).}
 
-\item{y}{The response (a.k.a. outcome or dependent) variable from the
-dataframe \code{data}.}
-
-\item{id.variable}{Variable identifying a unique observation.}
+\item{conf.type}{A vector of character strings representing the type of
+intervals required. The value should be any subset of the values \code{"norm"},
+\code{"basic"}, \code{"perc"}, \code{"bca"}. For more, see \code{?boot::boot.ci}.}
 
 \item{conf.level}{Scalar between 0 and 1. If unspecified, the defaults return
 \code{95\%} lower and upper confidence intervals (\code{0.95}).}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \description{
 Computing confidence intervals for the Kendall's coefficient of
@@ -30,15 +31,12 @@ concordance (aka Kendall's \emph{W}).
 \examples{
 
 set.seed(123)
+library(jmv)
+data("bugs", package = "jmv")
+ggstatsplot:::kendall_w_ci(dplyr::select(bugs, LDLF:HDHF))
 
-ggstatsplot:::kendall_w_ci(
-  data = iris_long,
-  x = condition,
-  y = value,
-  id.variable = id
-)
 }
 \author{
-Chuck Powell, Indrajeet Patil
+Indrajeet Patil
 }
 \keyword{internal}

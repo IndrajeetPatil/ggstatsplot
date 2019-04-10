@@ -404,6 +404,7 @@ testthat::test_that(
   desc = "checking with default binwidth",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # creating a subset of the dataset
     set.seed(123)

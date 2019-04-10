@@ -24,6 +24,11 @@ MINOR CHANGES
   - `pairwise_p()` function no longer outputs `conf.low` and `conf.high` columns
     when parametric *post hoc* tests are run. This is because these values were
     accurate only when no *p*-value adjustment was carried out.
+  - Instead of using the internal function `cor_test_ci`, `ggscatterstats`
+    instead used `SpearmanRho` function from `DescTools` package. This was done
+    to reduce number of custom internal functions used to compute CIs for
+    various effect sizes. `ggstatsplot` therefore gains `DescTools` as a
+    dependency.
   
 # ggstatsplot 0.0.10
 

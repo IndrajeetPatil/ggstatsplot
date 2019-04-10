@@ -61,7 +61,9 @@ samples case the Wilcoxon signed rank test is run and \emph{V} is reported.
 Since there is no single commonly accepted method for reporting effect size
 for these tests we are computing and reporting \emph{r} (computed as
 \eqn{Z/\sqrt{N}}) along with the confidence intervals associated with the
-estimate.
+estimate. Note that \emph{N} here corresponds to total \emph{sample size} for
+independent/between-subjects designs, and to total number of \emph{pairs} (and
+\strong{not} \emph{observations}) for repeated measures/within-subjects designs.
 
 \emph{Note:} The \emph{stats::wilcox.test} function does not follow the
 same convention as \emph{stats::t.test}. The sign of the \emph{V} test statistic

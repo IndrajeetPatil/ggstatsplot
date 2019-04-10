@@ -6,6 +6,7 @@ testthat::test_that(
   desc = "paired subtitle_contingency_tab works - counts data without NAs",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # create data structure
     paired_data <-
@@ -64,9 +65,9 @@ testthat::test_that(
           "0.33333",
           ", CI"["95%"],
           " [",
-          "0.16712",
+          "0.18628",
           ", ",
-          "0.49684",
+          "0.49302",
           "]",
           ", ",
           italic("n"),
@@ -86,6 +87,7 @@ testthat::test_that(
   desc = "paired subtitle_contingency_tab works - with NAs",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # create data structure
     paired_data <-
@@ -163,9 +165,9 @@ testthat::test_that(
           "0.342",
           ", CI"["90%"],
           " [",
-          "0.147",
+          "0.192",
           ", ",
-          "0.500",
+          "0.458",
           "]",
           ", ",
           italic("n"),
@@ -185,6 +187,7 @@ testthat::test_that(
   desc = "paired data 4-by-4",
   code = {
     testthat::skip_on_cran()
+    testthat::skip_if_not(R.version$minor >= "6.0")
     set.seed(123)
 
     # making data
@@ -242,9 +245,9 @@ testthat::test_that(
           "0.4344",
           ", CI"["99%"],
           " [",
-          "0.3680",
+          "0.3838",
           ", ",
-          "0.5010",
+          "0.5092",
           "]",
           ", ",
           italic("n"),
