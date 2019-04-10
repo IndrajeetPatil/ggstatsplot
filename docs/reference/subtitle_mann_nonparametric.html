@@ -258,7 +258,9 @@ samples case the Wilcoxon signed rank test is run and <em>V</em> is reported.</p
 <p>Since there is no single commonly accepted method for reporting effect size
 for these tests we are computing and reporting <em>r</em> (computed as
 \(Z/\sqrt{N}\)) along with the confidence intervals associated with the
-estimate.</p>
+estimate. Note that <em>N</em> here corresponds to total <em>sample size</em> for
+independent/between-subjects designs, and to total number of <em>pairs</em> (and
+<strong>not</strong> <em>observations</em>) for repeated measures/within-subjects designs.</p>
 <p><em>Note:</em> The <em>stats::wilcox.test</em> function does not follow the
 same convention as <em>stats::t.test</em>. The sign of the <em>V</em> test statistic
 will always be positive since it is <strong>the sum of the positive signed ranks</strong>.

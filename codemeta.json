@@ -393,7 +393,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.1.0",
+      "version": ">= 3.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -559,7 +559,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rcompanion",
       "name": "rcompanion",
-      "version": ">= 2.1.1",
+      "version": ">= 2.1.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -616,7 +616,7 @@
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
-      "version": ">= 1.3.1",
+      "version": ">= 1.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

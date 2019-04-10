@@ -179,9 +179,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>subtitle_anova_bayes</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>subtitle_anova_bayes</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>paired</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"unbiased"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>var.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -199,6 +199,13 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
       <th>y</th>
       <td><p>The response (a.k.a. outcome or dependent) variable from the
 dataframe <code>data</code>.</p></td>
+    </tr>
+    <tr>
+      <th>paired</th>
+      <td><p>Logical that decides whether the design is repeated
+measures/within-subjects (in which case one-way Friedman Rank Sum Test will
+be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
+test will be carried out). The default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>effsize.type</th>
@@ -228,13 +235,6 @@ will be returned. Valid only for objects of class <code>lm</code>, <code>aov</co
       <th>bf.prior</th>
       <td><p>A number between 0.5 and 2 (default <code>0.707</code>), the prior width
 to use in calculating Bayes factors.</p></td>
-    </tr>
-    <tr>
-      <th>paired</th>
-      <td><p>Logical that decides whether the design is repeated
-measures/within-subjects (in which case one-way Friedman Rank Sum Test will
-be carried out) or between-subjects (in which case one-way Kruskal–Wallis H
-test will be carried out). The default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>k</th>
