@@ -125,7 +125,7 @@ models. Although there is certainly some improvement with additive and
 multiplicative models, it is by no means convincing enough for us to abandon a
 simpler model.
 
-```{r aov2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10, eval = FALSE}
+```{r aov2, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 10}
 library(ggstatsplot)
 
 # to speed up the calculation, let's use only 10% of the data
@@ -1525,6 +1525,27 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## fit a GLM with lasso or elasticnet regularization (`glmnet`)
+
+Although these models are not directly supported in `ggcoefstats` because of the
+sheer number of terms that are typically present. But this function can still be
+used to selectively show few of the terms of interest:
+
+```{r glmnet, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+# setup
+library(glmnet)
+set.seed(2014)
+
+# creating a dataframe
+x <- matrix(rnorm(100*20),100,20)
+y <- rnorm(100)
+fit1 <- glmnet::glmnet(x,y)
+(df <- broom::tidy(fit1))
+
+# displaying only a certain step
+ggstatsplot::ggcoefstats(x = dplyr::filter(df, step == 4))
+```
+
 ## joint model to time-to-event data and multivariate longitudinal data (`mjoint`)
 
 ```{r mjoint, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 8}
@@ -1568,7 +1589,7 @@ ggstatsplot::ggcoefstats(
 
 ## exponential-family random graph models (`ergm`)
 
-```{r ergm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+```{r ergm, eval = FALSE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
 # load the Florentine marriage network data
 set.seed(123)
 suppressPackageStartupMessages(library(ergm))
@@ -1685,7 +1706,7 @@ ggstatsplot::ggcoefstats(
 
 ## Cochrane-Orcutt estimation (`orcutt`)
 
-```{r orcutt, eval = FALSE, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
+```{r orcutt, warning = FALSE, message = FALSE, fig.height = 4, fig.width = 4}
 # model
 library(orcutt)
 set.seed(123)
@@ -1720,6 +1741,31 @@ ggstatsplot::ggcoefstats(
   x = two_class_cm,
   by.class = TRUE,
   title = "confusion matrix"
+)
+```
+
+## Dose-Response Curves (`drc`)
+
+```{r drc, warning = FALSE, message = FALSE, fig.height = 7, fig.width = 5}
+# setup
+set.seed(123)
+library(drc)
+
+# model
+mod <- drc::drm(
+  formula = dead / total ~ conc,
+  curveid = type,
+  weights = total,
+  data = selenium,
+  fct = LL.2(),
+  type = "binomial"
+)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod,
+  conf.level = 0.99,
+  title = "Dose-Response Curves"
 )
 ```
 

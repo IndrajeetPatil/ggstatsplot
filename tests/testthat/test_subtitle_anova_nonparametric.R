@@ -112,7 +112,6 @@ testthat::test_that(
   desc = "within-subjects - data with and without NAs",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_on_travis()
     testthat::skip_if_not(R.version$minor >= "6.0")
 
     library(jmv)
@@ -153,12 +152,12 @@ testthat::test_that(
           ", ",
           italic("W")["Kendall"],
           " = ",
-          "0.2115",
+          "0.6148",
           ", CI"["99%"],
           " [",
-          "0.0847",
+          "0.4901",
           ", ",
-          "0.3737",
+          "0.7424",
           "]",
           ", ",
           italic("n"),
@@ -200,12 +199,12 @@ testthat::test_that(
           ", ",
           italic("W")["Kendall"],
           " = ",
-          "0.911",
+          "0.486",
           ", CI"["90%"],
           " [",
-          "0.765",
+          "0.442",
           ", ",
-          "1.000",
+          "0.533",
           "]",
           ", ",
           italic("n"),
