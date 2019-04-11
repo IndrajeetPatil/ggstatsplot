@@ -7,8 +7,6 @@ testthat::test_that(
   code = {
     testthat::skip_on_cran()
     testthat::skip_if_not(R.version$minor >= "6.0")
-    testthat::skip_on_appveyor()
-    testthat::skip_on_travis()
 
     # ----------------------- data without NAs ------------------------------
 
@@ -39,6 +37,18 @@ testthat::test_that(
       # check mean label for first factor level
       testthat::expect_identical(
         object = mean_dat$label[[1]],
+        expected = "3819.580, 95% CI [3140.804, 4498.356]"
+      )
+
+      # check mean label for first factor level
+      testthat::expect_identical(
+        object = mean_dat$label[[4]],
+        expected = "4602.090, 95% CI [4274.733, 4929.447]"
+      )
+    } else {
+      # check mean label for first factor level
+      testthat::expect_identical(
+        object = mean_dat$label[[1]],
         expected = "3759.200, 95% CI [3160.528, 4357.872]"
       )
 
@@ -46,18 +56,6 @@ testthat::test_that(
       testthat::expect_identical(
         object = mean_dat$label[[4]],
         expected = "4866.200, 95% CI [4527.173, 5205.227]"
-      )
-    } else {
-      # check mean label for first factor level
-      testthat::expect_identical(
-        object = mean_dat$label[[1]],
-        expected = "3819.577, 95% CI [3140.801, 4498.353]"
-      )
-
-      # check mean label for first factor level
-      testthat::expect_identical(
-        object = mean_dat$label[[4]],
-        expected = "4602.088, 95% CI [4274.731, 4929.445]"
       )
     }
 

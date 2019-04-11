@@ -628,7 +628,7 @@ ggcoefstats <- function(x,
     if (any(coefficient.type %in%
       c("alpha", "beta", "zeta", "intercept", "location", "scale", "coefficient"))) {
       # subset the dataframe, only if not all coefficients are to be retained
-      if (utils::packageVersion("broom") > "0.5.1") {
+      if (utils::packageVersion("broom") > "0.5.2") {
         tidy_df %<>%
           dplyr::filter(.data = ., coef.type %in% coefficient.type)
       } else {
@@ -652,12 +652,12 @@ ggcoefstats <- function(x,
 
   # for some class of objects, there are going to be duplicate terms
   # create a new column by collapsing orignal `variable` and `term` columns
-  if (class(x)[[1]] %in% c("gmm", "lmodel2", "gamlss")) {
+  if (class(x)[[1]] %in% c("gmm", "lmodel2", "gamlss", "drc")) {
     tidy_df %<>%
       tidyr::unite(
         data = .,
         col = "term",
-        dplyr::matches("term|variable|parameter|method"),
+        dplyr::matches("term|variable|parameter|method|curveid"),
         remove = TRUE,
         sep = "_"
       )
