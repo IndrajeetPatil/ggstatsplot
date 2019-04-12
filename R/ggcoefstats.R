@@ -428,6 +428,7 @@ ggcoefstats <- function(x,
       "mts",
       "muhaz",
       "optim",
+      "pam",
       "poLCA",
       "power.htest",
       "prcomp",
@@ -652,12 +653,12 @@ ggcoefstats <- function(x,
 
   # for some class of objects, there are going to be duplicate terms
   # create a new column by collapsing orignal `variable` and `term` columns
-  if (class(x)[[1]] %in% c("gmm", "lmodel2", "gamlss", "drc")) {
+  if (class(x)[[1]] %in% c("gmm", "lmodel2", "gamlss", "drc", "mlm")) {
     tidy_df %<>%
       tidyr::unite(
         data = .,
         col = "term",
-        dplyr::matches("term|variable|parameter|method|curveid"),
+        dplyr::matches("term|variable|parameter|method|curveid|response"),
         remove = TRUE,
         sep = "_"
       )

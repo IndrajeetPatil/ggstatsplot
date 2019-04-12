@@ -181,7 +181,7 @@
 
     <pre class="usage"><span class='fu'>bf_contingency_tab</span>(<span class='no'>data</span>, <span class='no'>main</span>, <span class='no'>condition</span>, <span class='kw'>sampling.plan</span> <span class='kw'>=</span> <span class='st'>"indepMulti"</span>,
   <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>, <span class='kw'>prior.concentration</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -222,13 +222,15 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
     </tr>
     <tr>
       <th>caption</th>
-      <td><p>The text for the plot caption.</p></td>
+      <td><p>Text to display as caption (will be displayed on top of the
+bayes factor caption/message).</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>Can either be <code>"caption"</code> (which will contain text for evidence
-in favor of null)  or <code>"results"</code> (which will return the dataframe with
-results).</p></td>
+      <td><p>Can either be <code>"null"</code> (or <code>"caption"</code> or <code>"H0"</code>, which will
+contain text for evidence in favor of the null hypothesis or H0)  or
+<code>"alternative"</code> (or <code>"title"</code> or <code>"H1"</code>) or <code>"results"</code>, which will return
+a dataframe with results all the details).</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -251,8 +253,9 @@ results).</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggstatsplot</span>)
 
-<span class='co'># to get caption (default)</span>
+<span class='co'># to get caption (in favor of null)</span>
 <span class='fu'>bf_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
@@ -261,6 +264,16 @@ results).</p></td>
 )</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
 #&gt;     "(BF"["01"], ") = ", "-2.72", ", sampling = ", "independent multinomial", 
 #&gt;     ", ", italic("a"), " = ", "1.00"))</div><div class='input'>
+<span class='co'># to get caption (in favor of alternative)</span>
+<span class='fu'>bf_contingency_tab</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,
+  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>am</span>,
+  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='no'>cyl</span>,
+  <span class='kw'>fixed.margin</span> <span class='kw'>=</span> <span class='st'>"rows"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"alternative"</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
+#&gt;     "log"["e"], "(BF"["10"], ") = ", "2.82", ", sampling = ", 
+#&gt;     "independent multinomial", ", ", italic("a"), " = ", "1.00"))</div><div class='input'>
 <span class='co'># to see results</span>
 <span class='fu'>bf_contingency_tab</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>,

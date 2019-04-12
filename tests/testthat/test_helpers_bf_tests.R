@@ -141,6 +141,16 @@ testthat::test_that(
       output = "results"
     )
 
+    # caption
+    caption_text <- ggstatsplot::bf_contingency_tab(
+      data = mtcars,
+      main = am,
+      condition = cyl,
+      sampling.plan = "jointMulti",
+      fixed.margin = "rows",
+      output = "alternative"
+    )
+
     # check bayes factor values
     testthat::expect_equal(df$bf10, 28.07349, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf10, 3.334826, tolerance = 0.001)
@@ -151,6 +161,24 @@ testthat::test_that(
     # checking if two usages of the function are producing the same results
     testthat::expect_equal(df$bf10, df_results$bf10, tolerance = 0.001)
     testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
+
+    # caption text
+    testthat::expect_identical(caption_text, ggplot2::expr(atop(
+      displaystyle(NULL),
+      expr = paste(
+        "In favor of alternative: ",
+        "log"["e"],
+        "(BF"["10"],
+        ") = ",
+        "3.33",
+        ", sampling = ",
+        "joint multinomial",
+        ", ",
+        italic("a"),
+        " = ",
+        "1.00"
+      )
+    )))
   }
 )
 
@@ -175,6 +203,11 @@ testthat::test_that(
       k = 3,
       caption = substitute(paste(italic("Note", ": made up data")))
     )
+    using2 <- ggstatsplot::bf_caption_maker(
+      bf.df = bf_results,
+      output = "H1",
+      caption = substitute(paste(italic("Note", ": made up data")))
+    )
 
     testthat::expect_identical(
       using1,
@@ -192,6 +225,26 @@ testthat::test_that(
           italic("r")["Cauchy"],
           " = ",
           "0.880"
+        )
+      ))
+    )
+
+    testthat::expect_identical(
+      using2,
+      ggplot2::expr(atop(
+        displaystyle(paste(italic(
+          "Note", ": made up data"
+        ))),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "-1.10",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
+          "0.88"
         )
       ))
     )

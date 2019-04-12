@@ -792,6 +792,18 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## multiple linear regression models (`mlm`)
+
+```{r mlm, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 5}
+# model (converting all numeric columns in data to z-scores)
+mod <- stats::lm(formula = cbind(mpg, disp) ~ wt, 
+                 data = purrr::modify_if(.x = mtcars, .p = is.numeric, .f = scale))
+
+# plot
+ggstatsplot::ggcoefstats(x = mod,
+                         exclude.intercept = FALSE)
+```
+
 ## multinomial logistic regression models (`multinom`)
 
 ```{r multinom, warning = FALSE, message = FALSE, fig.height = 8, fig.width = 6}

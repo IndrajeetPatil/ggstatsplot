@@ -181,20 +181,28 @@ factors in favor of the null hypothesis.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bf_caption_maker</span>(<span class='no'>bf.df</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>bf_caption_maker</span>(<span class='no'>bf.df</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>bf.df</th>
-      <td><p>A dataframe containing two columns <code>log_e_bf01</code> and <code>bf.prior</code>.
-If dataframe contains more than two rows, only the first row will be used.</p></td>
+      <td><p>A dataframe containing two columns <code>log_e_bf01</code> (for evidence in
+favor of null hypothesis) and <code>bf.prior</code>. If dataframe contains more than
+two rows, only the first row will be used.</p></td>
     </tr>
     <tr>
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>Can either be <code>"null"</code> (or <code>"caption"</code> or <code>"H0"</code>, which will
+contain text for evidence in favor of the null hypothesis or H0)  or
+<code>"alternative"</code> (or <code>"title"</code> or <code>"H1"</code>) or <code>"results"</code>, which will return
+a dataframe with results all the details).</p></td>
     </tr>
     <tr>
       <th>caption</th>
@@ -214,20 +222,28 @@ bayes factor caption/message).</p></td>
 
 <span class='co'># dataframe containing results</span>
 <span class='no'>bf_results</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='bf_extractor.html'>bf_extractor</a></span>(<span class='kw pkg'>BayesFactor</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BayesFactor/topics/correlationBF'>correlationBF</a></span>(
+  <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_extractor.html'>bf_extractor</a></span>(<span class='kw pkg'>BayesFactor</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BayesFactor/topics/correlationBF'>correlationBF</a></span>(
     <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Sepal.Length</span>,
     <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>iris</span>$<span class='no'>Petal.Length</span>
   )) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>.</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>)
 
-<span class='co'># creating caption</span>
+<span class='co'># creating caption (for null)</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_caption_maker.html'>bf_caption_maker</a></span>(
   <span class='kw'>bf.df</span> <span class='kw'>=</span> <span class='no'>bf_results</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>,
   <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Note: Iris dataset"</span>
 )</div><div class='output co'>#&gt; atop(displaystyle("Note: Iris dataset"), expr = paste("In favor of null: ", 
 #&gt;     "log"["e"], "(BF"["01"], ") = ", "-99.770", ", ", italic("r")["Cauchy"], 
-#&gt;     " = ", "0.707"))</div></pre>
+#&gt;     " = ", "0.707"))</div><div class='input'>
+<span class='co'># creating caption (for alternative)</span>
+<span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_caption_maker.html'>bf_caption_maker</a></span>(
+  <span class='kw'>bf.df</span> <span class='kw'>=</span> <span class='no'>bf_results</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"alternative"</span>
+)</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of alternative: ", 
+#&gt;     "log"["e"], "(BF"["10"], ") = ", "99.77", ", ", italic("r")["Cauchy"], 
+#&gt;     " = ", "0.71"))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

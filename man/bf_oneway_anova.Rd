@@ -5,7 +5,7 @@
 \title{Bayesian one-way analysis of variance.}
 \usage{
 bf_oneway_anova(data, x, y, bf.prior = 0.707, caption = NULL,
-  output = "caption", paired = FALSE, k = 2, ...)
+  output = "null", paired = FALSE, k = 2, ...)
 }
 \arguments{
 \item{data}{a data frame containing data for all factors in the formula}
@@ -20,9 +20,10 @@ to use in calculating Bayes factors.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{output}{Can either be \code{"caption"} (which will contain text for evidence
-in favor of null)  or \code{"results"} (which will return the dataframe with
-results).}
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"}, which will
+contain text for evidence in favor of the null hypothesis or H0)  or
+\code{"alternative"} (or \code{"title"} or \code{"H1"}) or \code{"results"}, which will return
+a dataframe with results all the details).}
 
 \item{paired}{a logical indicating whether you want a paired
     t-test.}
