@@ -627,7 +627,7 @@ bf_oneway_anova <- function(data,
       ) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid) %>%
-      dplyr::mutate(.data = ., rowid = as.factor(rowid))
+      dplyr::mutate(.data = ., rowid = as.factor(rowid), key = as.factor(key))
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-
