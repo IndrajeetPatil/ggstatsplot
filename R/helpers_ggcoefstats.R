@@ -261,15 +261,8 @@ ggcoefstats_label_maker <- function(x,
           )
       }
     } else if (class(x)[[1]] == "glmRob") {
-      if (x$family[[1]] %in% g.t.mods) {
-        tidy_df %<>%
-          tfz_labeller(
-            tidy_df = .,
-            glance_df = glance_df,
-            statistic = "t",
-            k = k
-          )
-      } else if (x$family[[1]] %in% g.z.mods) {
+      # only binomial and poisson families are implemented in `robust` package
+       if (x$family[[1]] %in% g.z.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,

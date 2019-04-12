@@ -1100,18 +1100,12 @@ ggcoefstats <- function(x,
   # =========================== output =====================================
 
   # what needs to be returned?
-  if (output == "plot") {
-    # return the final plot
-    return(plot)
-  } else if (output == "tidy") {
-    # return the tidy output dataframe
-    return(tidy_df)
-  } else if (output == "glance") {
-    # return the glance summary
-    return(glance_df)
-  } else if (output == "augment") {
-    # return the augmented dataframe
-    broomExtra::augment(x = x, ...) %>%
-      tibble::as_tibble(x = .)
-  }
+  return(switch(
+    EXPR = output,
+    "plot" = plot,
+    "tidy" = tidy_df,
+    "glance" = glance_df,
+    "augment" = tibble::as_tibble(broomExtra::augment(x = x, ...)),
+    "plot"
+  ))
 }
