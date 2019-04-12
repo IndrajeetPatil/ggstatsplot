@@ -127,6 +127,7 @@ ggcoefstats_label_maker <- function(x,
       "lm.beta",
       "lmerMod",
       "lmRob",
+      "mlm",
       "multinom",
       "nlmerMod",
       "nlrq",
@@ -260,15 +261,8 @@ ggcoefstats_label_maker <- function(x,
           )
       }
     } else if (class(x)[[1]] == "glmRob") {
-      if (x$family[[1]] %in% g.t.mods) {
-        tidy_df %<>%
-          tfz_labeller(
-            tidy_df = .,
-            glance_df = glance_df,
-            statistic = "t",
-            k = k
-          )
-      } else if (x$family[[1]] %in% g.z.mods) {
+      # only binomial and poisson families are implemented in `robust` package
+       if (x$family[[1]] %in% g.z.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,
@@ -511,7 +505,7 @@ tfz_labeller <- function(tidy_df,
 #'     ), conf.high = c(
 #'       0.473580060546444, 0.845724236068931, 0.496860572498711,
 #'       0.652939922388847, 1.08550155858277
-#'     ), p.value.x = c(
+#'     ), p.value = c(
 #'       3.28679518728519e-15,
 #'       4.04778497135963e-75, 7.59757330804449e-29, 5.45155840151592e-26,
 #'       2.99171217913312e-13

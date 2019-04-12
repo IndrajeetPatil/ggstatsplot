@@ -63,10 +63,15 @@ bf_extractor <- function(bf.object,
 #' @description Convenience function to write a caption message with bayes
 #'   factors in favor of the null hypothesis.
 #'
-#' @param bf.df A dataframe containing two columns `log_e_bf01` and `bf.prior`.
-#'   If dataframe contains more than two rows, only the first row will be used.
+#' @param bf.df A dataframe containing two columns `log_e_bf01` (for evidence in
+#'   favor of null hypothesis) and `bf.prior`. If dataframe contains more than
+#'   two rows, only the first row will be used.
 #' @param caption Text to display as caption (will be displayed on top of the
 #'   bayes factor caption/message).
+#' @param output Can either be `"null"` (or `"caption"` or `"H0"`, which will
+#'   contain text for evidence in favor of the null hypothesis or H0)  or
+#'   `"alternative"` (or `"title"` or `"H1"`) or `"results"`, which will return
+#'   a dataframe with results all the details).
 #' @param ... Additional arguments (ignored).
 #' @inheritParams ggbetweenstats
 #'
@@ -76,36 +81,55 @@ bf_extractor <- function(bf.object,
 #'
 #' # dataframe containing results
 #' bf_results <-
-#'   bf_extractor(BayesFactor::correlationBF(
+#'   ggstatsplot::bf_extractor(BayesFactor::correlationBF(
 #'     x = iris$Sepal.Length,
 #'     y = iris$Petal.Length
 #'   )) %>%
 #'   dplyr::mutate(.data = ., bf.prior = 0.707)
 #'
-#' # creating caption
+#' # creating caption (for null)
 #' ggstatsplot::bf_caption_maker(
 #'   bf.df = bf_results,
+#'   output = "null",
 #'   k = 3,
 #'   caption = "Note: Iris dataset"
+#' )
+#'
+#' # creating caption (for alternative)
+#' ggstatsplot::bf_caption_maker(
+#'   bf.df = bf_results,
+#'   output = "alternative"
 #' )
 #' @export
 
 # function body
 bf_caption_maker <- function(bf.df,
                              k = 2,
+                             output = "null",
                              caption = NULL,
                              ...) {
   ellipsis::check_dots_used()
 
+  # changing aspects of the caption based on what output is needed
+  if (output %in% c("null", "caption", "H0", "h0")) {
+    hypothesis.text <- "In favor of null: "
+    bf.value <- bf.df$log_e_bf01[[1]]
+    bf.subscript <- "01"
+  } else {
+    hypothesis.text <- "In favor of alternative: "
+    bf.value <- -bf.df$log_e_bf01[[1]]
+    bf.subscript <- "10"
+  }
+
   # prepare the bayes factor message
-  bf_caption <-
+  bf_text <-
     base::substitute(
       atop(displaystyle(top.text),
         expr =
           paste(
-            "In favor of null: ",
+            hypothesis.text,
             "log"["e"],
-            "(BF"["01"],
+            "(BF"[bf.subscript],
             ") = ",
             bf,
             ", ",
@@ -115,14 +139,16 @@ bf_caption_maker <- function(bf.df,
           )
       ),
       env = base::list(
+        hypothesis.text = hypothesis.text,
         top.text = caption,
-        bf = specify_decimal_p(x = bf.df$log_e_bf01[[1]], k = k),
+        bf.subscript = bf.subscript,
+        bf = specify_decimal_p(x = bf.value, k = k),
         bf_prior = specify_decimal_p(x = bf.df$bf.prior[[1]], k = k)
       )
     )
 
   # return the caption
-  return(bf_caption)
+  return(bf_text)
 }
 
 #' @title Bayesian correlation test.
@@ -130,12 +156,10 @@ bf_caption_maker <- function(bf.df,
 #' @author Indrajeet Patil
 #'
 #' @inheritParams BayesFactor::correlationBF
+#' @inheritParams bf_caption_maker
 #' @inheritParams ggscatterstats
 #' @param bf.prior A number between 0.5 and 2 (default `0.707`), the prior width
 #'   to use in calculating Bayes factors.
-#' @param output Can either be `"caption"` (which will contain text for evidence
-#'   in favor of null)  or `"results"` (which will return the dataframe with
-#'   results).
 #'
 #' @importFrom BayesFactor correlationBF extractBF
 #'
@@ -171,7 +195,7 @@ bf_corr_test <- function(data,
                          y,
                          bf.prior = 0.707,
                          caption = NULL,
-                         output = "caption",
+                         output = "null",
                          k = 2,
                          ...) {
 
@@ -203,21 +227,24 @@ bf_corr_test <- function(data,
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
   # prepare the bayes factor message
-  bf_message <-
-    bf_caption_maker(
-      bf.df = bf_results,
-      k = k,
-      caption = caption
-    )
+  if (output != "results") {
+    bf_message <-
+      bf_caption_maker(
+        bf.df = bf_results,
+        output = output,
+        k = k,
+        caption = caption
+      )
+  }
 
   # ============================ return ==================================
 
   # return the text results or the dataframe with results
-  if (output == "caption") {
-    return(bf_message)
-  } else if (output == "results") {
-    return(bf_results)
-  }
+  return(switch(
+    EXPR = output,
+    "results" = bf_results,
+    bf_message
+  ))
 }
 
 
@@ -248,13 +275,23 @@ bf_corr_test <- function(data,
 #'
 #' # for reproducibility
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
-#' # to get caption (default)
+#' # to get caption (in favor of null)
 #' bf_contingency_tab(
 #'   data = mtcars,
 #'   main = am,
 #'   condition = cyl,
 #'   fixed.margin = "cols"
+#' )
+#'
+#' # to get caption (in favor of alternative)
+#' bf_contingency_tab(
+#'   data = mtcars,
+#'   main = am,
+#'   condition = cyl,
+#'   fixed.margin = "rows",
+#'   output = "alternative"
 #' )
 #'
 #' # to see results
@@ -276,7 +313,7 @@ bf_contingency_tab <- function(data,
                                fixed.margin = "rows",
                                prior.concentration = 1,
                                caption = NULL,
-                               output = "caption",
+                               output = "null",
                                k = 2,
                                ...) {
 
@@ -326,6 +363,17 @@ bf_contingency_tab <- function(data,
       prior.concentration = prior.concentration
     )
 
+  # changing aspects of the caption based on what output is needed
+  if (output %in% c("null", "caption", "H0", "h0")) {
+    hypothesis.text <- "In favor of null: "
+    bf.value <- bf_results$log_e_bf01[[1]]
+    bf.subscript <- "01"
+  } else {
+    hypothesis.text <- "In favor of alternative: "
+    bf.value <- -bf_results$log_e_bf01[[1]]
+    bf.subscript <- "10"
+  }
+
   # prepare the bayes factor message
   bf_message <-
     base::substitute(
@@ -333,9 +381,9 @@ bf_contingency_tab <- function(data,
         displaystyle(top.text),
         expr =
           paste(
-            "In favor of null: ",
+            hypothesis.text,
             "log"["e"],
-            "(BF"["01"],
+            "(BF"[bf.subscript],
             ") = ",
             bf,
             ", sampling = ",
@@ -347,8 +395,10 @@ bf_contingency_tab <- function(data,
           )
       ),
       env = base::list(
+        hypothesis.text = hypothesis.text,
         top.text = caption,
-        bf = specify_decimal_p(x = bf_results$log_e_bf01[[1]], k = k),
+        bf.subscript = bf.subscript,
+        bf = specify_decimal_p(x = bf.value, k = k),
         sampling.plan = sampling_plan_text,
         a = specify_decimal_p(x = bf_results$prior.concentration[[1]], k = k)
       )
@@ -357,11 +407,11 @@ bf_contingency_tab <- function(data,
   # ============================ return ==================================
 
   # return the text results or the dataframe with results
-  if (output == "caption") {
-    return(bf_message)
-  } else if (output == "results") {
-    return(bf_results)
-  }
+  return(switch(
+    EXPR = output,
+    "results" = bf_results,
+    bf_message
+  ))
 }
 
 
@@ -422,7 +472,7 @@ bf_two_sample_ttest <- function(data,
                                 paired = FALSE,
                                 bf.prior = 0.707,
                                 caption = NULL,
-                                output = "caption",
+                                output = "null",
                                 k = 2,
                                 ...) {
 
@@ -486,21 +536,24 @@ bf_two_sample_ttest <- function(data,
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
   # prepare the bayes factor message
-  bf_message <-
-    bf_caption_maker(
-      bf.df = bf_results,
-      k = k,
-      caption = caption
-    )
+  if (output != "results") {
+    bf_message <-
+      bf_caption_maker(
+        bf.df = bf_results,
+        output = output,
+        k = k,
+        caption = caption
+      )
+  }
 
   # ============================ return ==================================
 
   # return the text results or the dataframe with results
-  if (output == "caption") {
-    return(bf_message)
-  } else if (output == "results") {
-    return(bf_results)
-  }
+  return(switch(
+    EXPR = output,
+    "results" = bf_results,
+    bf_message
+  ))
 }
 
 #' @title Bayesian one-way analysis of variance.
@@ -544,7 +597,7 @@ bf_oneway_anova <- function(data,
                             y,
                             bf.prior = 0.707,
                             caption = NULL,
-                            output = "caption",
+                            output = "null",
                             paired = FALSE,
                             k = 2,
                             ...) {
@@ -574,7 +627,7 @@ bf_oneway_anova <- function(data,
       ) %>%
       tidyr::gather(data = ., key, value, -rowid) %>%
       dplyr::arrange(.data = ., rowid) %>%
-      dplyr::mutate(.data = ., rowid = as.factor(rowid))
+      dplyr::mutate(.data = ., rowid = as.factor(rowid), key = as.factor(key))
 
     # extracting results from bayesian test and creating a dataframe
     bf_results <-
@@ -609,21 +662,24 @@ bf_oneway_anova <- function(data,
   }
 
   # prepare the bayes factor message
-  bf_message <-
-    bf_caption_maker(
-      bf.df = bf_results,
-      k = k,
-      caption = caption
-    )
+  if (output != "results") {
+    bf_message <-
+      bf_caption_maker(
+        bf.df = bf_results,
+        output = output,
+        k = k,
+        caption = caption
+      )
+  }
 
   # ============================ return ==================================
 
   # return the text results or the dataframe with results
-  if (output == "caption") {
-    return(bf_message)
-  } else if (output == "results") {
-    return(bf_results)
-  }
+  return(switch(
+    EXPR = output,
+    "results" = bf_results,
+    bf_message
+  ))
 }
 
 #' @title Bayesian one-sample *t*-test.
@@ -666,7 +722,7 @@ bf_one_sample_ttest <- function(data = NULL,
                                 test.value = 0,
                                 bf.prior = 0.707,
                                 caption = NULL,
-                                output = "caption",
+                                output = "null",
                                 k = 2,
                                 ...) {
 
@@ -706,19 +762,22 @@ bf_one_sample_ttest <- function(data = NULL,
     dplyr::mutate(.data = ., bf.prior = bf.prior)
 
   # prepare the bayes factor message
-  bf_message <-
-    bf_caption_maker(
-      bf.df = bf_results,
-      k = k,
-      caption = caption
-    )
+  if (output != "results") {
+    bf_message <-
+      bf_caption_maker(
+        bf.df = bf_results,
+        output = output,
+        k = k,
+        caption = caption
+      )
+  }
 
   # ============================ return ==================================
 
   # return the text results or the dataframe with results
-  if (output == "caption") {
-    return(bf_message)
-  } else if (output == "results") {
-    return(bf_results)
-  }
+  return(switch(
+    EXPR = output,
+    "results" = bf_results,
+    bf_message
+  ))
 }

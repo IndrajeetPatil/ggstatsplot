@@ -18,7 +18,7 @@ NEW FEATURES
     confidence intervals for Kendall's *W*.
   - Both `subtitle_anova_robust` and `subtitle_anova_parametric` gain a new
     argument `paired` to support repeated measures designs.
-  - `ggcoefstats` can support following new model objects: `drc`.
+  - `ggcoefstats` can support following new model objects: `drc`, `mlm`.
 
 MINOR CHANGES
 

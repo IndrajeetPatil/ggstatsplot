@@ -1104,9 +1104,9 @@ Most of the regression models that are supported in the `broom` and
 `fitdistr`, `glmerMod`, `glmmTMB`, `gls`, `gam`, `Gam`, `gamlss`, `garch`,
 `glm`, `glmmadmb`, `glmmTMB`, `glmrob`, `gmm`, `ivreg`, `lm`, `lm.beta`,
 `lmerMod`, `lmodel2`, `lmrob`, `mcmc`, `MCMCglmm`, `mediate`, `mjoint`, `mle2`,
-`multinom`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`, `ridgelm`,
-`rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`, `survreg`,
-`svyglm`, `svyolr`, `svyglm`, etc.
+`mlm`, `multinom`, `nlmerMod`, `nlrq`, `nls`, `orcutt`, `plm`, `polr`,
+`ridgelm`, `rjags`, `rlm`, `rlmerMod`, `rq`, `speedglm`, `speedlm`, `stanreg`,
+`survreg`, `svyglm`, `svyolr`, `svyglm`, etc.
 
 For an exhaustive list of all regression models supported by `ggcoefstats` and
 what to do in case the regression model you are interested in is not supported,

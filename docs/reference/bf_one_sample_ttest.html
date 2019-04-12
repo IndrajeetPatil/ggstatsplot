@@ -180,7 +180,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>bf_one_sample_ttest</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>x</span>, <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>,
-  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"null"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -210,9 +210,10 @@ to use in calculating Bayes factors.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>Can either be <code>"caption"</code> (which will contain text for evidence
-in favor of null)  or <code>"results"</code> (which will return the dataframe with
-results).</p></td>
+      <td><p>Can either be <code>"null"</code> (or <code>"caption"</code> or <code>"H0"</code>, which will
+contain text for evidence in favor of the null hypothesis or H0)  or
+<code>"alternative"</code> (or <code>"title"</code> or <code>"H1"</code>) or <code>"results"</code>, which will return
+a dataframe with results all the details).</p></td>
     </tr>
     <tr>
       <th>k</th>

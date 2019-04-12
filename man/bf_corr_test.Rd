@@ -5,7 +5,7 @@
 \title{Bayesian correlation test.}
 \usage{
 bf_corr_test(data, x, y, bf.prior = 0.707, caption = NULL,
-  output = "caption", k = 2, ...)
+  output = "null", k = 2, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -18,11 +18,13 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{bf.prior}{A number between 0.5 and 2 (default \code{0.707}), the prior width
 to use in calculating Bayes factors.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{Text to display as caption (will be displayed on top of the
+bayes factor caption/message).}
 
-\item{output}{Can either be \code{"caption"} (which will contain text for evidence
-in favor of null)  or \code{"results"} (which will return the dataframe with
-results).}
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"}, which will
+contain text for evidence in favor of the null hypothesis or H0)  or
+\code{"alternative"} (or \code{"title"} or \code{"H1"}) or \code{"results"}, which will return
+a dataframe with results all the details).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}

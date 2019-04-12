@@ -428,6 +428,7 @@ ggcoefstats <- function(x,
       "mts",
       "muhaz",
       "optim",
+      "pam",
       "poLCA",
       "power.htest",
       "prcomp",
@@ -652,12 +653,12 @@ ggcoefstats <- function(x,
 
   # for some class of objects, there are going to be duplicate terms
   # create a new column by collapsing orignal `variable` and `term` columns
-  if (class(x)[[1]] %in% c("gmm", "lmodel2", "gamlss", "drc")) {
+  if (class(x)[[1]] %in% c("gmm", "lmodel2", "gamlss", "drc", "mlm")) {
     tidy_df %<>%
       tidyr::unite(
         data = .,
         col = "term",
-        dplyr::matches("term|variable|parameter|method|curveid"),
+        dplyr::matches("term|variable|parameter|method|curveid|response"),
         remove = TRUE,
         sep = "_"
       )
@@ -1099,18 +1100,12 @@ ggcoefstats <- function(x,
   # =========================== output =====================================
 
   # what needs to be returned?
-  if (output == "plot") {
-    # return the final plot
-    return(plot)
-  } else if (output == "tidy") {
-    # return the tidy output dataframe
-    return(tidy_df)
-  } else if (output == "glance") {
-    # return the glance summary
-    return(glance_df)
-  } else if (output == "augment") {
-    # return the augmented dataframe
-    broomExtra::augment(x = x, ...) %>%
-      tibble::as_tibble(x = .)
-  }
+  return(switch(
+    EXPR = output,
+    "plot" = plot,
+    "tidy" = tidy_df,
+    "glance" = glance_df,
+    "augment" = tibble::as_tibble(broomExtra::augment(x = x, ...)),
+    "plot"
+  ))
 }

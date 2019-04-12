@@ -4,14 +4,20 @@
 \alias{bf_caption_maker}
 \title{Prepare caption with bayes factor in favor of null}
 \usage{
-bf_caption_maker(bf.df, k = 2, caption = NULL, ...)
+bf_caption_maker(bf.df, k = 2, output = "null", caption = NULL, ...)
 }
 \arguments{
-\item{bf.df}{A dataframe containing two columns \code{log_e_bf01} and \code{bf.prior}.
-If dataframe contains more than two rows, only the first row will be used.}
+\item{bf.df}{A dataframe containing two columns \code{log_e_bf01} (for evidence in
+favor of null hypothesis) and \code{bf.prior}. If dataframe contains more than
+two rows, only the first row will be used.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
+
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"}, which will
+contain text for evidence in favor of the null hypothesis or H0)  or
+\code{"alternative"} (or \code{"title"} or \code{"H1"}) or \code{"results"}, which will return
+a dataframe with results all the details).}
 
 \item{caption}{Text to display as caption (will be displayed on top of the
 bayes factor caption/message).}
@@ -28,16 +34,23 @@ set.seed(123)
 
 # dataframe containing results
 bf_results <-
-  bf_extractor(BayesFactor::correlationBF(
+  ggstatsplot::bf_extractor(BayesFactor::correlationBF(
     x = iris$Sepal.Length,
     y = iris$Petal.Length
   )) \%>\%
   dplyr::mutate(.data = ., bf.prior = 0.707)
 
-# creating caption
+# creating caption (for null)
 ggstatsplot::bf_caption_maker(
   bf.df = bf_results,
+  output = "null",
   k = 3,
   caption = "Note: Iris dataset"
+)
+
+# creating caption (for alternative)
+ggstatsplot::bf_caption_maker(
+  bf.df = bf_results,
+  output = "alternative"
 )
 }

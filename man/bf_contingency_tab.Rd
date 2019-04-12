@@ -6,7 +6,7 @@
 \usage{
 bf_contingency_tab(data, main, condition, sampling.plan = "indepMulti",
   fixed.margin = "rows", prior.concentration = 1, caption = NULL,
-  output = "caption", k = 2, ...)
+  output = "null", k = 2, ...)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
@@ -31,11 +31,13 @@ to \code{1} by default. It indexes the expected deviation from the null
 hypothesis under the alternative, and corresponds to Gunel and Dickey's
 (1974) \code{"a"} parameter.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{Text to display as caption (will be displayed on top of the
+bayes factor caption/message).}
 
-\item{output}{Can either be \code{"caption"} (which will contain text for evidence
-in favor of null)  or \code{"results"} (which will return the dataframe with
-results).}
+\item{output}{Can either be \code{"null"} (or \code{"caption"} or \code{"H0"}, which will
+contain text for evidence in favor of the null hypothesis or H0)  or
+\code{"alternative"} (or \code{"title"} or \code{"H1"}) or \code{"results"}, which will return
+a dataframe with results all the details).}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2}).}
@@ -49,13 +51,23 @@ Bayesian contingency table analysis.
 
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
-# to get caption (default)
+# to get caption (in favor of null)
 bf_contingency_tab(
   data = mtcars,
   main = am,
   condition = cyl,
   fixed.margin = "cols"
+)
+
+# to get caption (in favor of alternative)
+bf_contingency_tab(
+  data = mtcars,
+  main = am,
+  condition = cyl,
+  fixed.margin = "rows",
+  output = "alternative"
 )
 
 # to see results
