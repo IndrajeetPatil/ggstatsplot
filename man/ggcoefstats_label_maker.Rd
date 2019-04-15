@@ -43,7 +43,7 @@ Create labels with statistical details for \code{ggcoefstats}.
 }
 \examples{
 \dontrun{
-# show all columns in a tibble
+# show all columns in output tibble
 options(tibble.width = Inf)
 
 # for reproducibility

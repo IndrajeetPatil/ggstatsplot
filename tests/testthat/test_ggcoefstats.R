@@ -135,7 +135,7 @@ testthat::test_that(
     testthat::expect_equal(tidy_df$conf.high, broom_df$conf.high, tolerance = 1e-3)
     testthat::expect_equal(tidy_df$p.value, broom_df$p.value, tolerance = 1e-3)
 
-    testthat::expect_identical(tidy_df$significance, c("***", "**", "***", "***"))
+    testthat::expect_identical(tidy_df$significance, c("***", "**", "*", "*"))
     testthat::expect_identical(
       tidy_df$statistic,
       trimws(as.character(format(broom_df$statistic, digits = 3)))
@@ -144,12 +144,8 @@ testthat::test_that(
 
     # checking panel parameters
     testthat::expect_equal(pb$layout$panel_params[[1]]$x.range,
-      c(-2.3876522, 0.1136977),
+      c(-2.8216276, 0.1343632),
       tolerance = 0.001
-    )
-    testthat::expect_identical(
-      pb$layout$panel_params[[1]]$x.labels,
-      c("-2.0", "-1.5", "-1.0", "-0.5", "0.0")
     )
     testthat::expect_equal(pb$layout$panel_params[[1]]$y.range,
       c(0.4, 4.6),
@@ -157,7 +153,7 @@ testthat::test_that(
     )
     testthat::expect_identical(
       pb$layout$panel_params[[1]]$y.labels,
-      c("(Intercept)", "period2", "period3", "period4")
+      c("(Intercept)", "period1", "period2", "period3")
     )
   }
 )
@@ -508,7 +504,7 @@ testthat::test_that(
     tidy_df3 <- ggstatsplot::ggcoefstats(
       x = mod3,
       exclude.intercept = TRUE,
-      exponentiate = TRUE,
+      exponentiate = FALSE,
       output = "tidy"
     )
 
@@ -528,13 +524,13 @@ testthat::test_that(
     testthat::expect_identical(
       tidy_df3$label,
       c(
-        "list(~italic(beta)==533.71, ~italic(t)(566)==8.60, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==0.01, ~italic(t)(566)==-1.04, ~italic(p)==0.321)",
-        "list(~italic(beta)==0.00, ~italic(t)(566)==-3.20, ~italic(p)==0.003)",
-        "list(~italic(beta)==0.17, ~italic(t)(566)==-0.36, ~italic(p)==0.729)",
-        "list(~italic(beta)==10.27, ~italic(t)(566)==1.86, ~italic(p)==0.080)",
-        "list(~italic(beta)==171.23, ~italic(t)(566)==4.11, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==25.86, ~italic(t)(566)==2.60, ~italic(p)==0.016)"
+        "list(~italic(beta)==8.96, ~italic(t)(566)==18.82, ~italic(p)<= 0.001)",
+        "list(~italic(beta)==-2.51, ~italic(t)(566)==-1.04, ~italic(p)==0.321)",
+        "list(~italic(beta)==-4.30, ~italic(t)(566)==-2.81, ~italic(p)==0.009)",
+        "list(~italic(beta)==1.27, ~italic(t)(566)==1.14, ~italic(p)==0.278)",
+        "list(~italic(beta)==1.16, ~italic(t)(566)==1.86, ~italic(p)==0.080)",
+        "list(~italic(beta)==1.33, ~italic(t)(566)==3.34, ~italic(p)==0.002)",
+        "list(~italic(beta)==0.19, ~italic(t)(566)==0.66, ~italic(p)==0.528)"
       )
     )
   }
@@ -875,6 +871,8 @@ testthat::test_that(
         statistic = "t",
         k = 3,
         meta.analytic.effect = TRUE,
+        bf.message = TRUE,
+        sample = 1000,
         messages = FALSE
       )
 
@@ -885,13 +883,6 @@ testthat::test_that(
         k = 3,
         messages = FALSE,
         output = "subtitle"
-      )
-    meta_caption <-
-      ggstatsplot::subtitle_meta_ggcoefstats(
-        data = df5,
-        k = 3,
-        messages = FALSE,
-        output = "caption"
       )
 
     # build plots
@@ -972,7 +963,51 @@ testthat::test_that(
     ))
 
     testthat::expect_identical(pb6$plot$labels$subtitle, meta_subtitle)
-    testthat::expect_identical(pb6$plot$labels$caption, meta_caption)
+    testthat::expect_identical(pb6$plot$labels$caption, ggplot2::expr(atop(
+      displaystyle(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "0.174",
+          ", ",
+          italic("d")["mean"],
+          " = ",
+          "0.110",
+          ", CI"["95%"],
+          " [",
+          "-0.175",
+          ", ",
+          "0.415",
+          "]",
+
+        )
+      )),
+      expr = paste(
+        "Heterogeneity: ",
+        italic("Q"),
+        "(",
+        "2",
+        ") = ",
+        "6",
+        ", ",
+        italic("p"),
+        " = ",
+        "0.058",
+        ", ",
+        tau["REML"] ^
+          2,
+        " = ",
+        "0.030",
+        ", ",
+        "I" ^
+          2,
+        " = ",
+        "81.42%"
+      )
+    )))
   }
 )
 

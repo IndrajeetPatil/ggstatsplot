@@ -186,19 +186,21 @@ caption.</p>
 
     <pre class="usage"><span class='fu'>ggcoefstats</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"plot"</span>, <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>conf.method</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>conf.type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>component</span> <span class='kw'>=</span> <span class='st'>"survival"</span>,
-  <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"beta"</span>,
-  <span class='st'>"location"</span>, <span class='st'>"coefficient"</span>), <span class='kw'>by.class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>se.type</span> <span class='kw'>=</span> <span class='st'>"nid"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>),
+  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>, <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
+  <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"integrate"</span>, <span class='kw'>p.kr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>p.adjust.method</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>coefficient.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"beta"</span>, <span class='st'>"location"</span>, <span class='st'>"coefficient"</span>),
+  <span class='kw'>by.class</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>effsize</span> <span class='kw'>=</span> <span class='st'>"eta"</span>, <span class='kw'>partial</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+  <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>point.color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>point.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>point.shape</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>se.type</span> <span class='kw'>=</span> <span class='st'>"nid"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>k.caption.summary</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>exclude.intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>errorbar.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>errorbar.height</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>errorbar.linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>errorbar.size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>vline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>vline.color</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>vline.linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>, <span class='kw'>vline.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>sort</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"regression coefficient"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"term"</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stats.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caption.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>stats.label.size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>stats.label.fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>, <span class='kw'>stats.label.color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label.r</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>label.size</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.box.padding</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>label.label.padding</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>label.point.padding</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
@@ -262,6 +264,37 @@ Defaults to <code>"profile"</code>.</p></td>
       <td><p>Character specifying whether to tidy the survival or
 the longitudinal component of the model. Must be either <code>"survival"</code> or
 <code>"longitudinal"</code>. Defaults to <code>"survival"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>bf.message</th>
+      <td><p>Logical that decides whether results from running a
+Bayesian meta-analysis assuming that the effect size <em>d</em> varies across
+studies with standard deviation <em>t</em> (i.e., a random-effects analysis)
+should be displayed in caption. Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td><p>type of prior for mean effect \(d\) (see <code>prior</code>)</p></td>
+    </tr>
+    <tr>
+      <th>d.par</th>
+      <td><p>prior parameters for \(d\)</p></td>
+    </tr>
+    <tr>
+      <th>tau</th>
+      <td><p>type of prior for standard deviation of study effects \(\tau\) in random-effects meta-analysis (i.e., the SD of d across studies; see <code>prior</code>)</p></td>
+    </tr>
+    <tr>
+      <th>tau.par</th>
+      <td><p>prior parameters for \(\tau\)</p></td>
+    </tr>
+    <tr>
+      <th>sample</th>
+      <td><p>number of samples in JAGS after burn-in and thinning (see <code><a href='https://www.rdocumentation.org/packages/runjags/topics/run.jags'>run.jags</a></code>). Samples are used to get posterior  estimates for each study effect (which will show shrinkage). Only works for priors defined in <code>prior</code>.</p></td>
+    </tr>
+    <tr>
+      <th>summarize</th>
+      <td><p>whether and to compute parameter summaries (mean, median, SD, 95% quantile interval, HPD interval). If <code>summarize = "integrate"</code>, numerical integration is used  (which is precise but can require some seconds of computing time), <code>summarize = "jags"</code> summarizes the JAGS samples, and <code>summarize = "none"</code> suppresses parameter summaries.</p></td>
     </tr>
     <tr>
       <th>p.kr</th>
@@ -695,7 +728,8 @@ confidence interval whiskers.</p>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/ggcoefstats.html'>ggcoefstats</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>df</span>,
   <span class='kw'>statistic</span> <span class='kw'>=</span> <span class='st'>"t"</span>,
-  <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>meta.analytic.effect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># -------------- getting model summary ------------------------------</span>
 

@@ -20,6 +20,10 @@
 #'   `"z"`) in the label. This is especially important if the `x` argument in
 #'   `ggcoefstats` is a dataframe in which case the function wouldn't know what
 #'   kind of model it is dealing with.
+#' @param bf.message Logical that decides whether results from running a
+#'   Bayesian meta-analysis assuming that the effect size *d* varies across
+#'   studies with standard deviation *t* (i.e., a random-effects analysis)
+#'   should be displayed in caption. Defaults to `FALSE`.
 #' @param xlab Label for `x` axis variable (Default: `"estimate"`).
 #' @param ylab Label for `y` axis variable (Default: `"term"`).
 #' @param subtitle The text for the plot subtitle. The input to this argument
@@ -152,6 +156,7 @@
 #' @param label.direction Character (`"both"`, `"x"`, or `"y"`) -- direction in
 #'   which to adjust position of labels (Default: `"y"`).
 #' @param ... Additional arguments to tidying method.
+#' @inheritParams bf_meta_message
 #' @inheritParams broom.mixed::tidy.merMod
 #' @inheritParams broom::tidy.clm
 #' @inheritParams broom::tidy.polr
@@ -269,7 +274,8 @@
 #' ggstatsplot::ggcoefstats(
 #'   x = df,
 #'   statistic = "t",
-#'   meta.analytic.effect = TRUE
+#'   meta.analytic.effect = TRUE,
+#'   bf.message = TRUE
 #' )
 #'
 #' # -------------- getting model summary ------------------------------
@@ -311,6 +317,13 @@ ggcoefstats <- function(x,
                         conf.method = "Wald",
                         conf.type = "Wald",
                         component = "survival",
+                        bf.message = FALSE,
+                        d = "norm",
+                        d.par = c(0, 0.3),
+                        tau = "halfcauchy",
+                        tau.par = 0.5,
+                        sample = 10000,
+                        summarize = "integrate",
                         p.kr = TRUE,
                         p.adjust.method = "none",
                         coefficient.type = c("beta", "location", "coefficient"),
@@ -518,19 +531,29 @@ ggcoefstats <- function(x,
   # ============================= dataframe ===============================
 
   if (class(x)[[1]] %in% df.mods) {
+    # set tidy_df to entered dataframe
+    tidy_df <- tibble::as_tibble(x)
+
     # check for the two necessary columns
-    if (!any(names(x) %in% c("term", "estimate"))) {
+    if (!"estimate" %in% names(tidy_df)) {
       base::stop(base::message(cat(
         crayon::red("Error: "),
         crayon::blue(
           "The object of class",
           crayon::yellow(class(x)[[1]]),
-          "*must* contain the following two columns: 'term' and 'estimate'.\n"
+          "*must* contain the following column: 'estimate'.\n"
         ),
         sep = ""
       )),
       call. = FALSE
       )
+    }
+
+    # create a new term column if it's not present
+    if (!"term" %in% names(tidy_df)) {
+      tidy_df %<>%
+        dplyr::mutate(.data = ., term = 1:nrow(.)) %>%
+        dplyr::mutate(.data = ., term = as.character(term))
     }
 
     # check that statistic is specified
@@ -549,9 +572,6 @@ ggcoefstats <- function(x,
       # skip labels
       stats.labels <- FALSE
     }
-
-    # set tidy_df to entered dataframe
-    tidy_df <- tibble::as_tibble(x)
 
     # =========================== broom.mixed tidiers =======================
   } else if (class(x)[[1]] %in% mixed.mods) {
@@ -877,6 +897,23 @@ ggcoefstats <- function(x,
         messages = messages,
         output = "subtitle"
       )
+
+    # add bayes factor caption
+    if (isTRUE(bf.message)) {
+      caption <-
+        bf_meta_message(
+          caption = caption,
+          data = tidy_df,
+          k = k,
+          messages = messages,
+          d = d,
+          d.par = d.par,
+          tau = tau,
+          tau.par = tau.par,
+          sample = sample,
+          summarize = summarize
+        )
+    }
 
     # model summary
     caption.meta <-
