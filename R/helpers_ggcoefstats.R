@@ -733,6 +733,12 @@ subtitle_meta_ggcoefstats <- function(data,
 #' @inheritParams metaBMA::meta_random
 #'
 #' @examples
+#'
+#' # setup
+#' set.seed(123)
+#' library(metaBMA)
+#'
+#' # creating a dataframe
 #' (df <-
 #'   structure(
 #'     .Data = list(
@@ -757,7 +763,8 @@ subtitle_meta_ggcoefstats <- function(data,
 #'   ))
 #'
 #' # getting bayes factor in favor of null hypothesis
-#' bf_meta_message(data = df, k = 3)
+#' ggstatsplot::bf_meta_message(data = df, k = 3)
+#'
 #' @export
 
 

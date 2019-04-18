@@ -39,6 +39,12 @@ to be displayed (Default: \code{TRUE}).}
 Bayes factor message for random-effects meta-analysis
 }
 \examples{
+
+# setup
+set.seed(123)
+library(metaBMA)
+
+# creating a dataframe
 (df <-
   structure(
     .Data = list(
@@ -63,5 +69,6 @@ Bayes factor message for random-effects meta-analysis
   ))
 
 # getting bayes factor in favor of null hypothesis
-bf_meta_message(data = df, k = 3)
+ggstatsplot::bf_meta_message(data = df, k = 3)
+
 }

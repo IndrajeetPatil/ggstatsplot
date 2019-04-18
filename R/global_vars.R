@@ -187,7 +187,10 @@ utils::globalVariables(
     "id",
     "coef.type",
     "Value",
-    "Statistic"
+    "Statistic",
+    "d.pmean",
+    "d.pmean.LB",
+    "d.pmean.UB"
   ),
   package = "ggstatsplot",
   add = FALSE
