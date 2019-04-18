@@ -451,18 +451,6 @@ testthat::test_that(
     set.seed(123)
     mod2 <- lme4::glmer(y ~ x + (1 | f), data = d, family = poisson)
 
-    set.seed(123)
-    mod3 <-
-      lme4::lmer(
-        formula = weight ~ Time * Diet + (1 + Time | Chick),
-        data = ChickWeight,
-        REML = FALSE,
-        control = lme4::lmerControl(
-          optimizer = "bobyqa",
-          check.conv.grad = .makeCC("message", tol = 2e-2, relTol = NULL)
-        )
-      )
-
     # broom output
     set.seed(123)
     broom_df1 <- broom.mixed::tidy(
@@ -499,14 +487,6 @@ testthat::test_that(
       exclude.intercept = FALSE
     )
 
-    set.seed(123)
-    tidy_df3 <- ggstatsplot::ggcoefstats(
-      x = mod3,
-      exclude.intercept = TRUE,
-      exponentiate = FALSE,
-      output = "tidy"
-    )
-
     # testing glmer
     testthat::expect_equal(broom_df1$conf.low, tidy_df1$conf.low, tolerance = 0.001)
     testthat::expect_equal(broom_df2$conf.low, tidy_df2$conf.low, tolerance = 0.001)
@@ -518,20 +498,6 @@ testthat::test_that(
     testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
     #testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
     testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
-
-    # testing lmer
-    testthat::expect_identical(
-      tidy_df3$label,
-      c(
-        "list(~italic(beta)==8.96, ~italic(t)(566)==18.82, ~italic(p)<= 0.001)",
-        "list(~italic(beta)==-2.51, ~italic(t)(566)==-1.04, ~italic(p)==0.321)",
-        "list(~italic(beta)==-4.30, ~italic(t)(566)==-2.81, ~italic(p)==0.009)",
-        "list(~italic(beta)==1.27, ~italic(t)(566)==1.14, ~italic(p)==0.278)",
-        "list(~italic(beta)==1.16, ~italic(t)(566)==1.86, ~italic(p)==0.080)",
-        "list(~italic(beta)==1.33, ~italic(t)(566)==3.34, ~italic(p)==0.002)",
-        "list(~italic(beta)==0.19, ~italic(t)(566)==0.66, ~italic(p)==0.528)"
-      )
-    )
   }
 )
 

@@ -7,7 +7,9 @@ init:
         Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
         Import-Module '..\appveyor-tool.ps1'
 install:
-  ps: Bootstrap
+  - ps: Bootstrap
+  - ps: (new-object net.webclient).DownloadFile('https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.2.0-Rtools33.exe', 'C:\projects\JAGS-4.2.0.exe')
+  - cmd: C:\projects\JAGS-4.2.0.exe /S
 
 # Adapt as necessary starting from here
 
