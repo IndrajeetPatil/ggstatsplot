@@ -496,7 +496,7 @@ testthat::test_that(
     testthat::expect_equal(broom_df2$estimate, tidy_df2$estimate, tolerance = 0.001)
     testthat::expect_equal(broom_df1$std.error, tidy_df1$std.error, tolerance = 0.001)
     testthat::expect_equal(broom_df2$std.error, tidy_df2$std.error, tolerance = 0.001)
-    #testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
+    # testthat::expect_equal(broom_df1$p.value, tidy_df1$p.value, tolerance = 0.001)
     testthat::expect_equal(broom_df2$p.value, tidy_df2$p.value, tolerance = 0.001)
   }
 )
@@ -694,11 +694,13 @@ testthat::test_that(
       ggstatsplot::ggcoefstats(
         x = mod.clm,
         coefficient.type = "both",
+        exponentiate = TRUE,
         output = "tidy"
       )
     df.clm2 <-
       ggstatsplot::ggcoefstats(
         x = mod.clm,
+        exponentiate = TRUE,
         coefficient.type = c("intercept", "alpha"),
         output = "tidy"
       )
@@ -812,6 +814,19 @@ testthat::test_that(
       "x", 0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
       "x", 1.33, 0.542, -0.280, 1.36, 0.191, 10L,
       "x", 1.24, 0.045, 0.030, 0.65, 0.001, 12L
+    )
+
+    # check that term column is generated
+    df8 <- tibble::tribble(
+      ~statistic, ~estimate, ~conf.low, ~conf.high, ~p.value, ~df.residual,
+      0.158, 0.0665, -0.778, 0.911, 0.875, 5L,
+      1.33, 0.542, -0.280, 1.36, 0.191, 10L,
+      1.24, 0.045, 0.030, 0.65, 0.001, 12L
+    )
+
+    testthat::expect_identical(
+      colnames(ggstatsplot::ggcoefstats(df8, output = "tidy"))[[1]],
+      "term"
     )
 
     # expect errors
@@ -947,7 +962,6 @@ testthat::test_that(
           ", ",
           "0.415",
           "]",
-
         )
       )),
       expr = paste(
@@ -962,12 +976,12 @@ testthat::test_that(
         " = ",
         "0.058",
         ", ",
-        tau["REML"] ^
+        tau["REML"]^
           2,
         " = ",
         "0.030",
         ", ",
-        "I" ^
+        "I"^
           2,
         " = ",
         "81.42%"
