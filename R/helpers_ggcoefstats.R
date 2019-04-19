@@ -763,10 +763,9 @@ subtitle_meta_ggcoefstats <- function(data,
 #'   ))
 #'
 #' # getting bayes factor in favor of null hypothesis
-#' ggstatsplot::bf_meta_message(data = df, k = 3)
+#' ggstatsplot::bf_meta_message(data = df, k = 3, samples = 50)
 #'
 #' @export
-
 
 # function body
 bf_meta_message <- function(data,
@@ -852,7 +851,7 @@ bf_meta_message <- function(data,
             d.pmean.LB,
             ", ",
             d.pmean.UB,
-            "]",
+            "]"
           )
       ),
       env = base::list(

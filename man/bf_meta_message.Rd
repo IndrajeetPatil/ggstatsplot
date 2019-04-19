@@ -69,6 +69,6 @@ library(metaBMA)
   ))
 
 # getting bayes factor in favor of null hypothesis
-ggstatsplot::bf_meta_message(data = df, k = 3)
+ggstatsplot::bf_meta_message(data = df, k = 3, samples = 50)
 
 }
