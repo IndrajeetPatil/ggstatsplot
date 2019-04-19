@@ -19,6 +19,9 @@ NEW FEATURES
   - Both `subtitle_anova_robust` and `subtitle_anova_parametric` gain a new
     argument `paired` to support repeated measures designs.
   - `ggcoefstats` can support following new model objects: `drc`, `mlm`.
+  - `ggcoefstats` gains `bf.message` argument to display a caption containing
+    results from Bayesian random-effects meta-analysis. It therefore gains a new
+    dependency: `metaBMA`.
 
 MINOR CHANGES
 

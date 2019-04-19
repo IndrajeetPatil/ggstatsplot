@@ -7,19 +7,21 @@ caption.}
 \usage{
 ggcoefstats(x, output = "plot", statistic = NULL, scales = NULL,
   conf.method = "Wald", conf.type = "Wald", component = "survival",
-  p.kr = TRUE, p.adjust.method = "none", coefficient.type = c("beta",
-  "location", "coefficient"), by.class = FALSE, effsize = "eta",
-  partial = TRUE, nboot = 500, meta.analytic.effect = FALSE,
-  point.color = "blue", point.size = 3, point.shape = 16,
-  conf.int = TRUE, conf.level = 0.95, se.type = "nid", k = 2,
-  k.caption.summary = 0, exclude.intercept = TRUE,
-  exponentiate = FALSE, errorbar.color = "black",
-  errorbar.height = 0, errorbar.linetype = "solid",
-  errorbar.size = 0.5, vline = TRUE, vline.color = "black",
-  vline.linetype = "dashed", vline.size = 1, sort = "none",
-  xlab = "regression coefficient", ylab = "term", title = NULL,
-  subtitle = NULL, stats.labels = TRUE, caption = NULL,
-  caption.summary = TRUE, stats.label.size = 3,
+  bf.message = FALSE, d = "norm", d.par = c(0, 0.3),
+  tau = "halfcauchy", tau.par = 0.5, sample = 10000,
+  summarize = "integrate", p.kr = TRUE, p.adjust.method = "none",
+  coefficient.type = c("beta", "location", "coefficient"),
+  by.class = FALSE, effsize = "eta", partial = TRUE, nboot = 500,
+  meta.analytic.effect = FALSE, point.color = "blue", point.size = 3,
+  point.shape = 16, conf.int = TRUE, conf.level = 0.95,
+  se.type = "nid", k = 2, k.caption.summary = 0,
+  exclude.intercept = TRUE, exponentiate = FALSE,
+  errorbar.color = "black", errorbar.height = 0,
+  errorbar.linetype = "solid", errorbar.size = 0.5, vline = TRUE,
+  vline.color = "black", vline.linetype = "dashed", vline.size = 1,
+  sort = "none", xlab = "regression coefficient", ylab = "term",
+  title = NULL, subtitle = NULL, stats.labels = TRUE,
+  caption = NULL, caption.summary = TRUE, stats.label.size = 3,
   stats.label.fontface = "bold", stats.label.color = NULL,
   label.r = 0.15, label.size = 0.25, label.box.padding = 1,
   label.label.padding = 0.25, label.point.padding = 0.5,
@@ -67,6 +69,23 @@ Defaults to \code{"profile"}.}
 \item{component}{Character specifying whether to tidy the survival or
 the longitudinal component of the model. Must be either \code{"survival"} or
 \code{"longitudinal"}. Defaults to \code{"survival"}.}
+
+\item{bf.message}{Logical that decides whether results from running a
+Bayesian meta-analysis assuming that the effect size \emph{d} varies across
+studies with standard deviation \emph{t} (i.e., a random-effects analysis)
+should be displayed in caption. Defaults to \code{FALSE}.}
+
+\item{d}{type of prior for mean effect \eqn{d} (see \code{\link{prior}})}
+
+\item{d.par}{prior parameters for \eqn{d}}
+
+\item{tau}{type of prior for standard deviation of study effects \eqn{\tau} in random-effects meta-analysis (i.e., the SD of d across studies; see \code{\link{prior}})}
+
+\item{tau.par}{prior parameters for \eqn{\tau}}
+
+\item{sample}{number of samples in JAGS after burn-in and thinning (see \code{\link[runjags]{run.jags}}). Samples are used to get posterior  estimates for each study effect (which will show shrinkage). Only works for priors defined in \code{\link{prior}}.}
+
+\item{summarize}{whether and to compute parameter summaries (mean, median, SD, 95\% quantile interval, HPD interval). If \code{summarize = "integrate"}, numerical integration is used  (which is precise but can require some seconds of computing time), \code{summarize = "jags"} summarizes the JAGS samples, and \code{summarize = "none"} suppresses parameter summaries.}
 
 \item{p.kr}{Logical, if \code{TRUE}, the computation of \emph{p}-values for \code{lmer} is
 based on conditional F-tests with Kenward-Roger approximation for the df.
@@ -364,7 +383,8 @@ df <-
 ggstatsplot::ggcoefstats(
   x = df,
   statistic = "t",
-  meta.analytic.effect = TRUE
+  meta.analytic.effect = TRUE,
+  bf.message = TRUE
 )
 
 # -------------- getting model summary ------------------------------

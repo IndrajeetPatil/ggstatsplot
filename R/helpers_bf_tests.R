@@ -38,10 +38,10 @@ bf_extractor <- function(bf.object,
     dplyr::mutate(
       .data = .,
       bf01 = 1 / bf10,
-      log_e_bf10 = log(x = bf10, base = exp(1)),
-      log_e_bf01 = log(x = bf01, base = exp(1)),
-      log_10_bf10 = log10(x = bf10),
-      log_10_bf01 = log10(x = bf01)
+      log_e_bf10 = log(bf10),
+      log_e_bf01 = log(bf01),
+      log_10_bf10 = log10(bf10),
+      log_10_bf01 = log10(bf01)
     ) %>%
     dplyr::select(
       .data = .,

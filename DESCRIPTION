@@ -51,6 +51,7 @@ Imports:
     groupedstats (>= 0.0.6),
     jmv (>= 0.9.6),
     magrittr (>= 1.5),
+    metaBMA,
     metafor (>= 2.0-0),
     methods,
     paletteer (>= 0.2.1),

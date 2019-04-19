@@ -6,7 +6,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' # show all columns in a tibble
+#' # show all columns in output tibble
 #' options(tibble.width = Inf)
 #'
 #' # for reproducibility
@@ -262,7 +262,7 @@ ggcoefstats_label_maker <- function(x,
       }
     } else if (class(x)[[1]] == "glmRob") {
       # only binomial and poisson families are implemented in `robust` package
-       if (x$family[[1]] %in% g.z.mods) {
+      if (x$family[[1]] %in% g.z.mods) {
         tidy_df %<>%
           tfz_labeller(
             tidy_df = .,
@@ -653,7 +653,7 @@ subtitle_meta_ggcoefstats <- function(data,
       )
     )
 
-  #----------------------- input checking ------------------------------------
+  #----------------------- model sumamry ------------------------------------
 
   df_glance <- with(
     data = meta_res,
@@ -711,13 +711,158 @@ subtitle_meta_ggcoefstats <- function(data,
 
   #---------------------------- output ---------------------------------------
 
-  if (output == "subtitle") {
-    return(subtitle)
-  } else if (output == "tidy") {
-    return(df_tidy)
-  } else if (output == "caption") {
-    return(caption)
-  } else if (output == "glance") {
-    return(df_glance)
+  # what needs to be returned?
+  return(switch(
+    EXPR = output,
+    "subtitle" = subtitle,
+    "tidy" = df_tidy,
+    "caption" = caption,
+    "glance" = df_glance,
+    "subtitle"
+  ))
+}
+
+
+#' @title Bayes factor message for random-effects meta-analysis
+#' @name bf_meta_message
+#' @importFrom metaBMA meta_random
+#'
+#' @inherit metaBMA::meta_random return Description
+#'
+#' @inheritParams subtitle_meta_ggcoefstats
+#' @inheritParams metaBMA::meta_random
+#'
+#' @examples
+#'
+#' # setup
+#' set.seed(123)
+#' library(metaBMA)
+#'
+#' # creating a dataframe
+#' (df <-
+#'   structure(
+#'     .Data = list(
+#'       study = c("1", "2", "3", "4", "5"),
+#'       estimate = c(
+#'         0.382047603321706,
+#'         0.780783111514665,
+#'         0.425607573765058,
+#'         0.558365541235078,
+#'         0.956473848429961
+#'       ),
+#'       std.error = c(
+#'         0.0465576338644502,
+#'         0.0330218199731529,
+#'         0.0362834986178494,
+#'         0.0480571500648261,
+#'         0.062215818388157
+#'       )
+#'     ),
+#'     row.names = c(NA, -5L),
+#'     class = c("tbl_df", "tbl", "data.frame")
+#'   ))
+#'
+#' # getting bayes factor in favor of null hypothesis
+#' ggstatsplot::bf_meta_message(data = df, k = 3, sample = 50)
+#'
+#' @export
+
+# function body
+bf_meta_message <- function(data,
+                            k = 2,
+                            d = "norm",
+                            d.par = c(0, 0.3),
+                            tau = "halfcauchy",
+                            tau.par = 0.5,
+                            sample = 10000,
+                            summarize = "integrate",
+                            caption = NULL,
+                            messages = TRUE,
+                            ...) {
+
+  #----------------------- input checking ------------------------------------
+
+  # check if the two columns needed are present
+  if (sum(c("estimate", "std.error") %in% names(data)) != 2) {
+    # inform the user that skipping labels for the same reason
+    base::stop(base::message(cat(
+      crayon::red("Error"),
+      crayon::blue(": The dataframe **must** contain the following two columns:\n"),
+      crayon::blue("`estimate` and `std.error`."),
+      sep = ""
+    )),
+    call. = FALSE
+    )
   }
+
+  #----------------------- create labels column -------------------------------
+
+  if (!"term" %in% names(data)) {
+    data %<>%
+      dplyr::mutate(.data = ., term = 1:nrow(.)) %>%
+      dplyr::mutate(.data = ., term = as.character(term))
+  }
+
+  # extracting results from random-effects meta-analysis
+  bf_meta <- metaBMA::meta_random(
+    y = data$estimate,
+    SE = data$std.error,
+    labels = data$term,
+    d = d,
+    d.par = d.par,
+    tau = tau,
+    tau.par = tau.par,
+    sample = sample,
+    summarize = summarize,
+    method = "parallel",
+    ...
+  )
+
+  # print results from meta-analysis
+  if (isTRUE(messages)) {
+    print(bf_meta)
+  }
+
+  #----------------------- preparing caption -------------------------------
+
+  # creating a dataframe with posterior estimates
+  df_estimates <- as.data.frame(bf_meta$estimates) %>%
+    tibble::rownames_to_column(.data = ., var = "term") %>%
+    tibble::as_tibble(x = .) %>%
+    dplyr::filter(.data = ., term == "d")
+
+  # prepare the bayes factor message
+  bf_text <-
+    base::substitute(
+      atop(displaystyle(top.text),
+        expr =
+          paste(
+            "In favor of null: ",
+            "log"["e"],
+            "(BF"["01"],
+            ") = ",
+            bf,
+            ", ",
+            italic("d")["mean"],
+            " = ",
+            d.pmean,
+            ", CI"["95%"],
+            " [",
+            d.pmean.LB,
+            ", ",
+            d.pmean.UB,
+            "]"
+          )
+      ),
+      env = base::list(
+        top.text = caption,
+        bf = specify_decimal_p(x = -log(bf_meta$BF[[1]]), k = k),
+        d.pmean = specify_decimal_p(x = df_estimates$Mean[[1]], k = k),
+        d.pmean.LB = specify_decimal_p(x = df_estimates$HPD95lower[[1]], k = k),
+        d.pmean.UB = specify_decimal_p(x = df_estimates$HPD95upper[[1]], k = k)
+      )
+    )
+
+  # return the caption
+  return(bf_text)
 }
