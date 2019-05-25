@@ -101,6 +101,7 @@ testthat::test_that(
         nboot = 25,
         package = "wesanderson",
         palette = "Royal2",
+        ggtheme = ggplot2::theme_bw(),
         slice.label = "counts",
         legend.title = "transmission",
         factor.levels = c("0 = automatic", "1 = manual"),
@@ -251,6 +252,7 @@ testthat::test_that(
       nboot = 25,
       counts = "Freq",
       perc.k = 2,
+      ggtheme = ggplot2::theme_minimal(),
       conf.level = 0.95,
       messages = TRUE
     )

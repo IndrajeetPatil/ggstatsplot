@@ -210,7 +210,7 @@ ggstatsplot::ggplot_converter
 #>   # returning the converted plot
 #>   return(p)
 #> }
-#> <bytecode: 0x0000000029178d58>
+#> <bytecode: 0x000000002917cfc0>
 #> <environment: namespace:ggstatsplot>
 ```
 
@@ -502,7 +502,7 @@ analyses-
 | Robust         | \> 2          | Heteroscedastic one-way repeated measures ANOVA for trimmed means |
 | Bayes Factor   | \> 2          | One-way repeated measures ANOVA                                   |
 | Parametric     | 2             | Student’s *t*-test                                                |
-| Non-parametric | 2             | Mann–Whitney *U* test                                             |
+| Non-parametric | 2             | Wilcoxon signed-rank test                                         |
 | Robust         | 2             | Yuen’s test on trimmed means for dependent samples                |
 | Bayes Factor   | 2             | Student’s *t*-test                                                |
 
@@ -516,7 +516,7 @@ Here is a summary of *multiple pairwise comparison* tests supported in
 | Robust         | Yuen’s trimmed means test   | <font color="green">Yes</font> |
 | Bayes Factor   | <font color="red">No</font> | <font color="red">No</font>    |
 
-For more, see the `ggbetweenstats` vignette:
+For more, see the `ggwithinstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
 ## `ggscatterstats`
