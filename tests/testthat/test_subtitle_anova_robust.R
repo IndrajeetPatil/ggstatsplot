@@ -6,7 +6,6 @@ testthat::test_that(
   desc = "subtitle_anova_robust works - between-subjects",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
     set.seed(123)
 
     # ggstatsplot output
@@ -117,7 +116,6 @@ testthat::test_that(
   desc = "subtitle_anova_robust works - within-subjects",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     set.seed(123)
     library(jmv)

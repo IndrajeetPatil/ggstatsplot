@@ -306,7 +306,7 @@ See the associated vignette here:
 
 ## Between-subjects designs
 
-For repeated measures designs, `ggbetweenstats` function can be used:
+For independent measures designs, `ggbetweenstats` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
 ## Summary of tests
@@ -320,7 +320,7 @@ Non-parametric | > 2 | Friedman test
 Robust | > 2 | Heteroscedastic one-way repeated measures ANOVA for trimmed means
 Bayes Factor | > 2 | One-way repeated measures ANOVA
 Parametric | 2 | Student's *t*-test
-Non-parametric | 2 | Mann–Whitney *U* test
+Non-parametric | 2 | Wilcoxon signed-rank test
 Robust | 2 | Yuen's test on trimmed means for dependent samples
 Bayes Factor | 2 | Student's *t*-test
 

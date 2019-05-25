@@ -178,39 +178,42 @@ testthat::test_that(
     testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
 
     # call for null and alternative
-    testthat::expect_identical(results1,
-                               ggplot2::expr(atop(
-                                 displaystyle(NULL),
-                                 expr = paste(
-                                   "In favor of null: ",
-                                   "log"["e"],
-                                   "(BF"["01"],
-                                   ") = ",
-                                   "1.92",
-                                   ", ",
-                                   italic("r")["Cauchy"],
-                                   " = ",
-                                   "0.88"
-                                 )
-                               )))
+    testthat::expect_identical(
+      results1,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "1.92",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
+          "0.88"
+        )
+      ))
+    )
 
-    testthat::expect_identical(results2,
-                               ggplot2::expr(atop(
-                                 displaystyle(NULL),
-                                 expr = paste(
-                                   "In favor of alternative: ",
-                                   "log"["e"],
-                                   "(BF"["10"],
-                                   ") = ",
-                                   "-1.92",
-                                   ", ",
-                                   italic("r")["Cauchy"],
-                                   " = ",
-                                   "0.88"
-                                 )
-                               )))
+    testthat::expect_identical(
+      results2,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "-1.92",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
+          "0.88"
+        )
+      ))
+    )
   }
-
 )
 
 # bayes factor (between-subjects - anova) ---------------------------------
@@ -283,39 +286,42 @@ testthat::test_that(
     testthat::expect_equal(df$log_e_bf01, df_results$log_e_bf01, tolerance = 0.001)
 
     # call for null and alternative
-    testthat::expect_identical(results1,
-                               ggplot2::expr(atop(
-                                 displaystyle(NULL),
-                                 expr = paste(
-                                   "In favor of null: ",
-                                   "log"["e"],
-                                   "(BF"["01"],
-                                   ") = ",
-                                   "-1.9580",
-                                   ", ",
-                                   italic("r")["Cauchy"],
-                                   " = ",
-                                   "0.8800"
-                                 )
-                               )))
+    testthat::expect_identical(
+      results1,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of null: ",
+          "log"["e"],
+          "(BF"["01"],
+          ") = ",
+          "-1.9580",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
+          "0.8800"
+        )
+      ))
+    )
 
-    testthat::expect_identical(results2,
-                               ggplot2::expr(atop(
-                                 displaystyle(NULL),
-                                 expr = paste(
-                                   "In favor of alternative: ",
-                                   "log"["e"],
-                                   "(BF"["10"],
-                                   ") = ",
-                                   "1.9580",
-                                   ", ",
-                                   italic("r")["Cauchy"],
-                                   " = ",
-                                   "0.8800"
-                                 )
-                               )))
+    testthat::expect_identical(
+      results2,
+      ggplot2::expr(atop(
+        displaystyle(NULL),
+        expr = paste(
+          "In favor of alternative: ",
+          "log"["e"],
+          "(BF"["10"],
+          ") = ",
+          "1.9580",
+          ", ",
+          italic("r")["Cauchy"],
+          " = ",
+          "0.8800"
+        )
+      ))
+    )
   }
-
 )
 
 # bayes factor (contingency tab) ----------------------

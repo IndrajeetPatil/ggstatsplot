@@ -1020,28 +1020,19 @@ effsize_t_parametric <- function(formula = NULL,
   # -------------- return results desired ------------------
 
   if (isTRUE(noncentral)) {
-    return(tibble::tibble(
-      method = method,
-      estimate = d,
-      conf.low = min(ncp.lower.ci, ncp.upper.ci),
-      conf.high = max(ncp.lower.ci, ncp.upper.ci),
-      conf.level = conf.level,
-      alternative = "two.sided",
-      paired = paired,
-      noncentral = noncentral,
-      var.equal = var.equal
-    ))
-  } else {
-    return(tibble::tibble(
-      method = method,
-      estimate = d,
-      conf.low = lower.ci,
-      conf.high = upper.ci,
-      conf.level = conf.level,
-      alternative = "two.sided",
-      paired = paired,
-      noncentral = noncentral,
-      var.equal = var.equal
-    ))
+    lower.ci <- min(ncp.lower.ci, ncp.upper.ci)
+    upper.ci <- max(ncp.lower.ci, ncp.upper.ci)
   }
+
+  return(tibble::tibble(
+    method = method,
+    estimate = d,
+    conf.low = lower.ci,
+    conf.high = upper.ci,
+    conf.level = conf.level,
+    alternative = "two.sided",
+    paired = paired,
+    noncentral = noncentral,
+    var.equal = var.equal
+  ))
 }

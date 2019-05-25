@@ -22,8 +22,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -179,7 +180,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>bf_meta_message</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>),
+    <pre class="usage"><span class='fu'>bf_meta_message</span>(<span class='no'>data</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"norm"</span>, <span class='kw'>d.par</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>),
   <span class='kw'>tau</span> <span class='kw'>=</span> <span class='st'>"halfcauchy"</span>, <span class='kw'>tau.par</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
   <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='st'>"integrate"</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
@@ -215,7 +216,7 @@ and <code>std.error</code> (the standard error of the regression term).</p></td>
     </tr>
     <tr>
       <th>sample</th>
-      <td><p>number of samples in JAGS after burn-in and thinning (see <code><a href='https://www.rdocumentation.org/packages/runjags/topics/run.jags'>run.jags</a></code>). Samples are used to get posterior  estimates for each study effect (which will show shrinkage). Only works for priors defined in <code>prior</code>.</p></td>
+      <td><p>number of samples in JAGS after burn-in and thinning (see <code><a href='https://rdrr.io/pkg/runjags/man/run.jags.html'>run.jags</a></code>). Samples are used to get posterior  estimates for each study effect (which will show shrinkage). Only works for priors defined in <code>prior</code>.</p></td>
     </tr>
     <tr>
       <th>summarize</th>
@@ -232,7 +233,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments passed to <a href='https://www.rdocumentation.org/packages/runjags/topics/run.jags'>run.jags</a> (e.g., MCMC parameters such as <code>sample</code>, <code>burnin</code>, <code>n.chains</code>, <code>thin</code> or <code>method="parallel"</code>)</p></td>
+      <td><p>arguments passed to <a href='https://rdrr.io/pkg/runjags/man/run.jags.html'>run.jags</a> (e.g., MCMC parameters such as <code>sample</code>, <code>burnin</code>, <code>n.chains</code>, <code>thin</code> or <code>method="parallel"</code>)</p></td>
     </tr>
     </table>
     
@@ -240,22 +241,22 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># setup</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>metaBMA</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metaBMA</span>)
 
 <span class='co'># creating a dataframe</span>
 (<span class='no'>df</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/structure'>structure</a></span>(
-    <span class='kw'>.Data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-      <span class='kw'>study</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span>),
-      <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(
+    <span class='kw'>.Data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+      <span class='kw'>study</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span>),
+      <span class='kw'>estimate</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>0.382047603321706</span>,
         <span class='fl'>0.780783111514665</span>,
         <span class='fl'>0.425607573765058</span>,
         <span class='fl'>0.558365541235078</span>,
         <span class='fl'>0.956473848429961</span>
       ),
-      <span class='kw'>std.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='kw'>std.error</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
         <span class='fl'>0.0465576338644502</span>,
         <span class='fl'>0.0330218199731529</span>,
         <span class='fl'>0.0362834986178494</span>,
@@ -263,16 +264,16 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
         <span class='fl'>0.062215818388157</span>
       )
     ),
-    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>),
-    <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>)
-  ))</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 3</span><span>
+    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, -<span class='fl'>5L</span>),
+    <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tbl_df"</span>, <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>)
+  ))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 3</span><span>
 #&gt;   study estimate std.error
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1        0.382    0.046</span><span style='text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 2        0.781    0.033</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 3        0.426    0.036</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 4        0.558    0.048</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 5        0.956    0.062</span><span style='text-decoration: underline;'>2</span><span></div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 1        0.382    0.046</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> 2        0.781    0.033</span><span style='text-decoration: underline;'>0</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> 3        0.426    0.036</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> 4        0.558    0.048</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'>5</span><span> 5        0.956    0.062</span><span style='text-decoration: underline;'>2</span><span></div><div class='input'>
 <span class='co'># getting bayes factor in favor of null hypothesis</span>
 <span class='kw pkg'>ggstatsplot</span><span class='kw ns'>::</span><span class='fu'><a href='https://indrajeetpatil.github.io/ggstatsplot//reference/bf_meta_message.html'>bf_meta_message</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='fl'>50</span>)</div><div class='output co'>#&gt; ### Bayesian Random-Effects Meta-Analysis ###
 #&gt;  
@@ -288,8 +289,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 #&gt; tau 0.3395064 0.2951255 0.1756484 0.1465943 0.7942745  0.1150910  0.6743084</div><div class='output co'>#&gt; atop(displaystyle(NULL), expr = paste("In favor of null: ", "log"["e"], 
 #&gt;     "(BF"["01"], ") = ", "-2.680", ", ", italic("d")["mean"], 
 #&gt;     " = ", "0.491", ", CI"["95%"], " [", "0.147", ", ", "0.775", 
-#&gt;     "]"))</div><div class='input'>
-</div></span></pre>
+#&gt;     "]"))</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -308,7 +308,7 @@ to be displayed (Default: <code>TRUE</code>).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
       </footer>
    </div>

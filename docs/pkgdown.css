@@ -102,21 +102,13 @@ a.anchor {
   margin-top: -40px;
 }
 
-/* Static header placement on mobile devices */
-@media (max-width: 767px) {
-  .navbar-fixed-top {
-    position: absolute;
-  }
-  .navbar {
-    padding: 0;
-  }
-}
-
-
 /* Sidebar --------------------------*/
 
 #sidebar {
   margin-top: 30px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
 }
 #sidebar h2 {
   font-size: 1.5em;
@@ -220,6 +212,19 @@ a.sourceLine:hover {
 
 .hasCopyButton:hover button.btn-copy-ex {
   visibility: visible;
+}
+
+/* headroom.js ------------------------ */
+
+.headroom {
+  will-change: transform;
+  transition: transform 200ms linear;
+}
+.headroom--pinned {
+  transform: translateY(0%);
+}
+.headroom--unpinned {
+  transform: translateY(-100%);
 }
 
 /* mark.js ----------------------------*/

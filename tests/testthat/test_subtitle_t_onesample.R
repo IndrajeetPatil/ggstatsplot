@@ -6,7 +6,6 @@ testthat::test_that(
   desc = "subtitle_t_onesample parametric works",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # Hedge's g and non-central
     set.seed(123)
@@ -212,7 +211,6 @@ testthat::test_that(
   desc = "subtitle_t_onesample non-parametric works",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     set.seed(123)
@@ -270,7 +268,6 @@ testthat::test_that(
   desc = "subtitle_t_onesample robust works",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     set.seed(123)
@@ -321,7 +318,6 @@ testthat::test_that(
   desc = "subtitle_t_onesample bayes factor works",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     set.seed(123)

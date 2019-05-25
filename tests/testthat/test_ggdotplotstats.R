@@ -5,7 +5,6 @@ context(desc = "ggdotplotstats")
 testthat::test_that(
   desc = "ggdotplotstats works as expected",
   code = {
-    testthat::skip_on_cran()
 
     # creating a new dataset
     morley_new <- morley %>%

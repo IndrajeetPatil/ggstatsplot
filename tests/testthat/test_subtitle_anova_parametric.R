@@ -6,7 +6,7 @@ testthat::test_that(
   desc = "parametric anova subtitles work (without NAs)",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
+
 
     # ggstatsplot output
     set.seed(123)
@@ -66,7 +66,6 @@ testthat::test_that(
   desc = "parametric anova subtitles work (with NAs)",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # the expected result
     set.seed(123)
@@ -140,7 +139,7 @@ testthat::test_that(
   desc = "parametric anova subtitles with partial omega-squared",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
+
 
     # ggstatsplot output
     set.seed(123)
@@ -199,7 +198,7 @@ testthat::test_that(
   desc = "parametric anova subtitles with partial eta-squared and data with NAs",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
+
 
     # ggstatsplot output
     set.seed(123)
@@ -262,7 +261,6 @@ testthat::test_that(
   desc = "parametric anova subtitles with partial eta-squared and data with NAs",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     # eta
@@ -380,7 +378,7 @@ testthat::test_that(
   desc = "parametric anova subtitles work (without NAs)",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
+
 
     # ggstatsplot output
     set.seed(123)
@@ -439,7 +437,7 @@ testthat::test_that(
   desc = "parametric anova subtitles work (with NAs)",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
+
 
     set.seed(123)
     library(jmv)
@@ -558,7 +556,6 @@ testthat::test_that(
   desc = "parametric anova subtitles work (catch bad data)",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # ggstatsplot output
     set.seed(123)

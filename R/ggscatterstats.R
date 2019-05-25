@@ -211,8 +211,7 @@ ggscatterstats <- function(data,
   # creating a new dataframe for showing labels
   label_expr_enxpr <- rlang::enexpr(label.expression)
   label_data <-
-    data %>%
-    {
+    data %>% {
       if ("label.expression" %in% names(param_list)) {
         # testing for whether we received bare or quoted
         if (typeof(label_expr_enxpr) == "language") {

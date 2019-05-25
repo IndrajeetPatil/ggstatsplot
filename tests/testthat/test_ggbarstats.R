@@ -5,7 +5,6 @@ context(desc = "ggbarstats")
 testthat::test_that(
   desc = "checking labels with counts",
   code = {
-    testthat::skip_on_cran()
 
     # condition variable is not options for ggbarstats
     testthat::expect_error(ggstatsplot::ggbarstats(
