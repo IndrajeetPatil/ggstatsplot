@@ -5,7 +5,6 @@ context(desc = "ggscatterstats")
 testthat::test_that(
   desc = "checking ggscatterstats - without NAs - pearson's r",
   code = {
-    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)

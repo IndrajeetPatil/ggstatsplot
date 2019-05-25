@@ -88,7 +88,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels with contingency tab",
   code = {
-    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)

@@ -6,7 +6,6 @@ testthat::test_that(
   desc = "subtitle_t_robust - within-subjects",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # creating a dataframe
     df <- iris %>%
@@ -88,7 +87,6 @@ testthat::test_that(
   desc = "subtitle_t_robust - between-subjects",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # subtitle
     set.seed(123)

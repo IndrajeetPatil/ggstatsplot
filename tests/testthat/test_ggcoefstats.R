@@ -5,7 +5,6 @@ context("ggcoefstats")
 testthat::test_that(
   desc = "ggcoefstats with lm model",
   code = {
-    testthat::skip_on_cran()
     set.seed(123)
 
     # model
@@ -154,7 +153,6 @@ testthat::test_that(
   desc = "ggcoefstats with partial variants of effect size for f-statistic",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     ## partial eta-squared
 
@@ -364,7 +362,6 @@ testthat::test_that(
   desc = "ggcoefstats with non-partial variants of effect size for f-statistic",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # model
     set.seed(123)
@@ -603,7 +600,6 @@ testthat::test_that(
   desc = "check gmm output",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # setup
     set.seed(123)
@@ -679,7 +675,6 @@ testthat::test_that(
   desc = "check clm models (minimal)",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # clm model
     set.seed(123)

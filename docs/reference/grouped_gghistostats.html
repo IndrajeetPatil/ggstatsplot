@@ -22,8 +22,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -189,7 +190,7 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
   <span class='kw'>test.value</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>bf.prior</span> <span class='kw'>=</span> <span class='fl'>0.707</span>, <span class='kw'>bf.message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>robust.estimator</span> <span class='kw'>=</span> <span class='st'>"onestep"</span>, <span class='kw'>effsize.type</span> <span class='kw'>=</span> <span class='st'>"g"</span>,
   <span class='kw'>effsize.noncentral</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>nboot</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>theme_bw</a></span>(), <span class='kw'>ggstatsplot.layer</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>fill.gradient</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>low.color</span> <span class='kw'>=</span> <span class='st'>"#0072B2"</span>,
   <span class='kw'>high.color</span> <span class='kw'>=</span> <span class='st'>"#D55E00"</span>, <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
   <span class='kw'>results.subtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>centrality.para</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
@@ -282,7 +283,7 @@ favor of the <em>null</em> hypothesis <strong>for parametric test</strong> (Defa
       <th>robust.estimator</th>
       <td><p>If <code>test = "robust"</code> robust estimator to be used
 (<code>"onestep"</code> (Default), <code>"mom"</code>, or <code>"median"</code>). For more, see
-<code><a href='https://www.rdocumentation.org/packages/WRS2/topics/onesampb'>?WRS2::onesampb</a></code>.</p></td>
+<code><a href='https://rdrr.io/pkg/WRS2/man/onesampb.html'>?WRS2::onesampb</a></code>.</p></td>
     </tr>
     <tr>
       <th>effsize.type</th>
@@ -314,9 +315,9 @@ for the effect size (Default: <code>100</code>).</p></td>
     <tr>
       <th>ggtheme</th>
       <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://www.rdocumentation.org/packages/ggthemes/topics/theme_fivethirtyeight'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://www.rdocumentation.org/packages/hrbrthemes/topics/theme_ipsum_ps'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
+<code><a href='https://rdrr.io/pkg/ggplot2/man/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
+extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
+<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
     </tr>
     <tr>
       <th>ggstatsplot.layer</th>
@@ -416,7 +417,7 @@ be displayed for <strong>test.value</strong> line (Default: <code>TRUE</code>).<
     <tr>
       <th>normal.curve</th>
       <td><p>Logical decides whether to super-impose a normal curve
-using <code><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>stats::dnorm(mean(x), sd(x))</a></code>. Default is <code>FALSE</code>.</p></td>
+using <code><a href='https://rdrr.io/r/stats/Normal.html'>stats::dnorm(mean(x), sd(x))</a></code>. Default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>normal.curve.color</th>
@@ -486,7 +487,7 @@ Can be a plotmath expression.</p></dd>
   <dt>sub.vpadding</dt><dd><p>Vertical padding. The total vertical space added to the
 label, given in grid units. By default, this is added equally above and
 below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: <code><a href='https://www.rdocumentation.org/packages/grid/topics/unit'>grid::unit(1, "lines")</a></code>).</p></dd>
+be changed (Default: <code><a href='https://rdrr.io/r/grid/unit.html'>grid::unit(1, "lines")</a></code>).</p></dd>
   <dt>sub.fontface</dt><dd><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
 <code>"bold.italic"</code>) for the annotation label.</p></dd>
   <dt>sub.angle</dt><dd><p>Angle at which annotation label is to be drawn (Default:
@@ -521,9 +522,9 @@ combining (plot, caption).</p></dd>
   <span class='kw'>grouping.var</span> <span class='kw'>=</span> <span class='no'>Species</span>,
   <span class='kw'>bar.fill</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
   <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-    <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous'>scale_x_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>3</span>, <span class='fl'>9</span>, <span class='fl'>1</span>), <span class='kw'>limits</span> <span class='kw'>=</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>9</span>))),
-    <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous'>scale_y_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>, <span class='fl'>5</span>), <span class='kw'>limits</span> <span class='kw'>=</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>)))
+  <span class='kw'>ggplot.component</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/scale_continuous.html'>scale_x_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>3</span>, <span class='fl'>9</span>, <span class='fl'>1</span>), <span class='kw'>limits</span> <span class='kw'>=</span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>9</span>))),
+    <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ggplot2/man/scale_continuous.html'>scale_y_continuous</a></span>(<span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>, <span class='fl'>5</span>), <span class='kw'>limits</span> <span class='kw'>=</span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>)))
   ),
   <span class='kw'>messages</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: full precision may not have been achieved in 'pnt{final}'</span></div><div class='img'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></div></pre>
@@ -551,7 +552,7 @@ combining (plot, caption).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
       </footer>
    </div>

@@ -130,7 +130,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "checking labels and data from plot",
   code = {
-    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)

@@ -4,7 +4,6 @@ testthat::test_that(
   desc = "confidence interval for effect size for Kruskal-Wallis test ",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # percentile
     set.seed(123)

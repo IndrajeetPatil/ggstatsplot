@@ -5,7 +5,6 @@ context(desc = "pairwise_p with ggsignif")
 testthat::test_that(
   desc = "check comparison significant displays - adjusted",
   code = {
-    testthat::skip_on_cran()
 
     # creating the plot
     set.seed(123)

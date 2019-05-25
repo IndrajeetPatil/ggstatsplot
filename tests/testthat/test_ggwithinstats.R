@@ -35,7 +35,6 @@ testthat::test_that(
 testthat::test_that(
   desc = "basic plotting works - two groups",
   code = {
-    testthat::skip_on_cran()
 
     # plot
     set.seed(123)

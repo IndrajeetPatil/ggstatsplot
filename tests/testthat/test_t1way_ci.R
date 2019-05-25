@@ -4,7 +4,6 @@ testthat::test_that(
   desc = "t1way_ci works",
   code = {
     testthat::skip_on_cran()
-    testthat::skip_if_not(R.version$minor >= "6.0")
 
     # normal
     set.seed(123)
